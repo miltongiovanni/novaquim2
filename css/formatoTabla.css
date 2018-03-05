@@ -1,0 +1,333 @@
+BODY {
+	margin : 0px 0px 0px 0px;
+} 
+.formatoEncabezados {
+	font-family: tahoma, Verdana;
+	font-weight: bold;
+	text-align: center;
+	font-size: 12px;
+	background-color: #000066;
+	color: #FFFFFF
+}
+.formatoDatos {
+	font-family: tahoma, Verdana;
+	font-size: small;
+	color: #000066;
+}
+.formatoDatos1 {
+	font-family: tahoma, Verdana;
+	font-size: small;
+	color: #D40000;
+	font-weight: normal;
+}
+.formatoDatos2 {
+	font-family: tahoma, Verdana;
+	font-size: small;
+	color: #009D00;
+	font-weight: normal;
+}
+.formatoDatos3 {
+	font-family: tahoma, Verdana;
+	font-size: small;
+	color:  #AA5FFF;
+	font-weight: normal;
+}
+.formatoDatos4 {
+	font-family: tahoma, Verdana;
+	font-size: small;
+	color: #E29641;
+	font-weight: normal;
+}
+.formatoBoton {
+	font-family: tahoma, Verdana;
+	font-size: x-small;
+	background-color: #000066;
+	border-top-width: thin;
+	border-right-width: thin;
+	border-bottom-width: thin;
+	border-left-width: thin;
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: none;
+	border-left-style: none;
+	color: #FFFFFF;
+	line-height: normal;
+	font-weight: bolder;
+	text-align: center;
+	-webkit-border-radius: .2em; 
+    -moz-border-radius: .2em;
+    border-radius: .2em;
+}
+.formatoBoton:hover {
+	font-family: tahoma, Verdana;
+	font-size: x-small;
+	background-color: #03C;
+	border-top-width: thin;
+	border-right-width: thin;
+	border-bottom-width: thin;
+	border-left-width: thin;
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: none;
+	border-left-style: none;
+	color: #FFFFFF;
+	line-height: normal;
+	font-weight: bolder;
+	text-align: center;
+	-webkit-border-radius: .2em;
+	-moz-border-radius: 0.2em;
+	border-radius: .2em;
+}
+.formatoBoton1 {
+	font-family: tahoma, Verdana;
+	font-size: small;
+	background-color: #000066;
+	border-top-width: thin;
+	border-right-width: thin;
+	border-bottom-width: thin;
+	border-left-width: thin;
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: none;
+	border-left-style: none;
+	color: #FFFFFF;
+	line-height: normal;
+	font-weight: bolder;
+	text-align: center;
+	-webkit-border-radius: .2em;
+	-moz-border-radius: .2em;
+	border-radius: .2em;
+}
+.formatoBoton1:hover {
+	font-family: tahoma, Verdana;
+	font-size: small;
+	background-color: #95AFFF;
+	border-top-width: thin;
+	border-right-width: thin;
+	border-bottom-width: thin;
+	border-left-width: thin;
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: none;
+	border-left-style: none;
+	color: #006;
+	line-height: normal;
+	font-weight: bolder;
+	text-align: center;
+	-webkit-border-radius: .2em;
+	-moz-border-radius: 0.2em;
+	border-radius: .2em;
+}
+
+
+font {
+	font-family: tahoma, Verdana;
+	font-size: 12px;
+	color: #000066;
+}
+
+table   {
+	color: #000066;
+	font-family: tahoma, Verdana
+        }
+
+.table2 {
+        border: 0 solid #000066;
+        }
+
+input        {
+	color: #FFFFFF;
+	background-color: #000066;
+	border: thin outset #000066;
+	border-radius: 5px;
+	font-size: 10px
+	font-family: Verdana, Geneva, sans-serif;
+	text-align: left;
+}
+select       {
+	color: #FFFFFF;
+	background-color: #000066;
+	border: thin solid #000066;
+	font-size: 12px;
+}
+.font2       
+{
+	color: #000066;
+	font-style: normal;
+	font-weight:normal;
+	font-size: small;
+}
+.titulo {
+	font-family: tahoma, Verdana;
+	font-size: large;
+	font-style: normal;
+	line-height: normal;
+	font-weight: bold;
+	font-variant: normal;
+	color: #000066;
+}
+.titulo1 {
+	font-family: tahoma, Verdana;
+	font-size: medium;
+	font-style: normal;
+	line-height: normal;
+	font-weight: bold;
+	font-variant: normal;
+	color: #FF0000;
+}
+.titulo2 {
+	font-family: tahoma, Verdana;
+	font-size: medium;
+	font-style: normal;
+	line-height: normal;
+	font-weight: bold;
+	font-variant: normal;
+	color: #006600;
+}
+.titulo3 {
+	font-family: tahoma, Verdana;
+	font-size: medium;
+	font-style: normal;
+	line-height: normal;
+	font-weight: bold;
+	font-variant: normal;
+	color: #000066;
+}
+.resaltado {
+	font-family: tahoma, Verdana;
+	font-size: small;
+	background-color: #000066;
+	border-top-width: thin;
+	border-right-width: thin;
+	border-bottom-width: thin;
+	border-left-width: thin;
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: none;
+	border-left-style: none;
+	color: #FFFFFF;
+	line-height: normal;
+	font-weight: bolder;
+	text-align: center;
+	-webkit-border-radius: .2em;
+	-moz-border-radius: .2em;
+	border-radius: .2em;
+}
+.resaltado:hover {
+	font-family: tahoma, Verdana;
+	font-size: small;
+	background-color: #95AFFF;
+	border-top-width: thin;
+	border-right-width: thin;
+	border-bottom-width: thin;
+	border-left-width: thin;
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: none;
+	border-left-style: none;
+	color: #006;
+	line-height: normal;
+	font-weight: bolder;
+	text-align: center;
+	-webkit-border-radius: .2em;
+	-moz-border-radius: 0.2em;
+	border-radius: .2em;
+}
+
+.commenthidden {display:none}
+.commentshown {display:inline}
+#contenedor{
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 12px;
+	width: 1280px;
+	margin: auto;
+	background-color: #FFF;
+	height: 575px;
+	position: absolute;
+	overflow: scroll;
+	left: 0px;
+	top: 0px;
+} 
+#saludo{
+	text-align: center;
+	width: 900px;
+	margin: auto;
+	height: 20px;
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 18px;
+	color: #2A1F55;
+	background-image: url(../images/LogoNova1.jpg);
+	background-repeat: no-repeat;
+	background-position: center 10px;
+	padding-top: 240px;
+	padding-bottom: 10px;
+	text-decoration: inherit;
+} 
+#saludo1{
+	text-align: center;
+	width:900px;
+	margin: auto;
+	height: 20px;
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 18px;
+	color: #2A1F55;
+	background-image: url(../images/LogoNova.jpg);
+	background-repeat: no-repeat;
+	background-position: center 0px;
+	padding-top: 112px;
+	text-decoration: inherit;
+	background-color: #FFF;
+	border-top-color: #FFF;
+	border-right-color: #FFF;
+	border-bottom-color: #FFF;
+	border-left-color: #FFF;
+} 
+.separador
+{
+	font-family: tahoma, Verdana;
+	font-size: 21px;
+	font-style: normal;
+	font-weight: normal;
+	color: #FFF;
+	text-align: center;
+	vertical-align: middle;
+}
+.button {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #000066;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 12px;
+  padding: 5px;
+  width: 85px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
