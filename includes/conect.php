@@ -8,6 +8,7 @@ else
 }
 
 function conectarServidor(){
+/*
 $servidorBD="localhost";
 $usuario="root";
 $password="novaquim";
@@ -18,15 +19,14 @@ if($link)
 	return $link;
 else
         return false;
-
-/*Orientado a objetos
+*/
+//Orientado a objetos
 $mysqli = new mysqli('localhost', 'root', 'novaquim', 'novaquim');
-
 
 if ($mysqli->connect_error) {
     die('Connect Error (' . $mysqli->connect_errno . ') '
             . $mysqli->connect_error);
 }
-*/
+return $mysqli;
 }
 ?>

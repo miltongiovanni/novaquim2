@@ -15,10 +15,20 @@ class PHP_fun
 	function __construct()
 	{
 		$this->getConfig();
-		$Conn=mysqli_connect("localhost", "root", "novaquim", "novaquim"); 
+        $mysqli = new mysqli('localhost', 'root', 'novaquim', 'novaquim');
+
+        if ($mysqli->connect_error) {
+            die('Connect Error (' . $mysqli->connect_errno . ') '
+                    . $mysqli->connect_error);
+        }
+
+
+
+
+		/*$Conn=mysqli_connect("localhost", "root", "novaquim", "novaquim"); 
 		if (mysqli_connect_errno()) {
 	  printf("Conexión fallida: %s\n", mysqli_connect_error());
-	  exit();}
+	  exit();}*/
 	  /*
 		if (!$Conn)
 			die("Error: ".mysql_errno($Conn).":- ".mysql_error($Conn));
@@ -29,19 +39,23 @@ class PHP_fun
 
 	function select_row($sql)
 	{
-		$Conn=mysqli_connect("localhost", "root", "novaquim", "novaquim"); 
+		//$Conn=mysqli_connect("localhost", "root", "novaquim", "novaquim"); 
+        $Conn=new mysqli('localhost', 'root', 'novaquim', 'novaquim'); 
 	$data=NULL;
 	//echo $sql . "<br />";
 	if ($sql!="")
 	{
-	  $result = mysqli_query($Conn, $sql);
+	  //$result = mysqli_query($Conn, $sql);
+      $result = $Conn->query($sql);
 	  //mysql_query($sql) or die("Error: ".mysql_errno().":- ".mysql_error());
 	  
 	  if ($result)
 	  {
-		$num_rows= mysqli_num_rows($result);
-		while($row =mysqli_fetch_array($result, MYSQLI_BOTH))
-		  $data[] = $row;
+		//$num_rows= mysqli_num_rows($result);
+        $num_rows=$result->num_rows;
+		//while($row =mysqli_fetch_array($result, MYSQLI_BOTH))
+		while($row = $result->fetch_array(MYSQLI_BOTH))  
+            $data[] = $row;
 	  }
 	  return $data;
 	}
@@ -51,11 +65,14 @@ class PHP_fun
 	{
 	  if ($sql!="")
 	  {
-	 $Conn=mysqli_connect("localhost", "root", "novaquim", "novaquim"); 
-		  $result = mysqli_query($Conn, $sql);
+    	 //$Conn=mysqli_connect("localhost", "root", "novaquim", "novaquim"); 
+         $Conn=new mysqli('localhost', 'root', 'novaquim', 'novaquim'); 
+		  //$result = mysqli_query($Conn, $sql);
+          $result = $Conn->query($sql);
 		  if ($result)
 		  {
-			  $cnt = mysqli_num_rows($result);
+			  //$cnt = mysqli_num_rows($result);
+              $cnt = $result->num_rows;
 			  return $cnt;
 		  }
 	  }
