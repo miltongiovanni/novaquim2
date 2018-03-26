@@ -17,10 +17,10 @@ $fecCrea=Hoy();
 $Intentos=0;
 $clave=md5($Usuario);
 $user=new user();
-if($result=$user->makeUser($Nombre,$Apellido, $clave, $Usuario, $estadousuario, $fecCrea, $fecCambio,$IdPerfil, $Intentos,$Email)){
+if($result=$user->makeUser($Nombre,$Apellido, $clave, $Usuario, $estadousuario, $fecCrea, $fecCambio, $IdPerfil, $Intentos, $Email)){
         $perfil1=$_SESSION['Perfil'];
 		$ruta="listarUsuarios.php";
-		/******LOG DE CREACION *********/
+		/******LOG DE CREACION ********
 		$IdUser=$_SESSION['IdUsuario'];
 		$hh=strftime("%H:").strftime("%M:").strftime("%S");	              
         $Fecha=date("Y")."-".date("m")."-".date("d")." ".$hh;
@@ -28,8 +28,8 @@ if($result=$user->makeUser($Nombre,$Apellido, $clave, $Usuario, $estadousuario, 
 		$qryAcces="insert into logusuarios(IdUsuario, Fecha, Motivo) values($IdUser,'$Fecha','CREACION DE USUARIO')";
 		$result=mysqli_query($link,$qryAcces);
 //mysqli_free_result($result);
-/* cerrar la conexión */
-mysqli_close($link);		/*********FIN DEL LOG CREACION*****/
+/* cerrar la conexión 
+mysqli_close($link);		********FIN DEL LOG CREACION*****/
         mover_pag($ruta,"Usuario Creado correctamente");
         }
 else{

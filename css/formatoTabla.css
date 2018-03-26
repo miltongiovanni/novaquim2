@@ -331,3 +331,42 @@ select       {
   opacity: 1;
   right: 0;
 }
+.button1 {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #000066;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 12px;
+  padding: 5px;
+  width: 100px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.button1 span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button1 span:before {
+  content: '\00ab';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  left: -20px;
+  transition: 0.5s;
+}
+
+.button1:hover span {
+  padding-left: 15px;
+}
+
+.button1:hover span:before {
+  opacity: 1;
+  left: 0;
+}

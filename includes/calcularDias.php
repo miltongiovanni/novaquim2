@@ -1,6 +1,6 @@
 <?php
 date_default_timezone_set('America/Bogota');
-function Calc_Dias($fecFinal,$fecInicial) 
+function Calc_Dias($fecFinal, $fecInicial) 
 {
 	
    //ORIENTADO A OBJETOS

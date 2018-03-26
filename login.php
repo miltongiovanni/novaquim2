@@ -43,7 +43,7 @@ if($mysqli)
 		$row1 = $result1->fetch_assoc();	
 		if($row1)
 		{
-			/********ERROR DE ACCESO********/
+			/********ERROR DE ACCESO*******
 			$IdUser=$row['IdUsuario'];
 			$hh=strftime("%H:").strftime("%M:").strftime("%S");	              
             $Fecha=date("Y")."-".date("m")."-".date("d")." ".$hh;
@@ -65,7 +65,7 @@ if($mysqli)
 		else
 		{
 			$ruta="index.php";
-			/********ERROR DE ACCESO********/
+			/********ERROR DE ACCESO*******
 			$IdUser=$row['IdUsuario'];
 			$hh=strftime("%H:").strftime("%M:").strftime("%S");	              
             $Fecha=date("Y")."-".date("m")."-".date("d")." ".$hh;
@@ -113,7 +113,7 @@ if($mysqli)
 					 $_SESSION['Perfil']=MD5($perfil_admin);
 					 $perfil =md5( $row['IdPerfil']);
 					 //echo $perfil.'<br>';
-					 /******LOG DE ACCESO AL SISTEMA*********/
+					 /******LOG DE ACCESO AL SISTEMA********
 					 $IdUser=$row['IdUsuario'];
 					 $hh=strftime("%H:").strftime("%M:").strftime("%S");	              
 					 $Fecha=date("Y")."-".date("m")."-".date("d")." ".$hh;
@@ -140,7 +140,7 @@ if($mysqli)
 					 $_SESSION['IdUsuario']=$row['IdUsuario'];
 					 $_SESSION['Perfil']=MD5($perfil_admin);				 
 					 $perfil =md5( $row['IdPerfil']);
-					/******LOG DE VENCIMIENTO DE CLAVE*********/
+					/******LOG DE VENCIMIENTO DE CLAVE********
 					 $IdUser=$row['IdUsuario'];
 					 $hh=strftime("%H:").strftime("%M:").strftime("%S");	              
 					 $Fecha=date("Y")."-".date("m")."-".date("d")." ".$hh;
@@ -156,7 +156,7 @@ if($mysqli)
 			{
 				$ruta="index.php";
 				$nota="La clave se encuentra bloqueada por favor contacte al administrador";
-				/******LOG CLAVE BLOQUEADA*********/
+				/******LOG CLAVE BLOQUEADA********
 					 $IdUser=$row['IdUsuario'];
 					 $hh=strftime("%H:").strftime("%M:").strftime("%S");	              
 					 $Fecha=date("Y")."-".date("m")."-".date("d")." ".$hh;
@@ -171,7 +171,7 @@ if($mysqli)
 		else
 		{
 			$ruta="cambio.php";
-			/******LOG PRIMER INGRESO*********/
+			/******LOG PRIMER INGRESO********
 			 $IdUser=$row['IdUsuario'];
 			 $hh=strftime("%H:").strftime("%M:").strftime("%S");	              
 			 $Fecha=date("Y")."-".date("m")."-".date("d")." ".$hh;

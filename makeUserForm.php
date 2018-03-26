@@ -32,27 +32,31 @@ include "includes/valAcc.php";
           </tr>
           <tr>
               <td><div align="right"><label for="Email"><strong>E-mail</strong></label></div></td>
-              <td colspan="2" ><input type="text" name="Email" id="Email" onChange="TestMail(document.form2.Email.value)" size=30 maxlength="35"></td>													
+              <td colspan="2" ><input type="text" name="Email" id="Email"  size=30 maxlength="35" onChange="TestMail(document.form2.Email.value)" required placeholder="Ingrese un e-mail correcto"></td>													
           </tr>
           <tr> 
               <td><div align="right"><label for="IdPerfil"><strong>Perfil</strong></label></div></td>
               <td colspan="2" >
               <select name="IdPerfil" id="IdPerfil">
-                  <?php
-                      include "includes/conect.php";
-                      $link=conectarServidor();
-                      $qry="select * from tblperfiles";	
-                      $result=mysqli_query($link,$qry);
-                      echo '<option value="6" selected>USUARIO</option>';
-                      while($row=mysqli_fetch_array($result))
-                      {
-                          if ($row['IdPerfil']!=6)
-                              echo '<option value="'.$row['IdPerfil'].'">'.$row['Descripcion'].'</option>';
-                      }
-                      mysqli_free_result($result);
-					  /* cerrar la conexión */
-					  mysqli_close($link);
-                  ?>
+                <?php
+                    include "includes/conect.php";
+                    //$link=conectarServidor();
+                    $mysqli=conectarServidor();
+                    $qry="select * from tblperfiles";	
+                    $result = $mysqli->query($qry);
+                    //$result=mysqli_query($link,$qry);
+                    echo '<option value="6" selected>USUARIO</option>';
+                    while($row = $result->fetch_assoc())
+                    {
+                        if ($row['IdPerfil']!=6)
+                            echo '<option value="'.$row['IdPerfil'].'">'.$row['Descripcion'].'</option>';
+                    }
+                    //mysqli_free_result($result);
+                    $result->free();
+  			  /* cerrar la conexión  */
+  			  //mysqli_close($link);
+          $mysqli->close();
+                ?>
               </select> 
           </tr>
           <tr> 
@@ -67,8 +71,7 @@ include "includes/valAcc.php";
               <td colspan="3"><div align="center">&nbsp;</div></td>
           </tr>
           <tr> 
-              <td colspan="3">
-              <div align="center"><input type="button" class="resaltado" onClick="history.back()" value="VOLVER"></div>
+              <td colspan="3"><div align="center"><button class="button1" id="back" style="vertical-align:middle" onClick="history.back()"> <span>VOLVER</span></button></div>
               </td>
           </tr>
       </table>
