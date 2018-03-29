@@ -3,8 +3,7 @@ include "includes/valAcc.php";
 ?>
 <?php
 include "includes/conect.php";
-
-$link=conectarServidor();
+$mysqli=conectarServidor();
 foreach ($_POST as $nombre_campo => $valor) 
 { 
 	$asignacion = "\$".$nombre_campo."='".$valor."';"; 
@@ -32,11 +31,11 @@ else
 	$fec=$year."-".$mes."-".$dia;
 	$sSQL="Update tblusuarios Set clave=md5('$NewPass'), FecCambio='$fec', Intentos=0,
 	estadousuario=2 Where usuario='$Nombre'";
-	$result1=mysqli_query($link,$sSQL);
+	$result1=$mysqli->query($sSQL);
 	echo'<script language="Javascript">
 				alert("Asignacion Exitosa")
 				self.location="listarUsuarios.php"
 				</script>';
 }
-mysqli_close($link);
+$mysqli->close();
 ?>

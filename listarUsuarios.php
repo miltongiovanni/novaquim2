@@ -7,14 +7,21 @@ include "includes/valAcc.php";
 <title>Lista de Usuarios</title>
 <meta charset="utf-8">
 <link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
+<style>
+
+/*PARA HACER EL EFECTO ZEBRA DE LAS TABLAS*/
+tr:nth-child(even) {
+    background-color: #DFE2FD;  
+}
+</style>
 </head>
 <body>
 <div id="contenedor">
 
-<div id="saludo1"><strong>LISTADO DE USUARIOS REGISTRADOS</strong></div> 
+<div id="saludo1"><strong>LISTADO DE USUARIOS ACTIVOS</strong></div> 
 <table width="100%" border="0" summary="encabezado">
 	<tr> 
-    	<td><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men&uacute;"></div></td>
+    	<td><div align="right"><button class="button" style="vertical-align:middle" onclick="window.location='menu.php'"><span><STRONG>Ir al Men&uacute;</STRONG></span></button></div></td>
     </tr>
 </table>
 
@@ -23,9 +30,7 @@ include "includes/valAcc.php";
 <?php
 include "includes/utilTabla.php";
 include "includes/conect.php" ;
-	//parametros iniciales que son los que cambiamos
-	//conectar con el servidor de BD
-	$link=conectarServidor();
+	$mysqli=conectarServidor();
     //sentencia SQL    tblusuarios.IdUsuario,
 
 	
@@ -34,15 +39,15 @@ include "includes/conect.php" ;
 			tblusuarios.Usuario, tblusuarios.FecCrea as 'Fecha de Creación', 
 			tblestados.Descripcion as 'Estado',	tblperfiles.Descripcion as 'Perfil'
 			FROM tblusuarios,tblperfiles, tblestados
-			where tblusuarios.EstadoUsuario=tblestados.IdEstado
+			where tblusuarios.EstadoUsuario=tblestados.IdEstado and EstadoUsuario<=2
 			and tblusuarios.IdPerfil=tblperfiles.IdPerfil order by tblusuarios.IdUsuario";
 
 	//llamar funcion de tabla
-	verTabla($sql, $link);
+	verTabla($sql, $mysqli);
 ?>
 
 
-<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men&uacute;"></div>
+<div align="center"><button class="button" style="vertical-align:middle" onclick="window.location='menu.php'"><span><STRONG>Ir al Men&uacute;</STRONG></span></button></div>
 </div>
 </body>
 </html>

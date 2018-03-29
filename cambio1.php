@@ -9,9 +9,6 @@ include "includes/valAcc.php";
 <title>Cambio de Contrase&ntilde;a</title>
 	<script type="text/javascript" src="scripts/validar.js"></script>
 	<script type="text/javascript" src="scripts/block.js"></script>	
-    	<script type="text/javascript">
-	document.onkeypress = stopRKey; 
-	</script>
 
 </head>
 <body> 
@@ -25,20 +22,20 @@ $nombre= $_POST['IdUsuario'];
 <form action="change1.php" method="POST" name="Cambio_clave" id="Cambio_clave">
 <table width="327" align ="center" id="pass">  
 <tr>
-	<td width="167"><div align="right"><strong>Nombre de usuario</strong></div></td>
+	<td width="167"><div align="right"><label for="Nombre"><strong>Nombre de usuario</strong></label></div></td>
 	<td colspan="2"><input name="Nombre" value="<?php echo $nombre ?>" readonly size="20"></td>
 </tr>
 <tr>
-	<td><div align="right"><strong>Contrase&ntilde;a nueva</strong></div></td>
+	<td><div align="right"><label for="Nombre"><strong>Contrase&ntilde;a nueva</strong></label></div></td>
 	<td colspan="2"><input type="password" name="NewPass" size="20"></td>
 </tr>
 <tr>
-	<td><div align="right"><strong>Confirmaci&oacute;n </strong></div></td>
+	<td><div align="right"><label for="Nombre"><strong>Confirmaci&oacute;n </strong></label></div></td>
 	<td colspan="2"><input type="password" name="ConfPass" size="20"></td>
 </tr>
 <tr><td>&nbsp;</td>
-    <td width="68"><input type="button" name="Grabar" value="Cambiar" onClick="return Enviar(this.form);"></td>
-	<td width="80"><input type="reset" value="   Borrar   " name="Borrar"></td>
+    <td width="68"><button class="button" style="vertical-align:middle" onclick="return Enviar(this.form)"><span>Cambiar</span></button></td>
+	<td width="80"><button class="button" style="vertical-align:middle" type="reset"><span>Borrar</span></button></td>
 </tr>
 
 <tr>
@@ -49,7 +46,7 @@ $nombre= $_POST['IdUsuario'];
 </tr>
 <tr> 
     <td colspan="3">
-    <div align="center"><input type="button" class="resaltado" onClick="history.back()" value="VOLVER"></div>    </td>
+    <div align="center"><button class="button1" id="back" style="vertical-align:middle" onClick="history.back()"> <span>VOLVER</span></button></div>    </td>
 </tr>
 </table>
 </form>

@@ -30,16 +30,12 @@ if($mysqli)
  	//Validacion de nombre y usuario
    	$QRY="select * from tblusuarios where usuario= '$Nombre' AND clave='$Password'";
    	$result = $mysqli->query($QRY);
-   	//$result=mysqli_query($link, $QRY);
-   	//$row=mysqli_fetch_assoc($result);
    	$row = $result->fetch_assoc();
    	if(!$row)
    	{//si existen datos pero la clave esta errada
   		$QRY1="select * from tblusuarios where usuario= '$Nombre'";
 		//verificacion de nombre en la Base de datos
-		//$result1=mysqli_query($link,$QRY1);
 		$result1 = $mysqli->query($QRY1);
-		//$row1=mysqli_fetch_array($result1);	
 		$row1 = $result1->fetch_assoc();	
 		if($row1)
 		{
@@ -55,7 +51,6 @@ if($mysqli)
 			//si el usuario existe se le adiciona 1 intento a los 4 intentos se debe bloquear el usuario
 			$intentos=$row['Intentos']+1;
 			$QRY2="update tblusuarios set Intentos=$intentos where usuario='$Nombre'";
-		    //$result2=mysqli_query($link,$QRY2);
 		    $result2 = $mysqli->query($QRY2);
 			$ruta="index.php";
 			$nota="Los Datos no son Correctos por favor verifique la información";
@@ -78,7 +73,6 @@ if($mysqli)
 			mover_pag($ruta,$nota);
 		}
    	}	
-   	//$total=mysqli_num_rows($result);
    	$total=$result->num_rows;
 
    	//si se superan los controles iniciales
@@ -104,7 +98,6 @@ if($mysqli)
 				if($dias<=90)//Numero de dias
 				{
 					 $QRY3="update tblusuarios set Intentos=0 where usuario='$Nombre'";
-					 //$result3=mysqli_query($link,$QRY3);
 					 $result3 = $mysqli->query($QRY3);
 					 session_start();
 					 $_SESSION['Autorizado']=true;
@@ -133,7 +126,6 @@ if($mysqli)
 					$nota=utf8_encode($nota);
 					$QRY4="update tblusuarios set intentos=0 where usuario='$Nombre'";	
 					$result4 = $mysqli->query($QRY4);
-					 //$result4=mysqli_query($link,$QRY4);
 					 session_start();
 					 $_SESSION['Autorizado']=true;
 					 $_SESSION['User']=$Nombre;
@@ -191,11 +183,9 @@ if($mysqli)
 		}
    	}
 	/* cerrar el resulset */
-	//mysqli_free_result($result);
 	$result->free();
 	
 	/* cerrar la conexión */
-	//mysqli_close($link);
 	$mysqli->close();
 }
 

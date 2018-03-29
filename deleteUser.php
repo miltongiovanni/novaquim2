@@ -15,7 +15,7 @@
 	$result=$user->deleteUser($IdUsuario);
 	if($result==1)
 	{
-		/******LOG DE CREACION *********/
+		/******LOG DE CREACION *********
 		$link=conectarServidor();
 		$IdUser=$IdUsuario;
 		$hh=strftime("%H:").strftime("%M:").strftime("%S");	              
@@ -28,11 +28,11 @@
 	}
 	else
 	{	$ruta="menu.php?perfil=$perfil";
-		mover_pag($ruta,"La Operacion no fue exitosa");
+		mover_pag($ruta,"No se pudo borrar el usuario");
 	}
-	mysqli_free_result($ResutLog);
+	//mysqli_free_result($ResutLog);
 /* cerrar la conexión */
-mysqli_close($link);
+$mysqli->close();
 function mover_pag($ruta,$nota)
 	{
 	echo'<script language="Javascript">

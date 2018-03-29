@@ -1,35 +1,33 @@
 <?php
-function verTabla($sql, $link)
+function verTabla($sql, $mysqli)
 {
-	$result=mysqli_query($link, $sql);
-	$campos=mysqli_num_fields($result); //para saber el numero de campos de un registro
-	$filas=mysqli_num_rows($result);
-	if ($row= mysqli_fetch_row($result))
+	$result = $mysqli->query($sql);
+	$campos=$result->field_count; //para saber el numero de campos de un registro
+	$filas=$result->num_rows;
+	if ($row = $result->fetch_row())
 	{
 		echo '<table align="center" summary="Tabla"><tr class="formatoEncabezados">';
 		for($i=0; $i<$campos; $i++)
 		{
-			$info_campo = mysqli_fetch_field_direct($result, $i);
+			$info_campo = $result->fetch_field_direct($i);
 			echo '<td align="center">'.utf8_encode($info_campo->name).'</td>';
 		}
 		echo '</tr>';
 		$a=1;
 		do
 		{
-			echo'<tr class="formatoDatos"';
-	  		if (($a++ % 2)==0) echo ' bgcolor="#DFE2FD" ';
-	  		echo '>';
+			echo'<tr class="formatoDatos">';
 			for($i=0; $i<$campos; $i++)
 			{
 				echo '<td align="center">'.utf8_encode($row[$i]).'</td>';
 			}
 			echo'</tr>';
-		}while ($row = mysqli_fetch_row($result));
+		}while ($row = $result->fetch_row());
 		echo '</table>';
 	}
-   mysqli_free_result($result);
+   $result->free();
 
 /* cerrar la conexión */
-mysqli_close($link);
+$mysqli->close();
 }
 ?>

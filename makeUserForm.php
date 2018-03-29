@@ -9,9 +9,6 @@ include "includes/valAcc.php";
 	<meta charset="utf-8">
 	<script type="text/javascript" src="scripts/validar.js"></script>
 	<script type="text/javascript" src="scripts/block.js"></script>	
-		<script type="text/javascript">
-	document.onkeypress = stopRKey; 
-	</script>
 </head>
 <body>
 <div id="contenedor">
@@ -40,21 +37,17 @@ include "includes/valAcc.php";
               <select name="IdPerfil" id="IdPerfil">
                 <?php
                     include "includes/conect.php";
-                    //$link=conectarServidor();
                     $mysqli=conectarServidor();
                     $qry="select * from tblperfiles";	
                     $result = $mysqli->query($qry);
-                    //$result=mysqli_query($link,$qry);
                     echo '<option value="6" selected>USUARIO</option>';
                     while($row = $result->fetch_assoc())
                     {
                         if ($row['IdPerfil']!=6)
                             echo '<option value="'.$row['IdPerfil'].'">'.$row['Descripcion'].'</option>';
                     }
-                    //mysqli_free_result($result);
                     $result->free();
   			  /* cerrar la conexión  */
-  			  //mysqli_close($link);
           $mysqli->close();
                 ?>
               </select> 

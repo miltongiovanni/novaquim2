@@ -10,9 +10,6 @@ include "includes/conect.php";
 <title>Actualizar datos del Usuario</title>
 <script type="text/javascript" src="scripts/validar.js"></script>
 <script type="text/javascript" src="scripts/block.js"></script>
-	<script type="text/javascript">
-	document.onkeypress = stopRKey; 
-	</script>
 </head>
 
 <body>
@@ -21,14 +18,14 @@ include "includes/conect.php";
 <div id="saludo1"><strong>ACTUALIZACI&Oacute;N DE USUARIOS</strong></div> 
 
 <?php
-	  $link=conectarServidor();
+    $mysqli=conectarServidor();
 	  $IdUsuario=$_POST['IdUsuario'];
 	  $qry="select *from tblusuarios where IdUsuario=$IdUsuario";
-	  $result=mysqli_query($link,$qry);
-	  $row=mysqli_fetch_array($result);
-	  mysqli_free_result($result);
+    $result = $mysqli->query($qry);
+    $row = $result->fetch_assoc();
+    $result->free();
 /* cerrar la conexión */
-mysqli_close($link);
+$mysqli->close();
 ?>
 
 <form id="form1" name="form1" method="post" action="updateUser.php">
@@ -64,43 +61,43 @@ mysqli_close($link);
     <tr> 
       <td>
 		<?php
-          $link=conectarServidor();
+          $mysqli=conectarServidor();
 		  $qryu="select *from tblusuarios, tblestados where tblusuarios.IdUsuario=$IdUsuario and tblusuarios.EstadoUsuario=tblestados.IdEstado";
-		  $resultu=mysqli_query($link,$qryu);
-		  $rowu=mysqli_fetch_array($resultu); 
+		  $resultu=$mysqli->query($qryu);
+		  $rowu=$resultu->fetch_assoc();
 		  echo'<select name="IdEstado">';
-		  $resulte=mysqli_query($link,"select * from tblestados");
+		  $resulte=$mysqli->query("select * from tblestados");
 		  echo '<option selected value='.$rowu['IdEstado'].'>'.$rowu['Descripcion'].'</option>';
-          while ($rowe=mysqli_fetch_array($resulte))
+          while ($rowe=$resulte->fetch_assoc())
 		  {
 			if ($rowe['Descripcion']!= $rowu['Descripcion'])
 	        	echo '<option value='.$rowe['IdEstado'].'>'.$rowe['Descripcion'].'</option>';
           }
           echo'</select>';
-		  mysqli_free_result($resultu);
-		  mysqli_free_result($resulte);
+		  $resultu->free();
+		  $resulte->free();
 /* cerrar la conexión */
-mysqli_close($link);
+$mysqli->close();
 		?>
 	  </td>
 	  <td><?php
-		  $link=conectarServidor();
+		  $mysqli=conectarServidor();
 		  $qrya="select *from tblusuarios, tblperfiles where tblusuarios.IdUsuario=$IdUsuario and tblusuarios.IdPerfil=tblperfiles.IdPerfil";
-		  $resulta=mysqli_query($link,$qrya);
-		  $rowa=mysqli_fetch_array($resulta); 			
+		  $resulta=$mysqli->query($qrya);
+		  $rowa=$resulta->fetch_assoc();			
 		  echo'<select name="IdEstado2">';
-		  $resultp=mysqli_query($link,"select * from tblperfiles");
+		  $resultp=$mysqli->query("select * from tblperfiles");
 		  echo '<option selected value='.$rowa['IdPerfil'].'>'.$rowa['Descripcion'].'</option>';
-          while($rowp=mysqli_fetch_array($resultp))
+          while($rowp=$resultp->fetch_assoc())
 		  {
 		  	if ($rowp['Descripcion']!= $rowa['Descripcion'])
             echo '<option value='.$rowp['IdPerfil'].'>'.$rowp['Descripcion'].'</option>';
           }
           echo'</select>';	
-		  mysqli_free_result($resulta);
-		  mysqli_free_result($resultp);
+		  $resulta->free();
+      $resultp->free();
 /* cerrar la conexión */
-mysqli_close($link);		
+$mysqli->close();	
 		  ?>
 	  </td>
     <td>&nbsp;</td>
@@ -114,7 +111,7 @@ mysqli_close($link);
       <td>&nbsp;</td>
       <td>&nbsp;</td>
       <td><div align="center">
-          <input type="submit" name="Submit" value="Actualizar">
+        <button class="button" style="vertical-align:middle" onclick="return Enviar2(this.form)"><span>Actualizar</span></button>
         </div></td>
     </tr>
   </table>

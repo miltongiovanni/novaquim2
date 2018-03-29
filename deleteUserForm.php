@@ -27,22 +27,22 @@ include "includes/valAcc.php";
 			<div align="center"><strong>Usuario</strong>
 			<?php
 			include "includes/conect.php";
-			$link=conectarServidor();
+			$mysqli=conectarServidor();
 			$users=$_SESSION['User'];
 			echo'<select name="IdUsuario" id="combo">';
-			$result=mysqli_query($link,"select IdUsuario, Usuario from tblusuarios");
+			$result=$mysqli->query("select IdUsuario, Usuario from tblusuarios");
 			echo '<option value="">-----------------------------</option>';
-			while($row=mysqli_fetch_array($result))
+			while($row=$result->fetch_assoc())
 			{
 			if ($row['Usuario'] !=$users )
 			echo '<option value='.$row['IdUsuario'].'>'.$row['Usuario'].'</option>';
 			}
 			echo'</select>';
-			mysqli_free_result($result);
+			$result->free();
 /* cerrar la conexión */
-mysqli_close($link);
+$mysqli->close();
 			?>
-			<input name="button" type="button" value="Eliminar" onClick="return Enviar1(this.form);"></div>
+			<button class="button" style="vertical-align:middle" onclick="return Enviar1(this.form)"><span>Eliminar</span></button></div>
 			</form>    
 		</td>
 	</tr>
@@ -54,7 +54,7 @@ mysqli_close($link);
     </tr>
     <tr> 
         <td colspan="2">
-        <div align="center"><input type="button" class="resaltado" onClick="history.back()" value="  VOLVER  "></div>
+        <div align="center"><button class="button1" id="back" style="vertical-align:middle" onClick="history.back()"> <span>VOLVER</span></button></div>
         </td>
     </tr>
 </table>

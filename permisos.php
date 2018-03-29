@@ -76,10 +76,12 @@
 					eval($asignacion); 
 				}  	
 				$user = explode(",", $Personal);
-                $link=conectarServidor();
+                //$link=conectarServidor();
+                $mysqli=conectarServidor();
                 $qry="select Nombre from tblusuarios WHERE IdUsuario=$user[0]";	
-                $result=mysqli_query($link,$qry);
-                $row=mysqli_fetch_array($result, MYSQLI_BOTH);
+                //$result=mysqli_query($link,$qry);
+                $result = $mysqli->query($qry);
+                $row=$result->fetch_assoc();
                 echo "Permisos para el usuario <strong>".iconv("iso-8859-1", "UTF-8",$row['Nombre'])."</strong>";
 				?> en el Sistema de Inventarios de Industrias Novaquim
                 </div>
@@ -88,11 +90,11 @@
 				$perfil=$user[1];
 				//$sql="select id, title, link, parentid, cod_user from menu where cod_user LIKE '%$perfil%';";
 				$sql="select id, title, link, parentid, cod_user from menu";
-				$result=mysqli_query($link,$sql);
+				$result= $mysqli->query($sql);
 				$k=0;	
 				
 
-				while($row=mysqli_fetch_array($result))
+				while($row=$result->fetch_assoc())
 				{
 					$id=$row['id'];
 					$title=$row['title'];
@@ -163,8 +165,8 @@
 							{	
 								$aaaaa=$menu_3_i[$indice1][$indice2][$clave];
 								$sqlb="select id, title, link, parentid, cod_user from menu where id=$aaaaa";
-								$resultb=mysqli_query($link,$sqlb);
-								$rowb=mysqli_fetch_array($resultb);
+								$resultb=$mysqli->query($sqlb);
+								$rowb=$resultb->fetch_assoc();
 								$cod_user=$rowb['cod_user'];
 								$usuarios_p = explode(",", $cod_user);
 								if(in_array ($perfil, $usuarios_p))
@@ -187,12 +189,13 @@
 				?>
 <table width="30%" align="center">
 <tr>
-                <td width="50%" align="center"><input type="hidden" name="perfil" value="<?php echo $perfil ?>"><input type="hidden" name="usuario" value="<?php echo $user[0] ?>"><input type="submit" value="Enviar"></td>
-      			<td width="50%" align="center" ><input name="reset" type="reset" value="Borrar"></td>
+                <td width="50%" align="center"><input type="hidden" name="perfil" value="<?php echo $perfil ?>"><input type="hidden" name="usuario" value="<?php echo $user[0] ?>">
+				<button class="button" style="vertical-align:middle" onclick="return Enviar(this.form)"><span>Continuar</span></button>
+      			<td width="50%" align="center" ><button class="button" style="vertical-align:middle" type="reset"><span>Borrar</span></button></td>
                 </tr>
                 </table>
                 </form>
-                <div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Terminar"></div>
+                <div align="center"><button class="button" style="vertical-align:middle" onClick="window.location='menu.php'"><span>Terminar</span></button></div>
 </div> 
 </div> 
 </body>

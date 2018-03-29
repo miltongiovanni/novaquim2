@@ -4,7 +4,7 @@ include "includes/valAcc.php";
 <?php
 include "includes/conect.php";
 
-$link=conectarServidor();
+$mysqli=conectarServidor();
 foreach ($_POST as $nombre_campo => $valor) 
 { 
 	$asignacion = "\$".$nombre_campo."='".$valor."';"; 
@@ -15,13 +15,13 @@ foreach ($_POST as $nombre_campo => $valor)
 $usuario1=strtoupper ($Nombre);
 $password1=md5(strtoupper ($Password));
 $QRY="select * from tblusuarios where Usuario='$usuario1' and clave ='$password1'";
-$result=mysqli_query($link,$QRY);
-$row=mysqli_fetch_array($result);
+$result = $mysqli->query($QRY);
+$row = $result->fetch_assoc();
 if($row)
 {
 	$Nombre=$usuario1;
 	$Id=$row['IdUsuario'];
-	if(mysqli_num_rows($result) != 0)
+	if($result->num_rows != 0)
 	{
 		$AntPass=strtoupper ($Password);
 		$NewPass=strtoupper ($NewPass);
@@ -43,10 +43,10 @@ if($row)
 			$fec=$year."-".$mes."-".$dia;
 			$sSQL="Update tblusuarios Set clave=md5('$NewPass'), FecCambio='$fec', Intentos=0,
 			estadousuario=2 Where usuario='$Nombre'";
-			$result1=mysqli_query($link,$sSQL);
+			$result1=$mysqli->query($sSQL);
 			if($result1)
 			{
-				/******LOG DE VENCIMIENTO DE CLAVE*********/
+				/******LOG DE VENCIMIENTO DE CLAVE********
 				$hh=strftime("%H:").strftime("%M:").strftime("%S");	              
 				$Fecha=date("Y")."-".date("m")."-".date("d")." ".$hh;
 				$qryAcces="insert into logusuarios(IdUsuario, Fecha, Motivo) values($Id,'$Fecha','CAMBIO DE CLAVE EXITOSO')";
@@ -82,6 +82,6 @@ else
 	self.location="index.php"
 	</script>';
 }
-mysqli_free_result($result);
-mysqli_close();
+$result->free();
+$mysqli->close();
 ?>
