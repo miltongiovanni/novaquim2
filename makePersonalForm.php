@@ -9,9 +9,6 @@ include "includes/valAcc.php";
 	<meta charset="utf-8">
 	<script type="text/javascript" src="scripts/validar.js"></script>
 	<script type="text/javascript" src="scripts/block.js"></script>	
-		<script type="text/javascript">
-	document.onkeypress = stopRKey; 
-	</script>
 </head>
 <body>
 <div id="contenedor">
@@ -19,80 +16,80 @@ include "includes/valAcc.php";
   <form name="form2" method="POST" action="makePerson.php">
       <table border="0" align="center" summary="">
           <tr> 
-              <td width="56"><div align="right"><b>Nombre</b></div></td>
-              <td  colspan="2"><input type="text" name="nombre" size=30 onKeyPress="return aceptaLetra(event)" maxlength="30"></td>
+              <td width="56"><div align="right"><label for="nombre"><b>Nombre</b></label></div></td>
+              <td  colspan="2"><input type="text" name="nombre" id="nombre" size=30 onKeyPress="return aceptaLetra(event)" maxlength="30"></td>
           </tr>
           <tr> 
-              <td><div align="right"><strong>Celular</strong></div></td>
-              <td colspan="2" ><input type="text" name="celular" size=30 onKeyPress="return aceptaNum(event)" maxlength="10"></td>
+              <td><div align="right"><label for="celular"><strong>Celular</strong></label></div></td>
+              <td colspan="2" ><input type="text" name="celular" id="celular" size=30 onKeyPress="return aceptaNum(event)" maxlength="10"></td>
           </tr>
           <tr>
-              <td><div align="right"><strong>E-mail</strong></div></td>
-              <td colspan="2" ><input type="text" name="email" onChange="TestMail(document.form2.Email.value)" size=30 maxlength="35"></td>													
+              <td><div align="right"><label for="email"><strong>E-mail</strong></label></div></td>
+              <td colspan="2" ><input type="text" name="email" id="email" onChange="TestMail(document.form2.Email.value)" size=30 maxlength="35" required placeholder="Ingrese un e-mail correcto"></td>													
           </tr>
           <tr> 
-              <td><div align="right"><strong>Estado</strong></div></td>
+              <td><div align="right"><label for="estado"><strong>Estado</strong></label></div></td>
               <td colspan="2" >
               <select name="estado">
                   <?php
                       include "includes/conect.php";
-                      $link=conectarServidor();
+                      $mysqli=conectarServidor();
                       $qry="select IdEstado, Descripcion from estados_pers;";	
-                      $result=mysqli_query($link,$qry);
+                      $result = $mysqli->query($qry);
                       echo '<option value="1" selected>Activo</option>';
-                      while($row=mysqli_fetch_array($result))
+                      while($row = $result->fetch_assoc())
                       {
                           if ($row['IdEstado']!=1)
                               echo '<option value="'.$row['IdEstado'].'">'.$row['Descripcion'].'</option>';
                       }
-                      mysqli_free_result($result);
+                      $result->free();
 /* cerrar la conexión */
-mysqli_close($link);
+$mysqli->close();
                   ?>
               </select> 
           </tr>
           <tr> 
-              <td><div align="right"><strong>&Aacute;rea</strong></div></td>
+              <td><div align="right"><label for="area"><strong>&Aacute;rea</strong></label></div></td>
               <td colspan="2" >
               <select name="area">
                   <?php
-                      $link=conectarServidor();
+                      $mysqli=conectarServidor();
                       $qry="select Id_area, area from areas_personal;";	
-                      $result=mysqli_query($link, $qry);
+                      $result = $mysqli->query($qry);
                       echo '<option value="" selected>----------------------------</option>';
-                      while($row=mysqli_fetch_array($result))
+                      while($row = $result->fetch_assoc())
                       {
-                              echo '<option value="'.$row['Id_area'].'">'.$row['area'].'</option>';
+                              echo '<option value="'.$row['Id_area'].'">'.utf8_encode($row['area']).'</option>';
                       }
-                      mysqli_free_result($result);
+                      $result->free();
 /* cerrar la conexión */
-mysqli_close($link);
+$mysqli->close();
                   ?>
               </select> 
           </tr>
           <tr> 
-              <td><div align="right"><strong>Cargo</strong></div></td>
+              <td><div align="right"><label for="cargo"><strong>Cargo</strong></label></div></td>
               <td colspan="2" >
               <select name="cargo">
                   <?php
-                      $link=conectarServidor();
+                      $mysqli=conectarServidor();
                       $qry="select Id_cargo, cargo from cargos_personal;";	
-                      $result=mysqli_query($link, $qry);
+                      $result=$mysqli->query($qry);
                       echo '<option value="" selected>------------------------------------</option>';
-                      while($row=mysqli_fetch_array($result))
+                      while($row=$result->fetch_assoc())
                       {
-                              echo '<option value="'.$row['Id_cargo'].'">'.$row['cargo'].'</option>';
+                              echo '<option value="'.$row['Id_cargo'].'">'.utf8_encode($row['cargo']).'</option>';
                       }
-                      mysqli_free_result($result);
+                      $result->free();
 /* cerrar la conexión */
-mysqli_close($link);
+$mysqli->close();
                   ?>
               </select> 
           </tr>
           <tr> 
               <td>   </td>
-              <td width="106"><input type="button" value="    Enviar    " onClick="return Enviar(this.form);"></td>
-              <td width="106"><input type="reset" value="Restablecer"></td>
+              <td width="106"><button class="button" style="vertical-align:middle" onclick="return Enviar(this.form)"><span>Continuar</span></button></td>
+              <td width="106"><button class="button" style="vertical-align:middle" type="reset"><span>Borrar</span></button></td>
           </tr>
           <tr>
               <td colspan="3"><div align="center">&nbsp;</div></td>
@@ -102,7 +99,7 @@ mysqli_close($link);
           </tr>
           <tr> 
               <td colspan="3">
-              <div align="center"><input type="button" class="resaltado" onClick="history.back()" value="VOLVER"></div>
+              <div align="center"><button class="button1" id="back" style="vertical-align:middle" onClick="history.back()"> <span>VOLVER</span></button></div>
               </td>
           </tr>
       </table>

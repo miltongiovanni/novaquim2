@@ -10,9 +10,6 @@ include "includes/conect.php";
 <title>Actualizar datos del Usuario</title>
 <script type="text/javascript" src="scripts/validar.js"></script>
 <script type="text/javascript" src="scripts/block.js"></script>
-	<script type="text/javascript">
-	document.onkeypress = stopRKey; 
-	</script>
 </head>
 
 <body>
@@ -21,14 +18,14 @@ include "includes/conect.php";
 <div id="saludo1"><strong>ACTUALIZACI&Oacute;N DE PERSONAL</strong></div> 
 
 <?php
-	  $link=conectarServidor();
+	  $mysqli=conectarServidor();
 	  $IdPersonal=$_POST['IdPersonal'];
 	  $qry="select Id_personal, nom_personal, activo, Area, cel_personal, Eml_personal, cargo_personal from personal where Id_personal=$IdPersonal";
-	  $result=mysqli_query($link,$qry);
-	  $row=mysqli_fetch_array($result);
-	  mysqli_free_result($result);
+	  $result=$mysqli->query($qry);
+	  $row=$result->fetch_assoc();
+	  $result->free();
 /* cerrar la conexión */
-mysqli_close($link);
+$mysqli->close();
 ?>
 
 <form id="form1" name="form1" method="post" action="updatePerson.php">
@@ -38,7 +35,7 @@ mysqli_close($link);
       <td ><strong>Celular</strong></td>
     </tr>
     <tr> 
-      <td colspan="2"><?php echo'<input name="Nombre" type="text" size=36 value="'.$row['nom_personal'].'"/>';?></td>
+      <td colspan="2"><?php echo'<input name="Nombre" type="text" size=36 value="'.utf8_encode($row['nom_personal']).'"/>';?></td>
       <td><?php echo'<input name="Celular" type="text" value="'.$row['cel_personal'].'"/>';?></td>
     </tr>
     <tr> 
@@ -49,64 +46,64 @@ mysqli_close($link);
     <tr> 
       <td>
 		<?php
-          $link=conectarServidor();
+      $mysqli=conectarServidor();
 		  $qryu="SELECT IdEstado, Descripcion FROM estados_pers, personal WHERE activo=IdEstado and Id_personal=$IdPersonal;";
-		  $resultu=mysqli_query($link,$qryu);
-		  $rowu=mysqli_fetch_array($resultu); 
+		  $resultu=$mysqli->query($qryu);
+		  $rowu=$resultu->fetch_assoc();
 		  echo'<select name="Estado">';
-		  $resulte=mysqli_query($link,"SELECT IdEstado, Descripcion FROM estados_pers");
-		  echo '<option selected value='.$rowu['IdEstado'].'>'.$rowu['Descripcion'].'</option>';
-          while ($rowe=mysqli_fetch_array($resulte))
+		  $resulte=$mysqli->query("SELECT IdEstado, Descripcion FROM estados_pers");
+		  echo '<option selected value='.$rowu['IdEstado'].'>'.utf8_encode($rowu['Descripcion']).'</option>';
+          while ($rowe=$resulte->fetch_assoc())
 		  {
 			if ($rowe['Descripcion']!= $rowu['Descripcion'])
-	        	echo '<option value='.$rowe['IdEstado'].'>'.$rowe['Descripcion'].'</option>';
+	        	echo '<option value='.$rowe['IdEstado'].'>'.utf8_encode($rowe['Descripcion']).'</option>';
           }
           echo'</select>';
-		  mysqli_free_result($resultu);
-		  mysqli_free_result($resulte);
+		  $resultu->free();
+		  $resulte->free();
 /* cerrar la conexión */
-mysqli_close($link);
+$mysqli->close();
 		?>
 	  </td>
 	  <td><?php
-		  $link=conectarServidor();
+		  $mysqli=conectarServidor();
 		  $qrya="select Id_area, areas_personal.area from areas_personal, personal WHERE personal.Area=areas_personal.Id_area and Id_personal=$IdPersonal;";
-		  $resulta=mysqli_query($link,$qrya);
-		  $rowa=mysqli_fetch_array($resulta); 			
+		  $resulta=$mysqli->query($qrya);
+		  $rowa=$resulta->fetch_assoc(); 			
 		  echo'<select name="Area">';
-		  $resultp=mysqli_query($link,"select Id_area, area from areas_personal;");
-		  echo '<option selected value='.$rowa['Id_area'].'>'.$rowa['area'].'</option>';
-          while($rowp=mysqli_fetch_array($resultp))
+		  $resultp=$mysqli->query("select Id_area, area from areas_personal;");
+		  echo '<option selected value='.$rowa['Id_area'].'>'.utf8_encode($rowa['area']).'</option>';
+          while($rowp=$resultp->fetch_assoc())
 		  {
 		  	if ($rowp['Id_area']!= $rowa['Id_area'])
-            echo '<option value='.$rowp['Id_area'].'>'.$rowp['area'].'</option>';
+            echo '<option value='.$rowp['Id_area'].'>'.utf8_encode($rowp['area']).'</option>';
           }
           echo'</select>';	
-		  mysqli_free_result($resulta);
-		  mysqli_free_result($resultp);
+		  $resulta->free();
+      $resultp->free();
 /* cerrar la conexión */
-mysqli_close($link);
+$mysqli->close();
 		  ?>
 	</td>
     <td>
     <?php
-		  $link=conectarServidor();
+		  $mysqli=conectarServidor();
 		  $qrya="select Id_cargo, cargo from cargos_personal, personal where cargo_personal=Id_cargo AND Id_personal=$IdPersonal";
-		  $resulta=mysqli_query($link,$qrya);
-		  $rowa=mysqli_fetch_array($resulta); 			
+		  $resulta=$mysqli->query($qrya);
+		  $rowa=$resulta->fetch_assoc(); 			
 		  echo'<select name="Cargo">';
-		  $resultp=mysqli_query($link,"select Id_cargo, cargo from cargos_personal;");
-		  echo '<option selected value='.$rowa['Id_cargo'].'>'.$rowa['cargo'].'</option>';
-          while($rowp=mysqli_fetch_array($resultp))
+		  $resultp=$mysqli->query("select Id_cargo, cargo from cargos_personal;");
+		  echo '<option selected value='.$rowa['Id_cargo'].'>'.utf8_encode($rowa['cargo']).'</option>';
+          while($rowp=$resultp->fetch_assoc())
 		  {
 		  	if ($rowp['Id_cargo']!= $rowa['Id_cargo'])
-            echo '<option value='.$rowp['Id_cargo'].'>'.$rowp['cargo'].'</option>';
+            echo '<option value='.$rowp['Id_cargo'].'>'.utf8_encode($rowp['cargo']).'</option>';
           }
           echo'</select>';	
-		  mysqli_free_result($resulta);
-		  mysqli_free_result($resultp);
+		  $resulta->free();
+      $resultp->free();
 /* cerrar la conexión */
-mysqli_close($link);	
+$mysqli->close();
 		  ?>
     </td>
     </tr>
@@ -127,7 +124,7 @@ mysqli_close($link);
       <td>&nbsp;</td>
       <td><input type="hidden" name="IdPersonal" value="<?php echo $IdPersonal ?>"></td>
       <td><div align="center">
-          <input type="button" name="Submit" value="Actualizar" onClick="return Enviar(this.form);">
+        <button class="button" style="vertical-align:middle" onclick="return Enviar(this.form)"><span>Actualizar</span></button>
         </div></td>
     </tr>
   </table>

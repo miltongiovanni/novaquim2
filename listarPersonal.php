@@ -7,6 +7,13 @@ include "includes/valAcc.php";
 <title>Lista del Personal Activo</title>
 <meta charset="utf-8">
 <link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
+<style>
+
+/*PARA HACER EL EFECTO ZEBRA DE LAS TABLAS*/
+tr:nth-child(even) {
+    background-color: #DFE2FD;  
+}
+</style>
 </head>
 <body>
 <div id="contenedor">
@@ -14,7 +21,7 @@ include "includes/valAcc.php";
 <div id="saludo1"><strong>LISTADO DEL PERSONAL ACTIVO</strong></div> 
 <table width="100%" border="0" summary="encabezado">
 	<tr> 
-    	<td><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men&uacute;"></div></td>
+    	<td><div align="right"><button class="button" style="vertical-align:middle" onclick="window.location='menu.php'"><span><STRONG>Ir al Men&uacute;</STRONG></span></button></div></td>
     </tr>
 </table>
 
@@ -31,7 +38,7 @@ $link=conectarServidor();
 	//llamar funcion de tabla
 	verTabla($sql, $link);
 ?>
-<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men&uacute;"></div>
+<div align="center"><button class="button" style="vertical-align:middle" onclick="window.location='menu.php'"><span><STRONG>Ir al Men&uacute;</STRONG></span></button></div>
 </div>
 </body>
 </html>
