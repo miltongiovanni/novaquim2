@@ -52,11 +52,11 @@ $mysqli->close();
 		  $rowu=$resultu->fetch_assoc();
 		  echo'<select name="Estado">';
 		  $resulte=$mysqli->query("SELECT IdEstado, Descripcion FROM estados_pers");
-		  echo '<option selected value='.$rowu['IdEstado'].'>'.utf8_encode($rowu['Descripcion']).'</option>';
+		  echo '<option selected value='.$rowu['IdEstado'].'>'.($rowu['Descripcion']).'</option>';
           while ($rowe=$resulte->fetch_assoc())
 		  {
 			if ($rowe['Descripcion']!= $rowu['Descripcion'])
-	        	echo '<option value='.$rowe['IdEstado'].'>'.utf8_encode($rowe['Descripcion']).'</option>';
+	        	echo '<option value='.$rowe['IdEstado'].'>'.($rowe['Descripcion']).'</option>';
           }
           echo'</select>';
 		  $resultu->free();
@@ -72,11 +72,11 @@ $mysqli->close();
 		  $rowa=$resulta->fetch_assoc(); 			
 		  echo'<select name="Area">';
 		  $resultp=$mysqli->query("select Id_area, area from areas_personal;");
-		  echo '<option selected value='.$rowa['Id_area'].'>'.utf8_encode($rowa['area']).'</option>';
+		  echo '<option selected value='.$rowa['Id_area'].'>'.($rowa['area']).'</option>';
           while($rowp=$resultp->fetch_assoc())
 		  {
 		  	if ($rowp['Id_area']!= $rowa['Id_area'])
-            echo '<option value='.$rowp['Id_area'].'>'.utf8_encode($rowp['area']).'</option>';
+            echo '<option value='.$rowp['Id_area'].'>'.($rowp['area']).'</option>';
           }
           echo'</select>';	
 		  $resulta->free();
@@ -93,11 +93,11 @@ $mysqli->close();
 		  $rowa=$resulta->fetch_assoc(); 			
 		  echo'<select name="Cargo">';
 		  $resultp=$mysqli->query("select Id_cargo, cargo from cargos_personal;");
-		  echo '<option selected value='.$rowa['Id_cargo'].'>'.utf8_encode($rowa['cargo']).'</option>';
+		  echo '<option selected value='.$rowa['Id_cargo'].'>'.($rowa['cargo']).'</option>';
           while($rowp=$resultp->fetch_assoc())
 		  {
 		  	if ($rowp['Id_cargo']!= $rowa['Id_cargo'])
-            echo '<option value='.$rowp['Id_cargo'].'>'.utf8_encode($rowp['cargo']).'</option>';
+            echo '<option value='.$rowp['Id_cargo'].'>'.($rowp['cargo']).'</option>';
           }
           echo'</select>';	
 		  $resulta->free();

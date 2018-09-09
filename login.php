@@ -50,7 +50,7 @@ if($mysqli)
 			
 			//si el usuario existe se le adiciona 1 intento a los 4 intentos se debe bloquear el usuario
 			$intentos=$row['Intentos']+1;
-			$QRY2="update tblusuarios set Intentos=$intentos where usuario='$Nombre'";
+			$QRY2="update tblusuarios set intentos=$intentos where usuario='$Nombre'";
 		    $result2 = $mysqli->query($QRY2);
 			$ruta="index.php";
 			$nota="Los Datos no son Correctos por favor verifique la información";
@@ -78,13 +78,13 @@ if($mysqli)
    	//si se superan los controles iniciales
    	if($total==1)
 	{
-		$fechaFinal=$row['FecCambio'];
+		$fechaFinal=$row['fecCambio'];
 		$Fecha=Hoy();
 		$dias=Calc_Dias($Fecha,$fechaFinal);//calculo de dias para validar la antiguedad del ultimo cambio
-		$op=$row['EstadoUsuario'];
-		$perfil_admin=$row['IdPerfil'];	
-		$Id=$row['IdUsuario'];
-		$intentos=$row['Intentos'];
+		$op=$row['estadoUsuario'];
+		$perfil_admin=$row['idPerfil'];	
+		$Id=$row['idUsuario'];
+		$intentos=$row['intentos'];
 		if($op==3)
 		{//Si el usuario está bloqueado no se le deja continuar
 			$ruta="index.php";
@@ -97,14 +97,14 @@ if($mysqli)
 			{
 				if($dias<=90)//Numero de dias
 				{
-					 $QRY3="update tblusuarios set Intentos=0 where usuario='$Nombre'";
+					 $QRY3="update tblusuarios set intentos=0 where usuario='$Nombre'";
 					 $result3 = $mysqli->query($QRY3);
 					 session_start();
 					 $_SESSION['Autorizado']=true;
 					 $_SESSION['User']=$Nombre;
-					 $_SESSION['IdUsuario']=$row['IdUsuario'];
+					 $_SESSION['IdUsuario']=$row['idUsuario'];
 					 $_SESSION['Perfil']=MD5($perfil_admin);
-					 $perfil =md5( $row['IdPerfil']);
+					 $perfil =md5( $row['idPerfil']);
 					 //echo $perfil.'<br>';
 					 /******LOG DE ACCESO AL SISTEMA********
 					 $IdUser=$row['IdUsuario'];
@@ -116,7 +116,7 @@ if($mysqli)
 					 
 					 /*********FIN DEL LOG DE INGRESO*******/
 					 $ruta="menu.php";
-					 mover_pag($ruta,$row['Nombre']." bienvenid@ al sistema de Inventarios de Industrias Novaquim S.A.S.");
+					 mover_pag($ruta,$row['nombre']." bienvenid@ al sistema de Inventarios de Industrias Novaquim S.A.S.");
 				}
 				else
 				{

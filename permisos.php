@@ -146,7 +146,8 @@
 					{
 					  echo '<table width="40%" align="center" summary="Tabla" border="0"><tr><td align="center" colspan="2" class="titulo">';
 					  //echo iconv("iso-8859-1", "UTF-8",$menu_1[$indice1]).'<input type="checkbox" name="seleccion1[]"  id="menu1'.$id1++.'" align="left" value="'.$menu_1_i[$indice1].'" CHECKED>';
-					  echo iconv("iso-8859-1", "UTF-8",$menu_1[$indice1]);
+					  //echo iconv("iso-8859-1", "UTF-8",$menu_1[$indice1]);
+					  echo $menu_1[$indice1];
 					  echo "</td></tr><tr>";
 					}
 					$id3=0;
@@ -156,7 +157,7 @@
 						echo '<td align="center" width="50%" class="resaltado">';
 						$idmenu2="menu2".$id2++;
 						//echo iconv("iso-8859-1", "UTF-8",$menu_2[$indice1][$indice2]).'<input type="checkbox" name="seleccion2[][]"  id="'.$idmenu2.'"  align="left" value="'.$menu_2_i[$indice1][$indice2].'" onclick="buscar2(this.form, document.getElementById(\''.$idmenu2.'\').value)">';
-						echo iconv("iso-8859-1", "UTF-8",$menu_2[$indice1][$indice2]);
+						echo $menu_2[$indice1][$indice2];
 						echo "</td>";
 						echo '<td align="right">';
 						foreach ($elemento as $clave=>$valor) 
@@ -171,11 +172,11 @@
 								$usuarios_p = explode(",", $cod_user);
 								if(in_array ($perfil, $usuarios_p))
 								{
-									echo iconv("iso-8859-1", "UTF-8",$valor).'<input type="checkbox" name="seleccion3[][][]" id="menu3'.$id3++.'" align="right" value="'.$menu_3_i[$indice1][$indice2][$clave].'" checked ><br>';
+									echo $valor.'<input type="checkbox" name="seleccion3[][][]" id="menu3'.$id3++.'" align="right" value="'.$menu_3_i[$indice1][$indice2][$clave].'" checked ><br>';
 								}
 								else
 								{
-									echo iconv("iso-8859-1", "UTF-8",$valor).'<input type="checkbox" name="seleccion3[][][]" id="menu3'.$id3++.'" align="right" value="'.$menu_3_i[$indice1][$indice2][$clave].'" ><br>';
+									echo $valor.'<input type="checkbox" name="seleccion3[][][]" id="menu3'.$id3++.'" align="right" value="'.$menu_3_i[$indice1][$indice2][$clave].'" ><br>';
 								}
 								
 							}

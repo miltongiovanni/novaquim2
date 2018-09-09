@@ -9,9 +9,7 @@ include "includes/valAcc.php";
 <title>Borrar Personal</title>
 <script type="text/javascript" src="scripts/validar.js"></script>
 <script type="text/javascript" src="scripts/block.js"></script>	
-	<script type="text/javascript">
-	document.onkeypress = stopRKey; 
-	</script>
+	
 </head>
 <body>
 <div id="contenedor">
@@ -29,7 +27,7 @@ include "includes/valAcc.php";
 			echo '<option value="">--------------------------------------------</option>';
 			while($row=$result->fetch_assoc())
 			{
-			echo '<option value='.$row['Id_personal'].'>'.utf8_encode($row['nom_personal']).'</option>';
+			echo '<option value='.$row['Id_personal'].'>'.($row['nom_personal']).'</option>';
 			}
 			echo'</select>';
 			$result->free();

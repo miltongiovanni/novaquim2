@@ -16,25 +16,21 @@ include "includes/valAcc.php";
   <form name="form2" method="POST" action="makeUser.php">
       <table width="273" border="0" align="center">
           <tr> 
-              <td width="78"><div align="right"><label for="Nombre"><b>Nombre</b></label></div></td>
-              <td  colspan="2"><input type="text" name="Nombre" id="Nombre" size=30 onKeyPress="return aceptaLetra(event)" maxlength="30"></td>
+              <td width="78"><div align="right"><label for="nombre"><b>Nombre</b></label></div></td>
+              <td  colspan="2"><input type="text" name="nombre" id="nombre" size=30 onKeyPress="return aceptaLetra(event)" maxlength="30"></td>
           </tr>
           <tr> 
-              <td><div align="right"><label for="Apellido"><strong>Apellidos</strong></label></div></td>
-              <td colspan="2" ><input type="text" name="Apellido" id="Apellido" size=30 onKeyPress="return aceptaLetra(event)" maxlength="30"></td>
+              <td><div align="right"><label for="apellido"><strong>Apellidos</strong></label></div></td>
+              <td colspan="2" ><input type="text" name="apellido" id="apellido" size=30 onKeyPress="return aceptaLetra(event)" maxlength="30"></td>
           </tr>
           <tr> 
-              <td><div align="right"><label for="Usuario"><b>Usuario</b></label></div></td>
-              <td colspan="2" ><input type="text" id="Usuario"  maxlength="10" name="Usuario" size=30 ></td>
-          </tr>
-          <tr>
-              <td><div align="right"><label for="Email"><strong>E-mail</strong></label></div></td>
-              <td colspan="2" ><input type="text" name="Email" id="Email"  size=30 maxlength="35" onChange="TestMail(document.form2.Email.value)" required placeholder="Ingrese un e-mail correcto"></td>													
+              <td><div align="right"><label for="usuario"><b>Usuario</b></label></div></td>
+              <td colspan="2" ><input type="text" id="usuario"  maxlength="10" name="usuario" size=30 ></td>
           </tr>
           <tr> 
-              <td><div align="right"><label for="IdPerfil"><strong>Perfil</strong></label></div></td>
+              <td><div align="right"><label for="idPerfil"><strong>Perfil</strong></label></div></td>
               <td colspan="2" >
-              <select name="IdPerfil" id="IdPerfil">
+              <select name="idPerfil" id="idPerfil">
                 <?php
                     include "includes/conect.php";
                     $mysqli=conectarServidor();

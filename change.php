@@ -3,6 +3,13 @@ include "includes/valAcc.php";
 ?>
 <?php
 include "includes/conect.php";
+include "includes/calcularDias.php";
+function chargerClasse($classname)
+{
+  require 'includes/'.$classname.'.php';
+}
+
+spl_autoload_register('chargerClasse');
 
 $mysqli=conectarServidor();
 foreach ($_POST as $nombre_campo => $valor) 
@@ -37,10 +44,7 @@ if($row)
 		else
 		{
 			//Creamos la sentencia SQL y la ejecutamos
-			$year=date("Y");
-			$mes=date("m");
-			$dia=date("d");
-			$fec=$year."-".$mes."-".$dia;
+			$fec=Hoy();
 			$sSQL="Update tblusuarios Set clave=md5('$NewPass'), FecCambio='$fec', Intentos=0,
 			estadousuario=2 Where usuario='$Nombre'";
 			$result1=$mysqli->query($sSQL);

@@ -5,7 +5,7 @@ include "includes/valAcc.php";
 <html>
 <head>
 <title>Lista del Personal Activo</title>
-<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
 <style>
 
@@ -30,13 +30,13 @@ include "includes/utilTabla.php";
 include "includes/conect.php" ;
 
 	//conectar con el servidor de BD
-$link=conectarServidor();
+$mysqli=conectarServidor();
     
     //sentencia SQL    tblusuarios.IdUsuario,
-	$sql="select Id_personal as Id, nom_personal as Nombre, cel_personal as Celular, Eml_personal AS 'Correo electrónico', areas_personal.area as 'Área', cargo as Cargo from personal, areas_personal, cargos_personal 
-	wHERE personal.Area=Id_area and activo=1 AND cargo_personal=Id_cargo order by Id_personal";
+	$sql=utf8_encode(" SELECT Id_personal as Id, nom_personal as Nombre, cel_personal as Celular, Eml_personal AS 'Correo electrónico', areas_personal.area as 'Área', cargo as Cargo from personal, areas_personal, cargos_personal 
+	wHERE personal.Area=Id_area and activo=1 AND cargo_personal=Id_cargo order by Id_personal");
 	//llamar funcion de tabla
-	verTabla($sql, $link);
+	verTabla($sql, $mysqli);
 ?>
 <div align="center"><button class="button" style="vertical-align:middle" onclick="window.location='menu.php'"><span><STRONG>Ir al Men&uacute;</STRONG></span></button></div>
 </div>

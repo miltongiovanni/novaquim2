@@ -1,8 +1,18 @@
 <?php
 include "includes/valAcc.php";
 ?><?php
-include "includes/userObj.php";
+//include "includes/conect.php";
 include "includes/calcularDias.php";
+// On enregistre notre autoload.
+function chargerClasse($classname)
+{
+  require 'includes/'.$classname.'.php';
+}
+
+spl_autoload_register('chargerClasse');
+
+//include "includes/userObj.php";
+
 
 foreach ($_POST as $nombre_campo => $valor) 
 { 
@@ -10,14 +20,30 @@ foreach ($_POST as $nombre_campo => $valor)
 	//echo $nombre_campo." = ".$valor."<br>";  
 	eval($asignacion); 
 }  
-$Usuario=strtoupper ($_POST['Usuario']);
-$estadousuario=1;
+$usuario=strtoupper ($_POST['usuario']);
+$estadoUsuario=1;
 $fecCambio=Hoy();
 $fecCrea=Hoy();
-$Intentos=0;
-$clave=md5($Usuario);
-$user=new user();
-if($result=$user->makeUser($Nombre,$Apellido, $clave, $Usuario, $estadousuario, $fecCrea, $fecCambio, $IdPerfil, $Intentos, $Email)){
+$intentos=0;
+$clave=md5($usuario);
+
+$datos=[
+	'nombre' => $nombre,
+	'apellido' => $apellido,
+	'usuario' => $usuario,
+	'clave' => $clave,
+	'estadoUsuario' => $estadoUsuario,
+	'fecCrea' => $fecCrea,
+	'fecCambio' => $fecCambio,
+	'idPerfil' => $idPerfil,
+	'intentos' => $intentos
+];
+$user = new user($datos);
+//$mysqli = conectarServidor();
+$manager = new UsersManager();
+
+if($result = $manager->makeUser($user))
+{
         $perfil1=$_SESSION['Perfil'];
 		$ruta="listarUsuarios.php";
 		/******LOG DE CREACION ********

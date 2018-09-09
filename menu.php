@@ -25,7 +25,7 @@
     <meta charset="utf-8"> 
     <link href='images/favicon.ico' rel='shortcut icon' type='image/x-icon'>
 	<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-    <link href="css/maincss.css" rel="stylesheet" type="text/css">
+    
 	<link href="css/main.css" rel="stylesheet" type="text/css">
 	<script type="text/javascript" src="scripts/md5.js"></script>
 	<script type="text/javascript" src="scripts/block.js"></script>

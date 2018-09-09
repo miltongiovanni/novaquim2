@@ -26,7 +26,7 @@ include "includes/valAcc.php";
 				$result=$mysqli->query("select Id_personal, nom_personal from personal order by nom_personal;");
 				echo '<option selected value="">-----------------------------------------</option>';
 				while($row=$result->fetch_assoc()){
-					echo '<option value='.$row['Id_personal'].'>'.utf8_encode($row['nom_personal']).'</option>';
+					echo '<option value='.$row['Id_personal'].'>'.($row['nom_personal']).'</option>';
 				}
 				echo'</select>';
 				$result->free();

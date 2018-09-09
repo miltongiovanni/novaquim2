@@ -1,5 +1,11 @@
 <?php
-	include "includes/valAcc.php";
+include "includes/valAcc.php";
+function chargerClasse($classname)
+{
+  require 'includes/'.$classname.'.php';
+}
+
+spl_autoload_register('chargerClasse');
 ?>
 <!DOCTYPE html>
 <html>
@@ -9,10 +15,10 @@
 </head>
 <body>
 <?php
-	include "includes/userObj.php";
-	$IdUsuario=$_POST['IdUsuario'];
-	$user=new user();
-	$result=$user->deleteUser($IdUsuario);
+	//include "includes/userObj.php";
+	$idUsuario=$_POST['idUsuario'];
+	$manager = new UsersManager();
+	$result=$manager->deleteUser($idUsuario);
 	if($result==1)
 	{
 		/******LOG DE CREACION *********
@@ -27,12 +33,9 @@
 		mover_pag($ruta,"Usuario borrado correctamente");
 	}
 	else
-	{	$ruta="menu.php?perfil=$perfil";
+	{	$ruta="menu.php";
 		mover_pag($ruta,"No se pudo borrar el usuario");
 	}
-	//mysqli_free_result($ResutLog);
-/* cerrar la conexión */
-$mysqli->close();
 function mover_pag($ruta,$nota)
 	{
 	echo'<script language="Javascript">

@@ -10,7 +10,7 @@ function verTabla($sql, $mysqli)
 		for($i=0; $i<$campos; $i++)
 		{
 			$info_campo = $result->fetch_field_direct($i);
-			echo '<td align="center">'.utf8_encode($info_campo->name).'</td>';
+			echo '<td align="center">'.($info_campo->name).'</td>';
 		}
 		echo '</tr>';
 		$a=1;
@@ -19,7 +19,7 @@ function verTabla($sql, $mysqli)
 			echo'<tr class="formatoDatos">';
 			for($i=0; $i<$campos; $i++)
 			{
-				echo '<td align="center">'.utf8_encode($row[$i]).'</td>';
+				echo '<td align="center">'.($row[$i]).'</td>';
 			}
 			echo'</tr>';
 		}while ($row = $result->fetch_row());

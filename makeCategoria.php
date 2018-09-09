@@ -4,11 +4,15 @@ include "includes/valAcc.php";
 <?php
 include "includes/CatObj.php";
 include "includes/calcularDias.php";
-$categoria = $_POST['categoria'];
-$cod_cat = $_POST['cod_cat'];
+foreach ($_POST as $nombre_campo => $valor) 
+{ 
+	$asignacion = "\$".$nombre_campo."='".$valor."';"; 
+	echo $nombre_campo." = ".$valor."<br>";  
+	eval($asignacion); 
+}  
 //$qryAcces="insert into cat_prod(Cod_clases, Nom_clases) values($cod_cat,'$categoria')";
 $categ=new cate();
-if($result=$categ->crearCat($cod_cat,$categoria))
+if($result=$categ->crearCat($cod_cat, $categoria))
 {
 	//$perfil1=$_SESSION['Perfil'];
 	$ruta="listarcateg.php";

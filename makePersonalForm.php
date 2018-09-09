@@ -59,7 +59,7 @@ $mysqli->close();
                       echo '<option value="" selected>----------------------------</option>';
                       while($row = $result->fetch_assoc())
                       {
-                              echo '<option value="'.$row['Id_area'].'">'.utf8_encode($row['area']).'</option>';
+                              echo '<option value="'.$row['Id_area'].'">'.($row['area']).'</option>';
                       }
                       $result->free();
 /* cerrar la conexión */
@@ -78,7 +78,7 @@ $mysqli->close();
                       echo '<option value="" selected>------------------------------------</option>';
                       while($row=$result->fetch_assoc())
                       {
-                              echo '<option value="'.$row['Id_cargo'].'">'.utf8_encode($row['cargo']).'</option>';
+                              echo '<option value="'.$row['Id_cargo'].'">'.($row['cargo']).'</option>';
                       }
                       $result->free();
 /* cerrar la conexión */

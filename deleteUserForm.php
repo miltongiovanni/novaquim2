@@ -9,9 +9,6 @@ include "includes/valAcc.php";
 <title>Borrar Usuario</title>
 <script type="text/javascript" src="scripts/validar.js"></script>
 <script type="text/javascript" src="scripts/block.js"></script>	
-	<script type="text/javascript">
-	document.onkeypress = stopRKey; 
-	</script>
 
 </head>
 
@@ -29,7 +26,7 @@ include "includes/valAcc.php";
 			include "includes/conect.php";
 			$mysqli=conectarServidor();
 			$users=$_SESSION['User'];
-			echo'<select name="IdUsuario" id="combo">';
+			echo'<select name="idUsuario" id="combo">';
 			$result=$mysqli->query("select IdUsuario, Usuario from tblusuarios");
 			echo '<option value="">-----------------------------</option>';
 			while($row=$result->fetch_assoc())
@@ -39,10 +36,10 @@ include "includes/valAcc.php";
 			}
 			echo'</select>';
 			$result->free();
-/* cerrar la conexión */
-$mysqli->close();
+			/* cerrar la conexión */
+			$mysqli->close();
 			?>
-			<button class="button" style="vertical-align:middle" onclick="return Enviar1(this.form)"><span>Eliminar</span></button></div>
+			<button class="button" style="vertical-align:middle" onclick="return Enviar(this.form)"><span>Eliminar</span></button></div>
 			</form>    
 		</td>
 	</tr>

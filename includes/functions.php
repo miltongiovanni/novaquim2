@@ -110,7 +110,7 @@ class PHP_fun
 			$menu .= '<tr height="21"><td align="left"  class="aerial12" onmouseover="this.className=\'aerial12over\';return showId('.$res[$i]['id'].');" onmouseout="this.className=\'aerial12\';return hideId('.$res[$i]['id'].');" style="cursor:pointer;">';
 			//$menu .= '<div style="padding-left:10px;padding-right:5px; width:125px;"  onclick="javascript: return redirect(\''.$res[$i][link].'\');">';
 			$menu .= '<div style="padding-left:0px; padding-right:0px; width:150px;"  onclick="javascript: window.location=\''.$res[$i]['link'].'\'">';
-			$menu .= utf8_encode($res[$i]['title']).$str;	
+			$menu .= ($res[$i]['title']).$str;	
 			$menu .= '</div>';
 			$menu .= '</td><td align="left" valign="top">';					
 			$menu .= $this->getChild($res[$i]['id'], $perfil);
@@ -138,7 +138,7 @@ class PHP_fun
 		for ($i=0;$i<count($res);$i++)
 		{ ?>
 				<td align="center" valign="middle" width="11%" bgcolor="#000066">
-				<div align="center" onmouseover="javascript: return showId('<?=$res[$i]['id']?>');" onmouseout="javascript: return hideId('<?=$res[$i]['id']?>');" onclick="javascript: window.location='<?=$res[$i]['link']?>';" class="aerial12" style="height:15px; vertical-align:middle; padding-top:6px;padding-bottom: 6px;cursor:pointer;"><?=utf8_encode($res[$i]['title'])?></div><?=$this->getChild($res[$i]['id'], $perfil)?>
+				<div align="center" onmouseover="javascript: return showId('<?=$res[$i]['id']?>');" onmouseout="javascript: return hideId('<?=$res[$i]['id']?>');" onclick="javascript: window.location='<?=$res[$i]['link']?>';" class="aerial12" style="height:15px; vertical-align:middle; padding-top:6px;padding-bottom: 6px;cursor:pointer;"><?=($res[$i]['title'])?></div><?=$this->getChild($res[$i]['id'], $perfil)?>
 
 			  </td>
 			  <?php if ((count($res) - 1) > $i) {?>

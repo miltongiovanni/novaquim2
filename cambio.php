@@ -17,7 +17,7 @@ include "includes/valAcc.php";
 	$nombre= $_SESSION['User'];
 ?>
 <form action="change.php" method="POST" name="Cambio_clave" id="Cambio_clave">
-<table width="327" align ="center" id="pass">  
+<table width="400" align ="center" id="pass" border="0">  
 <tr>
 	<td width="167"><div align="right"><label for="Nombre"><b>Nombre de usuario</b></label></div></td>
 	<td colspan="2"><input name="Nombre" id="Nombre" value="<?php echo $nombre ?>" readonly size="20"></td>

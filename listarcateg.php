@@ -5,8 +5,15 @@ include "includes/valAcc.php";
 <html>
 <head>
 <title>Lista de Categor&iacute;as de Producto</title>
-<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
+<style>
+
+/*PARA HACER EL EFECTO ZEBRA DE LAS TABLAS*/
+tr:nth-child(even) {
+    background-color: #DFE2FD;  
+}
+</style>
 </head>
 <body>
 <div id="contenedor">
@@ -14,7 +21,7 @@ include "includes/valAcc.php";
 <div id="saludo1"><strong>LISTADO DE CATEGOR&Iacute;AS DE PRODUCTOS</strong></div> 
 <table width="100%" border="0">
 <tr> 
-  <td><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men&uacute;"></div></td>
+  <td><div align="right"><button class="button" style="vertical-align:middle" onclick="window.location='menu.php'"><span><STRONG>Ir al Men&uacute;</STRONG></span></button></div></td>
 </tr>
 </table>
 
@@ -23,29 +30,16 @@ include "includes/utilTabla.php";
 include "includes/conect.php" ;
 	//parametros iniciales que son los que cambiamos
 	//conectar con el servidor de BD
-	$link=conectarServidor();
+	$mysqli=conectarServidor();
 	//conectar con la tabla (ej. use datos;)
     //sentencia SQL    tblusuarios.IdUsuario,
-	$sql="	SELECT  Id_cat_prod as Codigo, Des_cat_prod as 'Categoria'
-			FROM cat_prod order by Codigo";
+	$sql=("	SELECT  Id_cat_prod as 'Código', Des_cat_prod as 'Categoría'
+			FROM cat_prod order by Id_cat_prod");
 	//llamar funcion de tabla
-	verTabla($sql, $link);
+	verTabla($sql, $mysqli);
 ?>
-<table width="27%" border="0" align="center">
-    <tr>
-        <td>&nbsp;</td>
-    </tr>
-    <tr>
-        <td>&nbsp;</td>
-    </tr>
-    <tr>
-        <td>&nbsp;</td>
-    </tr>
-    <tr> 
-        <td><div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men&uacute;">
-        </div></td>
-    </tr>
-</table>
+<div align="center"><button class="button" style="vertical-align:middle" onclick="window.location='menu.php'"><span><STRONG>Ir al Men&uacute;</STRONG></span></button>
+        </div>
 </div>
 </body>
 </html>
