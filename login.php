@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<meta charset="utf-8">
+    <meta charset="utf-8">
 </head>
+
 <body>
-<?php
+    <?php
 include "includes/conect.php";
 include "includes/calcularDias.php";
 $mysqli=conectarServidor();
@@ -191,11 +193,12 @@ if($mysqli)
 
 function mover_pag($ruta,$nota)
 {
-	echo'<script language="Javascript">
+	echo'<script>
    	alert("'.$nota.'")
    	self.location="'.$ruta.'"
    	</script>';
 }
 ?>
 </body>
+
 </html>

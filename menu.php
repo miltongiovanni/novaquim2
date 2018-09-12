@@ -25,13 +25,11 @@
     <meta charset="utf-8"> 
     <link href='images/favicon.ico' rel='shortcut icon' type='image/x-icon'>
 	<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-    
-	<link href="css/main.css" rel="stylesheet" type="text/css">
-	<script type="text/javascript" src="scripts/md5.js"></script>
-	<script type="text/javascript" src="scripts/block.js"></script>
+	<script type="text/javascript" src="js/md5.js"></script>
+	<script type="text/javascript" src="js/block.js"></script>
 	<title>Men&uacute; Principal</title>
     <!-- comentario -->
-    <script language="javascript">
+    <script>
 	function redirect(url)
 	{
 		window.open(url)  ;
@@ -53,12 +51,12 @@
 </head>
 	<body>
     <div id="contenedor"> 
-    <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+    <table id="menuTable">
   <!-- <tr>
     <td align="center" valign="top">&nbsp;</td>
   </tr>-->
   <tr>
-	<td align="center" valign="top" height="10"><?=$db->getMenu(0, $perfil);?>  </td>
+	<td><?=$db->getMenu(0, $perfil);?>  </td>
   </tr>
 	</table> 
 <div id="saludo"> <p>

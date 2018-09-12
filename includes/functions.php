@@ -96,25 +96,25 @@ class PHP_fun
 		$str = "";
 		$s = "select id,title,parentid,link from menu where cod_user LIKE '%$perfil%' and parentid = '$id' ";
 		$res = $this->select_row($s);
-		$menu .= '<div id="'.$id.'" style="display:none; position:absolute;" onmouseover="javascript: return showId('.$id.');" onmouseout="javascript: return hideId('.$id.');">';
-		$menu .= '<table border="0" cellspacing="0" cellpadding="0" style="border: 0px solid #ffffff;  ">';
+		$menu .= '<div id="'.$id.'" style="display:none; position:absolute; width:100%;" onmouseover="javascript: return showId('.$id.');" onmouseout="javascript: return hideId('.$id.');">';
+		$menu .= '<table style="border:0px;  solid #ffffff; border-collapse: collapse;  border-spacing: 0; width:12.5%; ">';
 		for ($i=0;$i<count($res);$i++)
 		{
 			$cnt_of_child = $this->recordCount("select id from menu where cod_user LIKE '%$perfil%' and parentid = '".$res[$i]['id']."' ");
 			if ($cnt_of_child > 0)
 				$str = '&nbsp;&nbsp;<img src="'.$this->SITE_URL.'images/arrow_white.gif">';
 			else
-				$str = " ";
+				$str = "";
 				
 			
-			$menu .= '<tr height="21"><td align="left"  class="aerial12" onmouseover="this.className=\'aerial12over\';return showId('.$res[$i]['id'].');" onmouseout="this.className=\'aerial12\';return hideId('.$res[$i]['id'].');" style="cursor:pointer;">';
+			$menu .= '<tr style="height:27px;  "><td style=" text-align:left; "  class="aerial12" onmouseover="this.className=\'aerial12over\';return showId('.$res[$i]['id'].');" onmouseout="this.className=\'aerial12\';return hideId('.$res[$i]['id'].');" style="cursor:pointer;">';
 			//$menu .= '<div style="padding-left:10px;padding-right:5px; width:125px;"  onclick="javascript: return redirect(\''.$res[$i][link].'\');">';
-			$menu .= '<div style="padding-left:0px; padding-right:0px; width:150px;"  onclick="javascript: window.location=\''.$res[$i]['link'].'\'">';
+			$menu .= '<div style="padding-left:0px; padding-right:0px;  "  onclick="javascript: window.location=\''.$res[$i]['link'].'\'">';
 			$menu .= ($res[$i]['title']).$str;	
 			$menu .= '</div>';
-			$menu .= '</td><td align="left" valign="top">';					
+			$menu .= '</td><td style="text-align:left; background-color: #000066; vertical-align:top;" >';					
 			$menu .= $this->getChild($res[$i]['id'], $perfil);
-			$menu .= '</td><tr>';					
+			$menu .= '</td></tr>';					
 		}
 		$menu .= '</table>';
 		$menu .= '</div>';		
@@ -131,18 +131,17 @@ class PHP_fun
 		?>
 <!-- <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css" />-->
 
-		<table border="0" cellspacing="0" cellpadding="0" width="100%" align="center">
-			<tr height="25">
+		<table style="text-align:center; width:100%; background-color: #000066; vertical-align:middle; border-collapse: collapse; border-spacing: 0; " >
+			<tr style="height:28px;">
 				
 	<?php
 		for ($i=0;$i<count($res);$i++)
 		{ ?>
-				<td align="center" valign="middle" width="11%" bgcolor="#000066">
-				<div align="center" onmouseover="javascript: return showId('<?=$res[$i]['id']?>');" onmouseout="javascript: return hideId('<?=$res[$i]['id']?>');" onclick="javascript: window.location='<?=$res[$i]['link']?>';" class="aerial12" style="height:15px; vertical-align:middle; padding-top:6px;padding-bottom: 6px;cursor:pointer;"><?=($res[$i]['title'])?></div><?=$this->getChild($res[$i]['id'], $perfil)?>
-
+				<td style="width:11%; background-color: #000066; vertical-align:middle; border-right-style: solid; border-color: #FFF;" >
+				<div onmouseover="javascript: return showId('<?=$res[$i]['id']?>');" onmouseout="javascript: return hideId('<?=$res[$i]['id']?>');" onclick="javascript: window.location='<?=$res[$i]['link']?>';" class="aerial12" style="height:21px; vertical-align:middle; padding-top:6px;padding-bottom: 6px;cursor:pointer;"><?=($res[$i]['title'])?></div><?=$this->getChild($res[$i]['id'], $perfil)?>
 			  </td>
-			  <?php if ((count($res) - 1) > $i) {?>
-				<td align="left" valign="middle" bgcolor="#000066" class="separador">|</td> <?php } ?>
+			  <?php /*if ((count($res) - 1) > $i) {?>
+				<td style=" background-color: #000066; vertical-align:middle; font-size: 1.6vw; color: #FFF; text-align: center;"></td> <?php } */ ?>
 		<?php } ?>
 				</table>
 		<?php

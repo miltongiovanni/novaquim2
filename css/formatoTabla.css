@@ -61,7 +61,7 @@ BODY {
 .formatoBoton:hover {
 	font-family: tahoma, Verdana;
 	font-size: x-small;
-	background-color: #03C;
+	background-color: #000066;
 	border-top-width: thin;
 	border-right-width: thin;
 	border-bottom-width: thin;
@@ -101,7 +101,7 @@ BODY {
 .formatoBoton1:hover {
 	font-family: tahoma, Verdana;
 	font-size: small;
-	background-color: #95AFFF;
+	background-color: #000066;
 	border-top-width: thin;
 	border-right-width: thin;
 	border-bottom-width: thin;
@@ -110,7 +110,7 @@ BODY {
 	border-right-style: none;
 	border-bottom-style: none;
 	border-left-style: none;
-	color: #006;
+	color: #000066;
 	line-height: normal;
 	font-weight: bolder;
 	text-align: center;
@@ -122,14 +122,10 @@ BODY {
 
 font {
 	font-family: tahoma, Verdana;
-	font-size: 12px;
+	font-size: 1.0vw;
 	color: #000066;
 }
 
-table   {
-	color: #000066;
-	font-family: tahoma, Verdana
-        }
 
 .table2 {
         border: 0 solid #000066;
@@ -140,15 +136,14 @@ input        {
 	background-color: #000066;
 	border: thin outset #000066;
 	border-radius: 5px;
-	font-size: 10px
-	font-family: Verdana, Geneva, sans-serif;
+	font-size: 1.0vw;
 	text-align: left;
 }
 select       {
 	color: #FFFFFF;
 	background-color: #000066;
 	border: thin solid #000066;
-	font-size: 12px;
+	font-size: 1.0vw;
 }
 .font2       
 {
@@ -158,7 +153,6 @@ select       {
 	font-size: small;
 }
 .titulo {
-	font-family: tahoma, Verdana;
 	font-size: large;
 	font-style: normal;
 	line-height: normal;
@@ -167,7 +161,6 @@ select       {
 	color: #000066;
 }
 .titulo1 {
-	font-family: tahoma, Verdana;
 	font-size: medium;
 	font-style: normal;
 	line-height: normal;
@@ -176,7 +169,6 @@ select       {
 	color: #FF0000;
 }
 .titulo2 {
-	font-family: tahoma, Verdana;
 	font-size: medium;
 	font-style: normal;
 	line-height: normal;
@@ -185,7 +177,6 @@ select       {
 	color: #006600;
 }
 .titulo3 {
-	font-family: tahoma, Verdana;
 	font-size: medium;
 	font-style: normal;
 	line-height: normal;
@@ -194,7 +185,6 @@ select       {
 	color: #000066;
 }
 .resaltado {
-	font-family: tahoma, Verdana;
 	font-size: small;
 	background-color: #000066;
 	border-top-width: thin;
@@ -238,31 +228,47 @@ select       {
 .commentshown {display:inline}
 #contenedor{
 	font-family: Tahoma, Geneva, sans-serif;
-	font-size: 12px;
-	width: 1280px;
+	font-size: 1.0vw;
+	width: 100%;
+	color: #006;
 	margin: auto;
 	background-color: #FFF;
-	height: 575px;
 	position: absolute;
-	overflow: scroll;
-	left: 0px;
-	top: 0px;
+	/*left: 0px;
+	top: 0px;*/
 } 
+
+/*Responsive*/
 #saludo{
 	text-align: center;
-	width: 900px;
+	width: 50%;
 	margin: auto;
-	height: 20px;
-	font-family: Tahoma, Geneva, sans-serif;
-	font-size: 18px;
-	color: #2A1F55;
-	background-image: url(../images/LogoNova1.jpg);
-	background-repeat: no-repeat;
-	background-position: center 10px;
-	padding-top: 240px;
-	padding-bottom: 10px;
-	text-decoration: inherit;
+	font-size: 1.2vw;
+	background: #ffffff url("../images/LogoNova1.jpg") no-repeat center top;
+	background-size: 50%;
+	padding-top: 15%;
+	padding-bottom: 2%;
+	
 } 
+
+#loginTable{
+	position: relative;
+	margin: auto;
+	text-align: center;
+	width: 30%;
+} 
+
+
+#menuTable{
+	position: relative;
+	margin: auto;
+	text-align: center;
+	width: 100%;
+} 
+.label{
+	width: 10%;
+}
+
 #saludo1{
 	text-align: center;
 	width:900px;
@@ -270,7 +276,7 @@ select       {
 	height: 20px;
 	font-family: Tahoma, Geneva, sans-serif;
 	font-size: 18px;
-	color: #2A1F55;
+	/*color: #2A1F55;*/
 	background-image: url(../images/LogoNova.jpg);
 	background-repeat: no-repeat;
 	background-position: center 0px;
@@ -282,16 +288,7 @@ select       {
 	border-bottom-color: #FFF;
 	border-left-color: #FFF;
 } 
-.separador
-{
-	font-family: tahoma, Verdana;
-	font-size: 21px;
-	font-style: normal;
-	font-weight: normal;
-	color: #FFF;
-	text-align: center;
-	vertical-align: middle;
-}
+
 .button {
   display: inline-block;
   border-radius: 4px;
@@ -299,9 +296,9 @@ select       {
   border: none;
   color: #FFFFFF;
   text-align: center;
-  font-size: 12px;
+  font-size: 1.0vw;
   padding: 5px;
-  width: 100px;
+  width: 32%;
   transition: all 0.5s;
   cursor: pointer;
   margin: 5px;
@@ -339,7 +336,7 @@ select       {
   border: none;
   color: #FFFFFF;
   text-align: center;
-  font-size: 12px;
+  font-size: 1.0vw;
   padding: 5px;
   width: 100px;
   transition: all 0.5s;
@@ -371,4 +368,20 @@ select       {
 .button1:hover span:before {
   opacity: 1;
   left: 0;
+}
+
+.aerial12 /*Menu*/
+{
+	/*font-size:12px;*/
+	text-decoration:none;
+	color:#FFF;
+	background-color:#000066;
+}
+
+.aerial12over /*Menu*/
+{
+	/*font-size:12px;*/
+	text-decoration:none;
+	color:#FFF;
+	background-color:#09F;
 }
