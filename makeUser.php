@@ -2,7 +2,7 @@
 include "includes/valAcc.php";
 ?><?php
 //include "includes/conect.php";
-include "includes/calcularDias.php";
+//include "includes/calcularDias.php";
 // On enregistre notre autoload.
 function chargerClasse($classname)
 {

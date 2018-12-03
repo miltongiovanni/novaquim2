@@ -55,7 +55,7 @@ if($mysqli)
 			$QRY2="update tblusuarios set intentos=$intentos where usuario='$Nombre'";
 		    $result2 = $mysqli->query($QRY2);
 			$ruta="index.php";
-			$nota="Los Datos no son Correctos por favor verifique la información";
+			$nota="Los Datos no son Correctos por favor verifique la informaciï¿½n";
 			$nota=utf8_encode($nota);
 			mover_pag($ruta,$nota);	
 		}
@@ -70,7 +70,7 @@ if($mysqli)
 			//$ResutLog=mysqli_query($link,$qryAcces);
 			$ResutLog = $mysqli->query($qryAcces);
 			/*********FIN DEL LOG DE acceso*******/
-			$nota="Los Datos no son Correctos por favor verifique la información";
+			$nota="Los Datos no son Correctos por favor verifique la informaciï¿½n";
 			$nota=utf8_encode($nota);
 			mover_pag($ruta,$nota);
 		}
@@ -88,7 +88,7 @@ if($mysqli)
 		$Id=$row['idUsuario'];
 		$intentos=$row['intentos'];
 		if($op==3)
-		{//Si el usuario está bloqueado no se le deja continuar
+		{//Si el usuario estï¿½ bloqueado no se le deja continuar
 			$ruta="index.php";
 			$nota="Usuario bloqueado, consulte al administrador del sistema";
 			mover_pag($ruta,$nota);
@@ -124,7 +124,7 @@ if($mysqli)
 				{
 				  
 					$ruta="cambio.php?nombre=$Nombre";
-					$nota="Su último cambio fue hace mas de 90 días, por favor cambie su contraseña";
+					$nota="Su ï¿½ltimo cambio fue hace mas de 90 dï¿½as, por favor cambie su contraseï¿½a";
 					$nota=utf8_encode($nota);
 					$QRY4="update tblusuarios set intentos=0 where usuario='$Nombre'";	
 					$result4 = $mysqli->query($QRY4);
@@ -174,7 +174,7 @@ if($mysqli)
 			 $ResutLog = $mysqli->query($qryAcces);
 					 
 			/*********FIN PRIMER INGRESO*****/
-			$nota="Primer Ingreso cambie su contraseña";
+			$nota="Primer Ingreso cambie su contraseï¿½a";
 			$nota=utf8_encode($nota);
 			session_start();
 			$_SESSION['Autorizado']=true;
@@ -187,7 +187,7 @@ if($mysqli)
 	/* cerrar el resulset */
 	$result->free();
 	
-	/* cerrar la conexión */
+	/* cerrar la conexiï¿½n */
 	$mysqli->close();
 }
 

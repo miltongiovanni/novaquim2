@@ -8,14 +8,14 @@ class PHP_fun
 	$this->DB_SERVER = 'localhost';
 	$this->DB_USER = 'root';
 	$this->DB_PASS = 'novaquim';
-	$this->DB_NAME = 'novaquim';
+	$this->DB_NAME = 'novaquim2';
 	
 	}
 
 	function __construct()
 	{
 		$this->getConfig();
-        $mysqli = new mysqli('localhost', 'root', 'novaquim', 'novaquim');
+        $mysqli = new mysqli('localhost', 'root', 'novaquim', 'novaquim2');
 
         if ($mysqli->connect_error) {
             die('Connect Error (' . $mysqli->connect_errno . ') '
@@ -40,7 +40,7 @@ class PHP_fun
 	function select_row($sql)
 	{
 		//$Conn=mysqli_connect("localhost", "root", "novaquim", "novaquim"); 
-        $Conn=new mysqli('localhost', 'root', 'novaquim', 'novaquim'); 
+        $Conn=new mysqli('localhost', 'root', 'novaquim', 'novaquim2'); 
 	$data=NULL;
 	//echo $sql . "<br />";
 	if ($sql!="")
@@ -66,7 +66,7 @@ class PHP_fun
 	  if ($sql!="")
 	  {
     	 //$Conn=mysqli_connect("localhost", "root", "novaquim", "novaquim"); 
-         $Conn=new mysqli('localhost', 'root', 'novaquim', 'novaquim'); 
+         $Conn=new mysqli('localhost', 'root', 'novaquim', 'novaquim2'); 
 		  //$result = mysqli_query($Conn, $sql);
           $result = $Conn->query($sql);
 		  if ($result)
@@ -94,13 +94,15 @@ class PHP_fun
 		$this->getConfig();
 		$menu = "";
 		$str = "";
-		$s = "select id,title,parentid,link from menu where cod_user LIKE '%$perfil%' and parentid = '$id' ";
+		$s = "select id, title, parentId, link from menu where codUser LIKE '%$perfil%' and parentId = '$id' ";
 		$res = $this->select_row($s);
 		$menu .= '<div id="'.$id.'" style="display:none; position:absolute; width:100%;" onmouseover="javascript: return showId('.$id.');" onmouseout="javascript: return hideId('.$id.');">';
 		$menu .= '<table style="border:0px;  solid #ffffff; border-collapse: collapse;  border-spacing: 0; width:12.5%; ">';
-		for ($i=0;$i<count($res);$i++)
+		if(is_array($res))
 		{
-			$cnt_of_child = $this->recordCount("select id from menu where cod_user LIKE '%$perfil%' and parentid = '".$res[$i]['id']."' ");
+		for ($i=0;$i<count($res); $i++)
+		{
+			$cnt_of_child = $this->recordCount("select id from menu where codUser LIKE '%$perfil%' and parentId = '".$res[$i]['id']."' ");
 			if ($cnt_of_child > 0)
 				$str = '&nbsp;&nbsp;<img src="'.$this->SITE_URL.'images/arrow_white.gif">';
 			else
@@ -110,12 +112,13 @@ class PHP_fun
 			$menu .= '<tr style="height:27px;  "><td style=" text-align:left; "  class="aerial12" onmouseover="this.className=\'aerial12over\';return showId('.$res[$i]['id'].');" onmouseout="this.className=\'aerial12\';return hideId('.$res[$i]['id'].');" style="cursor:pointer;">';
 			//$menu .= '<div style="padding-left:10px;padding-right:5px; width:125px;"  onclick="javascript: return redirect(\''.$res[$i][link].'\');">';
 			$menu .= '<div style="padding-left:0px; padding-right:0px;  "  onclick="javascript: window.location=\''.$res[$i]['link'].'\'">';
-			$menu .= ($res[$i]['title']).$str;	
+			$menu .= utf8_encode($res[$i]['title']).$str;	
 			$menu .= '</div>';
 			$menu .= '</td><td style="text-align:left; background-color: #000066; vertical-align:top;" >';					
 			$menu .= $this->getChild($res[$i]['id'], $perfil);
 			$menu .= '</td></tr>';					
 		}
+	}
 		$menu .= '</table>';
 		$menu .= '</div>';		
 		return $menu;
@@ -125,7 +128,7 @@ class PHP_fun
 	{
 		$this->getConfig();
 		$menu = "";
-		$s = "select id,title,parentid,link from menu where cod_user LIKE '%$perfil%' and parentid = '$parentid'  ";
+		$s = "select id, title, parentId, link from menu where codUser LIKE '%$perfil%' and parentId = '$parentid'  ";
 		$res = $this->select_row($s);
 		ob_start();
 		?>
@@ -135,14 +138,17 @@ class PHP_fun
 			<tr style="height:28px;">
 				
 	<?php
-		for ($i=0;$i<count($res);$i++)
+	if(is_array($res))
+	{
+		for ($i=0;$i<count($res); $i++)
 		{ ?>
 				<td style="width:11%; background-color: #000066; vertical-align:middle; border-right-style: solid; border-color: #FFF;" >
-				<div onmouseover="javascript: return showId('<?=$res[$i]['id']?>');" onmouseout="javascript: return hideId('<?=$res[$i]['id']?>');" onclick="javascript: window.location='<?=$res[$i]['link']?>';" class="aerial12" style="height:21px; vertical-align:middle; padding-top:6px;padding-bottom: 6px;cursor:pointer;"><?=($res[$i]['title'])?></div><?=$this->getChild($res[$i]['id'], $perfil)?>
+				<div onmouseover="javascript: return showId('<?=$res[$i]['id']?>');" onmouseout="javascript: return hideId('<?=$res[$i]['id']?>');" onclick="javascript: window.location='<?=$res[$i]['link']?>';" class="aerial12" style="height:21px; vertical-align:middle; padding-top:6px;padding-bottom: 6px;cursor:pointer;"><?=utf8_encode($res[$i]['title'])?></div><?=$this->getChild($res[$i]['id'], $perfil)?>
 			  </td>
-			  <?php /*if ((count($res) - 1) > $i) {?>
-				<td style=" background-color: #000066; vertical-align:middle; font-size: 1.6vw; color: #FFF; text-align: center;"></td> <?php } */ ?>
-		<?php } ?>
+			  <?php if ((count($res) - 1) > $i) {?>
+				<td style=" background-color: #000066; vertical-align:middle; font-size: 1.6vw; color: #FFF; text-align: center;"></td> <?php }  ?>
+		<?php } 
+		}?>
 				</table>
 		<?php
 		$menu = ob_get_contents();

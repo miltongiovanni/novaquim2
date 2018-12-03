@@ -7,14 +7,15 @@ class Conectar{
      
     //new mysqli creamos o instanciamos el objeto mysqli
     //new mysqli('servidor','usuario','contraseña','nombre de la BD');
-        $conexion=new mysqli("localhost", "root", "novaquim", "novaquim");
+        $conexion=new mysqli("localhost", "root", "novaquim", "novaquim2");
              
        if ($conexion->connect_error) {
     die('Connect Error (' . $mysqli->connect_errno . ') '
             . $mysqli->connect_error);
 }
        //llamamos a la conexión y hacemos una consulta para utilizar UTF-8
-        $conexion->query("SET NAMES 'utf8'"); 
+        //$conexion->query("SET NAMES 'utf8'"); 
+        $conexion->set_charset("utf8");
  
        //devolvemos la conexión para que pueda ser utilizada en otros métodos
         return $conexion; 

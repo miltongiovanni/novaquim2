@@ -22,11 +22,10 @@
  <!DOCTYPE html> 
 <html>
 	<head>
-    <meta charset="utf-8"> 
+    <meta charset="UTF-8"> 
     <link href='images/favicon.ico' rel='shortcut icon' type='image/x-icon'>
 	<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
 	<script type="text/javascript" src="js/md5.js"></script>
-	<script type="text/javascript" src="js/block.js"></script>
 	<title>Men&uacute; Principal</title>
     <!-- comentario -->
     <script>
