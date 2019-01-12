@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/styles.css">
+  <title>Document</title>
+</head>
+
+<body>
+  <ul id="menu">
+    <li><a href="">Administración</a>
+      <ul>
+        <li><a href="">Usuarios</a>
+          <ul>
+            <li><a href="makeUserForm.php">Ingresar Usuario</a></li>
+            <li><a href="cambio.php">Cambio Contraseña</a></li>
+            <li><a href="buscarUsuario.php">Actualizar Usuario</a></li>
+            <li><a href="deleteUserForm.php">Borrar Usuario</a></li>
+            <li><a href="listarUsuarios.php">Listar Usuarios</a></li>
+            <li><a href="buscarUsuario1.php">Asignar Permisos</a></li>
+            <li><a href="buscarUsuario2.php">Asignar Contraseña</a></li>
+          </ul>
+        </li>
+        <li><a href="">Personal</a>
+          <ul>
+            <li><a href="makePersonalForm.php">Ingresar Personal</a></li>
+            <li><a href="buscarPersonal.php">Actualizar Datos</a></li>
+            <li><a href="deletePersonalForm.php">Borrar Personal</a></li>
+            <li><a href="listarPersonal.php">Listar Personal</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="">Listados Base</a>
+      <ul>
+        <li><a href="">Categorías Producto</a>
+          <ul>
+            <li><a href="crearCategoria.php">Crear Cat Producto</a></li>
+            <li><a href="buscarCat.php">Modificar Cat Producto</a></li>
+            <li><a href="deleteCatForm.php">Eliminar Cat Producto</a></li>
+            <li><a href="listarcateg.php">Listar Cat Producto</a></li>
+          </ul>
+        </li>
+        <li><a href="">Categorías M. Prima</a>
+          <ul>
+            <li><a href="crearCategoria_MP.php">Crear Cat M Prima</a></li>
+            <li><a href="buscarCat_MP.php">Modificar Cat M Prima</a></li>
+            <li><a href="deleteCatForm_MP.php">Eliminar Cat M Prima</a></li>
+            <li><a href="listarcateg_MP.php">Listar Cat M Prima</a></li>
+          </ul>
+        </li>
+        <li><a href="">Categorías Distribución</a>
+          <ul>
+            <li><a href="crearCategoria_DIS.php">Crear Cat Distribución</a></li>
+            <li><a href="buscarCat_DIS.php">Modificar Cat Distribución</a></li>
+            <li><a href="deleteCatForm_DIS.php">Eliminar Cat Distribución</a></li>
+            <li><a href="listarcateg_DIS.php">Listar Cat Distribución</a></li>
+          </ul>
+        </li>
+        <li><a href="">Productos</a>
+          <ul>
+            <li><a href="crearProd.php">Crear Producto</a></li>
+            <li><a href="buscarProd.php">Modificar Producto</a></li>
+            <li><a href="deleteProdForm.php">Eliminar Producto</a></li>
+            <li><a href="listarProd.php">Listar Productos</a></li>
+          </ul>
+        </li>
+        <li><a href="">Materias Primas</a>
+          <ul>
+            <li><a href="crearMP.php">Crear Materia Prima</a></li>
+            <li><a href="buscarMP.php">Modificar Materia Prima</a></li>
+            <li><a href="deleteMPForm.php">Eliminar Materia Prima</a></li>
+            <li><a href="listarMP.php">Listar Materias Primas</a></li>
+          </ul>
+        </li>
+        <li><a href="">Envase</a>
+          <ul>
+            <li><a href="crearEnv.php">Crear Envase</a></li>
+            <li><a href="buscarEnv.php">Modificar Envase</a></li>
+            <li><a href="deleteEnvForm.php">Eliminar Envase</a></li>
+            <li><a href="listarEnv.php">Listar Envases</a></li>
+          </ul>
+        </li>
+        <li><a href="">Válvulas y Tapas</a>
+          <ul>
+            <li><a href="crearVal.php">Crear Vávula o Tapa</a></li>
+            <li><a href="buscarVal.php">Modificar Válvula o Tapa</a></li>
+            <li><a href="deleteValForm.php">Eliminar Válvula o Tapa</a></li>
+            <li><a href="listarVal.php">Listar Válvulas o Tapas</a></li>
+          </ul>
+        </li>
+        <li><a href="">Etiquetas</a>
+          <ul>
+            <li><a href="crearEtq.php">Crear Etiqueta</a></li>
+            <li><a href="buscarEtq.php">Modificar Etiqueta</a></li>
+            <li><a href="deleteEtqForm.php">Eliminar Etiqueta</a></li>
+            <li><a href="listarEtq.php">Listar Etiquetas</a></li>
+          </ul>
+        </li>
+        <li><a href="">Precios</a>
+          <ul>
+            <li><a href="crearCod.php">Crear Código Genérico</a></li>
+            <li><a href="buscarCod.php">Modificar Código Genérico</a></li>
+            <li><a href="deleteCodForm.php">Eliminar Código Genérico</a></li>
+            <li><a href="listarCod.php">Lista Precios</a></li>
+          </ul>
+        </li>
+        <li><a href="">Presentación Producto</a>
+          <ul>
+            <li><a href="crearMedida.php">Crear Presentación</a></li>
+            <li><a href="buscarMed.php">Modificar Presentación</a></li>
+            <li><a href="deleteMedForm.php">Eliminar Presentación</a></li>
+            <li><a href="listarmed.php">Listar Presentación</a></li>
+            <li><a href="buscarMed1.php">Activar Presentación</a></li>
+            <li><a href="buscarMed2.php">Desactivar Presentación</a></li>
+          </ul>
+        </li>
+        <li><a href="">Distribución</a>
+          <ul>
+            <li><a href="crearDis.php">Crear Prod Distribución</a></li>
+            <li><a href="buscarDis.php">Modificar Prod Distribución</a></li>
+            <li><a href="buscarDis1.php">Mod Utilidad Prod Distrib</a></li>
+            <li><a href="deleteDisForm.php">Eliminar Prod Distribución</a></li>
+            <li><a href="listarDis.php">Listar Prod Distribución</a></li>
+          </ul>
+        </li>
+        <li><a href="">Servicios</a>
+          <ul>
+            <li><a href="CrearServ.php">Crear Servicio</a></li>
+            <li><a href="buscarServ.php">Modificar Servicio</a></li>
+            <li><a href="deleteServForm.php">Eliminar Servicio</a></li>
+            <li><a href="listarServ.php">Listar Servicios</a></li>
+          </ul>
+        </li>
+        <li><a href="">Rel Envase Distribución</a>
+          <ul>
+            <li><a href="envaseDis.php">Crear Relación</a></li>
+            <li><a href="listarenvaseDis.php">Listar Relaciones</a></li>
+          </ul>
+        </li>
+        <li><a href="">Relación Paca Producto</a>
+          <ul>
+            <li><a href="crearDes.php">Crear Relación</a></li>
+            <li><a href="listarDes.php">Listar Relaciones</a></li>
+          </ul>
+        </li>
+        <li><a href="">Tipos de Provedores</a>
+          <ul>
+            <li><a href="crearCatProv.php">Crear Cat Proveedor</a></li>
+            <li><a href="buscarCatProv.php">Modificar Cat Proveedor</a></li>
+            <li><a href="deleteCatProvForm.php">Eliminar Cat Proveedor</a></li>
+            <li><a href="listarCatProv.php">Listar Cat Proveedores</a></li>
+          </ul>
+        </li>
+        <li><a href="">Tipos de Cliente</a>
+          <ul>
+            <li><a href="crearCatCli.php">Crear Cat Cliente</a></li>
+            <li><a href="buscarCatCli.php">Modificar Cat Cliente</a></li>
+            <li><a href="deleteCatCliForm.php">Eliminar Cat Cliente</a></li>
+            <li><a href="listarCatCli.php">Listar Cat Cliente</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="">Compras</a>
+      <ul>
+        <li><a href="">Proveedor</a>
+          <ul>
+            <li><a href="makeProvForm.php">Crear Proveedor</a></li>
+            <li><a href="buscarProv.php">Actualizar Proveedor</a></li>
+            <li><a href="deleteProvForm.php">Eliminar Proveedor</a></li>
+            <li><a href="listarProv.php">Listar Proveedores</a></li>
+          </ul>
+        </li>
+        <li><a href="">Materia Prima</a>
+          <ul>
+            <li><a href="compramp.php">Ingresar Compras MP</a></li>
+            <li><a href="buscarcompramp.php">Modificar Compras Mp</a></li>
+            <li><a href="consultaMp.php">Consulta Provedor MP</a></li>
+            <li><a href="listacompramp.php">Consultar Compras MP</a></li>
+          </ul>
+        </li>
+        <li><a href="">Envase Válvulas / Tapas</a>
+          <ul>
+            <li><a href="compraenv.php">Ingresar Compra Envase</a></li>
+            <li><a href="buscarcompraenv.php">Modificar Compra Envase</a></li>
+            <li><a href="consultaEnv.php">Consulta Provedor Envase</a></li>
+            <li><a href="listacompraenv.php">Consultar Compras Envase</a></li>
+          </ul>
+        </li>
+        <li><a href="">Etiquetas</a>
+          <ul>
+            <li><a href="compraetq.php">Ingresar Compras Etiquetas</a></li>
+            <li><a href="buscarcompraetq.php">Modificar Compras Etiq</a></li>
+            <li><a href="consultaEtq.php">Consulta Provedor Etiq</a></li>
+            <li><a href="listacompraetq.php">Consultar Compras Etiq</a></li>
+          </ul>
+        </li>
+        <li><a href="">Distribución</a>
+          <ul>
+            <li><a href="compradist.php">Ingresar Compras Distrib</a></li>
+            <li><a href="buscarcompradist.php">Modificar Compras Distrib</a></li>
+            <li><a href="consultaDis.php">Consulta Provedor Distrib</a></li>
+            <li><a href="listacompradist.php">Consultar Compras Distrib</a></li>
+          </ul>
+        </li>
+        <li><a href="">Gastos</a>
+          <ul>
+            <li><a href="gasto.php">Ingresar Gasto</a></li>
+            <li><a href="buscargasto.php">Modificar Gasto</a></li>
+            <li><a href="consultaGas.php">Consulta Provedor Gasto</a></li>
+            <li><a href="listagastos.php">Consultar Gastos</a></li>
+          </ul>
+        </li>
+        <li><a href="">Consultas</a>
+          <ul>
+            <li><a href="consultaCompras.php">Consulta de Compras</a></li>
+            <li><a href="consultaGastos.php">Consulta de Gastos</a></li>
+            <li><a href="buscarDist.php">Por Producto Distribución</a></li>
+            <li><a href="buscarMateriaP.php">Por Materia Prima</a></li>
+            <li><a href="buscarEnvase_Tapas.php">Por Envase</a></li>
+            <li><a href="selfechcruce.php">Cruce Distrib mes</a></li>
+          </ul>
+        </li>
+        <li><a href="">Tesorería</a>
+          <ul>
+            <li><a href="factXpagar.php">Facturas X Pagar General</a></li>
+            <li><a href="buscarProv2.php">Facturas X Pagar Proveedor</a></li>
+            <li><a href="buscarEgreso1.php">Modificar Egreso</a></li>
+            <li><a href="buscarEgreso.php">Consulta Egreso</a></li>
+            <li><a href="histo_pagos.php">Histórico Egresos Gral</a></li>
+            <li><a href="buscarProv5.php">Histórico Egresos Prov</a></li>
+            <li><a href="pagosXcompras.php">Egresos de Compras Gral</a></li>
+            <li><a href="buscarProv3.php">Egresos Compras Prov</a></li>
+            <li><a href="pagosXgastos.php">Egresos de Gastos Gral</a></li>
+            <li><a href="buscarProv4.php">Egresos Gastos Prov</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="">Producción</a>
+      <ul>
+        <li><a href="">Formulaciones</a>
+          <ul>
+            <li><a href="formula.php">Crear Fórmula Producto</a></li>
+            <li><a href="buscarform.php">Modificar Fórmula Producto</a></li>
+            <li><a href="deleteFormula.php">Eliminar Fórmula Producto</a></li>
+            <li><a href="formula_col.php">Crear Fórmula de Color</a></li>
+            <li><a href="buscarform_col.php">Modificar Fórmula de Color</a></li>
+            <li><a href="deleteFormula_col.php">Eliminar Fórmula de Color</a></li>
+            <li><a href="formula_MP.php">Crear Fórmula MP</a></li>
+            <li><a href="buscar_form_MP.php">Modificar Fórmula MP</a></li>
+            <li><a href="delete_formula_MP.php">Eliminar Fórmula MP</a></li>
+          </ul>
+        </li>
+        <li><a href="">Órdenes de Producción</a>
+          <ul>
+            <li><a href="o_produccion.php">Crear O. Producción</a></li>
+            <li><a href="buscarOprod.php">Modificar uso de MP</a></li>
+            <li><a href="anular_O_produccion.php">Anular O. Producción</a></li>
+            <li><a href="listarOrProdA.php">O. Producción anuladas</a></li>
+            <li><a href="listarOrProd.php">Listar O. Producción</a></li>
+          </ul>
+        </li>
+        <li><a href="7">Soluciones de Color</a>
+          <ul>
+            <li><a href="o_produccion_color.php">Crear Solución de Color</a></li>
+            <li><a href="buscarOprod_color.php">Modificar uso de MP</a></li>
+            <li><a href="listarOrProd_color.php">Listar O. Producción Color</a></li>
+          </ul>
+        </li>
+        <li><a href="">Materia Prima</a>
+          <ul>
+            <li><a href="o_prod_MP.php">OP Materia Prima</a></li>
+            <li><a href="buscar_o_prod_MP.php">Mod Uso Materia Prima</a></li>
+            <li><a href="listar_o_prod_MP.php">Listar OP Materia Prima</a></li>
+          </ul>
+        </li>
+        <li><a href="">Envasado</a>
+          <ul>
+            <li><a href="Envasado.php">Ingresar Envasado por Lote</a></li>
+            <li><a href="listarEnvasado.php">Listar productos por Lote</a></li>
+            <li><a href="listarOrProdsinE.php">O. Producción por envasar</a></li>
+          </ul>
+        </li>
+        <li><a href="">Reenvase</a>
+          <ul>
+            <li><a href="cambio_pres.php">Crear Cambio Presentación</a></li>
+            <li><a href="listarCambios.php">Listar Cambios de Presen</a></li>
+          </ul>
+        </li>
+        <li><a href="">Kits</a>
+          <ul>
+            <li><a href="crear_kits.php">Crear Kits</a></li>
+            <li><a href="org_kits.php">Organización de Kits</a></li>
+            <li><a href="arm_kits.php">Armado de Kits</a></li>
+            <li><a href="listar_arm_kits.php">Listado de Armado de Kits</a></li>
+            <li><a href="desarm_kits.php">Desarmado de Kits</a></li>
+            <li><a href="listar_desarm_kits.php">Lista Desarmado de Kits</a></li>
+            <li><a href="listarkits.php">Listado de Kits</a></li>
+          </ul>
+        </li>
+        <li><a href="">Envasado Distribución</a>
+          <ul>
+            <li><a href="rel_env_dist.php">Rel Distribución MP</a></li>
+            <li><a href="env_dist.php">Envasar Prod Distribución</a></li>
+            <li><a href="list_env_dist.php">Lista Envasado Distrib</a></li>
+          </ul>
+        </li>
+        <li><a href="">Consulta</a>
+          <ul>
+            <li><a href="buscarProducto.php">Producción por Producto</a></li>
+            <li><a href="mpAcumulada.php">Gasto MP Acumulada</a></li>
+            <li><a href="prodAcumulada.php">Producción Acumulada</a></li>
+          </ul>
+        </li>
+        <li><a href="">Control de Calidad</a>
+          <ul>
+            <li><a href="buscar_lote.php">Control de Calidad Producción</a></li>
+            <li><a href="buscar_lote1.php">Consulta CC Producción</a></li>
+            <li><a href="buscar_lote2.php">Control Cal Producto Terminado</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="">Inventarios</a>
+      <ul>
+        <li><a href="">Actuales</a>
+          <ul>
+            <li><a href="inv_mp.php">Inventario Materia Prima</a></li>
+            <li><a href="inv_prod.php">Inventario Producto Terminado</a></li>
+            <li><a href="inv_dist.php">Inventario Prod Distribución</a></li>
+            <li><a href="inv_env.php">Inventario Envase</a></li>
+            <li><a href="inv_tap.php">Inventario Tapas y válvulas</a></li>
+            <li><a href="inv_etq.php">Inventario Etiquetas</a></li>
+          </ul>
+        </li>
+        <li><a href="">En Fecha</a>
+          <ul>
+            <li><a href="fch_inv_mp.php">Materia Prima</a></li>
+            <li><a href="fch_inv_prod.php">Producto Terminado</a></li>
+            <li><a href="fch_inv_dist.php">Distribución</a></li>
+            <li><a href="fch_inv_env.php">Envase</a></li>
+            <li><a href="fch_inv_tap.php">Tapas y válvulas</a></li>
+            <li><a href="fch_inv_etq.php">Etiquetas</a></li>
+          </ul>
+        </li>
+        <li><a href="">Consulta de Stock</a>
+          <ul>
+            <li><a href="stock_mp.php">Materia Prima</a></li>
+            <li><a href="stock_prod.php">Producto Terminado</a></li>
+            <li><a href="stock_env.php">Envase</a></li>
+            <li><a href="stock_tap.php">Tapas y válvulas</a></li>
+            <li><a href="stock_etq.php">Etiquetas</a></li>
+            <li><a href="stock_dist.php">Prod Distribución</a></li>
+          </ul>
+        </li>
+        <li><a href="">Ajuste de Inventario</a>
+          <ul>
+            <li><a href="a_inv_mp.php">Materia Prima</a></li>
+            <li><a href="a_inv_prod.php">Producto Terminado</a></li>
+            <li><a href="a_inv_dist.php">Distribución</a></li>
+            <li><a href="a_inv_env.php">Envase</a></li>
+            <li><a href="a_inv_tap.php">Tapas y válvulas</a></li>
+            <li><a href="a_inv_etq.php">Etiquetas</a></li>
+          </ul>
+        </li>
+        <li><a href="">Salida Productos</a>
+          <ul>
+            <li><a href="remision.php">Remisión</a></li>
+            <li><a href="buscarRemision.php">Modificar Remisión</a></li>
+            <li><a href="baja.php">Baja de Producto</a></li>
+          </ul>
+        </li>
+        <li><a href="">Desempaque Productos</a>
+          <ul>
+            <li><a href="desempacar.php">Desempacar</a></li>
+            <li><a href="empacar.php">Empacar</a></li>
+          </ul>
+        </li>
+        <li><a href="">Envase a Distribución</a>
+          <ul>
+            <li><a href="cargarEnvase.php">Cargar Envase</a></li>
+          </ul>
+        </li>
+        <li><a href="">Trazabilidad</a>
+          <ul>
+            <li><a href="bus_traz_mp.php">Materia Prima</a></li>
+            <li><a href="bus_traz_prod.php">Producto Terminado</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="">Ventas</a>
+      <ul>
+        <li><a href="">Cliente</a>
+          <ul>
+            <li><a href="makeClienForm.php">Creación</a></li>
+            <li><a href="buscarClien.php">Actualización</a></li>
+            <li><a href="deleteClienForm.php">Eliminación</a></li>
+            <li><a href="listarClien2.php">Clientes Activos</a></li>
+            <li><a href="listarClien3.php">Clientes Inactivos</a></li>
+          </ul>
+        </li>
+        <li><a href="">Cotización</a>
+          <ul>
+            <li><a href="crearcliencot.php">Crear Cliente para Cotizar</a></li>
+            <li><a href="buscarClientCot.php">Modificar Cliente Cotización</a></li>
+            <li><a href="listarClientCot.php">Listar Clientes Cotización</a></li>
+            <li><a href="cotizacion.php">Cotización General</a></li>
+            <li><a href="buscarCotiza.php">Modificar Cotización General</a></li>
+            <li><a href="listarCotiza.php">Listar Cotización Gral</a></li>
+            <li><a href="cot_personalizada.php">Cotización Personalizada</a></li>
+            <li><a href="mod_cot_personalizada.php">Modificar Cot Personalizada</a></li>
+            <li><a href="list_cot_personalizada.php">Listar Cot Personalizada</a></li>
+          </ul>
+        </li>
+        <li><a href="">Pedido</a>
+          <ul>
+            <li><a href="pedido.php">Crear Pedido</a></li>
+            <li><a href="buscarPedido.php">Modificar Pedido</a></li>
+            <li><a href="anulaPedido.php">Anular Pedido</a></li>
+            <li><a href="listarPedidoA.php">Pedidos Anulados</a></li>
+            <li><a href="listarPedido.php">Listar Pedidos</a></li>
+            <li><a href="listarPedidoP.php">Listar Pedidos Pendientes</a></li>
+            <li><a href="sellistarPedido.php">Revisar Pedidos Pendientes</a></li>
+            <li><a href="conspedClien.php">Consultar pedidos Cliente</a></li>
+            <li><a href="buscarVendedor1.php">Pedidos por Vendedor</a></li>
+          </ul>
+        </li>
+        <li><a href="">Factura</a>
+          <ul>
+            <li><a href="crearFactura.php">Crear Factura</a></li>
+            <li><a href="buscarFactura.php">Modificar Factura</a></li>
+            <li><a href="facturar.php">Hab Pedido para Cambiarlo</a></li>
+            <li><a href="facturar1.php">Hab Pedido para Facturar</a></li>
+            <li><a href="anularFactura.php">Anular Factura</a></li>
+            <li><a href="listarFacturas.php">Listar Facturas</a></li>
+          </ul>
+        </li>
+        <li><a href="">Nota Crédito</a>
+          <ul>
+            <li><a href="crearNotaC.php">Crear Nota Crédito</a></li>
+            <li><a href="buscarNotaC.php">Modificar Nota Crédito</a></li>
+            <li><a href="listarNotasC.php">Listar Notas Crédito</a></li>
+            <li><a href="consNCClien.php">Notas Crédito por Cliente</a></li>
+          </ul>
+        </li>
+        <li><a href="">Consulta</a>
+          <ul>
+            <li><a href="consultaCliente.php">Consulta Cliente</a></li>
+            <li><a href="buscarVendedor.php">Consulta Vendedor</a></li>
+            <li><a href="selfech6.php">Comisiones Vendedor</a></li>
+            <li><a href="consultaFacturas.php">Consulta Facturas</a></li>
+            <li><a href="consultaNotasC.php">Consulta Notas Crédito</a></li>
+            <li><a href="consultaFamilia.php">Ventas por Familia</a></li>
+            <li><a href="consultaProducto.php">Ventas por Producto</a></li>
+            <li><a href="consultaRemision.php">Consulta por Remision</a></li>
+          </ul>
+        </li>
+        <li><a href="">Cartera</a>
+          <ul>
+            <li><a href="factXcobrar.php">Cartera General</a></li>
+            <li><a href="factXcobrarAc.php">Cartera acum por cliente</a></li>
+            <li><a href="buscarClien2.php">Cartera por Cliente</a></li>
+            <li><a href="buscarClien3.php">Estado de Cuenta Cliente</a></li>
+            <li><a href="hist_cobros.php">Histórico Recibos de Caja</a></li>
+            <li><a href="buscarClien5.php">Histórico RC por Cliente</a></li>
+            <li><a href="buscarRC1.php">Modificar Recibo de Caja</a></li>
+            <li><a href="buscarRC.php">Consulta Recibo de Caja</a></li>
+          </ul>
+        </li>
+        <li><a href="">Histórico Ventas</a>
+          <ul>
+            <li><a href="selfech1.php">Ventas Prod Nova </a></li>
+            <li><a href="selfech2.php">Ventas Prod Nova Vend</a></li>
+            <li><a href="selfech3.php">Ventas Dist fam Total</a></li>
+            <li><a href="selfech4.php">Ventas Dist fam Vend</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="">Nómina</a>
+      <ul>
+        <li><a href="">Empleados</a>
+          <ul>
+            <li><a href="makeEmpForm.php">Ingresar Empleado</a></li>
+            <li><a href="buscarEmp.php">Actualizar Empleado</a></li>
+            <li><a href="deleteEmpForm.php">Borrar Empleado</a></li>
+            <li><a href="listarEmp.php">Listar Empleados</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href=" exit.php">Salir</a>
+      <ul></ul>
+    </li>
+  </ul>
+</body>
+
+</html>

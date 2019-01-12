@@ -1,15 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
 <head>
     <meta charset="utf-8">
 </head>
 
 <body>
-    <?php
-include "includes/conect.php";
+<?php
+
+function chargerClasse($classname)
+{
+  require 'includes/'.$classname.'.php';
+}
+
+spl_autoload_register('chargerClasse');
+
+
+//include "includes/conect.php";
 include "includes/calcularDias.php";
-$mysqli=conectarServidor();
+//$con=conectarServidor();
+$con=Conectar::conexion();
 foreach ($_POST as $nombre_campo => $valor) 
 { 
 	$asignacion = "\$".$nombre_campo."='".$valor."';"; 
@@ -17,7 +27,7 @@ foreach ($_POST as $nombre_campo => $valor)
 	eval($asignacion); 
 }  
 $nota="";
-if($mysqli)
+if($con)
 {
 	
 	if((strlen($_POST['Nombre']))<=16)	//El nombre de usuario no debe superar la longitud de 16
@@ -31,14 +41,14 @@ if($mysqli)
 	}
  	//Validacion de nombre y usuario
    	$QRY="select * from tblusuarios where usuario= '$Nombre' AND clave='$Password'";
-   	$result = $mysqli->query($QRY);
-   	$row = $result->fetch_assoc();
+   	$result = $con->query($QRY);
+   	$row = $result->fetch(PDO::FETCH_ASSOC);
    	if(!$row)
    	{//si existen datos pero la clave esta errada
   		$QRY1="select * from tblusuarios where usuario= '$Nombre'";
 		//verificacion de nombre en la Base de datos
-		$result1 = $mysqli->query($QRY1);
-		$row1 = $result1->fetch_assoc();	
+		$result1 = $con->query($QRY1);
+		$row1 = $result1->fetch(PDO::FETCH_ASSOC);	
 		if($row1)
 		{
 			/********ERROR DE ACCESO*******
@@ -46,14 +56,14 @@ if($mysqli)
 			$hh=strftime("%H:").strftime("%M:").strftime("%S");	              
             $Fecha=date("Y")."-".date("m")."-".date("d")." ".$hh;
 			$qryAcces="insert into logusuarios(IdUsuario, Fecha, Motivo) values($IdUser,'$Fecha','ERROR DE CLAVE')";
-			//$ResutLog=mysqli_query($link,$qryAcces);
-			$ResutLog = $mysqli->query($qryAcces);
+			//$ResutLog=con_query($link,$qryAcces);
+			$ResutLog = $con->query($qryAcces);
 			/*********FIN DEL LOG DE acceso*******/
 			
 			//si el usuario existe se le adiciona 1 intento a los 4 intentos se debe bloquear el usuario
 			$intentos=$row['Intentos']+1;
 			$QRY2="update tblusuarios set intentos=$intentos where usuario='$Nombre'";
-		    $result2 = $mysqli->query($QRY2);
+		    $result2 = $con->query($QRY2);
 			$ruta="index.php";
 			$nota="Los Datos no son Correctos por favor verifique la informaci�n";
 			$nota=utf8_encode($nota);
@@ -67,18 +77,15 @@ if($mysqli)
 			$hh=strftime("%H:").strftime("%M:").strftime("%S");	              
             $Fecha=date("Y")."-".date("m")."-".date("d")." ".$hh;
 			$qryAcces="insert into logusuarios(IdUsuario, Fecha, Motivo) values($IdUser,'$Fecha','ERROR DE CLAVE')";
-			//$ResutLog=mysqli_query($link,$qryAcces);
-			$ResutLog = $mysqli->query($qryAcces);
+			//$ResutLog=con_query($link,$qryAcces);
+			$ResutLog = $con->query($qryAcces);
 			/*********FIN DEL LOG DE acceso*******/
 			$nota="Los Datos no son Correctos por favor verifique la informaci�n";
 			$nota=utf8_encode($nota);
 			mover_pag($ruta,$nota);
 		}
    	}	
-   	$total=$result->num_rows;
-
-   	//si se superan los controles iniciales
-   	if($total==1)
+   	else  	//si se superan los controles iniciales
 	{
 		$fechaFinal=$row['fecCambio'];
 		$Fecha=Hoy();
@@ -88,7 +95,7 @@ if($mysqli)
 		$Id=$row['idUsuario'];
 		$intentos=$row['intentos'];
 		if($op==3)
-		{//Si el usuario est� bloqueado no se le deja continuar
+		{//Si el usuario está bloqueado no se le deja continuar
 			$ruta="index.php";
 			$nota="Usuario bloqueado, consulte al administrador del sistema";
 			mover_pag($ruta,$nota);
@@ -100,7 +107,7 @@ if($mysqli)
 				if($dias<=90)//Numero de dias
 				{
 					 $QRY3="update tblusuarios set intentos=0 where usuario='$Nombre'";
-					 $result3 = $mysqli->query($QRY3);
+					 $result3 = $con->query($QRY3);
 					 session_start();
 					 $_SESSION['Autorizado']=true;
 					 $_SESSION['User']=$Nombre;
@@ -113,8 +120,8 @@ if($mysqli)
 					 $hh=strftime("%H:").strftime("%M:").strftime("%S");	              
 					 $Fecha=date("Y")."-".date("m")."-".date("d")." ".$hh;
 					 $qryAcces="insert into logusuarios(IdUsuario, Fecha, Motivo) values($IdUser,'$Fecha','ACCESO')";
-					 $ResutLog = $mysqli->query($qryAcces);
-					 //$ResutLog=mysqli_query($link,$qryAcces);
+					 $ResutLog = $con->query($qryAcces);
+					 //$ResutLog=con_query($link,$qryAcces);
 					 
 					 /*********FIN DEL LOG DE INGRESO*******/
 					 $ruta="menu.php";
@@ -127,7 +134,7 @@ if($mysqli)
 					$nota="Su �ltimo cambio fue hace mas de 90 d�as, por favor cambie su contrase�a";
 					$nota=utf8_encode($nota);
 					$QRY4="update tblusuarios set intentos=0 where usuario='$Nombre'";	
-					$result4 = $mysqli->query($QRY4);
+					$result4 = $con->query($QRY4);
 					 session_start();
 					 $_SESSION['Autorizado']=true;
 					 $_SESSION['User']=$Nombre;
@@ -139,8 +146,8 @@ if($mysqli)
 					 $hh=strftime("%H:").strftime("%M:").strftime("%S");	              
 					 $Fecha=date("Y")."-".date("m")."-".date("d")." ".$hh;
 					  $qryAcces="insert into logusuarios(IdUsuario, Fecha, Motivo) values($IdUser,'$Fecha','CLAVE VENCIDA')";
-					 //$ResutLog=mysqli_query($link,$qryAcces);
-					 $ResutLog = $mysqli->query($qryAcces);
+					 //$ResutLog=con_query($link,$qryAcces);
+					 $ResutLog = $con->query($qryAcces);
 					 
 					 /*********FIN DEL LOG VENCIMIENTO DE CLAVE*****/
 					mover_pag($ruta,$nota);
@@ -155,8 +162,8 @@ if($mysqli)
 					 $hh=strftime("%H:").strftime("%M:").strftime("%S");	              
 					 $Fecha=date("Y")."-".date("m")."-".date("d")." ".$hh;
 					 $qryAcces="insert into logusuarios(IdUsuario, Fecha, Motivo) values($IdUser,'$Fecha','BLOQUEO')";
-					 //$ResutLog=mysqli_query($link,$qryAcces);
-					 $ResutLog = $mysqli->query($qryAcces);
+					 //$ResutLog=con_query($link,$qryAcces);
+					 $ResutLog = $con->query($qryAcces);
 					 
 			  /*********FIN DEL LOG BLOQUEO*****/
 				mover_pag($ruta,$nota);
@@ -170,11 +177,11 @@ if($mysqli)
 			 $hh=strftime("%H:").strftime("%M:").strftime("%S");	              
 			 $Fecha=date("Y")."-".date("m")."-".date("d")." ".$hh;
 			 $qryAcces="insert into logusuarios(IdUsuario, Fecha, Motivo) values($IdUser,'$Fecha','PRIMER INGRESO')";
-			 //$ResutLog=mysqli_query($link,$qryAcces);
-			 $ResutLog = $mysqli->query($qryAcces);
+			 //$ResutLog=con_query($link,$qryAcces);
+			 $ResutLog = $con->query($qryAcces);
 					 
 			/*********FIN PRIMER INGRESO*****/
-			$nota="Primer Ingreso cambie su contrase�a";
+			$nota="Primer Ingreso cambie su contraseña";
 			$nota=utf8_encode($nota);
 			session_start();
 			$_SESSION['Autorizado']=true;
@@ -188,7 +195,7 @@ if($mysqli)
 	$result->free();
 	
 	/* cerrar la conexi�n */
-	$mysqli->close();
+	$con->close();
 }
 
 function mover_pag($ruta,$nota)

@@ -134,7 +134,7 @@ include "includes/valAcc.php";
       <td><strong>Usuario </strong></td>
       <td>&nbsp;</td>
       <td><div align="right">
-        <input name="User" type="text" id="User"  readonly="true" value="<?php=$_SESSION['User'];?>" size="30"/>
+        <input name="User" type="text" id="User" size="30" readonly="true" value="<?=$_SESSION['User'];?>" />
       </div></td>
     </tr>
     <tr>
@@ -142,7 +142,7 @@ include "includes/valAcc.php";
       <td><label></label></td>
       <td>&nbsp;</td>
       <td><div align="right">
-        <input name="IdUser" type="hidden" value="<?php=$_SESSION['IdUsuario'];?>" />		
+        <input name="IdUser" type="hidden" value="<?=$_SESSION['IdUsuario'];?>" />		
         <input type="submit" name="Submit" value="Grabar Pago" />
       </div></td>
     </tr>

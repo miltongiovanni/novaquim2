@@ -1,5 +1,11 @@
 <?php
 include "includes/valAcc.php";
+function chargerClasse($classname)
+{
+  require 'includes/'.$classname.'.php';
+}
+
+spl_autoload_register('chargerClasse');
 ?>
 <!DOCTYPE html>
 <html>
@@ -32,26 +38,23 @@ include "includes/valAcc.php";
               <td colspan="2" >
               <select name="idPerfil" id="idPerfil">
                 <?php
-                    include "includes/conect.php";
-                    $mysqli=conectarServidor();
-                    $qry="select * from tblperfiles";	
-                    $result = $mysqli->query($qry);
+                    //include "includes/conect.php";
+                    $con=Conectar::conexion();
+                    $qry="select * from tblperfiles";
+                    $result = $con->query($qry);	
                     echo '<option value="6" selected>USUARIO</option>';
-                    while($row = $result->fetch_assoc())
+                    while($row = $result->fetch(PDO::FETCH_ASSOC))
                     {
                         if ($row['IdPerfil']!=6)
                             echo '<option value="'.$row['IdPerfil'].'">'.$row['Descripcion'].'</option>';
                     }
-                    $result->free();
-  			  /* cerrar la conexión  */
-          $mysqli->close();
                 ?>
               </select> 
           </tr>
           <tr> 
               <td>   </td>
-              <td width="90"><button class="button" style="vertical-align:middle" onclick="return Enviar(this.form)"><span>Continuar</span></button></td>
-              <td width="90"><button class="button" style="vertical-align:middle" type="reset"><span>Borrar</span></button></td>
+              <td ><button class="button" style="vertical-align:middle" onclick="return Enviar(this.form)"><span>Continuar</span></button></td>
+              <td ><button class="button" style="vertical-align:middle" type="reset"><span>Borrar</span></button></td>
           </tr>
           <tr>
               <td colspan="3"><div align="center">&nbsp;</div></td>

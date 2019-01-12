@@ -2,7 +2,7 @@
 <?php
 //include "conect.php";
 class UsersManager{
-private $_mysqli; // Instance de mysqli.
+private $_pdo; // Instance de PDO.
 
 public function __construct()
 {
@@ -14,9 +14,18 @@ public function makeUser($user)
     
 /*Preparo la insercion */
 
-	$q = $this->_mysqli->prepare('insert into tblusuarios (nombre, apellido, clave, usuario, estadoUsuario, fecCrea, fecCambio, idPerfil, intentos) values (?, ?, ?, ?, ?, ?, ?, ?, ?)');
-    $q->bind_param('ssssissii', $nombre, $apellido, $clave, $usuario, $estadoUsuario, $fecCrea, $fecCambio, $idPerfil, $intentos );
-    $nombre = $user->nombre();
+	$q = $this->_pdo->prepare('insert into tblusuarios (nombre, apellido, clave, usuario, estadoUsuario, fecCrea, fecCambio, idPerfil, intentos) 
+	values (:nombre, :apellido, :clave, :usuario, :estadoUsuario, :fecCrea, :fecCambio, :idPerfil, :intentos)');
+	$q->bindParam('nombre', $nombre, PDO::PARAM_STR);
+	$q->bindParam('apellido', $apellido, PDO::PARAM_STR);
+	$q->bindParam('clave', $clave, PDO::PARAM_STR);
+	$q->bindParam('usuario', $usuario, PDO::PARAM_STR);
+	$q->bindParam('estadoUsuario', $estadoUsuario, PDO::PARAM_INT);
+	$q->bindParam('fecCrea', $fecCrea, PDO::PARAM_STR);
+	$q->bindParam('fecCambio', $fecCambio, PDO::PARAM_STR);
+	$q->bindParam('idPerfil', $idPerfil, PDO::PARAM_INT);
+	$q->bindParam('intentos', $intentos, PDO::PARAM_INT);
+	$nombre = $user->nombre();
     $apellido = $user->apellido();
     $clave = $user->clave();
     $usuario = $user->usuario();
@@ -25,13 +34,15 @@ public function makeUser($user)
     $fecCambio = $user->fecCambio();
     $idPerfil = $user->idPerfil();
     $intentos = $user->intentos();
-  	return $q->execute();
+	return $q->execute();
+	$last_id = $this->_pdo->lastInsertId();
+    echo "New record created successfully. Last inserted ID is: " . $last_id;
 }
 public function deleteUser($idUsuario)
 {
 	if($idUsuario>0){
-		$q = $this->_mysqli->prepare('delete from tblusuarios where idUsuario = ?');
-		$q->bind_param('i', $idUsuario);
+		$q = $this->_mysqli->prepare('delete from tblusuarios where idUsuario = :idUsuario');
+		$q->bind_param('idUsuario', $idUsuario, PDO::PARAM_INT);
 		return $q->execute();
 
 
@@ -87,7 +98,7 @@ public function changeClave($Nombre,$Apellido, $usuario, $estadousuario, $fecCre
 
 {
 
-$this->_mysqli =Conectar::conexion(); //Almacenamos en _mysqli la llamada la clase estática Conectar;
+$this->_pdo =Conectar::conexion(); //Almacenamos en _pdo la llamada la clase estática Conectar;
 
 }
 }

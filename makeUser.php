@@ -22,8 +22,8 @@ foreach ($_POST as $nombre_campo => $valor)
 }  
 $usuario=strtoupper ($_POST['usuario']);
 $estadoUsuario=1;
-$fecCambio=Hoy();
-$fecCrea=Hoy();
+$fecCambio=Fecha::Hoy();
+$fecCrea=Fecha::Hoy();
 $intentos=0;
 $clave=md5($usuario);
 

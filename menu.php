@@ -3,11 +3,19 @@
 	include("includes/functions.php");
 	include "includes/conect.php";
 	$perfil1=$_SESSION['Perfil'];
+
+
+	//Crea el objeto Menu
 	$db = new PHP_fun;
-	$link=conectarServidor();
-	$sql="select IdPerfil, Descripcion from tblperfiles;";
-	$result=mysqli_query($link, $sql);
-	while($row=mysqli_fetch_array($result))
+
+
+	//Esto toca quitarlo de aquí
+	$con=conectarServidor();
+	$QRY="select IdPerfil, Descripcion from tblperfiles;";
+	$result = $con->query($QRY);
+
+
+	while($row = $result->fetch(PDO::FETCH_ASSOC))
 	{
 		$idPerfil=$row['IdPerfil'];
 		if(md5($idPerfil)==$perfil1)
@@ -20,13 +28,13 @@
 	
 ?>
  <!DOCTYPE html> 
-<html>
+<html lang="es">
 	<head>
     <meta charset="UTF-8"> 
     <link href='images/favicon.ico' rel='shortcut icon' type='image/x-icon'>
 	<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<script type="text/javascript" src="js/md5.js"></script>
-	<title>Men&uacute; Principal</title>
+	<script src="js/md5.js"></script>
+	<title>Menú Principal</title>
     <!-- comentario -->
     <script>
 	function redirect(url)
@@ -63,13 +71,15 @@
 
 $user1=$_SESSION['User'];
 $qry="select Nombre from tblusuarios WHERE Usuario='$user1'";	
-$result=mysqli_query($link, $qry);
-$row=mysqli_fetch_array($result);
+$result = $con->query($qry);
+
+
+$row=$row = $result->fetch(PDO::FETCH_ASSOC);
 echo $row['Nombre']; 
-mysqli_free_result($result);
-/* cerrar la conexi?n */
-mysqli_close($link);
-?> est&aacute; usando el Sistema de Informaci&oacute;n de Industrias Novaquim S.A.S.</p>
+$result = null;
+/* cerrar la conexión */
+$con = null;
+?> está usando el Sistema de Información de Industrias Novaquim S.A.S.</p>
 	</div> 
     </div> 
 </body>
