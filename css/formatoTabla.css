@@ -243,11 +243,11 @@ select       {
 	width: 50%;
 	margin: auto;
 	font-size: 1.2vw;
-	background: #ffffff url("../images/LogoNova1.jpg") no-repeat center top;
-	background-size: 50%;
+	background: url("../images/LogoNova1.jpg") no-repeat center top;
 	padding-top: 15%;
-	padding-bottom: 2%;
-	
+	/*padding-bottom: 2%;*/
+	z-index: -1;
+	margin-top: 0.2%;
 } 
 
 #menuTable{
