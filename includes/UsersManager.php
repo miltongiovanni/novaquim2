@@ -63,6 +63,21 @@ public function deleteUser($idUsuario)
 		return 0;*/
 	}
 }	
+
+public function getUsers() {
+    $q=$this->_pdo->prepare("SELECT  tblusuarios.Nombre as 'Nombre del Usuario', 
+	tblusuarios.Apellido as 'Apellidos del Usuario',
+	tblusuarios.Usuario, tblusuarios.FecCrea as 'Fecha de Creación', 
+	tblestados.Descripcion as 'Estado',	tblperfiles.Descripcion as 'Perfil'
+	FROM tblusuarios,tblperfiles, tblestados
+	where tblusuarios.EstadoUsuario=tblestados.IdEstado and EstadoUsuario<=2
+	and tblusuarios.IdPerfil=tblperfiles.IdPerfil order by tblusuarios.IdUsuario");
+    $q->execute();
+    $result = $q->fetchAll();
+	$meta = $q->getColumnMeta(0);
+	//var_dump($meta);
+    return $result;
+  }
 /*
 public function updateUser($Nombre,$Apellido, $usuario, $estadousuario, $fecCrea, $fecCambio, $Perfil, $Intentos)	
 {

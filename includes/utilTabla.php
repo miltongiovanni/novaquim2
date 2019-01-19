@@ -1,33 +1,25 @@
 <?php
-function verTabla($sql, $mysqli)
+function verTabla($datos)
 {
-	$result = $mysqli->query($sql);
-	$campos=$result->field_count; //para saber el numero de campos de un registro
-	$filas=$result->num_rows;
-	if ($row = $result->fetch_row())
+	$encabezados=array_keys($datos[0]);
+	$campos=count($datos[0])/2; //para saber el numero de campos de un registro
+	$filas=count($datos);
+	echo '<table summary="Tabla"><tr class="formatoEncabezados">';
+	for($i=0; $i<$campos; $i++)
 	{
-		echo '<table align="center" summary="Tabla"><tr class="formatoEncabezados">';
-		for($i=0; $i<$campos; $i++)
-		{
-			$info_campo = $result->fetch_field_direct($i);
-			echo '<td align="center">'.($info_campo->name).'</td>';
-		}
-		echo '</tr>';
-		$a=1;
-		do
-		{
-			echo'<tr class="formatoDatos">';
-			for($i=0; $i<$campos; $i++)
-			{
-				echo '<td align="center">'.($row[$i]).'</td>';
-			}
-			echo'</tr>';
-		}while ($row = $result->fetch_row());
-		echo '</table>';
+		echo '<th>'.($encabezados[2*$i]).'</th>';
 	}
-   $result->free();
-
-/* cerrar la conexión */
-$mysqli->close();
+	echo '</tr>';
+	$a=1;
+	for($i=0; $i<$filas; $i++)
+	{
+		echo'<tr class="formatoDatos">';
+		for($j=0; $j<$campos; $j++)
+		{
+			echo '<td>'.($datos[$i][$j]).'</td>';
+		}
+		echo'</tr>';
+	}
+	echo '</table>';
 }
 ?>

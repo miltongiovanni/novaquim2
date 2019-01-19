@@ -65,8 +65,7 @@ if($con)
 			$QRY2="update tblusuarios set intentos=$intentos where usuario='$Nombre'";
 		    $result2 = $con->query($QRY2);
 			$ruta="index.php";
-			$nota="Los Datos no son Correctos por favor verifique la informaci�n";
-			$nota=utf8_encode($nota);
+			$nota="Los Datos no son Correctos por favor verifique la información";
 			mover_pag($ruta,$nota);	
 		}
 		else
@@ -80,8 +79,7 @@ if($con)
 			//$ResutLog=con_query($link,$qryAcces);
 			$ResutLog = $con->query($qryAcces);
 			/*********FIN DEL LOG DE acceso*******/
-			$nota="Los Datos no son Correctos por favor verifique la informaci�n";
-			$nota=utf8_encode($nota);
+			$nota="Los Datos no son Correctos por favor verifique la información";
 			mover_pag($ruta,$nota);
 		}
    	}	
@@ -131,7 +129,7 @@ if($con)
 				{
 				  
 					$ruta="cambio.php?nombre=$Nombre";
-					$nota="Su �ltimo cambio fue hace mas de 90 d�as, por favor cambie su contrase�a";
+					$nota="Su último cambio fue hace mas de 90 días, por favor cambie su contraseña";
 					$nota=utf8_encode($nota);
 					$QRY4="update tblusuarios set intentos=0 where usuario='$Nombre'";	
 					$result4 = $con->query($QRY4);

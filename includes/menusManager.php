@@ -8,17 +8,6 @@ class menusManager {
   }
 
   public function makeMenuItem($menuItem) {
-    $q=$this->_pdo->prepare('insert into tblusuarios (nombre, apellido, clave, usuario, estadoUsuario, fecCrea, fecCambio, idPerfil, intentos) 
-    values (:nombre, : apellido, :clave, :usuario, :estadoUsuario, :fecCrea, :fecCambio, :idPerfil, :intentos)');
-    $q->bindParam('nombre', $nombre, PDO::PARAM_STR);
-    $q->bindParam('apellido', $apellido, PDO::PARAM_STR);
-    $q->bindParam('clave', $clave, PDO::PARAM_STR);
-    $q->bindParam('usuario', $usuario, PDO::PARAM_STR);
-    $q->bindParam('estadoUsuario', $estadoUsuario, PDO::PARAM_INT);
-    $q->bindParam('fecCrea', $fecCrea, PDO::PARAM_STR);
-    $q->bindParam('fecCambio', $fecCambio, PDO::PARAM_STR);
-    $q->bindParam('idPerfil', $idPerfil, PDO::PARAM_INT);
-    $q->bindParam('intentos', $intentos, PDO::PARAM_INT);
     /*Preparo la insercion */
 
     $q=$this->_pdo->prepare('insert into menu (id, title, link, parentId, codUser) values (:id, :title, :link, :parentId, :codUser)');

@@ -1,4 +1,19 @@
-BODY {
+
+@font-face {
+    font-family: 'Open Sans';
+    src: url('Open_Sans/OpenSans-Regular.ttf');
+}
+
+
+html{
+	font-family: 'Open Sans', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	font-size: 1.0vw;
+}
+
+
+
+
+body {
 	margin : 0px 0px 0px 0px;
 } 
 *,
@@ -6,45 +21,44 @@ BODY {
 ::before {
     box-sizing: border-box;
 }
+table{
+	margin: auto;
+}
+td,th{
+	padding-left: 5px;
+	padding-right: 5px;
+}
+tr:nth-child(even) {
+	background-color: #DFE2FD;
+  }
 .formatoEncabezados {
-	font-family: tahoma, Verdana;
-	font-weight: bold;
+	font-weight: 300;
 	text-align: center;
-	font-size: 12px;
+	font-size: 0.8em;
 	background-color: #000066;
 	color: #FFFFFF
 }
 .formatoDatos {
-	font-family: tahoma, Verdana;
-	font-size: small;
+	font-size: 0.8em;
 	color: #000066;
 }
 .formatoDatos1 {
-	font-family: tahoma, Verdana;
-	font-size: small;
+	font-size: 0.8em;
 	color: #D40000;
-	font-weight: normal;
 }
 .formatoDatos2 {
-	font-family: tahoma, Verdana;
-	font-size: small;
+	font-size: 0.8em;
 	color: #009D00;
-	font-weight: normal;
 }
 .formatoDatos3 {
-	font-family: tahoma, Verdana;
-	font-size: small;
+	font-size: 0.8em;
 	color:  #AA5FFF;
-	font-weight: normal;
 }
 .formatoDatos4 {
-	font-family: tahoma, Verdana;
-	font-size: small;
+	font-size: 0.8em;
 	color: #E29641;
-	font-weight: normal;
 }
 .formatoBoton {
-	font-family: tahoma, Verdana;
 	font-size: x-small;
 	background-color: #000066;
 	border-top-width: thin;
@@ -63,7 +77,6 @@ BODY {
     border-radius: .2em;
 }
 .formatoBoton:hover {
-	font-family: tahoma, Verdana;
 	font-size: x-small;
 	background-color: #000066;
 	border-top-width: thin;
@@ -82,7 +95,6 @@ BODY {
 	border-radius: .2em;
 }
 .formatoBoton1 {
-	font-family: tahoma, Verdana;
 	font-size: small;
 	background-color: #000066;
 	border-top-width: thin;
@@ -101,7 +113,6 @@ BODY {
 	border-radius: .2em;
 }
 .formatoBoton1:hover {
-	font-family: tahoma, Verdana;
 	font-size: small;
 	background-color: #000066;
 	border-top-width: thin;
@@ -122,7 +133,6 @@ BODY {
 
 
 font {
-	font-family: tahoma, Verdana;
 	font-size: 1.0vw;
 	color: #000066;
 }
@@ -226,13 +236,14 @@ select       {
 .commenthidden {display:none}
 .commentshown {display:inline}
 #contenedor{
-	font-family: Tahoma, Geneva, sans-serif;
 	font-size: 1.0vw;
 	width: 100%;
 	color: #006;
 	margin: auto;
 	background-color: #FFF;
 	position: absolute;
+	padding-left: 1%;
+	padding-right: 1%;
 	/*left: 0px;
 	top: 0px;*/
 } 
@@ -240,44 +251,24 @@ select       {
 /*Responsive*/
 #saludo{
 	text-align: center;
-	width: 50%;
-	margin: auto;
 	font-size: 1.2vw;
 	background: url("../images/LogoNova1.jpg") no-repeat center top;
 	padding-top: 15%;
-	/*padding-bottom: 2%;*/
-	z-index: -1;
+	padding-bottom: 2%;
 	margin-top: 0.2%;
 } 
 
-#menuTable{
-	position: relative;
-	margin: auto;
-	text-align: center;
-	width: 100%;
-} 
 .label{
 	width: 10%;
 }
 
 #saludo1{
 	text-align: center;
-	width:900px;
-	margin: auto;
 	height: 20px;
-	font-family: Tahoma, Geneva, sans-serif;
-	font-size: 18px;
-	/*color: #2A1F55;*/
-	background-image: url(../images/LogoNova.jpg);
-	background-repeat: no-repeat;
-	background-position: center 0px;
-	padding-top: 112px;
-	text-decoration: inherit;
-	background-color: #FFF;
-	border-top-color: #FFF;
-	border-right-color: #FFF;
-	border-bottom-color: #FFF;
-	border-left-color: #FFF;
+	font-size: 1.2vw;
+	background: url("../images/LogoNova.jpg") no-repeat center top;
+	padding-top: 8%;
+	padding-bottom: 1%;
 } 
 
 .button {
@@ -289,7 +280,7 @@ select       {
   text-align: center;
   font-size: 1.0vw;
   padding: 5px;
-  width: 32%;
+  width: 100%;
   transition: all 0.5s;
   cursor: pointer;
   margin: 5px;
@@ -361,22 +352,6 @@ select       {
   left: 0;
 }
 
-.aerial12 /*Menu*/
-{
-	/*font-size:12px;*/
-	text-decoration:none;
-	color:#FFF;
-	background-color:#000066;
-}
-
-.aerial12over /*Menu*/
-{
-	/*font-size:12px;*/
-	text-decoration:none;
-	color:#FFF;
-	background-color:#09F;
-}
-
 .row {
     display: flex;
 	flex-wrap: wrap;
@@ -399,8 +374,8 @@ select       {
     position: relative;
     width: 100%;
     min-height: 1px;
-    /*padding-right: 15px;*/
-    /* padding-left: 15px;*/
+    padding-right: 5px;
+    padding-left: 5px;
 }
 
 .col-1 {
