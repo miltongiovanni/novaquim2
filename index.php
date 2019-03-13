@@ -13,11 +13,11 @@
 
 <body>
   <div id="contenedor">
-    <div id="saludo"><strong>BIENVENIDO AL SISTEMA DE INFORMACIÓN DE INDUSTRIAS NOVAQUIM S.A.S.</strong></div>
-    <form method="POST" action="login.php">
+    <div id="saludo"><h4>BIENVENIDO AL SISTEMA DE INFORMACIÓN DE INDUSTRIAS NOVAQUIM S.A.S.</h4></div>
+    <form method="POST" action="administracion/login.php">
       <div class="form-group row">
         <div class="col-1" style="text-align: right;">
-          <label class="col-form-label" for="Nombre">Usuario:&nbsp;</label>
+          <label class="col-form-label" for="Nombre">Usuario</label>
         </div>
         <div class="col-1">
           <input type="text" class="form-control" name="Nombre" id="Nombre" maxlength="10" placeholder="Usuario"
@@ -26,7 +26,7 @@
       </div>
       <div class="form-group row">
         <div class="col-1" style="text-align: right;"> 
-          <label class="col-form-label" for="Password">Contraseña:&nbsp;</label>
+          <label class="col-form-label" for="Password">Contraseña</label>
         </div>
         <div class="col-1"><input type="password" class="form-control" name="Password" id="Password" maxlength="15"
             placeholder="Contraseña">

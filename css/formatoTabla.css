@@ -10,9 +10,6 @@ html{
 	font-size: 1.0vw;
 }
 
-
-
-
 body {
 	margin : 0px 0px 0px 0px;
 } 
@@ -141,7 +138,7 @@ font {
 .table2 {
         border: 0 solid #000066;
         }
-
+/*
 input        {
 	color: #FFFFFF;
 	background-color: #000066;
@@ -155,7 +152,7 @@ select       {
 	background-color: #000066;
 	border: thin solid #000066;
 	font-size: 1.0vw;
-}
+}*/
 .font2       
 {
 	color: #000066;
@@ -244,8 +241,7 @@ select       {
 	position: absolute;
 	padding-left: 1%;
 	padding-right: 1%;
-	/*left: 0px;
-	top: 0px;*/
+
 } 
 
 /*Responsive*/
@@ -254,7 +250,7 @@ select       {
 	font-size: 1.2vw;
 	background: url("../images/LogoNova1.jpg") no-repeat center top;
 	padding-top: 15%;
-	padding-bottom: 2%;
+	padding-bottom: 1%;
 	margin-top: 0.2%;
 } 
 
@@ -267,8 +263,8 @@ select       {
 	height: 20px;
 	font-size: 1.2vw;
 	background: url("../images/LogoNova.jpg") no-repeat center top;
-	padding-top: 8%;
-	padding-bottom: 1%;
+	padding-top: 6.4%;
+	padding-bottom: 4%;
 } 
 
 .button {
