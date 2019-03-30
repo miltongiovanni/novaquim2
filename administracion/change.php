@@ -16,12 +16,12 @@ foreach ($_POST as $nombre_campo => $valor)
 	//echo $nombre_campo." = ".$valor."<br>";  
 	eval($asignacion); 
 }  
-$manager = new UsersManager();
+$usuarioOperador = new UsuariosOperaciones();
 
 //Ejecutamos la sentencia SQL
 $usuario1=strtoupper ($nombre);
 $password1=md5(strtoupper ($password));
-$row=$manager->getUserPassword($usuario1, $password1);
+$row=$usuarioOperador->getUserPassword($usuario1, $password1);
 if($row)
 {
 	$nombre=$usuario1;
@@ -42,7 +42,7 @@ if($row)
 		{
 			//Creamos la sentencia SQL y la ejecutamos
 			$fec=Fecha::Hoy();
-			$result1=$manager->changeClave($newPass, $fec, $nombre);
+			$result1=$usuarioOperador->changeClave($newPass, $fec, $nombre);
 			if($result1)
 			{
 				echo'<script language="Javascript">

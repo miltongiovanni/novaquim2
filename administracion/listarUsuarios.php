@@ -30,9 +30,9 @@ function cargarClases($classname)
 }
 
 spl_autoload_register('cargarClases');
-$manager = new UsersManager();
-$users=$manager->getUsers();
-verTabla($users);
+$usuarioOperador = new UsuariosOperaciones();
+$usuarios=$usuarioOperador->getTableUsers();
+verTabla($usuarios);
 ?>
 
 <div class="row">

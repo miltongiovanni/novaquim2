@@ -15,7 +15,6 @@ spl_autoload_register('cargarClases');
     <title>Creación de Usuarios</title>
     <meta charset="utf-8">
     <script src="../js/validar.js"></script>
-    <script src="../js/block.js"></script>
 </head>
 
 <body>
@@ -40,18 +39,13 @@ spl_autoload_register('cargarClases');
                 <label class="col-form-label col-1" for="idPerfil"><strong>Perfil</strong></label>
                 <select class="form-control col-2" name="idPerfil" id="idPerfil">
                     <?php
-                    //include "../includes/conect.php";
-                    $con=Conectar::conexion();
-                    $qry="select * from tblperfiles";
-                    $result = $con->query($qry);	
+                    $perfilOperador = new PerfilesOperaciones();
+                    $perfiles = $perfilOperador->getPerfiles();
                     echo '<option value="6" selected>USUARIO</option>';
-                    while($row = $result->fetch(PDO::FETCH_ASSOC))
-                    {
-                        if ($row['IdPerfil']!=6)
-                            echo '<option value="'.$row['IdPerfil'].'">'.$row['Descripcion'].'</option>';
+                    for ($i = 0; $i < count($perfiles); $i++) {
+                        if ($perfiles[$i]['idPerfil']!=6)
+                            echo '<option value="'.$perfiles[$i]['idPerfil'].'">'.$perfiles[$i]['descripcion'].'</option>';
                     }
-                    $con=null;
-                    $result=null;
                 ?>
                 </select>
             </div>

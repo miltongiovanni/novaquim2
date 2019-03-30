@@ -24,7 +24,7 @@ class UsuariosOperaciones
     }
     public function getUsers()
     {
-        $qry = "SELECT idUsuario, nombre, apellido, usuario, estadoUsuario, idPerfil, fecCrea, fecCambio FROM usuarios order by idUsuario";
+        $qry = "SELECT idUsuario, nombre, apellido, usuario, estadoUsuario, idPerfil, fecCrea, fecCambio FROM usuarios ORDER BY idUsuario";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -32,22 +32,23 @@ class UsuariosOperaciones
     }
     public function getTableUsers()
     {
-        $qry = "SELECT usuarios.idUsuario 'Id Usuario', usuarios.Nombre as 'Nombre del Usuario',
-        usuarios.Apellido as 'Apellidos del Usuario',
-        usuarios.Usuario, usuarios.FecCrea as 'Fecha de Creación',
-        tblestados.Descripcion as 'Estado',	tblperfiles.Descripcion as 'Perfil'
-        FROM usuarios,tblperfiles, tblestados
-        where usuarios.EstadoUsuario=tblestados.IdEstado and EstadoUsuario<=2
-        and usuarios.IdPerfil=tblperfiles.IdPerfil order by usuarios.IdUsuario";
+        $qry = "SELECT usuarios.idUsuario 'Id Usuario', usuarios.Nombre AS 'Nombre del Usuario',
+        usuarios.Apellido AS 'Apellidos del Usuario',
+        usuarios.Usuario, usuarios.FecCrea AS 'Fecha de Creación',
+        estados_usuarios.Descripcion AS 'Estado',	perfiles.Descripcion AS 'Perfil'
+        FROM usuarios,perfiles, estados_usuarios
+        WHERE usuarios.EstadoUsuario=estados_usuarios.IdEstado AND EstadoUsuario<=2
+        AND usuarios.IdPerfil=perfiles.IdPerfil ORDER BY usuarios.IdUsuario";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();
-        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        //$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $result = $stmt->fetchAll();
         return $result;
     }
 
     public function getUser($idUsuario)
     {
-        $qry = "SELECT * from usuarios where idUsuario=?";
+        $qry = "SELECT * from usuarios WHERE idUsuario=?";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute(array($idUsuario));
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -56,17 +57,17 @@ class UsuariosOperaciones
 
     public function getUserPassword($idUsuario, $password)
     {
-        $qry = "SELECT * from usuarios where idUsuario=?";
-        $q = $this->_pdo->prepare("select * from usuarios where Usuario='$usuario' and clave ='$password'");
-        $q->execute();
-        $result = $q->fetch(PDO::FETCH_ASSOC);
+        $qry = "SELECT * from usuarios WHERE usuario=? AND clave=?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($idUsuario, $password));
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result;
     }
     public function changeClave($newPass, $fec, $nombre)
     {
-        $qry = "Update usuarios Set clave=md5('$newPass'), FecCambio='$fec', Intentos=0, estadousuario=2 Where usuario='$nombre'";
-        $q = $this->_pdo->prepare($qry);
-        $result = $q->execute();
+        $qry = "UPDATE usuarios SET clave=?, FecCambio=?, Intentos=0, estadousuario=2 WHERE usuario=?";
+        $stmt = $this->_pdo->prepare($qry);
+        $result = $stmt->execute(array(md5($newPass), $fec, $nombre));
         return $result;
     }
 
@@ -75,7 +76,6 @@ class UsuariosOperaciones
         $qry = "UPDATE usuarios SET nombre=?, apellido=?, usuario=?, estadousuario=?, fecCrea=?, fecCambio=?, idPerfil=?, intentos=? WHERE idUsuario=?";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute($datos);
-        return $this->_pdo->lastInsertId();
     }
 
     public function setDb()

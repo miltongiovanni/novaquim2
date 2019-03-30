@@ -17,18 +17,18 @@
     <form method="POST" action="administracion/login.php">
       <div class="form-group row">
         <div class="col-1" style="text-align: right;">
-          <label class="col-form-label" for="Nombre">Usuario</label>
+          <label class="col-form-label" for="nombre">Usuario</label>
         </div>
         <div class="col-1">
-          <input type="text" class="form-control" name="Nombre" id="Nombre" maxlength="10" placeholder="Usuario"
+          <input type="text" class="form-control" name="nombre" id="nombre" maxlength="10" placeholder="Usuario"
             autofocus>
         </div>
       </div>
       <div class="form-group row">
         <div class="col-1" style="text-align: right;"> 
-          <label class="col-form-label" for="Password">Contraseña</label>
+          <label class="col-form-label" for="password">Contraseña</label>
         </div>
-        <div class="col-1"><input type="password" class="form-control" name="Password" id="Password" maxlength="15"
+        <div class="col-1"><input type="password" class="form-control" name="password" id="password" maxlength="15"
             placeholder="Contraseña">
         </div>
       </div>

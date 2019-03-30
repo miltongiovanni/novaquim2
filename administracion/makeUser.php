@@ -21,10 +21,10 @@ $fecCrea = Fecha::Hoy();
 $intentos = 0;
 $clave = md5($usuario);
 $datos = array($nombre, $apellido, $usuario, $clave, $estadoUsuario, $idPerfil, $fecCrea, $fecCambio, $intentos);
-$manager = new UsersManager();
+$usuarioOperador = new UsuariosOperaciones();
 
 try {
-	$lastIdUser=$manager->makeUser($datos);
+	$lastIdUser=$usuarioOperador->makeUser($datos);
 	$ruta = "listarUsuarios.php";
 	$mensaje =  "Usuario Creado correctamente";
 	

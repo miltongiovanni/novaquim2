@@ -12,7 +12,7 @@ function cargarClases($classname)
 spl_autoload_register('cargarClases');
 //Busca el valor del perfil
 $con = Conectar::conexion();
-$QRY = "select IdPerfil, Descripcion from tblperfiles;";
+$QRY = "select IdPerfil, Descripcion from perfiles;";
 $result = $con->query($QRY);
 
 while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
@@ -41,7 +41,7 @@ while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
 <div id="contenedor">
 <?php
 
-$menum = new menusManager();
+$menum = new MenusOperaciones();
 $menuItems = $menum->getMenuItems($perfil);
 //print_r($menuItems);
 //echo count($menuItems);
@@ -87,7 +87,7 @@ getMenuSons(0, $menuItems);
 <?php
 
 $user1 = $_SESSION['User'];
-$qry = "select Nombre from tblusuarios WHERE Usuario='$user1'";
+$qry = "select Nombre from usuarios WHERE Usuario='$user1'";
 $result = $con->query($qry);
 
 $row = $row = $result->fetch(PDO::FETCH_ASSOC);

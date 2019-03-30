@@ -2,7 +2,7 @@
 function verTabla($datos)
 {
 	$encabezados=array_keys($datos[0]);
-	$campos=count($datos[0])/2; //para saber el numero de campos de un registro
+	$campos=count($encabezados)/2; //para saber el numero de campos de un registro
 	$filas=count($datos);
 	echo '<table summary="Tabla"><tr class="formatoEncabezados">';
 	for($i=0; $i<$campos; $i++)

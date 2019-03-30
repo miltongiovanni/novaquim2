@@ -30,22 +30,22 @@ $nota="";
 if($con)
 {
 	
-	if((strlen($_POST['Nombre']))<=16)	//El nombre de usuario no debe superar la longitud de 16
+	if((strlen($_POST['nombre']))<=16)	//El nombre de usuario no debe superar la longitud de 16
 	{
-		$Nombre=strtoupper ($_POST['Nombre']);
-		$Password=md5(strtoupper ($_POST['Password']));
+		$nombre=strtoupper ($_POST['nombre']);
+		$password=md5(strtoupper ($_POST['password']));
 	}
 	else 
 	{
 		mover_pag("../index.php","El nombre del usuario es muy grande");
 	}
  	//Validacion de nombre y usuario
-   	$QRY="select * from tblusuarios where usuario= '$Nombre' AND clave='$Password'";
+   	$QRY="SELECT * FROM usuarios WHERE usuario= '$nombre' AND clave='$password'";
    	$result = $con->query($QRY);
    	$row = $result->fetch(PDO::FETCH_ASSOC);
    	if(!$row)
    	{//si existen datos pero la clave esta errada
-  		$QRY1="select * from tblusuarios where usuario= '$Nombre'";
+  		$QRY1="select * from usuarios where usuario= '$nombre'";
 		//verificacion de nombre en la Base de datos
 		$result1 = $con->query($QRY1);
 		$row1 = $result1->fetch(PDO::FETCH_ASSOC);	
@@ -62,7 +62,7 @@ if($con)
 			
 			//si el usuario existe se le adiciona 1 intento a los 4 intentos se debe bloquear el usuario
 			$intentos=$row['Intentos']+1;
-			$QRY2="update tblusuarios set intentos=$intentos where usuario='$Nombre'";
+			$QRY2="UPDATE usuarios SET intentos=$intentos WHERE usuario='$nombre'";
 		    $result2 = $con->query($QRY2);
 			$ruta="../index.php";
 			$nota="Los Datos no son Correctos por favor verifique la información";
@@ -104,11 +104,11 @@ if($con)
 			{
 				if($dias<=90)//Numero de dias
 				{
-					 $QRY3="update tblusuarios set intentos=0 where usuario='$Nombre'";
+					 $QRY3="UPDATE usuarios SET intentos=0 WHERE usuario='$nombre'";
 					 $result3 = $con->query($QRY3);
 					 session_start();
 					 $_SESSION['Autorizado']=true;
-					 $_SESSION['User']=$Nombre;
+					 $_SESSION['User']=$nombre;
 					 $_SESSION['IdUsuario']=$row['idUsuario'];
 					 $_SESSION['Perfil']=MD5($perfil_admin);
 					 $perfil =md5( $row['idPerfil']);
@@ -123,19 +123,19 @@ if($con)
 					 
 					 /*********FIN DEL LOG DE INGRESO*******/
 					 $ruta="../menu.php";
-					 mover_pag($ruta,$row['nombre']." bienvenid@ al sistema de Inventarios de Industrias Novaquim S.A.S.");
+					 mover_pag($ruta,$row['nombre']." bienvenid@ al Sistema de Inventarios de Industrias Novaquim S.A.S.");
 				}
 				else
 				{
 				  
-					$ruta="cambio.php?nombre=$Nombre";
+					$ruta="cambio.php?nombre=$nombre";
 					$nota="Su último cambio fue hace mas de 90 días, por favor cambie su contraseña";
 					$nota=utf8_encode($nota);
-					$QRY4="update tblusuarios set intentos=0 where usuario='$Nombre'";	
+					$QRY4="update usuarios set intentos=0 where usuario='$nombre'";	
 					$result4 = $con->query($QRY4);
 					 session_start();
 					 $_SESSION['Autorizado']=true;
-					 $_SESSION['User']=$Nombre;
+					 $_SESSION['User']=$nombre;
 					 $_SESSION['IdUsuario']=$row['IdUsuario'];
 					 $_SESSION['Perfil']=MD5($perfil_admin);				 
 					 $perfil =md5( $row['IdPerfil']);
@@ -183,7 +183,7 @@ if($con)
 			$nota=utf8_encode($nota);
 			session_start();
 			$_SESSION['Autorizado']=true;
-			$_SESSION['User']=$Nombre;
+			$_SESSION['User']=$nombre;
 			$_SESSION['IdUsuario']=$row['IdUsuario'];
 			$_SESSION['Perfil']=MD5($perfil_admin);
 			mover_pag($ruta,$nota);
