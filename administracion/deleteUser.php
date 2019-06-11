@@ -1,11 +1,11 @@
 <?php
-include "includes/valAcc.php";
-function chargerClasse($classname)
+include "../includes/valAcc.php";
+function cargarClases($classname)
 {
-  require 'includes/'.$classname.'.php';
+    require '../clases/' . $classname . '.php';
 }
 
-spl_autoload_register('chargerClasse');
+spl_autoload_register('cargarClases');
 ?>
 <!DOCTYPE html>
 <html>
@@ -17,25 +17,22 @@ spl_autoload_register('chargerClasse');
 <?php
 	//include "includes/userObj.php";
 	$idUsuario=$_POST['idUsuario'];
-	$manager = new UsersManager();
-	$result=$manager->deleteUser($idUsuario);
-	if($result==1)
-	{
-		/******LOG DE CREACION *********
-		$link=conectarServidor();
-		$IdUser=$IdUsuario;
-		$hh=strftime("%H:").strftime("%M:").strftime("%S");	              
-        $Fecha=date("Y")."-".date("m")."-".date("d")." ".$hh;
-   		$qryAcces="insert into logusuarios(IdUsuario, Fecha, Motivo) values($IdUser,'$Fecha','BORRADO DE USUARIO')";
-		$ResutLog=mysqli_query($link,$qryAcces);
-	    /*********FIN DEL LOG CREACION*****/
-		$ruta="listarUsuarios.php";
-		mover_pag($ruta,"Usuario borrado correctamente");
+	$usuarioOperador = new UsuariosOperaciones();
+
+	try {
+		$usuarioOperador->deleteUser($idUsuario);
+		$ruta = "listarUsuarios.php";
+		$mensaje =  "Usuario borrado correctamente";
+		
+	} catch (Exception $e) {
+		$ruta = "../menu.php";
+		$mensaje = "Error al borrar al usuario";
+	} finally {
+		unset($conexion);
+		unset($stmt);
+		mover_pag($ruta, $mensaje);
 	}
-	else
-	{	$ruta="menu.php";
-		mover_pag($ruta,"No se pudo borrar el usuario");
-	}
+
 function mover_pag($ruta,$nota)
 	{
 	echo'<script language="Javascript">

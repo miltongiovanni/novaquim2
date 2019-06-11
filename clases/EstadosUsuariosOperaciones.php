@@ -24,7 +24,7 @@ class EstadosUsuariosOperaciones
     }
     public function getEstados()
     {
-        $qry = "SELECT idEstado, descripcion FROM estados_usuarios order by idEstado";
+        $qry = "SELECT idEstado, descripcion estado FROM estados_usuarios order by idEstado";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -33,7 +33,7 @@ class EstadosUsuariosOperaciones
 
     public function getEstado($idEstado)
     {
-        $qry = "SELECT * from estados_usuarios where idEstado=?";
+        $qry = "SELECT idEstado, descripcion estado from estados_usuarios where idEstado=?";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute(array($idEstado));
         $result = $stmt->fetch(PDO::FETCH_ASSOC);

@@ -1,10 +1,13 @@
 <?php
-include "includes/valAcc.php";
-?>
-<?php
-include "includes/userObj.php";
-include "includes/calcularDias.php";
+include "../includes/valAcc.php";
+?><?php
+// On enregistre notre autoload.
+function cargarClases($classname)
+{
+    require '../clases/' . $classname . '.php';
+}
 
+spl_autoload_register('cargarClases');
 
 foreach ($_POST as $nombre_campo => $valor) 
 { 
@@ -13,24 +16,25 @@ foreach ($_POST as $nombre_campo => $valor)
 	eval($asignacion); 
 }  
 
-$Nombre=$_POST['Nombre'];
-$Apellido=$_POST['Apellido'];
-$usuario=$_POST['Usuario'];
-$estadousuario=1;
-$Intentos=0;
-$perfli1=$_SESSION['Perfil'];
-$user=new user();
-if($result=$user->updateUser($Nombre,$Apellido, $Usuario, $IdEstado, $FecCrea, $FecCambio,$IdEstado2, $Intentos))
-{
-	$perfil1=$_SESSION['Perfil'];
-	$ruta="listarUsuarios.php";
-    mover_pag($ruta,"Usuario Actualizado correctamente");
+$fecCambio = Fecha::Hoy();
+$intentos = 0;
+$datos = array($nombre, $apellido, $usuario, $estadoUsuario, $idPerfil, $fecCambio, $intentos, $idUsuario );
+$usuarioOperador = new UsuariosOperaciones();
+
+try {
+	$usuarioOperador->updateUser($datos);
+	$ruta = "listarUsuarios.php";
+	$mensaje =  "Usuario Actualizado correctamente";
+	
+} catch (Exception $e) {
+	$ruta = "buscarUsuario.php";
+	$mensaje = "Error al actualizar al usuario";
+} finally {
+	unset($conexion);
+	unset($stmt);
+	mover_pag($ruta, $mensaje);
 }
-else
-{
-	$ruta="buscarUsuario.php";
-	mover_pag($ruta,"Error al Actualizar el usuario");
-}
+
 function mover_pag($ruta,$Mensaje)
 {
 	echo'<script language="Javascript">

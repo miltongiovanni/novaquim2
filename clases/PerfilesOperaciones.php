@@ -24,7 +24,7 @@ class PerfilesOperaciones
     }
     public function getPerfiles()
     {
-        $qry = "SELECT idPerfil, descripcion FROM perfiles order by idPerfil";
+        $qry = "SELECT idPerfil, descripcion perfil FROM perfiles order by idPerfil";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -33,7 +33,7 @@ class PerfilesOperaciones
 
     public function getPerfil($idPerfil)
     {
-        $qry = "SELECT * from perfiles where idPerfil=?";
+        $qry = "SELECT idPerfil, descripcion perfil  from perfiles where idPerfil=?";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute(array($idPerfil));
         $result = $stmt->fetch(PDO::FETCH_ASSOC);

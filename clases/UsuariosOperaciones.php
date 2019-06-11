@@ -24,7 +24,8 @@ class UsuariosOperaciones
     }
     public function getUsers()
     {
-        $qry = "SELECT idUsuario, nombre, apellido, usuario, estadoUsuario, idPerfil, fecCrea, fecCambio FROM usuarios ORDER BY idUsuario";
+        $qry = "SELECT idUsuario, nombre, apellido, usuario, estadoUsuario, usuarios.idPerfil, perfiles.descripcion perfil, estados_usuarios.descripcion estado, fecCrea, fecCambio 
+        FROM usuarios, perfiles, estados_usuarios WHERE usuarios.idPerfil=perfiles.idPerfil AND estadoUsuario=idEstado ORDER BY idUsuario;";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -48,7 +49,8 @@ class UsuariosOperaciones
 
     public function getUser($idUsuario)
     {
-        $qry = "SELECT * from usuarios WHERE idUsuario=?";
+        $qry = "SELECT idUsuario, nombre, apellido, usuario, estadoUsuario, usuarios.idPerfil, perfiles.descripcion perfil, estados_usuarios.descripcion estado, fecCrea, fecCambio 
+        FROM usuarios, perfiles, estados_usuarios WHERE usuarios.idPerfil=perfiles.idPerfil AND estadoUsuario=idEstado AND idUsuario=? ORDER BY idUsuario;";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute(array($idUsuario));
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -73,7 +75,7 @@ class UsuariosOperaciones
 
     public function updateUser($datos)
     {
-        $qry = "UPDATE usuarios SET nombre=?, apellido=?, usuario=?, estadousuario=?, fecCrea=?, fecCambio=?, idPerfil=?, intentos=? WHERE idUsuario=?";
+        $qry = "UPDATE usuarios SET nombre=?, apellido=?, usuario=?, estadousuario=?, idPerfil=?, fecCambio=?,  intentos=? WHERE idUsuario=?";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute($datos);
     }

@@ -16,11 +16,11 @@ include "../includes/valAcc.php";
     <div id="contenedor">
 
         <div id="saludo"><strong>SELECCIONAR USUARIO A ACTUALIZAR</strong></div>
-<?php
-include "../includes/administracion.php";
-$rep = buscarUsuarioForm("updateUserForm.php");
-echo $rep;
-?>
+        <?php
+        include "../includes/administracion.php";
+        $rep = buscarUsuarioForm("updateUserForm.php");
+        echo $rep;
+        ?>
         
         <div class="row form-group">
             <div class="col-1"><button class="button" style="vertical-align:middle" onclick="history.back()">
