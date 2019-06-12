@@ -1,55 +1,68 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
+function cargarClases($classname)
+{
+    require '../clases/' . $classname . '.php';
+}
+
+spl_autoload_register('cargarClases');
+
 ?>
 <!DOCTYPE html>
 <HTML>
+
 <head>
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-<meta charset="utf-8">
-<title>Cambio de Contrase&ntilde;a</title>
-	<script type="text/javascript" src="scripts/validar.js"></script>
-	<script type="text/javascript" src="scripts/block.js"></script>	
-
+	<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+	<meta charset="utf-8">
+	<title>Cambio de Contrase&ntilde;a</title>
+	<script type="text/javascript" src="../js/validar.js"></script>
 </head>
-<body> 
-<div id="contenedor">
 
-<div id="saludo"><strong>CAMBIO DE CONTRASE&Ntilde;A</strong></div> 
-<!--background="../Imagenes/fondo.bmp">-->
-<?php
-$nombre= $_POST['IdUsuario'];
-?>
-<form action="change1.php" method="POST" name="Cambio_clave" id="Cambio_clave">
-<table width="327" align ="center" id="pass">  
-<tr>
-	<td width="167"><div align="right"><label for="Nombre"><strong>Nombre de usuario</strong></label></div></td>
-	<td colspan="2"><input name="Nombre" value="<?php echo $nombre ?>" readonly size="20"></td>
-</tr>
-<tr>
-	<td><div align="right"><label for="Nombre"><strong>Contrase&ntilde;a nueva</strong></label></div></td>
-	<td colspan="2"><input type="password" name="NewPass" size="20"></td>
-</tr>
-<tr>
-	<td><div align="right"><label for="Nombre"><strong>Confirmaci&oacute;n </strong></label></div></td>
-	<td colspan="2"><input type="password" name="ConfPass" size="20"></td>
-</tr>
-<tr><td>&nbsp;</td>
-    <td width="68"><button class="button" style="vertical-align:middle" onclick="return Enviar(this.form)"><span>Cambiar</span></button></td>
-	<td width="80"><button class="button" style="vertical-align:middle" type="reset"><span>Borrar</span></button></td>
-</tr>
+<body>
+	<div id="contenedor">
 
-<tr>
-    <td colspan="3"><div align="center">&nbsp;</div></td>
-</tr>
-<tr>
-    <td colspan="3"><div align="center">&nbsp;</div></td>
-</tr>
-<tr> 
-    <td colspan="3">
-    <div align="center"><button class="button1" id="back" style="vertical-align:middle" onClick="history.back()"> <span>VOLVER</span></button></div>    </td>
-</tr>
-</table>
-</form>
-</div>
+		<div id="saludo"><strong>CAMBIO DE CONTRASEÑA</strong></div>
+		<?php
+		$idUsuario= $_POST['idUsuario'];
+		$usuarioOperador = new UsuariosOperaciones();
+		$usuario=$usuarioOperador->getUser($idUsuario);
+		$nombre= $usuario['nombre'];
+		?>
+
+		<form action="change1.php" method="POST" name="Cambio_clave" id="Cambio_clave">
+			<div class="form-group row">
+				<label class="col-form-label col-2" style="text-align: right;" for="nombre"><b>Nombre de
+						usuario</b></label>
+				<input class="form-control col-2" name="nombre" id="nombre" value="<?php echo $nombre ?>" readonly
+					size="20">
+			</div>
+			<div class="form-group row">
+				<label class="col-form-label col-2" style="text-align: right;" for="newPass"><strong>Contraseña
+						nueva</strong></label>
+				<input class="form-control col-2" type="password" name="newPass" id="newPass" size="20">
+			</div>
+			<div class="form-group row">
+				<label class="col-form-label col-2" style="text-align: right;" for="confPass"><strong>Confirmación
+						constraseña</strong></label>
+				<input class="form-control col-2" type="password" name="confPass" id="confPass" size="20">
+			</div>
+			<div class="form-group row">
+				<div class="col-1" style="text-align: center;">
+					<button class="button" style="vertical-align:middle"
+						onclick="return Enviar(this.form)"><span>Cambiar</span></button>
+				</div>
+				<div class="col-1" style="text-align: center;">
+					<button class="button" style="vertical-align:middle" type="reset"><span>Borrar</span></button>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-1"><button class="button1" id="back" style="vertical-align:middle"
+						onClick="history.back()">
+						<span>VOLVER</span></button></div>
+			</div>
+
+		</form>
+	</div>
 </body>
+
 </HTML>

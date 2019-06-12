@@ -22,10 +22,17 @@ class UsuariosOperaciones
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute(array($idUsuario));
     }
-    public function getUsers()
+    public function getUsers($actif)
     {
-        $qry = "SELECT idUsuario, nombre, apellido, usuario, estadoUsuario, usuarios.idPerfil, perfiles.descripcion perfil, estados_usuarios.descripcion estado, fecCrea, fecCambio 
-        FROM usuarios, perfiles, estados_usuarios WHERE usuarios.idPerfil=perfiles.idPerfil AND estadoUsuario=idEstado ORDER BY idUsuario;";
+        if($actif==true){
+            $qry = "SELECT idUsuario, nombre, apellido, usuario, estadoUsuario, usuarios.idPerfil, perfiles.descripcion perfil, estados_usuarios.descripcion estado, fecCrea, fecCambio 
+            FROM usuarios, perfiles, estados_usuarios WHERE usuarios.idPerfil=perfiles.idPerfil AND estadoUsuario=idEstado AND estadoUsuario=2 ORDER BY idUsuario;";
+        }
+        else{
+            $qry = "SELECT idUsuario, nombre, apellido, usuario, estadoUsuario, usuarios.idPerfil, perfiles.descripcion perfil, estados_usuarios.descripcion estado, fecCrea, fecCambio 
+            FROM usuarios, perfiles, estados_usuarios WHERE usuarios.idPerfil=perfiles.idPerfil AND estadoUsuario=idEstado ORDER BY idUsuario;";
+        }
+        
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);

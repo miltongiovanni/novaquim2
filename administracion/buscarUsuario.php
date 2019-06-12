@@ -18,7 +18,7 @@ include "../includes/valAcc.php";
         <div id="saludo"><strong>SELECCIONAR USUARIO A ACTUALIZAR</strong></div>
         <?php
         include "../includes/administracion.php";
-        $rep = buscarUsuarioForm("updateUserForm.php");
+        $rep = buscarUsuarioForm("updateUserForm.php", false);
         echo $rep;
         ?>
         

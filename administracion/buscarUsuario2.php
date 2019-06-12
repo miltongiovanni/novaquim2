@@ -1,56 +1,30 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html>
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+
 <head>
-<meta charset="utf-8">
-<title>Seleccionar Usuario a Actualizar</title>
-<script type="text/javascript" src="scripts/validar.js"></script>
-<script type="text/javascript" src="scripts/block.js"></script>	
+	<meta charset="utf-8">
+	<title>Seleccionar Usuario a Actualizar</title>
+	<script type="text/javascript" src="../js/validar.js"></script>
 </head>
+
 <body>
-<div id="contenedor">
+	<div id="contenedor">
 
-<div id="saludo"><strong>SELECCIONAR USUARIO A ASIGNAR CONTRASE&Ntilde;A</strong></div> 
-<table width="100%" border="0">
-  	<tr>
-    	<td>
-		<form id="form1" name="form1" method="post" action="cambio1.php">
-      	<div align="center"><strong>Usuario</strong>
-<?php	
-				include "includes/conect.php";
-				$mysqli=conectarServidor();
-				echo'<select name="IdUsuario" id="combo">';
-				$result=$mysqli->query("select * from tblusuarios where EstadoUsuario=2");
-				echo '<option selected value="">-----------------------------</option>';
-				while($row=$result->fetch_assoc()){
-					echo '<option value='.$row['Usuario'].'>'.$row['Usuario'].'</option>';
-				}
-				echo'</select>';
-				$result->free();
-/* cerrar la conexión */
-$mysqli->close();
-			?>
-        <button class="button" style="vertical-align:middle" onclick="return Enviar2(this.form)"><span>Continuar</span></button>
-      	</div>
-    	</form>    
-        </td>
-  	</tr>
-    <tr>
-        <td colspan="2"><div align="center">&nbsp;</div></td>
-    </tr>
-    <tr>
-        <td colspan="2"><div align="center">&nbsp;</div></td>
-    </tr>
-    <tr> 
-        <td colspan="2">
-        <div align="center"><button class="button1" id="back" style="vertical-align:middle" onClick="history.back()"> <span>VOLVER</span></button></div>
-        </td>
-    </tr>
-</table>
-</div>
+		<div id="saludo"><strong>SELECCIONAR USUARIO A ASIGNAR CONTRASEÃ‘A</strong></div>
+		<?php
+        include "../includes/administracion.php";
+        $rep = buscarUsuarioForm("cambio1.php", true);
+        echo $rep;
+        ?>
+		<div class="row form-group">
+            <div class="col-1"><button class="button" style="vertical-align:middle" onclick="history.back()">
+                    <span>VOLVER</span></button></div>
+        </div>
+	</div>
 </body>
-</html>
 
+</html>

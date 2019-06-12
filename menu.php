@@ -11,14 +11,14 @@ function cargarClases($classname)
 
 spl_autoload_register('cargarClases');
 //Busca el valor del perfil
-$con = Conectar::conexion();
-$QRY = "select IdPerfil, Descripcion from perfiles;";
-$result = $con->query($QRY);
+$perfilOperador = new PerfilesOperaciones();
+$perfiles=$perfilOperador->getPerfiles();
 
-while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-    $idPerfil = $row['IdPerfil'];
+for ($i=0;$i<count($perfiles);$i++) {
+    $idPerfil = $perfiles[$i]['idPerfil'];
     if (md5($idPerfil) == $perfil1) {
         $perfil = $idPerfil;
+        break;
     }
 }
 //echo "perfil1 ".$perfil1;
@@ -53,9 +53,9 @@ function getMenuSons($parent, $menuItems)
 
     echo '<ul id="menu">';
     for ($row = 0; $row < count($menuItems); $row++) {
-        if ($menuItems[$row][3] == $parent) {
-            echo '<li><a href="' . $menuItems[$row][2] . '">' . $menuItems[$row][1] . '</a>';
-            $son = $menuItems[$row][0];
+        if ($menuItems[$row]['parentId'] == $parent) {
+            echo '<li><a href="' . $menuItems[$row]['link'] . '">' . $menuItems[$row]['title'] . '</a>';
+            $son = $menuItems[$row]['id'];
             //echo "son ".$son;
             //getMenuSons($son, $menuItems);
             getMenuGrandSons($son, $menuItems);
@@ -70,9 +70,9 @@ function getMenuGrandSons($parent, $menuItems)
     if ($parent < 1000) {
         echo "<ul>";
         for ($row = 0; $row < count($menuItems); $row++) {
-            if ($menuItems[$row][3] == $parent) {
-                echo '<li><a href="' . $menuItems[$row][2] . '">' . $menuItems[$row][1] . '</a>';
-                $son = $menuItems[$row][0];
+            if ($menuItems[$row]['parentId'] == $parent) {
+                echo '<li><a href="' . $menuItems[$row]['link'] . '">' . $menuItems[$row]['title'] . '</a>';
+                $son = $menuItems[$row]['id'];
                 //echo "son ".$son;
                 getMenuGrandSons($son, $menuItems);
                 echo '</li>';
@@ -85,16 +85,11 @@ getMenuSons(0, $menuItems);
 ?>
 <div id="saludo"> <p>
 <?php
-
-$user1 = $_SESSION['User'];
-$qry = "select Nombre from usuarios WHERE Usuario='$user1'";
-$result = $con->query($qry);
-
-$row = $row = $result->fetch(PDO::FETCH_ASSOC);
-echo $row['Nombre'];
-$result = null;
-/* cerrar la conexión */
-$con = null;
+    $idUsuario = $_SESSION['IdUsuario'];
+    $usuarioOperador = new UsuariosOperaciones();
+    $row=$usuarioOperador->getUser($idUsuario);
+    $nombre = $row['nombre'];
+    echo $nombre;
 ?> está usando el Sistema de Información de Industrias Novaquim S.A.S.</p>
 	</div>
 </body>

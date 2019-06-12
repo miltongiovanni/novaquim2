@@ -193,7 +193,7 @@ select       {
 	color: #000066;
 }
 .resaltado {
-	font-size: small;
+	font-size: 1.2vw;
 	background-color: #000066;
 	border-top-width: thin;
 	border-right-width: thin;
@@ -211,8 +211,7 @@ select       {
 	border-radius: .2em;
 }
 .resaltado:hover {
-	font-family: tahoma, Verdana;
-	font-size: small;
+	font-size: 1.2vw;
 	background-color: #95AFFF;
 	border-top-width: thin;
 	border-right-width: thin;
@@ -263,7 +262,7 @@ select       {
 	height: 20px;
 	font-size: 1.2vw;
 	background: url("../images/LogoNova.jpg") no-repeat center top;
-	padding-top: 6.4%;
+	padding-top: 8%;
 	padding-bottom: 4%;
 } 
 

@@ -8,12 +8,12 @@ spl_autoload_register('cargarClases');
 
 
 
-function buscarUsuarioForm($action){ 
+function buscarUsuarioForm($action, $actif){ 
 
 $rep= '<form id="form1" name="form1" method="post" action="'.$action.'">
 <div class="form-group row"><label class="col-form-label col-1" for="combo"><strong>Usuario</strong></label>';
 $manager = new UsuariosOperaciones();
-$users=$manager->getUsers();
+$users=$manager->getUsers($actif);
 $filas=count($users);
 $rep .= '<select name="idUsuario" id="combo" class="form-control col-2">';
 $rep .= '<option selected value="">-----------------------------</option>';
@@ -31,3 +31,4 @@ for($i=0; $i<$filas; $i++)
 </form>';
 return $rep;
 }
+

@@ -23,7 +23,7 @@ BODY {
     border-radius: 0px;
    /* -moz-box-shadow: 0 2px 1px #9c9c9c;
     -webkit-box-shadow: 0 2px 1px #9c9c9c;*/
-    box-shadow: 0 2px 1px #9c9c9c;
+    box-shadow: 0 2px 1px #36315e;
   }
   
   #menu li {
@@ -94,7 +94,7 @@ BODY {
     margin: 0;
     padding: 0;
     display: block;
-    box-shadow: 0 1px 0 #111111, 0 2px 0 #777777;
+    box-shadow: 0 1px 0 #000066, 0 2px 0 #000066;
   }
   
   #menu ul li:last-child {
@@ -133,7 +133,7 @@ BODY {
     height: 0;
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
-    border-bottom: 8px solid #444;
+    border-bottom: 8px solid #000066;
   }
   
   #menu ul ul li:first-child a:after {
@@ -144,7 +144,7 @@ BODY {
     border-left: 0;
     border-bottom: 5px solid transparent;
     border-top: 5px solid transparent;
-    border-right: 8px solid #444;
+    border-right: 8px solid #000066;
   }
   
   #menu ul li:first-child a:hover:after {

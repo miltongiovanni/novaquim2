@@ -7,46 +7,50 @@ class MenusOperaciones {
     $this->setDb();
   }
 
-  public function makeMenuItem($menuItem) {
+  public function makeMenuItem($datos) {
     /*Preparo la insercion */
-
-    $q=$this->_pdo->prepare('insert into menu (id, title, link, parentId, codUser) values (:id, :title, :link, :parentId, :codUser)');
-    $q->bind_param('id', $id, PDO::PARAM_INT);
-    $q->bind_param('title', $title,  PDO::PARAM_STR);
-    $q->bind_param('link', $link,  PDO::PARAM_STR);
-    $q->bind_param('parentId', $parentId, PDO::PARAM_INT);
-    $q->bind_param('codUser', $codUser,  PDO::PARAM_STR);
-    $id=$menuItem->id();
-    $title=$menuItem->title();
-    $link=$menuItem->link();
-    $parentId=$menuItem->parentId();
-    $codUser=$menuItem->codUser();
-
-    return $q->execute();
+    $qry = "INSERT INTO menu VALUES(?, ?, ?, ?, ?)";
+    $stmt = $this->_pdo->prepare($qry);
+    $stmt->execute($datos);
+    return $this->_pdo->lastInsertId();
   }
 
   public function deleteMenuItem($id) {
-    if($id>0) {
-      $q=$this->_pdo->prepare('delete from menu where id = ?');
-      $q->bind_param('i', $id);
-      return $q->execute();
-    }
+    $qry = "DELETE FROM menu WHERE id= ?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($id));
   }
 
-  public function getMenuItems($perfil) {
-    $q=$this->_pdo->prepare("SELECT id, title, link, parentId, codUser FROM menu where codUser LIKE '%$perfil%'");
-    $q->execute();
-    $result = $q->fetchAll();
-    
+  public function getMenuItems(){
+    $qry = "SELECT id, title, link, parentId, codUser FROM menu ORDER BY id;";
+    $stmt = $this->_pdo->prepare($qry);
+    $stmt->execute();
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $result;
+  }
+
+  public function getMenuItemsPerfil($perfil) {
+    $qry = "SELECT id, title, link, parentId, codUser FROM menu WHERE codUser LIKE '%$perfil%' ORDER BY id;";
+    $stmt = $this->_pdo->prepare($qry);
+    $stmt->execute();
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
     return $result;
   }
 
   public function getMenuItem($id) {
-    $id=(int) $id;
-    $q=$this->_mysqli->query("SELECT id, title, link, parentId, codUser FROM menu WHERE id = $id");
-    $datos=$q->fetch_array(MYSQLI_BOTH);
-    return new menuItem($datos);
+    $qry = "SELECT id, title, link, parentId, codUser FROM menu WHERE id =?";
+    $stmt = $this->_pdo->prepare($qry);
+    $stmt->execute(array($id));
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $result;
   }
+
+  public function updateMenuItem($datos)
+    {
+        $qry = "UPDATE menu SET codUser=? WHERE id=?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute($datos);
+    }
 /*
   public function update(menuItem $item) {
     $q=$this->_db->prepare('UPDATE personnages SET forcePerso = :forcePerso, degats = :degats, niveau = :niveau, experience = :experience WHERE id = :id');
@@ -93,7 +97,7 @@ public function changeClave($Nombre,$Apellido, $usuario, $estadousuario, $fecCre
 }*/
   public function setDb() {
 
-    $this->_pdo=conectar::conexion(); //Almacenamos en _mysqli la llamada la clase estática Conectar;
+    $this->_pdo=conectar::conexion(); //Almacenamos en _pdo la llamada la clase estática Conectar;
 
   }
 }
