@@ -9,14 +9,6 @@ include "includes/conect.php";
   <title>Ingreso de Empleados</title>
   <meta charset="utf-8">
   <script type="text/javascript" src="scripts/validar.js"></script>
-  <script type="text/javascript" src="scripts/block.js"></script>
-      <link rel="stylesheet" type="text/css" media="all" href="css/calendar-blue2.css" title="blue">
-    <script type="text/javascript" src="scripts/calendar.js"></script>
-    <script type="text/javascript" src="scripts/calendar-sp.js"></script>
-    <script type="text/javascript" src="scripts/calendario.js"></script>	
-  <script type="text/javascript">
-  	document.onkeypress = stopRKey; 
-  </script>
 </head>
 <body>
 <div id="contenedor">
@@ -25,7 +17,7 @@ include "includes/conect.php";
 <table border="0" align="center" summary="">
   <tr><td><div align="right"><strong>&nbsp;</strong></div></td></tr>
   <tr> 
-    <td><div align="right"><strong>C&eacute;dula:</strong></div></td>
+    <td><div align="right"><strong>Cédula:</strong></div></td>
     <td colspan="2" ><input type="text" name="cedula" size=30 onKeyPress="return aceptaNum(event)" maxlength="10"></td>
   </tr>
   <tr> 

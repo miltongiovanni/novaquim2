@@ -1,9 +1,13 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
+function cargarClases($classname)
+{
+    require '../clases/' . $classname . '.php';
+}
+
+spl_autoload_register('cargarClases');
 ?>
 <?php
-include "includes/personObj.php";
-include "includes/calcularDias.php";
 
 
 foreach ($_POST as $nombre_campo => $valor) 
@@ -12,18 +16,24 @@ foreach ($_POST as $nombre_campo => $valor)
 	//echo $nombre_campo." = ".$valor."<br>";  
 	eval($asignacion); 
 }  
-$persona=new person();
-if($result=$persona->updatePerson($IdPersonal, $Nombre,$Estado, $Area, $Celular, $Email, $Cargo))
-{
-	$perfil1=$_SESSION['Perfil'];
-	$ruta="listarPersonal.php";
-    mover_pag($ruta,"Personal Actualizado correctamente");
+
+$datos = array($nomPersonal, $activoPersonal, $areaPersonal, $celPersonal, $emlPersonal, $cargoPersonal, $idPersonal );
+$personalOperador = new PersonalOperaciones();
+
+try {
+	$personalOperador->updatePersonal($datos);
+	$ruta = "listarPersonal.php";
+	$mensaje =  "Personal Actualizado correctamente";
+	
+} catch (Exception $e) {
+	$ruta = "buscarPersonal.php";
+	$mensaje = "Error al actualizar al Personal";
+} finally {
+	unset($conexion);
+	unset($stmt);
+	mover_pag($ruta, $mensaje);
 }
-else
-{
-	$ruta="buscarPersonal.php";
-	mover_pag($ruta,"Error al Actualizar el Personal");
-}
+
 function mover_pag($ruta,$Mensaje)
 {
 	echo'<script language="Javascript">

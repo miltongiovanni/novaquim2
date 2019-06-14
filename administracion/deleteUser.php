@@ -6,15 +6,7 @@ function cargarClases($classname)
 }
 
 spl_autoload_register('cargarClases');
-?>
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>BORRADO DE USUARIOS</title>
-</head>
-<body>
-<?php
+
 	//include "includes/userObj.php";
 	$idUsuario=$_POST['idUsuario'];
 	$usuarioOperador = new UsuariosOperaciones();
@@ -41,5 +33,3 @@ function mover_pag($ruta,$nota)
 	</script>';
 	}
 ?>
-</body>
-</html>

@@ -1,7 +1,5 @@
 <?php
 include "../includes/valAcc.php";
-?>
-<?php
 
 function cargarClases($classname)
 {

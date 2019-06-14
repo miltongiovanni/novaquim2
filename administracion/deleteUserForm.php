@@ -19,7 +19,7 @@ include "../includes/valAcc.php";
 		
 		<?php
         include "../includes/administracion.php";
-        $rep = buscarUsuarioForm("deleteUser.php");
+        $rep = buscarUsuarioForm("deleteUser.php", false);
         echo $rep;
         ?>
 		<div class="row form-group">

@@ -4,6 +4,7 @@
 <head>
   <meta charset="utf-8">
   <link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
+  <link rel="icon" href="images/favicon.ico" type="image/ico" sizes="16x16">
   <title>Sistema de Información de Industrias Novaquim S.A.S.</title>
 
 

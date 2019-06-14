@@ -1,35 +1,28 @@
 <?php
-	include "includes/valAcc.php";
-?>
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>BORRADO DE USUARIOS</title>
-</head>
-<body>
-<?php
-	include "includes/PersonObj.php";
-	$IdPersonal=$_POST['IdPersonal'];
-	$persona=new person();
-	$result=$persona->deletePerson($IdPersonal);
-	if($result==1)
+	include "../includes/valAcc.php";
+	function cargarClases($classname)
 	{
-		/*******LOG DE CREACION ********
-		$link=conectarServidor();
-		$IdUser=$IdUsuario;
-		$hh=strftime("%H:").strftime("%M:").strftime("%S");	              
-        $Fecha=date("Y")."-".date("m")."-".date("d")." ".$hh;
-   		$qryAcces="insert into logusuarios(IdUsuario, Fecha, Motivo) values($IdUser,'$Fecha','BORRADO DE USUARIO')";
-		$ResutLog=mysql_db_query("users",$qryAcces);
-	    /*********FIN DEL LOG CREACION*****/
-		$ruta="listarPersonal.php";
-		mover_pag($ruta,"Personal borrado correctamente");
+		require '../clases/' . $classname . '.php';
 	}
-	else
-	{	$ruta="menu.php";
-		mover_pag($ruta,"No se logró Eliminar al Personal Correctamente");
+	
+	spl_autoload_register('cargarClases');
+	$idPersonal=$_POST['idPersonal'];
+	$personalOperador = new PersonalOperaciones();
+
+	try {
+		$personalOperador->deletePersonal($idPersonal);
+		$ruta = "listarPersonal.php";
+		$mensaje =  "Personal borrado correctamente";
+		
+	} catch (Exception $e) {
+		$ruta = "../menu.php";
+		$mensaje = "Error al borrar al personal";
+	} finally {
+		unset($conexion);
+		unset($stmt);
+		mover_pag($ruta, $mensaje);
 	}
+
 function mover_pag($ruta,$nota)
 	{
 	echo'<script language="Javascript">
@@ -38,5 +31,3 @@ function mover_pag($ruta,$nota)
 	</script>';
 	}
 ?>
-</body>
-</html>
