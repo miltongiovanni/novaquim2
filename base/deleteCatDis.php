@@ -1,5 +1,5 @@
 <?php
-	include "../includes/valAcc.php";
+include "../includes/valAcc.php";
 
 // On enregistre notre autoload.
 function cargarClases($classname)
@@ -9,23 +9,22 @@ function cargarClases($classname)
 
 spl_autoload_register('cargarClases');
 
-$idCatProd=$_POST['idCatProd'];
-$catsProdOperador = new CategoriasProdOperaciones();
+$idCatDis=$_POST['idCatDis'];
+$catsDisOperador = new CategoriasDisOperaciones();
 try {
-	$catsProdOperador->deleteCatProd($idCatProd);
-	$ruta = "listarCatProd.php";
-	$mensaje =  "Categoría de producto eliminada correctamente";
+	$catsDisOperador->deleteCatDis($idCatDis);
+	$ruta = "listarCatDis.php";
+	$mensaje =  "Categoría producto de distribución eliminada correctamente";
 	
 } catch (Exception $e) {
 	$ruta = "../menu.php";
-	$mensaje = "Error al eliminar la categoría de producto";
+	$mensaje = "Error al eliminar categoría producto de distribución";
 } finally {
 	unset($conexion);
 	unset($stmt);
 	mover_pag($ruta, $mensaje);
 }
 
-	
 function mover_pag($ruta,$nota)
 	{
 	echo'<script language="Javascript">

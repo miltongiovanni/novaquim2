@@ -25,34 +25,57 @@ for($i=0; $i<$filas; $i++)
 
     $rep .=  '</div>
 <div class="row form-group">
-<div class="col-1"><button class="button" style="vertical-align:middle" onclick="return Enviar2(this.form)">
+<div class="col-1"><button class="button" style="vertical-align:middle" onclick="return Enviar(this.form)">
         <span>Continuar</span></button></div>
 </div>
 </form>';
 return $rep;
 }
 
-function buscarPersonalForm($action, $actif){ 
+function buscarCatMPForm($action){ 
 
     $rep= '<form id="form1" name="form1" method="post" action="'.$action.'">
-    <div class="form-group row"><label class="col-form-label col-1" for="combo"><strong>Personal</strong></label>';
-    $manager = new PersonalOperaciones();
-    $personal=$manager->getPersonal($actif);
-    $filas=count($personal);
-    $rep .= '<select name="idPersonal" id="combo" class="form-control col-2">';
+    <div class="form-group row"><label class="col-form-label col-1" for="combo"><strong>Categoría</strong></label>';
+    $manager = new CategoriasMPOperaciones();
+    $categorias=$manager->getCatsMP();
+    $filas=count($categorias);
+    $rep .= '<select name="idCatMP" id="combo" class="form-control col-2">';
     $rep .= '<option selected value="">-----------------------------</option>';
     for($i=0; $i<$filas; $i++)
         {                            
-            $rep .= '<option value="'.$personal[$i]["idPersonal"].'">'.$personal[$i]['nomPersonal'].'</option>';
+            $rep .= '<option value="'.$categorias[$i]["idCatMP"].'">'.$categorias[$i]['catMP'].'</option>';
         }
         $rep .='</select>';
     
         $rep .=  '</div>
     <div class="row form-group">
-    <div class="col-1"><button class="button" style="vertical-align:middle" onclick="return Enviar2(this.form)">
+    <div class="col-1"><button class="button" style="vertical-align:middle" onclick="return Enviar(this.form)">
+            <span>Continuar</span></button></div>
+    </div>
+    </form>';
+    return $rep;
+}
+
+function buscarCatDisForm($action){ 
+
+    $rep= '<form id="form1" name="form1" method="post" action="'.$action.'">
+    <div class="form-group row"><label class="col-form-label col-1" for="combo"><strong>Categoría</strong></label>';
+    $manager = new CategoriasDisOperaciones();
+    $categorias=$manager->getCatsDis();
+    $filas=count($categorias);
+    $rep .= '<select name="idCatDis" id="combo" class="form-control col-2">';
+    $rep .= '<option selected value="">-----------------------------</option>';
+    for($i=0; $i<$filas; $i++)
+        {                            
+            $rep .= '<option value="'.$categorias[$i]["idCatDis"].'">'.$categorias[$i]['catDis'].'</option>';
+        }
+        $rep .='</select>';
+    
+        $rep .=  '</div>
+    <div class="row form-group">
+    <div class="col-1"><button class="button" style="vertical-align:middle" onclick="return Enviar(this.form)">
             <span>Continuar</span></button></div>
     </div>
     </form>';
     return $rep;
     }
-    

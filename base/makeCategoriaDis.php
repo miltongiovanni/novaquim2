@@ -13,16 +13,16 @@ foreach ($_POST as $nombre_campo => $valor)
 	//echo $nombre_campo." = ".$valor."<br>";  
 	eval($asignacion); 
 }  
-$datos = array($idCatProd, $catProd);
-$catsProdOperador = new CategoriasProdOperaciones();
+$datos = array($idCatDis, $catDis);
+$catsDisOperador = new CategoriasDisOperaciones();
 
 try {
-	$lastCatProd=$catsProdOperador->makeCatProd($datos);
-	$ruta = "listarCatProd.php";
+	$lastCatDis=$catsDisOperador->makeCatDis($datos);
+	$ruta = "listarCatDis.php";
 	$mensaje =  "Categoría de producto creada correctamente";
 	
 } catch (Exception $e) {
-	$ruta = "crearCategoriaProd.php";
+	$ruta = "crearCategoriaDis.php";
 	$mensaje = "Error al crear la categoría de producto";
 } finally {
 	unset($conexion);

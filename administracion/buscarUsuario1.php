@@ -7,7 +7,7 @@ include "../includes/valAcc.php";
 <head>
 	<meta charset="utf-8">
 	<title>Seleccionar Usuario a Asignar Permisos</title>
-	<script type="text/javascript" src="../scripts/validar.js"></script>
+	<script type="text/javascript" src="../js/validar.js"></script>
 	<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
 </head>
 

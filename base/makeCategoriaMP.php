@@ -1,7 +1,36 @@
 <?php
-include "includes/valAcc.php";
-?>
-<?php
+include "../includes/valAcc.php";
+function cargarClases($classname)
+{
+    require '../clases/' . $classname . '.php';
+}
+
+spl_autoload_register('cargarClases');
+
+foreach ($_POST as $nombre_campo => $valor) 
+{ 
+	$asignacion = "\$".$nombre_campo."='".$valor."';"; 
+	//echo $nombre_campo." = ".$valor."<br>";  
+	eval($asignacion); 
+}  
+$datos = array($idCatMP, $catMP);
+$catsMPOperador = new CategoriasMPOperaciones();
+
+try {
+	$lastCatMP=$catsMPOperador->makeCatMP($datos);
+	$ruta = "listarCatMP.php";
+	$mensaje =  "CategorÃ­a de materia prima creada correctamente";
+	
+} catch (Exception $e) {
+	$ruta = "crearCategoriaMP.php";
+	$mensaje = "Error al crear la categorÃ­a de materia prima";
+} finally {
+	unset($conexion);
+	unset($stmt);
+	mover_pag($ruta, $mensaje);
+}
+
+
 include "includes/calcularDias.php";
 include "includes/conect.php";
 foreach ($_POST as $nombre_campo => $valor) 
@@ -29,10 +58,10 @@ if($result)
 }
 else{
         $ruta="crearCategoria_MP.php";
-        mover_pag($ruta,"Error al crear la Categoría de Materia Prima");
+        mover_pag($ruta,"Error al crear la Categorï¿½a de Materia Prima");
      }
 mysqli_free_result($result);
-/* cerrar la conexión */
+/* cerrar la conexiï¿½n */
 mysqli_close($link);
 
 function mover_pag($ruta,$Mensaje){

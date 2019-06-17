@@ -31,7 +31,7 @@ include "../includes/valAcc.php";
 				<input  class="form-control col-2" type="password" name="newPass" id="newPass" size="20">
 			</div>
 			<div class="form-group row">
-				<label class="col-form-label col-2" style="text-align: right;" for="confPass"><strong>Confirmación constraseña</strong></label>
+				<label class="col-form-label col-2" style="text-align: right;" for="confPass"><strong>Confirmación contraseña</strong></label>
 				<input  class="form-control col-2" type="password" name="confPass" id="confPass" size="20">
 			</div>
 			<div class="form-group row">
