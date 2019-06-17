@@ -5,7 +5,7 @@ include "../includes/valAcc.php";
 <html>
 
 <head>
-	<title>Lista del Personal Activo</title>
+	<title>Lista de Categorías de Producto</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
 </head>
@@ -13,8 +13,8 @@ include "../includes/valAcc.php";
 <body>
 	<div id="contenedor">
 
-		<div id="saludo1"><strong>LISTADO DEL PERSONAL ACTIVO</strong></div>
-		<div class="row" style="justify-content: right;">
+		<div id="saludo1"><strong>LISTADO DE CATEGORÍAS DE PRODUCTOS</strong></div>
+        <div class="row" style="justify-content: right;">
 			<div class="col-1">
 				<button class="button" style="vertical-align:middle" onclick="window.location='../menu.php'">
 					<span><STRONG>Ir al Menú</STRONG></span></button>
@@ -29,9 +29,9 @@ include "../includes/valAcc.php";
 		require '../clases/'.$classname.'.php';
 		}
 		spl_autoload_register('cargarClases');
-		$personalOperador = new PersonalOperaciones();
-		$personal=$personalOperador->getTablePersonal();
-		verTabla($personal);
+		$catsProdOperador = new CategoriasProdOperaciones();
+		$categorias=$catsProdOperador->getCatsProdTable();
+		verTabla($categorias);
 		?>
 		<div class="row">
 			<div class="col-1"><button class="button" style="vertical-align:middle"

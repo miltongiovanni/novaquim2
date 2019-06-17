@@ -4,29 +4,26 @@ include "../includes/valAcc.php";
 <!DOCTYPE html>
 <html>
 
-
 <head>
-    <meta charset="utf-8">
-    <title>Seleccionar Usuario a Actualizar</title>
-    <script type="text/javascript" src="../js/validar.js"></script>
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <meta charset="utf-8">
+    <title>Eliminar Categoría de Producto</title>
+    <script type="text/javascript" src="../js/validar.js"></script>
 </head>
 
 <body>
     <div id="contenedor">
-
-        <div id="saludo"><strong>SELECCIONAR USUARIO A ACTUALIZAR</strong></div>
+        <div id="saludo"><strong>ELIMINACIÓN DE CATEGORÍA DE PRODUCTO</strong></div>
         <?php
-        include "../includes/administracion.php";
-        $rep = buscarUsuarioForm("updateUserForm.php", false);
+        include "../includes/base.php";
+        $rep = buscarCatProdForm("deleteCatProd.php");
         echo $rep;
         ?>
-        
+
         <div class="row form-group">
             <div class="col-1"><button class="button1" style="vertical-align:middle" onclick="history.back()">
                     <span>VOLVER</span></button></div>
         </div>
-
     </div>
 </body>
 
