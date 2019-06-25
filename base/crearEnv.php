@@ -32,7 +32,7 @@ include "includes/valAcc.php";
     </tr>
     <tr> <td></td>
         <td><div align="center"><input type="button" value="  Crear " onClick="return Enviar(this.form);"></div></td>
-        <td><div align="center"><input type="reset" value="Borrar"></div></td>
+        <td><div align="center"><input type="reset" value="Reiniciar"></div></td>
     </tr>
 	
 	<tr>

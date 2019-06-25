@@ -59,9 +59,10 @@ function Enviar1(form) {
 	}
 }
 */
-var nav4 = window.Event ? true : false;
+
 
 function aceptaNum(evt) {
+	var nav4 = window.Event ? true : false;
 	var key = nav4 ? evt.which : evt.keyCode;
 	return (key <= 13 || key == 46 || (key >= 48 && key <= 57));
 }
@@ -94,21 +95,6 @@ function valida_texto(texto) {
 function aceptaLetra(evt) {
 	var key = nav4 ? evt.which : evt.keyCode;
 	return (key <= 13 || (key >= 65 && key <= 90) || (key >= 97 && key <= 122) || (key == 32) || (key == 180) || (key == 193) || (key == 201) || (key == 205) || (key == 209) || (key == 211) || (key == 218) || (key == 220) || (key == 225) || (key == 233) || (key == 237) || (key == 241) || (key == 243) || (key == 250) || (key == 252));
-}
-
-function TestMail(texto) {
-	var correcto = true;
-	if ((texto.indexOf("@") < 1)) {
-		alert("Lo siento. Esta direcci\u00F2n parece incorrecta." + " Compruebe el signo '@'.");
-		correcto = false;
-	}
-	if ((texto.indexOf(".com") < 0) && (texto.indexOf(".net") < 0) && (texto.indexOf(".es") < 0) &&
-		(texto.indexOf(".edu") < 0) && (texto.indexOf(".COM") < 0) && (texto.indexOf(".NET") < 0) && (texto.indexOf(".ES") < 0) &&
-		(texto.indexOf(".EDU") < 0)) {
-		alert("Lo siento. Esta direcci\u00F2n parece incorrecta." + " Compruebe el sufijo.");
-		correcto = false;
-	}
-
 }
 
 function fecha() {

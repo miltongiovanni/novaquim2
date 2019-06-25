@@ -15,7 +15,7 @@ $rep= '<form id="form1" name="form1" method="post" action="'.$action.'">
 $manager = new CategoriasProdOperaciones();
 $categorias=$manager->getCatsProd();
 $filas=count($categorias);
-$rep .= '<select name="idCatProd" id="combo" class="form-control col-2">';
+$rep .= '<select name="idCatProd" class="form-control col-2">';
 $rep .= '<option selected value="">-----------------------------</option>';
 for($i=0; $i<$filas; $i++)
     {                            
@@ -39,7 +39,7 @@ function buscarCatMPForm($action){
     $manager = new CategoriasMPOperaciones();
     $categorias=$manager->getCatsMP();
     $filas=count($categorias);
-    $rep .= '<select name="idCatMP" id="combo" class="form-control col-2">';
+    $rep .= '<select name="idCatMP" class="form-control col-2">';
     $rep .= '<option selected value="">-----------------------------</option>';
     for($i=0; $i<$filas; $i++)
         {                            
@@ -63,7 +63,7 @@ function buscarCatDisForm($action){
     $manager = new CategoriasDisOperaciones();
     $categorias=$manager->getCatsDis();
     $filas=count($categorias);
-    $rep .= '<select name="idCatDis" id="combo" class="form-control col-2">';
+    $rep .= '<select name="idCatDis" class="form-control col-2">';
     $rep .= '<option selected value="">-----------------------------</option>';
     for($i=0; $i<$filas; $i++)
         {                            
@@ -79,3 +79,27 @@ function buscarCatDisForm($action){
     </form>';
     return $rep;
     }
+
+    function buscarProductoForm($action, $actif){ 
+
+        $rep= '<form id="form1" name="form1" method="post" action="'.$action.'">
+        <div class="form-group row"><label class="col-form-label col-1" for="combo"><strong>Producto</strong></label>';
+        $ProductoOperador = new ProductosOperaciones();
+		$productos=$ProductoOperador->getProductos($actif);
+        $filas=count($productos);
+        $rep .= '<select name="codProducto" class="form-control col-2">';
+        $rep .= '<option selected value="">-----------------------------</option>';
+        for($i=0; $i<$filas; $i++)
+            {                            
+                $rep .= '<option value="'.$productos[$i]["codProducto"].'">'.$productos[$i]['nomProducto'].'</option>';
+            }
+            $rep .='</select>';
+        
+            $rep .=  '</div>
+        <div class="row form-group">
+        <div class="col-1"><button class="button" style="vertical-align:middle" onclick="return Enviar(this.form)">
+                <span>Continuar</span></button></div>
+        </div>
+        </form>';
+        return $rep;
+        }

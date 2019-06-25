@@ -82,7 +82,7 @@ include "includes/valAcc.php";
             <div align="center">
               <input type="button" value="Continuar" onClick="return Enviar(this.form);">
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <input type="reset" value="Borrar">    	
+              <input type="reset" value="Reiniciar">    	
           </div></td>
     </tr>
     

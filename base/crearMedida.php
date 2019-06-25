@@ -37,7 +37,7 @@ include "includes/conect.php";
                           echo '<option value="'.$row['Cod_produc'].'">'.$row['Nom_produc'].'</option>';
                     }
 					mysqli_free_result($result);
-/* cerrar la conexión */
+/* cerrar la conexiï¿½n */
 mysqli_close($link);
                 ?>
           </select>          </td>          
@@ -56,7 +56,7 @@ mysqli_close($link);
                           echo '<option value="'.$row['Id_medida'].'">'.$row['des_medida'].'</option>';
                     }
 					mysqli_free_result($result);
-/* cerrar la conexión */
+/* cerrar la conexiï¿½n */
 mysqli_close($link);
                 ?>
           </select>    	
@@ -76,7 +76,7 @@ mysqli_close($link);
                           echo '<option value="'.$row['Cod_envase'].'">'.$row['Nom_envase'].'</option>';
                     }
 					mysqli_free_result($result);
-/* cerrar la conexión */
+/* cerrar la conexiï¿½n */
 mysqli_close($link);
                 ?>
           </select>    	
@@ -96,7 +96,7 @@ mysqli_close($link);
                           echo '<option value="'.$row['Cod_tapa'].'">'.$row['Nom_tapa'].'</option>';
                     }
 					mysqli_free_result($result);
-/* cerrar la conexión */
+/* cerrar la conexiï¿½n */
 mysqli_close($link);
                 ?>
           	</select>    	
@@ -116,7 +116,7 @@ mysqli_close($link);
                           echo '<option value="'.$row['Cod_etiq'].'">'.$row['Nom_etiq'].'</option>';
                     }
 					mysqli_free_result($result);
-/* cerrar la conexión */
+/* cerrar la conexiï¿½n */
 mysqli_close($link);
                 ?>
           	</select>    	
@@ -136,7 +136,7 @@ mysqli_close($link);
                           echo '<option value="'.$row['codigo_ant'].'">'.$row['producto'].'</option>';
                     }
 					mysqli_free_result($result);
-/* cerrar la conexión */
+/* cerrar la conexiï¿½n */
 mysqli_close($link);
                 ?>
           </select>    	</td>          
@@ -153,7 +153,7 @@ mysqli_close($link);
     </tr>
     <tr> 
         <td colspan="2">
-            <div align="center"><input type="button" value="  Crear  " onClick="return Enviar(this.form);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="reset" value=" Borrar "></div>
+            <div align="center"><input type="button" value="  Crear  " onClick="return Enviar(this.form);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="reset" value=" Reiniciar "></div>
         </td>
     </tr>
     <tr> 

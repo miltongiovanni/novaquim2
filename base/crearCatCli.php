@@ -36,7 +36,7 @@ include "includes/valAcc.php";
 				$valor=$row[0];	
                 echo'<input name="cod_cat_cli" type="text" size=34 readonly value='.($valor+1).'>';   	
                 mysqli_free_result($result);
-/* cerrar la conexión */
+/* cerrar la conexiï¿½n */
 mysqli_close($link);
             ?>    	</td>
     </tr>
@@ -45,7 +45,7 @@ mysqli_close($link);
     </tr>
     <tr><td>&nbsp;</td>
         <td  width="120"><div align="center"><input type="button" value="Guardar" onClick="return Enviar(this.form);"></div></td>
-        <td width="120"><div align="center"><input type="reset" value="Borrar"></div></td>
+        <td width="120"><div align="center"><input type="reset" value="Reiniciar"></div></td>
     </tr>
     </form>
     <tr>

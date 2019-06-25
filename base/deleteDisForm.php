@@ -6,7 +6,7 @@ include "includes/valAcc.php";
 <head>
 <link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
 <meta charset="utf-8">
-<title>Borrar Producto de Distribuci&oacute;n</title>
+<title>Reiniciar Producto de Distribuci&oacute;n</title>
 <script type="text/javascript" src="scripts/validar.js"></script>
 <script type="text/javascript" src="scripts/block.js"></script>	
 	<script type="text/javascript">
@@ -32,10 +32,10 @@ include "includes/valAcc.php";
 	  }
 	  echo'</select>';
 	  mysqli_free_result($result);
-	  /* cerrar la conexión */
+	  /* cerrar la conexiï¿½n */
 	  mysqli_close($link);
 ?> 
-	      &nbsp;<input name="button" type="submit" value="Borrar" onClick="return Enviar(this.form);"></div>
+	      &nbsp;<input name="button" type="submit" value="Reiniciar" onClick="return Enviar(this.form);"></div>
 			    
 		</td>
 	</tr>

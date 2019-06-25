@@ -1,35 +1,48 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html>
+
 <head>
-<title>Lista de Productos</title>
-<meta charset="utf-8">
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
+	<title>Lista de Productos</title>
+	<meta charset="utf-8">
+	<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
 </head>
+
 <body>
-<div id="contenedor">
-<div id="saludo1"><strong>LISTADO DE PRODUCTOS </strong></div>
-<table width="711" border="0" align="center" summary="encabezado">
-  <tr> <td width="611" align="right"><form action="Productos_Xls.php" method="post" target="_blank"><input name="Submit" type="submit" class="resaltado" value="Exportar a Excel">
-    </form></td>
-      <td width="90"><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men&uacute;">
-      </div></td>
-  </tr>
-</table>
-<?php
-include "includes/utilTabla.php";
-include "includes/conect.php" ;
-	$link=conectarServidor();
-	$sql="	SELECT Cod_produc as Codigo, Nom_produc as 'Producto', Des_cat_prod as 'Categor�a', Den_min as 'Dens Min', Den_max as 'Dens Max', pH_min as 'pH Min', pH_max as 'pH Max', Fragancia, Color, Apariencia 
-			FROM  productos, cat_prod
-			WHERE productos.Id_cat_prod=cat_prod.Id_cat_prod and prod_activo=0
-			ORDER BY Codigo;";
-	//llamar funcion de tabla
-	verTabla($sql, $link);
-?>
-<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men&uacute;"></div>
-</div>
+	<div id="contenedor">
+		<div id="saludo1"><strong>LISTADO DE PRODUCTOS </strong></div>
+		<div class="row" style="justify-content: right;">
+			<div class="col-2">
+				<form action="XlsProductos.php" method="post" target="_blank">
+					<button class="button" type="submit" style="vertical-align:middle">
+						<span><STRONG>Exportar a Excel</STRONG></span></button>
+				</form>
+			</div>
+			<div class="col-1">
+				<button class="button" style="vertical-align:middle" onclick="window.location='../menu.php'">
+					<span><STRONG>Ir al Menú</STRONG></span></button>
+			</div>
+		</div>
+
+		<?php
+		include "../includes/utilTabla.php";
+		function cargarClases($classname)
+		{
+		require '../clases/'.$classname.'.php';
+		}
+		spl_autoload_register('cargarClases');
+		$ProductoOperador = new ProductosOperaciones();
+		$productos=$ProductoOperador->getTableProductos();
+		verTabla($productos);
+		?>
+		<div class="row">
+			<div class="col-1"><button class="button" style="vertical-align:middle"
+					onclick="window.location='../menu.php'">
+					<span><STRONG>Ir al Menú</STRONG></span></button></div>
+		</div>
+	</div>
 </body>
+
 </html>

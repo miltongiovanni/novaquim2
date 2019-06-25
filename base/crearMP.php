@@ -34,7 +34,7 @@ include "includes/valAcc.php";
 					echo '<option value="'.$row['Id_cat_mp'].'">'.$row['Des_cat_mp'].'</option>';  
 			}
 			mysqli_free_result($result);
-/* cerrar la conexión */
+/* cerrar la conexiï¿½n */
 mysqli_close($link);
 			?>
         </select>   		
@@ -59,7 +59,7 @@ mysqli_close($link);
                       //echo= $row['Id_cat_prod'];
                 }
 				mysqli_free_result($result);
-/* cerrar la conexión */
+/* cerrar la conexiï¿½n */
 mysqli_close($link);
             ?>
       </select >	</td> 
@@ -73,7 +73,7 @@ mysqli_close($link);
     </tr>
     <tr> <td>&nbsp;</td>
     	<td><div align="center"><input type="button" value="Guardar" onClick="return Enviar(this.form);"></div></td>
-        <td><div align="center"><input type="reset" value="Borrar"></div></td>
+        <td><div align="center"><input type="reset" value="Reiniciar"></div></td>
     </tr>
     </form>
     <tr>

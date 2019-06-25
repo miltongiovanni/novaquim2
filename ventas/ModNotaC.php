@@ -91,7 +91,7 @@ foreach ($_POST as $nombre_campo => $valor)
 				}
 				echo'</select>';
 				mysqli_free_result($result);
-/* cerrar la conexión */
+/* cerrar la conexiï¿½n */
 mysqli_close($link);
 			?>
        </td>
@@ -106,7 +106,7 @@ mysqli_close($link);
     </tr>
     <tr><td><input name="nota" type="hidden" value="<?php echo $nota; ?>"><input name="crear" type="hidden" value="6"></td>
         <td width="110" colspan="1"><div align="right">
-          <input type="reset" value="   Borrar   ">
+          <input type="reset" value="   Reiniciar   ">
         </div></td>
         <td colspan="1" align="center"><input type="button" value="Continuar" onClick="return Enviar(this.form);"></td>
     </tr>

@@ -32,9 +32,9 @@ include "includes/valAcc.php";
 				include "includes/conect.php";
 				$link=conectarServidor();
 				echo'<select name="Cod_kit">';
-				$result=mysqli_query($link,"SELECT Id_kit as Id, Codigo as Código, Nombre as Producto, Nom_envase as Envase from kit, prodpre, envase where Codigo=Cod_prese AND Cod_env=envase.Cod_envase
+				$result=mysqli_query($link,"SELECT Id_kit as Id, Codigo as Cï¿½digo, Nombre as Producto, Nom_envase as Envase from kit, prodpre, envase where Codigo=Cod_prese AND Cod_env=envase.Cod_envase
 		union
-		SELECT Id_kit as Id, Codigo as Código, Producto, Nom_envase as Envase from kit, distribucion, envase where Codigo=Id_distribucion AND Cod_env=envase.Cod_envase;");
+		SELECT Id_kit as Id, Codigo as Cï¿½digo, Producto, Nom_envase as Envase from kit, distribucion, envase where Codigo=Id_distribucion AND Cod_env=envase.Cod_envase;");
 				echo '<option selected value="">-----------------------------------------------------</option>';
 				while($row=mysqli_fetch_array($result)){
 					echo '<option value='.$row['Id'].'>'.$row['Producto'].'</option>';
@@ -59,7 +59,7 @@ include "includes/valAcc.php";
             <div align="center">
               <input type="button" value="Continuar" onClick="return Enviar(this.form);">
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <input type="reset" value="Borrar">    	
+              <input type="reset" value="Reiniciar">    	
           </div></td>
     </tr>
     </form>

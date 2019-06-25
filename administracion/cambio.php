@@ -39,7 +39,7 @@ include "../includes/valAcc.php";
 					<button class="button" style="vertical-align:middle" onclick="return Enviar(this.form)"><span>Cambiar</span></button>
 				</div>
 				<div class="col-1" style="text-align: center;">
-					<button class="button" style="vertical-align:middle" type="reset"><span>Borrar</span></button>
+					<button class="button" style="vertical-align:middle" type="reset"><span>Reiniciar</span></button>
 				</div>
 			</div>
 		</form>

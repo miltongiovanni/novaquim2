@@ -6,7 +6,7 @@ include "includes/valAcc.php";
 <head>
 <link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
 <meta charset="utf-8">
-<title>Borrar Empleado</title>
+<title>Reiniciar Empleado</title>
 <script type="text/javascript" src="scripts/validar.js"></script>
 <script type="text/javascript" src="scripts/block.js"></script>	
 	<script type="text/javascript">

@@ -315,7 +315,7 @@ select       {
   text-align: center;
   font-size: 1.0vw;
   padding: 5px;
-  width: 100px;
+  width: 100%;
   transition: all 0.5s;
   cursor: pointer;
   margin: 10px;

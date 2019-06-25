@@ -35,7 +35,7 @@ include "includes/conect.php";
 				//echo= $row['Id_cat_prod'];
 				}
 				mysqli_free_result($result);
-				/* cerrar la conexión */
+				/* cerrar la conexiï¿½n */
 				mysqli_close($link);
             ?>
       </select >	</td> 
@@ -46,7 +46,7 @@ include "includes/conect.php";
 </tr>
 <tr> <td></td>
     <td width="121"><div align="center"><input type="button" value=" Crear " onClick="return Enviar(this.form);"></div></td>
-    <td width="121"><div align="center"><input type="reset" value="Borrar"></div></td>
+    <td width="121"><div align="center"><input type="reset" value="Reiniciar"></div></td>
 </tr>
 
 <tr>

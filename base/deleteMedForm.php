@@ -6,7 +6,7 @@ include "includes/valAcc.php";
 <head>
 <link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
 <meta charset="utf-8">
-<title>Borrar Presentaci&oacute;n de Productos</title>
+<title>Reiniciar Presentaci&oacute;n de Productos</title>
 </head>
 
 
@@ -29,10 +29,10 @@ include "includes/valAcc.php";
 				}
 				echo'</select>';
 				mysqli_free_result($result);
-/* cerrar la conexión */
+/* cerrar la conexiï¿½n */
 mysqli_close($link);
 			?>
-		  <input name="button" type="submit" value="Borrar"></div>
+		  <input name="button" type="submit" value="Reiniciar"></div>
 		</td>
 	</tr>
 	 <tr>

@@ -1,35 +1,32 @@
 <?php
-	include "includes/valAcc.php";
-?>
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Borrado de Productos</title>
-</head>
-<body>
-<?php
-	include "includes/ProdObj.php";
-	$cod_prod = $_POST['IdProd'];
-	$prod=new produ();
-	$result=$prod->deleteProd($cod_prod);
-	if($result==1)
+	include "../includes/valAcc.php";
+
+	// On enregistre notre autoload.
+	function cargarClases($classname)
 	{
-		/******LOG DE CREACION *********/
-		//$IdUser=$IdUsuario;
-		//$hh=strftime("%H:").strftime("%M:").strftime("%S");	              
-        //$Fecha=date("Y")."-".date("m")."-".date("d")." ".$hh;
-   		//$qryAcces="insert into logusuarios(IdUsuario, Fecha, Motivo) values($IdUser,'$Fecha','BORRADO DE USUARIO')";
-		//$ResutLog=mysql_db_query("users",$qryAcces);
-	    /*********FIN DEL LOG CREACION*****/
-		$ruta="listarProd.php";
-		mover_pag($ruta,"Producto eliminado correctamente");
-	}
-	else
-	{	$ruta="menu.php?perfil=$perfil";
-		mover_pag($ruta,"No fue permitido eliminar el Producto");
+		require '../clases/' . $classname . '.php';
 	}
 	
+	spl_autoload_register('cargarClases');
+
+	$codProducto = $_POST['codProducto'];
+	$ProductoOperador = new ProductosOperaciones();
+
+
+	try {
+		$lastCodProducto=$ProductoOperador->deleteProducto($codProducto);
+		$ruta = "listarProd.php";
+		$mensaje =  "Producto eliminado correctamente";
+		
+	} catch (Exception $e) {
+		$ruta = "../menu.php";
+		$mensaje = "Error al eliminar el producto";
+	} finally {
+		unset($conexion);
+		unset($stmt);
+		mover_pag($ruta, $mensaje);
+	}
+
 function mover_pag($ruta,$nota)
 	{
 	echo'<script language="Javascript">
@@ -38,5 +35,3 @@ function mover_pag($ruta,$nota)
 	</script>';
 	}
 ?>
-</body>
-</html>

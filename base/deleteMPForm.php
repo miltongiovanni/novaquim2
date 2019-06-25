@@ -32,10 +32,10 @@ document.onkeypress = stopRKey;
 				}
 				echo'</select>';
 				mysqli_free_result($result);
-/* cerrar la conexión */
+/* cerrar la conexiï¿½n */
 mysqli_close($link);
 			?>
-		  <input name="button" type="submit" value="Borrar" onClick="return Enviar(this.form);"></div>
+		  <input name="button" type="submit" value="Reiniciar" onClick="return Enviar(this.form);"></div>
 		</td>
 	</tr>
 	<tr>

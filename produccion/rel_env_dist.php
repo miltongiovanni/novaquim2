@@ -104,7 +104,7 @@ include "includes/conect.php";
     </tr>
     <tr><td></td> 
         <td>
-            <div align="center"><input type="button" value="Guardar" onClick="return Enviar(this.form);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="reset" value="  Borrar  "></div>        </td>
+            <div align="center"><input type="button" value="Guardar" onClick="return Enviar(this.form);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="reset" value="  Reiniciar  "></div>        </td>
     </tr>
     <tr>
         <td colspan="2"><div align="center">&nbsp;</div></td>
