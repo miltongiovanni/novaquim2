@@ -1,92 +1,127 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
+include "../includes/utilTabla.php";
+function cargarClases($classname)
+{
+require '../clases/'.$classname.'.php';
+}
+spl_autoload_register('cargarClases');
 ?>
 <!DOCTYPE html>
 <html>
-<head>
-	<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<title>Creaci&oacute;n de Materias Primas</title>
-	<meta charset="utf-8">
-	<script type="text/javascript" src="scripts/validar.js"></script>
-	<script type="text/javascript" src="scripts/block.js"></script>	
-    	<script type="text/javascript">
-	document.onkeypress = stopRKey; 
-	</script>
-</head>
-<body>
-<div id="contenedor">
-<div id="saludo"><strong>CREACI&Oacute;N DE MATERIAS PRIMAS</strong></div>
-<table  border="0"  align="center" cellspacing="0" class="table2">
-    <form name="form2" method="POST" action="makeMP.php">
-    <tr> 
-        <td><div align="right"><strong>Tipo</strong></div></td>
-        <td  colspan="2">
-        <select name="Cate_MP" id="combo">
-		<?php
-			include "includes/conect.php";
-			$link=conectarServidor();
-			$qry="select * from cat_mp";	
-			$result=mysqli_query($link, $qry);
-			echo '<option selected value="6">No clasificado</option>';
-			while($row=mysqli_fetch_array($result))
-			{
-				if ($row['Id_cat_mp']!=6)
-					echo '<option value="'.$row['Id_cat_mp'].'">'.$row['Des_cat_mp'].'</option>';  
-			}
-			mysqli_free_result($result);
-/* cerrar la conexi�n */
-mysqli_close($link);
-			?>
-        </select>   		
-        </td> 
-    </tr>
-    <tr> 
-        <td><div align="right"><b>Descripci&oacute;n</b></div></td>
-        <td colspan="2"><input type="text" name="mprima" size=34  value=""></td>
-    </tr>
-    <tr> 
-    <td><div align="right"><strong>Tasa de IVA</strong></div></td>
-    <td colspan="2"><select name="tasa_iva" id="combo">
-            <?php
-                $link=conectarServidor();
-                $qry="select * from tasa_iva";	
-                $result=mysqli_query($link,$qry);
-                echo '<option selected value="3">0.19</option>';
-                while($row=mysqli_fetch_array($result))
-                {
-					if ($row['Id_tasa']!=3)
-                      echo '<option value="'.$row['Id_tasa'].'">'.$row['tasa'].'</option>';  
-                      //echo= $row['Id_cat_prod'];
-                }
-				mysqli_free_result($result);
-/* cerrar la conexi�n */
-mysqli_close($link);
-            ?>
-      </select >	</td> 
-	</tr>
-    <tr> 
-        <td><div align="right"><strong>Stock M&iacute;nimo</strong></div></td>   
-        <td colspan="2"><input type="text" name="min_stock" size=34   onKeyPress="return aceptaNum(event)"></td>
-    </tr>
-    <tr>
-      <td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
-    </tr>
-    <tr> <td>&nbsp;</td>
-    	<td><div align="center"><input type="button" value="Guardar" onClick="return Enviar(this.form);"></div></td>
-        <td><div align="center"><input type="reset" value="Reiniciar"></div></td>
-    </tr>
-    </form>
-    <tr>
-	    <td colspan="3"><div align="center">&nbsp;</div></td>
-    </tr>
-    <tr>
-    	<td colspan="3"><div align="center">&nbsp;</div></td>
-    </tr>
-    <tr> 
-    	<td colspan="3"><div align="center"><input type="button" class="resaltado" onClick="history.back()" value="  VOLVER  "></div></td>
-    </tr>
-</table>
-</div>
-</body>
-</html>
 
+<head>
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <title>Creación de Materias Primas</title>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="../js/validar.js"></script>
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script>
+    
+    
+    function codigoMP(idCatMPrima) {
+        $.ajax({
+		url: '../includes/controladorBase.php',
+		type: 'POST',
+		data: {
+			"action": 'ultimaMPxCat',
+			"idCatMPrima": idCatMPrima
+		},
+		dataType: 'json',
+		success: function (lastCodMP) {
+            $("#codMPrima").val(lastCodMP.codigo);
+            $("#aliasMPrima").val(lastCodMP.alias);
+		},
+		fail: function () {
+			alert("Vous avez un GROS problème");
+		}
+	});
+    }
+    </script>
+</head>
+
+<body>
+    <div id="contenedor">
+        <div id="saludo"><strong>CREACIÓN DE MATERIAS PRIMAS</strong></div>
+        <form name="form2" method="POST" action="makeMP.php">
+            <div class="form-group row">
+
+                <label class="col-form-label col-1" for="idCatMPrima"><strong>Categoría MP</strong></label>
+                <?php
+                    $manager = new CategoriasMPOperaciones();
+                    $categorias=$manager->getCatsMP();
+                    $filas=count($categorias);
+                    echo '<select name="idCatMPrima" id="idCatMPrima" class="form-control col-2" onchange="codigoMP(this.value)">';
+                    echo '<option selected value="">-----------------------------</option>';
+                    for($i=0; $i<$filas; $i++)
+                        {                            
+                        echo '<option value="'.$categorias[$i]["idCatMP"].'">'.$categorias[$i]['catMP'].'</option>';
+                        }
+                        echo '</select>';
+                ?>
+                <label class="col-form-label col-1" style="text-align: right;" for="codMPrima"><strong>Código</strong></label>
+                <input type="text" class="form-control col-2" name="codMPrima" id="codMPrima" readOnly>
+                <label class="col-form-label col-1" style="text-align: right;"
+                    for="aliasMPrima"><strong>Alias M Prima</strong></label>
+                <input type="text" class="form-control col-2" name="aliasMPrima" id="aliasMPrima" readOnly>
+
+            </div>
+            <div class="form-group row">
+                <label class="col-form-label col-1" style="text-align: right;"
+                    for="nomMPrima"><strong>Materia Prima</strong></label>
+                <input type="text" class="form-control col-2" name="nomMPrima" id="nomMPrima">
+                <label class="col-form-label col-1" style="text-align: right;" for="aparienciaMPrima"><strong>Apariencia</strong></label>
+                <input type="text" class="form-control col-2" name="aparienciaMPrima" id="aparienciaMPrima" onKeyPress="return aceptaLetra(event)">
+                
+            </div>
+            <div class="form-group row">
+
+                <label class="col-form-label col-1" for="codIva"><strong>Tasa IVA</strong></label>
+                <?php
+                    $manager = new TasaIvaOperaciones();
+                    $tasas=$manager->getTasasIva();
+                    $filas=count($tasas);
+                    echo '<select name="codIva" id="codIva" class="form-control col-2">';
+                    echo '<option selected value="">-----------------------------</option>';
+                    for($i=0; $i<$filas; $i++)
+                        {                            
+                        echo '<option value="'.$tasas[$i]["idTasaIva"].'">'.$tasas[$i]['tasaIva'].'</option>';
+                        }
+                        echo '</select>';
+                ?>
+                <label class="col-form-label col-1" style="text-align: right;" for="minStockMprima"><strong>Stock Min</strong></label>
+                <input type="text" class="form-control col-2" name="minStockMprima" id="minStockMprima" onKeyPress="return aceptaNum(event)">
+            </div>
+            <div class="form-group row">
+                <label class="col-form-label col-1" style="text-align: right;" for="pHmPrima"><strong>pH</strong></label>
+                <input type="text" class="form-control col-2" name="pHmPrima" id="pHmPrima" placeholder="Si no tiene escribir N.A.">
+                <label class="col-form-label col-1" style="text-align: right;" for="densidadMPrima"><strong>Densidad</strong></label>
+                <input type="text" class="form-control col-2" name="densidadMPrima" id="densidadMPrima" placeholder="Si no tiene escribir N.A.">
+            </div>
+
+            <div class="form-group row">
+                <label class="col-form-label col-1" style="text-align: right;" for="colorMPrima"><strong>Color</strong></label>
+                <input type="text" class="form-control col-2" name="colorMPrima" id="colorMPrima" onKeyPress="return aceptaLetra(event)" maxlength="30">
+                <label class="col-form-label col-1" style="text-align: right;" for="olorMPrima"><strong>Olor</strong></label>
+                <input type="text" class="form-control col-2" name="olorMPrima" id="olorMPrima" onKeyPress="return aceptaLetra(event)" maxlength="30">                
+            </div>
+                
+            <div class="form-group row">
+                <div class="col-1" style="text-align: center;">
+                    <button class="button" style="vertical-align:middle"
+                        onclick="return Enviar(this.form)"><span>Continuar</span></button>
+                </div>
+                <div class="col-1" style="text-align: center;">
+                    <button class="button" style="vertical-align:middle" type="reset"><span>Reiniciar</span></button>
+                </div>
+            </div>
+
+        </form>
+        <div class="row">
+            <div class="col-1"><button class="button1" id="back" style="vertical-align:middle" onClick="history.back()"><span>VOLVER</span></button></div>
+        </div>
+        
+    </div>
+</body>
+
+</html>

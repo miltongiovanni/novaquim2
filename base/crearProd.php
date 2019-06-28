@@ -23,7 +23,7 @@ spl_autoload_register('cargarClases');
     function idProducto(idCatProd) {
         //alert(idCatProd);
         $.ajax({
-		url: '../includes/controladorProductos.php',
+		url: '../includes/controladorBase.php',
 		type: 'POST',
 		data: {
 			"action": 'ultimoProdxCat',
@@ -53,7 +53,7 @@ spl_autoload_register('cargarClases');
                     $manager = new CategoriasProdOperaciones();
                     $categorias=$manager->getCatsProd();
                     $filas=count($categorias);
-                    echo '<select name="idCatProd" id="idCatProd" class="form-control col-2" onchange="idProducto(this.value)">';
+                    echo '<select name="idCatProd" id="idCatProd" class="form-control col-2" onchange="idProducto(this.value);">';
                     echo '<option selected value="">-----------------------------</option>';
                     for($i=0; $i<$filas; $i++)
                         {                            
@@ -101,9 +101,7 @@ spl_autoload_register('cargarClases');
             </div>
         </form>
         <div class="row">
-            <div class="col-1"><button class="button1" id="back" style="vertical-align:middle"
-                    onClick="history.back()">
-                    <span>VOLVER</span></button></div>
+            <div class="col-1"><button class="button1" id="back" style="vertical-align:middle" onClick="history.back()"><span>VOLVER</span></button></div>
         </div>
     </div>
 </body>

@@ -1,35 +1,41 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html>
+
 <head>
-<title>Lista de Materias Primas</title>
-<meta charset="utf-8">
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
+  <title>Lista de Materias Primas</title>
+  <meta charset="utf-8">
+  <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
 </head>
+
 <body>
-<div id="contenedor">
-  <div id="saludo1"><strong>LISTADO DE MATERIAS PRIMAS</strong></div>
-  <table width="100%" border="0" summary="encabezado">
-    <tr>
-      <td><div align="right">
-        <input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men˙">
-      </div></td>
-    </tr>
-  </table>
-  <?php
-include "includes/utilTabla.php";
-include "includes/conect.php" ;
-	$link=conectarServidor();
-	$sql="	SELECT Cod_mprima as Codigo, Nom_mprima as 'Materia Prima', Des_cat_mp as 'Tipo de Materia Prima', Min_stock_mp as 'Stock MÌnimo'
-			FROM  mprimas, cat_mp
-			WHERE mprimas.Id_cat_mp=cat_mp.Id_cat_mp
-			ORDER BY Codigo";
-	//llamar funcion de tabla
-	verTabla($sql, $link);
-?>
-<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men˙"></div>
-</div>
+  <div id="contenedor">
+    <div id="saludo1"><strong>LISTADO DE MATERIAS PRIMAS</strong></div>
+    <div class="row" style="justify-content: right;">
+      <div class="col-1">
+        <button class="button" style="vertical-align:middle" onclick="window.location='../menu.php'">
+          <span><STRONG>Ir al Men√∫</STRONG></span></button>
+      </div>
+    </div>
+    <?php
+		include "../includes/utilTabla.php";
+		function cargarClases($classname)
+		{
+		require '../clases/'.$classname.'.php';
+		}
+		spl_autoload_register('cargarClases');
+		$MPrimaOperador = new MPrimasOperaciones();
+		$mPrimas=$MPrimaOperador->getTableMPrimas();
+		verTabla($mPrimas);
+		?>
+    <div class="row">
+      <div class="col-1"><button class="button" style="vertical-align:middle" onclick="window.location='../menu.php'">
+          <span><STRONG>Ir al Men√∫</STRONG></span></button></div>
+    </div>
+
+  </div>
 </body>
+
 </html>

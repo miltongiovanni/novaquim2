@@ -17,10 +17,27 @@ function ultimoProdxCat()
     echo $ultimoCodProdxCat+1;
 }
 
+
+function ultimaMPxCat()
+{
+    $idCatMPrima = $_POST['idCatMPrima'];
+    $MPrimaOperador = new MPrimasOperaciones();
+    $ultimaMP=$MPrimaOperador->getUltimaMPrimaxCat($idCatMPrima);
+
+
+    $respuesta = array(
+        'alias' => $ultimaMP['catMP'] .((($ultimaMP['codMPrima']+1)%100<10) ? "0".($ultimaMP['codMPrima']+1)%100 : ($ultimaMP['codMPrima']+1)%100),
+        'codigo' => ($ultimaMP['codMPrima'] + 1));
+    echo json_encode($respuesta);
+}
+
 //controleur membres
 $action = $_POST['action'];
 switch ($action) {
     case 'ultimoProdxCat':
     ultimoProdxCat();
+        break;
+    case 'ultimaMPxCat':
+    ultimaMPxCat();
         break;
 }

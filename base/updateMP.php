@@ -1,32 +1,38 @@
 <?php
-include "includes/valAcc.php";
-?>
-<?php
-include "includes/MPObj.php";
-include "includes/calcularDias.php";
-$cod_cat_mp=$_POST['IdCatMP'];                 
-$cod_mp=$_POST['Cod_mp'];
-$mprima=$_POST['mprimas'];
-$min_stock=$_POST['stock'];
-$tasa_iva= $_POST['tasa_iva'];
+include "../includes/valAcc.php";
 
-$mpri= new mprim();
-if($result=$mpri->updateMP($cod_mp,$mprima, $cod_cat_mp, $min_stock, $tasa_iva))
+// On enregistre notre autoload.
+function cargarClases($classname)
 {
-	$qryinv="update inv_mprimas set Nom_mprima='$mprima' where Cod_mprima=$cod_mp";
-    $link=conectarServidor();
-    $result=mysqli_query($link,$qryinv);
-	$ruta="listarMP.php";
-    mover_pag($ruta,"Materia Prima actualizada correctamente");
+    require '../clases/' . $classname . '.php';
 }
-else
-{
-	$ruta="buscarMP.php";
-	mover_pag($ruta,"Error al actualizar la Materia Prima");
+
+spl_autoload_register('cargarClases');
+
+foreach ($_POST as $nombre_campo => $valor) 
+{ 
+	$asignacion = "\$".$nombre_campo."='".$valor."';"; 
+	//echo $nombre_campo." = ".$valor."<br>";  
+	eval($asignacion); 
+}  
+
+$datos = array($nomMPrima, $aliasMPrima, $idCatMPrima, $minStockMprima, $aparienciaMPrima, $olorMPrima, $colorMPrima, $pHmPrima, $densidadMPrima, $codIva, $codMPrima );
+$MPrimaOperador = new MPrimasOperaciones();
+
+try {
+	$MPrimaOperador->updateMPrima($datos);
+	$ruta = "listarMP.php";
+	$mensaje =  "Materia prima actualzada correctamente";
+	
+} catch (Exception $e) {
+	$ruta = "buscarMP.php";
+	$mensaje = "Error al actualizar la materia prima";
+} finally {
+	unset($conexion);
+	unset($stmt);
+	mover_pag($ruta, $mensaje);
 }
-mysqli_free_result($result);
-/* cerrar la conexión */
-mysqli_close($link);
+
 function mover_pag($ruta,$Mensaje)
 {
 	echo'<script language="Javascript">
