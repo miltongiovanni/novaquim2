@@ -11,7 +11,7 @@ class MPrimasOperaciones
     public function makeMPrima($datos)
     {
         /*Preparo la inserción */
-        $qry = "INSERT INTO mprimas (codMPrima, nomMPrima, aliasMPrima, idCatMPrima, minStockMprima, aparienciaMPrima, olorMPrima, colorMPrima, pHmPrima, densidadMPrima, codIva) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $qry = "INSERT INTO mprimas (codMPrima, nomMPrima, aliasMPrima, idCatMPrima, minStockMPrima, aparienciaMPrima, olorMPrima, colorMPrima, pHmPrima, densidadMPrima, codIva) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute($datos);
         return $this->_pdo->lastInsertId();

@@ -1,31 +1,34 @@
 <?php
-include "includes/valAcc.php";
-//echo $_SESSION['Perfil'];
-?>
-<?php
-include "includes/EnvObj.php";
-include "includes/calcularDias.php";             
-$cod_env=$_POST['Codigo'];
-$nom_env=$_POST['nombre'];
-$min_stock=$_POST['stock'];
+include "../includes/valAcc.php";
 
-$bd="novaquim";
-$enva= new envas();
-if($result=$enva->updateEnv($cod_env,$nom_env, $min_stock))
+// On enregistre notre autoload.
+function cargarClases($classname)
 {
-	$qryinv="update inv_envase set Nom_envase='$nom_env' where Cod_envase=$cod_env";
-    $link=conectarServidor();
-    $result=mysqli_query($link,$qryinv);
-	$ruta="listarEnv.php";
-    mover_pag($ruta,"Envase actualizado correctamente");
-	mysqli_free_result($result);
-/* cerrar la conexión */
-mysqli_close($link);
+    require '../clases/' . $classname . '.php';
 }
-else
-{
-	$ruta="buscarEnv.php";
-	mover_pag($ruta,"Error al actualizar el Envase");
+
+spl_autoload_register('cargarClases');
+
+foreach ($_POST as $nombre_campo => $valor) 
+{ 
+	$asignacion = "\$".$nombre_campo."='".$valor."';"; 
+	//echo $nombre_campo." = ".$valor."<br>";  
+	eval($asignacion); 
+}  
+$EnvaseOperador = new EnvasesOperaciones();
+$datos = array($nomEnvase, $stockEnvase, $codIva, $codEnvase);
+try {
+	$EnvaseOperador->updateEnvase($datos);
+	$ruta = "listarEnv.php";
+	$mensaje =  "Envase actualzado correctamente";
+	
+} catch (Exception $e) {
+	$ruta = "buscarEnv.php";
+	$mensaje = "Error al actualizar el envase";
+} finally {
+	unset($conexion);
+	unset($stmt);
+	mover_pag($ruta, $mensaje);
 }
 
 function mover_pag($ruta,$Mensaje)

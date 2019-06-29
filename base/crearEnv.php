@@ -1,52 +1,65 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html>
+
 <head>
-	<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<title>Creaci&oacute;n de Envase</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-88">
-	<script type="text/javascript" src="scripts/validar.js"></script>
-	<script type="text/javascript" src="scripts/block.js"></script>	
-    	<script type="text/javascript">
-	document.onkeypress = stopRKey; 
-	</script>
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <title>Creaci&oacute;n de Envase</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-88">
+    <script type="text/javascript" src="../js/validar.js"></script>
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script>
+    function idEnvase() {
+        $.ajax({
+		url: '../includes/controladorBase.php',
+		type: 'POST',
+		data: {
+			"action": 'ultimoEnvase'
+            },
+            dataType: 'text',
+            success: function (lastCodProd) {
+                $("#codEnvase").val(lastCodProd);
+            },
+            fail: function () {
+                alert("Vous avez un GROS problème");
+            }
+        });
+    }
+    </script>
 </head>
-<body>
-<div id="contenedor">
-<div id="saludo"><strong>CREACI&Oacute;N DE ENVASE</strong></div>
-<form name="form2" method="POST" action="makeEnv.php">
-<table  border="0"  align="center" class="table2" cellspacing="0">
-    <tr> 
-        <td><div align="right"><b>Descripci&oacute;n</b></div></td>
-        <td colspan="2"><input type="text" name="envase" size=34   value=""></td>
-    </tr>
-    <tr> 
-        <td><div align="right"><strong>Stock M&iacute;nimo</strong></div></td>
 
-        <td colspan="2"><input type="text" name="min_stock" size=34   onKeyPress="return aceptaNum(event)"></td>
-  	</tr>
-    <tr>
-      <td colspan="3"><div align="center">&nbsp;</div></td>
-    </tr>
-    <tr> <td></td>
-        <td><div align="center"><input type="button" value="  Crear " onClick="return Enviar(this.form);"></div></td>
-        <td><div align="center"><input type="reset" value="Reiniciar"></div></td>
-    </tr>
-	
-	<tr>
-      <td colspan="3"><div align="center">&nbsp;</div></td>
-    </tr>
-    <tr>
-        <td colspan="3"><div align="center">&nbsp;</div></td>
-    </tr>
-    <tr> 
-        <td colspan="3"><div align="center"><input type="button" class="resaltado" onClick="history.back()" value="  VOLVER  "></div></td>
-    </tr>
-</table>
-</form>
-</div>
+<body onload="idEnvase();">
+    <div id="contenedor">
+        <div id="saludo"><strong>CREACIÓN DE ENVASE</strong></div>
+        <form name="form2" method="POST" action="makeEnv.php">
+            <div class="form-group row">
+                <label class="col-form-label col-1" style="text-align: right;" for="codEnvase"><strong>Código</strong></label>
+                <input type="text" class="form-control col-2" name="codEnvase" id="codEnvase" maxlength="50">
+            </div>
+            <div class="form-group row">
+                <label class="col-form-label col-1" style="text-align: right;" for="nomEnvase"><strong>Envase</strong></label>
+                <input type="text" class="form-control col-2" name="nomEnvase" id="nomEnvase" maxlength="50">
+            </div>
+            <div class="form-group row">
+                <label class="col-form-label col-1" style="text-align: right;" for="stockEnvase"><strong>Stock Envase</strong></label>
+                <input type="text" class="form-control col-2" name="stockEnvase" id="stockEnvase" onKeyPress="return aceptaNum(event)">
+                <input type="hidden" class="form-control col-2" name="codIva" id="codIva" value="3">
+            </div>
+            <div class="form-group row">
+                <div class="col-1" style="text-align: center;">
+                    <button class="button" style="vertical-align:middle" onclick="return Enviar(this.form)"><span>Continuar</span></button>
+                </div>
+                <div class="col-1" style="text-align: center;">
+                    <button class="button" style="vertical-align:middle" type="reset"><span>Reiniciar</span></button>
+                </div>
+            </div>
+        </form>
+        <div class="row">
+            <div class="col-1"><button class="button1" id="back" style="vertical-align:middle" onClick="history.back()"><span>VOLVER</span></button></div>
+        </div>
+    </div>
 </body>
-</html>
 
+</html>

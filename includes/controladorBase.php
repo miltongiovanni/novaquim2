@@ -18,6 +18,7 @@ function ultimoProdxCat()
 }
 
 
+
 function ultimaMPxCat()
 {
     $idCatMPrima = $_POST['idCatMPrima'];
@@ -30,6 +31,12 @@ function ultimaMPxCat()
         'codigo' => ($ultimaMP['codMPrima'] + 1));
     echo json_encode($respuesta);
 }
+function ultimoEnvase()
+{
+    $EnvaseOperador = new EnvasesOperaciones();
+	$ultimoEnvase=$EnvaseOperador->getUltimoEnvase();
+    echo $ultimoEnvase+1;
+}
 
 //controleur membres
 $action = $_POST['action'];
@@ -39,5 +46,8 @@ switch ($action) {
         break;
     case 'ultimaMPxCat':
     ultimaMPxCat();
+        break;
+    case 'ultimoEnvase':
+    ultimoEnvase();
         break;
 }
