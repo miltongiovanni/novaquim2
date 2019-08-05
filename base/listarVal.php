@@ -1,31 +1,40 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html>
+
 <head>
-<title>Lista de Tapas y V&aacute;lvulas</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
+  <title>Lista de Tapas y V√°lvulas</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
 </head>
+
 <body>
-<div id="contenedor">
-<div id="saludo1"><strong>LISTADO DE TAPAS Y V&Aacute;LVULAS</strong></div>
-<table width="100%" border="0" summary="Titulo">
-  <tr> 
-      <td><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men&uacute;">
-      </div></td>
-  </tr>
-</table>
-<?php
-include "includes/utilTabla.php";
-include "includes/conect.php" ;
-$link=conectarServidor();
-$sql="	select Cod_tapa as 'CÛdigo', Nom_tapa as 'Tapa o V·lvula', stock_tapa as 'Stock MÌnimo' from tapas_val;";
-//llamar funcion de tabla
-verTabla($sql, $link);
-?>
-<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men&uacute;"></div>
-</div>
+  <div id="contenedor">
+    <div id="saludo1"><strong>LISTADO DE TAPAS Y V√ÅLVULAS</strong></div>
+    <div class="row" style="justify-content: right;">
+      <div class="col-1">
+        <button class="button" style="vertical-align:middle" onclick="window.location='../menu.php'">
+          <span><STRONG>Ir al Men√∫</STRONG></span></button>
+      </div>
+    </div>
+    <?php
+		include "../includes/utilTabla.php";
+		function cargarClases($classname)
+		{
+		require '../clases/'.$classname.'.php';
+		}
+		spl_autoload_register('cargarClases');
+		$TapaOperador = new TapasOperaciones();
+		$tapas=$TapaOperador->getTableTapas();
+		verTabla($tapas);
+		?>
+    <div class="row">
+      <div class="col-1"><button class="button" style="vertical-align:middle" onclick="window.location='../menu.php'">
+          <span><STRONG>Ir al Men√∫</STRONG></span></button></div>
+    </div>
+  </div>
 </body>
+
 </html>

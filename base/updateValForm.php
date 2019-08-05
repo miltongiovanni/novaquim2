@@ -1,55 +1,56 @@
 <?php
-include "includes/valAcc.php";
-include "includes/conect.php";
-//echo $_SESSION['Perfil'];
+include "../includes/valAcc.php";
+function cargarClases($classname)
+{
+    require '../clases/' . $classname . '.php';
+}
+spl_autoload_register('cargarClases');
+$codTapa = $_POST['codTapa'];
+$TapaOperador = new TapasOperaciones();
+$tapa = $TapaOperador->getTapa($codTapa);
 ?>
 <!DOCTYPE html>
 <html>
-<head>
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-<meta charset="utf-8">
-<title>Actualizar datos de Tapa o V&aacute;lvula</title>
-<script type="text/javascript" src="scripts/validar.js"></script>
-<script type="text/javascript" src="scripts/block.js"></script>
-	<script type="text/javascript">
-	document.onkeypress = stopRKey; 
-	</script>
-</head>
-<body>
-<div id="contenedor">
-<div id="saludo"><strong>ACTUALIZACI&Oacute;N DE TAPA O V&Aacute;LVULA</strong></div>
-<?php
-	  $link=conectarServidor();
-	  $IdEnv=$_POST['Codigo'];
-	  $qry="select * from tapas_val where Cod_tapa=$IdEnv";
-	  $result=mysqli_query($link,$qry);
-	  $row=mysqli_fetch_array($result);
-	  mysqli_free_result($result);
-/* cerrar la conexi�n */
-mysqli_close($link);
-?>
 
-<form id="form1" name="form1" method="post" action="updateVal.php">
-<table width="32%" border="0" align="center">
-    <tr> 
-      <td width="16%" align="center"><strong>C&oacute;digo </strong></td>
-      <td width="55%" align="center"><strong>Tapa o V&aacute;lvula</strong></td>
-      <td width="29%" align="center" ><strong>Stock M&iacute;nimo</strong></td>
-    </tr>
-    <tr> 
-      <td><?php echo'<input name="Codigo" type="text" readonly="true" value="'.$row['Cod_tapa'].'" size="10"/>';?></td>
-      <td><?php echo'<input name="nombre" type="text" value="'.$row['Nom_tapa'].'" size="30"/>';?></td>
-      <td><?php echo'<input name="stock" type="text" value="'.$row['stock_tapa'].'" size="10"/>';?></td>
-    </tr>
-    <tr> 
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td><div align="center">
-          <input type="submit" name="Submit" value="Enviar"  onClick="return Enviar(this.form);">
-        </div></td>
-    </tr>
-  </table>
-</form>
-</div>
+<head>
+  <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+  <meta charset="utf-8">
+  <title>Actualizar datos de Tapa o Válvula</title>
+  <script type="text/javascript" src="../js/validar.js"></script>
+</head>
+
+<body>
+  <div id="contenedor">
+    <div id="saludo"><strong>ACTUALIZACIÓN DE TAPA O VÁLVULA</strong></div>
+    <form id="form1" name="form1" method="post" action="updateVal.php">
+      <div class="form-group row">
+        <label class="col-form-label col-1" style="text-align: right;" for="codTapa"><strong>Código</strong></label>
+        <input type="text" class="form-control col-2" name="codTapa" id="codTapa" maxlength="50" value="<?=$tapa['codTapa'];?>" readonly>
+      </div>
+      <div class="form-group row">
+        <label class="col-form-label col-1" style="text-align: right;" for="tapa"><strong>Tapa</strong></label>
+        <input type="text" class="form-control col-2" name="tapa" id="tapa" value="<?=$tapa['tapa'];?>" maxlength="50">
+      </div>
+      <div class="form-group row">
+        <label class="col-form-label col-1" style="text-align: right;" for="stockTapa"><strong>Stock Tapa</strong></label>
+        <input type="text" class="form-control col-2" name="stockTapa" id="stockTapa" onKeyPress="return aceptaNum(event)" value="<?=$tapa['stockTapa'];?>">
+        <input type="hidden" class="form-control col-2" name="codIva" id="codIva" value="3">
+      </div>
+      <div class="form-group row">
+        <div class="col-1" style="text-align: center;">
+          <button class="button" style="vertical-align:middle"
+            onclick="return Enviar(this.form)"><span>Continuar</span></button>
+        </div>
+        <div class="col-1" style="text-align: center;">
+          <button class="button" style="vertical-align:middle" type="reset"><span>Reiniciar</span></button>
+        </div>
+      </div>
+    </form>
+    <div class="row">
+      <div class="col-1"><button class="button1" id="back" style="vertical-align:middle"
+          onClick="history.back()"><span>VOLVER</span></button></div>
+    </div>
+  </div>
 </body>
+
 </html>

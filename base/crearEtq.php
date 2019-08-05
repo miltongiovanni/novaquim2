@@ -1,52 +1,73 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html>
+
 <head>
-	<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<title>Creaci&oacute;n de Etiquetas</title>
-	<meta charset="utf-8">
-	<script type="text/javascript" src="scripts/validar.js"></script>
-	<script type="text/javascript" src="scripts/block.js"></script>	
-    	<script type="text/javascript">
-	document.onkeypress = stopRKey; 
-	</script>
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <title>Creación de Etiquetas</title>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="../js/validar.js"></script>
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script>
+        function idEtiqueta() {
+            $.ajax({
+                url: '../includes/controladorBase.php',
+                type: 'POST',
+                data: {
+                    "action": 'ultimaEtiqueta'
+                },
+                dataType: 'text',
+                success: function (lastCodEtiq) {
+                    $("#codEtiqueta").val(lastCodEtiq);
+                },
+                fail: function () {
+                    alert("Vous avez un GROS problème");
+                }
+            });
+        }
+    </script>
 </head>
-<body>
-<div id="contenedor">
-<div id="saludo"><strong>CREACI&Oacute;N DE ETIQUETAS</strong></div>
-<form name="form2" method="POST" action="makeEtq.php">
-<table width="385"  border="0"  align="center" cellspacing="0" class="table2">
-    <tr> 
-        <td width="173"><div align="right"><b>Descripci&oacute;n</b></div></td>
-        <td colspan="2"><input type="text" name="etiqueta" size=34   value=""></td>
-    </tr>
-    <tr> 
-        <td><div align="right"><strong>Stock M&iacute;nimo</strong></div></td>
 
-        <td colspan="2"><input type="text" name="min_stock" size=34   onKeyPress="return aceptaNum(event)"></td>
-  	</tr>
-    <tr>
-      <td colspan="3"><div align="center">&nbsp;</div></td>
-    </tr>
-    <tr> <td></td>
-        <td width="103"><div align="center"><input type="button" value="Guardar" onClick="return Enviar(this.form);"></div></td>
-        <td width="103"><div align="center"><input type="reset" value="Reiniciar"></div></td>
-    </tr>
-	<tr>
-      <td colspan="3"><div align="center">&nbsp;</div></td>
-    </tr>
-    <tr>
-        <td colspan="3"><div align="center">&nbsp;</div></td>
-    </tr>
-    <tr> 
-        <td colspan="3">
-        <div align="center"><input type="button" class="resaltado" onClick="history.back()" value="  VOLVER  "></div>        </td>
-    </tr>
-</table>
-</form>
-</div>
+<body onload="idEtiqueta();">
+    <div id="contenedor">
+        <div id="saludo"><strong>CREACIÓN DE ETIQUETAS</strong></div>
+        <form name="form2" method="POST" action="makeEtq.php">
+            <div class="form-group row">
+                <label class="col-form-label col-1" style="text-align: right;"
+                    for="codEtiqueta"><strong>Código</strong></label>
+                <input type="text" class="form-control col-2" name="codEtiqueta" id="codEtiqueta" maxlength="50">
+            </div>
+            <div class="form-group row">
+                <label class="col-form-label col-1" style="text-align: right;"
+                    for="nomEtiqueta"><strong>Etiqueta</strong></label>
+                <input type="text" class="form-control col-2" name="nomEtiqueta" id="nomEtiqueta" maxlength="50">
+            </div>
+            <div class="form-group row">
+                <label class="col-form-label col-1" style="text-align: right;" for="stockEtiqueta"><strong>Stock
+                        Etiqueta</strong></label>
+                <input type="text" class="form-control col-2" name="stockEtiqueta" id="stockEtiqueta"
+                    onKeyPress="return aceptaNum(event)">
+                <input type="hidden" class="form-control col-2" name="codIva" id="codIva" value="3">
+            </div>
+            <div class="form-group row">
+                <div class="col-1" style="text-align: center;">
+                    <button class="button" style="vertical-align:middle"
+                        onclick="return Enviar(this.form)"><span>Continuar</span></button>
+                </div>
+                <div class="col-1" style="text-align: center;">
+                    <button class="button" style="vertical-align:middle" type="reset"><span>Reiniciar</span></button>
+                </div>
+            </div>
+        </form>
+        <div class="row">
+            <div class="col-1"><button class="button1" id="back" style="vertical-align:middle"
+                    onClick="history.back()"><span>VOLVER</span></button></div>
+        </div>
+
+
+    </div>
 </body>
-</html>
 
+</html>

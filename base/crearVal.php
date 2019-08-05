@@ -1,53 +1,66 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html>
+
 <head>
-	<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<title>Creaci&oacute;n de Tapas y V&aacute;lvulas</title>
-	<meta charset="utf-8">
-	<script type="text/javascript" src="scripts/validar.js"></script>
-	<script type="text/javascript" src="scripts/block.js"></script>	
-    	<script type="text/javascript">
-	document.onkeypress = stopRKey; 
-	</script>
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <title>Creación de Tapas y Válvulas</title>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="../js/validar.js"></script>
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script>
+        function idTapa() {
+            $.ajax({
+                url: '../includes/controladorBase.php',
+                type: 'POST',
+                data: {
+                    "action": 'ultimaTapa'
+                },
+                dataType: 'text',
+                success: function (lastCodTap) {
+                    $("#codTapa").val(lastCodTap);
+                },
+                fail: function () {
+                    alert("Vous avez un GROS problème");
+                }
+            });
+        }
+    </script>
 </head>
-<body>
-<div id="contenedor">
-<div id="saludo"><strong>CREACI&Oacute;N DE TAPAS O V&Aacute;LVULAS</strong></div>
-<form name="form2" method="POST" action="makeVal.php">
-<table width="391"  border="0"  align="center" cellspacing="0" class="table2">
-    <tr> 
-        <td width="178"><div align="right"><b>Descripci&oacute;n</b></div></td>
-        <td colspan="2"><input type="text" name="tapa" size=34 value=""></td>
-    </tr>
-    <tr> 
-        <td><div align="right"><strong>Stock M&iacute;nimo</strong></div></td>
 
-        <td colspan="2"><input type="text" name="min_stock" size=34 onKeyPress="return aceptaNum(event)"></td>
-  	</tr>
-    <tr>
-      <td colspan="3"><div align="center">&nbsp;</div></td>
-    </tr>
-    <tr> <td></td>
-        <td width="104"><div align="center"><input type="button" value="  Crear  " onClick="return Enviar(this.form);"></div></td>
-        <td width="103"><div align="center"><input type="reset" value="Reiniciar"></div></td>
-    </tr>
+<body onload="idTapa();">
+    <div id="contenedor">
+        <div id="saludo"><strong>CREACIÓN DE TAPAS O VÁLVULAS</strong></div>
+        <form name="form2" method="POST" action="makeVal.php">
+            <div class="form-group row">
+                <label class="col-form-label col-1" style="text-align: right;" for="codTapa"><strong>Código</strong></label>
+                <input type="text" class="form-control col-2" name="codTapa" id="codTapa" maxlength="50">
+            </div>
+            <div class="form-group row">
+                <label class="col-form-label col-1" style="text-align: right;" for="tapa"><strong>Tapa</strong></label>
+                <input type="text" class="form-control col-2" name="tapa" id="tapa" maxlength="50">
+            </div>
+            <div class="form-group row">
+                <label class="col-form-label col-1" style="text-align: right;" for="stockTapa"><strong>Stock Tapa</strong></label>
+                <input type="text" class="form-control col-2" name="stockTapa" id="stockTapa" onKeyPress="return aceptaNum(event)">
+                <input type="hidden" class="form-control col-2" name="codIva" id="codIva" value="3">
+            </div>
+            <div class="form-group row">
+                <div class="col-1" style="text-align: center;">
+                    <button class="button" style="vertical-align:middle" onclick="return Enviar(this.form)"><span>Continuar</span></button>
+                </div>
+                <div class="col-1" style="text-align: center;">
+                    <button class="button" style="vertical-align:middle" type="reset"><span>Reiniciar</span></button>
+                </div>
+            </div>
+        </form>
+        <div class="row">
+            <div class="col-1"><button class="button1" id="back" style="vertical-align:middle" onClick="history.back()"><span>VOLVER</span></button></div>
+        </div>
 
-	<tr>
-      <td colspan="3"><div align="center">&nbsp;</div></td>
-    </tr>
-    <tr>
-        <td colspan="3"><div align="center">&nbsp;</div></td>
-    </tr>
-    <tr> 
-        <td colspan="3">
-        <div align="center"><input type="button" class="resaltado" onClick="history.back()" value="  VOLVER  "></div>        </td>
-    </tr>
-</table>
-</form>
-</div>
+    </div>
 </body>
-</html>
 
+</html>

@@ -6,7 +6,7 @@ include "../includes/valAcc.php";
 
 <head>
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-    <title>Creaci&oacute;n de Envase</title>
+    <title>Creación de Envase</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-88">
     <script type="text/javascript" src="../js/validar.js"></script>
     <script src="../js/jquery-3.3.1.min.js"></script>
@@ -19,8 +19,8 @@ include "../includes/valAcc.php";
 			"action": 'ultimoEnvase'
             },
             dataType: 'text',
-            success: function (lastCodProd) {
-                $("#codEnvase").val(lastCodProd);
+            success: function (lastCodEnv) {
+                $("#codEnvase").val(lastCodEnv);
             },
             fail: function () {
                 alert("Vous avez un GROS problème");

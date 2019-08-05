@@ -1,29 +1,36 @@
 <?php
-include "includes/valAcc.php";
-?>
-<?php
-include "includes/EtqObj.php";
-include "includes/calcularDias.php";             
-$cod_etq=$_POST['Codigo'];
-$nom_etq=$_POST['nombre'];
-$min_stock=$_POST['stock'];
-$etiqu= new etiq();
-if($result=$etiqu->updateEtq($cod_etq, $nom_etq, $min_stock))
+include "../includes/valAcc.php";
+
+// On enregistre notre autoload.
+function cargarClases($classname)
 {
-	$qryinv="update inv_etiquetas set Nom_etiq='$nom_etq' where Cod_etiq=$cod_etq";
-    $link=conectarServidor();
-    $result=mysqli_query($link,$qryinv);
-//mysqli_free_result($result);
-/* cerrar la conexión */
-mysqli_close($link);
-	$ruta="listarEtq.php";
-    mover_pag($ruta,"Etiqueta actualizada correctamente");
+    require '../clases/' . $classname . '.php';
 }
-else
-{
-	$ruta="buscarEtq.php";
-	mover_pag($ruta,"Error al actualizar la Etiqueta");
+
+spl_autoload_register('cargarClases');
+
+foreach ($_POST as $nombre_campo => $valor) 
+{ 
+	$asignacion = "\$".$nombre_campo."='".$valor."';"; 
+	//echo $nombre_campo." = ".$valor."<br>";  
+	eval($asignacion); 
+}  
+$EtiquetaOperador = new EtiquetasOperaciones();
+$datos = array($nomEtiqueta, $stockEtiqueta, $codIva, $codEtiqueta);
+try {
+	$EtiquetaOperador->updateEtiqueta($datos);
+	$ruta = "listarEtq.php";
+	$mensaje =  "Etiqueta actualzada correctamente";
+	
+} catch (Exception $e) {
+	$ruta = "buscarEtq.php";
+	$mensaje = "Error al actualizar la etiqueta";
+} finally {
+	unset($conexion);
+	unset($stmt);
+	mover_pag($ruta, $mensaje);
 }
+
 function mover_pag($ruta,$Mensaje)
 {
 	echo'<script language="Javascript">

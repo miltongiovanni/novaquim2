@@ -1,53 +1,57 @@
 <?php
-include "includes/valAcc.php";
-include "includes/conect.php";
-//echo $_SESSION['Perfil'];
+include "../includes/valAcc.php";
+function cargarClases($classname)
+{
+    require '../clases/' . $classname . '.php';
+}
+spl_autoload_register('cargarClases');
+$codEtiqueta = $_POST['codEtiqueta'];
+$EtiquetaOperador = new EtiquetasOperaciones();
+$envase = $EtiquetaOperador->getEtiqueta($codEtiqueta);
 ?>
 <!DOCTYPE html>
 <html>
-<head>
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-<meta charset="utf-8">
-<title>Actualizar datos de Etiqueta</title>
-<script type="text/javascript" src="scripts/validar.js"></script>
-<script type="text/javascript" src="scripts/block.js"></script>
-	<script type="text/javascript">
-	document.onkeypress = stopRKey; 
-	</script>
-</head>
-<body>
-<div id="contenedor">
-<div id="saludo"><strong>ACTUALIZACI&Oacute;N DE ETIQUETAS</strong></div>
-<?php
-	  $link=conectarServidor();
-	  $IdEtq=$_POST['Codigo'];
-	  $qry="select * from etiquetas where Cod_etiq=$IdEtq";
-	  $result=mysqli_query($link,$qry);
-	  $row=mysqli_fetch_array($result);
-	  mysqli_free_result($result);
-/* cerrar la conexi�n */
-mysqli_close($link);
-?>
 
-<form id="form1" name="form1" method="post" action="updateEtq.php">
-<table width="538" border="0" align="center">
-    <tr align="center"> 
-      <td width="74"><strong>C&oacute;digo </strong></td>
-      <td width="328"><strong>Etiqueta</strong></td>
-      <td width="122"><strong>Stock M&iacute;nimo</strong></td>
-    </tr>
-    <tr align="center"> 
-      <td><?php echo'<input name="Codigo" type="text" readonly="true" value="'.$row['Cod_etiq'].'" size="5">';?></td>
-      <td><?php echo'<input name="nombre" type="text" value="'.$row['Nom_etiq'].'" size="40">';?></td>
-      <td><?php echo'<input name="stock" type="text" value="'.$row['stock_etiq'].'" size="10">';?></td>
-    </tr>
-    <tr> 
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      <td><div align="center"><input type="submit" name="Submit" value="Actualizar"  onClick="return Enviar(this.form);"></div></td>
-    </tr>
-  </table>
-</form>
-</div>
+<head>
+  <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+  <meta charset="utf-8">
+  <title>Actualizar datos de Etiqueta</title>
+  <script type="text/javascript" src="../js/validar.js"></script>
+</head>
+
+<body>
+  <div id="contenedor">
+    <div id="saludo"><strong>ACTUALIZACIÓN DE ETIQUETAS</strong></div>
+    <form id="form1" name="form1" method="post" action="updateEtq.php">
+      <div class="form-group row">
+        <label class="col-form-label col-1" style="text-align: right;" for="codEtiqueta"><strong>Código</strong></label>
+        <input type="text" class="form-control col-2" name="codEtiqueta" id="codEtiqueta" maxlength="50" value="<?=$envase['codEtiqueta'];?>" readonly>
+      </div>
+      <div class="form-group row">
+        <label class="col-form-label col-1" style="text-align: right;" for="nomEtiqueta"><strong>Etiqueta</strong></label>
+        <input type="text" class="form-control col-2" name="nomEtiqueta" id="nomEtiqueta" value="<?=$envase['nomEtiqueta'];?>" maxlength="50">
+      </div>
+      <div class="form-group row">
+        <label class="col-form-label col-1" style="text-align: right;" for="stockEtiqueta"><strong>Stock Etiqueta</strong></label>
+        <input type="text" class="form-control col-2" name="stockEtiqueta" id="stockEtiqueta" onKeyPress="return aceptaNum(event)" value="<?=$envase['stockEtiqueta'];?>">
+        <input type="hidden" class="form-control col-2" name="codIva" id="codIva" value="3">
+      </div>
+      <div class="form-group row">
+        <div class="col-1" style="text-align: center;">
+          <button class="button" style="vertical-align:middle"
+            onclick="return Enviar(this.form)"><span>Continuar</span></button>
+        </div>
+        <div class="col-1" style="text-align: center;">
+          <button class="button" style="vertical-align:middle" type="reset"><span>Reiniciar</span></button>
+        </div>
+      </div>
+    </form>
+    <div class="row">
+      <div class="col-1"><button class="button1" id="back" style="vertical-align:middle"
+          onClick="history.back()"><span>VOLVER</span></button></div>
+    </div>
+
+  </div>
 </body>
+
 </html>

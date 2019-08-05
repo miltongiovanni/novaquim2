@@ -127,6 +127,54 @@ function buscarMPrimaForm($action)
     return $rep;
 }
 
+function buscarEtiquetaForm($action)
+{
+
+    $rep = '<form id="form1" name="form1" method="post" action="' . $action . '">
+        <div class="form-group row"><label class="col-form-label col-1" for="combo"><strong>Etiqueta</strong></label>';
+    $EtiquetasOperador = new EtiquetasOperaciones();
+    $etiquetas = $EtiquetasOperador->getEtiquetas();
+    $filas = count($etiquetas);
+    $rep .= '<select name="codEtiqueta" class="form-control col-2">';
+    $rep .= '<option selected value="">-----------------------------</option>';
+    for ($i = 0; $i < $filas; $i++) {
+        $rep .= '<option value="' . $etiquetas[$i]["codEtiqueta"] . '">' . $etiquetas[$i]['nomEtiqueta'] . '</option>';
+    }
+    $rep .= '</select>';
+
+    $rep .= '</div>
+        <div class="row form-group">
+        <div class="col-1"><button class="button" style="vertical-align:middle" onclick="return Enviar(this.form)">
+                <span>Continuar</span></button></div>
+        </div>
+        </form>';
+    return $rep;
+}
+
+function buscarTapaForm($action)
+{
+
+    $rep = '<form id="form1" name="form1" method="post" action="' . $action . '">
+        <div class="form-group row"><label class="col-form-label col-1" for="combo"><strong>Tapa</strong></label>';
+    $TapasOperador = new TapasOperaciones();
+    $tapas = $TapasOperador->getTapas();
+    $filas = count($tapas);
+    $rep .= '<select name="codTapa" class="form-control col-2">';
+    $rep .= '<option selected value="">-----------------------------</option>';
+    for ($i = 0; $i < $filas; $i++) {
+        $rep .= '<option value="' . $tapas[$i]["codTapa"] . '">' . $tapas[$i]['tapa'] . '</option>';
+    }
+    $rep .= '</select>';
+
+    $rep .= '</div>
+        <div class="row form-group">
+        <div class="col-1"><button class="button" style="vertical-align:middle" onclick="return Enviar(this.form)">
+                <span>Continuar</span></button></div>
+        </div>
+        </form>';
+    return $rep;
+}
+
 function buscarEnvaseForm($action)
 {
 

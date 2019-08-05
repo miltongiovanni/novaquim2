@@ -37,17 +37,34 @@ function ultimoEnvase()
 	$ultimoEnvase=$EnvaseOperador->getUltimoEnvase();
     echo $ultimoEnvase+1;
 }
-
+function ultimaTapa()
+{
+    $TapaOperador = new TapasOperaciones();
+	$ultimaTapa=$TapaOperador->getUltimaTapa();
+    echo $ultimaTapa+1;
+}
+function ultimaEtiqueta()
+{
+    $EtiquetaOperador = new EtiquetasOperaciones();
+	$ultimaEtiqueta=$EtiquetaOperador->getUltimaEtiqueta();
+    echo $ultimaEtiqueta+1;
+}
 //controleur membres
 $action = $_POST['action'];
 switch ($action) {
     case 'ultimoProdxCat':
-    ultimoProdxCat();
+        ultimoProdxCat();
         break;
     case 'ultimaMPxCat':
-    ultimaMPxCat();
+        ultimaMPxCat();
         break;
     case 'ultimoEnvase':
-    ultimoEnvase();
+        ultimoEnvase();
+        break;
+    case 'ultimaTapa':
+        ultimaTapa();
+        break;
+    case 'ultimaEtiqueta':
+        ultimaEtiqueta();
         break;
 }

@@ -1,6 +1,5 @@
 <?php
 include "../includes/valAcc.php";
-include "../includes/utilTabla.php";
 function cargarClases($classname)
 {
     require '../clases/' . $classname . '.php';

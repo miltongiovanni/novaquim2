@@ -1,23 +1,36 @@
 <?php
-include "includes/valAcc.php";
-?>
-<?php
-include "includes/ValObj.php";
-include "includes/calcularDias.php";             
-$cod_val=$_POST['Codigo'];
-$nom_val=$_POST['nombre'];
-$min_stock=$_POST['stock'];
-$valvu= new valv();
-if($result=$valvu->updateVal($cod_val,$nom_val, $min_stock))
+include "../includes/valAcc.php";
+
+// On enregistre notre autoload.
+function cargarClases($classname)
 {
-	$ruta="listarVal.php";
-    mover_pag($ruta,"Tapa o V·lvula actualizada correctamente");
+    require '../clases/' . $classname . '.php';
 }
-else
-{
-	$ruta="buscarVal.php";
-	mover_pag($ruta,"Error al actualizar la Tapa o V·lvula");
+
+spl_autoload_register('cargarClases');
+
+foreach ($_POST as $nombre_campo => $valor) 
+{ 
+	$asignacion = "\$".$nombre_campo."='".$valor."';"; 
+	//echo $nombre_campo." = ".$valor."<br>";  
+	eval($asignacion); 
+}  
+$TapaOperador = new TapasOperaciones();
+$datos = array($tapa, $stockTapa, $codIva, $codTapa);
+try {
+	$TapaOperador->updateTapa($datos);
+	$ruta = "listarVal.php";
+	$mensaje =  "Tapa o v√°lvula actualzada correctamente";
+	
+} catch (Exception $e) {
+	$ruta = "buscarVal.php";
+	$mensaje = "Error al actualizar la tapa o v√°lvula";
+} finally {
+	unset($conexion);
+	unset($stmt);
+	mover_pag($ruta, $mensaje);
 }
+
 function mover_pag($ruta,$Mensaje)
 {
 	echo'<script language="Javascript">
