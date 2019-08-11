@@ -198,3 +198,27 @@ function buscarEnvaseForm($action)
         </form>';
     return $rep;
 }
+
+function buscarPrecioForm($action, $actif)
+{
+
+    $rep = '<form id="form1" name="form1" method="post" action="' . $action . '">
+        <div class="form-group row"><label class="col-form-label col-1" for="combo"><strong>Producto</strong></label>';
+    $PrecioOperador = new PreciosOperaciones();
+    $precios = $PrecioOperador->getPrecios($actif);
+    $filas = count($precios);
+    $rep .= '<select name="codigoGen" class="form-control col-2">';
+    $rep .= '<option selected value="">-----------------------------</option>';
+    for ($i = 0; $i < $filas; $i++) {
+        $rep .= '<option value="' . $precios[$i]["codigoGen"] . '">' . $precios[$i]['producto'] . '</option>';
+    }
+    $rep .= '</select>';
+
+    $rep .= '</div>
+        <div class="row form-group">
+        <div class="col-1"><button class="button" style="vertical-align:middle" onclick="return Enviar(this.form)">
+                <span>Continuar</span></button></div>
+        </div>
+        </form>';
+    return $rep;
+}

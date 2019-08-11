@@ -60,7 +60,7 @@ $producto = $ProductoOperador->getProducto($codProducto);
                 <input type="text" class="form-control col-2" name="color" id="color" onKeyPress="return aceptaLetra(event)" maxlength="30" value="<?=$producto['color'];?>">
             </div>
             <div class="form-group row">
-                <label class="col-form-label col-1" style="text-align: right;" for="fragancia"><strong>Activo</strong></label>
+                <label class="col-form-label col-1" style="text-align: right;" for="prodActivo"><strong>Activo</strong></label>
                 <?php
                 if ($producto['prodActivo'] == 0) {
                     echo '<select name="prodActivo" class="form-control col-2" id="prodActivo">';

@@ -1,73 +1,101 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
+include "../includes/utilTabla.php";
+function cargarClases($classname)
+{
+require '../clases/'.$classname.'.php';
+}
+spl_autoload_register('cargarClases');
 ?>
 <!DOCTYPE html>
 <html>
+
 <head>
-	<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<title>Creaci&oacute;n de C&oacute;digo Gen&eacute;rico</title>
-	<meta charset="utf-8">
-	<script type="text/javascript" src="scripts/validar.js"></script>
-	<script type="text/javascript" src="scripts/block.js"></script>	
-    	<script type="text/javascript">
-	document.onkeypress = stopRKey; 
-	</script>
-
-</head>
-<body>
-<div id="contenedor">
-<div id="saludo"><strong>CREACI&Oacute;N DE C&Oacute;DIGO GEN&Eacute;RICO</strong></div>
-<form name="form2" method="POST" action="crearCod2.php">
-<table  align="center" border="0" class="table2" width="50%" cellspacing="0">
- <tr> 
-    <td>&nbsp; </td>
-    </tr>
-	<tr> 
-        <td><div align="right"><b>Producto</b></div></td>
-        <td width="57%">
-        <select name="Prod" id="combo">
-		<?php
-            include "includes/conect.php";
-            $link=conectarServidor();
-            $qry="select Cod_produc, Nom_produc, Id_cat_prod from productos where prod_activo=0 order by Nom_produc;";	
-            $result=mysqli_query($link, $qry);
-            echo '<option selected value="">---------------------------------------------------</option>';
-            while($row=mysqli_fetch_array($result))
-            {
-                  echo '<option value="'.$row['Cod_produc'].'">'.$row['Nom_produc'].'</option>';  
-                  //echo= $row['Id_cat_prod'];
-            }
-			mysqli_free_result($result);
-/* cerrar la conexi�n */
-mysqli_close($link);
-        ?>
-        </select >	
-        </td> 
-    </tr>
-     <tr> 
-    <td>&nbsp; </td>
-    </tr>
-    <tr> 
-        <td colspan="2">
-            <div align="center">
-              <input type="button" value="Continuar" onClick="return Enviar0(this.form);">
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <input type="reset" value="  Reiniciar  ">    
-            </div></td>
-    </tr>
-    <tr> 
-    <td>&nbsp; </td>
-    </tr>
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <title>Creación de Código Genérico</title>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="../js/validar.js"></script>
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script>
     
-    <tr>
-        <td colspan="2"><div align="center">&nbsp;</div></td>
-    </tr>
-    <tr> 
-        <td colspan="2"><div align="center"><input type="button" class="resaltado" onClick="history.back()" value="  VOLVER  "></div></td>
-    </tr>
-</table>
-</form>
-</div>
-</body>
-</html>
+    //var idCatProd = $('idCatProd').value;
+    
+    function idProducto(codProducto) {
+        //alert(idCatProd);
+        $.ajax({
+		url: '../includes/controladorBase.php',
+		type: 'POST',
+		data: {
+			"action": 'infoProducto',
+			"codProducto": codProducto
+		},
+		dataType: 'json',
+		success: function (producto) {
+            $("#producto").val(producto.nomProducto);
+            $("#idCodCat").val(producto.idCatProd);
+		},
+		fail: function () {
+			alert("Vous avez un GROS problème");
+		}
+	});
+    }
+    </script>
+</head>
 
+<body>
+    <div id="contenedor">
+        <div id="saludo"><strong>CREACIÓN DE CÓDIGO GENÉRICO</strong></div>
+        <form name="form2" method="POST" action="makeCod.php">
+            <div class="form-group row">
+
+                <label class="col-form-label col-1" for="idCatProd"><strong>Producto</strong></label>
+                <?php
+                    $ProductoOperador = new ProductosOperaciones();
+                    $productos = $ProductoOperador->getProductos(true);
+                    $filas = count($productos);
+                    echo '<select name="codProducto" class="form-control col-2" onchange="idProducto(this.value);">';
+                    echo '<option selected value="">-----------------------------</option>';
+                    for ($i = 0; $i < $filas; $i++) {
+                        echo '<option value="' . $productos[$i]["codProducto"] . '">' . $productos[$i]['nomProducto'] . '</option>';
+                    }
+                    echo '</select>';
+                ?>
+                <input name="producto" id="producto" type="hidden" readonly="true" value="" size="34"/>
+			    <input name="idCodCat" id="idCodCat" type="hidden" readonly="true" value="" size="34"/>
+            </div>
+
+            <div class="form-group row">
+
+                <label class="col-form-label col-1" for="idCatProd"><strong>Medida</strong></label>
+                <?php
+                    $MedidaOperador = new MedidasOperaciones();
+                    $medidas = $MedidaOperador->getMedidas();
+                    $filas = count($medidas);
+                    echo '<select name="medida" class="form-control col-2" >';
+                    echo '<option selected value="">-----------------------------</option>';
+                    for ($i = 0; $i < $filas; $i++) {
+                        echo '<option value="' . $medidas[$i]["idMedida"].','.  $medidas[$i]["desMedida"] . '">' . $medidas[$i]['desMedida'] . '</option>';
+                    }
+                    echo '</select>';
+                ?>
+            </div>
+            <div class="form-group row">
+                <label class="col-form-label col-1" style="text-align: right;"
+                    for="fabrica"><strong>Precio fábrica</strong></label>
+                <input type="text" class="form-control col-2" name="fabrica" id="fabrica" maxlength="50" onKeyPress="return aceptaNum(event)">
+            </div>
+            <div class="form-group row">
+                <div class="col-1" style="text-align: center;">
+                    <button class="button" style="vertical-align:middle" onclick="return Enviar(this.form)"><span>Continuar</span></button>
+                </div>
+                <div class="col-1" style="text-align: center;">
+                    <button class="button" style="vertical-align:middle" type="reset"><span>Reiniciar</span></button>
+                </div>
+            </div>
+
+
+        </form>
+    </div>
+</body>
+
+</html>

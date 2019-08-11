@@ -1,92 +1,96 @@
 <?php
-include "includes/valAcc.php";
-include "includes/conect.php";
+include "../includes/valAcc.php";
+include "../includes/utilTabla.php";
+function cargarClases($classname)
+{
+    require '../clases/' . $classname . '.php';
+}
+spl_autoload_register('cargarClases');
+$codigoGen = $_POST['codigoGen'];
+$PrecioOperador = new PreciosOperaciones();
+$precio = $PrecioOperador->getPrecio($codigoGen);
 ?>
 <!DOCTYPE html>
 <html>
-<head>
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-<meta charset="utf-8">
-<title>Actualizar datos de C&oacute;digo Gen&eacute;rico</title>
-<script type="text/javascript" src="scripts/validar.js"></script>
-<script type="text/javascript" src="scripts/block.js"></script>
-	<script type="text/javascript">
-	document.onkeypress = stopRKey; 
-	</script>
-</head>
-<body>
-<div id="contenedor">
-<div id="saludo"><strong>ACTUALIZACI&Oacute;N DEL C&Oacute;DIGO GEN&Eacute;RICO</strong></div>
-<?php
-	  $link=conectarServidor();
-	  $Idprod=$_POST['IdProd'];
-	  $qry="select codigo_ant, producto, fabrica, distribuidor, detal, pres_activa, pres_lista from precios where codigo_ant=$Idprod";
-	  $result=mysqli_query($link,$qry);
-	  $row=mysqli_fetch_array($result);
-	  mysqli_free_result($result);
-/* cerrar la conexi�n */
-mysqli_close($link);
-?>
 
-<form id="form1" name="form1" method="post" action="updateCod.php">
-	<table width="62%" border="0" align="center">
-    <tr> 
-      <td width="10%"><div align="center"><strong>C&oacute;digo</strong></div></td>
-      <td width="47%"><div align="center"><strong>Descripci&oacute;n</strong></div></td>
-      <td width="14%"><div align="center"><strong>Precio F&aacute;brica</strong></div></td>
-      <td width="10%"><div align="center"><strong>Activo</strong></div></td>
-      <td width="19%"><div align="center"><strong>Precio en lista</strong></div></td>
-    </tr>
-    <tr> 
-      <td><div align="right"><?php echo'<input name="Cod_prod" type="text" size="8" onKeyPress="return aceptaNum(event)" readonly="true" value="'.$row['codigo_ant'].'">';?></div></td>
-      <td><div align="right"><?php echo'<input name="Producto" type="text" size="70" onKeyPress="return aceptaNum(event)" value="'.$row['producto'].'">';?></div></td>
-      <td><div align="center"><?php echo'<input name="fabrica" type="text" size="8" onKeyPress="return aceptaNum(event)" value="'.$row['fabrica'].'">';?></div></td>
-      <td align="center">
-	    <?php
-		echo'<select name="pres_activa">';
-      if ($row['pres_activa']==0)
-      {
-          echo '<option selected value='.$row['pres_activa'].'>Si</option>';
-          echo '<option value=1>No</option>';
-          echo'</select>';			
-      }
-      if ($row['pres_activa']==1)
-      {
-          echo '<option selected value='.$row['pres_activa'].'>No</option>';
-          echo '<option value=0>Si</option>';
-          echo'</select>';			
-      }
-		?>      </td>
-        <td align="center">
-	    <?php
-		  echo'<select name="pres_lista">';
-      if ($row['pres_lista']==0)
-      {
-          echo '<option selected value='.$row['pres_lista'].'>Si</option>';
-          echo '<option value=1>No</option>';
-          echo'</select>';			
-      }
-      if ($row['pres_lista']==1)
-      {
-          echo '<option selected value='.$row['pres_lista'].'>No</option>';
-          echo '<option value=0>Si</option>';
-          echo'</select>';			
-      }
-		?>      </td>
-    </tr>
-    <tr> 
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-    </tr>
-    <tr> 
-      <td>&nbsp;</td>
-      <td colspan="3">&nbsp;</td>
-      <td width="19%"><div align="center">
-          <input type="submit" name="Submit" value="Actualizar" >
-        </div></td>
-    </tr>
-  </table>
-</form>
-</div>
+<head>
+  <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+  <meta charset="utf-8">
+  <title>Actualizar datos de Código Genérico</title>
+  <script type="text/javascript" src="../js/validar.js"></script>
+
+</head>
+
+<body>
+  <div id="contenedor">
+    <div id="saludo"><strong>ACTUALIZACIÓN DEL CÓDIGO GENÉRICO</strong></div>
+
+    <form id="form1" name="form1" method="post" action="updateCod.php">
+      <div class="form-group row">
+        <label class="col-form-label col-1" style="text-align: right;" for="codigoGen"><strong>Código</strong></label>
+        <input type="text" class="form-control col-2" name="codigoGen" id="codigoGen" maxlength="50"
+          value="<?=$precio['codigoGen'];?>" readonly>
+      </div>
+      <div class="form-group row">
+        <label class="col-form-label col-1" style="text-align: right;"
+          for="producto"><strong>Descripción</strong></label>
+        <input type="text" class="form-control col-2" name="producto" id="producto" maxlength="50"
+          value="<?=$precio['producto'];?>" readonly>
+      </div>
+      <div class="form-group row">
+        <label class="col-form-label col-1" style="text-align: right;" for="fabrica"><strong>Precio
+            fábrica</strong></label>
+        <input type="text" class="form-control col-2" name="fabrica" id="fabrica" maxlength="50"
+          value="<?=$precio['fabrica'];?>" onKeyPress="return aceptaNum(event)">
+      </div>
+      <div class="form-group row">
+        <label class="col-form-label col-1" style="text-align: right;" for="presActiva"><strong>Activo</strong></label>
+        <?php
+        if ($precio['presActiva'] == 0) {
+            echo '<select name="presActiva" class="form-control col-2" id="presActiva">';
+            echo '<option selected value=0>Si</option>';
+            echo '<option value=1>No </option>';
+            echo '</select>';
+        } else {
+            echo '<select name="presActiva" class="form-control col-2"  id="presActiva">';
+            echo '<option selected value=1>No</option>';
+            echo '<option value=0>Si</option>';
+            echo '</select>';
+        }
+        ?>
+      </div>
+      <div class="form-group row">
+        <label class="col-form-label col-1" style="text-align: right;" for="presLista"><strong>En lista</strong></label>
+        <?php
+        if ($precio['presLista'] == 0) {
+            echo '<select name="presLista" class="form-control col-2" id="presLista">';
+            echo '<option selected value=0>Si</option>';
+            echo '<option value=1>No </option>';
+            echo '</select>';
+        } else {
+            echo '<select name="presLista" class="form-control col-2"  id="presLista">';
+            echo '<option selected value=1>No</option>';
+            echo '<option value=0>Si</option>';
+            echo '</select>';
+        }
+        ?>
+      </div>
+      <div class="form-group row">
+        <div class="col-1" style="text-align: center;">
+          <button class="button" style="vertical-align:middle"
+            onclick="return Enviar(this.form)"><span>Continuar</span></button>
+        </div>
+        <div class="col-1" style="text-align: center;">
+          <button class="button" style="vertical-align:middle" type="reset"><span>Reiniciar</span></button>
+        </div>
+      </div>
+    </form>
+    <div class="row">
+      <div class="col-1"><button class="button1" id="back" style="vertical-align:middle"
+          onClick="history.back()"><span>VOLVER</span></button></div>
+    </div>
+
+  </div>
 </body>
+
 </html>

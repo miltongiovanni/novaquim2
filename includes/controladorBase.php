@@ -18,7 +18,17 @@ function ultimoProdxCat()
 }
 
 
-
+function infoProducto()
+{
+    $codProducto = $_POST['codProducto'];
+    $ProductoOperador = new ProductosOperaciones();
+    $producto=$ProductoOperador->getProducto($codProducto);
+    $respuesta = array(
+        'nomProducto' => $producto['nomProducto'],
+        'idCatProd' => $producto['idCatProd'],
+    );
+    echo json_encode($respuesta);
+}
 function ultimaMPxCat()
 {
     $idCatMPrima = $_POST['idCatMPrima'];
@@ -66,5 +76,8 @@ switch ($action) {
         break;
     case 'ultimaEtiqueta':
         ultimaEtiqueta();
+        break;
+    case 'infoProducto':
+        infoProducto();
         break;
 }

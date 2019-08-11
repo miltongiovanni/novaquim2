@@ -196,6 +196,12 @@ body {
   padding-left: 1%;
   padding-right: 1%;
 }
+fieldset {
+  min-width: 0;
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
 font {
   font-size: 1vw;
   color: #000066;
@@ -305,10 +311,44 @@ font {
   -webkit-border-radius: 0.2em;
   border-radius: 0.2em;
 }
+
+.form-check {
+  position: relative;
+  display: block;
+}
+
+.form-check-input {
+  margin-top: 0.3rem;
+}
+
+.form-check-input:disabled ~ .form-check-label {
+  color: #6c757d;
+}
+
+.form-check-label {
+  margin-bottom: 0;
+}
+
+.form-check-inline {
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -ms-flex-align: center;
+  align-items: center;
+  padding-left: 0;
+  margin-right: 0.75rem;
+}
+
+.form-check-inline .form-check-input {
+  position: static;
+  margin-top: 0;
+  margin-right: 0.3125rem;
+  margin-left: 0;
+}
+
 .form-control {
   display: block;
   width: 100%;
-  height: calc(2.25rem + 2px);
+  /*height: calc(2.25rem + 2px);*/
   padding: 0.375rem 0.75rem;
   font-size: 1rem;
   line-height: 1.5;
@@ -335,7 +375,17 @@ label {
   text-align: right;
   font-weight: 600;
 }
-
+legend {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  padding: 0;
+  margin-bottom: .5rem;
+  font-size: 1.5rem;
+  line-height: inherit;
+  color: inherit;
+  white-space: normal;
+}
 html {
   font-family: "Open Sans", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   font-size: 1vw;
@@ -402,7 +452,7 @@ html {
   height: 20px;
   font-size: 1.2vw;
   background: url("../images/LogoNova.jpg") no-repeat center top;
-  padding-top: 8%;
+  padding-top: 9%;
   padding-bottom: 2%;
 }
 td,
