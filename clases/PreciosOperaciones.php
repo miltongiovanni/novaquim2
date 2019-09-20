@@ -81,14 +81,6 @@ class PreciosOperaciones
         return $result;
     }
 
-    public function getUltimoProdxCat($idCatProd)
-    {
-        $qry = "SELECT MAX(codPrecio) as Cod from precios where idCatProd=?";
-        $stmt = $this->_pdo->prepare($qry);
-        $stmt->execute(array($idCatProd));
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $result['Cod'];
-    }
     public function codigoGen($codProducto)
     {
         $qry = "SELECT codigoGen FROM prodpre WHERE codProducto=?";
