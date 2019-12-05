@@ -24,7 +24,7 @@ body {
   width: 100%;
   transition: all 0.5s;
   cursor: pointer;
-  margin: 10px;
+  margin:  0 5px 10px;
 }
 
 .button span {
@@ -64,7 +64,7 @@ body {
   width: 100%;
   transition: all 0.5s;
   cursor: pointer;
-  margin: 10px;
+  margin: 0 5px 10px;
 }
 
 .button1 span {

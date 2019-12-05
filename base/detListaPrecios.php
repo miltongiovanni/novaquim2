@@ -49,8 +49,8 @@ if ($_POST['seleccion1']) {
     $opciones_prec1 = implode(",", $precios1);
     $opciones_prec = implode(",", $precios);
     $qry = $qry . $opciones_prec;
-    $qry = $qry . " from precios, (SELECT DISTINCTROW precios.codigoGen codigo, cantMedida, codProducto FROM prodpre, precios, medida 
-    WHERE precios.codigoGen=prodpre.codigoGen and medida.idMedida=prodpre.codMedida and prodpre.presentacionActiva=0 GROUP BY codigo) as tabla  where presActiva=0 and codigoGen=codigo";
+    $qry = $qry . " from precios, (SELECT DISTINCTROW precios.codigoGen codigo, cantMedida FROM prodpre, precios, medida 
+    WHERE precios.codigoGen=prodpre.codigoGen and medida.idMedida=prodpre.codMedida and prodpre.presentacionActiva=0) as tabla  where presActiva=0 and codigoGen=codigo";
 
     //SELECCIONA EL TIPO DE PRESENTACIONES 1 PARA TODAS, 2 PARA PEQUE�AS Y 3 PARA GRANDES
     if ($Presentaciones == 1) {
@@ -65,7 +65,7 @@ if ($_POST['seleccion1']) {
         $wh = " and cantMedida>=3500";
         $presen = "Grandes";
     }
-    $qry = $qry . $wh . " order by codProducto,  cantMedida";
+    $qry = $qry . $wh . " order by codigoGen";
     //echo $qry."<br>";
 } else {
     //echo "no escogió productos de novaquim <br>";

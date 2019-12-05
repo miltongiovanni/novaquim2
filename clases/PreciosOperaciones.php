@@ -41,9 +41,8 @@ class PreciosOperaciones
     {
         $qry = "SELECT codigoGen 'Código', producto 'Descripción', CONCAT('$', FORMAT(fabrica, 0)) 'Precio Fábrica', CONCAT('$', FORMAT(distribuidor, 0)) 'Precio Distribución', 
         CONCAT('$', FORMAT(detal, 0)) 'Precio Detal', CONCAT('$', FORMAT(mayor, 0)) 'Precio Mayorista', CONCAT('$', FORMAT(super, 0)) 'Precio Super'
-        FROM precios, (SELECT DISTINCTROW precios.codigoGen codigo, cantMedida, codProducto FROM prodpre, precios, medida 
-        WHERE precios.codigoGen=prodpre.codigoGen and medida.idMedida=prodpre.codMedida and prodpre.presentacionActiva=0 GROUP BY codigo) as tabla 
-        WHERE codigoGen=codigo AND presActiva=0 ORDER BY codProducto,  cantMedida;";
+        FROM precios
+        WHERE presActiva=0";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();
         //$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -54,17 +53,20 @@ class PreciosOperaciones
     {
         $qry = "SELECT codigoGen 'Código', producto 'Descripción', fabrica 'Precio Fábrica', distribuidor 'Precio Distribución', 
         detal 'Precio Detal', mayor 'Precio Mayorista', super 'Precio Super'
-        FROM precios, (SELECT DISTINCTROW precios.codigoGen codigo, cantMedida, codProducto FROM prodpre, precios, medida 
-        WHERE precios.codigoGen=prodpre.codigoGen and medida.idMedida=prodpre.codMedida and prodpre.presentacionActiva=0 GROUP BY codigo) as tabla 
-        WHERE codigoGen=codigo AND presActiva=0 ORDER BY codProducto,  cantMedida;";
+        FROM precios 
+        WHERE presActiva=0";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();
         //$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $result = $stmt->fetchAll();
         return $result;
     }
- public function getTablePreciosPDF($qry)
+ public function getTablePreciosPDF()
     {
+        $qry = "SELECT codigoGen 'Código', producto 'Descripción', fabrica 'Precio Fábrica', distribuidor 'Precio Distribución', 
+        detal 'Precio Detal', mayor 'Precio Mayorista', super 'Precio Super'
+        FROM precios 
+        WHERE presActiva=0";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();
         //$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
