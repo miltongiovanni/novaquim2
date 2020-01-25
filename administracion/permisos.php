@@ -167,11 +167,11 @@ spl_autoload_register('cargarClases');
 			?>
 			<div class="form-group row">
 				<div class="col-1" style="text-align: center;">
-					<button class="button" style="vertical-align:middle"
+					<button class="button" 
 						onclick="return Enviar(this.form)"><span>Guardar</span></button>
 				</div>
 				<div class="col-1" style="text-align: center;">
-					<button class="button" style="vertical-align:middle" type="reset"><span>Reiniciar</span></button>
+					<button class="button"  type="reset"><span>Reiniciar</span></button>
 				</div>
 			</div>
 			
@@ -179,11 +179,11 @@ spl_autoload_register('cargarClases');
 			<input type="hidden" name="idUsuario" value="<?= $idUsuario ?>">
 		</form>
 		<div class="row">
-				<div class="col-1"><button class="button" id="back" style="vertical-align:middle"
+				<div class="col-1"><button class="button" id="back" 
 						onClick="window.location='../menu.php'">
 						<span>Terminar</span></button></div>
 			</div>
-		<!--<div align="center"><button class="button" style="vertical-align:middle" onClick="window.location='menu.php'"><span>Terminar</span></button></div>-->
+		<!--<div align="center"><button class="button"  onClick="window.location='menu.php'"><span>Terminar</span></button></div>-->
 	</div>
 	</div>
 </body>

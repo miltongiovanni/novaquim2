@@ -1,6 +1,5 @@
 <?php
 include "../includes/valAcc.php";
-include "../includes/utilTabla.php";
 function cargarClases($classname)
 {
 require '../clases/'.$classname.'.php';
@@ -54,7 +53,7 @@ spl_autoload_register('cargarClases');
                     $categorias=$manager->getCatsProd();
                     $filas=count($categorias);
                     echo '<select name="idCatProd" id="idCatProd" class="form-control col-2" onchange="idProducto(this.value);">';
-                    echo '<option selected value="">-----------------------------</option>';
+                    echo '<option disabled selected value="">-----------------------------</option>';
                     for($i=0; $i<$filas; $i++)
                         {                            
                         echo '<option value="'.$categorias[$i]["idCatProd"].'">'.$categorias[$i]['catProd'].'</option>';
@@ -92,15 +91,15 @@ spl_autoload_register('cargarClases');
             </div>
             <div class="form-group row">
                 <div class="col-1" style="text-align: center;">
-                    <button class="button" style="vertical-align:middle" onclick="return Enviar(this.form)"><span>Continuar</span></button>
+                    <button class="button"  onclick="return Enviar(this.form)"><span>Continuar</span></button>
                 </div>
                 <div class="col-1" style="text-align: center;">
-                    <button class="button" style="vertical-align:middle" type="reset"><span>Reiniciar</span></button>
+                    <button class="button"  type="reset"><span>Reiniciar</span></button>
                 </div>
             </div>
         </form>
         <div class="row">
-            <div class="col-1"><button class="button1" id="back" style="vertical-align:middle" onClick="history.back()"><span>VOLVER</span></button></div>
+            <div class="col-1"><button class="button1" id="back"  onClick="history.back()"><span>VOLVER</span></button></div>
         </div>
     </div>
 </body>

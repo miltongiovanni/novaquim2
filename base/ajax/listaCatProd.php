@@ -6,28 +6,25 @@ function cargarClases($classname)
     }
 
     spl_autoload_register('cargarClases');
-    $conn = Conectar::conexion(); 
-    $qry = "SELECT idCatProd, catProd FROM cat_prod order by idCatProd";
-    $stmt = $conn->prepare($qry);
-    $stmt->execute();
+    $CategoriaProdOperador = new CategoriasProdOperaciones();
+    $categoriasProd=$CategoriaProdOperador->getCatsProdTable();
     $titulo  = array(
         'draw' => 0,
-        'recordsTotal'    => $stmt->rowCount(),
-        'recordsFiltered' => $stmt->rowCount()
+        'recordsTotal'    => count($categoriasProd),
+        'recordsFiltered' => count($categoriasProd)
         ); 
-    while($result = $stmt->fetch(PDO::FETCH_ASSOC)){
+    for($i = 0; $i < count($categoriasProd); $i++){
         $datos[]  = array(
-            $result["idCatProd"],
-            $result["catProd"]
-    ); 
+            $categoriasProd[$i]["idCatProd"],
+            $categoriasProd[$i]["catProd"]
+        ); 
     }
+    
     $datosRetorno  = array(
         $titulo,  
         'data'    => $datos
        ); 
 
-
 print json_encode($datosRetorno);
-
 
 ?>

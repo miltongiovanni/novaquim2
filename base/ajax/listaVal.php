@@ -6,20 +6,18 @@ function cargarClases($classname)
     }
 
     spl_autoload_register('cargarClases');
-    $conn = Conectar::conexion(); 
-    $qry = "SELECT codTapa, tapa, stockTapa  FROM  tapas_val";
-    $stmt = $conn->prepare($qry);
-    $stmt->execute();
+    $TapasOperador = new TapasOperaciones();
+    $tapas=$TapasOperador->getTableTapas();
     $titulo  = array(
         'draw' => 0,
-        'recordsTotal'    => $stmt->rowCount(),
-        'recordsFiltered' => $stmt->rowCount()
+        'recordsTotal'    => count($tapas),
+        'recordsFiltered' => count($tapas)
         ); 
-    while($result = $stmt->fetch(PDO::FETCH_ASSOC)){
+    for($i = 0; $i < count($tapas); $i++){
         $datos[]  = array(
-            $result["codTapa"],
-            $result["tapa"],
-            $result["stockTapa"]
+            $tapas[$i]["codTapa"],
+            $tapas[$i]["tapa"],
+            $tapas[$i]["stockTapa"]
         ); 
     }
     $datosRetorno  = array(
@@ -27,8 +25,6 @@ function cargarClases($classname)
         'data'    => $datos
        ); 
 
-
-print json_encode($datosRetorno);
-
+    print json_encode($datosRetorno);
 
 ?>

@@ -6,26 +6,22 @@ function cargarClases($classname)
     }
 
     spl_autoload_register('cargarClases');
-    $conn = Conectar::conexion(); 
-    $qry = "SELECT codigoGen 'Código', producto 'Descripción', CONCAT('$', FORMAT(fabrica, 0)) 'Precio Fábrica', CONCAT('$', FORMAT(distribuidor, 0)) 'Precio Distribución', 
-    CONCAT('$', FORMAT(detal, 0)) 'Precio Detal', CONCAT('$', FORMAT(mayor, 0)) 'Precio Mayorista', CONCAT('$', FORMAT(super, 0)) 'Precio Super'
-    FROM precios WHERE presActiva=0;";
-    $stmt = $conn->prepare($qry);
-    $stmt->execute();
+    $PreciosOperador = new PreciosOperaciones();
+    $precios=$PreciosOperador->getTablePreciosHTML();
     $titulo  = array(
         'draw' => 0,
-        'recordsTotal'    => $stmt->rowCount(),
-        'recordsFiltered' => $stmt->rowCount()
+        'recordsTotal'    => count($precios),
+        'recordsFiltered' => count($precios)
         ); 
-    while($result = $stmt->fetch(PDO::FETCH_ASSOC)){
+    for($i = 0; $i < count($precios); $i++){
         $datos[]  = array(
-            $result["Código"],
-            $result["Descripción"],
-            $result["Precio Fábrica"],
-            $result["Precio Distribución"],
-            $result["Precio Detal"],
-            $result["Precio Mayorista"],
-            $result["Precio Super"]
+            $precios[$i]["Código"],
+            $precios[$i]["Descripción"],
+            $precios[$i]["Precio Fábrica"],
+            $precios[$i]["Precio Distribución"],
+            $precios[$i]["Precio Detal"],
+            $precios[$i]["Precio Mayorista"],
+            $precios[$i]["Precio Super"]
         ); 
     }
     $datosRetorno  = array(
@@ -33,8 +29,6 @@ function cargarClases($classname)
         'data'    => $datos
        ); 
 
-
 print json_encode($datosRetorno);
-
 
 ?>

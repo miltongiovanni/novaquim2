@@ -1,70 +1,49 @@
 <?php
-include "includes/valAcc.php";
-?>
-<?php
-include "includes/MedObj.php";
-include "includes/calcularDias.php";
+include "../includes/valAcc.php";
 
-foreach ($_POST as $nombre_campo => $valor) 
-{ 
-	$asignacion = "\$".$nombre_campo."='".$valor."';"; 
-	//echo $nombre_campo." = ".$valor."<br>";  
-	eval($asignacion); 
-}  
-//echo $cod_pres;
-$cod_pres= ($IdProducto * 100)+$IdMedida;
-$link=conectarServidor();
-$qryb="SELECT fabrica, distribuidor, detal, super, mayor from precios where codigo_ant=$IdCodAnt;";	
-$resultb=mysqli_query($link,$qryb);
-$rowb=mysqli_fetch_array($resultb);
-$fabrica=$rowb['fabrica'];
-$distribuidor=$rowb['distribuidor'];
-$detal=$rowb['detal'];
-$super=$rowb['super'];
-$mayor=$rowb['mayor'];
-mysqli_free_result($resultb);
-/* cerrar la conexi髇 */
-mysqli_close($link);
-$prodpres=new ProdPre();
-$valida=0;
-if($result=$prodpres->validarMed($cod_pres, $valida))
+// On enregistre notre autoload.
+function cargarClases($classname)
 {
-	$ruta="crearMedida.php";
-	if($valida==1)
-	{
-	    mover_pag($ruta,"C骴igo de Presentaci髇 ya existente");
-		mysql_close($link);
-	}
+    require '../clases/' . $classname . '.php';
 }
 
-if($result=$prodpres->crearMed($cod_pres,$ProdPresen, $IdProducto, $IdMedida, $IdEnvase, $IdTapa, $IdCodAnt, $Etiq, $Stock, $fabrica, $distribuidor, $detal, $mayor, $super, $Cotiza))
-{
-	//$qryinv="insert into inv_prod (Cod_prese, Nombre) values ($cod_pres,'$producto')";
-    $link=conectarServidor();
-    //$result=mysql_db_query($bd,$qryinv);
-    mysqli_close($link);//Cerrar la conexion
-	//$perfil1=$_SESSION['Perfil'];
-	$ruta="listarmed.php";
-	/******LOG DE CREACION *********/
-	//$IdUser=$_SESSION['IdUsuario'];
-	//$hh=strftime("%H:").strftime("%M:").strftime("%S");	              
-    //$Fecha=date("Y")."-".date("m")."-".date("d")." ".$hh;
-	//$qryAcces="insert into logusuarios(IdUsuario, Fecha, Motivo) values($IdUser,'$Fecha','CREACION DE CATEGORIA')";
-	//$ResutLog=mysql_db_query("users",$qryAcces);
-	/*********FIN DEL LOG CREACION*****/
-    mover_pag($ruta,"Presentaci髇 de Producto creada correctamente");
+spl_autoload_register('cargarClases');
+
+foreach ($_POST as $nombre_campo => $valor) {
+    $asignacion = "\$" . $nombre_campo . "='" . $valor . "';";
+    //echo $nombre_campo . " = " . $valor . "<br>";
+    eval($asignacion);
 }
-else{
-        $ruta="crearMedida.php";
-        mover_pag($ruta,"Error al crear la presentaci髇 de Producto");
-     }
 
+$PresentacionOperador = new PresentacionesOperaciones();
+$codPresentacion = ($codProducto * 100) + $codMedida;
+$valida = $PresentacionOperador->validarPresentacion($codPresentacion);
+if ($valida == 0) {
+    $datos = array($codPresentacion, $presentacion, $codProducto, $codMedida, $codEnvase, $codTapa, $codEtiq, $codigoGen, $stockPresentacion, 3, $cotiza, 0, $codSiigo);
+    try {
+        $lastcodPresentacion = $PresentacionOperador->makePresentacion($datos);
+        $ruta = "listarmed.php";
+        $mensaje = "Presentaci贸n creada correctamente";
 
-function mover_pag($ruta,$Mensaje){
-echo'<script language="Javascript">
-   alert("'.$Mensaje.'")
-   self.location="'.$ruta.'"
+    } catch (Exception $e) {
+        $ruta = "crearMedida.php";
+        $mensaje = "Error al crear la presentaci贸n";
+    } finally {
+        unset($conexion);
+        unset($stmt);
+        mover_pag($ruta, $mensaje);
+    }
+
+} else {
+    $ruta = "crearMedida.php";
+    $mensaje = "C贸digo de Presentaci贸n existente";
+    mover_pag($ruta, $mensaje);
+}
+
+function mover_pag($ruta, $Mensaje)
+{
+    echo '<script language="Javascript">
+   alert("' . $Mensaje . '")
+   self.location="' . $ruta . '"
    </script>';
 }
-
-?>

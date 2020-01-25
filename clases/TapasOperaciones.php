@@ -34,7 +34,7 @@ class TapasOperaciones
     }
     public function getTableTapas()
     {
-        $qry = "select codTapa as 'Código', tapa as Tapa, stockTapa as 'Stock Mínimo' from tapas_val;";
+        $qry = "select codTapa, tapa, stockTapa from tapas_val;";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();
         //$result = $stmt->fetchAll(PDO::FETCH_ASSOC);

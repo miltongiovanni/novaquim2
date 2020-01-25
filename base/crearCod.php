@@ -1,6 +1,5 @@
 <?php
 include "../includes/valAcc.php";
-include "../includes/utilTabla.php";
 function cargarClases($classname)
 {
 require '../clases/'.$classname.'.php';
@@ -54,7 +53,7 @@ spl_autoload_register('cargarClases');
                     $productos = $ProductoOperador->getProductos(true);
                     $filas = count($productos);
                     echo '<select name="codProducto" class="form-control col-2" onchange="idProducto(this.value);">';
-                    echo '<option selected value="">-----------------------------</option>';
+                    echo '<option selected disabled value="">-----------------------------</option>';
                     for ($i = 0; $i < $filas; $i++) {
                         echo '<option value="' . $productos[$i]["codProducto"] . '">' . $productos[$i]['nomProducto'] . '</option>';
                     }
@@ -72,7 +71,7 @@ spl_autoload_register('cargarClases');
                     $medidas = $MedidaOperador->getMedidas();
                     $filas = count($medidas);
                     echo '<select name="medida" class="form-control col-2" >';
-                    echo '<option selected value="">-----------------------------</option>';
+                    echo '<option selected disabled value="">-----------------------------</option>';
                     for ($i = 0; $i < $filas; $i++) {
                         echo '<option value="' . $medidas[$i]["idMedida"].','.  $medidas[$i]["desMedida"] . '">' . $medidas[$i]['desMedida'] . '</option>';
                     }
@@ -86,10 +85,10 @@ spl_autoload_register('cargarClases');
             </div>
             <div class="form-group row">
                 <div class="col-1" style="text-align: center;">
-                    <button class="button" style="vertical-align:middle" onclick="return Enviar(this.form)"><span>Continuar</span></button>
+                    <button class="button"  onclick="return Enviar(this.form)"><span>Continuar</span></button>
                 </div>
                 <div class="col-1" style="text-align: center;">
-                    <button class="button" style="vertical-align:middle" type="reset"><span>Reiniciar</span></button>
+                    <button class="button"  type="reset"><span>Reiniciar</span></button>
                 </div>
             </div>
 

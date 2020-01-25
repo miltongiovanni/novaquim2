@@ -40,13 +40,8 @@ class UsuariosOperaciones
     }
     public function getTableUsers()
     {
-        $qry = "SELECT usuarios.idUsuario 'Id Usuario', usuarios.Nombre AS 'Nombre del Usuario',
-        usuarios.Apellido AS 'Apellidos del Usuario',
-        usuarios.Usuario, usuarios.FecCrea AS 'Fecha de Creación',
-        estados_usuarios.Descripcion AS 'Estado',	perfiles.Descripcion AS 'Perfil'
-        FROM usuarios,perfiles, estados_usuarios
-        WHERE usuarios.EstadoUsuario=estados_usuarios.IdEstado AND EstadoUsuario<=2
-        AND usuarios.IdPerfil=perfiles.IdPerfil ORDER BY usuarios.IdUsuario";
+        $qry = "SELECT idUsuario, nombre, apellido, usuario, estadoUsuario, usuarios.idPerfil, perfiles.descripcion perfil, estados_usuarios.descripcion estado, fecCrea, fecCambio 
+        FROM usuarios, perfiles, estados_usuarios WHERE usuarios.idPerfil=perfiles.idPerfil AND estadoUsuario=idEstado AND estadoUsuario=2 ORDER BY idUsuario;";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();
         //$result = $stmt->fetchAll(PDO::FETCH_ASSOC);

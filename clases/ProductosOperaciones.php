@@ -39,7 +39,7 @@ class ProductosOperaciones
     }
     public function getTableProductos()
     {
-        $qry = "SELECT codProducto  'Código', nomProducto  'Producto', catProd  'Categoría', densMin  'Dens Min', densMax  'Dens Max', pHmin  'pH Min', pHmax  'pH Max', fragancia  Fragancia, color  Color, apariencia Apariencia
+        $qry = "SELECT codProducto, nomProducto, catProd, densMin, densMax, pHmin, pHmax, fragancia, color, apariencia
         FROM  productos, cat_prod
         WHERE productos.idCatProd=cat_prod.idCatProd and prodActivo=0
         ORDER BY codProducto;";

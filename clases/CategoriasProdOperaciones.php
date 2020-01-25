@@ -42,7 +42,7 @@ class CategoriasProdOperaciones
 
     public function getCatsProdTable()
     {
-        $qry = "SELECT idCatProd as 'Código', catProd as 'Categoría' FROM cat_prod order by idCatProd";
+        $qry = "SELECT idCatProd, catProd FROM cat_prod order by idCatProd";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();
         $result = $stmt->fetchAll();

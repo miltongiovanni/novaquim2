@@ -34,7 +34,7 @@ class EtiquetasOperaciones
     }
     public function getTableEtiquetas()
     {
-        $qry = "select codEtiqueta as 'Código', nomEtiqueta as Etiqueta, stockEtiqueta as 'Stock Mínimo' from etiquetas;";
+        $qry = "select codEtiqueta, nomEtiqueta, stockEtiqueta from etiquetas;";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();
         //$result = $stmt->fetchAll(PDO::FETCH_ASSOC);

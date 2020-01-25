@@ -6,31 +6,26 @@ function cargarClases($classname)
     }
 
     spl_autoload_register('cargarClases');
-    $conn = Conectar::conexion(); 
-    $qry = "SELECT codProducto, nomProducto, catProd, densMin, densMax, pHmin, pHmax, fragancia, color, apariencia 
-    FROM  productos, cat_prod
-    WHERE productos.idCatProd=cat_prod.idCatProd and prodActivo=0
-    ORDER BY codProducto;";
-    $stmt = $conn->prepare($qry);
-    $stmt->execute();
+    $ProductosOperador = new ProductosOperaciones();
+    $productos=$ProductosOperador->getTableProductos();
     $titulo  = array(
         'draw' => 0,
-        'recordsTotal'    => $stmt->rowCount(),
-        'recordsFiltered' => $stmt->rowCount()
+        'recordsTotal'    => count($productos),
+        'recordsFiltered' => count($productos)
         ); 
-    while($result = $stmt->fetch(PDO::FETCH_ASSOC)){
+    for($i = 0; $i < count($productos); $i++){
         $datos[]  = array(
-            $result["codProducto"],
-            $result["nomProducto"],
-            $result["catProd"],
-            $result["densMin"],
-            $result["densMax"],
-            $result["pHmin"],
-            $result["pHmax"],
-            $result["fragancia"],
-            $result["color"],
-            $result["apariencia"]
-    ); 
+            $productos[$i]["codProducto"],
+            $productos[$i]["nomProducto"],
+            $productos[$i]["catProd"],
+            $productos[$i]["densMin"],
+            $productos[$i]["densMax"],
+            $productos[$i]["pHmin"],
+            $productos[$i]["pHmax"],
+            $productos[$i]["fragancia"],
+            $productos[$i]["color"],
+            $productos[$i]["apariencia"]
+        ); 
     }
     $datosRetorno  = array(
         $titulo,  

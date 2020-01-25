@@ -34,11 +34,11 @@ class MPrimasOperaciones
     }
     public function getTableMPrimas()
     {
-        $qry = "SELECT codMPrima as 'Código', nomMPrima as 'Materia Prima', aliasMPrima Alias, catMP as 'Tipo de Materia Prima', minStockMprima as 'Stock Mínimo', 
-        aparienciaMPrima Apariencia, olorMPrima Olor, colorMPrima Color, pHmPrima pH, densidadMPrima Densidad, codMPrimaAnt 'Código ant'
+        $qry = "SELECT codMPrima, nomMPrima, aliasMPrima, catMP, minStockMprima, 
+        aparienciaMPrima, olorMPrima, colorMPrima, pHmPrima, densidadMPrima, codMPrimaAnt
         FROM  mprimas, cat_mp
         WHERE idCatMprima=idCatMP
-        ORDER BY Código;";
+        ORDER BY codMPrima;";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();
         //$result = $stmt->fetchAll(PDO::FETCH_ASSOC);

@@ -61,18 +61,18 @@ include "../includes/valAcc.php";
     <div class="row" style="justify-content: right;">
 			<div class="col-2">
 				<form action="XlsListaPrecios.php" method="post" target="_blank">
-					<button class="button" type="submit" style="vertical-align:middle">
+					<button class="button" type="submit" >
 						<span><STRONG>Exportar a Excel</STRONG></span></button>
         </form>
       </div>
       <div class="col-2">
         <form action="selListaPrecios.php" method="post" target="_blank">
-					<button class="button" type="submit" style="vertical-align:middle">
+					<button class="button" type="submit" >
 						<span><STRONG>Imprimir Lista de Precios</STRONG></span></button>
 				</form>
 			</div>
 			<div class="col-1">
-				<button class="button" style="vertical-align:middle" onclick="window.location='../menu.php'">
+				<button class="button"  onclick="window.location='../menu.php'">
 					<span><STRONG>Ir al Menú</STRONG></span></button>
 			</div>
     </div>
@@ -90,7 +90,7 @@ include "../includes/valAcc.php";
         </thead>
 	</table>
 	<div class="row">
-		<div class="col-1"><button class="button" style="vertical-align:middle"
+		<div class="col-1"><button class="button" 
 		onclick="window.location='../menu.php'">
 		<span><STRONG>Ir al Menú</STRONG></span></button></div>
     </div>

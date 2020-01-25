@@ -97,7 +97,7 @@ if ($_POST['seleccion1']) {
                         <input name="query" type="hidden" value="<?php echo $qry; ?>">
                         <input name="opciones_prec1" type="hidden" value="<?php echo $opciones_prec1; ?>">
 
-                        <button class="button" style="vertical-align:middle" onclick="return Enviar(this.form)">
+                        <button class="button"  onclick="return Enviar(this.form)">
                         <span>Imprimir Lista</span></button>
                         
                 </form>
@@ -105,7 +105,7 @@ if ($_POST['seleccion1']) {
 
         </div>
         <div class="row form-group">
-            <div class="col-1"><button class="button" style="vertical-align:middle"
+            <div class="col-1"><button class="button" 
                     onclick="window.location='../menu.php'">
                     <span><STRONG>Ir al Menú</STRONG></span></button></div>
         </div>

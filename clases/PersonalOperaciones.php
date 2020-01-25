@@ -42,7 +42,7 @@ class PersonalOperaciones
     }
     public function getTablePersonal()
     {
-        $qry = "SELECT idPersonal as Id, nomPersonal as Nombre, celPersonal as Celular, emlPersonal AS 'Correo electrónico', area as 'Área', cargo as Cargo 
+        $qry = "SELECT idPersonal, nomPersonal, celPersonal, emlPersonal, area, cargo 
         from personal, areas_personal, cargos_personal
         wHERE areaPersonal=idArea and activoPersonal=1 AND cargoPersonal=idCargo order by idPersonal";
         $stmt = $this->_pdo->prepare($qry);

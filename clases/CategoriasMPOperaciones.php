@@ -42,7 +42,7 @@ class CategoriasMPOperaciones
 
     public function getCatsMPTable()
     {
-        $qry = "SELECT idCatMP as 'Código', catMP as 'Categoría' FROM cat_mp order by idCatMP";
+        $qry = "SELECT idCatMP, catMP FROM cat_mp order by idCatMP";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();
         $result = $stmt->fetchAll();

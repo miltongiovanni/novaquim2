@@ -35,16 +35,16 @@ $categoriaDis = $catsDisOperador->getCatDis($idCatDis);
       </div>
       <div class="form-group row">
         <div class="col-1" style="text-align: center;">
-          <button class="button" style="vertical-align:middle"
+          <button class="button" 
             onclick="return Enviar(this.form)"><span>Continuar</span></button>
         </div>
         <div class="col-1" style="text-align: center;">
-          <button class="button" style="vertical-align:middle" type="reset"><span>Reiniciar</span></button>
+          <button class="button"  type="reset"><span>Reiniciar</span></button>
         </div>
       </div>
     </form>
     <div class="row">
-      <div class="col-1"><button class="button1" id="back" style="vertical-align:middle" onClick="history.back()">
+      <div class="col-1"><button class="button1" id="back"  onClick="history.back()">
           <span>VOLVER</span></button></div>
     </div>
   </div>

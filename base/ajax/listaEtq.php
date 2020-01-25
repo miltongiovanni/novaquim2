@@ -6,20 +6,18 @@ function cargarClases($classname)
     }
 
     spl_autoload_register('cargarClases');
-    $conn = Conectar::conexion(); 
-    $qry = "SELECT codEtiqueta, nomEtiqueta, stockEtiqueta  FROM  etiquetas";
-    $stmt = $conn->prepare($qry);
-    $stmt->execute();
+    $EtiquetasOperador = new EtiquetasOperaciones();
+    $etiquetas=$EtiquetasOperador->getTableEtiquetas();
     $titulo  = array(
         'draw' => 0,
-        'recordsTotal'    => $stmt->rowCount(),
-        'recordsFiltered' => $stmt->rowCount()
+        'recordsTotal'    => count($etiquetas),
+        'recordsFiltered' => count($etiquetas)
         ); 
-    while($result = $stmt->fetch(PDO::FETCH_ASSOC)){
+    for($i = 0; $i < count($etiquetas); $i++){
         $datos[]  = array(
-            $result["codEtiqueta"],
-            $result["nomEtiqueta"],
-            $result["stockEtiqueta"]
+            $etiquetas[$i]["codEtiqueta"],
+            $etiquetas[$i]["nomEtiqueta"],
+            $etiquetas[$i]["stockEtiqueta"]
         ); 
     }
     $datosRetorno  = array(
@@ -27,8 +25,6 @@ function cargarClases($classname)
         'data'    => $datos
        ); 
 
-
 print json_encode($datosRetorno);
-
 
 ?>

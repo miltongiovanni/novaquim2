@@ -34,7 +34,7 @@ class EnvasesOperaciones
     }
     public function getTableEnvases()
     {
-        $qry = "select codEnvase as 'Código', nomEnvase as Envase, stockEnvase as 'Stock Mínimo' from envases;";
+        $qry = "select codEnvase, nomEnvase, stockEnvase from envases;";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();
         //$result = $stmt->fetchAll(PDO::FETCH_ASSOC);

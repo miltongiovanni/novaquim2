@@ -58,7 +58,7 @@ include "../includes/valAcc.php";
     <div id="saludo1"><strong>LISTADO DE MATERIAS PRIMAS</strong></div>
     <div class="row" style="justify-content: right;">
       <div class="col-1">
-        <button class="button" style="vertical-align:middle" onclick="window.location='../menu.php'">
+        <button class="button"  onclick="window.location='../menu.php'">
           <span><STRONG>Ir al Menú</STRONG></span></button>
       </div>
     </div>
@@ -80,7 +80,7 @@ include "../includes/valAcc.php";
         </thead>
     	</table>
     <div class="row">
-      <div class="col-1"><button class="button" style="vertical-align:middle" onclick="window.location='../menu.php'">
+      <div class="col-1"><button class="button"  onclick="window.location='../menu.php'">
           <span><STRONG>Ir al Menú</STRONG></span></button></div>
     </div>
 

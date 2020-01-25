@@ -62,7 +62,7 @@ include "../includes/valAcc.php";
       <h4>LISTADO DE USUARIOS ACTIVOS</h4>
     </div>
     <div class="row" style="justify-content: right;">
-      <div class="col-1"><button class="button" style="vertical-align:middle" onclick="window.location='../menu.php'">
+      <div class="col-1"><button class="button"  onclick="window.location='../menu.php'">
           <span><STRONG>Ir al Menú</STRONG></span></button></div>
     </div>
     <table id="example" class="display compact formatoDatos" style="width:100%">
@@ -95,7 +95,7 @@ include "../includes/valAcc.php";
     ?>
 
     <div class="row">
-      <div class="col-1"><button class="button" style="vertical-align:middle" onclick="window.location='../menu.php'">
+      <div class="col-1"><button class="button"  onclick="window.location='../menu.php'">
           <span><STRONG>Ir al Menú</STRONG></span></button></div>
     </div>
   </div>

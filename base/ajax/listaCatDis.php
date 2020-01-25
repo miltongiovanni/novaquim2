@@ -6,20 +6,18 @@ function cargarClases($classname)
     }
 
     spl_autoload_register('cargarClases');
-    $conn = Conectar::conexion(); 
-    $qry = "SELECT idCatDis, catDis FROM cat_dis order by idCatDis";
-    $stmt = $conn->prepare($qry);
-    $stmt->execute();
+    $CategoriaDisOperador = new CategoriasDisOperaciones();
+    $categoriasDis=$CategoriaDisOperador->getCatsDisTable();
     $titulo  = array(
         'draw' => 0,
-        'recordsTotal'    => $stmt->rowCount(),
-        'recordsFiltered' => $stmt->rowCount()
+        'recordsTotal'    => count($categoriasDis),
+        'recordsFiltered' => count($categoriasDis)
         ); 
-    while($result = $stmt->fetch(PDO::FETCH_ASSOC)){
+    for($i = 0; $i < count($categoriasDis); $i++){
         $datos[]  = array(
-            $result["idCatDis"],
-            $result["catDis"]
-    ); 
+            $categoriasDis[$i]["idCatDis"],
+            $categoriasDis[$i]["catDis"]
+        ); 
     }
     $datosRetorno  = array(
         $titulo,  

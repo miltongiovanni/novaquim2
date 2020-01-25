@@ -11,12 +11,23 @@ class PresentacionesOperaciones
     public function makePresentacion($datos)
     {
         /*Preparo la insercion */
-        $qry = "INSERT INTO prodpre VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?, 365)";
+        $qry = "INSERT INTO prodpre VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?, ?, ?)";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute($datos);
         return $this->_pdo->lastInsertId();
     }
-    
+    public function validarPresentacion($codPresentacion)
+	{
+		$valida = 0;
+        $qry="select * from prodpre where codPresentacion=?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($codPresentacion));
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+		if ($result['codPresentacion']>0){
+            $valida=1;
+        }
+		return $valida;
+    }
     public function deletePresentacion($codPresentacion)
     {
         $qry = "DELETE FROM prodpre WHERE codPresentacion= ?";
@@ -27,9 +38,9 @@ class PresentacionesOperaciones
     public function getPresentaciones($actif)
     {
         if ($actif == true) {
-            $qry = "SELECT codPresentacion, nomPresentacion FROM prodpre WHERE prodActivo=0 ORDER BY nomPresentacion;";
+            $qry = "SELECT codPresentacion, presentacion FROM prodpre WHERE presentacionActiva=0 ORDER BY presentacion;";
         } else {
-            $qry = "SELECT codPresentacion, nomPresentacion FROM prodpre ORDER BY nomPresentacion;";
+            $qry = "SELECT codPresentacion, presentacion FROM prodpre  WHERE presentacionActiva=1 ORDER BY presentacion;";
         }
 
         $stmt = $this->_pdo->prepare($qry);
@@ -39,8 +50,7 @@ class PresentacionesOperaciones
     }
     public function getTablePresentaciones()
     {
-        $qry = "SELECT codPresentacion AS 'Código', presentacion as 'Presentación',
-        desMedida as 'Medida', nomEnvase as 'Envase', tapa as 'Tapa', codigoGen as 'Código Anterior'  
+        $qry = "SELECT codPresentacion, presentacion, desMedida, nomEnvase, tapa , codigoGen, CONCAT ('003000', codSiigo) coSiigo   
         FROM prodpre, medida, envases, tapas_val, productos
         where medida.IdMedida=prodpre.codMedida and productos.codProducto=prodpre.codProducto
         and prodpre.codEnvase=envases.codEnvase and prodpre.codTapa=tapas_val.codTapa and prodActivo=0 and presentacionActiva=0
@@ -54,9 +64,11 @@ class PresentacionesOperaciones
 
     public function getPresentacion($codPresentacion)
     {
-        $qry = "SELECT codPresentacion, nomPresentacion, catProd, prodpre.idCatProd, prodActivo, densMin, densMax, pHmin, pHmax, fragancia, color, apariencia
-        FROM  prodpre, cat_prod
-        WHERE prodpre.idCatProd=cat_prod.idCatProd AND codPresentacion=?";
+        $qry = "SELECT codPresentacion, presentacion, prodpre.codProducto, nomProducto, codMedida, desMedida, prodpre.codEnvase, nomEnvase, 
+        prodpre.codTapa, tapa, codEtiq, nomEtiqueta, prodpre.codigoGen, producto, stockPresentacion, cotiza, presentacionActiva, codSiigo
+        FROM prodpre, productos, medida, envases, tapas_val, etiquetas, precios
+        WHERE prodpre.codProducto=productos.codProducto AND codMedida=idMedida AND prodpre.codEnvase=envases.codEnvase AND prodpre.codTapa=tapas_val.codTapa AND 
+        codEtiq=codEtiqueta AND prodpre.codigoGen = precios.codigoGen  AND codPresentacion=?";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute(array($codPresentacion));
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -75,10 +87,18 @@ class PresentacionesOperaciones
 
     public function updatePresentacion($datos)
     {                                      
-        $qry = "UPDATE prodpre SET nomPresentacion=?, idCatProd=?, prodActivo=?, densMin=?, densMax=?, pHmin=?,  pHmax=?, fragancia=?, color=?, apariencia=? WHERE codPresentacion=?";
+        $qry = "UPDATE prodpre SET presentacion=?, codEnvase=?, codTapa=?, codEtiq=?,  codigoGen=?, stockPresentacion=?, cotiza=? WHERE codPresentacion=?";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute($datos);
     }
+
+    public function activarDesactivarPresentacion($datos)
+    {                                      
+        $qry = "UPDATE prodpre SET presentacionActiva=? WHERE codPresentacion=?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute($datos);
+    }
+
 
     public function setDb()
     {

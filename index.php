@@ -35,10 +35,10 @@
       </div>
       <div class="form-group row">
         <div class="col-1" style="text-align: center;">
-          <button class="button" style="vertical-align:middle" onclick="return Enviar(this.form)"><span>Continuar</span></button>
+          <button class="button"  onclick="return Enviar(this.form)"><span>Continuar</span></button>
         </div>
         <div class="col-1" style="text-align: center;">
-          <button class="button" style="vertical-align:middle" type="reset"><span>Reiniciar</span></button>
+          <button class="button"  type="reset"><span>Reiniciar</span></button>
         </div>
       </div>
 

@@ -6,20 +6,18 @@ function cargarClases($classname)
     }
 
     spl_autoload_register('cargarClases');
-    $conn = Conectar::conexion(); 
-    $qry = "SELECT codEnvase, nomEnvase , stockEnvase FROM envases ORDER BY nomEnvase;";
-    $stmt = $conn->prepare($qry);
-    $stmt->execute();
+    $EnvasesOperador = new EnvasesOperaciones();
+    $envases=$EnvasesOperador->getTableEnvases();
     $titulo  = array(
         'draw' => 0,
-        'recordsTotal'    => $stmt->rowCount(),
-        'recordsFiltered' => $stmt->rowCount()
+        'recordsTotal'    => count($envases),
+        'recordsFiltered' => count($envases)
         ); 
-    while($result = $stmt->fetch(PDO::FETCH_ASSOC)){
+    for($i = 0; $i < count($envases); $i++){
         $datos[]  = array(
-            $result["codEnvase"],
-            $result["nomEnvase"],
-            $result["stockEnvase"]
+            $envases[$i]["codEnvase"],
+            $envases[$i]["nomEnvase"],
+            $envases[$i]["stockEnvase"]
         ); 
     }
     $datosRetorno  = array(
@@ -27,8 +25,6 @@ function cargarClases($classname)
         'data'    => $datos
        ); 
 
-
 print json_encode($datosRetorno);
-
 
 ?>

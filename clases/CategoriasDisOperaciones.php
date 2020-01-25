@@ -42,7 +42,7 @@ class CategoriasDisOperaciones
 
     public function getCatsDisTable()
     {
-        $qry = "SELECT idCatDis as 'Código', catDis as 'Categoría' FROM cat_dis order by idCatDis";
+        $qry = "SELECT idCatDis, catDis FROM cat_dis order by idCatDis";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();
         $result = $stmt->fetchAll();

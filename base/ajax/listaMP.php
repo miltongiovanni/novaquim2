@@ -6,32 +6,27 @@ function cargarClases($classname)
     }
 
     spl_autoload_register('cargarClases');
-    $conn = Conectar::conexion(); 
-    $qry = "SELECT codMPrima, nomMPrima, aliasMPrima, catMP, minStockMprima, aparienciaMPrima, olorMPrima, colorMPrima, pHmPrima, densidadMPrima, codMPrimaAnt 
-    FROM  mprimas, cat_mp
-    WHERE idCatMprima=idCatMP
-    ORDER BY codMPrima;";
-    $stmt = $conn->prepare($qry);
-    $stmt->execute();
+    $MPrimasOperador = new MPrimasOperaciones();
+    $mPrimas=$MPrimasOperador->getTableMPrimas();
     $titulo  = array(
         'draw' => 0,
-        'recordsTotal'    => $stmt->rowCount(),
-        'recordsFiltered' => $stmt->rowCount()
+        'recordsTotal'    => count($mPrimas),
+        'recordsFiltered' => count($mPrimas)
         ); 
-    while($result = $stmt->fetch(PDO::FETCH_ASSOC)){
+    for($i = 0; $i < count($mPrimas); $i++){
         $datos[]  = array(
-            $result["codMPrima"],
-            $result["nomMPrima"],
-            $result["aliasMPrima"],
-            $result["catMP"],
-            $result["minStockMprima"],
-            $result["aparienciaMPrima"],
-            $result["olorMPrima"],
-            $result["colorMPrima"],
-            $result["pHmPrima"],
-            $result["densidadMPrima"],
-            $result["codMPrimaAnt"]
-    ); 
+            $mPrimas[$i]["codMPrima"],
+            $mPrimas[$i]["nomMPrima"],
+            $mPrimas[$i]["aliasMPrima"],
+            $mPrimas[$i]["catMP"],
+            $mPrimas[$i]["minStockMprima"],
+            $mPrimas[$i]["aparienciaMPrima"],
+            $mPrimas[$i]["olorMPrima"],
+            $mPrimas[$i]["colorMPrima"],
+            $mPrimas[$i]["pHmPrima"],
+            $mPrimas[$i]["densidadMPrima"],
+            $mPrimas[$i]["codMPrimaAnt"]
+        ); 
     }
     $datosRetorno  = array(
         $titulo,  

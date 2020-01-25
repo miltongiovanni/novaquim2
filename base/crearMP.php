@@ -52,7 +52,7 @@ spl_autoload_register('cargarClases');
                     $categorias=$manager->getCatsMP();
                     $filas=count($categorias);
                     echo '<select name="idCatMPrima" id="idCatMPrima" class="form-control col-2" onchange="codigoMP(this.value)">';
-                    echo '<option selected value="">-----------------------------</option>';
+                    echo '<option selected disabled value="">-----------------------------</option>';
                     for($i=0; $i<$filas; $i++)
                         {                            
                         echo '<option value="'.$categorias[$i]["idCatMP"].'">'.$categorias[$i]['catMP'].'</option>';
@@ -82,7 +82,7 @@ spl_autoload_register('cargarClases');
                     $tasas=$manager->getTasasIva();
                     $filas=count($tasas);
                     echo '<select name="codIva" id="codIva" class="form-control col-2">';
-                    echo '<option selected value="">-----------------------------</option>';
+                    echo '<option selected disabled value="">-----------------------------</option>';
                     for($i=0; $i<$filas; $i++)
                         {                            
                         echo '<option value="'.$tasas[$i]["idTasaIva"].'">'.$tasas[$i]['tasaIva'].'</option>';
@@ -108,17 +108,17 @@ spl_autoload_register('cargarClases');
                 
             <div class="form-group row">
                 <div class="col-1" style="text-align: center;">
-                    <button class="button" style="vertical-align:middle"
+                    <button class="button" 
                         onclick="return Enviar(this.form)"><span>Continuar</span></button>
                 </div>
                 <div class="col-1" style="text-align: center;">
-                    <button class="button" style="vertical-align:middle" type="reset"><span>Reiniciar</span></button>
+                    <button class="button"  type="reset"><span>Reiniciar</span></button>
                 </div>
             </div>
 
         </form>
         <div class="row">
-            <div class="col-1"><button class="button1" id="back" style="vertical-align:middle" onClick="history.back()"><span>VOLVER</span></button></div>
+            <div class="col-1"><button class="button1" id="back"  onClick="history.back()"><span>VOLVER</span></button></div>
         </div>
         
     </div>

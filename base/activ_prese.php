@@ -1,9 +1,13 @@
 <?php
-include "includes/valAcc.php";
-?>
-<?php
-include "includes/MedObj.php";
-include "includes/calcularDias.php";
+include "../includes/valAcc.php";
+
+// On enregistre notre autoload.
+function cargarClases($classname)
+{
+    require '../clases/' . $classname . '.php';
+}
+
+spl_autoload_register('cargarClases');
 
 foreach ($_POST as $nombre_campo => $valor) 
 { 
@@ -11,21 +15,24 @@ foreach ($_POST as $nombre_campo => $valor)
 	//echo $nombre_campo." = ".$valor."<br>";  
 	eval($asignacion); 
 }  
-$link=conectarServidor();
-$qryb="update prodpre set pres_activo=0 where Cod_prese=$IdProdPre;";	
-$resultb=mysqli_query($link,$qryb);
 
-if($resultb)
-{
-	$ruta="listarmed.php";
-    mover_pag($ruta,"PresentaciÛn Actualizada correctamente");
+$datos = array( 0, $codPresentacion);
+$PresentacionOperador = new PresentacionesOperaciones();
+
+try {
+	$PresentacionOperador->activarDesactivarPresentacion($datos);
+	$ruta = "listarmed.php";
+	$mensaje =  "Presentaci√≥n activada correctamente";
+	
+} catch (Exception $e) {
+	$ruta = "buscarMed1.php";
+	$mensaje = "Error al activar la presentaci√≥n";
+} finally {
+	unset($conexion);
+	unset($stmt);
+	mover_pag($ruta, $mensaje);
 }
-else
-{
-	$ruta="buscarMed1.php";
-	mover_pag($ruta,"Error al Actualizar la PresentaciÛn del Producto");
-}
-mysqli_close($link);//Cerrar la conexion
+
 function mover_pag($ruta,$Mensaje)
 {
 	echo'<script language="Javascript">
@@ -33,4 +40,3 @@ function mover_pag($ruta,$Mensaje)
    	self.location="'.$ruta.'"
    	</script>';
 }
-?>

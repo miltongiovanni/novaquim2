@@ -6,28 +6,24 @@ function cargarClases($classname)
     }
 
     spl_autoload_register('cargarClases');
-    $conn = Conectar::conexion(); 
-    $qry = "SELECT idCatMP, catMP FROM cat_mp order by idCatMP";
-    $stmt = $conn->prepare($qry);
-    $stmt->execute();
+    $CategoriaMPOperador = new CategoriasMPOperaciones();
+    $categoriasMP=$CategoriaMPOperador->getCatsMPTable();
     $titulo  = array(
         'draw' => 0,
-        'recordsTotal'    => $stmt->rowCount(),
-        'recordsFiltered' => $stmt->rowCount()
+        'recordsTotal'    => count($categoriasMP),
+        'recordsFiltered' => count($categoriasMP)
         ); 
-    while($result = $stmt->fetch(PDO::FETCH_ASSOC)){
+    for($i = 0; $i < count($categoriasMP); $i++){
         $datos[]  = array(
-            $result["idCatMP"],
-            $result["catMP"]
-    ); 
+            $categoriasMP[$i]["idCatMP"],
+            $categoriasMP[$i]["catMP"]
+        ); 
     }
+
     $datosRetorno  = array(
         $titulo,  
         'data'    => $datos
        ); 
-
-
-print json_encode($datosRetorno);
-
+       print json_encode($datosRetorno);
 
 ?>

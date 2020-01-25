@@ -24,7 +24,7 @@ function buscarCatProdForm($action)
 
     $rep .= '</div>
     <div class="row form-group">
-    <div class="col-1"><button class="button" style="vertical-align:middle" onclick="return Enviar(this.form)">
+    <div class="col-1"><button class="button"  onclick="return Enviar(this.form)">
             <span>Continuar</span></button></div>
     </div>
     </form>';
@@ -48,7 +48,7 @@ function buscarCatMPForm($action)
 
     $rep .= '</div>
     <div class="row form-group">
-    <div class="col-1"><button class="button" style="vertical-align:middle" onclick="return Enviar(this.form)">
+    <div class="col-1"><button class="button"  onclick="return Enviar(this.form)">
             <span>Continuar</span></button></div>
     </div>
     </form>';
@@ -72,7 +72,7 @@ function buscarCatDisForm($action)
 
     $rep .= '</div>
     <div class="row form-group">
-    <div class="col-1"><button class="button" style="vertical-align:middle" onclick="return Enviar(this.form)">
+    <div class="col-1"><button class="button"  onclick="return Enviar(this.form)">
             <span>Continuar</span></button></div>
     </div>
     </form>';
@@ -96,7 +96,7 @@ function buscarProductoForm($action, $actif)
 
     $rep .= '</div>
         <div class="row form-group">
-        <div class="col-1"><button class="button" style="vertical-align:middle" onclick="return Enviar(this.form)">
+        <div class="col-1"><button class="button"  onclick="return Enviar(this.form)">
                 <span>Continuar</span></button></div>
         </div>
         </form>';
@@ -120,7 +120,7 @@ function buscarMPrimaForm($action)
 
     $rep .= '</div>
         <div class="row form-group">
-        <div class="col-1"><button class="button" style="vertical-align:middle" onclick="return Enviar(this.form)">
+        <div class="col-1"><button class="button"  onclick="return Enviar(this.form)">
                 <span>Continuar</span></button></div>
         </div>
         </form>';
@@ -144,7 +144,7 @@ function buscarEtiquetaForm($action)
 
     $rep .= '</div>
         <div class="row form-group">
-        <div class="col-1"><button class="button" style="vertical-align:middle" onclick="return Enviar(this.form)">
+        <div class="col-1"><button class="button"  onclick="return Enviar(this.form)">
                 <span>Continuar</span></button></div>
         </div>
         </form>';
@@ -168,7 +168,7 @@ function buscarTapaForm($action)
 
     $rep .= '</div>
         <div class="row form-group">
-        <div class="col-1"><button class="button" style="vertical-align:middle" onclick="return Enviar(this.form)">
+        <div class="col-1"><button class="button"  onclick="return Enviar(this.form)">
                 <span>Continuar</span></button></div>
         </div>
         </form>';
@@ -192,7 +192,7 @@ function buscarEnvaseForm($action)
 
     $rep .= '</div>
         <div class="row form-group">
-        <div class="col-1"><button class="button" style="vertical-align:middle" onclick="return Enviar(this.form)">
+        <div class="col-1"><button class="button"  onclick="return Enviar(this.form)">
                 <span>Continuar</span></button></div>
         </div>
         </form>';
@@ -216,7 +216,31 @@ function buscarPrecioForm($action, $actif)
 
     $rep .= '</div>
         <div class="row form-group">
-        <div class="col-1"><button class="button" style="vertical-align:middle" onclick="return Enviar(this.form)">
+        <div class="col-1"><button class="button"  onclick="return Enviar(this.form)">
+                <span>Continuar</span></button></div>
+        </div>
+        </form>';
+    return $rep;
+}
+
+function buscarPresentacionForm($action, $actif)
+{
+
+    $rep = '<form id="form1" name="form1" method="post" action="' . $action . '">
+        <div class="form-group row"><label class="col-form-label col-1" for="combo"><strong>Producto</strong></label>';
+    $PresentacionOperador = new PresentacionesOperaciones();
+    $presentaciones = $PresentacionOperador->getPresentaciones($actif);
+    $filas = count($presentaciones);
+    $rep .= '<select name="codPresentacion" class="form-control col-3">';
+    $rep .= '<option selected value="">----------------------------------------------------</option>';
+    for ($i = 0; $i < $filas; $i++) {
+        $rep .= '<option value="' . $presentaciones[$i]["codPresentacion"] . '">' . $presentaciones[$i]['presentacion'] . '</option>';
+    }
+    $rep .= '</select>';
+
+    $rep .= '</div>
+        <div class="row form-group">
+        <div class="col-1"><button class="button"  onclick="return Enviar(this.form)">
                 <span>Continuar</span></button></div>
         </div>
         </form>';

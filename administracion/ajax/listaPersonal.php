@@ -6,34 +6,28 @@ function cargarClases($classname)
     }
 
     spl_autoload_register('cargarClases');
-    $conn = Conectar::conexion(); 
-    $qry = "SELECT idPersonal, nomPersonal, celPersonal, emlPersonal, areas_personal.area, cargo 
-    FROM personal, areas_personal, cargos_personal
-    wHERE areaPersonal=idArea AND activoPersonal=1 AND cargoPersonal=idCargo ORDER BY idPersonal";
-    $stmt = $conn->prepare($qry);
-    $stmt->execute();
+    $PersonalOperador = new PersonalOperaciones();
+	$personal=$PersonalOperador->getTablePersonal();
     $titulo  = array(
         'draw' => 0,
-        'recordsTotal'    => $stmt->rowCount(),
-        'recordsFiltered' => $stmt->rowCount()
+        'recordsTotal'    => count($personal),
+        'recordsFiltered' => count($personal)
         ); 
-    while($result = $stmt->fetch(PDO::FETCH_ASSOC)){
+    for($i = 0; $i < count($personal); $i++){
         $datos[]  = array(
-            $result["idPersonal"],
-            $result["nomPersonal"],
-            $result["celPersonal"],
-            $result["emlPersonal"],
-            $result["area"],
-            $result["cargo"]
-    ); 
+            $personal[$i]["idPersonal"],
+            $personal[$i]["nomPersonal"],
+            $personal[$i]["celPersonal"],
+            $personal[$i]["emlPersonal"],
+            $personal[$i]["area"],
+            $personal[$i]["cargo"]
+        ); 
     }
     $datosRetorno  = array(
         $titulo,  
         'data'    => $datos
        ); 
 
-
 print json_encode($datosRetorno);
-
 
 ?>
