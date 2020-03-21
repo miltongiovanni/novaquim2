@@ -7,6 +7,7 @@ class Conectar{
         $dsn = 'mysql:dbname=novaquim2;host=localhost;charset=utf8';
         $user = 'root'; //usuario
         $password = 'novaquim';//contraseña
+        $conexion = null;
         
         try {
             $conexion = new PDO($dsn, $user, $password);
@@ -21,4 +22,4 @@ class Conectar{
         unset($conexion);
     }
 }
-?>
+

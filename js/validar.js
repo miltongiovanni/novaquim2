@@ -1,5 +1,3 @@
-// JavaScript Document
-<!--
 
 function Longitud(form) {
 	for (i = 0; i < form.elements.length; i++) {
@@ -9,6 +7,7 @@ function Longitud(form) {
 		}
 	}
 }
+
 //Envia solicitando confirmación
 function Enviar(form) {
 	for (i = 0; i < form.elements.length; i++) {
@@ -60,12 +59,17 @@ function Enviar1(form) {
 }
 */
 
-
-function aceptaNum(evt) {
+function aceptaNum(id) {
+	var x = document.getElementById("fname");
 	var nav4 = window.Event ? true : false;
 	var key = nav4 ? evt.which : evt.keyCode;
 	return (key <= 13 || key == 46 || (key >= 48 && key <= 57));
 }
+/*function aceptaNum(evt) {
+	var nav4 = window.Event ? true : false;
+	var key = nav4 ? evt.which : evt.keyCode;
+	return (key <= 13 || key == 46 || (key >= 48 && key <= 57));
+}*/
 
 function valida_texto(texto) {
 	if (texto.length < 4) {
@@ -73,7 +77,7 @@ function valida_texto(texto) {
 		//return (false);
 	}
 
-	var checkOK = "ABCDEFGHIJKLMN�OPQRSTUVWXYZ�����" + "abcdefghijklmn�opqrstuvwxyz����� ";
+	var checkOK = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZÁÉÍÓÚ" + "abcdefghijklmnñopqrstuvwxyzáéíóú";
 	var checkStr = texto;
 	var allValid = true;
 	for (i = 0; i < checkStr.length; i++) {

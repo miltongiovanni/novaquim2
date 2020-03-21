@@ -13,14 +13,14 @@ include "includes/valAcc.php";
 <div id="saludo1"><strong>LISTADO DE SERVICIOS OFRECIDOS POR INDUSTRIAS NOVAQUIM S.A.S.</strong></div>
 <table width="100%" border="0">
   <tr> <form action="Servicios_Xls.php" method="post" target="_blank"><td width="1179" align="right"><input name="Submit" type="submit" class="resaltado" value="Exportar a Excel"></td></form>
-      <td width="91"><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men&uacute;"></div></td>
+      <td width="91"><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú"></div></td>
   </tr>
 </table>
 <?php
 include "includes/utilTabla.php";
 include "includes/conect.php" ;
 $link=conectarServidor();
-$sql="	select IdServicio as Id, DesServicio as 'Descripci�n del Servicio', tasa as Tasa from servicios, tasa_iva where Cod_iva=Id_tasa;";
+$sql="	select IdServicio as Id, DesServicio as 'Descripción del Servicio', tasa as Tasa from servicios, tasa_iva where Cod_iva=Id_tasa;";
 //llamar funcion de tabla
 verTabla($sql, $link);
 ?>

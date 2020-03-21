@@ -4,7 +4,7 @@ include "includes/valAcc.php";
 <!DOCTYPE html>
 <html>
 <head>
-<title>Relaci&oacute;n de Pacas de Productos de Distribuci&oacute;n</title>
+<title>Relaci贸n de Pacas de Productos de Distribuci贸n</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
 	<script type="text/javascript" src="scripts/validar.js"></script>
@@ -20,7 +20,7 @@ include "includes/valAcc.php";
 </head>
 <body> 
 <div id="contenedor">
-<div id="saludo"><strong>RELACI&Oacute;N DE PACAS CON PRODUCTOS DE DISTRIBUCI&Oacute;N</strong></div>
+<div id="saludo"><strong>RELACI脫N DE PACAS CON PRODUCTOS DE DISTRIBUCI脫N</strong></div>
 <?php
 	include "includes/conect.php";
 	foreach ($_POST as $nombre_campo => $valor) 
@@ -34,18 +34,18 @@ include "includes/valAcc.php";
 	if($Crear==1)
 	{
 		$link=conectarServidor(); 
-		//REVISA QUE NO ESTE INCLUIDO CON ANTERIORIDAD LA RELACI覰
+		//REVISA QUE NO ESTE INCLUIDO CON ANTERIORIDAD LA RELACI脫N
 		$qrybus="SELECT Cod_paca from rel_dist_emp where Cod_paca=$cod_paca;";
 		$resultqrybus=mysqli_query($link,$qrybus);
 		$row_bus=mysqli_fetch_array($resultqrybus);
 		if ($row_bus['Cod_paca']==$cod_paca)
 		{
 			echo' <script language="Javascript">
-				alert("Relaci髇 incluida anteriormente");
+				alert("Relaci贸n incluida anteriormente");
 				self.location="crearDes.php"
 			</script>'; 
 		}
-		//INSERTANDO LA RELACI覰
+		//INSERTANDO LA RELACI脫N
 		$qryins="insert rel_dist_emp (Cod_paca, Cod_unidad, Cantidad) values ($cod_paca, $cod_unidad, $Unidades)";
 		$resultins=mysqli_query($link,$qryins);
 		echo '<form method="post" action="crearDes2.php" name="form3">';
@@ -57,7 +57,7 @@ include "includes/valAcc.php";
 			document.form3.submit();
 			</script>';	
 			mysqli_free_result($resultqrybus);
-/* cerrar la conexi髇 */
+/* cerrar la conexi贸n */
 mysqli_close($link);
 	}
 
@@ -97,7 +97,7 @@ mysqli_close($link);
 			echo '<input name="cod_paca" type="hidden" value="'.$cod_paca.'"></tr></form>';
 				mysqli_free_result($result1);
 				mysqli_free_result($result);
-/* cerrar la conexi髇 */
+/* cerrar la conexi贸n */
 mysqli_close($link);
 		}
 	?>
@@ -156,7 +156,7 @@ mysqli_close($link);
 			echo '</td></tr>';
 			mysqli_free_result($result3);
 			mysqli_free_result($result4);
-/* cerrar la conexi髇 */
+/* cerrar la conexi贸n */
 mysqli_close($link);
 			}
 			?>           
@@ -164,7 +164,7 @@ mysqli_close($link);
 </table>
 <table width="27%" border="0" align="center">
     <tr> 
-        <td><div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men&uacute;">
+        <td><div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men煤;">
         </div></td>
     </tr>
 </table> 

@@ -35,9 +35,9 @@ class MPrimasOperaciones
     public function getTableMPrimas()
     {
         $qry = "SELECT codMPrima, nomMPrima, aliasMPrima, catMP, minStockMprima, 
-        aparienciaMPrima, olorMPrima, colorMPrima, pHmPrima, densidadMPrima, codMPrimaAnt
-        FROM  mprimas, cat_mp
-        WHERE idCatMprima=idCatMP
+        aparienciaMPrima, olorMPrima, colorMPrima, pHmPrima, densidadMPrima, codMPrimaAnt 
+		FROM mprimas
+        LEFT JOIN cat_mp ON idCatMprima=idCatMP 
         ORDER BY codMPrima;";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();
@@ -49,8 +49,10 @@ class MPrimasOperaciones
     public function getMPrima($codMPrima)
     {
         $qry = "SELECT codMPrima, nomMPrima, aliasMPrima, idCatMPrima, catMP, codIva, tasaIva, minStockMprima, aparienciaMPrima, olorMPrima, colorMPrima, pHmPrima, densidadMPrima, codMPrimaAnt
-        FROM  mprimas, cat_mp, tasa_iva
-        WHERE idCatMprima=idCatMP AND idTasaIva = codIva AND codMPrima=?";
+        FROM  mprimas
+           LEFT JOIN cat_mp cm on mprimas.idCatMPrima = cm.idCatMP
+           LEFT JOIN tasa_iva ti on mprimas.codIva = ti.idTasaIva
+        WHERE  codMPrima=?";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute(array($codMPrima));
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -59,8 +61,11 @@ class MPrimasOperaciones
 
     public function getUltimaMPrimaxCat(int $idCatMPrima)
     {
-        $qry = "SELECT codMPrima, catMP FROM mprimas mp1, cat_mp, (SELECT MAX(codMPrima) as Cod from mprimas where idCatMPrima=?) mp2 
-        WHERE mp1.codMPrima = Cod AND idCatMP=idCatMPrima";
+        $qry = "SELECT codMPrima, catMP
+        FROM mprimas mp1
+        LEFT JOIN cat_mp cm on mp1.idCatMPrima = cm.idCatMP,
+        (SELECT MAX(codMPrima) as Cod from mprimas where idCatMPrima=?) mp2
+        WHERE mp1.codMPrima = Cod";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute(array($idCatMPrima));
         $result = $stmt->fetch(PDO::FETCH_ASSOC);

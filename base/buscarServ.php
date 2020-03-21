@@ -33,7 +33,7 @@ include "includes/valAcc.php";
             }
             echo'</select>';
 			mysqli_free_result($result);
-			/* cerrar la conexión */
+			/* cerrar la conexiÃ³n */
 			mysqli_close($link);
         ?>
         &nbsp;

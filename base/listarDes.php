@@ -4,24 +4,24 @@ include "includes/valAcc.php";
 <!DOCTYPE html>
 <html>
 <head>
-<title>Lista Relaci&oacute;n Paca Producto</title>
+<title>Lista Relación Paca Producto</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
 	<script type="text/javascript" src="scripts/validar.js"></script>
 </head>
 <body>
 <div id="contenedor">
-<div id="saludo1"><strong>RELACI&Oacute;N PRODUCTOS POR PACA</strong></div>
+<div id="saludo1"><strong>RELACIÓN PRODUCTOS POR PACA</strong></div>
 <table width="100%" border="0">
   <tr> 
-      <td><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men&uacute;"></div></td>
+      <td><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú"></div></td>
   </tr>
 </table>
 <table width="490" border="0" align="center" cellspacing="0">
 <tr>
     <th width="22" class="formatoEncabezados"></th>
     <th width="44" class="formatoEncabezados">Item</th>
-    <th width="68" class="formatoEncabezados">C&oacute;digo</th>
+    <th width="68" class="formatoEncabezados">Código</th>
     <th width="296" class="formatoEncabezados"> Paca de Productos</th>
 </tr>   
 <?php
@@ -64,7 +64,7 @@ while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
 }
 mysqli_free_result($result);
 mysqli_free_result($resulti);
-/* cerrar la conexi�n */
+/* cerrar la conexión */
 mysqli_close($link);
 ?>
 
@@ -80,7 +80,7 @@ mysqli_close($link);
         <td>&nbsp;</td>
     </tr>
     <tr> 
-      <td><div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men&uacute;">
+      <td><div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú">
       </div></td>
     </tr>
 </table>

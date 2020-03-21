@@ -39,9 +39,9 @@ class ProductosOperaciones
     }
     public function getTableProductos()
     {
-        $qry = "SELECT codProducto, nomProducto, catProd, densMin, densMax, pHmin, pHmax, fragancia, color, apariencia
-        FROM  productos, cat_prod
-        WHERE productos.idCatProd=cat_prod.idCatProd and prodActivo=0
+        $qry = "SELECT codProducto, nomProducto, catProd, densMin, densMax, pHmin, pHmax, fragancia, color, apariencia FROM productos
+        LEFT JOIN cat_prod cp on productos.idCatProd = cp.idCatProd
+        WHERE prodActivo=0
         ORDER BY codProducto;";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();
@@ -53,8 +53,9 @@ class ProductosOperaciones
     public function getProducto($codProducto)
     {
         $qry = "SELECT codProducto, nomProducto, catProd, productos.idCatProd, prodActivo, densMin, densMax, pHmin, pHmax, fragancia, color, apariencia
-        FROM  productos, cat_prod
-        WHERE productos.idCatProd=cat_prod.idCatProd AND codProducto=?";
+        FROM  productos
+        LEFT JOIN cat_prod cp on productos.idCatProd = cp.idCatProd
+        WHERE codProducto=?";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute(array($codProducto));
         $result = $stmt->fetch(PDO::FETCH_ASSOC);

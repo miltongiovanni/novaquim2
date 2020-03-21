@@ -57,12 +57,6 @@ include "../includes/valAcc.php";
 	<div id="contenedor">
 		<div id="saludo1"><strong>LISTADO DE PRODUCTOS </strong></div>
 		<div class="row" style="justify-content: right;">
-			<div class="col-2">
-				<form action="XlsProductos.php" method="post" target="_blank">
-					<button class="button" type="submit" >
-						<span><STRONG>Exportar a Excel</STRONG></span></button>
-				</form>
-			</div>
 			<div class="col-1">
 				<button class="button"  onclick="window.location='../menu.php'">
 					<span><STRONG>Ir al Menú</STRONG></span></button>

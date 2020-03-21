@@ -22,7 +22,7 @@ else
 	$qry2="insert into rel_env_dis (Dist, Env, Tapa) values ($cod_dis, $IdEnvase, $IdTapa)";
 	$result2=mysqli_query($link,$qry2);
 	$ruta="listarenvaseDis.php";
-	mover_pag($ruta,"Relación creada con Éxito");
+	mover_pag($ruta,"RelaciÃ³n creada con Ã‰xito");
 }
 mysqli_free_result($result1);
 mysqli_close($link);//Cerrar la conexion
@@ -44,7 +44,7 @@ if($inv_paca>=$Unidades)
 	$qry5="update inv_distribucion set inv_dist=$inv_paca_final where Id_distribucion=$cod_paca";
 	$result5=mysql_db_query($bd,$qry5);
 	$ruta="menu.php";
-	mover_pag($ruta,"Desempaque de Producto realizado con Éxito");
+	mover_pag($ruta,"Desempaque de Producto realizado con Ã‰xito");
 	mysql_close($link);
 }
 else

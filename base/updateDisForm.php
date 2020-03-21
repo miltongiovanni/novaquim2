@@ -1,133 +1,114 @@
 <?php
-include "includes/valAcc.php";
-include "includes/conect.php";
-//echo $_SESSION['Perfil'];
+include "../includes/valAcc.php";
+function cargarClases($classname)
+{
+    require '../clases/' . $classname . '.php';
+}
+
+spl_autoload_register('cargarClases');
+$idDistribucion = $_POST['idDistribucion'];
+$ProductoDistribucionOperador = new ProductosDistribucionOperaciones();
+$productoDistribucion = $ProductoDistribucionOperador->getProductoDistribucion($idDistribucion);
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-<meta charset="utf-8">
-<title>Actualizar datos de Producto de Distribuci&oacute;n</title>
-<script type="text/javascript" src="scripts/validar.js"></script>
-<script type="text/javascript" src="scripts/block.js"></script>
-	<script type="text/javascript">
-	document.onkeypress = stopRKey; 
-	</script>
-</head>
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <meta charset="utf-8">
+    <title>Actualizar datos de Producto de Distribución</title>
+    <script type="text/javascript" src="../js/validar.js"></script>
+</head
 <body>
 <div id="contenedor">
-<div id="saludo"><strong>ACTUALIZACI&Oacute;N DE PRODUCTOS DE DISTRIBUCI&Oacute;N</strong></div>
-<?php
-	  $link=conectarServidor();
-	  $IdProd=$_POST['IdDis'];
-	  $qry="select Id_distribucion, Producto, Id_Cat_dist, Cod_iva, precio_vta, precio_com, Cotiza, Activo, stock_dis, precio_vta_dis, util_clien, util_dist from distribucion where Id_distribucion=$IdProd";
-	  $result=mysqli_query($link,$qry);
-	  $row=mysqli_fetch_array($result);
-	  mysqli_free_result($result);
-/* cerrar la conexi�n */
-mysqli_close($link);
-?>
+    <div id="saludo"><strong>ACTUALIZACIÓN DE PRODUCTOS DE DISTRIBUCIÓN</strong></div>
+    <form id="form1" name="form1" method="post" action="updateDis.php">
+        <div class="form-group row">
 
-<form id="form1" name="form1" method="post" action="updateDis.php">
-	<table border="0" align="center" width="50%" >
-    <tr> 
-      <td width="10%"><div align="center"><strong>C&oacute;digo </strong></div></td>
-      <td colspan="2"><div align="center"><strong>Descripci&oacute;n</strong></div></td>
-      
-      
-      
-      <td width="16%"><div align="center"><strong>Stock m&iacute;nimo</strong></div></td>
-      
-      
-    </tr> <?php echo'<input name="cat_dist" type="hidden" value="'.$row['Id_Cat_dist'].'" />';?>
-    <tr> 
-      <td><div align="center"><?php echo'<input name="Id_prod" type="text" readonly size="6" value="'.$row['Id_distribucion'].'"/>';?></div></td>
-      <td colspan="2"><div align="center"><?php echo'<input name="producto" type="text" size="70" value="'.$row['Producto'].'"/>';?></div></td>
-      
-      
-     
-      <td><div align="center"><?php echo'<input name="stock_dis" type="text"  size="6" value="'.$row['stock_dis'].'"/>';?></div></td>
-      
-      
-    </tr>
-    <tr>
-    <td><div align="center"><strong>Tasa de IVA</strong></div></td>
-    <td width="12%"><div align="center"><strong>Precio de Venta</strong></div></td>
-    <td width="16%"><div align="center"><strong>Producto para Cotizar</strong></div></td>
-    <td><div align="center"><strong>Producto Activo</strong></div></td>
-    </tr>
-    <tr>
-    <td><div align="center">
-        <?php
-		  $link=conectarServidor();
-		  $qry1="select * from distribucion, tasa_iva where distribucion.Id_distribucion=$IdProd and 
-		  distribucion.Cod_iva=tasa_iva.Id_tasa";
-		  $result1=mysqli_query($link,$qry1);
-		  $row1=mysqli_fetch_array($result1); 
-		  echo'<select name="cod_iva">';
-		  $result2=mysqli_query($link,"select * from tasa_iva");
-		  echo '<option selected value='.$row1['Id_tasa'].'>'.$row1['tasa'].'</option>';
-          while ($row2=mysqli_fetch_array($result2))
-		  {
-			if ($row2['tasa']!= $row1['tasa'])
-	        	echo '<option value='.$row2['Id_tasa'].'>'.$row2['tasa'].'</option>';
-          }
-          echo'</select>';
-		  mysqli_free_result($result1);
-		  mysqli_free_result($result2);
-/* cerrar la conexi�n */
-mysqli_close($link);
-		?>
-      </div></td>
-    <td><div align="center"><?php echo'<input name="precio_vta" type="text"  size="6" value="'.$row['precio_vta'].'"/>';?></div></td>
-     <td><div align="center">
-		<?php
-        $cotiza=$row['Cotiza'];
-        if ($cotiza==1)
-        {
-        echo '<select name="cotiza" >
-            <option value="1" selected>No</option>
-            <option value="0">Si</option>
-            </select>';
-        }
-        else
-		{
-		echo '<select name="cotiza" >
-            <option value="0" selected>Si</option>
-            <option value="1">No</option>
-            </select>';	
-		}    
-        ?>
-      </div></td>
-      <td><div align="center">
-	  <?php 
-        $Activo=$row['Activo'];
-        if ($Activo==1)
-        {
-        echo '<select name="Activo" >
-            <option value="1" selected>No</option>
-            <option value="0">Si</option>
-            </select>';
-        }
-        else
-		{
-		echo '<select name="Activo" >
-            <option value="0" selected>Si</option>
-            <option value="1">No</option>
-            </select>';	
-		}    
-        ?></div></td>
-    </tr>
-    <tr><td>&nbsp;</td></tr>
-    <tr><td>&nbsp;</td> 
-      <td>&nbsp;</td> <td>&nbsp;</td>
-      <td><div align="center">
-          <input name="Submit" type="submit" class="formatoBoton1" value="Enviar">
-        </div></td>
-    </tr>
-  </table>
-</form>
+            <label class="col-form-label col-2" for="idCatDis"><strong>Categoría</strong></label>
+            <input type="hidden" class="form-control col-2" name="idCatDis" id="idCatProd"
+                   value="<?= ($productoDistribucion['idCatDis']) ?>">
+            <input type="text" class="form-control col-2" name="catDis" id="catDis"
+                   value="<?= ($productoDistribucion['catDis']) ?>" readOnly>
+            <label class="col-form-label col-1" for="codSiigo"><strong>Código Siigo</strong></label>
+            <input type="text" name="codSiigo" id="codSiigo" class="form-control col-3"
+                   value="<?= ($productoDistribucion['codSiigo']) ?>" readonly/>
+        </div>
+        <div class="form-group row">
+            <label class="col-form-label col-2" style="text-align: right;" for="idDistribucion"><strong>Código</strong></label>
+            <input type="text" class="form-control col-2" name="idDistribucion" id="idDistribucion"
+                   value="<?= ($productoDistribucion['idDistribucion']) ?>" readOnly>
+            <label class="col-form-label col-1" style="text-align: right;"
+                   for="producto"><strong>Producto</strong></label>
+            <input type="text" class="form-control col-3" name="producto" id="producto"
+                   value="<?= ($productoDistribucion['producto']) ?>"
+                   onKeyPress="return aceptaLetra(event)" maxlength="50">
+        </div>
+        <div class="form-group row">
+
+            <label class="col-form-label col-2" style="text-align: right;" for="precioVta"><strong>Precio de
+                    Venta</strong></label>
+            <input type="text" class="form-control col-2" name="precioVta" id="precioVta"
+                   value="<?= ($productoDistribucion['precioVta']) ?>" onKeyPress="return aceptaNum(event)">
+            <label class="col-form-label col-1" for="codIva"><strong>Tasa IVA</strong></label>
+            <?php
+            $manager = new TasaIvaOperaciones();
+            $tasas = $manager->getTasasIva();
+            $filas = count($tasas);
+            echo '<select name="codIva" id="codIva" class="form-control col-3">';
+            echo '<option selected value="' . $productoDistribucion['codIva'] . '">' . $productoDistribucion['tasaIva'] . '</option>';
+            for ($i = 0; $i < $filas; $i++) {
+                if ($tasas[$i]["idTasaIva"] != $productoDistribucion['codIva']) {
+                    echo '<option value="' . $tasas[$i]["idTasaIva"] . '">' . $tasas[$i]['tasaIva'] . '</option>';
+                }
+            }
+            echo '</select>';
+            ?>
+        </div>
+        <div class="form-group row">
+            <label class="col-form-label col-2" style="text-align: right;" for="stockDis"><strong>Stock
+                    Min</strong></label>
+            <input type="number" class="form-control col-2" min="0" name="stockDis" id="stockDis" pattern="[0-9]"
+                   value="<?= ($productoDistribucion['stockDis']) ?>" onkeydown="return aceptaNum(event)">
+            <label class="col-form-label col-1" for="cotiza"><strong>Cotizar</strong></label>
+            <?php
+            if ($productoDistribucion['cotiza'] == 1) {
+                echo '<select name="cotiza" id="cotiza" class="form-control col-3">
+                    <option value="1" selected>No</option>
+                    <option value="0">Si</option>
+                </select>';
+            } else {
+                echo '<select name="cotiza" id="cotiza" class="form-control col-3">
+                    <option value="0" selected>Si</option>
+                    <option value="1">No</option>
+                </select>';
+            }
+            ?>
+        </div>
+        <div class="form-group row">
+            <label class="col-form-label col-1" for="cotiza"><strong>Activo</strong></label>
+            <?php
+            if ($productoDistribucion['activo'] == 1) {
+                echo '<select name="activo" id="activo" class="form-control col-1">
+                    <option value="1" selected>No</option>
+                    <option value="0">Si</option>
+                </select>';
+            } else {
+                echo '<select name="activo" id="activo" class="form-control col-1">
+                    <option value="0" selected>Si</option>
+                    <option value="1">No</option>
+                </select>';
+            }
+            ?>
+        </div>
+        <div class="form-group row">
+            <div class="col-1" style="text-align: center;">
+                <button class="button" onclick="return Enviar(this.form)"><span>Continuar</span></button>
+            </div>
+            <div class="col-1" style="text-align: center;">
+                <button class="button" type="reset"><span>Reiniciar</span></button>
+            </div>
+        </div>
+    </form>
 </div>
 </body>
 </html>

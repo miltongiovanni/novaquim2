@@ -15,12 +15,12 @@ document.onkeypress = stopRKey;
 </head>
 <body>
 <div id="contenedor">
-<div id="saludo"><strong>ELIMINACI&Oacute;N DE TIPO DE PROVEEDOR</strong></div>
+<div id="saludo"><strong>ELIMINACIÓN DE TIPO DE PROVEEDOR</strong></div>
 <form method="post" action="deleteCat_prov.php">
 <table width="521" border="0" align="center">
 	<tr>
 		<td colspan="2">
-			<div align="center"><strong>Categor&iacute;a</strong>
+			<div align="center"><strong>Categoría</strong>
 <?php
 				include "includes/conect.php";
 				$link=conectarServidor();
@@ -32,7 +32,7 @@ document.onkeypress = stopRKey;
 				}
 				echo'</select>';
 				mysqli_free_result($result);
-/* cerrar la conexi�n */
+/* cerrar la conexión */
 mysqli_close($link);
 			?>
 		  <input name="button" type="submit" value="Eliminar" onClick="return Enviar(this.form);"></div>

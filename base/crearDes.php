@@ -4,7 +4,7 @@ include "includes/valAcc.php";
 <!DOCTYPE html>
 <html>
 <head>
-<title>Relaci&oacute;n de Pacas de Productos de Distribuci&oacute;n</title>
+<title>Relación de Pacas de Productos de Distribución</title>
 <meta charset="utf-8">
 <link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
 	<script type="text/javascript" src="scripts/validar.js"></script>
@@ -19,7 +19,7 @@ include "includes/valAcc.php";
 </head>
 <body> 
 <div id="contenedor">
-<div id="saludo"><strong>RELACI&Oacute;N DE PACAS CON PRODUCTOS DE DISTRIBUCI&Oacute;N</strong></div>
+<div id="saludo"><strong>RELACIÓN DE PACAS CON PRODUCTOS DE DISTRIBUCIÓN</strong></div>
 <table width="452" border="0"  align="center">
 <?php
 include "includes/conect.php";
@@ -43,13 +43,13 @@ echo '<td align="center"><input name="button" onclick="return Enviar(this.form)"
 echo '<input name="Crear" type="hidden" value="0">'; 
 echo '</tr></form>';
 mysqli_free_result($result);
-/* cerrar la conexi�n */
+/* cerrar la conexión */
 mysqli_close($link);
 ?>
 </table>
 <table width="27%" border="0" align="center">
 <tr> 
-        <td><div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men&uacute;">
+        <td><div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú">
         </div></td>
     </tr>
 </table>

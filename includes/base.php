@@ -246,3 +246,27 @@ function buscarPresentacionForm($action, $actif)
         </form>';
     return $rep;
 }
+
+function buscarProductoDistribucionForm($action, $actif)
+{
+
+    $rep = '<form id="form1" name="form1" method="post" action="' . $action . '">
+        <div class="form-group row"><label class="col-form-label col-1" for="combo"><strong>Producto</strong></label>';
+    $ProductoDistribucionOperador = new ProductosDistribucionOperaciones();
+    $productos = $ProductoDistribucionOperador->getProductosDistribucion($actif);
+    $filas = count($productos);
+    $rep .= '<select name="idDistribucion" class="form-control col-2">';
+    $rep .= '<option selected value="">-----------------------------</option>';
+    for ($i = 0; $i < $filas; $i++) {
+        $rep .= '<option value="' . $productos[$i]["idDistribucion"] . '">' . $productos[$i]['producto'] . '</option>';
+    }
+    $rep .= '</select>';
+
+    $rep .= '</div>
+        <div class="row form-group">
+        <div class="col-1"><button class="button"  onclick="return Enviar(this.form)">
+                <span>Continuar</span></button></div>
+        </div>
+        </form>';
+    return $rep;
+}

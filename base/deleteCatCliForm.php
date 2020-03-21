@@ -28,7 +28,7 @@ include "includes/valAcc.php";
 	<tr>
 		<td>
 		<div align="center">
-		<p align="center" class="titulo">ELIMINACI&Oacute;N DE TIPO DE CLIENTE</p>
+		<p align="center" class="titulo">ELIMINACIÓN DE TIPO DE CLIENTE</p>
 		</div>
 		</td>
 	</tr>
@@ -39,7 +39,7 @@ include "includes/valAcc.php";
 		<td colspan="2">
 			<form method="post" action="deleteCat_Cli.php">
 			<label>
-			<div align="center">Categor&iacute;a
+			<div align="center">Categoría
 			  <?php
 				include "includes/conect.php";
 				$link=conectarServidor();
@@ -51,7 +51,7 @@ include "includes/valAcc.php";
 				}
 				echo'</select>';
 				mysqli_free_result($result);
-/* cerrar la conexi�n */
+/* cerrar la conexión */
 mysqli_close($link);
 			?>
 			<input name="button" type="submit" value="Eliminar" onClick="return Enviar(this.form);"></div>

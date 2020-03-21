@@ -75,6 +75,7 @@ BODY {
     padding: 0;
     display: none;
     position: absolute;
+    width: 110%;
     top: 38px;
     left: 0;
     z-index: 99999;
@@ -86,12 +87,13 @@ BODY {
   
   #menu ul ul {
     top: 0;
-    left: 150px;
+    left: 190px;
   }
   
   #menu ul li {
     float: none;
     margin: 0;
+    width: 100%;
     padding: 0;
     display: block;
     box-shadow: 0 1px 0 #000066, 0 2px 0 #000066;
@@ -105,7 +107,7 @@ BODY {
     /*padding: 10px;*/
     padding: 4px 0 10px 0;
     height: 10px;
-    width: 180px;
+    width: 100%;
     height: auto;
     line-height: 1;
     display: block;
@@ -173,14 +175,14 @@ BODY {
   
   
   #menu ul ul {
-    left: 180px;
+    left: 95%;
     top: 0;
   }
   
   /*This is okay if your menu is supposed to be exactly 150 px wide at each level,
-  as it forces each new level to 150px to the right of the previous menu's left edge. Better, however, is*/
+  as it forces each new level to 150px to the right of the previous menu's left edge. Better, however, is
    #menu ul ul {
     left: 180px;
     top: 0;
   }
-  
+  */

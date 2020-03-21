@@ -17,7 +17,7 @@ include "includes/conect.php";
 </head>
 <body>
 <div id="contenedor">
-<div id="saludo"><strong>ACTUALIZACI&Oacute;N DE SERVICIO</strong></div>
+<div id="saludo"><strong>ACTUALIZACI脫N DE SERVICIO</strong></div>
 <?php
 	  $link=conectarServidor();
 	  $IdServ=$_POST['IdServ'];
@@ -25,15 +25,15 @@ include "includes/conect.php";
 	  $result=mysqli_query($link,$qry);
 	  $row=mysqli_fetch_array($result);
 	  mysqli_free_result($result);
-			/* cerrar la conexi髇 */
+			/* cerrar la conexi贸n */
 			mysqli_close($link);
 ?>
 
 <form id="form1" name="form1" method="post" action="updateServ.php">
 	<table border="0" align="center" width="50%" >
     <tr> 
-      <td width="10%"><div align="center"><strong>C&oacute;digo </strong></div></td>
-      <td colspan="2"><div align="center"><strong>Descripci&oacute;n</strong></div></td>
+      <td width="10%"><div align="center"><strong>C贸digo </strong></div></td>
+      <td colspan="2"><div align="center"><strong>Descripci贸n</strong></div></td>
       <td width="16%"><div align="center"><strong>Tasa de IVA</strong></div></td>
        <td width="23%"><div align="center"><strong>Producto Activo</strong></div></td>
       
@@ -58,7 +58,7 @@ include "includes/conect.php";
           }
           echo'</select>';
 		  mysqli_free_result($result2);
-/* cerrar la conexi髇 */
+/* cerrar la conexi贸n */
 mysqli_close($link);
 		?>
       </div></td>

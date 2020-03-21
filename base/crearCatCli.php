@@ -5,7 +5,7 @@ include "includes/valAcc.php";
 <html>
 <head>
 	<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<title>Creaci&oacute;n de Tipo de Cliente</title>
+	<title>Creación de Tipo de Cliente</title>
 	<meta charset="utf-8">
 	<script type="text/javascript" src="scripts/validar.js"></script>
 	<script type="text/javascript" src="scripts/block.js"></script>	
@@ -16,16 +16,16 @@ include "includes/valAcc.php";
 </head>
 <body>
 <div id="contenedor">
-<div id="saludo"><strong>CREACI&Oacute;N DE TIPO DE CLIENTE</strong></div>
+<div id="saludo"><strong>CREACIÓN DE TIPO DE CLIENTE</strong></div>
 
 <table  border="0" align="center" class="table2" cellspacing="0">
   <form name="form2" method="POST" action="makeCategoria_Cli.php">
     <tr> 
-        <td width="93"><div align="right"><b>Descripci&oacute;n</b></div></td>
+        <td width="93"><div align="right"><b>Descripción</b></div></td>
         <td colspan="2"><input type="text" name="categoria" size=34 ></td>
     </tr>
     <tr> 
-        <td><div align="right"><strong>C&oacute;digo</strong></div></td>
+        <td><div align="right"><strong>Código</strong></div></td>
 
         <td colspan="2"><?php
                 include "includes/conect.php" ;
@@ -36,7 +36,7 @@ include "includes/valAcc.php";
 				$valor=$row[0];	
                 echo'<input name="cod_cat_cli" type="text" size=34 readonly value='.($valor+1).'>';   	
                 mysqli_free_result($result);
-/* cerrar la conexi�n */
+/* cerrar la conexión */
 mysqli_close($link);
             ?>    	</td>
     </tr>

@@ -16,7 +16,7 @@ include "includes/conect.php";
 </head>
 <body>
 <div id="contenedor">
-<div id="saludo"><strong>ACTUALIZACI&Oacute;N TIPO DE PROVEEDOR</strong></div>
+<div id="saludo"><strong>ACTUALIZACIÓN TIPO DE PROVEEDOR</strong></div>
 <?php
 foreach ($_POST as $nombre_campo => $valor) 
 { 
@@ -29,19 +29,19 @@ foreach ($_POST as $nombre_campo => $valor)
 	$result=mysqli_query($link,$qry);
 	$row=mysqli_fetch_array($result);
 	mysqli_free_result($result);
-/* cerrar la conexi�n */
+/* cerrar la conexión */
 mysqli_close($link);
 ?>
 
 <form id="form1" name="form1" method="post" action="updateCat_Prov.php">
 	<table border="0" align="center">
     <tr> 
-      <td width="105"><div align="right"><strong>C&oacute;digo </strong></div></td>
+      <td width="105"><div align="right"><strong>Código </strong></div></td>
       <td width="255"><div align="left"><?php echo'<input name="Cod_cat" type="text" size="25" readonly value="'.$row['Id_cat_prov'].'">';?></div></td>
       
     </tr>
     <tr> 
-      <td><div align="right"><strong>Descripci&oacute;n</strong></div></td>
+      <td><div align="right"><strong>Descripción</strong></div></td>
       <td><div align="left"><?php echo'<input name="Categoria" type="text" size="25" value="'.$row['Des_cat_prov'].'">';?></div></td>
     </tr>
     <tr>

@@ -15,7 +15,7 @@
 	$qry="delete from servicios where IdServicio=$IdServ";
 	$link=conectarServidor();
 	$result=mysqli_query($link,$qry);
-/* cerrar la conexión */
+/* cerrar la conexiÃ³n */
 mysqli_close($link);
 	if($result)
 	{

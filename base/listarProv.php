@@ -22,11 +22,11 @@ include "includes/valAcc.php";
 	<th width="8" class="formatoEncabezados"></th>
     <th width="94" class="formatoEncabezados">NIT</th>
     <th width="325" class="formatoEncabezados">Proveedor</th>
-    <th width="253" class="formatoEncabezados">Direcci&oacute;n</th>
+    <th width="253" class="formatoEncabezados">Dirección</th>
 	<th width="137" class="formatoEncabezados">Contacto</th>
-	<th width="69" class="formatoEncabezados">Tel&eacute;fono</th>
+	<th width="69" class="formatoEncabezados">Teléfono</th>
 	<th width="66" class="formatoEncabezados">Fax</th>
-    <th width="157" class="formatoEncabezados">Correo Electr&oacute;nico</th>
+    <th width="157" class="formatoEncabezados">Correo Electrónico</th>
   </tr>   
 <?php
 include "includes/conect.php" ;
@@ -35,7 +35,7 @@ include "includes/conect.php" ;
 //Limito la busqueda 
 $TAMANO_PAGINA = 20; 
 
-//examino la p�gina a mostrar y el inicio del registro a mostrar 
+//examino la página a mostrar y el inicio del registro a mostrar 
 if(isset($_GET['pagina'])) 
 {
     $pagina = $_GET['pagina']; 
@@ -67,18 +67,18 @@ $sql="	SELECT  NIT_provee as 'Nit',
 			where proveedores.Id_cat_prov=cat_prov.Id_cat_prov order by Nom_provee;";
 $result=mysqli_query($link,$sql);
 $num_total_registros = mysqli_num_rows($result); 
-//calculo el total de p�ginas 
+//calculo el total de páginas 
 $total_paginas = ceil($num_total_registros / $TAMANO_PAGINA); 
 
-//muestro los distintos �ndices de las p�ginas, si es que hay varias p�ginas 
+//muestro los distintos índices de las páginas, si es que hay varias páginas 
 echo '<div id="paginas" align="center">';
 if ($total_paginas > 1){ 
    	for ($i=1;$i<=$total_paginas;$i++){ 
       	 if ($pagina == $i) 
-         	 //si muestro el �ndice de la p�gina actual, no coloco enlace 
+         	 //si muestro el índice de la página actual, no coloco enlace 
          	 echo $pagina . " "; 
       	 else 
-         	 //si el �ndice no corresponde con la p�gina mostrada actualmente, coloco el enlace para ir a esa p�gina 
+         	 //si el índice no corresponde con la página mostrada actualmente, coloco el enlace para ir a esa página 
          	 echo "<a href='listarProv.php?pagina=" . $i . "'>" . $i . "</a>&nbsp;"; 
    	} 
 }
@@ -152,7 +152,7 @@ while($row=mysqli_fetch_array($rs, MYSQLI_BOTH))
 }
 mysqli_free_result($result);
 mysqli_free_result($resulti);
-/* cerrar la conexi�n */
+/* cerrar la conexión */
 mysqli_close($link);
 ?>
 

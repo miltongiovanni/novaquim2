@@ -1,101 +1,131 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
+function cargarClases($classname)
+{
+    require '../clases/' . $classname . '.php';
+}
+
+spl_autoload_register('cargarClases');
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-	<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<title>Creaci&oacute;n de Productos de Distribuci&oacute;n</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<script type="text/javascript" src="scripts/validar.js"></script>
-	<script type="text/javascript" src="scripts/block.js"></script>	
-    	<script type="text/javascript">
-	document.onkeypress = stopRKey; 
-	</script>
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <title>Creación de Productos de Distribución</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <script src="../js/validar.js"></script>
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script>
 
+        //var idCatProd = $('idCatProd').value;
+
+        function idProducto(idCatDis) {
+            //alert(idCatProd);
+            $.ajax({
+                url: '../includes/controladorBase.php',
+                type: 'POST',
+                data: {
+                    "action": 'ultimoProdDisxCat',
+                    "idCatDis": idCatDis
+                },
+                dataType: 'text',
+                success: function (lastCodDis) {
+                    $("#idDistribucion").val(lastCodDis);
+                },
+                fail: function () {
+                    alert("Vous avez un GROS problème");
+                }
+            });
+        }
+    </script>
 </head>
 <body>
 <div id="contenedor">
-<div id="saludo"><strong>CREACI&Oacute;N DE PRODUCTOS&nbsp;DE DISTRIBUCI&Oacute;N</strong></div>
-<form name="form2" method="POST" action="makeDis.php">
-<table width="410" border="0"  align="center" cellspacing="0" class="table2">
-<tr> 
-    <td width="162"><div align="right"><b>Categor&iacute;a</b></div></td>
-    <td colspan="2"><select name="Cat_Dist" id="combo">
-            <?php
-                include "includes/conect.php";
-                $link=conectarServidor();
-                $qry="select * from cat_dist order by Des_cat_dist";	
-                $result=mysqli_query($link,$qry);
-                echo '<option selected value="1">Implementos de Aseo</option>';
-                while($row=mysqli_fetch_array($result))
-                {
-					if($row['Id_cat_dist']!=1)
-                      echo '<option value="'.$row['Id_cat_dist'].'">'.$row['Des_cat_dist'].'</option>';  
-                      //echo= $row['Id_cat_prod'];
-                }
-				mysqli_free_result($result);
-/* cerrar la conexi�n */
-mysqli_close($link);
-            ?>
-      </select >	</td> 
-</tr>
-<tr> 
-    <td><div align="right"><strong>Tasa de IVA</strong></div></td>
-    <td colspan="2"><select name="tasa_iva" id="combo">
-            <?php
-                $link=conectarServidor();
-                $qry="select * from tasa_iva";	
-                $result=mysqli_query($link,$qry);
-                echo '<option selected value="3">0.19</option>';
-                while($row=mysqli_fetch_array($result))
-                {
-					if ($row['Id_tasa']!=3)
-                      echo '<option value="'.$row['Id_tasa'].'">'.$row['tasa'].'</option>';  
-                      //echo= $row['Id_cat_prod'];
-                }
-				mysqli_free_result($result);
-/* cerrar la conexi�n */
-mysqli_close($link);
-            ?>
-      </select >	</td> 
-</tr>
-<tr> 
-    <td><div align="right"><b>Descripci&oacute;n</b></div></td>
-    <td colspan="2"><input type="text" name="producto_dist" size=34   value=""></td>
-</tr>
-<tr> 
-    <td><div align="right"><b>Stock M&iacute;nimo</b></div></td>
-    <td colspan="2"><input type="text" name="stock_dis" size=10 onKeyPress="return aceptaNum(event)"  value="0"></td>
-</tr>
-<tr> 
-    <td><div align="right"><b>Precio de Venta</b></div></td>
-    <td colspan="2"><input type="text" name="precio_vta" size=10 onKeyPress="return aceptaNum(event)"  value=""></td>
-</tr>
+    <div id="saludo"><strong>CREACIÓN DE PRODUCTOS DE DISTRIBUCIÓN</strong></div>
+    <form name="form2" method="POST" action="makeDis.php">
+        <div class="form-group row">
 
-<tr><td><div align="right"><strong>Cotizar</strong></div></td>
-            <td colspan="2"><select name="Cotiza" >
-        <option value="1" selected>No</option>
-        <option value="0">Si</option>
-      </select></td>
-    </tr>
-<tr> <td></td>
-    <td width="121"><div align="center"><input type="button" value=" Crear " onClick="return Enviar(this.form);"></div></td>
-    <td width="121"><div align="center"><input type="reset" value="Reiniciar"></div></td>
-</tr>
+            <label class="col-form-label col-2" for="idCatDis"><strong>Categoría</strong></label>
+            <?php
+            $manager = new CategoriasDisOperaciones();
+            $categorias = $manager->getCatsDis();
+            $filas = count($categorias);
+            echo '<select name="idCatDis" id="idCatDis" class="form-control col-2" onchange="idProducto(this.value);">';
+            echo '<option disabled selected value="">-----------------------------</option>';
+            for ($i = 0; $i < $filas; $i++) {
+                echo '<option value="' . $categorias[$i]["idCatDis"] . '">' . $categorias[$i]['catDis'] . '</option>';
+            }
+            echo '</select>';
+            ?>
+            <?php
+            $link = Conectar::conexion();
+            $qry = "SELECT MAX(siigo) maxsiigo FROM (SELECT MAX(codSiigo) siigo FROM distribucion  WHERE CodIva=3
+                    union
+                    SELECT MAX(codSiigo) siigo FROM prodpre  WHERE CodIva=3
+                    union
+                    SELECT MAX(codSiigo) siigo FROM servicios  WHERE CodIva=3
+                    ) AS a";
+            $stmt = $link->prepare($qry);
+            $stmt->execute();
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            ?>
+            <label class="col-form-label col-1" for="codSiigo"><strong>Código Siigo</strong></label>
+            <input type="text" name="codSiigo" id="codSiigo" class="form-control col-3"
+                   onKeyPress="return aceptaNum(event)" value="<?= ($row['maxsiigo'] + 1) ?>" readonly/>
+        </div>
+        <div class="form-group row">
+            <label class="col-form-label col-2" style="text-align: right;" for="idDistribucion"><strong>Código</strong></label>
+            <input type="text" class="form-control col-2" name="idDistribucion" id="idDistribucion"
+                   onKeyPress="return aceptaNum(event)" readOnly>
+            <label class="col-form-label col-1" style="text-align: right;"
+                                                                        for="producto"><strong>Producto</strong></label>
+            <input type="text" class="form-control col-3" name="producto" id="producto"
+                   onKeyPress="return aceptaLetra(event)" maxlength="50">
+        </div>
+        <div class="form-group row">
 
-<tr>
-        <td colspan="3"><div align="center">&nbsp;</div></td>
-    </tr>
-    <tr>
-        <td colspan="3"><div align="center">&nbsp;</div></td>
-    </tr>
-    <tr> 
-        <td colspan="3">
-        <div align="center"><input type="button" class="resaltado" onClick="history.back()" value="  VOLVER  "></div>        </td>
-    </tr>
-</table>
-</form>
+            <label class="col-form-label col-2" style="text-align: right;" for="precioVta"><strong>Precio de
+                    Venta</strong></label>
+            <input type="text" class="form-control col-2" name="precioVta" id="precioVta"
+                   onKeyPress="return aceptaNum(event)">
+            <label class="col-form-label col-1" for="codIva"><strong>Tasa IVA</strong></label>
+            <?php
+            $manager = new TasaIvaOperaciones();
+            $tasas = $manager->getTasasIva();
+            $filas = count($tasas);
+            echo '<select name="codIva" id="codIva" class="form-control col-3">';
+            echo '<option selected disabled value="">-----------------------------</option>';
+            for ($i = 0; $i < $filas; $i++) {
+                echo '<option value="' . $tasas[$i]["idTasaIva"] . '">' . $tasas[$i]['tasaIva'] . '</option>';
+            }
+            echo '</select>';
+            ?>
+        </div>
+        <div class="form-group row">
+            <label class="col-form-label col-2" style="text-align: right;" for="stockDis"><strong>Stock
+                    Min</strong></label>
+            <input type="number" class="form-control col-2" min="0" name="stockDis"  id="stockDis" pattern="[0-9]"
+                   onkeydown="return aceptaNum(event)">
+            <label class="col-form-label col-1" for="cotiza"><strong>Cotizar</strong></label>
+            <select name="cotiza" id="cotiza" class="form-control col-3">
+                <option value="1" selected>No</option>
+                <option value="0">Si</option>
+            </select>
+        </div>
+        <div class="form-group row">
+            <div class="col-1" style="text-align: center;">
+                <button class="button" onclick="return Enviar(this.form)"><span>Continuar</span></button>
+            </div>
+            <div class="col-1" style="text-align: center;">
+                <button class="button" type="reset"><span>Reiniciar</span></button>
+            </div>
+        </div>
+    </form>
+    <div class="row">
+        <div class="col-1">
+            <button class="button1" onClick="history.back()"><span>VOLVER</span></button>
+        </div>
+    </div>
 </div>
 </body>
 </html>

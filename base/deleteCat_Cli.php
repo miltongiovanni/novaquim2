@@ -36,7 +36,7 @@
 		$ruta="deleteCatForm_DIS.php";
 		mover_pag($ruta,"No se pudo eliminar la Categoria de Cliente");
 	}
-/* cerrar la conexión */
+/* cerrar la conexiÃ³n */
 mysqli_close($link);
 function mover_pag($ruta,$nota)
 	{

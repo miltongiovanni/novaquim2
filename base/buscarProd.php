@@ -14,7 +14,7 @@ include "../includes/valAcc.php";
 <body>
 	<div id="contenedor">
 		<div id="saludo"><strong>SELECCIONAR PRODUCTO A MODIFICAR</strong></div>
-		<?php
+        <?php
         include "../includes/base.php";
         $rep = buscarProductoForm("updateProdForm.php", true);
         echo $rep;

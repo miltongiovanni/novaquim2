@@ -130,15 +130,15 @@ if($con)
 				  
 					$ruta="cambio.php?nombre=$nombre";
 					$nota="Su último cambio fue hace mas de 90 días, por favor cambie su contraseña";
-					$nota=utf8_encode($nota);
+					//$nota=utf8_encode($nota);
 					$QRY4="update usuarios set intentos=0 where usuario='$nombre'";	
 					$result4 = $con->query($QRY4);
 					 session_start();
 					 $_SESSION['Autorizado']=true;
 					 $_SESSION['User']=$nombre;
-					 $_SESSION['IdUsuario']=$row['IdUsuario'];
+					 $_SESSION['IdUsuario']=$row['idUsuario'];
 					 $_SESSION['Perfil']=MD5($perfil_admin);				 
-					 $perfil =md5( $row['IdPerfil']);
+					 $perfil =md5( $row['idPerfil']);
 					/******LOG DE VENCIMIENTO DE CLAVE********
 					 $IdUser=$row['IdUsuario'];
 					 $hh=strftime("%H:").strftime("%M:").strftime("%S");	              
@@ -184,7 +184,7 @@ if($con)
 			session_start();
 			$_SESSION['Autorizado']=true;
 			$_SESSION['User']=$nombre;
-			$_SESSION['IdUsuario']=$row['IdUsuario'];
+			$_SESSION['IdUsuario']=$row['idUsuario'];
 			$_SESSION['Perfil']=MD5($perfil_admin);
 			mover_pag($ruta,$nota);
 		}
