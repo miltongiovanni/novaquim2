@@ -76,7 +76,7 @@ spl_autoload_register('cargarClases');
             </div>
             <div class="form-group row">
 
-                <label class="col-form-label col-1" for="codIva"><strong>Tasa IVA</strong></label>
+                <label class="col-form-label col-1" for="codIva"><strong>Iva</strong></label>
                 <?php
                     $manager = new TasaIvaOperaciones();
                     $tasas=$manager->getTasasIva();
@@ -85,7 +85,7 @@ spl_autoload_register('cargarClases');
                     echo '<option selected disabled value="">-----------------------------</option>';
                     for($i=0; $i<$filas; $i++)
                         {                            
-                        echo '<option value="'.$tasas[$i]["idTasaIva"].'">'.$tasas[$i]['tasaIva'].'</option>';
+                        echo '<option value="'.$tasas[$i]["idTasaIva"].'">'.$tasas[$i]['iva'].'</option>';
                         }
                         echo '</select>';
                 ?>

@@ -1,6 +1,7 @@
 <?php
 
-class ProductosDistribucionOperaciones
+
+class ServiciosOperaciones
 {
     private $_pdo; // Instance de PDO.
 
@@ -8,75 +9,72 @@ class ProductosDistribucionOperaciones
     {
         $this->setDb();
     }
-    public function makeProductoDistribucion($datos)
+    public function makeServicio($datos)
     {
         /*Preparo la insercion */
-        $qry = "INSERT INTO distribucion (idDistribucion, producto, codIva, idCatDis, cotiza, precioVta, activo, stockDis, codSiigo ) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $qry = "INSERT INTO servicios (idServicio, desServicio, codIva, activo, codSiigo ) VALUES(?, ?, ?, ?, ?)";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute($datos);
         return $this->_pdo->lastInsertId();
     }
-    
-    public function deleteProductoDistribucion($idDistribucion)
+
+    public function deleteServicio($idServicio)
     {
-        $qry = "DELETE FROM distribucion WHERE idDistribucion= ?";
+        $qry = "DELETE FROM servicios WHERE idServicio= ?";
         $stmt = $this->_pdo->prepare($qry);
-        $stmt->execute(array($idDistribucion));
+        $stmt->execute(array($idServicio));
     }
 
-    public function getProductosDistribucion($actif)
+    public function getServicios($actif)
     {
         if ($actif == true) {
-            $qry = "SELECT idDistribucion, producto FROM distribucion WHERE activo=0 ORDER BY producto;";
+            $qry = "SELECT idServicio, desServicio FROM servicios WHERE activo=0 ORDER BY desServicio;";
         } else {
-            $qry = "SELECT idDistribucion, producto FROM distribucion ORDER BY producto;";
+            $qry = "SELECT idServicio, desServicio FROM servicios ORDER BY desServicio;";
         }
-
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
-    public function getTableProductosDistribucion()
+    public function getTableServicios()
     {
-        $qry = "SELECT idDistribucion, producto, CONCAT('$ ',format(round(precioVta),0)) precio, CONCAT(format(round(tasaIva*100),0), ' %') iva,catDis, codSiigo
-        FROM distribucion
-        LEFT JOIN cat_dis cd on distribucion.idCatDis = cd.idCatDis
-        LEFT JOIN tasa_iva ti on distribucion.codIva = ti.idTasaIva
-        WHERE activo=0 and cotiza=0
-        ORDER BY cd.idCatDis , producto";
+        $qry = "SELECT idServicio, desServicio, CONCAT(format((tasaIva*100),1), ' %') iva,  CONCAT ('003000', codSiigo) coSiigo
+        FROM servicios
+        LEFT JOIN tasa_iva ti on servicios.codIva = ti.idTasaIva
+        WHERE activo=0 
+        ORDER BY desServicio";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();
         $result = $stmt->fetchAll();
         return $result;
     }
 
-    public function getProductoDistribucion($idDistribucion)
+    public function getServicio($idServicio)
     {
-        $qry = "SELECT idDistribucion, producto, catDis, distribucion.idCatDis, activo, codSiigo, codIva, tasaIva, precioVta, stockDis, cotiza
-        FROM  distribucion
-        LEFT JOIN cat_dis cd on distribucion.idCatDis = cd.idCatDis
-        LEFT JOIN tasa_iva ti on distribucion.codIva = ti.idTasaIva
-        WHERE idDistribucion=?";
+        $qry = "SELECT idServicio, desServicio, activo, codSiigo, codIva, CONCAT(format((tasaIva*100),1), ' %') iva
+        FROM  servicios
+        LEFT JOIN tasa_iva ti on servicios.codIva = ti.idTasaIva
+        WHERE idServicio=?";
         $stmt = $this->_pdo->prepare($qry);
-        $stmt->execute(array($idDistribucion));
+        $stmt->execute(array($idServicio));
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result;
     }
 
-    public function getUltimoProdDisxCat($idCatDis)
+    public function getLastServicio()
     {
-        $qry = "SELECT MAX(idDistribucion) as Cod from distribucion where idCatDis=?";
+        $qry = "SELECT MAX(idServicio) as Cod from servicios";
         $stmt = $this->_pdo->prepare($qry);
-        $stmt->execute(array($idCatDis));
+        $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result['Cod'];
     }
 
 
-    public function updateProductoDistribucion($datos)
-    {                                      
-        $qry = "UPDATE distribucion SET producto=?, codIva=?, precioVta=?, cotiza=?, activo=?, stockDis=? WHERE idDistribucion=?";
+    public function updateServicio($datos)
+    {
+        $qry = "UPDATE servicios SET desServicio=?, codIva=?, activo=? WHERE idServicio=?";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute($datos);
     }

@@ -270,3 +270,27 @@ function buscarProductoDistribucionForm($action, $actif)
         </form>';
     return $rep;
 }
+
+function buscarServicioForm($action, $actif)
+{
+
+    $rep = '<form id="form1" name="form1" method="post" action="' . $action . '">
+        <div class="form-group row"><label class="col-form-label col-1" for="combo"><strong>Servicio</strong></label>';
+    $servicioperador = new ServiciosOperaciones();
+    $servicios = $servicioperador->getServicios($actif);
+    $filas = count($servicios);
+    $rep .= '<select name="idServicio" class="form-control col-2">';
+    $rep .= '<option selected value="">-----------------------------</option>';
+    for ($i = 0; $i < $filas; $i++) {
+        $rep .= '<option value="' . $servicios[$i]["idServicio"] . '">' . $servicios[$i]['desServicio'] . '</option>';
+    }
+    $rep .= '</select>';
+
+    $rep .= '</div>
+        <div class="row form-group">
+        <div class="col-1"><button class="button"  onclick="return Enviar(this.form)">
+                <span>Continuar</span></button></div>
+        </div>
+        </form>';
+    return $rep;
+}

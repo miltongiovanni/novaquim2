@@ -49,16 +49,16 @@ $productoDistribucion = $ProductoDistribucionOperador->getProductoDistribucion($
                     Venta</strong></label>
             <input type="text" class="form-control col-2" name="precioVta" id="precioVta"
                    value="<?= ($productoDistribucion['precioVta']) ?>" onKeyPress="return aceptaNum(event)">
-            <label class="col-form-label col-1" for="codIva"><strong>Tasa IVA</strong></label>
+            <label class="col-form-label col-1" for="codIva"><strong>Iva</strong></label>
             <?php
             $manager = new TasaIvaOperaciones();
             $tasas = $manager->getTasasIva();
             $filas = count($tasas);
             echo '<select name="codIva" id="codIva" class="form-control col-3">';
-            echo '<option selected value="' . $productoDistribucion['codIva'] . '">' . $productoDistribucion['tasaIva'] . '</option>';
+            echo '<option selected value="' . $productoDistribucion['codIva'] . '">' . $productoDistribucion['iva'] . '</option>';
             for ($i = 0; $i < $filas; $i++) {
                 if ($tasas[$i]["idTasaIva"] != $productoDistribucion['codIva']) {
-                    echo '<option value="' . $tasas[$i]["idTasaIva"] . '">' . $tasas[$i]['tasaIva'] . '</option>';
+                    echo '<option value="' . $tasas[$i]["idTasaIva"] . '">' . $tasas[$i]['iva'] . '</option>';
                 }
             }
             echo '</select>';
@@ -109,6 +109,11 @@ $productoDistribucion = $ProductoDistribucionOperador->getProductoDistribucion($
             </div>
         </div>
     </form>
+    <div class="row">
+        <div class="col-1">
+            <button class="button1" id="back" onClick="history.back()"><span>VOLVER</span></button>
+        </div>
+    </div>
 </div>
 </body>
 </html>

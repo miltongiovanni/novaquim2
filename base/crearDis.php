@@ -88,7 +88,7 @@ spl_autoload_register('cargarClases');
                     Venta</strong></label>
             <input type="text" class="form-control col-2" name="precioVta" id="precioVta"
                    onKeyPress="return aceptaNum(event)">
-            <label class="col-form-label col-1" for="codIva"><strong>Tasa IVA</strong></label>
+            <label class="col-form-label col-1" for="codIva"><strong>Iva</strong></label>
             <?php
             $manager = new TasaIvaOperaciones();
             $tasas = $manager->getTasasIva();
@@ -96,7 +96,7 @@ spl_autoload_register('cargarClases');
             echo '<select name="codIva" id="codIva" class="form-control col-3">';
             echo '<option selected disabled value="">-----------------------------</option>';
             for ($i = 0; $i < $filas; $i++) {
-                echo '<option value="' . $tasas[$i]["idTasaIva"] . '">' . $tasas[$i]['tasaIva'] . '</option>';
+                echo '<option value="' . $tasas[$i]["idTasaIva"] . '">' . $tasas[$i]['iva'] . '</option>';
             }
             echo '</select>';
             ?>

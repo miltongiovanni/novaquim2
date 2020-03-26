@@ -16,7 +16,7 @@ class ProductosDistribucionOperaciones
         $stmt->execute($datos);
         return $this->_pdo->lastInsertId();
     }
-    
+
     public function deleteProductoDistribucion($idDistribucion)
     {
         $qry = "DELETE FROM distribucion WHERE idDistribucion= ?";
@@ -39,7 +39,7 @@ class ProductosDistribucionOperaciones
     }
     public function getTableProductosDistribucion()
     {
-        $qry = "SELECT idDistribucion, producto, CONCAT('$ ',format(round(precioVta),0)) precio, CONCAT(format(round(tasaIva*100),0), ' %') iva,catDis, codSiigo
+        $qry = "SELECT idDistribucion, producto, CONCAT('$ ',format(round(precioVta),0)) precio, CONCAT(format((tasaIva*100),1), ' %') iva, catDis, CONCAT ('003000', codSiigo) coSiigo
         FROM distribucion
         LEFT JOIN cat_dis cd on distribucion.idCatDis = cd.idCatDis
         LEFT JOIN tasa_iva ti on distribucion.codIva = ti.idTasaIva
@@ -53,7 +53,7 @@ class ProductosDistribucionOperaciones
 
     public function getProductoDistribucion($idDistribucion)
     {
-        $qry = "SELECT idDistribucion, producto, catDis, distribucion.idCatDis, activo, codSiigo, codIva, tasaIva, precioVta, stockDis, cotiza
+        $qry = "SELECT idDistribucion, producto, catDis, distribucion.idCatDis, activo, codSiigo, codIva, CONCAT(format((tasaIva*100),1), ' %') iva, precioVta, stockDis, cotiza
         FROM  distribucion
         LEFT JOIN cat_dis cd on distribucion.idCatDis = cd.idCatDis
         LEFT JOIN tasa_iva ti on distribucion.codIva = ti.idTasaIva
@@ -75,7 +75,7 @@ class ProductosDistribucionOperaciones
 
 
     public function updateProductoDistribucion($datos)
-    {                                      
+    {
         $qry = "UPDATE distribucion SET producto=?, codIva=?, precioVta=?, cotiza=?, activo=?, stockDis=? WHERE idDistribucion=?";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute($datos);

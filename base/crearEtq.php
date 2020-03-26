@@ -35,17 +35,17 @@ include "../includes/valAcc.php";
         <div id="saludo"><strong>CREACIÓN DE ETIQUETAS</strong></div>
         <form name="form2" method="POST" action="makeEtq.php">
             <div class="form-group row">
-                <label class="col-form-label col-1" style="text-align: right;"
+                <label class="col-form-label col-2" style="text-align: right;"
                     for="codEtiqueta"><strong>Código</strong></label>
                 <input type="text" class="form-control col-2" name="codEtiqueta" id="codEtiqueta" maxlength="50">
             </div>
             <div class="form-group row">
-                <label class="col-form-label col-1" style="text-align: right;"
+                <label class="col-form-label col-2" style="text-align: right;"
                     for="nomEtiqueta"><strong>Etiqueta</strong></label>
                 <input type="text" class="form-control col-2" name="nomEtiqueta" id="nomEtiqueta" maxlength="50">
             </div>
             <div class="form-group row">
-                <label class="col-form-label col-1" style="text-align: right;" for="stockEtiqueta"><strong>Stock
+                <label class="col-form-label col-2" style="text-align: right;" for="stockEtiqueta"><strong>Stock
                         Etiqueta</strong></label>
                 <input type="text" class="form-control col-2" name="stockEtiqueta" id="stockEtiqueta"
                     onKeyPress="return aceptaNum(event)">

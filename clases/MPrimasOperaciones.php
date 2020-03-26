@@ -48,7 +48,7 @@ class MPrimasOperaciones
 
     public function getMPrima($codMPrima)
     {
-        $qry = "SELECT codMPrima, nomMPrima, aliasMPrima, idCatMPrima, catMP, codIva, tasaIva, minStockMprima, aparienciaMPrima, olorMPrima, colorMPrima, pHmPrima, densidadMPrima, codMPrimaAnt
+        $qry = "SELECT codMPrima, nomMPrima, aliasMPrima, idCatMPrima, catMP, codIva, CONCAT(format((tasaIva*100),1), ' %') iva, minStockMprima, aparienciaMPrima, olorMPrima, colorMPrima, pHmPrima, densidadMPrima, codMPrimaAnt
         FROM  mprimas
            LEFT JOIN cat_mp cm on mprimas.idCatMPrima = cm.idCatMP
            LEFT JOIN tasa_iva ti on mprimas.codIva = ti.idTasaIva

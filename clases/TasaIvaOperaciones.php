@@ -24,7 +24,7 @@ class TasaIvaOperaciones
     }
     public function getTasasIva()
     {
-        $qry = "SELECT idTasaIva, tasaIva FROM tasa_iva order by tasaIva";
+        $qry = "SELECT idTasaIva, CONCAT(format((tasaIva*100),1), ' %') iva FROM tasa_iva order by tasaIva";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);

@@ -25,7 +25,7 @@ $idCategoria=$lastcategorias+1;
     <div id="saludo"><strong>CREACIÓN DE CATEGORÍA DE MATERIA PRIMA</strong></div>
     <form name="form2" method="POST" action="makeCategoriaMP.php">
       <div class="form-group row">
-        <label class="col-form-label col-1" style="text-align: right;" for="idCatMP">Código</label>
+          <label class="col-form-label col-1" style="text-align: right;" for="idCatMP"><strong>Código</strong></label>
         <input type="text" class="form-control col-2" name="idCatMP" id="idCatMP" size=30 maxlength="30"
           value="<?= $idCategoria ?>" readonly>
       </div>

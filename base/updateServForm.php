@@ -1,96 +1,87 @@
 <?php
-include "includes/valAcc.php";
-include "includes/conect.php";
-//echo $_SESSION['Perfil'];
+include "../includes/valAcc.php";
+function cargarClases($classname)
+{
+    require '../clases/' . $classname . '.php';
+}
+
+spl_autoload_register('cargarClases');
+$idServicio = $_POST['idServicio'];
+$servicioperador = new ServiciosOperaciones();
+$servicio = $servicioperador->getServicio($idServicio);
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-<meta charset="utf-8">
-<title>Actualizar Servicio</title>
-<script type="text/javascript" src="scripts/validar.js"></script>
-<script type="text/javascript" src="scripts/block.js"></script>
-	<script type="text/javascript">
-	document.onkeypress = stopRKey; 
-	</script>
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <meta charset="utf-8">
+    <title>Actualizar Servicio</title>
+    <script type="text/javascript" src="../js/validar.js"></script>
 </head>
 <body>
 <div id="contenedor">
-<div id="saludo"><strong>ACTUALIZACIÓN DE SERVICIO</strong></div>
-<?php
-	  $link=conectarServidor();
-	  $IdServ=$_POST['IdServ'];
-	  $qry="select IdServicio, DesServicio, Cod_iva, tasa, Activo from servicios, tasa_iva where Id_tasa=Cod_iva and IdServicio=$IdServ";
-	  $result=mysqli_query($link,$qry);
-	  $row=mysqli_fetch_array($result);
-	  mysqli_free_result($result);
-			/* cerrar la conexión */
-			mysqli_close($link);
-?>
+    <div id="saludo"><strong>ACTUALIZACIÓN DE SERVICIO</strong></div>
+    <form id="form1" name="form1" method="post" action="updateServ.php">
+        <div class="form-group row">
+            <label class="col-form-label col-2" style="text-align: right;"
+                   for="idServicio"><strong>Código</strong></label>
+            <input type="text" class="form-control col-2" name="idServicio" id="idServicio" size=30 maxlength="30"
+                   value="<?= $servicio['idServicio'] ?>" readonly>
+        </div>
+        <div class="form-group row">
+            <label class="col-form-label col-2" style="text-align: right;" for="desServicio"><strong>Descripción
+                    Servicio</strong></label>
+            <input type="text" class="form-control col-2" name="desServicio" id="desServicio"
+                   value="<?= $servicio['desServicio'] ?>" onKeyPress="return aceptaLetra(event)">
+        </div>
+        <div class="form-group row">
 
-<form id="form1" name="form1" method="post" action="updateServ.php">
-	<table border="0" align="center" width="50%" >
-    <tr> 
-      <td width="10%"><div align="center"><strong>Código </strong></div></td>
-      <td colspan="2"><div align="center"><strong>Descripción</strong></div></td>
-      <td width="16%"><div align="center"><strong>Tasa de IVA</strong></div></td>
-       <td width="23%"><div align="center"><strong>Producto Activo</strong></div></td>
-      
-      
-    </tr> 
-    <tr> 
-      <td><div align="center"><?php echo'<input name="Id_serv" type="text" readonly size="6" value="'.$row['IdServicio'].'"/>';?></div></td>
-      <td colspan="2"><div align="center"><?php echo'<input name="servicio" type="text" size="40" value="'.$row['DesServicio'].'"/>';?></div></td>
-      
-      
-     
-      <td><div align="center">
-        <?php
-		  $link=conectarServidor();
-		  echo'<select name="cod_iva">';
-		  $result2=mysqli_query($link,"select * from tasa_iva");
-		  echo '<option selected value='.$row['Cod_iva'].'>'.$row['tasa'].'</option>';
-          while ($row2=mysqli_fetch_array($result2))
-		  {
-			if ($row2['tasa']!= $row['tasa'])
-	        	echo '<option value='.$row2['Id_tasa'].'>'.$row2['tasa'].'</option>';
-          }
-          echo'</select>';
-		  mysqli_free_result($result2);
-/* cerrar la conexión */
-mysqli_close($link);
-		?>
-      </div></td>
-      <td><div align="center">
-	  <?php 
-        $Activo=$row['Activo'];
-        if ($Activo==1)
-        {
-        echo '<select name="Activo" >
-            <option value="1" selected>No</option>
-            <option value="0">Si</option>
-            </select>';
-        }
-        else
-		{
-		echo '<select name="Activo" >
-            <option value="0" selected>Si</option>
-            <option value="1">No</option>
-            </select>';	
-		}    
-        ?></div></td>
-      
-    </tr>
-    <tr><td>&nbsp;</td></tr>
-    <tr><td>&nbsp;</td> 
-      <td width="26%">&nbsp;</td> <td width="25%" >&nbsp;</td><td>&nbsp;</td> 
-      <td><div align="center">
-          <input name="Submit" type="submit" class="formatoBoton1" value="Enviar">
-        </div></td>
-    </tr>
-  </table>
-</form>
+            <label class="col-form-label col-2" for="codIva"><strong>Iva</strong></label>
+            <?php
+            $manager = new TasaIvaOperaciones();
+            $tasas = $manager->getTasasIva();
+            $filas = count($tasas);
+            echo '<select name="codIva" id="codIva" class="form-control col-2">';
+            echo '<option selected value="' . $servicio['codIva'] . '">' . $servicio['iva'] . '</option>';
+            for ($i = 0; $i < $filas; $i++) {
+                if ($servicio['codIva'] != $tasas[$i]["idTasaIva"]) {
+                    echo '<option value="' . $tasas[$i]["idTasaIva"] . '">' . $tasas[$i]['iva'] . '</option>';
+                }
+            }
+            echo '</select>';
+            ?>
+        </div>
+        <div class="form-group row">
+            <label class="col-form-label col-2" for="cotiza"><strong>Activo</strong></label>
+            <?php
+            if ($servicio['activo'] == 1) {
+                echo '<select name="activo" id="activo" class="form-control col-2">
+                    <option value="1" selected>No</option>
+                    <option value="0">Si</option>
+                </select>';
+            } else {
+                echo '<select name="activo" id="activo" class="form-control col-2">
+                    <option value="0" selected>Si</option>
+                    <option value="1">No</option>
+                </select>';
+            }
+            ?>
+        </div>
+        <div class="form-group row">
+            <div class="col-1" style="text-align: center;">
+                <button class="button" onclick="return Enviar(this.form)"><span>Continuar</span></button>
+            </div>
+            <div class="col-1" style="text-align: center;">
+                <button class="button" type="reset"><span>Reiniciar</span></button>
+            </div>
+        </div>
+
+    </form>
+    <div class="row">
+        <div class="col-1">
+            <button class="button1" id="back" onClick="history.back()"><span>VOLVER</span></button>
+        </div>
+    </div>
 </div>
 </body>
 </html>

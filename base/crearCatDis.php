@@ -24,7 +24,7 @@ $idCategoria=$lastcategorias+1;
         <div id="saludo"><strong>CREACIÓN DE CATEGORÍAS DE DISTRIBUCIÓN</strong></div>
         <form name="form2" method="POST" action="makeCategoriaDis.php">
             <div class="form-group row">
-                <label class="col-form-label col-1" style="text-align: right;" for="idCatDis">Código</label>
+                <label class="col-form-label col-1" style="text-align: right;" for="idCatDis"><strong>Código</strong></label>
                 <input type="text" class="form-control col-2" name="idCatDis" id="idCatDis" size=30 maxlength="30"
                     value="<?= $idCategoria ?>" readonly>
             </div>

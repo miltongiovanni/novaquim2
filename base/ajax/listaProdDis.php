@@ -20,7 +20,7 @@ function cargarClases($classname)
             $productos[$i]["precio"],
             $productos[$i]["iva"],
             $productos[$i]["catDis"],
-            $productos[$i]["codSiigo"]
+            $productos[$i]["coSiigo"]
         ); 
     }
     $datosRetorno  = array(
