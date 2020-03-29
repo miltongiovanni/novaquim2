@@ -22,7 +22,7 @@ spl_autoload_register('cargarClases');
         <div id="saludo"><strong>CREACIÓN DE PERSONAL</strong></div>
         <form name="form2" method="POST" action="makePerson.php">
             <div class="form-group row">
-                <label class="col-form-label col-1" style="text-align: right;" for="nomPersonal">Nombre</label>
+                <label class="col-form-label col-1" style="text-align: right;" for="nomPersonal"><strong>Nombre</strong></label>
                 <input type="text" class="form-control col-2" name="nomPersonal" id="nomPersonal" size=30
                     onKeyPress="return aceptaLetra(event)" maxlength="30">
             </div>
@@ -33,7 +33,7 @@ spl_autoload_register('cargarClases');
                     onKeyPress="return aceptaNum(event)" maxlength="30">
             </div>
             <div class="form-group row">
-                <label class="col-form-label col-1" for="emlPersonal"><b>E-mail</b></label>
+                <label class="col-form-label col-1" for="emlPersonal"><strong>E-mail</strong></label>
                 <input type="email" class="form-control col-2" id="emlPersonal" name="emlPersonal" size=30>
             </div>
             <div class="form-group row">

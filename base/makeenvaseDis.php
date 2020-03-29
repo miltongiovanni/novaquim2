@@ -1,14 +1,46 @@
 <?php
-	include "includes/valAcc.php";
-?>
-<?php
-include "includes/conect.php";
+	include "../includes/valAcc.php";
+// On enregistre notre autoload.
+function cargarClases($classname)
+{
+	require '../clases/' . $classname . '.php';
+}
+spl_autoload_register('cargarClases');
 foreach ($_POST as $nombre_campo => $valor) 
 { 
 	$asignacion = "\$".$nombre_campo."='".$valor."';"; 
-	//echo $nombre_campo." = ".$valor."<br>";  
+	echo $nombre_campo." = ".$valor."<br>";
 	eval($asignacion); 
-} 
+}
+$datos = array($idDis, $idEnv, $idTapa);
+$relEnvDisoperador = new RelEnvDisOperaciones();
+
+try {
+	if ( $relEnvDisoperador->checkDistribucion($idDis) > 0 ){
+		$ruta="envaseDis.php";
+		mover_pag($ruta,"Producto incluido con anterioridad");
+	}
+	else{
+		$lastCodRelEnvDis=$relEnvDisoperador->makeRelEnvDis($datos);
+		$ruta = "listarenvaseDis.php";
+		$mensaje =  "Relación creada con Éxito";
+	}
+
+
+} catch (Exception $e) {
+	$ruta = "crearServ.php";
+	$mensaje = "Error al crear el Servicio";
+} finally {
+	unset($conexion);
+	unset($stmt);
+	mover_pag($ruta, $mensaje);
+}
+
+
+
+
+
+
 $link=conectarServidor(); 
 $qry1="select Dist from rel_env_dis where Dist=$cod_dis";
 $result1=mysqli_query($link,$qry1);

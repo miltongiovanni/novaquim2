@@ -1,5 +1,14 @@
 <?php
 include "../includes/valAcc.php";
+function cargarClases($classname)
+{
+    require '../clases/' . $classname . '.php';
+}
+
+spl_autoload_register('cargarClases');
+$idUsuario = $_POST['idUsuario'];
+$manager = new UsuariosOperaciones();
+$row = $manager->getUser($idUsuario);
 ?>
 <!DOCTYPE html>
 <html>
@@ -14,26 +23,12 @@ include "../includes/valAcc.php";
 <body>
   <div id="contenedor">
 
-    <div id="saludo1">
-      <h4>ACTUALIZACIÓN DE USUARIOS</h4>
-    </div>
-
-    <?php
-    function cargarClases($classname)
-    {
-        require '../clases/' . $classname . '.php';
-    }
-
-    spl_autoload_register('cargarClases');
-    $idUsuario = $_POST['idUsuario'];
-    $manager = new UsuariosOperaciones();
-    $row = $manager->getUser($idUsuario);
-    ?>
+    <div id="saludo1"><strong>ACTUALIZACIÓN DE USUARIOS</strong></div>
 
     <form id="form1" name="form1" method="post" action="updateUser.php">
       <input type="hidden" class="form-control col-2" name="idUsuario" id="idUsuario" value="<?=$row['idUsuario']?>">
       <div class="form-group row">
-        <label class="col-form-label col-1" style="text-align: right;" for="nombre">Nombre</label>
+        <label class="col-form-label col-1" style="text-align: right;" for="nombre"><strong>Nombre</strong></label>
         <input type="text" class="form-control col-2" name="nombre" id="nombre" size=30 value="<?=$row['nombre']?>"
           onKeyPress="return aceptaLetra(event)" maxlength="30">
       </div>
@@ -62,7 +57,6 @@ include "../includes/valAcc.php";
               }
 
           }
-
           $con = null;
           $result = null;
           ?>

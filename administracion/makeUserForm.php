@@ -22,7 +22,7 @@ spl_autoload_register('cargarClases');
         <div id="saludo"><strong>CREACIÓN DE USUARIOS</strong></div>
         <form name="makeUserForm" id="makeUserForm" method="POST" action="makeUser.php">
             <div class="form-group row">
-                <label class="col-form-label col-1" style="text-align: right;" for="nombre">Nombre</label>
+                <label class="col-form-label col-1" style="text-align: right;" for="nombre"><strong>Nombre</strong></label>
                 <input type="text" class="form-control col-2" name="nombre" id="nombre" size=30 onKeyPress="return aceptaLetra(event)"
                     maxlength="30">
             </div>
