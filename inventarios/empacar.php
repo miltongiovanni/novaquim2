@@ -29,7 +29,7 @@ include "includes/valAcc.php";
 		<td colspan="1" ><div align="left">';
 		echo'<select name="cod_unidad">';
 		$qry="select inv_distribucion.Id_distribucion, Producto from distribucion, rel_dist_emp, inv_distribucion 
-		WHERE inv_distribucion.Id_distribucion=Cod_unidad and inv_distribucion.Id_distribucion=distribucion.Id_distribucion and inv_dist>0 order by Producto;";
+		WHERE inv_distribucion.Id_distribucion=codUnidad and inv_distribucion.Id_distribucion=distribucion.Id_distribucion and inv_dist>0 order by Producto;";
 		$result=mysqli_query($link,$qry);
 		while($row=mysqli_fetch_array($result))
 		{

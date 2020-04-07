@@ -12,17 +12,10 @@ function cargarClases($classname)
         'draw' => 0,
         'recordsTotal'    => count($etiquetas),
         'recordsFiltered' => count($etiquetas)
-        ); 
-    for($i = 0; $i < count($etiquetas); $i++){
-        $datos[]  = array(
-            $etiquetas[$i]["codEtiqueta"],
-            $etiquetas[$i]["nomEtiqueta"],
-            $etiquetas[$i]["stockEtiqueta"]
-        ); 
-    }
+        );
     $datosRetorno  = array(
         $titulo,  
-        'data'    => $datos
+        'data'    => $etiquetas
        ); 
 
 print json_encode($datosRetorno);

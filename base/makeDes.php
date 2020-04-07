@@ -12,24 +12,23 @@ foreach ($_POST as $nombre_campo => $valor)
 	//echo $nombre_campo." = ".$valor."<br>";
 	eval($asignacion); 
 }
-$datos = array($idDis, $idEnv, $idTapa);
-$relEnvDisoperador = new RelEnvDisOperaciones();
+$datos = array($codPaca, $codUnidad, $cantidad);
+$relDisEmpOperador = new RelDisEmpOperaciones();
 
 try {
-	$relDis = $relEnvDisoperador->checkDistribucion($idDis);
-	if ( $relDis['idEnvDis']  != null ){
-		$_SESSION['idEnvDis'] = $relDis['idEnvDis'];
-		header('Location: updateRelEnvDisForm.php');
+	$relDes = $relDisEmpOperador->checkPaca($codPaca);
+	if ( $relDes['idPacUn']  != null ){
+		$_SESSION['idPacUn'] = $relDes['idPacUn'];
+		header('Location: updateRelPacProdForm.php');
 	}
 	else{
-		$lastCodRelEnvDis=$relEnvDisoperador->makeRelEnvDis($datos);
-		$ruta = "listarenvaseDis.php";
+		$lastCodRelEnvDis=$relDisEmpOperador->makeRelDisEmp($datos);
+		$ruta = "listarDes.php";
 		$mensaje =  "Relación creada con Éxito";
 	}
 
-
 } catch (Exception $e) {
-	$ruta = "envaseDis.php";
+	$ruta = "crearDes.php";
 	$mensaje = "Error al crear la relación";
 } finally {
 	unset($conexion);

@@ -12,18 +12,10 @@ function cargarClases($classname)
         'draw' => 0,
         'recordsTotal'    => count($relaciones),
         'recordsFiltered' => count($relaciones)
-        ); 
-    for($i = 0; $i < count($relaciones); $i++){
-        $datos[]  = array(
-            $relaciones[$i]["idEnvDis"],
-            $relaciones[$i]["producto"],
-            $relaciones[$i]["nomEnvase"],
-            $relaciones[$i]["tapa"]
-        ); 
-    }
+        );
     $datosRetorno  = array(
         $titulo,  
-        'data'    => $datos
+        'data'    => $relaciones
        ); 
 print json_encode($datosRetorno);
 

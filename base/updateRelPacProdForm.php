@@ -6,29 +6,42 @@ function cargarClases($classname)
 }
 
 spl_autoload_register('cargarClases');
+if (isset($_POST['idPacUn'])) {
+    $idPacUn = $_POST['idPacUn'];
+}
+if(isset($_SESSION['idPacUn'])){
+    $idPacUn = $_SESSION['idPacUn'];
+    unset($_SESSION['idPacUn']);
+}
+
+$relDisEmpOperador = new RelDisEmpOperaciones();
+$relacion = $relDisEmpOperador->getRelDisEmp($idPacUn);
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Relación de Pacas de Productos de Distribución</title>
+    <title>Relación Paca Unidad Productos de Distribución</title>
     <meta charset="utf-8">
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="../js/validar.js"></script>
 </head>
 <body>
 <div id="contenedor">
-    <div id="saludo"><strong>RELACIÓN DE PACAS DE PRODUCTOS DE DISTRIBUCIÓN</strong></div>
-    <form method="post" action="makeDes.php" name="form1">
+    <div id="saludo"><strong>ACTUALIZACIÓN RELACIÓN PACA UNIDAD PRODUCTOS DE DISTRIBUCIÓN</strong></div>
+    <form method="post" action="updateRelPacProd.php" name="form1">
+        <input id="idPacUn" name="idPacUn" type="hidden" value="<?= $idPacUn ?>">
         <div class="form-group row">
             <label class="col-form-label col-2" for="codPaca"><strong>Producto empacado</strong></label>
             <select name="codPaca" id="codPaca" class="form-control col-2">
-                <option selected value="">-----------------------------</option>
+                <option selected value="<?= $relacion['codPaca'] ?>"><?= $relacion['paca'] ?></option>
                 <?php
                 $ProductoDistribucionOperador = new ProductosDistribucionOperaciones();
                 $productos = $ProductoDistribucionOperador->getProductosDistribucion(true);
                 $filas = count($productos);
                 for ($i = 0; $i < $filas; $i++) {
-                    echo '<option value="' . $productos[$i]["idDistribucion"] . '">' . $productos[$i]['producto'] . '</option>';
+                    if ($relacion['codPaca'] != $productos[$i]["idDistribucion"]) {
+                        echo '<option value="' . $productos[$i]["idDistribucion"] . '">' . $productos[$i]['producto'] . '</option>';
+                    }
                 }
                 ?>
             </select>
@@ -36,13 +49,15 @@ spl_autoload_register('cargarClases');
         <div class="form-group row">
             <label class="col-form-label col-2" for="codUnidad"><strong>Producto por unidad</strong></label>
             <select name="codUnidad" id="codUnidad" class="form-control col-2">
-                <option selected value="">-----------------------------</option>
+                <option selected value="<?= $relacion['codUnidad'] ?>"><?= $relacion['unidad'] ?></option>
                 <?php
                 $ProductoDistribucionOperador = new ProductosDistribucionOperaciones();
                 $productos = $ProductoDistribucionOperador->getProductosDistribucion(true);
                 $filas = count($productos);
                 for ($i = 0; $i < $filas; $i++) {
-                    echo '<option value="' . $productos[$i]["idDistribucion"] . '">' . $productos[$i]['producto'] . '</option>';
+                    if ($relacion['codUnidad'] != $productos[$i]["idDistribucion"]) {
+                        echo '<option value="' . $productos[$i]["idDistribucion"] . '">' . $productos[$i]['producto'] . '</option>';
+                    }
                 }
                 ?>
             </select>
@@ -51,7 +66,7 @@ spl_autoload_register('cargarClases');
             <label class="col-form-label col-2" style="text-align: right;" for="cantidad"><strong>Unidades por
                     empaque</strong></label>
             <input type="text" class="form-control col-2" name="cantidad" id="cantidad"
-                   onKeyPress="return aceptaNum(event)">
+                   onKeyPress="return aceptaNum(event)"  value="<?= $relacion['cantidad'] ?>">
         </div>
         <div class="row form-group">
             <div class="col-1">
@@ -64,7 +79,6 @@ spl_autoload_register('cargarClases');
             <button class="button1" onClick="history.back()"><span>VOLVER</span></button>
         </div>
     </div>
-
 </div>
 </body>
 </html>

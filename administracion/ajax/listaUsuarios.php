@@ -13,20 +13,9 @@ function cargarClases($classname)
         'recordsTotal'    => count($usuarios),
         'recordsFiltered' => count($usuarios)
         ); 
-    for($i = 0; $i < count($usuarios); $i++){
-        $datos[]  = array(
-            $usuarios[$i]["idUsuario"],
-            $usuarios[$i]["nombre"],
-            $usuarios[$i]["apellido"],
-            $usuarios[$i]["usuario"],
-            $usuarios[$i]["fecCrea"],
-            $usuarios[$i]["estado"],
-            $usuarios[$i]["perfil"]
-        ); 
-    }
     $datosRetorno  = array(
         $titulo,  
-        'data'    => $datos
+        'data'    => $usuarios
        ); 
 
 print json_encode($datosRetorno);

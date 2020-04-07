@@ -47,8 +47,7 @@ class PersonalOperaciones
         wHERE areaPersonal=idArea and activoPersonal=1 AND cargoPersonal=idCargo order by idPersonal";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();
-        //$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        $result = $stmt->fetchAll();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
 

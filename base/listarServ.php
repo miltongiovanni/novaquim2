@@ -8,7 +8,7 @@ include "../includes/valAcc.php";
     <meta charset="utf-8">
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="../css/datatables.css">
-    <script  src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/datatables.js"></script>
     <script src="../js/dataTables.buttons.js"></script>
     <script src="../js/jszip.js"></script>
@@ -17,11 +17,28 @@ include "../includes/valAcc.php";
     <script src="../js/buttons.html5.js"></script>
 
     <script>
-        $(document).ready(function() {
-            $('#example').DataTable( {
+        $(document).ready(function () {
+            $('#example').DataTable({
+                "columns": [
+                    {
+                        /*"className": 'details-control',*/
+                        /*"orderable": false,*/
+                        "data": "idServicio",
+                        /*"defaultContent": ''*/
+                    },
+                    {
+                        "data": "desServicio",
+                    },
+                    {
+                        "data": "iva",
+                    },
+                    {
+                        "data": "coSiigo",
+                    },
+                ],
                 "columnDefs":
                     [{
-                        "targets": [ 0, 1,2,3 ],
+                        "targets": [0, 1, 2, 3],
                         "className": 'dt-body-center'
                     }
                     ],
@@ -36,19 +53,19 @@ include "../includes/valAcc.php";
                     "zeroRecords": "Lo siento no encontró nada",
                     "info": "Mostrando página _PAGE_ de _PAGES_",
                     "infoEmpty": "No hay datos disponibles",
-                    "search":         "Búsqueda:",
+                    "search": "Búsqueda:",
                     "paginate": {
-                        "first":      "Primero",
-                        "last":       "Último",
-                        "next":       "Siguiente",
-                        "previous":   "Anterior"
+                        "first": "Primero",
+                        "last": "Último",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
                     },
                     "infoFiltered": "(Filtrado de _MAX_ en total)"
 
                 },
                 "ajax": "ajax/listaServicios.php"
-            } );
-        } );
+            });
+        });
     </script>
 </head>
 <body>
@@ -56,7 +73,7 @@ include "../includes/valAcc.php";
     <div id="saludo1"><strong>LISTADO DE SERVICIOS OFRECIDOS POR INDUSTRIAS NOVAQUIM S.A.S.</strong></div>
     <div class="row" style="justify-content: right;">
         <div class="col-1">
-            <button class="button"  onclick="window.location='../menu.php'">
+            <button class="button" onclick="window.location='../menu.php'">
                 <span><STRONG>Ir al Menú</STRONG></span></button>
         </div>
     </div>
@@ -71,9 +88,11 @@ include "../includes/valAcc.php";
         </thead>
     </table>
     <div class="row">
-        <div class="col-1"><button class="button"
-                                   onclick="window.location='../menu.php'">
-                <span><STRONG>Ir al Menú</STRONG></span></button></div>
+        <div class="col-1">
+            <button class="button"
+                    onclick="window.location='../menu.php'">
+                <span><STRONG>Ir al Menú</STRONG></span></button>
+        </div>
     </div>
 
 

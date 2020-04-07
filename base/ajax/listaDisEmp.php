@@ -6,20 +6,17 @@ function cargarClases($classname)
     }
 
     spl_autoload_register('cargarClases');
-    $ProductosDistribucionOperador = new ProductosDistribucionOperaciones();
-    $productos=$ProductosDistribucionOperador->getTableProductosDistribucion();
+    $RelDisEmpOperador = new RelDisEmpOperaciones();
+    $relaciones=$RelDisEmpOperador->getTableRelsDisEmp();
     $titulo  = array(
         'draw' => 0,
-        'recordsTotal'    => count($productos),
-        'recordsFiltered' => count($productos)
+        'recordsTotal'    => count($relaciones),
+        'recordsFiltered' => count($relaciones)
         );
     $datosRetorno  = array(
         $titulo,  
-        'data'    => $productos
+        'data'    => $relaciones
        ); 
-
-
 print json_encode($datosRetorno);
-
 
 ?>

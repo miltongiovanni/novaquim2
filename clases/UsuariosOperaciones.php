@@ -44,8 +44,7 @@ class UsuariosOperaciones
         FROM usuarios, perfiles, estados_usuarios WHERE usuarios.idPerfil=perfiles.idPerfil AND estadoUsuario=idEstado AND estadoUsuario=2 ORDER BY idUsuario;";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();
-        //$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        $result = $stmt->fetchAll();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
 

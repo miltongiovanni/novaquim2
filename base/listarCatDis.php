@@ -20,6 +20,17 @@ include "../includes/valAcc.php";
 	<script>
 	$(document).ready(function() {
 		$('#example').DataTable( {
+            "columns": [
+                {
+                    /*"className": 'details-control',*/
+                    /*"orderable": false,*/
+                    "data": "idCatDis",
+                    /*"defaultContent": ''*/
+                },
+                {
+                    "data": "catDis",
+                },
+            ],
 		"columnDefs": 
 			[{
 				"targets": [ 0, 1  ],
@@ -49,7 +60,7 @@ include "../includes/valAcc.php";
 			"infoFiltered": "(Filtrado de _MAX_ en total)"
 			
 		},
-			"ajax": "ajax/listaCatProd.php"
+			"ajax": "ajax/listaCatDis.php"
 		} );
 	} );
 	</script>

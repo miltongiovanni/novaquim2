@@ -13,15 +13,9 @@ function cargarClases($classname)
         'recordsTotal'    => count($categoriasDis),
         'recordsFiltered' => count($categoriasDis)
         ); 
-    for($i = 0; $i < count($categoriasDis); $i++){
-        $datos[]  = array(
-            $categoriasDis[$i]["idCatDis"],
-            $categoriasDis[$i]["catDis"]
-        ); 
-    }
     $datosRetorno  = array(
         $titulo,  
-        'data'    => $datos
+        'data'    => $categoriasDis
        ); 
 
 

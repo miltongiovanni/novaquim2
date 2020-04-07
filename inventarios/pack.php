@@ -10,14 +10,14 @@ foreach ($_POST as $nombre_campo => $valor)
 	eval($asignacion); 
 } 
 $link=conectarServidor(); 
-$qry3="select Cod_paca, Cantidad FROM rel_dist_emp where Cod_unidad=$cod_unidad";
+$qry3="select codPaca, Cantidad FROM rel_dist_emp where Cod_unidad=$cod_unidad";
 $result3=mysqli_query($link,$qry3);
 $row3=mysqli_fetch_array($result3);
 $Cantidad=$row3['Cantidad'];
 $pacas=intval($Unidades/$Cantidad);
 if($Unidades>=$Cantidad)
 {
-	$qry2="select inv_dist from inv_distribucion where Id_distribucion=(select Cod_paca FROM rel_dist_emp where Cod_unidad=$cod_unidad)";
+	$qry2="select inv_dist from inv_distribucion where Id_distribucion=(select codPaca FROM rel_dist_emp where Cod_unidad=$cod_unidad)";
 	$result2=mysqli_query($link,$qry2);
 	$row2=mysqli_fetch_array($result2);
 	$inv_paca=$row2['inv_dist'];
@@ -29,7 +29,7 @@ if($Unidades>=$Cantidad)
 	$qry4="update inv_distribucion set inv_dist=$inv_actual where Id_distribucion=$cod_unidad";
 	$result4=mysqli_query($link,$qry4);
 	$inv_paca_final=$inv_paca+$pacas;
-	$qry5="update inv_distribucion set inv_dist=$inv_paca_final where Id_distribucion=(select Cod_paca FROM rel_dist_emp where Cod_unidad=$cod_unidad)";
+	$qry5="update inv_distribucion set inv_dist=$inv_paca_final where Id_distribucion=(select codPaca FROM rel_dist_emp where Cod_unidad=$cod_unidad)";
 	$result5=mysqli_query($link,$qry5);
 	$ruta="menu.php";
 	mysqli_close($link);

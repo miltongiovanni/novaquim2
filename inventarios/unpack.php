@@ -16,16 +16,16 @@ $row1=mysqli_fetch_array($result1);
 $inv_paca=$row1['inv_dist'];
 if($inv_paca>=$Unidades)
 {
-	$qry2="select inv_dist from inv_distribucion where Id_distribucion=(select Cod_unidad FROM rel_dist_emp where Cod_paca=$cod_paca)";
+	$qry2="select inv_dist from inv_distribucion where Id_distribucion=(select codUnidad FROM rel_dist_emp where Cod_paca=$cod_paca)";
 	$result2=mysqli_query($link,$qry2);
 	$row2=mysqli_fetch_array($result2);
 	$inv_unidad=$row2['inv_dist'];
-	$qry3="select Cod_unidad, Cantidad FROM rel_dist_emp where Cod_paca=$cod_paca";
+	$qry3="select codUnidad, Cantidad FROM rel_dist_emp where Cod_paca=$cod_paca";
 	$result3=mysqli_query($link,$qry3);
 	$row3=mysqli_fetch_array($result3);
 	$Cantidad=$row3['Cantidad'];
 	
-	$qry3s="select Cod_unidad FROM rel_dist_emp where Cod_paca=$cod_paca";
+	$qry3s="select codUnidad FROM rel_dist_emp where Cod_paca=$cod_paca";
 	$result3s=mysqli_query($link,$qry3s);
 	$row3s=mysqli_fetch_array($result3s);
 	$Cod_unidad=$row3s['Cod_unidad'];

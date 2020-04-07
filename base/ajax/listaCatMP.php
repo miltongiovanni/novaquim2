@@ -12,17 +12,10 @@ function cargarClases($classname)
         'draw' => 0,
         'recordsTotal'    => count($categoriasMP),
         'recordsFiltered' => count($categoriasMP)
-        ); 
-    for($i = 0; $i < count($categoriasMP); $i++){
-        $datos[]  = array(
-            $categoriasMP[$i]["idCatMP"],
-            $categoriasMP[$i]["catMP"]
-        ); 
-    }
-
+        );
     $datosRetorno  = array(
         $titulo,  
-        'data'    => $datos
+        'data'    => $categoriasMP
        ); 
        print json_encode($datosRetorno);
 

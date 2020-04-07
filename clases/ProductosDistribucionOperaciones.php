@@ -47,7 +47,7 @@ class ProductosDistribucionOperaciones
         ORDER BY cd.idCatDis , producto";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();
-        $result = $stmt->fetchAll();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
 

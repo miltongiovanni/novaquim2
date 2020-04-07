@@ -13,16 +13,9 @@ function cargarClases($classname)
         'recordsTotal'    => count($tapas),
         'recordsFiltered' => count($tapas)
         ); 
-    for($i = 0; $i < count($tapas); $i++){
-        $datos[]  = array(
-            $tapas[$i]["codTapa"],
-            $tapas[$i]["tapa"],
-            $tapas[$i]["stockTapa"]
-        ); 
-    }
     $datosRetorno  = array(
         $titulo,  
-        'data'    => $datos
+        'data'    => $tapas
        ); 
 
     print json_encode($datosRetorno);

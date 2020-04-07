@@ -45,7 +45,7 @@ class CategoriasProdOperaciones
         $qry = "SELECT idCatProd, catProd FROM cat_prod order by idCatProd";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();
-        $result = $stmt->fetchAll();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
 

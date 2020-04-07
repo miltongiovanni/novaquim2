@@ -45,7 +45,7 @@ class CategoriasMPOperaciones
         $qry = "SELECT idCatMP, catMP FROM cat_mp order by idCatMP";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();
-        $result = $stmt->fetchAll();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
 

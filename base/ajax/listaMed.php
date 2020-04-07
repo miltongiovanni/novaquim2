@@ -12,21 +12,10 @@ function cargarClases($classname)
         'draw' => 0,
         'recordsTotal'    => count($presentaciones),
         'recordsFiltered' => count($presentaciones)
-        ); 
-    for($i = 0; $i < count($presentaciones); $i++){
-        $datos[]  = array(
-            $presentaciones[$i]["codPresentacion"],
-            $presentaciones[$i]["presentacion"],
-            $presentaciones[$i]["desMedida"],
-            $presentaciones[$i]["nomEnvase"],
-            $presentaciones[$i]["tapa"],
-            $presentaciones[$i]["codigoGen"],
-            $presentaciones[$i]["coSiigo"]
-        ); 
-    }
+        );
     $datosRetorno  = array(
         $titulo,  
-        'data'    => $datos
+        'data'    => $presentaciones
        ); 
 
 

@@ -19,6 +19,23 @@ include "../includes/valAcc.php";
     <script>
         $(document).ready(function () {
             $('#example').DataTable({
+                "columns": [
+                    {
+                        /*"className": 'details-control',*/
+                        /*"orderable": false,*/
+                        "data": "idEnvDis",
+                        /*"defaultContent": ''*/
+                    },
+                    {
+                        "data": "producto",
+                    },
+                    {
+                        "data": "nomEnvase",
+                    },
+                    {
+                        "data": "tapa",
+                    },
+                ],
                 "columnDefs":
                     [{
                         "targets": [0, 1, 2, 3],

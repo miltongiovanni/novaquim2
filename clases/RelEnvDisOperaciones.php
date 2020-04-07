@@ -27,11 +27,11 @@ class RelEnvDisOperaciones
 
     public function checkDistribucion($idDis)
     {
-        $qry = "SELECT COUNT(idDis) c FROM rel_env_dis WHERE idDis= ?";
+        $qry = "SELECT idDis, idEnvDis  FROM rel_env_dis WHERE idDis= ?";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute(array($idDis));
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $result['c'];
+        return $result;
     }
 
     public function getRelsEnvDis()
@@ -53,7 +53,7 @@ class RelEnvDisOperaciones
                 LEFT JOIN tapas_val tv on rel_env_dis.idTapa = tv.codTapa";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();
-        $result = $stmt->fetchAll();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
 
@@ -69,16 +69,6 @@ class RelEnvDisOperaciones
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result;
     }
-
-    public function getUltimoProdDisxCat($idCatDis)
-    {
-        $qry = "SELECT MAX(idDistribucion) as Cod from rel_env_dis where idCatDis=?";
-        $stmt = $this->_pdo->prepare($qry);
-        $stmt->execute(array($idCatDis));
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $result['Cod'];
-    }
-
 
     public function updateRelEnvDis($datos)
     {

@@ -318,3 +318,27 @@ function buscarRelEnvDisForm($action)
         </form>';
     return $rep;
 }
+
+function buscarRelPacProdForm($action)
+{
+
+    $rep = '<form id="form1" name="form1" method="post" action="' . $action . '">
+        <div class="form-group row"><label class="col-form-label col-1" for="idPacUn"><strong>Relación</strong></label>';
+    $relDisEmpOperador = new RelDisEmpOperaciones();
+    $relaciones = $relDisEmpOperador->getRelsDisEmp();
+    $filas = count($relaciones);
+    $rep .= '<select name="idPacUn" id="idPacUn" class="form-control col-2">';
+    $rep .= '<option selected value="">-----------------------------</option>';
+    for ($i = 0; $i < $filas; $i++) {
+        $rep .= '<option value="' . $relaciones[$i]["idPacUn"] . '">' . $relaciones[$i]['producto'] . '</option>';
+    }
+    $rep .= '</select>';
+
+    $rep .= '</div>
+        <div class="row form-group">
+        <div class="col-1"><button class="button"  onclick="return Enviar(this.form)">
+                <span>Continuar</span></button></div>
+        </div>
+        </form>';
+    return $rep;
+}

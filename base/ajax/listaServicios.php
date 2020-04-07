@@ -13,17 +13,9 @@ $titulo = array(
     'recordsTotal' => count($servicios),
     'recordsFiltered' => count($servicios)
 );
-for ($i = 0; $i < count($servicios); $i++) {
-    $datos[] = array(
-        $servicios[$i]["idServicio"],
-        $servicios[$i]["desServicio"],
-        $servicios[$i]["iva"],
-        $servicios[$i]["coSiigo"]
-    );
-}
 $datosRetorno = array(
     $titulo,
-    'data' => $datos
+    'data' => $servicios
 );
 
 
