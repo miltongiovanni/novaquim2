@@ -84,7 +84,7 @@ include "includes/conect.php";
 	}
 	function mover_pag($ruta,$nota)
 	{
-	echo'<script language="Javascript">
+	echo'<script >
 	document.formulario.submit();
 	</script>';
 	}

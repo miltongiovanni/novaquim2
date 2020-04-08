@@ -41,7 +41,7 @@ if($CrearFormula==0)
 		echo'<input name="CrearFormula" type="hidden" value="5">'; 
 		echo'<input name="Formula" type="hidden" value="'.$Formula.'">'; 
 		echo '</form>';
-		echo'<script language="Javascript">
+		echo'<script >
 		document.form3.submit();
 		</script>';	
 		mysqli_free_result($result);
@@ -57,7 +57,7 @@ mysqli_close($link);
 function mover_pag($ruta,$nota)
 {	
 	//Funcion que permite el redireccionamiento de los usuarios a otra pagina 
-	echo' <script language="Javascript">
+	echo' <script >
 	alert("'.$nota.'")
 	self.location="'.$ruta.'"
 	</script>';

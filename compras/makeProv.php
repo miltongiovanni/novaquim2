@@ -21,13 +21,13 @@ $result=mysqli_query($link,$sql);
 $row=mysqli_fetch_array($result, MYSQLI_BOTH);
 if ($row)
 {
-   echo'<script language="Javascript">
+   echo'<script >
    alert("Proveedor o Nit ya existente")
    </script>';
 	echo'<form action="updateProvForm.php" method="post" name="formulario">';
 	echo '<input name="prov" type="hidden" value="'.$NIT_F.'"/><input type="submit" name="Submit" value="Cambiar" />';
 	echo'</form>'; 
-	echo' <script language="Javascript"> 	document.formulario.submit(); 	</script>';
+	echo' <script > 	document.formulario.submit(); 	</script>';
 }
 mysqli_free_result($result);
 /* cerrar la conexión */
@@ -35,10 +35,10 @@ mysqli_close($link);
 echo'<form action="makeProvForm2.php" method="post" name="formulario">';
 echo '<input name="nit" type="hidden" value="'.$NIT_F.'"/><input type="submit" name="Submit" value="Cambiar" />';
 echo'</form>'; 
-echo' <script language="Javascript"> 	document.formulario.submit(); 	</script>';
+echo' <script > 	document.formulario.submit(); 	</script>';
 
 function mover_pag($ruta,$Mensaje){
-echo'<script language="Javascript">
+echo'<script >
    alert("'.$Mensaje.'")
    self.location="'.$ruta.'"
    </script>';

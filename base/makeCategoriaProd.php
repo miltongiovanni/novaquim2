@@ -12,7 +12,7 @@ foreach ($_POST as $nombre_campo => $valor)
 	$asignacion = "\$".$nombre_campo."='".$valor."';"; 
 	//echo $nombre_campo." = ".$valor."<br>";  
 	eval($asignacion); 
-}  
+}
 $datos = array($idCatProd, $catProd);
 $catsProdOperador = new CategoriasProdOperaciones();
 
@@ -31,7 +31,7 @@ try {
 }
 
 function mover_pag($ruta,$Mensaje){
-echo'<script language="Javascript">
+echo'<script >
    alert("'.$Mensaje.'")
    self.location="'.$ruta.'"
    </script>';

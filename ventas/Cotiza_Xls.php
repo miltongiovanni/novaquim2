@@ -41,8 +41,8 @@ $objPHPExcel->setActiveSheetIndex(0)
 $objPHPExcel->getActiveSheet()->setTitle('Lista de Cotizaciones');
 $link=conectarServidor();
 $sql="	
-select Id_Cotizacion, Fech_Cotizacion, Nom_clien, Des_cat_cli, tipo_precio,  Contacto, Cargo, Tel_clien, Cel_clien, Dir_clien, Eml_clien, nom_personal 
-from cotizaciones, clientes_cotiz, personal, cat_clien, tip_precio where cliente=Id_cliente and cod_vend=Id_personal and Id_cat_clien=Id_cat_cli and precio=Id_precio;";
+select Id_Cotizacion, Fech_Cotizacion, Nom_clien, desCatClien, tipo_precio,  Contacto, Cargo, Tel_clien, Cel_clien, Dir_clien, Eml_clien, nom_personal 
+from cotizaciones, clientes_cotiz, personal, cat_clien, tip_precio where cliente=Id_cliente and cod_vend=Id_personal and Id_cat_clien=idCatClien and precio=Id_precio;";
 			
 $result=mysqli_query($link,$sql) or die("Error al conectar a la base de datos.");
 $i=2;

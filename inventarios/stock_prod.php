@@ -48,8 +48,8 @@ while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
 		<td class="formatoDatos"><div align="center"><a aiotitle="click to expand" href="javascript:togglecomments('."'".'UniqueName'.$a."'".')">+/-</a></div></td>
 		<td class="formatoDatos"><div align="center">'.$row['Codigo'].'</div></td>
 		<td class="formatoDatos"><div align="left">'.$row['Nombre'].'</div></td>
-		<td class="formatoDatos"><div align="center"><script language="javascript"> document.write(commaSplit('.$row['inventario'].'))</script></div></td>
-		<td class="formatoDatos"><div align="center"><script language="javascript"> document.write(commaSplit('.$row['stock_prese'].'))</script></div></td>';
+		<td class="formatoDatos"><div align="center"><script > document.write(commaSplit('.$row['inventario'].'))</script></div></td>
+		<td class="formatoDatos"><div align="center"><script > document.write(commaSplit('.$row['stock_prese'].'))</script></div></td>';
 		echo'</tr>';
 		$sqli="select inv_prod.Cod_prese as Codigo, Nombre, lote_prod, inv_prod as Inventario 
 		from inv_prod, prodpre where inv_prod.Cod_prese=prodpre.Cod_prese and inv_prod.Cod_prese=$prod and inv_prod>0;";
@@ -63,7 +63,7 @@ while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
 		{
 		echo '<tr>
 		<td class="formatoDatos"><div align="center">'.$rowi['lote_prod'].'</div></td>
-		<td class="formatoDatos"><div align="center"><script language="javascript"> document.write(commaSplit('.$rowi['Inventario'].'))</script></div></td>
+		<td class="formatoDatos"><div align="center"><script > document.write(commaSplit('.$rowi['Inventario'].'))</script></div></td>
 		</tr>';
 		}
 		echo '</table></div></td></tr>';

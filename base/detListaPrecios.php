@@ -69,7 +69,7 @@ if ($_POST['seleccion1']) {
     //echo $qry."<br>";
 } else {
     //echo "no escogió productos de novaquim <br>";
-    echo ' <script language="Javascript">
+    echo ' <script >
 	alert("Debe escoger algún tipo de precio");
 	history.back();
 	</script>';

@@ -52,7 +52,7 @@ include "includes/conect.php";
 		$inv_etq=$inv_etq - $cantidad + $cantidad_ant;
 		$qry_up_etq="update inv_etiquetas set inv_etiq=$inv_etq where Cod_etiq=$cod_etq";
 		$result_up_etq=mysqli_query($link,$qry_up_etq);		
-		echo' <script language="Javascript">
+		echo' <script >
 				alert("Actualización Realizada con Éxito");
 			</script>';
 	}
@@ -94,7 +94,7 @@ include "includes/conect.php";
 		$inv_etq=$inv_etq - $cantidad + $cantidad_ant;
 		$qry_up_etq="update inv_etiquetas set inv_etiq=$inv_etq where Cod_etiq=$cod_etq";
 		$result_up_etq=mysqli_query($link,$qry_up_etq);		
-		echo' <script language="Javascript">
+		echo' <script >
 				alert("Actualización Realizada con Éxito");
 			</script>';
 	}
@@ -110,7 +110,7 @@ include "includes/conect.php";
 	echo'</form>';
 	function mover_pag($ruta,$nota)
 	{
-	echo'<script language="Javascript">
+	echo'<script >
 	document.formulario.submit();
 	</script>';
 	}

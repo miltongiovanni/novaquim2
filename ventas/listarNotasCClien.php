@@ -108,7 +108,7 @@ while($row=mysqli_fetch_array($rs, MYSQLI_BOTH))
 	<td class="formatoDatos"><div align="center">'.$row['Fac_orig'].'</div></td>
 	<td class="formatoDatos"><div align="center">'.$row['Fac_dest'].'</div></td>
 	<td class="formatoDatos"><div align="center">'.$motivo.'</div></td>
-	<td class="formatoDatos"><div align="center">$ <script language="javascript"> document.write(commaSplit('.round($row['Total'],0).'))</script></div></td>';
+	<td class="formatoDatos"><div align="center">$ <script > document.write(commaSplit('.round($row['Total'],0).'))</script></div></td>';
 	
 	echo'</tr>';
 	$sqli="select det_nota_c.Cod_producto as codigo, Nombre as producto, det_nota_c.Can_producto as cantidad 
@@ -132,7 +132,7 @@ while($row=mysqli_fetch_array($rs, MYSQLI_BOTH))
 	echo '<tr>
 	<td class="formatoDatos"><div align="center">'.$rowi['codigo'].'</div></td>
 	<td class="formatoDatos"><div align="left">'.$rowi['producto'].'</div></td>
-	<td class="formatoDatos"><div align="center"><script language="javascript" type="text/javascript"> document.write(commaSplit('.$rowi['cantidad'].'))</script></div></td>
+	<td class="formatoDatos"><div align="center"><script  type="text/javascript"> document.write(commaSplit('.$rowi['cantidad'].'))</script></div></td>
 
 	</tr>';
 	}

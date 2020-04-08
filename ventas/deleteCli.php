@@ -35,7 +35,7 @@
 		echo'<input name="Estado" type="hidden" value="'.$Estado.'">';
 		//echo '<input type="submit" name="Submit" value="" >'; 
 		echo '</form>';
-		echo'<script language="Javascript">
+		echo'<script >
 			alert("Cliente Eliminado Correctamente");
 			document.form3.submit();
 			</script>';	
@@ -47,7 +47,7 @@
 	
 function mover_pag($ruta,$nota)
 	{
-	echo'<script language="Javascript">
+	echo'<script >
 	alert("'.$nota.'")
 	self.location="'.$ruta.'"
 	</script>';

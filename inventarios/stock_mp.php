@@ -48,8 +48,8 @@ while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
 		<td class="formatoDatos"><div align="center"><a aiotitle="click to expand" href="javascript:togglecomments('."'".'UniqueName'.$a."'".')">+/-</a></div></td>
 		<td class="formatoDatos"><div align="center">'.$row['Codigo'].'</div></td>
 		<td class="formatoDatos"><div align="left">'.$row['Nombre'].'</div></td>
-		<td class="formatoDatos"><div align="center"><script language="javascript"> document.write(commaSplit('.$row['inventario'].'))</script></div></td>
-		<td class="formatoDatos"><div align="center"><script language="javascript"> document.write(commaSplit('.$row['Stock'].'))</script></div></td>';
+		<td class="formatoDatos"><div align="center"><script > document.write(commaSplit('.$row['inventario'].'))</script></div></td>
+		<td class="formatoDatos"><div align="center"><script > document.write(commaSplit('.$row['Stock'].'))</script></div></td>';
 		echo'</tr>';
 
 	
@@ -67,7 +67,7 @@ while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
 			{
 				echo '<tr>
 				<td class="formatoDatos"><div align="center">'.$rowi['Lote'].'</div></td>
-				<td class="formatoDatos"><div align="center"><script language="javascript"> document.write(commaSplit('.$rowi['inventario'].'))</script></div></td>
+				<td class="formatoDatos"><div align="center"><script > document.write(commaSplit('.$rowi['inventario'].'))</script></div></td>
 				</tr>';
 			}
 		}

@@ -55,7 +55,7 @@ if($CrearFactura==0)
 		echo'<input name="CrearFactura" type="hidden" value="5">'; 
 		echo'<input name="Factura" type="hidden" value="'.$Factura.'">'; 
 		echo '</form>';
-		echo' <script language="Javascript" type="text/javascript">
+		echo' <script  type="text/javascript">
 			alert("Factura ingresada anteriormente");
 			document.formulario.submit();
 			</script>'; 
@@ -84,7 +84,7 @@ if($CrearFactura==0)
 				echo'<input name="CrearFactura" type="hidden" value="5">'; 
 				echo'<input name="Factura" type="hidden" value="'.$Factura.'">'; 
 				echo '</form>';
-				echo'<script language="Javascript" type="text/javascript">
+				echo'<script  type="text/javascript">
 					document.form3.submit();
 					</script>';	
 			}
@@ -99,7 +99,7 @@ if($CrearFactura==0)
 			if($dias_v>0)
 			{
 				//echo $dias;
-				echo'<script language="Javascript" type="text/javascript">
+				echo'<script  type="text/javascript">
 				alert("La fecha de factura de la compra no puede ser de una fecha futura");
 				self.location="compradist.php";
 				</script>';	
@@ -107,14 +107,14 @@ if($CrearFactura==0)
 			if($dias_v<-8)
 			{
 				echo $dias;
-				echo'<script language="Javascript" type="text/javascript">
+				echo'<script  type="text/javascript">
 				alert("La fecha de factura de la compra no puede ser menor de 8 días de la fecha actual");
 				self.location="compradist.php";
 				</script>';	
 			}
 			if($dias_f<0)
 			{
-				echo'<script language="Javascript" type="text/javascript">
+				echo'<script  type="text/javascript">
 				alert("La fecha de vencimiento de la compra no puede ser menor que la de la fecha de compra");
 				self.location="compradist.php";
 				</script>';	
@@ -126,7 +126,7 @@ if($CrearFactura==0)
 function mover_pag($ruta,$nota)
 {	
 	//Funcion que permite el redireccionamiento de los usuarios a otra pagina 
-	echo' <script language="Javascript">
+	echo' <script >
 	alert("'.$nota.'")
 	self.location="'.$ruta.'"
 	</script>';
@@ -140,7 +140,7 @@ if($CrearFactura==1)
 	$row_bus=mysqli_fetch_array($resultqrybus);
 	if ($row_bus['Codigo']==$cod_dist)
 	{
-		echo' <script language="Javascript" type="text/javascript">
+		echo' <script  type="text/javascript">
 			alert("Producto incluido anteriormente");
 			document.formulario.submit();
 			</script>'; 
@@ -185,7 +185,7 @@ if($CrearFactura==1)
 	echo'<input name="CrearFactura" type="hidden" value="5">'; 
 	echo'<input name="Factura" type="hidden" value="'.$Factura.'">'; 
 	echo '</form>';
-	echo'<script language="Javascript" type="text/javascript">
+	echo'<script  type="text/javascript">
 		document.form3.submit();
 		</script>';			
 } 
@@ -242,7 +242,7 @@ if($CrearFactura==6)
 	  $result2=mysqli_query($link,$qryUpEstFactura);
 	  mysqli_close($link);
 	}
-	echo'<script language="Javascript" type="text/javascript">
+	echo'<script  type="text/javascript">
 	self.location="menu.php";
 	</script>';
 } 
@@ -277,25 +277,25 @@ if($CrearFactura==6)
       <td align="right"><strong>Proveedor</strong></td>
       <td colspan="3" ><?php echo  $row['Nom_provee']?></td>
       <td width="14%" colspan="1" ><div align="right"><strong>Valor Factura</strong></div></td>
-      <td colspan="2"><div align="left"><?php echo '$ <script language="javascript" type="text/javascript"> document.write(commaSplit('.$row['total_fact'].'))</script>' ;?> </div></td>
+      <td colspan="2"><div align="left"><?php echo '$ <script  type="text/javascript"> document.write(commaSplit('.$row['total_fact'].'))</script>' ;?> </div></td>
     </tr>
     <tr>
     <td width="28%" colspan="1"><div align="right"><strong>NIT</strong></div></td>
       <td colspan="3"><?php echo  $row['nit_prov']?></td>
       <td width="14%" colspan="1" ><div align="right"><strong>Retenci&oacute;n Cree</strong></div></td>
-      <td colspan="2"><div align="left"><?php echo '$ <script language="javascript" type="text/javascript"> document.write(commaSplit('.$row['ret_ica'].'))</script>' ;?> </div></td>
+      <td colspan="2"><div align="left"><?php echo '$ <script  type="text/javascript"> document.write(commaSplit('.$row['ret_ica'].'))</script>' ;?> </div></td>
      </tr>
     <tr>
       <td align="right"><strong>Fecha de Factura</strong></td>
       <td colspan="3" ><?php echo $row['Fech_comp'];?></td>
       <td width="14%" colspan="1" ><div align="right"><strong>Retenci&oacute;n</strong></div></td>
-      <td colspan="2"><div align="left"><?php echo '$ <script language="javascript" type="text/javascript"> document.write(commaSplit('.$row['retencion'].'))</script>' ;?> </div></td>
+      <td colspan="2"><div align="left"><?php echo '$ <script  type="text/javascript"> document.write(commaSplit('.$row['retencion'].'))</script>' ;?> </div></td>
     </tr>
     <tr>
       <td align="right"><strong>Fecha Vencimiento </strong></td>
       <td colspan="3"><?php echo $row['Fech_venc'];?></td>
       <td width="14%" colspan="1" ><div align="right"><strong>Valor a Pagar</strong></div></td>
-      <td colspan="2"><div align="left"><?php echo '$ <script language="javascript" type="text/javascript"> document.write(commaSplit('.($row['total_fact']-$row['retencion']-$row['ret_ica']).'))</script>' ;?> </div></td>
+      <td colspan="2"><div align="left"><?php echo '$ <script  type="text/javascript"> document.write(commaSplit('.($row['total_fact']-$row['retencion']-$row['ret_ica']).'))</script>' ;?> </div></td>
     </tr>
     <tr>
       <td colspan="7">&nbsp;</td>
@@ -385,7 +385,7 @@ if($CrearFactura==6)
 			    echo '<td><div align="center">0%</div></td>';
 			  
 			  echo'<td><div align="center">'.$row['Cantidad'].'</div></td>
-			  <td><div align="center">$ <script language="javascript" type="text/javascript"> document.write(commaSplit('.$row['Precio'].'))</script></div></td><td>';
+			  <td><div align="center">$ <script  type="text/javascript"> document.write(commaSplit('.$row['Precio'].'))</script></div></td><td>';
 			  if ($estadoc!=7)
 				{
 			  echo '<form action="delDistComp.php" method="post" name="elimina'.$c++.'">

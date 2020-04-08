@@ -141,43 +141,43 @@ include "includes/calcularDias.php";
 				echo '><div align="center">'.$row['Fech_venc'].'</div></td>
 				<td ';
 				if (($a % 2)==0) echo ' bgcolor="#DFE2FD" ';
-				echo '><div align="right">$ <script language="javascript" type="text/javascript"> document.write(commaSplit('.$row['Total'].'))</script></div></td>';
+				echo '><div align="right">$ <script  type="text/javascript"> document.write(commaSplit('.$row['Total'].'))</script></div></td>';
 				echo '<td';
 				if (($a % 2)==0) echo ' bgcolor="#DFE2FD" ';
-				echo '><div align="right">$ <script language="javascript" type="text/javascript"> document.write(commaSplit('.$row['retencion'].'))</script></div></td>';
+				echo '><div align="right">$ <script  type="text/javascript"> document.write(commaSplit('.$row['retencion'].'))</script></div></td>';
 				echo '<td';
 				if (($a % 2)==0) echo ' bgcolor="#DFE2FD" ';
-				echo '><div align="right">$ <script language="javascript" type="text/javascript"> document.write(commaSplit('.$row['ret_ica'].'))</script></div></td>';
+				echo '><div align="right">$ <script  type="text/javascript"> document.write(commaSplit('.$row['ret_ica'].'))</script></div></td>';
 				echo '<td';
 				if (($a % 2)==0) echo ' bgcolor="#DFE2FD" ';
-				echo '><div align="right">$ <script language="javascript" type="text/javascript"> document.write(commaSplit('.($row['Total']-$row['retencion']-$ret_ica).'))</script></div></td>';
+				echo '><div align="right">$ <script  type="text/javascript"> document.write(commaSplit('.($row['Total']-$row['retencion']-$ret_ica).'))</script></div></td>';
 				echo '<td';
 				if (($a % 2)==0) echo ' bgcolor="#DFE2FD" ';
-				echo '><div align="right">$ <script language="javascript" type="text/javascript"> document.write(commaSplit('.$parcial.'))</script></div></td>';	
+				echo '><div align="right">$ <script  type="text/javascript"> document.write(commaSplit('.$parcial.'))</script></div></td>';
 				echo '<td';
 				if (($a++ % 2)==0) echo ' bgcolor="#DFE2FD" ';
-				echo '><div align="right">$ <script language="javascript" type="text/javascript"> document.write(commaSplit('.$saldo.'))</script></div></td>';				
+				echo '><div align="right">$ <script  type="text/javascript"> document.write(commaSplit('.$saldo.'))</script></div></td>';
       		 	echo'</tr>';
 			}
 				echo'<tr>
 				<td colspan="2" ></Td>
 				<td colspan="7" class="titulo1" align="right">TOTAL VENCIDO :</Td>
-				<td colspan="2" class="titulo1"><div align="left">$ <script language="javascript" type="text/javascript"> document.write(commaSplit('.$totalvenc.'))</script></div> </td>
+				<td colspan="2" class="titulo1"><div align="left">$ <script  type="text/javascript"> document.write(commaSplit('.$totalvenc.'))</script></div> </td>
 				</tr>';
 				echo'<tr>
 				<td colspan="2" ></Td>
 				<td colspan="7" class="titulo2" align="right">TOTAL A VENCER EN UNA SEMANA:</Td>
-				<td colspan="2" class="titulo2"><div align="left">$ <script language="javascript" type="text/javascript"> document.write(commaSplit('.$totalavenc.'))</script></div> </td>
+				<td colspan="2" class="titulo2"><div align="left">$ <script  type="text/javascript"> document.write(commaSplit('.$totalavenc.'))</script></div> </td>
 				</tr>';
 				echo'<tr>
 				<td colspan="2" ></Td>
 				<td colspan="7" class="titulo3" align="right">TOTAL SIN VENCER EN UNA SEMANA  :</Td>
-				<td colspan="2" class="titulo3"><div align="left">$ <script language="javascript" type="text/javascript"> document.write(commaSplit('.$totalnvenc.'))</script></div> </td>
+				<td colspan="2" class="titulo3"><div align="left">$ <script  type="text/javascript"> document.write(commaSplit('.$totalnvenc.'))</script></div> </td>
 				</tr>';
 				echo'<tr>
 				<td colspan="2" align="right" ></Td>
 				<td colspan="7" class="titulo" align="right">TOTAL :</Td>
-				<td colspan="2" class="titulo"><div align="left">$ <script language="javascript" type="text/javascript"> document.write(commaSplit('.($totalvenc+$totalavenc+$totalnvenc).'))</script></div> </td>
+				<td colspan="2" class="titulo"><div align="left">$ <script  type="text/javascript"> document.write(commaSplit('.($totalvenc+$totalavenc+$totalnvenc).'))</script></div> </td>
 				</tr>';
 				mysqli_free_result($result);
 				mysqli_close($link);

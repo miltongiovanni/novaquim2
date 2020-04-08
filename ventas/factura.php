@@ -51,13 +51,13 @@ include "includes/valAcc.php";
 			if($estado=='P')
 			{
 				mysqli_close($link);
-				echo'<script language="Javascript">
+				echo'<script >
 				alert("El pedido no está listo");
 				</script>';
 				echo '<form method="post" action="inv_ped.php" name="form3">'; 
 				echo'<input name="pedido" type="hidden" value="'.$pedido.'">'; 
 				echo '</form>';
-				echo'<script language="Javascript">
+				echo'<script >
 					document.form3.submit();
 					</script>';	
 			}
@@ -75,7 +75,7 @@ include "includes/valAcc.php";
 		function mover($ruta,$nota)
 		{
 			//Funcion que permite el redireccionamiento de los usuarios a otra pagina 
-			echo'<script language="Javascript">
+			echo'<script >
 			alert("'.$nota.'")
 			self.location="'.$ruta.'"
 			</script>';

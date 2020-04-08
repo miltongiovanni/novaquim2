@@ -33,7 +33,7 @@ foreach ($_POST as $nombre_campo => $valor)
 function mover($ruta,$nota)
 {
 	//Funcion que permite el redireccionamiento de los usuarios a otra pagina 
-	echo'<script language="javascript">
+	echo'<script >
 	alert("'.$nota.'");
 	self.location="'.$ruta.'";
 	</script>';
@@ -57,7 +57,7 @@ if ($Crear == 3)
   echo'<input name="Crear" type="hidden" value="5">'; 
   echo'<input name="cotizacion" type="hidden" value="'.$cotizacion.'">'; 
   echo '</form>';
-  echo'<script language="Javascript">
+  echo'<script >
 	  document.form3.submit();
 	  </script>';*/
 }
@@ -95,7 +95,7 @@ if($Crear==1)
   echo'<input name="Crear" type="hidden" value="5">'; 
   echo'<input name="cotizacion" type="hidden" value="'.$cotizacion.'">'; 
   echo '</form>';
-  echo'<script language="Javascript">
+  echo'<script >
 	  document.form3.submit();
 	  </script>';
 }
@@ -116,7 +116,7 @@ if($Crear==2)
   echo'<input name="Crear" type="hidden" value="5">'; 
   echo'<input name="cotizacion" type="hidden" value="'.$cotizacion.'">'; 
   echo '</form>';
-  echo'<script language="Javascript">
+  echo'<script >
 	  document.form3.submit();
 	  </script>';
 }

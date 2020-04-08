@@ -62,7 +62,7 @@ while($row=mysql_fetch_array($result))
 	}
   }
 }
-echo'<script language="Javascript">
+echo'<script >
 	alert("funcion terminada");
 	</script>';
 

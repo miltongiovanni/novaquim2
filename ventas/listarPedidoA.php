@@ -75,7 +75,7 @@ while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
 	echo '<tr>
 	<td class="formatoDatos"><div align="center">'.$rowi['Cod_producto'].'</div></td>
 	<td class="formatoDatos"><div align="left">'.$rowi['Producto'].'</div></td>
-	<td class="formatoDatos"><div align="center"><script language="javascript" type="text/javascript"> document.write(commaSplit('.$rowi['Can_producto'].'))</script></div></td>
+	<td class="formatoDatos"><div align="center"><script  type="text/javascript"> document.write(commaSplit('.$rowi['Can_producto'].'))</script></div></td>
 
 	</tr>';
 	}

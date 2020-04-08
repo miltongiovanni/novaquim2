@@ -82,7 +82,7 @@ if($result=mysqli_query($link,$qry))
 }
 else
 {
-	echo' <script language="Javascript">
+	echo' <script >
 	alert("Error al eliminar los productos de la factura")
 	</script>';
 }
@@ -106,7 +106,7 @@ else
 	
 function mover_pag($ruta,$Mensaje)
 {
-	echo'<script language="Javascript">
+	echo'<script >
 	alert("'.$Mensaje.'")
 	self.location="'.$ruta.'"
 	</script>';

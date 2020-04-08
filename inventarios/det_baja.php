@@ -42,7 +42,7 @@ include "includes/valAcc.php";
 		  echo'<input name="Crear" type="hidden" value="5">'; 
 		  echo'<input name="baja" type="hidden" value="'.$baja.'">'; 
 		  echo '</form>';
-		  echo'<script language="Javascript">
+		  echo'<script >
 				document.form3.submit();
 				</script>';
 		mysqli_close($link);
@@ -63,7 +63,7 @@ include "includes/valAcc.php";
 				$invt= $invt - $unidades;
 				$qryins_p="insert into det_bajas (Cod_baja, Cod_producto, Can_producto, Lote_producto) values ( $baja, $cod_producto, $unidades, $lot_prod)";
 				echo $qryins_p;
-				echo'<script language="Javascript">
+				echo'<script >
 			alert("pausa")
 			</script>';
 				$resultins_p=mysqli_query($link,$qryins_p);
@@ -78,7 +78,7 @@ include "includes/valAcc.php";
 				  $unidades= $unidades - $invt;
 				  $qryins_p="insert into det_bajas (Cod_baja, Cod_producto, Can_producto, Lote_producto) values ( $baja, $cod_producto, $invt, $lot_prod)";
 				  echo $qryins_p;
-				echo'<script language="Javascript">
+				echo'<script >
 			alert("pausa")
 			</script>';
 				  $resultins_p=mysqli_query($link,$qryins_p);
@@ -91,7 +91,7 @@ include "includes/valAcc.php";
 		echo'<input name="Crear" type="hidden" value="5">'; 
 		echo'<input name="baja" type="hidden" value="'.$baja.'">'; 
 		echo '</form>';
-		echo'<script language="Javascript">
+		echo'<script >
 			document.form3.submit();
 			</script>';
 		mysqli_close($link);
@@ -101,7 +101,7 @@ include "includes/valAcc.php";
 		//PRECIOS DE PRODUCTOS DE DISTRIBUCIÓN
 		$qryins_d="insert into det_bajas (Cod_baja, Cod_producto, Can_producto) values ( $baja, $cod_producto, $cantidad)";
 		echo $qryins_d;
-				echo'<script language="Javascript">
+				echo'<script >
 			alert("pausa")
 			</script>';
 		$resultins_d=mysqli_query($link,$qryins_d);
@@ -120,7 +120,7 @@ include "includes/valAcc.php";
 		echo'<input name="Crear" type="hidden" value="5">'; 
 		echo'<input name="baja" type="hidden" value="'.$baja.'">'; 
 		echo '</form>';
-		echo'<script language="Javascript">
+		echo'<script >
 			document.form3.submit();
 			</script>';
 		mysqli_close($link);
@@ -141,7 +141,7 @@ include "includes/valAcc.php";
 		function mover($ruta,$nota)
 		{
 			//Funcion que permite el redireccionamiento de los usuarios a otra pagina 
-			echo'<script language="Javascript">
+			echo'<script >
 			alert("'.$nota.'")
 			self.location="'.$ruta.'"
 			</script>';

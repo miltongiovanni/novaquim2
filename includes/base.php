@@ -342,3 +342,50 @@ function buscarRelPacProdForm($action)
         </form>';
     return $rep;
 }
+
+function buscarCatProvForm($action)
+{
+
+    $rep = '<form id="form1" name="form1" method="post" action="' . $action . '">
+    <div class="form-group row"><label class="col-form-label col-1" for="idCatProv"><strong>Categoría</strong></label>';
+    $manager = new CategoriasProvOperaciones();
+    $categorias = $manager->getCatsProv();
+    $filas = count($categorias);
+    $rep .= '<select name="idCatProv" id="idCatProv" class="form-control col-2">';
+    $rep .= '<option selected value="">-----------------------------</option>';
+    for ($i = 0; $i < $filas; $i++) {
+        $rep .= '<option value="' . $categorias[$i]["idCatProv"] . '">' . $categorias[$i]['desCatProv'] . '</option>';
+    }
+    $rep .= '</select>';
+
+    $rep .= '</div>
+    <div class="row form-group">
+    <div class="col-1"><button class="button"  onclick="return Enviar(this.form)">
+            <span>Continuar</span></button></div>
+    </div>
+    </form>';
+    return $rep;
+}
+function buscarCatCliForm($action)
+{
+
+    $rep = '<form id="form1" name="form1" method="post" action="' . $action . '">
+    <div class="form-group row"><label class="col-form-label col-1" for="idCatClien"><strong>Categoría</strong></label>';
+    $manager = new CategoriasCliOperaciones();
+    $categorias = $manager->getCatsCli();
+    $filas = count($categorias);
+    $rep .= '<select name="idCatClien" id="idCatClien" class="form-control col-2">';
+    $rep .= '<option selected value="">-----------------------------</option>';
+    for ($i = 0; $i < $filas; $i++) {
+        $rep .= '<option value="' . $categorias[$i]["idCatClien"] . '">' . $categorias[$i]['desCatClien'] . '</option>';
+    }
+    $rep .= '</select>';
+
+    $rep .= '</div>
+    <div class="row form-group">
+    <div class="col-1"><button class="button"  onclick="return Enviar(this.form)">
+            <span>Continuar</span></button></div>
+    </div>
+    </form>';
+    return $rep;
+}

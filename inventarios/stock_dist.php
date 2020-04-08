@@ -43,8 +43,8 @@ while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
 	 	 echo '>
 		<td class="formatoDatos"><div align="center">'.$row['Código'].'</div></td>
 		<td class="formatoDatos"><div align="left">'.$row['Producto'].'</div></td>
-		<td class="formatoDatos"><div align="center"><script language="javascript"> document.write(commaSplit('.$row['Inventario'].'))</script></div></td>
-		<td class="formatoDatos"><div align="center"><script language="javascript"> document.write(commaSplit('.$row['Stock Mínimo'].'))</script></div></td>';
+		<td class="formatoDatos"><div align="center"><script > document.write(commaSplit('.$row['Inventario'].'))</script></div></td>
+		<td class="formatoDatos"><div align="center"><script > document.write(commaSplit('.$row['Stock Mínimo'].'))</script></div></td>';
 		echo'</tr>';
 	}
 }

@@ -167,7 +167,7 @@ include "includes/valAcc.php";
 	else
 	{
 		//echo "no escogió productos de novaquim <br>";Id_Ped=915 or Id_Ped=916)
-		echo' <script language="Javascript">
+		echo' <script >
 		alert("Debe escoger algún pedido");
 		history.back();
 		</script>';

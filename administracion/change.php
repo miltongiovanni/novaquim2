@@ -31,7 +31,7 @@ if($row)
 		$longPass=strlen($newPass);
         if(($newPass=='123456')||($newPass==$antPass)||($newPass==$nombre)||($newPass!=$confnewPass)||($longPass<6))
         {
-			echo'<script language="Javascript">
+			echo'<script >
 			alert("Password inadecuado, Recuerde utilizar una longitud mayor a 6 caracteres")
 			self.location="cambio.php?Nombre='.$Nombre.'&Id='.$Id.'"
 			</script>';
@@ -43,7 +43,7 @@ if($row)
 			$result1=$usuarioOperador->changeClave($newPass, $fec, $nombre);
 			if($result1)
 			{
-				echo'<script language="Javascript">
+				echo'<script >
 				alert("Cambio Exitoso")
 				self.location="listarUsuarios.php"
 				</script>';
@@ -52,7 +52,7 @@ if($row)
 			{
 				$nombre=$_POST['nombre'];
 				$id=$row['idUsuario'];
-				echo'<script language="Javascript">
+				echo'<script >
 				alert("Password inadecuado");
 				self.location="cambio.php";
 				</script>';
@@ -61,7 +61,7 @@ if($row)
 }
 else
 {
-	echo'<script language="Javascript">
+	echo'<script >
 	alert("Los datos no corresponden")
 	self.location="../index.php"
 	</script>';

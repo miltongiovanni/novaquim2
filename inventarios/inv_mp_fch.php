@@ -64,7 +64,7 @@ while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
 	echo '>
 	<td class="formatoDatos"><div align="center">'.$row['Codigo'].'</div></td>
 	<td class="formatoDatos"><div align="left">'.$row['Nombre'].'</div></td>
-	<td class="formatoDatos"><div align="center"><script language="javascript"> document.write(commaSplit('.$invt_ini.'))</script></div></td>';
+	<td class="formatoDatos"><div align="center"><script > document.write(commaSplit('.$invt_ini.'))</script></div></td>';
 	//ENTRADA POR COMPRA DE MATERIA PRIMA
 	$sqle="select Codigo, sum(Cantidad) as entrada from det_compras, compras where Codigo=$prod and det_compras.Id_compra=compras.Id_compra and compra=1 and Fech_comp>='$Fch' group by Codigo";
 	$resulte=mysqli_query($link,$sqle);
@@ -73,7 +73,7 @@ while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
 		$entrada=0;
 	else
 		$entrada=$rowe['entrada'];
-	echo '<td class="formatoDatos"><div align="center"><script language="javascript"> document.write(commaSplit('.$entrada.'))</script></div></td>';
+	echo '<td class="formatoDatos"><div align="center"><script > document.write(commaSplit('.$entrada.'))</script></div></td>';
 	//SALIDA POR ORDEN DE PRODUCCION	
 	$sqls1="select Cod_mprima, sum(Can_mprima) as salida1 from det_ord_prod, ord_prod where Cod_mprima=$prod and det_ord_prod.Lote=ord_prod.Lote and Fch_prod>='$Fch' group by Cod_mprima;";
 	$results1=mysqli_query($link,$sqls1);
@@ -91,9 +91,9 @@ while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
 	else
 		$salida2=$rows2['salida2'];
 	$salida=$salida1+$salida2;
-	echo '<td class="formatoDatos"><div align="center"><script language="javascript"> document.write(commaSplit('.$salida.'))</script></div></td>';
+	echo '<td class="formatoDatos"><div align="center"><script > document.write(commaSplit('.$salida.'))</script></div></td>';
 	$inventario=$invt_ini-$entrada+$salida;
-	echo '<td class="formatoDatos"><div align="center"><script language="javascript"> document.write(commaSplit('.$inventario.'))</script></div></td>';
+	echo '<td class="formatoDatos"><div align="center"><script > document.write(commaSplit('.$inventario.'))</script></div></td>';
 	echo'</tr>';	
 	$a=$a+1;
 }

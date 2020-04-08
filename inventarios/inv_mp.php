@@ -44,7 +44,7 @@ while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
 	<td class="formatoDatos"><div align="center"><a aiotitle="click to expand" href="javascript:togglecomments('."'".'UniqueName'.$a."'".')">+/-</a></div></td>
 	<td class="formatoDatos"><div align="center">'.$row['Codigo'].'</div></td>
 	<td class="formatoDatos"><div align="left">'.$row['Nombre'].'</div></td>
-	<td class="formatoDatos"><div align="center"><script language="javascript"> document.write(commaSplit('.$row['inventario'].'))</script></div></td>';
+	<td class="formatoDatos"><div align="center"><script > document.write(commaSplit('.$row['inventario'].'))</script></div></td>';
 	echo'</tr>';
 	$sqli="SELECT inv_mprimas.Cod_mprima as Codigo, Nom_mprima as Nombre, Lote_mp as Lote, inv_mp as inventario FROM inv_mprimas, mprimas
 	where inv_mprimas.Cod_mprima=mprimas.Cod_mprima and inv_mprimas.Cod_mprima=$prod ;";
@@ -60,7 +60,7 @@ while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
 		{
 			echo '<tr>
 			<td class="formatoDatos"><div align="center">'.$rowi['Lote'].'</div></td>
-			<td class="formatoDatos"><div align="center"><script language="javascript"> document.write(commaSplit('.$rowi['inventario'].'))</script></div></td>
+			<td class="formatoDatos"><div align="center"><script > document.write(commaSplit('.$rowi['inventario'].'))</script></div></td>
 			</tr>';
 		}
 	}

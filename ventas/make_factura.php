@@ -201,20 +201,20 @@ select Id_ped, Cod_producto as Producto, Can_producto as Cantidad, Prec_producto
 		echo'<form action="det_factura.php" method="post" name="formulario">';
 		echo '<input name="factura" type="hidden" value="'.$factura.'"/><input name="Crear" type="hidden" value="6"/><input type="submit" name="Submit" value="Cambiar" />';
 		echo'</form>'; 
-		echo' <script language="Javascript"> document.formulario.submit(); </script>';		
+		echo' <script > document.formulario.submit(); </script>';		
 }
 else
 {
   if($dias_v<0)
 	{
-		echo'<script language="Javascript">
+		echo'<script >
 		alert("La fecha de vencimiento de la factura no puede ser menor que la fecha actual");
 		self.location="crearFactura.php";
 		</script>';	
 	}
   if($dias_f<0)
 	{
-		echo'<script language="Javascript">
+		echo'<script >
 		alert("La fecha de vencimiento de la factura no puede ser menor que la fecha de la factura");
 		self.location="crearFactura.php";
 		</script>';	
@@ -222,7 +222,7 @@ else
 }
 function mover_pag($ruta,$Mensaje)
 {
-echo'<script language="Javascript">
+echo'<script >
    alert("'.$Mensaje.'")
    self.location="'.$ruta.'"
    </script>';

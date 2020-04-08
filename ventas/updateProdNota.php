@@ -51,13 +51,13 @@ if($codigo <100000)
   //ACTUALIZACIÓN DEL DETALLE DE LA NOTA DE CREDITOS
   $qryr="update det_nota_c set Can_producto=$cantidad where Id_Nota=$nota and Cod_producto=$codigo";
   $resultr=mysqli_query($link,$qryr);
-  echo' <script language="Javascript">
+  echo' <script >
 		  alert("Actualizando producto fab en nota de credito");
 		  </script>'; 
   echo'<form action="makeNota.php" method="post" name="formulario">';
   echo '<input name="nota" type="hidden" value="'.$nota.'"><input name="crear" type="hidden" value="5"><input type="submit" name="Submit" class="formatoBoton1" value="Cambiar" >';
   echo'</form>'; 
-  echo' <script language="Javascript" type="text/javascript"> document.formulario.submit(); </script>';  
+  echo' <script  type="text/javascript"> document.formulario.submit(); </script>';
 }
 else
 {
@@ -82,7 +82,7 @@ else
 	echo'<form action="makeNota.php" method="post" name="formulario">';
 	echo '<input name="nota" type="hidden" value="'.$nota.'"><input name="crear" type="hidden" value="5"><input type="submit" name="Submit" value="Cambiar" >';
 	echo'</form>'; 
-	echo' <script language="Javascript" type="text/javascript"> document.formulario.submit(); </script>';
+	echo' <script  type="text/javascript"> document.formulario.submit(); </script>';
 }
 mysqli_close($link);
 ?>

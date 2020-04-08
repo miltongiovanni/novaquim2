@@ -32,7 +32,7 @@ include "includes/valAcc.php";
 <?php
 include "includes/conect.php" ;
 $link=conectarServidor();
-$sql="	SELECT Id_cliente, Nom_clien, Contacto, Cargo, Tel_clien, Cel_clien, Fax_clien, Dir_clien, Eml_clien, Des_cat_cli from clientes_cotiz, cat_clien where Id_cat_clien=Id_cat_cli order by Nom_clien;";
+$sql="	SELECT Id_cliente, Nom_clien, Contacto, Cargo, Tel_clien, Cel_clien, Fax_clien, Dir_clien, Eml_clien, desCatClien from clientes_cotiz, cat_clien where Id_cat_clien=idCatClien order by Nom_clien;";
 $result=mysqli_query($link,$sql);
 $a=1;
 while($row=mysqli_fetch_array($result, MYSQLI_BOTH))

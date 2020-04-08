@@ -58,7 +58,7 @@ while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
 	<td class="formatoDatos"><div align="center">'.$row['Fecha de Producción'].'</div></td>
 	<td class="formatoDatos"><div align="center">'.$row['Responsable'].'</div></td>
 	<td class="formatoDatos"><div align="center">'.$estadop.'</div></td>
-	<td class="formatoDatos"><div align="center"><script language="javascript" type="text/javascript"> document.write(commaSplit('.$row['Cantidad (Kg)'].')+" Kg")</script></div></td>
+	<td class="formatoDatos"><div align="center"><script  type="text/javascript"> document.write(commaSplit('.$row['Cantidad (Kg)'].')+" Kg")</script></div></td>
 	';
 	
 	echo'</tr>';
@@ -80,7 +80,7 @@ while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
 	<td class="formatoDatos"><div align="center">'.$rowi['Código'].'</div></td>
 	<td class="formatoDatos"><div align="left">'.$rowi['Nom_mprima'].'</div></td>
 	<td class="formatoDatos"><div align="left">'.$rowi['Lote_MP'].'</div></td>
-	<td class="formatoDatos"><div align="center"><script language="javascript" type="text/javascript"> document.write(commaSplit('.$rowi['Cantidad'].'))</script></div></td>
+	<td class="formatoDatos"><div align="center"><script  type="text/javascript"> document.write(commaSplit('.$rowi['Cantidad'].'))</script></div></td>
 
 	</tr>';
 	}

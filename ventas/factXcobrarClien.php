@@ -141,39 +141,39 @@ $cliente=$_POST[cliente];
 				echo '><div align="right">'.$row['Cel_clien'].'</div></td>
 				<td'; 
 				if (($a % 2)==0) echo ' bgcolor="#CCD5FF" ';
-				echo '><div align="right">$ <script language="javascript"> document.write(commaSplit('.($row['Total_R']).'))</script></div></td>
+				echo '><div align="right">$ <script > document.write(commaSplit('.($row['Total_R']).'))</script></div></td>
 				<td'; 
 				if (($a % 2)==0) echo ' bgcolor="#CCD5FF" ';
-				echo '><div align="right">$ <script language="javascript"> document.write(commaSplit('.$ValTot.'))</script></div></td>';
+				echo '><div align="right">$ <script > document.write(commaSplit('.$ValTot.'))</script></div></td>';
 				echo '<td'; 
 				if (($a % 2)==0) echo ' bgcolor="#CCD5FF" ';
-				echo '><div align="right">$ <script language="javascript"> document.write(commaSplit('.$parcial.'))</script></div></td>';	
+				echo '><div align="right">$ <script > document.write(commaSplit('.$parcial.'))</script></div></td>';	
 				$saldo=$ValTot-$parcial;
 				echo '<td'; 
 				if (($a++ % 2)==0) echo ' bgcolor="#CCD5FF" ';
-				echo '><div align="right">$ <script language="javascript"> document.write(commaSplit('.$saldo.'))</script></div></td>';				
+				echo '><div align="right">$ <script > document.write(commaSplit('.$saldo.'))</script></div></td>';				
       		 	echo'</tr>';
 				
 			}
 			echo'<tr>
 				<td colspan="5" ></Td>
 				<td colspan="4" class="titulo1" align="right">TOTAL VENCIDO :</Td>
-				<td colspan="2" class="titulo1"><div align="left">$ <script language="javascript"> document.write(commaSplit('.$totalvenc.'))</script></div> </td>
+				<td colspan="2" class="titulo1"><div align="left">$ <script > document.write(commaSplit('.$totalvenc.'))</script></div> </td>
 				</tr>';
 			echo'<tr>
 				<td colspan="5" ></Td>
 				<td colspan="4" class="titulo2" align="right">TOTAL A VENCER EN UNA SEMANA:</Td>
-				<td colspan="2" class="titulo2"><div align="left">$ <script language="javascript"> document.write(commaSplit('.$totalavenc.'))</script></div> </td>
+				<td colspan="2" class="titulo2"><div align="left">$ <script > document.write(commaSplit('.$totalavenc.'))</script></div> </td>
 				</tr>';
 			echo'<tr>
 				<td colspan="5" ></Td>
 				<td colspan="4" class="titulo3" align="right">TOTAL SIN VENCER EN UNA SEMANA  :</Td>
-				<td colspan="2" class="titulo3"><div align="left">$ <script language="javascript"> document.write(commaSplit('.$totalnvenc.'))</script></div> </td>
+				<td colspan="2" class="titulo3"><div align="left">$ <script > document.write(commaSplit('.$totalnvenc.'))</script></div> </td>
 				</tr>';
 			echo'<tr>
 				<td colspan="5" ></Td>
 				<td colspan="4" class="titulo" align="right">TOTAL :</Td>
-				<td colspan="2" class="titulo"><div align="left">$ <script language="javascript"> document.write(commaSplit('.$total.'))</script></div> </td>
+				<td colspan="2" class="titulo"><div align="left">$ <script > document.write(commaSplit('.$total.'))</script></div> </td>
 				</tr>';
 			mysqli_free_result($result);
 			/* cerrar la conexión */

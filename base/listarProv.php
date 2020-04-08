@@ -62,9 +62,9 @@ $sql="	SELECT  NIT_provee as 'Nit',
 			Tel_provee as 'Tel1',
 			Fax_provee as 'Fax',
 			Eml_provee as 'Email',
-			Des_cat_prov as 'Cat'
+			desCatProv as 'Cat'
 			FROM proveedores, cat_prov
-			where proveedores.Id_cat_prov=cat_prov.Id_cat_prov order by Nom_provee;";
+			where proveedores.Id_cat_prov=cat_prov.idCatProv order by Nom_provee;";
 $result=mysqli_query($link,$sql);
 $num_total_registros = mysqli_num_rows($result); 
 //calculo el total de páginas 
@@ -92,9 +92,9 @@ $ssql = "SELECT  NIT_provee as 'Nit',
 			Tel_provee as 'Tel1',
 			Fax_provee as 'Fax',
 			Eml_provee as 'Email',
-			Des_cat_prov as 'Cat'
+			desCatProv as 'Cat'
 			FROM proveedores, cat_prov
-			where proveedores.Id_cat_prov=cat_prov.Id_cat_prov order by Nom_provee limit " . $inicio . "," . $TAMANO_PAGINA; 
+			where proveedores.Id_cat_prov=cat_prov.idCatProv order by Nom_provee limit " . $inicio . "," . $TAMANO_PAGINA;
 
 $rs = mysqli_query($link,$ssql);
 

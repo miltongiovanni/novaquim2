@@ -35,7 +35,7 @@ else{
 		//Cerrar la conexion
      }
 function mover_pag($ruta,$Mensaje){
-echo'<script language="Javascript">
+echo'<script >
    alert("'.$Mensaje.'")
    self.location="'.$ruta.'"
    </script>';
@@ -43,7 +43,7 @@ echo'<script language="Javascript">
 
 function mover_pag2($Mensaje)
 	{
-	echo'<script language="Javascript">
+	echo'<script >
 	alert("'.$Mensaje.'");
 	document.formulario.submit();
 	</script>';

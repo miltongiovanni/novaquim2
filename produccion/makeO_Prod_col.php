@@ -136,7 +136,7 @@ else
 function mover_pag($ruta,$nota)
 {	
 	//Funcion que permite el envio del formulario 
-	echo' <script language="Javascript">
+	echo' <script >
 	document.formulario.submit();
 	</script>';
 } 
@@ -144,7 +144,7 @@ function mover_pag($ruta,$nota)
 function mover($ruta,$nota)
 {
 	//Funcion que permite el redireccionamiento de los usuarios a otra pagina 
-	echo'<script language="Javascript">
+	echo'<script >
 	alert("'.$nota.'")
 	self.location="'.$ruta.'"
 	</script>';

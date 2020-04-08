@@ -35,7 +35,7 @@ mover_pag($ruta,"Orden de Pedido Anulada con Éxito");
 
 function mover_pag($ruta,$Mensaje)
 {
-	echo'<script language="Javascript">
+	echo'<script >
 	alert("'.$Mensaje.'")
 	self.location="'.$ruta.'"
 	</script>';

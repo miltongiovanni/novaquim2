@@ -20,7 +20,7 @@ if($result)
 	echo'<input name="Crear" type="hidden" value="0">';
 	echo '<input type="submit" name="Submit" value="">'; 
 	echo '</form>';
-	echo'<script language="Javascript">
+	echo'<script >
 		document.form3.submit();
 		alert("Sucursal Actualizada Correctamente");
 		</script>';	
@@ -32,7 +32,7 @@ else
 }
 function mover_pag($ruta,$Mensaje)
 {
-	echo'<script language="Javascript">
+	echo'<script >
    	alert("'.$Mensaje.'")
    	self.location="'.$ruta.'"
    	</script>';

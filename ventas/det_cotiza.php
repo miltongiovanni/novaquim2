@@ -35,7 +35,7 @@ if ($Crear==3)
   if($_POST['seleccion1']==NULL)
   {
 	//echo "no escogió productos de novaquim <br>";
-	echo' <script language="Javascript">
+	echo' <script >
 	alert("Debe escoger alguna Familia de los productos Nova");
 	self.location="cotizacion.php";
 	</script>';
@@ -121,7 +121,7 @@ if ($Crear==3)
 		  echo'<input name="num_cotiza" type="hidden" value="'.$num_cotiza.'">';
 		  echo '<input type="submit" name="Submit" value="Analizar" >'; 
 		  echo '</form>';
-		  echo'<script language="Javascript">
+		  echo'<script >
 			  document.form5.submit();
 			  </script>';
 	  }
@@ -137,7 +137,7 @@ if ($Crear==3)
 function mover_pag($ruta,$nota)
 {	
 //Funcion que permite el redireccionamiento de los usuarios a otra pagina 
-echo' <script language="Javascript">
+echo' <script >
 alert("'.$nota.'")
 self.location="'.$ruta.'"
 </script>';

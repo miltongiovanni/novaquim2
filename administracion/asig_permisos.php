@@ -120,7 +120,7 @@ spl_autoload_register('cargarClases');
 		echo '<form name="form3"  method="post" action="permisos.php">';
 		echo '<input type="hidden" name="idUsuario" value="' . $idUsuario . '">';
 		echo '</form>';
-		echo '<script language="Javascript">
+		echo '<script >
 			document.form3.submit();
 			</script>';
 

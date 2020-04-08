@@ -36,7 +36,7 @@ mysqli_close($link);
 echo '<form method="post" action="listarClientCot.php" name="form3">';
 //echo '<input type="submit" name="Submit" value="">'; 
 echo '</form>';
-echo'<script language="Javascript">
+echo'<script >
 	alert("Cliente de Cotización Actualizado Correctamente");
 	document.form3.submit();
 	</script>';	
@@ -44,7 +44,7 @@ echo'<script language="Javascript">
 
 function mover_pag($ruta,$Mensaje)
 {
-	echo'<script language="Javascript">
+	echo'<script >
    	alert("'.$Mensaje.'")
    	self.location="'.$ruta.'"
    	</script>';

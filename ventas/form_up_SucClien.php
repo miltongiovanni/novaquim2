@@ -35,7 +35,7 @@ if($Crear==0)
 		<input name="IdCat" type="hidden" value="'.$IdCat.'"/>
 		<input name="Crear" type="hidden" value="1"/>
 		<input type="submit" name="Submit" value="Cambiar" />';
-		echo'<script language="Javascript">
+		echo'<script >
 			document.form3.submit();
 			</script>';	*/
 } 

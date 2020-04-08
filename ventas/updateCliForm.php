@@ -76,11 +76,11 @@ include "includes/conect.php";
   <td colspan="2"><?php echo'<input name="Cargo" type="text" value="'.$row['Cargo'].'">';?></td>
   <td colspan="3"><?php echo'<input name="email" type="text" value="'.$row['Eml_clien'].'" onChange="TestMail(document.form1.email.value)" size="40">';?></td>
   <td colspan="2"><?php
-      $qrya="select Id_cat_clien, Des_cat_cli from clientes, cat_clien WHERE Id_cat_clien=Id_cat_cli and Nit_clien='$nit';";
+      $qrya="select Id_cat_clien, desCatClien from clientes, cat_clien WHERE Id_cat_clien=idCatClien and Nit_clien='$nit';";
       $resulta=mysqli_query($link,$qrya);
       $rowa=mysqli_fetch_array($resulta); 			
       echo'<select name="Id_Cat">';
-      $resultp=mysqli_query($link,"select Id_cat_cli, Des_cat_cli from cat_clien");
+      $resultp=mysqli_query($link,"select idCatClien, desCatClien from cat_clien");
       echo '<option selected value='.$rowa['Id_cat_clien'].'>'.$rowa['Des_cat_cli'].'</option>';
       while($rowp=mysqli_fetch_array($resultp))
       {
@@ -198,7 +198,7 @@ include "includes/conect.php";
 		//mover_pag2("Proveedor Creado correctamente");
 		function mover_pag2($Mensaje)
 		{
-			echo'<script language="Javascript">
+			echo'<script >
 			alert("'.$Mensaje.'");
 			document.formulario.submit();
 			</script>';

@@ -39,7 +39,7 @@ if ($inv_bus < $Cantidad)
 {
 	mysqli_rollback($link);
 	mysqli_close($link);
-	echo'<script language="Javascript">
+	echo'<script >
 	alert("No hay suficiente inventario de '.$prod_bus.' sólo hay '.$inv_bus.' unidades")
 	self.location="desarm_kits.php"
 	</script>';
@@ -155,7 +155,7 @@ else
 	mysqli_commit($link);
 	mysqli_autocommit($link, TRUE);
 	mysqli_close($link);
-	echo'<script language="Javascript">
+	echo'<script >
 	alert("Kit desarmados con éxito")
 	self.location="listar_desarm_kits.php"
 	</script>';

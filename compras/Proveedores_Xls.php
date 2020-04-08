@@ -36,9 +36,9 @@ $sql="	SELECT  NIT_provee as 'Nit',
 			Tel_provee as 'Tel',
 			Fax_provee as 'Fax',
 			Eml_provee as 'email',
-			Des_cat_prov as 'Cat'
+			desCatProv as 'Cat'
 			FROM proveedores, cat_prov
-			where proveedores.Id_cat_prov=cat_prov.Id_cat_prov order by Nom_provee;";
+			where proveedores.Id_cat_prov=cat_prov.idCatProv order by Nom_provee;";
 $result=mysqli_query($link,$sql) or die("Error al conectar a la base de datos.");
 $i=2;
 while($row= mysqli_fetch_array($result, MYSQLI_BOTH))

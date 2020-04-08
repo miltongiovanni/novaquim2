@@ -54,7 +54,7 @@ else
 	mysqli_close($link);//Cerrar la conexion
 }  
 function mover_pag($ruta,$Mensaje){
-echo'<script language="Javascript">
+echo'<script >
    alert("'.$Mensaje.'")
    self.location="'.$ruta.'"
    </script>';}

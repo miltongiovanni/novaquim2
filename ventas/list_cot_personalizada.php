@@ -36,9 +36,9 @@ include "includes/valAcc.php";
 	include "includes/utilTabla.php";
 	include "includes/conect.php" ;
 	$link=conectarServidor();
-	$sql="select Id_Cotiz_p, Nom_clien, Des_cat_cli, nom_personal, Fech_Cotizacion, tip_precio, destino 
+	$sql="select Id_Cotiz_p, Nom_clien, desCatClien, nom_personal, Fech_Cotizacion, tip_precio, destino 
 	from cot_personalizada, clientes_cotiz, Personal, cat_clien 
-	where Cliente_cot=Id_cliente and cod_vend=Id_personal and Id_cat_clien=Id_cat_cli order by Id_Cotiz_p desc;";
+	where Cliente_cot=Id_cliente and cod_vend=Id_personal and Id_cat_clien=idCatClien order by Id_Cotiz_p desc;";
 	//llamar funcion de tabla
 	$result=mysqli_query($link,$sql);
 	$a=1;
@@ -77,8 +77,8 @@ include "includes/valAcc.php";
 	echo '<tr>
 	<td class="formatoDatos"><div align="center">'.$rowi['Cod_producto'].'</div></td>
 	<td class="formatoDatos"><div align="left">'.$rowi['Producto'].'</div></td>
-	<td class="formatoDatos"><div align="center"><script language="javascript" type="text/javascript"> document.write(commaSplit('.$rowi['Can_producto'].'))</script></div></td>
-	<td class="formatoDatos"><div align="center">$ <script language="javascript" type="text/javascript"> document.write(commaSplit('.$rowi['Prec_producto'].'))</script></div></td>
+	<td class="formatoDatos"><div align="center"><script  type="text/javascript"> document.write(commaSplit('.$rowi['Can_producto'].'))</script></div></td>
+	<td class="formatoDatos"><div align="center">$ <script  type="text/javascript"> document.write(commaSplit('.$rowi['Prec_producto'].'))</script></div></td>
 	</tr>';
 	}
 	  echo '</table></div></td></tr>';

@@ -50,8 +50,8 @@ $vendedor=$rowv['nom_personal'];
 
 //conectar con la tabla (ej. use datos;) 
 //sentencia SQL    tblusuarios.IdUsuario,
-$sql="	select Nit_clien as Nit, Nom_clien as Cliente, Dir_clien as Direccion, Contacto, Cargo, Tel_clien as Tel1, Des_cat_cli, Fax_clien As Fax, Cel_clien as Cel, Eml_clien as Eml, ciudad 
-from clientes, cat_clien, ciudades where cod_vend=$IdPersonal and Id_cat_clien=Id_cat_cli and Ciudad_clien=Id_ciudad AND Estado='A' order by Cliente";
+$sql="	select Nit_clien as Nit, Nom_clien as Cliente, Dir_clien as Direccion, Contacto, Cargo, Tel_clien as Tel1, desCatClien, Fax_clien As Fax, Cel_clien as Cel, Eml_clien as Eml, ciudad 
+from clientes, cat_clien, ciudades where cod_vend=$IdPersonal and Id_cat_clien=idCatClien and Ciudad_clien=Id_ciudad AND Estado='A' order by Cliente";
 $result=mysqli_query($link,$sql);
 $a=1;
 while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
@@ -87,7 +87,7 @@ while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
 	<td class="formatoDatos"><div align="center">'.$rowi['Factura'].'</div></td>
 	<td class="formatoDatos"><div align="left">'.$rowi['Fech_fact'].'</div></td>
 	<td class="formatoDatos"><div align="left">'.$rowi['Fech_venc'].'</div></td>
-	<td class="formatoDatos"><div align="center"><script language="javascript" type="text/javascript"> document.write(commaSplit('.$rowi['Total'].'))</script></div></td>
+	<td class="formatoDatos"><div align="center"><script  type="text/javascript"> document.write(commaSplit('.$rowi['Total'].'))</script></div></td>
 	<td class="formatoDatos"><div align="left">'.$rowi['Estado'].'</div></td>
 	</tr>';
 	}

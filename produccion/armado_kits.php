@@ -40,7 +40,7 @@ else
 {
 	mysqli_rollback($link);
 	mysqli_close($link);
-	echo'<script language="Javascript">
+	echo'<script >
 	alert("No hay inventario suficiente de '.$envase.', solo hay '.$inv_env.' unidades")
 	self.location="arm_kits.php"
 	</script>';
@@ -93,7 +93,7 @@ while($row2=mysqli_fetch_array($result2))
 		{
 			mysqli_rollback($link);
 			mysqli_close($link);
-			echo'<script language="Javascript">
+			echo'<script >
 			alert("No hay suficiente inventario de '.$prod_nova.' sólo hay '.$inventario.' unidades")
 			self.location="arm_kits.php"
 			</script>';
@@ -119,7 +119,7 @@ while($row2=mysqli_fetch_array($result2))
 		{
 			mysqli_rollback($link);
 			mysqli_close($link);
-			echo'<script language="Javascript">
+			echo'<script >
 			alert("No hay suficiente inventario de '.$prod_dist.' sólo hay '.$invt.' unidades")
 			self.location="arm_kits.php"
 			</script>';
@@ -175,7 +175,7 @@ while($row2=mysqli_fetch_array($result2))
 	mysqli_commit($link);
 	mysqli_autocommit($link, TRUE);
 	mysqli_close($link);
-	echo'<script language="Javascript">
+	echo'<script >
 	alert("Kit Creados y Cargados con Éxito")
 	self.location="listar_arm_kits.php"
 	</script>';

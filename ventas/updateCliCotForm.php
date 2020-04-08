@@ -22,7 +22,7 @@ include "includes/conect.php";
 <?php
 	  $link=conectarServidor();
 	  $cliente_cot=$_POST['cliente_cot'];
-	  $qry="select Id_cliente, Nom_clien, Contacto, Cargo, Tel_clien, Fax_clien, Cel_clien, Dir_clien, Eml_clien, Id_cat_clien, Des_cat_cli, Ciudad_clien , ciudad, cod_vend, nom_personal from clientes_cotiz, ciudades, cat_clien, personal where Ciudad_clien=Id_ciudad and Id_cat_clien=Id_cat_cli and cod_vend=Id_personal and Id_cliente='$cliente_cot'";
+	  $qry="select Id_cliente, Nom_clien, Contacto, Cargo, Tel_clien, Fax_clien, Cel_clien, Dir_clien, Eml_clien, Id_cat_clien, desCatClien, Ciudad_clien , ciudad, cod_vend, nom_personal from clientes_cotiz, ciudades, cat_clien, personal where Ciudad_clien=Id_ciudad and Id_cat_clien=idCatClien and cod_vend=Id_personal and Id_cliente='$cliente_cot'";
 	  $result=mysqli_query($link, $qry);
 	  $row=mysqli_fetch_array($result);
 	  $city=$row['Ciudad_clien'];
@@ -105,7 +105,7 @@ include "includes/conect.php";
 	<?php  
 		$catcli=$row['Id_cat_clien'];
         $catclin=$row['Des_cat_cli'];
-        $qry2="select Id_cat_cli, Des_cat_cli from cat_clien where Id_cat_cli<>$catcli order by Des_cat_cli";
+        $qry2="select idCatClien, desCatClien from cat_clien where idCatClien<>$catcli order by desCatClien";
         $result2=mysqli_query($link,$qry2);
         echo '<option selected value="'.$catcli.'">'.$catclin.'</option>';
         while($row2=mysqli_fetch_array($result2))

@@ -45,13 +45,13 @@ include "includes/valAcc.php";
    	  <td width=""><strong>Factura</strong></td>
       <td width=""><?php  echo $factura; ?></td>
       <td width=""><strong>Valor Total Factura </strong></td>
-      <td width=""><?php  echo '$ <script language="javascript"> document.write(commaSplit('.$ValTot.'))</script>'; ?></td>
+      <td width=""><?php  echo '$ <script > document.write(commaSplit('.$ValTot.'))</script>'; ?></td>
     </tr>
     <tr>
       <td><strong>Fecha Vencimiento</strong></td>
       <td><?php echo $fecVen; ?></td>
       <td><strong>Saldo Pendiente </strong></td>
-      <td><?php echo '$ <script language="javascript"> document.write(commaSplit('.$saldo.'))</script>'; ?></td>
+      <td><?php echo '$ <script > document.write(commaSplit('.$saldo.'))</script>'; ?></td>
     </tr>
     <tr>
 		  <th>Factura</th>
@@ -69,7 +69,7 @@ include "includes/valAcc.php";
                         <tr>
                         <td><div align="center">'.$row['No_factura'].'</div></td>
                         <td><div align="center">'.$row['Fch_pago'].'</div></td>
-                        <td><div align="center"> $ <script language="javascript"> document.write(commaSplit('.$row['pago'].'))</script></div></td>
+                        <td><div align="center"> $ <script > document.write(commaSplit('.$row['pago'].'))</script></div></td>
                         <td><div align="center">'.$row['Usuario'].'</div></td>
                         </tr>';
                      echo '<input name="factura" type="hidden" value="'.$factura.'" />';
@@ -87,7 +87,7 @@ include "includes/valAcc.php";
                         <td></td>
                         <td></td>
                         <td><div align="center">Abono a la Fecha</div></td>
-                        <td><div align="center">$ <script language="javascript"> document.write(commaSplit('.$valor.'))</script></div></td>
+                        <td><div align="center">$ <script > document.write(commaSplit('.$valor.'))</script></div></td>
                         </tr>';
                         
                         echo '<input name="valTotal" type="hidden" value="'.$valor.'" />';

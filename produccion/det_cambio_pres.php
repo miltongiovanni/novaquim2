@@ -43,7 +43,7 @@ include "includes/valAcc.php";
 		echo'<input name="Crear" type="hidden" value="3">'; 
 		echo'<input name="cambio" type="hidden" value="'.$cambio.'">'; 
 		echo '</form>';
-		echo'<script language="Javascript">
+		echo'<script >
 			 document.form3.submit();
 			 </script>';	
 	}
@@ -56,7 +56,7 @@ include "includes/valAcc.php";
 			$inv=$rowbus['inv_prod'];
 			if($cant_ant <= $inv)
 			{
-				echo'<script language="Javascript">
+				echo'<script >
 				alert("Hay inventario suficiente para realizar el cambio");
 				</script>';
 				$inv= $inv - $cant_ant;
@@ -103,13 +103,13 @@ include "includes/valAcc.php";
 				echo'<input name="Cod_prese_ant" type="hidden" value="'.$Cod_prese_ant.'">';
 				echo'<input name="cambio" type="hidden" value="'.$cambio.'">'; 
 				echo '</form>';
-				echo'<script language="Javascript">
+				echo'<script >
 					 document.form3.submit();
 					 </script>';
 			}
 			else
 			{
-			  echo'<script language="Javascript">
+			  echo'<script >
 			  alert("No hay inventario suficiente para realizar el cambio");
 			  </script>';
 			  mysqli_free_result($resultbus);
@@ -118,7 +118,7 @@ include "includes/valAcc.php";
 			  echo'<input name="Crear" type="hidden" value="3">'; 
 			  echo'<input name="cambio" type="hidden" value="'.$cambio.'">'; 
 			  echo '</form>';
-			  echo'<script language="Javascript">
+			  echo'<script >
 			  document.form3.submit();
 			  </script>';	
 			}
@@ -126,7 +126,7 @@ include "includes/valAcc.php";
 		}
 		else
 		{
-			echo'<script language="Javascript">
+			echo'<script >
   			 alert("No es válido el lote");
    			</script>';
 			mysqli_close($link);
@@ -134,7 +134,7 @@ include "includes/valAcc.php";
 			echo'<input name="Crear" type="hidden" value="3">'; 
 			echo'<input name="cambio" type="hidden" value="'.$cambio.'">'; 
 			echo '</form>';
-			echo'<script language="Javascript">
+			echo'<script >
 				  document.form3.submit();
 				  </script>';	
 		}
@@ -193,7 +193,7 @@ include "includes/valAcc.php";
 		echo'<input name="Crear" type="hidden" value="5">'; 
 		echo'<input name="cambio" type="hidden" value="'.$cambio.'">'; 
 		echo '</form>';
-		echo'<script language="Javascript">
+		echo'<script >
 			 document.form3.submit();
 			 </script>';
 	}

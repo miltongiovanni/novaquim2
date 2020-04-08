@@ -92,7 +92,7 @@ include "includes/conect.php";
     <tr> 
       <td><?php
 		  $link=conectarServidor();
-		  $qrya="select * from proveedores, cat_prov where proveedores.NIT_provee='$nit' and proveedores.Id_cat_prov=cat_prov.Id_cat_prov";
+		  $qrya="select * from proveedores, cat_prov where proveedores.NIT_provee='$nit' and proveedores.Id_cat_prov=cat_prov.idCatProv";
 		  $resulta=mysqli_query($link,$qrya);
 		  $rowa=mysqli_fetch_array($resulta); 			
 		  echo'<select name="Id_Cat">';
@@ -153,7 +153,7 @@ include "includes/conect.php";
 		//mover_pag2("Proveedor Creado correctamente");
 		function mover_pag2($Mensaje)
 		{
-			echo'<script language="Javascript">
+			echo'<script >
 			alert("'.$Mensaje.'");
 			document.formulario.submit();
 			</script>';

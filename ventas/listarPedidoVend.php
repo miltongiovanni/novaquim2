@@ -154,8 +154,8 @@ select Id_ped, Cod_producto, DesServicio as Producto, Can_producto, Prec_product
 	echo '<tr>
 	<td class="formatoDatos"><div align="center">'.$rowi['Cod_producto'].'</div></td>
 	<td class="formatoDatos"><div align="left">'.$rowi['Producto'].'</div></td>
-	<td class="formatoDatos"><div align="center"><script language="javascript" type="text/javascript"> document.write(commaSplit('.$rowi['Can_producto'].'))</script></div></td>
-	<td class="formatoDatos"><div align="center">$ <script language="javascript" type="text/javascript"> document.write(commaSplit('.$rowi['Prec_producto'].'))</script></div></td>
+	<td class="formatoDatos"><div align="center"><script  type="text/javascript"> document.write(commaSplit('.$rowi['Can_producto'].'))</script></div></td>
+	<td class="formatoDatos"><div align="center">$ <script  type="text/javascript"> document.write(commaSplit('.$rowi['Prec_producto'].'))</script></div></td>
 	</tr>';
 	}
 	echo '</table></div></td></tr>';

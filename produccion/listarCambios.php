@@ -57,7 +57,7 @@ while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
 	echo '<tr>
 		<td class="formatoDatos"><div align="left"></div></td>
 		<td class="formatoDatos"><div align="left">'.$rowi['Nombre'].'</div></td>
-		<td class="formatoDatos"><div align="center"><script language="javascript"> document.write(commaSplit('.$rowi['Cantidad'].'))</script></div></td></tr>';
+		<td class="formatoDatos"><div align="center"><script > document.write(commaSplit('.$rowi['Cantidad'].'))</script></div></td></tr>';
 	}
 	echo '<tr>
 		<th width="5%" class="formatoEncabezados">Destino</th>
@@ -72,7 +72,7 @@ while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
 	echo '<tr>
 		<td class="formatoDatos"><div align="left"></div></td>
 		<td class="formatoDatos"><div align="left">'.$rowi2['Nombre'].'</div></td>
-		<td class="formatoDatos"><div align="center"><script language="javascript"> document.write(commaSplit('.$rowi2['Cantidad'].'))</script></div></td></tr>';
+		<td class="formatoDatos"><div align="center"><script > document.write(commaSplit('.$rowi2['Cantidad'].'))</script></div></td></tr>';
 	}
 	echo '</table></div></td></tr>';
 	$a=$a+1;

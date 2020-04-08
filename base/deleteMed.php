@@ -25,7 +25,7 @@ try {
 
 function mover_pag($ruta, $nota)
 {
-	echo '<script language="Javascript">
+	echo '<script >
 	alert("' . $nota . '")
 	self.location="' . $ruta . '"
 	</script>';

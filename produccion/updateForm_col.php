@@ -35,7 +35,7 @@ include "includes/conect.php";
 	echo'</form>';
 	function mover_pag($ruta,$nota)
 	{
-	echo'<script language="Javascript">
+	echo'<script >
 	document.formulario.submit();
 	</script>';
 	}

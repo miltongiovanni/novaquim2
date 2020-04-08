@@ -101,7 +101,7 @@ while($row=mysqli_fetch_array($rs, MYSQLI_BOTH))
 	<td class="formatoDatos"><div align="center">'.$row['Fech_comp'].'</div></td>
 	<td class="formatoDatos"><div align="center">'.$row['Fech_venc'].'</div></td>
 	<td class="formatoDatos"><div align="center">'.$row['Estado'].'</div></td>
-	<td class="formatoDatos"><div align="right">$ <script language="javascript"> document.write(commaSplit('.$row['total_fact'].'))</script></div></td>
+	<td class="formatoDatos"><div align="right">$ <script > document.write(commaSplit('.$row['total_fact'].'))</script></div></td>
 	';
 	
 	echo'</tr>';
@@ -119,9 +119,9 @@ where det_gastos.Id_tasa=tasa_iva.Id_Tasa and Id_gasto=$id_com;";
 	{
 	echo '<tr>
 	<td class="formatoDatos"><div align="center">'.$rowi['Producto'].'</div></td>
-	<td class="formatoDatos"><div align="center"><script language="javascript"> document.write(commaSplit('.$rowi['Cant_gasto'].'))</script></div></td>
-	<td class="formatoDatos"><div align="center">$ <script language="javascript"> document.write(commaSplit('.$rowi['Precio_gasto'].'))</script></div></td>
-	<td class="formatoDatos"><div align="center"><script language="javascript"> document.write(commaSplit('.(100*$rowi['tasa']).'))</script> %</div></td>
+	<td class="formatoDatos"><div align="center"><script > document.write(commaSplit('.$rowi['Cant_gasto'].'))</script></div></td>
+	<td class="formatoDatos"><div align="center">$ <script > document.write(commaSplit('.$rowi['Precio_gasto'].'))</script></div></td>
+	<td class="formatoDatos"><div align="center"><script > document.write(commaSplit('.(100*$rowi['tasa']).'))</script> %</div></td>
 	</tr>';
 	}
 	echo '</table></div></td></tr>';

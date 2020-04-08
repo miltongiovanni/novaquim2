@@ -49,7 +49,7 @@ include "includes/valAcc.php";
 		  echo'<input name="Crear" type="hidden" value="5">'; 
 		  echo'<input name="remision" type="hidden" value="'.$remision.'">'; 
 		  echo '</form>';
-		  echo'<script language="Javascript">
+		  echo'<script >
 				document.form3.submit();
 				</script>';
 		mysqli_close($link);
@@ -90,7 +90,7 @@ include "includes/valAcc.php";
 		echo'<input name="Crear" type="hidden" value="5">'; 
 		echo'<input name="remision" type="hidden" value="'.$remision.'">'; 
 		echo '</form>';
-		echo'<script language="Javascript">
+		echo'<script >
 			document.form3.submit();
 			</script>';
 		mysqli_close($link);
@@ -115,7 +115,7 @@ include "includes/valAcc.php";
 		echo'<input name="Crear" type="hidden" value="5">'; 
 		echo'<input name="remision" type="hidden" value="'.$remision.'">'; 
 		echo '</form>';
-		echo'<script language="Javascript">
+		echo'<script >
 			document.form3.submit();
 			</script>';
 		mysqli_close($link);
@@ -138,7 +138,7 @@ include "includes/valAcc.php";
 		function mover($ruta,$nota)
 		{
 			//Funcion que permite el redireccionamiento de los usuarios a otra pagina 
-			echo'<script language="Javascript">
+			echo'<script >
 			alert("'.$nota.'")
 			self.location="'.$ruta.'"
 			</script>';

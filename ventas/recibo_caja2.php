@@ -115,7 +115,7 @@ if($Pago==1)
 				//aqui toca poner el a
 				if($resulupdate)
 				{
-					echo' <script language="Javascript">
+					echo' <script >
 					alert("Pago Aplicado Correctamente");
 					</script>';
 					echo '<form id="form7" name="form7" method="post" action="recibo_caja1.php">	
@@ -124,7 +124,7 @@ if($Pago==1)
 				   <input type="hidden" name="Pago" value="3">
                    <td align="left"><input type="button" value="      Continuar      " >
 				   </form> ';
-					echo'<script language="Javascript">
+					echo'<script >
 							document.form7.submit();
 							</script>';
 				}
@@ -135,7 +135,7 @@ if($Pago==1)
 				$qryupt="update factura set Reten_iva=$Reten_iva, Reten_ica=$Reten_ica, Reten_fte=$Reten_fte where Factura=$factura";
 				$resulupdate=mysqli_query($link, $qryupt);
 				//echo $qryupt;
-				echo' <script language="Javascript">
+				echo' <script >
 					alert("Pago Aplicado Correctamente 2");
 					</script>';
 					echo '<form id="form7" name="form7" method="post" action="recibo_caja1.php">	
@@ -144,7 +144,7 @@ if($Pago==1)
 				   <input type="hidden" name="Pago" value="3">
                    <td align="left"><input type="button" value="      Continuar      " >
 				   </form> ';
-					echo'<script language="Javascript">
+					echo'<script >
 							document.form7.submit();
 							</script>';
 			}
@@ -160,7 +160,7 @@ if($Pago==1)
   function mover_pag($ruta,$nota)
 	{	
 	//Funcion que permite el redireccionamiento de los usuarios a otra pagina 
-	echo' <script language="Javascript">
+	echo' <script >
 	alert("'.$nota.'")
 	self.location="'.$ruta.'"
 	</script>';
@@ -317,7 +317,7 @@ if($Pago==1)
 	  <input name="Reten_pago" type="hidden" value="1">  
 	  </td></tr>';
 	  //echo '</form>';
-	  echo'<script language="Javascript">
+	  echo'<script >
 			document.form1.submit();
 			</script>';
 	}

@@ -35,7 +35,7 @@ if($Crear==0)
 		<input name="IdCat" type="hidden" value="'.$IdCat.'"/>
 		<input name="Crear" type="hidden" value="1"/>
 		<input type="submit" name="Submit" value="Cambiar" />';
-		echo'<script language="Javascript">
+		echo'<script >
 			document.form3.submit();
 			</script>';	*/
 } 
@@ -52,8 +52,8 @@ if($Crear==1)
   <table  align="center">
     <?php
 	  	$link=conectarServidor();
-		$qry="SELECT NIT_provee, Nom_provee, proveedores.Id_cat_prov as Categ, Des_cat_prov from proveedores, cat_prov WHERE 						
-		proveedores.Id_cat_prov=cat_prov.Id_cat_prov and NIT_provee='$NIT';";
+		$qry="SELECT NIT_provee, Nom_provee, proveedores.Id_cat_prov as Categ, desCatProv from proveedores, cat_prov WHERE 						
+		proveedores.Id_cat_prov=cat_prov.idCatProv and NIT_provee='$NIT';";
 		$result=mysqli_query($link,$qry);
 		$row=mysqli_fetch_array($result);
 		mysqli_free_result($result);

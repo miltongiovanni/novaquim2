@@ -65,13 +65,13 @@ else
 //ACTUALIZACIÓN DEL DETALLE DE LA NOTA DE CREDITOS
   $qryr="delete from det_nota_c where Id_Nota=$nota and Cod_producto=$codigo;";
   $resultr=mysqli_query($link,$qryr);
-  echo' <script language="Javascript">
+  echo' <script >
 		  alert("Borrado producto de la nota de credito");
 		  </script>'; 
   echo'<form action="makeNota.php" method="post" name="formulario">';
   echo '<input name="nota" type="hidden" value="'.$nota.'"><input name="crear" type="hidden" value="5"><input type="submit" name="Submit" class="formatoBoton1" value="Cambiar" >';
   echo'</form>'; 
-  echo' <script language="Javascript" type="text/javascript"> document.formulario.submit(); </script>';  	
+  echo' <script  type="text/javascript"> document.formulario.submit(); </script>';  	
 	
 	
 	

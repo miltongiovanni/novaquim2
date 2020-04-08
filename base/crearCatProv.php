@@ -1,64 +1,56 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
+function cargarClases($classname)
+{
+    require '../clases/' . $classname . '.php';
+}
+
+spl_autoload_register('cargarClases');
+$catsProvOperador = new CategoriasProvOperaciones();
+$lastcategorias = $catsProvOperador->getLastCatProv();
+$idCategoria = $lastcategorias + 1;
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-	<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<title>Creaci&oacute;n Categor&iacute;a de Proveedor</title>
-	<meta charset="utf-8">
-	<script type="text/javascript" src="scripts/validar.js"></script>
-	<script type="text/javascript" src="scripts/block.js"></script>	
-		<script type="text/javascript">
-	document.onkeypress = stopRKey; 
-	</script>
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <title>Creación Categoría de Proveedor</title>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="../js/validar.js"></script>
 
 </head>
 <body>
 <div id="contenedor">
-<div id="saludo"><strong>CREACI&Oacute;N CATEGOR&Iacute;A DE PROVEEDOR</strong></div>
-<form name="form2" method="POST" action="makeCategoria_Prov.php">
-<table  border="0" align="center" class="table2" cellspacing="0">  
-    <tr> 
-        <td width="90"><div align="right"><b>Descripci&oacute;n</b></div></td>
-        <td colspan="2"><input type="text" name="categoria" size=34 ></td>
-    </tr>
-    <tr> 
-        <td><div align="right"><strong>C&oacute;digo</strong></div></td>
-
-        <td colspan="2">
-		<?php
-        include "includes/conect.php" ;
-        $link=conectarServidor();
-        $sql="select max(Id_cat_prov) as Codigo from cat_prov;";						
-        $result = mysqli_query($link, $sql);
-        $row= mysqli_fetch_row($result);
-        $valor=$row[0];	
-        echo'<input name="cod_cat_prov" type="text" size=34 readonly value='.($valor+1).'>';   	
-        mysqli_free_result($result);
-        /* cerrar la conexi�n */
-        mysqli_close($link);
-        ?>    	</td>
-    </tr>
-    <tr>
-        <td colspan="3"><div align="center">&nbsp;</div></td>
-    </tr>
-    <tr> <td><div align="center">&nbsp;</div></td>
-        <td width="131" ><div align="center"><input type="button" value="Guardar" onClick="return Enviar(this.form);"></div></td>
-        <td width="109" ><div align="center"><input type="reset" value="Reiniciar"></div></td>    	
-          
-    </tr>
-    
-    
-    <tr>
-        <td colspan="3"><div align="center">&nbsp;</div></td>
-    </tr>
-    <tr> 
-        <td colspan="3">
-        <div align="center"><input type="button" class="resaltado" onClick="history.back()" value="  VOLVER  "></div>        </td>
-    </tr>
-</table>
-</form>
+    <div id="saludo"><strong>CREACIÓN CATEGORÍA DE PROVEEDOR</strong></div>
+    <form name="form2" method="POST" action="makeCategoriaProv.php">
+        <div class="form-group row">
+            <label class="col-form-label col-1" style="text-align: right;"
+                   for="idCatProv"><strong>Código</strong></label>
+            <input type="text" class="form-control col-2" name="idCatProv" id="idCatProv" size=30 maxlength="30"
+                   value="<?= $idCategoria ?>" readonly>
+        </div>
+        <div class="form-group row">
+            <label class="col-form-label col-1" style="text-align: right;"
+                   for="desCatProv"><strong>Descripción</strong></label>
+            <input type="text" class="form-control col-2" name="desCatProv" id="desCatProv" size=30
+                   onKeyPress="return aceptaLetra(event)"
+                   maxlength="30">
+        </div>
+        <div class="form-group row">
+            <div class="col-1" style="text-align: center;">
+                <button class="button" onclick="return Enviar(this.form)"><span>Continuar</span></button>
+            </div>
+            <div class="col-1" style="text-align: center;">
+                <button class="button" type="reset"><span>Reiniciar</span></button>
+            </div>
+        </div>
+    </form>
+    <div class="row">
+        <div class="col-1">
+            <button class="button1" id="back" onClick="history.back()">
+                <span>VOLVER</span></button>
+        </div>
+    </div>
 </div>
 </body>
 </html>

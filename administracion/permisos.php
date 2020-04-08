@@ -16,7 +16,7 @@ spl_autoload_register('cargarClases');
 	<title>Asignación de Permisos al Usuario</title>
 	<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
 	<script type="text/javascript" src="../js/md5.js"></script>
-	<script language="javascript">
+	<script >
 		function todos(form) {
 			for (i = 0; i < form.casilla1.length; i++)
 				form.casilla1[i].checked = true;

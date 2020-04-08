@@ -82,9 +82,9 @@ while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
 	<td class="formatoDatos"><div align="center">'.$row['Factura'].'</div></td>
 	<td class="formatoDatos"><div align="center">'.$row['Fech_fact'].'</div></td>
 	<td class="formatoDatos"><div align="center">'.$row['Fech_venc'].'</div></td>
-	<td class="formatoDatos"><div align="right">$ <script language="javascript"> document.write(commaSplit('.$row['Total'].'))</script></div></td>
-	<td class="formatoDatos"><div align="right">$ <script language="javascript"> document.write(commaSplit('.$row['Valor a Cobrar'].'))</script></div></td>
-	<td class="formatoDatos"><div align="right">$ <script language="javascript"> document.write(commaSplit('.$saldo.'))</script></div></td>
+	<td class="formatoDatos"><div align="right">$ <script > document.write(commaSplit('.$row['Total'].'))</script></div></td>
+	<td class="formatoDatos"><div align="right">$ <script > document.write(commaSplit('.$row['Valor a Cobrar'].'))</script></div></td>
+	<td class="formatoDatos"><div align="right">$ <script > document.write(commaSplit('.$saldo.'))</script></div></td>
 	<td class="formatoDatos"><div align="center">'.$cancel.'</div></td>
 	<td class="formatoDatos"><div align="center">'.$estado.'</div></td>
 	';
@@ -103,7 +103,7 @@ while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
 	echo '<tr>
 	<td class="formatoDatos"><div align="center">'.$rowi['Id_caja'].'</div></td>
 	<td class="formatoDatos"><div align="center">'.$rowi['Fecha'].'</div></td>
-	<td class="formatoDatos"><div align="center">$ <script language="javascript"> document.write(commaSplit('.$rowi['cobro'].'))</script></div></td>
+	<td class="formatoDatos"><div align="center">$ <script > document.write(commaSplit('.$rowi['cobro'].'))</script></div></td>
 	</tr>';
 	}
 	echo '</table></div></td></tr>';

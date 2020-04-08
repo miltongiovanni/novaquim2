@@ -35,7 +35,7 @@ include "includes/valAcc.php";
 	function mover($ruta,$nota)
 	{
 		//Funcion que permite el redireccionamiento de los usuarios a otra pagina 
-		echo'<script language="javascript">
+		echo'<script >
 		alert("'.$nota.'");
 		self.location="'.$ruta.'";
 		</script>';
@@ -66,7 +66,7 @@ include "includes/valAcc.php";
 		  echo'<input name="sobre" type="hidden" value="'.$sobre.'">'; 
 		  echo'<input name="pedido" type="hidden" value="'.$pedido.'">'; 
 		  echo '</form>';
-		  echo'<script language="Javascript">
+		  echo'<script >
 				document.form3.submit();
 				</script>';
 		}
@@ -74,21 +74,21 @@ include "includes/valAcc.php";
 		{
 			if($dias_p<0)
 			{
-				echo'<script language="Javascript">
+				echo'<script >
 				alert("La fecha del pedido no puede ser menor que la actual");
 				self.location="pedido.php";
 				</script>';	
 			}
 			if($dias_ep<0)
 			{
-				echo'<script language="Javascript">
+				echo'<script >
 				alert("La fecha de entrega del pedido no puede ser menor que la fecha del pedido");
 				self.location="pedido.php";
 				</script>';	
 			}
 			if($dias_e<0)
 			{
-				echo'<script language="Javascript">
+				echo'<script >
 				alert("La fecha de entrega del pedido no puede ser menor que la actual");
 				self.location="pedido.php";
 				</script>';	
@@ -106,7 +106,7 @@ include "includes/valAcc.php";
 		  echo'<input name="sobre" type="hidden" value="'.$sobre.'">'; 
 		  echo'<input name="pedido" type="hidden" value="'.$pedido.'">'; 
 		  echo '</form>';
-		  echo'<script language="Javascript">
+		  echo'<script >
 				document.form3.submit();
 				</script>';
 		
@@ -150,7 +150,7 @@ include "includes/valAcc.php";
 		}
 		else
 		{
-			echo'<script language="Javascript">
+			echo'<script >
 			alert("Máximo 40 productos por pedido")
 			</script>';	
 			mysqli_close($link);
@@ -178,7 +178,7 @@ include "includes/valAcc.php";
 		}
 		else
 		{
-			echo'<script language="Javascript">
+			echo'<script >
 			alert("Máximo 40 productos por pedido")
 			</script>';	
 		}
@@ -198,7 +198,7 @@ include "includes/valAcc.php";
 		}
 		else
 		{
-			echo'<script language="Javascript">
+			echo'<script >
 			alert("Máximo 40 productos por pedido")
 			</script>';	
 		}

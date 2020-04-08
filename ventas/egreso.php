@@ -90,7 +90,7 @@ if($Pago==1)
 					$qryupt="update compras set estado=7 where Id_compra=$id_compra";
 				$resulupdate=mysqli_query($link, $qryupt);
 			}
-			echo' <script language="Javascript">
+			echo' <script >
 			alert("Pago Aplicado Correctamente");
 			</script>';
 			echo '<form id="form7" name="form7" method="post" action="egreso.php">	
@@ -100,7 +100,7 @@ if($Pago==1)
 				   <input name="compra" type="hidden" value="'.$compra.'">
                    <td align="left"><input type="button" value="      Continuar      " >
 				   </form> ';
-					echo'<script language="Javascript">
+					echo'<script >
 							document.form7.submit();
 							</script>';
 		}
@@ -118,7 +118,7 @@ if($Pago==1)
   function mover_pag($ruta,$nota)
 	{	
 	//Funcion que permite el redireccionamiento de los usuarios a otra pagina 
-	echo' <script language="Javascript">
+	echo' <script >
 	alert("'.$nota.'")
 	self.location="'.$ruta.'"
 	</script>';
@@ -175,34 +175,34 @@ if($Pago==1)
       <td><div align="right"><strong>Proveedor:</strong></div></td>
       <td><?php echo  $row['Nom_provee']?></td>
       <td><div align="right"><strong>Valor Factura:</strong></div></td>
-      <td><div align="left"><?php echo '$ <script language="javascript" type="text/javascript"> document.write(commaSplit('.$row['total_fact'].'))</script>' ;?> </div></td>
+      <td><div align="left"><?php echo '$ <script  type="text/javascript"> document.write(commaSplit('.$row['total_fact'].'))</script>' ;?> </div></td>
     </tr>
     <tr>
       <td><div align="right"><strong>NIT:</strong></div></td>
       <td><?php echo  $row['nit_prov']?></td>
       <td ><div align="right"><strong>Retefuente:</strong></div></td>
-      <td><?php echo '$ <script language="javascript" type="text/javascript"> document.write(commaSplit('.$retencion.'))</script>' ;?></td>
+      <td><?php echo '$ <script  type="text/javascript"> document.write(commaSplit('.$retencion.'))</script>' ;?></td>
       
     </tr>
     <tr>
     <td ><div align="right"><strong>Fecha de Factura:</strong></div></td>
       <td><?php echo $row['Fech_comp'];?></td>
       <td ><div align="right"><strong>Retenci&oacute;n Ica:</strong></div></td>
-      <td><?php echo '$ <script language="javascript" type="text/javascript"> document.write(commaSplit('.$ret_ica.'))</script>' ;?></td>
+      <td><?php echo '$ <script  type="text/javascript"> document.write(commaSplit('.$ret_ica.'))</script>' ;?></td>
       
     </tr>
     <tr>
       <td ><div align="right"><strong>Fecha Vencimiento: </strong></div></td>
       <td><?php echo $row['Fech_venc'];?></td>
       <td ><div align="right"><strong>Valor Cancelado:</strong></div></td>
-      <td><?php echo '$ <script language="javascript" type="text/javascript"> document.write(commaSplit('.$parcial.'))</script>' ;?></td>
+      <td><?php echo '$ <script  type="text/javascript"> document.write(commaSplit('.$parcial.'))</script>' ;?></td>
       
     </tr>
     <tr>
     <td><div align="right"><strong>No. de Factura:</strong></div></td>
       <td><?php echo  $row['Num_fact']?></td>
       <td><div align="right"><strong>Valor Pendiente:</strong></div></td>
-      <td><div align="left"><?php echo '$ <script language="javascript" type="text/javascript"> document.write(commaSplit('.$saldo.'))</script>' ;?> </div></td>
+      <td><div align="left"><?php echo '$ <script  type="text/javascript"> document.write(commaSplit('.$saldo.'))</script>' ;?> </div></td>
     </tr>
     <tr>
       <td colspan="4"><hr></td>
@@ -268,7 +268,7 @@ while($row=mysqli_fetch_array($result))
 	echo'<tr>
 	<td><div align="center">'.$i.'</div></td>
 	<td><div align="center">'.$fecha.'</div></td>
-	<td><div align="center">$ <script language="javascript" type="text/javascript"> document.write(commaSplit('.$abono.'))</script></div></td>
+	<td><div align="center">$ <script  type="text/javascript"> document.write(commaSplit('.$abono.'))</script></div></td>
 	</tr>';
 	$i++;
 }

@@ -36,7 +36,7 @@ include "includes/valAcc.php";
 	function mover($ruta,$nota)
 	{
 		//Funcion que permite el redireccionamiento de los usuarios a otra pagina 
-		echo'<script language="Javascript">
+		echo'<script >
 		alert("'.$nota.'")
 		self.location="'.$ruta.'"
 		</script>';

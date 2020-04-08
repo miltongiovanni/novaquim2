@@ -6,7 +6,7 @@ include "includes/valAcc.php";
 	echo'<input name="Estado" type="hidden" value="A">';
 	//echo '<input type="submit" name="Submit" value="Analizar" >'; 
 	echo '</form>';
-	echo'<script language="Javascript">
+	echo'<script >
 		document.form3.submit();
 		</script>';	
 ?>

@@ -34,7 +34,7 @@ if($result)
 	echo'</form>';
 	function mover_pag($ruta,$nota)
 	{
-	echo'<script language="Javascript">
+	echo'<script >
 	document.formulario.submit();
 	</script>';
 	}
@@ -44,7 +44,7 @@ if($result)
 else{
         $ruta="buscar_lote.php";
 		$Mensaje="Error al ingresar el Control de Calidad";
-		echo'<script language="Javascript">
+		echo'<script >
    alert("'.$Mensaje.'")
    self.location="'.$ruta.'"
    </script>';

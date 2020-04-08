@@ -21,7 +21,7 @@ if($result=$cliente->makeClient($NIT, $Cliente, $Direccion, $Contacto, $Cargo, $
 		echo '<form method="post" action="listarClien.php" name="form3">';
 		echo'<input name="Estado" type="hidden" value="'.$Estado.'">';
 		echo '</form>';
-		echo'<script language="Javascript">
+		echo'<script >
 		    alert("Cliente Creado correctamente");
 			document.form3.submit();
 			</script>';	
@@ -47,7 +47,7 @@ else{
 
 
 function mover_pag($ruta,$Mensaje){
-echo'<script language="Javascript">
+echo'<script >
    alert("'.$Mensaje.'")
    self.location="'.$ruta.'"
    </script>';

@@ -145,7 +145,7 @@ if($valida==0)
 echo'</form>';
 function mover_pag($ruta,$nota)
 {
-	echo'<script language="Javascript"> document.formulario.submit(); </script>';
+	echo'<script > document.formulario.submit(); </script>';
 }
 ?>
 </body>

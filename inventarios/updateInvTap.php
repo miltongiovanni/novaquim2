@@ -20,7 +20,7 @@ include "includes/conect.php";
 	$link=conectarServidor();
 	if($result=mysqli_query($link,$qryinv))
 	{
-		echo'<script language="Javascript">
+		echo'<script >
 		alert("Inventario Actualizado Correctamente");
 		self.location="menu.php";
 		</script>';

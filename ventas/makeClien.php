@@ -23,22 +23,22 @@ $result=mysqli_query($link,$sql);
 $row=mysqli_fetch_array($result, MYSQLI_BOTH);
 if ($row)
 {
-   echo'<script language="Javascript">
+   echo'<script >
    alert("Cliente o Nit ya existente")
    </script>';
 	echo'<form action="updateCliForm.php" method="post" name="formulario">';
 	echo '<input name="cliente" type="hidden" value="'.$NIT_F.'"><input type="submit" name="Submit" value="Cambiar" />';
 	echo'</form>'; 
-	echo' <script language="Javascript"> 	document.formulario.submit(); 	</script>';
+	echo' <script > 	document.formulario.submit(); 	</script>';
 	mysqli_close($link);//Cerrar la conexion
 }
 echo'<form action="makeClienForm2.php" method="post" name="formulario">';
 echo '<input name="nit" type="hidden" value="'.$NIT_F.'"><input name="ciudad_cli" type="hidden" value="'.$ciudad_cli.'"><input name="tip_cli" type="hidden" value="'.$tipo.'"><input type="submit" name="Submit" value="Cambiar" />';
 echo'</form>'; 
-echo' <script language="Javascript"> 	document.formulario.submit(); 	</script>';
+echo' <script > 	document.formulario.submit(); 	</script>';
 
 function mover_pag($ruta,$Mensaje){
-echo'<script language="Javascript">
+echo'<script >
    alert("'.$Mensaje.'")
    self.location="'.$ruta.'"
    </script>';

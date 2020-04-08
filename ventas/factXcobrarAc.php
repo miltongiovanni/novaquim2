@@ -56,7 +56,7 @@ while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
 	<td class="formatoDatos"><div align="left">'.$row['Tel_clien'].'</div></td>
 	<td class="formatoDatos"><div align="center">'.$row['Cel_clien'].'</div></td>
 	<td class="formatoDatos"><div align="left">'.$row['Dir_clien'].'</div></td>
-	<td class="formatoDatos"><div align="center">$ <script language="javascript" type="text/javascript"> document.write(commaSplit('.$row['sumtotal'].'))</script></div></td>
+	<td class="formatoDatos"><div align="center">$ <script  type="text/javascript"> document.write(commaSplit('.$row['sumtotal'].'))</script></div></td>
 	';
 	
 	echo'</tr>';
@@ -93,17 +93,17 @@ while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
 	<td class="formatoDatos"><div align="center">'.$rowi['Factura'].'</div></td>
 	<td class="formatoDatos"><div align="left">'.$rowi['Fech_fact'].'</div></td>
 	<td class="formatoDatos"><div align="left">'.$rowi['Fech_venc'].'</div></td>
-	<td class="formatoDatos"><div align="center"><script language="javascript" type="text/javascript"> document.write(commaSplit('.$rowi['Subtotal'].'))</script></div></td>
-	<td class="formatoDatos"><div align="center">$ <script language="javascript" type="text/javascript"> document.write(commaSplit('.$rowi['Reten_iva'].'))</script></div></td>
-	<td class="formatoDatos"><div align="center"><script language="javascript" type="text/javascript"> document.write(commaSplit('.$rowi['Reten_ica'].'))</script></div></td>
-	<td class="formatoDatos"><div align="center">$ <script language="javascript" type="text/javascript"> document.write(commaSplit('.$rowi['Reten_fte'].'))</script></div></td>
-	<td class="formatoDatos"><div align="center"><script language="javascript" type="text/javascript"> document.write(commaSplit('.$rowi['IVA'].'))</script></div></td>
-	<td class="formatoDatos"><div align="center">$ <script language="javascript" type="text/javascript"> document.write(commaSplit('.$rowi['Total'].'))</script></div></td>
+	<td class="formatoDatos"><div align="center"><script  type="text/javascript"> document.write(commaSplit('.$rowi['Subtotal'].'))</script></div></td>
+	<td class="formatoDatos"><div align="center">$ <script  type="text/javascript"> document.write(commaSplit('.$rowi['Reten_iva'].'))</script></div></td>
+	<td class="formatoDatos"><div align="center"><script  type="text/javascript"> document.write(commaSplit('.$rowi['Reten_ica'].'))</script></div></td>
+	<td class="formatoDatos"><div align="center">$ <script  type="text/javascript"> document.write(commaSplit('.$rowi['Reten_fte'].'))</script></div></td>
+	<td class="formatoDatos"><div align="center"><script  type="text/javascript"> document.write(commaSplit('.$rowi['IVA'].'))</script></div></td>
+	<td class="formatoDatos"><div align="center">$ <script  type="text/javascript"> document.write(commaSplit('.$rowi['Total'].'))</script></div></td>
 	
 	
-	<td class="formatoDatos"><div align="center">$ <script language="javascript" type="text/javascript"> document.write(commaSplit('.($rowi['Total']-$rowi['Reten_iva']-$rowi['Reten_ica']-$rowi['Reten_fte']).'))</script></div></td>
-	<td class="formatoDatos"><div align="center">$ <script language="javascript" type="text/javascript"> document.write(commaSplit('.$parcial.'))</script></div></td>
-	<td class="formatoDatos"><div align="center">$ <script language="javascript" type="text/javascript"> document.write(commaSplit('.($rowi['Total']-$rowi['Reten_iva']-$rowi['Reten_ica']-$rowi['Reten_fte']-$parcial).'))</script></div></td>
+	<td class="formatoDatos"><div align="center">$ <script  type="text/javascript"> document.write(commaSplit('.($rowi['Total']-$rowi['Reten_iva']-$rowi['Reten_ica']-$rowi['Reten_fte']).'))</script></div></td>
+	<td class="formatoDatos"><div align="center">$ <script  type="text/javascript"> document.write(commaSplit('.$parcial.'))</script></div></td>
+	<td class="formatoDatos"><div align="center">$ <script  type="text/javascript"> document.write(commaSplit('.($rowi['Total']-$rowi['Reten_iva']-$rowi['Reten_ica']-$rowi['Reten_fte']-$parcial).'))</script></div></td>
 	</tr>';
 	}
 	echo '</table></div></td></tr>';

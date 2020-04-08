@@ -28,7 +28,7 @@ $link=conectarServidor();
 if (($crear==2)&&($CliExis == 1))
 { 
 
-  $qryb="select Nom_clien, Contacto, Cargo, Tel_clien, Fax_clien, Cel_clien, Dir_clien, Eml_clien, Id_cat_clien, Ciudad_clien, cod_vend, Des_cat_cli, ciudad, nom_personal from clientes, cat_clien, ciudades, personal where Nit_clien='$cliente' and Id_cat_clien=Id_cat_cli and Ciudad_clien=Id_ciudad and cod_vend=Id_personal;";
+  $qryb="select Nom_clien, Contacto, Cargo, Tel_clien, Fax_clien, Cel_clien, Dir_clien, Eml_clien, Id_cat_clien, Ciudad_clien, cod_vend, desCatClien, ciudad, nom_personal from clientes, cat_clien, ciudades, personal where Nit_clien='$cliente' and Id_cat_clien=idCatClien and Ciudad_clien=Id_ciudad and cod_vend=Id_personal;";
   $resultb=mysqli_query($link,$qryb);
   $rowb=mysqli_fetch_array($resultb);
 		
@@ -38,7 +38,7 @@ if (($crear==2)&&($CliExis == 1))
 		  echo'<input name="num_cotiza" type="hidden" value="'.$num_cotiza.'">';
 		  echo '<input type="submit" name="Submit" value="Analizar" >'; 
 		  echo '</form>';
-		  echo'<script language="Javascript">
+		  echo'<script >
 			  document.form5.submit();
 			  </script>';  */
 
@@ -183,9 +183,9 @@ if ((($crear==1)&&($CliExis == 0))||($crear!=1))
 		if($CliExis == 1){
 		$catcli=$rowb['Id_cat_clien'];
         $catclin=$rowb['Des_cat_cli'];
-          $qry2="select Id_cat_cli, Des_cat_cli from cat_clien where Id_cat_cli<>$catcli order by Des_cat_cli";}
+          $qry2="select idCatClien, desCatClien from cat_clien where idCatClien<>$catcli order by desCatClien";}
         else
-          $qry2="select Id_cat_cli, Des_cat_cli from cat_clien order by Des_cat_cli";	
+          $qry2="select idCatClien, desCatClien from cat_clien order by desCatClien";
         $result=mysqli_query($link,$qry2);
 		if($CliExis == 1)
           echo '<option selected value="'.$catcli.'">'.$catclin.'</option>';

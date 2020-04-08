@@ -46,7 +46,7 @@ include "includes/valAcc.php";
 	function mover($ruta,$nota)
 	{
 		//Funcion que permite el redireccionamiento de los usuarios a otra pagina 
-		echo'<script language="Javascript">
+		echo'<script >
 		alert("'.$nota.'")
 		self.location="'.$ruta.'"
 		</script>';
@@ -64,7 +64,7 @@ include "includes/valAcc.php";
 		{
 			/* Rollback */
 			mysqli_rollback($link);
-			echo' <script language="Javascript">
+			echo' <script >
 				alert("Producto incluido anteriormente");
 			</script>'; 
 		}
@@ -92,7 +92,7 @@ include "includes/valAcc.php";
 			{
 			  /* Rollback */
 			  mysqli_rollback($link);
-			  echo' <script language="Javascript">
+			  echo' <script >
 				  alert("No hay envase suficiente solo hay '.$inv_env.' unidades");
 			  </script>';
 			}
@@ -112,7 +112,7 @@ include "includes/valAcc.php";
 			{
 			  /* Rollback */
 			  mysqli_rollback($link);
-			  echo' <script language="Javascript">
+			  echo' <script >
 				  alert("No hay tapas o válvulas suficientes, sólo hay '.$inv_val.' unidades");
 			  </script>';
 			}
@@ -132,7 +132,7 @@ include "includes/valAcc.php";
 			{
 			/* Rollback */
 			mysqli_rollback($link);
-			echo' <script language="Javascript">
+			echo' <script >
 				alert("No hay etiquetas suficientes, sólo hay '.$inv_etq.' unidades");
 			</script>';
 			}
@@ -147,7 +147,7 @@ include "includes/valAcc.php";
 		echo'<input name="Crear" type="hidden" value="5">'; 
 		echo'<input name="Lote" type="hidden" value="'.$Lote.'">'; 
 		echo '</form>';
-		echo'<script language="Javascript">
+		echo'<script >
 			document.form3.submit();
 			</script>';
 	}

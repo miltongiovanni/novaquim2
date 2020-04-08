@@ -56,7 +56,7 @@ mysqli_autocommit($link, FALSE);
 	{
 		mysqli_rollback($link);
 		mysqli_close($link);
-		echo' <script language="Javascript">
+		echo' <script >
 			alert("No hay envase suficiente solo hay '.$inv_env.' unidades");
 			self.location="env_dist.php";
 		</script>';
@@ -77,7 +77,7 @@ mysqli_autocommit($link, FALSE);
 	{
 		mysqli_rollback($link);
 		mysqli_close($link); 
-		echo' <script language="Javascript">
+		echo' <script >
 			alert("No hay tapas o válvulas suficientes, sólo hay '.$inv_val.' unidades");
 			self.location="env_dist.php";
 		</script>';
@@ -122,7 +122,7 @@ mysqli_autocommit($link, FALSE);
 	{
 		mysqli_rollback($link);
 		mysqli_close($link);
-		echo' <script language="Javascript">
+		echo' <script >
 			alert("No hay Materia Prima suficiente, sólo hay '.$inv_mp.' Kilogramos");
 			self.location="env_dist.php";
 		</script>';
@@ -131,7 +131,7 @@ mysqli_autocommit($link, FALSE);
 	mysqli_commit($link);
 	mysqli_autocommit($link, TRUE);
 	mysqli_close($link);
-	echo'<script language="Javascript">
+	echo'<script >
 		alert("Productos Cargados correctamente");
 		self.location="menu.php";
 		</script>';		

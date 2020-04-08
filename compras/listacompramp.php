@@ -113,10 +113,10 @@ while($row=mysqli_fetch_array($rs, MYSQLI_BOTH))
 	<td class="formatoDatos"><div align="center">'.$row['Fech_comp'].'</div></td>
 	<td class="formatoDatos"><div align="center">'.$row['Fecha Vcmto'].'</div></td>
 	<td class="formatoDatos"><div align="center">'.$row['Estado'].'</div></td>
-	<td class="formatoDatos"><div align="right">$ <script language="javascript"> document.write(commaSplit('.$row['Total'].'))</script></div></td>
-	<td class="formatoDatos"><div align="right">$ <script language="javascript"> document.write(commaSplit('.$row['retencion'].'))</script></div></td>
-	<td class="formatoDatos"><div align="right">$ <script language="javascript"> document.write(commaSplit('.$row['ret_ica'].'))</script></div></td>
-	<td class="formatoDatos"><div align="right">$ <script language="javascript"> document.write(commaSplit('.($row['Total']-$row['retencion']-$row['ret_ica']).'))</script></div></td>
+	<td class="formatoDatos"><div align="right">$ <script > document.write(commaSplit('.$row['Total'].'))</script></div></td>
+	<td class="formatoDatos"><div align="right">$ <script > document.write(commaSplit('.$row['retencion'].'))</script></div></td>
+	<td class="formatoDatos"><div align="right">$ <script > document.write(commaSplit('.$row['ret_ica'].'))</script></div></td>
+	<td class="formatoDatos"><div align="right">$ <script > document.write(commaSplit('.($row['Total']-$row['retencion']-$row['ret_ica']).'))</script></div></td>
 	';
 	
 	echo'</tr>';
@@ -138,8 +138,8 @@ while($row=mysqli_fetch_array($rs, MYSQLI_BOTH))
 	<td class="formatoDatos"><div align="center">'.$rowi['Codigo'].'</div></td>
 	<td class="formatoDatos"><div align="left">'.$rowi['Producto'].'</div></td>
 	<td class="formatoDatos"><div align="center">'.$rowi['Lote'].'</div></td>
-	<td class="formatoDatos"><div align="center"><script language="javascript"> document.write(commaSplit('.$rowi['Cantidad'].'))</script></div></td>
-	<td class="formatoDatos"><div align="center">$ <script language="javascript"> document.write(commaSplit('.$rowi['Precio'].'))</script></div></td>
+	<td class="formatoDatos"><div align="center"><script > document.write(commaSplit('.$rowi['Cantidad'].'))</script></div></td>
+	<td class="formatoDatos"><div align="center">$ <script > document.write(commaSplit('.$rowi['Precio'].'))</script></div></td>
 	</tr>';
 	}
 	echo '</table></div></td></tr>';

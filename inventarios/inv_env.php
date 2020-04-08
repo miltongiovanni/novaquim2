@@ -42,7 +42,7 @@ while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
 	  echo '>
 	<td class="formatoDatos"><div align="center">'.$row['Codigo'].'</div></td>
 	<td class="formatoDatos"><div align="left">'.$row['Producto'].'</div></td>
-	<td class="formatoDatos"><div align="center"><script language="javascript" type="text/javascript" > document.write(commaSplit('.$row['Cantidad'].'))</script></div></td>';
+	<td class="formatoDatos"><div align="center"><script  type="text/javascript" > document.write(commaSplit('.$row['Cantidad'].'))</script></div></td>';
 	echo'</tr>';
 	}
 }

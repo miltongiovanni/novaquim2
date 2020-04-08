@@ -8,7 +8,7 @@ include "includes/valAcc.php";
 <meta charset="utf-8">
 <link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
 	<script type="text/javascript" src="scripts/validar.js"></script>
-    <script language="javascript">
+    <script >
 	function seleccionar1(form, checkbox_name)
 	{ 
 		//document.writeln (document.forms[0].seleccionar.value);

@@ -47,7 +47,7 @@ if ($crear==1)
   echo'<form action="makeNota.php" method="post" name="formulario">';
   echo '<input name="nota" type="hidden" value="'.$nota.'"><input name="crear" type="hidden" value="2"><input type="submit" name="Submit" value="Cambiar" >';
   echo'</form>'; 
-  echo' <script language="Javascript" type="text/javascript"> document.formulario.submit(); </script>';
+  echo' <script  type="text/javascript"> document.formulario.submit(); </script>';
 }
 if ($crear==6)
 {
@@ -58,7 +58,7 @@ if ($crear==6)
   echo'<form action="makeNota.php" method="post" name="formulario">';
   echo '<input name="nota" type="hidden" value="'.$nota.'"><input name="crear" type="hidden" value="2"><input type="submit" name="Submit" value="Cambiar" >';
   echo'</form>'; 
-  echo' <script language="Javascript" type="text/javascript"> document.formulario.submit(); </script>';
+  echo' <script  type="text/javascript"> document.formulario.submit(); </script>';
 }
 $qrynot="select Nota, Nit_cliente, Fecha, Fac_orig, Fac_dest, motivo, Total, Subtotal, IVA, Nom_clien, Tel_clien, Dir_clien, Ciudad from nota_c, clientes, ciudades where Nota=$nota and Nit_cliente=Nit_clien and Ciudad_clien=Id_ciudad";
 $resultnot=mysqli_query($link,$qrynot);
@@ -110,7 +110,7 @@ if ($crear==3)// SI HAY DEVOLUCIÓN DE PRODUCTOS
 	echo'<form action="makeNota.php" method="post" name="formulario">';
 	echo '<input name="nota" type="hidden" value="'.$nota.'"><input name="crear" type="hidden" value="5"><input type="submit" name="Submit" class="formatoBoton1" value="Cambiar" >';
 	echo'</form>'; 
-	echo' <script language="Javascript" type="text/javascript"> document.formulario.submit(); </script>';
+	echo' <script  type="text/javascript"> document.formulario.submit(); </script>';
   }
   else
   {
@@ -141,7 +141,7 @@ if ($crear==3)// SI HAY DEVOLUCIÓN DE PRODUCTOS
 	  echo'<form action="makeNota.php" method="post" name="formulario">';
 	  echo '<input name="nota" type="hidden" value="'.$nota.'"><input name="crear" type="hidden" value="5"><input type="submit" name="Submit" value="Cambiar" >';
 	  echo'</form>'; 
-	  echo' <script language="Javascript" type="text/javascript"> document.formulario.submit(); </script>';
+	  echo' <script  type="text/javascript"> document.formulario.submit(); </script>';
 	}
 	else
 	{
@@ -149,7 +149,7 @@ if ($crear==3)// SI HAY DEVOLUCIÓN DE PRODUCTOS
 	  echo'<input name="crear" type="hidden" value="2">'; 
 	  echo'<input name="nota" type="hidden" value="'.$nota.'">'; 
 	  echo '</form>';
-	  echo' <script language="Javascript">
+	  echo' <script >
 	  alert("La cantidad de producto es mayor a la de la factura");
 	  document.form3.submit();
 	  </script>'; 
@@ -173,7 +173,7 @@ if ($rows['Cod_producto']==NULL)
   echo'<form action="makeNota.php" method="post" name="formulario">';
   echo '<input name="nota" type="hidden" value="'.$nota.'"><input name="crear" type="hidden" value="5"><input type="submit" class="formatoBoton1" name="Submit"  value="Cambiar" >';
   echo'</form>'; 
-  echo' <script language="Javascript" type="text/javascript"> document.formulario.submit(); </script>';
+  echo' <script  type="text/javascript"> document.formulario.submit(); </script>';
 }
 if ($crear==5) //PARA CANCELAR SI LA NOTA ES POR TODA LA FACTURA
 {
@@ -194,7 +194,7 @@ if ($crear==5) //PARA CANCELAR SI LA NOTA ES POR TODA LA FACTURA
 
 function mover_pag($ruta,$Mensaje)
 {
-	echo'<script language="Javascript">
+	echo'<script >
    	alert("'.$Mensaje.'")
    	self.location="'.$ruta.'"
    	</script>';

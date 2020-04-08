@@ -4,10 +4,12 @@
     <file url="file://$PROJECT_DIR$/base/ajax/listaDisEmp.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/base/ajax/listaEnvDis.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/base/buscarDis.php" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/base/deleteCatprov.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/base/deleteDis.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/base/deleteDisForm.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/base/deleteRelEnvDis.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/base/deleteRelPacProd.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/base/listarCatCli.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/base/makeDis.php" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/base/updateDisForm.php" charset="UTF-8" />
     <file url="PROJECT" charset="windows-1252" />
