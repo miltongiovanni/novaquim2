@@ -16,7 +16,7 @@ $productoDistribucion = $ProductoDistribucionOperador->getProductoDistribucion($
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <meta charset="utf-8">
     <title>Actualizar datos de Producto de Distribución</title>
-    <script type="text/javascript" src="../js/validar.js"></script>
+    <script  src="../js/validar.js"></script>
 </head
 <body>
 <div id="contenedor">
@@ -71,15 +71,15 @@ $productoDistribucion = $ProductoDistribucionOperador->getProductoDistribucion($
                    value="<?= ($productoDistribucion['stockDis']) ?>" onkeydown="return aceptaNum(event)">
             <label class="col-form-label col-1" for="cotiza"><strong>Cotizar</strong></label>
             <?php
-            if ($productoDistribucion['cotiza'] == 1) {
+            if ($productoDistribucion['cotiza'] == 0) {
                 echo '<select name="cotiza" id="cotiza" class="form-control col-3">
-                    <option value="1" selected>No</option>
-                    <option value="0">Si</option>
+                    <option value="0" selected>No</option>
+                    <option value="1">Si</option>
                 </select>';
             } else {
                 echo '<select name="cotiza" id="cotiza" class="form-control col-3">
-                    <option value="0" selected>Si</option>
-                    <option value="1">No</option>
+                    <option value="1" selected>Si</option>
+                    <option value="0">No</option>
                 </select>';
             }
             ?>
@@ -87,15 +87,15 @@ $productoDistribucion = $ProductoDistribucionOperador->getProductoDistribucion($
         <div class="form-group row">
             <label class="col-form-label col-1" for="cotiza"><strong>Activo</strong></label>
             <?php
-            if ($productoDistribucion['activo'] == 1) {
+            if ($productoDistribucion['activo'] == 0) {
                 echo '<select name="activo" id="activo" class="form-control col-1">
-                    <option value="1" selected>No</option>
-                    <option value="0">Si</option>
+                    <option value="0" selected>No</option>
+                    <option value="1">Si</option>
                 </select>';
             } else {
                 echo '<select name="activo" id="activo" class="form-control col-1">
-                    <option value="0" selected>Si</option>
-                    <option value="1">No</option>
+                    <option value="1" selected>Si</option>
+                    <option value="0">No</option>
                 </select>';
             }
             ?>

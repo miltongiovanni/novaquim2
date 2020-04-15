@@ -8,7 +8,7 @@ include "../includes/valAcc.php";
     <title>Seleccionar precio o precios</title>
     <meta charset="utf-8">
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-    <script type="text/javascript" src="../js/validar.js"></script>
+    <script  src="../js/validar.js"></script>
 </head>
 
 <body>

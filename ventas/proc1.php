@@ -3,7 +3,7 @@ include "includes/conect.php";
 
 $q=$_POST['q'];
 $link=conectarServidor();
-$sql="select NIT_provee, Nom_provee from proveedores where Nom_provee like '%".$q."%' order by Nom_provee";
+$sql="select nitProv, Nom_provee from proveedores where Nom_provee like '%".$q."%' order by Nom_provee";
 $res=mysqli_query($link, $sql);
 
 if(mysqli_num_rows($res)==0)
@@ -13,7 +13,7 @@ if(mysqli_num_rows($res)==0)
 else
 {
   echo'<br>';
-  echo'<select name="prov" id="combo">';
+  echo'<select name="idProv" id="idProv" class="form-control col-2">';
   //echo '<option selected value="">-----------------------------------------------------------------------------------</option>';
   while($fila=mysqli_fetch_array($res))
   {

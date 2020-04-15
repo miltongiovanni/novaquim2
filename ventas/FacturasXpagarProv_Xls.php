@@ -41,11 +41,11 @@ $objPHPExcel->getActiveSheet()->setTitle(iconv("iso-8859-1", "UTF-8",'Facturas p
 $link=conectarServidor();
 $bd="novaquim";
 $sql="	select Id_compra as Id, Compra, nit_prov as Nit, Num_fact as Factura, Fech_comp, Subtotal, 
-				Fech_venc, total_fact as Total, Nom_provee as Proveedor, retencion, imp_cree 
+				Fech_venc, total_fact as Total, nomProv as Proveedor, retencion, imp_cree 
 				FROM compras, proveedores where estado=3 and nit_prov=NIT_provee and nit_prov='$Proveedor'
 				union
 				select Id_gasto as Id, Compra, nit_prov as Nit, Num_fact as Factura, Fech_comp, Subtotal_gasto as Subtotal,
-				Fech_venc, total_fact as Total, Nom_provee as Proveedor, retencion_g as retencion, imp_cree 
+				Fech_venc, total_fact as Total, nomProv as Proveedor, retencion_g as retencion, imp_cree 
 				from gastos, proveedores where estado=3 and nit_prov=NIT_provee and nit_prov='$Proveedor' order by Fech_venc;";
 $result=mysqli_query($link,$sql) or die("Error al conectar a la base de datos.");
 //$columnas=mysql_num_fields($result);

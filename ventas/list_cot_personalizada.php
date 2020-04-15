@@ -7,8 +7,8 @@ include "includes/valAcc.php";
 <title>Lista de Cotizaciones Personalizadas</title>
 <meta charset="utf-8">
 <link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-<script type="text/javascript" src="scripts/validar.js"></script>
-    <script type="text/Javascript">	function togglecomments (postid) {
+<script  src="scripts/validar.js"></script>
+    <script >	function togglecomments (postid) {
 		var whichpost = document.getElementById(postid);
 		if (whichpost.className=="commentshown") { whichpost.className="commenthidden"; } else { whichpost.className="commentshown"; }
 	}</script>
@@ -77,8 +77,8 @@ include "includes/valAcc.php";
 	echo '<tr>
 	<td class="formatoDatos"><div align="center">'.$rowi['Cod_producto'].'</div></td>
 	<td class="formatoDatos"><div align="left">'.$rowi['Producto'].'</div></td>
-	<td class="formatoDatos"><div align="center"><script  type="text/javascript"> document.write(commaSplit('.$rowi['Can_producto'].'))</script></div></td>
-	<td class="formatoDatos"><div align="center">$ <script  type="text/javascript"> document.write(commaSplit('.$rowi['Prec_producto'].'))</script></div></td>
+	<td class="formatoDatos"><div align="center"><script  > document.write(commaSplit('.$rowi['Can_producto'].'))</script></div></td>
+	<td class="formatoDatos"><div align="center">$ <script  > document.write(commaSplit('.$rowi['Prec_producto'].'))</script></div></td>
 	</tr>';
 	}
 	  echo '</table></div></td></tr>';

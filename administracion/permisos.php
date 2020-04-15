@@ -15,7 +15,7 @@ spl_autoload_register('cargarClases');
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>Asignación de Permisos al Usuario</title>
 	<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<script type="text/javascript" src="../js/md5.js"></script>
+	<script  src="../js/md5.js"></script>
 	<script >
 		function todos(form) {
 			for (i = 0; i < form.casilla1.length; i++)

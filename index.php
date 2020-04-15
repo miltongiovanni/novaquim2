@@ -8,7 +8,7 @@
   <title>Sistema de Información de Industrias Novaquim S.A.S.</title>
 
 
-  <script type="text/javascript" src="js/validar.js"></script>
+  <script  src="js/validar.js"></script>
 
 </head>
 

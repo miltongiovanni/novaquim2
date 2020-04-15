@@ -17,7 +17,7 @@ $producto = $ProductoOperador->getProducto($codProducto);
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <meta charset="utf-8">
     <title>Actualizar datos de Producto</title>
-    <script type="text/javascript" src="../js/validar.js"></script>
+    <script  src="../js/validar.js"></script>
 </head>
 
 <body>
@@ -79,15 +79,15 @@ $producto = $ProductoOperador->getProducto($codProducto);
             <label class="col-form-label col-1" style="text-align: right;"
                    for="prodActivo"><strong>Activo</strong></label>
             <?php
-            if ($producto['prodActivo'] == 0) {
+            if ($producto['prodActivo'] == 1) {
                 echo '<select name="prodActivo" class="form-control col-2" id="prodActivo">';
-                echo '<option selected value=0>Si</option>';
-                echo '<option value=1>No </option>';
+                echo '<option selected value=1>Si</option>';
+                echo '<option value=0>No </option>';
                 echo '</select>';
             } else {
                 echo '<select name="prodActivo" class="form-control col-2"  id="prodActivo">';
-                echo '<option selected value=1>No</option>';
-                echo '<option value=0>Si</option>';
+                echo '<option selected value=0>No</option>';
+                echo '<option value=1>Si</option>';
                 echo '</select>';
             }
             ?>

@@ -7,9 +7,9 @@ include "includes/valAcc.php";
 <title>Ingreso del Detalle de los Gastos de Industrias Novaquim</title>
 <meta charset="utf-8">
 <link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<script type="text/javascript" src="scripts/validar.js"></script>
-	<script type="text/javascript" src="scripts/block.js"></script>
-    	<script type="text/javascript">
+	<script  src="scripts/validar.js"></script>
+	<script  src="scripts/block.js"></script>
+    	<script >
 	document.onkeypress = stopRKey; 
 	</script>
 
@@ -99,14 +99,14 @@ if($CrearFactura==0)
 			if($dias_v<-8)
 			{
 				echo $dias;
-				echo'<script  type="text/javascript">
-				alert("La fecha de factura de la compra no puede ser menor de 8 días de la fecha actual");
+				echo'<script  >
+				alert("La fecha de factura de la compra no puede ser menor de 8 dÃ­as de la fecha actual");
 				self.location="gasto.php";
 				</script>';	
 			}
 			if($dias_f<0)
 			{
-				echo'<script  type="text/javascript">
+				echo'<script  >
 				alert("La fecha de vencimiento de la compra no puede ser menor que la de la fecha de compra");
 				self.location="gasto.php";
 				</script>';	
@@ -155,15 +155,15 @@ if($CrearFactura==1)
 if($CrearFactura==5)
 {	
 	$link=conectarServidor();
-	$qry="select sum(Cant_gasto*Precio_gasto) as Total, sum(Cant_gasto*Precio_gasto*tasa) as IVA, tasa_retica from det_gastos, tasa_iva, gastos, proveedores, tasa_reteica
-			where det_gastos.Id_gasto=$Factura AND tasa_iva.Id_tasa=det_gastos.Id_Tasa and gastos.Id_gasto=det_gastos.Id_gasto and nit_prov=NIT_provee 
-and numtasa_rica=Id_tasa_retica;";
+	$qry="select sum(Cant_gasto*Precio_gasto) as Total, sum(Cant_gasto*Precio_gasto*tasa) as IVA, tasaRetIca from det_gastos, tasa_iva, gastos, proveedores, tasa_reteica
+			where det_gastos.Id_gasto=$Factura AND tasa_iva.Id_tasa=det_gastos.Id_Tasa and gastos.Id_gasto=det_gastos.Id_gasto and nit_prov=nitProv 
+and numtasa_rica=idTasaRetIca;";
 						
 	$result=mysqli_query($link,$qry);
 	$row=mysqli_fetch_array($result);
 	$SUBTotalFactura=$row['Total'];
 	$tasa_reteica=$row['tasa_retica'];
-	$qryc="select ret_provee from gastos, proveedores where nit_prov=NIT_provee and Id_gasto=$Factura";
+	$qryc="select ret_provee from gastos, proveedores where nit_prov=nitProv and Id_gasto=$Factura";
 	$resultc=mysqli_query($link,$qryc);
 	$rowc=mysqli_fetch_array($resultc);
 	$autore=$rowc['ret_provee'];
@@ -202,7 +202,7 @@ if($CrearFactura==6)
 	  $result2=mysqli_query($link,$qryUpEstFactura);
 	  mysqli_close($link);
 	}
-	echo'<script  type="text/javascript">
+	echo'<script  >
 	self.location="menu.php";
 	</script>';
 } 
@@ -213,7 +213,7 @@ if($CrearFactura==6)
 	$link=conectarServidor();
 	$Fact=$Factura;
 	$qry="select Id_gasto, nit_prov, Num_fact, Fech_comp, Fech_venc, estado, total_fact, compra, retencion_g, Subtotal_gasto, IVA_gasto, ret_ica, Nom_provee, Des_estado from gastos, proveedores, estados
-	where Id_gasto=$Fact and gastos.nit_prov=proveedores.NIT_provee and estado=Id_estado";
+	where Id_gasto=$Fact and gastos.nit_prov=proveedores.nitProv and estado=Id_estado";
 	$result=mysqli_query($link,$qry);
 	$row=mysqli_fetch_array($result);
 	$estado=$row['estado'];

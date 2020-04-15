@@ -7,13 +7,13 @@ include "includes/valAcc.php";
 <title>Cobro de Facturas de Venta</title>
 <meta charset="utf-8">
 <link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<script type="text/javascript" src="scripts/validar.js"></script>
-	<script type="text/javascript" src="scripts/block.js"></script>
+	<script  src="scripts/validar.js"></script>
+	<script  src="scripts/block.js"></script>
         <link rel="stylesheet" type="text/css" media="all" href="css/calendar-blue2.css" title="blue">
-    <script type="text/javascript" src="scripts/calendar.js"></script>
-    <script type="text/javascript" src="scripts/calendar-sp.js"></script>
-    <script type="text/javascript" src="scripts/calendario.js"></script>
-    	<script type="text/javascript">
+    <script  src="scripts/calendar.js"></script>
+    <script  src="scripts/calendar-sp.js"></script>
+    <script  src="scripts/calendario.js"></script>
+    	<script >
 	document.onkeypress = stopRKey; 
 	</script>
 
@@ -200,7 +200,7 @@ if($Pago==1)
       <td colspan="2" ><div align="right"><strong>Fecha Vencimiento: </strong></div></td>
       <td colspan="2"><?php echo $row['Fech_venc'];?></td>
       <td><div align="right"><strong>Valor Factura:</strong></div></td>
-      <td><div align="left"><?php echo '$ <script type="text/javascript"> document.write(commaSplit('.$row['Total'].'))</script>' ;?></div></td>
+      <td><div align="left"><?php echo '$ <script > document.write(commaSplit('.$row['Total'].'))</script>' ;?></div></td>
     </tr>
         <?php
 	if ($Reten==0)//Reten es para preguntar si va a hacer retención, es 0 para preguntar y 1 si responde
@@ -256,19 +256,19 @@ if($Pago==1)
 		
 	echo '<tr>
       <td><div align="right"><strong>Retenci&oacute;n en la fuente:</strong></div></td>
-      <td><div align="left">$ <script type="text/javascript"> document.write(commaSplit('.$retefuente.'))</script> </div></td>
+      <td><div align="left">$ <script > document.write(commaSplit('.$retefuente.'))</script> </div></td>
       <td colspan="2" ><div align="right"><strong>ReteIca:</strong></div></td>
-      <td>$ <script type="text/javascript"> document.write(commaSplit('.$reteica.'))</script> </td>
+      <td>$ <script > document.write(commaSplit('.$reteica.'))</script> </td>
       <td colspan="2"><div align="right"><strong>ReteIva:</strong></div></td>
-      <td><div align="left">$ <script type="text/javascript"> document.write(commaSplit('.$reteiva.'))</script></div></td>
+      <td><div align="left">$ <script > document.write(commaSplit('.$reteiva.'))</script></div></td>
     </tr>';	
 	echo '<tr>
       <td><div align="right"><strong>Valor a Cobrar:</strong></div></td>
-      <td><div align="left">$ <script type="text/javascript"> document.write(commaSplit('.($row['Total_R']-$retefuente-$reteiva-$reteica).'))</script> </div></td>
+      <td><div align="left">$ <script > document.write(commaSplit('.($row['Total_R']-$retefuente-$reteiva-$reteica).'))</script> </div></td>
       <td colspan="2" ><div align="right"><strong>Valor Cancelado:</strong></div></td>
-      <td colspan="2">$ <script type="text/javascript"> document.write(commaSplit('.$parcial.'))</script> </td>
+      <td colspan="2">$ <script > document.write(commaSplit('.$parcial.'))</script> </td>
       <td><div align="right"><strong>Valor Pendiente:</strong></div></td>
-      <td><div align="left">$ <script type="text/javascript"> document.write(commaSplit('.($row['Total_R']-$retefuente-$reteiva-$reteica-$parcial).'))</script></div></td>
+      <td><div align="left">$ <script > document.write(commaSplit('.($row['Total_R']-$retefuente-$reteiva-$reteica-$parcial).'))</script></div></td>
     </tr>';
 	}
 	?>

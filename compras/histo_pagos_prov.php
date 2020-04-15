@@ -8,7 +8,7 @@ foreach ($_POST as $nombre_campo => $valor)
   eval($asignacion); 
 }  
 $link=conectarServidor();  
-$qrybus="SELECT Nom_provee from proveedores where NIT_provee='$prov'";
+$qrybus="SELECT Nom_provee from proveedores where nitProv='$prov'";
 $resultbus=mysqli_query($link,$qrybus);
 $rowbus=mysqli_fetch_array($resultbus);
 ?>
@@ -45,9 +45,9 @@ $rowbus=mysqli_fetch_array($resultbus);
 include "includes/utilTabla.php";
 $link=conectarServidor();
 //sentencia SQL    tblusuarios.IdUsuario,
-$sql=" SELECT Id, Num_fact as Factura, total_fact as Total, pago as 'Valor Pagado', Fech_comp as 'Fecha Compra', Fech_venc as 'Fecha Vencimiento', Fecha as 'Fecha Canc', forma_pago as 'Forma de Pago' from (select Id_egreso as Id, nit_prov as Nit, Nom_provee as Proveedor, Num_fact, total_fact, pago, Fech_comp, Fech_venc, Fecha, forma_pago from egreso, compras, proveedores, form_pago WHERE egreso.Id_compra=compras.Id_compra and nit_prov=NIT_provee and tip_compra<6 and form_pago=Id_fpago 
+$sql=" SELECT Id, Num_fact as Factura, total_fact as Total, pago as 'Valor Pagado', Fech_comp as 'Fecha Compra', Fech_venc as 'Fecha Vencimiento', Fecha as 'Fecha Canc', forma_pago as 'Forma de Pago' from (select Id_egreso as Id, nit_prov as Nit, Nom_provee as Proveedor, Num_fact, total_fact, pago, Fech_comp, Fech_venc, Fecha, forma_pago from egreso, compras, proveedores, form_pago WHERE egreso.Id_compra=compras.Id_compra and nit_prov=nitProv and tip_compra<6 and form_pago=Id_fpago 
 union
-select Id_egreso as Id, nit_prov as Nit, Nom_provee as Proveedor, Num_fact, total_fact, pago, Fech_comp, Fech_venc, Fecha, forma_pago  from egreso, gastos, proveedores, form_pago WHERE egreso.Id_compra=gastos.Id_gasto and nit_prov=NIT_provee and tip_compra=6 and form_pago=Id_fpago order by Id DESC) as tabla where Nit='$prov' order by Id DESC;";
+select Id_egreso as Id, nit_prov as Nit, Nom_provee as Proveedor, Num_fact, total_fact, pago, Fech_comp, Fech_venc, Fecha, forma_pago  from egreso, gastos, proveedores, form_pago WHERE egreso.Id_compra=gastos.Id_gasto and nit_prov=nitProv and tip_compra=6 and form_pago=Id_fpago order by Id DESC) as tabla where Nit='$prov' order by Id DESC;";
 $rs = mysqli_query($link,$sql);
 $a=1;
 while($row=mysqli_fetch_array($rs, MYSQLI_BOTH))

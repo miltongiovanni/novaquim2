@@ -8,8 +8,8 @@ include "includes/conect.php";
 <head>
 <meta charset="utf-8">
 <title>Seleccionar Envase o Tapa a Consultar Compra</title>
-<script type="text/javascript" src="scripts/validar.js"></script>
-<script type="text/javascript" src="scripts/block.js"></script>	
+<script  src="scripts/validar.js"></script>
+<script  src="scripts/block.js"></script>
 </head>
 <body>
 <div id="contenedor">

@@ -20,7 +20,7 @@ $objPHPExcel->getProperties()->setCreator("Industrias Novaquim")
 							 ->setLastModifiedBy("Milton Espitia")
 							 ->setTitle("Productos")
 							 ->setSubject("Lista de Facturas")
-							 ->setDescription("Lista de Facturas por período")
+							 ->setDescription("Lista de Facturas por perÃ­odo")
 							 ->setKeywords("Lista Facturas")
 							 ->setCategory("Lista");
 // Add some data
@@ -43,27 +43,27 @@ $objPHPExcel->getActiveSheet()->setTitle('Lista de Facturas');
 $link=conectarServidor();
 $sql="	select compras.Id_compra as Id, compra, nit_prov, Nom_provee, Num_fact, Fech_comp, total_fact, Subtotal, IVA , Codigo, Nom_mprima as Producto, Precio, Cantidad, tasa
 from compras, proveedores, det_compras, mprimas, tasa_iva 
-where Fech_comp>='$FchIni' and Fech_comp<='$FchFin' and nit_prov=NIT_provee and compra=1 
+where Fech_comp>='$FchIni' and Fech_comp<='$FchFin' and nit_prov=nitProv and compra=1 
 AND compras.Id_compra=det_compras.Id_compra and Codigo=Cod_mprima and Cod_iva=Id_tasa 
 union
 select compras.Id_compra as Id, compra, nit_prov, Nom_provee, Num_fact, Fech_comp, total_fact, Subtotal, IVA , Codigo, Nom_envase as Producto, Precio, Cantidad, tasa
 from compras, proveedores, det_compras, envase, tasa_iva 
-where Fech_comp>='$FchIni' and Fech_comp<='$FchFin' and nit_prov=NIT_provee and compra=2
+where Fech_comp>='$FchIni' and Fech_comp<='$FchFin' and nit_prov=nitProv and compra=2
 AND compras.Id_compra=det_compras.Id_compra and Codigo=Cod_envase and Cod_iva=Id_tasa 
 union
 select compras.Id_compra as Id, compra, nit_prov, Nom_provee, Num_fact, Fech_comp, total_fact, Subtotal, IVA , Codigo, Nom_tapa as Producto, Precio, Cantidad, tasa
 from compras, proveedores, det_compras, tapas_val, tasa_iva 
-where Fech_comp>='$FchIni' and Fech_comp<='$FchFin' and nit_prov=NIT_provee and compra=2
+where Fech_comp>='$FchIni' and Fech_comp<='$FchFin' and nit_prov=nitProv and compra=2
 AND compras.Id_compra=det_compras.Id_compra and Codigo=Cod_tapa and Cod_iva=Id_tasa 
 union
 select compras.Id_compra as Id, compra, nit_prov, Nom_provee, Num_fact, Fech_comp, total_fact, Subtotal, IVA , Codigo, Producto, Precio, Cantidad, tasa
 from compras, proveedores, det_compras, distribucion, tasa_iva 
-where Fech_comp>='$FchIni' and Fech_comp<='$FchFin' and nit_prov=NIT_provee and compra=5
+where Fech_comp>='$FchIni' and Fech_comp<='$FchFin' and nit_prov=nitProv and compra=5
 AND compras.Id_compra=det_compras.Id_compra and Codigo=Id_distribucion and Cod_iva=Id_tasa
 union
 SELECT compras.Id_compra as Id, compra, nit_prov, Nom_provee, Num_fact, Fech_comp, total_fact, Subtotal, IVA, Codigo, Nom_etiq as Producto , Precio, Cantidad, tasa 
 FROM compras, proveedores, det_compras, etiquetas, tasa_iva
-WHERE Fech_comp>='$FchIni' and Fech_comp<='$FchFin'  and nit_prov=NIT_provee and compra=4 AND compras.Id_compra=det_compras.Id_compra and Codigo=Cod_etiq  and Cod_iva=Id_tasa
+WHERE Fech_comp>='$FchIni' and Fech_comp<='$FchFin'  and nit_prov=nitProv and compra=4 AND compras.Id_compra=det_compras.Id_compra and Codigo=Cod_etiq  and Cod_iva=Id_tasa
 order BY Id DESC;
 ";
 
@@ -89,7 +89,7 @@ while($row= mysqli_fetch_array($result, MYSQLI_BOTH))
 
 // Set active sheet index to the first sheet, so Excel opens this as the first sheet
 $objPHPExcel->setActiveSheetIndex(0);
-// Redirect output to a client’s web browser (Excel5)
+// Redirect output to a clientâ€™s web browser (Excel5)
 header('Content-Type: application/vnd.ms-excel');
 header('Content-Disposition: attachment;filename="Compras.xls"');
 header('Cache-Control: max-age=0');
@@ -98,7 +98,7 @@ $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
 $objWriter->save('php://output');
 exit;
 mysqli_free_result($result);
-/* cerrar la conexión */
+/* cerrar la conexiÃ³n */
 mysqli_close($link);
 ?>
 

@@ -19,7 +19,7 @@ $PresentacionOperador = new PresentacionesOperaciones();
 $codPresentacion = ($codProducto * 100) + $codMedida;
 $valida = $PresentacionOperador->validarPresentacion($codPresentacion);
 if ($valida == 0) {
-    $datos = array($codPresentacion, $presentacion, $codProducto, $codMedida, $codEnvase, $codTapa, $codEtiq, $codigoGen, $stockPresentacion, 3, $cotiza, 0, $codSiigo);
+    $datos = array($codPresentacion, $presentacion, $codProducto, $codMedida, $codEnvase, $codTapa, $codEtiq, $codigoGen, $stockPresentacion, 3, $cotiza, 1, $codSiigo);
     try {
         $lastcodPresentacion = $PresentacionOperador->makePresentacion($datos);
         $ruta = "listarmed.php";

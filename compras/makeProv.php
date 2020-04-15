@@ -1,47 +1,50 @@
 <?php
-include "includes/valAcc.php";
-?><?php
-include "includes/conect.php";
-include "includes/nit_verif.php";
+include "../includes/valAcc.php";
 
-foreach ($_POST as $nombre_campo => $valor) 
-{ 
-	$asignacion = "\$".$nombre_campo."='".$valor."';"; 
-	//echo $nombre_campo." = ".$valor."<br>";  
-	eval($asignacion); 
-}  
-if ($tipo==1)
-	$NIT_F=number_format($NIT, 0, '.', '.')."-".verifica($NIT);
-if ($tipo==2)
-	$NIT_F=number_format($NIT, 0, '.', '.');
-echo $NIT_F;
-$link=conectarServidor();
-$sql="select * from proveedores where NIT_provee='$NIT_F';";
-$result=mysqli_query($link,$sql);
-$row=mysqli_fetch_array($result, MYSQLI_BOTH);
-if ($row)
+// On enregistre notre autoload.
+function cargarClases($classname)
 {
-   echo'<script >
-   alert("Proveedor o Nit ya existente")
-   </script>';
-	echo'<form action="updateProvForm.php" method="post" name="formulario">';
-	echo '<input name="prov" type="hidden" value="'.$NIT_F.'"/><input type="submit" name="Submit" value="Cambiar" />';
-	echo'</form>'; 
-	echo' <script > 	document.formulario.submit(); 	</script>';
+    require '../clases/' . $classname . '.php';
 }
-mysqli_free_result($result);
-/* cerrar la conexión */
-mysqli_close($link);
-echo'<form action="makeProvForm2.php" method="post" name="formulario">';
-echo '<input name="nit" type="hidden" value="'.$NIT_F.'"/><input type="submit" name="Submit" value="Cambiar" />';
-echo'</form>'; 
-echo' <script > 	document.formulario.submit(); 	</script>';
 
-function mover_pag($ruta,$Mensaje){
-echo'<script >
-   alert("'.$Mensaje.'")
-   self.location="'.$ruta.'"
+spl_autoload_register('cargarClases');
+
+foreach ($_POST as $nombre_campo => $valor) {
+    $asignacion = "\$" . $nombre_campo . "='" . $valor . "';";
+    //echo $nombre_campo . " = " . $valor . "<br>";
+    eval($asignacion);
+}
+//var_dump($_POST); die;
+$estProv = 1;
+$datos = array(0, $nitProv, $nomProv, $dirProv, $contProv, $telProv, $emailProv, $idCatProv, $autoretProv, $regProv, $idTasaIcaProv, $estProv);
+$ProveedorOperador = new ProveedoresOperaciones();
+
+try {
+    $nitExist = $ProveedorOperador->checkNit($nitProv);
+    if ($nitExist['idProv'] != null) {
+        $_SESSION['idProv'] = $nitExist['idProv'];
+        header('Location: updateProvForm.php');
+    } else {
+        $lastIdProv = $ProveedorOperador->makeProveedor($datos);
+        $_SESSION['idProv'] = $lastIdProv;
+        $ruta = "detProveedor.php";
+        $mensaje = "Proveedor creado con éxito";
+    }
+} catch (Exception $e) {
+    $ruta = "makeProvForm.php";
+    $mensaje = "Error al crear el Proveedor";
+} finally {
+    unset($conexion);
+    unset($stmt);
+    mover_pag($ruta, $mensaje);
+}
+
+function mover_pag($ruta, $Mensaje)
+{
+    echo '<script >
+   alert("' . $Mensaje . '")
+   self.location="' . $ruta . '"
    </script>';
- }
+}
 
 ?>

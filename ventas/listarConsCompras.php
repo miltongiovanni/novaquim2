@@ -7,8 +7,8 @@ include "includes/valAcc.php";
 <title>Listado de Compras por Fecha</title>
 <meta charset="utf-8">
 <link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<script type="text/javascript" src="scripts/validar.js"></script>
-    <script type="text/Javascript">	function togglecomments (postid) {
+	<script  src="scripts/validar.js"></script>
+    <script >	function togglecomments (postid) {
 		var whichpost = document.getElementById(postid);
 		if (whichpost.className=="commentshown") { whichpost.className="commenthidden"; } else { whichpost.className="commentshown"; }
 	}</script>
@@ -59,7 +59,7 @@ $link=conectarServidor();
 $sql="	SELECT id_compra, nit_prov as NIT, Nom_provee AS Proveedor, Num_fact as Factura, Fech_comp,
 Fech_venc as 'Fecha Vcmto', Des_estado as Estado, total_fact as Total
 FROM compras, proveedores, estados
-WHERE compras.nit_prov=proveedores.NIT_provee and compra=1 and Fech_comp>='$FchIni' and Fech_comp<='$FchFin' and estado=Id_estado
+WHERE compras.nit_prov=proveedores.nitProv and compra=1 and Fech_comp>='$FchIni' and Fech_comp<='$FchFin' and estado=Id_estado
 order BY Fech_comp DESC, id_compra;";
 $result=mysqli_query($link,$sql);
 $a=1;
@@ -119,7 +119,7 @@ $link=conectarServidor();
 $sql="	SELECT id_compra, nit_prov as NIT, Nom_provee AS Proveedor, Num_fact as Factura, Fech_comp,
 Fech_venc as 'Fecha Vcmto', estado as Estado, total_fact as Total
 FROM compras, proveedores 
-WHERE compras.nit_prov=proveedores.NIT_provee and (compra=2 or compra=3) and Fech_comp>='$FchIni' and Fech_comp<='$FchFin'
+WHERE compras.nit_prov=proveedores.nitProv and (compra=2 or compra=3) and Fech_comp>='$FchIni' and Fech_comp<='$FchFin'
 order BY Fech_comp DESC;";
 $result=mysqli_query($link,$sql);
 while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
@@ -179,7 +179,7 @@ $link=conectarServidor();
 $sql="	SELECT id_compra, nit_prov as NIT, Nom_provee AS Proveedor, Num_fact as Factura, Fech_comp,
 Fech_venc as 'Fecha Vcmto', estado as Estado, total_fact as Total 
 FROM compras, proveedores
-WHERE compras.nit_prov=proveedores.NIT_provee and compra=5 and Fech_comp>='$FchIni' and Fech_comp<='$FchFin'
+WHERE compras.nit_prov=proveedores.nitProv and compra=5 and Fech_comp>='$FchIni' and Fech_comp<='$FchFin'
 order BY Fech_comp desc;";
 $result=mysqli_query($link,$sql);
 while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
@@ -244,7 +244,7 @@ $link=conectarServidor();
 $sql="	SELECT id_compra, nit_prov as NIT, Nom_provee AS Proveedor, Num_fact as Factura, Fech_comp as 'Fecha Compra',
 Fech_venc as 'Fecha Vcmto', estado as Estado, total_fact as Total 
 FROM compras, proveedores
-WHERE compras.nit_prov=proveedores.NIT_provee and compra=4 and Fech_comp>='$FchIni' and Fech_comp<='$FchFin'
+WHERE compras.nit_prov=proveedores.nitProv and compra=4 and Fech_comp>='$FchIni' and Fech_comp<='$FchFin'
 order BY id_compra DESC;";
 $result=mysqli_query($link,$sql);
 while($row=mysqli_fetch_array($result, MYSQLI_BOTH))

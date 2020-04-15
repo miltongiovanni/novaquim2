@@ -7,7 +7,7 @@ include "includes/valAcc.php";
 <title>Consulta de Stock de Productos de Distribuci&oacute;n</title>
 <meta charset="utf-8">
 <link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<script type="text/javascript" src="scripts/validar.js"></script>
+	<script  src="scripts/validar.js"></script>
 </head>
 <body>
 <div id="contenedor">

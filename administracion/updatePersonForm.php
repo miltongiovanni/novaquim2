@@ -13,7 +13,7 @@ function cargarClases($classname)
   <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
   <meta charset="utf-8">
   <title>Actualizar datos del Usuario</title>
-  <script type="text/javascript" src="../js/validar.js"></script>
+  <script  src="../js/validar.js"></script>
 </head>
 
 <body>
@@ -52,7 +52,7 @@ function cargarClases($classname)
             $estados = $estadoPersonasOperador->getEstadosPersonas();
             echo '<option value="'. $row['activoPersonal'].'" selected>'.$row['estadoPersona'].'</option>';
             for ($i = 0; $i < count($estados); $i++) {
-                if ($estados[$i]['idEstado']!=1)
+                if ($estados[$i]['idEstado']!=$row['activoPersonal'])
                     echo '<option value="'.$estados[$i]['idEstado'].'">'.$estados[$i]['estadoPersona'].'</option>';
             }
           ?>

@@ -20,7 +20,7 @@ $objPHPExcel->getProperties()->setCreator("Industrias Novaquim")
 							 ->setLastModifiedBy("Milton Espitia")
 							 ->setTitle("Productos")
 							 ->setSubject("Lista de Facturas")
-							 ->setDescription("Lista de Facturas por período")
+							 ->setDescription("Lista de Facturas por perÃ­odo")
 							 ->setKeywords("Lista Facturas")
 							 ->setCategory("Lista");
 // Add some data
@@ -33,13 +33,13 @@ $objPHPExcel->setActiveSheetIndex(0)
 			->setCellValue('F1', 'Total')
 			->setCellValue('G1', 'Valor Pagado')
 			->setCellValue('H1', 'Fecha Vencimiento')
-			->setCellValue('I1', iconv("iso-8859-1", "UTF-8",'Fecha Cancelación'));
+			->setCellValue('I1', iconv("iso-8859-1", "UTF-8",'Fecha CancelaciÃ³n'));
 // Rename sheet
 $objPHPExcel->getActiveSheet()->setTitle('Lista de Facturas');
 $link=conectarServidor();
 $sql="select Id_egreso as Id, nit_prov as Nit, Nom_provee as Proveedor, Num_fact as Factura, total_fact as Total, pago as 'Valor Pagado', Fech_comp as 'Fecha Compra', Fech_venc as 'Fecha Vencimiento', Fecha 
 from egreso, compras, proveedores 
-WHERE egreso.Id_compra=compras.Id_compra and nit_prov=NIT_provee AND compras.compra <6 and Fecha>='$FchIni' and Fecha<='$FchFin' order by Id DESC;";
+WHERE egreso.Id_compra=compras.Id_compra and nit_prov=nitProv AND compras.compra <6 and Fecha>='$FchIni' and Fecha<='$FchFin' order by Id DESC;";
 $result=mysqli_query($link,$sql) or die("Error al conectar a la base de datos.");
 $i=2;
 while($row= mysqli_fetch_array($result, MYSQLI_BOTH))
@@ -57,7 +57,7 @@ while($row= mysqli_fetch_array($result, MYSQLI_BOTH))
 
 // Set active sheet index to the first sheet, so Excel opens this as the first sheet
 $objPHPExcel->setActiveSheetIndex(0);
-// Redirect output to a client’s web browser (Excel5)
+// Redirect output to a clientâ€™s web browser (Excel5)
 header('Content-Type: application/vnd.ms-excel');
 header('Content-Disposition: attachment;filename="Pago_fac_compra.xls"');
 header('Cache-Control: max-age=0');
@@ -65,7 +65,7 @@ header('Cache-Control: max-age=0');
 $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
 $objWriter->save('php://output');
 mysqli_free_result($result);
-/* cerrar la conexión */
+/* cerrar la conexiÃ³n */
 mysqli_close($link);
 exit;
 ?>

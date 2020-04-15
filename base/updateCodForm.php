@@ -17,7 +17,7 @@ $precio = $PrecioOperador->getPrecio($codigoGen);
   <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
   <meta charset="utf-8">
   <title>Actualizar datos de Código Genérico</title>
-  <script type="text/javascript" src="../js/validar.js"></script>
+  <script  src="../js/validar.js"></script>
 
 </head>
 
@@ -46,15 +46,15 @@ $precio = $PrecioOperador->getPrecio($codigoGen);
       <div class="form-group row">
         <label class="col-form-label col-1" style="text-align: right;" for="presActiva"><strong>Activo</strong></label>
         <?php
-        if ($precio['presActiva'] == 0) {
+        if ($precio['presActiva'] == 1) {
             echo '<select name="presActiva" class="form-control col-2" id="presActiva">';
-            echo '<option selected value=0>Si</option>';
-            echo '<option value=1>No </option>';
+            echo '<option selected value=1>Si</option>';
+            echo '<option value=0>No </option>';
             echo '</select>';
         } else {
             echo '<select name="presActiva" class="form-control col-2"  id="presActiva">';
-            echo '<option selected value=1>No</option>';
-            echo '<option value=0>Si</option>';
+            echo '<option selected value=0>No</option>';
+            echo '<option value=1>Si</option>';
             echo '</select>';
         }
         ?>
@@ -62,15 +62,15 @@ $precio = $PrecioOperador->getPrecio($codigoGen);
       <div class="form-group row">
         <label class="col-form-label col-1" style="text-align: right;" for="presLista"><strong>En lista</strong></label>
         <?php
-        if ($precio['presLista'] == 0) {
+        if ($precio['presLista'] == 1) {
             echo '<select name="presLista" class="form-control col-2" id="presLista">';
-            echo '<option selected value=0>Si</option>';
-            echo '<option value=1>No </option>';
+            echo '<option selected value=1>Si</option>';
+            echo '<option value=0>No </option>';
             echo '</select>';
         } else {
             echo '<select name="presLista" class="form-control col-2"  id="presLista">';
-            echo '<option selected value=1>No</option>';
-            echo '<option value=0>Si</option>';
+            echo '<option selected value=0>No</option>';
+            echo '<option value=1>Si</option>';
             echo '</select>';
         }
         ?>

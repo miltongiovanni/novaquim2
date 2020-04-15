@@ -28,7 +28,7 @@ class ServiciosOperaciones
     public function getServicios($actif)
     {
         if ($actif == true) {
-            $qry = "SELECT idServicio, desServicio FROM servicios WHERE activo=0 ORDER BY desServicio;";
+            $qry = "SELECT idServicio, desServicio FROM servicios WHERE activo=1 ORDER BY desServicio;";
         } else {
             $qry = "SELECT idServicio, desServicio FROM servicios ORDER BY desServicio;";
         }
@@ -42,7 +42,7 @@ class ServiciosOperaciones
         $qry = "SELECT idServicio, desServicio, CONCAT(format((tasaIva*100),1), ' %') iva,  CONCAT ('003000', codSiigo) coSiigo
         FROM servicios
         LEFT JOIN tasa_iva ti on servicios.codIva = ti.idTasaIva
-        WHERE activo=0 
+        WHERE activo=1 
         ORDER BY desServicio";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();

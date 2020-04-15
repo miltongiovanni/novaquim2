@@ -1,54 +1,140 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
+function cargarClases($classname)
+{
+    require '../clases/' . $classname . '.php';
+}
+
+spl_autoload_register('cargarClases');
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-	<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<title>Creaci&oacute;n de Proveedores</title>
-	<meta charset="utf-8">
-	<script type="text/javascript" src="scripts/validar.js"></script>
-	<script type="text/javascript" src="scripts/block.js"></script>	
-		<script type="text/javascript">
-	document.onkeypress = stopRKey; 
-	</script>
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <title>Creación de Proveedores</title>
+    <meta charset="utf-8">
+    <script  src="../js/validar.js"></script>
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script>
+
+        //var idCatProd = $('idCatProd').value;
+
+        function nitProveedor(idCatProd) {
+            let tipo = document.getElementById("tipo_0").checked === true? 1 : 2;
+            let numero = document.getElementById("numero").value;
+            $.ajax({
+                url: '../includes/controladorCompras.php',
+                type: 'POST',
+                data: {
+                    "action": 'nitProveedor',
+                    "tipo": tipo,
+                    "numero": numero,
+                },
+                dataType: 'text',
+                success: function (nitValid) {
+                    $("#nitProv").val(nitValid);
+                },
+                fail: function () {
+                    alert("Vous avez un GROS problème");
+                }
+            });
+        }
+    </script>
 </head>
 <body>
 <div id="contenedor">
-<div id="saludo"><strong>CREACI&Oacute;N DE PROVEDORES</strong></div>
-<form name="form2" method="POST" action="makeProv.php">
-<table align="center">
-  <tr>
-      <td width="59"><div align="right"><strong>Tipo</strong></div></td>
-      <td width="221" colspan="2">
-      <input name="tipo" type="radio" id="tipo_0" value="1" checked>
-      <strong>Nit</strong>&nbsp;&nbsp;&nbsp;&nbsp;
-      <input type="radio" name="tipo" value="2" id="tipo_1">
-      <strong>C&eacute;dula</strong></td>
-  </tr>
-  <tr> 
-      <td><div align="right"><b>No.</b></div></td>
-      <td><input type="text" name="NIT" size=24 onKeyPress="return aceptaNum(event)" id="NIT" maxlength="10"></td>
-  </tr>
-  <tr> 
-      <td height="30">   </td>
-      <td>
-              <input type="submit" value="  Continuar  ">
-              <input type="reset" value="Restablecer">                    
-      </td>
-  </tr>
-  <tr>
-      <td colspan="2"><div align="center">&nbsp;</div></td>
-  </tr>
-  <tr>
-      <td colspan="2"><div align="center">&nbsp;</div></td>
-  </tr>
-  <tr> 
-      <td colspan="2">
-      <div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="VOLVER"></div>                    </td>
-  </tr>
-</table>
-</form>
+    <div id="saludo"><strong>CREACIÓN DE PROVEDORES</strong></div>
+    <form name="form2" method="POST" action="makeProv.php">
+        <div class="form-group row">
+
+            <label class="col-form-label col-2"><strong>Tipo</strong></label>
+            <div class="col-2 form-check-inline form-control" style="display: flex">
+                <label for="tipo_0" class="col-6 form-check-label" style="text-align: center">
+                    <input type="radio" id="tipo_0" name="tipo" value="1" checked onchange="nitProveedor()">&nbsp;&nbsp;Nit
+                </label>
+                <label for="tipo_1" class="col-6 form-check-label" style="text-align: center">
+                    <input type="radio" id="tipo_1" name="tipo" value="2" onchange="nitProveedor()">&nbsp;&nbsp;Cédula
+                </label>
+            </div>
+
+            <label class="col-form-label col-2" style="text-align: right;"
+                   for="codProducto"><strong>Número</strong></label>
+            <input type="text" class="form-control col-2" name="numero" id="numero" onKeyPress="return aceptaNum(event)" onkeyup="nitProveedor()">
+        </div>
+        <div class="form-group row">
+            <label class="col-form-label col-2" style="text-align: right;" for="nitProv"><strong>NIT</strong></label>
+            <input type="text" class="form-control col-2" name="nitProv" id="nitProv" onKeyPress="return aceptaNum(event)" readOnly>
+            <label class="col-form-label col-2" style="text-align: right;" for="nomProv"><strong>Proveedor</strong></label>
+            <input type="text" class="form-control col-2" name="nomProv" id="nomProv">
+        </div>
+        <div class="form-group row">
+            <label class="col-form-label col-2" style="text-align: right;" for="dirProv"><strong>Dirección</strong></label>
+            <input type="text" class="form-control col-2" name="dirProv" id="dirProv">
+            <label class="col-form-label col-2" style="text-align: right;" for="telProv"><strong>Teléfono</strong></label>
+            <input type="text" class="form-control col-2" name="telProv" id="telProv" onKeyPress="return aceptaNum(event)">
+        </div>
+        <div class="form-group row">
+            <label class="col-form-label col-2" style="text-align: right;" for="contProv"><strong>Nombre Contacto</strong></label>
+            <input type="text" class="form-control col-2" name="contProv" id="contProv">
+            <label class="col-form-label col-2" style="text-align: right;" for="emailProv"><strong>Correo electrónico</strong></label>
+            <input type="email" class="form-control col-2" name="emailProv" id="emailProv">
+        </div>
+        <div class="form-group row">
+
+            <label class="col-form-label col-2" for="idCatProv"><strong>Tipo de Proveedor</strong></label>
+            <?php
+            $manager = new CategoriasProvOperaciones();
+            $categorias = $manager->getCatsProv();
+            $filas=count($categorias);
+            echo '<select name="idCatProv" id="idCatProv" class="form-control col-2" >';
+            echo '<option disabled selected value="">-----------------------------</option>';
+            for($i=0; $i<$filas; $i++)
+            {
+                echo '<option value="'.$categorias[$i]["idCatProv"].'">'.$categorias[$i]['desCatProv'].'</option>';
+            }
+            echo '</select>';
+            ?>
+            <label class="col-form-label col-2" for="autoretProv"><strong>Autorretenedor</strong></label>
+            <select name="autoretProv" id="autoretProv" class="form-control col-2" >
+                <option value="0" selected>NO</option>
+                <option value="1">SI</option>
+            </select>
+        </div>
+        <div class="form-group row">
+
+            <label class="col-form-label col-2" for="regProv"><strong>Régimen Proveedor</strong></label>
+            <select name="regProv" id="regProv" class="form-control col-2">
+                <option value="0">Simplificado</option>
+                <option value="1" selected>Común</option>
+            </select>
+            <label class="col-form-label col-2" for="idTasaIcaProv"><strong>Tasa Reteica</strong></label>
+            <?php
+            $manager = new TasaReteIcaOperaciones();
+            $categorias=$manager->getTasasReteIca();
+            $filas=count($categorias);
+            echo '<select name="idTasaIcaProv" id="idTasaIcaProv" class="form-control col-2" >';
+            echo '<option disabled selected value="">-----------------------------</option>';
+            for($i=0; $i<$filas; $i++)
+            {
+                echo '<option value="'.$categorias[$i]["idTasaRetIca"].'">'.$categorias[$i]['reteica'].'</option>';
+            }
+            echo '</select>';
+            ?>
+        </div>
+        <div class="form-group row">
+            <div class="col-1" style="text-align: center;">
+                <button class="button"  onclick="return Enviar(this.form)"><span>Continuar</span></button>
+            </div>
+            <div class="col-1" style="text-align: center;">
+                <button class="button"  type="reset"><span>Reiniciar</span></button>
+            </div>
+        </div>
+    </form>
+    <div class="row">
+        <div class="col-1">
+            <button class="button1" id="back" onClick="history.back()"><span>VOLVER</span></button>
+        </div>
+    </div>d
 </div>
 </body>
 </html>

@@ -8,7 +8,7 @@ include "../includes/valAcc.php";
 <head>
 	<meta charset="utf-8">
 	<title>Seleccionar Producto a Actualizar</title>
-	<script type="text/javascript" src="../js/validar.js"></script>
+	<script  src="../js/validar.js"></script>
 </head>
 
 <body>
@@ -16,7 +16,7 @@ include "../includes/valAcc.php";
 		<div id="saludo"><strong>SELECCIONAR PRODUCTO A MODIFICAR</strong></div>
         <?php
         include "../includes/base.php";
-        $rep = buscarProductoForm("updateProdForm.php", true);
+        $rep = buscarProductoForm("updateProdForm.php", false);
         echo $rep;
         ?>
 

@@ -7,14 +7,14 @@ include "includes/valAcc.php";
     <title>Ingreso de la Compra de Materia Prima</title>
     <meta charset="utf-8">
     <link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-    <script type="text/javascript" src="scripts/validar.js">
+    <script  src="scripts/validar.js">
     </script>
-	<script type="text/javascript" src="scripts/block.js"></script>	
+	<script  src="scripts/block.js"></script>
     <link rel="stylesheet" type="text/css" media="all" href="css/calendar-blue2.css" title="blue">
-    <script type="text/javascript" src="scripts/calendar.js"></script>
-    <script type="text/javascript" src="scripts/calendar-sp.js"></script>
-    <script type="text/javascript" src="scripts/calendario.js"></script>
-	<script type="text/javascript">
+    <script  src="scripts/calendar.js"></script>
+    <script  src="scripts/calendar-sp.js"></script>
+    <script  src="scripts/calendario.js"></script>
+	<script >
 	document.onkeypress = stopRKey; 
 	</script>
 </head>
@@ -40,8 +40,8 @@ foreach ($_POST as $nombre_campo => $valor)
 			include "includes/conect.php";
 			$link=conectarServidor();
 			echo'<select name="nit_prov">';
-			$result=mysqli_query($link,"select NIT_provee, Nom_provee from proveedores where Id_cat_prov=1 order by Nom_provee");
-			$result1=mysqli_query($link,"select NIT_provee, Nom_provee, Num_fact, Fech_comp, Fech_venc from proveedores, compras where Id_cat_prov=1 and Id_compra=$Factura and NIT_provee=nit_prov;");
+			$result=mysqli_query($link,"select nitProv, Nom_provee from proveedores where Id_cat_prov=1 order by Nom_provee");
+			$result1=mysqli_query($link,"select nitProv, Nom_provee, Num_fact, Fech_comp, Fech_venc from proveedores, compras where Id_cat_prov=1 and Id_compra=$Factura and nitProv=nit_prov;");
 			$row1=mysqli_fetch_array($result1);
 			echo '<option value='.$row1['NIT_provee'].'>'.$row1['Nom_provee'].'</option>';
             while($row=mysqli_fetch_array($result))

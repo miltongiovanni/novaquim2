@@ -8,8 +8,8 @@ include "includes/valAcc.php";
 <meta charset="utf-8">
 <link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
 <title>Seleccionar Materia Prima a revisar Trazabilidad</title>
-<script type="text/javascript" src="scripts/validar.js"></script>
-<script type="text/javascript" src="scripts/block.js"></script>	
+<script  src="scripts/validar.js"></script>
+<script  src="scripts/block.js"></script>
 </head>
 <body>
 <?php

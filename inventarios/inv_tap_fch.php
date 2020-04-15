@@ -7,7 +7,7 @@ include "includes/valAcc.php";
 <title>Inventario de Tapas y V&aacute;lvulas en Fecha</title>
 <meta charset="utf-8">
 <link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<script type="text/javascript" src="scripts/validar.js"></script>
+	<script  src="scripts/validar.js"></script>
 </head>
 <body>
 <div id="contenedor">
@@ -50,7 +50,7 @@ while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
 	echo '>
   <td class="formatoDatos"><div align="center">'.$row['Codigo'].'</div></td>
   <td class="formatoDatos"><div align="left">'.$row['Producto'].'</div></td>
-  <td class="formatoDatos"><div align="center"><script  type="text/javascript"> document.write(commaSplit('.$row['Cantidad'].'))</script></div></td>';
+  <td class="formatoDatos"><div align="center"><script  > document.write(commaSplit('.$row['Cantidad'].'))</script></div></td>';
   //ENTRADA POR COMPRAS
   $sqle1="select sum(Cantidad) as entrada1 from compras, det_compras where compra=2 and compras.Id_compra=det_compras.Id_compra and Fech_comp>='$Fch' and Codigo=$prod;";
 
@@ -70,7 +70,7 @@ while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
   else
 	  $entrada2=$rowe2['entrada2'];
   $entrada=$entrada1 + $entrada2;	
-  echo '<td class="formatoDatos"><div align="center"><script  type="text/javascript"> document.write(commaSplit('.$entrada.'))</script></div></td>';
+  echo '<td class="formatoDatos"><div align="center"><script  > document.write(commaSplit('.$entrada.'))</script></div></td>';
   
 //SALIDA POR ENVASADO
  	$sqls1="SELECT sum(Can_prese) as salida1  from envasado, ord_prod, prodpre where Fch_prod>'$Fch' and envasado.Lote=ord_prod.Lote and Cod_prese=Con_prese and Cod_envase=$prod;";
@@ -119,9 +119,9 @@ while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
   else
 	  $entrada2=$rowe2['entrada2'];
 	$salida=$salida1 + $salida2 + $salida3+$salida4;
-	echo '<td class="formatoDatos"><div align="center"><script   type="text/javascript"> document.write(commaSplit('.$salida.'))</script></div></td>';
+	echo '<td class="formatoDatos"><div align="center"><script   > document.write(commaSplit('.$salida.'))</script></div></td>';
   $inv=$row['Cantidad']+$salida-$entrada;
-  echo '<td class="formatoDatos"><div align="center"><script   type="text/javascript"> document.write(commaSplit('.$inv.'))</script></div></td>';
+  echo '<td class="formatoDatos"><div align="center"><script   > document.write(commaSplit('.$inv.'))</script></div></td>';
   echo '</tr>';
   $a=$a+1;
 }

@@ -44,9 +44,9 @@ include "includes/utilTabla.php";
 	//parametros iniciales que son los que cambiamos
     $link=conectarServidor();
     //sentencia SQL    tblusuarios.IdUsuario,
-	$sql="	select Fech_comp as 'Fecha Compra', Nom_provee as Proveedor, Dir_provee as Dirección, Tel_provee as Teléfono, round(Precio*(1+tasa)) as 'Precio Compra con IVA', round(Precio) as 'Precio Compra sin IVA', round (Cantidad,0) as Cantidad
+	$sql="	select Fech_comp as 'Fecha Compra', Nom_provee as Proveedor, Dir_provee as DirecciÃ³n, Tel_provee as TelÃ©fono, round(Precio*(1+tasa)) as 'Precio Compra con IVA', round(Precio) as 'Precio Compra sin IVA', round (Cantidad,0) as Cantidad
 	from det_compras, compras, distribucion, proveedores, tasa_iva
-	where Codigo=$IdDis and det_compras.Id_compra=compras.Id_compra and Codigo=Id_distribucion AND nit_prov=NIT_provee AND Cod_iva=Id_tasa ORDER BY Fech_comp DESC ";
+	where Codigo=$IdDis and det_compras.Id_compra=compras.Id_compra and Codigo=Id_distribucion AND nit_prov=nitProv AND Cod_iva=Id_tasa ORDER BY Fech_comp DESC ";
 	//llamar funcion de tabla
 	verTabla($sql, $link);
 ?>

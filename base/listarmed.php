@@ -8,7 +8,7 @@ include "../includes/valAcc.php";
     <title>Listado de Presentaciones de Producto</title>
     <meta charset="utf-8">
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-    <script type="text/javascript" src="../js/validar.js"></script>
+    <script  src="../js/validar.js"></script>
     <link rel="stylesheet" href="../css/datatables.css">
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/datatables.js"></script>

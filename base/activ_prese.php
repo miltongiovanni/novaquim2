@@ -16,7 +16,7 @@ foreach ($_POST as $nombre_campo => $valor)
 	eval($asignacion); 
 }  
 
-$datos = array( 0, $codPresentacion);
+$datos = array( 1, $codPresentacion);
 $PresentacionOperador = new PresentacionesOperaciones();
 
 try {

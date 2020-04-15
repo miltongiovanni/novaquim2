@@ -7,8 +7,8 @@ include "includes/valAcc.php";
 <head>
 <meta charset="utf-8">
 <title>Seleccionar Materia Prima a Realizar Control de Calidad</title>
-<script type="text/javascript" src="scripts/validar.js"></script>
-<script type="text/javascript" src="scripts/block.js"></script>	
+<script  src="scripts/validar.js"></script>
+<script  src="scripts/block.js"></script>	
 </head>
 <body>
 <div id="contenedor">

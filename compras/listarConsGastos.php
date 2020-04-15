@@ -7,8 +7,8 @@ include "includes/valAcc.php";
 <title>Listado de Compras por Fecha</title>
 <meta charset="utf-8">
 <link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<script type="text/javascript" src="scripts/validar.js"></script>
-    <script type="text/Javascript">	function togglecomments (postid) {
+	<script  src="scripts/validar.js"></script>
+    <script >	function togglecomments (postid) {
 		var whichpost = document.getElementById(postid);
 		if (whichpost.className=="commentshown") { whichpost.className="commenthidden"; } else { whichpost.className="commentshown"; }
 	}</script>
@@ -51,7 +51,7 @@ include "includes/utilTabla.php";
 include "includes/conect.php" ;
 $link=conectarServidor();
 $sql="SELECT Id_gasto, nit_prov, Num_fact, Fech_comp, Fech_venc, Des_estado as Estado, total_fact, Nom_provee 
-from gastos, proveedores, estados WHERE nit_prov=NIT_provee and Fech_comp>='$FchIni' and Fech_comp<='$FchFin' and estado=Id_estado
+from gastos, proveedores, estados WHERE nit_prov=nitProv and Fech_comp>='$FchIni' and Fech_comp<='$FchFin' and estado=Id_estado
 order BY Fech_comp desc, Num_fact;";
 $result=mysqli_query($link,$sql);
 $a=1;
@@ -78,7 +78,7 @@ where det_gastos.Id_tasa=tasa_iva.Id_Tasa and Id_gasto=$id_com;";
 	$resulti=mysqli_query($link,$sqli);
 	echo '<tr><td colspan="7"><div class="commenthidden" id="UniqueName'.$a.'"><table width="65%" border="0" align="center" cellspacing="0" bordercolor="#CCCCCC">
 	<tr>
-	  <th width="49%" class="formatoEncabezados">Descripción</th>
+	  <th width="49%" class="formatoEncabezados">DescripciÃ³n</th>
       <th width="10%" class="formatoEncabezados">Cantidad</th>
 	  <th width="20%" class="formatoEncabezados">Precio</th> 
 	  <th width="10%" class="formatoEncabezados">Iva</th>

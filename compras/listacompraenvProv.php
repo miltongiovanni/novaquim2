@@ -7,8 +7,8 @@ include "includes/valAcc.php";
 <title>Lista de Compras de Envase por Proveedor</title>
 <meta charset="utf-8">
 <link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<script type="text/javascript" src="scripts/validar.js"></script>
-    <script type="text/Javascript">	function togglecomments (postid) {
+	<script  src="scripts/validar.js"></script>
+    <script >	function togglecomments (postid) {
 		var whichpost = document.getElementById(postid);
 		if (whichpost.className=="commentshown") { whichpost.className="commenthidden"; } else { whichpost.className="commentshown"; }
 	}</script>
@@ -48,7 +48,7 @@ $link=conectarServidor();
 $sql="SELECT id_compra, nit_prov as NIT, Nom_provee AS Proveedor, Num_fact as Factura, Fech_comp,
 Fech_venc as 'Fecha Vcmto', Des_estado as Estado, total_fact as Total
 FROM compras, proveedores, estados 
-WHERE compras.nit_prov=proveedores.NIT_provee and (compra=2 or compra=3) and nit_prov='$prov' and estado=Id_estado
+WHERE compras.nit_prov=proveedores.nitProv and (compra=2 or compra=3) and nit_prov='$prov' and estado=Id_estado
 order BY Fech_comp DESC;";
 $result=mysqli_query($link,$sql);
 $a=1;

@@ -13,7 +13,7 @@ spl_autoload_register('cargarClases');
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <title>Creación de Presentación de Productos</title>
     <meta charset="utf-8">
-    <script type="text/javascript" src="../js/validar.js"></script>
+    <script  src="../js/validar.js"></script>
 </head>
 
 <body>

@@ -16,7 +16,7 @@ $servicio = $servicioperador->getServicio($idServicio);
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <meta charset="utf-8">
     <title>Actualizar Servicio</title>
-    <script type="text/javascript" src="../js/validar.js"></script>
+    <script  src="../js/validar.js"></script>
 </head>
 <body>
 <div id="contenedor">
@@ -54,15 +54,15 @@ $servicio = $servicioperador->getServicio($idServicio);
         <div class="form-group row">
             <label class="col-form-label col-2" for="cotiza"><strong>Activo</strong></label>
             <?php
-            if ($servicio['activo'] == 1) {
+            if ($servicio['activo'] == 0) {
                 echo '<select name="activo" id="activo" class="form-control col-2">
-                    <option value="1" selected>No</option>
-                    <option value="0">Si</option>
+                    <option value="0" selected>No</option>
+                    <option value="1">Si</option>
                 </select>';
             } else {
                 echo '<select name="activo" id="activo" class="form-control col-2">
-                    <option value="0" selected>Si</option>
-                    <option value="1">No</option>
+                    <option value="1" selected>Si</option>
+                    <option value="0">No</option>
                 </select>';
             }
             ?>

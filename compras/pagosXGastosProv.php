@@ -19,7 +19,7 @@ foreach ($_POST as $nombre_campo => $valor)
 		eval($asignacion); 
 	}  
 	$link=conectarServidor();  
-	$qrybus="select Nom_provee from proveedores WHERE NIT_provee='$prov'";
+	$qrybus="select Nom_provee from proveedores WHERE nitProv='$prov'";
 	$resultbus=mysqli_query($link,$qrybus);
 	$rowbus=mysqli_fetch_array($resultbus);
 ?>
@@ -46,7 +46,7 @@ foreach ($_POST as $nombre_campo => $valor)
 include "includes/utilTabla.php";
 $link=conectarServidor();
 //sentencia SQL    tblusuarios.IdUsuario,
-$sql=" SELECT Num_fact as Factura, total_fact as Total, pago as 'Valor Pagado', Fech_comp as 'Fecha Compra', Fech_venc as 'Fecha Vencimiento', Fecha as 'Fecha Canc', forma_pago as 'Forma de Pago' from (select Id_egreso as Id, nit_prov as Nit, Nom_provee as Proveedor, Num_fact, total_fact, pago, Fech_comp, Fech_venc, Fecha, forma_pago  from egreso, gastos, proveedores, form_pago WHERE egreso.Id_compra=gastos.Id_gasto and nit_prov=NIT_provee and tip_compra=6 and form_pago=Id_fpago order by Id DESC) as tabla where Nit='$prov';";
+$sql=" SELECT Num_fact as Factura, total_fact as Total, pago as 'Valor Pagado', Fech_comp as 'Fecha Compra', Fech_venc as 'Fecha Vencimiento', Fecha as 'Fecha Canc', forma_pago as 'Forma de Pago' from (select Id_egreso as Id, nit_prov as Nit, Nom_provee as Proveedor, Num_fact, total_fact, pago, Fech_comp, Fech_venc, Fecha, forma_pago  from egreso, gastos, proveedores, form_pago WHERE egreso.Id_compra=gastos.Id_gasto and nit_prov=nitProv and tip_compra=6 and form_pago=Id_fpago order by Id DESC) as tabla where Nit='$prov';";
 $rs = mysqli_query($link,$sql);
 $a=1;
 while($row=mysqli_fetch_array($rs, MYSQLI_BOTH))

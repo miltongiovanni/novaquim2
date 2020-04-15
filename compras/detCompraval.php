@@ -7,9 +7,9 @@ include "includes/valAcc.php";
 <title>Ingreso de Compra de Tapas y V&aacute;lvulas</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-<script type="text/javascript" src="scripts/validar.js"></script>
-<script type="text/javascript" src="scripts/block.js"></script>
-	<script type="text/javascript">
+<script  src="scripts/validar.js"></script>
+<script  src="scripts/block.js"></script>
+	<script >
 	document.onkeypress = stopRKey; 
 	</script>
 </head>
@@ -154,7 +154,7 @@ if($CrearFactura==1)
 		$qry="select compras.*, Nom_provee
 		from compras, proveedores
 		where Id_compra=$Fact
-		and compras.nit_prov=proveedores.NIT_provee";
+		and compras.nit_prov=proveedores.nitProv";
 		$result=mysql_db_query($bd,$qry);
 		$row=mysql_fetch_array($result);
 		$nit=$row['nit_prov'];

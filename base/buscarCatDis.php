@@ -8,7 +8,7 @@ include "../includes/valAcc.php";
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>Seleccionar categoría de productos de Distribución</title>
-	<script type="text/javascript" src="../js/validar.js"></script>
+	<script  src="../js/validar.js"></script>
 
 </head>
 

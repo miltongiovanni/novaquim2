@@ -8,6 +8,7 @@ class PresentacionesOperaciones
     {
         $this->setDb();
     }
+
     public function makePresentacion($datos)
     {
         /*Preparo la insercion */
@@ -16,18 +17,20 @@ class PresentacionesOperaciones
         $stmt->execute($datos);
         return $this->_pdo->lastInsertId();
     }
+
     public function validarPresentacion($codPresentacion)
-	{
-		$valida = 0;
-        $qry="select * from prodpre where codPresentacion=?";
+    {
+        $valida = 0;
+        $qry = "select * from prodpre where codPresentacion=?";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute(array($codPresentacion));
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-		if ($result['codPresentacion']>0){
-            $valida=1;
+        if ($result['codPresentacion'] > 0) {
+            $valida = 1;
         }
-		return $valida;
+        return $valida;
     }
+
     public function deletePresentacion($codPresentacion)
     {
         $qry = "DELETE FROM prodpre WHERE codPresentacion= ?";
@@ -38,9 +41,9 @@ class PresentacionesOperaciones
     public function getPresentaciones($actif)
     {
         if ($actif == true) {
-            $qry = "SELECT codPresentacion, presentacion FROM prodpre WHERE presentacionActiva=0 ORDER BY presentacion;";
+            $qry = "SELECT codPresentacion, presentacion FROM prodpre WHERE presentacionActiva=1 ORDER BY presentacion;";
         } else {
-            $qry = "SELECT codPresentacion, presentacion FROM prodpre  WHERE presentacionActiva=1 ORDER BY presentacion;";
+            $qry = "SELECT codPresentacion, presentacion FROM prodpre  WHERE presentacionActiva=0 ORDER BY presentacion;";
         }
 
         $stmt = $this->_pdo->prepare($qry);
@@ -48,6 +51,7 @@ class PresentacionesOperaciones
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
+
     public function getTablePresentaciones()
     {
         $qry = "SELECT codPresentacion, presentacion, desMedida, nomEnvase, tapa , codigoGen, CONCAT ('003000', codSiigo) coSiigo  FROM prodpre
@@ -55,7 +59,7 @@ class PresentacionesOperaciones
                 LEFT JOIN envases e on prodpre.codEnvase = e.codEnvase
                 LEFT JOIN medida m on prodpre.codMedida = m.idMedida
                 LEFT JOIN tapas_val tv on prodpre.codTapa = tv.codTapa
-                WHERE prodActivo=0 and presentacionActiva=0
+                WHERE prodActivo=1 and presentacionActiva=1
                 ORDER BY nomProducto, desMedida;";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();
@@ -83,14 +87,14 @@ class PresentacionesOperaciones
 
 
     public function updatePresentacion($datos)
-    {                                      
+    {
         $qry = "UPDATE prodpre SET presentacion=?, codEnvase=?, codTapa=?, codEtiq=?,  codigoGen=?, stockPresentacion=?, cotiza=? WHERE codPresentacion=?";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute($datos);
     }
 
     public function activarDesactivarPresentacion($datos)
-    {                                      
+    {
         $qry = "UPDATE prodpre SET presentacionActiva=? WHERE codPresentacion=?";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute($datos);

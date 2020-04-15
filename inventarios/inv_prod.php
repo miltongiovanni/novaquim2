@@ -7,7 +7,7 @@ include "includes/valAcc.php";
 <title>Inventario de Producto Terminado</title>
 <meta charset="utf-8">
 <link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<script type="text/javascript" src="scripts/validar.js"></script>
+	<script  src="scripts/validar.js"></script>
 </head>
 <body>
 <div id="contenedor">
@@ -47,7 +47,7 @@ while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
 	  <td class="formatoDatos"><div align="center"><a href="javascript:togglecomments('."'".'UniqueName'.$a."'".')">+/-</a></div></td>
 	  <td class="formatoDatos"><div align="center">'.$row['Codigo'].'</div></td>
 	  <td class="formatoDatos"><div align="left">'.$row['Nombre'].'</div></td>
-	  <td class="formatoDatos"><div align="center"><script   type="text/javascript"> document.write(commaSplit('.$row['inventario'].'))</script></div></td>
+	  <td class="formatoDatos"><div align="center"><script   > document.write(commaSplit('.$row['inventario'].'))</script></div></td>
 	  ';
 	  echo'</tr>';
 	  $sqli="select inv_prod.Cod_prese as Codigo, Nombre, lote_prod, inv_prod as Inventario 
@@ -62,7 +62,7 @@ while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
 	  {
 		echo '<tr>
 		<td class="formatoDatos"><div align="center">'.$rowi['lote_prod'].'</div></td>
-		<td class="formatoDatos"><div align="center"><script   type="text/javascript"> document.write(commaSplit('.$rowi['Inventario'].'))</script></div></td>
+		<td class="formatoDatos"><div align="center"><script   > document.write(commaSplit('.$rowi['Inventario'].'))</script></div></td>
 		</tr>';
 	  }
 	  echo '</table></div></td></tr>';

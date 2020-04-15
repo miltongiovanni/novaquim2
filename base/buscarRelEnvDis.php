@@ -7,7 +7,7 @@ include "../includes/valAcc.php";
 <head>
     <meta charset="utf-8">
     <title>Seleccionar Relación Envase Producto de Distribución a Actualizar</title>
-    <script type="text/javascript" src="../js/validar.js"></script>
+    <script  src="../js/validar.js"></script>
 </head>
 <body>
 <div id="contenedor">

@@ -21,7 +21,7 @@ $ProductoOperador = new ProductosOperaciones();
 try {
     $ProductoOperador->updateProducto($datos);
     $ruta = "listarProd.php";
-    $mensaje = "Producto actualzado correctamente";
+    $mensaje = "Producto actualizado correctamente";
 
 } catch (Exception $e) {
     $ruta = "crearProd.php";

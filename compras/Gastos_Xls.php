@@ -20,7 +20,7 @@ $objPHPExcel->getProperties()->setCreator("Industrias Novaquim")
 							 ->setLastModifiedBy("Milton Espitia")
 							 ->setTitle("Productos")
 							 ->setSubject("Lista de Facturas")
-							 ->setDescription("Lista de Facturas por período")
+							 ->setDescription("Lista de Facturas por perÃ­odo")
 							 ->setKeywords("Lista Facturas")
 							 ->setCategory("Lista");
 // Add some data
@@ -40,7 +40,7 @@ $objPHPExcel->getActiveSheet()->setTitle('Lista de Facturas');
 $link=conectarServidor();
 $sql="	select gastos.Id_gasto as Id, nit_prov, Nom_provee, Num_fact, Fech_comp, total_fact, Producto, Cant_gasto, Precio_gasto, tasa 
 from gastos, proveedores, det_gastos, tasa_iva 
-where Fech_comp>='$FchIni' and Fech_comp<='$FchFin' and nit_prov=NIT_provee and gastos.Id_gasto=det_gastos.Id_gasto AND det_gastos.Id_tasa=tasa_iva.Id_tasa;";
+where Fech_comp>='$FchIni' and Fech_comp<='$FchFin' and nit_prov=nitProv and gastos.Id_gasto=det_gastos.Id_gasto AND det_gastos.Id_tasa=tasa_iva.Id_tasa;";
 $result=mysqli_query($link,$sql) or die("Error al conectar a la base de datos.");
 //$columnas=mysql_num_fields($result);
 //$filas = mysql_num_rows($result);
@@ -61,7 +61,7 @@ while($row= mysqli_fetch_array($result, MYSQLI_BOTH))
 
 // Set active sheet index to the first sheet, so Excel opens this as the first sheet
 $objPHPExcel->setActiveSheetIndex(0);
-// Redirect output to a client’s web browser (Excel5)
+// Redirect output to a clientâ€™s web browser (Excel5)
 header('Content-Type: application/vnd.ms-excel');
 header('Content-Disposition: attachment;filename="Gastos.xls"');
 header('Cache-Control: max-age=0');
@@ -70,7 +70,7 @@ $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
 $objWriter->save('php://output');
 exit;
 mysqli_free_result($result);
-/* cerrar la conexión */
+/* cerrar la conexiÃ³n */
 mysqli_close($link);
 ?>
 

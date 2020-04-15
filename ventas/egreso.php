@@ -7,13 +7,13 @@ include "includes/valAcc.php";
 <title>Pago de Facturas de Compra y de Gastos</title>
 <meta charset="utf-8">
 <link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<script type="text/javascript" src="scripts/validar.js"></script>
-	<script type="text/javascript" src="scripts/block.js"></script>
+	<script  src="scripts/validar.js"></script>
+	<script  src="scripts/block.js"></script>
         <link rel="stylesheet" type="text/css" media="all" href="css/calendar-blue2.css" title="blue">
-    <script type="text/javascript" src="scripts/calendar.js"></script>
-    <script type="text/javascript" src="scripts/calendar-sp.js"></script>
-    <script type="text/javascript" src="scripts/calendario.js"></script>
-	<script type="text/javascript">
+    <script  src="scripts/calendar.js"></script>
+    <script  src="scripts/calendar-sp.js"></script>
+    <script  src="scripts/calendario.js"></script>
+	<script >
 	document.onkeypress = stopRKey; 
 	</script>
 </head>
@@ -146,10 +146,10 @@ if($Pago==1)
     <?php
 	  	$link=conectarServidor();
 	 	$qry="select Id_compra, nit_prov, Num_fact, Fech_comp, Fech_venc, estado, total_fact, compra, Nom_provee, retencion, ret_provee, ret_ica, Subtotal from compras, proveedores
-		where Id_compra=$id_compra and compras.nit_prov=proveedores.NIT_provee AND compra<>6 AND compra=$compra
+		where Id_compra=$id_compra and compras.nit_prov=proveedores.nitProv AND compra<>6 AND compra=$compra
 		union
 		select Id_gasto as Id_compra, nit_prov, Num_fact, Fech_comp, Fech_venc, estado, total_fact, compra, Nom_provee, retencion_g as retencion, ret_provee, ret_ica, Subtotal_gasto as Subtotal from gastos, proveedores
-		where Id_gasto=$id_compra and gastos.nit_prov=proveedores.NIT_provee and compra=6 and compra=$compra;";
+		where Id_gasto=$id_compra and gastos.nit_prov=proveedores.nitProv and compra=6 and compra=$compra;";
 		$result=mysqli_query($link, $qry);
 		$row=mysqli_fetch_array($result);
 		$nit=$row['nit_prov'];
@@ -175,34 +175,34 @@ if($Pago==1)
       <td><div align="right"><strong>Proveedor:</strong></div></td>
       <td><?php echo  $row['Nom_provee']?></td>
       <td><div align="right"><strong>Valor Factura:</strong></div></td>
-      <td><div align="left"><?php echo '$ <script  type="text/javascript"> document.write(commaSplit('.$row['total_fact'].'))</script>' ;?> </div></td>
+      <td><div align="left"><?php echo '$ <script  > document.write(commaSplit('.$row['total_fact'].'))</script>' ;?> </div></td>
     </tr>
     <tr>
       <td><div align="right"><strong>NIT:</strong></div></td>
       <td><?php echo  $row['nit_prov']?></td>
       <td ><div align="right"><strong>Retefuente:</strong></div></td>
-      <td><?php echo '$ <script  type="text/javascript"> document.write(commaSplit('.$retencion.'))</script>' ;?></td>
+      <td><?php echo '$ <script  > document.write(commaSplit('.$retencion.'))</script>' ;?></td>
       
     </tr>
     <tr>
     <td ><div align="right"><strong>Fecha de Factura:</strong></div></td>
       <td><?php echo $row['Fech_comp'];?></td>
       <td ><div align="right"><strong>Retenci&oacute;n Ica:</strong></div></td>
-      <td><?php echo '$ <script  type="text/javascript"> document.write(commaSplit('.$ret_ica.'))</script>' ;?></td>
+      <td><?php echo '$ <script  > document.write(commaSplit('.$ret_ica.'))</script>' ;?></td>
       
     </tr>
     <tr>
       <td ><div align="right"><strong>Fecha Vencimiento: </strong></div></td>
       <td><?php echo $row['Fech_venc'];?></td>
       <td ><div align="right"><strong>Valor Cancelado:</strong></div></td>
-      <td><?php echo '$ <script  type="text/javascript"> document.write(commaSplit('.$parcial.'))</script>' ;?></td>
+      <td><?php echo '$ <script  > document.write(commaSplit('.$parcial.'))</script>' ;?></td>
       
     </tr>
     <tr>
     <td><div align="right"><strong>No. de Factura:</strong></div></td>
       <td><?php echo  $row['Num_fact']?></td>
       <td><div align="right"><strong>Valor Pendiente:</strong></div></td>
-      <td><div align="left"><?php echo '$ <script  type="text/javascript"> document.write(commaSplit('.$saldo.'))</script>' ;?> </div></td>
+      <td><div align="left"><?php echo '$ <script  > document.write(commaSplit('.$saldo.'))</script>' ;?> </div></td>
     </tr>
     <tr>
       <td colspan="4"><hr></td>
@@ -268,7 +268,7 @@ while($row=mysqli_fetch_array($result))
 	echo'<tr>
 	<td><div align="center">'.$i.'</div></td>
 	<td><div align="center">'.$fecha.'</div></td>
-	<td><div align="center">$ <script  type="text/javascript"> document.write(commaSplit('.$abono.'))</script></div></td>
+	<td><div align="center">$ <script  > document.write(commaSplit('.$abono.'))</script></div></td>
 	</tr>';
 	$i++;
 }

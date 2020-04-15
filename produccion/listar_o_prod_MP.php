@@ -7,7 +7,7 @@ include "includes/valAcc.php";
 <title>Lista de &Oacute;rdenes de Producci&oacute;n de Materia Prima</title>
 <meta charset="utf-8">
 <link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<script type="text/javascript" src="scripts/validar.js"></script>
+	<script  src="scripts/validar.js"></script>
 </head>
 <body>
 <div id="contenedor">
@@ -45,7 +45,7 @@ while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
 	<td class="formatoDatos"><div align="left">'.$row['Nom_mprima'].'</div></td>
 	<td class="formatoDatos"><div align="center">'.$row['Fch_prod'].'</div></td>
 	<td class="formatoDatos"><div align="center">'.$row['nom_personal'].'</div></td>
-	<td class="formatoDatos"><div align="center"><script  type="text/javascript"> document.write(commaSplit('.$row['Cant_kg'].')+" Kg")</script></div></td>
+	<td class="formatoDatos"><div align="center"><script  > document.write(commaSplit('.$row['Cant_kg'].')+" Kg")</script></div></td>
 	';
 	
 	echo'</tr>';
@@ -64,7 +64,7 @@ while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
 	<td class="formatoDatos"><div align="center">'.$rowi['Id_mprima'].'</div></td>
 	<td class="formatoDatos"><div align="left">'.$rowi['Nom_mprima'].'</div></td>
 	<td class="formatoDatos"><div align="left">'.$rowi['Lote_MP'].'</div></td>
-	<td class="formatoDatos"><div align="center"><script  type="text/javascript"> document.write(commaSplit('.$rowi['Can_mprima'].'))</script></div></td>
+	<td class="formatoDatos"><div align="center"><script  > document.write(commaSplit('.$rowi['Can_mprima'].'))</script></div></td>
 
 	</tr>';
 	}

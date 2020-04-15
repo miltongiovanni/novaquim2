@@ -9,9 +9,9 @@ $cliente=$_POST[cliente];
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
 <title>Facturas por Cobrar por Cliente</title>
 <link href="css/formatoTabla.css" rel="stylesheet" type="text/css" >
-<script type="text/javascript" src="scripts/validar.js"></script>
-<script type="text/javascript" src="scripts/block.js"></script>	
-	<script type="text/javascript">
+<script  src="scripts/validar.js"></script>
+<script  src="scripts/block.js"></script>
+	<script >
 	document.onkeypress = stopRKey; 
 	</script>
 </head>

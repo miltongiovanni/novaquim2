@@ -7,8 +7,8 @@ include "includes/valAcc.php";
 <title>Lista de Compras de Etiquetas</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<script type="text/javascript" src="scripts/validar.js"></script>
-    <script type="text/Javascript">	function togglecomments (postid) {
+	<script  src="scripts/validar.js"></script>
+    <script >	function togglecomments (postid) {
 		var whichpost = document.getElementById(postid);
 		if (whichpost.className=="commentshown") { whichpost.className="commenthidden"; } else { whichpost.className="commentshown"; }
 	}</script>
@@ -46,7 +46,7 @@ foreach ($_POST as $nombre_campo => $valor)
 //Limito la busqueda 
 $TAMANO_PAGINA = 20; 
 
-//examino la página a mostrar y el inicio del registro a mostrar 
+//examino la pÃ¡gina a mostrar y el inicio del registro a mostrar 
 if(isset($_GET['pagina'])) 
 {
     $pagina = $_GET['pagina']; 
@@ -66,22 +66,22 @@ $link=conectarServidor();
 $sql="	SELECT id_compra, nit_prov as NIT, Nom_provee AS Proveedor, Num_fact as Factura, Fech_comp as 'Fecha Compra',
 Fech_venc as 'Fecha Vcmto', Des_estado as Estado, total_fact as Total
 FROM compras, proveedores, estados
-WHERE compras.nit_prov=proveedores.NIT_provee and compra=4 and estado=Id_estado
+WHERE compras.nit_prov=proveedores.nitProv and compra=4 and estado=Id_estado
 order BY id_compra DESC;";
 $result=mysqli_query($link,$sql);
 $num_total_registros = mysqli_num_rows($result); 
-//calculo el total de páginas 
+//calculo el total de pÃ¡ginas 
 $total_paginas = ceil($num_total_registros / $TAMANO_PAGINA); 
 
-//muestro los distintos índices de las páginas, si es que hay varias páginas 
+//muestro los distintos Ã­ndices de las pÃ¡ginas, si es que hay varias pÃ¡ginas 
 echo '<div id="paginas" align="center">';
 if ($total_paginas > 1){ 
    	for ($i=1;$i<=$total_paginas;$i++){ 
       	 if ($pagina == $i) 
-         	 //si muestro el índice de la página actual, no coloco enlace 
+         	 //si muestro el Ã­ndice de la pÃ¡gina actual, no coloco enlace 
          	 echo $pagina . " "; 
       	 else 
-         	 //si el índice no corresponde con la página mostrada actualmente, coloco el enlace para ir a esa página 
+         	 //si el Ã­ndice no corresponde con la pÃ¡gina mostrada actualmente, coloco el enlace para ir a esa pÃ¡gina 
          	 echo "<a href='listacompraetq.php?pagina=" . $i . "'>" . $i . "</a>&nbsp;"; 
    	} 
 }
@@ -91,7 +91,7 @@ echo '</div>';
 $ssql = "SELECT id_compra, nit_prov as NIT, Nom_provee AS Proveedor, Num_fact as Factura, Fech_comp as 'Fecha Compra',
 Fech_venc as 'Fecha Vcmto', Des_estado as Estado, total_fact as Total
 FROM compras, proveedores, estados
-WHERE compras.nit_prov=proveedores.NIT_provee and compra=4 and estado=Id_estado
+WHERE compras.nit_prov=proveedores.nitProv and compra=4 and estado=Id_estado
 order BY id_compra DESC limit " . $inicio . "," . $TAMANO_PAGINA;
 
 
@@ -139,7 +139,7 @@ where Codigo=Cod_etiq and Id_compra=$id_com;";
 }
 mysqli_free_result($result);
 mysqli_free_result($resulti);
-/* cerrar la conexión */
+/* cerrar la conexiÃ³n */
 mysqli_close($link);
 ?>
 

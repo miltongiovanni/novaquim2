@@ -7,9 +7,9 @@ include "includes/valAcc.php";
 	<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
 	<title>Creaci&oacute;n de Proveedores</title>
 	<meta charset="utf-8">
-	<script type="text/javascript" src="scripts/validar.js"></script>
-	<script type="text/javascript" src="scripts/block.js"></script>
-   	<script type="text/javascript">
+	<script  src="scripts/validar.js"></script>
+	<script  src="scripts/block.js"></script>
+   	<script >
 	document.onkeypress = stopRKey; 
 	</script>
 </head>	
@@ -71,7 +71,7 @@ foreach ($_POST as $nombre_campo => $valor)
                       echo '<option value="'.$row['Id_cat_prov'].'">'.$row['Des_cat_prov'].'</option>';
               }
               mysqli_free_result($result);
-/* cerrar la conexión */
+/* cerrar la conexiÃ³n */
 mysqli_close($link);
           ?>
   		</select>            </tr>
@@ -91,7 +91,7 @@ mysqli_close($link);
       <td><?php
 		  $link=conectarServidor();
 		  echo'<select name="Tasa_reteica">';
-		  $resultca=mysqli_query($link,"select Id_tasa_retica,tasa_retica from tasa_reteica;");
+		  $resultca=mysqli_query($link,"select idTasaRetIca,tasaRetIca from tasa_reteica;");
           while($rowca=mysqli_fetch_array($resultca))
 		  {
             echo '<option value='.$rowca['Id_tasa_retica'].'>'.$rowca['tasa_retica'].'</option>';

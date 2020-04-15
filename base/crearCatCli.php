@@ -16,7 +16,7 @@ $idCategoria = $lastcategorias + 1;
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <title>Creación de Tipo de Cliente</title>
     <meta charset="utf-8">
-    <script type="text/javascript" src="../js/validar.js"></script>
+    <script  src="../js/validar.js"></script>
 
 </head>
 <body>

@@ -7,10 +7,10 @@ include "includes/valAcc.php";
 <head>
 <meta charset="utf-8">
 <title>Seleccionar Cliente a Revisar Hist&oacute;rico de Pagos</title>
-<script type="text/javascript" src="scripts/validar.js"></script>
-<script type="text/javascript" src="scripts/ajax.js"></script>
-<script type="text/javascript" src="scripts/block.js"></script>	
-	<script type="text/javascript">
+<script  src="scripts/validar.js"></script>
+<script  src="scripts/ajax.js"></script>
+<script  src="scripts/block.js"></script>
+	<script >
 	document.onkeypress = stopRKey; 
 	</script>
 </head>

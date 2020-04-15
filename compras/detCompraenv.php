@@ -7,9 +7,9 @@ include "includes/valAcc.php";
 <title>Ingreso de Compra de Envase</title>
 <meta charset="utf-8">
 <link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<script type="text/javascript" src="scripts/validar.js"></script>
-	<script type="text/javascript" src="scripts/block.js"></script>
-    	<script type="text/javascript">
+	<script  src="scripts/validar.js"></script>
+	<script  src="scripts/block.js"></script>
+    	<script >
 	document.onkeypress = stopRKey; 
 	</script>
 </head>
@@ -95,7 +95,7 @@ if($CrearFactura==0)
 			if($dias_v>0)
 			{
 				echo $dias;
-				echo'<script  type="text/javascript">
+				echo'<script  >
 				alert("La fecha de factura de la compra no puede ser de una fecha futura");
 				self.location="compradist.php";
 				</script>';	
@@ -103,14 +103,14 @@ if($CrearFactura==0)
 			if($dias_v<-8)
 			{
 				echo $dias;
-				echo'<script  type="text/javascript">
-				alert("La fecha de factura de la compra no puede ser menor de 8 días de la fecha actual");
+				echo'<script  >
+				alert("La fecha de factura de la compra no puede ser menor de 8 dÃ­as de la fecha actual");
 				self.location="compraenv.php";
 				</script>';	
 			}
 			if($dias_f<0)
 			{
-				echo'<script  type="text/javascript">
+				echo'<script  >
 				alert("La fecha de vencimiento de la compra no puede ser menor que la de la fecha de compra");
 				self.location="compraenv.php";
 				</script>';	
@@ -243,18 +243,18 @@ if($CrearFactura==1)
 if($CrearFactura==5)
 {	
 	$link=conectarServidor();
-	$qry1="select sum(Cantidad*Precio) as Total, sum(Precio*Cantidad*tasa) as IVA, tasa_retica 
+	$qry1="select sum(Cantidad*Precio) as Total, sum(Precio*Cantidad*tasa) as IVA, tasaRetIca 
 	from det_compras,envase, tasa_iva, compras, proveedores, tasa_reteica
-    where det_compras.Id_compra=$Factura and Codigo=Cod_envase and envase.Cod_iva=tasa_iva.Id_tasa and compras.Id_compra=det_compras.Id_compra and nit_prov=NIT_provee and numtasa_rica=Id_tasa_retica";
+    where det_compras.Id_compra=$Factura and Codigo=Cod_envase and envase.Cod_iva=tasa_iva.Id_tasa and compras.Id_compra=det_compras.Id_compra and nit_prov=nitProv and numtasa_rica=idTasaRetIca";
 	$result1=mysqli_query($link,$qry1);
 	$row1=mysqli_fetch_array($result1);
 	$SUBTotalFactura1=$row1['Total'];
 	$tasa_reteica1=$row1['tasa_retica'];
 	$Iva_Factura1=$row1['IVA'];
 	$TotalFactura1=$SUBTotalFactura1+$Iva_Factura1;
-	$qry2="select sum(Cantidad*Precio) as Total, sum(Precio*Cantidad*tasa) as IVA, tasa_retica 
+	$qry2="select sum(Cantidad*Precio) as Total, sum(Precio*Cantidad*tasa) as IVA, tasaRetIca 
 	from det_compras,tapas_val, tasa_iva, compras, proveedores, tasa_reteica
-	where det_compras.Id_compra=$Factura and Codigo=Cod_tapa and Cod_iva=Id_tasa and compras.Id_compra=det_compras.Id_compra and nit_prov=NIT_provee and numtasa_rica=Id_tasa_retica";
+	where det_compras.Id_compra=$Factura and Codigo=Cod_tapa and Cod_iva=Id_tasa and compras.Id_compra=det_compras.Id_compra and nit_prov=nitProv and numtasa_rica=idTasaRetIca";
 	$result2=mysqli_query($link,$qry2);
 	$row2=mysqli_fetch_array($result2);
 	$SUBTotalFactura2=$row2['Total'];
@@ -265,7 +265,7 @@ if($CrearFactura==5)
 	$SUBTotalFactura= $SUBTotalFactura1 + $SUBTotalFactura2;
 	$tasa_reteica=($tasa_reteica1+$tasa_reteica2)/2;
 	$Iva_Factura=$Iva_Factura1+$Iva_Factura2;
-	$qryc="select ret_provee from compras, proveedores where nit_prov=NIT_provee and Id_compra=$Factura";
+	$qryc="select ret_provee from compras, proveedores where nit_prov=nitProv and Id_compra=$Factura";
 	$resultc=mysqli_query($link,$qryc);
 	$rowc=mysqli_fetch_array($resultc);
 	$reteica=0;
@@ -306,7 +306,7 @@ if($CrearFactura==6)
 	  $result2=mysqli_query($link,$qryUpEstFactura);
 	  mysqli_close($link);
 	}
-	echo'<script  type="text/javascript">
+	echo'<script  >
 	self.location="menu.php";
 	</script>';
 } 
@@ -317,7 +317,7 @@ if($CrearFactura==6)
   $qry="select compras.*, Nom_provee, Des_estado
 		from compras, proveedores, estados
 		where Id_compra=$Factura
-		and compras.nit_prov=proveedores.NIT_provee and estado=Id_estado";
+		and compras.nit_prov=proveedores.nitProv and estado=Id_estado";
   $result=mysqli_query($link,$qry);
   $row=mysqli_fetch_array($result);
   $nit=$row['nit_prov'];
@@ -336,25 +336,25 @@ if($CrearFactura==6)
       <td width="22%"><div align="right"><strong>Proveedor</strong></div></td>
       <td colspan="3"><?php echo  $row['Nom_provee']?></td>
       <td><div align="right"><strong>Valor Factura</strong></div></td>
-      <td><div align="left"><?php echo '$ <script  type="text/javascript"> document.write(commaSplit('.$row['total_fact'].'))</script>' ;?> </div></td>
+      <td><div align="left"><?php echo '$ <script  > document.write(commaSplit('.$row['total_fact'].'))</script>' ;?> </div></td>
     </tr>
     <tr>
       <td><div align="right"><strong>NIT</strong></div></td>
       <td colspan="3"><?php echo  $row['nit_prov']?></td>
       <td><div align="right"><strong>Retenci&oacute;n Ica</strong></div></td>
-      <td><div align="left"><?php echo '$ <script  type="text/javascript"> document.write(commaSplit('.$row['ret_ica'].'))</script>' ;?> </div></td>
+      <td><div align="left"><?php echo '$ <script  > document.write(commaSplit('.$row['ret_ica'].'))</script>' ;?> </div></td>
     </tr>
     <tr>
       <td ><div align="right"><strong>Fecha de Factura</strong></div></td>
       <td colspan="3"><?php echo $row['Fech_comp'];?></td>
        <td><div align="right"><strong>Retenci&oacute;n</strong></div></td>
-      <td><div align="left"><?php echo '$ <script  type="text/javascript"> document.write(commaSplit('.$row['retencion'].'))</script>' ;?> </div></td>
+      <td><div align="left"><?php echo '$ <script  > document.write(commaSplit('.$row['retencion'].'))</script>' ;?> </div></td>
     </tr>
     <tr>
       <td ><div align="right"><strong>Fecha Vencimiento </strong></div></td>
       <td colspan="3"><?php echo $row['Fech_venc'];?></td>
        <td><div align="right"><strong>Valor a Pagar</strong></div></td>
-      <td><div align="left"><?php echo '$ <script  type="text/javascript"> document.write(commaSplit('.($row['total_fact']-$row['retencion']-$row['ret_ica']).'))</script>' ;?> </div></td>
+      <td><div align="left"><?php echo '$ <script  > document.write(commaSplit('.($row['total_fact']-$row['retencion']-$row['ret_ica']).'))</script>' ;?> </div></td>
     </tr>
     </table>
     
@@ -472,8 +472,8 @@ if($CrearFactura==6)
 				echo '</td>
 				<td><div align="center">'.$row['Codigo'].'</div></td>
 				<td><div align="center">'.$row['Nom_envase'].'</div></td>
-				<td><div align="center"><script  type="text/javascript"> document.write(commaSplit('.$row['Cantidad'].'))</script></div></td>
-				<td><div align="center">$ <script  type="text/javascript"> document.write(commaSplit('.$row['Precio'].'))</script></div></td>
+				<td><div align="center"><script  > document.write(commaSplit('.$row['Cantidad'].'))</script></div></td>
+				<td><div align="center">$ <script  > document.write(commaSplit('.$row['Precio'].'))</script></div></td>
 				 <td>';
 				 if ($estadoc!=7)
 				{
@@ -514,8 +514,8 @@ if($CrearFactura==6)
 				echo '</td>
 				<td><div align="center">'.$row['Codigo'].'</div></td>
 				<td><div align="center">'.$row['Nom_tapa'].'</div></td>
-				<td><div align="center"><script  type="text/javascript"> document.write(commaSplit('.$row['Cantidad'].'))</script></div></td>
-				<td><div align="center">$ <script  type="text/javascript"> document.write(commaSplit('.$row['Precio'].'))</script></div></td>
+				<td><div align="center"><script  > document.write(commaSplit('.$row['Cantidad'].'))</script></div></td>
+				<td><div align="center">$ <script  > document.write(commaSplit('.$row['Precio'].'))</script></div></td>
 				<td>';
 				if ($estadoc!=7)
 				{

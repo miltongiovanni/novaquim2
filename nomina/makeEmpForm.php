@@ -8,7 +8,7 @@ include "includes/conect.php";
   <link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
   <title>Ingreso de Empleados</title>
   <meta charset="utf-8">
-  <script type="text/javascript" src="scripts/validar.js"></script>
+  <script  src="scripts/validar.js"></script>
 </head>
 <body>
 <div id="contenedor">

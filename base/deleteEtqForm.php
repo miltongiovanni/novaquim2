@@ -8,7 +8,7 @@ include "../includes/valAcc.php";
 	<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
 	<meta charset="utf-8">
 	<title>Eliminar Etiqueta</title>
-	<script type="text/javascript" src="../js/validar.js"></script>
+	<script  src="../js/validar.js"></script>
 </head>
 
 

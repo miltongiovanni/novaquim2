@@ -8,9 +8,9 @@ include "includes/calcularDias.php";
 <meta charset="utf-8">
 <title>Facturas por pagar por Proveedor</title>
 <link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-<script type="text/javascript" src="scripts/validar.js"></script>
-<script type="text/javascript" src="scripts/block.js"></script>
-	<script type="text/javascript">
+<script  src="scripts/validar.js"></script>
+<script  src="scripts/block.js"></script>
+	<script >
 	document.onkeypress = stopRKey; 
 	</script>
 </head>
@@ -56,11 +56,11 @@ include "includes/calcularDias.php";
 	  	{  
 			$qry="select Id_compra as Id, Compra, nit_prov as Nit, Num_fact as Factura, Fech_comp, 
 				Fech_venc, total_fact as Total, Nom_provee as Proveedor, retencion, ret_ica 
-				FROM compras, proveedores where estado=3 and nit_prov=NIT_provee and nit_prov='$Proveedor'
+				FROM compras, proveedores where estado=3 and nit_prov=nitProv and nit_prov='$Proveedor'
 				union
 				select Id_gasto as Id, Compra, nit_prov as Nit, Num_fact as Factura, Fech_comp, 
 				Fech_venc, total_fact as Total, Nom_provee as Proveedor, retencion_g as retencion, ret_ica 
-				from gastos, proveedores where estado=3 and nit_prov=NIT_provee and nit_prov='$Proveedor' order by Fech_venc;";
+				from gastos, proveedores where estado=3 and nit_prov=nitProv and nit_prov='$Proveedor' order by Fech_venc;";
 			$result=mysqli_query($link,$qry);	
 			$a=1;
 			while($row=mysqli_fetch_array($result))
@@ -137,44 +137,44 @@ include "includes/calcularDias.php";
 				echo '><div align="center">'.$row['Fech_venc'].'</div></td>
 				<td ';
 				if (($a % 2)==0) echo ' bgcolor="#B4CBEF" ';
-				echo '><div align="right">$ <script  type="text/javascript"> document.write(commaSplit('.$row['Total'].'))</script></div></td>';
+				echo '><div align="right">$ <script  > document.write(commaSplit('.$row['Total'].'))</script></div></td>';
 				echo '<td';
 				if (($a % 2)==0) echo ' bgcolor="#B4CBEF" ';
-				echo '><div align="right">$ <script  type="text/javascript"> document.write(commaSplit('.$row['retencion'].'))</script></div></td>';
+				echo '><div align="right">$ <script  > document.write(commaSplit('.$row['retencion'].'))</script></div></td>';
 				echo '<td';
 				if (($a % 2)==0) echo ' bgcolor="#B4CBEF" ';
-				echo '><div align="right">$ <script  type="text/javascript"> document.write(commaSplit('.$row['ret_ica'].'))</script></div></td>';
+				echo '><div align="right">$ <script  > document.write(commaSplit('.$row['ret_ica'].'))</script></div></td>';
 				
 				echo '<td';
 				if (($a % 2)==0) echo ' bgcolor="#B4CBEF" ';
-				echo '><div align="right">$ <script  type="text/javascript"> document.write(commaSplit('.($row['Total']-$row['retencion']-$row['ret_ica']).'))</script></div></td>';
+				echo '><div align="right">$ <script  > document.write(commaSplit('.($row['Total']-$row['retencion']-$row['ret_ica']).'))</script></div></td>';
 				echo '<td';
 				if (($a % 2)==0) echo ' bgcolor="#B4CBEF" ';
-				echo '><div align="right">$ <script  type="text/javascript"> document.write(commaSplit('.$parcial.'))</script></div></td>';
+				echo '><div align="right">$ <script  > document.write(commaSplit('.$parcial.'))</script></div></td>';
 				echo '<td';
 				if (($a++ % 2)==0) echo ' bgcolor="#B4CBEF" ';
-				echo '><div align="right">$ <script  type="text/javascript"> document.write(commaSplit('.$saldo.'))</script></div></td>';
+				echo '><div align="right">$ <script  > document.write(commaSplit('.$saldo.'))</script></div></td>';
       		 	echo'</tr>';
 			}
 				echo'<tr>
 				<td colspan="2" ></Td>
 				<td colspan="7" class="titulo1" align="right">TOTAL VENCIDO :</Td>
-				<td colspan="2" class="titulo1"><div align="left">$ <script  type="text/javascript"> document.write(commaSplit('.$totalvenc.'))</script></div> </td>
+				<td colspan="2" class="titulo1"><div align="left">$ <script  > document.write(commaSplit('.$totalvenc.'))</script></div> </td>
 				</tr>';
 				echo'<tr>
 				<td colspan="2" ></Td>
 				<td colspan="7" class="titulo2" align="right">TOTAL A VENCER EN UNA SEMANA:</Td>
-				<td colspan="2" class="titulo2"><div align="left">$ <script  type="text/javascript"> document.write(commaSplit('.$totalavenc.'))</script></div> </td>
+				<td colspan="2" class="titulo2"><div align="left">$ <script  > document.write(commaSplit('.$totalavenc.'))</script></div> </td>
 				</tr>';
 				echo'<tr>
 				<td colspan="2" ></Td>
 				<td colspan="7" class="titulo3" align="right">TOTAL SIN VENCER EN UNA SEMANA  :</Td>
-				<td colspan="2" class="titulo3"><div align="left">$ <script  type="text/javascript"> document.write(commaSplit('.$totalnvenc.'))</script></div> </td>
+				<td colspan="2" class="titulo3"><div align="left">$ <script  > document.write(commaSplit('.$totalnvenc.'))</script></div> </td>
 				</tr>';
 				echo'<tr>
 				<td colspan="2" align="right" ></Td>
 				<td colspan="7" class="titulo" align="right">TOTAL :</Td>
-				<td colspan="2" class="titulo"><div align="left">$ <script  type="text/javascript"> document.write(commaSplit('.($totalvenc+$totalavenc+$totalnvenc).'))</script></div> </td>
+				<td colspan="2" class="titulo"><div align="left">$ <script  > document.write(commaSplit('.($totalvenc+$totalavenc+$totalnvenc).'))</script></div> </td>
 				</tr>';
 				mysqli_close($link);
 	 	}

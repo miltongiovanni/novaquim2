@@ -27,7 +27,7 @@ class ProductosOperaciones
     public function getProductos($actif)
     {
         if ($actif == true) {
-            $qry = "SELECT codProducto, nomProducto FROM productos WHERE prodActivo=0 ORDER BY nomProducto;";
+            $qry = "SELECT codProducto, nomProducto FROM productos WHERE prodActivo=1 ORDER BY nomProducto;";
         } else {
             $qry = "SELECT codProducto, nomProducto FROM productos ORDER BY nomProducto;";
         }
@@ -41,7 +41,7 @@ class ProductosOperaciones
     {
         $qry = "SELECT codProducto, nomProducto, catProd, densMin, densMax, pHmin, pHmax, fragancia, color, apariencia FROM productos
         LEFT JOIN cat_prod cp on productos.idCatProd = cp.idCatProd
-        WHERE prodActivo=0
+        WHERE prodActivo=1
         ORDER BY codProducto;";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();

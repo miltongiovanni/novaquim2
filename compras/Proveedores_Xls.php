@@ -12,24 +12,24 @@ $objPHPExcel->getProperties()->setCreator("Industrias Novaquim")
 							 ->setLastModifiedBy("Milton Espitia")
 							 ->setTitle("Productos")
 							 ->setSubject("Lista de Facturas")
-							 ->setDescription("Lista de Facturas por período")
+							 ->setDescription("Lista de Facturas por perÃ­odo")
 							 ->setKeywords("Lista Facturas")
 							 ->setCategory("Lista");
 // Add some data
 $objPHPExcel->setActiveSheetIndex(0)
             ->setCellValue('A1', iconv("iso-8859-1", "UTF-8", 'NIT'))
             ->setCellValue('B1', 'Proveeedor')
-			->setCellValue('C1', iconv("iso-8859-1", "UTF-8", 'Dirección'))
+			->setCellValue('C1', iconv("iso-8859-1", "UTF-8", 'DirecciÃ³n'))
 			->setCellValue('D1', 'Contacto')
-			->setCellValue('E1', iconv("iso-8859-1", "UTF-8", 'Teléfono'))
+			->setCellValue('E1', iconv("iso-8859-1", "UTF-8", 'TelÃ©fono'))
 			->setCellValue('F1', 'Fax')
-            ->setCellValue('G1',iconv("iso-8859-1", "UTF-8", 'Categoría'))
-			->setCellValue('H1',iconv("iso-8859-1", "UTF-8", 'Correo Electrónico'));
+            ->setCellValue('G1',iconv("iso-8859-1", "UTF-8", 'CategorÃ­a'))
+			->setCellValue('H1',iconv("iso-8859-1", "UTF-8", 'Correo ElectrÃ³nico'));
 // Rename sheet
 $objPHPExcel->getActiveSheet()->setTitle('Productos de Distribucion');
 $link=conectarServidor();
 $bd="novaquim";
-$sql="	SELECT  NIT_provee as 'Nit',
+$sql="	SELECT  nitProv as 'Nit',
 			Nom_provee as 'Proveedor',
 			Dir_provee as 'Dir_prov', 
 			Nom_contac as 'Contacto',
@@ -55,7 +55,7 @@ while($row= mysqli_fetch_array($result, MYSQLI_BOTH))
 
 // Set active sheet index to the first sheet, so Excel opens this as the first sheet
 $objPHPExcel->setActiveSheetIndex(0);
-// Redirect output to a client’s web browser (Excel5)
+// Redirect output to a clientâ€™s web browser (Excel5)
 header('Content-Type: application/vnd.ms-excel');
 header('Content-Disposition: attachment;filename="Proveedores.xls"');
 header('Cache-Control: max-age=0');

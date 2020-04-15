@@ -23,7 +23,7 @@ $relacion = $relDisEmpOperador->getRelDisEmp($idPacUn);
     <title>Relación Paca Unidad Productos de Distribución</title>
     <meta charset="utf-8">
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-    <script type="text/javascript" src="../js/validar.js"></script>
+    <script  src="../js/validar.js"></script>
 </head>
 <body>
 <div id="contenedor">

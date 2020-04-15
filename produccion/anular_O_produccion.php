@@ -6,9 +6,9 @@ include "includes/valAcc.php";
 <link href="css/formatoTabla.css" rel="stylesheet" type="text/css"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Seleccionar Orden de Producci&oacute;n a Anular</title>
-<script type="text/javascript" src="scripts/validar.js"></script>
-<script type="text/javascript" src="scripts/block.js"></script>
-	<script type="text/javascript">
+<script  src="scripts/validar.js"></script>
+<script  src="scripts/block.js"></script>
+	<script >
 	document.onkeypress = stopRKey; 
 	</script>
 	

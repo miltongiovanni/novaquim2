@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://$APPLICATION_CONFIG_DIR$/consoles/db/98639a1b-48de-4067-a85f-e2744d68e6f7/console.sql" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/base/ajax/listaDisEmp.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/base/ajax/listaEnvDis.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/base/buscarDis.php" charset="windows-1252" />
@@ -12,6 +13,8 @@
     <file url="file://$PROJECT_DIR$/base/listarCatCli.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/base/makeDis.php" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/base/updateDisForm.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/compras/deleteProvForm.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/compras/detProveedor.php" charset="UTF-8" />
     <file url="PROJECT" charset="windows-1252" />
   </component>
 </project>

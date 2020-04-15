@@ -1,33 +1,43 @@
 <?php
-include "includes/valAcc.php";
-?>
-<?php
-include "includes/provObj.php";
-include "includes/calcularDias.php";
+include "../includes/valAcc.php";
 
-foreach ($_POST as $nombre_campo => $valor) 
-{ 
-	$asignacion = "\$".$nombre_campo."='".$valor."';"; 
-	//echo $nombre_campo." = ".$valor."<br>";  
-	eval($asignacion); 
-}  
-$bd="novaquim";
-$prov1=new Prover();
-if($result=$prov1->updateProv($nit, $proveedor, $direccion, $contacto, $tel1, $fax, $email, $Id_Cat, $Auto_ret, $Tasa_reteica, $regimen))
+// On enregistre notre autoload.
+function cargarClases($classname)
 {
-	$ruta="listarProv.php";
-    mover_pag($ruta,"Proveedor Actualizado correctamente");
+    require '../clases/' . $classname . '.php';
 }
-else
-{
-	$ruta="buscarProv.php";
-	mover_pag($ruta,"Error al Actualizar el Proveedor");
+
+spl_autoload_register('cargarClases');
+
+foreach ($_POST as $nombre_campo => $valor) {
+    $asignacion = "\$" . $nombre_campo . "='" . $valor . "';";
+    //echo $nombre_campo . " = " . $valor . "<br>";
+    eval($asignacion);
 }
-function mover_pag($ruta,$Mensaje)
+
+$datos = array($nitProv, $nomProv, $dirProv, $contProv, $telProv, $emailProv, $idCatProv, $autoretProv, $regProv, $idTasaIcaProv, $estProv, $idProv);
+$ProveedorOperador = new ProveedoresOperaciones();
+
+try {
+    $ProveedorOperador->updateProveedor($datos);
+    $ruta = "listarProv.php";
+    $mensaje = "Proveedor actualizado correctamente";
+
+} catch (Exception $e) {
+    $ruta = "buscarProv.php";
+    $mensaje = "Error al actualizar el proveedor";
+} finally {
+    unset($conexion);
+    unset($stmt);
+    mover_pag($ruta, $mensaje);
+}
+
+function mover_pag($ruta, $Mensaje)
 {
-	echo'<script >
-   	alert("'.$Mensaje.'")
-   	self.location="'.$ruta.'"
+    echo '<script >
+   	alert("' . $Mensaje . '")
+   	self.location="' . $ruta . '"
    	</script>';
 }
+
 ?>

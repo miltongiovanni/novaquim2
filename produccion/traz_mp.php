@@ -8,8 +8,8 @@ include "includes/valAcc.php";
 <meta charset="utf-8">
 <link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
 <title>Seleccionar Materia Prima a revisar Trazabilidad</title>
-<script type="text/javascript" src="scripts/validar.js"></script>
-<script type="text/javascript" src="scripts/block.js"></script>	
+<script  src="scripts/validar.js"></script>
+<script  src="scripts/block.js"></script>
 </head>
 <body>
 <?php
@@ -40,7 +40,7 @@ foreach ($_POST as $nombre_campo => $valor)
       <td width="113" align="center"><strong>Fecha Compra</strong></td><td width="465" align="center"><strong>Proveedor</strong></td><td width="108" align="center"><strong>Cantidad (Kg)</strong></td>
 </tr>
 <?php
-  $qry="select Fech_comp, Nom_provee, Cantidad from det_compras, compras, proveedores where det_compras.Id_compra=compras.Id_compra and nit_prov=NIT_provee and Codigo=$IdMP anD Lote='$lote_mp' order by Fech_comp;";
+  $qry="select Fech_comp, Nom_provee, Cantidad from det_compras, compras, proveedores where det_compras.Id_compra=compras.Id_compra and nit_prov=nitProv and Codigo=$IdMP anD Lote='$lote_mp' order by Fech_comp;";
   $result=mysqli_query($link,$qry);
   while($row=mysqli_fetch_array($result))
   {

@@ -29,3 +29,22 @@ xmlhttp.open("POST","proc1.php",true);
 xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 xmlhttp.send("q="+n);
 }
+
+function findProveedor(idCatProd) {
+    let q = document.getElementById("busProv").value;
+    $.ajax({
+        url: '../includes/controladorCompras.php',
+        type: 'POST',
+        data: {
+            "action": 'findProveedor',
+            "q": q,
+        },
+        dataType: 'html',
+        success: function (provList) {
+            $("#myDiv").val(nitValid);
+        },
+        fail: function () {
+            alert("Vous avez un GROS problème");
+        }
+    });
+}

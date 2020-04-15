@@ -27,7 +27,7 @@ class ProductosDistribucionOperaciones
     public function getProductosDistribucion($actif)
     {
         if ($actif == true) {
-            $qry = "SELECT idDistribucion, producto FROM distribucion WHERE activo=0 ORDER BY producto;";
+            $qry = "SELECT idDistribucion, producto FROM distribucion WHERE activo=1 ORDER BY producto;";
         } else {
             $qry = "SELECT idDistribucion, producto FROM distribucion ORDER BY producto;";
         }
@@ -43,7 +43,7 @@ class ProductosDistribucionOperaciones
         FROM distribucion
         LEFT JOIN cat_dis cd on distribucion.idCatDis = cd.idCatDis
         LEFT JOIN tasa_iva ti on distribucion.codIva = ti.idTasaIva
-        WHERE activo=0 and cotiza=0
+        WHERE activo=1 and cotiza=1
         ORDER BY cd.idCatDis , producto";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();

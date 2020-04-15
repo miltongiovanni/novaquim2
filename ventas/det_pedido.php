@@ -7,13 +7,13 @@ include "includes/valAcc.php";
 <title>Ingreso de Productos Hoja de Pedido</title>
 <meta charset="utf-8">
 <link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<script type="text/javascript" src="scripts/validar.js"></script>
-	<script type="text/javascript" src="scripts/block.js"></script>
+	<script  src="scripts/validar.js"></script>
+	<script  src="scripts/block.js"></script>
     <link rel="stylesheet" type="text/css" media="all" href="css/calendar-blue2.css" title="blue">
-    <script type="text/javascript" src="scripts/calendar.js"></script>
-    <script type="text/javascript" src="scripts/calendar-sp.js"></script>
-    <script type="text/javascript" src="scripts/calendario.js"></script>
-    <script type="text/javascript">
+    <script  src="scripts/calendar.js"></script>
+    <script  src="scripts/calendar-sp.js"></script>
+    <script  src="scripts/calendario.js"></script>
+    <script >
 	document.onkeypress = stopRKey; 
 	</script>
 </head>

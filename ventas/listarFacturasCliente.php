@@ -7,7 +7,7 @@ include "includes/valAcc.php";
 <title>Lista de Facturas de Venta</title>
 <meta charset="utf-8">
 <link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<script type="text/javascript" src="scripts/validar.js"></script>
+	<script  src="scripts/validar.js"></script>
 </head>
 <body>
 <div id="contenedor">
@@ -90,7 +90,7 @@ select Factura, Cod_producto, Can_producto, DesServicio as Producto, tasa, prec_
 	echo '<tr>
 	<td class="formatoDatos"><div align="center">'.$rowi['Cod_producto'].'</div></td>
 	<td class="formatoDatos"><div align="left">'.$rowi['Producto'].'</div></td>
-	<td class="formatoDatos"><div align="center"><script  type="text/javascript"> document.write(commaSplit('.$rowi['Can_producto'].'))</script></div></td>
+	<td class="formatoDatos"><div align="center"><script  > document.write(commaSplit('.$rowi['Can_producto'].'))</script></div></td>
 
 	</tr>';
 	}

@@ -7,7 +7,7 @@ include "includes/valAcc.php";
 <title>Inventario de Envase</title>
 <meta charset="utf-8">
 <link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<script type="text/javascript" src="scripts/validar.js"></script>
+	<script  src="scripts/validar.js"></script>
 </head>
 <body>
 <div id="contenedor">
@@ -42,7 +42,7 @@ while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
 	  echo '>
 	<td class="formatoDatos"><div align="center">'.$row['Codigo'].'</div></td>
 	<td class="formatoDatos"><div align="left">'.$row['Producto'].'</div></td>
-	<td class="formatoDatos"><div align="center"><script  type="text/javascript" > document.write(commaSplit('.$row['Cantidad'].'))</script></div></td>';
+	<td class="formatoDatos"><div align="center"><script   > document.write(commaSplit('.$row['Cantidad'].'))</script></div></td>';
 	echo'</tr>';
 	}
 }

@@ -14,7 +14,7 @@ spl_autoload_register('cargarClases');
 	<title>Detalle de la Cotizaci&oacute;n</title>
 	<meta charset="utf-8">
 	<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<script type="text/javascript" src="../validar.js"></script>
+	<script  src="../validar.js"></script>
 </head>
 
 <body>

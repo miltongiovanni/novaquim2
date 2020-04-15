@@ -20,7 +20,7 @@ $objPHPExcel->getProperties()->setCreator("Industrias Novaquim")
 							 ->setLastModifiedBy("Milton Espitia")
 							 ->setTitle("Productos")
 							 ->setSubject("Lista de Facturas")
-							 ->setDescription("Lista de Facturas por período")
+							 ->setDescription("Lista de Facturas por perÃ­odo")
 							 ->setKeywords("Lista Facturas")
 							 ->setCategory("Lista");
 // Add some data
@@ -32,7 +32,7 @@ $objPHPExcel->setActiveSheetIndex(0)
 			->setCellValue('E1', iconv("iso-8859-1", "UTF-8", 'Fecha de Compra'))
 			->setCellValue('F1', iconv("iso-8859-1", "UTF-8", 'Fecha Vencimiento'))
             ->setCellValue('G1', 'Total')
-            ->setCellValue('H1',iconv("iso-8859-1", "UTF-8", 'Fecha de Cancelación'))
+            ->setCellValue('H1',iconv("iso-8859-1", "UTF-8", 'Fecha de CancelaciÃ³n'))
 			->setCellValue('I1', 'Valor Cancelado')
 			->setCellValue('J1', 'Forma de Pago');
 // Rename sheet
@@ -40,7 +40,7 @@ $objPHPExcel->getActiveSheet()->setTitle('Pagos de gastos');
 $link=conectarServidor();
 $sql="select Id_egreso as Id, nit_prov, Nom_provee, Num_fact, total_fact, pago, Fech_comp, Fech_venc, Fecha, forma_pago 
 from egreso, gastos, proveedores, form_pago 
-WHERE egreso.Id_compra=gastos.Id_gasto and nit_prov=NIT_provee and tip_compra=6 and form_pago=Id_fpago and Fecha>='$FchIni' and Fecha<='$FchFin' order by Id DESC;";
+WHERE egreso.Id_compra=gastos.Id_gasto and nit_prov=nitProv and tip_compra=6 and form_pago=Id_fpago and Fecha>='$FchIni' and Fecha<='$FchFin' order by Id DESC;";
 $result=mysqli_query($link,$sql) or die("Error al conectar a la base de datos.");
 //$columnas=mysql_num_fields($result);
 //$filas = mysql_num_rows($result);
@@ -59,11 +59,11 @@ while($row= mysqli_fetch_array($result, MYSQLI_BOTH))
 	$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(9, $i++, iconv("iso-8859-1", "UTF-8",$row['forma_pago']));
 } 
 mysqli_free_result($result);
-/* cerrar la conexión */
+/* cerrar la conexiÃ³n */
 mysqli_close($link);
 // Set active sheet index to the first sheet, so Excel opens this as the first sheet
 $objPHPExcel->setActiveSheetIndex(0);
-// Redirect output to a client’s web browser (Excel5)
+// Redirect output to a clientâ€™s web browser (Excel5)
 header('Content-Type: application/vnd.ms-excel');
 header('Content-Disposition: attachment;filename="Pago_fac_gastos.xls"');
 header('Cache-Control: max-age=0');

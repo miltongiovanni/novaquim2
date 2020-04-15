@@ -7,9 +7,9 @@ include "includes/valAcc.php";
     <title>Detalle Orden de Producci&oacute;n de Color</title>
     <meta charset="utf-8">
     <link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-    <script type="text/javascript" src="scripts/validar.js"></script>
-    <script type="text/javascript" src="scripts/block.js"></script>
-    	<script type="text/javascript">
+    <script  src="scripts/validar.js"></script>
+    <script  src="scripts/block.js"></script>
+    	<script >
 	document.onkeypress = stopRKey; 
 	</script>
 </head>

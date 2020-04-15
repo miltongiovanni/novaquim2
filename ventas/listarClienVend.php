@@ -7,7 +7,7 @@ include "includes/valAcc.php";
 <title>Lista de Facturas de Venta</title>
 <meta charset="utf-8">
 <link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<script type="text/javascript" src="scripts/validar.js"></script>
+	<script  src="scripts/validar.js"></script>
 </head>
 <body>
 <div id="contenedor">
@@ -87,7 +87,7 @@ while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
 	<td class="formatoDatos"><div align="center">'.$rowi['Factura'].'</div></td>
 	<td class="formatoDatos"><div align="left">'.$rowi['Fech_fact'].'</div></td>
 	<td class="formatoDatos"><div align="left">'.$rowi['Fech_venc'].'</div></td>
-	<td class="formatoDatos"><div align="center"><script  type="text/javascript"> document.write(commaSplit('.$rowi['Total'].'))</script></div></td>
+	<td class="formatoDatos"><div align="center"><script  > document.write(commaSplit('.$rowi['Total'].'))</script></div></td>
 	<td class="formatoDatos"><div align="left">'.$rowi['Estado'].'</div></td>
 	</tr>';
 	}

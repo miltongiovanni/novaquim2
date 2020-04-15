@@ -19,11 +19,11 @@ $pdf->Cell(15,4,'F Pago', 1,0,'C');
 $pdf->SetFont('Arial','',10);
 $qry="select Id_compra as Id, Compra, nit_prov as Nit, Num_fact as Factura, Fech_comp, 
 				Fech_venc, total_fact as Total, Nom_provee as Proveedor, retencion 
-				FROM compras, proveedores where estado=3 and nit_prov=NIT_provee
+				FROM compras, proveedores where estado=3 and nit_prov=nitProv
 				union
 				select Id_gasto as Id, Compra, nit_prov as Nit, Num_fact as Factura, Fech_comp, 
 				Fech_venc, total_fact as Total, Nom_provee as Proveedor, retencion_g as retencion 
-				from gastos, proveedores where estado=3 and nit_prov=NIT_provee order by Fech_venc;";
+				from gastos, proveedores where estado=3 and nit_prov=nitProv order by Fech_venc;";
 $result=mysqli_query($link,$qry);
 $i=0;
 while($row=mysqli_fetch_array($result))

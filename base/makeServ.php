@@ -15,7 +15,7 @@ foreach ($_POST as $nombre_campo => $valor)
   eval($asignacion); 
 }
 
-$datos = array($idServicio, $desServicio, $codIva, 0, $codSiigo);
+$datos = array($idServicio, $desServicio, $codIva, 1, $codSiigo);
 $servicioperador = new ServiciosOperaciones();
 
 try {

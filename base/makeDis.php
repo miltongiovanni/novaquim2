@@ -16,7 +16,7 @@ foreach ($_POST as $nombre_campo => $valor)
   eval($asignacion); 
 }
 
-$prodActivo=0;
+$prodActivo=1;
 $datos = array($idDistribucion, $producto, $codIva, $idCatDis, $cotiza, $precioVta, $prodActivo, $stockDis, $codSiigo  );
 $ProductoDistribucionOperador = new ProductosDistribucionOperaciones();
 

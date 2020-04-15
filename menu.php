@@ -83,7 +83,7 @@ function getMenuGrandSons($parent, $menuItems)
 }
 getMenuSons(0, $menuItems);
 ?>
-<div id="saludo"> <p>
+<div id="saludo" style="text-transform:none;"> <p>
 <?php
     $idUsuario = $_SESSION['IdUsuario'];
     $usuarioOperador = new UsuariosOperaciones();

@@ -7,14 +7,14 @@ include "../includes/valAcc.php";
 <head>
 	<meta charset="utf-8">
 	<title>Seleccionar Personal a Actualizar</title>
-	<script type="text/javascript" src="../js/validar.js"></script>
+	<script  src="../js/validar.js"></script>
 </head>
 <body>
 	<div id="contenedor">
 		<div id="saludo"><strong>SELECCIONAR PERSONAL A ACTUALIZAR</strong></div>
 		<?php
         include "../includes/administracion.php";
-        $rep = buscarPersonalForm("updatePersonForm.php", true);
+        $rep = buscarPersonalForm("updatePersonForm.php", false);
         echo $rep;
         ?>
 		<div class="row form-group">

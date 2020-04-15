@@ -16,7 +16,7 @@ $tapa = $TapaOperador->getTapa($codTapa);
   <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
   <meta charset="utf-8">
   <title>Actualizar datos de Tapa o Válvula</title>
-  <script type="text/javascript" src="../js/validar.js"></script>
+  <script  src="../js/validar.js"></script>
 </head>
 
 <body>

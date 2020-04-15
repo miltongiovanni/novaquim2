@@ -7,8 +7,8 @@ include "includes/valAcc.php";
 <head>
 <meta charset="utf-8">
 <title>Seleccionar proveedor a consultar pagos</title>
-<script type="text/javascript" src="scripts/validar.js"></script>
-<script type="text/javascript" src="scripts/block.js"></script>	
+<script  src="scripts/validar.js"></script>
+<script  src="scripts/block.js"></script>
 </head>
 <body>
 <div id="contenedor">
@@ -23,14 +23,14 @@ include "includes/valAcc.php";
 				include "includes/conect.php";
 				$link=conectarServidor();
 				echo'<select name="prov">';
-				$result=mysqli_query($link,"select NIT_provee, Nom_provee from proveedores WHERE Id_cat_prov=6 order by Nom_provee;");
+				$result=mysqli_query($link,"select nitProv, Nom_provee from proveedores WHERE Id_cat_prov=6 order by Nom_provee;");
 				echo '<option selected value="">---------------------------------------------------------------</option>';
 				while($row=mysqli_fetch_array($result)){
 					echo '<option value='.$row['NIT_provee'].'>'.$row['Nom_provee'].'</option>';
 				}
 				echo'</select>';
 				mysqli_free_result($result);
-/* cerrar la conexión */
+/* cerrar la conexiÃ³n */
 mysqli_close($link);
 		?>
         <input type="submit" name="Submit" value="Continuar" onClick="return Enviar2(this.form);">

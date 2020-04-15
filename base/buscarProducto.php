@@ -7,9 +7,9 @@ include "includes/valAcc.php";
 <link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
 <meta charset="utf-8">
 <title>Seleccionar Producto a revisar Producci&oacute;n</title>
-<script type="text/javascript" src="scripts/validar.js"></script>
-<script type="text/javascript" src="scripts/block.js"></script>	
-	<script type="text/javascript">
+<script  src="scripts/validar.js"></script>
+<script  src="scripts/block.js"></script>	
+	<script >
 	document.onkeypress = stopRKey; 
 	</script>
 

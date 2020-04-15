@@ -7,9 +7,9 @@ include "includes/valAcc.php";
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Seleccionar Proveedor</title>
-<script type="text/javascript" src="scripts/validar.js"></script>
-<script type="text/javascript" src="scripts/block.js"></script>	
-	<script type="text/javascript">
+<script  src="scripts/validar.js"></script>
+<script  src="scripts/block.js"></script>
+	<script >
 	document.onkeypress = stopRKey; 
 	</script>
 
@@ -29,7 +29,7 @@ include "includes/valAcc.php";
 				include "includes/conect.php";
 				$link=conectarServidor();
 				echo'<select name="prov">';
-				$result=mysqli_query($link,"select NIT_provee, Nom_provee from proveedores, gastos  where nit_prov=NIT_provee group by Nom_provee order by Nom_provee");
+				$result=mysqli_query($link,"select nitProv, Nom_provee from proveedores, gastos  where nit_prov=nitProv group by Nom_provee order by Nom_provee");
 				echo '<option selected value="">---------------------------------------------------------------</option>';
 				while($row=mysqli_fetch_array($result)){
 					echo '<option value='.$row['NIT_provee'].'>'.$row['Nom_provee'].'</option>';

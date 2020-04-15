@@ -7,7 +7,7 @@ include "includes/valAcc.php";
 <title>Lista de &Oacute;rdenes de Pedido Pendientes por Facturar</title>
 <meta charset="utf-8">
 <link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<script type="text/javascript" src="scripts/validar.js"></script>
+	<script  src="scripts/validar.js"></script>
     <script >
 	function seleccionar1(form, checkbox_name)
 	{ 

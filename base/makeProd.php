@@ -15,7 +15,7 @@ foreach ($_POST as $nombre_campo => $valor)
 	//echo $nombre_campo." = ".$valor."<br>";  
 	eval($asignacion); 
 }  
-$prodActivo=0;
+$prodActivo=1;
 $datos = array($codProducto, $nomProducto, $idCatProd , $prodActivo, $densMin , $densMax, $pHmin, $pHmax, $fragancia, $color , $apariencia );
 $ProductoOperador = new ProductosOperaciones();
 
