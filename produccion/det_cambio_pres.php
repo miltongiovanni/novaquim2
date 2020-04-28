@@ -69,31 +69,31 @@ include "includes/valAcc.php";
 				$resultDOP=mysqli_query($link,$qryDOP);
 				$cantidad=$cant_ant;
 				//SE DESCUENTA EL ENVASE
-				$qry_env="select * from inv_envase where Cod_envase = (select Cod_envase from prodpre where Cod_prese=$Cod_prese_ant)";
+				$qry_env="select * from inv_envase where codEnvase = (select codEnvase from prodpre where Cod_prese=$Cod_prese_ant)";
 				$result_env=mysqli_query($link,$qry_env);
 				$row_env=mysqli_fetch_array($result_env);
 				$inv_env=$row_env['inv_envase'];
 				$cod_env=$row_env['Cod_envase'];
 				$inv_env=$inv_env + $cant_ant;
-				$qry_up_env="update inv_envase set inv_envase=$inv_env where Cod_envase=$cod_env";
+				$qry_up_env="update inv_envase set invEnvase=$inv_env where codEnvase=$cod_env";
 				$result_up_env=mysqli_query($link,$qry_up_env);
 				//SE DESCUENTA LA TAPA
-				$qry_val="select * from inv_tapas_val where Cod_tapa = (select Cod_tapa from prodpre where Cod_prese=$Cod_prese_ant)";
+				$qry_val="select * from inv_tapas_val where codTapa = (select codTapa from prodpre where Cod_prese=$Cod_prese_ant)";
 				$result_val=mysqli_query($link,$qry_val);
 				$row_val=mysqli_fetch_array($result_val);
 				$inv_val=$row_val['inv_tapa'];
 				$cod_val=$row_val['Cod_tapa'];
 				$inv_val=$inv_val + $cant_ant;
-				$qry_up_val="update inv_tapas_val set inv_tapa=$inv_val where Cod_tapa=$cod_val";
+				$qry_up_val="update inv_tapas_val set invTapa=$inv_val where codTapa=$cod_val";
 				$result_up_val=mysqli_query($link,$qry_up_val);
 				//SE DESCUENTA LA ETIQUETA
-				$qry_etq="select * from inv_etiquetas where Cod_etiq = (select Cod_etiq from prodpre where Cod_prese=$Cod_prese_ant)";
+				$qry_etq="select * from inv_etiquetas where codEtiq = (select codEtiq from prodpre where Cod_prese=$Cod_prese_ant)";
 				$result_etq=mysqli_query($link,$qry_etq);
 				$row_etq=mysqli_fetch_array($result_etq);
 				$inv_etq=$row_etq['inv_etiq'];
 				$cod_etq=$row_etq['Cod_etiq'];
 				$inv_etq=$inv_etq + $cant_ant;
-				$qry_up_etq="update inv_etiquetas set inv_etiq=$inv_etq where Cod_etiq=$cod_etq";
+				$qry_up_etq="update inv_etiquetas set invEtiq=$inv_etq where codEtiq=$cod_etq";
 				$result_up_etq=mysqli_query($link,$qry_up_etq);
 				mysqli_free_result($resultbus);
 				mysqli_close($link);
@@ -162,31 +162,31 @@ include "includes/valAcc.php";
 		}
 		$cantidad=$cant_nvo;
 		//SE DESCUENTA EL ENVASE
-		$qry_env="select * from inv_envase where Cod_envase = (select Cod_envase from prodpre where Cod_prese=$Cod_prese_nvo)";
+		$qry_env="select * from inv_envase where codEnvase = (select codEnvase from prodpre where Cod_prese=$Cod_prese_nvo)";
 		$result_env=mysqli_query($link,$qry_env);
 		$row_env=mysqli_fetch_array($result_env);
 		$inv_env=$row_env['inv_envase'];
 		$cod_env=$row_env['Cod_envase'];
 		$inv_env=$inv_env - $cantidad;
-		$qry_up_env="update inv_envase set inv_envase=$inv_env where Cod_envase=$cod_env";
+		$qry_up_env="update inv_envase set invEnvase=$inv_env where codEnvase=$cod_env";
 		$result_up_env=mysqli_query($link,$qry_up_env);
 		//SE DESCUENTA LA TAPA
-		$qry_val="select * from inv_tapas_val where Cod_tapa = (select Cod_tapa from prodpre where Cod_prese=$Cod_prese_nvo)";
+		$qry_val="select * from inv_tapas_val where codTapa = (select codTapa from prodpre where Cod_prese=$Cod_prese_nvo)";
 		$result_val=mysqli_query($link,$qry_val);
 		$row_val=mysqli_fetch_array($result_val);
 		$inv_val=$row_val['inv_tapa'];
 		$cod_val=$row_val['Cod_tapa'];
 		$inv_val=$inv_val - $cantidad;
-		$qry_up_val="update inv_tapas_val set inv_tapa=$inv_val where Cod_tapa=$cod_val";
+		$qry_up_val="update inv_tapas_val set invTapa=$inv_val where codTapa=$cod_val";
 		$result_up_val=mysqli_query($link,$qry_up_val);
 		//SE DESCUENTA LA ETIQUETA
-		$qry_etq="select * from inv_etiquetas where Cod_etiq = (select Cod_etiq from prodpre where Cod_prese=$Cod_prese_nvo)";
+		$qry_etq="select * from inv_etiquetas where codEtiq = (select codEtiq from prodpre where Cod_prese=$Cod_prese_nvo)";
 		$result_etq=mysqli_query($link,$qry_etq);
 		$row_etq=mysqli_fetch_array($result_etq);
 		$inv_etq=$row_etq['inv_etiq'];
 		$cod_etq=$row_etq['Cod_etiq'];
 		$inv_etq=$inv_etq - $cantidad;
-		$qry_up_etq="update inv_etiquetas set inv_etiq=$inv_etq where Cod_etiq=$cod_etq";
+		$qry_up_etq="update inv_etiquetas set invEtiq=$inv_etq where codEtiq=$cod_etq";
 		$result_up_etq=mysqli_query($link,$qry_up_etq);
 		mysqli_close($link);
 		echo '<form method="post" action="det_cambio_pres.php" name="form3">';

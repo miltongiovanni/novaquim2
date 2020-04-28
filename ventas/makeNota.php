@@ -120,19 +120,19 @@ if ($crear==3)// SI HAY DEVOLUCIÓN DE PRODUCTOS
 	$cant=$row_fac['Can_producto'];
 	if ($cant>=$cantidad)
 	{
-	  $qryinv="select Id_distribucion, inv_dist from inv_distribucion WHERE Id_distribucion=$cod";
+	  $qryinv="select codDistribucion, invDistribucion from inv_distribucion WHERE codDistribucion=$cod";
 	  $resultinv=mysqli_query($link,$qryinv);
 	  $rowinv=mysqli_fetch_array($resultinv);
 	  $invt=$rowinv['inv_dist'];
 	  if ($invt==NULL)
 	  {
-		$qryupt="insert into inv_distribucion (Id_distribucion, inv_dist) values ($cod, $cantidad)";
+		$qryupt="insert into inv_distribucion (codDistribucion, invDistribucion) values ($cod, $cantidad)";
 	  }
 	  else
 	  {
 		$invt= $invt + $cantidad;
 		//SE ACTUALIZA EL INVENTARIO
-		$qryupt="update inv_distribucion set inv_dist=$invt where Id_distribucion=$cod";
+		$qryupt="update inv_distribucion set invDistribucion=$invt where codDistribucion=$cod";
 	  }
 	  $resultupt=mysqli_query($link,$qryupt);
 	  //INSERCION DEL DETALLE DE LA NOTA DE CREDITOS

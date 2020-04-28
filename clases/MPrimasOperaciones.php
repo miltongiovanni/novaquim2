@@ -58,6 +58,14 @@ class MPrimasOperaciones
         return $result;
     }
 
+    public function getPrecioMPrima($codMPrima)
+    {
+        $qry = "SELECT precioMPrima FROM  mprimas WHERE codMPrima=?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($codMPrima));
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result['precioMPrima'];
+    }
     public function getUltimaMPrimaxCat(int $idCatMPrima)
     {
         $qry = "SELECT codMPrima, catMP
@@ -78,7 +86,12 @@ class MPrimasOperaciones
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute($datos);
     }
-
+    public function updatePrecioMPrima($datos)
+    {
+        $qry = "UPDATE mprimas SET precioMPrima=? WHERE codMPrima=?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute($datos);
+    }
     public function setDb()
     {
 

@@ -114,7 +114,7 @@ include "includes/valAcc.php";
 				}
 				else
 				{
-					$qrybus="SELECT Id_distribucion AS Codigo, inv_dist as Inventario from inv_distribucion WHERE Id_distribucion=$cod;";
+					$qrybus="SELECT Id_distribucion AS Codigo, invDistribucion as Inventario from inv_distribucion WHERE Id_distribucion=$cod;";
 					$resultbus=mysql_db_query($bd,$qrybus);
 					$rowbus=mysql_fetch_array($resultbus, MYSQLI_BOTH);
 					if ($rowbus)

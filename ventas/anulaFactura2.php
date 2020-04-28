@@ -60,20 +60,20 @@ if($result=mysql_db_query($bd,$qry))
 		}
 		else
 		{
-			$qryinv="select Id_distribucion, inv_dist from inv_distribucion WHERE Id_distribucion=$cod_producto;";
+			$qryinv="select codDistribucion, invDistribucion from inv_distribucion WHERE codDistribucion=$cod_producto;";
 			echo $qryinv."<br>";
 			$resultinv=mysql_db_query($bd,$qryinv);
 			$rowinv=mysql_fetch_array($resultinv);
 			$invt=$rowinv['inv_dist'];
 			if ($invt==NULL)
 		  	{
-			$qryupt="insert into inv_distribucion (Id_distribucion, inv_dist) values ($cod_producto, $cantidad)";
+			$qryupt="insert into inv_distribucion (codDistribucion, invDistribucion) values ($cod_producto, $cantidad)";
 		  	}
 			else
 			{
 				$invt= $invt + $unidades;
 				/*SE ACTUALIZA EL INVENTARIO*/
-				$qryupt="update inv_distribucion set inv_dist=$invt where Id_distribucion=$cod_producto";
+				$qryupt="update inv_distribucion set invDistribucion=$invt where codDistribucion=$cod_producto";
 			}
 			$resultupt=mysql_db_query($bd,$qryupt);
 		}

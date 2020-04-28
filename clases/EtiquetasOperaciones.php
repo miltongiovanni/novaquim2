@@ -24,6 +24,15 @@ class EtiquetasOperaciones
         $stmt->execute(array($codEtiqueta));
     }
 
+    public function getPrecioEtiqueta($codEtiqueta)
+    {
+        $qry = "SELECT precEtiqueta FROM  etiquetas WHERE codEtiqueta=?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($codEtiqueta));
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result['precEtiqueta'];
+    }
+
     public function getEtiquetas()
     {
         $qry = "SELECT codEtiqueta, nomEtiqueta FROM etiquetas ORDER BY nomEtiqueta;";
@@ -59,6 +68,12 @@ class EtiquetasOperaciones
         return $result['Codigo'];
     }
 
+    public function updatePrecioEtiqueta($datos)
+    {
+        $qry = "UPDATE etiquetas SET precEtiqueta=? WHERE codEtiqueta=?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute($datos);
+    }
 
     public function updateEtiqueta($datos)
     {                                     

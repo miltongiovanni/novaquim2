@@ -45,13 +45,13 @@ include "includes/conect.php";
 		where Cod_producto=Id_distribucion and Id_remision=$remision AND Cod_producto=$producto;";
 		$result=mysqli_query($link,$qry);
 		$row=mysqli_fetch_array($result);
-		$qry2="select Id_distribucion, inv_dist as Inv from inv_distribucion WHERE Id_distribucion=$producto;";
+		$qry2="select codDistribucion, invDistribucion as Inv from inv_distribucion WHERE codDistribucion=$producto;";
 		echo $qry2."<br>";	
 		$result2=mysqli_query($link,$qry2);
 		$row2=mysqli_fetch_array($result2);	
 		$Inv=$row2['Inv'];	
 		$Inv=$Inv + $cantidad;
-		$qry3="update inv_distribucion set inv_dist=$Inv where Id_distribucion=$producto;";
+		$qry3="update inv_distribucion set invDistribucion=$Inv where codDistribucion=$producto;";
 		echo $qry3."<br>";
 		$result3=mysqli_query($link,$qry3);
 	}			

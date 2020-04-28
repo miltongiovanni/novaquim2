@@ -137,7 +137,7 @@ include "includes/valAcc.php";
 		{
 			$cod=$row_dist['Cod_producto'];
 			$cantidad=$row_dist['Cantidad'];	
-			$qrybus="SELECT Id_distribucion AS Codigo, inv_dist as Inventario from inv_distribucion WHERE Id_distribucion=$cod;";
+			$qrybus="SELECT Id_distribucion AS Codigo, invDistribucion as Inventario from inv_distribucion WHERE Id_distribucion=$cod;";
 			$resultbus=mysqli_query($link,$qrybus);
 			$rowbus=mysqli_fetch_array($resultbus);
 			if ($rowbus)

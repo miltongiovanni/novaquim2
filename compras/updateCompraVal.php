@@ -32,7 +32,7 @@ include "includes/conect.php";
 		eval($asignacion); 
 	}  
 	$link=conectarServidor();
-	$qry="select Id_compra, nom_tapa, Codigo, Cantidad FROM det_compras, tapas_val where Id_compra=$Factura AND Codigo=$codigo and Codigo=Cod_tapa;";
+	$qry="select idCompra, nom_tapa, Codigo, Cantidad FROM det_compras, tapas_val where idCompra=$Factura AND Codigo=$codigo and Codigo=Cod_tapa;";
 	$result=mysql_db_query("novaquim",$qry);
 	$row=mysql_fetch_array($result);
 	$codigo=$row['Codigo'];

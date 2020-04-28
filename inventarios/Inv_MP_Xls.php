@@ -34,9 +34,9 @@ $objPHPExcel->setActiveSheetIndex(0)
 $objPHPExcel->getActiveSheet()->setTitle('Inventario MP');
 $link=conectarServidor();
 $bd="novaquim";
-$sql="SELECT inv_mprimas.Cod_mprima as Codigo, Nom_mprima, Lote_mp, inv_mp, Precio_mp 
+$sql="SELECT inv_mprimas.codMP as Codigo, Nom_mprima, Lote_mp, inv_mp, Precio_mp 
 FROM inv_mprimas, mprimas
-where inv_mprimas.Cod_mprima=mprimas.Cod_mprima order by Nom_mprima;";
+where inv_mprimas.codMP=mprimas.Cod_mprima order by Nom_mprima;";
 $result=mysqli_query($link,$sql) or die("Error al conectar a la base de datos.");
 $i=2;
 while($row= mysqli_fetch_array($result, MYSQLI_BOTH))

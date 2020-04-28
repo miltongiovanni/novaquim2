@@ -18,13 +18,13 @@ include "includes/conect.php";
 	}  
 	$bd="novaquim";
 	//ELIMINA DE LA COMPRA
-	$qryinv="delete from det_compras where Id_compra=$Factura and Codigo=$codigo";
+	$qryinv="delete from det_compras where idCompra=$Factura and Codigo=$codigo";
 	echo $qryinv;
 	echo'<form action="detCompraval.php" method="post" name="formulario">';
 	$link=conectarServidor();
 	$result=mysql_db_query($bd,$qryinv);
 	//ELIMINA DEL INVENTARIO
-	$qryinv="select Cod_tapa, inv_tapa from inv_tapas_val WHERE Cod_tapa=$codigo;";
+	$qryinv="select codTapa, invTapa from inv_tapas_val WHERE codTapa=$codigo;";
 	$resultinv=mysql_db_query($bd,$qryinv);
 	$rowinv=mysql_fetch_array($resultinv);
 	$inv=$rowinv['inv_tapa'];	
@@ -34,7 +34,7 @@ include "includes/conect.php";
 	echo "despues";
 	$inv= $inv-$cantidad;
 	echo $inv;
-	$qryup="update inv_tapas_val set inv_tapa=$inv where Cod_tapa=$codigo;";
+	$qryup="update inv_tapas_val set invTapa=$inv where codTapa=$codigo;";
 	echo $qryup;
 	$resultup=mysql_db_query($bd,$qryup);
 	echo "<br>";

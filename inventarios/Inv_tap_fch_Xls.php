@@ -34,7 +34,7 @@ $objPHPExcel->setActiveSheetIndex(0)
 // Rename sheet
 $objPHPExcel->getActiveSheet()->setTitle('Inventario Env Fch');
 $link=conectarServidor();
-$sql="SELECT inv_tapas_val.Cod_tapa as Codigo, Nom_tapa as Producto, inv_tapa as Cantidad, Pre_tapa from inv_tapas_val, tapas_val where inv_tapas_val.Cod_tapa=tapas_val.Cod_tapa;";
+$sql="SELECT inv_tapas_val.codTapa as Codigo, Nom_tapa as Producto, invTapa as Cantidad, Pre_tapa from inv_tapas_val, tapas_val where inv_tapas_val.codTapa=tapas_val.Cod_tapa;";
 $result=mysqli_query($link,$sql) or die("Error al conectar a la base de datos.");
 $i=2;
 while($row= mysqli_fetch_array($result, MYSQLI_BOTH))
@@ -46,7 +46,7 @@ while($row= mysqli_fetch_array($result, MYSQLI_BOTH))
 	$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(3, $i,iconv("iso-8859-1", "UTF-8", $row['Cantidad']));
 	
 	//ENTRADA POR COMPRAS
-  $sqle1="select sum(Cantidad) as entrada1 from compras, det_compras where compra=2 and compras.Id_compra=det_compras.Id_compra and Fech_comp>='$Fch' and Codigo=$prod;";
+  $sqle1="select sum(Cantidad) as entrada1 from compras, det_compras where tipoCompra=2 and compras.Id_compra=det_compras.idCompra and Fech_comp>='$Fch' and Codigo=$prod;";
   $resulte1=mysqli_query($link,$sqle1);
   $rowe1=mysqli_fetch_array($resulte1, MYSQLI_BOTH);
   if($rowe1['entrada1']==NULL)

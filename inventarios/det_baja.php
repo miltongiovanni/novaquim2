@@ -105,7 +105,7 @@ include "includes/valAcc.php";
 			alert("pausa")
 			</script>';
 		$resultins_d=mysqli_query($link,$qryins_d);
-		$qryinv="select Id_distribucion, inv_dist from inv_distribucion WHERE Id_distribucion=$cod_producto;";
+		$qryinv="select Id_distribucion, invDistribucion from inv_distribucion WHERE Id_distribucion=$cod_producto;";
 		$resultinv=mysql_db_query($bd,$qryinv);
 		$unidades=$cantidad;
 		while($rowinv=mysqli_fetch_array($resultinv))
@@ -113,7 +113,7 @@ include "includes/valAcc.php";
 			$invt=$rowinv['inv_dist'];
 			$cod_prod=$rowinv['Id_distribucion'];
 			$invt= $invt - $unidades;
-			$qryupt="update inv_distribucion set inv_dist=$invt where Id_distribucion=$cod_prod";
+			$qryupt="update inv_distribucion set invDistribucion=$invt where Id_distribucion=$cod_prod";
 			$resultupt=mysqli_query($link,$qryupt);
 		}
 		echo '<form method="post" action="det_baja.php" name="form3">';
@@ -183,7 +183,7 @@ include "includes/valAcc.php";
 		<tr>
 			<td colspan="4"><div align="center">';
 		echo'<select name="cod_producto">';
-		$result=mysqli_query($link,"select inv_distribucion.Id_distribucion as Codigo, Producto from inv_distribucion, distribucion where inv_distribucion.Id_distribucion=distribucion.Id_distribucion AND inv_dist>0 and Activo=0 order by Producto ");
+		$result=mysqli_query($link,"select inv_distribucion.Id_distribucion as Codigo, Producto from inv_distribucion, distribucion where inv_distribucion.Id_distribucion=distribucion.Id_distribucion AND invDistribucion>0 and Activo=0 order by Producto ");
 		while($row=mysqli_fetch_array($result))
 		{
 			echo '<option value='.$row['Codigo'].'>'.$row['Producto'].'</option>';

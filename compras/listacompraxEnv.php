@@ -46,8 +46,8 @@ include "includes/utilTabla.php";
 
 <?php
 	$link=conectarServidor();
-	$sql="select Fech_comp as 'Fecha de Compra', Nom_provee as Proveedor, Dir_provee as Dirección, Tel_provee as Teléfono, Round(Precio,2) as 'Precio sin IVA', Round(Cantidad,0) as Cantidad 
-from compras, det_compras, proveedores where compras.Id_compra=det_compras.Id_compra and compra=2 and Codigo=$IdEnvTap and nit_prov=nitProv order by Fech_comp desc";
+	$sql="select fechComp as 'Fecha de Compra', Nom_provee as Proveedor, Dir_provee as Dirección, Tel_provee as Teléfono, Round(Precio,2) as 'Precio sin IVA', Round(Cantidad,0) as Cantidad 
+from compras, det_compras, proveedores where compras.idCompra=det_compras.idCompra and tipoCompra=2 and Codigo=$IdEnvTap and nit_prov=nitProv order by fechComp desc";
     //sentencia SQL    tblusuarios.IdUsuario,
 	//llamar funcion de tabla
 	verTabla($sql, $link);

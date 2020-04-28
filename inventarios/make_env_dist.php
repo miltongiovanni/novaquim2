@@ -16,7 +16,7 @@ mysqli_close($link);
 if($result)
 {  
 	$link=conectarServidor();
-	$qryInv="insert into inv_envase (Cod_envase, Nom_envase) values ($cod_env,'$nom_env')";
+	$qryInv="insert into inv_envase (codEnvase, Nom_envase) values ($cod_env,'$nom_env')";
 	$resultInv=mysqli_query($link,$qryInv);
 	//$perfil1=$_SESSION['Perfil'];
 	$ruta="menu.php";

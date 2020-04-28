@@ -21,7 +21,7 @@ foreach ($_POST as $nombre_campo => $valor)
 }  
     $link=conectarServidor();  
 	$bd="novaquim";   
-	$qrybus="select mprimas.Cod_mprima, Nom_mprima from mprimas, inv_mprimas where mprimas.Cod_mprima=inv_mprimas.Cod_mprima and Estado_MP='C' and mprimas.Cod_mprima=$IdMP";
+	$qrybus="select mprimas.Cod_mprima, Nom_mprima from mprimas, inv_mprimas where mprimas.Cod_mprima=inv_mprimas.codMP and Estado_MP='C' and mprimas.Cod_mprima=$IdMP";
 	$resultbus=mysql_db_query($bd,$qrybus);
 	$rowbus=mysql_fetch_array($resultbus);
 ?>
@@ -35,7 +35,7 @@ foreach ($_POST as $nombre_campo => $valor)
 		<?php
 			$link=conectarServidor();
 			echo'<select name="Lote_MP">';
-			$result=mysql_db_query("novaquim","select inv_mprimas.Lote_mp from mprimas, inv_mprimas where mprimas.Cod_mprima=inv_mprimas.Cod_mprima and Estado_MP='C' and mprimas.Cod_mprima=$IdMP");
+			$result=mysql_db_query("novaquim","select inv_mprimas.loteMP from mprimas, inv_mprimas where mprimas.Cod_mprima=inv_mprimas.codMP and Estado_MP='C' and mprimas.Cod_mprima=$IdMP");
 			$total=mysql_num_rows($result);
 			echo '<option selected value="">----------------</option>';
 			while($row=mysql_fetch_array($result))

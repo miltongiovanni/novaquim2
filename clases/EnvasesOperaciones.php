@@ -32,6 +32,16 @@ class EnvasesOperaciones
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
+
+    public function getPrecioEnvase($codEnvase)
+    {
+        $qry = "SELECT precEnvase FROM  envases WHERE codEnvase=?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($codEnvase));
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result['precEnvase'];
+    }
+
     public function getTableEnvases()
     {
         $qry = "select codEnvase, nomEnvase, stockEnvase from envases;";
@@ -68,6 +78,12 @@ class EnvasesOperaciones
         $stmt->execute($datos);
     }
 
+    public function updatePrecioEnvase($datos)
+    {
+        $qry = "UPDATE envases SET precEnvase=? WHERE codEnvase=?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute($datos);
+    }
     public function setDb()
     {
 

@@ -35,7 +35,7 @@ include "includes/conect.php";
 	$link=conectarServidor();
 	if($codigo<100)
 	{
-		$qry="select Id_compra, Codigo, Nom_envase, Cantidad, Precio from det_compras, envase where Id_compra=$Factura and Codigo=$codigo and Codigo=Cod_envase;";
+		$qry="select idCompra, Codigo, Nom_envase, Cantidad, Precio from det_compras, envase where idCompra=$Factura and Codigo=$codigo and Codigo=Cod_envase;";
 		$result=mysqli_query($link,$qry);
 		$row=mysqli_fetch_array($result);
 		$codigo=$row['Codigo'];
@@ -62,7 +62,7 @@ include "includes/conect.php";
 	}
 	else
 	{
-		$qry="select Id_compra, nom_tapa, Codigo, Cantidad, Precio FROM det_compras, tapas_val where Id_compra=$Factura AND Codigo=$codigo and Codigo=Cod_tapa;";
+		$qry="select idCompra, nom_tapa, Codigo, Cantidad, Precio FROM det_compras, tapas_val where idCompra=$Factura AND Codigo=$codigo and Codigo=Cod_tapa;";
 		$result=mysqli_query($link,$qry);
 		$row=mysqli_fetch_array($result);
 		$codigo=$row['Codigo'];

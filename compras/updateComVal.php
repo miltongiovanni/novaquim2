@@ -17,17 +17,17 @@ include "includes/conect.php";
 		eval($asignacion); 
 	}  
 	$bd="novaquim";
-	$qryinv="update det_compras set Cantidad=$cantidad where Id_compra=$Factura and Codigo=$codigo";
+	$qryinv="update det_compras set Cantidad=$cantidad where idCompra=$Factura and Codigo=$codigo";
 	echo'<form action="detCompraval.php" method="post" name="formulario">';
 	$link=conectarServidor();
 	$result=mysql_db_query($bd,$qryinv);
-	$qryinv="select Cod_tapa, inv_tapa from inv_tapas_val WHERE Cod_tapa=$codigo;";
+	$qryinv="select codTapa, invTapa from inv_tapas_val WHERE codTapa=$codigo;";
 	$resultinv=mysql_db_query($bd,$qryinv);
 	$rowinv=mysql_fetch_array($resultinv);
 	$inv=$rowinv['inv_tapa'];		
 	$dif=$cantidad-$cant_ant;
 	$inv=$inv+$dif;
-	$qryup="update inv_tapas_val set inv_tapa=$inv where Cod_tapa=$codigo;";
+	$qryup="update inv_tapas_val set invTapa=$inv where codTapa=$codigo;";
 	$resultup=mysql_db_query($bd,$qryup);
 	echo '<input name="Factura" type="hidden" value="'.$Factura.'"/>
 	<input name="CrearFactura" type="hidden" value="5"/>

@@ -27,24 +27,24 @@ $precio = $PrecioOperador->getPrecio($codigoGen);
 
     <form id="form1" name="form1" method="post" action="updateCod.php">
       <div class="form-group row">
-        <label class="col-form-label col-1" style="text-align: right;" for="codigoGen"><strong>Código</strong></label>
+        <label class="col-form-label col-1"  for="codigoGen"><strong>Código</strong></label>
         <input type="text" class="form-control col-2" name="codigoGen" id="codigoGen" maxlength="50"
           value="<?=$precio['codigoGen'];?>" readonly>
       </div>
       <div class="form-group row">
-        <label class="col-form-label col-1" style="text-align: right;"
+        <label class="col-form-label col-1"
           for="producto"><strong>Descripción</strong></label>
         <input type="text" class="form-control col-2" name="producto" id="producto" maxlength="50"
           value="<?=$precio['producto'];?>" readonly>
       </div>
       <div class="form-group row">
-        <label class="col-form-label col-1" style="text-align: right;" for="fabrica"><strong>Precio
+        <label class="col-form-label col-1"  for="fabrica"><strong>Precio
             fábrica</strong></label>
         <input type="text" class="form-control col-2" name="fabrica" id="fabrica" maxlength="50"
           value="<?=$precio['fabrica'];?>" onKeyPress="return aceptaNum(event)">
       </div>
       <div class="form-group row">
-        <label class="col-form-label col-1" style="text-align: right;" for="presActiva"><strong>Activo</strong></label>
+        <label class="col-form-label col-1"  for="presActiva"><strong>Activo</strong></label>
         <?php
         if ($precio['presActiva'] == 1) {
             echo '<select name="presActiva" class="form-control col-2" id="presActiva">';
@@ -60,7 +60,7 @@ $precio = $PrecioOperador->getPrecio($codigoGen);
         ?>
       </div>
       <div class="form-group row">
-        <label class="col-form-label col-1" style="text-align: right;" for="presLista"><strong>En lista</strong></label>
+        <label class="col-form-label col-1"  for="presLista"><strong>En lista</strong></label>
         <?php
         if ($precio['presLista'] == 1) {
             echo '<select name="presLista" class="form-control col-2" id="presLista">';
@@ -76,11 +76,11 @@ $precio = $PrecioOperador->getPrecio($codigoGen);
         ?>
       </div>
       <div class="form-group row">
-        <div class="col-1" style="text-align: center;">
+        <div class="col-1 text-center" >
           <button class="button" 
             onclick="return Enviar(this.form)"><span>Continuar</span></button>
         </div>
-        <div class="col-1" style="text-align: center;">
+        <div class="col-1 text-center" >
           <button class="button"  type="reset"><span>Reiniciar</span></button>
         </div>
       </div>

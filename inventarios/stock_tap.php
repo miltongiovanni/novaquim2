@@ -30,8 +30,8 @@ include "includes/valAcc.php";
 include "includes/utilTabla.php";
 include "includes/conect.php" ;
 $link=conectarServidor();
-$sql="	select inv_tapas_val.Cod_tapa as Codigo, Nom_tapa as Producto, inv_tapa as Cantidad, stock_tapa from inv_tapas_val, tapas_val
-WHERE inv_tapas_val.Cod_tapa=tapas_val.Cod_tapa; ";
+$sql="	select inv_tapas_val.codTapa as Codigo, Nom_tapa as Producto, invTapa as Cantidad, stock_tapa from inv_tapas_val, tapas_val
+WHERE inv_tapas_val.codTapa=tapas_val.Cod_tapa; ";
 $result=mysqli_query($link,$sql);
 $a=1;
 while($row=mysqli_fetch_array($result, MYSQLI_BOTH))

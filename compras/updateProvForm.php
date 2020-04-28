@@ -83,29 +83,29 @@ $proveedor = $ProveedorOperador->getProveedor($idProv);
     <form id="form1" name="form1" method="post" action="updateProv.php">
         <input type="hidden" class="form-control col-2" name="idProv" id="idProv" value="<?= $idProv ?>">
         <div class="form-group row">
-            <label class="col-form-label col-2" style="text-align: right;" for="nitProv"><strong>NIT</strong></label>
+            <label class="col-form-label col-2 text-right"  for="nitProv"><strong>NIT</strong></label>
             <input type="text" class="form-control col-2" name="nitProv" id="nitProv"
                    value="<?= $proveedor['nitProv'] ?>" readOnly>
-            <label class="col-form-label col-2" style="text-align: right;"
+            <label class="col-form-label col-2 text-right"
                    for="nomProv"><strong>Proveedor</strong></label>
             <input type="text" class="form-control col-2" name="nomProv" id="nomProv"
                    value="<?= $proveedor['nomProv'] ?>">
-            <label class="col-form-label col-2" style="text-align: right;" for="contProv"><strong>Nombre
+            <label class="col-form-label col-2 text-right"  for="contProv"><strong>Nombre
                     Contacto</strong></label>
             <input type="text" class="form-control col-2" name="contProv" id="contProv"
                    value="<?= $proveedor['contProv'] ?>">
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-2" style="text-align: right;"
+            <label class="col-form-label col-2 text-right"
                    for="dirProv"><strong>Dirección</strong></label>
             <input type="text" class="form-control col-2" name="dirProv" id="dirProv"
                    value="<?= $proveedor['dirProv'] ?>">
-            <label class="col-form-label col-2" style="text-align: right;"
+            <label class="col-form-label col-2 text-right"
                    for="telProv"><strong>Teléfono</strong></label>
             <input type="text" class="form-control col-2" name="telProv" id="telProv"
                    value="<?= $proveedor['telProv'] ?>"
                    onKeyPress="return aceptaNum(event)">
-            <label class="col-form-label col-2" style="text-align: right;" for="emailProv"><strong>Correo
+            <label class="col-form-label col-2 text-right"  for="emailProv"><strong>Correo
                     electrónico</strong></label>
             <input type="email" class="form-control col-2" name="emailProv" id="emailProv"
                    value="<?= $proveedor['emailProv'] ?>">
@@ -174,6 +174,20 @@ $proveedor = $ProveedorOperador->getProveedor($idProv);
             }
             echo '</select>';
             ?>
+            <label class="col-form-label col-2" for="idRetefuente"><strong>Tasa Retefuente</strong></label>
+            <?php
+            $manager = new TasaRetefuenteOperaciones();
+            $categorias=$manager->getTasasRetefuente();
+            $filas = count($categorias);
+            echo '<select name="idRetefuente" id="idRetefuente" class="form-control col-2" >';
+            echo '<option selected value="' . $proveedor['idRetefuente'] . '">' . $proveedor['retefuente'] . '</option>';
+            for ($i = 0; $i < $filas; $i++) {
+                if ($proveedor['idRetefuente'] != $categorias[$i]["idTasaRetefuente"]) {
+                    echo '<option value="' . $categorias[$i]["idTasaRetefuente"] . '">' . $categorias[$i]['retefuente'] . '</option>';
+                }
+            }
+            echo '</select>';
+            ?>
             <label class="col-form-label col-2" for="regProv"><strong>Estado Proveedor</strong></label>
             <select name="estProv" id="estProv" class="form-control col-2">
                 <?php
@@ -192,10 +206,10 @@ $proveedor = $ProveedorOperador->getProveedor($idProv);
             </select>
         </div>
         <div class="form-group row">
-            <div class="col-2" style="text-align: center;">
+            <div class="col-2 text-center" >
                 <button class="button" onclick="return Enviar(this.form)"><span>Actualizar Proveedor</span></button>
             </div>
-            <div class="col-1" style="text-align: center;">
+            <div class="col-1 text-center" >
                 <button class="button" type="reset"><span>Reiniciar</span></button>
             </div>
         </div>

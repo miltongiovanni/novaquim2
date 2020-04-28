@@ -47,8 +47,8 @@ include "includes/conect.php" ;
 $link=conectarServidor();
 //conectar con la tabla (ej. use datos;)
 //sentencia SQL    tblusuarios.IdUsuario,
-$sql="	SELECT inv_mprimas.Cod_mprima as Codigo, Nom_mprima as Nombre, sum(inv_mp) as inventario FROM inv_mprimas, mprimas
-where inv_mprimas.Cod_mprima=mprimas.Cod_mprima group by Codigo order by Nombre;";
+$sql="	SELECT inv_mprimas.codMP as Codigo, Nom_mprima as Nombre, sum(inv_mp) as inventario FROM inv_mprimas, mprimas
+where inv_mprimas.codMP=mprimas.Cod_mprima group by Codigo order by Nombre;";
 $result=mysqli_query($link,$sql);
 $a=1;
 
@@ -66,7 +66,7 @@ while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
 	<td class="formatoDatos"><div align="left">'.$row['Nombre'].'</div></td>
 	<td class="formatoDatos"><div align="center"><script > document.write(commaSplit('.$invt_ini.'))</script></div></td>';
 	//ENTRADA POR COMPRA DE MATERIA PRIMA
-	$sqle="select Codigo, sum(Cantidad) as entrada from det_compras, compras where Codigo=$prod and det_compras.Id_compra=compras.Id_compra and compra=1 and Fech_comp>='$Fch' group by Codigo";
+	$sqle="select Codigo, sum(Cantidad) as entrada from det_compras, compras where Codigo=$prod and det_compras.idCompra=compras.idCompra and tipoCompra=1 and fechComp>='$Fch' group by Codigo";
 	$resulte=mysqli_query($link,$sqle);
 	$rowe=mysqli_fetch_array($resulte, MYSQLI_BOTH);
 	if($rowe['entrada']==NULL)

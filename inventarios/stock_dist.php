@@ -30,8 +30,8 @@ include "includes/valAcc.php";
 include "includes/utilTabla.php";
 include "includes/conect.php" ;
 $link=conectarServidor();
-$sql="select distribucion.Id_distribucion as Código, Producto, inv_dist as Inventario, stock_dis as 'Stock Mínimo' 
-from distribucion, inv_distribucion where distribucion.Id_distribucion=inv_distribucion.Id_distribucion order by Producto; ";
+$sql="select distribucion.Id_distribucion as Código, Producto, invDistribucion as Inventario, stock_dis as 'Stock Mínimo' 
+from distribucion, inv_distribucion where distribucion.Id_distribucion=inv_distribucion.codDistribucion order by Producto; ";
 $result=mysqli_query($link,$sql);
 $a=1;
 while($row=mysqli_fetch_array($result, MYSQLI_BOTH))

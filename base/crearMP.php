@@ -59,18 +59,18 @@ spl_autoload_register('cargarClases');
                         }
                         echo '</select>';
                 ?>
-                <label class="col-form-label col-1" style="text-align: right;" for="codMPrima"><strong>Código</strong></label>
+                <label class="col-form-label col-1 text-right"  for="codMPrima"><strong>Código</strong></label>
                 <input type="text" class="form-control col-2" name="codMPrima" id="codMPrima" readOnly>
-                <label class="col-form-label col-1" style="text-align: right;"
+                <label class="col-form-label col-1 text-right"
                     for="aliasMPrima"><strong>Alias M Prima</strong></label>
                 <input type="text" class="form-control col-2" name="aliasMPrima" id="aliasMPrima" readOnly>
 
             </div>
             <div class="form-group row">
-                <label class="col-form-label col-1" style="text-align: right;"
+                <label class="col-form-label col-1 text-right"
                     for="nomMPrima"><strong>Materia Prima</strong></label>
                 <input type="text" class="form-control col-2" name="nomMPrima" id="nomMPrima">
-                <label class="col-form-label col-1" style="text-align: right;" for="aparienciaMPrima"><strong>Apariencia</strong></label>
+                <label class="col-form-label col-1 text-right"  for="aparienciaMPrima"><strong>Apariencia</strong></label>
                 <input type="text" class="form-control col-2" name="aparienciaMPrima" id="aparienciaMPrima" onKeyPress="return aceptaLetra(event)">
                 
             </div>
@@ -89,29 +89,29 @@ spl_autoload_register('cargarClases');
                         }
                         echo '</select>';
                 ?>
-                <label class="col-form-label col-1" style="text-align: right;" for="minStockMprima"><strong>Stock Min</strong></label>
+                <label class="col-form-label col-1 text-right"  for="minStockMprima"><strong>Stock Min</strong></label>
                 <input type="text" class="form-control col-2" name="minStockMprima" id="minStockMprima" onKeyPress="return aceptaNum(event)">
             </div>
             <div class="form-group row">
-                <label class="col-form-label col-1" style="text-align: right;" for="pHmPrima"><strong>pH</strong></label>
+                <label class="col-form-label col-1 text-right"  for="pHmPrima"><strong>pH</strong></label>
                 <input type="text" class="form-control col-2" name="pHmPrima" id="pHmPrima" placeholder="Si no tiene escribir N.A.">
-                <label class="col-form-label col-1" style="text-align: right;" for="densidadMPrima"><strong>Densidad</strong></label>
+                <label class="col-form-label col-1 text-right"  for="densidadMPrima"><strong>Densidad</strong></label>
                 <input type="text" class="form-control col-2" name="densidadMPrima" id="densidadMPrima" placeholder="Si no tiene escribir N.A.">
             </div>
 
             <div class="form-group row">
-                <label class="col-form-label col-1" style="text-align: right;" for="colorMPrima"><strong>Color</strong></label>
+                <label class="col-form-label col-1 text-right"  for="colorMPrima"><strong>Color</strong></label>
                 <input type="text" class="form-control col-2" name="colorMPrima" id="colorMPrima" onKeyPress="return aceptaLetra(event)" maxlength="30">
-                <label class="col-form-label col-1" style="text-align: right;" for="olorMPrima"><strong>Olor</strong></label>
+                <label class="col-form-label col-1 text-right"  for="olorMPrima"><strong>Olor</strong></label>
                 <input type="text" class="form-control col-2" name="olorMPrima" id="olorMPrima" onKeyPress="return aceptaLetra(event)" maxlength="30">                
             </div>
                 
             <div class="form-group row">
-                <div class="col-1" style="text-align: center;">
+                <div class="col-1 text-center" >
                     <button class="button" 
                         onclick="return Enviar(this.form)"><span>Continuar</span></button>
                 </div>
-                <div class="col-1" style="text-align: center;">
+                <div class="col-1 text-center" >
                     <button class="button"  type="reset"><span>Reiniciar</span></button>
                 </div>
             </div>

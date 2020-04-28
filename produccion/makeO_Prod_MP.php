@@ -62,10 +62,10 @@ if($resultOP=mysqli_query($link,$qryOP))
 		{
 			$uso=$uso*1.015;
 		}		
-		$qryexist="SELECT inv_mprimas.Cod_mprima as Codigo, Nom_mprima as 'Materia Prima', SUM(inv_mp) as Existencias
+		$qryexist="SELECT inv_mprimas.codMP as Codigo, Nom_mprima as 'Materia Prima', SUM(invMP) as Existencias
 				   FROM inv_mprimas, mprimas
-				   WHERE inv_mprimas.Cod_mprima=mprimas.Cod_mprima AND inv_mprimas.Cod_mprima=$cod_mprima
-				   group BY inv_mprimas.Cod_mprima;";
+				   WHERE inv_mprimas.codMP=mprimas.Cod_mprima AND inv_mprimas.codMP=$cod_mprima
+				   group BY inv_mprimas.codMP;";
 		$resultexist=mysqli_query($link,$qryexist);
 		$rowexist=mysqli_fetch_array($resultexist);
 		$exist=$rowexist['Existencias'];
@@ -82,9 +82,9 @@ if($resultOP=mysqli_query($link,$qryOP))
 		else
 		{
 			$uso1=$uso;
-			$qryinv="SELECT inv_mprimas.Cod_mprima as Codigo, Nom_mprima as 'Materia Prima', Lote_mp as 'Lote MP', Fecha_lote as 'Fecha Lote', inv_mp as Inventario
+			$qryinv="SELECT inv_mprimas.codMP as Codigo, Nom_mprima as 'Materia Prima', loteMP as 'Lote MP', fechLote as 'Fecha Lote', invMP as Inventario
 					FROM inv_mprimas, mprimas
-					WHERE inv_mprimas.Cod_mprima=mprimas.Cod_mprima AND inv_mprimas.Cod_mprima=$cod_mprima order by Fecha_lote;";
+					WHERE inv_mprimas.codMP=mprimas.Cod_mprima AND inv_mprimas.codMP=$cod_mprima order by fechLote;";
 			//echo $qryinv.'<br>';
 			$resultinv=mysqli_query($link,$qryinv);
 			while($rowinv=mysqli_fetch_array($resultinv))
@@ -95,7 +95,7 @@ if($resultOP=mysqli_query($link,$qryOP))
 				if ($invt >= $uso1)
 				{
 					$invt= $invt - $uso1;
-					$qryupt="update inv_mprimas set inv_mp=$invt where Lote_mp='$lot_mp' and Cod_mprima=$cod_mp";
+					$qryupt="update inv_mprimas set invMP=$invt where loteMP='$lot_mp' and codMP=$cod_mp";
 					//echo $qryupt;
 					$resultupt=mysqli_query($link,$qryupt);
 					
@@ -107,7 +107,7 @@ if($resultOP=mysqli_query($link,$qryOP))
 				else
 				{
 					$uso1= $uso1 - $invt ;
-					$qryupt="update inv_mprimas set inv_mp=0 where Lote_mp='$lot_mp' and Cod_mprima=$cod_mp";
+					$qryupt="update inv_mprimas set invMP=0 where loteMP='$lot_mp' and codMP=$cod_mp";
 					$resultupt=mysqli_query($link,$qryupt);
 					if ($invt>0)
 					{
@@ -123,7 +123,7 @@ if($resultOP=mysqli_query($link,$qryOP))
 	echo'<form action="detO_Prod_MP.php" method="post" name="formulario">';
 	echo '<input name="Lote" type="hidden" value="'.$Lote.'"><input type="submit" name="Submit" value="Cambiar" >';
 	echo'</form>';
-	$qryinsol="insert into inv_mprimas (Lote_mp, Cod_mprima, inv_mp, Fecha_lote) values ($Orden, $cod_matp, $can_prod, '$FchProd')";
+	$qryinsol="insert into inv_mprimas (loteMP, codMP, invMP, fechLote) values ($Orden, $cod_matp, $can_prod, '$FchProd')";
 	echo "<br><br><br><br><br><br><br><br><br>";
 	$resultinsol=mysqli_query($link,$qryinsol);
 	mysqli_commit($link);

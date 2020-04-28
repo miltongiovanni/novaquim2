@@ -40,7 +40,7 @@ include "includes/conect.php";
 	</tr>
     <?php 
 		$link=conectarServidor();
-		$qry="select Lote_mp, inv_mp from inv_mprimas where Cod_mprima=$IdMP;";
+		$qry="select loteMP, inv_mp from inv_mprimas where Cod_mprima=$IdMP;";
 		$i=0;
 		$a=1;
 		if ($result=mysqli_query($link,$qry))

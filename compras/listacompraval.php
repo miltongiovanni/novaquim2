@@ -55,7 +55,7 @@ $link=conectarServidorBD($servidorBD, $usuario, $password);
 //conectar con la tabla (ej. use datos;)
 conectarBD($database, $link);  
 //sentencia SQL    tblusuarios.IdUsuario,
-$sql="	SELECT Id_compra, nit_prov as NIT, Nom_provee AS Proveedor, Num_fact as Factura, Fech_comp as 'Fecha Compra',
+$sql="	SELECT idCompra, nit_prov as NIT, Nom_provee AS Proveedor, Num_fact as Factura, Fech_comp as 'Fecha Compra',
 Fech_venc as 'Fecha Vcmto', estado as Estado, total_fact as Total
 FROM compras, proveedores
 WHERE compras.nit_prov=proveedores.nitProv and compra=3
@@ -80,7 +80,7 @@ while($row=mysql_fetch_array($result, MYSQLI_BOTH))
 	
 	echo'</tr>';
 	$sqli="select Codigo, Nom_tapa as Producto, Cantidad, Precio from det_compras, tapas_val
-where Codigo=Cod_tapa and Id_compra=$id_com;";
+where Codigo=Cod_tapa and idCompra=$id_com;";
 	$resulti=mysql_db_query($database,$sqli);
 	echo '<tr><td colspan="7"><div class="commenthidden" id="UniqueName'.$a.'"><table width="70%" border="0" align="center" cellspacing="0" bordercolor="#CCCCCC">
 	<tr>

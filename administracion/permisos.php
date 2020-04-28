@@ -166,11 +166,11 @@ spl_autoload_register('cargarClases');
 			//echo "el valor del indice1 final es $indice";
 			?>
 			<div class="form-group row">
-				<div class="col-1" style="text-align: center;">
+				<div class="col-1 text-center">
 					<button class="button" 
 						onclick="return Enviar(this.form)"><span>Guardar</span></button>
 				</div>
-				<div class="col-1" style="text-align: center;">
+				<div class="col-1 text-center" >
 					<button class="button"  type="reset"><span>Reiniciar</span></button>
 				</div>
 			</div>

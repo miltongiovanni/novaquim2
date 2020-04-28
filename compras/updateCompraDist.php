@@ -32,7 +32,7 @@ include "includes/conect.php";
 		eval($asignacion); 
 	}  
 	$link=conectarServidor();
-	$qry="select Codigo, Producto, Cantidad, Precio from det_compras, distribucion WHERE Id_compra=$factura and Codigo=$codigo AND 	Codigo=Id_distribucion;";
+	$qry="select Codigo, Producto, Cantidad, Precio from det_compras, distribucion WHERE idCompra=$factura and Codigo=$codigo AND 	Codigo=Id_distribucion;";
 	$result=mysqli_query($link, $qry);
 	$row=mysqli_fetch_array($result);
 	$codigo=$row['Codigo'];

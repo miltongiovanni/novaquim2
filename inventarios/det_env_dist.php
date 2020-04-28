@@ -26,22 +26,22 @@ mysqli_autocommit($link, FALSE);
 	$qryins="insert into det_env_dist (Id_env_dist, Fch_env_dist, Cod_dist, Cantidad) values ($Orden, '$Fecha', $IdDist, $Cantidad)";
 	$resultins=mysqli_query($link,$qryins);
 	//SE CARGA EN EL INVENTARIO
-	$qry_dist="select Id_distribucion, inv_dist from inv_distribucion where Id_distribucion=$IdDist;";
+	$qry_dist="select codDistribucion, invDistribucion from inv_distribucion where codDistribucion=$IdDist;";
 	$result_dist=mysqli_query($link,$qry_dist);
 	$row_dist=mysqli_fetch_array($result_dist);
 	if ($row_dist['inv_dist'])
 	{
 		$inv_dist=$row_dist['inv_dist']+$Cantidad;
-		$qry_up_dist="update inv_distribucion set inv_dist=$inv_dist where Id_distribucion=$IdDist";
+		$qry_up_dist="update inv_distribucion set invDistribucion=$inv_dist where codDistribucion=$IdDist";
 		$result_up_env=mysqli_query($link,$qry_up_dist);
 	}
 	else
 	{	
-		$qryins_dist="insert into inv_distribucion (Id_distribucion, inv_dist) values ($IdDist, $Cantidad)";
+		$qryins_dist="insert into inv_distribucion (codDistribucion, invDistribucion) values ($IdDist, $Cantidad)";
 		$resultins_prod=mysqli_query($link,$qryins_dist);
 	}
 	//SE DESCUENTA EL ENVASE
-	$qry_env="select * from inv_envase where Cod_envase = (select Cod_envase from rel_dist_mp where Cod_dist=$IdDist)";
+	$qry_env="select * from inv_envase where codEnvase = (select codEnvase from rel_dist_mp where Cod_dist=$IdDist)";
 	$result_env=mysqli_query($link,$qry_env);
 	$row_env=mysqli_fetch_array($result_env);
 	$inv_env=$row_env['inv_envase'];
@@ -49,7 +49,7 @@ mysqli_autocommit($link, FALSE);
 	if ($inv_env >= $Cantidad)
 	{
 		$inv_env=$inv_env - $Cantidad;
-		$qry_up_env="update inv_envase set inv_envase=$inv_env where Cod_envase=$cod_env";
+		$qry_up_env="update inv_envase set invEnvase=$inv_env where codEnvase=$cod_env";
 		$result_up_env=mysqli_query($link,$qry_up_env);
 	}
 	else
@@ -62,7 +62,7 @@ mysqli_autocommit($link, FALSE);
 		</script>';
 	}
 	//SE DESCUENTA LA TAPA
-	$qry_val="select * from inv_tapas_val where Cod_tapa = (select Cod_tapa from rel_dist_mp where Cod_dist=$IdDist)";
+	$qry_val="select * from inv_tapas_val where codTapa = (select codTapa from rel_dist_mp where Cod_dist=$IdDist)";
 	$result_val=mysqli_query($link,$qry_val);
 	$row_val=mysqli_fetch_array($result_val);
 	$inv_val=$row_val['inv_tapa'];
@@ -70,7 +70,7 @@ mysqli_autocommit($link, FALSE);
 	if ($inv_val >= $Cantidad)
 	{
 		$inv_val=$inv_val - $Cantidad;
-		$qry_up_val="update inv_tapas_val set inv_tapa=$inv_val where Cod_tapa=$cod_val";
+		$qry_up_val="update inv_tapas_val set invTapa=$inv_val where codTapa=$cod_val";
 		$result_up_val=mysqli_query($link,$qry_up_val);
 	}
 	else
@@ -89,13 +89,13 @@ mysqli_autocommit($link, FALSE);
 	$row_mp=mysqli_fetch_array($result_mp);
 	$uso=$row_mp['cant_medida']*$Cantidad*$row_mp['Densidad']/1000;
 	$Codigo_mp=$row_mp['Codigo_mp'];
-	$qry_inv="select Cod_mprima, Lote_mp, sum(inv_mp) as Inventario from inv_mprimas WHERE Cod_mprima=$Codigo_mp group by Cod_mprima;";
+	$qry_inv="select codMP, loteMP, sum(invMP) as Inventario from inv_mprimas WHERE codMP=$Codigo_mp group by codMP;";
 	$result_inv=mysqli_query($link,$qry_inv);
 	$row_inv=mysqli_fetch_array($result_inv);
 	$inv_mp=$row_inv['Inventario'];
 	if ($inv_mp >= $uso)
 	{
-		$qry_inv2="select Cod_mprima, Lote_mp, inv_mp from inv_mprimas WHERE Cod_mprima=$Codigo_mp;";
+		$qry_inv2="select codMP, loteMP, invMP from inv_mprimas WHERE codMP=$Codigo_mp;";
 		$result_inv2=mysqli_query($link,$qry_inv2);
 		$uso1=$uso;
 		while($rowinv2=mysqli_fetch_array($result_inv2))
@@ -106,14 +106,14 @@ mysqli_autocommit($link, FALSE);
 			if ($invt >= $uso1)
 			{
 				$invt= $invt - $uso1;
-				$qryupt="update inv_mprimas set inv_mp=$invt where Lote_mp='$lot_mp' and Cod_mprima=$cod_mp";
+				$qryupt="update inv_mprimas set invMP=$invt where loteMP='$lot_mp' and codMP=$cod_mp";
 				$resultupt=mysqli_query($link,$qryupt);
 				break;
 			}
 			else
 			{
 				$uso1= $uso1 - $invt ;
-				$qryupt="update inv_mprimas set inv_mp=0 where Lote_mp='$lot_mp' and Cod_mprima=$cod_mp";
+				$qryupt="update inv_mprimas set invMP=0 where loteMP='$lot_mp' and codMP=$cod_mp";
 				$resultupt=mysqli_query($link,$qryupt);
 			}
 		}

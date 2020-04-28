@@ -16,7 +16,7 @@ include "includes/conect.php";
 		echo $nombre_campo." = ".$valor."<br>";  
 		eval($asignacion); 
 	} 
-	$qryinv="update inv_tapas_val set inv_tapa=$inv where Cod_tapa=$IdTap;";
+	$qryinv="update inv_tapas_val set invTapa=$inv where codTapa=$IdTap;";
 	$link=conectarServidor();
 	if($result=mysqli_query($link,$qryinv))
 	{

@@ -32,7 +32,7 @@ $objPHPExcel->setActiveSheetIndex(0)
 // Rename sheet
 $objPHPExcel->getActiveSheet()->setTitle('Inventario Tapas');
 $link=conectarServidor();
-$sql="SELECT inv_tapas_val.Cod_tapa as Codigo, Nom_tapa as Producto, inv_tapa as Cantidad, Pre_tapa from inv_tapas_val, tapas_val where inv_tapas_val.Cod_tapa=tapas_val.Cod_tapa;";
+$sql="SELECT inv_tapas_val.codTapa as Codigo, Nom_tapa as Producto, invTapa as Cantidad, Pre_tapa from inv_tapas_val, tapas_val where inv_tapas_val.codTapa=tapas_val.Cod_tapa;";
 $result=mysqli_query($link,$sql) or die("Error al conectar a la base de datos.");
 $i=2;
 while($row= mysqli_fetch_array($result, MYSQLI_BOTH))

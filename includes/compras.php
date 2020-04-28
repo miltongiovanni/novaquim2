@@ -12,11 +12,12 @@ function buscarProveedorForm($action)
 
     $rep = '<form id="form1" name="form1" method="post" action="' . $action . '">
         <div class="form-group row">
-            <label class="col-form-label col-1" for="busProv"><strong>Proveedor</strong></label>
+            <label class="col-form-label col-2" for="busProv"><strong>Proveedor</strong></label>
             <input type="text" class="form-control col-2" id="busProv" name="busProv" onkeyup="findProveedor()"
                    required/>
         </div>
         <div class="form-group row" id="myDiv">
+        
         </div>
         <div class="row form-group">
             <div class="col-1">

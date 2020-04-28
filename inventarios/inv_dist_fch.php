@@ -40,7 +40,7 @@ include "includes/utilTabla.php";
 include "includes/conect.php" ;
 $link=conectarServidor();
 //sentencia SQL    tblusuarios.IdUsuario,
-$sql="	SELECT inv_distribucion.Id_distribucion as Codigo, Producto, inv_dist as Cantidad from inv_distribucion, distribucion
+$sql="	SELECT inv_distribucion.Id_distribucion as Codigo, Producto, invDistribucion as Cantidad from inv_distribucion, distribucion
 where inv_distribucion.Id_distribucion=distribucion.Id_distribucion and Activo=0 order by Producto;";
 $result=mysqli_query($link,$sql); 
 $a=1;
@@ -54,7 +54,7 @@ while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
   <td class="formatoDatos"><div align="left">'.$row['Producto'].'</div></td>
   <td class="formatoDatos"><div align="center"><script  > document.write(commaSplit('.$row['Cantidad'].'))</script></div></td>';
   //ENTRADA POR COMPRAS
-  $sqle1="select sum(Cantidad) as entrada1 from compras, det_compras where compras.Id_compra=det_compras.Id_compra and compra=5 and Fech_comp>'$Fch' and Codigo=$prod;";
+  $sqle1="select sum(Cantidad) as entrada1 from compras, det_compras where compras.idCompra=det_compras.idCompra and tipoCompra=5 and fechComp>'$Fch' and Codigo=$prod;";
   $resulte1=mysqli_query($link,$sqle1);
   $rowe1=mysqli_fetch_array($resulte1, MYSQLI_BOTH);
   if($rowe1['entrada1']==NULL)

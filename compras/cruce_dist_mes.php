@@ -67,7 +67,7 @@ while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
 	  $ventames=$rowv['ventames'];
 	  if ($ventames==NULL)
 	    $ventames=0;
-	  $sqlc="select sum(Cantidad) as comprames from compras, det_compras where compras.Id_compra=det_compras.Id_compra and compra=5 and Fech_comp>='$FchIni' and Fech_comp<='$FchFin' and Codigo=$codigo and MONTH(Fech_comp)=$mes ;";
+	  $sqlc="select sum(Cantidad) as comprames from compras, det_compras where compras.idCompra=det_compras.idCompra and compra=5 and Fech_comp>='$FchIni' and Fech_comp<='$FchFin' and Codigo=$codigo and MONTH(Fech_comp)=$mes ;";
 	  $resultc=mysqli_query($link, $sqlc);
 	  $rowc=mysqli_fetch_array($resultc, MYSQLI_BOTH);
 	  $comprames=round($rowc['comprames'], 0);

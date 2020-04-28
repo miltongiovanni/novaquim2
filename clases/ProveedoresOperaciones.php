@@ -8,15 +8,16 @@ class ProveedoresOperaciones
     {
         $this->setDb();
     }
+
     public function makeProveedor($datos)
     {
         /*Preparo la insercion */
-        $qry = "INSERT INTO proveedores VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $qry = "INSERT INTO proveedores VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute($datos);
         return $this->_pdo->lastInsertId();
     }
-    
+
     public function deleteProveedor($idProv)
     {
         $qry = "DELETE FROM proveedores WHERE idProv= ?";
@@ -37,13 +38,34 @@ class ProveedoresOperaciones
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
-    public function  getProveedoresByName($q){
-        $qry = "SELECT idProv, nomProv FROM proveedores WHERE nomProv like '%".$q."%' ORDER BY nomProv;";
+
+    public function getProveedoresByTipo($tipoCompra)
+    {
+        $qry = "SELECT idProv, nomProv FROM proveedores WHERE idCatProv = $tipoCompra ORDER BY nomProv;";
         $stmt = $this->_pdo->prepare($qry);
-        $stmt->execute(array($q));
+        $stmt->execute(array());
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
+
+    public function getProveedoresByName($q)
+    {
+        $qry = "SELECT idProv, nomProv FROM proveedores WHERE nomProv like '%" . $q . "%' ORDER BY nomProv;";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array());
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    public function getProveedoresByNameAndTipoCompra($q, $tipoCompra)
+    {
+        $qry = "SELECT idProv, nomProv FROM proveedores WHERE idCatProv=? AND nomProv like '%" . $q . "%' ORDER BY nomProv;";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($tipoCompra));
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     public function getTableProveedores()
     {
         $qry = "SELECT idProv, nitProv, nomProv, dirProv, contProv, telProv, emailProv, desCatProv FROM proveedores
@@ -57,9 +79,13 @@ class ProveedoresOperaciones
 
     public function getProveedor($idProv)
     {
-        $qry = "SELECT idProv, nitProv, nomProv, dirProv, contProv, autoretProv, regProv, estProv, telProv, emailProv, proveedores.idCatProv, desCatProv, idTasaIcaProv, CONCAT(format((tasaRetIca),2), ' por mil') reteica FROM proveedores
+        $qry = "SELECT idProv, nitProv, nomProv, dirProv, contProv, autoretProv, regProv, estProv, telProv, emailProv, proveedores.idCatProv,
+                       desCatProv, idTasaIcaProv, CONCAT(format((tasaRetIca),2), ' por mil') reteica, idRetefuente,
+                       CONCAT(descRetefuente, ' - ', format((tasaRetefuente*100),2), ' %') retefuente
+                FROM proveedores
                 LEFT JOIN cat_prov cp on proveedores.idCatProv = cp.idCatProv
                 LEFT JOIN tasa_reteica tr on proveedores.idTasaIcaProv = tr.idTasaRetIca
+                LEFT JOIN tasa_retefuente t on proveedores.idRetefuente = t.idTasaRetefuente
                 WHERE idProv=?";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute(array($idProv));
@@ -76,19 +102,9 @@ class ProveedoresOperaciones
         return $result;
     }
 
-    public function getUltimoProdxCat($idCatProd)
-    {
-        $qry = "SELECT MAX(codProveedor) as Cod from proveedores where idCatProd=?";
-        $stmt = $this->_pdo->prepare($qry);
-        $stmt->execute(array($idCatProd));
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $result['Cod'];
-    }
-
-
     public function updateProveedor($datos)
-    {                                      
-        $qry = "UPDATE proveedores SET nitProv=?, nomProv=?, dirProv=?, contProv=?, telProv=?, emailProv=?, idCatProv=?,  autoretProv=?, regProv=?, idTasaIcaProv=?, estProv=? WHERE idProv=?";
+    {
+        $qry = "UPDATE proveedores SET nitProv=?, nomProv=?, dirProv=?, contProv=?, telProv=?, emailProv=?, idCatProv=?,  autoretProv=?, regProv=?, idTasaIcaProv=?, estProv=?, idRetefuente=? WHERE idProv=?";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute($datos);
     }

@@ -79,15 +79,15 @@ spl_autoload_register('cargarClases');
                 ?>
             </div>
             <div class="form-group row">
-                <label class="col-form-label col-1" style="text-align: right;"
+                <label class="col-form-label col-1 text-right"
                     for="fabrica"><strong>Precio fábrica</strong></label>
                 <input type="text" class="form-control col-2" name="fabrica" id="fabrica" maxlength="50" onKeyPress="return aceptaNum(event)">
             </div>
             <div class="form-group row">
-                <div class="col-1" style="text-align: center;">
+                <div class="col-1 text-center" >
                     <button class="button"  onclick="return Enviar(this.form)"><span>Continuar</span></button>
                 </div>
-                <div class="col-1" style="text-align: center;">
+                <div class="col-1 text-center" >
                     <button class="button"  type="reset"><span>Reiniciar</span></button>
                 </div>
             </div>

@@ -10,8 +10,8 @@ $egreso=$_POST['egreso'];
 $qryenc="select egreso.Id_compra, nit_prov, Num_fact, total_fact, retencion_g as retencion, Nom_provee, Id_egreso, tip_compra, pago, Fecha, descuento_e, egreso.form_pago, forma_pago, ret_ica
 from egreso,  gastos, proveedores, form_pago where nit_prov=nitProv and Id_egreso=$egreso and egreso.Id_compra=Id_gasto and tip_compra=6 and egreso.form_pago=Id_fpago
 union
-select egreso.Id_compra, nit_prov, Num_fact, total_fact, retencion, Nom_provee, Id_egreso, tip_compra, pago, Fecha, descuento_e, egreso.form_pago, forma_pago, ret_ica
-from egreso,  compras, proveedores, form_pago where nit_prov=nitProv and Id_egreso=$egreso and egreso.Id_compra=compras.Id_compra and tip_compra<>6 and egreso.form_pago=Id_fpago;";
+select egreso.Id_compra, nit_prov, numFact, totalCompra, retefuenteCompra, Nom_provee, Id_egreso, tip_compra, pago, Fecha, descuento_e, egreso.form_pago, forma_pago, reteicaCompra
+from egreso,  compras, proveedores, form_pago where nit_prov=nitProv and Id_egreso=$egreso and egreso.Id_compra=compras.idCompra and tip_compra<>6 and egreso.form_pago=Id_fpago;";
 $resultenc=mysqli_query($link,$qryenc);
 $rowenc=mysqli_fetch_array($resultenc);
 $pdf=new FPDF('P','mm','Letter');

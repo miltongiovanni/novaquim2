@@ -45,8 +45,8 @@ foreach ($_POST as $nombre_campo => $valor)
 	eval($asignacion); 
 }  
 $link=conectarServidor();
-$sql="	SELECT Id_gasto, nit_prov, Num_fact, Fech_comp, Fech_venc, estado, total_fact, Nom_provee, Des_estado as Estado 
-from gastos, proveedores, estados WHERE nit_prov=nitProv and nit_prov='$prov' and estado=Id_estado
+$sql="	SELECT Id_gasto, nit_prov, Num_fact, Fech_comp, Fech_venc, estado, total_fact, Nom_provee, descEstado as Estado 
+from gastos, proveedores, estados WHERE nit_prov=nitProv and nit_prov='$prov' and estado=idEstado
 order BY Fech_comp desc, Num_fact;";
 $result=mysqli_query($link,$sql);
 $a=1;

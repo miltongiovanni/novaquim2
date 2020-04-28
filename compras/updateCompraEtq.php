@@ -34,7 +34,7 @@ include "includes/conect.php";
 		eval($asignacion); 
 	}  
 	$link=conectarServidor();
-	$qry="select Codigo, Nom_etiq, Cantidad, Precio from det_compras, etiquetas where Id_compra=$factura and Codigo=$codigo AND Codigo=Cod_etiq;";
+	$qry="select Codigo, Nom_etiq, Cantidad, Precio from det_compras, etiquetas where idCompra=$factura and Codigo=$codigo AND Codigo=Cod_etiq;";
 	$result=mysqli_query($link,$qry);
 	$row=mysqli_fetch_array($result);
 	$codigo=$row['Codigo'];

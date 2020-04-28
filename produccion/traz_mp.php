@@ -40,7 +40,7 @@ foreach ($_POST as $nombre_campo => $valor)
       <td width="113" align="center"><strong>Fecha Compra</strong></td><td width="465" align="center"><strong>Proveedor</strong></td><td width="108" align="center"><strong>Cantidad (Kg)</strong></td>
 </tr>
 <?php
-  $qry="select Fech_comp, Nom_provee, Cantidad from det_compras, compras, proveedores where det_compras.Id_compra=compras.Id_compra and nit_prov=nitProv and Codigo=$IdMP anD Lote='$lote_mp' order by Fech_comp;";
+  $qry="select fechComp, Nom_provee, Cantidad from det_compras, compras, proveedores where det_compras.idCompra=compras.Id_compra and nit_prov=nitProv and Codigo=$IdMP anD Lote='$lote_mp' order by fechComp;";
   $result=mysqli_query($link,$qry);
   while($row=mysqli_fetch_array($result))
   {

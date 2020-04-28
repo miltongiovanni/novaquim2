@@ -38,9 +38,9 @@ $link=conectarServidor();
 $bd="novaquim";
 
 
-$sql="SELECT inv_mprimas.Cod_mprima as Codigo, Nom_mprima, Lote_mp, sum(inv_mp) as inventario, Precio_mp 
+$sql="SELECT inv_mprimas.codMP as Codigo, Nom_mprima, Lote_mp, sum(inv_mp) as inventario, Precio_mp 
 FROM inv_mprimas, mprimas
-where inv_mprimas.Cod_mprima=mprimas.Cod_mprima group by Codigo order by Nom_mprima;";
+where inv_mprimas.codMP=mprimas.Cod_mprima group by Codigo order by Nom_mprima;";
 $result=mysqli_query($link,$sql) or die("Error al conectar a la base de datos.");
 $i=2;
 while($row= mysqli_fetch_array($result, MYSQLI_BOTH))
@@ -54,7 +54,7 @@ while($row= mysqli_fetch_array($result, MYSQLI_BOTH))
 	$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(2, $i, iconv("iso-8859-1", "UTF-8",$row['Lote_mp']));
 	$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(3, $i,iconv("iso-8859-1", "UTF-8", $row['inventario']));
 	$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(4, $i,iconv("iso-8859-1", "UTF-8", $row['Precio_mp']));
-	$sqle="select Codigo, sum(Cantidad) as entrada from det_compras, compras where Codigo=$prod and det_compras.Id_compra=compras.Id_compra and compra=1 and Fech_comp>='$Fch' group by Codigo";
+	$sqle="select Codigo, sum(Cantidad) as entrada from det_compras, compras where Codigo=$prod and det_compras.idCompra=compras.idCompra and compra=1 and Fech_comp>='$Fch' group by Codigo";
 	$resulte=mysqli_query($link,$sqle);
 	$rowe=mysqli_fetch_array($resulte, MYSQLI_BOTH);
 	if($rowe['entrada']==NULL)

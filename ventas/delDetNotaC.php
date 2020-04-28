@@ -46,19 +46,19 @@ if($codigo <100000)
 }
 else
 {
-  	$qryinv="select Id_distribucion, inv_dist from inv_distribucion WHERE Id_distribucion=$codigo";
+  	$qryinv="select Id_distribucion, invDistribucion from inv_distribucion WHERE Id_distribucion=$codigo";
 	$resultinv=mysqli_query($link,$qryinv);
 	$rowinv=mysqli_fetch_array($resultinv);
 	$invt=$rowinv['inv_dist'];
 	if ($invt==NULL)
 	{
-	  $qryupt="insert into inv_distribucion (Id_distribucion, inv_dist) values ($codigo, $cantidad)";
+	  $qryupt="insert into inv_distribucion (Id_distribucion, invDistribucion) values ($codigo, $cantidad)";
 	}
 	else
 	{
 	  $invt= $invt + $cantidad;
 	  //SE ACTUALIZA EL INVENTARIO
-	  $qryupt="update inv_distribucion set inv_dist=$invt where Id_distribucion=$codigo";
+	  $qryupt="update inv_distribucion set invDistribucion=$invt where Id_distribucion=$codigo";
 	}
 	$resultupt=mysqli_query($link,$qryupt);
 }

@@ -32,6 +32,14 @@ class TapasOperaciones
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
+    public function getPrecioTapa($codTapa)
+    {
+        $qry = "SELECT preTapa FROM  tapas_val WHERE codTapa=?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($codTapa));
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result['preTapa'];
+    }
     public function getTableTapas()
     {
         $qry = "select codTapa, tapa, stockTapa from tapas_val;";
@@ -59,6 +67,12 @@ class TapasOperaciones
         return $result['Codigo'];
     }
 
+    public function updatePrecioTapa($datos)
+    {
+        $qry = "UPDATE tapas_val SET preTapa=? WHERE codTapa=?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute($datos);
+    }
 
     public function updateTapa($datos)
     {                                     

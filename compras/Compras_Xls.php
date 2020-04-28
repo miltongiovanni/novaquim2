@@ -41,29 +41,29 @@ $objPHPExcel->setActiveSheetIndex(0)
 // Rename sheet
 $objPHPExcel->getActiveSheet()->setTitle('Lista de Facturas');
 $link=conectarServidor();
-$sql="	select compras.Id_compra as Id, compra, nit_prov, Nom_provee, Num_fact, Fech_comp, total_fact, Subtotal, IVA , Codigo, Nom_mprima as Producto, Precio, Cantidad, tasa
+$sql="	select compras.idCompra as Id, tipoCompra, nit_prov, Nom_provee, numFact, fechComp, totalCompra, subtotalCompra, ivaCompra , Codigo, Nom_mprima as Producto, Precio, Cantidad, tasa
 from compras, proveedores, det_compras, mprimas, tasa_iva 
-where Fech_comp>='$FchIni' and Fech_comp<='$FchFin' and nit_prov=nitProv and compra=1 
-AND compras.Id_compra=det_compras.Id_compra and Codigo=Cod_mprima and Cod_iva=Id_tasa 
+where fechComp>='$FchIni' and fechComp<='$FchFin' and nit_prov=nitProv and tipoCompra=1 
+AND compras.idCompra=det_compras.idCompra and Codigo=Cod_mprima and Cod_iva=Id_tasa 
 union
-select compras.Id_compra as Id, compra, nit_prov, Nom_provee, Num_fact, Fech_comp, total_fact, Subtotal, IVA , Codigo, Nom_envase as Producto, Precio, Cantidad, tasa
+select compras.idCompra as Id, tipoCompra, nit_prov, Nom_provee, numFact, fechComp, totalCompra, subtotalCompra, ivaCompra , Codigo, Nom_envase as Producto, Precio, Cantidad, tasa
 from compras, proveedores, det_compras, envase, tasa_iva 
-where Fech_comp>='$FchIni' and Fech_comp<='$FchFin' and nit_prov=nitProv and compra=2
-AND compras.Id_compra=det_compras.Id_compra and Codigo=Cod_envase and Cod_iva=Id_tasa 
+where fechComp>='$FchIni' and fechComp<='$FchFin' and nit_prov=nitProv and tipoCompra=2
+AND compras.idCompra=det_compras.idCompra and Codigo=Cod_envase and Cod_iva=Id_tasa 
 union
-select compras.Id_compra as Id, compra, nit_prov, Nom_provee, Num_fact, Fech_comp, total_fact, Subtotal, IVA , Codigo, Nom_tapa as Producto, Precio, Cantidad, tasa
+select compras.idCompra as Id, tipoCompra, nit_prov, Nom_provee, numFact, fechComp, totalCompra, subtotalCompra, ivaCompra , Codigo, Nom_tapa as Producto, Precio, Cantidad, tasa
 from compras, proveedores, det_compras, tapas_val, tasa_iva 
-where Fech_comp>='$FchIni' and Fech_comp<='$FchFin' and nit_prov=nitProv and compra=2
-AND compras.Id_compra=det_compras.Id_compra and Codigo=Cod_tapa and Cod_iva=Id_tasa 
+where fechComp>='$FchIni' and fechComp<='$FchFin' and nit_prov=nitProv and tipoCompra=2
+AND compras.idCompra=det_compras.idCompra and Codigo=Cod_tapa and Cod_iva=Id_tasa 
 union
-select compras.Id_compra as Id, compra, nit_prov, Nom_provee, Num_fact, Fech_comp, total_fact, Subtotal, IVA , Codigo, Producto, Precio, Cantidad, tasa
+select compras.idCompra as Id, tipoCompra, nit_prov, Nom_provee, numFact, fechComp, totalCompra, subtotalCompra, ivaCompra , Codigo, Producto, Precio, Cantidad, tasa
 from compras, proveedores, det_compras, distribucion, tasa_iva 
-where Fech_comp>='$FchIni' and Fech_comp<='$FchFin' and nit_prov=nitProv and compra=5
-AND compras.Id_compra=det_compras.Id_compra and Codigo=Id_distribucion and Cod_iva=Id_tasa
+where fechComp>='$FchIni' and fechComp<='$FchFin' and nit_prov=nitProv and tipoCompra=5
+AND compras.idCompra=det_compras.idCompra and Codigo=Id_distribucion and Cod_iva=Id_tasa
 union
-SELECT compras.Id_compra as Id, compra, nit_prov, Nom_provee, Num_fact, Fech_comp, total_fact, Subtotal, IVA, Codigo, Nom_etiq as Producto , Precio, Cantidad, tasa 
+SELECT compras.idCompra as Id, tipoCompra, nit_prov, Nom_provee, numFact, fechComp, totalCompra, subtotalCompra, ivaCompra, Codigo, Nom_etiq as Producto , Precio, Cantidad, tasa 
 FROM compras, proveedores, det_compras, etiquetas, tasa_iva
-WHERE Fech_comp>='$FchIni' and Fech_comp<='$FchFin'  and nit_prov=nitProv and compra=4 AND compras.Id_compra=det_compras.Id_compra and Codigo=Cod_etiq  and Cod_iva=Id_tasa
+WHERE fechComp>='$FchIni' and fechComp<='$FchFin'  and nit_prov=nitProv and tipoCompra=4 AND compras.idCompra=det_compras.idCompra and Codigo=Cod_etiq  and Cod_iva=Id_tasa
 order BY Id DESC;
 ";
 

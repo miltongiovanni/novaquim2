@@ -212,8 +212,8 @@ if($CrearFactura==6)
 <?php
 	$link=conectarServidor();
 	$Fact=$Factura;
-	$qry="select Id_gasto, nit_prov, Num_fact, Fech_comp, Fech_venc, estado, total_fact, compra, retencion_g, Subtotal_gasto, IVA_gasto, ret_ica, Nom_provee, Des_estado from gastos, proveedores, estados
-	where Id_gasto=$Fact and gastos.nit_prov=proveedores.nitProv and estado=Id_estado";
+	$qry="select Id_gasto, nit_prov, Num_fact, Fech_comp, Fech_venc, estado, total_fact, compra, retencion_g, Subtotal_gasto, IVA_gasto, ret_ica, Nom_provee, descEstado from gastos, proveedores, estados
+	where Id_gasto=$Fact and gastos.nit_prov=proveedores.nitProv and estado=idEstado";
 	$result=mysqli_query($link,$qry);
 	$row=mysqli_fetch_array($result);
 	$estado=$row['estado'];

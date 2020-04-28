@@ -23,13 +23,13 @@ foreach ($_POST as $nombre_campo => $valor)
 	$result=mysqli_query($link,$qry);
 	if ($result)
 	{
-		$qryexis="select * from inv_mprimas where Cod_mprima=$mprima and inv_mp!=0";
+		$qryexis="select * from inv_mprimas where codMP=$mprima and invMP!=0";
 		$resultexis=mysqli_query($link,$qryexis);
 		$rowexis=mysqli_fetch_array($resultexis);
 		$exis=$rowexis['inv_mp'];
 		$lote_mp=$rowexis['Lote_mp'];
 		$exis=$exis+$gasto_ant-$gasto;
-		$qryump="update inv_mprimas set inv_mp=$exis  where Lote_mp='$lote_mp' and Cod_mprima=$mprima";
+		$qryump="update inv_mprimas set invMP=$exis  where loteMP='$lote_mp' and codMP=$mprima";
 		$resultump=mysqli_query($link,$qryump);
 		mysqli_free_result($resultexis);
 		mysqli_close($link);

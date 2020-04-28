@@ -22,12 +22,12 @@ spl_autoload_register('cargarClases');
         <div id="saludo"><strong>CREACIÓN DE PERSONAL</strong></div>
         <form name="form2" method="POST" action="makePerson.php">
             <div class="form-group row">
-                <label class="col-form-label col-1" style="text-align: right;" for="nomPersonal"><strong>Nombre</strong></label>
+                <label class="col-form-label col-1 text-right"  for="nomPersonal"><strong>Nombre</strong></label>
                 <input type="text" class="form-control col-2" name="nomPersonal" id="nomPersonal" size=30
                     onKeyPress="return aceptaLetra(event)" maxlength="30">
             </div>
             <div class="form-group row">
-                <label class="col-form-label col-1" style="text-align: right;"
+                <label class="col-form-label col-1 text-right"
                     for="celPersonal"><strong>Celular</strong></label>
                 <input type="text" class="form-control col-2" name="celPersonal" id="celPersonal" size=30
                     onKeyPress="return aceptaNum(event)" maxlength="30">
@@ -77,11 +77,11 @@ spl_autoload_register('cargarClases');
                 </select>
             </div>
             <div class="form-group row">
-                <div class="col-1" style="text-align: center;">
+                <div class="col-1 text-center">
                     <button class="button" 
                         onclick="return Enviar(this.form)"><span>Continuar</span></button>
                 </div>
-                <div class="col-1" style="text-align: center;">
+                <div class="col-1 text-center">
                     <button class="button"  type="reset"><span>Reiniciar</span></button>
                 </div>
             </div>

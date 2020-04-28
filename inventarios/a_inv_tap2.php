@@ -38,7 +38,7 @@ include "includes/conect.php";
 	</tr>
     <?php 
 		$link=conectarServidor();
-		$qry="select Cod_tapa, inv_tapa from inv_tapas_val where Cod_tapa=$IdTap;";
+		$qry="select codTapa, invTapa from inv_tapas_val where codTapa=$IdTap;";
 		if ($result=mysqli_query($link,$qry))
 		{
 			$row=mysqli_fetch_array($result);

@@ -29,12 +29,12 @@ function cargarClases($classname)
     <form id="form1" name="form1" method="post" action="updatePerson.php">
       <input type="hidden" name="idPersonal" value="<?= $idPersonal ?>">
       <div class="form-group row">
-        <label class="col-form-label col-1" style="text-align: right;" for="nomPersonal"><strong>Nombre</strong></label>
+        <label class="col-form-label col-1 text-right"  for="nomPersonal"><strong>Nombre</strong></label>
         <input type="text" class="form-control col-2" name="nomPersonal" id="nomPersonal" size=30
           value="<?= $row['nomPersonal']; ?>" onKeyPress="return aceptaLetra(event)" maxlength="30">
       </div>
       <div class="form-group row">
-        <label class="col-form-label col-1" style="text-align: right;"
+        <label class="col-form-label col-1 text-right"
           for="celPersonal"><strong>Celular</strong></label>
         <input type="text" class="form-control col-2" name="celPersonal" id="celPersonal" size=30
           value="<?= $row['celPersonal']; ?>" onKeyPress="return aceptaNum(event)" maxlength="30">
@@ -87,11 +87,11 @@ function cargarClases($classname)
         </select>
       </div>
       <div class="form-group row">
-        <div class="col-1" style="text-align: center;">
+        <div class="col-1 text-center" >
           <button class="button" 
             onclick="return Enviar(this.form)"><span>Continuar</span></button>
         </div>
-        <div class="col-1" style="text-align: center;">
+        <div class="col-1 text-center" >
           <button class="button"  type="reset"><span>Reiniciar</span></button>
         </div>
       </div>

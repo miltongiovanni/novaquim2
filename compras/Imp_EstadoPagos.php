@@ -17,7 +17,7 @@ $pdf->Cell(25,4,'Valor Pagado', 1,0,'C');
 $pdf->Cell(20,4,'Fch Cancel', 1,0,'C');
 $pdf->Cell(15,4,'F Pago', 1,0,'C');
 $pdf->SetFont('Arial','',10);
-$qry="select Id_compra as Id, Compra, nit_prov as Nit, Num_fact as Factura, Fech_comp, 
+$qry="select idCompra as Id, Compra, nit_prov as Nit, Num_fact as Factura, Fech_comp, 
 				Fech_venc, total_fact as Total, Nom_provee as Proveedor, retencion 
 				FROM compras, proveedores where estado=3 and nit_prov=nitProv
 				union

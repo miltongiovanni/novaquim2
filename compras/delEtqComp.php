@@ -17,13 +17,13 @@ include "includes/conect.php";
 		eval($asignacion); 
 	}  
 	//ELIMINA DE LA COMPRA
-	$qryinv="delete from det_compras where Id_compra=$factura and Codigo=$codigo";
+	$qryinv="delete from det_compras where idCompra=$factura and Codigo=$codigo";
 	//echo $qryinv;
 	echo'<form action="detCompraetq.php" method="post" name="formulario">';
 	$link=conectarServidor();
 	$result=mysqli_query($link,$qryinv);
 	//ELIMINA DEL INVENTARIO
-	$qryinv="select Cod_etiq, inv_etiq from inv_etiquetas WHERE Cod_etiq=$codigo;";
+	$qryinv="select codEtiq, invEtiq from inv_etiquetas WHERE codEtiq=$codigo;";
 	$resultinv=mysqli_query($link,$qryinv);
 	$rowinv=mysqli_fetch_array($resultinv);
 	$inv=$rowinv['inv_etiq'];	
@@ -33,7 +33,7 @@ include "includes/conect.php";
 	echo "despues";*/
 	$inv= $inv-$cantidad;
 	echo $inv;
-	$qryup="update inv_etiquetas set inv_etiq=$inv where Cod_etiq=$codigo;";
+	$qryup="update inv_etiquetas set invEtiq=$inv where codEtiq=$codigo;";
 	$resultup=mysqli_query($link,$qryup);
 	//echo "<br>";
 	echo '<input name="Factura" type="hidden" value="'.$factura.'"/>

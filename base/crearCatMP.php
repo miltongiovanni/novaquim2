@@ -25,21 +25,21 @@ $idCategoria=$lastcategorias+1;
     <div id="saludo"><strong>CREACIÓN DE CATEGORÍA DE MATERIA PRIMA</strong></div>
     <form name="form2" method="POST" action="makeCategoriaMP.php">
       <div class="form-group row">
-          <label class="col-form-label col-1" style="text-align: right;" for="idCatMP"><strong>Código</strong></label>
+          <label class="col-form-label col-1 text-right"  for="idCatMP"><strong>Código</strong></label>
         <input type="text" class="form-control col-2" name="idCatMP" id="idCatMP" size=30 maxlength="30"
           value="<?= $idCategoria ?>" readonly>
       </div>
       <div class="form-group row">
-        <label class="col-form-label col-1" style="text-align: right;" for="catMP"><strong>Categoría</strong></label>
+        <label class="col-form-label col-1 text-right"  for="catMP"><strong>Categoría</strong></label>
         <input type="text" class="form-control col-2" name="catMP" id="catMP" size=30
           onKeyPress="return aceptaLetra(event)" maxlength="30">
       </div>
       <div class="form-group row">
-        <div class="col-1" style="text-align: center;">
+        <div class="col-1 text-center" >
           <button class="button" 
             onclick="return Enviar(this.form)"><span>Continuar</span></button>
         </div>
-        <div class="col-1" style="text-align: center;">
+        <div class="col-1 text-center" >
           <button class="button"  type="reset"><span>Reiniciar</span></button>
         </div>
       </div>

@@ -23,13 +23,13 @@ $lastservicio++;
     <div id="saludo"><strong>CREACIÓN DE SERVICIO</strong></div>
     <form name="form2" method="POST" action="makeServ.php">
         <div class="form-group row">
-            <label class="col-form-label col-2" style="text-align: right;"
+            <label class="col-form-label col-2"
                    for="idServicio"><strong>Código</strong></label>
             <input type="text" class="form-control col-2" name="idServicio" id="idServicio" size=30 maxlength="30"
                    value="<?= $lastservicio ?>" readonly>
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-2" style="text-align: right;" for="desServicio"><strong>Descripción
+            <label class="col-form-label col-2"  for="desServicio"><strong>Descripción
                     Servicio</strong></label>
             <input type="text" class="form-control col-2" name="desServicio" id="desServicio"
                    onKeyPress="return aceptaLetra(event)">
@@ -67,10 +67,10 @@ $lastservicio++;
                    onKeyPress="return aceptaNum(event)" value="<?= ($row['maxsiigo'] + 1) ?>" readonly/>
         </div>
         <div class="form-group row">
-            <div class="col-1" style="text-align: center;">
+            <div class="col-1 text-center" >
                 <button class="button" onclick="return Enviar(this.form)"><span>Continuar</span></button>
             </div>
-            <div class="col-1" style="text-align: center;">
+            <div class="col-1 text-center" >
                 <button class="button" type="reset"><span>Reiniciar</span></button>
             </div>
         </div>

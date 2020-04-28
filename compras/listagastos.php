@@ -57,8 +57,8 @@ else
    	$inicio = ($pagina - 1) * $TAMANO_PAGINA; 
 }
 $link=conectarServidor();
-$sql="	SELECT Id_gasto, nit_prov, Num_fact, Fech_comp, Fech_venc, des_estado as Estado, total_fact, Nom_provee 
-from gastos, proveedores, estados WHERE nit_prov=nitProv and estado=Id_estado
+$sql="	SELECT Id_gasto, nit_prov, Num_fact, Fech_comp, Fech_venc, descEstado as Estado, total_fact, Nom_provee 
+from gastos, proveedores, estados WHERE nit_prov=nitProv and estado=idEstado
 order BY Fech_comp desc;";
 $result=mysqli_query($link,$sql);
 $num_total_registros = mysqli_num_rows($result); 
@@ -80,8 +80,8 @@ if ($total_paginas > 1){
 echo '</div>';
 
 //construyo la sentencia SQL 
-$ssql = "SELECT Id_gasto, nit_prov, Num_fact, Fech_comp, Fech_venc, des_estado as Estado, total_fact, Nom_provee 
-from gastos, proveedores, estados WHERE nit_prov=nitProv and estado=Id_estado
+$ssql = "SELECT Id_gasto, nit_prov, Num_fact, Fech_comp, Fech_venc, descEstado as Estado, total_fact, Nom_provee 
+from gastos, proveedores, estados WHERE nit_prov=nitProv and estado=idEstado
 order BY Fech_comp desc limit " . $inicio . "," . $TAMANO_PAGINA;
 
 

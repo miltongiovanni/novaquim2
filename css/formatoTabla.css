@@ -433,7 +433,7 @@ html {
   font-size: 1.2vw;
   background: url("../images/LogoNova1.jpg") no-repeat center top;
   padding-top: 15%;
-  padding-bottom: 1%;
+  padding-bottom: 2%;
   margin-top: 0.2%;
   text-transform: uppercase;
 }
@@ -444,7 +444,7 @@ html {
   font-size: 1.2vw;
   background: url("../images/LogoNova.jpg") no-repeat center top;
   padding-top: 9%;
-  padding-bottom: 2%;
+  padding-bottom: 3%;
   text-transform: uppercase;
 }
 td,
@@ -468,7 +468,15 @@ table {
 .table2 {
   border: 0 solid #000066;
 }
-
+.text-center {
+  text-align: center !important;
+}
+.text-left {
+  text-align: left !important;
+}
+.text-right {
+  text-align: right !important;
+}
 .titulo {
   font-size: large;
   font-style: normal;

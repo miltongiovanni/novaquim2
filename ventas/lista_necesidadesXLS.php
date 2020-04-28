@@ -84,7 +84,7 @@ while($row_dist=mysqli_fetch_array($result_dist, MYSQLI_BOTH))
 {
 	$cod=$row_dist['Cod_producto'];
 	$cantidad=$row_dist['Cantidad'];	
-	$qrybus="SELECT Id_distribucion AS Codigo, inv_dist as Inventario from inv_distribucion WHERE Id_distribucion=$cod;";
+	$qrybus="SELECT codDistribucion AS Codigo, invDistribucion as Inventario from inv_distribucion WHERE codDistribucion=$cod;";
 	$resultbus=mysqli_query($link,$qrybus);
 	$rowbus=mysqli_fetch_array($resultbus);
 	if ($rowbus)

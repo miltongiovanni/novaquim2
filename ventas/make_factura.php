@@ -98,7 +98,7 @@ select Id_ped, Cod_producto as Producto, Can_producto as Cantidad, Prec_producto
 		}
 		if($cod_producto>100000)
 		{
-			$qryinv="select Id_distribucion, inv_dist from inv_distribucion WHERE Id_distribucion=$cod_producto;";
+			$qryinv="select codDistribucion, invDistribucion from inv_distribucion WHERE codDistribucion=$cod_producto;";
 			$resultinv=mysqli_query($link,$qryinv);
 			$unidades=$cantidad;
 			while($rowinv=mysqli_fetch_array($resultinv))
@@ -106,7 +106,7 @@ select Id_ped, Cod_producto as Producto, Can_producto as Cantidad, Prec_producto
 				$invt=$rowinv['inv_dist'];
 				$cod_prod=$rowinv['Id_distribucion'];
 				$invt= $invt - $unidades;
-				$qryupt="update inv_distribucion set inv_dist=$invt where Id_distribucion=$cod_prod";
+				$qryupt="update inv_distribucion set invDistribucion=$invt where codDistribucion=$cod_prod";
 				$resultupt=mysqli_query($link,$qryupt);
 				/*SE ADICIONA A LA REMISIÓN*/
 				$qryins_p="insert into det_remision (Id_remision, Cod_producto, Can_producto) values ($Id_Rem, $cod_producto, $unidades)";

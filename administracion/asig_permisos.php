@@ -97,7 +97,6 @@ spl_autoload_register('cargarClases');
 					}
 					$opciones_us = implode(",", $nvo_permisos);
 					$datos2 = array($opciones_us, $id);
-					//var_dump($datos2);
 					$menuOperador->updateMenuItem($datos2);
 					unset($nvo_permisos);
 				}

@@ -28,12 +28,12 @@ $row = $manager->getUser($idUsuario);
     <form id="form1" name="form1" method="post" action="updateUser.php">
       <input type="hidden" class="form-control col-2" name="idUsuario" id="idUsuario" value="<?=$row['idUsuario']?>">
       <div class="form-group row">
-        <label class="col-form-label col-1" style="text-align: right;" for="nombre"><strong>Nombre</strong></label>
+        <label class="col-form-label col-1 text-right"  for="nombre"><strong>Nombre</strong></label>
         <input type="text" class="form-control col-2" name="nombre" id="nombre" size=30 value="<?=$row['nombre']?>"
           onKeyPress="return aceptaLetra(event)" maxlength="30">
       </div>
       <div class="form-group row">
-        <label class="col-form-label col-1" style="text-align: right;" for="apellido"><strong>Apellidos</strong></label>
+        <label class="col-form-label col-1 text-right"  for="apellido"><strong>Apellidos</strong></label>
         <input type="text" class="form-control col-2" name="apellido" id="apellido" size=30
           value="<?=$row['apellido']?>" onKeyPress="return aceptaLetra(event)" maxlength="30">
       </div>
@@ -84,11 +84,11 @@ $row = $manager->getUser($idUsuario);
         </select>
       </div>
       <div class="form-group row">
-        <div class="col-1" style="text-align: center;">
+        <div class="col-1 text-center" >
           <button class="button" 
             onclick="return Enviar2(this.form)"><span>Actualizar</span></button>
         </div>
-        <div class="col-1" style="text-align: center;">
+        <div class="col-1 text-center" >
           <button class="button"   type="reset"><span>Reiniciar</span></button>
         </div>
       </div>

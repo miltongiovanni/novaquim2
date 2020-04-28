@@ -35,23 +35,23 @@ include "../includes/valAcc.php";
         <div id="saludo"><strong>CREACIÓN DE TAPAS O VÁLVULAS</strong></div>
         <form name="form2" method="POST" action="makeVal.php">
             <div class="form-group row">
-                <label class="col-form-label col-1" style="text-align: right;" for="codTapa"><strong>Código</strong></label>
+                <label class="col-form-label col-1 text-right"  for="codTapa"><strong>Código</strong></label>
                 <input type="text" class="form-control col-2" name="codTapa" id="codTapa" maxlength="50">
             </div>
             <div class="form-group row">
-                <label class="col-form-label col-1" style="text-align: right;" for="tapa"><strong>Tapa</strong></label>
+                <label class="col-form-label col-1 text-right"  for="tapa"><strong>Tapa</strong></label>
                 <input type="text" class="form-control col-2" name="tapa" id="tapa" maxlength="50">
             </div>
             <div class="form-group row">
-                <label class="col-form-label col-1" style="text-align: right;" for="stockTapa"><strong>Stock Tapa</strong></label>
+                <label class="col-form-label col-1 text-right"  for="stockTapa"><strong>Stock Tapa</strong></label>
                 <input type="text" class="form-control col-2" name="stockTapa" id="stockTapa" onKeyPress="return aceptaNum(event)">
                 <input type="hidden" class="form-control col-2" name="codIva" id="codIva" value="3">
             </div>
             <div class="form-group row">
-                <div class="col-1" style="text-align: center;">
+                <div class="col-1 text-center" >
                     <button class="button"  onclick="return Enviar(this.form)"><span>Continuar</span></button>
                 </div>
-                <div class="col-1" style="text-align: center;">
+                <div class="col-1 text-center" >
                     <button class="button"  type="reset"><span>Reiniciar</span></button>
                 </div>
             </div>

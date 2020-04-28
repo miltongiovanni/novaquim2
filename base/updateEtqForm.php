@@ -24,24 +24,24 @@ $envase = $EtiquetaOperador->getEtiqueta($codEtiqueta);
     <div id="saludo"><strong>ACTUALIZACIÓN DE ETIQUETAS</strong></div>
     <form id="form1" name="form1" method="post" action="updateEtq.php">
       <div class="form-group row">
-        <label class="col-form-label col-1" style="text-align: right;" for="codEtiqueta"><strong>Código</strong></label>
+        <label class="col-form-label col-1 text-right"  for="codEtiqueta"><strong>Código</strong></label>
         <input type="text" class="form-control col-2" name="codEtiqueta" id="codEtiqueta" maxlength="50" value="<?=$envase['codEtiqueta'];?>" readonly>
       </div>
       <div class="form-group row">
-        <label class="col-form-label col-1" style="text-align: right;" for="nomEtiqueta"><strong>Etiqueta</strong></label>
+        <label class="col-form-label col-1 text-right"  for="nomEtiqueta"><strong>Etiqueta</strong></label>
         <input type="text" class="form-control col-2" name="nomEtiqueta" id="nomEtiqueta" value="<?=$envase['nomEtiqueta'];?>" maxlength="50">
       </div>
       <div class="form-group row">
-        <label class="col-form-label col-1" style="text-align: right;" for="stockEtiqueta"><strong>Stock Etiqueta</strong></label>
+        <label class="col-form-label col-1 text-right"  for="stockEtiqueta"><strong>Stock Etiqueta</strong></label>
         <input type="text" class="form-control col-2" name="stockEtiqueta" id="stockEtiqueta" onKeyPress="return aceptaNum(event)" value="<?=$envase['stockEtiqueta'];?>">
         <input type="hidden" class="form-control col-2" name="codIva" id="codIva" value="3">
       </div>
       <div class="form-group row">
-        <div class="col-1" style="text-align: center;">
+        <div class="col-1 text-center" >
           <button class="button" 
             onclick="return Enviar(this.form)"><span>Continuar</span></button>
         </div>
-        <div class="col-1" style="text-align: center;">
+        <div class="col-1 text-center" >
           <button class="button"  type="reset"><span>Reiniciar</span></button>
         </div>
       </div>

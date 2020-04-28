@@ -39,7 +39,7 @@ foreach ($_POST as $nombre_campo => $valor)
 include "includes/utilTabla.php";
 include "includes/conect.php" ;
 $link=conectarServidor();
-$sql="SELECT inv_tapas_val.Cod_tapa as Codigo, Nom_tapa as Producto, inv_tapa as Cantidad from inv_tapas_val, tapas_val where inv_tapas_val.Cod_tapa=tapas_val.Cod_tapa;";
+$sql="SELECT inv_tapas_val.codTapa as Codigo, Nom_tapa as Producto, invTapa as Cantidad from inv_tapas_val, tapas_val where inv_tapas_val.codTapa=tapas_val.Cod_tapa;";
 $result=mysqli_query($link,$sql); 
 $a=1;
 while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
@@ -52,7 +52,7 @@ while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
   <td class="formatoDatos"><div align="left">'.$row['Producto'].'</div></td>
   <td class="formatoDatos"><div align="center"><script  > document.write(commaSplit('.$row['Cantidad'].'))</script></div></td>';
   //ENTRADA POR COMPRAS
-  $sqle1="select sum(Cantidad) as entrada1 from compras, det_compras where compra=2 and compras.Id_compra=det_compras.Id_compra and Fech_comp>='$Fch' and Codigo=$prod;";
+  $sqle1="select sum(Cantidad) as entrada1 from compras, det_compras where tipoCompra=2 and compras.idCompra=det_compras.idCompra and fechComp>='$Fch' and Codigo=$prod;";
 
   $resulte1=mysqli_query($link,$sqle1);
   $rowe1=mysqli_fetch_array($resulte1, MYSQLI_BOTH);

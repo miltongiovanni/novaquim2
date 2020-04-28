@@ -14,9 +14,8 @@ foreach ($_POST as $nombre_campo => $valor) {
     //echo $nombre_campo . " = " . $valor . "<br>";
     eval($asignacion);
 }
-//var_dump($_POST); die;
 $estProv = 1;
-$datos = array(0, $nitProv, $nomProv, $dirProv, $contProv, $telProv, $emailProv, $idCatProv, $autoretProv, $regProv, $idTasaIcaProv, $estProv);
+$datos = array(0, $nitProv, $nomProv, $dirProv, $contProv, $telProv, $emailProv, $idCatProv, $autoretProv, $regProv, $idTasaIcaProv, $estProv, $idRetefuente);
 $ProveedorOperador = new ProveedoresOperaciones();
 
 try {

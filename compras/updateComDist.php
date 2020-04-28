@@ -16,18 +16,18 @@ include "includes/conect.php";
 		echo $nombre_campo." = ".$valor."<br>";  
 		eval($asignacion); 
 	}  
-	$qryinv="update det_compras set Cantidad=$cantidad, Precio=$Precio where Id_compra=$factura and Codigo=$codigo";
+	$qryinv="update det_compras set Cantidad=$cantidad, Precio=$Precio where idCompra=$factura and Codigo=$codigo";
 	echo $qryinv;
 	echo'<form action="detCompradist.php" method="post" name="formulario">';
 	$link=conectarServidor();
 	$result=mysqli_query($link,$qryinv);
-	$qryinv="select Id_distribucion, inv_dist from inv_distribucion WHERE Id_distribucion=$codigo;";
+	$qryinv="select codDistribucion, invDistribucion from inv_distribucion WHERE codDistribucion=$codigo;";
 	$resultinv=mysqli_query($link,$qryinv);
 	$rowinv=mysqli_fetch_array($resultinv);
 	$inv=$rowinv['inv_dist'];		
 	$dif=$cantidad-$cant_ant;
 	$inv=$inv+$dif;
-	$qryup="update inv_distribucion set inv_dist=$inv where Id_distribucion=$codigo;";
+	$qryup="update inv_distribucion set invDistribucion=$inv where codDistribucion=$codigo;";
 	$resultup=mysqli_query($link,$qryup);
 	// ACTUALIZA EL PRECIO 
 	$qryup2="update distribucion set precio_com=$Precio where Id_distribucion=$codigo";

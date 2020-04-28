@@ -56,11 +56,11 @@ foreach ($_POST as $nombre_campo => $valor)
 include "includes/utilTabla.php";
 include "includes/conect.php" ;
 $link=conectarServidor();
-$sql="	SELECT id_compra, nit_prov as NIT, Nom_provee AS Proveedor, Num_fact as Factura, Fech_comp,
-Fech_venc as 'Fecha Vcmto', Des_estado as Estado, total_fact as Total
+$sql="	SELECT idCompra, nit_prov as NIT, Nom_provee AS Proveedor, numFact as Factura, fechComp,
+fechVenc as 'Fecha Vcmto', descEstado as Estado, totalCompra as Total
 FROM compras, proveedores, estados
-WHERE compras.nit_prov=proveedores.nitProv and compra=1 and Fech_comp>='$FchIni' and Fech_comp<='$FchFin' and estado=Id_estado
-order BY Fech_comp DESC, id_compra;";
+WHERE compras.nit_prov=proveedores.nitProv and tipoCompra=1 and fechComp>='$FchIni' and fechComp<='$FchFin' and estadoCompra=idEstado
+order BY fechComp DESC, idCompra;";
 $result=mysqli_query($link,$sql);
 $a=1;
 while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
@@ -82,9 +82,9 @@ while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
 	';
 	
 	echo'</tr>';
-	$sqli="select Id_compra, Codigo, Nom_mprima as Producto, Lote, Cantidad, Precio
+	$sqli="select idCompra, Codigo, Nom_mprima as Producto, Lote, Cantidad, Precio
 	from det_compras, mprimas
-	where Codigo=Cod_mprima and Id_compra=$id_com;";
+	where Codigo=Cod_mprima and idCompra=$id_com;";
 	$resulti=mysqli_query($link,$sqli);
 	echo '<tr><td colspan="9"><div class="commenthidden" id="UniqueName'.$a.'"><table width="80%" border="0" align="center" cellspacing="0" bordercolor="#CCCCCC">
 	<tr>
@@ -116,11 +116,11 @@ mysqli_close($link);//Cerrar la conexion
     </tr>
     <?php
 $link=conectarServidor();
-$sql="	SELECT id_compra, nit_prov as NIT, Nom_provee AS Proveedor, Num_fact as Factura, Fech_comp,
-Fech_venc as 'Fecha Vcmto', estado as Estado, total_fact as Total
+$sql="	SELECT idCompra, nit_prov as NIT, Nom_provee AS Proveedor, numFact as Factura, fechComp,
+fechVenc as 'Fecha Vcmto', estadoCompra as Estado, totalCompra as Total
 FROM compras, proveedores 
-WHERE compras.nit_prov=proveedores.nitProv and (compra=2 or compra=3) and Fech_comp>='$FchIni' and Fech_comp<='$FchFin'
-order BY Fech_comp DESC;";
+WHERE compras.nit_prov=proveedores.nitProv and (tipoCompra=2 or tipoCompra=3) and fechComp>='$FchIni' and fechComp<='$FchFin'
+order BY fechComp DESC;";
 $result=mysqli_query($link,$sql);
 while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
 {
@@ -145,10 +145,10 @@ while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
 	
 	echo'</tr>';
 	$sqli="select Codigo, Nom_envase as Producto, Cantidad, Precio from det_compras, envase
-	where Codigo=Cod_envase and Id_compra=$id_com and Codigo<100
+	where Codigo=Cod_envase and idCompra=$id_com and Codigo<100
 	union
 	select Codigo, Nom_tapa as Producto, Cantidad, Precio from det_compras, tapas_val
-	where Codigo=Cod_tapa and Id_compra=$id_com and Codigo>100;";
+	where Codigo=Cod_tapa and idCompra=$id_com and Codigo>100;";
 	$resulti=mysqli_query($link,$sqli);
 	echo '<tr><td colspan="7"><div class="commenthidden" id="UniqueName'.$a.'"><table width="70%" border="0" align="center" cellspacing="0" bordercolor="#CCCCCC">
 	<tr>
@@ -176,11 +176,11 @@ mysqli_close($link);//Cerrar la conexion
     </tr>
     <?php
 $link=conectarServidor();
-$sql="	SELECT id_compra, nit_prov as NIT, Nom_provee AS Proveedor, Num_fact as Factura, Fech_comp,
-Fech_venc as 'Fecha Vcmto', estado as Estado, total_fact as Total 
+$sql="	SELECT idCompra, nit_prov as NIT, Nom_provee AS Proveedor, numFact as Factura, fechComp,
+fechVenc as 'Fecha Vcmto', estadoCompra as Estado, totalCompra as Total 
 FROM compras, proveedores
-WHERE compras.nit_prov=proveedores.nitProv and compra=5 and Fech_comp>='$FchIni' and Fech_comp<='$FchFin'
-order BY Fech_comp desc;";
+WHERE compras.nit_prov=proveedores.nitProv and tipoCompra=5 and fechComp>='$FchIni' and fechComp<='$FchFin'
+order BY fechComp desc;";
 $result=mysqli_query($link,$sql);
 while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
 {
@@ -207,7 +207,7 @@ while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
 	echo'</tr>';
 	$sqli="select Codigo, Producto, Cantidad, Precio 
 	from det_compras, distribucion
-	where Codigo=Id_distribucion and Id_compra=$id_com;";
+	where Codigo=Id_distribucion and idCompra=$id_com;";
 	$resulti=mysqli_query($link,$sqli);
 	echo '<tr><td colspan="7"><div class="commenthidden" id="UniqueName'.$a.'"><table width="65%" border="0" align="center" cellspacing="0" bordercolor="#CCCCCC">
 	<tr>
@@ -241,11 +241,11 @@ foreach ($_POST as $nombre_campo => $valor)
 	eval($asignacion); 
 }  
 $link=conectarServidor();
-$sql="	SELECT id_compra, nit_prov as NIT, Nom_provee AS Proveedor, Num_fact as Factura, Fech_comp as 'Fecha Compra',
-Fech_venc as 'Fecha Vcmto', estado as Estado, total_fact as Total 
+$sql="	SELECT idCompra, nit_prov as NIT, Nom_provee AS Proveedor, numFact as Factura, fechComp as 'Fecha Compra',
+fechVenc as 'Fecha Vcmto', estadoCompra as Estado, totalCompra as Total 
 FROM compras, proveedores
-WHERE compras.nit_prov=proveedores.nitProv and compra=4 and Fech_comp>='$FchIni' and Fech_comp<='$FchFin'
-order BY id_compra DESC;";
+WHERE compras.nit_prov=proveedores.nitProv and tipoCompra=4 and fechComp>='$FchIni' and fechComp<='$FchFin'
+order BY idCompra DESC;";
 $result=mysqli_query($link,$sql);
 while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
 {
@@ -270,7 +270,7 @@ while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
 	
 	echo'</tr>';
 	$sqli="select Codigo, Nom_etiq as Producto, Cantidad, Precio from det_compras, etiquetas
-where Codigo=Cod_etiq and Id_compra=$id_com;";
+where Codigo=Cod_etiq and idCompra=$id_com;";
 	$resulti=mysqli_query($link,$sqli);
 	echo '<tr><td colspan="7"><div class="commenthidden" id="UniqueName'.$a.'"><table width="70%" border="0" align="center" cellspacing="0" bordercolor="#CCCCCC">
 	<tr>

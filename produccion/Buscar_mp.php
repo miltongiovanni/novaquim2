@@ -22,7 +22,7 @@ include "includes/valAcc.php";
 				include "includes/conect.php";
 				$link=conectarServidor();
 				echo'<select name="IdMP">';
-				$result=mysqli_query($link,"select mprimas.Cod_mprima, Nom_mprima from mprimas, inv_mprimas where mprimas.Cod_mprima=inv_mprimas.Cod_mprima and Estado_MP='C' order by Nom_mprima");
+				$result=mysqli_query($link,"select mprimas.Cod_mprima, Nom_mprima from mprimas, inv_mprimas where mprimas.Cod_mprima=inv_mprimas.codMP and Estado_MP='C' order by Nom_mprima");
 				echo '<option selected value="">-----------------------------------------------------</option>';
 				while($row=mysqli_fetch_array($result)){
 					echo '<option value='.$row['Cod_mprima'].'>'.$row['Nom_mprima'].'</option>';

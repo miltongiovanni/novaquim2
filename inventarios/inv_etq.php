@@ -29,8 +29,8 @@ include "includes/valAcc.php";
 include "includes/utilTabla.php";
 include "includes/conect.php" ;
 $link=conectarServidor();
-$sql="	select inv_etiquetas.Cod_etiq as Codigo, Nom_etiq as Producto, inv_etiq as Cantidad from inv_etiquetas, etiquetas
-where inv_etiquetas.Cod_etiq=etiquetas.Cod_etiq and inv_etiq > 0;";
+$sql="	select inv_etiquetas.codEtiq as Codigo, Nom_etiq as Producto, invEtiq as Cantidad from inv_etiquetas, etiquetas
+where inv_etiquetas.codEtiq=etiquetas.Cod_etiq and invEtiq > 0;";
 $result=mysqli_query($link,$sql);
 $a=1;
 while($row=mysqli_fetch_array($result, MYSQLI_BOTH))

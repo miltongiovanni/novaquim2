@@ -10,13 +10,13 @@ foreach ($_POST as $nombre_campo => $valor)
 	eval($asignacion); 
 } 
 $link=conectarServidor(); 
-$qry1="select inv_dist from inv_distribucion where Id_distribucion=$cod_paca";
+$qry1="select invDistribucion from inv_distribucion where codDistribucion=$cod_paca";
 $result1=mysqli_query($link,$qry1);
 $row1=mysqli_fetch_array($result1);
 $inv_paca=$row1['inv_dist'];
 if($inv_paca>=$Unidades)
 {
-	$qry2="select inv_dist from inv_distribucion where Id_distribucion=(select codUnidad FROM rel_dist_emp where Cod_paca=$cod_paca)";
+	$qry2="select invDistribucion from inv_distribucion where codDistribucion=(select codUnidad FROM rel_dist_emp where Cod_paca=$cod_paca)";
 	$result2=mysqli_query($link,$qry2);
 	$row2=mysqli_fetch_array($result2);
 	$inv_unidad=$row2['inv_dist'];
@@ -32,7 +32,7 @@ if($inv_paca>=$Unidades)
 	
 	
 	$inv_actual=$inv_unidad + $Cantidad*$Unidades;
-	$qry4="update inv_distribucion set inv_dist=$inv_actual where Id_distribucion=$Cod_unidad;";
+	$qry4="update inv_distribucion set invDistribucion=$inv_actual where codDistribucion=$Cod_unidad;";
 	$result4=mysqli_query($link,$qry4);
 	
 	/*$fecha_actual=date("Y")."-".date("m")."-".date("d");
@@ -41,7 +41,7 @@ if($inv_paca>=$Unidades)
 	//AQUI TOCA MIRAR SI NO ESTA CREADO EL ITEM EN EL INVENTARIO
 	
 	$inv_paca_final=$inv_paca-$Unidades;
-	$qry5="update inv_distribucion set inv_dist=$inv_paca_final where Id_distribucion=$cod_paca";
+	$qry5="update inv_distribucion set invDistribucion=$inv_paca_final where codDistribucion=$cod_paca";
 	$result5=mysqli_query($link,$qry5);
 	$ruta="menu.php";
 	mover_pag($ruta,"Desempaque de Producto realizado con Éxito");

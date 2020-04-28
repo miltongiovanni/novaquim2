@@ -50,26 +50,26 @@ class DetProveedoresOperaciones
     {
         $qry = "SELECT Codigo, nomMPrima Producto FROM mprimas, det_proveedores dp
                 LEFT JOIN proveedores p on dp.idProv = p.idProv
-                WHERE Codigo=codMPrima  AND p.idCatProv=1 AND dp.idProv =?
+                WHERE Codigo=codMPrima  AND p.idCatProv=1 AND dp.idProv = $idProv 
                 UNION
                 SELECT Codigo, nomEnvase Producto FROM envases, det_proveedores dp
                 LEFT JOIN proveedores p on dp.idProv = p.idProv
-                WHERE Codigo=codEnvase  AND p.idCatProv=2 AND dp.idProv =?
+                WHERE Codigo=codEnvase  AND p.idCatProv=2 AND dp.idProv = $idProv
                 UNION
                 SELECT Codigo, tapa Producto FROM tapas_val, det_proveedores dp
                 LEFT JOIN proveedores p on dp.idProv = p.idProv
-                WHERE Codigo=codTapa  AND p.idCatProv=2 AND dp.idProv =?
+                WHERE Codigo=codTapa  AND p.idCatProv=2 AND dp.idProv = $idProv
                 UNION
                 SELECT Codigo, nomEtiqueta Producto FROM etiquetas, det_proveedores dp
                 LEFT JOIN proveedores p on dp.idProv = p.idProv
-                WHERE Codigo=codEtiqueta  AND p.idCatProv=3 AND dp.idProv =?
+                WHERE Codigo=codEtiqueta  AND p.idCatProv=3 AND dp.idProv = $idProv
                 UNION
                 SELECT Codigo, producto Producto FROM distribucion, det_proveedores dp
                 LEFT JOIN proveedores p on dp.idProv = p.idProv
-                WHERE Codigo=idDistribucion  AND p.idCatProv=5 AND dp.idProv =?
+                WHERE Codigo=idDistribucion  AND p.idCatProv=5 AND dp.idProv = $idProv
                 ORDER BY Producto";
         $stmt = $this->_pdo->prepare($qry);
-        $stmt->execute(array($idProv, $idProv, $idProv, $idProv, $idProv));
+        $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
@@ -105,7 +105,39 @@ class DetProveedoresOperaciones
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
-
+    public function getProdPorProveedor($idProv, $idCatProv)
+    {
+        switch (intval($idCatProv)) {
+            case 1:
+                $qry = "SELECT codMPrima Codigo, nomMPrima Producto FROM det_proveedores
+                        LEFT JOIN mprimas mp ON mp.codMPrima=Codigo
+                        WHERE idProv=$idProv ORDER BY Producto";
+                break;
+            case 2:
+                $qry = "SELECT codEnvase Codigo, nomEnvase Producto FROM det_proveedores
+                        LEFT JOIN envases e ON e.codEnvase=Codigo
+                        WHERE idProv=$idProv AND Codigo < 100
+                        UNION
+                        SELECT codTapa Codigo, tapa Producto FROM det_proveedores
+                        LEFT JOIN tapas_val tv ON tv.codTapa=Codigo
+                        WHERE idProv=$idProv AND Codigo > 100 ORDER BY Producto";
+                break;
+            case 3:
+                $qry = "SELECT codEtiqueta Codigo, nomEtiqueta Producto FROM det_proveedores
+                            LEFT JOIN etiquetas e ON e.codEtiqueta=Codigo
+                        WHERE idProv=$idProv ORDER BY Producto";
+                break;
+            case 5:
+                $qry = "SELECT idDistribucion Codigo, producto Producto FROM det_proveedores
+                            LEFT JOIN distribucion d ON d.idDistribucion=Codigo
+                        WHERE idProv=$idProv ORDER BY Producto;";
+                break;
+        }
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
     public function getDetProveedor($idProv)
     {
         $qry = "SELECT codProveedor, nomProveedor, catProd, proveedores.idCatProd, prodActivo, densMin, densMax, pHmin, pHmax, fragancia, color, apariencia

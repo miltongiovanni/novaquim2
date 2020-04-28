@@ -33,7 +33,7 @@ foreach ($_POST as $nombre_campo => $valor)
 if($CrearFactura!=0)
 {
 $link=conectarServidor();
-$qrys="select estado from compras where Id_compra=$Factura";
+$qrys="select estadoCompra from compras where idCompra=$Factura";
 $results=mysqli_query($link,$qrys);
 $rows=mysqli_fetch_array($results);
 $estadoc=$rows['estado'];
@@ -44,7 +44,7 @@ mysqli_close($link);
 if($CrearFactura==2)
 {
 $link=conectarServidor();
-$qryup="update compras set nit_prov='$nit_prov', Num_fact=$num_fac, Fech_comp='$FchFactura', Fech_venc='$VenFactura' where Id_compra=$Factura;";
+$qryup="update compras set nit_prov='$nit_prov', numFact=$num_fac, fechComp='$FchFactura', fechVenc='$VenFactura' where idCompra=$Factura;";
 $resultup=mysqli_query($link,$qryup);
 mysqli_close($link);
 }
@@ -52,7 +52,7 @@ if($CrearFactura==0)
 {
 	//VALIDA QUE LA FACTURA NO HAYA SIDO INGRESADA ANTES
 	$link=conectarServidor();   
-	$qrybus="Select * from compras WHERE nit_prov='$nit_prov' AND Num_fact=$num_fac;";
+	$qrybus="Select * from compras WHERE nit_prov='$nit_prov' AND numFact=$num_fac;";
 	$resultqrybus=mysqli_query($link,$qrybus);
 	if ($row_bus=mysqli_fetch_array($resultqrybus))
 	{
@@ -78,11 +78,11 @@ if($CrearFactura==0)
 		{		  
 		  $est=2;
 		  /*validacion del valor a pagar"*/
-		  $qryFact="insert into compras (nit_prov, Num_fact, Fech_comp, Fech_venc, estado, compra)
+		  $qryFact="insert into compras (nit_prov, numFact, fechComp, fechVenc, estadoCompra, tipoCompra)
 		  values  ('$nit_prov', $num_fac, '$FchFactura','$VenFactura',$est, 1)"; 
 		  if($resultfact=mysqli_query($link,$qryFact))
 		  {
-			  $qry="select max(Id_compra) as Fact from compras";
+			  $qry="select max(idCompra) as Fact from compras";
 			  if ($result=mysqli_query($link,$qry))
 			  {
 				  $row=mysqli_fetch_array($result);
@@ -153,7 +153,7 @@ if($CrearFactura==1)
 {
 	//echo "ADICIONANDO LOS PRODUCTOS AL DETALLE DE LA FACTURA";
 	$link=conectarServidor();   
-	$qrybus="select * from det_compras where Id_compra=$Factura AND Codigo=$cod_mprima;";
+	$qrybus="select * from det_compras where idCompra=$Factura AND Codigo=$cod_mprima;";
 	$resultqrybus=mysqli_query($link,$qrybus);
 	$row_bus=mysqli_fetch_array($resultqrybus);
 	if ($row_bus['Codigo']==$cod_mprima)
@@ -165,12 +165,12 @@ if($CrearFactura==1)
 		}
 	else
 	{
-		$qryFact="insert into det_compras (Id_compra, Codigo, Cantidad, Precio, Lote) values  ($Factura, $cod_mprima, $kg, $precio, '$lote')";
+		$qryFact="insert into det_compras (idCompra, Codigo, Cantidad, Precio, Lote) values  ($Factura, $cod_mprima, $kg, $precio, '$lote')";
 		if($resultfact=mysqli_query($link,$qryFact))
 		{	
 			$qry="select sum(Precio*Cantidad) as Total, sum(Precio*Cantidad*tasa) as IVA, tasaRetIca 
 from det_compras, mprimas, tasa_iva, compras, proveedores, tasa_reteica
-where det_compras.Id_compra=$Factura AND Codigo=Cod_mprima and compras.Id_compra=det_compras.Id_compra and nit_prov=nitProv 
+where det_compras.idCompra=$Factura AND Codigo=Cod_mprima and compras.idCompra=det_compras.idCompra and nit_prov=nitProv 
 and numtasa_rica=idTasaRetIca and tasa_iva.Id_tasa=mprimas.Cod_iva;";
 			if ($result=mysqli_query($link,$qry))
 			{
@@ -189,11 +189,11 @@ and numtasa_rica=idTasaRetIca and tasa_iva.Id_tasa=mprimas.Cod_iva;";
 				}
 				$Iva_Factura=$row['IVA'];
 				$TotalFactura=$SUBTotalFactura+$Iva_Factura;
-				$qryUpFactura="update compras set total_fact=$TotalFactura, Subtotal=$SUBTotalFactura, IVA=$Iva_Factura, retencion=$retencion, ret_ica=$reteica where Id_compra=$Factura";
+				$qryUpFactura="update compras set totalCompra=$TotalFactura, subtotalCompra=$SUBTotalFactura, ivaCompra=$Iva_Factura, retefuenteCompra=$retencion, reteicaCompra=$reteica where idCompra=$Factura";
 				if ($result=mysqli_query($link,$qryUpFactura))
 				{
 					//SE ACTUALIZA LA TABLA DE INVENTARIOS
-					$qryinv="select Cod_mprima, Lote_mp, inv_mp, Fecha_lote from inv_mprimas where Cod_mprima=$cod_mprima and Lote_mp='$lote';";
+					$qryinv="select codMP, loteMP, invMP, fechLote from inv_mprimas where codMP=$cod_mprima and loteMP='$lote';";
 					$qryprec="select Precio_mp from mprimas where Cod_mprima=$cod_mprima;";
 					if ($resultinv=mysqli_query($link,$qryinv))
 					{
@@ -207,7 +207,7 @@ and numtasa_rica=idTasaRetIca and tasa_iva.Id_tasa=mprimas.Cod_iva;";
 							{
 								$inv=$rowinv['inv_mp'];
 								$inv=$inv+$kg;
-								$qryup="update inv_mprimas set inv_mp=$inv where Cod_mprima=$cod_mprima and lote_mp='$lote'";
+								$qryup="update inv_mprimas set invMP=$inv where codMP=$cod_mprima and loteMP='$lote'";
 								if ($resultupinv=mysqli_query($link,$qryup))
 								{	
 								}
@@ -221,7 +221,7 @@ and numtasa_rica=idTasaRetIca and tasa_iva.Id_tasa=mprimas.Cod_iva;";
 							}
 							else
 							{
-								$qryins="insert into inv_mprimas (Cod_mprima, Lote_mp, inv_mp, Fecha_lote, Estado_MP) values ($cod_mprima, '$lote', $kg, '$FchLote', 'C')";
+								$qryins="insert into inv_mprimas (codMP, loteMP, invMP, fechLote, Estado_MP) values ($cod_mprima, '$lote', $kg, '$FchLote', 'C')";
 								if ($resultins=mysqli_query($link,$qryins))
 								{
 									//Actualizar el precio de materia prima en 
@@ -279,11 +279,11 @@ if($CrearFactura==5)
 	$link=conectarServidor();
 	$qry="select sum(Precio*Cantidad) as Total, sum(Precio*Cantidad*tasa) as IVA, tasaRetIca
 from det_compras, mprimas, tasa_iva, compras, proveedores, tasa_reteica
-where det_compras.Id_compra=$Factura AND Codigo=Cod_mprima and compras.Id_compra=det_compras.Id_compra and nit_prov=nitProv 
+where det_compras.idCompra=$Factura AND Codigo=Cod_mprima and compras.idCompra=det_compras.idCompra and nit_prov=nitProv 
 and numtasa_rica=idTasaRetIca and tasa_iva.Id_tasa=mprimas.Cod_iva;";
 	$result=mysqli_query($link,$qry);
 	$row=mysqli_fetch_array($result);
-	$qryc="select ret_provee from compras, proveedores where nit_prov=nitProv and Id_compra=$Factura";
+	$qryc="select ret_provee from compras, proveedores where nit_prov=nitProv and idCompra=$Factura";
 	$resultc=mysqli_query($link,$qryc);
 	$rowc=mysqli_fetch_array($resultc);
 	$autore=$rowc['ret_provee'];
@@ -316,7 +316,7 @@ and numtasa_rica=idTasaRetIca and tasa_iva.Id_tasa=mprimas.Cod_iva;";
 	if ($Iva_Factura==NULL)
 		$Iva_Factura=0;
 	$TotalFactura=$SUBTotalFactura+$Iva_Factura;
-	$qryUpFactura="update compras set total_fact=$TotalFactura, Subtotal=$SUBTotalFactura, IVA=$Iva_Factura, retencion=$retencion, ret_ica=$reteica where Id_compra=$Factura";
+	$qryUpFactura="update compras set totalCompra=$TotalFactura, subtotalCompra=$SUBTotalFactura, ivaCompra=$Iva_Factura, retefuenteCompra=$retencion, reteicaCompra=$reteica where idCompra=$Factura";
 	//echo $qryUpFactura;
 	if ($estadoc!=7)
 	$result1=mysqli_query($link,$qryUpFactura);
@@ -329,7 +329,7 @@ if($CrearFactura==6)
 	if ($estado==2)
 	{
 	  $link=conectarServidor();
-	  $qryUpEstFactura="update compras set estado=3 where Id_compra=$Factura";
+	  $qryUpEstFactura="update compras set estadoCompra=3 where idCompra=$Factura";
 	  $result2=mysqli_query($link,$qryUpEstFactura);
 	  mysqli_close($link);
 	}
@@ -340,10 +340,10 @@ if($CrearFactura==6)
 ?>
 <?php
 		$link=conectarServidor();
-		$qry="select compras.*, Nom_provee, Des_estado
+		$qry="select compras.*, Nom_provee, descEstado
 		from compras, proveedores, estados
-		where Id_compra=$Factura
-		and compras.nit_prov=proveedores.nitProv and estado=Id_estado";
+		where idCompra=$Factura
+		and compras.nit_prov=proveedores.nitProv and estadoCompra=idEstado";
 		$result=mysqli_query($link,$qry);
 		$row=mysqli_fetch_array($result);
 		$nit=$row['nit_prov'];
@@ -458,7 +458,7 @@ if($CrearFactura==6)
 			$Fact=$Factura;
 			$qry="SELECT Codigo, Nom_mprima, Cantidad, Precio, Lote, tasa 
 			FROM det_compras, mprimas, tasa_iva 
-			where Id_compra=$Factura and det_compras.Codigo=mprimas.Cod_mprima and mprimas.Cod_iva=tasa_iva.Id_tasa";
+			where idCompra=$Factura and det_compras.Codigo=mprimas.Cod_mprima and mprimas.Cod_iva=tasa_iva.Id_tasa";
 				$result=mysqli_query($link,$qry);
 			$c=0;
 			while($row=mysqli_fetch_array($result))
@@ -469,7 +469,7 @@ if($CrearFactura==6)
 				echo'<tr><td>';
 				if ($estadoc!=7)
 				{
-				echo '<form action="updateCompraMP.php" method="post" name="actualiza'.$c.'">
+				echo '<form action="updateDetCompraForm.php" method="post" name="actualiza'.$c.'">
 				<input name="Factura" type="hidden" value="'.$Factura.'">
 				<input name="codigo" type="hidden" value="'.$codigo.'">
 				<input name="cantidad" type="hidden" value="'.$cantidad.'">
@@ -487,7 +487,7 @@ if($CrearFactura==6)
 			<td>';
 			if ($estadoc!=7)
 				{
-			echo '<form action="delMPComp.php" method="post" name="elimina'.$c++.'">
+			echo '<form action="delDetCompra.php" method="post" name="elimina'.$c++.'">
 				<input name="Factura" type="hidden" value="'.$Factura.'">
 				<input name="codigo" type="hidden" value="'.$codigo.'">
 				<input name="cantidad" type="hidden" value="'.$cantidad.'">

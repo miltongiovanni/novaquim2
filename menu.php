@@ -45,7 +45,6 @@ $menum = new MenusOperaciones();
 $menuItems = $menum->getMenuItems($perfil);
 //print_r($menuItems);
 //echo count($menuItems);
-//var_dump($menuItems);
 
 function getMenuSons($parent, $menuItems)
 {

@@ -29,13 +29,13 @@ foreach ($_POST as $nombre_campo => $valor)
 	$result=mysqli_query($link,$qry);
 	if ($result)
 	{
-		$qryexis="select * from inv_mprimas where Cod_mprima=$cod_mprima and inv_mp!=0";
+		$qryexis="select * from inv_mprimas where codMP=$cod_mprima and invMP!=0";
 		$resultexis=mysqli_query($link,$qryexis);
 		$rowexis=mysqli_fetch_array($resultexis);
 		$exis=$rowexis['inv_mp'];
 		$lote_mp=$rowexis['Lote_mp'];
 		$exis=$exis+$gasto_ant-$gasto;
-		$qryump="update inv_mprimas set inv_mp=$exis  where Lote_mp='$lote_mp' and Cod_mprima=$cod_mprima";
+		$qryump="update inv_mprimas set invMP=$exis  where loteMP='$lote_mp' and codMP=$cod_mprima";
 		$resultump=mysqli_query($link,$qryump);
 	}
 	echo '<input name="Lote" type="hidden" value="'.$Lote.'">';

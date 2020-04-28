@@ -34,10 +34,10 @@ $productoDistribucion = $ProductoDistribucionOperador->getProductoDistribucion($
                    value="<?= ($productoDistribucion['codSiigo']) ?>" readonly/>
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-2" style="text-align: right;" for="idDistribucion"><strong>Código</strong></label>
+            <label class="col-form-label col-2 text-right"  for="idDistribucion"><strong>Código</strong></label>
             <input type="text" class="form-control col-2" name="idDistribucion" id="idDistribucion"
                    value="<?= ($productoDistribucion['idDistribucion']) ?>" readOnly>
-            <label class="col-form-label col-1" style="text-align: right;"
+            <label class="col-form-label col-1 text-right"
                    for="producto"><strong>Producto</strong></label>
             <input type="text" class="form-control col-3" name="producto" id="producto"
                    value="<?= ($productoDistribucion['producto']) ?>"
@@ -45,7 +45,7 @@ $productoDistribucion = $ProductoDistribucionOperador->getProductoDistribucion($
         </div>
         <div class="form-group row">
 
-            <label class="col-form-label col-2" style="text-align: right;" for="precioVta"><strong>Precio de
+            <label class="col-form-label col-2 text-right"  for="precioVta"><strong>Precio de
                     Venta</strong></label>
             <input type="text" class="form-control col-2" name="precioVta" id="precioVta"
                    value="<?= ($productoDistribucion['precioVta']) ?>" onKeyPress="return aceptaNum(event)">
@@ -65,7 +65,7 @@ $productoDistribucion = $ProductoDistribucionOperador->getProductoDistribucion($
             ?>
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-2" style="text-align: right;" for="stockDis"><strong>Stock
+            <label class="col-form-label col-2 text-right"  for="stockDis"><strong>Stock
                     Min</strong></label>
             <input type="number" class="form-control col-2" min="0" name="stockDis" id="stockDis" pattern="[0-9]"
                    value="<?= ($productoDistribucion['stockDis']) ?>" onkeydown="return aceptaNum(event)">
@@ -101,10 +101,10 @@ $productoDistribucion = $ProductoDistribucionOperador->getProductoDistribucion($
             ?>
         </div>
         <div class="form-group row">
-            <div class="col-1" style="text-align: center;">
+            <div class="col-1 text-center">
                 <button class="button" onclick="return Enviar(this.form)"><span>Continuar</span></button>
             </div>
-            <div class="col-1" style="text-align: center;">
+            <div class="col-1 text-center">
                 <button class="button" type="reset"><span>Reiniciar</span></button>
             </div>
         </div>

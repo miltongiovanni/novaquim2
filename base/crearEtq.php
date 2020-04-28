@@ -35,28 +35,28 @@ include "../includes/valAcc.php";
         <div id="saludo"><strong>CREACIÓN DE ETIQUETAS</strong></div>
         <form name="form2" method="POST" action="makeEtq.php">
             <div class="form-group row">
-                <label class="col-form-label col-2" style="text-align: right;"
+                <label class="col-form-label col-2"
                     for="codEtiqueta"><strong>Código</strong></label>
                 <input type="text" class="form-control col-2" name="codEtiqueta" id="codEtiqueta" maxlength="50">
             </div>
             <div class="form-group row">
-                <label class="col-form-label col-2" style="text-align: right;"
+                <label class="col-form-label col-2"
                     for="nomEtiqueta"><strong>Etiqueta</strong></label>
                 <input type="text" class="form-control col-2" name="nomEtiqueta" id="nomEtiqueta" maxlength="50">
             </div>
             <div class="form-group row">
-                <label class="col-form-label col-2" style="text-align: right;" for="stockEtiqueta"><strong>Stock
+                <label class="col-form-label col-2"  for="stockEtiqueta"><strong>Stock
                         Etiqueta</strong></label>
                 <input type="text" class="form-control col-2" name="stockEtiqueta" id="stockEtiqueta"
                     onKeyPress="return aceptaNum(event)">
                 <input type="hidden" class="form-control col-2" name="codIva" id="codIva" value="3">
             </div>
             <div class="form-group row">
-                <div class="col-1" style="text-align: center;">
+                <div class="col-1 text-center" >
                     <button class="button" 
                         onclick="return Enviar(this.form)"><span>Continuar</span></button>
                 </div>
-                <div class="col-1" style="text-align: center;">
+                <div class="col-1 text-center" >
                     <button class="button"  type="reset"><span>Reiniciar</span></button>
                 </div>
             </div>

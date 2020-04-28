@@ -23,13 +23,13 @@ $servicio = $servicioperador->getServicio($idServicio);
     <div id="saludo"><strong>ACTUALIZACIÓN DE SERVICIO</strong></div>
     <form id="form1" name="form1" method="post" action="updateServ.php">
         <div class="form-group row">
-            <label class="col-form-label col-2" style="text-align: right;"
+            <label class="col-form-label col-2 text-right"
                    for="idServicio"><strong>Código</strong></label>
             <input type="text" class="form-control col-2" name="idServicio" id="idServicio" size=30 maxlength="30"
                    value="<?= $servicio['idServicio'] ?>" readonly>
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-2" style="text-align: right;" for="desServicio"><strong>Descripción
+            <label class="col-form-label col-2 text-right"  for="desServicio"><strong>Descripción
                     Servicio</strong></label>
             <input type="text" class="form-control col-2" name="desServicio" id="desServicio"
                    value="<?= $servicio['desServicio'] ?>" onKeyPress="return aceptaLetra(event)">
@@ -68,10 +68,10 @@ $servicio = $servicioperador->getServicio($idServicio);
             ?>
         </div>
         <div class="form-group row">
-            <div class="col-1" style="text-align: center;">
+            <div class="col-1 text-center" >
                 <button class="button" onclick="return Enviar(this.form)"><span>Continuar</span></button>
             </div>
-            <div class="col-1" style="text-align: center;">
+            <div class="col-1 text-center" >
                 <button class="button" type="reset"><span>Reiniciar</span></button>
             </div>
         </div>

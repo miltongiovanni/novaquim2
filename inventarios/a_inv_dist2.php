@@ -38,7 +38,7 @@ include "includes/conect.php";
 	</tr>
     <?php 
 		$link=conectarServidor();
-		$qry="select Id_distribucion, inv_dist from inv_distribucion where Id_distribucion=$IdDist;";
+		$qry="select Id_distribucion, invDistribucion from inv_distribucion where Id_distribucion=$IdDist;";
 		if ($result=mysqli_query($link,$qry))
 		{
 			$row=mysqli_fetch_array($result);

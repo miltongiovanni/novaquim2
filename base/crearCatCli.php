@@ -24,23 +24,23 @@ $idCategoria = $lastcategorias + 1;
     <div id="saludo"><strong>CREACIÓN DE TIPO DE CLIENTE</strong></div>
     <form name="form2" method="POST" action="makeCategoriaCli.php">
         <div class="form-group row">
-            <label class="col-form-label col-1" style="text-align: right;"
+            <label class="col-form-label col-1"
                    for="idCatClien"><strong>Código</strong></label>
             <input type="text" class="form-control col-2" name="idCatClien" id="idCatClien" size=30 maxlength="30"
                    value="<?= $idCategoria ?>" readonly>
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-1" style="text-align: right;"
+            <label class="col-form-label col-1"
                    for="desCatClien"><strong>Descripción</strong></label>
             <input type="text" class="form-control col-2" name="desCatClien" id="desCatClien" size=30
                    onKeyPress="return aceptaLetra(event)"
                    maxlength="30">
         </div>
         <div class="form-group row">
-            <div class="col-1" style="text-align: center;">
+            <div class="col-1 text-center" >
                 <button class="button" onclick="return Enviar(this.form)"><span>Continuar</span></button>
             </div>
-            <div class="col-1" style="text-align: center;">
+            <div class="col-1 text-center" >
                 <button class="button" type="reset"><span>Reiniciar</span></button>
             </div>
         </div>

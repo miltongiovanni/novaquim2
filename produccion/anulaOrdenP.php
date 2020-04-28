@@ -33,13 +33,13 @@ if($result=mysqli_query($link,$qry))
 	  $cantidad=$row['Can_mprima'];
 	  $loteMP=$row['Lote_MP'];	
 	  /*AJUSTE DEL INVENTARIO*/
-	  $qryinv="select Cod_mprima, Lote_mp, inv_mp from inv_mprimas where Cod_mprima=$cod_MP AND Lote_mp='$loteMP'";
+	  $qryinv="select codMP, loteMP, invMP from inv_mprimas where codMP=$cod_MP AND loteMP='$loteMP'";
 	  $resultinv=mysqli_query($link,$qryinv);
 	  $rowinv=mysqli_fetch_array($resultinv);
 	  $invt=$rowinv['inv_mp'];
 	  $invt= $invt + $cantidad;
 	  /*SE ACTUALIZA EL INVENTARIO*/
-	  $qryupt="update inv_mprimas set inv_mp=$invt where Cod_mprima=$cod_MP AND Lote_mp='$loteMP'";
+	  $qryupt="update inv_mprimas set invMP=$invt where codMP=$cod_MP AND loteMP='$loteMP'";
 	  echo $qryupt."<br>";
 	  $resultupt=mysqli_query($link,$qryupt);
 	}

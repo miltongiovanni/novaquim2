@@ -24,6 +24,15 @@ class ProductosDistribucionOperaciones
         $stmt->execute(array($idDistribucion));
     }
 
+    public function getPrecioProductoDistribucion($idDistribucion)
+    {
+        $qry = "SELECT precioCom FROM distribucion WHERE idDistribucion=?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($idDistribucion));
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result['precioCom'];
+    }
+
     public function getProductosDistribucion($actif)
     {
         if ($actif == true) {
@@ -67,12 +76,18 @@ class ProductosDistribucionOperaciones
     public function getUltimoProdDisxCat($idCatDis)
     {
         $qry = "SELECT MAX(idDistribucion) as Cod from distribucion where idCatDis=?";
-        $stmt = $this->_pdo->prepare($qry);
+        $stmt = $upthis->_pdo->prepare($qry);
         $stmt->execute(array($idCatDis));
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result['Cod'];
     }
 
+    public function updatePrecioCompraProductoDistribucion($datos)
+    {
+        $qry = "UPDATE distribucion SET precioCom=? WHERE idDistribucion=?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute($datos);
+    }
 
     public function updateProductoDistribucion($datos)
     {

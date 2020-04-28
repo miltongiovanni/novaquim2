@@ -16,7 +16,7 @@ include "includes/conect.php";
 		//echo $nombre_campo." = ".$valor."<br>";  
 		eval($asignacion); 
 	} 
-	$qryinv="update inv_etiquetas set inv_etiq=$inv where Cod_etiq=$IdEtq;";
+	$qryinv="update inv_etiquetas set invEtiq=$inv where codEtiq=$IdEtq;";
 	$link=conectarServidor();
 	if($result=mysqli_query($link,$qryinv))
 	{

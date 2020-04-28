@@ -31,8 +31,8 @@ include "includes/valAcc.php";
 include "includes/utilTabla.php";
 include "includes/conect.php" ;
 $link=conectarServidor();
-$sql="	SELECT inv_mprimas.Cod_mprima as Codigo, Nom_mprima as Nombre, sum(inv_mp) as inventario FROM inv_mprimas, mprimas
-where inv_mprimas.Cod_mprima=mprimas.Cod_mprima group by Codigo order by Nombre;";
+$sql="	SELECT inv_mprimas.codMP as Codigo, Nom_mprima as Nombre, sum(inv_mp) as inventario FROM inv_mprimas, mprimas
+where inv_mprimas.codMP=mprimas.Cod_mprima group by Codigo order by Nombre;";
 $result=mysqli_query($link,$sql);
 $a=1;
 while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
@@ -46,8 +46,8 @@ while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
 	<td class="formatoDatos"><div align="left">'.$row['Nombre'].'</div></td>
 	<td class="formatoDatos"><div align="center"><script > document.write(commaSplit('.$row['inventario'].'))</script></div></td>';
 	echo'</tr>';
-	$sqli="SELECT inv_mprimas.Cod_mprima as Codigo, Nom_mprima as Nombre, Lote_mp as Lote, inv_mp as inventario FROM inv_mprimas, mprimas
-	where inv_mprimas.Cod_mprima=mprimas.Cod_mprima and inv_mprimas.Cod_mprima=$prod ;";
+	$sqli="SELECT inv_mprimas.codMP as Codigo, Nom_mprima as Nombre, Lote_mp as Lote, inv_mp as inventario FROM inv_mprimas, mprimas
+	where inv_mprimas.codMP=mprimas.Cod_mprima and inv_mprimas.codMP=$prod ;";
 	$resulti=mysqli_query($link,$sqli);
 	echo '<tr><td colspan="7"><div class="commenthidden" id="UniqueName'.$a.'"><table width="60%" border="0" align="center" cellspacing="0" bordercolor="#CCCCCC">
 	<tr>

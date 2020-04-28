@@ -53,7 +53,7 @@ include "includes/calcularDias.php";
 	  $totalnvenc=0;
 	  if($link)
 	  	{  
-			$qry="select Id_compra as Id, Compra, nit_prov as Nit, Num_fact as Factura, Fech_comp, 
+			$qry="select idCompra as Id, Compra, nit_prov as Nit, Num_fact as Factura, Fech_comp, 
 				Fech_venc, total_fact as Total, Subtotal, Nom_provee as Proveedor, retencion, ret_provee, ret_ica 
 				FROM compras, proveedores where estado=3 and nit_prov=nitProv
 				union
@@ -88,7 +88,7 @@ include "includes/calcularDias.php";
 						if($compra==6)
 							$qryupt="update gastos set estado='C' where Id_gasto=$id_compra";
 						else
-							$qryupt="update compras set estado='C'where Id_compra=$id_compra";
+							$qryupt="update compras set estadoCompra='C'where Id_compra=$id_compra";
 						$resulupdate=mysqli_query($link,$qryupt);
 					}
 				$saldo=$ValPag-$parcial-$ret_ica;

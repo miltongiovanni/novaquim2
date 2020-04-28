@@ -24,7 +24,7 @@ $row_1=mysqli_fetch_array($result1);
 $Cod_env=$row_1['Cod_env'];
 $Codigo=$row_1['Codigo'];
 //SE DESCUENTA EL ENVASE
-$qry_env="select inv_envase.Cod_envase, Nom_envase, inv_envase from inv_envase, envase WHERE inv_envase.Cod_envase=envase.Cod_envase and inv_envase.Cod_envase=$Cod_env";
+$qry_env="select invEnvase.Cod_envase, Nom_envase, invEnvase from inv_envase, envase WHERE inv_envase.codEnvase=envase.Cod_envase and inv_envase.codEnvase=$Cod_env";
 $result_env=mysqli_query($link,$qry_env);
 $row_env=mysqli_fetch_array($result_env);
 $inv_env=$row_env['inv_envase'];
@@ -33,7 +33,7 @@ $envase=$row_env['Nom_envase'];
 if ($inv_env >= $Cantidad)
 {
 	$inv_env=$inv_env - $Cantidad;
-	$qry_up_env="update inv_envase set inv_envase=$inv_env where Cod_envase=$cod_env";
+	$qry_up_env="update inv_envase set invEnvase=$inv_env where codEnvase=$cod_env";
 	$result_up_env=mysqli_query($link,$qry_up_env);
 }
 else
@@ -101,8 +101,8 @@ while($row2=mysqli_fetch_array($result2))
 	}
 	else
 	{
-		$qryinv="select inv_distribucion.Id_distribucion, Producto, inv_dist from inv_distribucion, distribucion 
-		WHERE inv_distribucion.Id_distribucion=distribucion.Id_distribucion and inv_distribucion.Id_distribucion=$cod_producto;";
+		$qryinv="select inv_distribucion.codDistribucion, Producto, invDistribucion from inv_distribucion, distribucion 
+		WHERE inv_distribucion.codDistribucion=distribucion.Id_distribucion and inv_distribucion.codDistribucion=$cod_producto;";
 		$resultinv=mysqli_query($link,$qryinv);
 		$unidades=$Cantidad;
 		$rowinv=mysqli_fetch_array($resultinv);	
@@ -112,7 +112,7 @@ while($row2=mysqli_fetch_array($result2))
 		if ($invt >= $unidades)
 		{
 			$invt= $invt - $unidades;
-			$qryupt="update inv_distribucion set inv_dist=$invt where Id_distribucion=$cod_prod";
+			$qryupt="update inv_distribucion set invDistribucion=$invt where codDistribucion=$cod_prod";
 			$resultupt=mysqli_query($link,$qryupt);
 		}
 		else
@@ -151,7 +151,7 @@ while($row2=mysqli_fetch_array($result2))
 	else
 	{
 		//PRODUCTOS DE DISTRIBUCION
-		$qry_dist="select Id_distribucion, inv_dist from inv_distribucion where Id_distribucion=$Codigo";
+		$qry_dist="select codDistribucion, invDistribucion from inv_distribucion where codDistribucion=$Codigo";
 		$result_dist=mysqli_query($link,$qry_dist);
 		$row_dist=mysqli_fetch_array($result_dist);
 		if ($row_dist)
@@ -159,12 +159,12 @@ while($row2=mysqli_fetch_array($result2))
 		  $cod_dist=$row_dist['Id_distribucion'];
 		  $inv_dist=$row_dist['inv_dist'];
 		  $inv_dist=$inv_dist+$Cantidad;
-		  $qry_up_dist="update inv_distribucion set inv_dist=$inv_dist where Id_distribucion=$Codigo";
+		  $qry_up_dist="update inv_distribucion set invDistribucion=$inv_dist where codDistribucion=$Codigo";
 		  $result_up_dist=mysqli_query($link,$qry_up_dist);
 		}
 		else
 		{
-			$qryins="insert into inv_distribucion (Id_distribucion, inv_dist) values ($Codigo, $Cantidad)";
+			$qryins="insert into inv_distribucion (codDistribucion, invDistribucion) values ($Codigo, $Cantidad)";
 			$resultins=mysqli_query($link,$qryins);
 		}
 	}

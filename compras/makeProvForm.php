@@ -57,26 +57,26 @@ spl_autoload_register('cargarClases');
                 </label>
             </div>
 
-            <label class="col-form-label col-2" style="text-align: right;"
+            <label class="col-form-label col-2 text-right"
                    for="codProducto"><strong>Número</strong></label>
             <input type="text" class="form-control col-2" name="numero" id="numero" onKeyPress="return aceptaNum(event)" onkeyup="nitProveedor()">
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-2" style="text-align: right;" for="nitProv"><strong>NIT</strong></label>
+            <label class="col-form-label col-2 text-right"  for="nitProv"><strong>NIT</strong></label>
             <input type="text" class="form-control col-2" name="nitProv" id="nitProv" onKeyPress="return aceptaNum(event)" readOnly>
-            <label class="col-form-label col-2" style="text-align: right;" for="nomProv"><strong>Proveedor</strong></label>
+            <label class="col-form-label col-2 text-right"  for="nomProv"><strong>Proveedor</strong></label>
             <input type="text" class="form-control col-2" name="nomProv" id="nomProv">
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-2" style="text-align: right;" for="dirProv"><strong>Dirección</strong></label>
+            <label class="col-form-label col-2 text-right"  for="dirProv"><strong>Dirección</strong></label>
             <input type="text" class="form-control col-2" name="dirProv" id="dirProv">
-            <label class="col-form-label col-2" style="text-align: right;" for="telProv"><strong>Teléfono</strong></label>
+            <label class="col-form-label col-2 text-right"  for="telProv"><strong>Teléfono</strong></label>
             <input type="text" class="form-control col-2" name="telProv" id="telProv" onKeyPress="return aceptaNum(event)">
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-2" style="text-align: right;" for="contProv"><strong>Nombre Contacto</strong></label>
+            <label class="col-form-label col-2 text-right"  for="contProv"><strong>Nombre Contacto</strong></label>
             <input type="text" class="form-control col-2" name="contProv" id="contProv">
-            <label class="col-form-label col-2" style="text-align: right;" for="emailProv"><strong>Correo electrónico</strong></label>
+            <label class="col-form-label col-2 text-right"  for="emailProv"><strong>Correo electrónico</strong></label>
             <input type="email" class="form-control col-2" name="emailProv" id="emailProv">
         </div>
         <div class="form-group row">
@@ -122,10 +122,24 @@ spl_autoload_register('cargarClases');
             ?>
         </div>
         <div class="form-group row">
-            <div class="col-1" style="text-align: center;">
+            <label class="col-form-label col-2" for="idRetefuente"><strong>Tasa Retefuente</strong></label>
+            <?php
+            $manager = new TasaRetefuenteOperaciones();
+            $categorias=$manager->getTasasRetefuente();
+            $filas=count($categorias);
+            echo '<select name="idRetefuente" id="idRetefuente" class="form-control col-3" >';
+            for($i=0; $i<$filas; $i++)
+            {
+                echo '<option value="'.$categorias[$i]["idTasaRetefuente"].'">'.$categorias[$i]['retefuente'].'</option>';
+            }
+            echo '</select>';
+            ?>
+        </div>
+        <div class="form-group row">
+            <div class="col-1 text-center" >
                 <button class="button"  onclick="return Enviar(this.form)"><span>Continuar</span></button>
             </div>
-            <div class="col-1" style="text-align: center;">
+            <div class="col-1 text-center" >
                 <button class="button"  type="reset"><span>Reiniciar</span></button>
             </div>
         </div>

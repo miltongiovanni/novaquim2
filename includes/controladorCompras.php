@@ -31,8 +31,7 @@ function findProveedor()
         echo '<input type="text" class="form-control col-2" value="No hay sugerencias" readOnly>';
     }
     else{
-        echo'<br>';
-        echo'<select name="idProv" id="idProv" class="form-control col-3">';
+        echo'<br>';echo'<select name="idProv" id="idProv" class="form-control col-3">';
         for($i=0;$i<count($proveedores);$i++){
             echo '<option value='.$proveedores[$i]['idProv'].'>'.$proveedores[$i]['nomProv'].'</option>';
         }
@@ -40,17 +39,33 @@ function findProveedor()
     }
 }
 
-function ultimaMPxCat()
+function findProveedorBytipoCompra()
 {
-    $idCatMPrima = $_POST['idCatMPrima'];
-    $MPrimaOperador = new MPrimasOperaciones();
-    $ultimaMP = $MPrimaOperador->getUltimaMPrimaxCat($idCatMPrima);
-
-
-    $respuesta = array(
-        'alias' => $ultimaMP['catMP'] . ((($ultimaMP['codMPrima'] + 1) % 100 < 10) ? "0" . ($ultimaMP['codMPrima'] + 1) % 100 : ($ultimaMP['codMPrima'] + 1) % 100),
-        'codigo' => ($ultimaMP['codMPrima'] + 1));
-    echo json_encode($respuesta);
+    $q=$_POST['q'];
+    $tipoCompra=$_POST['tipoCompra'];
+    $ProveedorOperador = new ProveedoresOperaciones();
+    $proveedores = $ProveedorOperador->getProveedoresByNameAndTipoCompra($q, $tipoCompra);
+    if(count($proveedores)==0){
+        echo '<input type="text" class="form-control col-4" value="No hay sugerencias" readOnly>';
+    }
+    else{
+        echo'<br>';
+        echo'<select name="idProv" id="idProv" class="form-control col-4">';
+        for($i=0;$i<count($proveedores);$i++){
+            echo '<option value='.$proveedores[$i]['idProv'].'>'.$proveedores[$i]['nomProv'].'</option>';
+        }
+        echo'</select>';
+    }
+}
+function updateEstadoCompra()
+{
+    $idCompra = $_POST['idCompra'];
+    $estadoCompra = $_POST['estadoCompra'];
+    $CompraOperador = new ComprasOperaciones();
+    $datos = array($estadoCompra, $idCompra);
+    $CompraOperador->updateEstadoCompra($datos);
+    $rep['msg']="OK";
+    echo json_encode($rep);
 }
 
 function eliminarSession()
@@ -92,11 +107,11 @@ switch ($action) {
     case 'findProveedor':
         findProveedor();
         break;
-    case 'eliminarSession':
-        eliminarSession();
+    case 'findProveedorBytipoCompra':
+        findProveedorBytipoCompra();
         break;
-    case 'ultimaTapa':
-        ultimaTapa();
+    case 'updateEstadoCompra':
+        updateEstadoCompra();
         break;
     case 'ultimaEtiqueta':
         ultimaEtiqueta();

@@ -30,7 +30,7 @@ include "includes/valAcc.php";
 include "includes/utilTabla.php";
 include "includes/conect.php" ;
 $link=conectarServidor();
-$sql="	select inv_etiquetas.Cod_etiq as Codigo, Nom_etiq as Producto, inv_etiq as Cantidad, stock_etiq FROM inv_etiquetas, etiquetas where inv_etiquetas.Cod_etiq=etiquetas.Cod_etiq; ";
+$sql="	select inv_etiquetas.codEtiq as Codigo, Nom_etiq as Producto, invEtiq as Cantidad, stock_etiq FROM inv_etiquetas, etiquetas where inv_etiquetas.codEtiq=etiquetas.Cod_etiq; ";
 $result=mysqli_query($link,$sql);
 $a=1;
 while($row=mysqli_fetch_array($result, MYSQLI_BOTH))

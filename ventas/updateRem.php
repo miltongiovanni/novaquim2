@@ -119,12 +119,12 @@ if ($producto < 100000)
 }
 else
 {
-	$qry2="select Id_distribucion, inv_dist as Inv from inv_distribucion WHERE Id_distribucion=$producto;";
+	$qry2="select codDistribucion, invDistribucion as Inv from inv_distribucion WHERE codDistribucion=$producto;";
 	$result2=mysqli_query($link,$qry2);
 	$row2=mysqli_fetch_array($result2);	
 	$Inv=$row2['Inv'];	
 	$Inv=$Inv - $cantidad + $cant_ant;
-	$qry3="update inv_distribucion set inv_dist=$Inv where Id_distribucion=$producto;";
+	$qry3="update inv_distribucion set invDistribucion=$Inv where codDistribucion=$producto;";
 	$result3=mysqli_query($link,$qry3);
 	$qryinv="update det_remision1 set Can_producto=$cantidad where Id_remision=$remision and Cod_producto=$producto";
 	$resultinv=mysqli_query($link,$qryinv);

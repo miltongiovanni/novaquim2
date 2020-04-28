@@ -24,22 +24,22 @@ $categoriaProv = $catsProvOperador->getCatProv($idCatProv);
 
     <form id="form1" name="form1" method="post" action="updateCatProv.php">
         <div class="form-group row">
-            <label class="col-form-label col-1" style="text-align: right;"
+            <label class="col-form-label col-1"
                    for="idCatProv"><strong>Código</strong></label>
             <input type="text" class="form-control col-2" name="idCatProv" id="idCatProv" size=30 maxlength="30"
                    value="<?= $categoriaProv['idCatProv']; ?>" readonly>
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-1" style="text-align: right;" for="desCatProv"><strong>Descripción</strong></label>
+            <label class="col-form-label col-1"  for="desCatProv"><strong>Descripción</strong></label>
             <input type="text" class="form-control col-2" name="desCatProv" id="desCatProv" size=30
                    onKeyPress="return aceptaLetra(event)"
                    value="<?= $categoriaProv['desCatProv']; ?>" maxlength="30">
         </div>
         <div class="form-group row">
-            <div class="col-1" style="text-align: center;">
+            <div class="col-1 text-center" >
                 <button class="button" onclick="return Enviar(this.form)"><span>Continuar</span></button>
             </div>
-            <div class="col-1" style="text-align: center;">
+            <div class="col-1 text-center" >
                 <button class="button" type="reset"><span>Reiniciar</span></button>
             </div>
         </div>

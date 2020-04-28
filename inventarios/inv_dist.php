@@ -28,8 +28,8 @@ include "includes/valAcc.php";
 include "includes/utilTabla.php";
 include "includes/conect.php" ;
 $link=conectarServidor();
-$sql="	SELECT inv_distribucion.Id_distribucion as Codigo, Producto, inv_dist as Cantidad from inv_distribucion, distribucion
-where inv_distribucion.Id_distribucion=distribucion.Id_distribucion and inv_dist >0 and Activo=0 order by Producto;";
+$sql="	SELECT inv_distribucion.Id_distribucion as Codigo, Producto, invDistribucion as Cantidad from inv_distribucion, distribucion
+where inv_distribucion.Id_distribucion=distribucion.Id_distribucion and invDistribucion >0 and Activo=0 order by Producto;";
 $result=mysqli_query($link,$sql); 
 $a=1;
 while($row=mysqli_fetch_array($result, MYSQLI_BOTH))

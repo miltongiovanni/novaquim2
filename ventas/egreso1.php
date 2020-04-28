@@ -48,7 +48,7 @@ if($Pago==1)
 	//"EJECUTANDO EL PAGO";
 	$link=conectarServidor();   
 	/*validacion del valor a pagar"*/
-	$qryFact="SELECT total_fact, retencion, ret_ica FROM compras where Id_compra=$id_compra AND compra=$compra
+	$qryFact="SELECT totalCompra, retefuenteCompra, reteicaCompra FROM compras where idCompra=$id_compra AND tipoCompra=$compra
 	union
 	SELECT total_fact, retencion_g as retencion, ret_ica FROM gastos where Id_gasto=$id_compra AND compra=$compra;";
 	$resultfact=mysqli_query($link, $qryFact);
@@ -76,7 +76,7 @@ if($Pago==1)
 				if ($compra==6)
 					$qryupt="update gastos set estado=7 where Id_gasto=$id_compra";
 				else
-					$qryupt="update compras set estado=7 where Id_compra=$id_compra";
+					$qryupt="update compras set estadoCompra=7 where idCompra=$id_compra";
 				$resulupdate=mysqli_query($link, $qryupt);
 			}	
 			mover_pag("histo_pagos.php", "Pago Aplicado Correctamente");		
@@ -122,8 +122,8 @@ if($Pago==1)
     </tr>
     <?php
 	  	$link=conectarServidor();
-	 	$qry="select Id_compra, nit_prov, Num_fact, Fech_comp, Fech_venc, estado, total_fact, compra, Nom_provee, retencion, ret_provee, ret_ica, Subtotal from compras, proveedores
-		where Id_compra=$id_compra and compras.nit_prov=proveedores.nitProv AND compra<>6 AND compra=$compra
+	 	$qry="select idCompra, nit_prov, numFact, fechComp, fechVenc, estadoCompra, totalCompra, tipoCompra, Nom_provee, retefuenteCompra, ret_provee, reteicaCompra, subtotalCompra from compras, proveedores
+		where idCompra=$id_compra and compras.nit_prov=proveedores.nitProv AND tipoCompra<>6 AND tipoCompra=$compra
 		union
 		select Id_gasto as Id_compra, nit_prov, Num_fact, Fech_comp, Fech_venc, estado, total_fact, compra, Nom_provee, retencion_g as retencion, ret_provee, ret_ica, Subtotal_gasto as Subtotal from gastos, proveedores
 		where Id_gasto=$id_compra and gastos.nit_prov=proveedores.nitProv and compra=6 and compra=$compra;";

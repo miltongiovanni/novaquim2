@@ -40,7 +40,7 @@ $objPHPExcel->setActiveSheetIndex(0)
 $objPHPExcel->getActiveSheet()->setTitle(iconv("iso-8859-1", "UTF-8",'Facturas por Pagar'));
 $link=conectarServidor();
 $bd="novaquim";
-$sql="	select Id_compra as Id, Compra, nit_prov as Nit, Num_fact as Factura, Fech_comp, Subtotal, 
+$sql="	select idCompra as Id, Compra, nit_prov as Nit, Num_fact as Factura, Fech_comp, Subtotal, 
 				Fech_venc, total_fact as Total, nomProv as Proveedor, retencion, imp_cree 
 				FROM compras, proveedores where estado=3 and nit_prov=NIT_provee and nit_prov='$Proveedor'
 				union

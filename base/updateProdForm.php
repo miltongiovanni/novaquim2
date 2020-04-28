@@ -32,51 +32,51 @@ $producto = $ProductoOperador->getProducto($codProducto);
                    value="<?= $producto['idCatProd']; ?>">
             <input type="text" class="form-control col-2" name="catProd" id="catProd"
                    value="<?= $producto['catProd']; ?>" readOnly>
-            <label class="col-form-label col-1" style="text-align: right;"
+            <label class="col-form-label col-1 text-right"
                    for="codProducto"><strong>Código</strong></label>
             <input type="text" class="form-control col-2" name="codProducto" id="codProducto"
                    value="<?= $producto['codProducto']; ?>" readOnly>
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-1" style="text-align: right;"
+            <label class="col-form-label col-1 text-right"
                    for="nomProducto"><strong>Producto</strong></label>
             <input type="text" class="form-control col-2" name="nomProducto" id="nomProducto"
                    onKeyPress="return aceptaLetra(event)" maxlength="50" value="<?= $producto['nomProducto']; ?>">
-            <label class="col-form-label col-1" style="text-align: right;" for="apariencia"><strong>Apariencia</strong></label>
+            <label class="col-form-label col-1 text-right"  for="apariencia"><strong>Apariencia</strong></label>
             <input type="text" class="form-control col-2" name="apariencia" id="apariencia"
                    onKeyPress="return aceptaLetra(event)" value="<?= $producto['apariencia']; ?>">
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-1" style="text-align: right;" for="densMin"><strong>Densidad
+            <label class="col-form-label col-1 text-right"  for="densMin"><strong>Densidad
                     Min</strong></label>
             <input type="text" class="form-control col-2" name="densMin" id="densMin"
                    onKeyPress="return aceptaNum(event)" value="<?= $producto['densMin']; ?>">
-            <label class="col-form-label col-1" style="text-align: right;" for="densMax"><strong>Densidad
+            <label class="col-form-label col-1 text-right"  for="densMax"><strong>Densidad
                     Max</strong></label>
             <input type="text" class="form-control col-2" name="densMax" id="densMax"
                    onKeyPress="return aceptaNum(event)" value="<?= $producto['densMax']; ?>">
         </div>
 
         <div class="form-group row">
-            <label class="col-form-label col-1" style="text-align: right;" for="pHmin"><strong>pH Min</strong></label>
+            <label class="col-form-label col-1 text-right"  for="pHmin"><strong>pH Min</strong></label>
             <input type="text" class="form-control col-2" name="pHmin" id="pHmin" onKeyPress="return aceptaNum(event)"
                    value="<?= $producto['pHmin']; ?>">
-            <label class="col-form-label col-1" style="text-align: right;" for="pHmax"><strong>pH Max</strong></label>
+            <label class="col-form-label col-1 text-right"  for="pHmax"><strong>pH Max</strong></label>
             <input type="text" class="form-control col-2" name="pHmax" id="pHmax" onKeyPress="return aceptaNum(event)"
                    value="<?= $producto['pHmax']; ?>">
         </div>
 
         <div class="form-group row">
-            <label class="col-form-label col-1" style="text-align: right;"
+            <label class="col-form-label col-1 text-right"
                    for="fragancia"><strong>Fragancia</strong></label>
             <input type="text" class="form-control col-2" name="fragancia" id="fragancia"
                    onKeyPress="return aceptaLetra(event)" maxlength="30" value="<?= $producto['fragancia']; ?>">
-            <label class="col-form-label col-1" style="text-align: right;" for="color"><strong>Color</strong></label>
+            <label class="col-form-label col-1 text-right"  for="color"><strong>Color</strong></label>
             <input type="text" class="form-control col-2" name="color" id="color" onKeyPress="return aceptaLetra(event)"
                    maxlength="30" value="<?= $producto['color']; ?>">
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-1" style="text-align: right;"
+            <label class="col-form-label col-1 text-right"
                    for="prodActivo"><strong>Activo</strong></label>
             <?php
             if ($producto['prodActivo'] == 1) {
@@ -93,11 +93,11 @@ $producto = $ProductoOperador->getProducto($codProducto);
             ?>
         </div>
         <div class="form-group row">
-            <div class="col-1" style="text-align: center;">
+            <div class="col-1 text-center" >
                 <button class="button"
                         onclick="return Enviar(this.form)"><span>Continuar</span></button>
             </div>
-            <div class="col-1" style="text-align: center;">
+            <div class="col-1 text-center" >
                 <button class="button" type="reset"><span>Reiniciar</span></button>
             </div>
         </div>

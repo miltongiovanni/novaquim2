@@ -77,7 +77,7 @@ include "includes/valAcc.php";
 			$qryins_prod="insert into inv_prod (Cod_prese, inv_prod, lote_prod) values ($cod_prodpre, $cantidad, $Lote)";
 			$resultins_prod=mysqli_query($link,$qryins_prod);
 			//SE DESCUENTA EL ENVASE
-			$qry_env="select * from inv_envase where Cod_envase = (select Cod_envase from prodpre where Cod_prese=$cod_prodpre)";
+			$qry_env="select * from inv_envase where codEnvase = (select codEnvase from prodpre where Cod_prese=$cod_prodpre)";
 			$result_env=mysqli_query($link,$qry_env);
 			$row_env=mysqli_fetch_array($result_env);
 			$inv_env=$row_env['inv_envase'];
@@ -85,7 +85,7 @@ include "includes/valAcc.php";
 			if ($inv_env >= $cantidad)
 			{
 				$inv_env=$inv_env - $cantidad;
-				$qry_up_env="update inv_envase set inv_envase=$inv_env where Cod_envase=$cod_env";
+				$qry_up_env="update inv_envase set invEnvase=$inv_env where codEnvase=$cod_env";
 				$result_up_env=mysqli_query($link,$qry_up_env);
 			}
 			else
@@ -97,7 +97,7 @@ include "includes/valAcc.php";
 			  </script>';
 			}
 			//SE DESCUENTA LA TAPA
-			$qry_val="select Cod_tapa, inv_tapa from inv_tapas_val where Cod_tapa = (select Cod_tapa from prodpre where Cod_prese=$cod_prodpre)";
+			$qry_val="select codTapa, invTapa from inv_tapas_val where codTapa = (select codTapa from prodpre where Cod_prese=$cod_prodpre)";
 			$result_val=mysqli_query($link,$qry_val);
 			$row_val=mysqli_fetch_array($result_val);
 			$inv_val=$row_val['inv_tapa'];
@@ -105,7 +105,7 @@ include "includes/valAcc.php";
 			if ($inv_val >= $cantidad)
 			{
 				$inv_val=$inv_val - $cantidad;
-				$qry_up_val="update inv_tapas_val set inv_tapa=$inv_val where Cod_tapa=$cod_val";
+				$qry_up_val="update inv_tapas_val set invTapa=$inv_val where codTapa=$cod_val";
 				$result_up_val=mysqli_query($link,$qry_up_val);
 			}
 			else
@@ -117,7 +117,7 @@ include "includes/valAcc.php";
 			  </script>';
 			}
 			//SE DESCUENTA LA ETIQUETA
-			$qry_etq="select * from inv_etiquetas where Cod_etiq = (select Cod_etiq from prodpre where Cod_prese=$cod_prodpre)";
+			$qry_etq="select * from inv_etiquetas where codEtiq = (select codEtiq from prodpre where Cod_prese=$cod_prodpre)";
 			$result_etq=mysqli_query($link,$qry_etq);
 			$row_etq=mysqli_fetch_array($result_etq);
 			$inv_etq=$row_etq['inv_etiq'];
@@ -125,7 +125,7 @@ include "includes/valAcc.php";
 			if ($inv_etq >= $cantidad)
 			{
 				$inv_etq=$inv_etq - $cantidad;
-				$qry_up_etq="update inv_etiquetas set inv_etiq=$inv_etq where Cod_etiq=$cod_etq";
+				$qry_up_etq="update inv_etiquetas set invEtiq=$inv_etq where codEtiq=$cod_etq";
 				$result_up_etq=mysqli_query($link,$qry_up_etq);
 			}
 			else

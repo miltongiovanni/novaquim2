@@ -19,13 +19,13 @@ include "includes/conect.php";
 	if ($codigo<100)
 	{
 		//ELIMINA DE LA COMPRA
-		$qryinv="delete from det_compras where Id_compra=$Factura and Codigo=$codigo";
+		$qryinv="delete from det_compras where idCompra=$Factura and Codigo=$codigo";
 		echo $qryinv;
 		echo'<form action="detCompraenv.php" method="post" name="formulario">';
 		$link=conectarServidor();
 		$result=mysqli_query($link, $qryinv);
 		//ELIMINA DEL INVENTARIO
-		$qryinv="select Cod_envase, inv_envase from inv_envase WHERE Cod_envase=$codigo;";
+		$qryinv="select codEnvase, invEnvase from inv_envase WHERE codEnvase=$codigo;";
 		$resultinv=mysqli_query($link, $qryinv);
 		$rowinv=mysqli_fetch_array($resultinv);
 		$inv=$rowinv['inv_envase'];	
@@ -35,7 +35,7 @@ include "includes/conect.php";
 		echo "despues";
 		$inv= $inv-$cantidad;
 		echo $inv;
-		$qryup="update inv_envase set inv_envase=$inv where Cod_envase=$codigo;";
+		$qryup="update inv_envase set invEnvase=$inv where codEnvase=$codigo;";
 		echo $qryup;
 		$resultup=mysqli_query($link, $qryup);
 		echo "<br>";
@@ -52,13 +52,13 @@ include "includes/conect.php";
 	else
 	{
 		//ELIMINA DE LA COMPRA
-		$qryinv="delete from det_compras where Id_compra=$Factura and Codigo=$codigo";
+		$qryinv="delete from det_compras where idCompra=$Factura and Codigo=$codigo";
 		echo $qryinv;
 		echo'<form action="detCompraenv.php" method="post" name="formulario">';
 		$link=conectarServidor();
 		$result=mysqli_query($link, $qryinv);
 		//ELIMINA DEL INVENTARIO
-		$qryinv="select Cod_tapa, inv_tapa from inv_tapas_val WHERE Cod_tapa=$codigo;";
+		$qryinv="select codTapa, invTapa from inv_tapas_val WHERE codTapa=$codigo;";
 		$resultinv=mysqli_query($link, $qryinv);
 		$rowinv=mysqli_fetch_array($resultinv);
 		$inv=$rowinv['inv_tapa'];	
@@ -68,7 +68,7 @@ include "includes/conect.php";
 		echo "despues";
 		$inv= $inv-$cantidad;
 		echo $inv;
-		$qryup="update inv_tapas_val set inv_tapa=$inv where Cod_tapa=$codigo;";
+		$qryup="update inv_tapas_val set invTapa=$inv where codTapa=$codigo;";
 		echo $qryup;
 		$resultup=mysqli_query($link, $qryup);
 		echo "<br>";

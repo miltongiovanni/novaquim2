@@ -24,7 +24,7 @@ $Codigo=$row_1['Codigo'];
 /*REVISAR SI HAY INVENTARIO SUFICIENTE PARA DESCARGAR*/
 if ($Codigo >100000)
 {
-	$qry_bus="select inv_distribucion.Id_distribucion as Codigo, Producto, inv_dist as Inv from inv_distribucion, distribucion WHERE inv_distribucion.Id_distribucion=distribucion.Id_distribucion and inv_distribucion.Id_distribucion=$Codigo;";
+	$qry_bus="select inv_distribucion.codDistribucion as Codigo, Producto, invDistribucion as Inv from inv_distribucion, distribucion WHERE inv_distribucion.codDistribucion=distribucion.Id_distribucion and inv_distribucion.codDistribucion=$Codigo;";
 }
 else
 {
@@ -66,7 +66,7 @@ else
 	  else
 	  {
 		  //PRODUCTOS DE DISTRIBUCION
-		  $qry_dist="select Id_distribucion, inv_dist from inv_distribucion where Id_distribucion=$Codigo";
+		  $qry_dist="select codDistribucion, invDistribucion from inv_distribucion where codDistribucion=$Codigo";
 		  $result_dist=mysqli_query($link,$qry_dist);
 		  $row_dist=mysqli_fetch_array($result_dist);
 		  if ($row_dist)
@@ -74,20 +74,20 @@ else
 			$cod_dist=$row_dist['Id_distribucion'];
 			$inv_dist=$row_dist['inv_dist'];
 			$inv_dist=$inv_dist-$Cantidad;
-			$qry_up_dist="update inv_distribucion set inv_dist=$inv_dist where Id_distribucion=$Codigo";
+			$qry_up_dist="update inv_distribucion set invDistribucion=$inv_dist where codDistribucion=$Codigo";
 			$result_up_dist=mysqli_query($link,$qry_up_dist);
 		  }
 	  }
 }
 //SE CARGA EL ENVASE
-$qry_env="select inv_envase.Cod_envase, Nom_envase, inv_envase from inv_envase, envase WHERE inv_envase.Cod_envase=envase.Cod_envase and inv_envase.Cod_envase=$Cod_env";
+$qry_env="select inv_envase.codEnvase, Nom_envase, invEnvase from inv_envase, envase WHERE inv_envase.codEnvase=envase.Cod_envase and inv_envase.codEnvase=$Cod_env";
 $result_env=mysqli_query($link,$qry_env);
 $row_env=mysqli_fetch_array($result_env);
 $inv_env=$row_env['inv_envase'];
 $cod_env=$row_env['Cod_envase'];
 $envase=$row_env['Nom_envase'];
 $inv_env=$inv_env + $Cantidad;
-$qry_up_env="update inv_envase set inv_envase=$inv_env where Cod_envase=$cod_env";
+$qry_up_env="update inv_envase set invEnvase=$inv_env where codEnvase=$cod_env";
 $result_up_env=mysqli_query($link,$qry_up_env);
 
 if ($Codigo >100000)
@@ -99,14 +99,14 @@ if ($Codigo >100000)
   {
 	$cod_producto=$row2['Cod_producto'];
 	/*CARGA DEL INVENTARIO*/
-	$qryinv="select inv_distribucion.Id_distribucion, Producto, inv_dist from inv_distribucion, distribucion WHERE inv_distribucion.Id_distribucion=distribucion.Id_distribucion and inv_distribucion.Id_distribucion=$cod_producto;";
+	$qryinv="select inv_distribucion.codDistribucion, Producto, invDistribucion from inv_distribucion, distribucion WHERE inv_distribucion.codDistribucion=distribucion.Id_distribucion and inv_distribucion.codDistribucion=$cod_producto;";
 	$resultinv=mysqli_query($link,$qryinv);
 	$rowinv=mysqli_fetch_array($resultinv);	
 	$invt=$rowinv['inv_dist'];
 	$cod_prod=$rowinv['Id_distribucion'];
 	$prod_dist=$rowinv['Producto'];
 	$invt= $invt + $Cantidad;
-	$qryupt="update inv_distribucion set inv_dist=$invt where Id_distribucion=$cod_prod";
+	$qryupt="update inv_distribucion set invDistribucion=$invt where codDistribucion=$cod_prod";
 	$resultupt=mysqli_query($link,$qryupt);
   }
 }
@@ -136,14 +136,14 @@ else
 		}
 	    else
 	    {
-		  $qryinv="select inv_distribucion.Id_distribucion, Producto, inv_dist from inv_distribucion, distribucion WHERE inv_distribucion.Id_distribucion=distribucion.Id_distribucion and inv_distribucion.Id_distribucion=$cod_producto;";
+		  $qryinv="select inv_distribucion.codDistribucion, Producto, invDistribucion from inv_distribucion, distribucion WHERE inv_distribucion.codDistribucion=distribucion.Id_distribucion and inv_distribucion.codDistribucion=$cod_producto;";
 		  $resultinv=mysqli_query($link,$qryinv);
 		  $rowinv=mysqli_fetch_array($resultinv);	
 		  $invt=$rowinv['inv_dist'];
 		  $cod_prod=$rowinv['Id_distribucion'];
 		  $prod_dist=$rowinv['Producto'];
 		  $invt= $invt + $Cantidad;
-		  $qryupt="update inv_distribucion set inv_dist=$invt where Id_distribucion=$cod_prod";
+		  $qryupt="update inv_distribucion set invDistribucion=$invt where codDistribucion=$cod_prod";
 		  $resultupt=mysqli_query($link,$qryupt);
 		}
 	}
