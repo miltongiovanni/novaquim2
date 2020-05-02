@@ -21,7 +21,6 @@ try {
     $CompraOperador->updateCompra($datos);
     $_SESSION['idCompra'] = $idCompra;
     $_SESSION['tipoCompra'] = $tipoCompra;
-    $_SESSION['crearFactura'] = 5;
     $ruta = "detCompra.php";
     $mensaje = "Compra actualizada con éxito";
 

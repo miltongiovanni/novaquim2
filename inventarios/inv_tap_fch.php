@@ -2,7 +2,7 @@
 include "includes/valAcc.php";
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 <title>Inventario de Tapas y V&aacute;lvulas en Fecha</title>
 <meta charset="utf-8">

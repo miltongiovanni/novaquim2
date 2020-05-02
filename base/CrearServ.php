@@ -11,7 +11,7 @@ $lastservicio = $servicioperador->getLastServicio();
 $lastservicio++;
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <title>Creación de Servicios</title>

@@ -2,7 +2,7 @@
 include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
 <head>
     <title>Lista del Personal Activo</title>
@@ -53,8 +53,6 @@ include "../includes/valAcc.php";
                 "buttons": [
                     'copyHtml5',
                     'excelHtml5',
-                    'csvHtml5',
-                    'pdfHtml5'
                 ],
                 "lengthMenu": [[20, 50, 100, -1], [20, 50, 100, "All"]],
                 "language": {
@@ -88,18 +86,21 @@ include "../includes/valAcc.php";
                 <span><STRONG>Ir al Menú</STRONG></span></button>
         </div>
     </div>
-    <table id="example" class="display compact formatoDatos" style="width:100%">
-        <thead>
-        <tr>
-            <th>Id</th>
-            <th>Nombre</th>
-            <th>Celular</th>
-            <th>Correo electrónico</th>
-            <th>Área</th>
-            <th>Cargo</th>
-        </tr>
-        </thead>
-    </table>
+    <div class="tabla-80">
+        <table id="example" class="display compact formatoDatos">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Celular</th>
+                <th>Correo electrónico</th>
+                <th>Área</th>
+                <th>Cargo</th>
+            </tr>
+            </thead>
+        </table>
+    </div>
+
 
     <div class="row">
         <div class="col-1">

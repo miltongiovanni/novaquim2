@@ -468,6 +468,30 @@ table {
 .table2 {
   border: 0 solid #000066;
 }
+.tabla-100{
+  width: 100%;
+  margin-top: 20px;
+}
+
+.tabla-80{
+  width: 80%;
+  margin: auto;
+}
+
+.tabla-70{
+  width: 70%;
+  margin: auto;
+}
+.tabla-60{
+  width: 60%;
+  margin: auto;
+}
+.tabla-50{
+  width: 50%;
+  margin: auto;
+}
+
+
 .text-center {
   text-align: center !important;
 }

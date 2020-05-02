@@ -2,7 +2,7 @@
 include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
 <head>
     <title>Listado de Presentaciones de Producto</title>
@@ -90,19 +90,22 @@ include "../includes/valAcc.php";
                 <span><STRONG>Ir al Menú</STRONG></span></button>
         </div>
     </div>
-    <table id="example" class="display compact formatoDatos" style="width:80%">
-        <thead>
-        <tr>
-            <th>Código</th>
-            <th>Presentación</th>
-            <th>Medida</th>
-            <th>Envase</th>
-            <th>Tapa</th>
-            <th>Cod Anterior</th>
-            <th>Cod Siigo</th>
-        </tr>
-        </thead>
-    </table>
+    <div class="tabla-80">
+        <table id="example" class="display compact formatoDatos">
+            <thead>
+            <tr>
+                <th>Código</th>
+                <th>Presentación</th>
+                <th>Medida</th>
+                <th>Envase</th>
+                <th>Tapa</th>
+                <th>Cod Anterior</th>
+                <th>Cod Siigo</th>
+            </tr>
+            </thead>
+        </table>
+    </div>
+
     <div class="row">
         <div class="col-1">
             <button class="button" onclick="window.location='../menu.php'">

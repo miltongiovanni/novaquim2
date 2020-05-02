@@ -2,7 +2,7 @@
 include "includes/valAcc.php";
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 	<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
 	<title>Organizaci&oacute;n de Kits de Productos de Distribuci&oacute;n</title>

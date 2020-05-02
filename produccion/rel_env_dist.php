@@ -3,7 +3,7 @@ include "includes/valAcc.php";
 include "includes/conect.php";
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 	<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
 	<title>Creaci&oacute;n de Relaci&oacute;n de Materia Prima con Producto de Distribuci&oacute;n</title>

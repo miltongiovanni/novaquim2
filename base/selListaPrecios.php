@@ -2,7 +2,7 @@
 include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
 <head>
     <title>Seleccionar precio o precios</title>

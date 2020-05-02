@@ -4,7 +4,7 @@ include "includes/conect.php";
 $bd="novaquim";
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
     <title>Seleccionar Vendedor y periodo a revisar comisiones</title>
     <meta charset="utf-8">

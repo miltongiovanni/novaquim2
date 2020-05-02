@@ -21,9 +21,9 @@ $qry="select idCompra as Id, Compra, nit_prov as Nit, Num_fact as Factura, Fech_
 				Fech_venc, total_fact as Total, Nom_provee as Proveedor, retencion 
 				FROM compras, proveedores where estado=3 and nit_prov=nitProv
 				union
-				select Id_gasto as Id, Compra, nit_prov as Nit, Num_fact as Factura, Fech_comp, 
-				Fech_venc, total_fact as Total, Nom_provee as Proveedor, retencion_g as retencion 
-				from gastos, proveedores where estado=3 and nit_prov=nitProv order by Fech_venc;";
+				select idGasto as Id, Compra, nit_prov as Nit, numFact as Factura, fechGasto, 
+				fechVenc, totalGasto as Total, Nom_provee as Proveedor, retefuenteGasto as retencion 
+				from gastos, proveedores where estadoGasto=3 and nit_prov=nitProv order by Fech_venc;";
 $result=mysqli_query($link,$qry);
 $i=0;
 while($row=mysqli_fetch_array($result))

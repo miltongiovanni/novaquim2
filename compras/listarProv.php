@@ -2,7 +2,7 @@
 include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
     <title>Lista de Proveedores</title>
     <meta charset="utf-8">
@@ -125,19 +125,22 @@ include "../includes/valAcc.php";
                 <span><STRONG>Ir al Menú</STRONG></span></button>
         </div>
     </div>
-    <table id="example" class="display compact formatoDatos" style="width:100%">
-        <thead>
-        <tr>
-            <th></th>
-            <th>NIT</th>
-            <th>Proveedor</th>
-            <th>Dirección</th>
-            <th>Contacto</th>
-            <th>Teléfono</th>
-            <th>Correo Electrónico</th>
-        </tr>
-        </thead>
-    </table>
+    <div class="tabla-100">
+        <table id="example" class="display compact formatoDatos">
+            <thead>
+            <tr>
+                <th></th>
+                <th>NIT</th>
+                <th>Proveedor</th>
+                <th>Dirección</th>
+                <th>Contacto</th>
+                <th>Teléfono</th>
+                <th>Correo Electrónico</th>
+            </tr>
+            </thead>
+        </table>
+    </div>
+
     <div class="row">
         <div class="col-1">
             <button class="button" onclick="window.location='../menu.php'">

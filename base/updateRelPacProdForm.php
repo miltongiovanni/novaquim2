@@ -18,7 +18,7 @@ $relDisEmpOperador = new RelDisEmpOperaciones();
 $relacion = $relDisEmpOperador->getRelDisEmp($idPacUn);
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
     <title>Relación Paca Unidad Productos de Distribución</title>
     <meta charset="utf-8">

@@ -10,7 +10,7 @@ $PresentacionOperador = new PresentacionesOperaciones();
 $presentacion = $PresentacionOperador->getPresentacion($codPresentacion);
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
 <head>
 	<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">

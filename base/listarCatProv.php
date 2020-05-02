@@ -2,7 +2,7 @@
 include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
     <title>Categorías de Proveedores</title>
     <meta charset="utf-8">
@@ -38,10 +38,7 @@ include "../includes/valAcc.php";
                     ],
                 "dom": 'Blfrtip',
                 "buttons": [
-                    'copyHtml5',
                     'excelHtml5',
-                    'csvHtml5',
-                    'pdfHtml5'
                 ],
                 "lengthMenu": [[20, 50, 100, -1], [20, 50, 100, "All"]],
                 "language": {
@@ -73,14 +70,17 @@ include "../includes/valAcc.php";
                 <span><STRONG>Ir al Menú</STRONG></span></button>
         </div>
     </div>
-    <table id="example" class="display compact" style="width:50%">
-        <thead>
-        <tr>
-            <th>Código</th>
-            <th>Categoría Proveedor</th>
-        </tr>
-        </thead>
-    </table>
+    <div class="tabla-50">
+        <table id="example" class="display compact">
+            <thead>
+            <tr>
+                <th>Código</th>
+                <th>Categoría Proveedor</th>
+            </tr>
+            </thead>
+        </table>
+    </div>
+
     <div class="row">
         <div class="col-1">
             <button class="button"

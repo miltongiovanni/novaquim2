@@ -49,7 +49,7 @@ $DetComprasOperador = new DetComprasOperaciones();
 $compra = $CompraOperador->getCompra($idCompra, $tipoCompra);
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
     <title>Detalle compra de<?= $titulo ?></title>
     <meta charset="utf-8">
@@ -125,11 +125,11 @@ $compra = $CompraOperador->getCompra($idCompra, $tipoCompra);
                     {
                         "data": function (row) {
                             let rep = '<form action="updateDetCompraForm.php" method="post" name="elimina">' +
-                                '                    <input name="tipoCompra" type="hidden" value="' + tipoCompra + '">' +
-                                '                    <input name="idCompra" type="hidden" value="' + idCompra + '">' +
-                                '                    <input name="codigo" type="hidden" value="' + row.codigo + '">' +
-                                '                    <input type="button" name="Submit" onclick="return Enviar(this.form)" class="formatoBoton"  value="Cambiar">' +
-                                '                </form>'
+                                '          <input name="tipoCompra" type="hidden" value="' + tipoCompra + '">' +
+                                '          <input name="idCompra" type="hidden" value="' + idCompra + '">' +
+                                '          <input name="codigo" type="hidden" value="' + row.codigo + '">' +
+                                '          <input type="button" name="Submit" onclick="return Enviar(this.form)" class="formatoBoton"  value="Cambiar">' +
+                                '       </form>'
                             return rep;
                         },
                         "className": 'dt-body-center'
@@ -162,11 +162,11 @@ $compra = $CompraOperador->getCompra($idCompra, $tipoCompra);
                     {
                         "data": function (row) {
                             let rep = '<form action="delDetCompra.php" method="post" name="elimina">' +
-                                '                    <input name="tipoCompra" type="hidden" value="' + tipoCompra + '">' +
-                                '                    <input name="idCompra" type="hidden" value="' + idCompra + '">' +
-                                '                    <input name="codigo" type="hidden" value="' + row.codigo + '">' +
-                                '                    <input type="button" name="Submit" onclick="return Enviar(this.form)" class="formatoBoton"  value="Eliminar">' +
-                                '                </form>'
+                                '          <input name="tipoCompra" type="hidden" value="' + tipoCompra + '">' +
+                                '          <input name="idCompra" type="hidden" value="' + idCompra + '">' +
+                                '          <input name="codigo" type="hidden" value="' + row.codigo + '">' +
+                                '          <input type="button" name="Submit" onclick="return Enviar(this.form)" class="formatoBoton"  value="Eliminar">' +
+                                '      </form>'
                             return rep;
                         },
                         "className": 'dt-body-center'
@@ -427,6 +427,9 @@ $compra = $CompraOperador->getCompra($idCompra, $tipoCompra);
         <?php
     }
     ?>
+    <div class="form-group titulo row">
+        <strong>Detalle de la compra</strong>
+    </div>
     <table id="example" class="display compact" style="width:80%; margin-bottom: 20px;">
         <thead>
         <tr>

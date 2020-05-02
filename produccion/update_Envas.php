@@ -3,7 +3,7 @@ include "includes/valAcc.php";
 include "includes/conect.php";
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 <meta charset="utf-8">
 <title>Acualizaci&oacute;n</title>

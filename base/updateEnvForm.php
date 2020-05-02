@@ -10,7 +10,7 @@ $EnvaseOperador = new EnvasesOperaciones();
 $envase = $EnvaseOperador->getEnvase($codEnvase);
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
 <head>
   <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">

@@ -30,7 +30,7 @@ $proveedor = $ProveedorOperador->getProveedor($idProv);
 
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
     <title>Productos por Proveedor</title>
     <meta charset="utf-8">

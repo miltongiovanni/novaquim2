@@ -31,7 +31,7 @@ switch ($tipoCompra) {
 
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <title>Actualización compra de<?= $titulo ?></title>

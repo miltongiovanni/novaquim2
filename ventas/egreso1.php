@@ -2,7 +2,7 @@
 include "includes/valAcc.php";
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 <title>Modificacion de Comprobante de Egreso</title>
 <meta charset="utf-8">

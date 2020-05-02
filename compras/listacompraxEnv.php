@@ -4,7 +4,7 @@ include "includes/conect.php";
 include "includes/utilTabla.php";
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 <title>Lista de Compra por Envase o Tapa</title>
 <meta charset="utf-8">

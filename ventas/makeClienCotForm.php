@@ -3,7 +3,7 @@ include "includes/valAcc.php";
 include "includes/conect.php";
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 <link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
 <title>Creaci&oacute;n de Clientes para Cotizaci&oacute;n</title>

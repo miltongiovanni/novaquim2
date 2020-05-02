@@ -2,7 +2,7 @@
 include "includes/valAcc.php";
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
     <title>Creaci&oacute;n de Orden de Pedido</title>
     <meta charset="utf-8">

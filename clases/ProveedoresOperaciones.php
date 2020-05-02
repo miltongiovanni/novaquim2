@@ -48,6 +48,15 @@ class ProveedoresOperaciones
         return $result;
     }
 
+    public function getAllProveedoresGastos()
+    {
+        $qry = "SELECT idProv, nomProv FROM proveedores WHERE (idCatProv = 5 OR idCatProv = 6) ORDER BY nomProv;";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array());
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     public function getProveedoresByName($q)
     {
         $qry = "SELECT idProv, nomProv FROM proveedores WHERE nomProv like '%" . $q . "%' ORDER BY nomProv;";
@@ -62,6 +71,15 @@ class ProveedoresOperaciones
         $qry = "SELECT idProv, nomProv FROM proveedores WHERE idCatProv=? AND nomProv like '%" . $q . "%' ORDER BY nomProv;";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute(array($tipoCompra));
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    public function getProveedoresGastos($q)
+    {
+        $qry = "SELECT idProv, nomProv FROM proveedores WHERE (idCatProv=5 OR idCatProv=6) AND nomProv like '%" . $q . "%' ORDER BY nomProv;";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }

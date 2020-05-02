@@ -2,7 +2,7 @@
 include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
 <head>
     <title>Lista de Productos</title>
@@ -97,23 +97,26 @@ include "../includes/valAcc.php";
                 <span><STRONG>Ir al Menú</STRONG></span></button>
         </div>
     </div>
+    <div class="tabla-100">
+        <table id="example" class="display compact formatoDatos">
+            <thead>
+            <tr>
+                <th>Código</th>
+                <th>Producto</th>
+                <th>Categoría</th>
+                <th>Dens min</th>
+                <th>Dens máx</th>
+                <th>pH min</th>
+                <th>ph máx</th>
+                <th>Fragancia</th>
+                <th>Color</th>
+                <th>Apariencia</th>
+            </tr>
+            </thead>
+        </table>
+    </div>
 
-    <table id="example" class="display compact formatoDatos" style="width:100%">
-        <thead>
-        <tr>
-            <th>Código</th>
-            <th>Producto</th>
-            <th>Catégoria</th>
-            <th>Dens min</th>
-            <th>Dens máx</th>
-            <th>pH min</th>
-            <th>ph máx</th>
-            <th>Fragancia</th>
-            <th>Color</th>
-            <th>Apariencia</th>
-        </tr>
-        </thead>
-    </table>
+
     <div class="row">
         <div class="col-1">
             <button class="button"

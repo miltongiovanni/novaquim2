@@ -14,49 +14,66 @@ function nitProveedor()
 {
     $tipo = $_POST['tipo'];
     $numero = $_POST['numero'];
-    if ($tipo==1)
-        $NIT_F=number_format($numero, 0, '.', '.')."-".verifica($numero);
-    if ($tipo==2)
-        $NIT_F=number_format($numero, 0, '.', '.');
+    if ($tipo == 1)
+        $NIT_F = number_format($numero, 0, '.', '.') . "-" . verifica($numero);
+    if ($tipo == 2)
+        $NIT_F = number_format($numero, 0, '.', '.');
     echo $NIT_F;
 }
 
 
 function findProveedor()
 {
-    $q=$_POST['q'];
+    $q = $_POST['q'];
     $ProveedorOperador = new ProveedoresOperaciones();
     $proveedores = $ProveedorOperador->getProveedoresByName($q);
-    if(count($proveedores)==0){
+    if (count($proveedores) == 0) {
         echo '<input type="text" class="form-control col-2" value="No hay sugerencias" readOnly>';
-    }
-    else{
-        echo'<br>';echo'<select name="idProv" id="idProv" class="form-control col-3">';
-        for($i=0;$i<count($proveedores);$i++){
-            echo '<option value='.$proveedores[$i]['idProv'].'>'.$proveedores[$i]['nomProv'].'</option>';
+    } else {
+        echo '<br>';
+        echo '<select name="idProv" id="idProv" class="form-control col-3">';
+        for ($i = 0; $i < count($proveedores); $i++) {
+            echo '<option value=' . $proveedores[$i]['idProv'] . '>' . $proveedores[$i]['nomProv'] . '</option>';
         }
-        echo'</select>';
+        echo '</select>';
     }
 }
 
 function findProveedorBytipoCompra()
 {
-    $q=$_POST['q'];
-    $tipoCompra=$_POST['tipoCompra'];
+    $q = $_POST['q'];
+    $tipoCompra = $_POST['tipoCompra'];
     $ProveedorOperador = new ProveedoresOperaciones();
     $proveedores = $ProveedorOperador->getProveedoresByNameAndTipoCompra($q, $tipoCompra);
-    if(count($proveedores)==0){
+    if (count($proveedores) == 0) {
         echo '<input type="text" class="form-control col-4" value="No hay sugerencias" readOnly>';
-    }
-    else{
-        echo'<br>';
-        echo'<select name="idProv" id="idProv" class="form-control col-4">';
-        for($i=0;$i<count($proveedores);$i++){
-            echo '<option value='.$proveedores[$i]['idProv'].'>'.$proveedores[$i]['nomProv'].'</option>';
+    } else {
+        echo '<br>';
+        echo '<select name="idProv" id="idProv" class="form-control col-4">';
+        for ($i = 0; $i < count($proveedores); $i++) {
+            echo '<option value=' . $proveedores[$i]['idProv'] . '>' . $proveedores[$i]['nomProv'] . '</option>';
         }
-        echo'</select>';
+        echo '</select>';
     }
 }
+
+function findProveedorGasto()
+{
+    $q = $_POST['q'];
+    $ProveedorOperador = new ProveedoresOperaciones();
+    $proveedores = $ProveedorOperador->getProveedoresGastos($q);
+    if (count($proveedores) == 0) {
+        echo '<input type="text" class="form-control col-4" value="No hay sugerencias" readOnly>';
+    } else {
+        echo '<br>';
+        echo '<select name="idProv" id="idProv" class="form-control col-4">';
+        for ($i = 0; $i < count($proveedores); $i++) {
+            echo '<option value=' . $proveedores[$i]['idProv'] . '>' . $proveedores[$i]['nomProv'] . '</option>';
+        }
+        echo '</select>';
+    }
+}
+
 function updateEstadoCompra()
 {
     $idCompra = $_POST['idCompra'];
@@ -64,7 +81,18 @@ function updateEstadoCompra()
     $CompraOperador = new ComprasOperaciones();
     $datos = array($estadoCompra, $idCompra);
     $CompraOperador->updateEstadoCompra($datos);
-    $rep['msg']="OK";
+    $rep['msg'] = "OK";
+    echo json_encode($rep);
+}
+
+function updateEstadoGasto()
+{
+    $idGasto = $_POST['idGasto'];
+    $estadoGasto = $_POST['estadoGasto'];
+    $GastoOperador = new GastosOperaciones();
+    $datos = array($estadoGasto, $idGasto);
+    $GastoOperador->updateEstadoGasto($datos);
+    $rep['msg'] = "OK";
     echo json_encode($rep);
 }
 
@@ -113,13 +141,13 @@ switch ($action) {
     case 'updateEstadoCompra':
         updateEstadoCompra();
         break;
-    case 'ultimaEtiqueta':
-        ultimaEtiqueta();
+    case 'findProveedorGasto':
+        findProveedorGasto();
         break;
-    case 'infoProducto':
-        infoProducto();
+    case 'updateEstadoGasto':
+        updateEstadoGasto();
         break;
-    case 'ultimoProdDisxCat':
-        ultimoProdDisxCat();
+    case 'eliminarSession':
+        eliminarSession();
         break;
 }

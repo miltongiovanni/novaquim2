@@ -11,7 +11,7 @@ $ProductoDistribucionOperador = new ProductosDistribucionOperaciones();
 $productoDistribucion = $ProductoDistribucionOperador->getProductoDistribucion($idDistribucion);
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <meta charset="utf-8">

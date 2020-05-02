@@ -2,7 +2,7 @@
 include "includes/valAcc.php";
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 <title>Consulta de Stock de Tapas y/o V&aacute;lvulas</title>
 <meta charset="utf-8">

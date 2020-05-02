@@ -2,7 +2,7 @@
 include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
     <title>Lista de Envases como producto de Distribución</title>
     <meta charset="utf-8">
@@ -77,16 +77,19 @@ include "../includes/valAcc.php";
                 <span><STRONG>Ir al Menú</STRONG></span></button>
         </div>
     </div>
-    <table id="example" class="display compact formatoDatos" style="width:100%">
-        <thead>
-        <tr>
-            <th>Item</th>
-            <th>Producto Distribución</th>
-            <th>Envase</th>
-            <th>Tapa o Válvula</th>
-        </tr>
-        </thead>
-    </table>
+    <div class="tabla-60">
+        <table id="example" class="display compact formatoDatos">
+            <thead>
+            <tr>
+                <th>Item</th>
+                <th>Producto Distribución</th>
+                <th>Envase</th>
+                <th>Tapa o Válvula</th>
+            </tr>
+            </thead>
+        </table>
+    </div>
+
     <div class="row">
         <div class="col-1">
             <button class="button" onclick="window.location='../menu.php'">

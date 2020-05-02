@@ -2,7 +2,7 @@
 include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
 <head>
     <title>Lista de Precios</title>
@@ -102,19 +102,22 @@ include "../includes/valAcc.php";
                 <span><STRONG>Ir al Menú</STRONG></span></button>
         </div>
     </div>
-    <table id="example" class="display compact formatoDatos" style="width:70%">
-        <thead>
-        <tr>
-            <th>Código</th>
-            <th>Descripción</th>
-            <th>Precio Fábrica</th>
-            <th>Precio Distribución</th>
-            <th>Precio Detal</th>
-            <th>Precio Mayorista</th>
-            <th>Precio Super</th>
-        </tr>
-        </thead>
-    </table>
+    <div class="tabla-70" style="margin-top: 20px;">
+        <table id="example" class="display compact formatoDatos">
+            <thead>
+            <tr>
+                <th>Código</th>
+                <th>Descripción</th>
+                <th>Precio Fábrica</th>
+                <th>Precio Distribución</th>
+                <th>Precio Detal</th>
+                <th>Precio Mayorista</th>
+                <th>Precio Super</th>
+            </tr>
+            </thead>
+        </table>
+    </div>
+
     <div class="row">
         <div class="col-1">
             <button class="button"

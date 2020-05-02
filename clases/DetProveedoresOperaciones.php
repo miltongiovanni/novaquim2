@@ -97,6 +97,10 @@ class DetProveedoresOperaciones
                 $qry = "SELECT idDistribucion Codigo, producto Producto FROM distribucion
                         LEFT JOIN det_proveedores ON Codigo=idDistribucion AND idProv=? WHERE Codigo IS NULL order by Producto";
                 break;
+            case 6:
+                $qry = "SELECT idDistribucion Codigo, producto Producto FROM distribucion
+                        LEFT JOIN det_proveedores ON Codigo=idDistribucion AND idProv=? WHERE Codigo IS NULL order by Producto";
+                break;
         }
 
         $stmt = $this->_pdo->prepare($qry);

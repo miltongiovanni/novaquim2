@@ -2,7 +2,7 @@
 include "includes/valAcc.php";
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 	<title>Cargar Envase como Producto de Distribuci&oacute;n</title>
 	<meta charset="utf-8">

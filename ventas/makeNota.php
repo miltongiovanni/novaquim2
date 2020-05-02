@@ -2,7 +2,7 @@
 include "includes/valAcc.php";
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
     <title>Creaci&oacute;n Nota de Cr&eacute;dito</title>
     <meta charset="utf-8">

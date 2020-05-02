@@ -2,7 +2,7 @@
 include "includes/valAcc.php";
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
     <title>Ventas por familia de productos distribuidos por mes</title>
     <meta charset="utf-8">

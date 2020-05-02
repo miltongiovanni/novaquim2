@@ -20,7 +20,7 @@ $ProveedorOperador = new ProveedoresOperaciones();
 
 try {
     $nitExist = $ProveedorOperador->checkNit($nitProv);
-    if ($nitExist['idProv'] != null) {
+    if (isset($nitExist['idProv']) && $nitExist['idProv'] != null) {
         $_SESSION['idProv'] = $nitExist['idProv'];
         header('Location: updateProvForm.php');
     } else {

@@ -2,7 +2,7 @@
 include "includes/valAcc.php";
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 <title>Lista de Envasado por Orden de Producci&oacute;n</title>
 <meta charset="utf-8">

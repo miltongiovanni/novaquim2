@@ -2,7 +2,7 @@
 include "includes/valAcc.php";
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
     <title>Preparaci&oacute;n de Materia Prima</title>
     <meta charset="utf-8">

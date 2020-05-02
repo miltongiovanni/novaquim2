@@ -16,7 +16,7 @@ switch ($tipoCompra) {
 }
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
     <title>Lista de compras<?= $titulo ?></title>
     <meta charset="utf-8">
@@ -187,24 +187,27 @@ switch ($tipoCompra) {
                 <span><STRONG>Ir al Menú</STRONG></span></button>
         </div>
     </div>
-    <table id="example" class="display compact formatoDatos" style="width:100%">
-        <thead>
-        <tr>
-            <th></th>
-            <th width="6%">Id Compra</th>
-            <th width="9%">NIT</th>
-            <th width="22%">Proveedor</th>
-            <th width="6%">Factura</th>
-            <th width="8%">Fech Compra</th>
-            <th width="7%">Fecha Vto</th>
-            <th width="8%">Estado</th>
-            <th width="8%">Valor Factura</th>
-            <th width="8%">Retefuente</th>
-            <th width="9%">Rete Ica</th>
-            <th width="8%">Valor Real</th>
-        </tr>
-        </thead>
-    </table>
+    <div class="tabla-100">
+        <table id="example" class="display compact formatoDatos">
+            <thead>
+            <tr>
+                <th></th>
+                <th width="6%">Id Compra</th>
+                <th width="9%">NIT</th>
+                <th width="22%">Proveedor</th>
+                <th width="6%">Factura</th>
+                <th width="8%">Fech Compra</th>
+                <th width="7%">Fecha Vto</th>
+                <th width="8%">Estado</th>
+                <th width="8%">Valor Factura</th>
+                <th width="8%">Retefuente</th>
+                <th width="9%">Rete Ica</th>
+                <th width="8%">Valor Real</th>
+            </tr>
+            </thead>
+        </table>
+    </div>
+
     <div class="row">
         <div class="col-1">
             <button class="button" onclick="window.location='../menu.php'">

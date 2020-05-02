@@ -1,64 +1,126 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
+// Función para cargar las clases
+function cargarClases($classname)
+{
+    require '../clases/' . $classname . '.php';
+}
+
+spl_autoload_register('cargarClases');
+
+foreach ($_POST as $nombre_campo => $valor) {
+    $asignacion = "\$" . $nombre_campo . "='" . $valor . "';";
+    //echo $nombre_campo . " = " . $valor . "<br>";
+    eval($asignacion);
+}
+$ProductoDistribucionOperador = new ProductosDistribucionOperaciones();
+$producto = $ProductoDistribucionOperador->getProductoDistribucion($idDistribucion);
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-<title>Lista de Compra por Producto de Distribuci&oacute;n</title>
-<meta charset="utf-8">
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <title>Lista de Compra por Producto de Distribución</title>
+    <meta charset="utf-8">
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script src="../js/validar.js"></script>
+    <link rel="stylesheet" href="../css/datatables.css">
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/datatables.js"></script>
+    <script src="../js/dataTables.buttons.js"></script>
+    <script src="../js/jszip.js"></script>
+    <script src="../js/pdfmake.js"></script>
+    <script src="../js/vfs_fonts.js"></script>
+    <script src="../js/buttons.html5.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            var idDistribucion = <?= $idDistribucion ?>;
+            $('#example').DataTable({
+                "columns": [
+                    {
+                        /*"className": 'details-control',*/
+                        /*"orderable": false,*/
+                        "data": "fechComp",
+                        /*"defaultContent": ''*/
+                    },
+                    {
+                        "data": "nomProv",
+                    },
+                    {
+                        "data": "precioConIva",
+                    },
+                    {
+                        "data": "precioSinIva",
+                    },
+                    {
+                        "data": "cantidad",
+                    },
+                ],
+                "columnDefs":
+                    [{
+                        "targets": [0, 1, 2, 3, 4],
+                        "className": 'dt-body-center'
+                    }
+                    ],
+                "order": [[0, 'desc']],
+                "dom": 'Blfrtip',
+                "buttons": [
+                    'copyHtml5',
+                    'excelHtml5'
+                ],
+                "lengthMenu": [[20, 50, 100, -1], [20, 50, 100, "All"]],
+                "language": {
+                    "lengthMenu": "Mostrando _MENU_ datos por página",
+                    "zeroRecords": "Lo siento no encontró nada",
+                    "info": "Mostrando página _PAGE_ de _PAGES_",
+                    "infoEmpty": "No hay datos disponibles",
+                    "search": "Búsqueda:",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Último",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    },
+                    "infoFiltered": "(Filtrado de _MAX_ en total)"
+
+                },
+                "ajax": "ajax/listaCompraxDis.php?idDistribucion=" + idDistribucion
+            });
+        });
+    </script>
 </head>
 <body>
 <div id="contenedor">
-<div id="saludo1"><strong>LISTADO DE COMPRAS DE
-<?php
-	foreach ($_POST as $nombre_campo => $valor) 
-{ 
-	$asignacion = "\$".$nombre_campo."='".$valor."';"; 
-	//echo $nombre_campo." = ".$valor."<br>";  
-	eval($asignacion); 
-}  			
-include "includes/conect.php";
-$link=conectarServidor();
-$result=mysqli_query($link,"select Producto from distribucion where Id_distribucion=$IdDis");
-$row=mysqli_fetch_array($result);
-$Nom_producto=$row['Producto'];
-echo mb_strtoupper ($Nom_producto);
-mysqli_free_result($result);
-mysqli_close($link);
-//strtoupper ($cadena); 
+    <div id="saludo1"><strong>LISTADO DE COMPRAS DE <?= $producto['producto'] ?></strong></div>
 
-			?>
-</strong></div>
+    <div class="row" style="justify-content: flex-end;">
+        <div class="col-1">
+            <button class="button" onclick="window.location='../menu.php'">
+                <span><STRONG>Ir al Menú</STRONG></span></button>
+        </div>
+    </div>
+    <div class="tabla-60" >
+        <table id="example" class="display compact formatoDatos" >
+            <thead>
+            <tr>
+                <th>Fecha Compra</th>
+                <th>Proveedor</th>
+                <th>Precio Compra sin IVA</th>
+                <th>Precio Compra con IVA</th>
+                <th>Cantidad</th>
+            </tr>
+            </thead>
+        </table>
+    </div>
 
-<table width="700" border="0" align="center">
-  <tr> <td align="center">&nbsp;</td>
-        <td><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men&uacute;">
-      </div></td>
-  </tr>
-</table>
+    <div class="row">
+        <div class="col-1">
+            <button class="button"
+                    onclick="window.location='../menu.php'">
+                <span><STRONG>Ir al Menú</STRONG></span></button>
+        </div>
+    </div>
 
-<?php
-include "includes/utilTabla.php";
-
-	//parametros iniciales que son los que cambiamos
-    $link=conectarServidor();
-    //sentencia SQL    tblusuarios.IdUsuario,
-	$sql="	select fechComp as 'Fecha Compra', Nom_provee as Proveedor, Dir_provee as Dirección, Tel_provee as Teléfono, round(Precio*(1+tasa)) as 'Precio Compra con IVA', round(Precio) as 'Precio Compra sin IVA', round (Cantidad,0) as Cantidad
-	from det_compras, compras, distribucion, proveedores, tasa_iva
-	where Codigo=$IdDis and det_compras.idCompra=compras.Id_compra and Codigo=Id_distribucion AND nit_prov=nitProv AND Cod_iva=Id_tasa ORDER BY fechComp DESC ";
-	//llamar funcion de tabla
-	verTabla($sql, $link);
-?>
-<table width="27%" border="0" align="center">
-    <tr>
-        <td>&nbsp;</td>
-    </tr>
-    <tr> 
-        <td><div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men&uacute;">
-        </div></td>
-    </tr>
-</table>
 </div>
 </body>
 </html>

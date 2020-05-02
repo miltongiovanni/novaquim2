@@ -9,7 +9,7 @@ $resultbus=mysqli_query($link, $qrybus);
 $rowbus=mysqli_fetch_array($resultbus);
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 <title>Hist&oacute;rico de Cobros Facturas</title>
 <meta charset="utf-8">

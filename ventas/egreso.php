@@ -2,7 +2,7 @@
 include "includes/valAcc.php";
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 <title>Pago de Facturas de Compra y de Gastos</title>
 <meta charset="utf-8">

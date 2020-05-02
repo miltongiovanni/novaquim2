@@ -10,7 +10,7 @@ $catsDisOperador = new CategoriasDisOperaciones();
 $categoriaDis = $catsDisOperador->getCatDis($idCatDis);
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
 <head>
   <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">

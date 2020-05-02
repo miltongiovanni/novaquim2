@@ -2,7 +2,7 @@
 include "includes/valAcc.php";
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 <title>Porcentaje de Materias Primas en la F&oacute;rmula</title>
 <meta charset="utf-8">

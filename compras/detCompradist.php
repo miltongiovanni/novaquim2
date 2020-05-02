@@ -2,7 +2,7 @@
 include "includes/valAcc.php";
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 <title>Ingreso de Compra de Productos de Distribuci&oacute;n</title>
 <meta charset="utf-8">

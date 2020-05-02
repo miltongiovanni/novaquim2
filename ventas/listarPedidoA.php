@@ -2,7 +2,7 @@
 include "includes/valAcc.php";
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 <title>Lista de &Oacute;rdenes de Pedido Anuladas</title>
 <meta charset="utf-8">

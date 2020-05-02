@@ -7,8 +7,8 @@ include "includes/conect.php";
 include "includes/num_letra.php";
 $link=conectarServidor();
 $egreso=$_POST['egreso'];
-$qryenc="select egreso.Id_compra, nit_prov, Num_fact, total_fact, retencion_g as retencion, Nom_provee, Id_egreso, tip_compra, pago, Fecha, descuento_e, egreso.form_pago, forma_pago, ret_ica
-from egreso,  gastos, proveedores, form_pago where nit_prov=nitProv and Id_egreso=$egreso and egreso.Id_compra=Id_gasto and tip_compra=6 and egreso.form_pago=Id_fpago
+$qryenc="select egreso.Id_compra, nit_prov, numFact, totalGasto, retefuenteGasto as retencion, Nom_provee, Id_egreso, tip_compra, pago, Fecha, descuento_e, egreso.form_pago, forma_pago, reteicaGasto
+from egreso,  gastos, proveedores, form_pago where nit_prov=nitProv and Id_egreso=$egreso and egreso.Id_compra=idGasto and tip_compra=6 and egreso.form_pago=Id_fpago
 union
 select egreso.Id_compra, nit_prov, numFact, totalCompra, retefuenteCompra, Nom_provee, Id_egreso, tip_compra, pago, Fecha, descuento_e, egreso.form_pago, forma_pago, reteicaCompra
 from egreso,  compras, proveedores, form_pago where nit_prov=nitProv and Id_egreso=$egreso and egreso.Id_compra=compras.idCompra and tip_compra<>6 and egreso.form_pago=Id_fpago;";

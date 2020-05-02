@@ -8,7 +8,7 @@ foreach ($_POST as $nombre_campo => $valor)
 }
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
     <title>Crear Cotizaci&oacute;n</title>
     <meta charset="utf-8">

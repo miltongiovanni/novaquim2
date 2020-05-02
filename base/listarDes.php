@@ -2,7 +2,7 @@
 include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
     <title>Lista Relación Paca Producto</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -21,7 +21,7 @@ include "../includes/valAcc.php";
         /* Formatting function for row details - modify as you need */
         function format(d) {
             // `d` is the original data object for the row
-            return '<table cellpadding="5" cellspacing="0" border="0"  class="display compact" style="padding-left:50px;width:50%;margin:inherit;">' +
+            return '<table cellpadding="5" cellspacing="0" border="0"  class="display compact" style="padding-left:50px;width:80%;margin:inherit;">' +
                 '<thead>'+
                 '<tr>' +
                 '<th align="center">Código</th>' +
@@ -110,16 +110,19 @@ include "../includes/valAcc.php";
                 <span><STRONG>Ir al Menú</STRONG></span></button>
         </div>
     </div>
-    <table id="example" class="display compact formatoDatos" style="width:100%">
-        <thead>
-        <tr>
-            <th></th>
-            <th>Item</th>
-            <th>Código</th>
-            <th>Paca de Productos</th>
-        </tr>
-        </thead>
-    </table>
+    <div class="tabla-50">
+        <table id="example" class="display compact formatoDatos">
+            <thead>
+            <tr>
+                <th></th>
+                <th>Item</th>
+                <th>Código</th>
+                <th>Paca de Productos</th>
+            </tr>
+            </thead>
+        </table>
+    </div>
+
 
     <div class="row">
         <div class="col-1">

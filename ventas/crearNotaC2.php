@@ -2,7 +2,7 @@
 include "includes/valAcc.php";
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 	<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
 	<title>Creaci&oacute;n de Nota Cr&eacute;dito</title>

@@ -8,7 +8,7 @@ require '../clases/'.$classname.'.php';
 spl_autoload_register('cargarClases');
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
 <head>
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">

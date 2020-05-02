@@ -10,7 +10,7 @@ $TapaOperador = new TapasOperaciones();
 $tapa = $TapaOperador->getTapa($codTapa);
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
 <head>
   <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">

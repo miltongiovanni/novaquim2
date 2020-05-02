@@ -33,7 +33,7 @@ $DetCompraOperador = new DetComprasOperaciones();
 $detalle = $DetCompraOperador->getDetCompra($idCompra, $tipoCompra, $codigo);
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>

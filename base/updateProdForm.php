@@ -11,7 +11,7 @@ $ProductoOperador = new ProductosOperaciones();
 $producto = $ProductoOperador->getProducto($codProducto);
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
 <head>
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">

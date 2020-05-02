@@ -2,7 +2,7 @@
 include "includes/valAcc.php";
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 	<title>Organizar Unidades en Pacas</title>
 	<meta charset="utf-8">

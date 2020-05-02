@@ -8,7 +8,7 @@ function cargarClases($classname)
 spl_autoload_register('cargarClases');
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
 <head>
 	<title>Detalle de la Cotizaci&oacute;n</title>

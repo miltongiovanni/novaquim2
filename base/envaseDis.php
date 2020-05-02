@@ -8,7 +8,7 @@ function cargarClases($classname)
 spl_autoload_register('cargarClases');
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
     <title>Relación Envase con Productos de Distribución</title>
     <meta charset="utf-8">

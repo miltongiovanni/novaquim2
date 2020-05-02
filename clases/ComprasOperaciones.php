@@ -25,36 +25,6 @@ class ComprasOperaciones
         return $this->_pdo->lastInsertId();
     }
 
-    public function deleteProveedor($idCompra)
-    {
-        $qry = "DELETE FROM compras WHERE idCompra= ?";
-        $stmt = $this->_pdo->prepare($qry);
-        $stmt->execute(array($idCompra));
-    }
-
-    public function getProveedores($actif)
-    {
-        if ($actif == true) {
-            $qry = "SELECT idCompra, nomProv FROM compras WHERE estProv=1 ORDER BY nomProv;";
-        } else {
-            $qry = "SELECT idCompra, nomProv FROM compras ORDER BY nomProv;";
-        }
-
-        $stmt = $this->_pdo->prepare($qry);
-        $stmt->execute();
-        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        return $result;
-    }
-
-    public function getProveedoresByName($q)
-    {
-        $qry = "SELECT idCompra, nomProv FROM compras WHERE nomProv like '%" . $q . "%' ORDER BY nomProv;";
-        $stmt = $this->_pdo->prepare($qry);
-        $stmt->execute(array($q));
-        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        return $result;
-    }
-
     public function getTableCompras($tipoCompra)
     {
         $qry = "SELECT idCompra, nitProv, nomProv, numFact, fechComp, fechVenc, descEstado, CONCAT('$', FORMAT(totalCompra, 0)) totalCompra,

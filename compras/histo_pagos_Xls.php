@@ -39,9 +39,9 @@ $link=conectarServidor();
 $sql="select Id_egreso as Id, nit_prov, Nom_provee, numFact, total_fact, pago, Fech_comp, Fech_venc, Fecha, forma_pago 
 from egreso, compras, proveedores, form_pago 
 WHERE egreso.Id_compra=compras.Id_compra and nit_prov=nitProv and tip_compra<6 and form_pago=Id_fpago and Fecha>='$FchIni' and Fecha<='$FchFin'
-union select Id_egreso as Id, nit_prov, Nom_provee, Num_fact as Factura, total_fact, pago, Fech_comp, Fech_venc, Fecha, forma_pago 
+union select Id_egreso as Id, nit_prov, Nom_provee, numFact as Factura, totalGasto, pago, fechGasto, fechVenc, Fecha, forma_pago 
 from egreso, gastos, proveedores, form_pago 
-WHERE egreso.Id_compra=gastos.Id_gasto and nit_prov=nitProv and tip_compra=6 and form_pago=Id_fpago and Fecha>='$FchIni' and Fecha<='$FchFin' order by Id DESC;";
+WHERE egreso.Id_compra=gastos.idGasto and nit_prov=nitProv and tip_compra=6 and form_pago=Id_fpago and Fecha>='$FchIni' and Fecha<='$FchFin' order by Id DESC;";
 
 $result=mysqli_query($link,$sql) or die("Error al conectar a la base de datos.");
 //$columnas=mysql_num_fields($result);

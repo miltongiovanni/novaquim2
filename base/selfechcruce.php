@@ -2,7 +2,7 @@
 include "includes/valAcc.php";
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
     <title>Cruce productos distribuci&oacute;n por mes</title>
     <meta charset="utf-8">

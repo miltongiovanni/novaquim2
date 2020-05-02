@@ -13,7 +13,7 @@ $resultbus=mysqli_query($link,$qrybus);
 $rowbus=mysqli_fetch_array($resultbus);
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 <title>Hist&oacute;rico de Pagos</title>
 <meta charset="utf-8">
@@ -47,7 +47,7 @@ $link=conectarServidor();
 //sentencia SQL    tblusuarios.IdUsuario,
 $sql=" SELECT Id, numFact as Factura, totalCompra as Total, pago as 'Valor Pagado', fechComp as 'Fecha Compra', fechVenc as 'Fecha Vencimiento', Fecha as 'Fecha Canc', forma_pago as 'Forma de Pago' from (select Id_egreso as Id, nit_prov as Nit, Nom_provee as Proveedor, numFact, totalCompra, pago, fechComp, fechVenc, Fecha, forma_pago from egreso, compras, proveedores, form_pago WHERE egreso.Id_compra=compras.idCompra and nit_prov=nitProv and tip_compra<6 and form_pago=Id_fpago 
 union
-select Id_egreso as Id, nit_prov as Nit, Nom_provee as Proveedor, Num_fact, total_fact, pago, Fech_comp, Fech_venc, Fecha, forma_pago  from egreso, gastos, proveedores, form_pago WHERE egreso.Id_compra=gastos.Id_gasto and nit_prov=nitProv and tip_compra=6 and form_pago=Id_fpago order by Id DESC) as tabla where Nit='$prov' order by Id DESC;";
+select Id_egreso as Id, nit_prov as Nit, Nom_provee as Proveedor, numFact, totalGasto, pago, fechGasto, fechVenc, Fecha, forma_pago  from egreso, gastos, proveedores, form_pago WHERE egreso.Id_compra=gastos.idGasto and nit_prov=nitProv and tip_compra=6 and form_pago=Id_fpago order by Id DESC) as tabla where Nit='$prov' order by Id DESC;";
 $rs = mysqli_query($link,$sql);
 $a=1;
 while($row=mysqli_fetch_array($rs, MYSQLI_BOTH))

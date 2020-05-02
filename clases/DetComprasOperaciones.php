@@ -30,13 +30,6 @@ class DetComprasOperaciones
         $stmt->execute($datos);
     }
 
-    public function deleteAllDetCompra($idProv)
-    {
-        $qry = "DELETE FROM det_compras WHERE idProv= ?";
-        $stmt = $this->_pdo->prepare($qry);
-        $stmt->execute(array($idProv));
-    }
-
     public function getTableDetCompras($idCompra, $tipoCompra)
     {
         switch (intval($tipoCompra)) {
@@ -125,47 +118,17 @@ class DetComprasOperaciones
         return $result;
     }
 
-    public function getProdPorCategoria($idCompra, $tipoCompra)
+    public function getHistoricoComprasDistribucion($idCompra)
     {
-        switch (intval($idCatProv)) {
-            case 1:
-                $qry = "SELECT codMPrima Codigo, nomMPrima Producto FROM mprimas
-                        LEFT JOIN det_compras dp ON dp.Codigo=codMPrima AND dp.idProv=? WHERE dp.Codigo IS NULL ORDER BY Producto";
-                break;
-            case 2:
-                $qry = "SELECT codEnvase Codigo, nomEnvase Producto  FROM envases
-                        LEFT JOIN det_compras ON Codigo=codEnvase AND idProv=? WHERE Codigo IS NULL
-                        UNION
-                        SELECT codTapa Codigo, tapa Producto FROM tapas_val
-                        LEFT JOIN det_compras ON Codigo=codTapa AND idProv=? AND codTapa<>114 WHERE Codigo IS NULL ORDER BY Producto;
-                        ";
-                break;
-            case 3:
-                $qry = "SELECT codEtiqueta Codigo, nomEtiqueta Producto FROM etiquetas
-                        LEFT JOIN det_compras ON Codigo=codEtiqueta and idProv=? WHERE Codigo IS NULL ORDER BY Producto;";
-                break;
-            case 5:
-                $qry = "SELECT idDistribucion Codigo, producto Producto FROM distribucion
-                        LEFT JOIN det_compras ON Codigo=idDistribucion AND idProv=? WHERE Codigo IS NULL order by Producto";
-                break;
-        }
-
+        $qry = "SELECT fechComp, nomProv, CONCAT('$', FORMAT(precio*(1+tasaIva), 0)) precioConIva, CONCAT('$', FORMAT(precio, 0)) precioSinIva, FORMAT(cantidad, 0) cantidad  FROM det_compras dc
+                LEFT JOIN compras c on dc.idCompra = c.idCompra
+                LEFT JOIN proveedores pr ON c.idProv = pr.idProv
+                LEFT JOIN distribucion d on dc.codigo = d.idDistribucion
+                LEFT JOIN tasa_iva ti on d.codIva = ti.idTasaIva
+                WHERE codigo=?";
         $stmt = $this->_pdo->prepare($qry);
-
-        $stmt->execute(array($idProv));
+        $stmt->execute(array($idCompra));
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        return $result;
-    }
-
-    public function getDetProveedor($idProv)
-    {
-        $qry = "SELECT codProveedor, nomProveedor, catProd, proveedores.idCatProd, prodActivo, densMin, densMax, pHmin, pHmax, fragancia, color, apariencia
-        FROM  proveedores
-        LEFT JOIN cat_prod cp on proveedores.idCatProd = cp.idCatProd
-        WHERE codProveedor=?";
-        $stmt = $this->_pdo->prepare($qry);
-        $stmt->execute(array($codProveedor));
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result;
     }
 

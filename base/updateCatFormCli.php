@@ -11,7 +11,7 @@ $catsCliOperador = new CategoriasCliOperaciones();
 $categoriaCli = $catsCliOperador->getCatCli($idCatClien);
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <meta charset="utf-8">

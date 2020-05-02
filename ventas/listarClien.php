@@ -9,7 +9,7 @@ foreach ($_POST as $nombre_campo => $valor)
 }  
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 <title>
 <?php 

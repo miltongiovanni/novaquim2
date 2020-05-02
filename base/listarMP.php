@@ -2,7 +2,7 @@
 include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
 <head>
     <title>Lista de Materias Primas</title>
@@ -100,23 +100,26 @@ include "../includes/valAcc.php";
                 <span><STRONG>Ir al Menú</STRONG></span></button>
         </div>
     </div>
-    <table id="example" class="display compact formatoDatos" style="width:100%">
-        <thead>
-        <tr>
-            <th>Código</th>
-            <th>Materia Prima</th>
-            <th>Alias</th>
-            <th>Tipo Materia Prima</th>
-            <th>Stock min</th>
-            <th>Apariencia</th>
-            <th>Olor</th>
-            <th>Color</th>
-            <th>pH</th>
-            <th>Densidad</th>
-            <th>Código ant</th>
-        </tr>
-        </thead>
-    </table>
+    <div class="tabla-100">
+        <table id="example" class="display compact formatoDatos">
+            <thead>
+            <tr>
+                <th>Código</th>
+                <th>Materia Prima</th>
+                <th>Alias</th>
+                <th>Tipo Materia Prima</th>
+                <th>Stock min</th>
+                <th>Apariencia</th>
+                <th>Olor</th>
+                <th>Color</th>
+                <th>pH</th>
+                <th>Densidad</th>
+                <th>Código ant</th>
+            </tr>
+            </thead>
+        </table>
+    </div>
+
     <div class="row">
         <div class="col-1">
             <button class="button" onclick="window.location='../menu.php'">

@@ -2,7 +2,7 @@
 include "includes/valAcc.php";
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 <title>Hist&oacute;rico de Comprobantes de Egreso</title>
 <meta charset="utf-8">
@@ -69,9 +69,9 @@ $sql=" select Id_egreso as Id, nit_prov as Nit, Nom_provee as Proveedor, numFact
 from egreso, compras, proveedores, form_pago 
 WHERE egreso.Id_compra=compras.idCompra and nit_prov=nitProv and tip_compra<6 and form_pago=Id_fpago
 union
-select Id_egreso as Id, nit_prov as Nit, Nom_provee as Proveedor, Num_fact as Factura, total_fact as Total, pago as 'Valor Pagado', Fech_comp as 'Fecha Compra', Fech_venc as 'Fecha Vencimiento', Fecha as 'Fecha Canc', forma_pago as 'Forma de Pago'
+select Id_egreso as Id, nit_prov as Nit, Nom_provee as Proveedor, numFact as Factura, totalGasto as Total, pago as 'Valor Pagado', fechGasto as 'Fecha Compra', fechVenc as 'Fecha Vencimiento', Fecha as 'Fecha Canc', forma_pago as 'Forma de Pago'
 from egreso, gastos, proveedores, form_pago 
-WHERE egreso.Id_compra=gastos.Id_gasto and nit_prov=nitProv and tip_compra=6 and form_pago=Id_fpago order by Id DESC;";
+WHERE egreso.Id_compra=gastos.idGasto and nit_prov=nitProv and tip_compra=6 and form_pago=Id_fpago order by Id DESC;";
 //llamar funcion de tabla
 $result=mysqli_query($link,$sql);
 $num_total_registros = mysqli_num_rows($result); 
@@ -98,9 +98,9 @@ $ssql = "select Id_egreso as Id, nit_prov as Nit, Nom_provee as Proveedor, numFa
 from egreso, compras, proveedores, form_pago 
 WHERE egreso.Id_compra=compras.idCompra and nit_prov=nitProv and tip_compra<6 and form_pago=Id_fpago
 union
-select Id_egreso as Id, nit_prov as Nit, Nom_provee as Proveedor, Num_fact as Factura, total_fact as Total, pago as 'Valor Pagado', Fech_comp as 'Fecha Compra', Fech_venc as 'Fecha Vencimiento', Fecha as 'Fecha Canc', forma_pago as 'Forma de Pago'
+select Id_egreso as Id, nit_prov as Nit, Nom_provee as Proveedor, numFact as Factura, totalGasto as Total, pago as 'Valor Pagado', fechGasto as 'Fecha Compra', fechVenc as 'Fecha Vencimiento', Fecha as 'Fecha Canc', forma_pago as 'Forma de Pago'
 from egreso, gastos, proveedores, form_pago 
-WHERE egreso.Id_compra=gastos.Id_gasto and nit_prov=nitProv and tip_compra=6 and form_pago=Id_fpago order by Id DESC limit " . $inicio . "," . $TAMANO_PAGINA;
+WHERE egreso.Id_compra=gastos.idGasto and nit_prov=nitProv and tip_compra=6 and form_pago=Id_fpago order by Id DESC limit " . $inicio . "," . $TAMANO_PAGINA;
 $rs = mysqli_query($link,$ssql);
 $a=1;
 while($row=mysqli_fetch_array($rs, MYSQLI_BOTH))

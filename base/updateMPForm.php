@@ -12,7 +12,7 @@ $MPrimaOperador = new MPrimasOperaciones();
 $mprima = $MPrimaOperador->getMPrima($codMPrima);
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
 <head>
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">

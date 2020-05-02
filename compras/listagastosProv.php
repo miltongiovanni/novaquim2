@@ -2,7 +2,7 @@
 include "includes/valAcc.php";
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 <title>Lista de Gastos de Novaquim por Proveedor</title>
 <meta charset="utf-8">

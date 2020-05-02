@@ -10,7 +10,7 @@ $idCatProd=$_POST['idCatProd'];
       $categoriaProd=$catsProdOperador->getCatProd($idCatProd);
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
 <head>
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">

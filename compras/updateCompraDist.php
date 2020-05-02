@@ -3,7 +3,7 @@ include "includes/valAcc.php";
 include "includes/conect.php";
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 <link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
 <meta charset="utf-8">

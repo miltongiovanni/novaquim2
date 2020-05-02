@@ -4,7 +4,7 @@ include "includes/conect.php";
 $bd="novaquim";
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
     <title>Ventas por familia de productos distribuci&oacute;n por mes</title>
     <meta charset="utf-8">

@@ -2,7 +2,7 @@
 include "includes/valAcc.php";
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 	<title>Convertir Pacas de Producto a Unidades</title>
 	<meta charset="utf-8">

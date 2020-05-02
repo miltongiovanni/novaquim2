@@ -2,7 +2,7 @@
 include "includes/valAcc.php";
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
     <title>Factura de Venta</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />

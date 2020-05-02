@@ -14,7 +14,7 @@ $resultbus=mysqli_query($link,$qrybus);
 $rowbus=mysqli_fetch_array($resultbus);
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 <title>Lista de Notas Cr&eacute;dito</title>
 <meta charset="utf-8">

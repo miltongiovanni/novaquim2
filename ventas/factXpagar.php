@@ -4,7 +4,7 @@ include "includes/calcularDias.php";
 
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 <meta charset="utf-8">
 <title>Facturas por pagar</title>
