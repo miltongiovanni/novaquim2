@@ -31,7 +31,7 @@ foreach ($_POST as $nombre_campo => $valor)
 if($Pago==0)
 {
 	$link=conectarServidor();   
-	$qrycam="select MAX(Id_egreso) AS Egreso from egreso;";
+	$qrycam="select MAX(idEgreso) AS Egreso from egreso;";
 	$resultqrycam=mysqli_query($link, $qrycam);
 	$row_cam=mysqli_fetch_array($resultqrycam);
 	$egreso=$row_cam['Egreso']+1;   
@@ -39,7 +39,7 @@ if($Pago==0)
 if($Pago==3)
 {
 	$link=conectarServidor();   
-	$qrycam="select MAX(Id_egreso) AS Egreso from egreso;";
+	$qrycam="select MAX(idEgreso) AS Egreso from egreso;";
 	$resultqrycam=mysqli_query($link, $qrycam);
 	$row_cam=mysqli_fetch_array($resultqrycam);
 	$egreso=$row_cam['Egreso'];   
@@ -47,7 +47,7 @@ if($Pago==3)
 if($Pago==4)
 {
 	$link=conectarServidor();   
-	$qryb="select Id_compra, tip_compra, pago, Fecha, descuento_e, form_pago from egreso where Id_egreso=$egreso;";
+	$qryb="select idCompra, tipoCompra, pago, fechPago, descuentoE, formPago from egreso where idEgreso=$egreso;";
 	$resultb=mysqli_query($link, $qryb);
 	$row_b=mysqli_fetch_array($resultb);
 	$id_compra=$row_b['Id_compra'];   
@@ -67,7 +67,7 @@ if($Pago==1)
 	$total=$rowfact['total_fact'];
 	$retencion=$rowfact['retencion'];
 	$ret_ica=$rowfact['ret_ica'];
-	$qrytot="select sum(pago) as Parcial from egreso where Id_compra=$id_compra and tip_compra=$compra";
+	$qrytot="select sum(pago) as Parcial from egreso where idCompra=$id_compra and tipoCompra=$compra";
 	$resultot=mysqli_query($link, $qrytot);
 	$rowtot=mysqli_fetch_array($resultot);
 	$parcial=$rowtot['Parcial'];
@@ -78,7 +78,7 @@ if($Pago==1)
    	}
 	else
 	{
-		$qry="insert into egreso (Id_egreso, Id_compra, tip_compra, pago, Fecha,form_pago, descuento_e) values($Id_Egreso, $id_compra, $compra, $abono, '$fecha', $Form_pago, $descuento)";
+		$qry="insert into egreso (idEgreso, idCompra, tipoCompra, pago, fechPago,formPago, descuentoE) values($Id_Egreso, $id_compra, $compra, $abono, '$fecha', $Form_pago, $descuento)";
 		$result=mysqli_query($link, $qry);
    		if($result)
 		{
@@ -153,7 +153,7 @@ if($Pago==1)
 		$result=mysqli_query($link, $qry);
 		$row=mysqli_fetch_array($result);
 		$nit=$row['nit_prov'];
-		$qry3="select sum(pago) as Parcial from egreso where Id_compra=$id_compra and tip_compra=$compra";
+		$qry3="select sum(pago) as Parcial from egreso where idCompra=$id_compra and tipoCompra=$compra";
 		$result3=mysqli_query($link, $qry3);
 		$row3=mysqli_fetch_array($result3);
 		$valTot=$row['total_fact'];
@@ -257,7 +257,7 @@ if($Pago==1)
 </tr>
 <?php
 $link=conectarServidor();
-$qry="select Id_egreso, Tip_compra, pago, Fecha from egreso where Id_compra=$id_compra and tip_compra=$compra;";
+$qry="select idEgreso, tipoCompra, pago, fechPago from egreso where idCompra=$id_compra and tipoCompra=$compra;";
 $result=mysqli_query($link, $qry);
 $i=1;
 while($row=mysqli_fetch_array($result))

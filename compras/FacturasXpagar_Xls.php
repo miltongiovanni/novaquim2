@@ -33,20 +33,20 @@ $objPHPExcel->setActiveSheetIndex(0)
 			->setCellValue('F1', iconv("iso-8859-1", "UTF-8",'Retención'))
 			->setCellValue('G1', 'Valor a Pagar')
 			->setCellValue('H1', 'Valor Pagado')
-			->setCellValue('I1', 'Retecree')
-			->setCellValue('J1', 'Saldo');
+			->setCellValue('I1', 'Reteica')
+			->setCellValue('J1', 'Saldo')
+			->setCellValue('K1', 'Subtotal');
 // Rename sheet
 
 $objPHPExcel->getActiveSheet()->setTitle(iconv("iso-8859-1", "UTF-8",'Facturas por Pagar'));
 $link=conectarServidor();
-$bd="novaquim";
 $sql="	select idCompra as Id, Compra, nit_prov as Nit, Num_fact as Factura, Fech_comp, Subtotal, 
-				Fech_venc, total_fact as Total, nomProv as Proveedor, retencion, imp_cree 
-				FROM compras, proveedores where estado=3 and nit_prov=NIT_provee and nit_prov='$Proveedor'
+								Fech_venc, total_fact as Total, nomProv as Proveedor, retencion, ret_ica 
+				FROM compras, proveedores where estado=3 and nit_prov=NIT_provee
 				union
 				select Id_gasto as Id, Compra, nit_prov as Nit, Num_fact as Factura, Fech_comp, Subtotal_gasto as Subtotal,
-				Fech_venc, total_fact as Total, nomProv as Proveedor, retencion_g as retencion, imp_cree 
-				from gastos, proveedores where estado=3 and nit_prov=NIT_provee and nit_prov='$Proveedor' order by Fech_venc;";
+				Fech_venc, total_fact as Total, Nom_provee as Proveedor, retencion_g as retencion, ret_ica 
+				from gastos, proveedores where estado=3 and nit_prov=NIT_provee order by Fech_venc;";
 $result=mysqli_query($link,$sql) or die("Error al conectar a la base de datos.");
 //$columnas=mysql_num_fields($result);
 //$filas = mysql_num_rows($result);
@@ -66,10 +66,10 @@ while($row= mysqli_fetch_array($result, MYSQLI_BOTH))
 	$fecVen=$row['Fech_venc'];
 	$fact=$row['Factura'];
 	$retencion=$row['retencion'];
-	$imp_cree=$row['imp_cree'];
+	$ret_ica=$row['ret_ica'];
 	$ValTot=$row['Total'];
 	$ValPag=$ValTot-$retencion;
-	$qry1="select sum(pago) as Parcial from egreso where Id_compra=$id_compra and tip_compra=$compra";
+	$qry1="select sum(pago) as Parcial from egreso where idCompra=$id_compra and tipoCompra=$compra";
 	$resultpago=mysqli_query($link,$qry1);
 	$rowpag=mysqli_fetch_array($resultpago);
 	if($rowpag['Parcial'])
@@ -79,8 +79,9 @@ while($row= mysqli_fetch_array($result, MYSQLI_BOTH))
 	$saldo=$ValPag-$parcial;
 	$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(6, $i, iconv("iso-8859-1", "UTF-8",($row['Total']-$row['retencion'])));
 	$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(7, $i, iconv("iso-8859-1", "UTF-8",$parcial));
-	$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(8, $i, iconv("iso-8859-1", "UTF-8",$row['imp_cree']));
-	$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(9, $i++, iconv("iso-8859-1", "UTF-8",$saldo));
+	$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(8, $i, iconv("iso-8859-1", "UTF-8",$row['ret_ica']));
+	$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(9, $i, iconv("iso-8859-1", "UTF-8",$saldo));
+	$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(10, $i++, iconv("iso-8859-1", "UTF-8",$row['Subtotal']));
 } 
 
 // Set active sheet index to the first sheet, so Excel opens this as the first sheet

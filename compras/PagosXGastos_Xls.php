@@ -38,9 +38,9 @@ $objPHPExcel->setActiveSheetIndex(0)
 // Rename sheet
 $objPHPExcel->getActiveSheet()->setTitle('Pagos de gastos');
 $link=conectarServidor();
-$sql="select Id_egreso as Id, nit_prov, Nom_provee, Num_fact, total_fact, pago, Fech_comp, Fech_venc, Fecha, forma_pago 
+$sql="select idEgreso as Id, nit_prov, Nom_provee, Num_fact, total_fact, pago, Fech_comp, Fech_venc, fechPago, forma_pago 
 from egreso, gastos, proveedores, form_pago 
-WHERE egreso.Id_compra=gastos.Id_gasto and nit_prov=nitProv and tip_compra=6 and form_pago=Id_fpago and Fecha>='$FchIni' and Fecha<='$FchFin' order by Id DESC;";
+WHERE egreso.idCompra=gastos.Id_gasto and nit_prov=nitProv and tipoCompra=6 and formPago=Id_fpago and fechPago>='$FchIni' and fechPago<='$FchFin' order by Id DESC;";
 $result=mysqli_query($link,$sql) or die("Error al conectar a la base de datos.");
 //$columnas=mysql_num_fields($result);
 //$filas = mysql_num_rows($result);

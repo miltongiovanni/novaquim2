@@ -32,7 +32,7 @@ while($row=mysqli_fetch_array($result))
 	$compra=$row['Compra'];	
 	$id_compra=$row['Id'];	
 	$codprod=$row['Factura'];
-	$qry1="select sum(pago) as Parcial from egreso where Id_compra=$id_compra and tip_compra=$compra";
+	$qry1="select sum(pago) as Parcial from egreso where idCompra=$id_compra and tipoCompra=$compra";
 	$resultpago=mysqli_query($link,$qry1);
 	$rowpag=mysqli_fetch_array($resultpago);
 	if($rowpag['Parcial'])

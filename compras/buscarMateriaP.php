@@ -1,61 +1,55 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
+// Función para cargar las clases
+function cargarClases($classname)
+{
+    require '../clases/' . $classname . '.php';
+}
+
+spl_autoload_register('cargarClases');
 ?>
 <!DOCTYPE html>
 <html lang="es">
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
 
 <head>
     <meta charset="utf-8">
     <title>Seleccionar Materia Prima a Consultar Compra</title>
-    <script  src="scripts/validar.js"></script>
-    <script  src="scripts/block.js"></script>
+    <script src="../js/validar.js"></script>
 </head>
 
 <body>
-    <div id="contenedor">
-        <div id="saludo"><strong>SELECCIONAR MATERIA PRIMA A CONSULTAR COMPRA</strong></div>
-        <table width="100%" border="0">
-            <tr>
-                <td>
-                    <form id="form1" name="form1" method="post" action="listacompraxMP.php">
-                        <div align="center"><strong>Materia Prima</strong>
-                            <?php
-                                include "includes/conect.php";
-                                $link=conectarServidor();
-                                echo'<select name="IdMP">';
-                                $result=mysqli_query($link,"select * from mprimas order by Nom_mprima");
-                                echo '<option selected value="">-----------------------------------------------------</option>';
-                                while($row=mysqli_fetch_array($result))
-                                {
-                                    echo '<option value='.$row['Cod_mprima'].'>'.$row['Nom_mprima'].'</option>';
-                                }
-                                echo'</select>';mysqli_free_result($result);
-                                mysqli_close($link);
-                                ?>
-                            <input type="button" value="Continuar" onClick="return Enviar(this.form);">
-                        </div>
-                    </form>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <div align="center">&nbsp;</div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <div align="center">&nbsp;</div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <div align="center"><input type="button" class="resaltado" onClick="history.back()"
-                            value="  VOLVER  "></div>
-                </td>
-            </tr>
-        </table>
+<div id="contenedor">
+    <div id="saludo"><strong>SELECCIONAR MATERIA PRIMA A CONSULTAR COMPRA</strong></div>
+    <form id="form1" name="form1" method="post" action="listacompraxMP.php">
+        <div class="form-group row">
+            <label class="col-form-label col-1" for="codMPrima"><strong>Materia prima</strong></label>
+            <select name="codMPrima" id="codMPrima" class="form-control col-2">
+                <option selected disabled value="">-----------------------------</option>
+                <?php
+                $MPrimasOperador = new MPrimasOperaciones();
+                $mprimas = $MPrimasOperador->getMPrimas();
+                $filas = count($mprimas);
+                for ($i = 0; $i < $filas; $i++) {
+                    echo '<option value="' . $mprimas[$i]["codMPrima"] . '">' . $mprimas[$i]['nomMPrima'] . '</option>';
+                }
+                ?>
+            </select>
+        </div>
+        <div class="row form-group">
+            <div class="col-1">
+                <button class="button" onclick="return Enviar(this.form)">
+                    <span>Continuar</span></button>
+            </div>
+        </div>
+    </form>
+    <div class="row form-group">
+        <div class="col-1">
+            <button class="button1" onclick="history.back()">
+                <span>VOLVER</span></button>
+        </div>
     </div>
+</div>
 </body>
 
 </html>

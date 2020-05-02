@@ -118,16 +118,58 @@ class DetComprasOperaciones
         return $result;
     }
 
-    public function getHistoricoComprasDistribucion($idCompra)
+    public function getHistoricoComprasDistribucion($idDistribucion)
     {
-        $qry = "SELECT fechComp, nomProv, CONCAT('$', FORMAT(precio*(1+tasaIva), 0)) precioConIva, CONCAT('$', FORMAT(precio, 0)) precioSinIva, FORMAT(cantidad, 0) cantidad  FROM det_compras dc
+        $qry = "SELECT fechComp, nomProv, CONCAT('$', FORMAT(precio, 0)) precioSinIva, CONCAT('$', FORMAT(precio*(1+tasaIva), 0)) precioConIva,  FORMAT(cantidad, 0) cantidad  FROM det_compras dc
                 LEFT JOIN compras c on dc.idCompra = c.idCompra
                 LEFT JOIN proveedores pr ON c.idProv = pr.idProv
                 LEFT JOIN distribucion d on dc.codigo = d.idDistribucion
                 LEFT JOIN tasa_iva ti on d.codIva = ti.idTasaIva
-                WHERE codigo=?";
+                WHERE codigo=? AND c.tipoCompra=5";
         $stmt = $this->_pdo->prepare($qry);
-        $stmt->execute(array($idCompra));
+        $stmt->execute(array($idDistribucion));
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    public function getHistoricoComprasMPrimas($codMPrima)
+    {
+        $qry = "SELECT fechComp, nomProv, CONCAT('$', FORMAT(precio, 0)) precioSinIva, CONCAT('$', FORMAT(precio*(1+tasaIva), 0)) precioConIva, FORMAT(cantidad, 0) cantidad  FROM det_compras dc
+                LEFT JOIN compras c on dc.idCompra = c.idCompra
+                LEFT JOIN proveedores pr ON c.idProv = pr.idProv
+                LEFT JOIN mprimas mp on dc.codigo = mp.codMPrima
+                LEFT JOIN tasa_iva ti on mp.codIva = ti.idTasaIva
+                WHERE codigo=? AND c.tipoCompra=1";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($codMPrima));
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    public function getHistoricoComprasEnvases($codEnvase)
+    {
+        $qry = "SELECT fechComp, nomProv, CONCAT('$', FORMAT(precio, 0)) precioSinIva, CONCAT('$', FORMAT(precio*(1+tasaIva), 0)) precioConIva, FORMAT(cantidad, 0) cantidad  FROM det_compras dc
+                LEFT JOIN compras c on dc.idCompra = c.idCompra
+                LEFT JOIN proveedores pr ON c.idProv = pr.idProv
+                LEFT JOIN envases e on dc.codigo = e.codEnvase
+                LEFT JOIN tasa_iva ti on e.codIva = ti.idTasaIva
+                WHERE codigo=? AND c.tipoCompra=2";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($codEnvase));
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    public function getHistoricoComprasTapas($codTapa)
+    {
+        $qry = "SELECT fechComp, nomProv, CONCAT('$', FORMAT(precio, 0)) precioSinIva, CONCAT('$', FORMAT(precio*(1+tasaIva), 0)) precioConIva, FORMAT(cantidad, 0) cantidad  FROM det_compras dc
+                LEFT JOIN compras c on dc.idCompra = c.idCompra
+                LEFT JOIN proveedores pr ON c.idProv = pr.idProv
+                LEFT JOIN tapas_val tv on dc.codigo = tv.codTapa
+                LEFT JOIN tasa_iva ti on tv.codIva = ti.idTasaIva
+                WHERE codigo=? AND c.tipoCompra=2";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($codTapa));
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }

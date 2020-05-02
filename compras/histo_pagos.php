@@ -65,13 +65,13 @@ else
 }
 
 $link=conectarServidor();
-$sql=" select Id_egreso as Id, nit_prov as Nit, Nom_provee as Proveedor, numFact as Factura, totalCompra as Total, pago as 'Valor Pagado', fechComp as 'Fecha Compra', fechVenc as 'Fecha Vencimiento', Fecha as 'Fecha Canc', forma_pago as 'Forma de Pago' 
+$sql=" select idEgreso as Id, nit_prov as Nit, Nom_provee as Proveedor, numFact as Factura, totalCompra as Total, pago as 'Valor Pagado', fechComp as 'Fecha Compra', fechVenc as 'Fecha Vencimiento', fechPago as 'Fecha Canc', forma_pago as 'Forma de Pago' 
 from egreso, compras, proveedores, form_pago 
-WHERE egreso.Id_compra=compras.idCompra and nit_prov=nitProv and tip_compra<6 and form_pago=Id_fpago
+WHERE egreso.idCompra=compras.idCompra and nit_prov=nitProv and tipoCompra<6 and formPago=Id_fpago
 union
-select Id_egreso as Id, nit_prov as Nit, Nom_provee as Proveedor, numFact as Factura, totalGasto as Total, pago as 'Valor Pagado', fechGasto as 'Fecha Compra', fechVenc as 'Fecha Vencimiento', Fecha as 'Fecha Canc', forma_pago as 'Forma de Pago'
+select idEgreso as Id, nit_prov as Nit, Nom_provee as Proveedor, numFact as Factura, totalGasto as Total, pago as 'Valor Pagado', fechGasto as 'Fecha Compra', fechVenc as 'Fecha Vencimiento', fechPago as 'Fecha Canc', forma_pago as 'Forma de Pago'
 from egreso, gastos, proveedores, form_pago 
-WHERE egreso.Id_compra=gastos.idGasto and nit_prov=nitProv and tip_compra=6 and form_pago=Id_fpago order by Id DESC;";
+WHERE egreso.idCompra=gastos.idGasto and nit_prov=nitProv and tipoCompra=6 and formPago=Id_fpago order by Id DESC;";
 //llamar funcion de tabla
 $result=mysqli_query($link,$sql);
 $num_total_registros = mysqli_num_rows($result); 
@@ -94,13 +94,13 @@ if ($total_paginas > 1){
 echo '</div>';
 
 //construyo la sentencia SQL 
-$ssql = "select Id_egreso as Id, nit_prov as Nit, Nom_provee as Proveedor, numFact as Factura, totalCompra as Total, pago as 'Valor Pagado', fechComp as 'Fecha Compra', fechVenc as 'Fecha Vencimiento', Fecha as 'Fecha Canc', forma_pago as 'Forma de Pago' 
+$ssql = "select idEgreso as Id, nit_prov as Nit, Nom_provee as Proveedor, numFact as Factura, totalCompra as Total, pago as 'Valor Pagado', fechComp as 'Fecha Compra', fechVenc as 'Fecha Vencimiento', fechPago as 'Fecha Canc', forma_pago as 'Forma de Pago' 
 from egreso, compras, proveedores, form_pago 
-WHERE egreso.Id_compra=compras.idCompra and nit_prov=nitProv and tip_compra<6 and form_pago=Id_fpago
+WHERE egreso.idCompra=compras.idCompra and nit_prov=nitProv and tipoCompra<6 and formPago=Id_fpago
 union
-select Id_egreso as Id, nit_prov as Nit, Nom_provee as Proveedor, numFact as Factura, totalGasto as Total, pago as 'Valor Pagado', fechGasto as 'Fecha Compra', fechVenc as 'Fecha Vencimiento', Fecha as 'Fecha Canc', forma_pago as 'Forma de Pago'
+select idEgreso as Id, nit_prov as Nit, Nom_provee as Proveedor, numFact as Factura, totalGasto as Total, pago as 'Valor Pagado', fechGasto as 'Fecha Compra', fechVenc as 'Fecha Vencimiento', fechPago as 'Fecha Canc', forma_pago as 'Forma de Pago'
 from egreso, gastos, proveedores, form_pago 
-WHERE egreso.Id_compra=gastos.idGasto and nit_prov=nitProv and tip_compra=6 and form_pago=Id_fpago order by Id DESC limit " . $inicio . "," . $TAMANO_PAGINA;
+WHERE egreso.idCompra=gastos.idGasto and nit_prov=nitProv and tipoCompra=6 and formPago=Id_fpago order by Id DESC limit " . $inicio . "," . $TAMANO_PAGINA;
 $rs = mysqli_query($link,$ssql);
 $a=1;
 while($row=mysqli_fetch_array($rs, MYSQLI_BOTH))

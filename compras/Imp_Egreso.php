@@ -7,11 +7,11 @@ include "includes/conect.php";
 include "includes/num_letra.php";
 $link=conectarServidor();
 $egreso=$_POST['egreso'];
-$qryenc="select egreso.Id_compra, nit_prov, numFact, totalGasto, retefuenteGasto as retencion, Nom_provee, Id_egreso, tip_compra, pago, Fecha, descuento_e, egreso.form_pago, forma_pago, reteicaGasto
-from egreso,  gastos, proveedores, form_pago where nit_prov=nitProv and Id_egreso=$egreso and egreso.Id_compra=idGasto and tip_compra=6 and egreso.form_pago=Id_fpago
+$qryenc="select egreso.idCompra, nit_prov, numFact, totalGasto, retefuenteGasto as retencion, Nom_provee, idEgreso, tipoCompra, pago, fechPago, descuentoE, egreso.formPago, forma_pago, reteicaGasto
+from egreso,  gastos, proveedores, form_pago where nit_prov=nitProv and idEgreso=$egreso and egreso.idCompra=idGasto and tipoCompra=6 and egreso.formPago=Id_fpago
 union
-select egreso.Id_compra, nit_prov, numFact, totalCompra, retefuenteCompra, Nom_provee, Id_egreso, tip_compra, pago, Fecha, descuento_e, egreso.form_pago, forma_pago, reteicaCompra
-from egreso,  compras, proveedores, form_pago where nit_prov=nitProv and Id_egreso=$egreso and egreso.Id_compra=compras.idCompra and tip_compra<>6 and egreso.form_pago=Id_fpago;";
+select egreso.idCompra, nit_prov, numFact, totalCompra, retefuenteCompra, Nom_provee, idEgreso, tipoCompra, pago, fechPago, descuentoE, egreso.formPago, forma_pago, reteicaCompra
+from egreso,  compras, proveedores, form_pago where nit_prov=nitProv and idEgreso=$egreso and egreso.idCompra=compras.idCompra and tipoCompra<>6 and egreso.formPago=Id_fpago;";
 $resultenc=mysqli_query($link,$qryenc);
 $rowenc=mysqli_fetch_array($resultenc);
 $pdf=new FPDF('P','mm','Letter');

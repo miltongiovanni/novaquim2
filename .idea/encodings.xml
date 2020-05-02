@@ -17,7 +17,9 @@
     <file url="file://$PROJECT_DIR$/compras/ajax/listaGastos.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/compras/buscarCompra.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/compras/buscarDist.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/compras/buscarEnvase_Tapas.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/compras/buscarGasto.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/compras/buscarMateriaP.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/compras/buscarcompramp.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/compras/delDetCompra.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/compras/delDetGasto.php" charset="UTF-8" />

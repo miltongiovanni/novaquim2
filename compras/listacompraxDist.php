@@ -47,10 +47,10 @@ $producto = $ProductoDistribucionOperador->getProductoDistribucion($idDistribuci
                         "data": "nomProv",
                     },
                     {
-                        "data": "precioConIva",
+                        "data": "precioSinIva",
                     },
                     {
-                        "data": "precioSinIva",
+                        "data": "precioConIva",
                     },
                     {
                         "data": "cantidad",

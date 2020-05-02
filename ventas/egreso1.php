@@ -31,7 +31,7 @@ foreach ($_POST as $nombre_campo => $valor)
 if($Pago==4)
 {
 	$link=conectarServidor();   
-	$qryb="select Id_compra, tip_compra, pago, Fecha, descuento_e, form_pago, forma_pago from egreso, form_pago where form_pago=Id_fpago and Id_egreso=$egreso;";
+	$qryb="select idCompra, tipoCompra, pago, fechPago, descuentoE, formPago, forma_pago from egreso, form_pago where formPago=Id_fpago and idEgreso=$egreso;";
 	$resultb=mysqli_query($link, $qryb);
 	$row_b=mysqli_fetch_array($resultb);
 	$id_compra=$row_b['Id_compra'];   
@@ -56,7 +56,7 @@ if($Pago==1)
 	$total=$rowfact['total_fact'];
 	$retencion=$rowfact['retencion'];
 	$ret_ica=$rowfact['ret_ica'];
-	$qrytot="select sum(pago) as Parcial from egreso where Id_compra=$id_compra and tip_compra=$compra AND Id_egreso<>$Id_Egreso";
+	$qrytot="select sum(pago) as Parcial from egreso where idCompra=$id_compra and tipoCompra=$compra AND idEgreso<>$Id_Egreso";
 	$resultot=mysqli_query($link, $qrytot);
 	$rowtot=mysqli_fetch_array($resultot);
 	$parcial=$rowtot['Parcial'];
@@ -67,7 +67,7 @@ if($Pago==1)
    	}
 	else
 	{
-		$qry="update egreso set pago=$abono, Fecha='$fecha', form_pago=$Form_pago, descuento_e=$descuento where Id_egreso=$Id_Egreso";
+		$qry="update egreso set pago=$abono, fechPago='$fecha', formPago=$Form_pago, descuentoE=$descuento where idEgreso=$Id_Egreso";
 		$result=mysqli_query($link, $qry);
    		if($result)
 		{
@@ -130,7 +130,7 @@ if($Pago==1)
 		$result=mysqli_query($link, $qry);
 		$row=mysqli_fetch_array($result);
 		$nit=$row['nit_prov'];
-		$qry3="select sum(pago) as Parcial from egreso where Id_compra=$id_compra and tip_compra=$compra";
+		$qry3="select sum(pago) as Parcial from egreso where idCompra=$id_compra and tipoCompra=$compra";
 		$result3=mysqli_query($link, $qry3);
 		$row3=mysqli_fetch_array($result3);
 		$valTot=$row['total_fact'];

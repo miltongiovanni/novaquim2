@@ -1,66 +1,134 @@
 <?php
-include "includes/valAcc.php";
-include "includes/conect.php";
-include "includes/utilTabla.php";
+include "../includes/valAcc.php";
+// Función para cargar las clases
+function cargarClases($classname)
+{
+    require '../clases/' . $classname . '.php';
+}
+
+spl_autoload_register('cargarClases');
+
+foreach ($_POST as $nombre_campo => $valor) {
+    $asignacion = "\$" . $nombre_campo . "='" . $valor . "';";
+    //echo $nombre_campo . " = " . $valor . "<br>";
+    eval($asignacion);
+}
+if ($idTapOEnv < 100) {
+    $EnvasesOperador = new EnvasesOperaciones();
+    $envase = $EnvasesOperador->getEnvase($idTapOEnv);
+    $producto = $envase['nomEnvase'];
+} else {
+    $TapasOperador = new TapasOperaciones();
+    $tapa = $TapasOperador->getTapa($idTapOEnv);
+    $producto = $tapa['tapa'];
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<title>Lista de Compra por Envase o Tapa</title>
-<meta charset="utf-8">
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <title>Lista de Compra por Envase o Tapa</title>
+    <meta charset="utf-8">
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script src="../js/validar.js"></script>
+    <link rel="stylesheet" href="../css/datatables.css">
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/datatables.js"></script>
+    <script src="../js/dataTables.buttons.js"></script>
+    <script src="../js/jszip.js"></script>
+    <script src="../js/pdfmake.js"></script>
+    <script src="../js/vfs_fonts.js"></script>
+    <script src="../js/buttons.html5.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            var idTapOEnv = <?= $idTapOEnv ?>;
+            $('#example').DataTable({
+                "columns": [
+                    {
+                        /*"className": 'details-control',*/
+                        /*"orderable": false,*/
+                        "data": "fechComp",
+                        /*"defaultContent": ''*/
+                    },
+                    {
+                        "data": "nomProv",
+                    },
+                    {
+                        "data": "precioSinIva",
+                    },
+                    {
+                        "data": "precioConIva",
+                    },
+                    {
+                        "data": "cantidad",
+                    },
+                ],
+                "columnDefs":
+                    [{
+                        "targets": [0, 1, 2, 3, 4],
+                        "className": 'dt-body-center'
+                    }
+                    ],
+                "order": [[0, 'desc']],
+                "dom": 'Blfrtip',
+                "buttons": [
+                    'copyHtml5',
+                    'excelHtml5'
+                ],
+                "lengthMenu": [[20, 50, 100, -1], [20, 50, 100, "All"]],
+                "language": {
+                    "lengthMenu": "Mostrando _MENU_ datos por página",
+                    "zeroRecords": "Lo siento no encontró nada",
+                    "info": "Mostrando página _PAGE_ de _PAGES_",
+                    "infoEmpty": "No hay datos disponibles",
+                    "search": "Búsqueda:",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Último",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    },
+                    "infoFiltered": "(Filtrado de _MAX_ en total)"
+
+                },
+                "ajax": "ajax/listaCompraxEnvaseTapa.php?idTapOEnv=" + idTapOEnv
+            });
+        });
+    </script>
 </head>
 <body>
 <div id="contenedor">
-<div id="saludo1"><strong>LISTADO DE COMPRAS DE
-<?php
-	foreach ($_POST as $nombre_campo => $valor) 
-{ 
-	$asignacion = "\$".$nombre_campo."='".$valor."';"; 
-	//echo $nombre_campo." = ".$valor."<br>";  
-	eval($asignacion); 
-}  		
-	if($IdEnvTap<100)
-	{
-		$qry="select Cod_envase as codigo, Nom_envase as producto from envase where Cod_envase=$IdEnvTap";
-	}
-	else
-	{
-		$qry="select Cod_tapa as codigo, Nom_tapa as producto from tapas_val where Cod_tapa=$IdEnvTap";
-	}
-	$link=conectarServidor();
-	$result=mysqli_query($link,$qry);
-	$row=mysqli_fetch_array($result);
-	echo mb_strtoupper ($row['producto']);
-	mysqli_free_result($result);
-	mysqli_close($link);
-?>
-</strong></div>
+    <div id="saludo1"><strong>LISTADO DE COMPRAS DE <?= $producto ?></strong></div>
+    <div class="row" style="justify-content: flex-end;">
+        <div class="col-1">
+            <button class="button" onclick="window.location='../menu.php'">
+                <span><STRONG>Ir al Menú</STRONG></span></button>
+        </div>
+    </div>
+    <div class="tabla-60">
+        <table id="example" class="display compact formatoDatos">
+            <thead>
+            <tr>
+                <th>Fecha Compra</th>
+                <th>Proveedor</th>
+                <th>Precio Compra sin IVA</th>
+                <th>Precio Compra con IVA</th>
+                <th>Cantidad</th>
+            </tr>
+            </thead>
+        </table>
+    </div>
 
-<table width="700" border="0" align="center">
-  <tr> <td align="center">&nbsp;</td>
-        <td><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men&uacute;">
-      </div></td>
-  </tr>
-</table>
+    <div class="row">
+        <div class="col-1">
+            <button class="button"
+                    onclick="window.location='../menu.php'">
+                <span><STRONG>Ir al Menú</STRONG></span></button>
+        </div>
+    </div>
 
-<?php
-	$link=conectarServidor();
-	$sql="select fechComp as 'Fecha de Compra', Nom_provee as Proveedor, Dir_provee as Dirección, Tel_provee as Teléfono, Round(Precio,2) as 'Precio sin IVA', Round(Cantidad,0) as Cantidad 
-from compras, det_compras, proveedores where compras.idCompra=det_compras.idCompra and tipoCompra=2 and Codigo=$IdEnvTap and nit_prov=nitProv order by fechComp desc";
-    //sentencia SQL    tblusuarios.IdUsuario,
-	//llamar funcion de tabla
-	verTabla($sql, $link);
-?>
-<table width="27%" border="0" align="center">
-    <tr>
-        <td>&nbsp;</td>
-    </tr>
-    <tr> 
-        <td><div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men&uacute;">
-        </div></td>
-    </tr>
-</table>
+
 </div>
 </body>
 </html>
