@@ -1,9 +1,32 @@
 <?php
-include "includes/valAcc.php";
-?><?php
-require('fpdf.php');
-include "includes/conect.php";
-$link=conectarServidor();
+include "../includes/valAcc.php";
+require '../includes/fpdf.php';
+function cargarClases($classname)
+{
+	require '../clases/' . $classname . '.php';
+}
+spl_autoload_register('cargarClases');
+$EgresoOperador = new EgresoOperaciones();
+$compras = $EgresoOperador->getTableComprasXPagar();
+$datos = [];
+for ($i = 0; $i < count($compras); $i++) {
+	$id = $compras[$i]['id'];
+	$tipoCompra = $compras[$i]['tipoCompra'];
+	$pago = $EgresoOperador->getPagoXIdTipoCompra($id, $tipoCompra) ;
+	$datos[$i]['id'] = $compras[$i]['id'];
+	$datos[$i]['tipoCompra'] = $compras[$i]['tipoCompra'];
+	$datos[$i]['numFact'] = $compras[$i]['numFact'];
+	$datos[$i]['fechComp'] = $compras[$i]['fechComp'];
+	$datos[$i]['fechVenc'] = $compras[$i]['fechVenc'];
+	$datos[$i]['total'] = "$ ".number_format($compras[$i]['total'],0,".",",");
+	$datos[$i]['subtotal'] = "$ ".number_format($compras[$i]['subtotal'],0,".",",");
+	$datos[$i]['nomProv'] = $compras[$i]['nomProv'];
+	$datos[$i]['retefuente'] = "$ ".number_format($compras[$i]['retefuente'],0,".",",");
+	$datos[$i]['reteica'] = "$ ".number_format($compras[$i]['reteica'],0,".",",");
+	$datos[$i]['aPagar'] = "$ ".number_format(($compras[$i]['total'] - $compras[$i]['retefuente'] - $compras[$i]['reteica']),0,".",",");
+	$datos[$i]['pago'] = "$ ".number_format($pago,0,".",",");
+	$datos[$i]['saldo'] = "$ ".number_format(($compras[$i]['total'] - $pago),0,".",",");
+}
 $pdf=new FPDF('P','mm','Letter');
 $pdf->AliasNbPages();
 $pdf->AddPage();
@@ -17,44 +40,16 @@ $pdf->Cell(25,4,'Valor Pagado', 1,0,'C');
 $pdf->Cell(20,4,'Fch Cancel', 1,0,'C');
 $pdf->Cell(15,4,'F Pago', 1,0,'C');
 $pdf->SetFont('Arial','',10);
-$qry="select idCompra as Id, Compra, nit_prov as Nit, Num_fact as Factura, Fech_comp, 
-				Fech_venc, total_fact as Total, Nom_provee as Proveedor, retencion 
-				FROM compras, proveedores where estado=3 and nit_prov=nitProv
-				union
-				select idGasto as Id, Compra, nit_prov as Nit, numFact as Factura, fechGasto, 
-				fechVenc, totalGasto as Total, Nom_provee as Proveedor, retefuenteGasto as retencion 
-				from gastos, proveedores where estadoGasto=3 and nit_prov=nitProv order by Fech_venc;";
-$result=mysqli_query($link,$qry);
-$i=0;
-while($row=mysqli_fetch_array($result))
-{
+for ($i = 0; $i < count($datos); $i++) {
 	$pdf->Ln(4);
-	$compra=$row['Compra'];	
-	$id_compra=$row['Id'];	
-	$codprod=$row['Factura'];
-	$qry1="select sum(pago) as Parcial from egreso where idCompra=$id_compra and tipoCompra=$compra";
-	$resultpago=mysqli_query($link,$qry1);
-	$rowpag=mysqli_fetch_array($resultpago);
-	if($rowpag['Parcial'])
-		$parcial=$rowpag['Parcial'];
-	else
-		$parcial=0;
-	//$prod=$row['Nom_clien'];
-	//$cant=$row['Contacto'];
-	$retencion=$row['retencion'];
-	$Total=number_format($row['Total']-$retencion-$parcial, 0, '.', ',');
-	$pdf->Cell(15,4,$row['Factura'], 1,0,'C');
-	$pdf->Cell(23,4,$row['Fech_venc'], 1,0,'C');
-	$pdf->Cell(70,4,$row['Proveedor'], 1,0,'L');
-	$pdf->Cell(25,4, '$ '.$Total, 1,0,'R');
+	$pdf->Cell(15,4,$datos[$i]['numFact'], 1,0,'C');
+	$pdf->Cell(23,4,$datos[$i]['fechVenc'], 1,0,'C');
+	$pdf->Cell(70,4,$datos[$i]['nomProv'], 1,0,'L');
+	$pdf->Cell(25,4, $datos[$i]['aPagar'], 1,0,'R');
 	$pdf->Cell(25,4,'', 1,0,'R');
 	$pdf->Cell(20,4,'', 1,0,'R');
 	$pdf->Cell(15,4,'', 1,0,'R');
-	$i++;
 }
-mysqli_free_result($result);
-/* cerrar la conexión */
-mysqli_close($link);
 $pdf->SetXY(20,-34);
 $pdf->Output();
 ?>

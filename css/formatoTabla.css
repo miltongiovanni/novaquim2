@@ -301,7 +301,7 @@ font {
   background-color: #000066;
   border-width: thin;
   border-style: none;
-  color: #ffffff;
+  color: #dcdcdc;
   padding: 4px 15px;
   line-height: normal;
   font-weight: bolder;
@@ -324,15 +324,10 @@ font {
 .formatoBoton1 {
   font-size: small;
   background-color: #000066;
-  border-top-width: thin;
-  border-right-width: thin;
-  border-bottom-width: thin;
-  border-left-width: thin;
-  border-top-style: none;
-  border-right-style: none;
-  border-bottom-style: none;
-  border-left-style: none;
-  color: #ffffff;
+  border-width: thin;
+  border-style: none;
+  color: #dcdcdc;
+  padding-bottom: 2px;
   line-height: normal;
   font-weight: bolder;
   text-align: center;
@@ -342,15 +337,10 @@ font {
 .formatoBoton1:hover {
   font-size: small;
   background-color: #000066;
-  border-top-width: thin;
-  border-right-width: thin;
-  border-bottom-width: thin;
-  border-left-width: thin;
-  border-top-style: none;
-  border-right-style: none;
-  border-bottom-style: none;
-  border-left-style: none;
-  color: #000066;
+  border-width: thin;
+  border-style: none;
+  color: #ffffff;
+  padding-bottom: 2px;
   line-height: normal;
   font-weight: bolder;
   text-align: center;

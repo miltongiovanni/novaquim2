@@ -25,6 +25,7 @@
     <file url="file://$PROJECT_DIR$/compras/delDetGasto.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/compras/deleteProvForm.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/compras/detProveedor.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/compras/factXpagar.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/compras/updateCompra.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/compras/updateDetCompra.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/compras/updateDetCompraForm.php" charset="UTF-8" />

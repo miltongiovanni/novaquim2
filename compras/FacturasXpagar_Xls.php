@@ -44,7 +44,7 @@ $sql="	select idCompra as Id, Compra, nit_prov as Nit, Num_fact as Factura, Fech
 								Fech_venc, total_fact as Total, nomProv as Proveedor, retencion, ret_ica 
 				FROM compras, proveedores where estado=3 and nit_prov=NIT_provee
 				union
-				select Id_gasto as Id, Compra, nit_prov as Nit, Num_fact as Factura, Fech_comp, Subtotal_gasto as Subtotal,
+				select Id_gasto as Id, tipoCompra, nit_prov as Nit, Num_fact as Factura, Fech_comp, Subtotal_gasto as Subtotal,
 				Fech_venc, total_fact as Total, Nom_provee as Proveedor, retencion_g as retencion, ret_ica 
 				from gastos, proveedores where estado=3 and nit_prov=NIT_provee order by Fech_venc;";
 $result=mysqli_query($link,$sql) or die("Error al conectar a la base de datos.");

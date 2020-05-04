@@ -4,7 +4,7 @@ include "includes/valAcc.php";
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<title>Pago de Facturas de Compra y de Gastos</title>
+<title>Modificacion de Comprobante de Egreso</title>
 <meta charset="utf-8">
 <link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
 	<script  src="scripts/validar.js"></script>
@@ -19,7 +19,7 @@ include "includes/valAcc.php";
 </head>
 <body> 
 <div id="contenedor">
-<div id="saludo1"><strong>COMPROBANTE DE EGRESO POR FACTURAS DE COMPRA Y GASTOS</strong></div>
+<div id="saludo1"><strong>MODIFICACI&Oacute;N DE COMPROBANTE DE EGRESO</strong></div>
 <?php
 include "includes/conect.php";
 foreach ($_POST as $nombre_campo => $valor) 
@@ -28,30 +28,19 @@ foreach ($_POST as $nombre_campo => $valor)
 	//echo $nombre_campo." = ".$valor."<br>";  
 	eval($asignacion); 
 }  
-if($Pago==0)
-{
-	$link=conectarServidor();   
-	$qrycam="select MAX(idEgreso) AS Egreso from egreso;";
-	$resultqrycam=mysqli_query($link, $qrycam);
-	$row_cam=mysqli_fetch_array($resultqrycam);
-	$egreso=$row_cam['Egreso']+1;   
-}
-if($Pago==3)
-{
-	$link=conectarServidor();   
-	$qrycam="select MAX(idEgreso) AS Egreso from egreso;";
-	$resultqrycam=mysqli_query($link, $qrycam);
-	$row_cam=mysqli_fetch_array($resultqrycam);
-	$egreso=$row_cam['Egreso'];   
-}
 if($Pago==4)
 {
 	$link=conectarServidor();   
-	$qryb="select idCompra, tipoCompra, pago, fechPago, descuentoE, formPago from egreso where idEgreso=$egreso;";
+	$qryb="select idCompra, tipoCompra, pago, fechPago, descuentoE, formPago, forma_pago from egreso, form_pago where formPago=Id_fpago and idEgreso=$egreso;";
 	$resultb=mysqli_query($link, $qryb);
 	$row_b=mysqli_fetch_array($resultb);
 	$id_compra=$row_b['Id_compra'];   
 	$compra=$row_b['tip_compra'];
+	$form_pago=$row_b['form_pago'];
+	$fecha_e=$row_b['Fecha'];
+	$forma_pago=$row_b['forma_pago'];
+	$descuento_e=$row_b['descuento_e'];
+	$pago=$row_b['pago'];
 }
 if($Pago==1)
 {
@@ -61,13 +50,13 @@ if($Pago==1)
 	/*validacion del valor a pagar"*/
 	$qryFact="SELECT totalCompra, retefuenteCompra, reteicaCompra FROM compras where idCompra=$id_compra AND tipoCompra=$compra
 	union
-	SELECT total_fact, retencion_g as retencion, ret_ica FROM gastos where Id_gasto=$id_compra AND compra=$compra;";
+	SELECT total_fact, retencion_g as retencion, ret_ica FROM gastos where Id_gasto=$id_compra AND tipoCompra=$compra;";
 	$resultfact=mysqli_query($link, $qryFact);
 	$rowfact=mysqli_fetch_array($resultfact);
 	$total=$rowfact['total_fact'];
 	$retencion=$rowfact['retencion'];
 	$ret_ica=$rowfact['ret_ica'];
-	$qrytot="select sum(pago) as Parcial from egreso where idCompra=$id_compra and tipoCompra=$compra";
+	$qrytot="select sum(pago) as Parcial from egreso where idCompra=$id_compra and tipoCompra=$compra AND idEgreso<>$Id_Egreso";
 	$resultot=mysqli_query($link, $qrytot);
 	$rowtot=mysqli_fetch_array($resultot);
 	$parcial=$rowtot['Parcial'];
@@ -78,7 +67,7 @@ if($Pago==1)
    	}
 	else
 	{
-		$qry="insert into egreso (idEgreso, idCompra, tipoCompra, pago, fechPago,formPago, descuentoE) values($Id_Egreso, $id_compra, $compra, $abono, '$fecha', $Form_pago, $descuento)";
+		$qry="update egreso set pago=$abono, fechPago='$fecha', formPago=$Form_pago, descuentoE=$descuento where idEgreso=$Id_Egreso";
 		$result=mysqli_query($link, $qry);
    		if($result)
 		{
@@ -89,20 +78,8 @@ if($Pago==1)
 				else
 					$qryupt="update compras set estadoCompra=7 where idCompra=$id_compra";
 				$resulupdate=mysqli_query($link, $qryupt);
-			}
-			echo' <script >
-			alert("Pago Aplicado Correctamente");
-			</script>';
-			echo '<form id="form7" name="form7" method="post" action="egreso.php">	
-                   <input type="text" name="Id_Egreso" value="'.$Id_Egreso.'" >
-				   <input type="hidden" name="Pago" value="3">
-				   <input name="id_compra" type="hidden" value="'.$id_compra.'"> 
-				   <input name="compra" type="hidden" value="'.$compra.'">
-                   <td align="left"><input type="button" value="      Continuar      " >
-				   </form> ';
-					echo'<script >
-							document.form7.submit();
-							</script>';
+			}	
+			mover_pag("histo_pagos.php", "Pago Aplicado Correctamente");		
 		}
 		else 
 		{
@@ -125,7 +102,7 @@ if($Pago==1)
 	}
 ?>
 
-<form method="post" action="egreso.php" name="form1">
+<form method="post" action="egreso1.php" name="form1">
   <table  align="center" border="0" summary="cuerpo">
    <tr>
       <td width="150">&nbsp;</td>
@@ -148,8 +125,8 @@ if($Pago==1)
 	 	$qry="select idCompra, nit_prov, numFact, fechComp, fechVenc, estadoCompra, totalCompra, tipoCompra, Nom_provee, retefuenteCompra, ret_provee, reteicaCompra, subtotalCompra from compras, proveedores
 		where idCompra=$id_compra and compras.nit_prov=proveedores.nitProv AND tipoCompra<>6 AND tipoCompra=$compra
 		union
-		select Id_gasto as Id_compra, nit_prov, Num_fact, Fech_comp, Fech_venc, estado, total_fact, compra, Nom_provee, retencion_g as retencion, ret_provee, ret_ica, Subtotal_gasto as Subtotal from gastos, proveedores
-		where Id_gasto=$id_compra and gastos.nit_prov=proveedores.nitProv and compra=6 and compra=$compra;";
+		select Id_gasto as Id_compra, nit_prov, Num_fact, Fech_comp, Fech_venc, estado, total_fact, tipoCompra, Nom_provee, retencion_g as retencion, ret_provee, ret_ica, Subtotal_gasto as Subtotal from gastos, proveedores
+		where Id_gasto=$id_compra and gastos.nit_prov=proveedores.nitProv and tipoCompra=6 and tipoCompra=$compra;";
 		$result=mysqli_query($link, $qry);
 		$row=mysqli_fetch_array($result);
 		$nit=$row['nit_prov'];
@@ -187,7 +164,7 @@ if($Pago==1)
     <tr>
     <td ><div align="right"><strong>Fecha de Factura:</strong></div></td>
       <td><?php echo $row['Fech_comp'];?></td>
-      <td ><div align="right"><strong>Retenci&oacute;n Ica:</strong></div></td>
+      <td ><div align="right"><strong>Retenci&oacute;n Cree:</strong></div></td>
       <td><?php echo '$ <script  > document.write(commaSplit('.$ret_ica.'))</script>' ;?></td>
       
     </tr>
@@ -214,15 +191,24 @@ if($Pago==1)
         <td><div align="center"><strong>Descuento</strong></div></td>
     </tr>
        <tr>
-      	<td><div align="center"><input type="text" name="fecha" id="sel1" readonly size=10><input type="reset" value=" ... " onclick="return showCalendar('sel1', '%Y-%m-%d', '12', true);"></div></td>
-      	<td><div align="center"><select name="Form_pago"><option value=0>Efectivo</option>
-      	  <option value="1">Transferencia</option>
-      	  <option value="2">Nota Cr&eacute;dito</option>
-      	  <option value="3">Consignaci&oacute;n</option>
-      	  <option value="4">Cheque</option>
-        </select></div></td>
-     	<td><div align="center"><input name="abono" type="text" size=20 value ="<?php echo $saldo; ?>" onKeyPress="return aceptaNum(event)"></div></td>
-        <td><div align="center"><input name="descuento" type="text" size=20 value ="0" onKeyPress="return aceptaNum(event)"></div></td>
+      	<td><div align="center"><input type="text" name="fecha" id="sel1" readonly size=10 value="<?php echo $fecha_e; ?>"><input type="reset" value=" ... " onclick="return showCalendar('sel1', '%Y-%m-%d', '12', true);"></div></td>
+      	<td><div align="center">
+        	<?php
+			$link=conectarServidor();
+			echo'<select name="Form_pago" id="combo">';
+			$result=mysqli_query($link, "select Id_fpago, forma_pago from form_pago where Id_fpago<>2;");
+			echo '<option selected value='.$form_pago.'>'.$forma_pago.'</option>';
+			while($row=mysqli_fetch_array($result))
+			{	
+				if($row['Id_fpago']!=$form_pago)
+				echo '<option value='.$row['Id_fpago'].'>'.$row['forma_pago'].'</option>';
+			}
+			echo'</select>';
+			mysqli_close($link);
+		?> 
+        </div></td>
+     	<td><div align="center"><input name="abono" type="text" size=20 value ="<?php echo $pago; ?>" onKeyPress="return aceptaNum(event)"></div></td>
+        <td><div align="center"><input name="descuento" type="text" size=20 value ="<?php echo $descuento_e; ?>" onKeyPress="return aceptaNum(event)"></div></td>
     </tr>
     <tr><td colspan="4"><div align="right"><input name="submit"  onClick="return Enviar(this.form)" type="submit"  value="Continuar" <?php if($Pago==3) echo "disabled"; ?>></div> <input name="Pago" type="hidden" value="1">
 	<?php 
@@ -237,51 +223,8 @@ if($Pago==1)
  
   </table>
 </form>
-<div align="center">
-<form action="Imp_Egreso.php" method="post" target="_blank"><input name="egreso" type="hidden" value="<?php echo $egreso; ?>"><input name="Submit" type="submit" value="Imprimir" <?php if(($Pago!=3)&&($Pago!=4)) echo "disabled"; ?> ></form></div>
 
-<table border="0" align="center" summary="detalle"> 
-<tr>
-  <td height="8" colspan="5"><hr></td>
-</tr>
-<tr>
-<td  colspan="5" class="titulo">Detalle de Pagos : </td>
-</tr>
-<tr>
-    <th width="81">No. Pago</th>
-    <th width="101">Fecha</th>
-    <th width="112">Pago</th>
-</tr>
-<tr>
-	<td colspan="8"><hr></td>
-</tr>
-<?php
-$link=conectarServidor();
-$qry="select idEgreso, tipoCompra, pago, fechPago from egreso where idCompra=$id_compra and tipoCompra=$compra;";
-$result=mysqli_query($link, $qry);
-$i=1;
-while($row=mysqli_fetch_array($result))
-{
-	//$factura=$row['Id'];
-	$abono=$row['pago'];
-	$fecha=$row['Fecha'];
-	echo'<tr>
-	<td><div align="center">'.$i.'</div></td>
-	<td><div align="center">'.$fecha.'</div></td>
-	<td><div align="center">$ <script  > document.write(commaSplit('.$abono.'))</script></div></td>
-	</tr>';
-	$i++;
-}
-mysqli_free_result($result);
-/* cerrar la conexión */
-mysqli_close($link);
-?>
-    <tr>
-      <td colspan="8"><hr></td>
-    </tr>
-  </table>
-
-<div align="center"><input type="button" class="resaltado" onClick="window.location='factXpagar.php'" value="Terminar"></div>
+<p></p>
 </div>
 </body>
 </html>
