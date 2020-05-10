@@ -17,13 +17,6 @@ function cargarClases($classname)
 
 spl_autoload_register('cargarClases');
 
-function mover_pag($ruta, $nota)//Funcion que permite el redireccionamiento a otra pagina
-{
-    echo ' <script >
-            alert("' . $nota . '")
-            self.location="' . $ruta . '"
-            </script>';
-}
 
 /*include "includes/conect.php";
 include "includes/calcularDias.php";
@@ -265,31 +258,31 @@ $gasto = $GastoOperador->getGasto($idGasto);
     <div id="saludo1"><strong>INGRESO DE DETALLE DE LOS GASTOS</strong></div>
     <div class="form-group row">
         <div class="col-1 text-right"><strong>No. de Gasto</strong></div>
-        <div class="col-1" style="background-color: #dfe2fd;"><?= $idGasto; ?></div>
+        <div class="col-1 bg-blue"><?= $idGasto; ?></div>
         <div class="col-1 text-right"><strong>Proveedor</strong></strong></div>
         <div class="col-3" style="background-color: #dfe2fd;"><?= $gasto['nomProv'] ?></div>
         <div class="col-1 text-right"><strong>NIT</strong></div>
-        <div class="col-1" style="background-color: #dfe2fd;"><?= $gasto['nitProv'] ?></div>
+        <div class="col-1 bg-blue"><?= $gasto['nitProv'] ?></div>
     </div>
     <div class="form-group row">
         <div class="col-1 text-right"><strong>No. de Factura</strong></div>
-        <div class="col-1" style="background-color: #dfe2fd;"><?= $gasto['numFact'] ?></div>
+        <div class="col-1 bg-blue"><?= $gasto['numFact'] ?></div>
         <div class="col-2 text-right"><strong>Fecha de compra</strong></div>
-        <div class="col-1" style="background-color: #dfe2fd;"><?= $gasto['fechGasto']; ?></div>
+        <div class="col-1 bg-blue"><?= $gasto['fechGasto']; ?></div>
         <div class="col-2 text-right"><strong>Fecha Vencimiento </strong></strong></div>
-        <div class="col-1" style="background-color: #dfe2fd;"><?= $gasto['fechVenc'] ?></div>
+        <div class="col-1 bg-blue"><?= $gasto['fechVenc'] ?></div>
         <div class="col-1 text-right"><strong>Estado</strong></div>
-        <div class="col-1" style="background-color: #dfe2fd;"><?= $gasto['descEstado'] ?></div>
+        <div class="col-1 bg-blue"><?= $gasto['descEstado'] ?></div>
     </div>
     <div class="form-group row">
         <div class="col-1 text-right"><strong>Valor Factura</strong></div>
-        <div class="col-1" style="background-color: #dfe2fd;"><?= $gasto['totalGasto'] ?></div>
+        <div class="col-1 bg-blue"><?= $gasto['totalGasto'] ?></div>
         <div class="col-1 text-right"><strong>Rete Ica</strong></strong></div>
-        <div class="col-1" style="background-color: #dfe2fd;"><?= $gasto['reteicaGasto'] ?></div>
+        <div class="col-1 bg-blue"><?= $gasto['reteicaGasto'] ?></div>
         <div class="col-1 text-right"><strong>Retención</strong></div>
-        <div class="col-1" style="background-color: #dfe2fd;"><?= $gasto['retefuenteGasto'] ?></div>
+        <div class="col-1 bg-blue"><?= $gasto['retefuenteGasto'] ?></div>
         <div class="col-1 text-right"><strong>Valor a Pagar</strong></div>
-        <div class="col-1" style="background-color: #dfe2fd;"><?= $gasto['vreal'] ?></div>
+        <div class="col-1 bg-blue"><?= $gasto['vreal'] ?></div>
     </div>
 
     <?php

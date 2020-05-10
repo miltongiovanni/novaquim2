@@ -19,8 +19,21 @@ include "../includes/valAcc.php";
 
     <script>
         /* Formatting function for row details - modify as you need */
+        function diffDate(fecha) {
+            let fechVenc = new Date(fecha);
+            let hoy = new Date();
+
+            // The number of milliseconds in one day
+            const ONE_DAY = 1000 * 60 * 60 * 24;
+
+            // Calculate the difference in milliseconds
+            const differenceMs = fechVenc - hoy;
+            // Convert back to days and return
+            return Math.round(differenceMs / ONE_DAY);
+        }
 
         $(document).ready(function () {
+
             var table = $('#example').DataTable({
                 "columns": [
                     {
@@ -45,6 +58,10 @@ include "../includes/valAcc.php";
                     },
                     {
                         "data": "nomProv",
+                        "className": 'dt-body-center'
+                    },
+                    {
+                        "data": "tipoComp",
                         "className": 'dt-body-center'
                     },
                     {
@@ -81,6 +98,7 @@ include "../includes/valAcc.php";
                         "className": 'dt-body-center'
                     },
                 ],
+
                 "order": [[5, 'asc']],
                 "deferRender": true,  //For speed
                 "dom": 'Blfrtip',
@@ -103,7 +121,14 @@ include "../includes/valAcc.php";
                         "previous": "Anterior"
                     },
                     "infoFiltered": "(Filtrado de _MAX_ en total)"
-
+                },
+                "createdRow": function ( row, data, dataIndex ) {
+                    if ( diffDate(data.fechVenc) < 0 ) {
+                        $('td', row).addClass('formatoDataTable1');
+                    }
+                    else if ( diffDate(data.fechVenc) >= 0 && diffDate(data.fechVenc) < 8 ){
+                        $('td', row).addClass('formatoDataTable2');
+                    }
                 },
                 "ajax": "ajax/listaFactXPagar.php"
             });
@@ -131,16 +156,17 @@ include "../includes/valAcc.php";
             <tr>
                 <th width="2%"></th>
                 <th width="4%">Id</th>
-                <th width="4%">Factura</th>
-                <th width="24%">Proveedor</th>
-                <th width="9%">Fecha Factura</th>
-                <th width="7%">Fecha Vto</th>
-                <th width="8%">Valor Factura</th>
-                <th width="6%">Retefuente</th>
-                <th width="8%">Rete Ica</th>
-                <th width="8%">Valor a Pagar</th>
-                <th width="10%">Valor Pagado</th>
-                <th width="10%">Saldo</th>
+                <th width="6%">Factura</th>
+                <th width="26%">Proveedor</th>
+                <th width="8%">Tipo Compra</th>
+                <th width="6%">Fecha Factura</th>
+                <th width="6%">Fecha Vto</th>
+                <th width="7%">Valor Factura</th>
+                <th width="7%">Retefuente</th>
+                <th width="7%">Rete Ica</th>
+                <th width="7%">Valor a Pagar</th>
+                <th width="7%">Valor Pagado</th>
+                <th width="7%">Saldo</th>
             </tr>
             </thead>
         </table>

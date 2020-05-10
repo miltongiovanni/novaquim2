@@ -53,9 +53,5 @@ else
 	mover_pag($ruta,"No hay inventario suficiente de Pacas del producto");
 	mysqli_close($link);//Cerrar la conexion
 }  
-function mover_pag($ruta,$Mensaje){
-echo'<script >
-   alert("'.$Mensaje.'")
-   self.location="'.$ruta.'"
-   </script>';}
+
 ?>

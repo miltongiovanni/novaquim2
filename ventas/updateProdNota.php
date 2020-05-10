@@ -18,7 +18,7 @@ foreach ($_POST as $nombre_campo => $valor)
 }  
 $link=conectarServidor();
 //ESTO ES PARA MIRAR LA CANTIDAD DE PRODUCTO QUE TENÌA LA NOTA
-$qrycanot="select Can_producto as CantNota from det_nota_c where Id_Nota=$nota and Cod_producto=$codigo;";
+$qrycanot="select Can_producto as CantNota from det_nota_c where Id_Nota=$mensaje and Cod_producto=$codigo;";
 $resultcanot=mysqli_query($link,$qrycanot);
 $row_canot=mysqli_fetch_array($resultcanot);
 $CantNota=$row_canot['CantNota'];  
@@ -27,7 +27,7 @@ if($codigo <100000)
 {	
  //SI ES PRODUCTO DE LÍNEA
   $qrylot="SELECT Lote_producto as Lote from remision, det_remision, factura, nota_c 
-  WHERE remision.Id_remision=det_remision.Id_remision AND factura.Id_remision=remision.Id_remision and Factura=Fac_orig and Cod_producto=$codigo and Nota=$nota;";
+  WHERE remision.Id_remision=det_remision.Id_remision AND factura.Id_remision=remision.Id_remision and Factura=Fac_orig and Cod_producto=$codigo and Nota=$mensaje;";
   $resultlot=mysqli_query($link,$qrylot);
   $row_lot=mysqli_fetch_array($resultlot);
   $lote=$row_lot['Lote'];  
@@ -49,13 +49,13 @@ if($codigo <100000)
   }
   $resultupt=mysqli_query($link,$qryupt);
   //ACTUALIZACIÓN DEL DETALLE DE LA NOTA DE CREDITOS
-  $qryr="update det_nota_c set Can_producto=$cantidad where Id_Nota=$nota and Cod_producto=$codigo";
+  $qryr="update det_nota_c set Can_producto=$cantidad where Id_Nota=$mensaje and Cod_producto=$codigo";
   $resultr=mysqli_query($link,$qryr);
   echo' <script >
 		  alert("Actualizando producto fab en nota de credito");
 		  </script>'; 
   echo'<form action="makeNota.php" method="post" name="formulario">';
-  echo '<input name="nota" type="hidden" value="'.$nota.'"><input name="crear" type="hidden" value="5"><input type="submit" name="Submit" class="formatoBoton1" value="Cambiar" >';
+  echo '<input name="nota" type="hidden" value="'.$mensaje.'"><input name="crear" type="hidden" value="5"><input type="submit" name="Submit" class="formatoBoton1" value="Cambiar" >';
   echo'</form>'; 
   echo' <script  > document.formulario.submit(); </script>';
 }
@@ -77,10 +77,10 @@ else
 	}
 	$resultupt=mysqli_query($link,$qryupt);
 	//INSERCION DEL DETALLE DE LA NOTA DE CREDITOS
-	$qryr="update det_nota_c set Can_producto=$cantidad where Id_Nota=$nota and Cod_producto=$codigo";
+	$qryr="update det_nota_c set Can_producto=$cantidad where Id_Nota=$mensaje and Cod_producto=$codigo";
 	$resultr=mysqli_query($link,$qryr);
 	echo'<form action="makeNota.php" method="post" name="formulario">';
-	echo '<input name="nota" type="hidden" value="'.$nota.'"><input name="crear" type="hidden" value="5"><input type="submit" name="Submit" value="Cambiar" >';
+	echo '<input name="nota" type="hidden" value="'.$mensaje.'"><input name="crear" type="hidden" value="5"><input type="submit" name="Submit" value="Cambiar" >';
 	echo'</form>'; 
 	echo' <script  > document.formulario.submit(); </script>';
 }

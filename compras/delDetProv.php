@@ -16,12 +16,6 @@ $datos = array($idProv, $Codigo);
 $DetProveedorOperador->deleteDetProveedor($datos);
 $ruta = "detProveedor.php";
 mover_pag($ruta, "Detalle proveedor eliminado correctamente");
-function mover_pag($ruta, $Mensaje)
-{
-    echo '<script >
-   alert("' . $Mensaje . '");
-   self.location="' . $ruta . '";
-   </script>';
-}
+
 
 ?>

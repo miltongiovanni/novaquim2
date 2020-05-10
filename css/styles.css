@@ -1,8 +1,8 @@
 /* Main menu */
 
 BODY {
-	margin : 0px 0px 0px 0px;
-} 
+    margin: 0px 0px 0px 0px;
+}
 
 #menu {
     width: 100%;
@@ -12,7 +12,7 @@ BODY {
     list-style: none;
     background: #000066;
     background-image: linear-gradient(#000066, #04042e);
-    
+
     /*background: -moz-linear-gradient(#444, #111);
     background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #111), color-stop(1, #444));
     background: -webkit-linear-gradient(#444, #111);
@@ -21,24 +21,27 @@ BODY {
     background: linear-gradient(#444, #111);
     -moz-border-radius: 50px;*/
     border-radius: 0px;
-   /* -moz-box-shadow: 0 2px 1px #9c9c9c;
-    -webkit-box-shadow: 0 2px 1px #9c9c9c;*/
+    /* -moz-box-shadow: 0 2px 1px #9c9c9c;
+     -webkit-box-shadow: 0 2px 1px #9c9c9c;*/
     box-shadow: 0 2px 1px #36315e;
-  }
-  
-  #menu li {
+    z-index: 1000;
+    position: relative;
+}
+
+#menu li {
     float: left;
     padding: 4px 0 10px 0;
     position: relative;
     line-height: 0;
     width: 12%;
     /*border-right: 3px solid white;*/
-  }
-  #menu li:last-child {
+}
+
+#menu li:last-child {
     border-right: none;
-  }
-  
-  #menu a {
+}
+
+#menu a {
     /*float: left;*/
     height: 25px;
     /*padding: 0 25px;*/
@@ -50,26 +53,27 @@ BODY {
     display: block;
     text-align: center;
     width: 100%;
-  }
-  
-  #menu li:hover>a {
+}
+
+#menu li:hover > a {
     color: #fafafa;
-  }
-  /* IE6 
-  
-  *html #menu li a:hover
-  
-    {
-    color: #fafafa;
-  }
-  */
-  #menu li:hover>ul {
+}
+
+/* IE6
+
+*html #menu li a:hover
+
+  {
+  color: #fafafa;
+}
+*/
+#menu li:hover > ul {
     display: block;
-  }
-  
-  /* Sub-menu */
-  
-  #menu ul {
+}
+
+/* Sub-menu */
+
+#menu ul {
     list-style: none;
     margin: 0;
     padding: 0;
@@ -83,27 +87,27 @@ BODY {
     background-image: linear-gradient(#000066, #04042e);
     box-shadow: 0 0 2px rgba(255, 255, 255, .5);
     border-radius: 5px;
-  }
-  
-  #menu ul ul {
+}
+
+#menu ul ul {
     top: 0;
     left: 190px;
-  }
-  
-  #menu ul li {
+}
+
+#menu ul li {
     float: none;
     margin: 0;
     width: 100%;
     padding: 0;
     display: block;
     box-shadow: 0 1px 0 #000066, 0 2px 0 #000066;
-  }
-  
-  #menu ul li:last-child {
+}
+
+#menu ul li:last-child {
     box-shadow: none;
-  }
-  
-  #menu ul a {
+}
+
+#menu ul a {
     /*padding: 10px;*/
     padding: 4px 0 10px 0;
     height: 10px;
@@ -115,18 +119,18 @@ BODY {
     float: none;
     text-transform: none;
     text-align: center;
-  }
-  
-  #menu ul a:hover {
+}
+
+#menu ul a:hover {
     background: #0186ba;
     background: linear-gradient(#04acec, #0186ba);
-  }
-  
-  #menu ul li:first-child>a {
+}
+
+#menu ul li:first-child > a {
     border-radius: 5px 5px 0 0;
-  }
-  
-  #menu ul li:first-child>a:after {
+}
+
+#menu ul li:first-child > a:after {
     content: '';
     position: absolute;
     left: 30px;
@@ -136,9 +140,9 @@ BODY {
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
     border-bottom: 8px solid #000066;
-  }
-  
-  #menu ul ul li:first-child a:after {
+}
+
+#menu ul ul li:first-child a:after {
     left: -8px;
     top: 12px;
     width: 0;
@@ -147,42 +151,42 @@ BODY {
     border-bottom: 5px solid transparent;
     border-top: 5px solid transparent;
     border-right: 8px solid #000066;
-  }
-  
-  #menu ul li:first-child a:hover:after {
+}
+
+#menu ul li:first-child a:hover:after {
     border-bottom-color: #04acec;
-  }
-  
-  #menu ul ul li:first-child a:hover:after {
+}
+
+#menu ul ul li:first-child a:hover:after {
     border-right-color: #04acec;
     border-bottom-color: transparent;
-  }
-  
-  #menu ul li:last-child>a {
+}
+
+#menu ul li:last-child > a {
     border-radius: 0 0 5px 5px;
-  }
-  
-  /* Clear floated elements */
-  
-  #menu:after {
+}
+
+/* Clear floated elements */
+
+#menu:after {
     visibility: hidden;
     display: block;
     font-size: 0;
     content: " ";
     clear: both;
     height: 0;
-  }
-  
-  
-  #menu ul ul {
+}
+
+
+#menu ul ul {
     left: 95%;
     top: 0;
-  }
-  
-  /*This is okay if your menu is supposed to be exactly 150 px wide at each level,
-  as it forces each new level to 150px to the right of the previous menu's left edge. Better, however, is
-   #menu ul ul {
-    left: 180px;
-    top: 0;
-  }
-  */
+}
+
+/*This is okay if your menu is supposed to be exactly 150 px wide at each level,
+as it forces each new level to 150px to the right of the previous menu's left edge. Better, however, is
+ #menu ul ul {
+  left: 180px;
+  top: 0;
+}
+*/

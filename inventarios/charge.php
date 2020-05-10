@@ -54,11 +54,5 @@ else
 	mover_pag($ruta,"No hay inventario suficiente de Envases o Tapa");
 	mysql_close($link);//Cerrar la conexion
 } 
-function mover_pag($ruta,$Mensaje)
-{
-	echo'<script >
-	alert("'.$Mensaje.'")
-	self.location="'.$ruta.'"
-	</script>';
-}
+
 ?>

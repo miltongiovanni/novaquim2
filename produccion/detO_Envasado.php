@@ -40,14 +40,7 @@ else
 	mysql_close($link);
 } 
 
-function mover_pag($ruta,$nota)
-{	
-	//Funcion que permite el redireccionamiento de los usuarios a otra pagina 
-	echo' <script >
-	alert("'.$nota.'")
-	self.location="'.$ruta.'"
-	</script>';
-}
+
 ?>
   <table width="66%"  align="center" border="0">
     <tr>

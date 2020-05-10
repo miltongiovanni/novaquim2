@@ -22,7 +22,7 @@ if($codigo <100000)
 {	
  //SI ES PRODUCTO DE LÍNEA
   $qrylot="SELECT Lote_producto as Lote from remision, det_remision, factura, nota_c 
-  WHERE remision.Id_remision=det_remision.Id_remision AND factura.Id_remision=remision.Id_remision and Factura=Fac_orig and Cod_producto=$codigo and Nota=$nota;";
+  WHERE remision.Id_remision=det_remision.Id_remision AND factura.Id_remision=remision.Id_remision and Factura=Fac_orig and Cod_producto=$codigo and Nota=$mensaje;";
   $resultlot=mysqli_query($link,$qrylot);
   $row_lot=mysqli_fetch_array($resultlot);
   $lote=$row_lot['Lote'];  
@@ -63,13 +63,13 @@ else
 	$resultupt=mysqli_query($link,$qryupt);
 }
 //ACTUALIZACIÓN DEL DETALLE DE LA NOTA DE CREDITOS
-  $qryr="delete from det_nota_c where Id_Nota=$nota and Cod_producto=$codigo;";
+  $qryr="delete from det_nota_c where Id_Nota=$mensaje and Cod_producto=$codigo;";
   $resultr=mysqli_query($link,$qryr);
   echo' <script >
 		  alert("Borrado producto de la nota de credito");
 		  </script>'; 
   echo'<form action="makeNota.php" method="post" name="formulario">';
-  echo '<input name="nota" type="hidden" value="'.$nota.'"><input name="crear" type="hidden" value="5"><input type="submit" name="Submit" class="formatoBoton1" value="Cambiar" >';
+  echo '<input name="nota" type="hidden" value="'.$mensaje.'"><input name="crear" type="hidden" value="5"><input type="submit" name="Submit" class="formatoBoton1" value="Cambiar" >';
   echo'</form>'; 
   echo' <script  > document.formulario.submit(); </script>';
 	

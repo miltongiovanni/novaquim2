@@ -31,11 +31,11 @@ else
 	mysqli_close($link);
 	mover("crear_kits.php","Error al Crear el Kit");
 }
-function mover($ruta,$nota)
+function mover($ruta,$mensaje)
 {
 	//Funcion que permite el redireccionamiento de los usuarios a otra pagina 
 	echo'<script >
-	alert("'.$nota.'")
+	alert("'.$mensaje.'")
 	self.location="'.$ruta.'"
 	</script>';
 }

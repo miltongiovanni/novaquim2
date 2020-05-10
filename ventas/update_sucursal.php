@@ -30,11 +30,5 @@ else
 	$ruta="buscarClien.php";
 	mover_pag($ruta,"Error al Actualizar la sucursal");
 }
-function mover_pag($ruta,$Mensaje)
-{
-	echo'<script >
-   	alert("'.$Mensaje.'")
-   	self.location="'.$ruta.'"
-   	</script>';
-}
+
 ?>

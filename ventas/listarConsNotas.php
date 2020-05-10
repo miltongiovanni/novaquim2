@@ -104,7 +104,7 @@ echo '
 $a=1;
 while($row=mysqli_fetch_array($rs, MYSQLI_BOTH))
 {
-	$nota=$row['Nota'];
+	$mensaje=$row['Nota'];
 	if ($row['Motivo']==0)
 		$motivo="Devoluci&oacute;n";
 	else
@@ -125,13 +125,13 @@ while($row=mysqli_fetch_array($rs, MYSQLI_BOTH))
 	echo'</tr>';
 	$sqli="select det_nota_c.Cod_producto as codigo, Nombre as producto, det_nota_c.Can_producto as cantidad 
 	FROM det_nota_c, nota_c, det_factura, prodpre
-	where Id_Nota=Nota and Id_Nota=$nota and det_nota_c.Cod_producto<100000 and det_nota_c.Cod_producto>0  AND det_nota_c.Cod_producto=Cod_prese 
+	where Id_Nota=Nota and Id_Nota=$mensaje and det_nota_c.Cod_producto<100000 and det_nota_c.Cod_producto>0  AND det_nota_c.Cod_producto=Cod_prese 
 	union
 	select det_nota_c.Cod_producto as codigo, Producto as producto,det_nota_c.Can_producto as cantidad
 	from det_nota_c, nota_c, det_factura, distribucion
-	where Id_Nota=Nota and Id_Nota=$nota and det_nota_c.Cod_producto>100000 AND det_nota_c.Cod_producto=Id_distribucion
+	where Id_Nota=Nota and Id_Nota=$mensaje and det_nota_c.Cod_producto>100000 AND det_nota_c.Cod_producto=Id_distribucion
 	union
-	select Cod_producto as codigo, CONCAT ('Descuento de ', Can_producto, '% no aplicado en la factura')  as producto, Can_producto AS cantidad from det_nota_c where Id_Nota=$nota AND Cod_producto=0";
+	select Cod_producto as codigo, CONCAT ('Descuento de ', Can_producto, '% no aplicado en la factura')  as producto, Can_producto AS cantidad from det_nota_c where Id_Nota=$mensaje AND Cod_producto=0";
 	$resulti=mysqli_query($link,$sqli);
 	echo '<tr><td colspan="7"><div class="commenthidden" id="UniqueName'.$a.'"><table width="750" border="0" align="center" cellspacing="0" summary="Detalle">
 	<tr>

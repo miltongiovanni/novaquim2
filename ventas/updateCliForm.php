@@ -196,10 +196,10 @@ include "includes/conect.php";
 		<input type="submit" name="Submit" value="Adicionar o Cambiar Sucursales" />';
 		echo'</form>';        
 		//mover_pag2("Proveedor Creado correctamente");
-		function mover_pag2($Mensaje)
+		function mover_pag2($mensaje)
 		{
 			echo'<script >
-			alert("'.$Mensaje.'");
+			alert("'.$mensaje.'");
 			document.formulario.submit();
 			</script>';
 		}

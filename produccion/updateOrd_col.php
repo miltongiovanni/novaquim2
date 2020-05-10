@@ -41,12 +41,7 @@ foreach ($_POST as $nombre_campo => $valor)
 		mover_pag($ruta,"Gasto de Materia Prima Actualizado correctamente");
 	}
 	echo'</form>';
-	function mover_pag($ruta,$nota)
-	{
-	echo'<script >
-	document.formulario.submit();
-	</script>';
-	}
+	
 ?>
 </body>
 </html>

@@ -43,11 +43,11 @@ include "includes/valAcc.php";
 		mover("Envasado.php","No existe la Orden de Producción");
 		mysqli_close($link);
 	}
-	function mover($ruta,$nota)
+	function mover($ruta,$mensaje)
 	{
 		//Funcion que permite el redireccionamiento de los usuarios a otra pagina 
 		echo'<script >
-		alert("'.$nota.'")
+		alert("'.$mensaje.'")
 		self.location="'.$ruta.'"
 		</script>';
 	}

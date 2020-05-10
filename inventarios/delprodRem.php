@@ -70,12 +70,7 @@ include "includes/conect.php";
 		mover_pag($ruta,"Remision Actualizada correctamente");
 	}
 	echo'</form>';
-	function mover_pag($ruta,$nota)
-	{
-	echo'<script >
-	document.formulario.submit();
-	</script>';
-	}
+	
 	mysqli_close($link);
 ?>
 </body>

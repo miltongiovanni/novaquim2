@@ -64,11 +64,6 @@ mysqli_free_result($result);
 /* cerrar la conexi�n */
 mysqli_close($link);
 
-function mover_pag($ruta,$Mensaje){
-echo'<script >
-   alert("'.$Mensaje.'")
-   self.location="'.$ruta.'"
-   </script>';
-}
+
 
 ?>

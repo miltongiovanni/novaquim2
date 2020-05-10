@@ -36,10 +36,4 @@ try {
 	mover_pag($ruta, $mensaje);
 }
 
-function mover_pag($ruta, $mensaje)
-{
-    echo '<script >
-   alert("' . $mensaje . '")
-   self.location="' . $ruta . '"
-   </script>';
-}
+

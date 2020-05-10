@@ -32,20 +32,15 @@ if($result)
 	echo '<input name="Lote" type="hidden" value="'.$Lote.'"/>
 	<input type="submit" name="Submit" value="Cambiar" />';
 	echo'</form>';
-	function mover_pag($ruta,$nota)
-	{
-	echo'<script >
-	document.formulario.submit();
-	</script>';
-	}
+	
 	mysqli_close($link);
 	mover_pag("Control de Calidad cargado correctamente");
 }
 else{
         $ruta="buscar_lote.php";
-		$Mensaje="Error al ingresar el Control de Calidad";
+		$mensaje="Error al ingresar el Control de Calidad";
 		echo'<script >
-   alert("'.$Mensaje.'")
+   alert("'.$mensaje.'")
    self.location="'.$ruta.'"
    </script>';
 

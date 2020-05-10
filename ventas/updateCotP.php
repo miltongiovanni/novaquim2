@@ -30,12 +30,7 @@ include "includes/conect.php";
 		mover_pag($ruta,"Cotización Actualizada correctamente");
 	}
 	echo'</form>';
-	function mover_pag($ruta,$nota)
-	{
-	echo'<script >
-	document.formulario.submit();
-	</script>';
-	}
+	
 /* cerrar la conexión */
 mysqli_close($link);
 ?>

@@ -54,14 +54,7 @@ mysqli_close($link);
 		mysqli_close($link);
 	}
 } 
-function mover_pag($ruta,$nota)
-{	
-	//Funcion que permite el redireccionamiento de los usuarios a otra pagina 
-	echo' <script >
-	alert("'.$nota.'")
-	self.location="'.$ruta.'"
-	</script>';
-}
+
 if($CrearFormula==1)
 {
  	//AGREGANDO LOS COMPONENTES DE LA FORMULACIÓN

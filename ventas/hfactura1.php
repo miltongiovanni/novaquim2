@@ -24,13 +24,7 @@ else
 }
 
 
-function mover_pag($ruta,$Mensaje)
-{
-echo'<script >
-   alert("'.$Mensaje.'")
-   self.location="'.$ruta.'"
-   </script>';
-}
+
 mysqli_close($link);//Cerrar la conexion
 ?>
 

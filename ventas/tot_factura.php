@@ -55,13 +55,7 @@ else
     mover_pag($ruta,"Error al crear la Factura");
 }
 
-function mover_pag($ruta,$Mensaje)
-{
-echo'<script >
-   alert("'.$Mensaje.'")
-   self.location="'.$ruta.'"
-   </script>';
-}
+
 ?>
 
 

@@ -38,16 +38,11 @@ try {
 }
 
 
-function mover_pag($ruta,$Mensaje){
-echo'<script >
-   alert("'.$Mensaje.'")
-   self.location="'.$ruta.'"
-   </script>';
-}
 
-function enviar_mensaje($Mensaje){
+
+function enviar_mensaje($mensaje){
 	echo'<script >
-   alert("'.$Mensaje.'");
+   alert("'.$mensaje.'");
    </script>';
 }
 

@@ -33,13 +33,7 @@ $ruta="listarPedidoA.php";
 mysqli_close($link);
 mover_pag($ruta,"Orden de Pedido Anulada con Éxito");
 
-function mover_pag($ruta,$Mensaje)
-{
-	echo'<script >
-	alert("'.$Mensaje.'")
-	self.location="'.$ruta.'"
-	</script>';
-}
+
 ?>
 </body>
 </html>

@@ -92,6 +92,13 @@ class ComprasOperaciones
         $stmt->execute($datos);
     }
 
+    public function cancelaCompra($estadoCompra, $fechPago, $idCompra)
+    {
+        $qry = "UPDATE compras SET estadoCompra=?, fechCancelacion=? WHERE idCompra=?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($estadoCompra, $fechPago, $idCompra));
+    }
+
     public function updateTotalesCompra($tipoCompra, $base, $idCompra)
     {
         if ($tipoCompra == 2) {

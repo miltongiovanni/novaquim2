@@ -6,12 +6,17 @@ define("FECHA_C", "2017-01-01");
 date_default_timezone_set('AMERICA/Bogota');
 if($_SESSION['Autorizado']!=1)
   	 {
-     echo'<script >
-     alert("Acceso no autorizado, verifique sus datos de acceso")
-     self.location="../novaquim/index.php"
-     </script>';
+		 $ruta = "../novaquim/index.php";
+		 $mensaje = "Acceso no autorizado, verifique sus datos de acceso";
+		 mover_pag($ruta, $mensaje);
 	}
-
+function mover_pag($ruta, $mensaje)
+{
+	echo '<script >
+   	alert("' . $mensaje . '")
+   	self.location="' . $ruta . '"
+   	</script>';
+}
 /*session_start();
 // Establecer tiempo de vida de la sesión en segundos
 $inactividad = 600;

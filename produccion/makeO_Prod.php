@@ -137,7 +137,7 @@ else
 	mover_pag("o_produccion.php","Error al ingresar la Orden de Producción");
 }
 
-function mover_pag($ruta,$nota)
+function mover_pag($ruta,$mensaje)
 {	
 	//Funcion que permite el envio del formulario 
 	echo' <script >
@@ -145,11 +145,11 @@ function mover_pag($ruta,$nota)
 	</script>';
 } 
 
-function mover($ruta,$nota)
+function mover($ruta,$mensaje)
 {
 	//Funcion que permite el redireccionamiento de los usuarios a otra pagina 
 	echo'<script >
-	alert("'.$nota.'")
+	alert("'.$mensaje.'")
 	self.location="'.$ruta.'"
 	</script>';
 }

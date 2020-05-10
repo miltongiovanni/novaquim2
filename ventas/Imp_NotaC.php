@@ -5,14 +5,14 @@ include "includes/valAcc.php";
 require('fpdf.php');
 include "includes/conect.php";
 include "includes/num_letra.php";
-$nota=$_POST['nota'];
+$mensaje=$_POST['nota'];
 
 class PDF extends FPDF
 {
   //Cabecera de página
   function Header()
   {
-	  $nota=$_POST['nota'];
+	  $mensaje=$_POST['nota'];
 	  //Logo
 	  $yearIni=date("Y");
 	  $this->Image('images/LogoNova.jpg',10,05,43);
@@ -29,7 +29,7 @@ class PDF extends FPDF
 	  //Movernos a la derecha
 	  //Título
 	  $this->SetXY(135,14);
-	  $this->Cell(70,10,'NOTA CRÉDITO No. '.$nota.'-'.$yearIni,0,0,'C');
+	  $this->Cell(70,10,'NOTA CRÉDITO No. '.$mensaje.'-'.$yearIni,0,0,'C');
   }
   //Pie de página
   function Footer()
@@ -46,7 +46,7 @@ class PDF extends FPDF
 
 
 $link=conectarServidor();
-$qryenc="select Nota, Nit_cliente, Fecha, Fac_orig, Fac_dest, motivo, Total, Subtotal, IVA, Nom_clien, Tel_clien, Dir_clien, Ciudad from nota_c, clientes, ciudades where Nota=$nota and Nit_cliente=Nit_clien and Ciudad_clien=Id_ciudad";
+$qryenc="select Nota, Nit_cliente, Fecha, Fac_orig, Fac_dest, motivo, Total, Subtotal, IVA, Nom_clien, Tel_clien, Dir_clien, Ciudad from nota_c, clientes, ciudades where Nota=$mensaje and Nit_cliente=Nit_clien and Ciudad_clien=Id_ciudad";
 $resultenc=mysqli_query($link,$qryenc);
 $rowenc=mysqli_fetch_array($resultenc);
 $pdf=new PDF('P','mm','Letter');
@@ -105,17 +105,17 @@ if ($motivo==0)
 	$orden="Devolución";
 	$qry="select det_nota_c.Cod_producto as codigo, Nombre as producto, det_nota_c.Can_producto as cantidad, tasa, Id_tasa, Des_fac_or, prec_producto as precio, (prec_producto*det_nota_c.Can_producto) AS subtotal FROM det_nota_c, nota_c, det_factura, prodpre, 	
 	  tasa_iva
-	  where Id_Nota=Nota and Id_Nota=$nota and det_nota_c.Cod_producto<100000 and Fac_orig=Id_fact AND det_nota_c.Cod_producto=det_factura.Cod_producto AND det_nota_c.Cod_producto=Cod_prese and Cod_iva=Id_tasa 
+	  where Id_Nota=Nota and Id_Nota=$mensaje and det_nota_c.Cod_producto<100000 and Fac_orig=Id_fact AND det_nota_c.Cod_producto=det_factura.Cod_producto AND det_nota_c.Cod_producto=Cod_prese and Cod_iva=Id_tasa 
 	  union
 	  select det_nota_c.Cod_producto as codigo, Producto as producto, det_nota_c.Can_producto as cantidad, tasa, Id_tasa, Des_fac_or, prec_producto as precio, (prec_producto*det_nota_c.Can_producto) AS subtotal from det_nota_c, nota_c, det_factura, distribucion, 	
 	  tasa_iva
-	  where Id_Nota=Nota and Id_Nota=$nota and det_nota_c.Cod_producto>100000 AND Fac_orig=Id_fact AND det_nota_c.Cod_producto=det_factura.Cod_producto AND det_nota_c.Cod_producto=Id_distribucion and Cod_iva=Id_tasa ";
+	  where Id_Nota=Nota and Id_Nota=$mensaje and det_nota_c.Cod_producto>100000 AND Fac_orig=Id_fact AND det_nota_c.Cod_producto=det_factura.Cod_producto AND det_nota_c.Cod_producto=Id_distribucion and Cod_iva=Id_tasa ";
 }
 else
 {
 	$orden="Descuento no aplicado";
 	$qry="select Cod_producto as codigo, 0 as Des_fac_or,  CONCAT ('Descuento de ', Can_producto, ' % no concedido en la Factura No. ', Fac_orig) as producto, det_nota_c.Can_producto as cantidad, (select 0) as tasa, Factura.Subtotal*Can_producto/100 AS 	precio,  	  Factura.Subtotal*Can_producto/100 AS subtotal  
-	  from det_nota_c, nota_c, factura where Id_Nota=Nota and Id_Nota=$nota AND Fac_orig=Factura;";
+	  from det_nota_c, nota_c, factura where Id_Nota=Nota and Id_Nota=$mensaje AND Fac_orig=Factura;";
 }
 $pdf->Cell(25,3.5,'MOTIVO:',0, 0, 'R');
 $pdf->SetFont('Arial','',10);

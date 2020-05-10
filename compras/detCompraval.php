@@ -52,14 +52,7 @@ if($CrearFactura==0)
 		mysql_close($link);
 	}
 }
-function mover_pag($ruta,$nota)
-{	
-	//Funcion que permite el redireccionamiento de los usuarios a otra pagina 
-	echo' <script >
-	alert("'.$nota.'")
-	self.location="'.$ruta.'"
-	</script>';
-}
+
 if($CrearFactura==1)
 {
 	//AGREGANDO LOS ARTICULOS DE LA FACTURA";

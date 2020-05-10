@@ -26,12 +26,7 @@ include "includes/conect.php";
 		mover_pag($ruta,"Materia Prima eliminada correctamente de la Fórmula");
 	}
 	echo'</form>';
-	function mover_pag($ruta,$nota)
-	{
-	echo'<script >
-	document.formulario.submit();
-	</script>';
-	}
+	
 	mysqli_close($link);
 ?>
 </body>

@@ -41,11 +41,11 @@ include "includes/valAcc.php";
 	$rowcal=mysqli_fetch_array($resultcal);
 	mysqli_close($link);
 		
-function mover($ruta,$nota)
+function mover($ruta,$mensaje)
 {
 	//Funcion que permite el redireccionamiento de los usuarios a otra pagina 
 	echo'<script >
-	alert("'.$nota.'")
+	alert("'.$mensaje.'")
 	self.location="'.$ruta.'"
 	</script>';
 }

@@ -32,10 +32,10 @@ if($result)
 	echo '<input name="Lote" type="hidden" value="'.$Lote.'"/>
 	<input type="submit" name="Submit" value="Cambiar" />';
 	echo'</form>';
-	function mover_pag($nota)
+	function mover_pag($mensaje)
 	{
 	echo'<script >
-	alert("'.$nota.'");
+	alert("'.$mensaje.'");
 	document.formulario.submit();
 	</script>';
 	}
@@ -44,9 +44,9 @@ if($result)
 }
 else{
         $ruta="buscar_lote1.php";
-		$Mensaje="Error al ingresar el Control de Calidad";
+		$mensaje="Error al ingresar el Control de Calidad";
 		echo'<script >
-   alert("'.$Mensaje.'")
+   alert("'.$mensaje.'")
    self.location="'.$ruta.'"
    </script>';
 

@@ -47,12 +47,7 @@ include "includes/conect.php";
 		mover_pag($ruta,"Pedido Actualizado correctamente");
 	}
 	echo'</form>';
-	function mover_pag($ruta,$nota)
-	{
-	echo'<script >
-	document.formulario.submit();
-	</script>';
-	}
+	
 	mysql_close($link);
 ?>
 </body>

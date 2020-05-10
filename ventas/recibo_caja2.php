@@ -34,7 +34,7 @@ foreach ($_POST as $nombre_campo => $valor)
 $link=conectarServidor();  
 if($Pago==3)
 {
-	$qryrc="select Fact, cobro, Fecha, descuento_f, form_pago, forma_pago, reten, reten_cree, No_cheque, Cod_banco, Banco from r_caja, form_pago, bancos where form_pago=Id_fpago and Cod_banco=Id_banco and Id_caja=$recibo_c";
+	$qryrc="select Fact, cobro, Fecha, descuento_f, form_pago, formaPago, reten, reten_cree, No_cheque, Cod_banco, Banco from r_caja, form_pago, bancos where form_pago=idFormaPago and Cod_banco=Id_banco and Id_caja=$recibo_c";
 	//echo $qryrc;
 	$resultqryrc=mysqli_query($link, $qryrc);
 	$row_rc=mysqli_fetch_array($resultqryrc);
@@ -157,14 +157,7 @@ if($Pago==1)
 	}
    mysql_close($link);
 }
-  function mover_pag($ruta,$nota)
-	{	
-	//Funcion que permite el redireccionamiento de los usuarios a otra pagina 
-	echo' <script >
-	alert("'.$nota.'")
-	self.location="'.$ruta.'"
-	</script>';
-	}
+
 ?>
 <form method="post" action="recibo_caja2.php" name="form1">
   <table border="0"  align="center" width="80%" >
@@ -329,7 +322,7 @@ if($Pago==1)
     <?php 
 	if ($Reten_pago==1)
 	{
-	$qryrc="select Fact, cobro, Fecha, descuento_f, form_pago, forma_pago, reten, reten_cree, No_cheque, Cod_banco, Banco from r_caja, form_pago, bancos where form_pago=Id_fpago and Cod_banco=Id_banco and Id_caja=$Recibo";
+	$qryrc="select Fact, cobro, Fecha, descuento_f, form_pago, formaPago, reten, reten_cree, No_cheque, Cod_banco, Banco from r_caja, form_pago, bancos where form_pago=idFormaPago and Cod_banco=Id_banco and Id_caja=$Recibo";
 	$resultqryrc=mysqli_query($link, $qryrc);
 	$row_rc=mysqli_fetch_array($resultqryrc);
 	$factura=$row_rc['Fact'];
@@ -359,7 +352,7 @@ if($Pago==1)
 	  echo '" ></td>
       <td colspan="2"><div align="center"><select name="Form_pago">';
 	  
-	  $resultf=mysqli_query($link, "select Id_fpago, forma_pago from form_pago where Id_fpago<>2;");
+	  $resultf=mysqli_query($link, "select idFormaPago, formaPago from form_pago where idFormaPago<>2;");
 			echo '<option selected value='.$form_pago_r.'>'.$forma_pago_r.'</option>';
 			while($rowf=mysqli_fetch_array($resultf))
 			{	

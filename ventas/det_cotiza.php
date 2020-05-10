@@ -134,11 +134,11 @@ if ($Crear==3)
   }
 }
 
-function mover_pag($ruta,$nota)
+function mover_pag($ruta,$mensaje)
 {	
 //Funcion que permite el redireccionamiento de los usuarios a otra pagina 
 echo' <script >
-alert("'.$nota.'")
+alert("'.$mensaje.'")
 self.location="'.$ruta.'"
 </script>';
 }	

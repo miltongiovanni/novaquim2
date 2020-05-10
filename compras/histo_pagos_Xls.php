@@ -36,12 +36,12 @@ $objPHPExcel->setActiveSheetIndex(0)
 // Rename sheet
 $objPHPExcel->getActiveSheet()->setTitle('Historia de Pagos');
 $link=conectarServidor();
-$sql="select idEgreso as Id, nit_prov, Nom_provee, numFact, total_fact, pago, Fech_comp, Fech_venc, fechPago, forma_pago 
+$sql="select idEgreso as Id, nit_prov, Nom_provee, numFact, total_fact, pago, Fech_comp, Fech_venc, fechPago, formaPago 
 from egreso, compras, proveedores, form_pago 
-WHERE egreso.idCompra=compras.Id_compra and nit_prov=nitProv and tipoCompra<6 and formPago=Id_fpago and fechPago>='$FchIni' and fechPago<='$FchFin'
-union select idEgreso as Id, nit_prov, Nom_provee, numFact as Factura, totalGasto, pago, fechGasto, fechVenc, fechPago, forma_pago 
+WHERE egreso.idCompra=compras.Id_compra and nit_prov=nitProv and tipoCompra<6 and formPago=idFormaPago and fechPago>='$FchIni' and fechPago<='$FchFin'
+union select idEgreso as Id, nit_prov, Nom_provee, numFact as Factura, totalGasto, pago, fechGasto, fechVenc, fechPago, formaPago 
 from egreso, gastos, proveedores, form_pago 
-WHERE egreso.idCompra=gastos.idGasto and nit_prov=nitProv and tipoCompra=6 and formPago=Id_fpago and fechPago>='$FchIni' and fechPago<='$FchFin' order by Id DESC;";
+WHERE egreso.idCompra=gastos.idGasto and nit_prov=nitProv and tipoCompra=6 and formPago=idFormaPago and fechPago>='$FchIni' and fechPago<='$FchFin' order by Id DESC;";
 
 $result=mysqli_query($link,$sql) or die("Error al conectar a la base de datos.");
 //$columnas=mysql_num_fields($result);

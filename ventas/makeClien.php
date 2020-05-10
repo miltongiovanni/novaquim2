@@ -37,11 +37,6 @@ echo '<input name="nit" type="hidden" value="'.$NIT_F.'"><input name="ciudad_cli
 echo'</form>'; 
 echo' <script > 	document.formulario.submit(); 	</script>';
 
-function mover_pag($ruta,$Mensaje){
-echo'<script >
-   alert("'.$Mensaje.'")
-   self.location="'.$ruta.'"
-   </script>';
- }
+
 
 ?>

@@ -1,10 +1,10 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<title>Hist&oacute;rico de Comprobantes de Egreso</title>
+<title>Histórico de Comprobantes de Egreso</title>
 <meta charset="utf-8">
 <link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
 <script  src="scripts/block.js"></script>
@@ -65,7 +65,7 @@ else
 }
 
 $link=conectarServidor();
-$sql=" select idEgreso as Id, nit_prov as Nit, Nom_provee as Proveedor, numFact as Factura, totalCompra as Total, pago as 'Valor Pagado', fechComp as 'Fecha Compra', fechVenc as 'Fecha Vencimiento', fechPago as 'Fecha Canc', forma_pago as 'Forma de Pago' 
+$sql=" select idEgreso as Id, nit_prov as Nit, Nom_provee as Proveedor, numFact as Factura, totalCompra as Total, pago as 'Valor Pagado', fechComp as 'Fecha Compra', fechVenc as 'Fecha Vencimiento', fechPago as 'Fecha Canc', formaPago as 'Forma de Pago' 
 from egreso, compras, proveedores, form_pago 
 WHERE egreso.idCompra=compras.idCompra and nit_prov=nitProv and tipoCompra<6 and formPago=Id_fpago
 union
@@ -96,11 +96,11 @@ echo '</div>';
 //construyo la sentencia SQL 
 $ssql = "select idEgreso as Id, nit_prov as Nit, Nom_provee as Proveedor, numFact as Factura, totalCompra as Total, pago as 'Valor Pagado', fechComp as 'Fecha Compra', fechVenc as 'Fecha Vencimiento', fechPago as 'Fecha Canc', forma_pago as 'Forma de Pago' 
 from egreso, compras, proveedores, form_pago 
-WHERE egreso.idCompra=compras.idCompra and nit_prov=nitProv and tipoCompra<6 and formPago=Id_fpago
+WHERE egreso.idCompra=compras.idCompra and nit_prov=nitProv and tipoCompra<6 and formPago=idFormaPago
 union
 select idEgreso as Id, nit_prov as Nit, Nom_provee as Proveedor, numFact as Factura, totalGasto as Total, pago as 'Valor Pagado', fechGasto as 'Fecha Compra', fechVenc as 'Fecha Vencimiento', fechPago as 'Fecha Canc', forma_pago as 'Forma de Pago'
 from egreso, gastos, proveedores, form_pago 
-WHERE egreso.idCompra=gastos.idGasto and nit_prov=nitProv and tipoCompra=6 and formPago=Id_fpago order by Id DESC limit " . $inicio . "," . $TAMANO_PAGINA;
+WHERE egreso.idCompra=gastos.idGasto and nit_prov=nitProv and tipoCompra=6 and formPago=idFormaPago order by Id DESC limit " . $inicio . "," . $TAMANO_PAGINA;
 $rs = mysqli_query($link,$ssql);
 $a=1;
 while($row=mysqli_fetch_array($rs, MYSQLI_BOTH))

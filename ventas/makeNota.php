@@ -34,33 +34,33 @@ if ($crear==1)
   $qrycam="select MAX(Nota) AS Notas from nota_c;";
   $resultqrycam=mysqli_query($link,$qrycam);
   $row_cam=mysqli_fetch_array($resultqrycam);
-  $nota=$row_cam['Notas']+1;
+  $mensaje=$row_cam['Notas']+1;
   //DESCUENTO EN FACTURA ORIGEN
   $qrydesc="select Descuento from factura where Factura=$fact_ori;";
   $resultqrydesc=mysqli_query($link,$qrydesc);
   $row_desc=mysqli_fetch_array($resultqrydesc);
   $Descuento=$row_desc['Descuento'];
   //CREACIÓN DEL ENCABEZADO DE LA NOTA DE CRÉDITO
-  $qryr="insert into nota_c (Nota, Nit_cliente, Fecha, Fac_orig, Fac_dest, motivo, Des_fac_or) values ($nota, '$cliente','$Fecha', $fact_ori, $fact_des, $razon, $Descuento)";
+  $qryr="insert into nota_c (Nota, Nit_cliente, Fecha, Fac_orig, Fac_dest, motivo, Des_fac_or) values ($mensaje, '$cliente','$Fecha', $fact_ori, $fact_des, $razon, $Descuento)";
   $resultr=mysqli_query($link,$qryr);
   //CREAR 2 PARA SALIR DEL ENCABEZADO
   echo'<form action="makeNota.php" method="post" name="formulario">';
-  echo '<input name="nota" type="hidden" value="'.$nota.'"><input name="crear" type="hidden" value="2"><input type="submit" name="Submit" value="Cambiar" >';
+  echo '<input name="nota" type="hidden" value="'.$mensaje.'"><input name="crear" type="hidden" value="2"><input type="submit" name="Submit" value="Cambiar" >';
   echo'</form>'; 
   echo' <script  > document.formulario.submit(); </script>';
 }
 if ($crear==6)
 {
 	//MODIFICAR EL ENCABEZADO DE LA NOTA DE CRÉDITO
-  $qryr="update nota_c set Fecha='$Fecha', Fac_orig=$fact_ori, Fac_dest=$fact_des, motivo=$razon where Nota=$nota";
+  $qryr="update nota_c set Fecha='$Fecha', Fac_orig=$fact_ori, Fac_dest=$fact_des, motivo=$razon where Nota=$mensaje";
   $resultr=mysqli_query($link,$qryr);
   //CREAR 2 PARA SALIR DEL ENCABEZADO
   echo'<form action="makeNota.php" method="post" name="formulario">';
-  echo '<input name="nota" type="hidden" value="'.$nota.'"><input name="crear" type="hidden" value="2"><input type="submit" name="Submit" value="Cambiar" >';
+  echo '<input name="nota" type="hidden" value="'.$mensaje.'"><input name="crear" type="hidden" value="2"><input type="submit" name="Submit" value="Cambiar" >';
   echo'</form>'; 
   echo' <script  > document.formulario.submit(); </script>';
 }
-$qrynot="select Nota, Nit_cliente, Fecha, Fac_orig, Fac_dest, motivo, Total, Subtotal, IVA, Nom_clien, Tel_clien, Dir_clien, Ciudad from nota_c, clientes, ciudades where Nota=$nota and Nit_cliente=Nit_clien and Ciudad_clien=Id_ciudad";
+$qrynot="select Nota, Nit_cliente, Fecha, Fac_orig, Fac_dest, motivo, Total, Subtotal, IVA, Nom_clien, Tel_clien, Dir_clien, Ciudad from nota_c, clientes, ciudades where Nota=$mensaje and Nit_cliente=Nit_clien and Ciudad_clien=Id_ciudad";
 $resultnot=mysqli_query($link,$qrynot);
 $rownot=mysqli_fetch_array($resultnot);
 $Fac_orig=$rownot['Fac_orig'];	
@@ -105,10 +105,10 @@ if ($crear==3)// SI HAY DEVOLUCIÓN DE PRODUCTOS
 	}
 	$resultupt=mysqli_query($link,$qryupt);
 	//INSERCION DEL DETALLE DE LA NOTA DE CREDITO
-	$qryr="insert into det_nota_c (Id_Nota, Cod_producto, Can_producto) values ($nota, $cod, $cantidad)";
+	$qryr="insert into det_nota_c (Id_Nota, Cod_producto, Can_producto) values ($mensaje, $cod, $cantidad)";
 	$resultr=mysqli_query($link,$qryr);
 	echo'<form action="makeNota.php" method="post" name="formulario">';
-	echo '<input name="nota" type="hidden" value="'.$nota.'"><input name="crear" type="hidden" value="5"><input type="submit" name="Submit" class="formatoBoton1" value="Cambiar" >';
+	echo '<input name="nota" type="hidden" value="'.$mensaje.'"><input name="crear" type="hidden" value="5"><input type="submit" name="Submit" class="formatoBoton1" value="Cambiar" >';
 	echo'</form>'; 
 	echo' <script  > document.formulario.submit(); </script>';
   }
@@ -136,10 +136,10 @@ if ($crear==3)// SI HAY DEVOLUCIÓN DE PRODUCTOS
 	  }
 	  $resultupt=mysqli_query($link,$qryupt);
 	  //INSERCION DEL DETALLE DE LA NOTA DE CREDITOS
-	  $qryr="insert into det_nota_c (Id_Nota, Cod_producto, Can_producto) values ($nota, $cod, $cantidad)";
+	  $qryr="insert into det_nota_c (Id_Nota, Cod_producto, Can_producto) values ($mensaje, $cod, $cantidad)";
 	  $resultr=mysqli_query($link,$qryr);
 	  echo'<form action="makeNota.php" method="post" name="formulario">';
-	  echo '<input name="nota" type="hidden" value="'.$nota.'"><input name="crear" type="hidden" value="5"><input type="submit" name="Submit" value="Cambiar" >';
+	  echo '<input name="nota" type="hidden" value="'.$mensaje.'"><input name="crear" type="hidden" value="5"><input type="submit" name="Submit" value="Cambiar" >';
 	  echo'</form>'; 
 	  echo' <script  > document.formulario.submit(); </script>';
 	}
@@ -147,7 +147,7 @@ if ($crear==3)// SI HAY DEVOLUCIÓN DE PRODUCTOS
 	{
 	  echo '<form method="post" action="makeNota.php" name="form3">';
 	  echo'<input name="crear" type="hidden" value="2">'; 
-	  echo'<input name="nota" type="hidden" value="'.$nota.'">'; 
+	  echo'<input name="nota" type="hidden" value="'.$mensaje.'">'; 
 	  echo '</form>';
 	  echo' <script >
 	  alert("La cantidad de producto es mayor a la de la factura");
@@ -159,26 +159,26 @@ if ($crear==3)// SI HAY DEVOLUCIÓN DE PRODUCTOS
 if ($crear==4) //SI NO SE HA HECHO DESCUENTO
 {
   //CREACIÓN DEL DETALLE DE LA NOTA DE CRÉDITO CUANDO NO SE HA HECHO EL DESCUENTO
-  $qrys="select Id_Nota, Cod_producto from det_nota_c where Id_Nota=$nota";
+  $qrys="select Id_Nota, Cod_producto from det_nota_c where Id_Nota=$mensaje";
   echo $qrys;
   $results=mysqli_query($link,$qrys);
   $rows=mysqli_fetch_array($results);
   
   if ($rows['Cod_producto']==0)
-  	$qryr="update det_nota_c set Cod_producto=0, Can_producto=$descuento where Id_Nota=$nota";
+  	$qryr="update det_nota_c set Cod_producto=0, Can_producto=$descuento where Id_Nota=$mensaje";
 if ($rows['Cod_producto']==NULL)
-  	$qryr="insert into det_nota_c (Id_Nota, Cod_producto, Can_producto) values ($nota, 0,$descuento)";
+  	$qryr="insert into det_nota_c (Id_Nota, Cod_producto, Can_producto) values ($mensaje, 0,$descuento)";
   echo $qryr; 
   $resultr=mysqli_query($link,$qryr);
   echo'<form action="makeNota.php" method="post" name="formulario">';
-  echo '<input name="nota" type="hidden" value="'.$nota.'"><input name="crear" type="hidden" value="5"><input type="submit" class="formatoBoton1" name="Submit"  value="Cambiar" >';
+  echo '<input name="nota" type="hidden" value="'.$mensaje.'"><input name="crear" type="hidden" value="5"><input type="submit" class="formatoBoton1" name="Submit"  value="Cambiar" >';
   echo'</form>'; 
   echo' <script  > document.formulario.submit(); </script>';
 }
 if ($crear==5) //PARA CANCELAR SI LA NOTA ES POR TODA LA FACTURA
 {
   //CONSULTA EL TOTAL DE NOTA
-  $qrys="SELECT round(nota_c.Total) as totaln, Fecha, Fac_dest, factura.Total as totalf FROM nota_c, factura where Nota=$nota and Factura=Fac_dest";
+  $qrys="SELECT round(nota_c.Total) as totaln, Fecha, Fac_dest, factura.Total as totalf FROM nota_c, factura where Nota=$mensaje and Factura=Fac_dest";
   $results=mysqli_query($link,$qrys);
   $rows=mysqli_fetch_array($results);
   $totaln=$rows['totaln'];
@@ -192,18 +192,12 @@ if ($crear==5) //PARA CANCELAR SI LA NOTA ES POR TODA LA FACTURA
   }
 }
 
-function mover_pag($ruta,$Mensaje)
-{
-	echo'<script >
-   	alert("'.$Mensaje.'")
-   	self.location="'.$ruta.'"
-   	</script>';
-}
+
 ?>
 <table  align="center" border="0" summary="encabezado">
     <tr>
       <td width="136"><div align="right"><strong>NOTA CR&Eacute;DITO:</strong> </div></td>
-      <td width="208"><div align="left"><?php echo $nota;?></div></td>
+      <td width="208"><div align="left"><?php echo $mensaje;?></div></td>
       <td width="66"><div align="right"><strong>NIT:</strong></div></td>
       <td width="120" colspan="1"><?php echo $rownot['Nit_cliente']; ?></td>
       <td width="144"><div align="right"><strong>FECHA NOTA:</strong></div></td>
@@ -241,9 +235,9 @@ if (($motivo==0)&&(($crear==5)||($crear==2)))  //CREAR 2 PARA ENTRAR EN LA OPCIÓ
 	$resultd=mysqli_query($link,$qryd);
 	echo'<select name="codigo" id="codigo" onChange="loadXMLDoc()" required>';
 	$result=mysqli_query($link," select Tabla.Cod_producto, Tabla.Producto, Nota 
-	FROM (select Cod_producto, Nombre as Producto, Can_producto, Nota from det_factura, prodpre, nota_c where Id_fact=Fac_orig and Cod_producto=Cod_prese and Nota=$nota
-	union select Cod_producto, Producto, Can_producto, Nota from det_factura, distribucion, nota_c where Id_fact=Fac_orig and Cod_producto=Id_distribucion and Nota=$nota) as Tabla 
-	LEFT JOIN det_nota_c ON Tabla.Cod_producto=det_nota_c.Cod_producto AND Id_Nota=$nota where det_nota_c.Cod_producto IS NULL;");
+	FROM (select Cod_producto, Nombre as Producto, Can_producto, Nota from det_factura, prodpre, nota_c where Id_fact=Fac_orig and Cod_producto=Cod_prese and Nota=$mensaje
+	union select Cod_producto, Producto, Can_producto, Nota from det_factura, distribucion, nota_c where Id_fact=Fac_orig and Cod_producto=Id_distribucion and Nota=$mensaje) as Tabla 
+	LEFT JOIN det_nota_c ON Tabla.Cod_producto=det_nota_c.Cod_producto AND Id_Nota=$mensaje where det_nota_c.Cod_producto IS NULL;");
 	echo '<option value="" selected>'."--------------------------------------------".'</option>';
 	while($row=mysqli_fetch_array($result))
 	{
@@ -253,7 +247,7 @@ if (($motivo==0)&&(($crear==5)||($crear==2)))  //CREAR 2 PARA ENTRAR EN LA OPCIÓ
 	echo '</td><td align="center"><div id="myDiv"></div></td>';
 	//echo '<td align="center"><input name="cantidad" type="text" size=10 ></td>';
 	echo '<td width="125" align="right"><input name="submit" onClick="return Enviar(this.form)" type="submit"  value="Continuar" >
-	  <input name="crear" type="hidden" value="3"><input name="nota" id="nota" type="hidden" value="'.$nota.'"> 
+	  <input name="crear" type="hidden" value="3"><input name="nota" id="nota" type="hidden" value="'.$mensaje.'"> 
 	</td>
 	</tr>
 </table>';
@@ -268,7 +262,7 @@ if (($motivo==1) && ($crear==2))// CREAR 2 ACTIVAR LA OPCION DE MOTIVO 1 QUE ES 
 	  <td align="center"><input type="text" name="descuento" size=5 onKeyPress="return aceptaNum(event)"> %';
  echo '</td>
 	  	<td width="125" align="right"><input name="submit" class="formatoBoton1" onClick="return Enviar(this.form)" type="submit"  value="Continuar" >
-		<input name="crear" type="hidden" value="4"><input name="nota" type="hidden" value="'.$nota.'"> 
+		<input name="crear" type="hidden" value="4"><input name="nota" type="hidden" value="'.$mensaje.'"> 
 	  </td>
 	</tr>
   </table>';	
@@ -297,11 +291,11 @@ if (($motivo==1) && ($crear==2))// CREAR 2 ACTIVAR LA OPCION DE MOTIVO 1 QUE ES 
 	  $link=conectarServidor();
 	  $qry="select det_nota_c.Cod_producto as codigo, Nombre as producto, det_nota_c.Can_producto as cantidad, tasa, Id_tasa, Des_fac_or, prec_producto as precio, (prec_producto*det_nota_c.Can_producto) AS subtotal FROM det_nota_c, nota_c, det_factura, prodpre, 	
 	  tasa_iva 
-	  where Id_Nota=Nota and Id_Nota=$nota and det_nota_c.Cod_producto<100000 and Fac_orig=Id_fact AND det_nota_c.Cod_producto=det_factura.Cod_producto AND det_nota_c.Cod_producto=Cod_prese and Cod_iva=Id_tasa 
+	  where Id_Nota=Nota and Id_Nota=$mensaje and det_nota_c.Cod_producto<100000 and Fac_orig=Id_fact AND det_nota_c.Cod_producto=det_factura.Cod_producto AND det_nota_c.Cod_producto=Cod_prese and Cod_iva=Id_tasa 
 	  union
 	  select det_nota_c.Cod_producto as codigo, Producto as producto,det_nota_c.Can_producto as cantidad, tasa, Id_tasa, Des_fac_or,  prec_producto as precio, (prec_producto*det_nota_c.Can_producto) AS subtotal from det_nota_c, nota_c, det_factura, distribucion, 	
 	  tasa_iva 
-	  where Id_Nota=Nota and Id_Nota=$nota and det_nota_c.Cod_producto>100000 AND Fac_orig=Id_fact AND det_nota_c.Cod_producto=det_factura.Cod_producto AND det_nota_c.Cod_producto=Id_distribucion and Cod_iva=Id_tasa ;";
+	  where Id_Nota=Nota and Id_Nota=$mensaje and det_nota_c.Cod_producto>100000 AND Fac_orig=Id_fact AND det_nota_c.Cod_producto=det_factura.Cod_producto AND det_nota_c.Cod_producto=Id_distribucion and Cod_iva=Id_tasa ;";
 	  $result=mysqli_query($link,$qry);
 	  $subtotal=0;
 	  $descuento=0;
@@ -335,7 +329,7 @@ if (($motivo==1) && ($crear==2))// CREAR 2 ACTIVAR LA OPCION DE MOTIVO 1 QUE ES 
 						<input type="submit" class="formatoBoton" name="Submit" value="Cambiar" >
 						<input name="codigo" type="hidden" value="'.$codigo.'">
 						<input name="cantidad" type="hidden" value="'.$cantidad.'">
-						<input name="nota" type="hidden" value="'.$nota.'">
+						<input name="nota" type="hidden" value="'.$mensaje.'">
 						</form>';
 			  
 			  
@@ -363,7 +357,7 @@ if (($motivo==1) && ($crear==2))// CREAR 2 ACTIVAR LA OPCION DE MOTIVO 1 QUE ES 
 						<input type="submit" class="formatoBoton" name="Submit" value="Eliminar" >
 						<input name="codigo" type="hidden" value="'.$codigo.'">
 						<input name="cantidad" type="hidden" value="'.$cantidad.'">
-						<input name="nota" type="hidden" value="'.$nota.'">
+						<input name="nota" type="hidden" value="'.$mensaje.'">
 						</form>';
 			  echo '</tr>';
 	  }
@@ -409,17 +403,17 @@ if (($motivo==1) && ($crear==2))// CREAR 2 ACTIVAR LA OPCION DE MOTIVO 1 QUE ES 
 		  <td colspan="6"><div align="right"><strong>TOTAL</strong></div></td>
 		  <td><div align="center"><strong>$ '.$Tot.'</strong></div></td>
 		  </tr></table>';
-	  $qryupd="update nota_c set Total=$Total , Subtotal=$subtotal, IVA=$iva where Nota=$nota";
+	  $qryupd="update nota_c set Total=$Total , Subtotal=$subtotal, IVA=$iva where Nota=$mensaje";
 	  $result=mysqli_query($link,$qryupd);
 	  mysqli_close($link);
 	  echo '<form method="post" action="detCompramp.php" name="form3">';
 	  echo'<input name="crear" type="hidden" value="3">'; 
-	  echo'<input name="nota" type="hidden" value="'.$nota.'">'; 
+	  echo'<input name="nota" type="hidden" value="'.$mensaje.'">'; 
 	  echo '</form>';
 	}
 	if (($motivo==1) && ($crear==5))
 	  {
-		  $qrydet="select Can_producto as Descuento, Factura.Subtotal from det_nota_c, nota_c, factura where Id_Nota=$nota and Id_Nota=Nota and Fac_orig=Factura;";
+		  $qrydet="select Can_producto as Descuento, Factura.Subtotal from det_nota_c, nota_c, factura where Id_Nota=$mensaje and Id_Nota=Nota and Fac_orig=Factura;";
 		  $resultdet=mysqli_query($link,$qrydet);
 	  	  $rowdet=mysqli_fetch_array($resultdet);
 	  	  $desct=$rowdet['Descuento'];
@@ -465,7 +459,7 @@ if (($motivo==1) && ($crear==2))// CREAR 2 ACTIVAR LA OPCION DE MOTIVO 1 QUE ES 
 		  
 		  
 		  
-	  $qryupd="update nota_c set Total=$Total , Subtotal=$subtotal, IVA=$iva where Nota=$nota";
+	  $qryupd="update nota_c set Total=$Total , Subtotal=$subtotal, IVA=$iva where Nota=$mensaje";
 	  $result=mysqli_query($link,$qryupd);
 	  }
     ?>
@@ -473,14 +467,14 @@ if (($motivo==1) && ($crear==2))// CREAR 2 ACTIVAR LA OPCION DE MOTIVO 1 QUE ES 
       <tr>
         <td width="209" colspan="1" align="center">
         <form action="Imp_NotaC.php" method="post" target="_blank">
-            <input name="nota" type="hidden" value="<?php echo $nota; ?>">
+            <input name="nota" type="hidden" value="<?php echo $mensaje; ?>">
             <input name="Submit" type="submit" class="formatoBoton1" value="Imprimir Nota Cr&eacute;dito" >
         </form>
         </td>
         <td width="115" colspan="1" align="center">
         <form action="makeNota.php" method="post" name="modificar">
         	<input name="crear" type="hidden" value="2">
-            <input name="nota" type="hidden" value="<?php echo $nota; ?>">
+            <input name="nota" type="hidden" value="<?php echo $mensaje; ?>">
             <input name="Submit" type="submit" class="formatoBoton1" value="Modificar" >
         </form>
         </td>

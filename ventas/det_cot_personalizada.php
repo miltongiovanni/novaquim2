@@ -30,11 +30,11 @@ foreach ($_POST as $nombre_campo => $valor)
 	//echo $nombre_campo." = ".$valor."<br>";  
 	eval($asignacion); 
 }  
-function mover($ruta,$nota)
+function mover($ruta,$mensaje)
 {
 	//Funcion que permite el redireccionamiento de los usuarios a otra pagina 
 	echo'<script >
-	alert("'.$nota.'");
+	alert("'.$mensaje.'");
 	self.location="'.$ruta.'";
 	</script>';
 } 

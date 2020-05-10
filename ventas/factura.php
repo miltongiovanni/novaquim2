@@ -72,11 +72,11 @@ include "includes/valAcc.php";
 		$row2=mysqli_fetch_array($result2);
 		$fact=$row2['Factura']+1;	
 		mysqli_close($link);
-		function mover($ruta,$nota)
+		function mover($ruta,$mensaje)
 		{
 			//Funcion que permite el redireccionamiento de los usuarios a otra pagina 
 			echo'<script >
-			alert("'.$nota.'")
+			alert("'.$mensaje.'")
 			self.location="'.$ruta.'"
 			</script>';
 		}

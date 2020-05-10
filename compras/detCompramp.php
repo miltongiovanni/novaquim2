@@ -139,14 +139,6 @@ if($CrearFactura==0)
 	
 	mysqli_free_result($resultqrybus);
 	mysqli_close($link);
-} 
-function mover_pag($ruta,$nota)
-{	
-//Funcion que permite el redireccionamiento de los usuarios a otra pagina 
-echo' <script >
-alert("'.$nota.'")
-self.location="'.$ruta.'"
-</script>';
 }
 
 if($CrearFactura==1)

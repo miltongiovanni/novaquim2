@@ -56,8 +56,8 @@ else
    	$inicio = ($pagina - 1) * $TAMANO_PAGINA; 
 }
 $link=conectarServidor();
-$sql="	select Id_caja as 'Id', Fact as Factura, Nom_clien as Cliente, CONCAT('$ ', FORMAT(cobro,0)) as Pagos, Fecha, forma_pago as 'Forma de Pago' 
-from r_caja, factura, clientes, form_pago where Fact=Factura and Nit_cliente=Nit_clien and form_pago=Id_fpago order by Id DESC";
+$sql="	select Id_caja as 'Id', Fact as Factura, Nom_clien as Cliente, CONCAT('$ ', FORMAT(cobro,0)) as Pagos, Fecha, formaPago as 'Forma de Pago' 
+from r_caja, factura, clientes, form_pago where Fact=Factura and Nit_cliente=Nit_clien and form_pago=idFormaPago order by Id DESC";
 $result=mysqli_query($link,$sql);
 $num_total_registros = mysqli_num_rows($result); 
 //calculo el total de páginas 
@@ -78,8 +78,8 @@ if ($total_paginas > 1){
 echo '</div>';
 
 //construyo la sentencia SQL 
-$ssql = "select Id_caja as 'Id', Fact as Factura, Nom_clien as Cliente, CONCAT('$ ', FORMAT(cobro,0)) as Pagos, Fecha, forma_pago  
-from r_caja, factura, clientes, form_pago where Fact=Factura and Nit_cliente=Nit_clien and form_pago=Id_fpago order by Id DESC limit " . $inicio . "," . $TAMANO_PAGINA;
+$ssql = "select Id_caja as 'Id', Fact as Factura, Nom_clien as Cliente, CONCAT('$ ', FORMAT(cobro,0)) as Pagos, Fecha, formaPago  
+from r_caja, factura, clientes, form_pago where Fact=Factura and Nit_cliente=Nit_clien and form_pago=idFormaPago order by Id DESC limit " . $inicio . "," . $TAMANO_PAGINA;
 $rs = mysqli_query($link,$ssql);
 $a=1;
 while($row=mysqli_fetch_array($rs, MYSQLI_BOTH))

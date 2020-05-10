@@ -31,7 +31,7 @@ foreach ($_POST as $nombre_campo => $valor)
 if($Pago==4)
 {
 	$link=conectarServidor();   
-	$qryb="select idCompra, tipoCompra, pago, fechPago, descuentoE, formPago, forma_pago from egreso, form_pago where formPago=Id_fpago and idEgreso=$egreso;";
+	$qryb="select idCompra, tipoCompra, pago, fechPago, descuentoE, formPago, formaPago from egreso, form_pago where formPago=idFormaPago and idEgreso=$egreso;";
 	$resultb=mysqli_query($link, $qryb);
 	$row_b=mysqli_fetch_array($resultb);
 	$id_compra=$row_b['Id_compra'];   
@@ -92,14 +92,7 @@ if($Pago==1)
 	/* cerrar la conexión */
 	mysqli_close($link);
    }
-  function mover_pag($ruta,$nota)
-	{	
-	//Funcion que permite el redireccionamiento de los usuarios a otra pagina 
-	echo' <script >
-	alert("'.$nota.'")
-	self.location="'.$ruta.'"
-	</script>';
-	}
+
 ?>
 
 <form method="post" action="egreso1.php" name="form1">
@@ -196,7 +189,7 @@ if($Pago==1)
         	<?php
 			$link=conectarServidor();
 			echo'<select name="Form_pago" id="combo">';
-			$result=mysqli_query($link, "select Id_fpago, forma_pago from form_pago where Id_fpago<>2;");
+			$result=mysqli_query($link, "select idFormaPago, formaPago from form_pago where idFormaPago<>2;");
 			echo '<option selected value='.$form_pago.'>'.$forma_pago.'</option>';
 			while($row=mysqli_fetch_array($result))
 			{	

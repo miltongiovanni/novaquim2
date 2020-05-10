@@ -1,24 +1,21 @@
 <?php
-include "includes/valAcc.php";
-?>
-<?php
-require('fpdf.php');
-include "includes/conect.php";
-include "includes/num_letra.php";
-$link=conectarServidor();
-$egreso=$_POST['egreso'];
-$qryenc="select egreso.idCompra, nit_prov, numFact, totalGasto, retefuenteGasto as retencion, Nom_provee, idEgreso, tipoCompra, pago, fechPago, descuentoE, egreso.formPago, forma_pago, reteicaGasto
-from egreso,  gastos, proveedores, form_pago where nit_prov=nitProv and idEgreso=$egreso and egreso.idCompra=idGasto and tipoCompra=6 and egreso.formPago=Id_fpago
-union
-select egreso.idCompra, nit_prov, numFact, totalCompra, retefuenteCompra, Nom_provee, idEgreso, tipoCompra, pago, fechPago, descuentoE, egreso.formPago, forma_pago, reteicaCompra
-from egreso,  compras, proveedores, form_pago where nit_prov=nitProv and idEgreso=$egreso and egreso.idCompra=compras.idCompra and tipoCompra<>6 and egreso.formPago=Id_fpago;";
-$resultenc=mysqli_query($link,$qryenc);
-$rowenc=mysqli_fetch_array($resultenc);
+include "../includes/valAcc.php";
+require '../includes/fpdf.php';
+function cargarClases($classname)
+{
+    require '../clases/' . $classname . '.php';
+}
+
+spl_autoload_register('cargarClases');
+include "../includes/num_letra.php";
+$idEgreso=$_POST['idEgreso'];
+$EgresoOperador = new EgresoOperaciones();
+$egreso = $EgresoOperador->getFormEgreso($idEgreso);
 $pdf=new FPDF('P','mm','Letter');
 $pdf->AliasNbPages();
 $pdf->AddPage();
 $pdf->SetMargins(10, 10, 10);
-$pdf->Image('images/LogoNova1.jpg',20,14, 44, 22);
+$pdf->Image('../images/LogoNova1.jpg',20,14, 44, 22);
 $pdf->SetFont('Arial','B',12);
 $pdf->SetXY(70,20);
 $pdf->Cell(65,4,'INDUSTRIAS NOVAQUIM S.A.S.',0,0, 'C');
@@ -33,36 +30,34 @@ $pdf->SetFont('Arial','',9);
 $pdf->MultiCell(65,3,'Calle 35 C Sur No. 26 F - 40'."\n".'Tels:2039484 - 2022912'."\n".'www.novaquim.com  info@novaquim.com',0 , 'C');
 $pdf->SetFont('Arial','B',12);
 $pdf->SetXY(145,24);
-$pdf->Cell(50,5,$egreso,0,0, 'C');
+$pdf->Cell(50,5,$idEgreso,0,0, 'C');
 $pdf->SetXY(145,30);
 $pdf->SetFont('Arial','B',10);
 $pdf->Cell(50,4,'FECHA COMPROBANTE',0,0, 'C');
 $pdf->SetXY(145,34);
 $pdf->SetFont('Arial','',10);
-$pdf->Cell(50,4,$rowenc['Fecha'],0,0, 'C');
+$pdf->Cell(50,4,$egreso['fechPago'],0,0, 'C');
 $pdf->SetXY(20,40);
 $pdf->SetFont('Arial','B',9);
 $pdf->Cell(140,5,'Pagado a:','LTR', 0, 'L');
 $pdf->SetXY(20,45);
 $pdf->SetFont('Arial','',9);
-$pdf->Cell(140,5,$rowenc['Nom_provee'],'LBR',0,'L');
+$pdf->Cell(140,5,utf8_decode($egreso['nomProv']),'LBR',0,'L');
 $pdf->SetXY(160,40);
 $pdf->SetFont('Arial','B',9);
 $pdf->Cell(40,5,'N.I.T. / C.C.','TR', 0, 'L');
 $pdf->SetXY(160,45);
 $pdf->SetFont('Arial','',9);
-$pdf->Cell(40,5,$rowenc['nit_prov'],'BR',0,'L');
+$pdf->Cell(40,5,$egreso['nitProv'],'BR',0,'L');
 $pdf->SetXY(20,50);
 $pdf->SetFont('Arial','B',9);
 $pdf->Cell(160,5,'La Suma de :','LTR',0, 'L');
 $pdf->Cell(20,5,'Pago :','LTR',0, 'L');
 $pdf->SetXY(20,55);
 $pdf->SetFont('Arial','',8);
-$pago=$rowenc['pago'];
-$num_letra=numletra(round($pago));
+$num_letra=numletra(round($egreso['pagon']));
 $pdf->Cell(160,5,$num_letra,'LBR', 0, 'L');
-$Pag=number_format($pago, 0, '.', ',');
-$pdf->Cell(20,5,'$ '.$Pag,'LBR', 0, 'L');
+$pdf->Cell(20,5, $egreso['pago'],'LBR', 0, 'L');
 $pdf->SetXY(20,60);
 $pdf->SetFont('Arial','B',9);
 $pdf->Cell(65,5,'Por concepto de :','LTR',0, 'L');
@@ -71,56 +66,48 @@ $pdf->Cell(20,5,'Retefuente :','LTR',0, 'L');
 $pdf->Cell(20,5,'Reteica :','LTR',0, 'L');
 $pdf->Cell(20,5,'Descuento :','LTR',0, 'L');
 $pdf->Cell(30,5,'Total Pagado :','LTR',0, 'L');
-$retencion=$rowenc['retencion'];
-$ret_ica=$rowenc['ret_ica'];
-$Total=$rowenc['total_fact'];
-$Factura=$rowenc['Num_fact'];
-$TotalP=$Total-$retencion-$ret_ica;
-$descuento_e=$rowenc['descuento_e'];
-$DESC=number_format($descuento_e, 0, '.', ',');
-if (($Total-$retencion-$ret_ica)< $pago)
+$Factura=$egreso['numFact'];
+$descuentoE=$egreso['descuentoE'];
+$treal=$egreso['treal'];
+$DESC=number_format($descuentoE, 0, '.', ',');
+if ($treal < $egreso['pagon'])
 $concepto="Abono a Factura ";
 else
-$concepto="Cancelación de Factura ";
+$concepto=utf8_decode("Cancelación de Factura ");
 $concepto.= $Factura;
 $pdf->SetXY(20,65);
 $pdf->SetFont('Arial','',9);
 $pdf->Cell(65,5,$concepto,'LBR', 0, 'L');
-$RIca=number_format($ret_ica, 0, '.', ',');
-$Tot=number_format($Total, 0, '.', ',');
-$Rfte=number_format($retencion, 0, '.', ',');
-$DESC=number_format($descuento_e, 0, '.', ',');
-$TotP=number_format($TotalP, 0, '.', ',');
-$pdf->Cell(25,5,'$ '.$Tot,'LBR', 0, 'L');
-$pdf->Cell(20,5,'$ '.$Rfte,'LBR', 0, 'L');
-$pdf->Cell(20,5,'$ '.$RIca,'LBR', 0, 'L');
-$pdf->Cell(20,5,'$ '.$DESC,'LBR', 0, 'L');
-$pdf->Cell(30,5,'$ '.$TotP,'LBR', 0, 'L');
+$pdf->Cell(25,5,$egreso['total'],'LBR', 0, 'L');
+$pdf->Cell(20,5,$egreso['retefuente'],'LBR', 0, 'L');
+$pdf->Cell(20,5,$egreso['reteica'],'LBR', 0, 'L');
+$pdf->Cell(20,5,'$'.$DESC,'LBR', 0, 'L');
+$pdf->Cell(30,5, $egreso['vreal'],'LBR', 0, 'L');
 $pdf->SetXY(20,70);
 $pdf->SetFont('Arial','B',10);
 $pdf->Cell(100,5,'FORMA DE PAGO','LTR',0, 'C');
 //$pdf->SetXY(20,75);
 //$pdf->Cell(100,5,'','LBR',0, 'C');
 $pdf->SetXY(20, 75);
-$form_pago=$rowenc['form_pago']; 
+$formPago=$egreso['formPago'];
 $pdf->SetFont('Arial','B',9);
 $pdf->Cell(14,5,'Efectivo', 'LBT',0, 'L');
-if ($form_pago==0)
+if ($formPago==0)
 $pdf->Cell(5,5,'X', 'BTR',0, 'C');
 else
 $pdf->Cell(5,5,'', 'BTR',0, 'C');
 $pdf->Cell(23,5,'Transferencia', 'LBT',0, 'L');
-if ($form_pago==1)
+if ($formPago==1)
 $pdf->Cell(5,5,'X', 'BTR',0, 'C');
 else
 $pdf->Cell(5,5,'', 'BTR',0, 'C');
-$pdf->Cell(20,5,'Nota Crédito', 'LBT',0, 'L');
-if ($form_pago==2)
+$pdf->Cell(20,5, utf8_decode('Nota Crédito'), 'LBT',0, 'L');
+if ($formPago==2)
 $pdf->Cell(5,5,'X', 'BTR',0, 'C');
 else
 $pdf->Cell(5,5,'', 'BTR',0, 'C');
-$pdf->Cell(23,5,'Consignación', 'LBT',0, 'L');
-if ($form_pago==3)
+$pdf->Cell(23,5, utf8_decode('Consignación'), 'LBT',0, 'L');
+if ($formPago==3)
 $pdf->Cell(5,5,'X', 'BTR',0, 'C');
 else
 $pdf->Cell(5,5,'', 'BTR',0, 'C');
@@ -160,7 +147,7 @@ $pdf->SetFont('Arial','B',10);
 $pdf->Cell(80,5,'_________________________________',0,0, 'C');
 $pdf->SetXY(120,115);
 $pdf->Cell(80,5,'C.C. / N.I.T. _______________________',0,0, 'C');
-$pdf->Image('images/Proveedor.jpg',201,70, 3);
+$pdf->Image('../images/Proveedor.jpg',201,70, 3);
 
 
 
@@ -201,7 +188,7 @@ $pdf->SetFont('Arial','B',10);
 $pdf->Cell(47,4,'FECHA RECIBO',0,0, 'C');
 $pdf->SetXY(155,164);
 $pdf->SetFont('Arial','',10);
-$pdf->Cell(47,4,$rowenc['Fecha'],0,0, 'C');
+$pdf->Cell(47,4,$egreso['Fecha'],0,0, 'C');
 
 
 
@@ -212,13 +199,13 @@ $pdf->SetFont('Arial','B',9);
 $pdf->Cell(140,5,'Recibí de:','LTR', 0, 'L');
 $pdf->SetXY(20,175);
 $pdf->SetFont('Arial','',9);
-$pdf->Cell(140,5,$rowenc['Nom_clien'],'LBR',0,'L');
+$pdf->Cell(140,5,$egreso['Nom_clien'],'LBR',0,'L');
 $pdf->SetXY(160,170);
 $pdf->SetFont('Arial','B',9);
 $pdf->Cell(40,5,'N.I.T. / C.C.','TR', 0, 'L');
 $pdf->SetXY(160,175);
 $pdf->SetFont('Arial','',9);
-$pdf->Cell(40,5,$rowenc['Nit_cliente'],'BR',0,'L');
+$pdf->Cell(40,5,$egreso['Nit_cliente'],'BR',0,'L');
 $pdf->SetXY(20,180);
 $pdf->SetFont('Arial','B',9);
 $pdf->Cell(160,5,'La Suma de :','LTR',0, 'L');
@@ -318,6 +305,5 @@ $pdf->Image('images/Empresa.jpg',201,200, 3);
 
 
 
-mysqli_close($link);
 $pdf->Output();
 ?>

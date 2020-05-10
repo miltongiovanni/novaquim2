@@ -143,14 +143,7 @@ if($Pago==1)
 	}
    mysql_close($link);
 }
-  function mover_pag($ruta,$nota)
-	{	
-	//Funcion que permite el redireccionamiento de los usuarios a otra pagina 
-	echo' <script >
-	alert("'.$nota.'")
-	self.location="'.$ruta.'"
-	</script>';
-	}
+
 ?>
 <form method="post" action="recibo_caja1.php" name="form1">
   <table border="0"  align="center" width="80%" >
@@ -374,7 +367,7 @@ if($Pago==1)
 </tr>
 <?php
 //$Fact=$Factura;
-$qry="select Fact, cobro, Fecha, Id_caja, forma_pago from r_caja, form_pago where Fact=$factura and form_pago=Id_fpago;";
+$qry="select Fact, cobro, Fecha, Id_caja, formaPago from r_caja, form_pago where Fact=$factura and form_pago=idFormaPago;";
 $result=mysqli_query($link, $qry);
 $i=1;
 while($row=mysqli_fetch_array($result))

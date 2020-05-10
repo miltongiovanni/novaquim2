@@ -67,12 +67,7 @@ else
 	mysqli_free_result($resultinv);
 	mysqli_close($link);
 	}
-	function mover_pag($ruta,$nota)
-	{
-	echo'<script >
-	document.formulario.submit();
-	</script>';
-	}
+	
 ?>
 </body>
 </html>

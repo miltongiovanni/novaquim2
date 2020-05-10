@@ -82,12 +82,7 @@ include "includes/conect.php";
 		}
 		echo'</form>';
 	}
-	function mover_pag($ruta,$nota)
-	{
-	echo'<script >
-	document.formulario.submit();
-	</script>';
-	}
+	
 	mysqli_free_result($result);
 	mysqli_free_result($resultinv);
 	mysqli_close($link);

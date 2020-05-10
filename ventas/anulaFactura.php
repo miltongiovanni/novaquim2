@@ -104,13 +104,7 @@ else
     mover_pag($ruta,"Factura Anulada con Éxito");
 	mysqli_close($link);
 	
-function mover_pag($ruta,$Mensaje)
-{
-	echo'<script >
-	alert("'.$Mensaje.'")
-	self.location="'.$ruta.'"
-	</script>';
-}
+
 ?>
 
 </body>

@@ -70,11 +70,11 @@ include "includes/valAcc.php";
 		mysqli_close($link);
 		mover_pag("buscarCotiza.php","Error al ingresar la Cotización");
 	}
-function mover_pag($ruta,$nota)
+function mover_pag($ruta,$mensaje)
 {	
 //Funcion que permite el redireccionamiento de los usuarios a otra pagina 
 echo' <script >
-alert("'.$nota.'")
+alert("'.$mensaje.'")
 self.location="'.$ruta.'"
 </script>';
 }	

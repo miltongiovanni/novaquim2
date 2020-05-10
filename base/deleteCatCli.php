@@ -25,13 +25,7 @@ try {
     mover_pag($ruta, $mensaje);
 }
 
-function mover_pag($ruta, $nota)
-{
-    echo '<script >
-	alert("' . $nota . '")
-	self.location="' . $ruta . '"
-	</script>';
-}
+
 
 ?>
 </body>

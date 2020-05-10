@@ -31,7 +31,7 @@ $objPHPExcel->setActiveSheetIndex(0)
 // Rename sheet
 $objPHPExcel->getActiveSheet()->setTitle('Historia de Pagos');
 $link=conectarServidor();
-$sql="select Id_caja as 'Id', Fact as Factura, Nom_clien as Cliente, CONCAT('$ ', FORMAT(cobro,0)) as Pagos, Fecha, forma_pago as 'Forma de Pago' 
+$sql="select Id_caja as 'Id', Fact as Factura, Nom_clien as Cliente, CONCAT('$ ', FORMAT(cobro,0)) as Pagos, Fecha, formaPago as 'Forma de Pago' 
 from r_caja, factura, clientes, form_pago where Fact=Factura and Nit_cliente=Nit_clien and form_pago=Id_fpago and Fecha>='$FchIni' and Fecha<='$FchFin' order by Id DESC";
 $result=mysqli_query($link,$sql) or die("Error al conectar a la base de datos.");
 $i=2;

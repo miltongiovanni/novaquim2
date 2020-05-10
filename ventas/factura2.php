@@ -46,11 +46,11 @@ include "includes/valAcc.php";
 			mover("crearFactura.php","No existe la Factura");
 		}*/
 	
-		function mover($ruta,$nota)
+		function mover($ruta,$mensaje)
 		{
 			//Funcion que permite el redireccionamiento de los usuarios a otra pagina 
 			echo'<script >
-			alert("'.$nota.'")
+			alert("'.$mensaje.'")
 			self.location="'.$ruta.'"
 			</script>';
 		}

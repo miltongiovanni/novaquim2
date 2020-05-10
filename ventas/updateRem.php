@@ -143,7 +143,7 @@ if($valida==0)
 	mover_pag($ruta,"Remisión Actualizada correctamente");
 }
 echo'</form>';
-function mover_pag($ruta,$nota)
+function mover_pag($ruta,$mensaje)
 {
 	echo'<script > document.formulario.submit(); </script>';
 }

@@ -18,13 +18,6 @@ function cargarClases($classname)
 
 spl_autoload_register('cargarClases');
 
-function mover_pag($ruta, $nota)//Funcion que permite el redireccionamiento a otra pagina
-{
-    echo ' <script >
-            alert("' . $nota . '")
-            self.location="' . $ruta . '"
-            </script>';
-}
 
 switch ($tipoCompra) {
     case 1:
@@ -202,38 +195,38 @@ $compra = $CompraOperador->getCompra($idCompra, $tipoCompra);
     <div id="saludo1"><strong>DETALLE DE COMPRA DE<?= $titulo ?></strong></div>
     <div class="form-group row">
         <div class="col-1 text-right"><strong>No. de Compra</strong></div>
-        <div class="col-1" style="background-color: #dfe2fd;"><?= $idCompra; ?></div>
+        <div class="col-1 bg-blue"><?= $idCompra; ?></div>
         <div class="col-1 text-right"><strong>Proveedor</strong></strong></div>
-        <div class="col-3" style="background-color: #dfe2fd;"><?= $compra['nomProv'] ?></div>
+        <div class="col-3 bg-blue"><?= $compra['nomProv'] ?></div>
         <div class="col-1 text-right"><strong>NIT</strong></div>
-        <div class="col-1" style="background-color: #dfe2fd;"><?= $compra['nitProv'] ?></div>
+        <div class="col-1 bg-blue"><?= $compra['nitProv'] ?></div>
     </div>
     <div class="form-group row">
         <div class="col-1 text-right"><strong>No. de Factura</strong></div>
-        <div class="col-1" style="background-color: #dfe2fd;"><?= $compra['numFact'] ?></div>
+        <div class="col-1 bg-blue"><?= $compra['numFact'] ?></div>
         <div class="col-2 text-right"><strong>Fecha de compra</strong></div>
-        <div class="col-1" style="background-color: #dfe2fd;"><?= $compra['fechComp']; ?></div>
+        <div class="col-1 bg-blue"><?= $compra['fechComp']; ?></div>
         <div class="col-2 text-right"><strong>Fecha Vencimiento </strong></strong></div>
-        <div class="col-1" style="background-color: #dfe2fd;"><?= $compra['fechVenc'] ?></div>
+        <div class="col-1 bg-blue"><?= $compra['fechVenc'] ?></div>
         <div class="col-1 text-right"><strong>Estado</strong></div>
-        <div class="col-1" style="background-color: #dfe2fd;"><?= $compra['descEstado'] ?></div>
+        <div class="col-1 bg-blue"><?= $compra['descEstado'] ?></div>
     </div>
     <div class="form-group row">
         <div class="col-1 text-right"><strong>Valor Factura</strong></div>
-        <div class="col-1" style="background-color: #dfe2fd;"><?= $compra['totalCompra'] ?></div>
+        <div class="col-1 bg-blue"><?= $compra['totalCompra'] ?></div>
         <div class="col-1 text-right"><strong>Rete Ica</strong></strong></div>
-        <div class="col-1" style="background-color: #dfe2fd;"><?= $compra['reteicaCompra'] ?></div>
+        <div class="col-1 bg-blue"><?= $compra['reteicaCompra'] ?></div>
         <div class="col-1 text-right"><strong>Retención</strong></div>
-        <div class="col-1" style="background-color: #dfe2fd;"><?= $compra['retefuenteCompra'] ?></div>
+        <div class="col-1 bg-blue"><?= $compra['retefuenteCompra'] ?></div>
         <div class="col-1 text-right"><strong>Valor a Pagar</strong></div>
-        <div class="col-1" style="background-color: #dfe2fd;"><?= $compra['vreal'] ?></div>
+        <div class="col-1 bg-blue"><?= $compra['vreal'] ?></div>
     </div>
 
 
     <?php
     if ($compra['estadoCompra'] != 7) {
         ?>
-        <div class="form-group titulo row">
+        <div class="titulo row">
             <strong>Adicionar Productos</strong>
         </div>
         <?php
@@ -427,7 +420,7 @@ $compra = $CompraOperador->getCompra($idCompra, $tipoCompra);
         <?php
     }
     ?>
-    <div class="form-group titulo row">
+    <div class="titulo row">
         <strong>Detalle de la compra</strong>
     </div>
     <table id="example" class="display compact" style="width:80%; margin-bottom: 20px;">

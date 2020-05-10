@@ -84,6 +84,13 @@ class GastosOperaciones
         $stmt->execute($datos);
     }
 
+    public function cancelaGasto($estadoGasto, $fechPago, $idGasto)
+    {
+        $qry = "UPDATE gastos SET estadoGasto=?, fechCancelacion=? WHERE idGasto=?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($estadoGasto, $fechPago, $idGasto));
+    }
+
     public function updateEstadoGasto($datos)
     {
         $qry = "UPDATE gastos SET estadoGasto=? WHERE idGasto=?";

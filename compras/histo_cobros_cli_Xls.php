@@ -32,7 +32,7 @@ $objPHPExcel->setActiveSheetIndex(0)
 $objPHPExcel->getActiveSheet()->setTitle('Historia de Pagos');
 $link=conectarServidor();
 $bd="novaquim";
-$sql="select Id_caja as 'Id', Fact as Factura, Nom_clien as Cliente, CONCAT('$ ', FORMAT(cobro,0)) as Pago, Fecha, forma_pago as 'Forma de Pago' from r_caja, factura, clientes, form_pago where Fact=Factura and Nit_cliente=Nit_clien AND Nit_cliente='$cliente' and form_pago=Id_fpago order  by Id DESC;";
+$sql="select Id_caja as 'Id', Fact as Factura, Nom_clien as Cliente, CONCAT('$ ', FORMAT(cobro,0)) as Pago, Fecha, formaPago as 'Forma de Pago' from r_caja, factura, clientes, form_pago where Fact=Factura and Nit_cliente=Nit_clien AND Nit_cliente='$cliente' and form_pago=idFormaPago order  by Id DESC;";
 $result=mysqli_query($link,$sql) or die("Error al conectar a la base de datos.");
 $i=2;
 while($row= mysqli_fetch_array($result, MYSQLI_BOTH))

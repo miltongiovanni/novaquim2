@@ -138,11 +138,11 @@ include "includes/valAcc.php";
 			mysqli_close($link);
 			mover("baja.php","No existe la Relación de Baja");
 		}	
-		function mover($ruta,$nota)
+		function mover($ruta,$mensaje)
 		{
 			//Funcion que permite el redireccionamiento de los usuarios a otra pagina 
 			echo'<script >
-			alert("'.$nota.'")
+			alert("'.$mensaje.'")
 			self.location="'.$ruta.'"
 			</script>';
 		}

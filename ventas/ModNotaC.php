@@ -33,7 +33,7 @@ foreach ($_POST as $nombre_campo => $valor)
 <?php
 	include "includes/conect.php";
 	$link=conectarServidor();
-	$qry="select Nom_clien, Nit_cliente, Fecha, Fac_orig, Fac_dest, motivo from clientes, nota_c where Nota=$nota and Nit_cliente=Nit_clien;";	
+	$qry="select Nom_clien, Nit_cliente, Fecha, Fac_orig, Fac_dest, motivo from clientes, nota_c where Nota=$mensaje and Nit_cliente=Nit_clien;";	
 	$result=mysqli_query($link,$qry);
 	$row=mysqli_fetch_array($result);
 	$cliente=$row['Nit_cliente'];
@@ -104,7 +104,7 @@ mysqli_close($link);
     <tr>
         <td colspan="3"><div align="center">&nbsp;</div></td>
     </tr>
-    <tr><td><input name="nota" type="hidden" value="<?php echo $nota; ?>"><input name="crear" type="hidden" value="6"></td>
+    <tr><td><input name="nota" type="hidden" value="<?php echo $mensaje; ?>"><input name="crear" type="hidden" value="6"></td>
         <td width="110" colspan="1"><div align="right">
           <input type="reset" value="   Reiniciar   ">
         </div></td>

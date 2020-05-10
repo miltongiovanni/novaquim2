@@ -14,7 +14,13 @@ function chargerClasse($classname)
 }
 
 spl_autoload_register('chargerClasse');
-
+function mover_pag($ruta, $mensaje)
+{
+    echo '<script >
+   	alert("' . $mensaje . '")
+   	self.location="' . $ruta . '"
+   	</script>';
+}
 
 //include "includes/conect.php";
 include "../includes/calcularDias.php";
@@ -26,7 +32,7 @@ foreach ($_POST as $nombre_campo => $valor)
 	//echo $nombre_campo." = ".$valor."<br>";  
 	eval($asignacion); 
 }  
-$nota="";
+$mensaje="";
 if($con)
 {
 	
@@ -65,8 +71,8 @@ if($con)
 			$QRY2="UPDATE usuarios SET intentos=$intentos WHERE usuario='$nombre'";
 		    $result2 = $con->query($QRY2);
 			$ruta="../index.php";
-			$nota="Los Datos no son Correctos por favor verifique la información";
-			mover_pag($ruta,$nota);	
+			$mensaje="Los Datos no son Correctos por favor verifique la información";
+			mover_pag($ruta,$mensaje);	
 		}
 		else
 		{
@@ -79,8 +85,8 @@ if($con)
 			//$ResutLog=con_query($link,$qryAcces);
 			$ResutLog = $con->query($qryAcces);
 			/*********FIN DEL LOG DE acceso*******/
-			$nota="Los Datos no son Correctos por favor verifique la información";
-			mover_pag($ruta,$nota);
+			$mensaje="Los Datos no son Correctos por favor verifique la información";
+			mover_pag($ruta,$mensaje);
 		}
    	}	
    	else  	//si se superan los controles iniciales
@@ -95,8 +101,8 @@ if($con)
 		if($op==3)
 		{//Si el usuario está bloqueado no se le deja continuar
 			$ruta="../index.php";
-			$nota="Usuario bloqueado, consulte al administrador del sistema";
-			mover_pag($ruta,$nota);
+			$mensaje="Usuario bloqueado, consulte al administrador del sistema";
+			mover_pag($ruta,$mensaje);
 		}
     	if($op==2)
 		{//Cuando el usuario es 2 esta activo de lo contrario se toma como nuevo
@@ -129,8 +135,8 @@ if($con)
 				{
 				  
 					$ruta="cambio.php?nombre=$nombre";
-					$nota="Su último cambio fue hace mas de 90 días, por favor cambie su contraseña";
-					//$nota=utf8_encode($nota);
+					$mensaje="Su último cambio fue hace mas de 90 días, por favor cambie su contraseña";
+					//$mensaje=utf8_encode($mensaje);
 					$QRY4="update usuarios set intentos=0 where usuario='$nombre'";	
 					$result4 = $con->query($QRY4);
 					 session_start();
@@ -148,13 +154,13 @@ if($con)
 					 $ResutLog = $con->query($qryAcces);
 					 
 					 /*********FIN DEL LOG VENCIMIENTO DE CLAVE*****/
-					mover_pag($ruta,$nota);
+					mover_pag($ruta,$mensaje);
 				}
 			}
 			else
 			{
 				$ruta="../index.php";
-				$nota="La clave se encuentra bloqueada por favor contacte al administrador";
+				$mensaje="La clave se encuentra bloqueada por favor contacte al administrador";
 				/******LOG CLAVE BLOQUEADA********
 					 $IdUser=$row['IdUsuario'];
 					 $hh=strftime("%H:").strftime("%M:").strftime("%S");	              
@@ -164,7 +170,7 @@ if($con)
 					 $ResutLog = $con->query($qryAcces);
 					 
 			  /*********FIN DEL LOG BLOQUEO*****/
-				mover_pag($ruta,$nota);
+				mover_pag($ruta,$mensaje);
 			}
     	}
 		else
@@ -179,14 +185,14 @@ if($con)
 			 $ResutLog = $con->query($qryAcces);
 					 
 			/*********FIN PRIMER INGRESO*****/
-			$nota="Primer Ingreso cambie su contraseña";
-			$nota=utf8_encode($nota);
+			$mensaje="Primer Ingreso cambie su contraseña";
+			$mensaje=utf8_encode($mensaje);
 			session_start();
 			$_SESSION['Autorizado']=true;
 			$_SESSION['User']=$nombre;
 			$_SESSION['IdUsuario']=$row['idUsuario'];
 			$_SESSION['Perfil']=MD5($perfil_admin);
-			mover_pag($ruta,$nota);
+			mover_pag($ruta,$mensaje);
 		}
    	}
 	/* cerrar el resulset */
@@ -196,13 +202,7 @@ if($con)
 	$con->close();
 }
 
-function mover_pag($ruta,$nota)
-{
-	echo'<script>
-   	alert("'.$nota.'")
-   	self.location="'.$ruta.'"
-   	</script>';
-}
+
 ?>
 </body>
 

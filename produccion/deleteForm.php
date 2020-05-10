@@ -38,13 +38,7 @@
 		mover_pag($ruta,"No fue permitido eliminar la Materia Prima");
 
 	
-function mover_pag($ruta,$nota)
-	{
-	echo'<script >
-	alert("'.$nota.'")
-	self.location="'.$ruta.'"
-	</script>';
-	}
+
 ?>
 </body>
 </html>
