@@ -6,16 +6,16 @@ function cargarClases($classname)
 }
 
 spl_autoload_register('cargarClases');
-$servicioOperador = new ServiciosOperaciones();
-$servicios = $servicioOperador->getTableServicios();
+$egresoOperador = new EgresoOperaciones();
+$egresos = $egresoOperador->getTableEgresos();
 $titulo = array(
     'draw' => 0,
-    'recordsTotal' => count($servicios),
-    'recordsFiltered' => count($servicios)
+    'recordsTotal' => count($egresos),
+    'recordsFiltered' => count($egresos)
 );
 $datosRetorno = array(
     $titulo,
-    'data' => $servicios
+    'data' => $egresos
 );
 
 

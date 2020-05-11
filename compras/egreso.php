@@ -109,7 +109,7 @@ $saldo = intval($egreso['treal']) - $abono;
         <div class="form-group row">
             <div class="col-2">
                 <form action="Imp_Egreso.php" method="post" target="_blank">
-                    <input name="idEgreso" type="hidden" value="<?php echo $idEgreso; ?>">
+                    <input name="idEgreso" type="hidden" value="<?= $idEgreso; ?>">
                     <button class="button" type="submit">
                         <span><STRONG>Imprimir Comprobante</STRONG></span></button>
                 </form>
@@ -127,6 +127,9 @@ $saldo = intval($egreso['treal']) - $abono;
         <div class="col-1 text-center"><strong>Pago</strong></div>
         <div class="col-1 text-center"><strong>Descuento</strong></div>
         <div class="col-1 text-center"><strong>Forma de Pago</strong></div>
+        <?php if($egreso['estadoCompra']!=7): ?>
+        <div class="col-1 text-center"></div>
+        <?php endif; ?>
     </div>
     <?php
         for($i=0; $i<count($egresos); $i++):
@@ -138,6 +141,14 @@ $saldo = intval($egreso['treal']) - $abono;
         <div class="col-1 text-center"><?= $egresos[$i]['pago'] ?></div>
         <div class="col-1 text-center"><?= $egresos[$i]['descuento'] ?></div>
         <div class="col-1 text-center"><?= $egresos[$i]['formaPago'] ?></div>
+        <?php if($egreso['estadoCompra']!=7): ?>
+        <div class="col-1 text-center">
+            <form action="updateEgresoForm.php" method="post" name="elimina">
+                <input name="idEgreso" type="hidden" value="<?= $idEgreso; ?>">
+                <input type="button" name="Submit" onclick="return Enviar(this.form)" class="formatoBoton"  value="Modificar">
+            </form>
+        </div>
+        <?php endif; ?>
     </div>
     <?php
     endfor;

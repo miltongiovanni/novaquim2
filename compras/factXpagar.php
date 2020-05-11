@@ -122,11 +122,10 @@ include "../includes/valAcc.php";
                     },
                     "infoFiltered": "(Filtrado de _MAX_ en total)"
                 },
-                "createdRow": function ( row, data, dataIndex ) {
-                    if ( diffDate(data.fechVenc) < 0 ) {
+                "createdRow": function (row, data, dataIndex) {
+                    if (diffDate(data.fechVenc) < 0) {
                         $('td', row).addClass('formatoDataTable1');
-                    }
-                    else if ( diffDate(data.fechVenc) >= 0 && diffDate(data.fechVenc) < 8 ){
+                    } else if (diffDate(data.fechVenc) >= 0 && diffDate(data.fechVenc) < 8) {
                         $('td', row).addClass('formatoDataTable2');
                     }
                 },

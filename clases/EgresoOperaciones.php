@@ -84,11 +84,24 @@ class EgresoOperaciones
         return $result;
     }
 
-    public function getTableEgresoes()
+    public function getTableEgresos()
     {
-        $qry = "SELECT idProv, nitProv, nomProv, dirProv, contProv, telProv, emailProv, desCatProv FROM egreso
-                LEFT JOIN cat_prov cp on egreso.idCatProv = cp.idCatProv
-                WHERE estProv=1 ORDER BY nomProv;";
+        $qry = "SELECT idEgreso, e.idCompra, fp.formaPago, CONCAT('$', FORMAT(pago, 0)) pago, fechPago,
+                       numFact, nitProv, nomProv, tipoComp, CONCAT('$', FORMAT(descuentoE, 0)) descuento,
+                       CONCAT('$', FORMAT(total-retefuente-reteica, 0)) vreal
+                FROM egreso e
+                LEFT JOIN ( SELECT idCompra id, tipoCompra, numFact, fechComp, fechVenc, totalCompra total, c.idProv,
+                            nitProv, nomProv, retefuenteCompra retefuente, reteicaCompra reteica
+                            FROM compras c
+                            LEFT JOIN proveedores p on c.idProv = p.idProv
+                            UNION
+                            SELECT idGasto id, tipoCompra, numFact, fechGasto fechComp, fechVenc, totalGasto total, g.idProv,
+                            nitProv, nomProv, retefuenteGasto retefuente, reteicaGasto reteica
+                            FROM gastos g
+                            LEFT JOIN proveedores p ON g.idProv = p.idProv
+                            ) t ON e.idCompra=t.id AND e.tipoCompra=t.tipoCompra
+                LEFT JOIN form_pago fp ON e.formPago = fp.idFormaPago
+                LEFT JOIN tip_compra tc ON e.tipoCompra=tc.idTipo";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -97,19 +110,21 @@ class EgresoOperaciones
 
     public function getFormEgreso($idEgreso)
     {
-        $qry = "SELECT idEgreso, e.idCompra, e.tipoCompra, CONCAT('$', FORMAT(pago, 0)) pago, pago pagon, fechPago, descuentoE, formPago, 
+        $qry = "SELECT idEgreso, e.idCompra, e.tipoCompra, CONCAT('$', FORMAT(pago, 0)) pago, pago pagon, fechPago, descuentoE, formPago, formaPago, estadoCompra,
                        numFact, fechComp, fechVenc, CONCAT('$', FORMAT(total, 0)) total, nitProv, nomProv, CONCAT('$', FORMAT(retefuente, 0)) retefuente, CONCAT('$', FORMAT(reteica, 0)) reteica, pago vlr_pago,
-                       CONCAT('$', FORMAT(total-retefuente-reteica, 0))  vreal, (total-retefuente-reteica) treal FROM egreso e
-                LEFT JOIN ( SELECT idCompra id, tipoCompra, numFact, fechComp, fechVenc, totalCompra total,
+                       CONCAT('$', FORMAT(total-retefuente-reteica, 0))  vreal, (total-retefuente-reteica) treal 
+                FROM egreso e
+                LEFT JOIN ( SELECT idCompra id, tipoCompra, numFact, fechComp, fechVenc, totalCompra total, estadoCompra,
                               nitProv, nomProv, retefuenteCompra retefuente, reteicaCompra reteica
                        FROM compras c
                                 LEFT JOIN proveedores p on c.idProv = p.idProv
                        UNION
-                       SELECT idGasto id, tipoCompra, numFact, fechGasto fechComp, fechVenc, totalGasto total,
+                       SELECT idGasto id, tipoCompra, numFact, fechGasto fechComp, fechVenc, totalGasto total, estadoGasto estadoCompra,
                               nitProv, nomProv, retefuenteGasto retefuente, reteicaGasto reteica
                        FROM gastos g
                                 LEFT JOIN proveedores p on g.idProv = p.idProv
                 ) t ON e.idCompra=t.id AND e.tipoCompra=t.tipoCompra
+                LEFT JOIN form_pago fp on e.formPago = fp.idFormaPago 
                 WHERE idEgreso=?";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute(array($idEgreso));

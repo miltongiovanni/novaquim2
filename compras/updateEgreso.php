@@ -18,7 +18,12 @@ foreach ($_POST as $nombre_campo => $valor) {
 $datos = array($pago, $fechPago, $descuentoE, $formPago, $idEgreso);
 $EgresoOperador = new EgresoOperaciones();
 $egreso=$EgresoOperador->getEgreso($idEgreso);
-$abono = $EgresoOperador->getPagoXIdTipoCompra($egreso['idCompra'], $egreso['tipoCompra']);
+if(isset($modEgreso) && $modEgreso == 1 ){
+    $abono = 0;
+}
+else{
+    $abono = $EgresoOperador->getPagoXIdTipoCompra($egreso['idCompra'], $egreso['tipoCompra']);
+}
 if(($abono + $pago + $descuentoE) > $egreso['vreal'] ){
     $_SESSION['idEgreso'] = $idEgreso;
     $ruta = "egreso.php";
