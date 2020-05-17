@@ -1,5 +1,5 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 foreach ($_POST as $nombre_campo => $valor) 
 { 
 	$asignacion = "\$".$nombre_campo."='".$valor."';"; 

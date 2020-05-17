@@ -1,13 +1,13 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
 <head>
     <meta charset="utf-8">
     <title>Seleccionar Producto a Envasar</title>
-    <script  src="scripts/validar.js"></script>
+    <script  src="../js/validar.js"></script>
     <script  src="scripts/block.js"></script>	
     <link rel="stylesheet" type="text/css" media="all" href="css/calendar-blue2.css" title="blue">
     <script  src="scripts/calendar.js"></script>
@@ -20,11 +20,11 @@ include "includes/valAcc.php";
 </head>
 <body>
 <div id="contenedor">
-<div id="saludo"><strong>ENVASADO DE PRODUCTOS DE DISTRIBUCI&Oacute;N</strong></div>
+<div id="saludo"><strong>ENVASADO DE PRODUCTOS DE DISTRIBUCIÓN</strong></div>
 <form id="form1" name="form1" method="post" action="det_env_dist.php">
 <table border="0" align="center">	
     <tr>
-    	<td width="197"><div align="right"><strong>Producto de Distribuci&oacute;n</strong></div></td>
+    	<td width="197"><div align="right"><strong>Producto de Distribución</strong></div></td>
       <td width="221">
       	<div align="center">  
 			<?php

@@ -1,12 +1,12 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <title>Lista de Empleados Activos</title>
 <meta charset="utf-8">
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <div id="contenedor">
@@ -14,7 +14,7 @@ include "includes/valAcc.php";
 <div id="saludo1"><strong>LISTADO DE EMPLEADOS ACTIVOS</strong></div> 
 <table width="100%" border="0" summary="encabezado">
 	<tr> 
-    	<td><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men&uacute;"></div></td>
+    	<td><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú"></div></td>
     </tr>
 </table>
 
@@ -29,7 +29,7 @@ where eps_emp=Id_eps and afp_emp=Id_f_pension and caj_comp_emp=Id_caja and est_e
 	//llamar funcion de tabla
 	verTabla($sql, $link);
 ?>
-<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men&uacute;"></div>
+<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú"></div>
 </div>
 </body>
 </html>

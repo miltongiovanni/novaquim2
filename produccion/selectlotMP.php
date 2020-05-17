@@ -1,13 +1,13 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
 <head>
 <meta charset="utf-8">
 <title>Seleccionar Materia Prima a Actualizar</title>
-<script  src="scripts/validar.js"></script>
+<script  src="../js/validar.js"></script>
 <script  src="scripts/block.js"></script>
 </head>
 <body>
@@ -26,7 +26,7 @@ foreach ($_POST as $nombre_campo => $valor)
 	$rowbus=mysql_fetch_array($resultbus);
 ?>
 <div id="contenedor">
-  <div id="saludo"><strong>SELECCI&Oacute;N DE LOTE DE <?php echo strtoupper($rowbus['Nom_mprima']); ?> A REALIZAR CONTROL DE CALIDAD</strong></div>
+  <div id="saludo"><strong>SELECCIÓN DE LOTE DE <?php echo strtoupper($rowbus['Nom_mprima']); ?> A REALIZAR CONTROL DE CALIDAD</strong></div>
 <form id="form1" name="form1" method="post" action="calidadMPForm.php">  
 <table width="700" border="0" align="center">
  <tr>

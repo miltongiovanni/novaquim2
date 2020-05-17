@@ -1,14 +1,14 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 include "includes/conect.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
+  <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
   <title>Ingreso de Empleados</title>
   <meta charset="utf-8">
-  <script  src="scripts/validar.js"></script>
+  <script  src="../js/validar.js"></script>
 </head>
 <body>
 <div id="contenedor">
@@ -100,7 +100,7 @@ include "includes/conect.php";
     </select> 
   </tr>
   <tr> 
-    <td><div align="right"><strong>Caja de Compensaci&oacute;n</strong></div></td>
+    <td><div align="right"><strong>Caja de Compensación</strong></div></td>
     <td colspan="2" >
     <select name="caja_emp">
         <?php
@@ -119,7 +119,7 @@ include "includes/conect.php";
     </select> 
   </tr>
   <tr> 
-    <td><div align="right"><strong>Cesant&iacute;as</strong></div></td>
+    <td><div align="right"><strong>Cesantías</strong></div></td>
     <td colspan="2" >
     <select name="ces_emp">
         <?php
@@ -142,7 +142,7 @@ include "includes/conect.php";
     onclick="return showCalendar('sel1', '%Y-%m-%d', '12', true);"></td>
   </tr>
   <tr> 
-    <td colspan="1"><div align="right"><strong>Salario B&aacute;sico</strong></div></td>
+    <td colspan="1"><div align="right"><strong>Salario Básico</strong></div></td>
     <td colspan="2" ><input type="text" name="sal_emp" size=30 onKeyPress="return aceptaNum(event)" maxlength="10"></td>
   </tr>
   <tr> 
@@ -165,7 +165,7 @@ include "includes/conect.php";
     </select> 
   </tr>
   <tr> 
-    <td><div align="right"><strong>&Aacute;rea</strong></div></td>
+    <td><div align="right"><strong>Área</strong></div></td>
     <td colspan="2" >
     <select name="area">
         <?php

@@ -1,17 +1,14 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<title>Porcentaje de Materias Primas en la F&oacute;rmula</title>
+<title>Porcentaje de Materias Primas en la F贸rmula</title>
 <meta charset="utf-8">
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-<script  src="scripts/validar.js"></script>
-<script  src="scripts/block.js"></script>
-	<script >
-	document.onkeypress = stopRKey; 
-	</script>
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+<script  src="../js/validar.js"></script>
+
 
 </head>
 <body> 
@@ -45,19 +42,19 @@ if($CrearFormula==0)
 		document.form3.submit();
 		</script>';	
 		mysqli_free_result($result);
-/* cerrar la conexi髇 */
+/* cerrar la conexi贸n */
 mysqli_close($link);
 	}
 	else
 	{
-		mover_pag("formula_col.php","Error al ingresar la Formulaci髇");
+		mover_pag("formula_col.php","Error al ingresar la Formulaci贸n");
 		mysqli_close($link);
 	}
 } 
 
 if($CrearFormula==1)
 {
- 	//AGREGANDO LOS COMPONENTES DE LA FORMULACI覰
+ 	//AGREGANDO LOS COMPONENTES DE LA FORMULACI脫N
 	$percent=$percent/100;
 	$link=conectarServidor();   
 	$qryFact="insert into det_formula_mp (Id_formula_mp, Cod_mprima, porcentaje) values ($Formula, $cod_mprima, $percent)";
@@ -68,19 +65,19 @@ if($CrearFormula==1)
 	$row=mysqli_fetch_array($result);
 	$Total=$row['Total'];
 	mysqli_free_result($result);
-/* cerrar la conexi髇 */
+/* cerrar la conexi贸n */
 mysqli_close($link);
 } 
 if($CrearFormula==2)
 {
- 	//AGREGANDO LOS COMPONENTES DE LA FORMULACI覰
+ 	//AGREGANDO LOS COMPONENTES DE LA FORMULACI脫N
 	$link=conectarServidor();   
 	$qry="select sum(porcentaje) as Total from det_formula_mp where Id_formula_mp=$Formula;";
 	$result=mysqli_query($link,$qry);
 	$row=mysql_fetch_array($result);
 	$Total=$row['Total'];
 	mysqli_free_result($result);
-/* cerrar la conexi髇 */
+/* cerrar la conexi贸n */
 mysqli_close($link);
 } 
 ?>
@@ -90,11 +87,11 @@ mysqli_close($link);
 		$result=mysqli_query($link,$qry);
 		$row=mysqli_fetch_array($result);
 		mysqli_free_result($result);
-/* cerrar la conexi髇 */
+/* cerrar la conexi贸n */
 mysqli_close($link);
 	 ?>  
 <div id="contenedor">
-<div id="saludo1"><strong>INGRESO DEL DETALLE DE F&Oacute;RMULA DE
+<div id="saludo1"><strong>INGRESO DEL DETALLE DE F脫RMULA DE
 <?php echo  strtoupper ($row['Nom_mprima']);?>
 </strong></div>
 <form method="post" action="detFormula_MP.php" name="form1">
@@ -105,7 +102,7 @@ mysqli_close($link);
     </tr>
     <tr>
       <td class="formatoDatos"><div align="center"><strong>Materia Prima</strong></div></td>
-      <td width="94" class="formatoDatos"><div align="center"><strong>% en F&oacute;rmula</strong></div></td>
+      <td width="94" class="formatoDatos"><div align="center"><strong>% en F贸rmula</strong></div></td>
     </tr>
     <tr>
       <td><div align="center">
@@ -120,7 +117,7 @@ mysqli_close($link);
             }
             echo'</select>';
 			mysqli_free_result($result);
-/* cerrar la conexi髇 */
+/* cerrar la conexi贸n */
 mysqli_close($link);
 		?>      
       </div></td>
@@ -173,7 +170,7 @@ while($row=mysqli_fetch_array($result))
 	</tr>';
 }
 mysqli_free_result($result);
-/* cerrar la conexi髇 */
+/* cerrar la conexi贸n */
 mysqli_close($link);
 ?>
     <tr>

@@ -1,20 +1,20 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<title>Lista de &Oacute;rdenes de Pedido Pendientes por Facturar</title>
+<title>Lista de Órdenes de Pedido Pendientes por Facturar</title>
 <meta charset="utf-8">
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<script  src="scripts/validar.js"></script>
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+	<script  src="../js/validar.js"></script>
 </head>
 <body>
 <div id="contenedor">
-<div id="saludo1"><strong>LISTA DE &Oacute;RDENES DE PEDIDO DE VENTA DIRECTA PENDIENTES POR FACTURAR</strong></div> 
+<div id="saludo1"><strong>LISTA DE ÓRDENES DE PEDIDO DE VENTA DIRECTA PENDIENTES POR FACTURAR</strong></div> 
 <table width="100%" border="0" summary="encabezado">
   <tr> 
-      <td><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men&uacute;"></div></td>
+      <td><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú"></div></td>
   </tr>
 </table>
 <table border="0" align="center" cellspacing="0" cellpadding="0" summary="cuerpo" width="100%">
@@ -24,7 +24,7 @@ include "includes/valAcc.php";
     <th width="23%" class="formatoEncabezados">Cliente</th>
     <th width="9%" class="formatoEncabezados">Fecha Pedido</th>
     <th width="9%" class="formatoEncabezados">Fecha Entrega</th>
-    <th width="18%" class="formatoEncabezados">Direcci&oacute;n Entrega</th>
+    <th width="18%" class="formatoEncabezados">Dirección Entrega</th>
     <th width="23%" class="formatoEncabezados">Directora de Zona</th>
     <th width="7%" class="formatoEncabezados">Estado</th>
   </tr>   
@@ -78,7 +78,7 @@ while($row=mysql_fetch_array($result, MYSQLI_BOTH))
 	$resulti=mysql_db_query($database,$sqli);
 	echo '<tr><td colspan="7"><div class="commenthidden" id="UniqueName'.$a.'"><table width="60%" border="0" align="center" cellspacing="0" summary="detalle">
 	<tr>
-      <th width="6%" class="formatoEncabezados">C&oacute;digo</th>
+      <th width="6%" class="formatoEncabezados">Código</th>
 	  <th width="50%" class="formatoEncabezados">Producto</th>
       <th width="5%" class="formatoEncabezados">Cantidad</th>
   	</tr>';
@@ -97,7 +97,7 @@ while($row=mysql_fetch_array($result, MYSQLI_BOTH))
 mysql_close($link);//Cerrar la conexion
 ?>
 </table>
-<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men&uacute;"></div>
+<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú"></div>
 </div>
 </body>
 </html>

@@ -1,27 +1,24 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Seleccionar Categor&iacute;a</title>
-<script  src="scripts/validar.js"></script>
-<script  src="scripts/block.js"></script>
-	<script >
-	document.onkeypress = stopRKey; 
-	</script>
+<title>Seleccionar Categoría</title>
+<script  src="../js/validar.js"></script>
+
 	
 </head>
 <body>
 <div id="contenedor">
 
-<div id="saludo"><strong>SELECCI&Oacute;N  DE COTIZACI&Oacute;N&nbsp;</strong></div> 
+<div id="saludo"><strong>SELECCIÓN  DE COTIZACIÓN&nbsp;</strong></div>
 <form id="form1" name="form1" method="post" action="UpdateCotform.php">
 <table border="0" align="center">
   	<tr>
-    	<td width="85" align="right"><strong>Cotizaci&oacute;n</strong></td>
+    	<td width="85" align="right"><strong>Cotización</strong></td>
 		<td width="96">
       	<div align="center"><input type="text" name="cotiza" size=10 onKeyPress="return aceptaNum(event)">
         </div></td>

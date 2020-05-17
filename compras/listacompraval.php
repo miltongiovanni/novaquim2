@@ -1,13 +1,13 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<title>Lista de Compras de V&aacute;lvulas y/o Tapas</title>
+<title>Lista de Compras de Válvulas y/o Tapas</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<script  src="scripts/validar.js"></script>
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+	<script  src="../js/validar.js"></script>
     <script >	function togglecomments (postid) {
 		var whichpost = document.getElementById(postid);
 		if (whichpost.className=="commentshown") { whichpost.className="commenthidden"; } else { whichpost.className="commentshown"; }
@@ -22,12 +22,12 @@ include "includes/valAcc.php";
    
     <td width="53%"><div align="center" class="titulo">
        <div align="center">
-         <p>LISTADO DE  COMPRAS DE V&Aacute;LVULAS Y/O TAPAS</p>
+         <p>LISTADO DE  COMPRAS DE VÁLVULAS Y/O TAPAS</p>
        </div>
     </div></td>
   </tr>
   <tr> 
-      <td><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men&uacute;">
+      <td><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú">
       </div></td>
   </tr>
 </table>
@@ -84,8 +84,8 @@ where Codigo=Cod_tapa and idCompra=$id_com;";
 	$resulti=mysql_db_query($database,$sqli);
 	echo '<tr><td colspan="7"><div class="commenthidden" id="UniqueName'.$a.'"><table width="70%" border="0" align="center" cellspacing="0" bordercolor="#CCCCCC">
 	<tr>
-      <th width="6%" class="formatoEncabezados">C&oacute;digo</th>
-	  <th width="40%" class="formatoEncabezados">V&aacute;lvula o Tapa</th>
+      <th width="6%" class="formatoEncabezados">Código</th>
+	  <th width="40%" class="formatoEncabezados">Válvula o Tapa</th>
       <th width="5%" class="formatoEncabezados">Cantidad</th>
 	  <th width="12%" class="formatoEncabezados">Precio</th>
   	</tr>';
@@ -116,7 +116,7 @@ mysql_close($link);//Cerrar la conexion
         <td>&nbsp;</td>
     </tr>
     <tr> 
-      <td><div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men&uacute;">
+      <td><div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú">
       </div></td>
     </tr>
 </table>

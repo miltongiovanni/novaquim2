@@ -1,13 +1,13 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <title>Ingreso de Productos a dar de Baja</title>
 <meta charset="utf-8">
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<script  src="scripts/validar.js"></script>
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+	<script  src="../js/validar.js"></script>
 	<script  src="scripts/block.js"></script>
 <link rel="stylesheet" type="text/css" media="all" href="css/calendar-blue2.css" title="blue">
     <script  src="scripts/calendar.js"></script>
@@ -177,7 +177,7 @@ include "includes/valAcc.php";
 		 </form>
 		 <form method="post" action="det_baja.php" name="form2">
 		<tr>
-			<td colspan="4"><div align="center"><strong>Productos Distribuci&oacute;n</strong></div></td>
+			<td colspan="4"><div align="center"><strong>Productos Distribución</strong></div></td>
 			<td colspan="2"><div align="center"><strong>Unidades</strong></div></td>
 		</tr>
 		<tr>
@@ -198,13 +198,13 @@ include "includes/valAcc.php";
 		mysqli_close($link);
 	?>
   <tr>
-    <td  colspan="8" class="titulo">Productos de la Baja de Mercanc&iacute;a : </td>    
+    <td  colspan="8" class="titulo">Productos de la Baja de Mercancía : </td>    
   </tr>  
 </table>
 <table border="0" align="center">
           <tr>
           	<th width="56" align="center"></th>
-            <th width="84" align="center">C&oacute;digo</th>
+            <th width="84" align="center">Código</th>
             <th width="437" align="center">Producto</th>
 			<th width="127" align="center">Cantidad</th>
             <th width="68" align="center"></th>
@@ -275,7 +275,7 @@ include "includes/valAcc.php";
                     <form action="Imp_Baja.php" method="post" target="_blank">
                     <div align="center">
                     <input name="baja" type="hidden" value="<?php echo $baja; ?> ">
-                    <input type="submit" name="Submit" value="Imprimir Remisi&oacute;n" >
+                    <input type="submit" name="Submit" value="Imprimir Remisión" >
                     </div>
                     </form>  
                 </td> 
@@ -291,7 +291,7 @@ include "includes/valAcc.php";
         <td>&nbsp;</td>
     </tr>
     <tr> 
-        <td><div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men&uacute;">
+        <td><div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú">
         </div></td>
     </tr>
 </table>

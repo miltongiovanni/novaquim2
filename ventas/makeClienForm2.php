@@ -1,13 +1,13 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-	<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<title>Creaci&oacute;n de Clientes</title>
+	<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+	<title>Creación de Clientes</title>
 	<meta charset="utf-8">
-	<script  src="scripts/validar.js"></script>
+	<script  src="../js/validar.js"></script>
 	<script  src="scripts/block.js"></script>	
 	<script >
 	document.onkeypress = stopRKey; 
@@ -16,7 +16,7 @@ include "includes/valAcc.php";
 </head>
 <body>
 <div id="contenedor">
-<div id="saludo"><strong>CREACI&Oacute;N DE CLIENTES</strong></div>
+<div id="saludo"><strong>CREACIÓN DE CLIENTES</strong></div>
 <?php
 foreach ($_POST as $nombre_campo => $valor) 
 { 
@@ -38,7 +38,7 @@ $ciudad=$row['ciudad'];
   <tr> 
     <td width="81"><div align="right"><strong>Cliente</strong></div></td>
     <td colspan="4"><input type="text" name="Cliente" size=60 id="Cliente" maxlength="60"></td>
-    <td width="118" ><div align="right"><b>NIT o C&eacute;dula</b></div></td>
+    <td width="118" ><div align="right"><b>NIT o Cédula</b></div></td>
     <td width="94" ><input type="text" name="NIT" size=15 id="NIT" readonly value="<?php echo $nit ?>"></td>
     <td width="118"><div align="right"><strong>Actividad</strong></div></td>
     <td width="94" colspan="3"><select name="IdCat" id="IdCat">
@@ -58,7 +58,7 @@ $ciudad=$row['ciudad'];
     </select></td>
   </tr>
   <tr> 
-    <td><div align="right"><b>Direcci&oacute;n</b></div></td>
+    <td><div align="right"><b>Dirección</b></div></td>
     <td colspan="4"><input type="text"  maxlength="50" name="Direccion" size=60 id="Direccion" ></td>
     <td ><div align="right"><b>Ciudad</b></div></td>
     <td ><input type="text" name="cod_ciudad" size=15 id="NIT" readonly value="<?php echo $ciudad ?>"></td>
@@ -68,7 +68,7 @@ $ciudad=$row['ciudad'];
   <tr> 
     <td><div align="right"><b>Contacto</b></div></td>
     <td colspan="4"><input type="text"  maxlength="34" name="Contacto" size=60 id="Contacto" ></td>
-    <td><div align="right"><strong>Tel&eacute;fono</strong></div></td>
+    <td><div align="right"><strong>Teléfono</strong></div></td>
     <td><input type="text" name="Tel1" maxlength="7" size=15 onKeyPress="return aceptaNum(event)" id="Tel1" ></td>
     <td><div align="right"><strong>Fax</strong></div></td>
     <td><input type="text" name="Fax" maxlength="7" size=15 onKeyPress="return aceptaNum(event)" id="Fax"   value=""></td>

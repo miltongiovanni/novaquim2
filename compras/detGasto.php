@@ -17,100 +17,6 @@ function cargarClases($classname)
 
 spl_autoload_register('cargarClases');
 
-
-/*include "includes/conect.php";
-include "includes/calcularDias.php";
-foreach ($_POST as $nombre_campo => $valor) {
-    $asignacion = "\$" . $nombre_campo . "='" . $valor . "';";
-    //echo $nombre_campo." = ".$valor."<br>";  
-    eval($asignacion);
-}
-
-if ($CrearFactura == 2) {
-    $link = conectarServidor();
-    $qryup = "update gastos set nit_prov='$nit_prov', numFact=$num_fac, fechGasto='$FchFactura', fechVenc='$VenFactura' where idGasto=$Factura;";
-    $resultup = mysqli_query($link, $qryup);
-    mysqli_close($link);
-}
-if ($CrearFactura != 0) {
-    $link = conectarServidor();
-    $qrys = "select estadoGasto from gastos where idGasto=$Factura";
-    $results = mysqli_query($link, $qrys);
-    $rows = mysqli_fetch_array($results);
-    $estadoc = $rows['estado'];
-    mysqli_close($link);
-}
-
-if ($CrearFactura == 1) {
-    //echo "NO ESTA CREANDO FACTURA";
-    $link = conectarServidor();
-    $qrybus = "select * from det_gastos where idGasto=$Factura AND Producto='$producto';";
-    $resultqrybus = mysqli_query($link, $qrybus);
-    $row_bus = mysqli_fetch_array($resultqrybus);
-    if ($row_bus['Producto'] == $producto) {
-        echo ' <script >
-			alert("Producto incluido anteriormente");
-			document.formulario.submit();
-		</script>';
-    } else {
-        //SE ACTUALIZA EL DATALLE DE LA FACTURA
-        $qryFact = "insert into det_gastos (idGasto, Producto, cantGasto, precGasto, codIva) values  ($Factura, '$producto', $cantidad, $precio, $tasa_iva)";
-        $resultfact = mysqli_query($link, $qryFact);
-    }
-    mysqli_close($link);
-    echo '<form method="post" action="detGasto.php" name="form3">';
-    echo '<input name="CrearFactura" type="hidden" value="5">';
-    echo '<input name="Factura" type="hidden" value="' . $Factura . '">';
-    echo '</form>';
-    echo '<script >
-		document.form3.submit();
-		</script>';
-}
-if ($CrearFactura == 5) {
-    $link = conectarServidor();
-    $qry = "select sum(cantGasto*precGasto) as Total, sum(cantGasto*precGasto*tasa) as IVA, tasaRetIca from det_gastos, tasa_iva, gastos, proveedores, tasa_reteica
-			where det_gastos.idGasto=$Factura AND tasa_iva.Id_tasa=det_gastos.codIva and gastos.idGasto=det_gastos.idGasto and nit_prov=nitProv 
-and numtasa_rica=idTasaRetIca;";
-
-    $result = mysqli_query($link, $qry);
-    $row = mysqli_fetch_array($result);
-    $SUBTotalFactura = $row['Total'];
-    $tasa_reteica = $row['tasa_retica'];
-    $qryc = "select ret_provee from gastos, proveedores where nit_prov=nitProv and idGasto=$Factura";
-    $resultc = mysqli_query($link, $qryc);
-    $rowc = mysqli_fetch_array($resultc);
-    $autore = $rowc['ret_provee'];
-    if ($autore == 1) {
-        $retencion = 0;
-        $reteica = 0;
-    } else {
-        if ($SUBTotalFactura >= BASE_C) {
-            $retencion = round($SUBTotalFactura * 0.025, 0);
-            $reteica = round($SUBTotalFactura * $tasa_reteica / 1000);
-        } else {
-            $retencion = 0;
-            $reteica = 0;
-        }
-    }
-    $Iva_Factura = $row['IVA'];
-    $TotalFactura = $SUBTotalFactura + $Iva_Factura;
-    $qryUpFactura = "update gastos set totalGasto=$TotalFactura, subtotalGasto=$SUBTotalFactura, ivaGasto=$Iva_Factura, retefuenteGasto=$retencion, reteicaGasto=$reteica where idGasto=$Factura";
-    if ($estadoc != 7)
-
-        $result = mysqli_query($link, $qryUpFactura);
-    mysqli_close($link);
-}
-if ($CrearFactura == 6) {
-    if ($estado == 2) {
-        $link = conectarServidor();
-        $qryUpEstFactura = "update gastos set estadoGasto=3 where idGasto=$Factura";
-        $result2 = mysqli_query($link, $qryUpEstFactura);
-        mysqli_close($link);
-    }
-    echo '<script  >
-	self.location="menu.php";
-	</script>';
-} */
 $GastoOperador = new GastosOperaciones();
 $DetGastoOperador = new DetGastosOperaciones();
 $gasto = $GastoOperador->getGasto($idGasto);
@@ -120,7 +26,6 @@ $gasto = $GastoOperador->getGasto($idGasto);
 <head>
     <title>Ingreso del Detalle de los Gastos de Industrias Novaquim</title>
     <meta charset="utf-8">
-    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="../css/datatables.css">
     <style>

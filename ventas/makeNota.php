@@ -1,13 +1,13 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <title>Creaci&oacute;n Nota de Cr&eacute;dito</title>
+    <title>Creación Nota de Crédito</title>
     <meta charset="utf-8">
-    <link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-    <script  src="scripts/validar.js"></script>
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script  src="../js/validar.js"></script>
     <script  src="scripts/block.js"></script>
     <script  src="scripts/ajax2.js"></script>
     <script >
@@ -16,7 +16,7 @@ include "includes/valAcc.php";
 </head>
 <body> 
 <div id="contenedor">
-<div id="saludo1"><strong>DETALLE DE LA NOTA CR&Eacute;DITO</strong></div>
+<div id="saludo1"><strong>DETALLE DE LA NOTA CRÉDITO</strong></div>
 <?php
 foreach ($_POST as $nombre_campo => $valor) 
 { 
@@ -196,7 +196,7 @@ if ($crear==5) //PARA CANCELAR SI LA NOTA ES POR TODA LA FACTURA
 ?>
 <table  align="center" border="0" summary="encabezado">
     <tr>
-      <td width="136"><div align="right"><strong>NOTA CR&Eacute;DITO:</strong> </div></td>
+      <td width="136"><div align="right"><strong>NOTA CRÉDITO:</strong> </div></td>
       <td width="208"><div align="left"><?php echo $mensaje;?></div></td>
       <td width="66"><div align="right"><strong>NIT:</strong></div></td>
       <td width="120" colspan="1"><?php echo $rownot['Nit_cliente']; ?></td>
@@ -210,7 +210,7 @@ if ($crear==5) //PARA CANCELAR SI LA NOTA ES POR TODA LA FACTURA
       <td colspan="1"><?php echo $rownot['Fac_orig']; ?></td>
     </tr>
     <tr>
-      <td ><div align="right"><strong>DIRECCI&Oacute;N:</strong></div></td>
+      <td ><div align="right"><strong>DIRECCIÓN:</strong></div></td>
       <td colspan="3"><?php echo $rownot['Dir_clien']; ?></td>
       <td ><div align="right"><strong>FACTURA AFECTA:</strong></div></td>
       <td colspan="1"><?php echo $rownot['Fac_dest']; ?></td>
@@ -222,7 +222,7 @@ if (($motivo==0)&&(($crear==5)||($crear==2)))  //CREAR 2 PARA ENTRAR EN LA OPCIÓ
 {
 	echo '<table width="668" border="0" align="center" summary="carga">
 	<tr>
-	<th colspan="3" align="center"><strong>PRODUCTOS PARA DEVOLUCI&Oacute;N</strong></th>
+	<th colspan="3" align="center"><strong>PRODUCTOS PARA DEVOLUCIÓN</strong></th>
 	</tr>
 	<tr>
 	<th width="406" align="center" class="font2"><strong>Producto</strong></th>
@@ -279,7 +279,7 @@ if (($motivo==1) && ($crear==2))// CREAR 2 ACTIVAR LA OPCION DE MOTIVO 1 QUE ES 
 		</tr>
 		<tr>
 		  <th width="20"> </th>
-		  <th width="53" align="center" class="font2"><strong>C&Oacute;DIGO</strong></th>
+		  <th width="53" align="center" class="font2"><strong>CÓDIGO</strong></th>
 		  <th width="358" align="center" class="font2"><strong>PRODUCTO</strong></th>
 		  <th width="50" align="center" class="font2"><strong>CAN</strong></th>
 		  <th width="47" align="center" class="font2"><strong>IVA</strong></th>
@@ -423,7 +423,7 @@ if (($motivo==1) && ($crear==2))// CREAR 2 ACTIVAR LA OPCION DE MOTIVO 1 QUE ES 
 		  $subtotalf= number_format($subtotal, 0, '.', ',');
 		  echo '<table border="0" align="center" summary="detalle">
 		<tr>
-		  <th width="473" align="center"><strong>DESCRIPCI&Oacute;N</strong></th>
+		  <th width="473" align="center"><strong>DESCRIPCIÓN</strong></th>
 		  <th width="136" align="center"><strong>VALOR</strong></th>
          </tr>
          <tr>
@@ -468,7 +468,7 @@ if (($motivo==1) && ($crear==2))// CREAR 2 ACTIVAR LA OPCION DE MOTIVO 1 QUE ES 
         <td width="209" colspan="1" align="center">
         <form action="Imp_NotaC.php" method="post" target="_blank">
             <input name="nota" type="hidden" value="<?php echo $mensaje; ?>">
-            <input name="Submit" type="submit" class="formatoBoton1" value="Imprimir Nota Cr&eacute;dito" >
+            <input name="Submit" type="submit" class="formatoBoton1" value="Imprimir Nota Crédito" >
         </form>
         </td>
         <td width="115" colspan="1" align="center">

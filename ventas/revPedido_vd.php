@@ -1,13 +1,13 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<title>Lista de &Oacute;rdenes de Pedido Pendientes por Facturar</title>
+<title>Lista de Órdenes de Pedido Pendientes por Facturar</title>
 <meta charset="utf-8">
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<script  src="scripts/validar.js"></script>
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+	<script  src="../js/validar.js"></script>
     <script >
 	function seleccionar1(form, checkbox_name)
 	{ 
@@ -26,11 +26,11 @@ include "includes/valAcc.php";
 </head>
 <body>
 <div id="contenedor">
-<div id="saludo1"><strong>LISTA DE &Oacute;RDENES DE PEDIDO PENDIENTES PARA REVISI&Oacute;N</strong></div> 
+<div id="saludo1"><strong>LISTA DE ÓRDENES DE PEDIDO PENDIENTES PARA REVISIÓN</strong></div> 
 <form name="revision_pedidos"  method="post" action="lista_necesidades_vd.php">
 <table width="100%" border="0" summary="encabezado">
   <tr> <td width="16%"><div align="right"><input type="checkbox"  id="seleccionar" name="seleccionar" onclick='seleccionar1(this.form, "seleccion1[]")'>Seleccionar Todos/Ninguno</div></td>
-      <td width="84%"><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men&uacute;"></div></td>
+      <td width="84%"><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú"></div></td>
   </tr>
 </table>
 
@@ -41,7 +41,7 @@ include "includes/valAcc.php";
     <th width="23%" class="formatoEncabezados">Cliente</th>
     <th width="9%" class="formatoEncabezados">Fecha Pedido</th>
     <th width="9%" class="formatoEncabezados">Fecha Entrega</th>
-    <th width="18%" class="formatoEncabezados">Direcci&oacute;n Entrega</th>
+    <th width="18%" class="formatoEncabezados">Dirección Entrega</th>
   </tr>   
 <?php
 include "includes/utilTabla.php";

@@ -1,13 +1,13 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<title>Detalle de la Cotizaci&oacute;n</title>
+<title>Detalle de la Cotización</title>
 <meta charset="utf-8">
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<script  src="scripts/validar.js"></script>
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+	<script  src="../js/validar.js"></script>
 	<script  src="scripts/block.js"></script>
         <link rel="stylesheet" type="text/css" media="all" href="css/calendar-blue2.css" title="blue">
     <script  src="scripts/calendar.js"></script>
@@ -19,7 +19,7 @@ include "includes/valAcc.php";
 </head>
 <body> 
 <div id="contenedor">
-<div id="saludo1"><strong>DETALLE DE LA COTIZACI&Oacute;N</strong></div>
+<div id="saludo1"><strong>DETALLE DE LA COTIZACIÓN</strong></div>
 <?php
 include "includes/conect.php";
 $link=conectarServidor();
@@ -229,7 +229,7 @@ $opciones_dist = 'No eligió Productos de Distribución';
         <td colspan="3">&nbsp;</td>
     </tr>
     <tr>
-    	<td width="23%" align="right"><strong>No. Cotizaci&oacute;n:</strong></td>
+    	<td width="23%" align="right"><strong>No. Cotización:</strong></td>
    	  	<td colspan="2"><?php echo  $num_cotiza;  ?></td>
     </tr>
 	<tr>
@@ -237,7 +237,7 @@ $opciones_dist = 'No eligió Productos de Distribución';
    	  	<td colspan="2"><?php echo  $rowb['Nom_clien'];  ?></td>
     </tr>
     <tr>
-      	<td align="right"><strong>Fecha de Cotizaci&oacute;n:</strong></td>
+      	<td align="right"><strong>Fecha de Cotización:</strong></td>
       	<td colspan="2"><?php echo  $rowb['Fech_Cotizacion'];  ?></td>
     </tr>
     <tr>
@@ -245,7 +245,7 @@ $opciones_dist = 'No eligió Productos de Distribución';
       	<td colspan="2"><?php echo  $dest;  ?></td>
     </tr>
     <tr>
-      	<td align="right"><strong>Presentaci&oacute;n:</strong></td>
+      	<td align="right"><strong>Presentación:</strong></td>
       	<td colspan="2"><?php echo  $presen;  ?></td>
     </tr>
     <tr>
@@ -257,7 +257,7 @@ $opciones_dist = 'No eligió Productos de Distribución';
   		<td colspan="2"><?php echo  $opciones_prod;  ?></td>
     </tr>    
     <tr>
-    	<td align="right"><strong>Productos de Distribuci&oacute;n</strong></td>
+    	<td align="right"><strong>Productos de Distribución</strong></td>
   		<td colspan="2"><?php echo  $opciones_dist;  ?></td>
     </tr>
     <tr>
@@ -275,7 +275,7 @@ $opciones_dist = 'No eligió Productos de Distribución';
         <td colspan="3">&nbsp;</td>
     </tr>
   </table>
-<div align="center"><input name="" type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir a Men&uacute;"></div>
+<div align="center"><input name="" type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir a Menú"></div>
 </div>
 </body>
 </html>

@@ -77,6 +77,19 @@ class GastosOperaciones
         return $result;
     }
 
+    public function isValidIdGasto($idGasto)
+    {
+        $qry = "SELECT * FROM gastos WHERE idGasto=?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($idGasto));
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        if($result==false){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
     public function updateGasto($datos)
     {
         $qry = "UPDATE gastos SET idProv=?, numFact=?, fechGasto=?, fechVenc=? WHERE idGasto=?";

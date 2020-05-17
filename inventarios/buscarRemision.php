@@ -1,25 +1,22 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css"><head>
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css"><head>
 <meta charset="utf-8">
-<title>Seleccionar Remisi&oacute;n a Modificar</title>
-<script  src="scripts/validar.js"></script>
-<script  src="scripts/block.js"></script>
-	<script >
-	document.onkeypress = stopRKey; 
-	</script>
+<title>Seleccionar Remisión a Modificar</title>
+<script  src="../js/validar.js"></script>
+
 
 </head>
 <body>
 <div id="contenedor">
-<div id="saludo"><strong>BUSCAR REMISI&Oacute;N A MODIFICAR</strong></div>
+<div id="saludo"><strong>BUSCAR REMISIÓN A MODIFICAR</strong></div>
 <table border="0" align="center">
 <form id="form1" name="form1" method="post" action="remision2.php">	
     <tr> 
-        <td width="133"><div align="right"><strong>Remisi&oacute;n&nbsp;</strong></div></td>
+        <td width="133"><div align="right"><strong>Remisión&nbsp;</strong></div></td>
         <td width="143"><input type="text" name="remision" size=15 onKeyPress="return aceptaNum(event)"></td>
         <input type="hidden" name="Crear" value="5">
     </tr>

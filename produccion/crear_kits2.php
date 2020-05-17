@@ -1,22 +1,19 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-	<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<title>Creaci&oacute;n de Kits de Productos de Distribuci&oacute;n</title>
+	<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+	<title>Creación de Kits de Productos de Distribución</title>
 	<meta charset="utf-8">
-	<script  src="scripts/validar.js"></script>
-	<script  src="scripts/block.js"></script>
-		<script >
-	document.onkeypress = stopRKey; 
-	</script>
+	<script  src="../js/validar.js"></script>
+
 
 </head>
 <body>
 <div id="contenedor">
-<div id="saludo"><strong>CREACI&Oacute;N DE KITS DE PRODUCTOS</strong></div>
+<div id="saludo"><strong>CREACIÓN DE KITS DE PRODUCTOS</strong></div>
 <form name="form2" method="POST" action="make_kits.php">
 <table  border="0" align="center" class="table2" width="34%" cellspacing="0">
     <tr> 
@@ -44,7 +41,7 @@ include "includes/valAcc.php";
 	}
 	else
 	{
-		echo '<tr><td><div align="right"><strong>Producto de Distribuci&oacute;n</strong></div></td><td><div align="left">';
+		echo '<tr><td><div align="right"><strong>Producto de Distribución</strong></div></td><td><div align="left">';
 		echo'<select name="Codigo">';
 		$result=mysqli_query($link,"select Id_distribucion, Producto from distribucion where Activo=0 order by Producto;");
 		while($row=mysqli_fetch_array($result))

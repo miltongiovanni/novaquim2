@@ -194,7 +194,7 @@ include "../includes/valAcc.php";
             </td>
             <td width="7%">
                 <div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'"
-                                          value="Ir al Men&uacute;"></div>
+                                          value="Ir al Menú"></div>
             </td>
         </tr>
     </table>
@@ -299,7 +299,7 @@ WHERE egreso.idCompra=gastos.idGasto and nit_prov=nitProv and tipoCompra=6 and f
     </table>
 
     <div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'"
-                               value="Ir al Men&uacute;"></div>-->
+                               value="Ir al Menú"></div>-->
 </div>
 </body>
 </html>

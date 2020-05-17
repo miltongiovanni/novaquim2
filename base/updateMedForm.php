@@ -15,7 +15,7 @@ $presentacion = $PresentacionOperador->getPresentacion($codPresentacion);
 <head>
 	<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>Actualizar datos de Presentaci&oacute;n de Producto</title>
+	<title>Actualizar datos de Presentación de Producto</title>
 	<script  src="../js/validar.js"></script>
 </head>
 

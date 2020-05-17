@@ -1,28 +1,28 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<title>Consulta de Stock de Tapas y/o V&aacute;lvulas</title>
+<title>Consulta de Stock de Tapas y/o Válvulas</title>
 <meta charset="utf-8">
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<script  src="scripts/validar.js"></script>
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+	<script  src="../js/validar.js"></script>
 </head>
 <body>
 <div id="contenedor">
-<div id="saludo1"><strong>CONSULTA DE STOCK DE TAPAS Y/O V&Aacute;LVULAS</strong></div>
+<div id="saludo1"><strong>CONSULTA DE STOCK DE TAPAS Y/O VÁLVULAS</strong></div>
 
 <table align="center" width="700" border="0">
   <tr> 
-      <td><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men&uacute;">
+      <td><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú">
       </div></td>
   </tr>
 </table>
 <table border="0" align="center" cellspacing="0">
 <tr>
-    <th width="70" class="formatoEncabezados">C&oacute;digo</th>
-    <th width="294" class="formatoEncabezados">Tapa o V&aacute;lvula</th>
+    <th width="70" class="formatoEncabezados">Código</th>
+    <th width="294" class="formatoEncabezados">Tapa o Válvula</th>
     <th width="90" class="formatoEncabezados">Cantidad</th>
     <th width="87" class="formatoEncabezados">Stock</th>
   </tr>   
@@ -54,7 +54,7 @@ mysqli_close($link);
 ?>
 
 </table>
-<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men&uacute;"></div>
+<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú"></div>
 </div>
 </body>
 </html>

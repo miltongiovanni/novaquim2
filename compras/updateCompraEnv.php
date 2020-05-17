@@ -1,25 +1,22 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 include "includes/conect.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
 <meta charset="utf-8">
 <title>Actualizar Compra de Envase</title>
-<script  src="scripts/validar.js"></script>
-<script  src="scripts/block.js"></script>
-	<script >
-	document.onkeypress = stopRKey; 
-	</script>
+<script  src="../js/validar.js"></script>
+
 </head>
 <body>
 <div id="contenedor">
-<div id="saludo"><strong>ACTUALIZACI&Oacute;N DE LA COMPRA DE ENVASE Y TAPAS</strong></div>
+<div id="saludo"><strong>ACTUALIZACIÓN DE LA COMPRA DE ENVASE Y TAPAS</strong></div>
 <table border="0" align="center">
   <tr>
-    <td width="61"><div align="center"><strong>C&oacute;digo</strong></div></td>
+    <td width="61"><div align="center"><strong>Código</strong></div></td>
     <td width="297"><div align="center"><strong>Producto</strong></div></td>
     <td width="80"><div align="center"><strong>Cantidad</strong></div></td>
     <td width="81"><div align="center"><strong>Precio</strong></div></td>

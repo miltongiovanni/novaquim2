@@ -1,13 +1,13 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <title>Orden de Producci&oacute;n</title>
+    <title>Orden de Producci贸n</title>
     <meta charset="utf-8">
-    <link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-    <script  src="scripts/validar.js"></script>
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script  src="../js/validar.js"></script>
 	<script  src="scripts/block.js"></script>	
     <link rel="stylesheet" type="text/css" media="all" href="css/calendar-blue2.css" title="blue">
     <script  src="scripts/calendar.js"></script>
@@ -28,7 +28,7 @@ include "includes/valAcc.php";
 
 ?>
 <div id="contenedor">
-<div id="saludo"><strong>ORDEN DE PRODUCCI&Oacute;N</strong></div>
+<div id="saludo"><strong>ORDEN DE PRODUCCI脫N</strong></div>
 <form method="post" action="makeO_Prod.php" name="form1">	
   	<table align="center">
     <tr>
@@ -42,32 +42,32 @@ include "includes/valAcc.php";
 			echo '<input type="text" name="Producto" value="'.$row['Nom_produc'].'" readonly size=43>';
 			echo '<input name="cod_prod" type="hidden" value="'.$producto.'">';
 			mysqli_free_result($result);
-/* cerrar la conexi髇 */
+/* cerrar la conexi贸n */
 mysqli_close($link);
 		?>
         </td>
     </tr>
     <tr>
-      <td align="right"><strong>F&oacute;rmula</strong></td>
+      <td align="right"><strong>F贸rmula</strong></td>
       <td>
       <?php
 				//include "conect.php";
 				$link=conectarServidor();
 				echo'<select name="IdForm" id="combo">';
-				$result=mysqli_query($link,"select * from formula where Cod_prod=$producto;");
+				$result=mysqli_query($link,"select * from formula where codProducto=$producto;");
 				echo '<option selected value="">--------------------------------------------------------------------------</option>';
 				while($row=mysqli_fetch_array($result)){
 					echo '<option value='.$row['Id_form'].'>'.$row['Nom_form'].'</option>';
 				}
 				echo'</select>';
 				mysqli_free_result($result);
-/* cerrar la conexi髇 */
+/* cerrar la conexi贸n */
 mysqli_close($link);
 	   ?>
 	  </td>
     </tr>
      <tr>
-      <td align="right"><strong>Fecha de Producci&oacute;n</strong></td>
+      <td align="right"><strong>Fecha de Producci贸n</strong></td>
       <td><input type="text" name="FchProd" id="sel2" readonly size=38><input type="reset" value=" ... "
 		onclick="return showCalendar('sel2', '%Y-%m-%d', '12', true);"></td>
     </tr>
@@ -85,7 +85,7 @@ mysqli_close($link);
 				}
 				echo'</select>';
 				mysqli_free_result($result);
-/* cerrar la conexi髇 */
+/* cerrar la conexi贸n */
 mysqli_close($link);
 	   ?>
 	  </td>

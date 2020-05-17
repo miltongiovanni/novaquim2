@@ -1,22 +1,19 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <title>Ingreso de Compra de Materia Prima</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-    <script  src="scripts/validar.js"></script>
-    <script  src="scripts/block.js"></script>
-    	<script >
-	document.onkeypress = stopRKey; 
-	</script>
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script  src="../js/validar.js"></script>
+
 </head>
 <body> 
 <div align="center"><img src="images/LogoNova1.JPG"/></div>
 <?php
-//ESTOS SON LOS DATOS QUE RECIBE DE LA ORDEN DE PRODUCCIÓN
+//ESTOS SON LOS DATOS QUE RECIBE DE LA ORDEN DE PRODUCCIÃ“N
 include "includes/conect.php";
 foreach ($_POST as $nombre_campo => $valor) 
 { 
@@ -42,7 +39,7 @@ $qrycol="select Cod_sol_col from formula_col where Id_form_col=$fcolor;";
 $resultcol=mysqli_query($link,$qrycol);
 $rowcol=mysqli_fetch_array($resultcol);	
 $cod_prod=$rowcol['Cod_sol_col'];
-/*CREACIÓN DE LA ORDEN DE PRODUCCIÓN*/
+/*CREACIÃ“N DE LA ORDEN DE PRODUCCIÃ“N*/
 $qryOP="insert into ord_prod_col (Lote_color, Fch_prod, Id_form_color, Cod_persona, Cod_color, Cant_kg) values ($Orden,'$FchProd', $fcolor, $IdResp, $cod_prod, $can_prod)";
 if($resultOP=mysqli_query($link,$qryOP))
 {
@@ -74,7 +71,7 @@ if($resultOP=mysqli_query($link,$qryOP))
 
 		if ($exist < $uso)
 		{
-			//SI NO HAY EXISTENCIAS DE MATERIA PRIMA SE CANCELA LA TRANSACCIÓN
+			//SI NO HAY EXISTENCIAS DE MATERIA PRIMA SE CANCELA LA TRANSACCIÃ“N
 				/* Rollback */
 			mysqli_rollback($link);
 			mysqli_close($link);
@@ -126,11 +123,11 @@ if($resultOP=mysqli_query($link,$qryOP))
 	mysqli_commit($link);
 	mysqli_autocommit($link, TRUE); 
 	mysqli_close($link);
-	mover_pag("detO_Prod_col.php","Orden de Producción Creada correctamente");
+	mover_pag("detO_Prod_col.php","Orden de ProducciÃ³n Creada correctamente");
 }
 else
 {
-	mover_pag("o_produccion_col.php","Error al ingresar la Orden de Producción");
+	mover_pag("o_produccion_col.php","Error al ingresar la Orden de ProducciÃ³n");
 }
 
 function mover_pag($ruta,$mensaje)

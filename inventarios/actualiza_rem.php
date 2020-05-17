@@ -3,8 +3,8 @@
 <head>
     <title>Ingreso de Compra de Materia Prima</title>
     <meta charset="utf-8">
-    <link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-    <script  src="scripts/validar.js"></script>
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script  src="../js/validar.js"></script>
     <script  src="scripts/block.js"></script>
     <script >
 		document.onkeypress = stopRKey; 

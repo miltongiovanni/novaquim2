@@ -1,13 +1,13 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <title>Orden de Producci&oacute;n</title>
+    <title>Orden de Producción</title>
     <meta charset="utf-8">
-    <link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-    <script  src="scripts/validar.js"></script>
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script  src="../js/validar.js"></script>
 	<script  src="scripts/block.js"></script>	
     <link rel="stylesheet" type="text/css" media="all" href="css/calendar-blue2.css" title="blue">
     <script  src="scripts/calendar.js"></script>
@@ -19,7 +19,7 @@ include "includes/valAcc.php";
 </head>
 <body> 
 <div id="contenedor">
-<div id="saludo"><strong>ORDEN DE PRODUCCI&Oacute;N</strong></div>
+<div id="saludo"><strong>ORDEN DE PRODUCCIÓN</strong></div>
 <form method="post" action="o_produccion2.php" name="form1">	
   	<table width="36%" align="center">
     <tr>
@@ -37,7 +37,7 @@ include "includes/valAcc.php";
             }
             echo'</select>';
 			mysqli_free_result($result);
-/* cerrar la conexi�n */
+/* cerrar la conexión */
 mysqli_close($link);
 		?>
         </td>

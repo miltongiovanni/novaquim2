@@ -1,13 +1,13 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <title>Inventario de Materia Prima</title>
 <meta charset="utf-8">
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<script  src="scripts/validar.js"></script>
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+	<script  src="../js/validar.js"></script>
 </head>
 <body>
 <div id="contenedor">
@@ -16,14 +16,14 @@ include "includes/valAcc.php";
   <tr>
   	<form action="Inv_MP_Xls.php" method="post" target="_blank"><td width="601" align="right">
     <input name="Submit" type="submit" class="resaltado" value="Exportar a Excel"></td></form> 
-      <td width="102"><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men&uacute;">
+      <td width="102"><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú">
       </div></td>
   </tr>
 </table>
 <table width="629" border="0" align="center" cellspacing="0">
 <tr>
       <th width="22" class="formatoEncabezados"></th>
-    <th width="88" class="formatoEncabezados">C&oacute;digo</th>
+    <th width="88" class="formatoEncabezados">Código</th>
     <th width="393" class="formatoEncabezados">Materia Prima</th>
     <th width="118" class="formatoEncabezados">Cantidad (Kg)</th>
   </tr>   
@@ -72,7 +72,7 @@ mysqli_free_result($resulti);
 mysqli_close($link);//Cerrar la conexion
 ?>
 </table>
-<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men&uacute;"></div>
+<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú"></div>
 </div>
 </body>
 </html>

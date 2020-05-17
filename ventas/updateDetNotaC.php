@@ -1,22 +1,19 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 include "includes/conect.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
 <meta charset="utf-8">
-<title>Actualizar datos de la Nota Cr&eacute;dito</title>
-<script  src="scripts/validar.js"></script>
-<script  src="scripts/block.js"></script>
-	<script >
-	document.onkeypress = stopRKey; 
-	</script>
+<title>Actualizar datos de la Nota Crédito</title>
+<script  src="../js/validar.js"></script>
+
 </head>
 <body>
 <div id="contenedor">
-<div id="saludo"><strong>ACTUALIZACI&Oacute;N DEL PRODUCTO EN LA NOTA CR&Eacute;DITO</strong></div>
+<div id="saludo"><strong>ACTUALIZACIÓN DEL PRODUCTO EN LA NOTA CRÉDITO</strong></div>
 <form action="updateProdNota.php" method="post" name="actualiza">
 <table width="55%" border="0" align="center" summary="cuerpo">
   <tr>

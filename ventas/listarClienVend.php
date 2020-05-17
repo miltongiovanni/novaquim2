@@ -1,13 +1,13 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <title>Lista de Facturas de Venta</title>
 <meta charset="utf-8">
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<script  src="scripts/validar.js"></script>
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+	<script  src="../js/validar.js"></script>
 </head>
 <body>
 <div id="contenedor">
@@ -32,7 +32,7 @@ $vendedor=$rowv['nom_personal'];
 <div id="saludo1"><strong>LISTA DE CLIENTES DE <?php echo mb_strtoupper($vendedor); ?> </strong></div> 
 <table  align="center" width="700" border="0" summary="encabezado">
   <tr> 
-      <td><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men&uacute;"></div></td>
+      <td><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú"></div></td>
   </tr>
 </table>
 <table border="0" align="center" cellspacing="0" summary="cuerpo">
@@ -40,10 +40,10 @@ $vendedor=$rowv['nom_personal'];
       <th width="10" class="formatoEncabezados"></th>
     <th width="100" align="center" class="formatoEncabezados">NIT</th>
     <th width="348" align="center" class="formatoEncabezados">Cliente</th>
-    <th width="300" align="center" class="formatoEncabezados">Direcci&oacute;n</th>
+    <th width="300" align="center" class="formatoEncabezados">Dirección</th>
 	<th width="156" align="center" class="formatoEncabezados">Contacto</th>
     <th width="141" align="center" class="formatoEncabezados">Cargo Contacto</th>
-	<th width="61" align="center" class="formatoEncabezados">Tel&eacute;fono</th>
+	<th width="61" align="center" class="formatoEncabezados">Teléfono</th>
   </tr>   
 <?php
 //conectar con el servidor de BD
@@ -99,7 +99,7 @@ mysqli_close($link);//Cerrar la conexion
 ?>
 
 </table>
-<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men&uacute;"></div>
+<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú"></div>
 </div>
  </body>
 </html>

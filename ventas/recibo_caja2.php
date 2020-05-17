@@ -1,13 +1,13 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="es">
 <head>
 <title>Cobro de Facturas de Venta</title>
 <meta charset="utf-8">
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<script  src="scripts/validar.js"></script>
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+	<script  src="../js/validar.js"></script>
 	<script  src="scripts/block.js"></script>
         <link rel="stylesheet" type="text/css" media="all" href="css/calendar-blue2.css" title="blue">
     <script  src="scripts/calendar.js"></script>
@@ -213,7 +213,7 @@ if($Pago==1)
 	if ($Reten==0)//Reten es para preguntar si va a hacer retención, es 0 para preguntar y 1 si responde
 	echo '<tr><td>&nbsp;</td></tr>
 	<tr>
-      <td class="titulo" colspan="3" align="right">Cliente Aplic&oacute; Retenci&oacute;n</td>
+      <td class="titulo" colspan="3" align="right">Cliente Aplicó Retención</td>
       <td colspan="2"><div align="center"><select name="retencion"><option selected value=0>No</option><option value=1>Si</option></select></div></td>
       <td><input onClick="return Enviar(this.form)" type="button"  value="Continuar"></td>
     </tr>
@@ -264,7 +264,7 @@ if($Pago==1)
 		$resultupf=mysqli_query($link, $qryupf);
 		
 	echo '<tr>
-      <td><div align="right"><strong>Retenci&oacute;n en la fuente:</strong></div></td>
+      <td><div align="right"><strong>Retención en la fuente:</strong></div></td>
       <td><div align="left">$ <script > document.write(commaSplit('.$retefuente.'))</script> </div></td>
       <td colspan="2" ><div align="right"><strong>ReteIca:</strong></div></td>
       <td colspan="2">$ <script > document.write(commaSplit('.$reteica.'))</script> </td>
@@ -286,13 +286,13 @@ if($Pago==1)
 	if (($Reten==1)&&($Reten_pago==0)&&($retencion==1))//Para preguntar la tasa de retención
 	echo '<tr><td>&nbsp;</td></tr>
 	<tr>
-      <td class="titulo" colspan="3" align="right">Tasa de Retenci&oacute;n en la fuente</td>
+      <td class="titulo" colspan="3" align="right">Tasa de Retención en la fuente</td>
       <td colspan="2"><div align="center"><select name="t_reten"><option selected value=0.025>2.5%</option><option value=0.015>1.5%</option><option value=0.035>3.5%</option><option value=0.04>4%</option><option value=0>0%</option></select></div></td>
       <td></td>
     </tr>
 
 	<tr>
-      <td class="titulo" colspan="3" align="right">Aplic&oacute; Retenci&oacute;n de ICA</td>
+      <td class="titulo" colspan="3" align="right">Aplicó Retención de ICA</td>
       <td colspan="2"><div align="center"><select name="Retica"><option selected value=0>No</option><option value=1>Si</option></select></div></td>
       <td><input onClick="return Enviar(this.form)" type="button"  value="Continuar"></td>
     </tr>

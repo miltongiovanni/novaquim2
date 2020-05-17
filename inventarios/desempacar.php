@@ -1,13 +1,13 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
 	<title>Convertir Pacas de Producto a Unidades</title>
 	<meta charset="utf-8">
-	<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<script  src="scripts/validar.js"></script>
+	<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+	<script  src="../js/validar.js"></script>
 	<script  src="scripts/block.js"></script>
     <link rel="stylesheet" type="text/css" media="all" href="css/calendar-blue2.css" title="blue">
     <script  src="scripts/calendar.js"></script>
@@ -26,7 +26,7 @@ include "includes/valAcc.php";
 		$link=conectarServidor();  
 		echo '<form method="post" action="unpack.php" name="form1">
 		<tr>
-		<td><div align="right"><strong>Producto de Distribuci&oacute;n Empacado:</strong></div></td>
+		<td><div align="right"><strong>Producto de Distribución Empacado:</strong></div></td>
 		<td colspan="1" ><div align="left">';
 		echo'<select name="cod_paca">';
 		$qry="select inv_distribucion.Id_distribucion, Producto from distribucion, rel_dist_emp, inv_distribucion 
@@ -49,7 +49,7 @@ include "includes/valAcc.php";
 			</form>';
 	?>
 </table>
-<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men&uacute;"></div>
+<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú"></div>
 </div>
 </body>
 </html>

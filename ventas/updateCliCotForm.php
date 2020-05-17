@@ -1,23 +1,20 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 include "includes/conect.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
 <meta charset="utf-8">
 <title>Actualizar datos del Cliente</title>
-<script  src="scripts/validar.js"></script>
-<script  src="scripts/block.js"></script>
-	<script >
-	document.onkeypress = stopRKey; 
-	</script>
+<script  src="../js/validar.js"></script>
+
 </head>
 
 <body>
 <div id="contenedor">
-<div id="saludo"><strong>ACTUALIZACI&Oacute;N DE CLIENTE DE COTIZACI&Oacute;N</strong></div>
+<div id="saludo"><strong>ACTUALIZACIÓN DE CLIENTE DE COTIZACIÓN</strong></div>
 
 <?php
 	  $link=conectarServidor();
@@ -52,13 +49,13 @@ include "includes/conect.php";
         ?></td>
   </tr>
   <tr> 
-    <td><div align="right"><b>Direcci&oacute;n</b></div></td>
+    <td><div align="right"><b>Dirección</b></div></td>
     <td colspan="3"><input type="text"  maxlength="50" name="Direccion" size=60 id="Direccion"
     <?php 
     echo 'value="'.$row['Dir_clien'].'"';
     ?>
     ></td>
-    <td><div align="right"><strong>Tel&eacute;fono</strong></div></td>
+    <td><div align="right"><strong>Teléfono</strong></div></td>
     <td><input type="text" name="Tel1" maxlength="7" size=15 onKeyPress="return aceptaNum(event)" id="Tel1"
     <?php
     echo 'value="'.$row['Tel_clien'].'"';

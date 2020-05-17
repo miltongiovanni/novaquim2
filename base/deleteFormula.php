@@ -1,24 +1,21 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
 <meta charset="utf-8">
-<title>Eliminar Formulaci&oacute;n</title>
-<script  src="scripts/validar.js"></script>
-<script  src="scripts/block.js"></script>
-	<script >
-	document.onkeypress = stopRKey; 
-	</script>
+<title>Eliminar Formulación</title>
+<script  src="../js/validar.js"></script>
+
 
 </head>
 
 
 <body>
 <div id="contenedor">
-<div id="saludo"><strong>ELIMINACI&Oacute;N DE FORMULACI&Oacute;N</strong></div>
+<div id="saludo"><strong>ELIMINACIÓN DE FORMULACIÓN</strong></div>
 
 <table width="602" border="0" align="center">
 	<tr>
@@ -27,12 +24,12 @@ include "includes/valAcc.php";
 	<tr>
 		<td colspan="2">
 			<form method="post" action="deleteForm.php">
-			<div align="center"><strong>F&oacute;rmula</strong>
+			<div align="center"><strong>Fórmula</strong>
 			<?php
 				include "includes/conect.php";
 				$link=conectarServidor();
 				echo'<select name="IdForm">';
-				$result=mysqli_query($link,"select * from formula order by Nom_form");
+				$result=mysqli_query($link,"select * from formula order by nomFormula");
 				echo '<option selected value="">-----------------------------------------------------</option>';
 				while($row=mysqli_fetch_array($result)){
 					echo '<option value='.$row['Id_form'].'>'.$row['Nom_form'].'</option>';
@@ -54,7 +51,7 @@ mysqli_close($link);
     </tr>
     <tr> 
         <td colspan="2">
-        <div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="MEN&Uacute;">
+        <div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="MENÚ">
         </div>
         </td>
     </tr>

@@ -1,26 +1,23 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 include "includes/conect.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Actualizar Compra de V&aacute;lvulas o Tapas</title>
-<script  src="scripts/validar.js"></script>
-<script  src="scripts/block.js"></script>
-	<script >
-	document.onkeypress = stopRKey; 
-	</script>
+<title>Actualizar Compra de Válvulas o Tapas</title>
+<script  src="../js/validar.js"></script>
+
 </head>
 <body>
 <p align="center"><img src="images/LogoNova1.JPG" border="0" /></p>
 <p align="center">&nbsp;</p>
-<p align="center" class="titulo">ACTUALIZACI&Oacute;N DE LA COMPRA DE V&Aacute;LVULAS O TAPAS</p>
+<p align="center" class="titulo">ACTUALIZACIÓN DE LA COMPRA DE VÁLVULAS O TAPAS</p>
 <table width="32%" border="0" align="center">
   <tr>
-    <td width="86%" class="titulo"><div align="center">V&aacute;lvula o Tapa</div></td>
+    <td width="86%" class="titulo"><div align="center">Válvula o Tapa</div></td>
     <td width="14%" class="titulo"><div align="center">Cantidad</div></td>
   </tr>
   <form action="updateComVal.php" method="post" name="actualiza">

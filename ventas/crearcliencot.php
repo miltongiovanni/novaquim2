@@ -1,13 +1,13 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <title>Crear Cotizaci&oacute;n</title>
+    <title>Crear Cotización</title>
     <meta charset="utf-8">
-    <link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-    <script  src="scripts/validar.js"></script>
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script  src="../js/validar.js"></script>
 	<script  src="scripts/block.js"></script>
     <link rel="stylesheet" type="text/css" media="all" href="css/calendar-blue2.css" title="blue">
     <script  src="scripts/calendar.js"></script>
@@ -18,7 +18,7 @@ include "includes/valAcc.php";
 	</script></head>
 <body>
 <div id="contenedor">
-<div id="saludo"><strong>CREAR CLIENTE PARA COTIZACI&Oacute;N</strong></div>
+<div id="saludo"><strong>CREAR CLIENTE PARA COTIZACIÓN</strong></div>
 <form method="post" action="makeClienCotForm.php" name="form1">	
   	<table align="center" width="22%">
     <tr>

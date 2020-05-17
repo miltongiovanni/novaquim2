@@ -1,13 +1,13 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <title>Factura de Venta</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-    <script  src="scripts/validar.js"></script>
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script  src="../js/validar.js"></script>
 	<script  src="scripts/block.js"></script>
     <link rel="stylesheet" type="text/css" media="all" href="css/calendar-blue2.css" title="blue" />
     <script  src="scripts/calendar.js"></script>
@@ -103,7 +103,7 @@ include "includes/valAcc.php";
     </tr><input type="hidden" name="Crear" value="5"><input type="hidden" name="pedido" value="<?php echo $row['Id_pedido'] ;?>"><input type="hidden" name="factura" value="<?php echo $row['Factura'] ;?>">
     <tr><td colspan="2"><div align="center">&nbsp;</div></td></tr>
     <tr><td colspan="2"><div align="center">&nbsp;</div></td></tr>
-    <tr><td colspan="2"> <div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="  Ir al Men&uacute;  "></div></td></tr>
+    <tr><td colspan="2"> <div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="  Ir al Menú  "></div></td></tr>
 </form> 
 </table>
 </div>

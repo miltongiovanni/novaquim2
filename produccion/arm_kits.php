@@ -1,13 +1,13 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-	<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
+	<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
 	<title>Armado de Kits</title>
 	<meta charset="utf-8">
-	<script  src="scripts/validar.js"></script>
+	<script  src="../js/validar.js"></script>
 	<script  src="scripts/block.js"></script>
     <link rel="stylesheet" type="text/css" media="all" href="css/calendar-blue2.css" title="blue">
     <script  src="scripts/calendar.js"></script>

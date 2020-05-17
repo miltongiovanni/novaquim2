@@ -1,27 +1,24 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
 <head>
 <meta charset="utf-8">
-<title>Seleccionar F&oacute;rmula a Actualizar</title>
-<script  src="scripts/validar.js"></script>
-<script  src="scripts/block.js"></script>
-	<script >
-	document.onkeypress = stopRKey; 
-	</script>
+<title>Seleccionar Fórmula a Actualizar</title>
+<script  src="../js/validar.js"></script>
+
 
 </head>
 <body>
 <div id="contenedor">
-<div id="saludo"><strong>SELECCI&Oacute;N DE F&Oacute;RMULA DE COLOR A ACTUALIZAR</strong></div> 
+<div id="saludo"><strong>SELECCIÓN DE FÓRMULA DE COLOR A ACTUALIZAR</strong></div> 
 <table width="100%" border="0">
   	<tr>
     	<td>
 		<form id="form1" name="form1" method="post" action="detFormula_Col.php">
-      	<div align="center"><strong>F&oacute;rmula de Color</strong>
+      	<div align="center"><strong>Fórmula de Color</strong>
 <?php
 				include "includes/conect.php";
 				$link=conectarServidor();
@@ -33,7 +30,7 @@ include "includes/valAcc.php";
 				}
 				echo'</select>';
 				mysqli_free_result($result);
-/* cerrar la conexi�n */
+/* cerrar la conexión */
 mysqli_close($link);
 			?>
             <input type="submit" name="Submit" value="Continuar" onClick="return Enviar(this.form);">

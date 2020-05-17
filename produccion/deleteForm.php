@@ -1,5 +1,5 @@
 <?php
-	include "includes/valAcc.php";
+	include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -12,8 +12,8 @@
 	include "includes/conect.php";
 	$IdForm = $_POST['IdForm'];
 	$link=conectarServidor();
-	$qrydet="delete from det_formula where Id_formula=$IdForm";
-	$qryform="delete from formula where Id_form=$IdForm";
+	$qrydet="delete from det_formula where idFormula=$IdForm";
+	$qryform="delete from formula where idFormula=$IdForm";
 	if($result1=mysqli_query($link,$qrydet))
 	{
 		if($result1=mysqli_query($link,$qryform))
@@ -27,7 +27,7 @@
 			//$ResutLog=mysql_db_query("users",$qryAcces);
 			/*********FIN DEL LOG CREACION*****/
 			$ruta="deleteFormula.php";
-			mover_pag($ruta,"Formulación eliminada correctamente");
+			mover_pag($ruta,"FormulaciÃ³n eliminada correctamente");
 		}
 	
 	

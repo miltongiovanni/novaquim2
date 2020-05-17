@@ -1,12 +1,12 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <?php
 require('fpdf.php');
 
 class PDF extends FPDF
 {
-//Cabecera de página
+//Cabecera de pÃ¡gina
 function Header()
 {
 	//Logo
@@ -15,31 +15,31 @@ function Header()
 	$this->SetFont('Arial','B',16);
 	//Movernos a la derecha
 	$this->SetXY(70,45);
-	//Título
-	$this->Cell(70,10,'ORDEN DE PRODUCCIÓN',0,0,'C');
-	//Salto de línea
+	//TÃ­tulo
+	$this->Cell(70,10,'ORDEN DE PRODUCCIÃ“N',0,0,'C');
+	//Salto de lÃ­nea
 	$this->Ln(15);
 }
 
-//Pie de página
+//Pie de pÃ¡gina
 function Footer()
 {
-	//Posición: a 1,5 cm del final
+	//PosiciÃ³n: a 1,5 cm del final
 	$this->SetY(-15);
 	//Arial italic 8
 	$this->SetFont('Arial','',10);
-	//Número de página
-	$this->Cell(0,10,'Verificó: ______________________________________   Aprobó: __________________________________',0,0,'C');
+	//NÃºmero de pÃ¡gina
+	$this->Cell(0,10,'VerificÃ³: ______________________________________   AprobÃ³: __________________________________',0,0,'C');
 }
 }
 
-//Creación del objeto de la clase heredada
+//CreaciÃ³n del objeto de la clase heredada
 include "includes/conect.php";
 $link=conectarServidor();
 $Lote=$_POST['Lote'];
-$qryord="select Lote, Fch_prod, Cant_kg, Cod_persona,ord_prod.Cod_prod as Codigo, Nom_produc, Nom_form, nom_personal, Den_min, Den_max ,pH_min, pH_max, Fragancia, Color, Apariencia
+$qryord="select Lote, Fch_prod, Cant_kg, Cod_persona,ord_prod.Cod_prod as Codigo, Nom_produc, nomFormula, nom_personal, Den_min, Den_max ,pH_min, pH_max, Fragancia, Color, Apariencia
 		from ord_prod, formula, productos, personal
-		WHERE ord_prod.Id_form=formula.Id_form and formula.Cod_prod=productos.Cod_produc
+		WHERE ord_prod.Id_form=formula.idFormula and formula.codProducto=productos.Cod_produc
 		and ord_prod.Cod_persona=personal.Id_personal and Lote=$Lote;";
 $resultord=mysqli_query($link,$qryord);
 $roword=mysqli_fetch_array($resultord);
@@ -49,7 +49,7 @@ $pdf->AliasNbPages();
 $pdf->AddPage();
 $pdf->SetFont('Arial','',12);
 $pdf->SetXY(10,55);
-$pdf->Cell(45,6,'Fecha de Producción : ');
+$pdf->Cell(45,6,'Fecha de ProducciÃ³n : ');
 $pdf->Cell(75,6,$roword['Fch_prod']);
 $pdf->Cell(25,6,'No. de Lote: ');
 $pdf->Cell(30,6,$roword['Lote'],0,1);
@@ -57,14 +57,14 @@ $pdf->Cell(20,6,'Producto : ');
 $pdf->Cell(100,6,$roword['Nom_produc']);
 $pdf->Cell(30,6,'Responsable : ');
 $pdf->Cell(40,6,$roword['nom_personal'],0,1);
-$pdf->Cell(20,6,'Fórmula : ');
+$pdf->Cell(20,6,'FÃ³rmula : ');
 $pdf->Cell(100,6,$roword['Nom_form']);
 $pdf->Cell(30,6,'Cantidad (Kg): ');
 $pdf->Cell(30,6,$roword['Cant_kg'],0,1);
 $pdf->SetXY(15,75);
 $pdf->SetFont('Arial','B',10);
 $pdf->Cell(10,5,'Orden', 0,0,'C');
-$pdf->Cell(20,5,'Código', 0,0,'C');
+$pdf->Cell(20,5,'CÃ³digo', 0,0,'C');
 $pdf->Cell(60,5,'Materia Prima ', 0,0,'C');
 $pdf->Cell(20,5,'Lote M Prima ', 0,0,'C');
 $pdf->Cell(40,5,'Cantidad (Kg)',0,0,'C');
@@ -92,14 +92,14 @@ $i= $i+1 ;
 }
 
 $pdf->SetXY(10,165);
-$pdf->Cell(0,10,'Elaboró: ______________________________________',0,0,'L');
+$pdf->Cell(0,10,'ElaborÃ³: ______________________________________',0,0,'L');
 $pdf->SetFont('Arial','B',16);
 $pdf->SetXY(70,180);
 $pdf->Cell(70,10,'CONTROL DE CALIDAD',0,0,'C');
 $pdf->SetXY(10,190);
 $pdf->SetFont('Arial','B',10);
 $pdf->Cell(80,8,'Propiedad', 0,0,'C');
-$pdf->Cell(60,8,'Especificación', 0,0,'C');
+$pdf->Cell(60,8,'EspecificaciÃ³n', 0,0,'C');
 $pdf->Cell(30,8,'Valor ',0,0,'C');
 $pdf->Ln(5);
 $pdf->SetFont('Arial','',10);
@@ -138,7 +138,7 @@ $prod_pres=$rowenv['Nombre'];
 $pdf->Cell(25);
 $pdf->Cell(20,5,$cod_pres,0,0,'C');
 $pdf->Cell(100,5,$prod_pres,0,0,'R');
-//$pdf->Cell(100,5,'Cera Polimérica Económica Nova Sin Fragancia por 5 Galones',0,0,'R');
+//$pdf->Cell(100,5,'Cera PolimÃ©rica EconÃ³mica Nova Sin Fragancia por 5 Galones',0,0,'R');
 $pdf->Cell(40,5,'________________',0,0,'C');
 $pdf->Ln(5);
 }*/
@@ -150,7 +150,7 @@ $pdf->Line(10,256,200,256);
 mysqli_free_result($result);
 mysqli_free_result($resultord);
 mysqli_free_result($resultenv);
-/* cerrar la conexión */
+/* cerrar la conexiÃ³n */
 mysqli_close($link);
 $pdf->Output();
 ?>

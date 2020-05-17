@@ -1,5 +1,5 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <?php
 //ESTOS SON LOS DATOS QUE RECIBE PARA CREAR EL KIT
@@ -11,7 +11,7 @@ foreach ($_POST as $nombre_campo => $valor)
 		eval($asignacion); 
 	}  
 $link=conectarServidor();   
-/*CREACIÓN DEL KIT*/
+/*CREACIÃ“N DEL KIT*/
 $sql="select MAX(Id_kit) AS Cod_kit from kit;";						
 $result = mysqli_query($link, $sql);
 $row= mysqli_fetch_array($result);
@@ -24,7 +24,7 @@ $qry1="insert into kit (Id_kit, Codigo, Cod_env) values ($codkit, $Codigo, $Cod_
 if($result1=mysqli_query($link,$qry1))
 {
 	mysqli_close($link);
-	mover("listarkits.php","Kit Creado con Éxito");
+	mover("listarkits.php","Kit Creado con Ã‰xito");
 }
 else
 {	

@@ -1,13 +1,13 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <title>Lista de Cotizaciones Personalizadas</title>
 <meta charset="utf-8">
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-<script  src="scripts/validar.js"></script>
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+<script  src="../js/validar.js"></script>
     <script >	function togglecomments (postid) {
 		var whichpost = document.getElementById(postid);
 		if (whichpost.className=="commentshown") { whichpost.className="commenthidden"; } else { whichpost.className="commentshown"; }
@@ -18,7 +18,7 @@ include "includes/valAcc.php";
 <div id="saludo1"><strong>LISTA DE COTIZACIONES PERSONALIZADAS</strong></div>
 <table align="center" width="100%" border="0">
   <tr> 
-        <td><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men&uacute;">
+        <td><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú">
         </div></td>
     </tr>
 </table>
@@ -27,9 +27,9 @@ include "includes/valAcc.php";
     <th width="2%" class="formatoEncabezados"></th>
     <th width="3%" class="formatoEncabezados">Id</th>
     <th width="29%" class="formatoEncabezados">Cliente</th>
-    <th width="16%" class="formatoEncabezados">Categor&iacute;a Cliente</th>
+    <th width="16%" class="formatoEncabezados">Categoría Cliente</th>
     <th width="14%" class="formatoEncabezados">Vendedor</th>
-    <th width="12%" class="formatoEncabezados">Fecha Cotizaci&oacute;n</th>
+    <th width="12%" class="formatoEncabezados">Fecha Cotización</th>
     <th width="10%" class="formatoEncabezados">Precio</th>
   </tr>   
 <?php
@@ -67,7 +67,7 @@ include "includes/valAcc.php";
 	$resulti=mysqli_query($link,$sqli);
 	  echo '<tr><td colspan="9"><div class="commenthidden" id="UniqueName'.$a.'"><table width="100%" border="0" align="center" cellspacing="0" bordercolor="#CCCCCC">
 	  <tr>
-      <th width="6%" class="formatoEncabezados">C&oacute;digo</th>
+      <th width="6%" class="formatoEncabezados">Código</th>
 	  <th width="50%" class="formatoEncabezados">Producto</th>
       <th width="5%" class="formatoEncabezados">Cantidad</th>
 	  <th width="15%" class="formatoEncabezados">Precio Venta</th>
@@ -87,7 +87,7 @@ include "includes/valAcc.php";
 	 mysqli_close($link);//Cerrar la conexion
 ?>
 </table>
-<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men&uacute;"></div>
+<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú"></div>
 </div>
 </body>
 </html>

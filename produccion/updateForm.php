@@ -1,12 +1,12 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 include "includes/conect.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Acualizaci&oacute;n</title>
+<title>Acualización</title>
 </head>
 <body>
 <?php
@@ -14,7 +14,7 @@ include "includes/conect.php";
 	$cod_form=$_POST['IdForm'];
 	$cod_mprima=$_POST['mprima'];
 	$percent=$_POST['percent']/100;
-	$qryinv="update det_formula set porcentaje=$percent, Orden=$Orden where Id_formula=$cod_form and Cod_mprima=$cod_mprima";
+	$qryinv="update det_formula set porcentaje=$percent, Orden=$Orden where idFormula=$cod_form and codMPrima=$cod_mprima";
 	echo'<form action="detFormula.php" method="post" name="formulario">';
 	$link=conectarServidor();
 	$result=mysqli_query($link,$qryinv);
@@ -25,7 +25,7 @@ include "includes/conect.php";
 	{
 		$ruta="menu.php";
 		mysqli_close($link);
-		mover_pag($ruta,"Formulaci�n Actualizada correctamente");
+		mover_pag($ruta,"Formulación Actualizada correctamente");
 	}
 	echo'</form>';
 	

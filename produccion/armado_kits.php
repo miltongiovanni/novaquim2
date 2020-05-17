@@ -1,5 +1,5 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <?php
 include "includes/conect.php";
@@ -12,7 +12,7 @@ foreach ($_POST as $nombre_campo => $valor)
 // $Cod_kit,  $Cantidad, $Fecha
 //Envasado
 $link=conectarServidor();   
-//COMIENZA LA TRANSACCIÓN
+//COMIENZA LA TRANSACCIÃ“N
 
 
 /* disable autocommit */
@@ -94,7 +94,7 @@ while($row2=mysqli_fetch_array($result2))
 			mysqli_rollback($link);
 			mysqli_close($link);
 			echo'<script >
-			alert("No hay suficiente inventario de '.$prod_nova.' sólo hay '.$inventario.' unidades")
+			alert("No hay suficiente inventario de '.$prod_nova.' sÃ³lo hay '.$inventario.' unidades")
 			self.location="arm_kits.php"
 			</script>';
 		}
@@ -120,7 +120,7 @@ while($row2=mysqli_fetch_array($result2))
 			mysqli_rollback($link);
 			mysqli_close($link);
 			echo'<script >
-			alert("No hay suficiente inventario de '.$prod_dist.' sólo hay '.$invt.' unidades")
+			alert("No hay suficiente inventario de '.$prod_dist.' sÃ³lo hay '.$invt.' unidades")
 			self.location="arm_kits.php"
 			</script>';
 		}
@@ -176,7 +176,7 @@ while($row2=mysqli_fetch_array($result2))
 	mysqli_autocommit($link, TRUE);
 	mysqli_close($link);
 	echo'<script >
-	alert("Kit Creados y Cargados con Éxito")
+	alert("Kit Creados y Cargados con Ã‰xito")
 	self.location="listar_arm_kits.php"
 	</script>';
 ?>

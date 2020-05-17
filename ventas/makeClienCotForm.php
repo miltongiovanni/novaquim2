@@ -1,14 +1,14 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 include "includes/conect.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-<title>Creaci&oacute;n de Clientes para Cotizaci&oacute;n</title>
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+<title>Creación de Clientes para Cotización</title>
 <meta charset="utf-8">
-<script  src="scripts/validar.js"></script>
+<script  src="../js/validar.js"></script>
 <script  src="scripts/block.js"></script>	
 <script >
 document.onkeypress = stopRKey; 
@@ -44,7 +44,7 @@ if (($crear==2)&&($CliExis == 1))
 
 }
 ?>   
-<div id="saludo"><strong>CREACI&Oacute;N DE CLIENTES PARA COTIZACI&Oacute;N</strong></div>
+<div id="saludo"><strong>CREACIÓN DE CLIENTES PARA COTIZACIÓN</strong></div>
 <?php
 if (($crear==1)&&($CliExis==1))
 {
@@ -121,14 +121,14 @@ if ((($crear==1)&&($CliExis == 0))||($crear!=1))
         ?></td>
   </tr>
   <tr> 
-    <td><div align="right"><b>Direcci&oacute;n</b></div></td>
+    <td><div align="right"><b>Dirección</b></div></td>
     <td colspan="3"><input type="text"  maxlength="60" name="Direccion" size=60 id="Direccion"
     <?php 
     if($CliExis == 1)
     echo 'value="'.$rowb['Dir_clien'].'"';
     ?>
     ></td>
-    <td><div align="right"><strong>Tel&eacute;fono</strong></div></td>
+    <td><div align="right"><strong>Teléfono</strong></div></td>
     <td><input type="text" name="Tel1" maxlength="7" size=15 onKeyPress="return aceptaNum(event)" id="Tel1"
     <?php
     if($CliExis == 1)

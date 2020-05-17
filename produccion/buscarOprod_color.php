@@ -1,24 +1,21 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css"><head>
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css"><head>
 <meta charset="utf-8">
-<title>Modificar consumo de Materia Prima por Orden de Producci&oacute;n</title>
-<script  src="scripts/validar.js"></script>
-<script  src="scripts/block.js"></script>
-	<script >
-	document.onkeypress = stopRKey; 
-	</script>
+<title>Modificar consumo de Materia Prima por Orden de Producción</title>
+<script  src="../js/validar.js"></script>
+
 </head>
 <body>
 <div id="contenedor">
-<div id="saludo"><strong>SELECCI&Oacute;N ORDEN DE PRODUCCI&Oacute;N DE COLOR A MODIFICAR</strong></div>
+<div id="saludo"><strong>SELECCIÓN ORDEN DE PRODUCCIÓN DE COLOR A MODIFICAR</strong></div>
 <form id="form1" name="form1" method="post" action="detO_Prod_col.php">
 <table border="0" align="center" summary="cuerpo">
     <tr> 
-        <td width="231"><div align="right"><strong>Orden de Producci&oacute;n de Color&nbsp;</strong></div></td>
+        <td width="231"><div align="right"><strong>Orden de Producción de Color&nbsp;</strong></div></td>
         <td width="111"><input type="text" name="Lote" size=10 onKeyPress="return aceptaNum(event)"></td>
     </tr>
     <tr>

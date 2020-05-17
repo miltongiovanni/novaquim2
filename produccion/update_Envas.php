@@ -1,12 +1,12 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 include "includes/conect.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="utf-8">
-<title>Acualizaci&oacute;n</title>
+<title>Acualizaci√≥n</title>
 </head>
 <body>
 <?php
@@ -53,7 +53,7 @@ include "includes/conect.php";
 		$qry_up_etq="update inv_etiquetas set invEtiq=$inv_etq where codEtiq=$cod_etq";
 		$result_up_etq=mysqli_query($link,$qry_up_etq);		
 		echo' <script >
-				alert("ActualizaciÛn Realizada con …xito");
+				alert("Actualizaci√≥n Realizada con √âxito");
 			</script>';
 	}
 	else
@@ -95,7 +95,7 @@ include "includes/conect.php";
 		$qry_up_etq="update inv_etiquetas set invEtiq=$inv_etq where codEtiq=$cod_etq";
 		$result_up_etq=mysqli_query($link,$qry_up_etq);		
 		echo' <script >
-				alert("ActualizaciÛn Realizada con …xito");
+				alert("Actualizaci√≥n Realizada con √âxito");
 			</script>';
 	}
 	$qry="update envasado set Can_prese=$cantidad where Lote=$Lote and Con_prese=$cod_pres";

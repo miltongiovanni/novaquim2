@@ -1,13 +1,13 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
 <meta charset="utf-8">
-<title>Seleccionar F&oacute;rmula a Actualizar</title>
-	<script  src="scripts/validar.js"></script>
+<title>Seleccionar Fórmula a Actualizar</title>
+	<script  src="../js/validar.js"></script>
 	<script  src="scripts/block.js"></script>
 	<script >
     document.onkeypress=stopRKey; 
@@ -15,11 +15,11 @@ include "includes/valAcc.php";
 </head>
 <body>
 <div id="contenedor">
-<div id="saludo"><strong>ENVASADO POR ORDEN DE PRODUCCI&Oacute;N</strong></div>
+<div id="saludo"><strong>ENVASADO POR ORDEN DE PRODUCCIÓN</strong></div>
 <form id="form1" name="form1" method="post" action="det_Envasado.php">	
 <table border="0" align="center" summary="detalle">
     <tr> 
-        <td width="177"><div align="right"><strong>Orden de Producci&oacute;n&nbsp;</strong></div></td>
+        <td width="177"><div align="right"><strong>Orden de Producción&nbsp;</strong></div></td>
         <td width="120"><?php
 			include "includes/conect.php";
 			$link=conectarServidor();
@@ -32,7 +32,7 @@ include "includes/valAcc.php";
 			}
 			echo'</select>';
 			mysqli_free_result($result);
-/* cerrar la conexi�n */
+/* cerrar la conexión */
 mysqli_close($link);
 		?></td>
     </tr>

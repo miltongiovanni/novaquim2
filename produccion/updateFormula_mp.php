@@ -1,22 +1,19 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 include "includes/conect.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
 <meta charset="utf-8">
-<title>Actualizar Formulaci&oacute;n de Color</title>
-<script  src="scripts/validar.js"></script>
-<script  src="scripts/block.js"></script>
-	<script >
-	document.onkeypress = stopRKey; 
-	</script>
+<title>Actualizar Formulación de Color</title>
+<script  src="../js/validar.js"></script>
+
 </head>
 <body>
 <div id="contenedor">
-<div id="saludo"><strong>ACTUALIZACI&Oacute;N DE FORMULACI&Oacute;N DE MATERIA PRIMA</strong></div> 
+<div id="saludo"><strong>ACTUALIZACIÓN DE FORMULACIÓN DE MATERIA PRIMA</strong></div> 
 <form action="updateForm_mp.php" method="post" name="actualiza">
 <table width="34%" border="0" align="center" summary="cuerpo">
   <tr>
@@ -47,7 +44,7 @@ include "includes/conect.php";
  	echo '</td>';	
 	echo '</tr>';
 	mysqli_free_result($result);
-/* cerrar la conexi�n */
+/* cerrar la conexión */
 mysqli_close($link);
 	?>
 	<tr >

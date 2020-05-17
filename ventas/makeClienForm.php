@@ -1,21 +1,18 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-	<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<title>Creaci&oacute;n de Clientes</title>
+	<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+	<title>Creación de Clientes</title>
 	<meta charset="utf-8">
-	<script  src="scripts/validar.js"></script>
-	<script  src="scripts/block.js"></script>
-		<script >
-	document.onkeypress = stopRKey; 
-	</script>
+	<script  src="../js/validar.js"></script>
+
 </head>
 <body>
 <div id="contenedor">
-<div id="saludo"><strong>CREACI&Oacute;N DE CLIENTES</strong></div>
+<div id="saludo"><strong>CREACIÓN DE CLIENTES</strong></div>
 <form name="form2" method="POST" action="makeClien.php">
     <table border="0" align="center" >
         <tr>
@@ -27,7 +24,7 @@ include "includes/valAcc.php";
             <input name="tipo" type="radio" id="tipo_0" value="1" checked> 
             Nit
             <input type="radio" name="tipo" value="2" id="tipo_1"> 
-            C&eacute;dula                    		</td>
+            Cédula                    		</td>
         </tr>
         <tr> 
             <td><div align="right"><b>No:</b></div></td>

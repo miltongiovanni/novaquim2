@@ -1,13 +1,13 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-	<title>Cargar Envase como Producto de Distribuci&oacute;n</title>
+	<title>Cargar Envase como Producto de Distribución</title>
 	<meta charset="utf-8">
-	<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<script  src="scripts/validar.js"></script>
+	<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+	<script  src="../js/validar.js"></script>
 	<script  src="scripts/block.js"></script>
     <link rel="stylesheet" type="text/css" media="all" href="css/calendar-blue2.css" title="blue">
     <script  src="scripts/calendar.js"></script>
@@ -19,7 +19,7 @@ include "includes/valAcc.php";
 </head>
 <body>
 <div id="contenedor">
-<div id="saludo"><strong>CARGAR ENVASE AL INVENTARIO DE DISTRIBUCI&Oacute;N</strong></div> 
+<div id="saludo"><strong>CARGAR ENVASE AL INVENTARIO DE DISTRIBUCIÓN</strong></div> 
 <table width="40%"  align="center" border="0">
     <?php
 		include "includes/conect.php";
@@ -51,7 +51,7 @@ mysqli_close($link);
 </table>
 <table width="27%" border="0" align="center">
     <tr> 
-        <td><div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men&uacute;">
+        <td><div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú">
         </div></td>
     </tr>
 </table> 

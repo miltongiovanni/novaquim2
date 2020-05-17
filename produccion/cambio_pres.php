@@ -1,5 +1,5 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 include "includes/conect.php";
 ?>
 <!DOCTYPE html>
@@ -7,8 +7,8 @@ include "includes/conect.php";
 <head>
 	<title>Ingreso de Compra de Materia Prima</title>
 	<meta charset="utf-8">
-	<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<script  src="scripts/validar.js"></script>
+	<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+	<script  src="../js/validar.js"></script>
 	<script  src="scripts/block.js"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="css/calendar-blue2.css" title="blue">
 	<script  src="scripts/calendar.js"></script>
@@ -21,7 +21,7 @@ include "includes/conect.php";
 </head>
 <body> 
 <div id="contenedor">
-<div id="saludo"><strong>CAMBIO DE PRESENTACI&Oacute;N DE PRODUCTO</strong></div>
+<div id="saludo"><strong>CAMBIO DE PRESENTACIÓN DE PRODUCTO</strong></div>
 <form method="post" action="det_cambio_pres.php" name="form1">
 	<table  align="center" border="0">
 		<tr>

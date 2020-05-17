@@ -1,5 +1,5 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 include "includes/calcularDias.php";
 ?>
 <!DOCTYPE html>
@@ -7,12 +7,9 @@ include "includes/calcularDias.php";
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
 <title>Estado de Cuenta por Cliente</title>
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css" >
-<script  src="scripts/validar.js"></script>
-<script  src="scripts/block.js"></script>
-	<script >
-	document.onkeypress = stopRKey; 
-	</script>
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css" >
+<script  src="../js/validar.js"></script>
+
 </head>
 
 <body>
@@ -35,7 +32,7 @@ foreach ($_POST as $nombre_campo => $valor)
   <tr> <td width="473"><input name="cliente" type="hidden" value="<?php echo $cliente; ?>"></td>
     <td width="127"><input type="submit" name="Submit" value="Exportar a Excel">
     </td>
-     <td width="86"><input type="button" onClick="window.location='menu.php'" value="Ir al Men&uacute;"></td>
+     <td width="86"><input type="button" onClick="window.location='menu.php'" value="Ir al Menú"></td>
   </tr>
 </table></form>
 <table border="0" align="center" cellspacing="0" cellpadding="0">
@@ -47,7 +44,7 @@ foreach ($_POST as $nombre_campo => $valor)
 	<th width="120" align="center" class="formatoEncabezados">Total Factura</th>
     <th width="120" align="center" class="formatoEncabezados">Valor a Cobrar</th>
 	<th width="120" align="center" class="formatoEncabezados">Saldo Pendiente</th>
-	<th width="128" align="center" class="formatoEncabezados">Fecha de Cancelaci&oacute;n</th>
+	<th width="128" align="center" class="formatoEncabezados">Fecha de Cancelación</th>
     <th width="42" align="center" class="formatoEncabezados">Estado</th>
   </tr>   
 <?php
@@ -114,7 +111,7 @@ mysqli_free_result($result);
 mysqli_close($link);
 ?>
 </table>
-<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men&uacute;"></div>
+<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú"></div>
 </div>
 </body>
 </html>

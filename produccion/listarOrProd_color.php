@@ -1,29 +1,29 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<title>Lista de &Oacute;rdenes de Producci&oacute;n de Color</title>
+<title>Lista de 脫rdenes de Producci贸n de Color</title>
 <meta charset="utf-8">
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<script  src="scripts/validar.js"></script>
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+	<script  src="../js/validar.js"></script>
 </head>
 <body>
 <div id="contenedor">
-<div id="saludo1"><strong>LISTA DE &Oacute;RDENES DE PRODUCCI&Oacute;N DE COLOR</strong></div>
+<div id="saludo1"><strong>LISTA DE 脫RDENES DE PRODUCCI脫N DE COLOR</strong></div>
 
 <table width="100%" border="0" summary="encabezado">
   <tr> 
-      <td><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men&uacute;"></div></td>
+      <td><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men煤"></div></td>
   </tr>
 </table>
 <table border="0" align="center" cellspacing="0" summary="cuerpo">
 	<tr>
       <th width="33" class="formatoEncabezados"></th>
       <th width="49" class="formatoEncabezados">Lote</th>
-      <th width="232" class="formatoEncabezados">Soluci&oacute;n de Color</th>
-      <th width="106" class="formatoEncabezados">Fecha Producci&oacute;n</th>
+      <th width="232" class="formatoEncabezados">Soluci贸n de Color</th>
+      <th width="106" class="formatoEncabezados">Fecha Producci贸n</th>
       <th width="211" class="formatoEncabezados">Responsable</th>
       <th width="55" class="formatoEncabezados">Cantidad</th>
   </tr>   
@@ -31,7 +31,7 @@ include "includes/valAcc.php";
 include "includes/utilTabla.php";
 include "includes/conect.php" ;
 $link=conectarServidor();
-$sql="	select Lote_color as Lote, Fch_prod as 'Fecha de Producci髇', Nom_mprima as 'Nombre de Producto', Cant_kg as 'Cantidad (Kg)', nom_personal as Responsable  
+$sql="	select Lote_color as Lote, Fch_prod as 'Fecha de Producci贸n', Nom_mprima as 'Nombre de Producto', Cant_kg as 'Cantidad (Kg)', nom_personal as Responsable  
 from ord_prod_col, formula_col, mprimas, personal WHERE Id_form_color=Id_form_col AND Cod_sol_col=Cod_mprima and Cod_persona=Id_personal order by Lote_color desc;";
 $result=mysqli_query($link,$sql);
 $a=1;
@@ -44,19 +44,19 @@ while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
 	<td class="formatoDatos"><div align="center"><a href="javascript:togglecomments('."'".'UniqueName'.$a."'".')">+/-</a></div></td>
 	<td class="formatoDatos"><div align="center">'.$row['Lote'].'</div></td>
 	<td class="formatoDatos"><div align="left">'.$row['Nombre de Producto'].'</div></td>
-	<td class="formatoDatos"><div align="center">'.$row['Fecha de Producci髇'].'</div></td>
+	<td class="formatoDatos"><div align="center">'.$row['Fecha de Producci贸n'].'</div></td>
 	<td class="formatoDatos"><div align="center">'.$row['Responsable'].'</div></td>
 	<td class="formatoDatos"><div align="center"><script  > document.write(commaSplit('.$row['Cantidad (Kg)'].')+" Kg")</script></div></td>
 	';
 	
 	echo'</tr>';
-	$sqli="SELECT det_ord_prod_col.Cod_mprima as C骴igo, Nom_mprima, Can_mprima as Cantidad, Lote_MP
+	$sqli="SELECT det_ord_prod_col.Cod_mprima as C贸digo, Nom_mprima, Can_mprima as Cantidad, Lote_MP
 	from det_ord_prod_col, mprimas
 	where det_ord_prod_col.Cod_mprima=mprimas.Cod_mprima and Lote = $lote;";
 	$resulti=mysqli_query($link,$sqli);
 	echo '<tr><td colspan="7"><div class="commenthidden" id="UniqueName'.$a.'"><table width="60%" border="0" align="center" cellspacing="0" summary="detalle">
 	<tr>
-      <th width="6%" class="formatoEncabezados">C&oacute;digo</th>
+      <th width="6%" class="formatoEncabezados">C贸digo</th>
 	  <th width="20%" class="formatoEncabezados">Materia Prima</th>
   	  <th width="10%" class="formatoEncabezados">Lote MP</th>
       <th width="5%" class="formatoEncabezados">Cantidad</th>
@@ -64,7 +64,7 @@ while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
 	while($rowi=mysqli_fetch_array($resulti, MYSQLI_BOTH))
 	{
 	echo '<tr>
-	<td class="formatoDatos"><div align="center">'.$rowi['C骴igo'].'</div></td>
+	<td class="formatoDatos"><div align="center">'.$rowi['C贸digo'].'</div></td>
 	<td class="formatoDatos"><div align="left">'.$rowi['Nom_mprima'].'</div></td>
 	<td class="formatoDatos"><div align="left">'.$rowi['Lote_MP'].'</div></td>
 	<td class="formatoDatos"><div align="center"><script  > document.write(commaSplit('.$rowi['Cantidad'].'))</script></div></td>
@@ -76,11 +76,11 @@ while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
 }
 mysqli_free_result($result);
 mysqli_free_result($resulti);
-/* cerrar la conexi髇 */
+/* cerrar la conexi贸n */
 mysqli_close($link);
 ?>
 </table>
-<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men&uacute;"></div>
+<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men煤"></div>
 </div>
 </body>
 </html>

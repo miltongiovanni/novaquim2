@@ -1,17 +1,14 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <title>Anular Orden de Producci&oacute;n</title>
+    <title>Anular Orden de Producción</title>
     <meta charset="utf-8">
-    <link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-    <script  src="scripts/validar.js"></script>
-    <script  src="scripts/block.js"></script>
-    	<script >
-	document.onkeypress = stopRKey; 
-	</script>
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script  src="../js/validar.js"></script>
+
 </head>
 <body> 
 <?php

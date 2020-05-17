@@ -14,10 +14,18 @@ foreach ($_POST as $nombre_campo => $valor) {
     //echo $nombre_campo . " = " . $valor . "<br>";
     eval($asignacion);
 }
-$_SESSION['idEgreso'] = $idEgreso;
-header("Location: egreso.php");
-exit;
+$egresoOperador= new EgresoOperaciones();
+if (!$egresoOperador->isValidIdEgreso($idEgreso)) {
+    echo ' <script >
+				alert("El número del egreso no es válido, vuelva a intentar de nuevo");
+				history.back();
+			</script>';
+} else {
 
+    $_SESSION['idEgreso'] = $idEgreso;
+    header("Location: egreso.php");
+    exit;
+}
 
 
 

@@ -1,13 +1,13 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
 <meta charset="utf-8">
-<title>Seleccionar Producto a revisar Producci&oacute;n</title>
-<script  src="scripts/validar.js"></script>
+<title>Seleccionar Producto a revisar Producción</title>
+<script  src="../js/validar.js"></script>
 <script  src="scripts/block.js"></script>	
 	<script >
 	document.onkeypress = stopRKey; 
@@ -16,7 +16,7 @@ include "includes/valAcc.php";
 </head>
 <body>
 <div id="contenedor">
-<div id="saludo"><strong>SELECCIONAR EL PRODUCTO A REVISAR PRODUCCI&Oacute;N</strong></div>
+<div id="saludo"><strong>SELECCIONAR EL PRODUCTO A REVISAR PRODUCCIÓN</strong></div>
 <form id="form1" name="form1" method="post" action="listarEnvasadoProd.php">
 <table border="0" align="center" width="700" summary="seleccionar producto a revisar produccion">
   	<tr>

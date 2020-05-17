@@ -1,13 +1,13 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<title>Lista de Envasado por Orden de Producci&oacute;n</title>
+<title>Lista de Envasado por Orden de Producci贸n</title>
 <meta charset="utf-8">
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<script  src="scripts/validar.js"></script>
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+	<script  src="../js/validar.js"></script>
     <script >	function togglecomments (postid) {
 		var whichpost = document.getElementById(postid);
 		if (whichpost.className=="commentshown") { whichpost.className="commenthidden"; } else { whichpost.className="commentshown"; }
@@ -30,10 +30,10 @@ foreach ($_POST as $nombre_campo => $valor)
 } 
 ?>
 <div id="saludo1"><strong>LISTADO DE ENVASADO DE<?php echo " ".strtoupper($rowbus['Nom_produc'])." ";  ?>
-POR ORDEN DE PRODUCCI&Oacute;N</strong></div>
+POR ORDEN DE PRODUCCI脫N</strong></div>
 <table width="700" align="center" border="0" summary="title">
   <tr> 
-      <td><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men&uacute;">
+      <td><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men煤">
       </div></td>
   </tr>
 </table>
@@ -42,13 +42,13 @@ POR ORDEN DE PRODUCCI&Oacute;N</strong></div>
       <th width="23" align="center" class="formatoEncabezados"></th>
       <th width="76" align="center" class="formatoEncabezados">Lote</th>
       <th width="338" align="center" class="formatoEncabezados">Producto</th>
-    <th width="106" align="center" class="formatoEncabezados">Fecha Producci&oacute;n</th>
+    <th width="106" align="center" class="formatoEncabezados">Fecha Producci贸n</th>
       <th width="171" align="center" class="formatoEncabezados">Responsable</th>
     <th width="92" align="center" class="formatoEncabezados">Cantidad</th>
   </tr>   
 <?php
 //sentencia SQL    tblusuarios.IdUsuario,
-$sql="	SELECT ord_prod.Lote, Fch_prod as 'Fecha de Producci髇', Nom_produc as 'Nombre de Producto', 
+$sql="	SELECT ord_prod.Lote, Fch_prod as 'Fecha de Producci贸n', Nom_produc as 'Nombre de Producto', 
 Cant_kg as 'Cantidad (Kg)', nom_personal as Responsable
 FROM ord_prod, productos, personal, envasado
 WHERE  Cod_prod=Cod_produc and Cod_persona=Id_personal and ord_prod.Lote=envasado.Lote and Cod_produc=$producto
@@ -64,7 +64,7 @@ while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
 	<td class="formatoDatos"><div align="center"><a href="javascript:togglecomments('."'".'UniqueName'.$a."'".')">+/-</a></div></td>
 	<td class="formatoDatos"><div align="center">'.$row['Lote'].'</div></td>
 	<td class="formatoDatos"><div align="left">'.$row['Nombre de Producto'].'</div></td>
-	<td class="formatoDatos"><div align="center">'.$row['Fecha de Producci髇'].'</div></td>
+	<td class="formatoDatos"><div align="center">'.$row['Fecha de Producci贸n'].'</div></td>
 	<td class="formatoDatos"><div align="center">'.$row['Responsable'].'</div></td>
 	<td class="formatoDatos"><div align="center"><script  > document.write(commaSplit('.$row['Cantidad (Kg)'].'))</script></div></td>
 	';
@@ -75,7 +75,7 @@ while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
 	$resulti=mysqli_query($link,$sqli);
 	echo '<tr><td colspan="7"><div class="commenthidden" id="UniqueName'.$a.'"><table width="80%" border="0" align="center" cellspacing="0" summary="Cuerpo">
 	<tr>
-      <th width="6%" class="formatoEncabezados">C&oacute;digo</th>
+      <th width="6%" class="formatoEncabezados">C贸digo</th>
 	  <th width="50%" class="formatoEncabezados">Producto</th>
       <th width="5%" class="formatoEncabezados">Cantidad</th>
   	</tr>';
@@ -95,7 +95,7 @@ mysqli_close($link);//Cerrar la conexion
 ?>
 
 </table>
-<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men&uacute;"></div>
+<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men煤"></div>
 </div>
 </body>
 </html>

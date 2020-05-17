@@ -1,22 +1,19 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<title>Ingreso de Compra de Productos de Distribuci&oacute;n</title>
+<title>Ingreso de Compra de Productos de Distribución</title>
 <meta charset="utf-8">
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<script  src="scripts/validar.js"></script>
-	<script  src="scripts/block.js"></script>
-    	<script >
-	document.onkeypress = stopRKey; 
-	</script>
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+	<script  src="../js/validar.js"></script>
+
 
 </head>
 <body> 
 <div id="contenedor">
-<div id="saludo1"><strong>DETALLE COMPRA DE DISTRIBUCI&Oacute;N</strong></div>
+<div id="saludo1"><strong>DETALLE COMPRA DE DISTRIBUCIÓN</strong></div>
 <?php
 include "includes/conect.php";
 include "includes/calcularDias.php";
@@ -275,13 +272,13 @@ if($CrearFactura==6)
     <tr>
     <td width="28%" colspan="1"><div align="right"><strong>NIT</strong></div></td>
       <td colspan="3"><?php echo  $row['nit_prov']?></td>
-      <td width="14%" colspan="1" ><div align="right"><strong>Retenci&oacute;n Cree</strong></div></td>
+      <td width="14%" colspan="1" ><div align="right"><strong>Retención Cree</strong></div></td>
       <td colspan="2"><div align="left"><?php echo '$ <script  > document.write(commaSplit('.$row['ret_ica'].'))</script>' ;?> </div></td>
      </tr>
     <tr>
       <td align="right"><strong>Fecha de Factura</strong></td>
       <td colspan="3" ><?php echo $row['Fech_comp'];?></td>
-      <td width="14%" colspan="1" ><div align="right"><strong>Retenci&oacute;n</strong></div></td>
+      <td width="14%" colspan="1" ><div align="right"><strong>Retención</strong></div></td>
       <td colspan="2"><div align="left"><?php echo '$ <script  > document.write(commaSplit('.$row['retencion'].'))</script>' ;?> </div></td>
     </tr>
     <tr>
@@ -297,7 +294,7 @@ if($CrearFactura==6)
 	if ($estadoc!=7)
 	{
 	echo '<tr>
-      <td colspan="2"><div align="center"><strong>Producto de Distribuci&oacute;n</strong></div></td>
+      <td colspan="2"><div align="center"><strong>Producto de Distribución</strong></div></td>
       <td colspan="2"><div align="center"><strong>Cantidad</strong></div></td>
       <td colspan="3"><div align="center"><strong>Precio Unitario (Sin IVA)</strong></div></td>
     </tr>
@@ -336,7 +333,7 @@ if($CrearFactura==6)
 <table border="0" align="center" summary="detalle">
 <tr>
    	  <th width="61"></th>
-      <th width="55" align="center">C&oacute;digo</th>
+      <th width="55" align="center">Código</th>
             <th width="339" align="center">Producto</th>
       <th width="47" align="center">Iva</th>
             <th width="66" align="center">Cantidad </th>

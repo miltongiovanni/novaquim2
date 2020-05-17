@@ -1,29 +1,26 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <title>Detalle Control de Calidad de producto</title>
     <meta charset="utf-8">
-    <link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-    <script  src="scripts/validar.js"></script>
-    <script  src="scripts/block.js"></script>
-    	<script >
-	document.onkeypress = stopRKey; 
-	</script>
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script  src="../js/validar.js"></script>
+
 </head>
 <body> 
 <div id="contenedor">
-<div id="saludo1"><strong>CONTROL DE CALIDAD POR PRODUCCI&Oacute;N</strong></div>
+<div id="saludo1"><strong>CONTROL DE CALIDAD POR PRODUCCI脫N</strong></div>
 <table border="0" align="center" width="57%" >
 <?php
 	include "includes/conect.php";
 	$link=conectarServidor();
 	$Lote=$_POST['Lote'];
-	$qryord="select Lote, Fch_prod, Cant_kg, Cod_persona, Nom_produc, Nom_form, nom_personal, Den_min, Den_max ,pH_min, pH_max, Fragancia, Color, Apariencia, Estado 
+	$qryord="select Lote, Fch_prod, Cant_kg, Cod_persona, Nom_produc, nomFormula, nom_personal, Den_min, Den_max ,pH_min, pH_max, Fragancia, Color, Apariencia, Estado 
 			from ord_prod, formula, productos, personal
-			WHERE ord_prod.Id_form=formula.Id_form and formula.Cod_prod=productos.Cod_produc
+			WHERE ord_prod.Id_form=formula.idFormula and formula.codProducto=productos.Cod_produc
 			and ord_prod.Cod_persona=personal.Id_personal and Lote=$Lote;";
 	$resultord=mysqli_query($link,$qryord);
 	$roword=mysqli_fetch_array($resultord);
@@ -31,7 +28,7 @@ include "includes/valAcc.php";
 		mysqli_close($link);
 	else
 	{
-		mover("buscarOProd.php","No existe la Orden de Producci髇");
+		mover("buscarOProd.php","No existe la Orden de Producci贸n");
 		mysqli_close($link);
 	}
 	$est=$roword['Estado'];
@@ -56,7 +53,7 @@ function mover($ruta,$mensaje)
 <tr>
       <td width="11%"><div align="right"><strong>Lote</strong></div></td>
     <td width="50%"><div align="left"><?php echo $Lote;?></div></td>
-    <td width="21%"><div align="right"><strong>Fecha de Producci&oacute;n</strong> </div></td>
+    <td width="21%"><div align="right"><strong>Fecha de Producci贸n</strong> </div></td>
     <td width="18%"><?php echo $roword['Fch_prod'];?></td>
   </tr>
 	<tr>
@@ -66,7 +63,7 @@ function mover($ruta,$mensaje)
       <td><div align="left"><?php echo $roword['Cant_kg']; ?> </div></td
     ></tr>
     <tr>
-      <td><div align="right"><strong>F&oacute;rmula</strong></div></td>
+      <td><div align="right"><strong>F贸rmula</strong></div></td>
       <td><?php echo  $roword['Nom_form']?></td>
       <td><div align="right"><strong>Responsable</strong></div></td>
       <td><?php echo  $roword['nom_personal']?></td>
@@ -78,7 +75,7 @@ function mover($ruta,$mensaje)
 <table border="0" align="center" width="42%">
  <tr>
     <td width="26%"><div align="center"><strong>Propiedad</strong></div></td>
-    <td colspan="2"><div align="center"><strong>Especificaci&oacute;n</strong></div></td>
+    <td colspan="2"><div align="center"><strong>Especificaci贸n</strong></div></td>
     <td width="32%"><div align="center"><strong>Valor / Cumple</strong></div></td>
   </tr>
    <tr>
@@ -161,7 +158,7 @@ function mover($ruta,$mensaje)
 </table>
 </form>
 
-<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men&uacute;"></div>
+<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men煤"></div>
 
 </div>
 </body>

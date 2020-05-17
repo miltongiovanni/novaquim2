@@ -1,14 +1,14 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
 <meta charset="utf-8">
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
 <title>Seleccionar Materia Prima a revisar Trazabilidad</title>
-<script  src="scripts/validar.js"></script>
+<script  src="../js/validar.js"></script>
 <script  src="scripts/block.js"></script>
 </head>
 <body>
@@ -36,7 +36,7 @@ foreach ($_POST as $nombre_campo => $valor)
       <td colspan="3" align="left"><div align="left" class="titulo">ENTRADA</div></td>
 </tr>
 <tr>
-      <td width="342" align="center"><strong>Fecha Producci&oacute;n</strong></td><td width="348" align="center"><strong>Unidades</strong></td>
+      <td width="342" align="center"><strong>Fecha Producción</strong></td><td width="348" align="center"><strong>Unidades</strong></td>
 </tr>
 <?php
   $qry="select Fch_prod, Can_prese from envasado, ord_prod where envasado.Lote=ord_prod.Lote and Con_prese=$Id_Prod and envasado.Lote=$lote_prod;";	
@@ -65,7 +65,7 @@ foreach ($_POST as $nombre_campo => $valor)
 ?>
 <tr><td>&nbsp;</td></tr>
 </table>
-<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men&uacute;"></div>
+<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú"></div>
 </div>
 </body>
 </html>

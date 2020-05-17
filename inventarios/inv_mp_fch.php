@@ -1,13 +1,13 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <title>Inventario de Materia Prima</title>
 <meta charset="utf-8">
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<script  src="scripts/validar.js"></script>
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+	<script  src="../js/validar.js"></script>
 </head>
 <body>
 <div id="contenedor">
@@ -24,13 +24,13 @@ foreach ($_POST as $nombre_campo => $valor)
   <tr>
   	<form action="Inv_MP_fch_Xls.php" method="post" target="_blank"><td width="601" align="right">
     <input name="Submit" type="submit" class="resaltado" value="Exportar a Excel"></td><input name="Fch" type="hidden" value="<?php echo $Fch ?>"></form> 
-      <td width="102"><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men&uacute;">
+      <td width="102"><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú">
       </div></td>
   </tr>
 </table>
 <table border="0" align="center" cellspacing="0" width="70%">
 <tr>
-    <th class="formatoEncabezados">C&oacute;digo</th>
+    <th class="formatoEncabezados">Código</th>
     <th class="formatoEncabezados">Materia Prima</th>
     <th class="formatoEncabezados">Cantidad (Kg)</th>
     <th class="formatoEncabezados">Entrada</th>
@@ -104,7 +104,7 @@ mysqli_free_result($results2);
 mysqli_close($link);//Cerrar la conexion
 ?>
 </table>
-<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men&uacute;"></div>
+<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú"></div>
 </div>
 </body>
 </html>

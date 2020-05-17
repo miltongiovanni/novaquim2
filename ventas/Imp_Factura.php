@@ -1,5 +1,5 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?><?php
 require('fpdf.php');
 include "includes/conect.php";

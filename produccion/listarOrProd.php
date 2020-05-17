@@ -1,21 +1,21 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<title>Lista de &Oacute;rdenes de Producci&oacute;n</title>
+<title>Lista de 脫rdenes de Producci贸n</title>
 <meta charset="utf-8">
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<script  src="scripts/validar.js"></script>
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+	<script  src="../js/validar.js"></script>
 </head>
 <body>
 <div id="contenedor">
-<div id="saludo1"><strong>LISTA DE &Oacute;RDENES DE PRODUCCI&Oacute;N</strong></div>
+<div id="saludo1"><strong>LISTA DE 脫RDENES DE PRODUCCI脫N</strong></div>
 
 <table width="100%" border="0" class="formatoDatos" summary="encabezado">
   <tr> 
-      <td><div align="right"><input type="button" class="formatoBoton" onClick="window.location='menu.php'" value="Ir al Men&uacute;"></div></td>
+      <td><div align="right"><input type="button" class="formatoBoton" onClick="window.location='menu.php'" value="Ir al Men煤"></div></td>
   </tr>
 </table>
 <table border="0" align="center" cellspacing="0" summary="cuerpo" width="87%">
@@ -23,8 +23,8 @@ include "includes/valAcc.php";
       <th width="2%" class="formatoEncabezados"></th>
       <th width="6%" class="formatoEncabezados">Lote</th>
       <th width="25%" class="formatoEncabezados">Producto</th>
-      <th width="25%" class="formatoEncabezados">F&oacute;rmula</th>
-      <th width="13%" class="formatoEncabezados">Fecha Producci&oacute;n</th>
+      <th width="25%" class="formatoEncabezados">F贸rmula</th>
+      <th width="13%" class="formatoEncabezados">Fecha Producci贸n</th>
       <th width="13%" class="formatoEncabezados">Responsable</th>
       <th width="7%" class="formatoEncabezados">Cantidad</th>
       <th width="9%" class="formatoEncabezados">Estado</th>
@@ -38,7 +38,7 @@ include "includes/conect.php" ;
 //Limito la busqueda 
 $TAMANO_PAGINA = 19; 
 
-//examino la p醙ina a mostrar y el inicio del registro a mostrar 
+//examino la p谩gina a mostrar y el inicio del registro a mostrar 
 if(isset($_GET['pagina'])) 
 {
     $pagina = $_GET['pagina']; 
@@ -56,21 +56,21 @@ else
 }
 
 $link=conectarServidor();
-$sql="SELECT Lote, Fch_prod as 'Fecha de Producci髇', Nom_produc as 'Nombre de Producto', Nom_form as 'Formulaci髇', Cant_kg as 'Cantidad (Kg)', nom_personal as Responsable, Estado FROM ord_prod, formula, productos, personal
-WHERE ord_prod.Id_form=formula.Id_form AND formula.Cod_prod=productos.Cod_produc and Cod_persona=Id_personal order by Lote desc;";
+$sql="SELECT Lote, Fch_prod as 'Fecha de Producci贸n', Nom_produc as 'Nombre de Producto', nomFormula as 'Formulaci贸n', Cant_kg as 'Cantidad (Kg)', nom_personal as Responsable, Estado FROM ord_prod, formula, productos, personal
+WHERE ord_prod.Id_form=formula.idFormula AND formula.codProducto=productos.Cod_produc and Cod_persona=Id_personal order by Lote desc;";
 $result=mysqli_query($link,$sql);
 $num_total_registros = mysqli_num_rows($result); 
-//calculo el total de p醙inas 
+//calculo el total de p谩ginas 
 $total_paginas = ceil($num_total_registros / $TAMANO_PAGINA); 
 echo '<div id="paginas" align="center">';
-//muestro los distintos 韓dices de las p醙inas, si es que hay varias p醙inas 
+//muestro los distintos 铆ndices de las p谩ginas, si es que hay varias p谩ginas 
 if ($total_paginas > 1){ 
    	for ($i=1;$i<=$total_paginas;$i++){ 
       	 if ($pagina == $i) 
-         	 //si muestro el 韓dice de la p醙ina actual, no coloco enlace 
+         	 //si muestro el 铆ndice de la p谩gina actual, no coloco enlace 
          	 echo $pagina . " "; 
       	 else 
-         	 //si el 韓dice no corresponde con la p醙ina mostrada actualmente, coloco el enlace para ir a esa p醙ina 
+         	 //si el 铆ndice no corresponde con la p谩gina mostrada actualmente, coloco el enlace para ir a esa p谩gina 
          	 echo "<a href='listarOrProd.php?pagina=" . $i . "'>" . $i . "</a>&nbsp;"; 
    	} 
 }
@@ -94,8 +94,8 @@ echo '</div>';
 
 
 //construyo la sentencia SQL 
-$ssql = "SELECT Lote, Fch_prod as 'Fecha de Producci髇', Nom_produc as 'Nombre de Producto', Nom_form as 'Formulaci髇', Cant_kg as 'Cantidad (Kg)', nom_personal as Responsable, Estado FROM ord_prod, formula, productos, personal
-WHERE ord_prod.Id_form=formula.Id_form AND formula.Cod_prod=productos.Cod_produc and Cod_persona=Id_personal order by Lote desc limit " . $inicio . "," . $TAMANO_PAGINA; 
+$ssql = "SELECT Lote, Fch_prod as 'Fecha de Producci贸n', Nom_produc as 'Nombre de Producto', nomFormula as 'Formulaci贸n', Cant_kg as 'Cantidad (Kg)', nom_personal as Responsable, Estado FROM ord_prod, formula, productos, personal
+WHERE ord_prod.Id_form=formula.idFormula AND formula.codProducto=productos.Cod_produc and Cod_persona=Id_personal order by Lote desc limit " . $inicio . "," . $TAMANO_PAGINA;
 $rs = mysqli_query($link,$ssql);
 
 
@@ -105,7 +105,7 @@ while($row=mysqli_fetch_array($rs, MYSQLI_BOTH))
 	$lote=$row['Lote'];
 	$est=$row['Estado'];
 	if ($est=='P')
-		$estado="En Producci髇";
+		$estado="En Producci贸n";
 	if ($est=='C')
 		$estado="En Calidad";
 	if ($est=='E')
@@ -120,22 +120,22 @@ while($row=mysqli_fetch_array($rs, MYSQLI_BOTH))
 	<td class="formatoDatos"><div align="center"><a href="javascript:togglecomments('."'".'UniqueName'.$a."'".')">+/-</a></div></td>
 	<td class="formatoDatos"><div align="center">'.$row['Lote'].'</div></td>
 	<td class="formatoDatos"><div align="left">'.$row['Nombre de Producto'].'</div></td>
-	<td class="formatoDatos"><div align="left">'.$row['Formulaci髇'].'</div></td>
-	<td class="formatoDatos"><div align="center">'.$row['Fecha de Producci髇'].'</div></td>
+	<td class="formatoDatos"><div align="left">'.$row['Formulaci贸n'].'</div></td>
+	<td class="formatoDatos"><div align="center">'.$row['Fecha de Producci贸n'].'</div></td>
 	<td class="formatoDatos"><div align="center">'.$row['Responsable'].'</div></td>
 	<td class="formatoDatos"><div align="center"><script  > document.write(commaSplit('.$row['Cantidad (Kg)'].')+" Kg")</script></div></td>
 	<td class="formatoDatos"><div align="center">'.$estado.'</div></td>
 	';
 	
 	echo'</tr>';
-	$sqli="SELECT det_ord_prod.Cod_mprima as C骴igo, Nom_mprima, Can_mprima as Cantidad, Lote_MP
+	$sqli="SELECT det_ord_prod.Cod_mprima as C贸digo, Nom_mprima, Can_mprima as Cantidad, Lote_MP
 	from det_ord_prod, mprimas
 	where det_ord_prod.Cod_mprima=mprimas.Cod_mprima and Lote = $lote 
 	order by Orden;";
 	$resulti=mysqli_query($link,$sqli);
 	echo '<tr><td colspan="7"><div class="commenthidden" id="UniqueName'.$a.'"><table width="60%" border="0" align="center" cellspacing="0" summary="detalle">
 	<tr>
-      <th width="6%" class="formatoEncabezados">C&oacute;digo</th>
+      <th width="6%" class="formatoEncabezados">C贸digo</th>
 	  <th width="20%" class="formatoEncabezados">Materia Prima</th>
   	  <th width="10%" class="formatoEncabezados">Lote MP</th>
       <th width="5%" class="formatoEncabezados">Cantidad</th>
@@ -143,7 +143,7 @@ while($row=mysqli_fetch_array($rs, MYSQLI_BOTH))
 	while($rowi=mysqli_fetch_array($resulti, MYSQLI_BOTH))
 	{
 	echo '<tr>
-	<td class="formatoDatos"><div align="center">'.$rowi['C骴igo'].'</div></td>
+	<td class="formatoDatos"><div align="center">'.$rowi['C贸digo'].'</div></td>
 	<td class="formatoDatos"><div align="left">'.$rowi['Nom_mprima'].'</div></td>
 	<td class="formatoDatos"><div align="left">'.$rowi['Lote_MP'].'</div></td>
 	<td class="formatoDatos"><div align="center"><script  > document.write(commaSplit('.$rowi['Cantidad'].'))</script></div></td>
@@ -156,11 +156,11 @@ while($row=mysqli_fetch_array($rs, MYSQLI_BOTH))
 mysqli_free_result($result);
 mysqli_free_result($rs);
 mysqli_free_result($resulti);
-/* cerrar la conexi髇 */
+/* cerrar la conexi贸n */
 mysqli_close($link);
 ?>
 </table>
-<div align="center"><input type="button" class="formatoBoton" onClick="window.location='menu.php'" value="Ir al Men&uacute;"></div>
+<div align="center"><input type="button" class="formatoBoton" onClick="window.location='menu.php'" value="Ir al Men煤"></div>
 </div>
 </body>
 </html>

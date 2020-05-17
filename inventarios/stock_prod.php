@@ -1,13 +1,13 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <title>Consulta de Stock de Inventario de Producto Terminado</title>
 <meta charset="utf-8">
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<script  src="scripts/validar.js"></script>
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+	<script  src="../js/validar.js"></script>
 </head>
 <body>
 <div id="contenedor">
@@ -15,14 +15,14 @@ include "includes/valAcc.php";
 
 <table  align="center" width="700" border="0">
   <tr> 
-      <td><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men&uacute;">
+      <td><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú">
       </div></td>
   </tr>
 </table>
 <table width="650" border="0" align="center" cellspacing="0">
 <tr>
       <th width="17" class="formatoEncabezados"></th>
-    <th width="80" class="formatoEncabezados">C&oacute;digo</th>
+    <th width="80" class="formatoEncabezados">Código</th>
     <th width="409" class="formatoEncabezados">Producto</th>
     <th width="78" class="formatoEncabezados">Cantidad</th>
     <th width="56" class="formatoEncabezados">Stock</th>
@@ -76,7 +76,7 @@ mysqli_free_result($resulti);
 mysqli_close($link);
 ?>
 </table>
-<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men&uacute;"></div>
+<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú"></div>
 </div>
 </body>
 </html>

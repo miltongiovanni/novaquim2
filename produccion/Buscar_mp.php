@@ -1,18 +1,18 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
 <head>
 <meta charset="utf-8">
 <title>Seleccionar Materia Prima a Realizar Control de Calidad</title>
-<script  src="scripts/validar.js"></script>
+<script  src="../js/validar.js"></script>
 <script  src="scripts/block.js"></script>	
 </head>
 <body>
 <div id="contenedor">
-  <div id="saludo"><strong>SELECCI&Oacute;N DE MATERIA PRIMA A REALIZAR CONTROL DE CALIDAD</strong></div>
+  <div id="saludo"><strong>SELECCIÓN DE MATERIA PRIMA A REALIZAR CONTROL DE CALIDAD</strong></div>
 <form id="form1" name="form1" method="post" action="selectlotMP.php">  
 <table width="700" border="0" align="center">
  <tr>

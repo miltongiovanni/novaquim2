@@ -1,13 +1,13 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <title>Detalle de Kit</title>
 <meta charset="utf-8">
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<script  src="scripts/validar.js"></script>
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+	<script  src="../js/validar.js"></script>
 	<script  src="scripts/block.js"></script>
     <link rel="stylesheet" type="text/css" media="all" href="css/calendar-blue2.css" title="blue">
     <script  src="scripts/calendar.js"></script>
@@ -77,7 +77,7 @@ include "includes/valAcc.php";
 	echo '<input name="Crear" type="hidden" value="1">'; 
 	echo '<input name="Cod_kit" type="hidden" value="'.$Cod_kit.'"></form>
 		 <form method="post" action="det_kits.php" name="form2">
-		 <tr><td colspan="4"><div align="center"><strong>Productos Distribuci&oacute;n</strong></div></td>
+		 <tr><td colspan="4"><div align="center"><strong>Productos Distribución</strong></div></td>
 		 <td colspan="1"><div align="left"><strong></strong></div></td></tr>
 		<tr>
 			<td colspan="4" ><div align="center">';
@@ -103,7 +103,7 @@ include "includes/valAcc.php";
 <table width="517" border="0" align="center">
           <tr> <td  colspan="3" class="font2" ><hr></td> </tr>
           <tr>
-            <th width="83" class="font2"><strong>C&oacute;digo</strong></th>
+            <th width="83" class="font2"><strong>Código</strong></th>
             <th width="340" class="font2"><strong>Producto </strong></th>
             <th width="80" class="font2"></th>
   </tr>
@@ -158,7 +158,7 @@ include "includes/valAcc.php";
 ?> 
 <table width="27%" border="0" align="center">
     <tr> 
-        <td><div align="center"><input name="Menu" type="button" class="resaltado" id="Menu" onClick="window.location='menu.php'" value="Ir al Men&uacute;">
+        <td><div align="center"><input name="Menu" type="button" class="resaltado" id="Menu" onClick="window.location='menu.php'" value="Ir al Menú">
       </div></td>
     </tr>
 </table> 

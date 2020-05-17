@@ -1,13 +1,13 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<title>Ingreso de Productos en la Cotizaci&oacute;n</title>
+<title>Ingreso de Productos en la Cotización</title>
 <meta charset="utf-8">
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<script  src="scripts/validar.js"></script>
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+	<script  src="../js/validar.js"></script>
 	<script  src="scripts/block.js"></script>
     <link rel="stylesheet" type="text/css" media="all" href="css/calendar-blue2.css" title="blue">
     <script  src="scripts/calendar.js"></script>
@@ -20,7 +20,7 @@ include "includes/valAcc.php";
 </head>
 <body>
 <div id="contenedor">
-<div id="saludo1"><strong>DETALLE DE LA COTIZACI&Oacute;N PERSONALIZADA</strong></div> 
+<div id="saludo1"><strong>DETALLE DE LA COTIZACIÓN PERSONALIZADA</strong></div> 
 <?php
 include "includes/conect.php";
 include "includes/calcularDias.php";
@@ -136,9 +136,9 @@ else
 ?>
 <table border="0"  align="center" cellpadding="0" summary="Encabezado" width="62%">
 <tr>
-  <td width="15%" align="right" ><strong>No. de Cotizaci&oacute;n</strong></td>
+  <td width="15%" align="right" ><strong>No. de Cotización</strong></td>
   <td width="3%"><div align="left"><?php echo $cotizacion;?></div></td>
-  <td width="15%" align="right" ><strong>Fecha Cotizaci&oacute;n</strong></td>
+  <td width="15%" align="right" ><strong>Fecha Cotización</strong></td>
   <td width="17%" colspan="1"  align="left"><?php echo $row2['Fech_Cotizacion']; ?></td>
   <td width="15%" align="right"><strong>Cliente</strong></td>
   <td width="35%" colspan="3"><div align="left"><?php echo $row2['Nom_clien']; ?></div></td>
@@ -182,7 +182,7 @@ echo'<select name="cod_producto">';
 	 <form method="post" action="det_cot_personalizada.php" name="form2">
 	 <table border="0"  align="center" cellpadding="0" summary="cuerpo1">
 	<tr>
-		<td colspan="4"><div align="center"><strong>Productos Distribuci&oacute;n</strong></div></td>
+		<td colspan="4"><div align="center"><strong>Productos Distribución</strong></div></td>
 		<td colspan="1"><div align="center"><strong>Unidades</strong></div></td>
 	</tr>
 	<tr>
@@ -204,7 +204,7 @@ echo'<select name="cod_producto">';
 <tr>
   <th width="1%">&nbsp;</th>
   <th width="6%" align="center"><strong>Item</strong></th>
-  <th width="9%" align="center"><strong>C&oacute;digo</strong></th>
+  <th width="9%" align="center"><strong>Código</strong></th>
   <th width="43%" align="center"><strong>Producto </strong></th>
   <th width="9%" align="center" ><strong>Cantidad </strong></th>
   <th width="9%" align="center"><strong>Precio </strong></th>
@@ -317,7 +317,7 @@ $row_tot=mysqli_fetch_array($resulttot);
 $total=number_format($row_tot['Total'],0,'.',',');
 echo'<tr>
 <td colspan="3"></td>
-<td colspan="3"><div align="right"><strong>TOTAL COTIZACI&Oacute;N</strong></div></td>
+<td colspan="3"><div align="right"><strong>TOTAL COTIZACIÓN</strong></div></td>
 <td><div align="center"><strong> $ '.$total.'</strong></div></td>
 </tr>';
 mysqli_close($link);
@@ -347,7 +347,7 @@ mysqli_close($link);
   echo'<input name="Crear" type="hidden" value="0">'; 
   echo'<input name="cotizacion" type="hidden" value="'.$cotizacion.'">'; 
 ?> 
-<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men&uacute;"></div>
+<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú"></div>
 </div> 
 </body>
 </html>

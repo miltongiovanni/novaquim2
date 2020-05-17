@@ -1,26 +1,23 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 include "includes/conect.php";
 //echo $_SESSION['Perfil'];
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
 <meta charset="utf-8">
 <title>Actualizar datos de Envasado por Lote de Producto</title>
-<script  src="scripts/validar.js"></script>
-<script  src="scripts/block.js"></script>
-	<script >
-	document.onkeypress = stopRKey; 
-	</script>
+<script  src="../js/validar.js"></script>
+
 </head>
 <body>
 <div id="contenedor">
-<div id="saludo"><strong>ACTUALIZACI&Oacute;N DE ENVASADO POR PRESENTACI&Oacute;N</strong></div>
+<div id="saludo"><strong>ACTUALIZACIÓN DE ENVASADO POR PRESENTACIÓN</strong></div>
 <table border="0" align="center">
   <tr>
-    <td width="417"><div align="center"><strong>Presentaci&oacute;n de Producto</strong></div></td>
+    <td width="417"><div align="center"><strong>Presentación de Producto</strong></div></td>
     <td width="91"><div align="center"><strong>Cantidad</strong></div></td>
   </tr>
   <form action="update_Envas.php" method="post" name="actualiza">
@@ -50,7 +47,7 @@ include "includes/conect.php";
  	echo '</td>';	
 	echo '</tr>';
 	mysqli_free_result($result);
-/* cerrar la conexi�n */
+/* cerrar la conexión */
 mysqli_close($link);
 	?>
 	<tr>

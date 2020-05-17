@@ -1,13 +1,13 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <title>Consulta de Venta de Productos por Referencia</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<script  src="scripts/validar.js"></script>
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+	<script  src="../js/validar.js"></script>
 </head>
 <body>
 <div id="contenedor">
@@ -35,7 +35,7 @@ $rowbus=mysqli_fetch_array($resultbus);
 <table width="100%"  align="center" border="0">
   <tr> 
       <form action="comis_vend_Xls.php" method="post" target="_blank"><td width="91%" align="right"><input name="Submit" type="submit" class="resaltado" value="Exportar a Excel"></td><input name="FchIni" type="hidden" value="<?php echo $FchIni ?>"><input name="FchFin" type="hidden" value="<?php echo $FchFin ?>"><input name="vendedor" type="hidden" value="<?php echo $vendedor ?>"></form>
-   <td width="9%"><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men&uacute;"></div></td>
+   <td width="9%"><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú"></div></td>
   </tr>
 </table>
 <table border="0" align="center" cellspacing="1" width="100%"> 
@@ -117,7 +117,7 @@ mysqli_close($link);//Cerrar la conexion
 ?>
 
 </table>
-<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men&uacute;"></div>
+<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú"></div>
 </div>
 </body>
 </html>

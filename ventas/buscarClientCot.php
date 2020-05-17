@@ -1,13 +1,13 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
 <head>
 <meta charset="utf-8">
-<title>Seleccionar Cliente de Cotizaci&oacute;n a Modificar</title>
-<script  src="scripts/validar.js"></script>
+<title>Seleccionar Cliente de Cotización a Modificar</title>
+<script  src="../js/validar.js"></script>
 <script  src="scripts/block.js"></script>	
 	<script >
 	document.onkeypress = stopRKey; 
@@ -16,7 +16,7 @@ include "includes/valAcc.php";
 </head>
 <body>
 <div id="contenedor">
-<div id="saludo"><strong>SELECCIONAR CLIENTE DE COTIZACI&Oacute;N A MODIFICAR</strong></div>
+<div id="saludo"><strong>SELECCIONAR CLIENTE DE COTIZACIÓN A MODIFICAR</strong></div>
 <table border="0" align="center" width="700">
   	<tr>
     	<td colspan="2"><div align="center">&nbsp;</div></td>

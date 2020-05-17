@@ -1,26 +1,23 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css"><head>
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Seleccionar Orden de Producci&oacute;n a Anular</title>
-<script  src="scripts/validar.js"></script>
-<script  src="scripts/block.js"></script>
-	<script >
-	document.onkeypress = stopRKey; 
-	</script>
+<title>Seleccionar Orden de Producción a Anular</title>
+<script  src="../js/validar.js"></script>
+
 	
 </head>
 <body>
 <div id="contenedor">
-<div id="saludo"><strong>INGRESAR ORDEN DE PRODUCCI&Oacute;N A ANULAR</strong></div> 
+<div id="saludo"><strong>INGRESAR ORDEN DE PRODUCCIÓN A ANULAR</strong></div> 
 
 <table border="0" align="center">
 <form id="form1" name="form1" method="post" action="anulaOrdenP.php">	
     <tr> 
-        <td><div align="right"><strong>Orden de Producci&oacute;n&nbsp;</strong></div></td>
+        <td><div align="right"><strong>Orden de Producción&nbsp;</strong></div></td>
         <td><input type="text" name="lote" size=10 onKeyPress="return aceptaNum(event)"></td><input type="hidden" name="Crear" value="5">
     </tr>
    

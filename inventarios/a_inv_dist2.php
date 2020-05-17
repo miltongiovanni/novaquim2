@@ -1,19 +1,16 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 include "includes/conect.php";
 //echo $_SESSION['Perfil'];
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
 <meta charset="utf-8">
-<title>Actualizar Inventario de Producto de Distribuci&oacute;n</title>
-<script  src="scripts/validar.js"></script>
-<script  src="scripts/block.js"></script>
-	<script >
-	document.onkeypress = stopRKey; 
-	</script>
+<title>Actualizar Inventario de Producto de Distribución</title>
+<script  src="../js/validar.js"></script>
+
 </head>
 <body>
 <div id="contenedor">

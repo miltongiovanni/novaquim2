@@ -1,14 +1,14 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<title>Cambio de presentaci&oacute;n de Producto</title>
+<title>Cambio de presentación de Producto</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" type="text/css" media="all" href="css/calendar-blue2.css" title="blue" >	
-	<script  src="scripts/validar.js"></script>
+	<script  src="../js/validar.js"></script>
 	<script  src="scripts/block.js"></script>
     <script  src="scripts/calendar.js"></script>
     <script  src="scripts/calendar-sp.js"></script>
@@ -19,7 +19,7 @@ include "includes/valAcc.php";
 </head>
 <body> 
 <div id="contenedor">
-<div id="saludo1"><strong>CAMBIO DE PRESENTACI&Oacute;N DE PRODUCTO</strong></div>
+<div id="saludo1"><strong>CAMBIO DE PRESENTACIÓN DE PRODUCTO</strong></div>
 <?php
 	include "includes/conect.php";
 	foreach ($_POST as $nombre_campo => $valor) 
@@ -127,7 +127,7 @@ include "includes/valAcc.php";
 		else
 		{
 			echo'<script >
-  			 alert("No es v�lido el lote");
+  			 alert("No es válido el lote");
    			</script>';
 			mysqli_close($link);
 			echo '<form method="post" action="det_cambio_pres.php" name="form3">';
@@ -141,7 +141,7 @@ include "includes/valAcc.php";
 	}
 	if($Crear==2)
 	{
-		//MIRAR CUANTO PRODUCTO HAY Y A QU� LOTE PERTENECE
+		//MIRAR CUANTO PRODUCTO HAY Y A QUÉ LOTE PERTENECE
 		$qryDOP="insert into det_cambios2 (Id_cambio, Cod_prese_nvo, Can_prese_nvo, lote_prod) values ($cambio, $Cod_prese_nvo, $cant_nvo, $lote)";
 		$resultDOP=mysqli_query($link,$qryDOP);
 		//SE ACTUALIZA EL INVENTARIO
@@ -259,8 +259,8 @@ include "includes/valAcc.php";
       <td  colspan="4" class="titulo">Productos a Cambiar : </td>
     </tr> 
           <tr>
-            <th width="91" align="center">C&oacute;digo</th>
-            <th width="404" align="center">Producto por Presentaci&oacute;n</th>
+            <th width="91" align="center">Código</th>
+            <th width="404" align="center">Producto por Presentación</th>
 			<th width="91" align="center">Lote </th>
             <th width="107" align="center">Cantidad </th>
           </tr>
@@ -322,8 +322,8 @@ include "includes/valAcc.php";
 </form>
 <table align="center">
           <tr>
-            <th width="91">C&oacute;digo</th>
-            <th width="404">Producto por Presentaci&oacute;n</th>
+            <th width="91">Código</th>
+            <th width="404">Producto por Presentación</th>
 			<th width="91">Lote </th>
             <th width="107">Cantidad </th>
           </tr>

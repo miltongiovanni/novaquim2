@@ -1,15 +1,15 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 include "includes/conect.php";
 $bd="novaquim";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <title>Ventas por familia de productos distribuci&oacute;n por mes</title>
+    <title>Ventas por familia de productos distribución por mes</title>
     <meta charset="utf-8">
-    <link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-    <script  src="scripts/validar.js"></script>
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script  src="../js/validar.js"></script>
 	<script  src="scripts/block.js"></script>
     <link rel="stylesheet" type="text/css" media="all" href="css/calendar-blue2.css" title="blue">
     <script  src="scripts/calendar.js"></script>
@@ -21,7 +21,7 @@ $bd="novaquim";
 </head>
 <body> 
 <div id="contenedor">
-<div id="saludo"><strong>VENTAS POR FAMILIA PRODUCTOS DISTRIBUCI&Oacute;N POR MES</strong></div> 
+<div id="saludo"><strong>VENTAS POR FAMILIA PRODUCTOS DISTRIBUCIÓN POR MES</strong></div> 
 <form method="post" action="vtas_dist_tot_mes_vend.php" name="form1">	
 	<table align="center">
     <tr>

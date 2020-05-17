@@ -17,7 +17,19 @@ class EgresoOperaciones
         $stmt->execute($datos);
         return $this->_pdo->lastInsertId();
     }
-
+    public function isValidIdEgreso($idEgreso)
+    {
+        $qry = "SELECT * FROM egreso WHERE idEgreso=?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($idEgreso));
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        if($result==false){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
     public function deleteEgreso($idEgreso)
     {
         $qry = "DELETE FROM egreso WHERE idProv= ?";

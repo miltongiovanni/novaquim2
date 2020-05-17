@@ -1,97 +1,99 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
+if (isset($_SESSION['idFormula'])) {
+    $idFormula = $_SESSION['idFormula'];
+}
+if (isset($_POST['idFormula'])) {
+    $idFormula = $_POST['idFormula'];
+}
+
+function cargarClases($classname)
+{
+    require '../clases/' . $classname . '.php';
+}
+
+spl_autoload_register('cargarClases');
+/*if($CrearFormula==0)
+{
+    $link=conectarServidor();
+    //CREACION DE LA FORMULACION
+    $qryForm="insert into formula (nomFormula, codProducto) values ('$formula', $cod_prod)";
+    if($resultfact=mysqli_query($link,$qryForm))
+    {
+        $qry="select max(idFormula) as Form from formula";
+        $result=mysqli_query($link,$qry);
+        $row=mysqli_fetch_array($result);
+        $Formula=$row['Form'];
+        echo '<form method="post" action="detFormula.php" name="form3">';
+        echo'<input name="CrearFormula" type="hidden" value="5">';
+        echo'<input name="Formula" type="hidden" value="'.$Formula.'">';
+        echo '</form>';
+        echo'<script >
+		document.form3.submit();
+		</script>';
+        mysqli_free_result($result);
+        mysql_close($link);
+    }
+    else
+    {
+        mover_pag("formula.php","Error al ingresar la Formulación");
+        mysql_close($link);
+    }
+    $Total=0;
+}
+
+if($CrearFormula==1)
+{
+    //AGREGANDO LOS COMPONENTES DE LA FORMULACIÓN
+    $percent=$percent/100;
+    $link=conectarServidor();
+    $qryFact="insert into det_formula (idFormula, codMPrima, porcentaje, Orden) values ($Formula, $cod_mprima, $percent, $orden)";
+    $resultfact=mysqli_query($link,$qryFact);
+    $qry="select sum(porcentaje) as Total from det_formula where idFormula=$Formula;";
+    $result=mysqli_query($link,$qry);
+    $row=mysqli_fetch_array($result);
+    $Total=$row['Total'];
+    mysqli_free_result($result);
+    mysql_close($link);
+}
+if($CrearFormula==2)
+{
+    //AGREGANDO LOS COMPONENTES DE LA FORMULACIÓN
+    $link=conectarServidor();
+    $qry="select sum(porcentaje) as Total from det_formula where idFormula=$Formula;";
+    $result=mysqli_query($link,$qry);
+    $row=mysqli_fetch_array($result);
+    $Total=$row['Total'];
+    mysqli_free_result($result);
+    mysql_close($link);
+}
+
+
+$link=conectarServidor();
+$qry="select * from formula where idFormula=$Formula";
+$result=mysqli_query($link,$qry);
+$row=mysqli_fetch_array($result);
+mysqli_free_result($result);
+mysql_close($link);*/
+
+$formulaOperador = new FormulasOperaciones();
+$nomFormula = $formulaOperador->getNomFormula($idFormula);
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<title>Porcentaje de Materias Primas en la F&oacute;rmula</title>
+<title>Porcentaje de Materias Primas en la Fórmula</title>
 <meta charset="utf-8">
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-<script  src="scripts/validar.js"></script>
-<script  src="scripts/block.js"></script>
-	<script >
-	document.onkeypress = stopRKey; 
-	</script>
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+<script  src="../js/validar.js"></script>
+
 
 </head>
 <body> 
 
-
-<?php
-include "includes/conect.php";
-foreach ($_POST as $nombre_campo => $valor) 
-{ 
-$asignacion = "\$".$nombre_campo."='".$valor."';"; 
-echo $nombre_campo." = ".$valor."<br>";  
-eval($asignacion); 
-}  
-if($CrearFormula==0)
-{
-   $link=conectarServidor();   
-   /*CREACION DE LA FORMULACION*/
-   $qryForm="insert into formula (Nom_form, Cod_prod) values ('$formula', $cod_prod)";
-   if($resultfact=mysqli_query($link,$qryForm))
-   {
-		$qry="select max(Id_form) as Form from formula";
-		$result=mysqli_query($link,$qry);
-		$row=mysqli_fetch_array($result);
-		$Formula=$row['Form'];
-		echo '<form method="post" action="detFormula.php" name="form3">';
-		echo'<input name="CrearFormula" type="hidden" value="5">'; 
-		echo'<input name="Formula" type="hidden" value="'.$Formula.'">'; 
-		echo '</form>';
-		echo'<script >
-		document.form3.submit();
-		</script>';	
-		mysqli_free_result($result);
-		mysql_close($link);
-	}
-	else
-	{
-		mover_pag("formula.php","Error al ingresar la Formulaci�n");
-		mysql_close($link);
-	}
-	$Total=0;
-} 
-
-if($CrearFormula==1)
-{
- 	//AGREGANDO LOS COMPONENTES DE LA FORMULACI�N
-	$percent=$percent/100;
-	$link=conectarServidor();   
-	$qryFact="insert into det_formula (Id_formula, Cod_mprima, porcentaje, Orden) values ($Formula, $cod_mprima, $percent, $orden)";
-	$resultfact=mysqli_query($link,$qryFact);
-	$qry="select sum(porcentaje) as Total from det_formula where Id_formula=$Formula;";
-	$result=mysqli_query($link,$qry);
-	$row=mysqli_fetch_array($result);
-	$Total=$row['Total'];
-	mysqli_free_result($result);
-	mysql_close($link);
-} 
-if($CrearFormula==2)
-{
- 	//AGREGANDO LOS COMPONENTES DE LA FORMULACI�N
-	$link=conectarServidor();   
-	$qry="select sum(porcentaje) as Total from det_formula where Id_formula=$Formula;";
-	$result=mysqli_query($link,$qry);
-	$row=mysqli_fetch_array($result);
-	$Total=$row['Total'];
-	mysqli_free_result($result);
-	mysql_close($link);
-} 
-?>
- <?php
-	  	$link=conectarServidor();
-	  	$qry="select * from formula where Id_form=$Formula";
-		$result=mysqli_query($link,$qry);
-		$row=mysqli_fetch_array($result);
-		mysqli_free_result($result);
-		mysql_close($link);
-		
-	 ?>  
 <div id="contenedor">
-<div id="saludo1"><strong>INGRESO DEL DETALLE DE F&Oacute;RMULA DE
-<?php echo  strtoupper ($row['Nom_form']);?>
+<div id="saludo1"><strong>INGRESO DEL DETALLE DE FÓRMULA DE <?=strtoupper ($nomFormula);?>
 </strong></div>
 <form method="post" action="detFormula.php" name="form1"><table  align="center" border="0" summary="encabezado"> 
     <tr>
@@ -100,7 +102,7 @@ if($CrearFormula==2)
     </tr>
     <tr>
       <td class="formatoDatos"><div align="center"><strong>Materia Prima</strong></div></td>
-      <td width="94" class="formatoDatos"><div align="center"><strong>% en F&oacute;rmula</strong></div></td>
+      <td width="94" class="formatoDatos"><div align="center"><strong>% en Fórmula</strong></div></td>
       <td width="60" class="formatoDatos"><div align="center"><strong>Orden</strong></div></td>
     </tr>
     
@@ -142,8 +144,8 @@ if($CrearFormula==2)
     </tr>
 <?php
 $link=conectarServidor();
-$qry="select det_formula.Cod_mprima as codigo, Nom_mprima, porcentaje, Orden from mprimas, det_formula 
-where Id_formula=$Formula and det_formula.Cod_mprima=mprimas.Cod_mprima order by Orden";
+$qry="select det_formula.codMPrima as codigo, Nom_mprima, porcentaje, Orden from mprimas, det_formula 
+where idFormula=$Formula and det_formula.codMPrima=mprimas.Cod_mprima order by Orden";
 $result=mysqli_query($link,$qry);
 $n=0;
 while($row=mysqli_fetch_array($result))

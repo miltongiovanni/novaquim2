@@ -1,13 +1,13 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <title>Detalle de Factura de Venta</title>
 <meta charset="utf-8">
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-<script  src="scripts/validar.js"></script>
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+<script  src="../js/validar.js"></script>
 <script  src="scripts/block.js"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="css/calendar-blue2.css" title="blue">
 <script  src="scripts/calendar.js"></script>
@@ -74,13 +74,13 @@ foreach ($_POST as $nombre_campo => $valor)
       <td class="font2"><div align="left"><?php echo $rowe['Fech_venc']; ?> </div></td>
     </tr>
     <tr>
-      <td class="font2" ><div align="right"><strong>DIRECCI&Oacute;N:</strong></div></td>
+      <td class="font2" ><div align="right"><strong>DIRECCIÓN:</strong></div></td>
       <td colspan="3" class="font2"><?php echo utf8_encode($rowe['Dir_clien']); ?></td>
-      <td class="font2"><div align="right"><strong>REMISI&Oacute;N:</strong></div></td>
+      <td class="font2"><div align="right"><strong>REMISIÓN:</strong></div></td>
       <td class="font2"><div align="left"><?php echo $rowe['Id_remision']; ?> </div></td>
     </tr>
     <tr>
-      <td class="font2" ><div align="right"><strong>TEL&Eacute;FONO:</strong></div></td>
+      <td class="font2" ><div align="right"><strong>TELÉFONO:</strong></div></td>
       <td colspan="1" class="font2"><?php echo $rowe['Tel_clien']; ?></td>
       <td class="font2" ><div align="right"><strong>CIUDAD:</strong></div></td>
       <td colspan="1" class="font2"><?php echo utf8_encode($rowe['Ciudad']); ?></td>
@@ -108,7 +108,7 @@ foreach ($_POST as $nombre_campo => $valor)
         <td  colspan="6">&nbsp;</td>
       </tr>
       <tr>
-        <th width="53" align="center" class="font2"><strong>C&Oacute;DIGO</strong></th>
+        <th width="53" align="center" class="font2"><strong>CÓDIGO</strong></th>
         <th width="358" align="center" class="font2"><strong>PRODUCTO</strong></th>
         <th width="50" align="center" class="font2"><strong>CAN </strong></th>
         <th width="47" align="center" class="font2"><strong>IVA </strong></th>
@@ -398,7 +398,7 @@ foreach ($_POST as $nombre_campo => $valor)
         </form></td>
         
         <td colspan="3"><form action="Imp_Remision.php" method="post" target="_blank"><input name="remision" type="hidden" value="<?php echo $remision; ?> ">
-            <div align="center"><input name="Submit" type="submit" class="formatoBoton1"  value="Imprimir Remisi&oacute;n"></div></form>
+            <div align="center"><input name="Submit" type="submit" class="formatoBoton1"  value="Imprimir Remisión"></div></form>
         </td>
         
         <td><form action="factura2.php" method="post"><input name="factura" type="hidden" value="<?php echo $factura; ?>">

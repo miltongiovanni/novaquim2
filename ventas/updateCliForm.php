@@ -1,23 +1,20 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 include "includes/conect.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
 <meta charset="utf-8">
 <title>Actualizar datos del Cliente</title>
-<script  src="scripts/validar.js"></script>
-<script  src="scripts/block.js"></script>
-	<script >
-	document.onkeypress = stopRKey; 
-	</script>
+<script  src="../js/validar.js"></script>
+
 </head>
 
 <body>
 <div id="contenedor">
-<div id="saludo1"><strong>ACTUALIZACI&Oacute;N DE CLIENTE</strong></div>
+<div id="saludo1"><strong>ACTUALIZACIÓN DE CLIENTE</strong></div>
 
 <?php
 	  $link=conectarServidor();
@@ -33,7 +30,7 @@ include "includes/conect.php";
 <tr> 
   <td colspan="2"><strong>NIT</strong></td>
   <td colspan="3"><strong>Cliente</strong></td>
-  <td><strong>Tel&eacute;fono</strong></td>
+  <td><strong>Teléfono</strong></td>
   <td colspan="2"><strong>Fax</strong></td>
 </tr>
 <tr> 
@@ -44,7 +41,7 @@ include "includes/conect.php";
 </tr>
 <tr> 
   <td colspan="2"><strong>Contacto</strong></td>
-  <td colspan="3"><strong>Direcci&oacute;n</strong></td>
+  <td colspan="3"><strong>Dirección</strong></td>
   <td colspan="1"><strong>Ciudad</strong></td>
   <td colspan="2"><strong>Celular</strong></td>
 </tr>
@@ -209,8 +206,8 @@ include "includes/conect.php";
 	<tr>
         <th width="5%" align="center">Id</th>
       	<th width="28%" align="center">Nombre Sucursal</th>
-   	  <th width="12%" align="center">Tel&eacute;fono </th>
-      	<th width="40%" align="center">Direccci&oacute;n Sucursal</th>
+   	  <th width="12%" align="center">Teléfono </th>
+      	<th width="40%" align="center">Direccción Sucursal</th>
         <th width="15%" align="center">Ciudad Sucursal</th>
    </tr>
           <?php

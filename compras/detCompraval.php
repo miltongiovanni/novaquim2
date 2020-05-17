@@ -1,17 +1,14 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<title>Ingreso de Compra de Tapas y V&aacute;lvulas</title>
+<title>Ingreso de Compra de Tapas y Válvulas</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-<script  src="scripts/validar.js"></script>
-<script  src="scripts/block.js"></script>
-	<script >
-	document.onkeypress = stopRKey; 
-	</script>
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+<script  src="../js/validar.js"></script>
+
 </head>
 <body> 
 <div align="center"><img src="images/LogoNova.JPG"/></div>
@@ -133,7 +130,7 @@ if($CrearFactura==1)
       <td>&nbsp;</td>
     </tr>
     <tr>
-      <td colspan="2"><div align="left" class="titulo"><strong> Compra de Tapas o V&aacute;lvulas: </strong></div></td>
+      <td colspan="2"><div align="left" class="titulo"><strong> Compra de Tapas o Válvulas: </strong></div></td>
       <td width="19%"><div align="right"><strong>No. de Compra</strong> </div></td>
       <td width="19%"><div align="left"><?php echo $Factura;?></div></td>
     </tr>
@@ -176,7 +173,7 @@ if($CrearFactura==1)
     </tr>
     <tr>
     	<td></td>
-        <td ><div align="center"><strong>Tapa o V&aacute;lvula</strong></div></td>
+        <td ><div align="center"><strong>Tapa o Válvula</strong></div></td>
       	<td><div align="center"><strong>Cantidad</strong></div></td>
         <td><div align="center"><strong>Precio por Un (Sin IVA)</strong></div></td>
     </tr>
@@ -221,8 +218,8 @@ if($CrearFactura==1)
      <table width="55%" border="0" align="center">
           <tr>
           	<th width="9%"></th>
-            <th width="9%">C&oacute;digo</th>
-            <th width="37%">Tapa o V&aacute;lvula</th>
+            <th width="9%">Código</th>
+            <th width="37%">Tapa o Válvula</th>
             <th width="16%">Cantidad </th>
             <th width="17%">Precio por Un</th>
             <th width="9%"></th>

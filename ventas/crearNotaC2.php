@@ -1,13 +1,13 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-	<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<title>Creaci&oacute;n de Nota Cr&eacute;dito</title>
+	<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+	<title>Creación de Nota Crédito</title>
 	<meta charset="utf-8">
-	<script  src="scripts/validar.js"></script>
+	<script  src="../js/validar.js"></script>
 	<script  src="scripts/block.js"></script>
     <link rel="stylesheet" type="text/css" media="all" href="css/calendar-blue2.css" title="blue">
     <script  src="scripts/calendar.js"></script>
@@ -20,7 +20,7 @@ include "includes/valAcc.php";
 </head>
 <body>
 <div id="contenedor">
-<div id="saludo"><strong> NOTA CR&Eacute;DITO PARA 
+<div id="saludo"><strong> NOTA CRÉDITO PARA
 <?php
 foreach ($_POST as $nombre_campo => $valor) 
 { 
@@ -40,10 +40,10 @@ foreach ($_POST as $nombre_campo => $valor)
 <table  align="center" border="0" summary="cuerpo">
     <tr> 
         
-        <td width="170"><div align="right"><strong>Raz&oacute;n de la Nota</strong></div></td>
+        <td width="170"><div align="right"><strong>Razón de la Nota</strong></div></td>
         <td colspan="2">
       	<select name="razon" size="1" >
-              <option value="0" selected>Devoluci&oacute;n de Productos</option>
+              <option value="0" selected>Devolución de Productos</option>
               <option value="1">Descuento no aplicado</option>
         </select></td>
     </tr>
@@ -77,7 +77,7 @@ mysqli_close($link);
        </td>
     </tr>
     <tr>
-      <td align="right"><strong>Fecha Nota Cr&eacute;dito</strong></td>
+      <td align="right"><strong>Fecha Nota Crédito</strong></td>
       <td colspan="2"><input type="text" name="Fecha" id="sel1" readonly size=17><input type="reset" value=" ... "
 		onclick="return showCalendar('sel1', '%Y-%m-%d', '12', true);"></td>
     </tr>

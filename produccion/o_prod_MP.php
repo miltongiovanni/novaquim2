@@ -1,13 +1,13 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <title>Preparaci&oacute;n de Materia Prima</title>
+    <title>Preparación de Materia Prima</title>
     <meta charset="utf-8">
-    <link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-    <script  src="scripts/validar.js"></script>
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script  src="../js/validar.js"></script>
 	<script  src="scripts/block.js"></script>
     <link rel="stylesheet" type="text/css" media="all" href="css/calendar-blue2.css" title="blue">
     <script  src="scripts/calendar.js"></script>
@@ -28,7 +28,7 @@ include "includes/valAcc.php";
 
 ?>
 <div id="contenedor">
-<div id="saludo"><strong>PREPARACI&Oacute;N DE MATERIA PRIMA</strong></div>
+<div id="saludo"><strong>PREPARACIÓN DE MATERIA PRIMA</strong></div>
 <form method="post" action="makeO_Prod_MP.php" name="form1">	
   	<table align="center" summary="cuerpo">
     <tr>
@@ -52,7 +52,7 @@ include "includes/valAcc.php";
     </tr>
     
      <tr>
-      <td align="right"><strong>Fecha de Preparaci&oacute;n:</strong></td>
+      <td align="right"><strong>Fecha de Preparación:</strong></td>
       <td><input type="text" name="FchProd" id="sel2" readonly size=20><input type="reset" value=" ... "
 		onclick="return showCalendar('sel2', '%Y-%m-%d', '12', true);"></td>
     </tr>

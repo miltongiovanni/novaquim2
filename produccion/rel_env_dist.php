@@ -1,22 +1,19 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 include "includes/conect.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-	<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<title>Creaci&oacute;n de Relaci&oacute;n de Materia Prima con Producto de Distribuci&oacute;n</title>
+	<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+	<title>Creación de Relación de Materia Prima con Producto de Distribución</title>
 	<meta charset="utf-8">
-	<script  src="scripts/validar.js"></script>
-	<script  src="scripts/block.js"></script>
-		<script >
-	document.onkeypress = stopRKey; 
-	</script>
+	<script  src="../js/validar.js"></script>
+
 </head>
 <body>
 <div id="contenedor">
-<div id="saludo"><strong>RELACI&Oacute;N MATERIA PRIMA CON PRODUCTO DE DISTRIBUCI&Oacute;N</strong></div>
+<div id="saludo"><strong>RELACIÓN MATERIA PRIMA CON PRODUCTO DE DISTRIBUCIÓN</strong></div>
 <form name="form2" method="POST" action="make_env_dist.php">
 <table border="0" align="center" cellspacing="2" cellpadding="0">
     <tr> 
@@ -86,7 +83,7 @@ include "includes/conect.php";
           	</select>    	</td>          
     </tr>
     <tr> 
-        <td><div align="right"><strong>C&oacute;digo Distribuci&oacute;n</strong></div></td>
+        <td><div align="right"><strong>Código Distribución</strong></div></td>
         <td>
             <select name="Cod_dist">
                 <?php

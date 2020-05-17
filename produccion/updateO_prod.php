@@ -1,20 +1,20 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 include "includes/conect.php";
 //echo $_SESSION['Perfil'];
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
 <meta charset="utf-8">
-<title>Actualizar datos de Presentaci&oacute;n de Producto</title>
-<script  src="scripts/validar.js"></script>
+<title>Actualizar datos de Presentación de Producto</title>
+<script  src="../js/validar.js"></script>
 <script  src="scripts/block.js"></script>
 </head>
 <body>
 <div id="contenedor">
-<div id="saludo"><strong>ACTUALIZACI&Oacute;N DE GASTO DE MATERIA PRIMA</strong></div>
+<div id="saludo"><strong>ACTUALIZACIÓN DE GASTO DE MATERIA PRIMA</strong></div>
 <table width="34%" border="0" align="center">
   <tr>
     <td width="44%"><div align="center"><strong>Materia Prima</strong></div></td>
@@ -52,7 +52,7 @@ include "includes/conect.php";
  	echo '</td>';	
 	echo '</tr>';
 	mysqli_free_result($result);
-	/* cerrar la conexi�n */
+	/* cerrar la conexión */
 	mysqli_close($link);
 	?>
 	<tr>

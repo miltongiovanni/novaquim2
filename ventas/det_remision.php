@@ -1,13 +1,13 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<title>Ingreso de Productos a la Remisi&oacute;n</title>
+<title>Ingreso de Productos a la Remisión</title>
 <meta charset="utf-8">
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<script  src="scripts/validar.js"></script>
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+	<script  src="../js/validar.js"></script>
 	<script  src="scripts/block.js"></script>
         <link rel="stylesheet" type="text/css" media="all" href="css/calendar-blue2.css" title="blue">
     <script  src="scripts/calendar.js"></script>
@@ -19,7 +19,7 @@ include "includes/valAcc.php";
 </head>
 <body> 
 <div id="contenedor">
-<div id="saludo1"><strong>DETALLE DE LA REMISI&Oacute;N</strong></div>
+<div id="saludo1"><strong>DETALLE DE LA REMISIÓN</strong></div>
 <?php
 	include "includes/conect.php";
 	foreach ($_POST as $nombre_campo => $valor) 
@@ -146,7 +146,7 @@ include "includes/valAcc.php";
 	 ?>
 <table  align="center" border="0">
     <tr>
-      <td width="124" align="right" ><strong>No. de Remisi&oacute;n</strong></td>
+      <td width="124" align="right" ><strong>No. de Remisión</strong></td>
       <td width="53" align="left"><?php echo $remision;?></td>
       <td width="53" align="right" ><strong>Cliente</strong></td>
       <td width="243" align="left"><?php echo $row['cliente']; ?></td>
@@ -174,7 +174,7 @@ include "includes/valAcc.php";
 		 </form>
 		 <form method="post" action="det_remision.php" name="form2">
 		<tr>
-			<td colspan="4"><div align="center"><strong>Productos Distribuci&oacute;n</strong></div></td>
+			<td colspan="4"><div align="center"><strong>Productos Distribución</strong></div></td>
 			<td colspan="2"><div align="center"><strong>Unidades</strong></div></td>
 		</tr>
 		<tr>
@@ -195,13 +195,13 @@ include "includes/valAcc.php";
 		mysqli_close($link);
 	?>
   <tr>
-    <td  colspan="8" class="titulo">Productos de la Remisi&oacute;n : </td>    
+    <td  colspan="8" class="titulo">Productos de la Remisión : </td>    
   </tr>  
 </table>
 <table border="0" align="center">
           <tr>
           	<th width="56" align="center"></th>
-            <th width="84" align="center">C&oacute;digo</th>
+            <th width="84" align="center">Código</th>
             <th width="437" align="center">Producto</th>
 			<th width="127" align="center">Cantidad</th>
             <th width="68" align="center"></th>
@@ -272,7 +272,7 @@ include "includes/valAcc.php";
                     <form action="Imp_Remision1.php" method="post" target="_blank">
                     <div align="center">
                     <input name="remision" type="hidden" value="<?php echo $remision; ?> ">
-                    <input type="submit" name="Submit" value="Imprimir Remisi&oacute;n" >
+                    <input type="submit" name="Submit" value="Imprimir Remisión" >
                     </div>
                     </form>  
                 </td> 
@@ -289,7 +289,7 @@ include "includes/valAcc.php";
         <td>&nbsp;</td>
     </tr>
     <tr> 
-        <td><div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men&uacute;">
+        <td><div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú">
         </div></td>
     </tr>
 </table>

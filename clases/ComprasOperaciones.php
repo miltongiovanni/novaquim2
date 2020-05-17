@@ -78,6 +78,20 @@ class ComprasOperaciones
         return $result;
     }
 
+    public function isValidIdCompra($idCompra)
+    {
+        $qry = "SELECT * FROM compras WHERE idCompra=?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($idCompra));
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        if($result==false){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+
     public function updateCompra($datos)
     {
         $qry = "UPDATE compras SET idProv=?, numFact=?, fechComp=?, fechVenc=? WHERE idCompra=?";

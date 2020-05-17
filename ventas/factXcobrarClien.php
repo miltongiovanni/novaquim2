@@ -1,5 +1,5 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 include "includes/calcularDias.php";
 $cliente=$_POST[cliente];
 ?>
@@ -8,12 +8,9 @@ $cliente=$_POST[cliente];
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
 <title>Facturas por Cobrar por Cliente</title>
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css" >
-<script  src="scripts/validar.js"></script>
-<script  src="scripts/block.js"></script>
-	<script >
-	document.onkeypress = stopRKey; 
-	</script>
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css" >
+<script  src="../js/validar.js"></script>
+
 </head>
 <body>
 <div id="contenedor">
@@ -22,7 +19,7 @@ $cliente=$_POST[cliente];
   <tr> <td width="85%" align="right"><form action="FacturasXCobrarCli_Xls.php" method="post" target="_blank"><input name="cliente" type="hidden" value="<?php echo $cliente; ?>"><input name="Submit" type="submit" value="Exportar a Excel"></form></td>
     <td width="196"><form action="Imp_EstadoCobros.php" method="post" target="_blank"><input type="submit" name="Submit" value="Imprimir Estado de Cartera">
     </form></td>
-     <td width="86"><input type="button" onClick="window.location='menu.php'" value="Ir al Men&uacute;"></td>
+     <td width="86"><input type="button" onClick="window.location='menu.php'" value="Ir al Menú"></td>
   </tr>
 </table>
 <table  border="0" align="center" cellspacing="0"  cellpadding="0">
@@ -33,7 +30,7 @@ $cliente=$_POST[cliente];
     <th width="75" class="formatoEncabezados" scope="col">Fecha Vencimiento</th>
     <th width="340" class="formatoEncabezados" scope="col">Cliente</th>
     <th width="210" class="formatoEncabezados" scope="col">Contacto</th>
-    <th width="53" class="formatoEncabezados" scope="col">Tel&eacute;fono</th>
+    <th width="53" class="formatoEncabezados" scope="col">Teléfono</th>
     <th width="80" class="formatoEncabezados" scope="col">Celular</th>
     <th width="80" class="formatoEncabezados" scope="col">Valor Factura </th>
     <th width="80" class="formatoEncabezados" scope="col">Valor a Cobrar </th>
@@ -185,7 +182,7 @@ $cliente=$_POST[cliente];
 		}
 	  ?>
 </table>
-<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men&uacute;"></div>
+<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú"></div>
 </div>
 </body>
 </html>

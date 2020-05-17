@@ -1,17 +1,17 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <title>Consulta de Venta de Productos por Referencia</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<script  src="scripts/validar.js"></script>
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+	<script  src="../js/validar.js"></script>
 </head>
 <body>
 <div id="contenedor">
-<div id="saludo1"><strong>CONSULTA DE PRODUCTOS DE DISTRIBUCI&Oacute;N POR MES</strong></div> 
+<div id="saludo1"><strong>CONSULTA DE PRODUCTOS DE DISTRIBUCIÓN POR MES</strong></div> 
 
 <?php
 foreach ($_POST as $nombre_campo => $valor) 
@@ -25,12 +25,12 @@ foreach ($_POST as $nombre_campo => $valor)
 <table width="85%"  align="center" border="0">
   <tr> 
       <form action="cruce_dist_mes_Xls.php" method="post" target="_blank"><td width="91%" align="right"><input name="Submit" type="submit" class="resaltado" value="Exportar a Excel"></td><input name="FchIni" type="hidden" value="<?php echo $FchIni ?>"><input name="FchFin" type="hidden" value="<?php echo $FchFin ?>"></form>
-      <td width="9%"><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men&uacute;"></div></td>
+      <td width="9%"><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú"></div></td>
   </tr>
 </table>
 <table border="0" align="center" cellspacing="0" width="85%">
   <tr>
-    <th class="formatoEncabezados">C&oacute;digo</th>
+    <th class="formatoEncabezados">Código</th>
     <th class="formatoEncabezados">Producto</th>
     <th class="formatoEncabezados">Precio Compra</th>
     <th class="formatoEncabezados">Precio Venta</th>
@@ -93,7 +93,7 @@ mysqli_close($link);//Cerrar la conexion
 ?>
 
 </table>
-<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men&uacute;"></div>
+<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú"></div>
 </div>
 </body>
 </html>

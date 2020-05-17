@@ -1,12 +1,12 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 include "includes/conect.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Acualizaci&oacute;n</title>
+<title>Acualización</title>
 </head>
 <body>
 <?php
@@ -30,7 +30,7 @@ include "includes/conect.php";
 	{
 		$ruta="menu.php";
 		mysqli_close($link);
-		mover_pag($ruta,"Formulaci�n Actualizada correctamente");
+		mover_pag($ruta,"Formulación Actualizada correctamente");
 	}
 	echo'</form>';
 	

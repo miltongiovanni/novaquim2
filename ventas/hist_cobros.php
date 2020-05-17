@@ -1,20 +1,20 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<title>Hist&oacute;rico de Cobros Facturas</title>
+<title>Histórico de Cobros Facturas</title>
 <meta charset="utf-8">
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <div id="contenedor">
-<div id="saludo1"><strong>HIST&Oacute;RICO DE PAGOS DE FACTURAS GENERAL</strong></div>
+<div id="saludo1"><strong>HISTÓRICO DE PAGOS DE FACTURAS GENERAL</strong></div>
 <table width="711" border="0" align="center" summary="encabezado">
   <tr> <td width="611" align="right"><form action="fech_histo_cobros_Xls.php" method="post"><input name="Submit" type="submit" class="formatoBoton" value="Exportar a Excel">
     </form></td>
-      <td width="90"><div align="right"><input type="button" class="formatoBoton" onClick="window.location='menu.php'" value="Ir al Men&uacute;">
+      <td width="90"><div align="right"><input type="button" class="formatoBoton" onClick="window.location='menu.php'" value="Ir al Menú">
       </div></td>
   </tr>
 </table>
@@ -111,7 +111,7 @@ mysqli_close($link);//Cerrar la conexion
 ?>
 </table>
 
-<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men&uacute;"></div>
+<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú"></div>
 </div>
 </body>
 </html>

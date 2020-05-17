@@ -1,17 +1,14 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <title>Anular Orden de Producci&oacute;n</title>
+    <title>Anular Orden de Producci贸n</title>
     <meta charset="utf-8">
-    <link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-    <script  src="scripts/validar.js"></script>
-    <script  src="scripts/block.js"></script>
-    	<script >
-	document.onkeypress = stopRKey; 
-	</script>
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script  src="../js/validar.js"></script>
+
 </head>
 <body> 
 <?php
@@ -47,19 +44,19 @@ if($result=mysqli_query($link,$qry))
 else
 {
 	echo' <script >
-	alert("Error al eliminar los productos de la Orden de Producci髇");
+	alert("Error al eliminar los productos de la Orden de Producci贸n");
 	</script>';
 }
-/*ACTUALIZACI覰 DEL ENCABEZADO DE LA FACTURA*/
+/*ACTUALIZACI脫N DEL ENCABEZADO DE LA FACTURA*/
 $qry="update ord_prod set Estado='A', Cant_kg=0 where Lote=$lote";
 $result=mysqli_query($link,$qry);
 /*ELIMINAR EL DETALLE DE LA FACTURA*/
 $qry="DELETE from det_ord_prod WHERE Lote=$lote";
 $result=mysqli_query($link,$qry);
 $ruta="listarOrProdA.php";
-mover_pag($ruta,"Orden de Producci髇 Anulada con 蓌ito");
+mover_pag($ruta,"Orden de Producci贸n Anulada con 脡xito");
 mysqli_free_result($result);
-/* cerrar la conexi髇 */
+/* cerrar la conexi贸n */
 mysqli_close($link);
 
 ?>

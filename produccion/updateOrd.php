@@ -1,12 +1,12 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 include "includes/conect.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Acualizaci&oacute;n</title>
+<title>Acualización</title>
 </head>
 <body>
 <?php
@@ -40,7 +40,7 @@ foreach ($_POST as $nombre_campo => $valor)
 	}
 	echo '<input name="Lote" type="hidden" value="'.$Lote.'">';
 	mysqli_free_result($resultexis);
-	/* cerrar la conexi�n */
+	/* cerrar la conexión */
 	mysqli_close($link);
 	
 	if($result==1)

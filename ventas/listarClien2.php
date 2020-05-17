@@ -1,5 +1,5 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <?php
 	echo '<form method="post" action="listarClien.php" name="form3">';

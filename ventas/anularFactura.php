@@ -1,16 +1,13 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css"><head>
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css"><head>
 <meta charset="utf-8">
 <title>Seleccionar Factura a Anular</title>
-<script  src="scripts/validar.js"></script>
-<script  src="scripts/block.js"></script>
-	<script >
-	document.onkeypress = stopRKey; 
-	</script>
+<script  src="../js/validar.js"></script>
+
 	
 </head>
 <body>
@@ -27,7 +24,7 @@ include "includes/valAcc.php";
         <td width="257"><input type="text" name="factura" size=10 onKeyPress="return aceptaNum(event)"></td><input type="hidden" name="Crear" value="5">
     </tr>
     <tr>
-        <td align="right"><strong>Raz&oacute;n de Anulaci&oacute;n</strong></td>
+        <td align="right"><strong>Razón de Anulación</strong></td>
         <td><textarea name="observa" id="textarea" cols="40" rows="5" ></textarea></td>
     </tr>
     <tr>

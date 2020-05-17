@@ -1,13 +1,13 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <title>Inventario de Producto Terminado</title>
 <meta charset="utf-8">
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<script  src="scripts/validar.js"></script>
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+	<script  src="../js/validar.js"></script>
 </head>
 <body>
 <div id="contenedor">
@@ -15,14 +15,14 @@ include "includes/valAcc.php";
 <table  align="center" width="700" border="0" summary="encabezado">
   <tr> <td width="594" align="right"><form action="Inv_Prod_Xls.php" method="post" target="_blank">
     <input name="Submit" type="submit" class="resaltado" value="Exportar a Excel"></form></td>
-      <td width="96"><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men&uacute;">
+      <td width="96"><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú">
       </div></td>
   </tr>
 </table>
 <table border="0" align="center" cellspacing="0" summary="cuerpo">
 <tr>
       <th width="17" class="formatoEncabezados"></th>
-    <th width="60" class="formatoEncabezados">C&oacute;digo</th>
+    <th width="60" class="formatoEncabezados">Código</th>
     <th width="422" class="formatoEncabezados">Producto</th>
     <th width="70" class="formatoEncabezados">Cantidad</th>
   </tr>   
@@ -73,7 +73,7 @@ mysqli_close($link);//Cerrar la conexion
 ?>
 
 </table>
-<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men&uacute;"></div>
+<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú"></div>
 </div>
 </body>
 </html>

@@ -1,13 +1,13 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <title>Inventario de Etiquetas</title>
 <meta charset="utf-8">
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<script  src="scripts/validar.js"></script>
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+	<script  src="../js/validar.js"></script>
 </head>
 <body>
 <div id="contenedor">
@@ -16,12 +16,12 @@ include "includes/valAcc.php";
   <tr> <td width="620" align="right"><form action="Inv_Etiq_Xls.php" method="post" target="_blank">
     <input name="Submit" type="submit" class="resaltado" value="Exportar a Excel"></form></td> 
       <td><div align="right">
-          <input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men&uacute;"></div></td>
+          <input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú"></div></td>
   </tr>
 </table>
 <table border="0" align="center" cellspacing="0" >
 <tr>
-    <th width="78" class="formatoEncabezados">C&oacute;digo</th>
+    <th width="78" class="formatoEncabezados">Código</th>
     <th width="355" class="formatoEncabezados">Etiquetas</th>
     <th width="92" class="formatoEncabezados">Cantidad</th>
   </tr>   
@@ -50,7 +50,7 @@ mysqli_free_result($result);
 mysqli_close($link);//Cerrar la conexion
 ?>
 </table>
-<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men&uacute;"></div>
+<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú"></div>
 </div>
 </body>
 </html>

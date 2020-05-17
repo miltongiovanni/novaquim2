@@ -1,27 +1,24 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css"><head>
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css"><head>
 <meta charset="utf-8">
-<title>Modificar consumo de Materia Prima por Orden de Producci&oacute;n de Materia Prima</title>
-<script  src="scripts/validar.js"></script>
-<script  src="scripts/block.js"></script>
-	<script >
-	document.onkeypress = stopRKey; 
-	</script>
+<title>Modificar consumo de Materia Prima por Orden de Producción de Materia Prima</title>
+<script  src="../js/validar.js"></script>
+
 </head>
 <body>
 <div id="contenedor">
-<div id="saludo"><strong>SELECCI&Oacute;N ORDEN DE PRODUCCI&Oacute;N DE MATERIA PRIMA A MODIFICAR</strong></div>
+<div id="saludo"><strong>SELECCIÓN ORDEN DE PRODUCCIÓN DE MATERIA PRIMA A MODIFICAR</strong></div>
 <form id="form1" name="form1" method="post" action="detO_Prod_MP.php">
 <table border="0" align="center" summary="cuerpo">
 <tr>
         <td colspan="2"><div align="center">&nbsp;</div></td>
     </tr>
     <tr> 
-        <td width="276"><div align="right"><strong>Orden de Producci&oacute;n de Materia Prima&nbsp;</strong></div></td>
+        <td width="276"><div align="right"><strong>Orden de Producción de Materia Prima&nbsp;</strong></div></td>
         <td width="111"><input type="text" name="Lote" size=10 onKeyPress="return aceptaNum(event)"></td>
     </tr>
     <tr>

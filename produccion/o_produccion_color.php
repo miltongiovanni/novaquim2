@@ -1,13 +1,13 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <title>Preparaci&oacute;n de Soluci&oacute;n de Color</title>
+    <title>Preparaci贸n de Soluci贸n de Color</title>
     <meta charset="utf-8">
-    <link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-    <script  src="scripts/validar.js"></script>
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script  src="../js/validar.js"></script>
 	<script  src="scripts/block.js"></script>
     <link rel="stylesheet" type="text/css" media="all" href="css/calendar-blue2.css" title="blue">
     <script  src="scripts/calendar.js"></script>
@@ -28,11 +28,11 @@ include "includes/valAcc.php";
 
 ?>
 <div id="contenedor">
-<div id="saludo"><strong>PREPARACI&Oacute;N DE SOLUCI&Oacute;N DE COLOR</strong></div>
+<div id="saludo"><strong>PREPARACI脫N DE SOLUCI脫N DE COLOR</strong></div>
 <form method="post" action="makeO_Prod_col.php" name="form1">	
   	<table align="center" summary="cuerpo">
     <tr>
-      	<td width="199" align="right"><strong>Soluci&oacute;n de Color</strong></td>
+      	<td width="199" align="right"><strong>Soluci贸n de Color</strong></td>
       	<td width="194">
 		<?php
 			include "includes/conect.php";
@@ -46,14 +46,14 @@ include "includes/valAcc.php";
             }
             echo'</select>';
 			mysqli_free_result($result);
-/* cerrar la conexi髇 */
+/* cerrar la conexi贸n */
 mysqli_close($link);
 		?>
         </td>
     </tr>
     
      <tr>
-      <td align="right"><strong>Fecha de Preparaci&oacute;n</strong></td>
+      <td align="right"><strong>Fecha de Preparaci贸n</strong></td>
       <td><input type="text" name="FchProd" id="sel2" readonly size=20><input type="reset" value=" ... "
 		onclick="return showCalendar('sel2', '%Y-%m-%d', '12', true);"></td>
     </tr>
@@ -71,7 +71,7 @@ mysqli_close($link);
 				}
 				echo'</select>';
 				mysqli_free_result($result);
-/* cerrar la conexi髇 */
+/* cerrar la conexi贸n */
 mysqli_close($link);
 	   ?>
 	  </td>

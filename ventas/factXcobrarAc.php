@@ -1,20 +1,20 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <title>Facturas Vencidas por Cliente</title>
 <meta charset="utf-8">
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<script  src="scripts/validar.js"></script>
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+	<script  src="../js/validar.js"></script>
 </head>
 <body>
 <div id="contenedor">
 <div id="saludo1"><strong>CARTERA VENCIDA POR CLIENTE</strong></div> 
 <table width="100%" border="0" summary="encabezado">
   <tr> 
-      <td><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men&uacute;"></div></td>
+      <td><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú"></div></td>
   </tr>
 </table>
 <table border="0" align="center" cellspacing="0" cellpadding="0" summary="cuerpo" width="100%">
@@ -24,9 +24,9 @@ include "includes/valAcc.php";
     <th width="8%" class="formatoEncabezados">NIT</th>
     <th width="14%" class="formatoEncabezados">Contacto</th>
     <th width="9%" class="formatoEncabezados">Cargo</th>
-    <th width="9%" class="formatoEncabezados">Tel&eacute;fono</th>
+    <th width="9%" class="formatoEncabezados">Teléfono</th>
     <th width="9%" class="formatoEncabezados">Celular</th>
-    <th width="17%" class="formatoEncabezados">Direcci&oacute;n </th>
+    <th width="17%" class="formatoEncabezados">Dirección </th>
     <th width="10%" class="formatoEncabezados">Total adeucado</th>
   </tr>   
 <?php
@@ -118,7 +118,7 @@ mysqli_free_result($resulti);
 mysqli_close($link);//Cerrar la conexion
 ?>
 </table>
-<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men&uacute;"></div>
+<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú"></div>
 </div>
 </body>
 </html>

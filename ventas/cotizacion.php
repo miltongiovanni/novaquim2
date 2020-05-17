@@ -1,5 +1,5 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 foreach ($_POST as $nombre_campo => $valor) 
 { 
   $asignacion = "\$".$nombre_campo."='".$valor."';"; 
@@ -10,10 +10,10 @@ foreach ($_POST as $nombre_campo => $valor)
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <title>Crear Cotizaci&oacute;n</title>
+    <title>Crear Cotización</title>
     <meta charset="utf-8">
-    <link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-    <script  src="scripts/validar.js"></script>
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script  src="../js/validar.js"></script>
 	<script  src="scripts/block.js"></script>
     <link rel="stylesheet" type="text/css" media="all" href="css/calendar-blue2.css" title="blue">
     <script  src="scripts/calendar.js"></script>
@@ -24,7 +24,7 @@ foreach ($_POST as $nombre_campo => $valor)
 	</script></head>
 <body>
 <div id="contenedor">
-<div id="saludo1"><strong>CREAR COTIZACI&Oacute;N</strong></div>
+<div id="saludo1"><strong>CREAR COTIZACIÓN</strong></div>
 <form method="post" action="det_cotiza.php" name="form1">	
   	<table align="center" width="56%">
     <tr>
@@ -46,7 +46,7 @@ foreach ($_POST as $nombre_campo => $valor)
         </td>
     </tr>
      <tr>
-      <td align="right"><strong>Fecha de Cotizaci&oacute;n</strong></td>
+      <td align="right"><strong>Fecha de Cotización</strong></td>
       <td colspan="3"><input type="text" name="FchCot" id="sel1" readonly size=20><input type="reset" value=" ... "
 		onclick="return showCalendar('sel1', '%Y-%m-%d', '12', true);"></td>
     </tr>
@@ -55,12 +55,12 @@ foreach ($_POST as $nombre_campo => $valor)
       	<td align="right"><strong>Destino</strong></td>
       	<td colspan="3">
         <input name="Destino" type="radio" id="Destino_0" value="1" checked> 
-        Impresi&oacute;n
+        Impresión
         <input type="radio" name="Destino" value="2" id="Destino_1"> 
-        Correo electr&oacute;nico</td>
+        Correo electrónico</td>
     </tr>
     <tr>
-      	<td align="right"><strong>Presentaci&oacute;n</strong></td>
+      	<td align="right"><strong>Presentación</strong></td>
       	<td colspan="3">
         <input name="Presentaciones" type="radio" id="Presentaciones_0" value="1" checked> 
         Todas
@@ -73,7 +73,7 @@ foreach ($_POST as $nombre_campo => $valor)
       	<td align="right"><strong>Precio</strong></td>
       	<td colspan="3">
         <input type="radio" name="precio" value="1" id="precio_0"> 
-        F&aacute;brica
+        Fábrica
         <input name="precio" type="radio" value="2" id="precio_1"  checked> 
         Distribuidor
         <input type="radio" name="precio" value="3" id="precio_2"> 
@@ -94,7 +94,7 @@ foreach ($_POST as $nombre_campo => $valor)
 				}
 				
 	   ?>       </td>
-    	<td width="12%" align="center"><strong>Familia Distribuci&oacute;n</strong></td>
+    	<td width="12%" align="center"><strong>Familia Distribución</strong></td>
   		<td width="40%" colspan="2" align="left">
 		<?php
 				$resultdist=mysqli_query($link,"select Id_cat_dist, Des_cat_dist from cat_dist;");

@@ -1,13 +1,13 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <title>Lista de Gastos de Novaquim por Proveedor</title>
 <meta charset="utf-8">
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<script  src="scripts/validar.js"></script>
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+	<script  src="../js/validar.js"></script>
     <script >	function togglecomments (postid) {
 		var whichpost = document.getElementById(postid);
 		if (whichpost.className=="commentshown") { whichpost.className="commenthidden"; } else { whichpost.className="commentshown"; }
@@ -18,7 +18,7 @@ include "includes/valAcc.php";
 <div id="saludo1"><strong>LISTA DE GASTOS DE INDUSTRIAS NOVAQUIM POR PROVEEDOR</strong></div>
 <table width="100%" border="0">
   <tr> 
-      <td><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men&uacute;">
+      <td><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú">
       </div></td>
   </tr>
 </table>
@@ -97,7 +97,7 @@ mysqli_close($link);//Cerrar la conexion
 
 </table>
 <table width="27%" border="0" align="center">
-    <tr> <td><div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men&uacute;"></div></td></tr>
+    <tr> <td><div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú"></div></td></tr>
 </table>
 </div>
 </body>

@@ -1,18 +1,18 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
 <head>
 <meta charset="utf-8">
 <title>Seleccionar Producto a revisar Trazabilidad</title>
-<script  src="scripts/validar.js"></script>
+<script  src="../js/validar.js"></script>
 <script  src="scripts/block.js"></script>
 </head>
 <body>
 <div id="contenedor">
-  <div id="saludo"><strong>SELECCI&Oacute;N DE PRODUCTO A REVISAR TRAZABILIDAD</strong></div>
+  <div id="saludo"><strong>SELECCIÓN DE PRODUCTO A REVISAR TRAZABILIDAD</strong></div>
 <form id="form1" name="form1" method="post" action="lot_prod_traz.php">  
 <table width="700" border="0" align="center">
 	<tr>

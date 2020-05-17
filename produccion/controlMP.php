@@ -1,5 +1,5 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 include "includes/conect.php";
 include "includes/calcularDias.php";
 foreach ($_POST as $nombre_campo => $valor) 
@@ -42,7 +42,7 @@ if ($dens_comp<>'N.A.')
 
 if ($control_mp==0)
 {
-	echo "La Materia Prima pasó el Control de Calidad";
+	echo "La Materia Prima pasÃ³ el Control de Calidad";
 	$qry="insert into cal_mprimas (Cod_mprima, Lote_mp, Fech_analisis, apariencia_mp, olor_mp, color_mp, pH_mp, densidad_mp, est_mprima) values ($IdMP, '$Lote_MP', '$fecha_actual', $apar_mp, $olor_mp, $color_mp, '$pH_comp', '$dens_mp', 0 )";
 	$result=mysql_db_query($bd,$qry);
 	$qry_up="update inv_mprimas set Estado_MP='L' where codMP=$IdMP and loteMP='$Lote_MP'";
@@ -50,7 +50,7 @@ if ($control_mp==0)
 }
 else
 {
-	echo "La Materia Prima no pasó el Control de Caldiad".$control_mp;
+	echo "La Materia Prima no pasÃ³ el Control de Caldiad".$control_mp;
 	$qry="insert into cal_mprimas (Cod_mprima, Lote_mp, Fech_analisis, apariencia_mp, olor_mp, color_mp, pH_mp, densidad_mp, est_mprima) values ($IdMP, $Lote_MP, '$fecha_actual', $apar_mp, $olor_mp, $color_mp, '$pH_comp', '$dens_mp', 1 )";
 	$result=mysql_db_query($bd,$qry);
 }

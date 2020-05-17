@@ -1,14 +1,14 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
 <meta charset="utf-8">
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
 <title>Seleccionar Materia Prima a revisar Trazabilidad</title>
-<script  src="scripts/validar.js"></script>
+<script  src="../js/validar.js"></script>
 <script  src="scripts/block.js"></script>
 </head>
 <body>
@@ -53,7 +53,7 @@ foreach ($_POST as $nombre_campo => $valor)
    <tr>
       <td colspan="4" align="left"><div align="left" class="titulo">SALIDA</div></td>
 </tr>
-<tr><td width="68" align="center"><strong>Lote</strong></td><td width="132" align="center"><strong>Fecha Producci&oacute;n</strong></td><td width="381" align="center"><strong>Producto</strong></td><td width="101" align="center"><strong>Cantidad (Kg)</strong></td>
+<tr><td width="68" align="center"><strong>Lote</strong></td><td width="132" align="center"><strong>Fecha Producción</strong></td><td width="381" align="center"><strong>Producto</strong></td><td width="101" align="center"><strong>Cantidad (Kg)</strong></td>
 </tr>
 <?php
   $qrys="select ord_prod.Lote, Fch_prod, Nom_produc, Can_mprima from det_ord_prod, ord_prod, productos where det_ord_prod.Lote=ord_prod.Lote and Cod_mprima=$IdMP and Lote_MP='$lote_mp' and Cod_prod=Cod_produc order by ord_prod.Lote;";
@@ -67,7 +67,7 @@ foreach ($_POST as $nombre_campo => $valor)
 ?>
 <tr><td>&nbsp;</td></tr>
 </table>
-<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men&uacute;"></div>
+<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú"></div>
 </div>
 </body>
 </html>

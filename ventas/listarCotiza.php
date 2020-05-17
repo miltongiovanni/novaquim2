@@ -1,13 +1,13 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <title>Lista de Cotizaciones</title>
 <meta charset="utf-8">
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-<script  src="scripts/validar.js"></script>
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+<script  src="../js/validar.js"></script>
     <script >	function togglecomments (postid) {
 		var whichpost = document.getElementById(postid);
 		if (whichpost.className=="commentshown") { whichpost.className="commenthidden"; } else { whichpost.className="commentshown"; }
@@ -18,7 +18,7 @@ include "includes/valAcc.php";
 <div id="saludo1"><strong>LISTA DE COTIZACIONES</strong></div>
 <table align="center" width="100%" border="0">
   <tr> 
-        <td width="1177" align="right"> <form action="Cotiza_Xls.php" method="post" target="_blank"><input name="Submit" type="submit" class="resaltado" value="Exportar a Excel"></form></td><td width="93"><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men&uacute;">
+        <td width="1177" align="right"> <form action="Cotiza_Xls.php" method="post" target="_blank"><input name="Submit" type="submit" class="resaltado" value="Exportar a Excel"></form></td><td width="93"><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú">
         </div></td>
     </tr>
 </table>
@@ -27,9 +27,9 @@ include "includes/valAcc.php";
     <th width="2%" class="formatoEncabezados"></th>
     <th width="3%" class="formatoEncabezados">Id</th>
     <th width="29%" class="formatoEncabezados">Cliente</th>
-    <th width="16%" class="formatoEncabezados">Categor&iacute;a Cliente</th>
+    <th width="16%" class="formatoEncabezados">Categoría Cliente</th>
     <th width="14%" class="formatoEncabezados">Vendedor</th>
-    <th width="12%" class="formatoEncabezados">Fecha Cotizaci&oacute;n</th>
+    <th width="12%" class="formatoEncabezados">Fecha Cotización</th>
     <th width="10%" class="formatoEncabezados">Precio</th>
     <th width="14%" class="formatoEncabezados">Presentaciones </th>
   </tr>   
@@ -102,7 +102,7 @@ include "includes/valAcc.php";
 	  <tr>
 		<th width="45%" class="formatoEncabezados">Productos Novaquim</th>
 		<th width="10%" class="formatoEncabezados"></th>
-		<th width="45%" class="formatoEncabezados">Productos de Distribuci&oacute;n</th>
+		<th width="45%" class="formatoEncabezados">Productos de Distribución</th>
 	  </tr>';
 	  echo '<tr>
 	  <td class="formatoDatos"><div align="center">'.$opciones_prod.'</div></td>
@@ -115,7 +115,7 @@ include "includes/valAcc.php";
 	 mysqli_close($link);//Cerrar la conexion
 ?>
 </table>
-<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men&uacute;"></div>
+<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú"></div>
 </div>
 </body>
 </html>

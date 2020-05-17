@@ -1,13 +1,13 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <title>Ingreso de Productos Hoja de Pedido de Venta Directa</title>
 <meta charset="utf-8">
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<script  src="scripts/validar.js"></script>
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+	<script  src="../js/validar.js"></script>
 	<script  src="scripts/block.js"></script>
         <link rel="stylesheet" type="text/css" media="all" href="css/calendar-blue2.css" title="blue">
     <script  src="scripts/calendar.js"></script>
@@ -228,7 +228,7 @@ include "includes/valAcc.php";
         
       <td align="right"  ><strong>Tipo de Precio</strong></td>
    	  <td colspan="1" align="left"><?php echo $row2['tipo_precio']; ?></td>
-      <td align="right"  ><strong>Tel&eacute;fono</strong></td>
+      <td align="right"  ><strong>Teléfono</strong></td>
    	  <td colspan="1" align="left"><?php echo $row2['Tel_clien']; ?></td>
     </tr>
     <tr>
@@ -236,7 +236,7 @@ include "includes/valAcc.php";
       	<td colspan="1" align="left"><?php echo $row2['Nom_sucursal']; ?></td>
       	
         
-      <td align="right"  ><strong>Direcci&oacute;n de Entrega</strong></td>
+      <td align="right"  ><strong>Dirección de Entrega</strong></td>
    	  <td colspan="2" align="left"><?php echo $row2['Dir_sucursal']; ?></td>
     </tr>
     <tr><td colspan="6">&nbsp;</td></tr>
@@ -270,7 +270,7 @@ include "includes/valAcc.php";
 			 <form method="post" action="det_pedidoVD.php" name="form2">
 			 <table border="0"  align="center" cellpadding="0" summary="cuerpo1">
 			<tr>
-				<td colspan="4"><div align="center"><strong>Productos Distribuci&oacute;n</strong></div></td>
+				<td colspan="4"><div align="center"><strong>Productos Distribución</strong></div></td>
 				<td colspan="1"><div align="center"><strong>Unidades</strong></div></td>
 			</tr>
 			<tr>
@@ -314,7 +314,7 @@ include "includes/valAcc.php";
           <tr>
           	<th width="56"></th>
           	<th width="41" align="center"><strong>Item</strong></th>
-            <th width="67" align="center"><strong>C&oacute;digo</strong></th>
+            <th width="67" align="center"><strong>Código</strong></th>
             <th width="417" align="center"><strong>Producto </strong></th>
 			<th width="86" align="center" ><strong>Cantidad </strong></th>
             <th width="94" align="center"><strong>Precio </strong></th>
@@ -514,7 +514,7 @@ include "includes/valAcc.php";
 		  echo'<input name="Crear" type="hidden" value="0">'; 
 		  echo'<input name="pedido" type="hidden" value="'.$pedido.'">'; 
 	  ?> 
-<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men&uacute;"></div>
+<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú"></div>
 </div> 
 </body>
 </html>

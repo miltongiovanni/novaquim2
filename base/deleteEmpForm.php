@@ -1,21 +1,18 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
 <meta charset="utf-8">
 <title>Reiniciar Empleado</title>
-<script  src="scripts/validar.js"></script>
-<script  src="scripts/block.js"></script>
-	<script >
-	document.onkeypress = stopRKey; 
-	</script>
+<script  src="../js/validar.js"></script>
+
 </head>
 <body>
 <div id="contenedor">
-<div id="saludo"><strong>ELIMINACI&Oacute;N DE EMPLEADO</strong></div> 
+<div id="saludo"><strong>ELIMINACIÓN DE EMPLEADO</strong></div>
 <table width="700" border="0" align="center" summary="cuerpo">
 	<tr>
 		<td colspan="2">

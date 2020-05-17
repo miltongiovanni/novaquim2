@@ -1,5 +1,5 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -7,13 +7,10 @@ include "includes/valAcc.php";
 <head>
 <meta charset="utf-8">
 <title>Seleccionar Cliente a Modificar</title>
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-<script  src="scripts/validar.js"></script>
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+<script  src="../js/validar.js"></script>
 <script  src="scripts/ajax.js"></script>
-<script  src="scripts/block.js"></script>
-	<script >
-	document.onkeypress = stopRKey; 
-	</script>
+
 </head>
 <body>
 <div id="contenedor">

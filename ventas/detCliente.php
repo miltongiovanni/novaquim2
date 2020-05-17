@@ -1,13 +1,13 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <title>Sucursales por Cliente</title>
 <meta charset="utf-8">
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<script  src="scripts/validar.js"></script>
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+	<script  src="../js/validar.js"></script>
 	<script  src="scripts/block.js"></script>
         <link rel="stylesheet" type="text/css" media="all" href="css/calendar-blue2.css" title="blue">
     <script  src="scripts/calendar.js"></script>
@@ -79,11 +79,11 @@ if($Crear==1)
       <td colspan="3"><input type="text" name="nom_sucursal" size=60 id="Cliente" maxlength="60"></td>    
     </tr>
     <tr>
-    	<td><div align="right"><b>Direcci&oacute;n</b></div></td>
+    	<td><div align="right"><b>Dirección</b></div></td>
         <td colspan="3"><input type="text"  maxlength="50" name="dir_sucursal" size=60 id="Direccion" ></td>
     </tr>
     <tr>
-    <td><div align="right"><strong>Tel&eacute;fono</strong></div></td>
+    <td><div align="right"><strong>Teléfono</strong></div></td>
         <td width="17%"><input type="text" name="tel_sucursal" maxlength="7" size=15 onKeyPress="return aceptaNum(event)" id="Tel1" ></td>
         <td width="11%"><div align="right"><b>Ciudad</b></div></td>
         <td width="43%"> 
@@ -111,8 +111,8 @@ if($Crear==1)
   		<th width="6%" align="center"></th>
         <th width="6%" align="center">Id</th>
       	<th width="27%" align="center">Nombre Sucursal</th>
-   	  	<th width="10%" align="center">Tel&eacute;fono </th>
-      	<th width="34%" align="center">Direccci&oacute;n Sucursal</th>
+   	  	<th width="10%" align="center">Teléfono </th>
+      	<th width="34%" align="center">Direccción Sucursal</th>
         <th width="12%" align="center">Ciudad</th>
         <th width="11%" align="center">&nbsp;</th>
    </tr>

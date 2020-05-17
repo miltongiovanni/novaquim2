@@ -1,13 +1,13 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<title>Lista de Notas Cr&eacute;dito</title>
+<title>Lista de Notas Crédito</title>
 <meta charset="utf-8">
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<script  src="scripts/validar.js"></script>
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+	<script  src="../js/validar.js"></script>
 </head>
 <body>
 
@@ -29,12 +29,12 @@ if(isset($_GET['FchFin']))
 }		
 	
 ?>
-<div id="saludo1"><strong>LISTA DE NOTAS CR&Eacute;DITO</strong></div> 
+<div id="saludo1"><strong>LISTA DE NOTAS CRÉDITO</strong></div>
 
 <table  align="center" width="700" border="0" summary="encabezado">
   <tr> 
       <td width="597" align="right"> <form action="Notas_Xls.php" method="post" target="_blank"><input name="Submit" type="submit" class="resaltado" value="Exportar a Excel"><input name="FchIni" type="hidden" value="<?php echo $FchIni ?>"><input name="FchFin" type="hidden" value="<?php echo $FchFin ?>"></form></td>
-      <td><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men&uacute;"></div></td>
+      <td><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú"></div></td>
   </tr>
 </table>
   
@@ -91,7 +91,7 @@ echo '
 <table border="0" align="center" cellspacing="0" cellpadding="0" summary="Cuerpo">
 	<tr>
       <th width="8" class="formatoEncabezados"></th>
-      <th width="95" class="formatoEncabezados">Nota Cr&eacute;dito</th>
+      <th width="95" class="formatoEncabezados">Nota Crédito</th>
       <th width="379" class="formatoEncabezados">Cliente</th>
       <th width="113" class="formatoEncabezados">Fecha</th>
       <th width="110" class="formatoEncabezados">Factura Origen</th>
@@ -106,7 +106,7 @@ while($row=mysqli_fetch_array($rs, MYSQLI_BOTH))
 {
 	$mensaje=$row['Nota'];
 	if ($row['Motivo']==0)
-		$motivo="Devoluci&oacute;n";
+		$motivo="Devolución";
 	else
 		$motivo="Descuento no aplicado";
 	$Tot=number_format($row['Total'], 0, '.', ',');
@@ -135,7 +135,7 @@ while($row=mysqli_fetch_array($rs, MYSQLI_BOTH))
 	$resulti=mysqli_query($link,$sqli);
 	echo '<tr><td colspan="7"><div class="commenthidden" id="UniqueName'.$a.'"><table width="750" border="0" align="center" cellspacing="0" summary="Detalle">
 	<tr>
-      <th width="40" class="formatoEncabezados">C&oacute;digo</th>
+      <th width="40" class="formatoEncabezados">Código</th>
 	  <th width="250" class="formatoEncabezados">Producto</th>
       <th width="40" class="formatoEncabezados">Cantidad</th>
   	</tr>';
@@ -155,7 +155,7 @@ mysqli_close($link);//Cerrar la conexion
 ?>
 
 </table>
-<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men&uacute;"></div>
+<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú"></div>
 </div>
  </body>
 </html>

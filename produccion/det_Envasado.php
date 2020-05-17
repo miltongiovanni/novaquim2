@@ -1,13 +1,13 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="es">
 <head>
 <title>Envasado de Productos por Lote</title>
 <meta charset="utf-8">
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<script  src="scripts/validar.js"></script>
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+	<script  src="../js/validar.js"></script>
 	<script  src="scripts/block.js"></script>
         <link rel="stylesheet" type="text/css" media="all" href="css/calendar-blue2.css" title="blue">
     <script  src="scripts/calendar.js"></script>
@@ -29,9 +29,9 @@ include "includes/valAcc.php";
 	  eval($asignacion); 
 	}  
 	$link=conectarServidor();
-	$qryord="select Lote, Fch_prod, Cant_kg, Cod_persona, Nom_produc, Nom_form, nom_personal 
+	$qryord="select Lote, Fch_prod, Cant_kg, Cod_persona, Nom_produc, nomFormula, nom_personal 
 			from ord_prod, formula, productos, personal
-			WHERE ord_prod.Id_form=formula.Id_form and formula.Cod_prod=productos.Cod_produc
+			WHERE ord_prod.Id_form=formula.idFormula and formula.codProducto=productos.Cod_produc
 			and ord_prod.Cod_persona=personal.Id_personal and Lote=$Lote;";
 	$resultord=mysqli_query($link,$qryord);
 	$roword=mysqli_fetch_array($resultord);
@@ -40,7 +40,7 @@ include "includes/valAcc.php";
 		mysqli_close($link);
 	else
 	{
-		mover("Envasado.php","No existe la Orden de Producci髇");
+		mover("Envasado.php","No existe la Orden de Producci贸n");
 		mysqli_close($link);
 	}
 	function mover($ruta,$mensaje)
@@ -113,7 +113,7 @@ include "includes/valAcc.php";
 			  /* Rollback */
 			  mysqli_rollback($link);
 			  echo' <script >
-				  alert("No hay tapas o v醠vulas suficientes, s髄o hay '.$inv_val.' unidades");
+				  alert("No hay tapas o v谩lvulas suficientes, s贸lo hay '.$inv_val.' unidades");
 			  </script>';
 			}
 			//SE DESCUENTA LA ETIQUETA
@@ -133,7 +133,7 @@ include "includes/valAcc.php";
 			/* Rollback */
 			mysqli_rollback($link);
 			echo' <script >
-				alert("No hay etiquetas suficientes, s髄o hay '.$inv_etq.' unidades");
+				alert("No hay etiquetas suficientes, s贸lo hay '.$inv_etq.' unidades");
 			</script>';
 			}
 		}
@@ -157,7 +157,7 @@ include "includes/valAcc.php";
 		$qry_up_ord="update ord_prod set Estado='E' where Lote=$Lote";
 		$result_up_ord=mysqli_query($link,$qry_up_ord);
 		mysqli_close($link);
-	    mover("menu.php","Producto terminado de envasar 閤itosamente");
+	    mover("menu.php","Producto terminado de envasar 茅xitosamente");
 	}
 ?>
 
@@ -195,7 +195,7 @@ include "includes/valAcc.php";
       <td><?php echo  $row1['Cant_kg']?></td>
     </tr>
     <tr>
-      <td ><strong>Fecha de Producci&oacute;n</strong></td>
+      <td ><strong>Fecha de Producci贸n</strong></td>
       <td colspan="2"><?php echo $row1['Fch_prod']; ?></td>
       <td><strong>Responsable</strong></td>
       <td><div align="left"><?php echo $row1['nom_personal']; ?> </div></td>
@@ -204,7 +204,7 @@ include "includes/valAcc.php";
       <td colspan="5"><hr></td>
     </tr>
     <tr>
-      <td colspan="3"><div align="center"><strong>Presentaci&oacute;n de Productos</strong></div></td>
+      <td colspan="3"><div align="center"><strong>Presentaci贸n de Productos</strong></div></td>
       <td><div align="center"><strong>Unidades</strong></div></td>
     </tr>
     <tr>
@@ -244,8 +244,8 @@ include "includes/valAcc.php";
     <table width="845" border="0" align="center" summary="detalle">
           <tr>
 	        <th width="101"></th>
-            <th width="58" align="center">C&oacute;digo</th>
-            <th width="555" align="center">Producto por Presentaci&oacute;n</th>
+            <th width="58" align="center">C贸digo</th>
+            <th width="555" align="center">Producto por Presentaci贸n</th>
             <th width="113" align="center">Cantidad </th>
           </tr>
           <?php
@@ -295,7 +295,7 @@ include "includes/valAcc.php";
 			mysqli_close($link);
 			?>
       </table>
-<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men&uacute;"></div>
+<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men煤"></div>
 </div>
 </body>
 </html>

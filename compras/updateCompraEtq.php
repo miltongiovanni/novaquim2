@@ -1,23 +1,20 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 include "includes/conect.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Actualizar Compra de Etiquetas</title>
-<script  src="scripts/validar.js"></script>
-<script  src="scripts/block.js"></script>
-	<script >
-	document.onkeypress = stopRKey; 
-	</script>
+<script  src="../js/validar.js"></script>
+
 </head>
 <body>
 
 <div id="contenedor">
-<div id="saludo1"><strong>ACTUALIZACI&Oacute;N DE LA COMPRA DE ETIQUETAS</strong></div> 
+<div id="saludo1"><strong>ACTUALIZACIÓN DE LA COMPRA DE ETIQUETAS</strong></div> 
 
 <table width="37%" border="0" align="center">
   <tr>

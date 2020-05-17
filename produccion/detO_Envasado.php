@@ -1,13 +1,13 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <title>Ingreso de Compra de Materia Prima</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<script  src="scripts/validar.js"></script>
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+	<script  src="../js/validar.js"></script>
 	<script  src="scripts/block.js"></script>
         <link rel="stylesheet" type="text/css" media="all" href="css/calendar-blue2.css" title="blue" />
     <script  src="scripts/calendar.js"></script>
@@ -75,7 +75,7 @@ else
       <td><?php echo  $row['Cant_kg']?></td>
     </tr>
     <tr>
-      <td ><strong>Fecha de Producci&oacute;n</strong></td>
+      <td ><strong>Fecha de Producción</strong></td>
       <td colspan="2"><?php echo $row['Fch_prod']; ?></td>
       <td><strong>Responsable</strong></td>
       <td><div align="left"><?php echo $row['nom_personal']; ?> </div></td>
@@ -94,8 +94,8 @@ else
       <table width="100%" border="1" align="center">
           <tr>
             <th width="10%"></th>
-            <th width="18%">C&oacute;digo</th>
-            <th width="62%">Producto por Presentaci&oacute;n</th>
+            <th width="18%">Código</th>
+            <th width="62%">Producto por Presentación</th>
             <th width="20%">Cantidad </th>
           </tr>
           <?php

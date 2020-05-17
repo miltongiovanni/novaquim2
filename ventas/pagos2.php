@@ -1,13 +1,13 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Ingreso de pagos parciales</title>
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css" />
-<script  src="scripts/validar.js"></script>
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css" />
+<script  src="../js/validar.js"></script>
 <script  src="scripts/block.js"></script>	
 	<script >
 	document.onkeypress = stopRKey; 
@@ -18,7 +18,7 @@ include "includes/valAcc.php";
 <form action="aplicaPago.php" method="post" name="aplicapagos">
 <table width="65%" border="0" align="center">
     <tr>
-    	<td colspan="4"><strong><span class="titulo">Aplicaci&oacute;n de Pagos </span></strong></td>
+    	<td colspan="4"><strong><span class="titulo">Aplicación de Pagos </span></strong></td>
     </tr>
 	<?php
 	include "includes/conect.php" ;

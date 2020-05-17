@@ -1,14 +1,14 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="es">
 <head>
 <title>Faltante del Pedido</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" media="all" href="css/calendar-blue2.css" title="blue" >
-	<script  src="scripts/validar.js"></script>
+	<script  src="../js/validar.js"></script>
 	<script  src="scripts/block.js"></script>
     <script  src="scripts/calendar.js"></script>
     <script  src="scripts/calendar-sp.js"></script>
@@ -77,7 +77,7 @@ include "includes/valAcc.php";
 		</table>';
 		echo '<table border="0" align="center" width="80%" summary="detalle">
 		<tr class="formatoDatos">
-				<th width="12%" align="center">C&oacute;digo</th>
+				<th width="12%" align="center">Código</th>
 				<th width="62%" align="center">Producto </th>
 				<th width="12%" align="center">Cantidad </th>
 				<th width="14%" align="center">Precio</th>
@@ -187,7 +187,7 @@ include "includes/valAcc.php";
                     </form>                </div></td>
   </tr>
 </table> 
-<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men&uacute;"></div>
+<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú"></div>
 </div>
 </body>
 </html>

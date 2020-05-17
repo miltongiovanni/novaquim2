@@ -1,13 +1,13 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <title>Creaci&oacute;n de Orden de Pedido</title>
+    <title>Creación de Orden de Pedido</title>
     <meta charset="utf-8">
-    <link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-    <script  src="scripts/validar.js"></script>
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script  src="../js/validar.js"></script>
 	<script  src="scripts/block.js"></script>
     <link rel="stylesheet" type="text/css" media="all" href="css/calendar-blue2.css" title="blue">
     <script  src="scripts/calendar.js"></script>
@@ -20,7 +20,7 @@ include "includes/valAcc.php";
 </head>
 <body> 
 <div id="contenedor">
-<div id="saludo"><strong>CREACI&Oacute;N DE ORDEN DE PEDIDO</strong></div>
+<div id="saludo"><strong>CREACIÓN DE ORDEN DE PEDIDO</strong></div>
 <form method="post" action="pedido2.php" name="form1">	
   	<table align="center" width="40%">
     <tr>

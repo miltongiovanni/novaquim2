@@ -1,21 +1,18 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <title>Detalle Orden de Producci&oacute;n de Color</title>
+    <title>Detalle Orden de Producci贸n de Color</title>
     <meta charset="utf-8">
-    <link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-    <script  src="scripts/validar.js"></script>
-    <script  src="scripts/block.js"></script>
-    	<script >
-	document.onkeypress = stopRKey; 
-	</script>
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script  src="../js/validar.js"></script>
+
 </head>
 <body> 
 <div id="contenedor">
-<div id="saludo1"><strong>USO DE MATERIA PRIMA POR PRODUCCI&Oacute;N DE COLOR</strong></div>
+<div id="saludo1"><strong>USO DE MATERIA PRIMA POR PRODUCCI脫N DE COLOR</strong></div>
 <table border="0" align="center">
     <?php
 		include "includes/conect.php";
@@ -31,7 +28,7 @@ include "includes/valAcc.php";
 		}
 		else
 		{
-			mover("buscarOProd_color.php","No existe la Orden de Producci髇 de Color");
+			mover("buscarOProd_color.php","No existe la Orden de Producci贸n de Color");
 			
 		}
 		
@@ -48,7 +45,7 @@ include "includes/valAcc.php";
 <tr>
       <td width="82"><div align="right"><strong>Lote</strong></div></td>
     <td width="46"><div align="left"><?php echo $Lote;?></div></td>
-    <td width="191"><div align="right"><strong>Fecha de Producci&oacute;n</strong> </div></td>
+    <td width="191"><div align="right"><strong>Fecha de Producci贸n</strong> </div></td>
     <td width="160"><?php echo $roword['Fch_prod'];?></td>
     <td width="106"><div align="right"><strong>Cantidad (Kg)</strong></div></td>
     <td width="221"><div align="left"><?php echo $roword['Cant_kg']; ?> </div></td>
@@ -69,7 +66,7 @@ include "includes/valAcc.php";
 <table border="0" align="center" summary="cuerpo">
  <tr>
     <td width="71"><div align="left"></div></td>
-    <td width="101"><div align="center"><strong>C&oacute;digo</strong></div></td>
+    <td width="101"><div align="center"><strong>C贸digo</strong></div></td>
     <td width="224"><div align="center"><strong>Materia Prima</strong></div></td>
     <td width="112"><div align="center"><strong>Lote MP</strong></div></td>
     <td width="163"><div align="center"><strong>MP Utilizada (Kg)</strong></div></td>

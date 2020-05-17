@@ -1,13 +1,13 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="es">
 <head>
 <title>Faltante del Pedido</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<script  src="scripts/validar.js"></script>
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+	<script  src="../js/validar.js"></script>
 	<script  src="scripts/block.js"></script>
         <link rel="stylesheet" type="text/css" media="all" href="css/calendar-blue2.css" title="blue" />
     <script  src="scripts/calendar.js"></script>
@@ -66,7 +66,7 @@ include "includes/valAcc.php";
 </table>
 <table width="624" border="0" align="center">
   <tr>
-        <th width="98" align="center">C&oacute;digo</th>
+        <th width="98" align="center">Código</th>
         <th width="432" align="center">Producto </th>
         <th width="80" align="center">Cantidad </th>
   	</tr>

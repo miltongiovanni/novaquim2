@@ -1,13 +1,13 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <title>Consulta de Venta de Productos por Referencia</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<script  src="scripts/validar.js"></script>
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+	<script  src="../js/validar.js"></script>
 </head>
 <body>
 <div id="contenedor">
@@ -25,12 +25,12 @@ foreach ($_POST as $nombre_campo => $valor)
 <table width="50%" align="center" border="0">
   <tr> 
       <form action="ProductosXRemision_Xls.php" method="post" target="_blank"><td width="85%" align="right"><input name="Submit" type="submit" class="resaltado" value="Exportar a Excel"></td><input name="FchIni" type="hidden" value="<?php echo $FchIni ?>"><input name="FchFin" type="hidden" value="<?php echo $FchFin ?>"></form>
-      <td width="15%"><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men&uacute;"></div></td>
+      <td width="15%"><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú"></div></td>
   </tr>
 </table>
 <table border="0" align="center" cellspacing="0" width="50%">
 	<tr>
-      <th width="13%" class="formatoEncabezados">Remisi&oacute;n</th>
+      <th width="13%" class="formatoEncabezados">Remisión</th>
       <th width="54%" class="formatoEncabezados">Cliente</th>
       <th width="14%" class="formatoEncabezados">Fecha</th>
       <th width="19%" class="formatoEncabezados">Subtotal</th>
@@ -60,7 +60,7 @@ mysqli_close($link);
 ?>
 
 </table>
-<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men&uacute;"></div>
+<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú"></div>
 </div>
 </body>
 </html>

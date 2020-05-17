@@ -1,12 +1,12 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <?php
 require('fpdf.php');
 
 class PDF extends FPDF
 {
-//Cabecera de página
+//Cabecera de pÃ¡gina
 function Header()
 {
 	//Logo
@@ -15,31 +15,31 @@ function Header()
 	$this->SetFont('Arial','B',16);
 	//Movernos a la derecha
 	$this->SetXY(70,55);
-	//Título
-	$this->Cell(70,10,'CERTIFICADO DE ANÁLISIS',0,0,'C');
-	//Salto de línea
+	//TÃ­tulo
+	$this->Cell(70,10,'CERTIFICADO DE ANÃLISIS',0,0,'C');
+	//Salto de lÃ­nea
 	$this->Ln(20);
 }
 
-//Pie de página
+//Pie de pÃ¡gina
 function Footer()
 {
-	//Posición: a 1,5 cm del final
+	//PosiciÃ³n: a 1,5 cm del final
 	$this->SetY(-12);
 	//Arial italic 8
 	$this->SetFont('Arial','',8);
-	//Número de página
-	$this->Cell(0,10,'Calle 35 C sur No. 26 F - 40 Bogotá D.C. Colombia - Teléfono: (571) 2039484 - (571) 2022912 e-mail: info@novaquim.com',0,0,'C');
+	//NÃºmero de pÃ¡gina
+	$this->Cell(0,10,'Calle 35 C sur No. 26 F - 40 BogotÃ¡ D.C. Colombia - TelÃ©fono: (571) 2039484 - (571) 2022912 e-mail: info@novaquim.com',0,0,'C');
 }
 }
 
-//Creación del objeto de la clase heredada
+//CreaciÃ³n del objeto de la clase heredada
 include "includes/conect.php";
 $link=conectarServidor();
 $Lote=$_POST['Lote'];
-$qryord="select Lote, Fch_prod, Cant_kg, Cod_persona, ord_prod.Cod_prod as Codigo, Nom_produc, Nom_form, nom_personal, Den_min, Den_max ,pH_min, pH_max, Fragancia, Color, Apariencia, venc 
+$qryord="select Lote, Fch_prod, Cant_kg, Cod_persona, ord_prod.Cod_prod as Codigo, Nom_produc, nomFormula, nom_personal, Den_min, Den_max ,pH_min, pH_max, Fragancia, Color, Apariencia, venc 
 		from ord_prod, formula, productos, personal
-		WHERE ord_prod.Id_form=formula.Id_form and formula.Cod_prod=productos.Cod_produc
+		WHERE ord_prod.Id_form=formula.idFormula and formula.codProducto=productos.Cod_produc
 		and ord_prod.Cod_persona=personal.Id_personal and Lote=$Lote;";
 $resultord=mysqli_query($link,$qryord);
 $roword=mysqli_fetch_array($resultord);
@@ -60,16 +60,16 @@ $pdf->SetFont('Arial','B',12);
 $pdf->Cell(50,30,'',1,0,'C');
 $pdf->Cell(65,10,'GERENCIA DE CALIDAD',1,0,'C');
 $pdf->SetFont('Arial','B',11);
-$pdf->Cell(65,10,'CÓDIGO: FT-CA-01',1,0,'C');
+$pdf->Cell(65,10,'CÃ“DIGO: FT-CA-01',1,0,'C');
 $pdf->SetXY(70,20);
 $pdf->SetFont('Arial','B',12);
-$pdf->Cell(65,20,'CERTIFICADO DE ANÁLISIS',1,0,'C');
+$pdf->Cell(65,20,'CERTIFICADO DE ANÃLISIS',1,0,'C');
 $pdf->SetFont('Arial','B',11);
-$pdf->Cell(65,10,'Fecha Expedición: '.$roword['Fch_prod'],1,0,'C');
+$pdf->Cell(65,10,'Fecha ExpediciÃ³n: '.$roword['Fch_prod'],1,0,'C');
 $encabfecha=date('Y-m-d');
 date_default_timezone_set('America/Bogota');
 $pdf->SetXY(135,30);
-$pdf->Cell(65,10,'Fecha Impresión: '.$encabfecha,1,0,'C');
+$pdf->Cell(65,10,'Fecha ImpresiÃ³n: '.$encabfecha,1,0,'C');
 
 
 
@@ -91,7 +91,7 @@ $pdf->Cell(42,6,'Cantidad (Kg): ',0,0, 'R');
 $pdf->SetFont('Arial','',10);
 $pdf->Cell(30,6,$roword['Cant_kg'],0,1);
 $pdf->SetFont('Arial','B',10);
-$pdf->Cell(42,6,'Fecha de Producción : ',0,0,'R');
+$pdf->Cell(42,6,'Fecha de ProducciÃ³n : ',0,0,'R');
 $pdf->SetFont('Arial','',10);
 $pdf->Cell(75,6,$roword['Fch_prod'],0,1,'L');
 $pdf->SetFont('Arial','B',10);
@@ -108,7 +108,7 @@ $pdf->Cell(75,6,$nuevafecha,0,1,'L');
 
 $pdf->SetXY(20,125);
 $pdf->SetFont('Arial','B',10);
-$pdf->Cell(50,5,'ANÁLISIS','B',0,'C');
+$pdf->Cell(50,5,'ANÃLISIS','B',0,'C');
 $pdf->Cell(80,5,'ESPECIFICACIONES', 'B',0,'C');
 $pdf->Cell(50,5,'RESULTADO', 'B',1,'C');
 $pdf->SetFont('Arial','',10);
@@ -160,12 +160,12 @@ $pdf->Cell(60,5,'I.Q. '.$nom, 'T',1);
 $pdf->Cell(60,5,$pefil, 0,1);
 $pdf->SetFont('Arial','',8);
 $pdf->SetXY(20,240);
-$pdf->MultiCell(0,3,'La información facilitada en este documento se considera válida desde la fecha de su emisión y hasta su sustitución por otra nueva.  Está basada en nuestros conocimientos y experiencias actuales y se refiere únicamente al producto especificado.
-Sin embargo, dados los numerosos factores que están fuera de nuestro control y que pueden afectar la manipulación y empleo de los producto, INDUSTRIAS NOVAQUIM S.A.S. no asume ninguna responsabilidad ni obligación por las recomendaciones efectuadas, ya sea en cuanto a los resultados obtenidos o por los prejuicios o daños que se derivaran de su utilización.', 0,1);
+$pdf->MultiCell(0,3,'La informaciÃ³n facilitada en este documento se considera vÃ¡lida desde la fecha de su emisiÃ³n y hasta su sustituciÃ³n por otra nueva.  EstÃ¡ basada en nuestros conocimientos y experiencias actuales y se refiere Ãºnicamente al producto especificado.
+Sin embargo, dados los numerosos factores que estÃ¡n fuera de nuestro control y que pueden afectar la manipulaciÃ³n y empleo de los producto, INDUSTRIAS NOVAQUIM S.A.S. no asume ninguna responsabilidad ni obligaciÃ³n por las recomendaciones efectuadas, ya sea en cuanto a los resultados obtenidos o por los prejuicios o daÃ±os que se derivaran de su utilizaciÃ³n.', 0,1);
 
 
 mysqli_free_result($resultord);
-/* cerrar la conexión */
+/* cerrar la conexiÃ³n */
 mysqli_close($link);
 $pdf->Output();
 ?>

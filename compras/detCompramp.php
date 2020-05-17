@@ -1,13 +1,13 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <title>Ingreso de Compra de Materia Prima</title>
 <meta charset="utf-8">
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<script  src="scripts/validar.js"></script>
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+	<script  src="../js/validar.js"></script>
 	<script  src="scripts/block.js"></script>
         <link rel="stylesheet" type="text/css" media="all" href="css/calendar-blue2.css" title="blue">
     <script  src="scripts/calendar.js"></script>
@@ -372,7 +372,7 @@ if($CrearFactura==6)
     <tr>
       <td ><div align="right"><strong>Fecha de Factura</strong></div></td>
       <td colspan="3"><?php echo $row['Fech_comp'];?></td>
-       <td><div align="right"><strong>Retenci&oacute;n</strong></div></td>
+       <td><div align="right"><strong>Retención</strong></div></td>
       <td><div align="left"><?php echo '$ <script  > document.write(commaSplit('.$row['retencion'].'))</script>' ;?> </div></td>
     </tr>
     <tr>
@@ -437,7 +437,7 @@ if($CrearFactura==6)
     </tr>
   <tr>
     <th width="69"></th>
-    <th width="65" align="center">C&oacute;digo</th>
+    <th width="65" align="center">Código</th>
     <th width="266" align="center">Materia Prima</th>
     <th width="51" align="center">Iva</th>
     <th width="119" align="center">Cantidad (Kg)</th>

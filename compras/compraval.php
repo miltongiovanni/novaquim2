@@ -1,13 +1,13 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <title>Compra de Tapas y V&aacute;lvulas</title>
+    <title>Compra de Tapas y Válvulas</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-    <script  src="scripts/validar.js"></script>
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script  src="../js/validar.js"></script>
 	<script  src="scripts/block.js"></script>
     <link rel="stylesheet" type="text/css" media="all" href="css/calendar-blue2.css" title="blue" />
     <script  src="scripts/calendar.js"></script>
@@ -26,7 +26,7 @@ include "includes/valAcc.php";
         <td colspan="2"><div align="center">&nbsp;</div></td>
     </tr>
     <tr>
-   	  <td colspan="2"><div align="center" class="titulo"><strong>INGRESO DE COMPRA DE V&Aacute;LVULAS Y TAPAS</strong></div></td>
+   	  <td colspan="2"><div align="center" class="titulo"><strong>INGRESO DE COMPRA DE VÁLVULAS Y TAPAS</strong></div></td>
     </tr>
     <tr>
       <td width="44%">&nbsp;</td>
@@ -50,7 +50,7 @@ include "includes/valAcc.php";
 		?></td>
     </tr>
     <tr>
-      <td><strong>N&uacute;mero de Factura</strong></td>
+      <td><strong>Número de Factura</strong></td>
       <td><input type="text" name="num_fac" size=41 onKeyPress="return aceptaNum(event)"></td>
     </tr>
     <tr>

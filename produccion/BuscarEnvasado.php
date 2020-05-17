@@ -1,16 +1,13 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css"><head>
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Seleccionar Orden de Produccion a Modificar el Envasado</title>
-<script  src="scripts/validar.js"></script>
-<script  src="scripts/block.js"></script>
-	<script >
-	document.onkeypress = stopRKey; 
-	</script>
+<script  src="../js/validar.js"></script>
+
 
 </head>
 <body>
@@ -23,7 +20,7 @@ include "includes/valAcc.php";
     	<td colspan="2">&nbsp;</td>
   	</tr>
     <tr> 
-        <td width="64%"><div align="right"><strong>Orden de Producci&oacute;n&nbsp;</strong></div></td>
+        <td width="64%"><div align="right"><strong>Orden de Producción&nbsp;</strong></div></td>
         <td width="36%"><input type="text" name="Lote" size=15 onKeyPress="return aceptaNum(event)"></td>
     </tr>
     <tr>

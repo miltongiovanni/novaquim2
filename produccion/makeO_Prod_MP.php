@@ -1,22 +1,19 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <title>Ingreso de Compra de Materia Prima</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-    <script  src="scripts/validar.js"></script>
-    <script  src="scripts/block.js"></script>
-    	<script >
-	document.onkeypress = stopRKey; 
-	</script>
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script  src="../js/validar.js"></script>
+
 </head>
 <body> 
 <div align="center"><img src="images/LogoNova1.JPG"/></div>
 <?php
-//ESTOS SON LOS DATOS QUE RECIBE DE LA ORDEN DE PRODUCCIÓN
+//ESTOS SON LOS DATOS QUE RECIBE DE LA ORDEN DE PRODUCCIÃ“N
 include "includes/conect.php";
 foreach ($_POST as $nombre_campo => $valor) 
 { 
@@ -26,7 +23,7 @@ foreach ($_POST as $nombre_campo => $valor)
 }  
 $link=conectarServidor();   
 $error=0;
-//COMIENZA LA TRANSACCIÓN
+//COMIENZA LA TRANSACCIÃ“N
 mysqli_autocommit($link, FALSE);
 //ESTA PARTE ES PARA EL CONSECUTIVO DEL LOTE
 $lotinic=1;
@@ -41,7 +38,7 @@ $qrymp="select Cod_mp from formula_mp where Id_form_mp=$fmprima;";
 $resultmp=mysqli_query($link,$qrymp);
 $rowmp=mysqli_fetch_array($resultmp);	
 $cod_matp=$rowmp['Cod_mp'];
-/*CREACIÓN DE LA ORDEN DE PRODUCCIÓN*/
+/*CREACIÃ“N DE LA ORDEN DE PRODUCCIÃ“N*/
 $qryOP="insert into ord_prod_mp (Lote_mp, Fch_prod, Id_form_mp, Cod_persona, Cod_mprima, Cant_kg) values ($Orden,'$FchProd', $fmprima, $IdResp, $cod_matp, $can_prod)";
 //echo $qryOP;
 if($resultOP=mysqli_query($link,$qryOP))
@@ -74,7 +71,7 @@ if($resultOP=mysqli_query($link,$qryOP))
 
 		if ($exist < $uso)
 		{
-			//SI NO HAY EXISTENCIAS DE MATERIA PRIMA SE CANCELA LA TRANSACCIÓN
+			//SI NO HAY EXISTENCIAS DE MATERIA PRIMA SE CANCELA LA TRANSACCIÃ“N
 			mysqli_rollback($link);
 			mysqli_close($link);
 			mover("o_produccion_MP.php","No hay inventario suficiente de ".$materia." solo hay ".$exist." Kg");
@@ -129,11 +126,11 @@ if($resultOP=mysqli_query($link,$qryOP))
 	mysqli_commit($link);
 	mysqli_autocommit($link, TRUE);
 	mysqli_close($link);
-	mover_pag("detO_Prod_MP.php","Orden de Producción Creada correctamente");
+	mover_pag("detO_Prod_MP.php","Orden de ProducciÃ³n Creada correctamente");
 }
 else
 {
-	mover_pag("o_prod_MP.php","Error al ingresar la Orden de Producción");
+	mover_pag("o_prod_MP.php","Error al ingresar la Orden de ProducciÃ³n");
 }
 
 function mover_pag($ruta,$mensaje)

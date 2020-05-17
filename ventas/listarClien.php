@@ -1,5 +1,5 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 include "includes/calcularDias.php";
 foreach ($_POST as $nombre_campo => $valor) 
 { 
@@ -21,12 +21,9 @@ echo 'Lista de Clientes No Activos';
 
 </title>
 <meta charset="utf-8">
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<script  src="scripts/validar.js"></script>
-<script  src="scripts/block.js"></script>
-	<script >
-	document.onkeypress = stopRKey; 
-	</script>
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+	<script  src="../js/validar.js"></script>
+
 
     
     
@@ -47,7 +44,7 @@ echo 'Lista de Clientes No Activos';
 <table  align="center"border="0" summary="encabezado" width="90%">
   <tr> <td width="92%" align="right"><form action="Clientes_Xls.php" method="post" target="_blank">
     <input name="Submit" type="submit" class="resaltado" value="Exportar a Excel"><input name="Estado" type="hidden" value="<?php echo $Estado ?>"></form></td> 
-      <td width="8%"><div align="left"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men&uacute;">
+      <td width="8%"><div align="left"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú">
       </div></td>
   </tr>
 </table>
@@ -56,10 +53,10 @@ echo 'Lista de Clientes No Activos';
 	<th width="2%" class="formatoEncabezados"></th>
     <th width="9%" align="center" class="formatoEncabezados">NIT</th>
     <th width="33%" align="center" class="formatoEncabezados">Cliente</th>
-    <th width="21%" align="center" class="formatoEncabezados">Direcci&oacute;n</th>
+    <th width="21%" align="center" class="formatoEncabezados">Dirección</th>
 	<th width="14%" align="center" class="formatoEncabezados">Tipo de Cliente</th>
 	<th width="12%" align="center" class="formatoEncabezados">Vendedor</th>
-    <th width="9%" align="center" class="formatoEncabezados">&Uacute;ltima compra</th>
+    <th width="9%" align="center" class="formatoEncabezados">Última compra</th>
   </tr>   
 <?php
 include "includes/conect.php" ;
@@ -105,11 +102,11 @@ while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
 	<tr>
 	  <th width="200" class="formatoEncabezados">Contacto</th>
 	  <th width="200" class="formatoEncabezados">Cargo Contacto</th>
-	  <th width="61" align="center" class="formatoEncabezados">Tel&eacute;fono</th>
+	  <th width="61" align="center" class="formatoEncabezados">Teléfono</th>
 	  <th width="100" class="formatoEncabezados">Ciudad</th>
 	  <th width="50" class="formatoEncabezados">Fax</th>
   	  <th width="100" class="formatoEncabezados">Celular</th>
-      <th width="250" class="formatoEncabezados">Correo Electr&oacute;nico</th>
+      <th width="250" class="formatoEncabezados">Correo Electrónico</th>
   	</tr>';
 	echo '<tr>
 	<td class="formatoDatos"><div align="left">'.$row['Contacto'].'</div></td>
@@ -127,7 +124,7 @@ mysqli_free_result($result);
 mysqli_close($link);//Cerrar la conexion
 ?>
 </table>
-<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men&uacute;"></div>
+<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú"></div>
 </div>
 </body>
 </html>

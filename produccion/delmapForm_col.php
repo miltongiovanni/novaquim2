@@ -1,12 +1,12 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 include "includes/conect.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Acualizaci&oacute;n</title>
+<title>Acualización</title>
 </head>
 <body>
 <?php
@@ -26,7 +26,7 @@ include "includes/conect.php";
 	<input type="submit" name="Submit" value="Cambiar" >';
 	if($result==1)
 	{
-		mover_pag($ruta,"Materia Prima eliminada correctamente de la F�rmula");
+		mover_pag($ruta,"Materia Prima eliminada correctamente de la Fórmula");
 	}
 	echo'</form>';
 	

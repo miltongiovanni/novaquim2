@@ -1,13 +1,13 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <title>Modificar Sucursal </title>
 <meta charset="utf-8">
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<script  src="scripts/validar.js"></script>
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+	<script  src="../js/validar.js"></script>
 	<script  src="scripts/block.js"></script>
         <link rel="stylesheet" type="text/css" media="all" href="css/calendar-blue2.css" title="blue">
     <script  src="scripts/calendar.js"></script>
@@ -19,7 +19,7 @@ include "includes/valAcc.php";
 </head>
 <body> 
 <div id="contenedor">
-<div id="saludo1"><strong>ACTUALIZACI&Oacute;N DE SUCURSAL POR CLIENTE</strong></div>
+<div id="saludo1"><strong>ACTUALIZACIÓN DE SUCURSAL POR CLIENTE</strong></div>
 <?php
 include "includes/conect.php";
 foreach ($_POST as $nombre_campo => $valor) 
@@ -88,11 +88,11 @@ if($Crear==1)
       <td colspan="3"><input type="text" name="nom_sucursal" size=60 id="Cliente" maxlength="60" value="<?php echo  $rows['Nom_sucursal']?>"></td>    
     </tr>
     <tr>
-    	<td><div align="right"><b>Direcci&oacute;n</b></div></td>
+    	<td><div align="right"><b>Dirección</b></div></td>
         <td colspan="3"><input type="text"  maxlength="50" name="dir_sucursal" size=60 id="Direccion" value="<?php echo  $rows['Dir_sucursal']?>"></td>
     </tr>
     <tr>
-    <td><div align="right"><strong>Tel&eacute;fono</strong></div></td>
+    <td><div align="right"><strong>Teléfono</strong></div></td>
         <td width="17%"><input type="text" name="tel_sucursal" maxlength="10" size=15 onKeyPress="return aceptaNum(event)" id="Tel1" value="<?php echo  $rows['Tel_sucursal']?>"></td>
         <td width="11%"><div align="right"><b>Ciudad</b></div></td>
         <td width="43%"> 

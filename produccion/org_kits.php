@@ -1,22 +1,19 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-	<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<title>Organizaci&oacute;n de Kits de Productos de Distribuci&oacute;n</title>
+	<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+	<title>Organización de Kits de Productos de Distribución</title>
 	<meta charset="utf-8">
-	<script  src="scripts/validar.js"></script>
-	<script  src="scripts/block.js"></script>
-		<script >
-	document.onkeypress = stopRKey; 
-	</script>
+	<script  src="../js/validar.js"></script>
+
 
 </head>
 <body>
 <div id="contenedor">
-<div id="saludo"><strong>ORGANIZACI&Oacute;N DE KITS DE PRODUCTOS</strong></div>
+<div id="saludo"><strong>ORGANIZACIÓN DE KITS DE PRODUCTOS</strong></div>
 <table  border="0" align="center" class="table2" cellspacing="0">
   <form name="form2" method="POST" action="det_kits.php">
     <tr>

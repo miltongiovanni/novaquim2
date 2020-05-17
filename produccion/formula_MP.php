@@ -1,13 +1,13 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <title>Ingreso de F&oacute;rmulas de Materia Prima</title>
+    <title>Ingreso de Fórmulas de Materia Prima</title>
     <meta charset="utf-8">
-    <link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-    <script  src="scripts/validar.js"></script>
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script  src="../js/validar.js"></script>
 	<script  src="scripts/block.js"></script>
     <link rel="stylesheet" type="text/css" media="all" href="css/calendar-blue2.css" title="blue">
     <script  src="scripts/calendar.js"></script>
@@ -20,7 +20,7 @@ include "includes/valAcc.php";
 </head>
 <body>
 <div id="contenedor">
-<div id="saludo"><strong>INGRESO DE F&Oacute;RMULAS DE MATERIA PRIMA</strong></div> 
+<div id="saludo"><strong>INGRESO DE FÓRMULAS DE MATERIA PRIMA</strong></div>
 <form method="post" action="detFormula_MP.php" name="form1">	
 <table align="center" summary="cuerpo" width="50%">
 <tr>
@@ -40,7 +40,7 @@ include "includes/valAcc.php";
             }
             echo'</select>';
 			mysqli_free_result($result);
-/* cerrar la conexi�n */
+/* cerrar la conexión */
 mysqli_close($link);
 		?></td>
     </tr>

@@ -1,19 +1,16 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 include "includes/conect.php";
 //echo $_SESSION['Perfil'];
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
 <meta charset="utf-8">
 <title>Actualizar datos de Producto</title>
-<script  src="scripts/validar.js"></script>
-<script  src="scripts/block.js"></script>
-	<script >
-	document.onkeypress = stopRKey; 
-	</script>
+<script  src="../js/validar.js"></script>
+
 </head>
 <body>
 <?php
@@ -40,7 +37,7 @@ mysql_close($link);
 	<td colspan="2" class="titulo">&nbsp;</td>
 </tr>
 <tr>
-	<td colspan="2" align="left" class="titulo">Especificaci&oacute;n</td>
+	<td colspan="2" align="left" class="titulo">Especificación</td>
 </tr>
 <tr>
 	<td width="50%" align="right"><strong>Apariencia:</strong></td>
@@ -59,7 +56,7 @@ mysql_close($link);
 	<td width="53%"><?php echo strtoupper($rowe['pH_mp']); ?></td>
 </tr>
 <tr>
-	<td width="47%" align="right"><strong>Gravedad Espec&iacute;fica:</strong></td>
+	<td width="47%" align="right"><strong>Gravedad Específica:</strong></td>
 	<td width="53%"><?php echo strtoupper($rowe['densidad_mp']); ?>&nbsp;&plusmn;&nbsp;0.05</td>
 </tr>
 <tr>
@@ -70,7 +67,7 @@ mysql_close($link);
 <form id="form1" name="form1" method="post" action="controlMP.php">
 	<table border="0" align="center" width="50%">
     <tr>
-	<td align="left" class="titulo">Resultados An&aacute;lisis</td>
+	<td align="left" class="titulo">Resultados Análisis</td>
 	<td align="left" class="titulo">Cumple / Valor</td>
 </tr>
 <tr>
@@ -96,7 +93,7 @@ mysql_close($link);
      </td>
 </tr>
 <tr>
-	<td width="48%" align="right"><strong>Gravedad Espec&iacute;fica:</strong></td>
+	<td width="48%" align="right"><strong>Gravedad Específica:</strong></td>
 	<td width="38%">
     <?php if($rowe['densidad_mp']<>'N.A.')
 	   	echo '<input name="dens_mp" type="text" size=20 onKeyPress="return aceptaNum(event)"  value="">';

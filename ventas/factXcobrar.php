@@ -1,5 +1,5 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 include "includes/calcularDias.php";
 ?>
 <!DOCTYPE html>
@@ -7,8 +7,8 @@ include "includes/calcularDias.php";
 <head>
 <meta charset="utf-8">
 <title>Facturas por Cobrar</title>
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-<script  src="scripts/validar.js"></script>
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+<script  src="../js/validar.js"></script>
 <script  src="scripts/block.js"></script>	
 	<script >
 	document.onkeypress = stopRKey; 
@@ -21,7 +21,7 @@ include "includes/calcularDias.php";
 <table width="100%"  align="center" border="0" summary="encabezado">
   <tr> 	<td width="85%" align="right"><form action="FacturasXCobrar_Xls.php" method="post" target="_blank"><input name="Submit" type="submit" value="Exportar a Excel"></form></td>
     	<td  align="center" width="14%"><form action="Imp_EstadoCobros.php" method="post" target="_blank"><input type="submit" name="Submit" value="Imprimir Estado de Cartera"></form></td>
-    	<td width="7%"><input type="button" onClick="window.location='menu.php'" value="Ir al Men&uacute;"></td>
+    	<td width="7%"><input type="button" onClick="window.location='menu.php'" value="Ir al Menú"></td>
   </tr>
 </table>
 <table border="0" align="center" cellspacing="0" cellpadding="0" summary="cuerpo" width="100%">
@@ -32,7 +32,7 @@ include "includes/calcularDias.php";
     <th width="6%" align="center" class="formatoEncabezados" scope="col">Fecha Vencimiento</th>
     <th width="27%" align="center" class="formatoEncabezados" scope="col">Cliente</th>
     <th width="14%" align="center" class="formatoEncabezados" scope="col">Contacto</th>
-    <th width="4%" align="center" class="formatoEncabezados" scope="col">Tel&eacute;fono</th>
+    <th width="4%" align="center" class="formatoEncabezados" scope="col">Teléfono</th>
     <th width="6%" align="center" class="formatoEncabezados" scope="col">Celular</th>
     <th width="8%" align="center" class="formatoEncabezados" scope="col">Valor Factura </th>
     <th width="8%" align="center" class="formatoEncabezados" scope="col">Valor a Cobrar </th>
@@ -194,7 +194,7 @@ mysqli_close($link);
 		}
 	  ?>
 </table>
-<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men&uacute;"></div>
+<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú"></div>
 </div>
 </body>
 </html>

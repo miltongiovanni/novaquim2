@@ -1,17 +1,14 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-	<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<title>Creaci&oacute;n de Kits de Productos de Distribuci&oacute;n</title>
+	<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+	<title>Creación de Kits de Productos de Distribución</title>
 	<meta charset="utf-8">
-	<script  src="scripts/validar.js"></script>
-	<script  src="scripts/block.js"></script>
-		<script >
-	document.onkeypress = stopRKey; 
-	</script>
+	<script  src="../js/validar.js"></script>
+
 
 </head>
 <body>
@@ -23,7 +20,7 @@ include "includes/valAcc.php";
     	<td width="22%">&nbsp;</td>
     </tr>		
     <tr>
-        <td  colspan="2"><div align="center"><select name="Codigo"><option value=1>Producto de Novaquim</option><option value=2>Producto de Distribuci&oacute;n</option></select></div></td>
+        <td  colspan="2"><div align="center"><select name="Codigo"><option value=1>Producto de Novaquim</option><option value=2>Producto de Distribución</option></select></div></td>
    	</tr>
     <tr>
     	<td>&nbsp;</td>

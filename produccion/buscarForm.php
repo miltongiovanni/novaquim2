@@ -1,54 +1,54 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
+function cargarClases($classname)
+{
+    require '../clases/' . $classname . '.php';
+}
+
+spl_autoload_register('cargarClases');
 ?>
 <!DOCTYPE html>
 <html lang="es">
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
 <head>
-<meta charset="utf-8">
-<title>Seleccionar F&oacute;rmula a Actualizar</title>
-<script  src="scripts/validar.js"></script>
-<script  src="scripts/block.js"></script>	
-	<script >
-	document.onkeypress = stopRKey; 
-	</script>
+    <meta charset="utf-8">
+    <title>Seleccionar Fórmula a Actualizar</title>
+    <script src="../js/validar.js"></script>
 
 </head>
 <body>
 <div id="contenedor">
-<div id="saludo"><strong>SELECCI&Oacute;N DE F&Oacute;RMULA A ACTUALIZAR</strong></div> 
-<table width="100%" border="0">
-  	<tr>
-    	<td>
-		<form id="form1" name="form1" method="post" action="detFormula.php">
-      	<div align="center"><strong>F&oacute;rmula</strong>
-<?php
-				include "includes/conect.php";
-				$link=conectarServidor();
-				echo'<select name="Formula" id="combo">';
-				$result=mysqli_query($link,"select * from formula order by Nom_form");
-				echo '<option selected value="">--------------------------------------------------------------------------</option>';
-				while($row=mysqli_fetch_array($result)){
-					echo '<option value='.$row['Id_form'].'>'.$row['Nom_form'].'</option>';
-				}
-				echo'</select>';
-				mysqli_free_result($result);
-				/* cerrar la conexi�n */
-				mysqli_close($link);
-			?>
-            <input type="submit" name="Submit" value="Continuar" onClick="return Enviar(this.form);">
-            <input name="CrearFormula" type="hidden" value="2"> 
-      	</div>
-    	</form>    
-        </td>
-  	</tr>
-  	<tr>
-        <td colspan="2"><div align="center">&nbsp;</div></td>
-    </tr>
-    <tr> 
-        <td colspan="2"><div align="center"><input type="button" class="resaltado" onClick="history.back()" value="  VOLVER  "></div></td>
-    </tr>
-</table>
+    <div id="saludo"><strong>SELECCIÓN DE FÓRMULA A ACTUALIZAR</strong></div>
+
+    <form id="form1" name="form1" method="post" action="detFormula.php">
+        <div class="form-group row">
+            <label class="col-form-label col-1" for="idFormula"><strong>Fórmula</strong></label>
+            <select name="idFormula" id="idFormula" class="form-control col-2">
+                <option selected value="">-----------------------------</option>
+                <?php
+                $manager = new FormulasOperaciones();
+                $formulas = $manager->getFormulas();
+                for ($i = 0; $i < count($formulas); $i++) : ?>
+                    <option value="<?= $formulas[$i]["idFormula"] ?>"><?= $formulas[$i]["nomFormula"] ?></option>
+                <?php
+                endfor;
+                ?>
+            </select>
+        </div>
+        <div class="row form-group">
+            <div class="col-1">
+                <button class="button" onclick="return Enviar(this.form)">
+                    <span>Continuar</span></button>
+            </div>
+        </div>
+    </form>
+
+    <div class="row form-group">
+        <div class="col-1">
+            <button class="button1" onclick="history.back()"><span>VOLVER</span></button>
+        </div>
+    </div>
+
 </div>
 </body>
 </html>

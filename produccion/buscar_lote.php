@@ -1,25 +1,22 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css"><head>
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css"><head>
 <meta charset="utf-8">
 <title>OP para Control de Calidad</title>
-<script  src="scripts/validar.js"></script>
-<script  src="scripts/block.js"></script>
-	<script >
-	document.onkeypress = stopRKey; 
-	</script>
+<script  src="../js/validar.js"></script>
+
 
 </head>
 <body>
 <div id="contenedor">
-<div id="saludo"><strong>BUSCAR ORDEN DE PRODUCCI&Oacute;N A PARA CONTROL DE CALIDAD</strong></div>
+<div id="saludo"><strong>BUSCAR ORDEN DE PRODUCCIÓN A PARA CONTROL DE CALIDAD</strong></div>
 <table border="0" align="center">
 <form id="form1" name="form1" method="post" action="cal_produccion.php">	
     <tr> 
-        <td width="133"><div align="right"><strong>Orden  de Producci&oacute;n&nbsp;</strong></div></td><td>
+        <td width="133"><div align="right"><strong>Orden  de Producción&nbsp;</strong></div></td><td>
         <?php
 			include "includes/conect.php";
 			$link=conectarServidor();
@@ -32,7 +29,7 @@ include "includes/valAcc.php";
 			}
 			echo'</select>';
 			mysqli_free_result($result);
-/* cerrar la conexi�n */
+/* cerrar la conexión */
 mysqli_close($link);
 		?></td>
         <input type="hidden" name="Crear" value="5">

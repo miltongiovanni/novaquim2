@@ -1,12 +1,12 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<title>Lista de &Oacute;rdenes de Producci&oacute;n</title>
+<title>Lista de 脫rdenes de Producci贸n</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <table width="100%" border="0">
@@ -18,11 +18,11 @@ include "includes/valAcc.php";
     </tr>
   <tr>
     <td width="53%"><div align="center" class="titulo">
-       <div align="center">LISTADO DE &Oacute;RDENES DE PRODUCCI&Oacute;N</div>
+       <div align="center">LISTADO DE 脫RDENES DE PRODUCCI脫N</div>
     </div></td>
   </tr>
   <tr> 
-      <td><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men&uacute;">
+      <td><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men煤">
       </div></td>
   </tr>
 </table>
@@ -40,9 +40,9 @@ include "includes/valAcc.php";
 	//conectar con la tabla (ej. use datos;)
 	conectarBD($database, $link);  
 	//sentencia SQL    tblusuarios.IdUsuario,
-	$sql="SELECT Lote as 'No. de Lote', Fch_prod as 'Fecha de Producci髇', Nom_produc as 'Nombre de Producto', Nom_form as 'F髍mulaci髇'
+	$sql="SELECT Lote as 'No. de Lote', Fch_prod as 'Fecha de Producci贸n', Nom_produc as 'Nombre de Producto', nomFormula as 'F贸rmulaci贸n'
 		FROM ord_prod, formula, productos
-		where ord_prod.Id_form=formula.Id_form AND formula.Cod_prod=productos.Cod_produc ;";
+		where ord_prod.Id_form=formula.idFormula AND formula.codProducto=productos.Cod_produc ;";
 	//llamar funcion de tabla
 	verTabla($sql, $link);
 ?>
@@ -51,7 +51,7 @@ include "includes/valAcc.php";
         <td>&nbsp;</td>
     </tr>
     <tr> 
-      <td><div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men&uacute;">
+      <td><div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men煤">
       </div></td>
     </tr>
 </table>

@@ -15,7 +15,7 @@ $idCatProd=$_POST['idCatProd'];
 <head>
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <meta charset="utf-8">
-    <title>Actualizar datos de Categor&iacute;a</title>
+    <title>Actualizar datos de Categoría</title>
     <script  src="../js/validar.js"></script>
 </head>
 

@@ -1,17 +1,14 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <title>Ingreso de Compra de Envase</title>
 <meta charset="utf-8">
-<link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<script  src="scripts/validar.js"></script>
-	<script  src="scripts/block.js"></script>
-    	<script >
-	document.onkeypress = stopRKey; 
-	</script>
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+	<script  src="../js/validar.js"></script>
+
 </head>
 <body> 
 <div id="contenedor">
@@ -334,13 +331,13 @@ if($CrearFactura==6)
     <tr>
       <td><div align="right"><strong>NIT</strong></div></td>
       <td colspan="3"><?php echo  $row['nit_prov']?></td>
-      <td><div align="right"><strong>Retenci&oacute;n Ica</strong></div></td>
+      <td><div align="right"><strong>Retención Ica</strong></div></td>
       <td><div align="left"><?php echo '$ <script  > document.write(commaSplit('.$row['ret_ica'].'))</script>' ;?> </div></td>
     </tr>
     <tr>
       <td ><div align="right"><strong>Fecha de Factura</strong></div></td>
       <td colspan="3"><?php echo $row['Fech_comp'];?></td>
-       <td><div align="right"><strong>Retenci&oacute;n</strong></div></td>
+       <td><div align="right"><strong>Retención</strong></div></td>
       <td><div align="left"><?php echo '$ <script  > document.write(commaSplit('.$row['retencion'].'))</script>' ;?> </div></td>
     </tr>
     <tr>
@@ -397,7 +394,7 @@ if($CrearFactura==6)
 	echo '
   	<table width="55%"  align="center" border="0" summary="Tapa">
     <tr>
-      <td width="44%"><div align="center"><strong>Tapa o V&aacute;lvula</strong></div></td>
+      <td width="44%"><div align="center"><strong>Tapa o Válvula</strong></div></td>
       <td width="15%" ><div align="center"><strong>Cantidad</strong></div></td>
       <td width="27%" ><div align="center"><strong>Precio por Un (Sin IVA)</strong></div></td>
     </tr>
@@ -434,7 +431,7 @@ if($CrearFactura==6)
     </tr>
           <tr align="center">
           	<th width="44"></th>
-            <th width="72">C&oacute;digo</th>
+            <th width="72">Código</th>
             <th width="312">Envase o Tapa</th>
             <th width="104">Cantidad </th>
             <th width="129">Precio por Un</th>

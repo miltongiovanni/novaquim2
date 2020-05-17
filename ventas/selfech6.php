@@ -1,5 +1,5 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 include "includes/conect.php";
 $bd="novaquim";
 ?>
@@ -8,8 +8,8 @@ $bd="novaquim";
 <head>
     <title>Seleccionar Vendedor y periodo a revisar comisiones</title>
     <meta charset="utf-8">
-    <link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
-    <script  src="scripts/validar.js"></script>
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script  src="../js/validar.js"></script>
 	<script  src="scripts/block.js"></script>
     <link rel="stylesheet" type="text/css" media="all" href="css/calendar-blue2.css" title="blue">
     <script  src="scripts/calendar.js"></script>
@@ -21,7 +21,7 @@ $bd="novaquim";
 </head>
 <body> 
 <div id="contenedor">
-<div id="saludo"><strong>SELECCI&Oacute;N DE VENDEDOR Y PER&Iacute;ODO PARA REVISAR COMISIONES</strong></div> 
+<div id="saludo"><strong>SELECCIÓN DE VENDEDOR Y PERÍODO PARA REVISAR COMISIONES</strong></div>
 <form method="post" action="comis_vend.php" name="form1">	
 	<table align="center">
     <tr>

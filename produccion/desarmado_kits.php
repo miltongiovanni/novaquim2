@@ -1,5 +1,5 @@
 <?php
-include "includes/valAcc.php";
+include "../includes/valAcc.php";
 ?>
 <?php
 include "includes/conect.php";
@@ -40,7 +40,7 @@ if ($inv_bus < $Cantidad)
 	mysqli_rollback($link);
 	mysqli_close($link);
 	echo'<script >
-	alert("No hay suficiente inventario de '.$prod_bus.' sólo hay '.$inv_bus.' unidades")
+	alert("No hay suficiente inventario de '.$prod_bus.' sÃ³lo hay '.$inv_bus.' unidades")
 	self.location="desarm_kits.php"
 	</script>';
 }
@@ -156,7 +156,7 @@ else
 	mysqli_autocommit($link, TRUE);
 	mysqli_close($link);
 	echo'<script >
-	alert("Kit desarmados con éxito")
+	alert("Kit desarmados con Ã©xito")
 	self.location="listar_desarm_kits.php"
 	</script>';
 ?>
