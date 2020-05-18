@@ -1,5 +1,11 @@
 <?php
 include "../includes/valAcc.php";
+function cargarClases($classname)
+{
+    require '../clases/' . $classname . '.php';
+}
+
+spl_autoload_register('cargarClases');
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -7,67 +13,44 @@ include "../includes/valAcc.php";
     <title>Ingreso de Fórmulas de Producto</title>
     <meta charset="utf-8">
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-    <script  src="../js/validar.js"></script>
-	<script  src="scripts/block.js"></script>	
-    <link rel="stylesheet" type="text/css" media="all" href="css/calendar-blue2.css" title="blue">
-    <script  src="scripts/calendar.js"></script>
-    <script  src="scripts/calendar-sp.js"></script>
-    <script  src="scripts/calendario.js"></script>
-    	<script >
-	document.onkeypress = stopRKey; 
-	</script>
-
+    <script src="../js/validar.js"></script>
 </head>
 <body>
 <div id="contenedor">
-<div id="saludo"><strong>INGRESO DE FÓRMULAS DE PRODUCTO</strong></div>
-<form method="post" action="detFormula.php" name="form1">	
-<table align="center">
-    <tr>
-      <td width="82">&nbsp;</td>
-      <td width="291">&nbsp;</td>
-    </tr>
-    <tr>
-      <td align="right"><strong>Producto</strong></td>
-      <td><?php
-			include "includes/conect.php";
-			$link=conectarServidor();
-			echo'<select name="cod_prod">';
-			$result=mysqli_query($link,"select * from productos order by Nom_produc");
-			echo '<option value="">---------------------------------------------------------------</option>';
-            while($row=mysqli_fetch_array($result))
-			{
-				echo '<option value='.$row['Cod_produc'].'>'.$row['Nom_produc'].'</option>';
+    <div id="saludo"><strong>INGRESO DE FÓRMULAS DE PRODUCTO</strong></div>
+    <form method="post" action="makeFormula.php" name="form1">
+        <div class="form-group row">
+            <label class="col-form-label col-1" for="codProducto"><strong>Producto</strong></label>
+            <?php
+            $ProductoOperador = new ProductosOperaciones();
+            $productos = $ProductoOperador->getProductos(true);
+            $filas = count($productos);
+            echo '<select name="codProducto" id="codProducto" class="form-control col-3" onchange="idProducto(this.value);">';
+            echo '<option selected disabled value="">-----------------------------</option>';
+            for ($i = 0; $i < $filas; $i++) {
+                echo '<option value="' . $productos[$i]["codProducto"] . '">' . $productos[$i]['nomProducto'] . '</option>';
             }
-            echo'</select>';
-			mysqli_free_result($result);
-/* cerrar la conexión */
-mysqli_close($link);
-		?></td>
-    </tr>
-    <tr>
-      <td align="right"><strong>Fórmula</strong></td>
-      <td><input type="text" name="formula" size=41></td>
-    </tr>
-    <tr>
-      <td colspan="2"><div align="center">&nbsp;</div></td>
-    </tr>
-    <tr>
-   	  <td><input name="CrearFormula" type="hidden" value="0"></td>
-    	<td><div align="right"><input name="button" type="button" onClick="return Enviar(this.form);" value="Continuar"></div></td>
-    </tr>
-    <tr>
-      <td colspan="2"><div align="center">&nbsp;</div></td>
-    </tr>
-    <tr>
-        <td colspan="2"><div align="center">&nbsp;</div></td>
-    </tr>
-    <tr> 
-        <td colspan="2">
-        <div align="center"><input type="button" class="resaltado" onClick="history.back()" value="  VOLVER  "></div>        </td>
-    </tr>
-  </table>
-</form> 
+            echo '</select>';
+            ?>
+        </div>
+        <div class="form-group row">
+            <label class="col-form-label col-1" for="nomFormula"><strong>Fórmula</strong></label>
+            <input name="nomFormula" id="nomFormula" class="form-control col-3" type="text" value=""/>
+        </div>
+        <div class="form-group row">
+            <div class="col-1 text-center">
+                <button class="button" onclick="return Enviar(this.form)"><span>Continuar</span></button>
+            </div>
+            <div class="col-1 text-center">
+                <button class="button" type="reset"><span>Reiniciar</span></button>
+            </div>
+        </div>
+    </form>
+    <div class="row">
+        <div class="col-1">
+            <button class="button1" onClick="history.back()"><span>VOLVER</span></button>
+        </div>
+    </div>
 </div>
 </body>
 </html>

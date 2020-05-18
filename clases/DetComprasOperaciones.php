@@ -78,7 +78,54 @@ class DetComprasOperaciones
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
-
+    public function getProdPorProveedorCompra($idProv, $idCatProv, $idCompra)
+    {
+        switch (intval($idCatProv)) {
+            case 1:
+                $qry = "SELECT dp.Codigo, dp.Producto FROM
+                        (SELECT codMPrima Codigo, nomMPrima Producto FROM det_proveedores
+                        LEFT JOIN mprimas mp ON mp.codMPrima=Codigo
+                        WHERE idProv=$idProv) dp
+                        LEFT JOIN (SELECT codigo from det_compras WHERE idCompra=$idCompra) dc ON dp.Codigo=dc.codigo
+                        WHERE dc.codigo IS NULL";
+                break;
+            case 2:
+                $qry = "SELECT dp.Codigo, dp.Producto FROM
+                        (SELECT codEnvase Codigo, nomEnvase Producto FROM det_proveedores
+                        LEFT JOIN envases e ON e.codEnvase=Codigo
+                        WHERE idProv=$idProv AND Codigo<100 ORDER BY nomEnvase) dp
+                        LEFT JOIN (SELECT codigo from det_compras WHERE idCompra=$idCompra) dc ON dp.Codigo=dc.codigo
+                        WHERE dc.codigo IS NULL
+                        UNION
+                        SELECT dp.Codigo, dp.Producto FROM
+                        (SELECT codTapa Codigo, tapa Producto FROM det_proveedores
+                        LEFT JOIN tapas_val tv ON tv.codTapa=Codigo
+                        WHERE idProv=$idProv AND Codigo>100 ORDER BY tapa) dp
+                        LEFT JOIN (SELECT codigo from det_compras WHERE idCompra=$idCompra) dc ON dp.Codigo=dc.codigo
+                        WHERE dc.codigo IS NULL";
+                break;
+            case 3:
+                $qry = "SELECT dp.Codigo, dp.Producto FROM
+                        (SELECT codEtiqueta Codigo, nomEtiqueta Producto FROM det_proveedores
+                        LEFT JOIN etiquetas e ON e.codEtiqueta=Codigo
+                        WHERE idProv=$idProv) dp
+                        LEFT JOIN (SELECT codigo from det_compras WHERE idCompra=$idCompra) dc ON dp.Codigo=dc.codigo
+                        WHERE dc.codigo IS NULL ORDER BY Producto";
+                break;
+            case 5:
+                $qry = "SELECT dp.Codigo, dp.Producto FROM
+                        (SELECT idDistribucion Codigo, producto Producto FROM det_proveedores
+                        LEFT JOIN distribucion d ON d.idDistribucion=Codigo
+                        WHERE idProv=399) dp
+                        LEFT JOIN (SELECT codigo from det_compras WHERE idCompra=8286) dc ON dp.Codigo=dc.codigo
+                        WHERE dc.codigo IS NULL ORDER BY Producto";
+                break;
+        }
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
     public function getDetCompra($idCompra, $tipoCompra, $codigo)
     {
         switch (intval($tipoCompra)) {

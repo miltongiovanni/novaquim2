@@ -466,11 +466,11 @@ legend {
     font-size: 1.2vw;
 }
 
-td,
+/*td,
 th {
     padding-left: 5px;
     padding-right: 5px;
-}
+}*/
 
 td.details-control {
     background: url('../images/details_open.png') no-repeat center center;
@@ -519,6 +519,9 @@ table {
     margin: 0 auto 10px auto;;
 }
 
+.text-bold{
+    font-weight: bold;
+}
 
 .text-center {
     text-align: center !important;

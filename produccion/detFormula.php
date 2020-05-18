@@ -13,173 +13,166 @@ function cargarClases($classname)
 }
 
 spl_autoload_register('cargarClases');
-/*if($CrearFormula==0)
-{
-    $link=conectarServidor();
-    //CREACION DE LA FORMULACION
-    $qryForm="insert into formula (nomFormula, codProducto) values ('$formula', $cod_prod)";
-    if($resultfact=mysqli_query($link,$qryForm))
-    {
-        $qry="select max(idFormula) as Form from formula";
-        $result=mysqli_query($link,$qry);
-        $row=mysqli_fetch_array($result);
-        $Formula=$row['Form'];
-        echo '<form method="post" action="detFormula.php" name="form3">';
-        echo'<input name="CrearFormula" type="hidden" value="5">';
-        echo'<input name="Formula" type="hidden" value="'.$Formula.'">';
-        echo '</form>';
-        echo'<script >
-		document.form3.submit();
-		</script>';
-        mysqli_free_result($result);
-        mysql_close($link);
-    }
-    else
-    {
-        mover_pag("formula.php","Error al ingresar la Formulación");
-        mysql_close($link);
-    }
-    $Total=0;
-}
-
-if($CrearFormula==1)
-{
-    //AGREGANDO LOS COMPONENTES DE LA FORMULACIÓN
-    $percent=$percent/100;
-    $link=conectarServidor();
-    $qryFact="insert into det_formula (idFormula, codMPrima, porcentaje, Orden) values ($Formula, $cod_mprima, $percent, $orden)";
-    $resultfact=mysqli_query($link,$qryFact);
-    $qry="select sum(porcentaje) as Total from det_formula where idFormula=$Formula;";
-    $result=mysqli_query($link,$qry);
-    $row=mysqli_fetch_array($result);
-    $Total=$row['Total'];
-    mysqli_free_result($result);
-    mysql_close($link);
-}
-if($CrearFormula==2)
-{
-    //AGREGANDO LOS COMPONENTES DE LA FORMULACIÓN
-    $link=conectarServidor();
-    $qry="select sum(porcentaje) as Total from det_formula where idFormula=$Formula;";
-    $result=mysqli_query($link,$qry);
-    $row=mysqli_fetch_array($result);
-    $Total=$row['Total'];
-    mysqli_free_result($result);
-    mysql_close($link);
-}
-
-
-$link=conectarServidor();
-$qry="select * from formula where idFormula=$Formula";
-$result=mysqli_query($link,$qry);
-$row=mysqli_fetch_array($result);
-mysqli_free_result($result);
-mysql_close($link);*/
 
 $formulaOperador = new FormulasOperaciones();
 $nomFormula = $formulaOperador->getNomFormula($idFormula);
+$DetFormulaOperador = new DetFormulaOperaciones();
+$porcentajeTotal = $DetFormulaOperador->getPorcentajeTotal($idFormula);
 
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<title>Porcentaje de Materias Primas en la Fórmula</title>
-<meta charset="utf-8">
-<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-<script  src="../js/validar.js"></script>
+    <title>Porcentaje de Materias Primas en la Fórmula</title>
+    <meta charset="utf-8">
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../css/datatables.css">
+    <style>
+        table.dataTable.compact thead th, table.dataTable.compact thead td {
+            padding: 4px 4px 4px 4px;
+        }
+    </style>
+    <script src="../js/validar.js"></script>
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/datatables.js"></script>
+    <script src="../js/jszip.js"></script>
+    <script src="../js/pdfmake.js"></script>
+    <script src="../js/vfs_fonts.js"></script>
+    <script>
+        $(document).ready(function () {
+            let idFormula = <?=$idFormula?>;
+            let ruta = "ajax/listaDetFormulas.php?idFormula=" + idFormula;
+            $('#example').DataTable({
+                "columns": [
+                    {
+                        "data": function (row) {
+                            let rep = '<form action="updateDetFormulaForm.php" method="post" name="cambiar">' +
+                                '          <input name="idFormula" type="hidden" value="' + idFormula + '">' +
+                                '          <input name="codMPrima" type="hidden" value="' + row.codMPrima + '">' +
+                                '          <input type="button" name="Submit" onclick="return Enviar(this.form)" class="formatoBoton"  value="Cambiar">' +
+                                '      </form>'
+                            return rep;
+                        },
+                        "className": 'dt-body-center'
+                    },
+                    {
+                        "data": "orden",
+                        "className": 'dt-body-center'
+                    },
+                    {
+                        "data": "nomMPrima",
+                        "className": 'dt-body-left'
+                    },
+                    {
+                        "data": "porcentaje",
+                        "className": 'dt-body-right'
+                    },
+                    {
+                        "data": function (row) {
+                            let rep = '<form action="delDetFormula.php" method="post" name="elimina">' +
+                                '          <input name="idFormula" type="hidden" value="' + idFormula + '">' +
+                                '          <input name="codMPrima" type="hidden" value="' + row.codMPrima + '">' +
+                                '          <input type="button" name="Submit" onclick="return Enviar(this.form)" class="formatoBoton"  value="Eliminar">' +
+                                '      </form>'
+                            return rep;
+                        },
+                        "className": 'dt-body-center'
+                    }
+                ],
+                "paging": false,
+                "ordering": false,
+                "info": false,
+                "searching": false,
+                "lengthMenu": [[20, 50, 100, -1], [20, 50, 100, "All"]],
+                "language": {
+                    "lengthMenu": "Mostrando _MENU_ datos por página",
+                    "zeroRecords": "Lo siento no encontró nada",
+                    "info": "Mostrando página _PAGE_ de _PAGES_",
+                    "infoEmpty": "No hay datos disponibles",
+                    "search": "Búsqueda:",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Último",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    },
+                    "infoFiltered": "(Filtrado de _MAX_ en total)"
+
+                },
+                "ajax": ruta
+            });
+        });
+    </script>
 
 
 </head>
-<body> 
+<body>
 
 <div id="contenedor">
-<div id="saludo1"><strong>INGRESO DEL DETALLE DE FÓRMULA DE <?=strtoupper ($nomFormula);?>
-</strong></div>
-<form method="post" action="detFormula.php" name="form1"><table  align="center" border="0" summary="encabezado"> 
-    <tr>
-      <td width="90">&nbsp;</td>
-      <td colspan="2">&nbsp;</td>
-    </tr>
-    <tr>
-      <td class="formatoDatos"><div align="center"><strong>Materia Prima</strong></div></td>
-      <td width="94" class="formatoDatos"><div align="center"><strong>% en Fórmula</strong></div></td>
-      <td width="60" class="formatoDatos"><div align="center"><strong>Orden</strong></div></td>
-    </tr>
-    
-    <tr>
-      <td><div align="center">
-        <?php
+    <div id="saludo1"><strong>DETALLE DE FÓRMULA DE <?= strtoupper($nomFormula); ?>
+        </strong></div>
+    <form method="post" action="makeDetFormula.php" name="form1">
+            <input name="idFormula" type="hidden" value="<?= $idFormula; ?>">
+            <div class="row">
+                <label class="col-form-label col-3 text-center" for="codMPrima" style="margin: 0 5px 0 0;"><strong>Materia Prima</strong></label>
+                <label class="col-form-label col-1 text-center" for="porcentaje" style="margin: 0 5px;"><strong>% en fórmula</strong></label>
+                <label class="col-form-label col-1 text-center" for="orden" style="margin: 0 5px;"><strong>Orden</strong></label>
+                <div class="col-2 text-center">
+                </div>
+            </div>
+            <div class="form-group row">
+                <select name="codMPrima" id="codMPrima" class="form-control col-3" style="margin: 0 5px 0 0;">
+                    <option disabled selected value="">-----------------------------</option>
+                <?php
+                $mprimas = $DetFormulaOperador->getMPrimasFormula($idFormula);
+                for ($i = 0; $i < count($mprimas); $i++) {
+                    echo '<option value="' . $mprimas[$i]["codMPrima"] . '">' . $mprimas[$i]['nomMPrima'] . '</option>';
+                }
+                echo '</select>';
+                ?>
+                <input type="text" style="margin: 0 5px;" class="form-control col-1" name="porcentaje"
+                       id="porcentaje" onKeyPress="return aceptaNum(event)">
+                <input type="text" style="margin: 0 5px;" class="form-control col-1" name="orden" id="orden"
+                       onKeyPress="return aceptaNum(event)">
+                <div class="col-2 text-center" style="padding: 0 20px;">
+                    <button class="button" onclick="return Enviar(this.form)"><span>Adicionar detalle</span>
+                    </button>
+                </div>
+            </div>
+    </form>
+    <div class="form-group titulo row">
+        <strong>Detalle de la fórmula</strong>
+    </div>
+    <div class="tabla-50">
+        <table id="example" class="display compact">
+            <thead>
+            <tr>
+                <th width="15%"></th>
+                <th width="15%">Orden</th>
+                <th width="40%">Materia Prima</th>
+                <th width="15%">Porcentaje</th>
+                <th width="15%"></th>
+            </tr>
+            </thead>
+        </table>
+    </div>
+    <div class="tabla-50">
+        <table width="100%">
+            <tr>
+                <td width="70%" class="text-right text-bold">Total</td>
+                <td width="15%" class="text-right text-bold"><?=$porcentajeTotal ?></td>
+                <td width="15%"></td>
+            </tr>
+        </table>
+    </div>
 
-			$link=conectarServidor();
-			echo'<select name="cod_mprima">';
-			$result=mysqli_query($link,"select * from mprimas order by Nom_mprima");
-            while($row=mysqli_fetch_array($result))
-			{
-				echo '<option value='.$row['Cod_mprima'].'>'.$row['Nom_mprima'].'</option>';
-            }
-            echo'</select>';
-			mysqli_free_result($result);
-			mysqli_close($link);
-		?>      
-      </div></td>
-      <td><div align="center"><input name="percent" type="text" size=8 onKeyPress="return aceptaNum(event)"></div></td>
-      <td><div align="center"><input name="orden" type="text" size=8 onKeyPress="return aceptaNum(event)"></div></td>
-      <td width="105" align="right"><input name="submit" onClick="return Enviar(this.form)" type="submit"  value="Continuar">
-          <input name="CrearFormula" type="hidden" value="1">
-          <?php echo'<input name="Formula" type="hidden" value="'.$Formula.'">'; ?> </td>
-    </tr>
-    
-    <tr>
-      <td>&nbsp;</td>
-      <td colspan="2">&nbsp;</td>
-    </tr>
-</table></form>
-<table border="0" align="center" cellspacing="0" summary="detalle">
-  <tr>
-        <th width="61" class="formatoDatos">&nbsp;</th>
-        <th width="39" align="center" class="formatoDatos">Orden</th>
-        <th width="253" align="center" class="formatoDatos">Materia Prima</th>
-        <th width="71" align="center" class="formatoDatos">Porcentaje</th>
-        <th width="6" class="formatoDatos">&nbsp;</th>
-    </tr>
-<?php
-$link=conectarServidor();
-$qry="select det_formula.codMPrima as codigo, Nom_mprima, porcentaje, Orden from mprimas, det_formula 
-where idFormula=$Formula and det_formula.codMPrima=mprimas.Cod_mprima order by Orden";
-$result=mysqli_query($link,$qry);
-$n=0;
-while($row=mysqli_fetch_array($result))
-{
-	$n++;
-	$codmp=$row['codigo'];
-	$mprima=$row['Nom_mprima'];
-	$percent=$row['porcentaje'];
-	echo'<tr>
-				<td align="center" ><form action="updateFormula.php" method="post" name="actualiza'.$n.'"><input type="submit" name="Submit" value="Cambiar" class="formatoBoton">
-				<input name="IdForm" type="hidden" value="'.$Formula.'">
-				<input name="mprima" type="hidden" value="'.$codmp.'">
-				<input name="percent" type="hidden" value="'.$percent.'">
-			</form></td>
-		<td class="formatoDatos"><div align="center">'.$row['Orden'].'</div></td>
-		<td class="formatoDatos"><div align="center">'.$row['Nom_mprima'].'</div></td>
-		<td class="formatoDatos"><div align="center">'.$row['porcentaje']*(100).' %</div></td>
-		
-		<td align="center"><form action="delmapForm.php" method="post" name="elimina'.$n.'"><input type="submit" name="Submit" value="Eliminar" class="formatoBoton">
-				<input name="IdForm" type="hidden" value="'.$Formula.'">
-				<input name="mprima" type="hidden" value="'.$codmp.'">
-				<input name="percent" type="hidden" value="'.$percent.'">
-			</form></td>
-	</tr>';
-}
-  mysqli_free_result($result);
-  mysqli_close($link);
-?>
-    <tr>
-      	<td colspan="3" class="formatoDatos"><div align="right"><strong>Total</strong></div></td>
-        <td align="center" class="formatoDatos"><?php echo  $Total*(100).' %'; ?></td><td>&nbsp;</td>
-    </tr>
-</table>
-<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Terminar"></div>
+    <div class="row">
+        <div class="col-1">
+            <button class="button" id="back" onclick="window.location='../menu.php'"><span>Terminar</span>
+            </button>
+        </div>
+    </div>
+
 </div>
 </body>
 </html>

@@ -247,8 +247,7 @@ $compra = $CompraOperador->getCompra($idCompra, $tipoCompra);
                 </div>
                 <div class="form-group row">
                     <?php
-                    $manager = new DetProveedoresOperaciones();
-                    $productos = $manager->getProdPorProveedor($compra['idProv'], $tipoCompra);
+                    $productos = $DetComprasOperador->getProdPorProveedorCompra($compra['idProv'], $tipoCompra, $idCompra);
                     $filas = count($productos);
                     echo '<select name="codigo" id="codigo" class="form-control col-2" style="margin: 0 5px;">';
                     echo '<option disabled selected value="">-----------------------------</option>';
@@ -279,7 +278,8 @@ $compra = $CompraOperador->getCompra($idCompra, $tipoCompra);
                 <input name="tipoCompra" type="hidden" value="<?= $tipoCompra; ?>">
                 <input name="idCompra" type="hidden" value="<?= $idCompra; ?>">
                 <div class="row">
-                    <div class="col-2 text-center" style="margin: 0 5px 0 0;"><strong>Envase</strong></div>
+                    <div class="col-2 text-center" style="margin: 0 5px 0 0;"><strong>Envase o tapa
+                        </strong></div>
                     <div class="col-1 text-center" style="margin: 0 5px;"><strong>Cantidad</strong></div>
                     <div class="col-1 text-center" style="margin: 0 5px;"><strong>Precio por Un (Sin IVA)</strong></div>
                     <div class="col-2 text-center"></div>
@@ -287,39 +287,7 @@ $compra = $CompraOperador->getCompra($idCompra, $tipoCompra);
                 <div class="form-group row">
                     <?php
                     $manager = new DetProveedoresOperaciones();
-                    $productos = $manager->getProdPorProveedor($compra['idProv'], $tipoCompra);
-                    $filas = count($productos);
-                    echo '<select name="codigo" id="codigo" class="form-control col-2" style="margin: 0 5px;">';
-                    echo '<option disabled selected value="">-----------------------------</option>';
-                    for ($i = 0; $i < $filas; $i++) {
-                        echo '<option value="' . $productos[$i]["Codigo"] . '">' . $productos[$i]['Producto'] . '</option>';
-                    }
-                    echo '</select>';
-                    ?>
-                    <input type="text" style="margin: 0 5px 0 0;" class="form-control col-1" name="cantidad"
-                           id="cantidad"
-                           onKeyPress="return aceptaNum(event)">
-                    <input type="text" style="margin: 0 5px;" class="form-control col-1" name="precio" id="precio"
-                           onKeyPress="return aceptaNum(event)">
-                    <div class="col-2 text-center" style="padding: 0 20px;">
-                        <button class="button" onclick="return Enviar(this.form)"><span>Adicionar producto</span>
-                        </button>
-                    </div>
-                </div>
-            </form>
-            <form method="post" action="makeDetCompra.php" name="form1">
-                <input name="tipoCompra" type="hidden" value="<?= $tipoCompra; ?>">
-                <input name="idCompra" type="hidden" value="<?= $idCompra; ?>">
-                <div class="row">
-                    <div class="col-2 text-center" style="margin: 0 5px 0 0;"><strong>Tapa o válvula</strong></div>
-                    <div class="col-1 text-center" style="margin: 0 5px;"><strong>Cantidad</strong></div>
-                    <div class="col-1 text-center" style="margin: 0 5px;"><strong>Precio por Un (Sin IVA)</strong></div>
-                    <div class="col-2 text-center"></div>
-                </div>
-                <div class="form-group row">
-                    <?php
-                    $manager = new DetProveedoresOperaciones();
-                    $productos = $manager->getProdPorProveedor($compra['idProv'], $tipoCompra);
+                    $productos = $DetComprasOperador->getProdPorProveedorCompra($compra['idProv'], $tipoCompra, $idCompra);
                     $filas = count($productos);
                     echo '<select name="codigo" id="codigo" class="form-control col-2" style="margin: 0 5px;">';
                     echo '<option disabled selected value="">-----------------------------</option>';
@@ -356,7 +324,7 @@ $compra = $CompraOperador->getCompra($idCompra, $tipoCompra);
                 <div class="form-group row">
                     <?php
                     $manager = new DetProveedoresOperaciones();
-                    $productos = $manager->getProdPorProveedor($compra['idProv'], $tipoCompra);
+                    $productos = $DetComprasOperador->getProdPorProveedorCompra($compra['idProv'], $tipoCompra, $idCompra);
                     $filas = count($productos);
                     echo '<select name="codigo" id="codigo" class="form-control col-2" style="margin: 0 5px;">';
                     echo '<option disabled selected value="">-----------------------------</option>';
@@ -394,7 +362,7 @@ $compra = $CompraOperador->getCompra($idCompra, $tipoCompra);
                 <div class="form-group row">
                     <?php
                     $manager = new DetProveedoresOperaciones();
-                    $productos = $manager->getProdPorProveedor($compra['idProv'], $tipoCompra);
+                    $productos = $DetComprasOperador->getProdPorProveedorCompra($compra['idProv'], $tipoCompra, $idCompra);
                     $filas = count($productos);
                     echo '<select name="codigo" id="codigo" class="form-control col-2" style="margin: 0 5px;">';
                     echo '<option disabled selected value="">-----------------------------</option>';
