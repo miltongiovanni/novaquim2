@@ -35,7 +35,7 @@ if ($rowlot)
 	$Orden=1+$rowlot['Orden'];		
 else 
 	$Orden=$lotinic;
-$qrycol="select Cod_sol_col from formula_col where Id_form_col=$fcolor;";
+$qrycol="select codSolucionColor from formula_col where idFormulaColor=$fcolor;";
 $resultcol=mysqli_query($link,$qrycol);
 $rowcol=mysqli_fetch_array($resultcol);	
 $cod_prod=$rowcol['Cod_sol_col'];
@@ -49,7 +49,7 @@ if($resultOP=mysqli_query($link,$qryOP))
 	$row=mysqli_fetch_array($result);
 	$Lote=$row['Batch'];
 	//CON BASE EN LA FORMULA SE ANALIZA EL GASTO DE MATERIA PRIMA
-	$qrydet="SELECT * FROM det_formula_col where Id_formula_color=$fcolor;";
+	$qrydet="SELECT * FROM det_formula_col where idFormulaColor=$fcolor;";
 	$resultdet=mysqli_query($link,$qrydet);
 	while($rowdet=mysqli_fetch_array($resultdet))
 	{

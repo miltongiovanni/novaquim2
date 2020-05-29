@@ -21,6 +21,7 @@
     <file url="file://$PROJECT_DIR$/compras/buscarEnvase_Tapas.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/compras/buscarGasto.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/compras/buscarMateriaP.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/compras/buscarProv.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/compras/buscarcompramp.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/compras/consultaEgreso.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/compras/delDetCompra.php" charset="UTF-8" />
@@ -38,7 +39,11 @@
     <file url="file://$PROJECT_DIR$/compras/updateEgresoForm.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/compras/updateGasto.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/compras/updateProv.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/produccion/ajax/listaDetFormulas.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/produccion/ajax/listaDetOProd.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/produccion/ajax/listaOProd.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/produccion/buscarForm.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/produccion/consultaOProd.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/widgets/facXPagarTotales.php" charset="UTF-8" />
     <file url="PROJECT" charset="windows-1252" />
   </component>

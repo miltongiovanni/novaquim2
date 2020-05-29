@@ -11,7 +11,6 @@ function cargarClases($classname)
 {
     require '../clases/' . $classname . '.php';
 }
-
 spl_autoload_register('cargarClases');
 
 $formulaOperador = new FormulasOperaciones();
@@ -97,7 +96,6 @@ $porcentajeTotal = $DetFormulaOperador->getPorcentajeTotal($idFormula);
                         "previous": "Anterior"
                     },
                     "infoFiltered": "(Filtrado de _MAX_ en total)"
-
                 },
                 "ajax": ruta
             });

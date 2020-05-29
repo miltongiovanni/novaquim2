@@ -19,7 +19,7 @@ include "includes/conect.php";
 	$cod_form=$_POST['IdForm'];
 	$cod_mprima=$_POST['mprima'];
 	$percent=$percent/100;
-	$qryinv="update det_formula_mp set porcentaje=$percent where Id_formula_mp=$IdForm and Cod_mprima=$mprima";
+	$qryinv="update det_formula_mp set porcentaje=$percent where idFormulaMPrima=$IdForm and codMPrima=$mprima";
 	echo'<form action="detFormula_mp.php" method="post" name="formulario">';
 	$link=conectarServidor();
 	$result=mysqli_query($link,$qryinv);

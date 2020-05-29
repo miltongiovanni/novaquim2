@@ -59,7 +59,7 @@ $salida1=0;$salida2=0;$salida3=0;$salida4=0;
   <td class="formatoDatos"><div align="left">'.$row['Nombre'].'</div></td>
   <td class="formatoDatos"><div align="center"><script   > document.write(commaSplit('.$row['inventario'].'))</script></div></td>';
   //ENTRADA POR PRODUCCIÓN
-  $sqle1="select SUM(Can_prese) as entrada1 from envasado, ord_prod where envasado.Lote=ord_prod.Lote and Fch_prod>'$Fch' and Con_prese=$prod;";
+  $sqle1="select SUM(Can_prese) as entrada1 from envasado, ord_prod where envasado.Lote=ord_prod.Lote and fechProd>'$Fch' and Con_prese=$prod;";
   $resulte1=mysqli_query($link,$sqle1);
   $rowe1=mysqli_fetch_array($resulte1, MYSQLI_BOTH);
   if($rowe1['entrada1']==NULL)

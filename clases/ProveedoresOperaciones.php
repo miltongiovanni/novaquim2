@@ -65,7 +65,6 @@ class ProveedoresOperaciones
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
-
     public function getProveedoresByNameAndTipoCompra($q, $tipoCompra)
     {
         $qry = "SELECT idProv, nomProv FROM proveedores WHERE idCatProv=? AND nomProv like '%" . $q . "%' ORDER BY nomProv;";

@@ -38,7 +38,7 @@ include "../includes/valAcc.php";
 			include "includes/conect.php";
 			$link=conectarServidor();
 			echo'<select name="fmprima">';
-			$result=mysqli_query($link, "select Id_form_mp, Nom_mprima from formula_mp, mprimas where Cod_mp=Cod_mprima;");
+			$result=mysqli_query($link, "select idFormulaMPrima, Nom_mprima from formula_mp, mprimas where codMPrima=Cod_mprima;");
 			echo '<option value="">-------------------------------------------</option>';
             while($row=mysqli_fetch_array($result))
 			{

@@ -30,7 +30,7 @@ try {
         $loteAnterior = $detalle['lote'];
         $InvMPrimasOperador = new InvMPrimasOperaciones();
         if ($lote == $loteAnterior) {
-            $invActual = $InvMPrimasOperador->getInvMPrima($codigo, $lote);
+            $invActual = $InvMPrimasOperador->getInvMPrimaByLote($codigo, $lote);
             $nvoInv = $invActual + $cantidad - $detalle['cantidad'];
             $datos = array($nvoInv, $codigo, $lote);
             $InvMPrimasOperador->updateInvMPrima($datos);

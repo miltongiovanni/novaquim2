@@ -29,10 +29,10 @@ include "../includes/valAcc.php";
 	  eval($asignacion); 
 	}  
 	$link=conectarServidor();
-	$qryord="select Lote, Fch_prod, Cant_kg, Cod_persona, Nom_produc, nomFormula, nom_personal 
+	$qryord="select Lote, fechProd, cantidadKg, codResponsable, Nom_produc, nomFormula, nom_personal 
 			from ord_prod, formula, productos, personal
-			WHERE ord_prod.Id_form=formula.idFormula and formula.codProducto=productos.Cod_produc
-			and ord_prod.Cod_persona=personal.Id_personal and Lote=$Lote;";
+			WHERE ord_prod.idFormula=formula.idFormula and formula.codProducto=productos.Cod_produc
+			and ord_prod.codResponsable=personal.Id_personal and Lote=$Lote;";
 	$resultord=mysqli_query($link,$qryord);
 	$roword=mysqli_fetch_array($resultord);
 	mysqli_free_result($resultord);
@@ -179,9 +179,9 @@ include "../includes/valAcc.php";
     </tr>
     <?php
 		$link=conectarServidor();
-		$qry1="SELECT Lote, Fch_prod, Cant_kg, ord_prod.Cod_prod as Codigo, Nom_produc, nom_personal 
+		$qry1="SELECT Lote, fechProd, cantidadKg, ord_prod.codProducto as Codigo, Nom_produc, nom_personal 
 		FROM ord_prod, productos, personal
-		where Lote=$Lote and ord_prod.Cod_prod=productos.Cod_produc AND ord_prod.Cod_persona=personal.Id_personal;";
+		where Lote=$Lote and ord_prod.codProducto=productos.Cod_produc AND ord_prod.codResponsable=personal.Id_personal;";
 		$result1=mysqli_query($link,$qry1);
 		$row1=mysqli_fetch_array($result1);
 		$cod_prod=$row1['Codigo'];
@@ -252,7 +252,7 @@ include "../includes/valAcc.php";
 			$link=conectarServidor();
 			$qry="SELECT Con_prese, Nombre, Can_prese FROM envasado, prodpre WHERE Con_prese=Cod_prese and lote=$Lote;";
 			$result=mysqli_query($link,$qry);
-			$qrytot="select envasado.Lote, SUM(Can_prese*cant_medida/1000) AS enva, Cant_kg from envasado, prodpre, medida, ord_prod 
+			$qrytot="select envasado.Lote, SUM(Can_prese*cant_medida/1000) AS enva, cantidadKg from envasado, prodpre, medida, ord_prod 
 			where envasado.Lote=$Lote AND Con_prese=Cod_prese and Cod_umedid=Id_medida AND envasado.Lote=ord_prod.Lote group by envasado.Lote;";
 			$resulttot=mysqli_query($link,$qrytot);
 			if($rowtot=mysqli_fetch_array($resulttot))

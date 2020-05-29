@@ -25,6 +25,16 @@ class FormulasOperaciones
         return $this->_pdo->lastInsertId();
     }
 
+public function deleteFormula($idFormula)
+{
+    $qry = "DELETE FROM det_formula WHERE idFormula=$idFormula";
+    $stmt = $this->_pdo->prepare($qry);
+    $stmt->execute();
+    $qry = "DELETE FROM formula WHERE idFormula=$idFormula";
+    $stmt = $this->_pdo->prepare($qry);
+    $stmt->execute();
+}
+
     public function getTableFormulas()
     {
         $qry = "SELECT idFormula, nitProv, nomProv, numFact, fechFormula, fechVenc, descEstado, CONCAT('$', FORMAT(totalFormula, 0)) totalFormula,
@@ -43,6 +53,19 @@ class FormulasOperaciones
     public function getFormulas()
     {
         $qry = "SELECT idFormula, nomFormula FROM formula ORDER BY nomFormula;";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    public function getFormulasEliminar()
+    {
+        $qry = "SELECT formula.idFormula, nomFormula
+                FROM formula
+                LEFT JOIN ord_prod op on formula.idFormula = op.idFormula
+                WHERE op.idFormula IS NULL
+                ORDER BY nomFormula";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -68,6 +91,15 @@ class FormulasOperaciones
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute(array($idFormula));
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    public function getFormulaByProd($codProducto)
+    {
+        $qry = "SELECT idFormula, nomFormula FROM formula WHERE codProducto=?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($codProducto));
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
 

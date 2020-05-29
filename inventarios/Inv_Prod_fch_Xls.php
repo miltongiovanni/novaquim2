@@ -48,7 +48,7 @@ while($row= mysqli_fetch_array($result, MYSQLI_BOTH))
 	$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(1, $i,iconv("iso-8859-1", "UTF-8", $row['Nombre']));
 	$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(2, $i, iconv("iso-8859-1", "UTF-8",$row['Costo']));
 	$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(3, $i,iconv("iso-8859-1", "UTF-8", $row['inventario']));
-	$sqle1="select SUM(Can_prese) as entrada1 from envasado, ord_prod where envasado.Lote=ord_prod.Lote and Fch_prod>'$Fch' and Con_prese=$prod;";
+	$sqle1="select SUM(Can_prese) as entrada1 from envasado, ord_prod where envasado.Lote=ord_prod.Lote and fechProd>'$Fch' and Con_prese=$prod;";
 	$resulte1=mysqli_query($link,$sqle1);
 	$rowe1=mysqli_fetch_array($resulte1, MYSQLI_BOTH);
 	if($rowe1['entrada1']==NULL)

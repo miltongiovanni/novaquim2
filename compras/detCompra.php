@@ -391,7 +391,7 @@ $compra = $CompraOperador->getCompra($idCompra, $tipoCompra);
     <div class="titulo row">
         <strong>Detalle de la compra</strong>
     </div>
-    <table id="example" class="display compact" style="width:80%; margin-bottom: 20px;">
+    <table id="example" class="display compact formatoDatos" style="width:80%; margin-bottom: 20px;">
         <thead>
         <tr>
             <th width="8%"></th>

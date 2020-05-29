@@ -13,7 +13,8 @@ class DetFormulaOperaciones
     {
         $qry = "INSERT INTO det_formula (idFormula, codMPrima, porcentaje, orden)VALUES(?, ?, ?, ?)";
         $stmt = $this->_pdo->prepare($qry);
-        $stmt->execute($datos);
+        $stmt->execute(
+            $datos);
         return $this->_pdo->lastInsertId();
     }
 
@@ -66,6 +67,16 @@ class DetFormulaOperaciones
         return $result;
     }
 
+    public function getDetalleFormula($idFormula)
+    {
+        $qry = "SELECT idFormula, codMPrima, porcentaje, orden
+                FROM det_formula df
+                WHERE idFormula=?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($idFormula));
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
 
     public function codMPrimaExiste($idFormula, $codMPrima)
     {

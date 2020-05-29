@@ -42,9 +42,21 @@ class PersonalOperaciones
     }
     public function getTablePersonal()
     {
-        $qry = "SELECT idPersonal, nomPersonal, celPersonal, emlPersonal, area, cargo 
-        from personal, areas_personal, cargos_personal
-        wHERE areaPersonal=idArea and activoPersonal=1 AND cargoPersonal=idCargo order by idPersonal";
+        $qry = "SELECT idPersonal, nomPersonal, celPersonal, emlPersonal, area, cargo
+                FROM personal
+                LEFT JOIN areas_personal ap on personal.areaPersonal = ap.idArea
+                LEFT JOIN cargos_personal cp on personal.cargoPersonal = cp.idCargo
+                wHERE activoPersonal=1 ORDER BY idPersonal";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+    public function getPersonalProd()
+    {
+        $qry = "SELECT idPersonal, nomPersonal 
+        FROM personal
+        wHERE (areaPersonal=5 or areaPersonal=2) and activoPersonal=1 ORDER BY idPersonal";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);

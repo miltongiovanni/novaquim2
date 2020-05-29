@@ -28,8 +28,8 @@ include "includes/conect.php";
 	$cod_mprima=$_POST['mprima'];
 	$gasto=$_POST['gasto'];
 	$lote_mp=$_POST['lote_mp'];
-	$qry="SELECT Nom_mprima, Can_mprima, det_ord_prod.Cod_mprima as codigo, Lote_MP, Cod_nvo_mprima, alias FROM det_ord_prod, mprimas 
-	WHERE Lote=$Lote AND det_ord_prod.Cod_mprima=mprimas.Cod_mprima and det_ord_prod.Cod_mprima=$cod_mprima and Lote_MP='$lote_mp';";
+	$qry="SELECT Nom_mprima, cantidadMPrima, det_ord_prod.codMPrima as codigo, loteMP, Cod_nvo_mprima, alias FROM det_ord_prod, mprimas 
+	WHERE Lote=$Lote AND det_ord_prod.codMPrima=mprimas.Cod_mprima and det_ord_prod.codMPrima=$cod_mprima and loteMP='$lote_mp';";
 	$result=mysqli_query($link,$qry);
 	$row=mysqli_fetch_array($result);
 	$codmp=$row['codigo'];

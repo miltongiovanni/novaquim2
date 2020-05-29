@@ -18,7 +18,7 @@ include "../includes/valAcc.php";
 		include "includes/conect.php";
 		$link=conectarServidor();
 		$Lote=$_POST['Lote'];
-	  	$qryord="SELECT Lote_mp, Fch_prod, Cant_kg, nom_personal, Nom_mprima from ord_prod_mp, personal, formula_mp, mprimas WHERE Cod_persona=Id_personal and ord_prod_mp.Id_form_mp=formula_mp.Id_form_mp and Cod_mp=mprimas.Cod_mprima AND Lote_mp=$Lote";
+	  	$qryord="SELECT Lote_mp, Fch_prod, Cant_kg, nom_personal, Nom_mprima from ord_prod_mp, personal, formula_mp, mprimas WHERE Cod_persona=Id_personal and ord_prod_mp.Id_form_mp=formula_mp.idFormulaMPrima and codMPrima=mprimas.Cod_mprima AND Lote_mp=$Lote";
 		$resultord=mysqli_query($link, $qryord);
 		$roword=mysqli_fetch_array($resultord);
 		if ($roword)

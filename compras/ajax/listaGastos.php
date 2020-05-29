@@ -13,7 +13,7 @@ $gastos = $GastoOperador->getTableGastos();
 
 $datos = [];
 for ($i = 0; $i < count($gastos); $i++) {
-    $detGasto = $DetGastoOperador->getTableDetGastos($gastos[$i]['idGasto']);
+    $detOProd = $DetGastoOperador->getTableDetGastos($gastos[$i]['idGasto']);
     $datos[$i]['idGasto'] = $gastos[$i]['idGasto'];
     $datos[$i]['nitProv'] = $gastos[$i]['nitProv'];
     $datos[$i]['nomProv'] = $gastos[$i]['nomProv'];
@@ -25,7 +25,7 @@ for ($i = 0; $i < count($gastos); $i++) {
     $datos[$i]['retefuenteGasto'] = $gastos[$i]['retefuenteGasto'];
     $datos[$i]['reteicaGasto'] = $gastos[$i]['reteicaGasto'];
     $datos[$i]['vreal'] = $gastos[$i]['vreal'];
-    $datos[$i]['detGasto'] = $detGasto;
+    $datos[$i]['detGasto'] = $detOProd;
 }
 $titulo = array(
     'draw' => 0,

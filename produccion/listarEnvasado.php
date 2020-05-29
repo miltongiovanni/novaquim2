@@ -58,10 +58,10 @@ else
 }
 
 $link=conectarServidor();
-$sql="	SELECT ord_prod.Lote, Fch_prod as 'Fecha de Producción', Nom_produc as 'Nombre de Producto', 
-Cant_kg as 'Cantidad (Kg)', nom_personal as Responsable
+$sql="	SELECT ord_prod.Lote, fechProd as 'Fecha de Producción', Nom_produc as 'Nombre de Producto', 
+cantidadKg as 'Cantidad (Kg)', nom_personal as Responsable
 FROM ord_prod, productos, personal, envasado
-WHERE  Cod_prod=Cod_produc and Cod_persona=Id_personal and ord_prod.Lote=envasado.Lote
+WHERE  codProducto=Cod_produc and codResponsable=Id_personal and ord_prod.Lote=envasado.Lote
 Group by Lote order by Lote DESC;";
 $result=mysqli_query($link,$sql);
 $num_total_registros = mysqli_num_rows($result); 
@@ -83,10 +83,10 @@ echo '</div>';
 
 
 //construyo la sentencia SQL 
-$ssql = "SELECT ord_prod.Lote, Fch_prod as 'Fecha de Producción', Nom_produc as 'Nombre de Producto', 
-Cant_kg as 'Cantidad (Kg)', nom_personal as Responsable
+$ssql = "SELECT ord_prod.Lote, fechProd as 'Fecha de Producción', Nom_produc as 'Nombre de Producto', 
+cantidadKg as 'Cantidad (Kg)', nom_personal as Responsable
 FROM ord_prod, productos, personal, envasado
-WHERE  Cod_prod=Cod_produc and Cod_persona=Id_personal and ord_prod.Lote=envasado.Lote
+WHERE  codProducto=Cod_produc and codResponsable=Id_personal and ord_prod.Lote=envasado.Lote
 Group by Lote order by Lote DESC limit " . $inicio . "," . $TAMANO_PAGINA; 
 $rs = mysqli_query($link,$ssql);
 

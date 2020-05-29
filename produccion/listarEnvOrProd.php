@@ -40,9 +40,9 @@ include "../includes/valAcc.php";
 	//conectar con la tabla (ej. use datos;)
 	conectarBD($database, $link);  
 	//sentencia SQL    tblusuarios.IdUsuario,
-	$sql="SELECT Lote as 'No. de Lote', Fch_prod as 'Fecha de Producción', Nom_produc as 'Nombre de Producto', nomFormula as 'Fórmulación'
+	$sql="SELECT Lote as 'No. de Lote', fechProd as 'Fecha de Producción', Nom_produc as 'Nombre de Producto', nomFormula as 'Fórmulación'
 		FROM ord_prod, formula, productos
-		where ord_prod.Id_form=formula.idFormula AND formula.codProducto=productos.Cod_produc ;";
+		where ord_prod.idFormula=formula.idFormula AND formula.codProducto=productos.Cod_produc ;";
 	//llamar funcion de tabla
 	verTabla($sql, $link);
 ?>

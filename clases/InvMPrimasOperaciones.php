@@ -41,7 +41,7 @@ class InvMPrimasOperaciones
         return $result['fechLote'];
     }
 
-    public function getInvMPrima($codMP, $loteMP)
+    public function getInvMPrimaByLote($codMP, $loteMP)
     {
         $qry = "SELECT invMP FROM inv_mprimas WHERE codMP=? AND loteMP=?";
         $stmt = $this->_pdo->prepare($qry);
@@ -52,6 +52,28 @@ class InvMPrimasOperaciones
         } else {
             return $result['invMP'];
         }
+    }
+
+    public function getInvTotalMPrima($codMPrima)
+    {
+        $qry = "SELECT SUM(invMP) invMP FROM inv_mprimas WHERE codMP=?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($codMPrima));
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($result == null) {
+            return 0;
+        } else {
+            return $result['invMP'];
+        }
+    }
+
+    public function getInvMPrima($codMPrima)
+    {
+        $qry = "SELECT invMP, loteMP, fechLote FROM inv_mprimas WHERE codMP=? ORDER BY fechLote";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($codMPrima));
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
     }
 
     public function getTableInvMPrima($idCompra, $tipoCompra)

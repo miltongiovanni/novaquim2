@@ -32,7 +32,7 @@ include "includes/utilTabla.php";
 include "includes/conect.php" ;
 $link=conectarServidor();
 $sql="	select Lote_color as Lote, Fch_prod as 'Fecha de Producción', Nom_mprima as 'Nombre de Producto', Cant_kg as 'Cantidad (Kg)', nom_personal as Responsable  
-from ord_prod_col, formula_col, mprimas, personal WHERE Id_form_color=Id_form_col AND Cod_sol_col=Cod_mprima and Cod_persona=Id_personal order by Lote_color desc;";
+from ord_prod_col, formula_col, mprimas, personal WHERE Id_form_color=idFormulaColor AND codSolucionColor=Cod_mprima and Cod_persona=Id_personal order by Lote_color desc;";
 $result=mysqli_query($link,$sql);
 $a=1;
 while($row=mysqli_fetch_array($result, MYSQLI_BOTH))

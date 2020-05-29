@@ -24,7 +24,7 @@ try {
     $CompraOperador->updateTotalesCompra($tipoCompra, BASE_C, $idCompra);
     if ($tipoCompra == 1) {
         $InvMPrimasOperador = new InvMPrimasOperaciones();
-        $invActual = $InvMPrimasOperador->getInvMPrima($codigo, $lote);
+        $invActual = $InvMPrimasOperador->getInvMPrimaByLote($codigo, $lote);
         $nvoInv = $invActual - $detalle['cantidad'];
         $datos = array($nvoInv, $codigo, $lote);
         $InvMPrimasOperador->updateInvMPrima($datos);

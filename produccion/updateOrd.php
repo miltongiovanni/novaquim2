@@ -23,7 +23,7 @@ foreach ($_POST as $nombre_campo => $valor)
 	$gasto_ant=$_POST['gasto_ant'];
 	$lote_mp=$_POST['lote_mp'];
 	//ACTUALIZA EL GASTO DE MATERIA PRIMA EN LA ORDEN DE PRODUCCION
-	$qry="update det_ord_prod set Can_mprima=$gasto where Lote=$Lote and Cod_mprima=$cod_mprima and Lote_MP='$lote_mp'";
+	$qry="update det_ord_prod set cantidadMPrima=$gasto where Lote=$Lote and codMPrima=$cod_mprima and loteMP='$lote_mp'";
 	echo'<form action="detO_Prod.php" method="post" name="formulario">';
 	$link=conectarServidor();
 	$result=mysqli_query($link,$qry);

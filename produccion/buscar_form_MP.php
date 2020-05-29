@@ -1,51 +1,49 @@
 <?php
 include "../includes/valAcc.php";
+function cargarClases($classname)
+{
+    require '../clases/' . $classname . '.php';
+}
+spl_autoload_register('cargarClases');
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
 <head>
-<meta charset="utf-8">
-<title>Seleccionar Fórmula a Actualizar</title>
-<script  src="../js/validar.js"></script>
-
-
+    <meta charset="utf-8">
+    <title>Seleccionar Fórmula a Actualizar</title>
+    <script src="../js/validar.js"></script>
 </head>
 <body>
 <div id="contenedor">
-<div id="saludo"><strong>SELECCIÓN DE FÓRMULA DE MATERIA PRIMA A ACTUALIZAR</strong></div> 
-<table width="100%" border="0">
-  	<tr>
-    	<td>
-		<form id="form1" name="form1" method="post" action="detFormula_MP.php">
-      	<div align="center"><strong>Fórmula de Materia Prima</strong>
-<?php
-				include "includes/conect.php";
-				$link=conectarServidor();
-				echo'<select name="Formula" id="combo">';
-				$result=mysqli_query($link,"select Id_form_mp, Nom_mprima from formula_mp, mprimas where Cod_mp=Cod_mprima order by Nom_mprima;");
-				echo '<option selected value="">--------------------------------------------------------------------------</option>';
-				while($row=mysqli_fetch_array($result)){
-					echo '<option value='.$row['Id_form_mp'].'>'.$row['Nom_mprima'].'</option>';
-				}
-				echo'</select>';
-				mysqli_free_result($result);
-/* cerrar la conexión */
-mysqli_close($link);
-			?>
-            <input type="submit" name="Submit" value="Continuar" onClick="return Enviar(this.form);">
-            <input name="CrearFormula" type="hidden" value="2"> 
-      	</div>
-    	</form>    
-        </td>
-  	</tr>
-  	<tr>
-        <td colspan="2"><div align="center">&nbsp;</div></td>
-    </tr>
-    <tr> 
-        <td colspan="2"><div align="center"><input type="button" class="resaltado" onClick="history.back()" value="  VOLVER  "></div></td>
-    </tr>
-</table>
+    <div id="saludo"><strong>SELECCIÓN DE FÓRMULA DE MATERIA PRIMA A ACTUALIZAR</strong></div>
+    <form id="form1" name="form1" method="post" action="detFormulaMPrima.php">
+        <div class="form-group row">
+            <label class="col-form-label col-2" for="idFormulaMPrima"><strong>Fórmula de Materia Prima</strong></label>
+            <select name="idFormulaMPrima" id="idFormulaMPrima" class="form-control col-2">
+                <option selected value="">-----------------------------</option>
+                <?php
+                $manager = new FormulasMPrimaOperaciones();
+                $formulas = $manager->getFormulasMPrima();
+                for ($i = 0; $i < count($formulas); $i++) : ?>
+                    <option value="<?= $formulas[$i]["idFormulaMPrima"] ?>"><?= $formulas[$i]["nomMPrima"] ?></option>
+                <?php
+                endfor;
+                ?>
+            </select>
+        </div>
+        <div class="row form-group">
+            <div class="col-1">
+                <button class="button" onclick="return Enviar(this.form)">
+                    <span>Continuar</span></button>
+            </div>
+        </div>
+    </form>
+    <div class="row form-group">
+        <div class="col-1">
+            <button class="button1" onclick="history.back()"><span>VOLVER</span></button>
+        </div>
+    </div>
 </div>
 </body>
 </html>

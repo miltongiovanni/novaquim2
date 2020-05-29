@@ -60,9 +60,9 @@ else
     <?php
 		$link=conectarServidor();
 		$bd="novaquim";
-		$qry="SELECT Lote, Fch_prod, Cant_kg, ord_prod.Cod_prod as Codigo, Nom_produc, nom_personal 
+		$qry="SELECT Lote, fechProd, cantidadKg, ord_prod.codProducto as Codigo, Nom_produc, nom_personal 
 		FROM ord_prod, productos, personal
-		where Lote=$Lote and ord_prod.Cod_prod=productos.Cod_produc AND ord_prod.Cod_persona=personal.Id_personal;";
+		where Lote=$Lote and ord_prod.codProducto=productos.Cod_produc AND ord_prod.codResponsable=personal.Id_personal;";
 		$result=mysql_db_query($bd,$qry);
 		$row=mysql_fetch_array($result);
 		$cod_prod=$row['Codigo'];

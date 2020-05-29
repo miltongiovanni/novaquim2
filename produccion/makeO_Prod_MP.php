@@ -34,7 +34,7 @@ if ($rowlot)
 	$Orden=1+$rowlot['Orden'];		
 else 
 	$Orden=$lotinic;
-$qrymp="select Cod_mp from formula_mp where Id_form_mp=$fmprima;";
+$qrymp="select codMPrima from formula_mp where idFormulaMPrima=$fmprima;";
 $resultmp=mysqli_query($link,$qrymp);
 $rowmp=mysqli_fetch_array($resultmp);	
 $cod_matp=$rowmp['Cod_mp'];
@@ -49,7 +49,7 @@ if($resultOP=mysqli_query($link,$qryOP))
 	$row=mysqli_fetch_array($result);
 	$Lote=$row['Batch'];
 	//CON BASE EN LA FORMULA SE ANALIZA EL GASTO DE MATERIA PRIMA
-	$qrydet="SELECT * FROM det_formula_mp where Id_formula_mp=$fmprima;";
+	$qrydet="SELECT * FROM det_formula_mp where idFormulaMPrima=$fmprima;";
 	$resultdet=mysqli_query($link,$qrydet);
 	while($rowdet=mysqli_fetch_array($resultdet))
 	{

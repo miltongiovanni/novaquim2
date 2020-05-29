@@ -37,10 +37,10 @@ function Footer()
 include "includes/conect.php";
 $link=conectarServidor();
 $Lote=$_POST['Lote'];
-$qryord="select Lote, Fch_prod, Cant_kg, Cod_persona, ord_prod.Cod_prod as Codigo, Nom_produc, nomFormula, nom_personal, Den_min, Den_max ,pH_min, pH_max, Fragancia, Color, Apariencia, venc 
+$qryord="select Lote, fechProd, cantidadKg, codResponsable, ord_prod.codProducto as Codigo, Nom_produc, nomFormula, nom_personal, Den_min, Den_max ,pH_min, pH_max, Fragancia, Color, Apariencia, venc 
 		from ord_prod, formula, productos, personal
-		WHERE ord_prod.Id_form=formula.idFormula and formula.codProducto=productos.Cod_produc
-		and ord_prod.Cod_persona=personal.Id_personal and Lote=$Lote;";
+		WHERE ord_prod.idFormula=formula.idFormula and formula.codProducto=productos.Cod_produc
+		and ord_prod.codResponsable=personal.Id_personal and Lote=$Lote;";
 $resultord=mysqli_query($link,$qryord);
 $roword=mysqli_fetch_array($resultord);
 $cod_prod=$roword['Codigo'];

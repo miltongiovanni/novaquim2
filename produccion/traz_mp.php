@@ -56,7 +56,7 @@ foreach ($_POST as $nombre_campo => $valor)
 <tr><td width="68" align="center"><strong>Lote</strong></td><td width="132" align="center"><strong>Fecha Producción</strong></td><td width="381" align="center"><strong>Producto</strong></td><td width="101" align="center"><strong>Cantidad (Kg)</strong></td>
 </tr>
 <?php
-  $qrys="select ord_prod.Lote, Fch_prod, Nom_produc, Can_mprima from det_ord_prod, ord_prod, productos where det_ord_prod.Lote=ord_prod.Lote and Cod_mprima=$IdMP and Lote_MP='$lote_mp' and Cod_prod=Cod_produc order by ord_prod.Lote;";
+  $qrys="select ord_prod.Lote, fechProd, Nom_produc, cantidadMPrima from det_ord_prod, ord_prod, productos where det_ord_prod.Lote=ord_prod.Lote and codMPrima=$IdMP and loteMP='$lote_mp' and codProducto=Cod_produc order by ord_prod.Lote;";
   $results=mysqli_query($link,$qrys);
   while($rows=mysqli_fetch_array($results))
   {

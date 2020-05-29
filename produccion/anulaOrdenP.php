@@ -21,7 +21,7 @@ foreach ($_POST as $nombre_campo => $valor)
 }  
 $link=conectarServidor();   
 //MATERIA PRIMA QUE SE IBA A UTILIZAR Y SE VA A DEVOLVER AL INVENTARIO
-$qry="select Lote, Cod_mprima, Lote_MP, Can_mprima from det_ord_prod where Lote=$lote;";
+$qry="select Lote, codMPrima, loteMP, cantidadMPrima from det_ord_prod where Lote=$lote;";
 if($result=mysqli_query($link,$qry))
 {
 	while($row=mysqli_fetch_array($result))
@@ -48,7 +48,7 @@ else
 	</script>';
 }
 /*ACTUALIZACIÓN DEL ENCABEZADO DE LA FACTURA*/
-$qry="update ord_prod set Estado='A', Cant_kg=0 where Lote=$lote";
+$qry="update ord_prod set Estado='A', cantidadKg=0 where Lote=$lote";
 $result=mysqli_query($link,$qry);
 /*ELIMINAR EL DETALLE DE LA FACTURA*/
 $qry="DELETE from det_ord_prod WHERE Lote=$lote";

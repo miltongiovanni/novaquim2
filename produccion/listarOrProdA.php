@@ -32,10 +32,10 @@ include "../includes/valAcc.php";
 include "includes/utilTabla.php";
 include "includes/conect.php" ;
 $link=conectarServidor();
-$sql="	SELECT Lote, Fch_prod as 'Fecha de Producción', Nom_produc as 'Nombre de Producto', 
-nomFormula as 'Formulación', Cant_kg as 'Cantidad (Kg)', nom_personal as Responsable
+$sql="	SELECT Lote, fechProd as 'Fecha de Producción', Nom_produc as 'Nombre de Producto', 
+nomFormula as 'Formulación', cantidadKg as 'Cantidad (Kg)', nom_personal as Responsable
 FROM ord_prod, formula, productos, personal
-WHERE ord_prod.Id_form=formula.idFormula AND formula.codProducto=productos.Cod_produc and Cod_persona=Id_personal and Estado='A'
+WHERE ord_prod.idFormula=formula.idFormula AND formula.codProducto=productos.Cod_produc and codResponsable=Id_personal and Estado='A'
 order by Lote desc;";
 $result=mysqli_query($link,$sql);
 $a=1;
@@ -54,9 +54,9 @@ while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
 	<td class="formatoDatos"><div align="center"><script  > document.write(commaSplit('.$row['Cantidad (Kg)'].')+" Kg")</script></div></td>
 	';
 	echo'</tr>';
-	$sqli="SELECT det_ord_prod.Cod_mprima as Código, Nom_mprima, Can_mprima as Cantidad, Lote_MP
+	$sqli="SELECT det_ord_prod.codMPrima as Código, Nom_mprima, cantidadMPrima as Cantidad, loteMP
 	from det_ord_prod, mprimas
-	where det_ord_prod.Cod_mprima=mprimas.Cod_mprima and Lote = $lote 
+	where det_ord_prod.codMPrima=mprimas.Cod_mprima and Lote = $lote 
 	order by Orden;";
 	$resulti=mysqli_query($link,$sqli);
 	echo '<tr><td colspan="7"><div class="commenthidden" id="UniqueName'.$a.'"><table width="60%" border="0" align="center" cellspacing="0" summary="detalle">

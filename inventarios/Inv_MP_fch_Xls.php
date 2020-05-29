@@ -62,7 +62,7 @@ while($row= mysqli_fetch_array($result, MYSQLI_BOTH))
 	else
 		$entrada=$rowe['entrada'];
 	$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(5, $i, $entrada);
-	$sqls1="select Cod_mprima, sum(Can_mprima) as salida1 from det_ord_prod, ord_prod where Cod_mprima=$prod and det_ord_prod.Lote=ord_prod.Lote and Fch_prod>='$Fch' group by Cod_mprima;";
+	$sqls1="select codMPrima, sum(cantidadMPrima) as salida1 from det_ord_prod, ord_prod where codMPrima=$prod and det_ord_prod.Lote=ord_prod.Lote and fechProd>='$Fch' group by codMPrima;";
 	$results1=mysqli_query($link,$sqls1);
 	$rows1=mysqli_fetch_array($results1, MYSQLI_BOTH);
 	if($rows1['salida1']==NULL)

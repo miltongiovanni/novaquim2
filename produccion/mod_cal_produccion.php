@@ -18,10 +18,10 @@ include "../includes/valAcc.php";
 	include "includes/conect.php";
 	$link=conectarServidor();
 	$Lote=$_POST['Lote'];
-	$qryord="select Lote, Fch_prod, Cant_kg, Cod_persona, Nom_produc, nomFormula, nom_personal, Den_min, Den_max ,pH_min, pH_max, Fragancia, Color, Apariencia 
+	$qryord="select Lote, fechProd, cantidadKg, codResponsable, Nom_produc, nomFormula, nom_personal, Den_min, Den_max ,pH_min, pH_max, Fragancia, Color, Apariencia 
 			from ord_prod, formula, productos, personal
-			WHERE ord_prod.Id_form=formula.idFormula and formula.codProducto=productos.Cod_produc
-			and ord_prod.Cod_persona=personal.Id_personal and Lote=$Lote;";
+			WHERE ord_prod.idFormula=formula.idFormula and formula.codProducto=productos.Cod_produc
+			and ord_prod.codResponsable=personal.Id_personal and Lote=$Lote;";
 	$resultord=mysqli_query($link,$qryord);
 	$roword=mysqli_fetch_array($resultord);
 	if ($roword)

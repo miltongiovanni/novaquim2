@@ -137,7 +137,7 @@ include "../includes/valAcc.php";
 <body>
 <div id="contenedor">
     <div id="saludo1"><strong>FACTURAS PENDIENTES DE PAGO POR INDUSTRIAS NOVAQUIM S.A.S.</strong></div>
-    <div class="row" style="justify-content: flex-end;">
+    <div class="row flex-end">
         <div class="col-2">
             <form action="Imp_EstadoPagos.php" method="post" target="_blank">
                 <button class="button" type="submit">

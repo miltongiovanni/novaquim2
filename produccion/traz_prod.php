@@ -39,7 +39,7 @@ foreach ($_POST as $nombre_campo => $valor)
       <td width="342" align="center"><strong>Fecha Producción</strong></td><td width="348" align="center"><strong>Unidades</strong></td>
 </tr>
 <?php
-  $qry="select Fch_prod, Can_prese from envasado, ord_prod where envasado.Lote=ord_prod.Lote and Con_prese=$Id_Prod and envasado.Lote=$lote_prod;";	
+  $qry="select fechProd, Can_prese from envasado, ord_prod where envasado.Lote=ord_prod.Lote and Con_prese=$Id_Prod and envasado.Lote=$lote_prod;";
   $result=mysqli_query($link,$qry);
   while($row=mysqli_fetch_array($result))
   {

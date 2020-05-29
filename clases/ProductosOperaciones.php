@@ -8,6 +8,7 @@ class ProductosOperaciones
     {
         $this->setDb();
     }
+
     public function makeProducto($datos)
     {
         /*Preparo la insercion */
@@ -16,7 +17,7 @@ class ProductosOperaciones
         $stmt->execute($datos);
         return $this->_pdo->lastInsertId();
     }
-    
+
     public function deleteProducto($codProducto)
     {
         $qry = "DELETE FROM productos WHERE codProducto= ?";
@@ -37,6 +38,21 @@ class ProductosOperaciones
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
+
+    public function getProductosEliminar()
+    {
+        $qry = "SELECT productos.codProducto, nomProducto
+                FROM productos
+                LEFT JOIN ord_prod op on productos.codProducto = op.codProducto
+                LEFT JOIN prodpre p on productos.codProducto = p.codProducto
+                WHERE op.codProducto IS NULL AND p.codProducto IS NULL
+                ORDER BY nomProducto";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     public function getTableProductos()
     {
         $qry = "SELECT codProducto, nomProducto, catProd, densMin, densMax, pHmin, pHmax, fragancia, color, apariencia FROM productos
@@ -72,7 +88,7 @@ class ProductosOperaciones
 
 
     public function updateProducto($datos)
-    {                                      
+    {
         $qry = "UPDATE productos SET nomProducto=?, idCatProd=?, prodActivo=?, densMin=?, densMax=?, pHmin=?,  pHmax=?, fragancia=?, color=?, apariencia=? WHERE codProducto=?";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute($datos);
