@@ -1,40 +1,53 @@
 <?php
 include "../includes/valAcc.php";
+function cargarClases($classname)
+{
+    require '../clases/' . $classname . '.php';
+}
+
+spl_autoload_register('cargarClases');
 ?>
 <!DOCTYPE html>
 <html lang="es">
-<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css"><head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Seleccionar Orden de Producción a Anular</title>
-<script  src="../js/validar.js"></script>
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Seleccionar Orden de Producción a Anular</title>
+    <script src="../js/validar.js"></script>
 
-	
+
 </head>
 <body>
 <div id="contenedor">
-<div id="saludo"><strong>INGRESAR ORDEN DE PRODUCCIÓN A ANULAR</strong></div> 
+    <div id="saludo"><strong>SELECCIONAR LA ORDEN DE PRODUCCIÓN A ANULAR</strong></div>
+    <form id="form1" name="form1" method="post" action="anulaOrdenP.php">
+        <div class="form-group row">
+            <label class="col-form-label col-2" for="lote"><strong>Orden de producción a anular</strong></label>
+            <select name="lote" id="lote" class="form-control col-2">
+                <option selected value="">-----------------------------</option>
+                <?php
+                $manager = new OProdOperaciones();
+                $ordenes = $manager->getOProdPorAnular();
+                for ($i = 0; $i < count($ordenes); $i++) : ?>
+                    <option value="<?= $ordenes[$i]["lote"] ?>"><?= $ordenes[$i]["lote"] ?></option>
+                <?php
+                endfor;
+                ?>
+            </select>
+        </div>
+        <div class="row form-group">
+            <div class="col-1">
+                <button class="button" onclick="return Enviar(this.form)">
+                    <span>Continuar</span></button>
+            </div>
+        </div>
+    </form>
+    <div class="row form-group">
+        <div class="col-1">
+            <button class="button1" onclick="history.back()"><span>VOLVER</span></button>
+        </div>
+    </div>
 
-<table border="0" align="center">
-<form id="form1" name="form1" method="post" action="anulaOrdenP.php">	
-    <tr> 
-        <td><div align="right"><strong>Orden de Producción&nbsp;</strong></div></td>
-        <td><input type="text" name="lote" size=10 onKeyPress="return aceptaNum(event)"></td><input type="hidden" name="Crear" value="5">
-    </tr>
-   
-    <tr>
-        <td colspan="2"><div align="center">&nbsp;</div></td>
-    </tr>
-    <tr> 
-        <td align="right"><input type="reset" value="Restablecer"></td>
-        <td align="left"><input type="button" value="   Anular   " onclick="return Enviar(this.form);" /></td>
-    </tr>
-</form>    
-  	<tr>
-        <td colspan="2"><div align="center">&nbsp;</div></td>
-    </tr>
-    <tr> 
-        <td colspan="2"><div align="center"><input type="button" class="resaltado" onClick="history.back()" value="  VOLVER  "></div></td></tr>
-</table>
 </div>
 </body>
 </html>

@@ -20,6 +20,7 @@ try {
     $invMPrima = $InvMPrimaOperador->getInvMPrimaByLote($codMPrima, $loteMP);
     $nvoInvMPrima = $invMPrima + $cantidad_ant - $cantidadMPrima;
     $datos = array($nvoInvMPrima, $codMPrima, $loteMP);
+    $InvMPrimaOperador->updateInvMPrima($datos);
     $_SESSION['lote'] = $lote;
     $ruta = "detO_Prod.php";
     $mensaje = "Detalle Orden de Producción actualizado correctamente";

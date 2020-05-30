@@ -39,6 +39,31 @@ class OProdOperaciones
         return $result;
     }
 
+    public function getTableOProdAnuladas()
+    {
+        $qry = "SELECT lote, fechProd, p.nomProducto, f.nomFormula, ROUND(cantidadKg, 0) cantidadKg, p2.nomPersonal
+                FROM ord_prod
+                LEFT JOIN formula f on ord_prod.idFormula = f.idFormula
+                LEFT JOIN productos p on ord_prod.codProducto = p.codProducto
+                LEFT JOIN personal p2 on ord_prod.codResponsable = p2.idPersonal
+                WHERE estado=5";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    public function getOProdPorAnular()
+    {
+        $qry = "SELECT lote
+                FROM ord_prod
+                WHERE estado=1 OR estado=2";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     public function getOProd($lote)
     {
         $qry = "SELECT lote, fechProd, p.nomProducto, f.nomFormula, ROUND(cantidadKg, 0) cantidadKg, p2.nomPersonal, eop.descEstado,
@@ -94,6 +119,13 @@ class OProdOperaciones
         $qry = "UPDATE ord_prod SET idProv=?, numFact=?, fechOProd=?, fechVenc=? WHERE lote=?";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute($datos);
+    }
+
+    public function anulaOProd($lote)
+    {
+        $qry = "UPDATE ord_prod SET estado=5, cantidadKg=0 WHERE lote=?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($lote));
     }
 
     public function updateEstadoOProd($datos)

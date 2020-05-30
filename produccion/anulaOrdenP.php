@@ -1,65 +1,33 @@
 <?php
 include "../includes/valAcc.php";
-?>
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <title>Anular Orden de Producción</title>
-    <meta charset="utf-8">
-    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-    <script  src="../js/validar.js"></script>
+$lote=$_POST['lote'];
+function cargarClases($classname)
+{
+    require '../clases/' . $classname . '.php';
+}
 
-</head>
-<body> 
-<?php
-include "includes/conect.php";
-foreach ($_POST as $nombre_campo => $valor) 
-{ 
-	$asignacion = "\$".$nombre_campo."='".$valor."';"; 
-	//echo $nombre_campo." = ".$valor."<br>";  
-	eval($asignacion); 
-}  
-$link=conectarServidor();   
-//MATERIA PRIMA QUE SE IBA A UTILIZAR Y SE VA A DEVOLVER AL INVENTARIO
-$qry="select Lote, codMPrima, loteMP, cantidadMPrima from det_ord_prod where Lote=$lote;";
-if($result=mysqli_query($link,$qry))
-{
-	while($row=mysqli_fetch_array($result))
-	{
-	  $cod_MP=$row['Cod_mprima'];
-	  $cantidad=$row['Can_mprima'];
-	  $loteMP=$row['Lote_MP'];	
-	  /*AJUSTE DEL INVENTARIO*/
-	  $qryinv="select codMP, loteMP, invMP from inv_mprimas where codMP=$cod_MP AND loteMP='$loteMP'";
-	  $resultinv=mysqli_query($link,$qryinv);
-	  $rowinv=mysqli_fetch_array($resultinv);
-	  $invt=$rowinv['inv_mp'];
-	  $invt= $invt + $cantidad;
-	  /*SE ACTUALIZA EL INVENTARIO*/
-	  $qryupt="update inv_mprimas set invMP=$invt where codMP=$cod_MP AND loteMP='$loteMP'";
-	  echo $qryupt."<br>";
-	  $resultupt=mysqli_query($link,$qryupt);
-	}
+spl_autoload_register('cargarClases');
+$OProdOperador = new OProdOperaciones();
+$DetOProdOperador = new DetOProdOperaciones();
+$InvMPrimaOperador = new InvMPrimasOperaciones();
+
+try {
+    $detalle = $DetOProdOperador->getTableDetOProd($lote);
+    for($i=0; $i<count($detalle); $i++){
+        $invMPrima = $InvMPrimaOperador->getInvMPrimaByLote($detalle[$i]['codMPrima'], $detalle[$i]['loteMP']);
+        $nvoInvMPrima = $invMPrima + $detalle[$i]['cantidadMPrima'];
+        $datos = array($nvoInvMPrima, $detalle[$i]['codMPrima'], $detalle[$i]['loteMP']);
+        $InvMPrimaOperador->updateInvMPrima($datos);
+    }
+    $DetOProdOperador->deleteDetOProd($lote);
+    $OProdOperador->anulaOProd($lote);
+    $ruta = "listarOrProdA.php";
+    $mensaje = "Orden de Producción Anulada con Éxito";
+}catch (Exception $e){
+    $ruta = "../menu.php";
+    $mensaje = "Error al anular Orden de Producción";
+} finally {
+    mover_pag($ruta, $mensaje);
 }
-else
-{
-	echo' <script >
-	alert("Error al eliminar los productos de la Orden de Producción");
-	</script>';
-}
-/*ACTUALIZACIÓN DEL ENCABEZADO DE LA FACTURA*/
-$qry="update ord_prod set Estado='A', cantidadKg=0 where Lote=$lote";
-$result=mysqli_query($link,$qry);
-/*ELIMINAR EL DETALLE DE LA FACTURA*/
-$qry="DELETE from det_ord_prod WHERE Lote=$lote";
-$result=mysqli_query($link,$qry);
-$ruta="listarOrProdA.php";
-mover_pag($ruta,"Orden de Producción Anulada con Éxito");
-mysqli_free_result($result);
-/* cerrar la conexión */
-mysqli_close($link);
 
 ?>
-
-</body>
-</html>

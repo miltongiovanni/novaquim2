@@ -17,11 +17,11 @@ class DetOProdOperaciones
         return $this->_pdo->lastInsertId();
     }
 
-    public function deleteDetOProd($datos)
+    public function deleteDetOProd($lote)
     {
-        $qry = "DELETE FROM det_ord_prod WHERE lote= ? AND producto=?";
+        $qry = "DELETE FROM det_ord_prod WHERE lote= ?";
         $stmt = $this->_pdo->prepare($qry);
-        $stmt->execute($datos);
+        $stmt->execute(array($lote));
     }
 
 
