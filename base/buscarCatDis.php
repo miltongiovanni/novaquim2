@@ -3,10 +3,10 @@ include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
-<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
 
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
 	<title>Seleccionar categoría de productos de Distribución</title>
 	<script  src="../js/validar.js"></script>
 

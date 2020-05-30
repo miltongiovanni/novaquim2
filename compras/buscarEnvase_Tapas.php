@@ -11,9 +11,9 @@ spl_autoload_register('cargarClases');
 ?>
 <!DOCTYPE html>
 <html lang="es">
-<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
 <head>
     <meta charset="utf-8">
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <title>Seleccionar Envase o Tapa a Consultar Compra</title>
     <script src="../js/validar.js"></script>
 </head>

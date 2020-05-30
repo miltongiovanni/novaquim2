@@ -38,15 +38,14 @@ class DetOProdOperaciones
         return $result;
     }
 
-    public function getDetOProd($lote, $producto)
+    public function getDetOProd($lote, $codMPrima)
     {
-        $qry = "SELECT lote, producto, cantGasto, precGasto,
-                codIva, CONCAT(format((tasaIva*100),0), ' %') iva
-                FROM det_ord_prod
-                LEFT JOIN tasa_iva ti on det_ord_prod.codIva = ti.idTasaIva
-                WHERE lote=? AND producto=?";
+        $qry = "SELECT nomMPrima, cantidadMPrima, dop.codMPrima, loteMP,  aliasMPrima
+                FROM det_ord_prod dop
+                   LEFT JOIN mprimas m on dop.codMPrima = m.codMPrima
+                WHERE lote= ? AND dop.codMPrima=?";
         $stmt = $this->_pdo->prepare($qry);
-        $stmt->execute(array($lote, $producto));
+        $stmt->execute(array($lote, $codMPrima));
         $result = $stmt->fetch(PDO::FETCH_ASSOC);;
         return $result;
     }
@@ -65,7 +64,7 @@ class DetOProdOperaciones
 
     public function updateDetOProd($datos)
     {
-        $qry = "UPDATE det_ord_prod SET cantGasto=?, precGasto=?, codIva=? WHERE lote=? AND producto=?";
+        $qry = "UPDATE det_ord_prod SET cantidadMPrima=? WHERE lote=? AND codMPrima=?";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute($datos);
     }

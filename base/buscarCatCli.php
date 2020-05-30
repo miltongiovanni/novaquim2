@@ -3,9 +3,9 @@ include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
-<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
 <head>
     <meta charset="utf-8">
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <title>Seleccionar Tipo de Cliente</title>
     <script  src="../js/validar.js"></script>
 </head>

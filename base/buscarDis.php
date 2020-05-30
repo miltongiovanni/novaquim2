@@ -3,10 +3,10 @@ include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
-<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
 <head>
     <meta charset="utf-8">
     <title>Seleccionar Producto de Distribución a Actualizar</title>
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <script  src="../js/validar.js"></script>
 </head>
 <body>

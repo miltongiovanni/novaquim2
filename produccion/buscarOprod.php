@@ -3,11 +3,11 @@ include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
-<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
 <head>
     <meta charset="utf-8">
     <title>Modificar consumo de Materia Prima por Orden de Producción</title>
     <script src="../js/validar.js"></script>
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
 
 
 </head>

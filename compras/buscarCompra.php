@@ -17,10 +17,10 @@ switch ($tipoCompra) {
 ?>
 <!DOCTYPE html>
 <html lang="es">
-<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
 <head>
     <meta charset="utf-8">
     <title>Seleccionar Compra de<?= $titulo ?> a Modificar</title>
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <script src="../js/validar.js"></script>
 </head>
 <body>

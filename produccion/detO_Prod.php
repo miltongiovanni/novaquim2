@@ -72,7 +72,7 @@ $DetOProdOperador = new DetOProdOperaciones();
                 "columns": [
                     {
                         "data": function (row) {
-                            let rep = '<form action="updateO_prod.php" method="post" name="actualiza">' +
+                            let rep = '<form action="updateDetOProdForm.php" method="post" name="actualiza">' +
                                 '          <input name="lote" type="hidden" value="' + lote + '">' +
                                 '          <input name="codMPrima" type="hidden" value="' + row.codMPrima + '">' +
                                 '          <input type="button" name="Submit" onclick="return Enviar(this.form)" class="formatoBoton"  value="Cambiar">' +
