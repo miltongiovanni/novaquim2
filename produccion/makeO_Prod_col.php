@@ -28,7 +28,7 @@ mysqli_autocommit($link, FALSE);
 
 //ESTA PARTE ES PARA EL CONSECUTIVO DEL LOTE
 $lotinic=1;
-$qrylot="select max(Lote_color) as Orden from ord_prod_col";
+$qrylot="select max(loteColor) as Orden from ord_prod_col";
 $resultlot=mysqli_query($link,$qrylot);
 $rowlot=mysqli_fetch_array($resultlot);
 if ($rowlot)
@@ -40,11 +40,11 @@ $resultcol=mysqli_query($link,$qrycol);
 $rowcol=mysqli_fetch_array($resultcol);	
 $cod_prod=$rowcol['Cod_sol_col'];
 /*CREACIÓN DE LA ORDEN DE PRODUCCIÓN*/
-$qryOP="insert into ord_prod_col (Lote_color, Fch_prod, Id_form_color, Cod_persona, Cod_color, Cant_kg) values ($Orden,'$FchProd', $fcolor, $IdResp, $cod_prod, $can_prod)";
+$qryOP="insert into ord_prod_col (loteColor, fechProd, idFormulaColor, codPersonal, codColor, cantKg) values ($Orden,'$FchProd', $fcolor, $IdResp, $cod_prod, $can_prod)";
 if($resultOP=mysqli_query($link,$qryOP))
 {
 	//AQUI SELECCIONA LA ORDEN QUE SE CREO ANTES
-	$qry="select max(Lote_color) as Batch from ord_prod_col";
+	$qry="select max(loteColor) as Batch from ord_prod_col";
 	$result=mysqli_query($link,$qry);
 	$row=mysqli_fetch_array($result);
 	$Lote=$row['Batch'];
@@ -96,7 +96,7 @@ if($resultOP=mysqli_query($link,$qryOP))
 					$qryupt="update inv_mprimas set invMP=$invt where loteMP='$lot_mp' and codMP=$cod_mp";
 					//echo $qryupt;
 					$resultupt=mysqli_query($link,$qryupt);
-					$qryDOP="insert into det_ord_prod_col (Lote, Cod_mprima, Can_mprima, Lote_MP) values ($Lote, $cod_mprima, $uso1, '$lot_mp')";
+					$qryDOP="insert into det_ord_prod_col (loteColor, codMPrima, cantMPrima, loteMPrima) values ($Lote, $cod_mprima, $uso1, '$lot_mp')";
 					//echo $qryDOP;
 					$resultDOP=mysqli_query($link,$qryDOP);
 					break;
@@ -107,7 +107,7 @@ if($resultOP=mysqli_query($link,$qryOP))
 					$qryupt="update inv_mprimas set invMP=0 where loteMP='$lot_mp' and codMP=$cod_mp";
 					$resultupt=mysqli_query($link,$qryupt);
 					if ($invt>0){
-						$qryDOP="insert into det_ord_prod_col (Lote, Cod_mprima, Can_mprima, Lote_MP) values ($Lote, $cod_mprima, $invt, '$lot_mp')";}
+						$qryDOP="insert into det_ord_prod_col (loteColor, codMPrima, cantMPrima, loteMPrima) values ($Lote, $cod_mprima, $invt, '$lot_mp')";}
 						echo $qryDOP;
 					$resultDOP=mysqli_query($link,$qryDOP);
 				}

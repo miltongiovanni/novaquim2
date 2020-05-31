@@ -4,37 +4,37 @@ include "../includes/valAcc.php";
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <title>Lista de órdenes de producción</title>
+    <title>Lista de Órdenes de Producción de Color</title>
     <meta charset="utf-8">
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="../css/datatables.css">
     <style>
-        table{
+        table {
             table-layout: fixed;
         }
-        .width1{
+
+        .width1 {
             width: 2%;
         }
-        .width2{
+
+        .width2 {
             width: 4%;
         }
-        .width3{
+
+        .width3 {
             width: 25%;
         }
-        .width4{
+
+        .width4 {
             width: 24%;
         }
-        .width5{
+
+        .width5 {
             width: 12%;
         }
-        .width6{
+
+        .width6 {
             width: 16%;
-        }
-        .width7{
-            width: 9%;
-        }
-        .width8{
-            width: 8%;
         }
     </style>
     <script src="../js/jquery-3.3.1.min.js"></script>
@@ -60,12 +60,12 @@ include "../includes/valAcc.php";
                 '<th align="center">Cantidad</th>' +
                 '</tr>' +
                 '</thead>';
-            for (i = 0; i < d.detOProd.length; i++) {
+            for (i = 0; i < d.detOProdColor.length; i++) {
                 rep += '<tr>' +
-                    '<td align="center">' + d.detOProd[i].codMPrima + '</td>' +
-                    '<td align="center">' + d.detOProd[i].aliasMPrima + '</td>';
-                rep += '<td align="center">' + d.detOProd[i].cantidadMPrima + '</td>' +
-                    '<td align="center">' + d.detOProd[i].loteMP + '</td>' +
+                    '<td align="center">' + d.detOProdColor[i].codMPrima + '</td>' +
+                    '<td align="center">' + d.detOProdColor[i].aliasMPrima + '</td>';
+                rep += '<td align="center">' + d.detOProdColor[i].cantMPrima + '</td>' +
+                    '<td align="center">' + d.detOProdColor[i].loteMPrima + '</td>' +
                     '</tr>'
             }
             rep += '</table>';
@@ -83,15 +83,11 @@ include "../includes/valAcc.php";
                         "defaultContent": ''
                     },
                     {
-                        "data": "lote",
+                        "data": "loteColor",
                         "className": 'dt-body-center'
                     },
                     {
-                        "data": "nomProducto",
-                        "className": 'dt-body-left'
-                    },
-                    {
-                        "data": "nomFormula",
+                        "data": "nomMPrima",
                         "className": 'dt-body-left'
                     },
                     {
@@ -103,12 +99,11 @@ include "../includes/valAcc.php";
                         "className": 'dt-body-left'
                     },
                     {
-                        "data": "cantidadKg",
+                        "data": function (row) {
+                            let rep = row.cantKg + ' Kg'
+                            return rep;
+                        },
                         "className": 'dt-body-center'
-                    },
-                    {
-                        "data": "descEstado",
-                        "className": 'dt-body-left'
                     },
                 ],
                 "order": [[1, 'desc']],
@@ -134,7 +129,7 @@ include "../includes/valAcc.php";
                     "infoFiltered": "(Filtrado de _MAX_ en total)"
 
                 },
-                "ajax": "ajax/listaOProd.php",
+                "ajax": "ajax/listaOProdColor.php",
                 "deferRender": true,  //For speed
             });
             // Add event listener for opening and closing details
@@ -157,25 +152,23 @@ include "../includes/valAcc.php";
 </head>
 <body>
 <div id="contenedor">
-    <div id="saludo1"><strong>LISTA DE ÓRDENES DE PRODUCCIÓN</strong></div>
+    <div id="saludo1"><strong>LISTA DE ÓRDENES DE PRODUCCIÓN DE COLOR</strong></div>
     <div class="row flex-end">
         <div class="col-1">
             <button class="button" onclick="window.location='../menu.php'">
                 <span><STRONG>Ir al Menú</STRONG></span></button>
         </div>
     </div>
-    <div class="tabla-80">
+    <div class="tabla-60">
         <table id="example" class="display compact formatoDatos">
             <thead>
             <tr>
                 <th class="width1"></th>
                 <th class="width2">Lote</th>
-                <th class="width3">Producto</th>
-                <th class="width4">Fórmula</th>
-                <th class="width5">Fecha Producción</th>
-                <th class="width6">Responsable</th>
-                <th class="width7">Cantidad (Kg)</th>
-                <th class="width8">Estado</th>
+                <th class="width3">Solución de Color</th>
+                <th class="width4">Fecha Producción</th>
+                <th class="width5">Responsable</th>
+                <th class="width6">Cantidad (Kg)</th>
             </tr>
             </thead>
         </table>

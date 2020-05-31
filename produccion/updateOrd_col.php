@@ -17,7 +17,7 @@ foreach ($_POST as $nombre_campo => $valor)
 		eval($asignacion); 
 	}  
 	//ACTUALIZA EL GASTO DE MATERIA PRIMA EN LA ORDEN DE PRODUCCION
-	$qry="update det_ord_prod_col set Can_mprima=$gasto where Lote=$Lote and Cod_mprima=$mprima and Lote_MP='$lote_mp'";
+	$qry="update det_ord_prod_col set cantMPrima=$gasto where loteColor=$Lote and codMPrima=$mprima and loteMPrima='$lote_mp'";
 	echo'<form action="detO_Prod_col.php" method="post" name="formulario">';
 	$link=conectarServidor();
 	$result=mysqli_query($link,$qry);

@@ -30,8 +30,8 @@ include "includes/conect.php";
 	eval($asignacion); 
 	}  
 	$link=conectarServidor();
-	$qry="SELECT Nom_mprima, Can_mprima, det_ord_prod_col.Cod_mprima as codigo, Lote_MP FROM det_ord_prod_col, mprimas 
-	WHERE Lote=$Lote AND det_ord_prod_col.Cod_mprima=mprimas.Cod_mprima and det_ord_prod_col.Cod_mprima=$mprima and Lote_MP='$lote_mp';";
+	$qry="SELECT Nom_mprima, cantMPrima, det_ord_prod_col.codMPrima as codigo, Lote_MP FROM det_ord_prod_col, mprimas 
+	WHERE Lote=$Lote AND det_ord_prod_col.codMPrima=mprimas.Cod_mprima and det_ord_prod_col.codMPrima=$mprima and loteMPrima='$lote_mp';";
 	$result=mysqli_query($link,$qry);
 	$row=mysqli_fetch_array($result);
 	$codmp=$row['codigo'];

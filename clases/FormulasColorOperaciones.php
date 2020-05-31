@@ -77,8 +77,8 @@ public function deleteFormulaColor($idFormulaColor)
         $qry = "SELECT formula_col.idFormulaColor, nomMPrima
                 FROM formula_col
                     LEFT JOIN mprimas ON formula_col.codSolucionColor = mprimas.codMPrima
-                    LEFT JOIN ord_prod_col op on formula_col.idFormulaColor = op.Id_form_color
-                WHERE op.Id_form_color IS NULL
+                    LEFT JOIN ord_prod_col op on formula_col.idFormulaColor = op.idFormulaColor
+                WHERE op.idFormulaColor IS NULL
                 ORDER BY nomMPrima";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();

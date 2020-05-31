@@ -18,7 +18,7 @@ include "../includes/valAcc.php";
 		include "includes/conect.php";
 		$link=conectarServidor();
 		$Lote=$_POST['Lote'];
-	  	$qryord="SELECT Lote_color, Fch_prod, Cant_kg, nom_personal, Nom_mprima from ord_prod_col, personal, formula_col, mprimas WHERE Cod_persona=Id_personal and Id_form_color=idFormulaColor and codSolucionColor=Cod_mprima AND Lote_color=$Lote";
+	  	$qryord="SELECT loteColor, fechProd, cantKg, nom_personal, Nom_mprima from ord_prod_col, personal, formula_col, mprimas WHERE codPersonal=Id_personal and idFormulaColor=idFormulaColor and codSolucionColor=Cod_mprima AND loteColor=$Lote";
 		$resultord=mysqli_query($link,$qryord);
 		$roword=mysqli_fetch_array($resultord);
 		if ($roword)
@@ -74,8 +74,8 @@ include "../includes/valAcc.php";
   <?php
 	$link=conectarServidor();
 	$Lote=$_POST['Lote'];
-	$qry="SELECT Nom_mprima, Can_mprima, det_ord_prod_col.Cod_mprima as codigo, Lote_MP 
-	FROM det_ord_prod_col, mprimas where Lote=$Lote AND det_ord_prod_col.Cod_mprima=mprimas.Cod_mprima;";
+	$qry="SELECT Nom_mprima, cantMPrima, det_ord_prod_col.codMPrima as codigo, loteMPrima 
+	FROM det_ord_prod_col, mprimas where loteColor=$Lote AND det_ord_prod_col.codMPrima=mprimas.Cod_mprima;";
 	
 	$result=mysqli_query($link,$qry);
 	//valign="middle"

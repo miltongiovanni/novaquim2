@@ -30,8 +30,7 @@ class DetOProdOperaciones
         $qry = "SELECT dop.codMPrima, aliasMPrima, loteMP, cantidadMPrima
                 FROM det_ord_prod dop
                 LEFT JOIN mprimas m on dop.codMPrima = m.codMPrima
-                WHERE lote = ?
-                ORDER BY orden";
+                WHERE lote = ?";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute(array($lote));
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);

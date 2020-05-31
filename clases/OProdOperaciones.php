@@ -101,25 +101,6 @@ class OProdOperaciones
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result['lastLote'];
     }
-    public function isValidIdOProd($lote)
-    {
-        $qry = "SELECT * FROM ord_prod WHERE lote=?";
-        $stmt = $this->_pdo->prepare($qry);
-        $stmt->execute(array($lote));
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        if($result==false){
-            return false;
-        }
-        else{
-            return true;
-        }
-    }
-    public function updateOProd($datos)
-    {
-        $qry = "UPDATE ord_prod SET idProv=?, numFact=?, fechOProd=?, fechVenc=? WHERE lote=?";
-        $stmt = $this->_pdo->prepare($qry);
-        $stmt->execute($datos);
-    }
 
     public function anulaOProd($lote)
     {
