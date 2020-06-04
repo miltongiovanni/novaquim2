@@ -41,11 +41,23 @@
     <file url="file://$PROJECT_DIR$/compras/updateProv.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/produccion/ajax/listaDetFormulas.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/produccion/ajax/listaDetOProd.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/produccion/ajax/listaDetOProdColor.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/produccion/ajax/listaDetOProdMPrima.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/produccion/ajax/listaOProd.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/produccion/ajax/listaOProdA.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/produccion/ajax/listaOProdColor.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/produccion/ajax/listaOProdMPrima.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/produccion/buscarForm.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/produccion/buscarOProdMPrima.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/produccion/buscarOprodColor.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/produccion/consultaOProd.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/produccion/consultaOProdColor.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/produccion/consultaOProdMPrima.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/produccion/crearOProdMPrima.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/produccion/updateDetOProdColor.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/produccion/updateDetOProdColorForm.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/produccion/updateDetOProdMPrima.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/produccion/updateDetOProdMPrimaForm.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/widgets/facXPagarTotales.php" charset="UTF-8" />
     <file url="PROJECT" charset="windows-1252" />
   </component>

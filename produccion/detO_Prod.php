@@ -14,9 +14,6 @@ function cargarClases($classname)
 }
 
 spl_autoload_register('cargarClases');
-if (isset($_SESSION['idEgreso'])) {//Si la factura existe
-    $idEgreso = $_SESSION['idEgreso'];
-}
 $OProdOperador = new OProdOperaciones();
 $ordenProd = $OProdOperador->getOProd($lote);
 $DetOProdOperador = new DetOProdOperaciones();

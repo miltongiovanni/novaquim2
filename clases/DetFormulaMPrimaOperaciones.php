@@ -66,6 +66,17 @@ class DetFormulaMPrimaOperaciones
         return $result;
     }
 
+    public function getDetalleFormulaMPrima($idFormulaMPrima)
+    {
+        $qry = "SELECT idFormulaMPrima, codMPrima, porcentaje
+                FROM det_formula_mp df
+                WHERE idFormulaMPrima=?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($idFormulaMPrima));
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
 
     public function codMPrimaExiste($idFormulaMPrima, $codMPrima)
     {

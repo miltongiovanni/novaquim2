@@ -1,5 +1,21 @@
 <?php
 include "../includes/valAcc.php";
+if (isset($_POST['loteColor'])) {
+    $loteColor = $_POST['loteColor'];
+}
+if (isset($_SESSION['loteColor'])) {
+    $loteColor = $_SESSION['loteColor'];
+}
+
+function cargarClases($classname)
+{
+    require '../clases/' . $classname . '.php';
+}
+
+spl_autoload_register('cargarClases');
+$OProdColorOperador = new OProdColorOperaciones();
+$ordenProd = $OProdColorOperador->getOProdColor($loteColor);
+$DetOProdColorOperador = new DetOProdColorOperaciones();
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -7,104 +23,139 @@ include "../includes/valAcc.php";
     <title>Detalle Orden de Producción de Color</title>
     <meta charset="utf-8">
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-    <script  src="../js/validar.js"></script>
+    <link rel="stylesheet" href="../css/datatables.css">
+    <style>
+        table.dataTable.compact thead th {
+            padding: 4px;
+        }
 
+        table.dataTable.compact tbody td {
+            padding: 2px 4px;
+        }
+
+        .width1 {
+            width: 15%;
+        }
+
+        .width2 {
+            width: 10%;
+        }
+
+        .width3 {
+            width: 40%;
+        }
+
+        .width4 {
+            width: 15%;
+        }
+
+        .width5 {
+            width: 20%;
+        }
+    </style>
+
+    <script src="../js/validar.js"></script>
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/datatables.js"></script>
+    <script src="../js/jszip.js"></script>
+    <script src="../js/pdfmake.js"></script>
+    <script src="../js/vfs_fonts.js"></script>
+    <script>
+        $(document).ready(function () {
+            let loteColor = <?=$loteColor?>;
+            let ruta = "ajax/listaDetOProdColor.php?loteColor=" + loteColor;
+            $('#example').DataTable({
+                "columns": [
+                    {
+                        "data": function (row) {
+                            let rep = '<form action="updateDetOProdColorForm.php" method="post" name="actualiza">' +
+                                '          <input name="loteColor" type="hidden" value="' + loteColor + '">' +
+                                '          <input name="codMPrima" type="hidden" value="' + row.codMPrima + '">' +
+                                '          <input type="button" name="Submit" onclick="return Enviar(this.form)" class="formatoBoton"  value="Cambiar">' +
+                                '      </form>'
+                            return rep;
+                        },
+                        "className": 'dt-body-center'
+                    },
+                    {
+                        "data": "codMPrima",
+                        "className": 'dt-body-center'
+                    },
+                    {
+                        "data": "aliasMPrima",
+                        "className": 'dt-body-center'
+                    },
+                    {
+                        "data": "loteMPrima",
+                        "className": 'dt-body-center'
+                    },
+                    {
+                        "data": "cantMPrima",
+                        "className": 'dt-body-center'
+                    }
+                ],
+                "paging": false,
+                "ordering": false,
+                "info": false,
+                "searching": false,
+                "lengthMenu": [[20, 50, 100, -1], [20, 50, 100, "All"]],
+                "language": {
+                    "lengthMenu": "Mostrando _MENU_ datos por página",
+                    "zeroRecords": "Lo siento no encontró nada",
+                    "info": "Mostrando página _PAGE_ de _PAGES_",
+                    "infoEmpty": "No hay datos disponibles",
+                    "search": "Búsqueda:",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Último",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    },
+                    "infoFiltered": "(Filtrado de _MAX_ en total)"
+                },
+                "ajax": ruta
+            });
+        });
+    </script>
 </head>
 <body> 
 <div id="contenedor">
 <div id="saludo1"><strong>USO DE MATERIA PRIMA POR PRODUCCIÓN DE COLOR</strong></div>
-<table border="0" align="center">
-    <?php
-		include "includes/conect.php";
-		$link=conectarServidor();
-		$Lote=$_POST['Lote'];
-	  	$qryord="SELECT loteColor, fechProd, cantKg, nom_personal, Nom_mprima from ord_prod_col, personal, formula_col, mprimas WHERE codPersonal=Id_personal and idFormulaColor=idFormulaColor and codSolucionColor=Cod_mprima AND loteColor=$Lote";
-		$resultord=mysqli_query($link,$qryord);
-		$roword=mysqli_fetch_array($resultord);
-		if ($roword)
-		{
-			mysqli_free_result($resultord);
-			mysqli_close($link);	
-		}
-		else
-		{
-			mover("buscarOProd_color.php","No existe la Orden de Producción de Color");
-			
-		}
-		
-			
-	function mover($ruta,$mensaje)
-	{
-		//Funcion que permite el redireccionamiento de los usuarios a otra pagina 
-		echo'<script >
-		alert("'.$mensaje.'")
-		self.location="'.$ruta.'"
-		</script>';
-	}
-?>
-<tr>
-      <td width="82"><div align="right"><strong>Lote</strong></div></td>
-    <td width="46"><div align="left"><?php echo $Lote;?></div></td>
-    <td width="191"><div align="right"><strong>Fecha de Producción</strong> </div></td>
-    <td width="160"><?php echo $roword['Fch_prod'];?></td>
-    <td width="106"><div align="right"><strong>Cantidad (Kg)</strong></div></td>
-    <td width="221"><div align="left"><?php echo $roword['Cant_kg']; ?> </div></td>
-</tr>
-	<tr>
-      <td><div align="right"><strong>Producto</strong></div></td>
-      <td colspan="3"><?php echo  $roword['Nom_mprima']?></td>
-      <td><div align="right"><strong>Responsable</strong></div></td>
-      <td><?php echo  $roword['nom_personal']?></td>
-    </tr>
-    <tr>
-      <td>&nbsp;</td>
-      <td>&nbsp;</td>
-      
-    </tr>
-</table>
-<!--<input type="submit" name='boton' value='Imprimir' onclick='window.print();'> -->
-<table border="0" align="center" summary="cuerpo">
- <tr>
-    <td width="71"><div align="left"></div></td>
-    <td width="101"><div align="center"><strong>Código</strong></div></td>
-    <td width="224"><div align="center"><strong>Materia Prima</strong></div></td>
-    <td width="112"><div align="center"><strong>Lote MP</strong></div></td>
-    <td width="163"><div align="center"><strong>MP Utilizada (Kg)</strong></div></td>
-  </tr>
-  <?php
-	$link=conectarServidor();
-	$Lote=$_POST['Lote'];
-	$qry="SELECT Nom_mprima, cantMPrima, det_ord_prod_col.codMPrima as codigo, loteMPrima 
-	FROM det_ord_prod_col, mprimas where loteColor=$Lote AND det_ord_prod_col.codMPrima=mprimas.Cod_mprima;";
-	
-	$result=mysqli_query($link,$qry);
-	//valign="middle"
-	while($row=mysqli_fetch_array($result))
-	{
-	$codmp=$row['codigo'];
-	$mprima=$row['Nom_mprima'];
-	$gasto=$row['Can_mprima'];
-	$lote_mp=$row['Lote_MP'];
-	echo '<tr>
-	<td align="center" valign="middle"> 
-		<form action="updateO_prod_col.php" method="post" name="actualiza">
-			<input type="submit" name="Submit" value="Cambiar" >
-			<input name="Lote" type="hidden" value="'.$Lote.'">
-			<input name="mprima" type="hidden" value="'.$codmp.'">
-			<input name="lote_mp" type="hidden" value="'.$lote_mp.'">
-			<input name="gasto" type="hidden" value="'.$gasto.'">
-		</form>
-	</td>
-	<td align="center">'.$codmp.'</td>
-	<td align="center">'.$mprima.'</td>
-	<td align="center">'.$lote_mp.'</td>
-	<td align="center">'.$gasto.'</td></tr>';
-	}
-	mysqli_free_result($result);
-	mysqli_close($link);
-?>
-</table>
-<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Terminar"></div>
+    <div class="form-group row">
+        <div class="col-1 text-right"><strong>Lote</strong></div>
+        <div class="col-1 bg-blue"><?= $loteColor; ?></div>
+        <div class="col-1 text-right"><strong>Cantidad</strong></div>
+        <div class="col-1 bg-blue"><?= $ordenProd['cantKg'] ?> Kg</div>
+        <div class="col-2 text-right"><strong>Fecha de producción</strong></strong></div>
+        <div class="col-1 bg-blue"><?= $ordenProd['fechProd'] ?></div>
+    </div>
+    <div class="form-group row">
+        <div class="col-1 text-right"><strong>Producto</strong></div>
+        <div class="col-2 bg-blue"><?= $ordenProd['nomMPrima'] ?></div>
+        <div class="col-2 text-right"><strong>Responsable</strong></div>
+        <div class="col-2 bg-blue"><?= $ordenProd['nomPersonal'] ?></div>
+    </div>
+    <div class="form-group row titulo">Detalle orden de producción :</div>
+    <div class="tabla-50">
+        <table id="example" class="display compact formatoDatos">
+            <thead>
+            <tr>
+                <th class="width1"></th>
+                <th class="width2">Código MP</th>
+                <th class="width3">Materia Prima</th>
+                <th class="width4">Lote MP</th>
+                <th class="width5">MP Utilizada (Kg)</th>
+            </tr>
+            </thead>
+        </table>
+    </div>
+    <div class="row">
+        <div class="col-1">
+            <button class="button" onclick="window.location='../menu.php'">
+                <span><STRONG>Terminar</STRONG></span>
+            </button>
+        </div>
+    </div>
 </div>
 </body>
 </html>

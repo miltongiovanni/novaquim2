@@ -46,6 +46,16 @@ class DetFormulaColorOperaciones
         return $result;
     }
 
+    public function getDetalleFormulaColor($idFormulaColor)
+    {
+        $qry = "SELECT codMPrima, porcentaje FROM det_formula_col
+                WHERE idFormulaColor=?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($idFormulaColor));
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     public function getPorcentajeTotal($idFormulaColor){
         $qry = "SELECT CONCAT(ROUND(SUM(porcentaje)*100,3), ' %') porcentaje FROM det_formula_col WHERE idFormulaColor=?";
         $stmt = $this->_pdo->prepare($qry);

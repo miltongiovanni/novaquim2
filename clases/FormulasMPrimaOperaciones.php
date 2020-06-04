@@ -79,8 +79,8 @@ public function deleteFormulaMPrima($idFormulaMPrima)
         $qry = "SELECT formula_mp.idFormulaMPrima, nomMPrima
                 FROM formula_mp
                 LEFT JOIN mprimas ON formula_mp.codMPrima = mprimas.codMPrima
-                LEFT JOIN ord_prod_mp op ON formula_mp.idFormulaMPrima = op.Id_form_mp
-                WHERE op.Id_form_mp IS NULL
+                LEFT JOIN ord_prod_mp op ON formula_mp.idFormulaMPrima = op.idFormMP
+                WHERE op.idFormMP IS NULL
                 ORDER BY nomMPrima";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();
@@ -98,6 +98,18 @@ public function deleteFormulaMPrima($idFormulaMPrima)
         $stmt->execute(array($idFormulaMPrima));
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result['nomMPrima'];
+    }
+
+    public function getCodFormulaMPrima($idFormulaMPrima)
+    {
+        $qry = "SELECT formula_mp.codMPrima
+                FROM formula_mp
+                LEFT JOIN mprimas m on formula_mp.codMPrima = m.codMPrima
+                WHERE idFormulaMPrima=?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($idFormulaMPrima));
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result['codMPrima'];
     }
 
     public function getFormulaMPrimaById($idFormulaMPrima)

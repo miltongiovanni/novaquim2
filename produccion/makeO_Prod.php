@@ -24,7 +24,6 @@ try {
     //ESTA PARTE ES PARA EL CONSECUTIVO DEL LOTE
     $OProdOperador = new OProdOperaciones();
     $lote = $OProdOperador->getLastLote() + 1;
-    $qrylot = "select max(Lote) as Orden from ord_prod";
     $estado = 2;
     $datos = array($lote, $fechProd, $idFormula, $cantidadKg, $codResponsable, $codProducto, $estado);
     $qry = "INSERT INTO ord_prod (lote, fechProd, idFormula, cantidadKg, codResponsable, codProducto, estado) VALUES (?, ?, ?, ?, ?, ?, ?)";
@@ -90,7 +89,7 @@ try {
     //Rollback the transaction.
     $link->rollBack();
     $ruta = "crearOProd.php";
-    $mensaje = "Error al ingresar la Orden de Producción";
+    $mensaje = "Error al crear la Orden de Producción";
 } finally {
     mover_pag($ruta, $mensaje);
 }

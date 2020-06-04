@@ -165,8 +165,8 @@ include "../includes/valAcc.php";
             <tr>
                 <th class="width1"></th>
                 <th class="width2">Lote</th>
-                <th class="width3">Solución de Color</th>
-                <th class="width4">Fecha Producción</th>
+                <th class="width3">Solución de color</th>
+                <th class="width4">Fecha producción</th>
                 <th class="width5">Responsable</th>
                 <th class="width6">Cantidad (Kg)</th>
             </tr>

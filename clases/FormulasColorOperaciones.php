@@ -97,6 +97,16 @@ public function deleteFormulaColor($idFormulaColor)
         return $result['nomMPrima'];
     }
 
+    public function getCodSolucionByFormulaColor($idFormulaColor)
+    {
+        $qry = "SELECT codSolucionColor FROM formula_col
+                WHERE idFormulaColor=?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($idFormulaColor));
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result['codSolucionColor'];
+    }
+
     public function getFormulaById($idFormulaColor)
     {
         $qry = "SELECT idFormulaColor, formula_col.idProv, nomProv, numFact, fechFormula, fechVenc, estadoFormula, descEstado
