@@ -3,10 +3,12 @@ include "../includes/valAcc.php";
 
 if (isset($_POST['lote'])) {
     $lote = $_POST['lote'];
+}else{
+    if (isset($_SESSION['lote'])) {
+        $lote = $_SESSION['lote'];
+    }
 }
-if (isset($_SESSION['lote'])) {
-    $lote = $_SESSION['lote'];
-}
+
 
 function cargarClases($classname)
 {
@@ -16,7 +18,6 @@ function cargarClases($classname)
 spl_autoload_register('cargarClases');
 $OProdOperador = new OProdOperaciones();
 $ordenProd = $OProdOperador->getOProd($lote);
-$DetOProdOperador = new DetOProdOperaciones();
 ?>
 <!DOCTYPE html>
 <html lang="es">

@@ -34,9 +34,9 @@ $objPHPExcel->setActiveSheetIndex(0)
 // Rename sheet
 $objPHPExcel->getActiveSheet()->setTitle('Inventario MP');
 $link=conectarServidor();
-$sql="SELECT inv_prod.Cod_prese as Codigo, Nombre, sum(inv_prod) as inventario, ROUND(fabrica/(1.16*1.55),2) as Costo  
+$sql="SELECT inv_prod.codPresentacion as Codigo, Nombre, sum(inv_prod) as inventario, ROUND(fabrica/(1.16*1.55),2) as Costo  
 FROM inv_prod, prodpre, productos, medida
-where inv_prod.Cod_prese=prodpre.Cod_prese AND medida.Id_medida=prodpre.Cod_umedid and productos.Cod_produc=prodpre.Cod_produc and prod_activo=0 
+where inv_prod.codPresentacion=prodpre.Cod_prese AND medida.Id_medida=prodpre.Cod_umedid and productos.Cod_produc=prodpre.Cod_produc and prod_activo=0 
 group by Codigo ORDER BY Nom_produc;
 ";
 $result=mysqli_query($link,$sql) or die("Error al conectar a la base de datos.");
@@ -48,7 +48,7 @@ while($row= mysqli_fetch_array($result, MYSQLI_BOTH))
 	$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(1, $i,iconv("iso-8859-1", "UTF-8", $row['Nombre']));
 	$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(2, $i, iconv("iso-8859-1", "UTF-8",$row['Costo']));
 	$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(3, $i,iconv("iso-8859-1", "UTF-8", $row['inventario']));
-	$sqle1="select SUM(Can_prese) as entrada1 from envasado, ord_prod where envasado.Lote=ord_prod.Lote and fechProd>'$Fch' and Con_prese=$prod;";
+	$sqle1="select SUM(cantPresentacion) as entrada1 from envasado, ord_prod where envasado.Lote=ord_prod.Lote and fechProd>'$Fch' and Con_prese=$prod;";
 	$resulte1=mysqli_query($link,$sqle1);
 	$rowe1=mysqli_fetch_array($resulte1, MYSQLI_BOTH);
 	if($rowe1['entrada1']==NULL)

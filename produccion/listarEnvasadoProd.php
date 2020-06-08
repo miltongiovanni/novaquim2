@@ -70,8 +70,8 @@ while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
 	';
 	
 	echo'</tr>';
-	$sqli="SELECT Con_prese as Codigo, Nombre as Producto, Can_prese as Cantidad FROM envasado, prodpre
-	WHERE Con_prese=Cod_prese and Lote=$lote ;";
+	$sqli="SELECT codPresentacion as Codigo, Nombre as Producto, Can_prese as Cantidad FROM envasado, prodpre
+	WHERE codPresentacion=Cod_prese and Lote=$lote ;";
 	$resulti=mysqli_query($link,$sqli);
 	echo '<tr><td colspan="7"><div class="commenthidden" id="UniqueName'.$a.'"><table width="80%" border="0" align="center" cellspacing="0" summary="Cuerpo">
 	<tr>

@@ -30,7 +30,7 @@ while($row=mysql_fetch_array($result))
   /*DESCARGA DEL INVENTARIO*/
   $unidades=$cantidad;
   $i=1;
-  $qryinv="select Cod_prese, lote_prod, inv_prod from inv_prod where Cod_prese=$codigo and inv_prod >0 order by lote_prod;";
+  $qryinv="select codPresentacion, lote_prod, inv_prod from inv_prod where codPresentacion=$codigo and inv_prod >0 order by lote_prod;";
   $resultinv=mysql_db_query($bd,$qryinv);
   while(($rowinv=mysql_fetch_array($resultinv))&&($unidades>0))
   {
@@ -46,7 +46,7 @@ while($row=mysql_fetch_array($result))
 		echo $qryins_p."<br>";				
 		$resultins_p=mysql_db_query($bd,$qryins_p);
 		/*SE ACTUALIZA EL INVENTARIO*/
-		$qryupt="update inv_prod set inv_prod=$invt where lote_prod=$lot_prod and Cod_prese=$cod_prod";
+		$qryupt="update inv_prod set invProd=$invt where loteProd=$lot_prod and Cod_prese=$cod_prod";
 		$resultupt=mysql_db_query($bd,$qryupt);
 		$unidades=0;
 	}
@@ -57,7 +57,7 @@ while($row=mysql_fetch_array($result))
 		$qryupd_r="update det_remision set Can_producto=$unidades, Lote_producto=$lote where Id_remision=$id_remision and Cod_producto=$cod_producto";
 		$resultins_p=mysql_db_query($bd,$qryins_p);
 		/*SE ACTUALIZA EL INVENTARIO*/
-		$qryupt="update inv_prod set inv_prod=0 where lote_prod=$lot_prod and Cod_prese=$cod_prod";
+		$qryupt="update inv_prod set invProd=0 where loteProd=$lot_prod and Cod_prese=$cod_prod";
 		$resultupt=mysql_db_query($bd,$qryupt);	
 	}
   }

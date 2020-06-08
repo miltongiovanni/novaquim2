@@ -41,9 +41,9 @@ include "includes/utilTabla.php";
 include "includes/conect.php" ;
 $link=conectarServidor();
 //INVENTARIO ACTUAL
-$sql="	SELECT inv_prod.Cod_prese as Codigo, Nombre, sum(inv_prod) as inventario 
+$sql="	SELECT inv_prod.codPresentacion as Codigo, Nombre, sum(inv_prod) as inventario 
 FROM inv_prod, prodpre, productos, medida
-where inv_prod.Cod_prese=prodpre.Cod_prese AND medida.Id_medida=prodpre.Cod_umedid and productos.Cod_produc=prodpre.Cod_produc and prod_activo=0 
+where inv_prod.codPresentacion=prodpre.Cod_prese AND medida.Id_medida=prodpre.Cod_umedid and productos.Cod_produc=prodpre.Cod_produc and prod_activo=0 
 group by Codigo ORDER BY Nom_produc, cant_medida;";
 $result=mysqli_query($link,$sql);
 $a=1;
@@ -59,7 +59,7 @@ $salida1=0;$salida2=0;$salida3=0;$salida4=0;
   <td class="formatoDatos"><div align="left">'.$row['Nombre'].'</div></td>
   <td class="formatoDatos"><div align="center"><script   > document.write(commaSplit('.$row['inventario'].'))</script></div></td>';
   //ENTRADA POR PRODUCCIÓN
-  $sqle1="select SUM(Can_prese) as entrada1 from envasado, ord_prod where envasado.Lote=ord_prod.Lote and fechProd>'$Fch' and Con_prese=$prod;";
+  $sqle1="select SUM(cantPresentacion) as entrada1 from envasado, ord_prod where envasado.Lote=ord_prod.Lote and fechProd>'$Fch' and Con_prese=$prod;";
   $resulte1=mysqli_query($link,$sqle1);
   $rowe1=mysqli_fetch_array($resulte1, MYSQLI_BOTH);
   if($rowe1['entrada1']==NULL)

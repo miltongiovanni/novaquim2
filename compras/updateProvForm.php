@@ -10,9 +10,12 @@ if (isset($_POST['idProv'])) {
     $idProv = $_POST['idProv'];
     $_SESSION['idProv'] = $idProv;
 }
-if (isset($_SESSION['idProv'])) {
-    $idProv = $_SESSION['idProv'];
+else{
+    if (isset($_SESSION['idProv'])) {
+        $idProv = $_SESSION['idProv'];
+    }
 }
+
 
 $ProveedorOperador = new ProveedoresOperaciones();
 $proveedor = $ProveedorOperador->getProveedor($idProv);

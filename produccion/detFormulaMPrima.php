@@ -1,10 +1,12 @@
 <?php
 include "../includes/valAcc.php";
-if (isset($_SESSION['idFormulaMPrima'])) {
-    $idFormulaMPrima = $_SESSION['idFormulaMPrima'];
-}
+
 if (isset($_POST['idFormulaMPrima'])) {
     $idFormulaMPrima = $_POST['idFormulaMPrima'];
+}else{
+    if (isset($_SESSION['idFormulaMPrima'])) {
+        $idFormulaMPrima = $_SESSION['idFormulaMPrima'];
+    }
 }
 
 function cargarClases($classname)

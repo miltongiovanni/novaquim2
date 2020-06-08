@@ -2,10 +2,12 @@
 include "../includes/valAcc.php";
 if (isset($_POST['loteColor'])) {
     $loteColor = $_POST['loteColor'];
+}else{
+    if (isset($_SESSION['loteColor'])) {
+        $loteColor = $_SESSION['loteColor'];
+    }
 }
-if (isset($_SESSION['loteColor'])) {
-    $loteColor = $_SESSION['loteColor'];
-}
+
 
 function cargarClases($classname)
 {

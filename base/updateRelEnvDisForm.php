@@ -9,10 +9,13 @@ spl_autoload_register('cargarClases');
 if (isset($_POST['idEnvDis'])) {
     $idEnvDis = $_POST['idEnvDis'];
 }
-if(isset($_SESSION['idEnvDis'])){
-    $idEnvDis = $_SESSION['idEnvDis'];
-    unset($_SESSION['idEnvDis']);
+else{
+    if(isset($_SESSION['idEnvDis'])){
+        $idEnvDis = $_SESSION['idEnvDis'];
+        unset($_SESSION['idEnvDis']);
+    }
 }
+
 
 $relEnvDisOperador = new RelEnvDisOperaciones();
 $relacion = $relEnvDisOperador->getRelEnvDis($idEnvDis);

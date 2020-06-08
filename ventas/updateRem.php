@@ -33,7 +33,7 @@ if ($producto < 100000)
 	  $Cod_producto=$rowr['Cod_producto'];
 	  $Can_producto=$rowr['Can_producto'];
 	  $Lote_producto=$rowr['Lote_producto'];
-	  $qryinv="select inv_prod from inv_prod where lote_prod=$Lote_producto and Cod_prese=$Cod_producto";
+	  $qryinv="select invProd from inv_prod where loteProd=$Lote_producto and codPresentacion=$Cod_producto";
 	  $resultinv=mysqli_query($link,$qryinv);
 	  $rowinv=mysqli_fetch_array($resultinv);
 	  $inv_actual=$rowinv['inv_prod'];
@@ -42,7 +42,7 @@ if ($producto < 100000)
 		$inv_entra=$devolucion;
 		$devolucion=0;
 		$inv_final= $inv_actual + $inv_entra;
-		$qrys="update inv_prod set inv_prod=$inv_final where lote_prod=$Lote_producto and Cod_prese=$Cod_producto";
+		$qrys="update inv_prod set invProd=$inv_final where loteProd=$Lote_producto and codPresentacion=$Cod_producto";
 		$results=mysqli_query($link,$qrys);
 		$ajuste=$Can_producto-$inv_entra;
 		$qryd="update det_remision1 set Can_producto=$ajuste where Id_remision=$remision and Cod_producto=$producto and Lote_producto=$Lote_producto";
@@ -54,7 +54,7 @@ if ($producto < 100000)
 		$inv_entra=$Can_producto;
 		$devolucion=$devolucion-$Can_producto;
 		$inv_final=$inv_actual+$inv_entra;
-		$qrys="update inv_prod set inv_prod=$inv_final where lote_prod=$Lote_producto and Cod_prese=$Cod_producto";
+		$qrys="update inv_prod set invProd=$inv_final where loteProd=$Lote_producto and codPresentacion=$Cod_producto";
 		$results=mysqli_query($link,$qrys);
 		$qryd="delete from det_remision1 where Id_remision=$remision and Cod_producto=$producto and Lote_producto=$Lote_producto";
 		$resultd=mysqli_query($link,$qryd);
@@ -63,7 +63,7 @@ if ($producto < 100000)
   }
   else
   {
-	$qryinv="select inv_prod, lote_prod from inv_prod where Cod_prese=$producto and inv_prod>0";
+	$qryinv="select invProd, loteProd from inv_prod where codPresentacion=$producto and invProd>0";
 	$resultinv=mysqli_query($link,$qryinv);
 	$entrada=$cantidad-$cant_ant;
 	while(($rowinv=mysqli_fetch_array($resultinv))&&($entrada!=0))
@@ -89,7 +89,7 @@ if ($producto < 100000)
 		  $resultd=mysqli_query($link,$qryd);
 		  $valida=0;
 		}
-		$qrys="update inv_prod set inv_prod=$inv_final where lote_prod=$lote_actual and Cod_prese=$producto";
+		$qrys="update inv_prod set invProd=$inv_final where loteProd=$lote_actual and codPresentacion=$producto";
 		$results=mysqli_query($link,$qrys);
 		$entrada=0;
 	  }
@@ -111,7 +111,7 @@ if ($producto < 100000)
 		  $qryd="insert into det_remision1 (Id_remision, Cod_producto, Can_producto, Lote_producto) values($remision, $producto, $inv_actual, $lote_actual)";
 		  $resultd=mysqli_query($link,$qryd);
 		}
-		$qrys="update inv_prod set inv_prod=$inv_final where lote_prod=$lote_actual and Cod_prese=$producto";
+		$qrys="update inv_prod set invProd=$inv_final where loteProd=$lote_actual and codPresentacion=$producto";
 		$results=mysqli_query($link,$qrys);
 	  }
 	}

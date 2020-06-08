@@ -57,14 +57,14 @@ while($row2=mysqli_fetch_array($result2))
 	$i=1;
 	if($cod_producto <100000)
 	{	
-		$qryinvt="select inv_prod.Cod_prese, Nombre, sum(inv_prod) as Inv from inv_prod, prodpre where inv_prod.Cod_prese=$cod_producto and inv_prod >0 and inv_prod.Cod_prese=prodpre.Cod_prese GROUP by Cod_prese;";
+		$qryinvt="select inv_prod.codPresentacion, Nombre, sum(invProd) as Inv from inv_prod, prodpre where inv_prod.codPresentacion=$cod_producto and invProd >0 and inv_prod.codPresentacion=prodpre.Cod_prese GROUP by codPresentacion;";
 		$resultinvt=mysqli_query($link,$qryinvt);
 		$rowinv1=mysqli_fetch_array($resultinvt);
 		$inventario=$rowinv1['Inv'];
 		$prod_nova=$rowinv1['Nombre'];
 		if ($inventario >= $unidades)
 		{
-		  $qryinv="select Cod_prese, lote_prod, inv_prod from inv_prod where Cod_prese=$cod_producto and inv_prod >0 order by lote_prod;";
+		  $qryinv="select codPresentacion, loteProd, invProd from inv_prod where codPresentacion=$cod_producto and invProd >0 order by loteProd;";
 		  $resultinv=mysqli_query($link,$qryinv);
 		  while($rowinv=mysqli_fetch_array($resultinv))
 		  {
@@ -76,7 +76,7 @@ while($row2=mysqli_fetch_array($result2))
 			  {
 				  $invt= $invt - $unidades;
 				  /*SE ACTUALIZA EL INVENTARIO*/
-				  $qryupt="update inv_prod set inv_prod=$invt where lote_prod=$lot_prod and Cod_prese=$cod_prod";
+				  $qryupt="update inv_prod set invProd=$invt where loteProd=$lot_prod and codPresentacion=$cod_prod";
 				  $resultupt=mysqli_query($link,$qryupt);
 			  }
 			  else
@@ -84,7 +84,7 @@ while($row2=mysqli_fetch_array($result2))
 				  $unidades= $unidades - $invt ;
 				  $resultins_p=mysqli_query($link,$qryins_p);
 				  /*SE ACTUALIZA EL INVENTARIO*/
-				  $qryupt="update inv_prod set inv_prod=0 where lote_prod=$lot_prod and Cod_prese=$cod_prod";
+				  $qryupt="update inv_prod set invProd=0 where loteProd=$lot_prod and codPresentacion=$cod_prod";
 				  $resultupt=mysqli_query($link,$qryupt);	
 			  }
 		  }
@@ -130,7 +130,7 @@ while($row2=mysqli_fetch_array($result2))
 	if($Codigo <100000)
 	{
 		//PRODUCTOS DE LA EMPRESA
-		$qry_prod="select Cod_prese, lote_prod, inv_prod FROM inv_prod where Cod_prese=$Codigo";
+		$qry_prod="select codPresentacion, loteProd, invProd FROM inv_prod where codPresentacion=$Codigo";
 		$result_prod=mysqli_query($link,$qry_prod);
 		$row_prod=mysqli_fetch_array($result_prod);
 		if ($row_prod)
@@ -139,12 +139,12 @@ while($row2=mysqli_fetch_array($result2))
 		  $lote_prod=$row_prod['lote_prod'];
 		  $inv_prod=$row_prod['inv_prod'];
 		  $inv_prod=$inv_prod+$Cantidad;
-		  $qry_up_prod="update inv_prod set inv_prod=$inv_prod where Cod_prese=$Codigo and lote_prod=$lote_prod";
+		  $qry_up_prod="update inv_prod set invProd=$inv_prod where codPresentacion=$Codigo and loteProd=$lote_prod";
 		  $result_up_prod=mysqli_query($link,$qry_up_prod);
 		}
 		else
 		{
-			$qryins="insert into inv_prod (Cod_prese, lote_prod, inv_prod) values ($Codigo, 0, $Cantidad)";
+			$qryins="insert into inv_prod (codPresentacion, loteProd, invProd) values ($Codigo, 0, $Cantidad)";
 			$resultins=mysqli_query($link,$qryins);
 		}
 	}

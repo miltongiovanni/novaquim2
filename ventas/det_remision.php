@@ -58,7 +58,7 @@ include "../includes/valAcc.php";
 	{
 		//PRODUCTOS DE LA EMPRESA
 		$unidades=$cantidad;
-		$qryinv="select Cod_prese, lote_prod, inv_prod from inv_prod where Cod_prese=$cod_producto and inv_prod >0 order by lote_prod;";
+		$qryinv="select codPresentacion, lote_prod, inv_prod from inv_prod where codPresentacion=$cod_producto and inv_prod >0 order by lote_prod;";
 		$resultinv=mysqli_query($link,$qryinv);
 		while($rowinv=mysqli_fetch_array($resultinv))
 		{
@@ -71,7 +71,7 @@ include "../includes/valAcc.php";
 				$qryins_p="insert into det_remision1 (Id_remision, Cod_producto, Can_producto, Lote_producto) values ( $remision, $cod_producto, $unidades, $lot_prod)";
 				$resultins_p=mysqli_query($link,$qryins_p);
 				$unidades=0;
-				$qryupt="update inv_prod set inv_prod=$invt where lote_prod=$lot_prod and Cod_prese=$cod_prod";
+				$qryupt="update inv_prod set invProd=$invt where loteProd=$lot_prod and Cod_prese=$cod_prod";
 				$resultupt=mysqli_query($link,$qryupt);
 			}
 			else
@@ -81,7 +81,7 @@ include "../includes/valAcc.php";
 				  $unidades= $unidades - $invt;
 				  $qryins_p="insert into det_remision1 (Id_remision, Cod_producto, Can_producto, Lote_producto) values ( $remision, $cod_producto, $invt, $lot_prod)";
 				  $resultins_p=mysqli_query($link,$qryins_p);
-				  $qryupt="update inv_prod set inv_prod=0 where lote_prod=$lot_prod and Cod_prese=$cod_prod";
+				  $qryupt="update inv_prod set invProd=0 where loteProd=$lot_prod and Cod_prese=$cod_prod";
 				  $resultupt=mysqli_query($link,$qryupt);	
 				}
 			}
@@ -160,7 +160,7 @@ include "../includes/valAcc.php";
 		<td colspan="2"><div align="center"><strong>Unidades</strong></div></td></tr>
 		<tr><td colspan="4"><div align="center">';
 		echo'<select name="cod_producto">';
-		$result=mysqli_query($link,"select inv_prod.Cod_prese as Codigo, Nombre FROM inv_prod, prodpre WHERE inv_prod.Cod_prese=prodpre.Cod_prese and inv_prod>0 group by inv_prod.Cod_prese order by Nombre;");
+		$result=mysqli_query($link,"select inv_prod.codPresentacion as Codigo, Nombre FROM inv_prod, prodpre WHERE inv_prod.codPresentacion=prodpre.Cod_prese and inv_prod>0 group by inv_prod.codPresentacion order by Nombre;");
         while($row=mysqli_fetch_array($result))
 		{
 			echo '<option value='.$row['Codigo'].'>'.$row['Nombre'].'</option>';

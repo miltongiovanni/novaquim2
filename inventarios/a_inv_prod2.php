@@ -37,7 +37,7 @@ include "includes/conect.php";
 	</tr>
     <?php 
 		$link=conectarServidor();
-		$qry="select lote_prod, inv_prod from inv_prod where Cod_prese=$IdProd order  by lote_prod desc;";
+		$qry="select loteProd, inv_prod from inv_prod where Cod_prese=$IdProd order  by loteProd desc;";
 		$i=0;
 		$a=1;
 		if ($result=mysqli_query($link,$qry))

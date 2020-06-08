@@ -35,7 +35,7 @@ else
 	$link=conectarServidor();   
 	$bd="novaquim";   
 	//SE INSERTA LA CANTIDAD DE PRODUCTO ENVASADO
-	$qryins="insert into envasado (Lote, Con_prese, Can_prese) values ($Lote, $cod_prodpre, $cantidad)";
+	$qryins="insert into envasado (Lote, codPresentacion, cantPresentacion) values ($Lote, $cod_prodpre, $cantidad)";
 	$resultins=mysql_db_query($bd,$qryins);
 	mysql_close($link);
 } 
@@ -101,15 +101,15 @@ else
           <?php
 			$link=conectarServidor();
 			$bd="novaquim";
-			$qry="SELECT Con_prese, Nombre, Can_prese FROM envasado, prodpre WHERE Con_prese=Cod_prese and lote=$Lote;";
+			$qry="SELECT codPresentacion, Nombre, cantPresentacion FROM envasado, prodpre WHERE codPresentacion=Cod_prese and lote=$Lote;";
 			$result=mysql_db_query($bd,$qry);
 			while($row=mysql_fetch_array($result))
 			{
-			echo'<tr>
+			echo '<tr>
 				<td>
-					<form action="updateEnvasado.php" method="post" name="actualiza">
+					<form action="updateEnvasadoForm.php" method="post" name="actualiza">
 						<input type="submit" name="Submit" value="Cambiar" />
-						<input name="Lote" type="hidden" value="'.$Lote.'"/>
+						<input name="Lote" type="hidden" value="' .$Lote.'"/>
 						<input name="Presentacion" type="hidden" value="'.$row['Con_prese'].'"/>
 						<input name="Cantidad" type="hidden" value="'.$row['Can_prese'].'"/>
 					</form>

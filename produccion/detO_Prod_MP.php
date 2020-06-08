@@ -3,9 +3,12 @@ include "../includes/valAcc.php";
 if (isset($_POST['loteMP'])) {
     $loteMP = $_POST['loteMP'];
 }
-if (isset($_SESSION['loteMP'])) {
-    $loteMP = $_SESSION['loteMP'];
+else{
+    if (isset($_SESSION['loteMP'])) {
+        $loteMP = $_SESSION['loteMP'];
+    }
 }
+
 function cargarClases($classname)
 {
     require '../clases/' . $classname . '.php';

@@ -82,7 +82,7 @@ include "../includes/valAcc.php";
 				$cantidad=$row['Can_producto'];
 				if ($cod < 100000)
 				{
-					$qrybus="select Cod_prese as Codigo, SUM(inv_prod) as Inventario from inv_prod WHERE Cod_prese=$cod group by Cod_prese;";
+					$qrybus="select codPresentacion as Codigo, SUM(inv_prod) as Inventario from inv_prod WHERE codPresentacion=$cod group by codPresentacion;";
 					$resultbus=mysqli_query($link,$qrybus);
 					$rowbus=mysqli_fetch_array($resultbus);
 					if ($rowbus)

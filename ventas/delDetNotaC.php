@@ -28,19 +28,19 @@ if($codigo <100000)
   $lote=$row_lot['Lote'];  
   if ($lote==NULL)
 	$lote=0;
-  $qryinv="select Cod_prese, lote_prod, inv_prod from inv_prod where Cod_prese=$codigo and lote_prod=$lote";
+  $qryinv="select codPresentacion, lote_prod, inv_prod from inv_prod where codPresentacion=$codigo and lote_prod=$lote";
   $resultinv=mysqli_query($link,$qryinv);
   $rowinv=mysqli_fetch_array($resultinv);
   $invt=$rowinv['inv_prod'];
   if ($invt==NULL)
   {
-	$qryupt="insert into inv_prod (Cod_prese, lote_prod, inv_prod) values ($codigo, $lote, $cantidad)";
+	$qryupt="insert into inv_prod (codPresentacion, lote_prod, inv_prod) values ($codigo, $lote, $cantidad)";
   }
   else
   {
 	$invt= $invt - $cantidad;
 	//SE ACTUALIZA EL INVENTARIO
-	$qryupt="update inv_prod set inv_prod=$invt where lote_prod=$lote and Cod_prese=$codigo";
+	$qryupt="update inv_prod set invProd=$invt where loteProd=$lote and Cod_prese=$codigo";
   }
   $resultupt=mysqli_query($link,$qryupt);
 }

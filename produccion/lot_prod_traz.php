@@ -37,7 +37,7 @@ foreach ($_POST as $nombre_campo => $valor)
         <div align="center"><strong>Lote</strong>
 <?php
 				echo'<select name="lote_prod">';
-				$result=mysqli_query($link,"select Lote, Con_prese from envasado where Con_prese=$Id_Prod order by Lote DESC;");
+				$result=mysqli_query($link,"select Lote, codPresentacion from envasado where codPresentacion=$Id_Prod order by Lote DESC;");
 				echo '<option selected value="">-------</option>';
 				while($row=mysqli_fetch_array($result)){
 					echo '<option value='.$row['Lote'].'>'.$row['Lote'].'</option>';

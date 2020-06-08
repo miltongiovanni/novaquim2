@@ -33,7 +33,7 @@ include "../includes/valAcc.php";
 				$link=conectarServidor();
 				echo'<select name="Cod_kit">';
 				$result=mysqli_query($link,"SELECT Id_kit as Id, Codigo as C�digo, Nombre as Producto, Nom_envase as Envase from kit, prodpre, envase, inv_prod 
-													where Codigo=prodpre.Cod_prese AND Cod_env=envase.Cod_envase AND inv_prod.Cod_prese=prodpre.Cod_prese and inv_prod>0
+													where Codigo=prodpre.Cod_prese AND Cod_env=envase.Cod_envase AND inv_prod.codPresentacion=prodpre.Cod_prese and inv_prod>0
 													union
 													SELECT Id_kit as Id, Codigo as C�digo, Producto, Nom_envase as Envase from kit, distribucion, envase, inv_distribucion  
 													where Codigo=distribucion.Id_distribucion AND Cod_env=envase.Cod_envase and inv_distribucion.Id_distribucion=distribucion.Id_distribucion and invDistribucion>0;");

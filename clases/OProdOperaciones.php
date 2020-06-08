@@ -53,6 +53,20 @@ class OProdOperaciones
         return $result;
     }
 
+    public function getTableOProdSinEnvasar()
+    {
+        $qry = "SELECT lote, fechProd, p.nomProducto, f.nomFormula, ROUND(cantidadKg, 0) cantidadKg, p2.nomPersonal
+                FROM ord_prod
+                LEFT JOIN formula f on ord_prod.idFormula = f.idFormula
+                LEFT JOIN productos p on ord_prod.codProducto = p.codProducto
+                LEFT JOIN personal p2 on ord_prod.codResponsable = p2.idPersonal
+                WHERE estado=1 OR estado=3";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     public function getOProdPorAnular()
     {
         $qry = "SELECT lote
@@ -64,9 +78,20 @@ class OProdOperaciones
         return $result;
     }
 
+    public function getOProdSinEnvasar()
+    {
+        $qry = "SELECT lote
+                FROM ord_prod
+                WHERE estado=1 OR estado=3 ORDER BY lote";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     public function getOProd($lote)
     {
-        $qry = "SELECT lote, fechProd, p.nomProducto, f.nomFormula, ROUND(cantidadKg, 0) cantidadKg, p2.nomPersonal, eop.descEstado,
+        $qry = "SELECT lote, fechProd, ord_prod.codProducto, p.nomProducto, f.nomFormula, ROUND(cantidadKg, 0) cantidadKg, p2.nomPersonal, eop.descEstado,
                 densMin, densMax, pHmin, pHmax, fragancia, color, apariencia
                 FROM ord_prod
                 LEFT JOIN formula f on ord_prod.idFormula = f.idFormula

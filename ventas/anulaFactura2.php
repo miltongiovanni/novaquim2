@@ -41,7 +41,7 @@ if($result=mysql_db_query($bd,$qry))
 		$unidades=$cantidad;
 		if($cod_producto <100000)
 		{
-			$qryinv="select Cod_prese, lote_prod, inv_prod from inv_prod where Cod_prese=$cod_producto and lote_prod=$lote;";
+			$qryinv="select codPresentacion, loteProd, invProd from inv_prod where codPresentacion=$cod_producto and loteProd=$lote;";
 			echo $qryinv."<br>";
 			$resultinv=mysql_db_query($bd,$qryinv);
 			$rowinv=mysql_fetch_array($resultinv);
@@ -49,12 +49,12 @@ if($result=mysql_db_query($bd,$qry))
 			$invt= $invt + $cantidad;
 			if ($invt==NULL)
 		  	{
-				$qryupt="insert into inv_prod (Cod_prese, lote_prod, inv_prod) values ($cod_producto, $lote, $cantidad)";
+				$qryupt="insert into inv_prod (codPresentacion, loteProd, invProd) values ($cod_producto, $lote, $cantidad)";
 		  	}
 			else
 			{
 			/*SE ACTUALIZA EL INVENTARIO*/
-			$qryupt="update inv_prod set inv_prod=$invt where lote_prod=$lote and Cod_prese=$cod_producto";
+			$qryupt="update inv_prod set invProd=$invt where loteProd=$lote and codPresentacion=$cod_producto";
 			}
 			$resultupt=mysql_db_query($bd,$qryupt);
 		}

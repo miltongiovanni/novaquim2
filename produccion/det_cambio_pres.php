@@ -49,7 +49,7 @@ include "../includes/valAcc.php";
 	}
 	if($Crear==1)
 	{
-		$qrybus="SELECT Cod_prese, lote_prod, inv_prod FROM inv_prod where lote_prod=$lote and Cod_prese=$Cod_prese_ant";
+		$qrybus="SELECT codPresentacion, loteProd, invProd FROM inv_prod where loteProd=$lote and codPresentacion=$Cod_prese_ant";
 		$resultbus=mysqli_query($link,$qrybus);
 		if($rowbus=mysqli_fetch_array($resultbus))
 		{
@@ -61,7 +61,7 @@ include "../includes/valAcc.php";
 				</script>';
 				$inv= $inv - $cant_ant;
 				//SE ACTUALIZA EL INVENTARIO
-				$qryupt="update inv_prod set inv_prod=$inv where lote_prod=$lote and Cod_prese=$Cod_prese_ant";
+				$qryupt="update inv_prod set invProd=$inv where loteProd=$lote and codPresentacion=$Cod_prese_ant";
 				echo $qryupt;
 				$resultupt=mysqli_query($link,$qryupt);
 				//SE GUARDA EL DETALLE DEL CAMBIO
@@ -145,19 +145,19 @@ include "../includes/valAcc.php";
 		$qryDOP="insert into det_cambios2 (Id_cambio, Cod_prese_nvo, Can_prese_nvo, lote_prod) values ($cambio, $Cod_prese_nvo, $cant_nvo, $lote)";
 		$resultDOP=mysqli_query($link,$qryDOP);
 		//SE ACTUALIZA EL INVENTARIO
-		$qry_prod="select * from inv_prod WHERE Cod_prese=$Cod_prese_nvo AND lote_prod=$lote;";
+		$qry_prod="select * from inv_prod WHERE codPresentacion=$Cod_prese_nvo AND loteProd=$lote;";
 		$result_prod=mysqli_query($link,$qry_prod);
 		$row_prod=mysqli_fetch_array($result_prod);
 		if ($row_prod) //si hay inventario se actualiza
 		{
 			$inv_prod=$row_prod['inv_prod'];
 			$inv_prod=$inv_prod + $cant_nvo;
-			$qryupt="update inv_prod set inv_prod=$inv_prod where lote_prod=$lote and Cod_prese=$Cod_prese_nvo";
+			$qryupt="update inv_prod set invProd=$inv_prod where loteProd=$lote and codPresentacion=$Cod_prese_nvo";
 			$resultupt=mysqli_query($link,$qryupt);
 		}
 		else //De lo contrario se inserta 
 		{
-			$qryins_prod="insert into inv_prod (Cod_prese, inv_prod, lote_prod) values ($Cod_prese_nvo, $cant_nvo, $lote)";
+			$qryins_prod="insert into inv_prod (codPresentacion, invProd, loteProd) values ($Cod_prese_nvo, $cant_nvo, $lote)";
 			$resultins_prod=mysqli_query($link,$qryins_prod);
 		}
 		$cantidad=$cant_nvo;
@@ -232,7 +232,7 @@ include "../includes/valAcc.php";
     <tr>
       	<td colspan="4"><div align="center">';
 			echo'<select name="Cod_prese_ant">';
-			$result=mysqli_query($link,"select inv_prod.Cod_prese, Nombre from inv_prod, prodpre WHERE inv_prod.Cod_prese=prodpre.Cod_prese group BY Cod_prese order by Nombre;");
+			$result=mysqli_query($link,"select inv_prod.codPresentacion, Nombre from inv_prod, prodpre WHERE inv_prod.codPresentacion=prodpre.Cod_prese group BY codPresentacion order by Nombre;");
             while($row=mysqli_fetch_array($result))
 			{
 				echo '<option value='.$row['Cod_prese'].'>'.$row['Nombre'].'</option>';

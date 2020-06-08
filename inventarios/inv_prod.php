@@ -30,9 +30,9 @@ include "../includes/valAcc.php";
 include "includes/utilTabla.php";
 include "includes/conect.php" ;
 $link=conectarServidor();
-$sql="	SELECT inv_prod.Cod_prese as Codigo, Nombre, sum(inv_prod) as inventario 
+$sql="	SELECT inv_prod.codPresentacion as Codigo, Nombre, sum(inv_prod) as inventario 
 FROM inv_prod, prodpre, productos, medida
-where inv_prod.Cod_prese=prodpre.Cod_prese AND medida.Id_medida=prodpre.Cod_umedid and productos.Cod_produc=prodpre.Cod_produc and prod_activo=0 
+where inv_prod.codPresentacion=prodpre.Cod_prese AND medida.Id_medida=prodpre.Cod_umedid and productos.Cod_produc=prodpre.Cod_produc and prod_activo=0 
 group by Codigo ORDER BY Nom_produc, cant_medida;";
 $result=mysqli_query($link, $sql);
 $a=1;
@@ -50,8 +50,8 @@ while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
 	  <td class="formatoDatos"><div align="center"><script   > document.write(commaSplit('.$row['inventario'].'))</script></div></td>
 	  ';
 	  echo'</tr>';
-	  $sqli="select inv_prod.Cod_prese as Codigo, Nombre, lote_prod, inv_prod as Inventario 
-	  from inv_prod, prodpre where inv_prod.Cod_prese=prodpre.Cod_prese and inv_prod.Cod_prese=$prod and inv_prod>0;";
+	  $sqli="select inv_prod.codPresentacion as Codigo, Nombre, lote_prod, inv_prod as Inventario 
+	  from inv_prod, prodpre where inv_prod.codPresentacion=prodpre.Cod_prese and inv_prod.codPresentacion=$prod and inv_prod>0;";
 	  $resulti=mysqli_query($link, $sqli);
 	  echo '<tr><td colspan="7"><div class="commenthidden" id="UniqueName'.$a.'"><table width="60%" border="0" align="center" cellspacing="0" summary="detalle'.$a.'">
 	  <tr>

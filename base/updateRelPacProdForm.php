@@ -9,10 +9,13 @@ spl_autoload_register('cargarClases');
 if (isset($_POST['idPacUn'])) {
     $idPacUn = $_POST['idPacUn'];
 }
-if(isset($_SESSION['idPacUn'])){
-    $idPacUn = $_SESSION['idPacUn'];
-    unset($_SESSION['idPacUn']);
+else{
+    if(isset($_SESSION['idPacUn'])){
+        $idPacUn = $_SESSION['idPacUn'];
+        unset($_SESSION['idPacUn']);
+    }
 }
+
 
 $relDisEmpOperador = new RelDisEmpOperaciones();
 $relacion = $relDisEmpOperador->getRelDisEmp($idPacUn);

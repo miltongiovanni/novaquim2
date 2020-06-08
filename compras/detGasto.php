@@ -226,7 +226,7 @@ $gasto = $GastoOperador->getGasto($idGasto);
                 ?>
                 <div class="col-2 text-center" style="padding: 0 20px;">
                     <button class="button" onclick="return Enviar(this.form)"><span>Adicionar detalle</span>
-                    </button>de
+                    </button>
                 </div>
             </div>
         </form>

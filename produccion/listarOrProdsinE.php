@@ -7,93 +7,143 @@ include "../includes/valAcc.php";
 <title>Lista de Órdenes de Producción sin Envasar</title>
 <meta charset="utf-8">
 <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<script  src="../js/validar.js"></script>
+    <meta charset="utf-8">
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../css/datatables.css">
+    <style>
+        table {
+            table-layout: fixed;
+        }
+
+        .width1 {
+            width: 2%;
+        }
+
+        .width2 {
+            width: 4%;
+        }
+
+        .width3 {
+            width: 25%;
+        }
+
+        .width4 {
+            width: 24%;
+        }
+
+        .width5 {
+            width: 12%;
+        }
+
+        .width6 {
+            width: 16%;
+        }
+
+        .width7 {
+            width: 9%;
+        }
+
+        .width8 {
+            width: 8%;
+        }
+    </style>
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/datatables.js"></script>
+    <script src="../js/dataTables.buttons.js"></script>
+    <script src="../js/jszip.js"></script> <!--Para exportar Excel-->
+    <!--<script src="../js/pdfmake.js"></script>-->  <!--Para exportar PDF-->
+    <!--<script src="../js/vfs_fonts.js"></script>--> <!--Para exportar PDF-->
+    <script src="../js/buttons.html5.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            var table = $('#example').DataTable({
+                "columns": [
+                    {
+                        "data": "lote",
+                        "className": 'dt-body-center'
+                    },
+                    {
+                        "data": "nomProducto",
+                        "className": 'dt-body-left'
+                    },
+                    {
+                        "data": "nomFormula",
+                        "className": 'dt-body-left'
+                    },
+                    {
+                        "data": "fechProd",
+                        "className": 'dt-body-center'
+                    },
+                    {
+                        "data": "nomPersonal",
+                        "className": 'dt-body-left'
+                    },
+                    {
+                        "data": "cantidadKg",
+                        "className": 'dt-body-center'
+                    },
+                ],
+                "order": [[0, 'desc']],
+                "dom": 'Blfrtip',
+                "paging": true,
+                "buttons": [
+                    'copyHtml5',
+                    'excelHtml5'
+                ],
+                "lengthMenu": [[20, 50, 100, -1], [20, 50, 100, "All"]],
+                "language": {
+                    "lengthMenu": "Mostrando _MENU_ datos por página",
+                    "zeroRecords": "Lo siento no encontró nada",
+                    "info": "Mostrando página _PAGE_ de _PAGES_",
+                    "infoEmpty": "No hay datos disponibles",
+                    "search": "Búsqueda:",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Último",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    },
+                    "infoFiltered": "(Filtrado de _MAX_ en total)"
+
+                },
+                "ajax": "ajax/listaOProdSinEnvasar.php",
+                "deferRender": true,  //For speed
+            });
+        });
+    </script>
 </head>
 <body>
 <div id="contenedor">
 <div id="saludo1"><strong>LISTA DE ÓRDENES DE PRODUCCIÓN SIN ENVASAR</strong></div>
+    <div class="row flex-end">
+        <div class="col-1">
+            <button class="button" onclick="window.location='../menu.php'">
+                <span><STRONG>Ir al Menú</STRONG></span></button>
+        </div>
+    </div>
+    <div class="tabla-80">
+        <table id="example" class="display compact formatoDatos">
+            <thead>
+            <tr>
+                <th class="width2">Lote</th>
+                <th class="width3">Producto</th>
+                <th class="width4">Fórmula</th>
+                <th class="width5">Fecha Producción</th>
+                <th class="width6">Responsable</th>
+                <th class="width7">Cantidad (Kg)</th>
+            </tr>
+            </thead>
+        </table>
+    </div>
 
-<table width="100%" border="0" summary="encabezado">
-  <tr> 
-      <td><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú"></div></td>
-  </tr>
-</table>
-<table border="0" align="center" cellspacing="0" summary="cuerpo" width="90%">
-	<tr>
-      <th width="2%" class="formatoEncabezados"></th>
-      <th width="6%" class="formatoEncabezados">Lote</th>
-      <th width="27%" class="formatoEncabezados">Producto</th>
-      <th width="27%" class="formatoEncabezados">Fórmula</th>
-      <th width="9%" class="formatoEncabezados">Fecha Producción</th>
-      <th width="13%" class="formatoEncabezados">Responsable</th>
-      <th width="8%" class="formatoEncabezados">Estado</th>
-      <th width="8%" class="formatoEncabezados">Cantidad</th>
-  </tr>   
-<?php
-include "includes/utilTabla.php";
-include "includes/conect.php" ;
-$link=conectarServidor();
-$sql="	SELECT Lote, fechProd as 'Fecha de Producción', Nom_produc as 'Nombre de Producto', 
-nomFormula as 'Formulación', cantidadKg as 'Cantidad (Kg)', nom_personal as Responsable, Estado
-FROM ord_prod, formula, productos, personal
-WHERE ord_prod.idFormula=formula.idFormula AND formula.codProducto=productos.Cod_produc and codResponsable=Id_personal and (Estado='P' or Estado='C')
-order by Lote desc;";
-$result=mysqli_query($link,$sql);
-$a=1;
-while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
-{
-	$lote=$row['Lote'];
-	$est=$row['Estado'];
-	if($est=='P')
-		$estadop="En producción";
-	if($est=='C')
-		$estadop="En Calidad";
-	echo'<tr';
-	  if (($a % 2)==0) echo ' bgcolor="#B4CBEF" ';
-	  echo '>
-	<td class="formatoDatos"><div align="center"><a href="javascript:togglecomments('."'".'UniqueName'.$a."'".')">+/-</a></div></td>
-	<td class="formatoDatos"><div align="center">'.$row['Lote'].'</div></td>
-	<td class="formatoDatos"><div align="left">'.$row['Nombre de Producto'].'</div></td>
-	<td class="formatoDatos"><div align="left">'.$row['Formulación'].'</div></td>
-	<td class="formatoDatos"><div align="center">'.$row['Fecha de Producción'].'</div></td>
-	<td class="formatoDatos"><div align="center">'.$row['Responsable'].'</div></td>
-	<td class="formatoDatos"><div align="center">'.$estadop.'</div></td>
-	<td class="formatoDatos"><div align="center"><script  > document.write(commaSplit('.$row['Cantidad (Kg)'].')+" Kg")</script></div></td>
-	';
-	
-	echo'</tr>';
-	$sqli="SELECT det_ord_prod.codMPrima as Código, Nom_mprima, cantidadMPrima as Cantidad, loteMP
-	from det_ord_prod, mprimas
-	where det_ord_prod.codMPrima=mprimas.Cod_mprima and Lote = $lote 
-	order by Orden;";
-	$resulti=mysqli_query($link,$sqli);
-	echo '<tr><td colspan="7"><div class="commenthidden" id="UniqueName'.$a.'"><table width="60%" border="0" align="center" cellspacing="0" summary="detalle">
-	<tr>
-      <th width="6%" class="formatoEncabezados">Código</th>
-	  <th width="20%" class="formatoEncabezados">Materia Prima</th>
-  	  <th width="10%" class="formatoEncabezados">Lote MP</th>
-      <th width="5%" class="formatoEncabezados">Cantidad</th>
-  	</tr>';
-	while($rowi=mysqli_fetch_array($resulti, MYSQLI_BOTH))
-	{
-	echo '<tr>
-	<td class="formatoDatos"><div align="center">'.$rowi['Código'].'</div></td>
-	<td class="formatoDatos"><div align="left">'.$rowi['Nom_mprima'].'</div></td>
-	<td class="formatoDatos"><div align="left">'.$rowi['Lote_MP'].'</div></td>
-	<td class="formatoDatos"><div align="center"><script  > document.write(commaSplit('.$rowi['Cantidad'].'))</script></div></td>
-
-	</tr>';
-	}
-	echo '</table></div></td></tr>';
-	$a=$a+1;
-}
-mysqli_free_result($result);
-//mysqli_free_result($resulti);
-/* cerrar la conexión */
-mysqli_close($link);
-?>
-</table>
-<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú"></div>
+    <div class="row">
+        <div class="col-1">
+            <button class="button" onclick="window.location='../menu.php'">
+                <span><STRONG>Ir al Menú</STRONG></span>
+            </button>
+        </div>
+    </div>
 </div>
 </body>
 </html>

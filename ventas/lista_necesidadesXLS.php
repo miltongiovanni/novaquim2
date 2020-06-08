@@ -48,7 +48,7 @@ while($row_prod=mysqli_fetch_array($result_prod, MYSQLI_BOTH))
 {
 	$cod=$row_prod['Cod_producto'];
 	$cantidad=$row_prod['Cantidad'];
-	$qrybus="select Cod_prese as Codigo, SUM(inv_prod) as Inventario from inv_prod WHERE Cod_prese=$cod group by Cod_prese;";
+	$qrybus="select codPresentacion as Codigo, SUM(inv_prod) as Inventario from inv_prod WHERE codPresentacion=$cod group by codPresentacion;";
 	$resultbus=mysqli_query($link,$qrybus);
 	$rowbus=mysqli_fetch_array($resultbus);
 	if ($rowbus)

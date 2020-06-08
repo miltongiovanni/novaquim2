@@ -28,7 +28,7 @@ if ($Codigo >100000)
 }
 else
 {
-	$qry_bus="select inv_prod.Cod_prese as Codigo, Nombre as Producto, sum(inv_prod) as Inv from inv_prod, prodpre where inv_prod.Cod_prese=$Codigo and inv_prod.Cod_prese=prodpre.Cod_prese GROUP by Codigo;";
+	$qry_bus="select inv_prod.codPresentacion as Codigo, Nombre as Producto, sum(invProd) as Inv from inv_prod, prodpre where inv_prod.codPresentacion=$Codigo and inv_prod.codPresentacion=prodpre.Cod_prese GROUP by Codigo;";
 }
 $result_bus=mysqli_query($link,$qry_bus);
 $row_bus=mysqli_fetch_array($result_bus);
@@ -50,7 +50,7 @@ else
 	  if($Codigo <100000)
 	  {
 		  //PRODUCTOS DE LA EMPRESA
-		  $qry_prod="select Cod_prese, max(lote_prod) as lote, inv_prod FROM inv_prod where Cod_prese=$Codigo";
+		  $qry_prod="select codPresentacion, max(loteProd) as lote, invProd FROM inv_prod where codPresentacion=$Codigo";
 		  $result_prod=mysqli_query($link,$qry_prod);
 		  $row_prod=mysqli_fetch_array($result_prod);
 		  if ($row_prod)
@@ -59,7 +59,7 @@ else
 			$lote_prod=$row_prod['lote'];
 			$inv_prod=$row_prod['inv_prod'];
 			$inv_prod=$inv_prod-$Cantidad;
-			$qry_up_prod="update inv_prod set inv_prod=$inv_prod where Cod_prese=$Codigo and lote_prod=$lote_prod";
+			$qry_up_prod="update inv_prod set invProd=$inv_prod where codPresentacion=$Codigo and loteProd=$lote_prod";
 			$result_up_prod=mysqli_query($link,$qry_up_prod);
 		  }
 	  }
@@ -120,18 +120,18 @@ else
 		$cod_producto=$row2['Cod_producto'];
 	  	if($cod_producto <100000)
 	  	{	
-		  $qrylot="select max(lote_prod) as lote from inv_prod where Cod_prese=$cod_producto";
+		  $qrylot="select max(loteProd) as lote from inv_prod where codPresentacion=$cod_producto";
 		  $resultlot=mysqli_query($link,$qrylot);
 		  $rowlot=mysqli_fetch_array($resultlot);
 		  $lote=$rowlot['lote'];
-		  $qryinvt="select inv_prod.Cod_prese, Nombre, inv_prod as Inv, lote_prod as lote from inv_prod, prodpre where inv_prod.Cod_prese=$cod_producto and inv_prod >0 and inv_prod.Cod_prese=prodpre.Cod_prese and lote_prod=$lote";
+		  $qryinvt="select inv_prod.codPresentacion, Nombre, invProd as Inv, loteProd as lote from inv_prod, prodpre where inv_prod.codPresentacion=$cod_producto and invProd >0 and inv_prod.codPresentacion=prodpre.Cod_prese and loteProd=$lote";
 		  $resultinvt=mysqli_query($link,$qryinvt);
 		  $rowinv1=mysqli_fetch_array($resultinvt);
 		  $inventario=$rowinv1['Inv'];
 		  $prod_nova=$rowinv1['Nombre'];
 		  $invt= $inventario + $Cantidad;
 		  /*SE ACTUALIZA EL INVENTARIO*/
-		  $qryupt="update inv_prod set inv_prod=$invt where lote_prod=$lote and Cod_prese=$cod_producto";
+		  $qryupt="update inv_prod set invProd=$invt where loteProd=$lote and codPresentacion=$cod_producto";
 		  $resultupt=mysqli_query($link,$qryupt);
 		}
 	    else

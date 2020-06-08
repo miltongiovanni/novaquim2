@@ -28,13 +28,13 @@ include "includes/conect.php";
 			$lote=$row['Lote_producto'];
 			$cant=$row['Cantidad'];
 			echo "cantidad ".$cant."<br>";
-			$qry2="select Cod_prese as Codigo, Lote_prod as Lote, inv_prod as Inv from inv_prod where Cod_prese=$producto AND Lote_prod=$lote;";
+			$qry2="select codPresentacion as Codigo, loteProd as Lote, invProd as Inv from inv_prod where codPresentacion=$producto AND loteProd=$lote;";
 			echo $qry2."<br>";	
 			$result2=mysqli_query($link,$qry2);
 			$row2=mysqli_fetch_array($result2);	
 			$Inv=$row2['Inv'];	
 			$Inv=$Inv + $cant;
-			$qry3="update inv_prod set inv_prod=$Inv where Cod_prese=$producto AND Lote_prod=$lote;";
+			$qry3="update inv_prod set invProd=$Inv where codPresentacion=$producto AND loteProd=$lote;";
 			echo $qry3."<br>";
 			$result3=mysqli_query($link,$qry3);
 		}

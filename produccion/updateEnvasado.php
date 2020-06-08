@@ -1,64 +1,115 @@
 <?php
 include "../includes/valAcc.php";
 include "includes/conect.php";
-//echo $_SESSION['Perfil'];
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
 <meta charset="utf-8">
-<title>Actualizar datos de Envasado por Lote de Producto</title>
-<script  src="../js/validar.js"></script>
-
+<title>Acualización</title>
 </head>
 <body>
-<div id="contenedor">
-<div id="saludo"><strong>ACTUALIZACIÓN DE ENVASADO POR PRESENTACIÓN</strong></div>
-<table border="0" align="center">
-  <tr>
-    <td width="417"><div align="center"><strong>Presentación de Producto</strong></div></td>
-    <td width="91"><div align="center"><strong>Cantidad</strong></div></td>
-  </tr>
-  <form action="update_Envas.php" method="post" name="actualiza">
-  <?php
-	$link=conectarServidor();
+<?php
 	$Lote=$_POST['Lote'];
-	$cod_pres=$_POST['Presentacion'];
+	$cod_pres=$_POST['Codpres'];
 	$cantidad=$_POST['Cantidad'];
-	$qry="SELECT Lote, Con_prese as Codigo, Nombre AS Presentacion, Can_prese as Cantidad 
-	FROM envasado, prodpre
-	WHERE Con_prese=Cod_prese and Lote=$Lote and Con_prese=$cod_pres;";
-	echo $qry;
+	$cantidad_ant=$_POST['Cantidad_ant'];
+	$link=conectarServidor();
+	if($cantidad >= $cantidad_ant)
+	{
+		$cambio=$cantidad - $cantidad_ant;
+		//SE ACTUALIZA EL INVENTARIO
+		$qry_inv="select invProd from inv_prod where loteProd=$Lote and codPresentacion=$cod_pres;";
+		$result_inv=mysqli_query($link,$qry_inv);
+		$row_inv=mysqli_fetch_array($result_inv);
+		$inv_inv=$row_inv['inv_prod']+$cambio;
+		$qryup_prod="update inv_prod set invProd=$inv_inv where loteProd=$Lote and codPresentacion=$cod_pres";
+		$resultup_prod=mysqli_query($link,$qryup_prod);
+		//SE ACTUALIZA EL ENVASE
+		$qry_env="select * from inv_envase where codEnvase = (select codEnvase from prodpre where Cod_prese=$cod_pres)";
+		$result_env=mysqli_query($link,$qry_env);
+		$row_env=mysqli_fetch_array($result_env);
+		$inv_env=$row_env['inv_envase'];
+		$inv_env=$inv_env - $cantidad + $cantidad_ant;
+		$cod_env=$row_env['Cod_envase'];
+		$qry_up_env="update inv_envase set invEnvase=$inv_env where codEnvase=$cod_env";
+		$result_up_env=mysqli_query($link,$qry_up_env);
+		//SE ACTUALIZA LA TAPA
+		$qry_val="select * from inv_tapas_val where codTapa = (select codTapa from prodpre where Cod_prese=$cod_pres)";
+		$result_val=mysqli_query($link,$qry_val);
+		$row_val=mysqli_fetch_array($result_val);
+		$inv_val=$row_val['inv_tapa'];
+		$inv_val=$inv_val - $cantidad + $cantidad_ant;
+		$cod_val=$row_val['Cod_tapa'];
+		$qry_up_val="update inv_tapas_val set invTapa=$inv_val where codTapa=$cod_val";
+		$result_up_val=mysqli_query($link,$qry_up_val);
+		//SE ACTUALIZA LA ETIQUETA
+		$qry_etq="select * from inv_etiquetas where codEtiq = (select codEtiq from prodpre where Cod_prese=$cod_pres)";
+		$result_etq=mysqli_query($link,$qry_etq);
+		$row_etq=mysqli_fetch_array($result_etq);
+		$inv_etq=$row_etq['inv_etiq'];
+		$cod_etq=$row_etq['Cod_etiq'];
+		$inv_etq=$inv_etq - $cantidad + $cantidad_ant;
+		$qry_up_etq="update inv_etiquetas set invEtiq=$inv_etq where codEtiq=$cod_etq";
+		$result_up_etq=mysqli_query($link,$qry_up_etq);		
+		echo' <script >
+				alert("Actualización Realizada con Éxito");
+			</script>';
+	}
+	else
+	{
+		$cambio=$cantidad - $cantidad_ant;
+		//SE ACTUALIZA EL INVENTARIO
+		$qry_inv="select invProd from inv_prod where loteProd=$Lote and codPresentacion=$cod_pres;";
+		$result_inv=mysqli_query($link,$qry_inv);
+		$row_inv=mysqli_fetch_array($result_inv);
+		$inv_inv=$row_inv['inv_prod']+$cambio;
+		//SE ACTUALIZA EL INVENTARIO
+		$qryup_prod="update inv_prod set invProd=$inv_inv where loteProd=$Lote and codPresentacion=$cod_pres";
+		$resultup_prod=mysqli_query($link,$qryup_prod);
+		//SE ACTUALIZA EL ENVASE
+		$qry_env="select * from inv_envase where codEnvase = (select codEnvase from prodpre where Cod_prese=$cod_pres)";
+		$result_env=mysqli_query($link,$qry_env);
+		$row_env=mysqli_fetch_array($result_env);
+		$inv_env=$row_env['inv_envase'];
+		$inv_env=$inv_env - $cantidad + $cantidad_ant;
+		$cod_env=$row_env['Cod_envase'];
+		$qry_up_env="update inv_envase set invEnvase=$inv_env where codEnvase=$cod_env";
+		$result_up_env=mysqli_query($link,$qry_up_env);
+		//SE ACTUALIZA LA TAPA
+		$qry_val="select * from inv_tapas_val where codTapa = (select codTapa from prodpre where Cod_prese=$cod_pres)";
+		$result_val=mysqli_query($link,$qry_val);
+		$row_val=mysqli_fetch_array($result_val);
+		$inv_val=$row_val['inv_tapa'];
+		$inv_val=$inv_val - $cantidad + $cantidad_ant;
+		$cod_val=$row_val['Cod_tapa'];
+		$qry_up_val="update inv_tapas_val set invTapa=$inv_val where codTapa=$cod_val";
+		$result_up_val=mysqli_query($link,$qry_up_val);
+		//SE ACTUALIZA LA ETIQUETA
+		$qry_etq="select * from inv_etiquetas where codEtiq = (select codEtiq from prodpre where Cod_prese=$cod_pres)";
+		$result_etq=mysqli_query($link, $qry_etq);
+		$row_etq=mysqli_fetch_array($result_etq);
+		$inv_etq=$row_etq['inv_etiq'];
+		$cod_etq=$row_etq['Cod_etiq'];
+		$inv_etq=$inv_etq - $cantidad + $cantidad_ant;
+		$qry_up_etq="update inv_etiquetas set invEtiq=$inv_etq where codEtiq=$cod_etq";
+		$result_up_etq=mysqli_query($link,$qry_up_etq);		
+		echo' <script >
+				alert("Actualización Realizada con Éxito");
+			</script>';
+	}
+	$qry="update envasado set cantPresentacion=$cantidad where Lote=$Lote and Con_prese=$cod_pres";
+	echo'<form action="det_Envasado.php" method="post" name="formulario">';
 	$result=mysqli_query($link,$qry);
-	$row=mysqli_fetch_array($result);
-	$codpres=$row['Codigo'];
-	$Presentacion=$row['Presentacion'];
-	$Cantidad=$row['Cantidad'];
-	echo '<input name="Lote" type="hidden" value="'.$Lote.'">';
-	echo '<tr>';
-	echo '<td align="center">';
- 	echo $Presentacion;
-	echo '<input name="Codpres" type="hidden" value="'.$codpres.'">';
- 	echo '</td>';	
-	echo '<td align="center">';
-	echo '<input name="Cantidad_ant" type="hidden" value="'.$Cantidad.'">';
- 	echo'<input size=10 name="Cantidad" type="text" value="'.$Cantidad.'">';
- 	echo '</td>';	
-	echo '</tr>';
-	mysqli_free_result($result);
-/* cerrar la conexión */
-mysqli_close($link);
-	?>
-	<tr>
-    	<td>&nbsp;</td>
-    	<td>&nbsp;</td>
-	</tr>
-	<tr >
-   	  <td colspan="2"><div align="center"><input type="submit" name="Submit" value="Cambiar"></div></td>
-	</tr>
-  </form>
-</table>
-</div>
+	echo '<input name="Lote" type="hidden" value="'.$Lote.'"/><input name="Crear" type="hidden" value="5"><input type="submit" name="Submit" value="Cambiar" />';
+	if($result==1)
+	{
+		$ruta="menu.php";
+		mover_pag($ruta,"Envasado Actualizado correctamente");
+	}
+	echo'</form>';
+	
+	mysqli_close($link);
+?>
 </body>
 </html>

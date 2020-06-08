@@ -64,7 +64,7 @@ select Id_ped, Cod_producto as Producto, Can_producto as Cantidad, Prec_producto
 		$i=1;
 		if(($cod_producto<100000)&&($cod_producto>100))
 		{
-			$qryinv="select Cod_prese, lote_prod, inv_prod from inv_prod where Cod_prese=$cod_producto and inv_prod >0 order by lote_prod;";
+			$qryinv="select codPresentacion, lote_prod, inv_prod from inv_prod where codPresentacion=$cod_producto and inv_prod >0 order by lote_prod;";
 			$resultinv=mysqli_query($link,$qryinv);
 			while(($rowinv=mysqli_fetch_array($resultinv))&&($unidades>0))
 			{
@@ -80,7 +80,7 @@ select Id_ped, Cod_producto as Producto, Can_producto as Cantidad, Prec_producto
 					  echo $qryins_p."<br>";				
 					  $resultins_p=mysqli_query($link,$qryins_p);
 					  /*SE ACTUALIZA EL INVENTARIO*/
-					  $qryupt="update inv_prod set inv_prod=$invt where lote_prod=$lot_prod and Cod_prese=$cod_prod";
+					  $qryupt="update inv_prod set invProd=$invt where loteProd=$lot_prod and Cod_prese=$cod_prod";
 					  $resultupt=mysqli_query($link,$qryupt);
 					  $unidades=0;
 				  }
@@ -91,7 +91,7 @@ select Id_ped, Cod_producto as Producto, Can_producto as Cantidad, Prec_producto
 					  $qryins_p="insert into det_remision (Id_remision, Cod_producto, Can_producto, Lote_producto) values ($Id_Rem, $cod_producto, $invt, $lot_prod)";
 					  $resultins_p=mysqli_query($link,$qryins_p);
 					  /*SE ACTUALIZA EL INVENTARIO*/
-					  $qryupt="update inv_prod set inv_prod=0 where lote_prod=$lot_prod and Cod_prese=$cod_prod";
+					  $qryupt="update inv_prod set invProd=0 where loteProd=$lot_prod and Cod_prese=$cod_prod";
 					  $resultupt=mysqli_query($link,$qryupt);	
 				  }
 			}

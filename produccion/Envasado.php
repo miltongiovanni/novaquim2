@@ -1,59 +1,50 @@
 <?php
 include "../includes/valAcc.php";
+function cargarClases($classname)
+{
+    require '../clases/' . $classname . '.php';
+}
+
+spl_autoload_register('cargarClases');
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-<meta charset="utf-8">
-<title>Seleccionar Fórmula a Actualizar</title>
-	<script  src="../js/validar.js"></script>
-	<script  src="scripts/block.js"></script>
-	<script >
-    document.onkeypress=stopRKey; 
-    </script>
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <meta charset="utf-8">
+    <title>Seleccionar orden de producción a envasar</title>
+    <script src="../js/validar.js"></script>
 </head>
 <body>
 <div id="contenedor">
-<div id="saludo"><strong>ENVASADO POR ORDEN DE PRODUCCIÓN</strong></div>
-<form id="form1" name="form1" method="post" action="det_Envasado.php">	
-<table border="0" align="center" summary="detalle">
-    <tr> 
-        <td width="177"><div align="right"><strong>Orden de Producción&nbsp;</strong></div></td>
-        <td width="120"><?php
-			include "includes/conect.php";
-			$link=conectarServidor();
-			echo'<select name="Lote" id="combo">';
-			$result=mysqli_query($link,"SELECT Lote from ord_prod where Estado='C' or Estado='F';");
-			echo '<option selected value="">----------</option>';
-			while($row=mysqli_fetch_array($result))
-			{
-				echo '<option value='.$row['Lote'].'>'.$row['Lote'].'</option>';
-			}
-			echo'</select>';
-			mysqli_free_result($result);
-/* cerrar la conexión */
-mysqli_close($link);
-		?></td>
-    </tr>
-    <tr>
-        <td colspan="2"><div align="center">&nbsp;</div></td>
-    </tr>
-    <tr> 
-        <td align="right"><input type="reset" value="Restablecer"></td>
-        <td align="left"><input type="button" value="  Continuar  " onclick="return Enviar(this.form);"></td>
-    </tr>
-  	<tr>
-        <td colspan="2"><div align="center"><input name="Crear" type="hidden" value="0">&nbsp;</div></td>
-    </tr>
-    <tr>
-        <td colspan="2"><div align="center">&nbsp;</div></td>
-    </tr>
-    <tr> 
-        <td colspan="2"><div align="center"><input type="button" class="resaltado" onClick="history.back()" value="  VOLVER  "></div></td>
-    </tr>
-</table>   
-</form> 
+    <div id="saludo"><strong>ENVASADO POR ORDEN DE PRODUCCIÓN</strong></div>
+    <form id="form1" name="form1" method="post" action="det_Envasado.php">
+        <div class="form-group row">
+            <label class="col-form-label col-2" for="lote"><strong>Orden de producción</strong></label>
+            <select name="lote" id="lote" class="form-control col-1">
+                <option selected disabled value="">------------</option>
+                <?php
+                $manager = new OProdOperaciones();
+                $ordenes = $manager->getOProdSinEnvasar();
+                for ($i = 0; $i < count($ordenes); $i++) : ?>
+                    <option value="<?= $ordenes[$i]["lote"] ?>"><?= $ordenes[$i]["lote"] ?></option>
+                <?php
+                endfor;
+                ?>
+            </select>
+        </div>
+        <div class="row form-group">
+            <div class="col-1">
+                <button class="button" onclick="return Enviar(this.form)">
+                    <span>Continuar</span></button>
+            </div>
+        </div>
+    </form>
+    <div class="row form-group">
+        <div class="col-1">
+            <button class="button1" onclick="history.back()"><span>VOLVER</span></button>
+        </div>
+    </div>
 </div>
 </body>
 </html>

@@ -73,7 +73,7 @@ while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
   echo '<td class="formatoDatos"><div align="center"><script  > document.write(commaSplit('.$entrada.'))</script></div></td>';
   
 //SALIDA POR ENVASADO
- 	$sqls1="SELECT sum(Can_prese) as salida1  from envasado, ord_prod, prodpre where fechProd>'$Fch' and envasado.Lote=ord_prod.Lote and Cod_prese=Con_prese and Cod_envase=$prod;";
+ 	$sqls1="SELECT sum(cantPresentacion) as salida1  from envasado, ord_prod, prodpre where fechProd>'$Fch' and envasado.Lote=ord_prod.Lote and Cod_prese=Con_prese and Cod_envase=$prod;";
 	$results1=mysqli_query($link,$sqls1);
 	$rows1=mysqli_fetch_array($results1, MYSQLI_BOTH);
 	if($rows1['salida1']==NULL)
