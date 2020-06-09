@@ -67,14 +67,14 @@ class EnvasadoOperaciones
         return $result;
     }
 
-    public function getEnvasado($lote, $codMPrima)
+    public function getEnvasado($lote, $codPresentacion)
     {
-        $qry = "SELECT nomMPrima, cantidadMPrima, dop.codMPrima, loteMP,  aliasMPrima
-                FROM envasado dop
-                   LEFT JOIN mprimas m on dop.codMPrima = m.codMPrima
-                WHERE lote= ? AND dop.codMPrima=?";
+        $qry = "SELECT p.codPresentacion, presentacion, cantPresentacion, codEnvase, codTapa, codEtiq
+                FROM envasado e
+                   LEFT JOIN prodpre p on e.codPresentacion = p.codPresentacion
+                WHERE lote= ? AND e.codPresentacion=?";
         $stmt = $this->_pdo->prepare($qry);
-        $stmt->execute(array($lote, $codMPrima));
+        $stmt->execute(array($lote, $codPresentacion));
         $result = $stmt->fetch(PDO::FETCH_ASSOC);;
         return $result;
     }

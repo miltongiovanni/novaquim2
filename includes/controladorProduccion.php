@@ -9,7 +9,6 @@ function cargarClases($classname)
 spl_autoload_register('cargarClases');
 
 
-
 function findFormulaByProd()
 {
     $codProducto = $_POST['codProducto'];
@@ -83,6 +82,17 @@ function updateEstadoGasto()
     echo json_encode($rep);
 }
 
+function updateEstadoOProd()
+{
+    $lote = $_POST['lote'];
+    $estado = $_POST['estado'];
+    $OProdOperador = new OProdOperaciones();
+    $datos = array($estado, $lote);
+    $OProdOperador->updateEstadoOProd($datos);
+    $rep['msg'] = "OK";
+    echo json_encode($rep);
+}
+
 function eliminarSession()
 {
     $variable = $_POST['variable'];
@@ -133,5 +143,8 @@ switch ($action) {
         break;
     case 'eliminarSession':
         eliminarSession();
+        break;
+    case 'updateEstadoOProd':
+        updateEstadoOProd();
         break;
 }
