@@ -55,7 +55,7 @@ while($row= mysqli_fetch_array($result, MYSQLI_BOTH))
 		$entrada1=0;
 	else
 		$entrada1=$rowe1['entrada1'];
-	$sqle2="select Sum(Can_prese_nvo) as entrada2 from cambios, det_cambios2 where cambios.Id_cambio=det_cambios2.Id_cambio and Fech_cambio>'$Fch' and Cod_prese_nvo=$prod;";
+	$sqle2="select Sum(cantPresentacionNvo) as entrada2 from cambios, det_cambios2 where cambios.idCambio=det_cambios2.idCambio and fechaCambio>'$Fch' and codPresentacionNvo=$prod;";
 	$resulte2=mysqli_query($link,$sqle2);
 	$rowe2=mysqli_fetch_array($resulte2, MYSQLI_BOTH);
 	if($rowe2['entrada2']==NULL)
@@ -79,7 +79,7 @@ where remision.Id_remision=det_remision.Id_remision and Fech_remision>'$Fch' and
 		$salida1=0;
 	else
 		$salida1=$rows1['salida1'];
-	$sqls2="select SUM(Can_prese_ant) as salida2 from cambios, det_cambios where cambios.Id_cambio=det_cambios.Id_cambio and Fech_cambio>'$Fch' and Cod_prese_ant=$prod";	
+	$sqls2="select SUM(cantPresentacionAnt) as salida2 from cambios, det_cambios where cambios.idCambio=det_cambios.idCambio and fechaCambio>'$Fch' and codPresentacionAnt=$prod";
 	$results2=mysqli_query($link,$sqls2);
 	$rows2=mysqli_fetch_array($results2, MYSQLI_BOTH);
 	if($rows2['salida2']==NULL)

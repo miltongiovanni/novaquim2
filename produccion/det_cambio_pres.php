@@ -31,9 +31,9 @@ include "../includes/valAcc.php";
 	$link=conectarServidor();  
 	if ($Crear == 0)
 	{
-		$qryins_comp="insert into cambios (Cod_persona, Fech_cambio) values ($respon, '$fecha')";
+		$qryins_comp="insert into cambios (codPersonal, fechaCambio) values ($respon, '$fecha')";
 		$resultins_prod=mysqli_query($link,$qryins_comp);	
-		$qrycam="select MAX(Id_cambio) AS Cambio from cambios;";
+		$qrycam="select MAX(idCambio) AS Cambio from cambios;";
 		$resultqrycam=mysqli_query($link,$qrycam);
 		$row_cam=mysqli_fetch_array($resultqrycam);
 		$cambio=$row_cam['Cambio'];
@@ -65,7 +65,7 @@ include "../includes/valAcc.php";
 				echo $qryupt;
 				$resultupt=mysqli_query($link,$qryupt);
 				//SE GUARDA EL DETALLE DEL CAMBIO
-				$qryDOP="insert into det_cambios (Id_cambio, Cod_prese_ant, Can_prese_ant, lote_prod) values ($cambio, $Cod_prese_ant, $cant_ant, $lote)";
+				$qryDOP="insert into det_cambios (idCambio, codPresentacionAnt, cantPresentacionAnt, loteProd) values ($cambio, $Cod_prese_ant, $cant_ant, $lote)";
 				$resultDOP=mysqli_query($link,$qryDOP);
 				$cantidad=$cant_ant;
 				//SE DESCUENTA EL ENVASE
@@ -142,7 +142,7 @@ include "../includes/valAcc.php";
 	if($Crear==2)
 	{
 		//MIRAR CUANTO PRODUCTO HAY Y A QUÉ LOTE PERTENECE
-		$qryDOP="insert into det_cambios2 (Id_cambio, Cod_prese_nvo, Can_prese_nvo, lote_prod) values ($cambio, $Cod_prese_nvo, $cant_nvo, $lote)";
+		$qryDOP="insert into det_cambios2 (idCambio, codPresentacionNvo, cantPresentacionNvo, loteProd) values ($cambio, $Cod_prese_nvo, $cant_nvo, $lote)";
 		$resultDOP=mysqli_query($link,$qryDOP);
 		//SE ACTUALIZA EL INVENTARIO
 		$qry_prod="select * from inv_prod WHERE codPresentacion=$Cod_prese_nvo AND loteProd=$lote;";
@@ -200,8 +200,8 @@ include "../includes/valAcc.php";
 ?>
 <?php
 	$link=conectarServidor();
-	$qry="select Id_cambio as Cambio, nom_personal as Responsable, Fech_cambio as Fecha 
-	from cambios, personal WHERE Cod_persona=Id_personal and Id_cambio=$cambio;";
+	$qry="select idCambio as Cambio, nom_personal as Responsable, fechaCambio as Fecha 
+	from cambios, personal WHERE codPersonal=Id_personal and idCambio=$cambio;";
 	$result=mysqli_query($link,$qry);
 	$row=mysqli_fetch_array($result);
  ?>
@@ -266,7 +266,7 @@ include "../includes/valAcc.php";
           </tr>
           <?php
 			$link=conectarServidor();
-			$qry="select Id_cambio, Cod_prese_ant, Nombre, lote_prod, Can_prese_ant from det_cambios, prodpre WHERE Cod_prese_ant=Cod_prese AND Id_cambio=$cambio;";
+			$qry="select idCambio, codPresentacionAnt, Nombre, loteProd, cantPresentacionAnt from det_cambios, prodpre WHERE codPresentacionAnt=Cod_prese AND idCambio=$cambio;";
 			$result=mysqli_query($link,$qry);
 			while($row=mysqli_fetch_array($result))
 			{
@@ -329,7 +329,7 @@ include "../includes/valAcc.php";
           </tr>
           <?php
 			$link=conectarServidor();
-			$qry="select Id_cambio, Cod_prese_nvo, Nombre, lote_prod, Can_prese_nvo from det_cambios2, prodpre WHERE Cod_prese_nvo=Cod_prese AND Id_cambio=$cambio;";
+			$qry="select idCambio, codPresentacionNvo, Nombre, loteProd, cantPresentacionNvo from det_cambios2, prodpre WHERE codPresentacionNvo=Cod_prese AND idCambio=$cambio;";
 			$result=mysqli_query($link,$qry);
 			while($row=mysqli_fetch_array($result))
 			{

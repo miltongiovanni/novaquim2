@@ -61,7 +61,7 @@ while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
   else
 	  $entrada1=$rowe1['entrada1'];
   //ENTRADA POR CAMBIO DE PRESENTACIÓN
-  $sqle2="SELECT SUM(Can_prese_nvo) as entrada2 from cambios, det_cambios2, prodpre where det_cambios2.Id_cambio=cambios.Id_cambio and Fech_cambio >='$Fch' and Cod_prese_nvo=Cod_prese and Cod_tapa=$prod;";
+  $sqle2="SELECT SUM(cantPresentacionNvo) as entrada2 from cambios, det_cambios2, prodpre where det_cambios2.idCambio=cambios.idCambio and fechaCambio >='$Fch' and codPresentacionNvo=Cod_prese and Cod_tapa=$prod;";
 
   $resulte2=mysqli_query($link,$sqle2);
   $rowe2=mysqli_fetch_array($resulte2, MYSQLI_BOTH);
@@ -110,7 +110,7 @@ while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
 	else
 		$salida4=$rows4['salida4'];
   //ENTRADA POR CAMBIO DE PRESENTACIÓN
-  $sqls5="SELECT SUM(Can_prese_ant) as salida5 from cambios, det_cambios, prodpre where det_cambios.Id_cambio=cambios.Id_cambio and Fech_cambio >='$Fch' and Cod_prese_ant=Cod_prese and Cod_tapa=$prod;";
+  $sqls5="SELECT SUM(cantPresentacionAnt) as salida5 from cambios, det_cambios, prodpre where det_cambios.idCambio=cambios.idCambio and fechaCambio >='$Fch' and codPresentacionAnt=Cod_prese and Cod_tapa=$prod;";
 
   $results5=mysqli_query($link,$sqls5);
   $rows5=mysqli_fetch_array($results5, MYSQLI_BOTH);
