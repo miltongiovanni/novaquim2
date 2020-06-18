@@ -130,7 +130,7 @@ $proveedor = $ProveedorOperador->getProveedor($idProv);
     </table>
     <div class="row">
         <div class="col-1">
-            <button class="button" onclick="eliminarSession(); window.location='../menu.php';">
+            <button class="button" onclick="eliminarSession(); ">
                 <span><STRONG>Terminar</STRONG></span>
             </button>
         </div>
@@ -148,6 +148,7 @@ $proveedor = $ProveedorOperador->getProveedor($idProv);
             },
             dataType: 'text',
             success: function (res) {
+                window.location='../menu.php';
             },
             fail: function () {
                 alert("Vous avez un GROS problème");

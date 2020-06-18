@@ -41,7 +41,6 @@ $gasto = $GastoOperador->getGasto($idGasto);
     <script src="../js/vfs_fonts.js"></script>
     <script>
         function redireccion() {
-            eliminarSession();
             window.location.href = "../menu.php";
         }
 
@@ -56,6 +55,7 @@ $gasto = $GastoOperador->getGasto($idGasto);
                 },
                 dataType: 'text',
                 success: function (res) {
+                    redireccion();
                 },
                 fail: function () {
                     alert("Vous avez un GROS problème");
@@ -66,7 +66,7 @@ $gasto = $GastoOperador->getGasto($idGasto);
         function updateEstadoGasto(idGasto) {
             let estadoActualGasto = <?=$gasto['estadoGasto']?>;
             if (estadoActualGasto != 2) {
-                redireccion();
+                eliminarSession();
             } else {
                 $.ajax({
                     url: '../includes/controladorCompras.php',
@@ -79,7 +79,7 @@ $gasto = $GastoOperador->getGasto($idGasto);
                     dataType: 'json',
                     success: function (respuesta) {
                         if (respuesta.msg == 'OK') {
-                            redireccion();
+                            eliminarSession();
                         }
                     },
                     fail: function () {

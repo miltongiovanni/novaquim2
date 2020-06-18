@@ -43,32 +43,21 @@ function findProveedorBytipoCompra()
     }
 }
 
-function findProveedorGasto()
+function findInvLotePresentacion()
 {
-    $q = $_POST['q'];
-    $ProveedorOperador = new ProveedoresOperaciones();
-    $proveedores = $ProveedorOperador->getProveedoresGastos($q);
-    if (count($proveedores) == 0) {
-        echo '<input type="text" class="form-control col-4" value="No hay sugerencias" readOnly>';
-    } else {
-        echo '<br>';
-        echo '<select name="idProv" id="idProv" class="form-control col-4">';
-        for ($i = 0; $i < count($proveedores); $i++) {
-            echo '<option value=' . $proveedores[$i]['idProv'] . '>' . $proveedores[$i]['nomProv'] . '</option>';
-        }
-        echo '</select>';
-    }
+    $codPresentacion = $_POST['codPresentacion'];
+    $loteProd = $_POST['loteProd'];
+    $InvProdTerminadoOperador = new InvProdTerminadosOperaciones();
+    $inv = $InvProdTerminadoOperador->getInvByLoteAndProd($codPresentacion, $loteProd);
+    echo json_encode($inv);
 }
 
-function updateEstadoCompra()
+function findLotePresentacion()
 {
-    $idCompra = $_POST['idCompra'];
-    $estadoCompra = $_POST['estadoCompra'];
-    $CompraOperador = new ComprasOperaciones();
-    $datos = array($estadoCompra, $idCompra);
-    $CompraOperador->updateEstadoCompra($datos);
-    $rep['msg'] = "OK";
-    echo json_encode($rep);
+    $codPresentacion = $_POST['codPresentacion'];
+    $InvProdTerminadoOperador = new InvProdTerminadosOperaciones();
+    $lotes = $InvProdTerminadoOperador->getLotesByProd($codPresentacion);
+    echo json_encode($lotes);
 }
 
 function updateEstadoGasto()
@@ -95,8 +84,11 @@ function updateEstadoOProd()
 
 function eliminarSession()
 {
-    $variable = $_POST['variable'];
-    unset($_SESSION[$variable]);
+    $variables = explode(',', $_POST['variables']);
+    for($i=0;$i<count($variables); $i++){
+        unset($_SESSION[$variables[$i]]);
+    }
+
     echo 'OK';
 }
 
@@ -132,11 +124,11 @@ switch ($action) {
     case 'findProveedorBytipoCompra':
         findProveedorBytipoCompra();
         break;
-    case 'updateEstadoCompra':
-        updateEstadoCompra();
+    case 'findLotePresentacion':
+        findLotePresentacion();
         break;
-    case 'findProveedorGasto':
-        findProveedorGasto();
+    case 'findInvLotePresentacion':
+        findInvLotePresentacion();
         break;
     case 'updateEstadoGasto':
         updateEstadoGasto();

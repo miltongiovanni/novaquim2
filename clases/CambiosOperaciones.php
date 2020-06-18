@@ -11,7 +11,7 @@ class CambiosOperaciones
     public function makeCambio($datos)
     {
         /*Preparo la insercion */
-        $qry = "INSERT INTO cambios (idCambio, codPersonal, fechaCambio) VALUES (?, ?, ?)";
+        $qry = "INSERT INTO cambios (codPersonal, fechaCambio) VALUES (?, ?)";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute($datos);
         return $this->_pdo->lastInsertId();
@@ -44,7 +44,10 @@ class CambiosOperaciones
 
     public function getCambio($idCambio)
     {
-        $qry = "SELECT idCambio, desCambio from cambios where idCambio=?";
+        $qry = "SELECT idCambio, nomPersonal, fechaCambio 
+                FROM cambios C 
+                    LEFT JOIN personal p ON c.codPersonal = p.idPersonal 
+                WHERE idCambio=?";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute(array($idCambio));
         $result = $stmt->fetch(PDO::FETCH_ASSOC);

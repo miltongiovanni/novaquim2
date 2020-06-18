@@ -52,6 +52,8 @@ class PresentacionesOperaciones
         return $result;
     }
 
+
+
     public function getTablePresentaciones()
     {
         $qry = "SELECT codPresentacion, presentacion, desMedida, nomEnvase, tapa , codigoGen, CONCAT ('003000', codSiigo) coSiigo  FROM prodpre

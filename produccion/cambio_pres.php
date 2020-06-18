@@ -1,69 +1,56 @@
 <?php
 include "../includes/valAcc.php";
-include "includes/conect.php";
+function cargarClases($classname)
+{
+    require '../clases/' . $classname . '.php';
+}
+
+spl_autoload_register('cargarClases');
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-	<title>Ingreso de Compra de Materia Prima</title>
-	<meta charset="utf-8">
-	<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<script  src="../js/validar.js"></script>
-	<script  src="scripts/block.js"></script>
-	<link rel="stylesheet" type="text/css" media="all" href="css/calendar-blue2.css" title="blue">
-	<script  src="scripts/calendar.js"></script>
-	<script  src="scripts/calendar-sp.js"></script>
-	<script  src="scripts/calendario.js"></script>
-    	<script >
-	document.onkeypress = stopRKey; 
-	</script>
-
+    <title>Creación cambio de presentación de producto</title>
+    <meta charset="utf-8">
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script src="../js/validar.js"></script>
 </head>
-<body> 
+<body>
 <div id="contenedor">
-<div id="saludo"><strong>CAMBIO DE PRESENTACI�N DE PRODUCTO</strong></div>
-<form method="post" action="det_cambio_pres.php" name="form1">
-	<table  align="center" border="0">
-		<tr>
-			<td colspan="4">&nbsp;</td>
-		</tr>
-	  <tr>
-		<td width="143" align="right" ><strong>Fecha del Cambio</strong></td>
-		<td width="131" colspan="1"><input type="text" name="fecha" id="sel2" readonly size=10><input type="reset" value=" ... " onclick="return showCalendar('sel2', '%Y-%m-%d', '12', true);"></td>
-		<td width="87" align="right"><strong>Responsable</strong></td>
-		<td width="88">
-			<?php
-			//include "conect.php";
-			//$link=conectarServidor();
-			$link=conectarServidor();
-			echo'<select name="respon">';
-			$result=mysqli_query($link,"select * from personal where area =2 and activo=1");
-			echo '<option selected value="">----------------------</option>';
-			while($row=mysqli_fetch_array($result)){
-				echo '<option value='.$row['Id_personal'].'>'.$row['nom_personal'].'</option>';
-			}
-			echo'</select>';
-			mysqli_free_result($result);
-			mysqli_close($link);
-			?>		</td>
-	  </tr>
-		<tr>
-			<td colspan="5"></td>
-		</tr>
-	  <tr>
-		<td colspan="5" align="right"><input name="submit" onclick="return Enviar(this.form)" type="submit"  value="Continuar">
-	  <input name="Crear" type="hidden" value="0">	  </tr>
-  </table>
-	
-</form>
-<table border="0" align="center">
-    <tr>
-        <td>&nbsp;</td>
-    </tr>
-    <tr> 
-        <td><div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Volver"></div></td>
-    </tr>
-</table> 
+    <div id="saludo"><strong>CAMBIO DE PRESENTACIÓN DE PRODUCTO</strong></div>
+    <form method="post" action="makeCambio.php" name="form1">
+        <div class="form-group row">
+            <label class="col-form-label col-2 text-right" for="fechaCambio"><strong>Fecha del cambio</strong></label>
+            <input type="date" class="form-control col-2" name="fechaCambio" id="fechaCambio">
+        </div>
+        <div class="form-group row">
+            <label class="col-form-label col-2" for="codPersonal"><strong>Responsable</strong></label>
+            <?php
+            $PersonalOperador = new PersonalOperaciones();
+            $personal = $PersonalOperador->getPersonalProd();
+            echo '<select name="codPersonal" id="codPersonal" class="form-control col-2" ;>';
+            echo '<option selected disabled value="">-----------------------------</option>';
+            for ($i = 0; $i < count($personal); $i++) {
+                echo '<option value="' . $personal[$i]["idPersonal"] . '">' . $personal[$i]['nomPersonal'] . '</option>';
+            }
+            echo '</select>';
+            ?>
+        </div>
+        <div class="form-group row">
+            <div class="col-1 text-center">
+                <button class="button" onclick="return Enviar(this.form)"><span>Continuar</span></button>
+            </div>
+            <div class="col-1 text-center">
+                <button class="button" type="reset"><span>Reiniciar</span></button>
+            </div>
+        </div>
+    </form>
+    <div class="row">
+        <div class="col-1">
+            <button class="button1" id="back" onClick="history.back()"><span>VOLVER</span></button>
+        </div>
+    </div>
+
 </div>
 </body>
 </html>

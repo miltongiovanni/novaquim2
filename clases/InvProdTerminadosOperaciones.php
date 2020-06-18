@@ -12,7 +12,7 @@ class InvProdTerminadosOperaciones
     public function makeInvProdTerminado($datos)
     {
         /*Preparo la insercion */
-        $qry = "INSERT INTO inv_prod VALUES(?, ?, ?)";
+        $qry = "INSERT INTO inv_prod (codPresentacion, loteProd, invProd) VALUES(?, ?, ?)";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute($datos);
         return $this->_pdo->lastInsertId();
@@ -110,36 +110,39 @@ class InvProdTerminadosOperaciones
         return $result;
     }
 
-    public function getProdPorCategoria($idProv, $idCatProv)
+    public function getProdInv()
     {
-        switch (intval($idCatProv)) {
-            case 1:
-                $qry = "SELECT codPresentacionrima Codigo, nomMPrima Producto FROM mprimas
-                        LEFT JOIN inv_prod dp ON dp.Codigo=codPresentacionrima AND dp.idProv=? WHERE dp.Codigo IS NULL ORDER BY Producto";
-                break;
-            case 2:
-                $qry = "SELECT codEnvase Codigo, nomEnvase Producto  FROM envases
-                        LEFT JOIN inv_prod ON Codigo=codEnvase AND idProv=? WHERE Codigo IS NULL
-                        UNION
-                        SELECT codTapa Codigo, tapa Producto FROM tapas_val
-                        LEFT JOIN inv_prod ON Codigo=codTapa AND idProv=? AND codTapa<>114 WHERE Codigo IS NULL ORDER BY Producto;
-                        ";
-                break;
-            case 3:
-                $qry = "SELECT codEtiqueta Codigo, nomEtiqueta Producto FROM etiquetas
-                        LEFT JOIN inv_prod ON Codigo=codEtiqueta and idProv=? WHERE Codigo IS NULL ORDER BY Producto;";
-                break;
-            case 5:
-                $qry = "SELECT idDistribucion Codigo, producto Producto FROM distribucion
-                        LEFT JOIN inv_prod ON Codigo=idDistribucion AND idProv=? WHERE Codigo IS NULL order by Producto";
-                break;
-        }
-
+        $qry = "SELECT DISTINCT ip.codPresentacion, presentacion
+                FROM inv_prod ip
+                LEFT JOIN prodpre p on ip.codPresentacion = p.codPresentacion
+                WHERE invProd>0
+                ORDER BY presentacion";
         $stmt = $this->_pdo->prepare($qry);
-
-        $stmt->execute(array($idProv));
+        $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
+    }
+
+    public function getLotesByProd($codPresentacion)
+    {
+        $qry = "SELECT loteProd
+                FROM inv_prod
+                WHERE codPresentacion=? AND invProd>0;";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($codPresentacion));
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    public function getInvByLoteAndProd($codPresentacion, $loteProd)
+    {
+        $qry = "SELECT invProd
+                FROM inv_prod
+                WHERE codPresentacion=? AND loteProd =? AND invProd>0;";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($codPresentacion, $loteProd));
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result['invProd'];
     }
 
     public function getDetProveedor($idProv)

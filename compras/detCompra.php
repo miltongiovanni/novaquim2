@@ -61,7 +61,6 @@ $compra = $CompraOperador->getCompra($idCompra, $tipoCompra);
     <script src="../js/vfs_fonts.js"></script>
     <script>
         function redireccion() {
-            eliminarSession();
             window.location.href = "../menu.php";
         }
 
@@ -76,6 +75,7 @@ $compra = $CompraOperador->getCompra($idCompra, $tipoCompra);
                 },
                 dataType: 'text',
                 success: function (res) {
+                    redireccion();
                 },
                 fail: function () {
                     alert("Vous avez un GROS problème");
@@ -85,7 +85,7 @@ $compra = $CompraOperador->getCompra($idCompra, $tipoCompra);
         function updateEstadoCompra(idCompra) {
             let estadoActualCompra = <?=$compra['estadoCompra']?>;
             if (estadoActualCompra != 2) {
-                redireccion();
+                eliminarSession();
             }
             else{
                 $.ajax({
@@ -99,7 +99,7 @@ $compra = $CompraOperador->getCompra($idCompra, $tipoCompra);
                     dataType: 'json',
                     success: function (respuesta) {
                         if (respuesta.msg == 'OK') {
-                            redireccion();
+                            eliminarSession();
                         }
                     },
                     fail: function () {
