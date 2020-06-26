@@ -12,7 +12,7 @@ class InvDistribucionOperaciones
     public function makeInvDistribucion($datos)
     {
         /*Preparo la insercion */
-        $qry = "INSERT INTO inv_distribucion VALUES(?, ?)";
+        $qry = "INSERT INTO inv_distribucion (codDistribucion, invDistribucion) VALUES(?, ?)";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute($datos);
         return $this->_pdo->lastInsertId();

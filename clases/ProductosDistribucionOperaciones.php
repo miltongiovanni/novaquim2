@@ -73,6 +73,17 @@ class ProductosDistribucionOperaciones
         return $result;
     }
 
+    public function getNomProductoDistribucion($idDistribucion)
+    {
+        $qry = "SELECT producto
+        FROM  distribucion
+        WHERE idDistribucion=?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($idDistribucion));
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result['producto'];
+    }
+
     public function getUltimoProdDisxCat($idCatDis)
     {
         $qry = "SELECT MAX(idDistribucion) as Cod from distribucion where idCatDis=?";

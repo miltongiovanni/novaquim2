@@ -61,6 +61,15 @@ class EnvasesOperaciones
         return $result;
     }
 
+    public function getNomEnvase($codEnvase)
+    {
+        $qry = "SELECT nomEnvase FROM envases WHERE codEnvase=?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($codEnvase));
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result['nomEnvase'];
+    }
+
     public function getUltimoEnvase()
     {
         $qry = "SELECT MAX(codEnvase) as Codigo FROM envases";

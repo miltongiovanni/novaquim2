@@ -71,7 +71,7 @@ while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
   else
 	  $entrada2=$rowe2['entrada2'];
 	//ENTRADA POR DESARMADO DE KITS  
-  $sqle3="select sum(Cantidad) as entrada3  from desarm_kit, kit where Cod_kit=Id_kit and Fecha_desarm >='$Fch' and Cod_env=$prod;";
+  $sqle3="select sum(cantDesarmado) as entrada3  from desarm_kit, kit where codKit=Id_kit and fechDesarmado >='$Fch' and Cod_env=$prod;";
   $resulte3=mysqli_query($link,$sqle3);
   $rowe3=mysqli_fetch_array($resulte3, MYSQLI_BOTH);
   if($rowe3['entrada3']==NULL)
@@ -98,7 +98,7 @@ while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
 	else
 		$salida2=$rows2['salida2'];
 	//SALIDA POR ARMADO DE KITS
-    $sqls3="select sum(Cantidad) as salida3 FROM arm_kit, kit where Cod_kit=kit.Id_kit and Fecha_arm>'$Fch' AND Cod_env=$prod;";	
+    $sqls3="select sum(cantArmado) as salida3 FROM arm_kit, kit where codKit=kit.Id_kit and Fecha_arm>'$Fch' AND Cod_env=$prod;";
 	$results3=mysqli_query($link,$sqls3);
 	$rows3=mysqli_fetch_array($results3, MYSQLI_BOTH);
 	if($rows3['salida3']==NULL)

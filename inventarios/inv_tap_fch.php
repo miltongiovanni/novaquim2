@@ -89,7 +89,7 @@ while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
 	else
 		$salida2=$rows2['salida2'];
 	//SALIDA POR ARMADO DE KITS
-    $sqls3="select sum(Cantidad) as salida3 FROM arm_kit, kit where Cod_kit=kit.Id_kit and Fecha_arm>'$Fch' AND Cod_env=$prod;";	
+    $sqls3="select sum(cantArmado) as salida3 FROM arm_kit, kit where codKit=kit.Id_kit and Fecha_arm>'$Fch' AND Cod_env=$prod;";
 	$results3=mysqli_query($link,$sqls3);
 	$rows3=mysqli_fetch_array($results3, MYSQLI_BOTH);
 	if($rows3['salida3']==NULL)

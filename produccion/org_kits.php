@@ -1,64 +1,53 @@
 <?php
 include "../includes/valAcc.php";
+function cargarClases($classname)
+{
+    require '../clases/' . $classname . '.php';
+}
+
+spl_autoload_register('cargarClases');
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-	<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<title>Organización de Kits de Productos de Distribución</title>
-	<meta charset="utf-8">
-	<script  src="../js/validar.js"></script>
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <title>Organización de Kits de Productos de Distribución</title>
+    <meta charset="utf-8">
+    <script src="../js/validar.js"></script>
 
 
 </head>
 <body>
 <div id="contenedor">
-<div id="saludo"><strong>ORGANIZACIÓN DE KITS DE PRODUCTOS</strong></div>
-<table  border="0" align="center" class="table2" cellspacing="0">
-  <form name="form2" method="POST" action="det_kits.php">
-    <tr>
-    	<td><div align="right"><strong>Kit</strong></div></td>
-      <td width="351">
-      	<div align="left"> <?php
-				include "includes/conect.php";
-				$link=conectarServidor();
-				echo'<select name="Cod_kit">';
-				$result=mysqli_query($link,"SELECT Id_kit as Id, Codigo as C�digo, Nombre as Producto, Nom_envase as Envase from kit, prodpre, envase where Codigo=Cod_prese AND Cod_env=envase.Cod_envase
-		union
-		SELECT Id_kit as Id, Codigo as C�digo, Producto, Nom_envase as Envase from kit, distribucion, envase where Codigo=Id_distribucion AND Cod_env=envase.Cod_envase;");
-				echo '<option selected value="">-----------------------------------------------------------------------------</option>';
-				while($row=mysqli_fetch_array($result)){
-					echo '<option value='.$row['Id'].'>'.$row['Producto'].'</option>';
-				}
-				echo'</select>';
-				mysqli_close($link);
-			?>
-      	</div>
-        </td>
-  	</tr>
-     <tr>
-    	<td>&nbsp;</td>
-    </tr>
-    <tr> <td></td>
-        <td>
-            <div align="center"><input name="Crear" type="hidden" value="3">
-              <input type="button" value="Continuar" onClick="return Enviar(this.form);">
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <input type="reset" value="  Reiniciar  ">    	
-          </div></td>
-    </tr>
+    <div id="saludo"><strong>ORGANIZACIÓN DE KITS DE PRODUCTOS</strong></div>
+    <form name="form2" method="POST" action="det_kits.php">
+        <div class="form-group row">
+            <label class="col-form-label col-1" for="codEnvase"><strong>Kit</strong></label>
+            <?php
+            $KitOperador = new KitsOperaciones();
+            $kits = $KitOperador->getTableKits();
+            echo '<select name="idKit" id="idKit" class="form-control col-2">';
+            echo '<option disabled selected value="">-----------------------------</option>';
+            for ($i = 0; $i < count($kits); $i++) {
+                echo '<option value="' . $kits[$i]["idKit"] . '">' . $kits[$i]['producto'] . '</option>';
+            }
+            echo '</select>';
+            ?>
+        </div>
+        <div class="form-group row">
+            <div class="col-1 text-center">
+                <button class="button" onclick="return Enviar(this.form)"><span>Continuar</span></button>
+            </div>
+            <div class="col-1 text-center">
+                <button class="button" type="reset"><span>Reiniciar</span></button>
+            </div>
+        </div>
     </form>
-    <tr>
-        <td colspan="2"><div align="center">&nbsp;</div></td>
-    </tr>
-    <tr>
-        <td colspan="2"><div align="center">&nbsp;</div></td>
-    </tr>
-    <tr> 
-        <td colspan="2">
-        <div align="center"><input type="button" class="resaltado" onClick="history.back()" value="  VOLVER  "></div>        </td>
-    </tr>
-</table>
+    <div class="row">
+        <div class="col-1">
+            <button class="button1" id="back" onClick="history.back()"><span>VOLVER</span></button>
+        </div>
+    </div>
 </div>
 </body>
 </html>

@@ -51,7 +51,18 @@ class PresentacionesOperaciones
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
-
+    public function getKitsXCrear()
+    {
+        $qry = "SELECT t.codPresentacion, t.presentacion
+                FROM
+                (SELECT codPresentacion, presentacion FROM prodpre WHERE codProducto>900) t
+                LEFT JOIN kit k ON k.codigo=t.codPresentacion
+                WHERE t.codPresentacion IS NULL ;";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
 
 
     public function getTablePresentaciones()
@@ -85,6 +96,16 @@ class PresentacionesOperaciones
         $stmt->execute(array($codPresentacion));
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result;
+    }
+
+    public function getNamePresentacion($codPresentacion)
+    {
+        $qry = "SELECT presentacion FROM prodpre
+        WHERE codPresentacion=?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($codPresentacion));
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result['presentacion'];
     }
 
 

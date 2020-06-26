@@ -93,7 +93,7 @@ $result_up_env=mysqli_query($link,$qry_up_env);
 if ($Codigo >100000)
 {
   //REVISA UNO POR UNO CADA UNO DE LOS COMPONENTES
-  $qry2="select Id_kit, Cod_producto from det_kit where Id_kit=$Cod_kit;";
+  $qry2="select idKit, codProducto from det_kit where idKit=$Cod_kit;";
   $result2=mysqli_query($link,$qry2);
   while($row2=mysqli_fetch_array($result2))
   {
@@ -113,7 +113,7 @@ if ($Codigo >100000)
 else
 {
 	//REVISA UNO POR UNO CADA UNO DE LOS COMPONENTES
-	$qry2="select Id_kit, Cod_producto from det_kit where Id_kit=$Cod_kit;";
+	$qry2="select idKit, codProducto from det_kit where idKit=$Cod_kit;";
 	$result2=mysqli_query($link,$qry2);
 	while($row2=mysqli_fetch_array($result2))
 	{
@@ -149,7 +149,7 @@ else
 	}
 }  
 	//SE CARGA A LA TABLA
-	$qryins_kit="insert into desarm_kit (Cod_kit, Cantidad, Fecha_desarm) values ($Cod_kit, $Cantidad, '$Fecha')";
+	$qryins_kit="insert into desarm_kit (codKit, cantDesarmado, fechDesarmado) values ($Cod_kit, $Cantidad, '$Fecha')";
 	$resultins_prod=mysqli_query($link,$qryins_kit);
 	//SE REALIZA EL COMMIT 
 	mysqli_commit($link);

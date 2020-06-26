@@ -1,38 +1,31 @@
 <?php
 include "../includes/valAcc.php";
-include "includes/conect.php";
-?>
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Acualización</title>
-</head>
-<body>
-<?php
-	foreach ($_POST as $nombre_campo => $valor) 
-	{ 
-		$asignacion = "\$".$nombre_campo."='".$valor."';"; 
-		//echo $nombre_campo." = ".$valor."<br>";  
-		eval($asignacion); 
-	}  
-	$cod_producto=$_POST['producto'];
-	$qryinv="delete from det_kit where Id_kit=$Cod_kit and Cod_producto=$producto";
-	//echo $qryinv;
-	echo'<form action="det_kits.php" method="post" name="formulario">';
-	$link=conectarServidor();
-	$result=mysqli_query($link,$qryinv);
-	echo '<input name="Cod_kit" type="hidden" value="'.$Cod_kit.'"/>
-	<input name="Crear" type="hidden" value="3"/>
-	<input type="submit" name="Submit" value="Cambiar" />';
-	if($result==1)
-	{
-		$ruta="";
-		mover_pag($ruta,"Kit Actualizado correctamente");
-	}
-	echo'</form>';
-	
-	mysqli_close($link);
-?>
-</body>
-</html>
+function cargarClases($classname)
+{
+    require '../clases/' . $classname . '.php';
+}
+
+spl_autoload_register('cargarClases');
+//ESTOS SON LOS DATOS QUE RECIBE PARA CREAR EL KIT
+foreach ($_POST as $nombre_campo => $valor) {
+    $asignacion = "\$" . $nombre_campo . "='" . $valor . "';";
+    //echo $nombre_campo . " = " . $valor . "<br>";
+    eval($asignacion);
+}
+$DetKitOperador = new DetKitsOperaciones();
+try {
+    $DetKitOperador->deleteDetKit($idKit, $codProducto);
+    $_SESSION['idKit'] = $idKit;
+    $ruta = "det_kits.php";
+    $mensaje = "Detalle de Kit eliminado correctamente";
+
+} catch (Exception $e) {
+
+    $ruta = "../menu.php";
+    $mensaje = "Error al eliminar el detalle de kit";
+} finally {
+    unset($conexion);
+    unset($stmt);
+    mover_pag($ruta, $mensaje);
+}
+

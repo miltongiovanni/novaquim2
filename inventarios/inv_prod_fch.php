@@ -75,7 +75,7 @@ $salida1=0;$salida2=0;$salida3=0;$salida4=0;
   else
 	  $entrada2=$rowe2['entrada2'];
   // ENTRADA POR KITS
-  $sqle3="select sum(Cantidad) as entrada3 from arm_kit, kit where Cod_kit=Id_kit and Fecha_arm>'$Fch' AND Codigo=$prod;";
+  $sqle3="select sum(cantArmado) as entrada3 from arm_kit, kit where codKit=Id_kit and fechArmado>'$Fch' AND Codigo=$prod;";
   $resulte3=mysqli_query($link,$sqle3);
   $rowe3=mysqli_fetch_array($resulte3, MYSQLI_BOTH);
   if($rowe3['entrada3']==NULL)
@@ -103,7 +103,7 @@ where remision.Id_remision=det_remision.Id_remision and Fech_remision>'$Fch' and
 	else
 		$salida2=$rows2['salida2'];
 	//SALIDA POR ARMADO DE KITS
-    $sqls3="select sum(Cantidad) as salida3 from arm_kit, kit, det_kit where Cod_kit=kit.Id_kit and kit.Id_kit=det_kit.Id_kit and Fecha_arm>'$Fch' and Cod_producto=$prod";	
+    $sqls3="select sum(cantArmado) as salida3 from arm_kit, kit, det_kit where codKit=kit.Id_kit and kit.Id_kit=det_kit.idKit and fechArmado>'$Fch' and codProducto=$prod";
 	$results3=mysqli_query($link,$sqls3);
 	$rows3=mysqli_fetch_array($results3, MYSQLI_BOTH);
 	if($rows3['salida3']==NULL)

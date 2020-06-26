@@ -1,167 +1,191 @@
 <?php
 include "../includes/valAcc.php";
+if (isset($_POST['idKit'])) {
+    $idKit = $_POST['idKit'];
+} else {
+    if (isset($_SESSION['idKit'])) {
+        $idKit = $_SESSION['idKit'];
+    }
+}
+function cargarClases($classname)
+{
+    require '../clases/' . $classname . '.php';
+}
+
+spl_autoload_register('cargarClases');
+$KitOperador = new KitsOperaciones();
+$DetKitOperador = new DetKitsOperaciones();
+$kit = $KitOperador->getKit($idKit);
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<title>Detalle de Kit</title>
-<meta charset="utf-8">
-<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<script  src="../js/validar.js"></script>
-	<script  src="scripts/block.js"></script>
-    <link rel="stylesheet" type="text/css" media="all" href="css/calendar-blue2.css" title="blue">
-    <script  src="scripts/calendar.js"></script>
-    <script  src="scripts/calendar-sp.js"></script>
-    <script  src="scripts/calendario.js"></script>
-    <script >
-	document.onkeypress = stopRKey; 
-	</script>
+    <title>Detalle de Kit</title>
+    <meta charset="utf-8">
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../css/datatables.css">
+    <script src="../js/validar.js"></script>
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/datatables.js"></script>
+    <script src="../js/jszip.js"></script>
+    <script src="../js/pdfmake.js"></script>
+    <script src="../js/vfs_fonts.js"></script>
+    <script>
+        function eliminarSession() {
+            let variables = 'idKit';
+            $.ajax({
+                url: '../includes/controladorProduccion.php',
+                type: 'POST',
+                data: {
+                    "action": 'eliminarSession',
+                    "variables": variables,
+                },
+                dataType: 'text',
+                success: function (res) {
+                    window.location = '../menu.php';
+                },
+                fail: function () {
+                    alert("Vous avez un GROS problème");
+                }
+            });
+        }
 
+        $(document).ready(function () {
+            let idKit = <?= $idKit; ?>;
+            $('#example').DataTable({
+                "columns": [
+                    {
+                        /*"className": 'details-control',*/
+                        /*"orderable": false,*/
+                        "data": "codProducto",
+                        "className": 'dt-body-center'
+                        /*"defaultContent": ''*/
+                    },
+                    {
+                        "data": "producto",
+                        "className": 'dt-body-center'
+                    },
+                    {
+                        "data": function (row) {
+                            let rep = '<form action="delprodKit.php" method="post" name="elimina">' +
+                                '                    <input name="idKit" type="hidden" value="' + idKit + '">' +
+                                '                    <input name="codProducto" type="hidden" value="' + row.codProducto + '">' +
+                                '                    <input type="submit" name="Submit" class="formatoBoton formatoDatos"  value="Eliminar">' +
+                                '                </form>'
+                            return rep;
+                        },
+                        "className": 'dt-body-center'
+                    }
+                ],
+                "paging": false,
+                "ordering": false,
+                "info": false,
+                "searching": false,
+                "lengthMenu": [[20, 50, 100, -1], [20, 50, 100, "All"]],
+                "language": {
+                    "lengthMenu": "Mostrando _MENU_ datos por página",
+                    "zeroRecords": "Lo siento no encontró nada",
+                    "info": "Mostrando página _PAGE_ de _PAGES_",
+                    "infoEmpty": "No hay datos disponibles",
+                    "search": "Búsqueda:",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Último",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    },
+                    "infoFiltered": "(Filtrado de _MAX_ en total)"
+
+                },
+                "ajax": "ajax/listaDetKit.php?idKit=" + idKit
+            });
+        });
+    </script>
 </head>
 <body>
 <div id="contenedor">
-<div id="saludo1"><strong>DETALLE DE KIT</strong></div> 
-<?php
-	include "includes/conect.php";
-	foreach ($_POST as $nombre_campo => $valor) 
-	{ 
-		$asignacion = "\$".$nombre_campo."='".$valor."';"; 
-		//echo $nombre_campo." = ".$valor."<br>";  
-		eval($asignacion); 
-	}  
-	$link=conectarServidor();  
-	if($Crear==1)
-	{
-		//PRECIOS DE PRODUCTOS DE LA EMPRESA
-		$qryins_p="insert into det_kit (Id_kit, Cod_producto) values ($Cod_kit, $cod_producto)";
-		$resultins_p=mysqli_query($link,$qryins_p);
-	}
-	$qry1="SELECT Id_kit, Codigo, Nombre as Producto, Nom_envase from kit, prodpre, envase where Codigo=Cod_prese AND Cod_env=envase.Cod_envase AND Id_kit=$Cod_kit
-	union
-	SELECT Id_kit, Codigo, Producto, Nom_envase from kit, distribucion, envase where Codigo=Id_distribucion AND Cod_env=envase.Cod_envase and Id_kit=$Cod_kit";
-	$result1=mysqli_query($link,$qry1);
-	$row1=mysqli_fetch_array($result1, MYSQLI_BOTH);
-	mysqli_close($link);
- ?>
-<table width="515" border="0"  align="center">
-    <tr>
-        <td colspan="4" class="font2"><div align="left" class="titulo"><strong>Detalle del Kit</strong></div></td>
-        <td width="192"></td>
-    </tr>
-    <tr> <td colspan="5" class="font2" ><hr></td> </tr>
-    <tr>
-        <td width="95" class="font2" ><div align="center"><strong>Codigo Kit:</strong></div></td>
-        <td width="40" align="left" class="font2"><?php echo $row1['Id_kit']; ?></td>
-        <td width="85" class="font2" ><div align="right"><strong>Nombre Kit:</strong></div></td>
-   	  <td colspan="2" class="font2"><div align="left"><?php echo $row1['Producto']; ?></div></td>
-  	</tr>
-    <tr> <td  colspan="5" class="font2" ><hr></td> </tr>
-    <?php
-    $link=conectarServidor(); 
-	echo '<form method="post" action="det_kits.php" name="form1">
-		 <tr>
-			<td colspan="4"><div align="center"><strong>Productos Novaquim</strong></div></td>
-			<td colspan="1"><div align="left"><strong></strong></div></td>
-		 </tr>
-		 <tr> <td colspan="4"><div align="center">';
-	echo'<select name="cod_producto">';
-	$result2=mysqli_query($link,"SELECT Cod_prese, Nombre FROM prodpre order by Nombre;");
-	while($row2=mysqli_fetch_array($result2))
-	{
-		echo '<option value='.$row2['Cod_prese'].'>'.$row2['Nombre'].'</option>';
-	}
-	echo '</select>';
-	echo '</div></td>';
-	echo '<td align="left"><input name="submit" onclick="return Enviar(this.form)" type="submit"  value="Continuar" /></td>';
-	echo '</tr> ';
-	echo '<input name="Crear" type="hidden" value="1">'; 
-	echo '<input name="Cod_kit" type="hidden" value="'.$Cod_kit.'"></form>
-		 <form method="post" action="det_kits.php" name="form2">
-		 <tr><td colspan="4"><div align="center"><strong>Productos Distribuci�n</strong></div></td>
-		 <td colspan="1"><div align="left"><strong></strong></div></td></tr>
-		<tr>
-			<td colspan="4" ><div align="center">';
-	echo'<select name="cod_producto">';
-	$result3=mysqli_query($link,"select Id_distribucion, Producto from distribucion where Activo=0 order by Producto;");
-	while($row3=mysqli_fetch_array($result3))
-	{
-		echo '<option value='.$row3['Id_distribucion'].'>'.$row3['Producto'].'</option>';
-	}
-	echo '</select>';
-	echo '</div></td>';
-	echo '<td align="left"><input name="submit" onclick="return Enviar(this.form)" type="submit"  value="Continuar" /></td>';
-	echo '<input name="Crear" type="hidden" value="1">'; 
-	echo '<input name="Cod_kit" type="hidden" value="'.$Cod_kit.'">';			  
-	echo '</tr>';
-	echo '<input name="Crear" type="hidden" value="1">'; 
-	echo '<input name="Cod_kit" type="hidden" value="'.$Cod_kit.'"></form>';
-	mysqli_close($link);
-	?>
-  <tr> <td  colspan="5" class="font2" ><hr></td> </tr>
-  <tr><td colspan="5" class="titulo">Productos del Kit : </td>    </tr>   
-</table>
-<table width="517" border="0" align="center">
-          <tr> <td  colspan="3" class="font2" ><hr></td> </tr>
-          <tr>
-            <th width="83" class="font2"><strong>C�digo</strong></th>
-            <th width="340" class="font2"><strong>Producto </strong></th>
-            <th width="80" class="font2"></th>
-  </tr>
-  <tr> <td  colspan="3" class="font2" ><hr></td> </tr>
-          <?php
-			$link=conectarServidor();
-			$qry4="select det_kit.Id_kit, Cod_producto, Nombre from det_kit, prodpre WHERE det_kit.Id_kit=$Cod_kit AND Cod_producto=Cod_prese;";
-			if ($result4=mysqli_query($link,$qry4))
-			{
-				while($row4=mysqli_fetch_array($result4))
-				{
-					$cod=$row4['Cod_producto'];
-					echo'<tr>';
-					echo '<td class="font2"><div align="center">'.$row4['Cod_producto'].'</div></td>
-					  <td class="font2"><div align="center">'.$row4['Nombre'].'</div></td>';
-						echo '<form action="delprodKit.php" method="post" name="elimina">
-						<td align="center" valign="middle" class="font2"><input type="submit" class="formatoBoton" name="Submit" value="Eliminar" /></td>
-						<input name="pedido" type="hidden" value="'.$pedido.'"/>
-						<input name="producto" type="hidden" value="'.$cod.'"/>
-						</form>';
-					echo '</tr>';
-				}
-			}
-			mysqli_close($link);
-			?>
-		<?php
-			$link=conectarServidor();
-			$qry5="select det_kit.Id_kit, Cod_producto, Producto from det_kit, distribucion WHERE det_kit.Id_kit=$Cod_kit AND Cod_producto=Id_distribucion;";
-			if ($result5=mysqli_query($link,$qry5))
-			{
-				while($row5=mysqli_fetch_array($result5))
-				{
-					$cod=$row5['Cod_producto'];
-					echo'<tr>';
-					echo '</td>
-				  <td class="font2"><div align="center">'.$row5['Cod_producto'].'</div></td>
-				  <td class="font2"><div align="center">'.$row5['Producto'].'</div></td>';
-					echo '<form action="delprodKit.php" method="post" name="elimina">
-					<td align="center" valign="middle" class="font2"><input type="submit" class="formatoBoton" name="Submit" value="Eliminar" /> </td>
-					<input name="Cod_kit" type="hidden" value="'.$Cod_kit.'"/>
-					<input name="producto" type="hidden" value="'.$cod.'"/>
-					</form>';
-					echo '</tr>';
-				}
-			}
-			mysqli_close($link);
-			?>
-            <tr> <td  colspan="3" class="font2" ><hr></td> </tr>           
-      </table>
-<?php 
-  echo'<input name="Crear" type="hidden" value="0">'; 
-?> 
-<table width="27%" border="0" align="center">
-    <tr> 
-        <td><div align="center"><input name="Menu" type="button" class="resaltado" id="Menu" onClick="window.location='menu.php'" value="Ir al Men�">
-      </div></td>
-    </tr>
-</table> 
+    <div id="saludo1"><strong>DETALLE DE KIT</strong></div>
+
+    <div class="form-group row">
+        <div class="col-1 text-right"><strong>Código Kit</strong></div>
+        <div class="col-1 bg-blue"><?= $idKit; ?></div>
+        <div class="col-1 text-right"><strong>Kit</strong></div>
+        <div class="col-3 bg-blue"><?= $kit['producto'] ?></div>
+    </div>
+    <div class="form-group titulo row">
+        Agregar detalle
+    </div>
+    <form method="post" action="makeDetKit.php" name="form1">
+        <input name="idKit" type="hidden" value="<?= $idKit; ?>">
+        <div class="row">
+            <div class="col-4 text-center" style="margin: 0 5px 0 0;"><strong>Producto Novaquim</strong></div>
+            <div class="col-2 text-center">
+            </div>
+        </div>
+        <div class="form-group row">
+            <select name="codProducto" id="codProducto" class="form-control col-4"
+                    style="margin: 0 5px 0 0;" onchange="findLotePresentacion(this.value);">
+                <option selected disabled value="">------------------------------</option>
+                <?php
+                $presentaciones = $DetKitOperador->getProdNovaquim($idKit);
+                for ($i = 0; $i < count($presentaciones); $i++) {
+                    echo '<option value="' . $presentaciones[$i]['codigo'] . '">' . $presentaciones[$i]['producto'] . '</option>';
+                }
+                ?>
+            </select>
+            <div class="col-2 text-center" style="padding: 0 20px;">
+                <button class="button" onclick="return Enviar(this.form)"><span>Continuar</span>
+                </button>
+            </div>
+        </div>
+    </form>
+    <form method="post" action="makeDetKit.php" name="form1">
+        <input name="idKit" type="hidden" value="<?= $idKit; ?>">
+        <div class="row">
+            <div class="col-4 text-center" style="margin: 0 5px 0 0;"><strong>Producto Distribución</strong></div>
+            <div class="col-2 text-center">
+            </div>
+        </div>
+        <div class="form-group row">
+            <select name="codProducto" id="codProducto" class="form-control col-4"
+                    style="margin: 0 5px 0 0;" onchange="findLotePresentacion(this.value);">
+                <option selected disabled value="">------------------------------</option>
+                <?php
+                $prodsDistribucion = $DetKitOperador->getProdDistribucion($idKit);
+                for ($i = 0; $i < count($prodsDistribucion); $i++) {
+                    echo '<option value="' . $prodsDistribucion[$i]['codigo'] . '">' . $prodsDistribucion[$i]['producto'] . '</option>';
+                }
+                ?>
+            </select>
+            <div class="col-2 text-center" style="padding: 0 20px;">
+                <button class="button" onclick="return Enviar(this.form)"><span>Continuar</span>
+                </button>
+            </div>
+        </div>
+    </form>
+    <div class="form-group titulo row">
+        Detalle
+    </div>
+    <div class="tabla-50">
+        <table id="example" class="display compact formatoDatos">
+            <thead>
+            <tr>
+                <th width="15%">Código</th>
+                <th width="70%">Producto</th>
+                <th width="15%"></th>
+            </tr>
+            </thead>
+        </table>
+    </div>
+    <div class="row">
+        <div class="col-1">
+            <button class="button" onclick="eliminarSession(); ">
+                <span><STRONG>Terminar</STRONG></span>
+            </button>
+        </div>
+    </div>
 </div>
 </body>
 </html>

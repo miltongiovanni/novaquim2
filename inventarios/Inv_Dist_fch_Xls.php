@@ -54,7 +54,7 @@ while($row= mysqli_fetch_array($result, MYSQLI_BOTH))
   else
 	  $entrada1=$rowe1['entrada1'];
   //ENTRADA POR ARMADO DE KITS
-  $sqle2="select sum(Cantidad) as entrada2 FROM arm_kit, kit, distribucion where Cod_kit=Id_kit and Codigo=Id_distribucion and Fecha_arm>='$Fch' and Codigo=$prod;";
+  $sqle2="select sum(cantArmado) as entrada2 FROM arm_kit, kit, distribucion where codKit=Id_kit and Codigo=Id_distribucion and fechArmado>='$Fch' and Codigo=$prod;";
   $resulte2=mysqli_query($link,$sqle2);
   $rowe2=mysqli_fetch_array($resulte2, MYSQLI_BOTH);
   if($rowe2['entrada2']==NULL)
@@ -62,7 +62,7 @@ while($row= mysqli_fetch_array($result, MYSQLI_BOTH))
   else
 	  $entrada2=$rowe2['entrada2'];
 	//ENTRADA POR DESARMADO DE KITS  
-  $sqle3="select sum(Cantidad) as entrada3 FROM desarm_kit, kit, det_kit, distribucion where Cod_kit=det_kit.Id_kit and Cod_producto=Id_distribucion and Fecha_desarm>='$Fch' AND kit.Id_kit=det_kit.Id_kit and Cod_producto=$prod;";
+  $sqle3="select sum(cantDesarmado) as entrada3 FROM desarm_kit, kit, det_kit, distribucion where codKit=det_kit.idKit and codProducto=Id_distribucion and fechDesarmado>='$Fch' AND kit.Id_kit=det_kit.idKit and codProducto=$prod;";
   $resulte3=mysqli_query($link,$sqle3);
   $rowe3=mysqli_fetch_array($resulte3, MYSQLI_BOTH);
   if($rowe3['entrada3']==NULL)
@@ -96,7 +96,7 @@ while($row= mysqli_fetch_array($result, MYSQLI_BOTH))
 	else
 		$salida2=$rows2['salida2'];
 	//SALIDA POR DESARMADO DE KITS
-	$sqls4="select sum(Cantidad) as salida4 FROM desarm_kit, kit, distribucion where Cod_kit=Id_kit and Codigo=Id_distribucion and Fecha_desarm>='$Fch' and Codigo=$prod;";	
+	$sqls4="select sum(cantDesarmado) as salida4 FROM desarm_kit, kit, distribucion where codKit=Id_kit and Codigo=Id_distribucion and fechDesarmado>='$Fch' and Codigo=$prod;";
 	$results4=mysqli_query($link,$sqls4);
 	$rows4=mysqli_fetch_array($results4, MYSQLI_BOTH);
 	if($rows4['salida4']==NULL)
@@ -104,7 +104,7 @@ while($row= mysqli_fetch_array($result, MYSQLI_BOTH))
 	else
 		$salida2=$rows2['salida2'];
 	//SALIDA POR ARMADO DE KITS
-    $sqls3="select sum(Cantidad) as salida3 FROM arm_kit, kit, det_kit, distribucion where Cod_kit=det_kit.Id_kit and Cod_producto=Id_distribucion and Fecha_arm>='$Fch' AND kit.Id_kit=det_kit.Id_kit and Cod_producto=$prod";	
+    $sqls3="select sum(cantArmado) as salida3 FROM arm_kit, kit, det_kit, distribucion where codKit=det_kit.idKit and codProducto=Id_distribucion and fechArmado>='$Fch' AND kit.Id_kit=det_kit.idKit and codProducto=$prod";
 	$results3=mysqli_query($link,$sqls3);
 	$rows3=mysqli_fetch_array($results3, MYSQLI_BOTH);
 	if($rows3['salida3']==NULL)
