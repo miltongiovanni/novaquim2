@@ -1,162 +1,129 @@
 <?php
 include "../includes/valAcc.php";
-?>
-<?php
-include "includes/conect.php";
-foreach ($_POST as $nombre_campo => $valor) 
-{ 
-	$asignacion = "\$".$nombre_campo."='".$valor."';"; 
-	//echo $nombre_campo." = ".$valor."<br>";  
-	eval($asignacion); 
-}  
-// $Cod_kit,  $Cantidad, $Fecha
+function cargarClases($classname)
+{
+    require '../clases/' . $classname . '.php';
+}
+
+spl_autoload_register('cargarClases');
+foreach ($_POST as $nombre_campo => $valor) {
+    $asignacion = "\$" . $nombre_campo . "='" . $valor . "';";
+    //echo $nombre_campo." = ".$valor."<br>";
+    eval($asignacion);
+}
+// $Cod_kit,  $cantDesarmado, $Fecha
 //Envasado
-$link=conectarServidor();   
+try {
+    $link = Conectar::conexion();
 
-/* disable autocommit */
-mysqli_autocommit($link, FALSE);
-$qry1="select Id_kit, Codigo, Cod_env from kit where Id_kit=$Cod_kit;";
-$result1=mysqli_query($link,$qry1);
-$row_1=mysqli_fetch_array($result1);
-$Cod_env=$row_1['Cod_env'];
-$Codigo=$row_1['Codigo'];
+//COMIENZA LA TRANSACCIÓN
+    $link->beginTransaction();
+    $KitOperador = new KitsOperaciones();
+    $kit = $KitOperador->getKit($codKit);
+    $codEnvase = $kit['codEnvase'];
+    $codigo = $kit['codigo'];
 
-/*REVISAR SI HAY INVENTARIO SUFICIENTE PARA DESCARGAR*/
-if ($Codigo >100000)
-{
-	$qry_bus="select inv_distribucion.codDistribucion as Codigo, Producto, invDistribucion as Inv from inv_distribucion, distribucion WHERE inv_distribucion.codDistribucion=distribucion.Id_distribucion and inv_distribucion.codDistribucion=$Codigo;";
-}
-else
-{
-	$qry_bus="select inv_prod.codPresentacion as Codigo, Nombre as Producto, sum(invProd) as Inv from inv_prod, prodpre where inv_prod.codPresentacion=$Codigo and inv_prod.codPresentacion=prodpre.Cod_prese GROUP by Codigo;";
-}
-$result_bus=mysqli_query($link,$qry_bus);
-$row_bus=mysqli_fetch_array($result_bus);
-$inv_bus=$row_bus['Inv'];
-$cod_bus=$row_bus['Codigo'];
-$prod_bus=$row_bus['Producto'];
-if ($inv_bus < $Cantidad)
-{
-	mysqli_rollback($link);
-	mysqli_close($link);
-	echo'<script >
-	alert("No hay suficiente inventario de '.$prod_bus.' sólo hay '.$inv_bus.' unidades")
-	self.location="desarm_kits.php"
-	</script>';
-}
-else
-{
-	  //SE INSERTA LA CANTIDAD DE KITS
-	  if($Codigo <100000)
-	  {
-		  //PRODUCTOS DE LA EMPRESA
-		  $qry_prod="select codPresentacion, max(loteProd) as lote, invProd FROM inv_prod where codPresentacion=$Codigo";
-		  $result_prod=mysqli_query($link,$qry_prod);
-		  $row_prod=mysqli_fetch_array($result_prod);
-		  if ($row_prod)
-		  {
-			$cod_prod=$row_prod['Cod_prese'];
-			$lote_prod=$row_prod['lote'];
-			$inv_prod=$row_prod['inv_prod'];
-			$inv_prod=$inv_prod-$Cantidad;
-			$qry_up_prod="update inv_prod set invProd=$inv_prod where codPresentacion=$Codigo and loteProd=$lote_prod";
-			$result_up_prod=mysqli_query($link,$qry_up_prod);
-		  }
-	  }
-	  else
-	  {
-		  //PRODUCTOS DE DISTRIBUCION
-		  $qry_dist="select codDistribucion, invDistribucion from inv_distribucion where codDistribucion=$Codigo";
-		  $result_dist=mysqli_query($link,$qry_dist);
-		  $row_dist=mysqli_fetch_array($result_dist);
-		  if ($row_dist)
-		  {
-			$cod_dist=$row_dist['Id_distribucion'];
-			$inv_dist=$row_dist['inv_dist'];
-			$inv_dist=$inv_dist-$Cantidad;
-			$qry_up_dist="update inv_distribucion set invDistribucion=$inv_dist where codDistribucion=$Codigo";
-			$result_up_dist=mysqli_query($link,$qry_up_dist);
-		  }
-	  }
-}
+    /*REVISAR SI HAY INVENTARIO SUFICIENTE PARA DESCARGAR*/
+    if ($codigo > 100000) {
+        $InvDistribucionOperador = new InvDistribucionOperaciones();
+        $ProdDistribucionOperador = new ProductosDistribucionOperaciones();
+        $inv_bus = $InvDistribucionOperador->getInvDistribucion($codigo);
+        $nomProd = $ProdDistribucionOperador->getNomProductoDistribucion($codigo);
+    } else {
+        $InvProdTerminadoOperador = new InvProdTerminadosOperaciones();
+        $PresentacionOperador = new PresentacionesOperaciones();
+        $inv_bus = $InvProdTerminadoOperador->getInvTotalProdTerminado($codigo);
+        $nomProd = $PresentacionOperador->getNamePresentacion($codigo);
+    }
+    if ($inv_bus < $cantDesarmado) {
+        $link->rollBack();
+        $ruta = "desarm_kits.php";
+        $mensaje = "No hay inventario suficiente de " . $nomProd . " solo hay " . round($inv_bus, 0) . " unidades";
+        mover_pag($ruta, $mensaje);
+    } else {
+        //SE DESCUENTA LA CANTIDAD DE KITS
+        if ($codigo < 100000) {
+            //SI EL KIT ES PRODUCTO DE LA EMPRESA
+            $unidades = $cantDesarmado;
+            $invPresentaciones = $InvProdTerminadoOperador->getInvProdTerminado($codigo);
+            for ($j = 0; $j < count($invPresentaciones); $j++) {
+                $invProd = $invPresentaciones[$j]['invProd'];
+                $loteProd = $invPresentaciones[$j]['loteProd'];
+                $codPresentacion = $invPresentaciones[$j]['codPresentacion'];
+                if (($invProd >= $unidades)) {
+                    $invProd = $invProd - $unidades;
+                    /*SE ACTUALIZA EL INVENTARIO*/
+                    $qryupt = "UPDATE inv_prod SET invProd=$invProd WHERE loteProd=$loteProd AND codPresentacion=$codPresentacion";
+                    $stmt = $link->prepare($qryupt);
+                    $stmt->execute();
+                } else {
+                    $unidades = $unidades - $invProd;
+                    //SE ELIMINA DEL INVENTARIO  Aqui se prodria borrar del inventario
+                    $qry = "UPDATE inv_prod SET invProd=0 WHERE loteProd=$loteProd AND codPresentacion=$codPresentacion";
+                    $stmt = $link->prepare($qry);
+                    $stmt->execute();
+                }
+            }
+        } else {
+            //SI EL KIT ES PRODUCTO DE DISTRIBUCION
+            $invDist = $InvDistribucionOperador->getInvDistribucion($codProducto);
+            $invDist = $invDist - $cantDesarmado;
+            $qryupt = "UPDATE inv_distribucion SET invDistribucion=$invDist WHERE codDistribucion=$codigo";
+            $stmt = $link->prepare($qryupt);
+            $stmt->execute();
+        }
+    }
 //SE CARGA EL ENVASE
-$qry_env="select inv_envase.codEnvase, Nom_envase, invEnvase from inv_envase, envase WHERE inv_envase.codEnvase=envase.Cod_envase and inv_envase.codEnvase=$Cod_env";
-$result_env=mysqli_query($link,$qry_env);
-$row_env=mysqli_fetch_array($result_env);
-$inv_env=$row_env['inv_envase'];
-$cod_env=$row_env['Cod_envase'];
-$envase=$row_env['Nom_envase'];
-$inv_env=$inv_env + $Cantidad;
-$qry_up_env="update inv_envase set invEnvase=$inv_env where codEnvase=$cod_env";
-$result_up_env=mysqli_query($link,$qry_up_env);
+    $InvEnvaseOperador = new InvEnvasesOperaciones();
+    $invEnvase = $InvEnvaseOperador->getInvEnvase($codEnvase);
+    $invEnvase = $invEnvase + $cantDesarmado;
+    $qryupt = "UPDATE inv_envase SET invEnvase=$invEnvase WHERE codEnvase=$codEnvase";
+    $stmt = $link->prepare($qryupt);
+    $stmt->execute();
+//SE CARGA EL DETALLE DE KIT
+    $DetKitOperador = new DetKitsOperaciones();
+    $detKit = $DetKitOperador->getTableDetKits($codKit);
+    for ($i = 0; $i < count($detKit); $i++) {
+        $codProducto = $detKit[$i]['codProducto'];
+        if ($codProducto < 100000) {
+            //PRODUCTO NOVAQUIM
+            $InvProdTerminadoOperador = new InvProdTerminadosOperaciones();
+            $invProdTerminado = $InvProdTerminadoOperador->getMaxLoteInvProdTerminado($codProducto);
+            $loteProd = $invProdTerminado['loteProd'];
+            $invProd = $invProdTerminado['invProd'];
+            $invProd += $cantDesarmado;
+            /*SE ACTUALIZA EL INVENTARIO*/
+            $qryupt = "UPDATE inv_prod SET invProd=$invProd WHERE loteProd=$loteProd AND codPresentacion=$codProducto";
+            $stmt = $link->prepare($qryupt);
+            $stmt->execute();
+        } else {
+            //PRODUCTO DE DISTRIBUCION
+            $InvDistribucionOperador = new InvDistribucionOperaciones();
+            $invDist = $InvDistribucionOperador->getInvDistribucion($codProducto);
+            $invDist += $cantDesarmado;
+            $qryupt = "UPDATE inv_distribucion SET invDistribucion=$invDist WHERE codDistribucion=$codProducto";
+            $stmt = $link->prepare($qryupt);
+            $stmt->execute();
+        }
+    }
 
-if ($Codigo >100000)
-{
-  //REVISA UNO POR UNO CADA UNO DE LOS COMPONENTES
-  $qry2="select idKit, codProducto from det_kit where idKit=$Cod_kit;";
-  $result2=mysqli_query($link,$qry2);
-  while($row2=mysqli_fetch_array($result2))
-  {
-	$cod_producto=$row2['Cod_producto'];
-	/*CARGA DEL INVENTARIO*/
-	$qryinv="select inv_distribucion.codDistribucion, Producto, invDistribucion from inv_distribucion, distribucion WHERE inv_distribucion.codDistribucion=distribucion.Id_distribucion and inv_distribucion.codDistribucion=$cod_producto;";
-	$resultinv=mysqli_query($link,$qryinv);
-	$rowinv=mysqli_fetch_array($resultinv);	
-	$invt=$rowinv['inv_dist'];
-	$cod_prod=$rowinv['Id_distribucion'];
-	$prod_dist=$rowinv['Producto'];
-	$invt= $invt + $Cantidad;
-	$qryupt="update inv_distribucion set invDistribucion=$invt where codDistribucion=$cod_prod";
-	$resultupt=mysqli_query($link,$qryupt);
-  }
+//SE CARGA A LA TABLA
+    $qryins_kit = "INSERT INTO desarm_kit (codKit, cantDesarmado, fechDesarmado) values ($codKit, $cantDesarmado, '$fechDesarmado')";
+    $stmt = $link->prepare($qryins_kit);
+    $stmt->execute();
+//SE REALIZA EL COMMIT
+    $link->commit();
+    $ruta = "listar_desarm_kits.php";
+    $mensaje = "Kit desarmados con éxito";
+
+} catch (Exception $e) {
+    //echo $e->getMessage();
+    //Rollback the transaction.
+    $link->rollBack();
+    $ruta = "desarm_kits.php";
+    $mensaje = "Error al desarmar los kits";
+} finally {
+    mover_pag($ruta, $mensaje);
 }
-else
-{
-	//REVISA UNO POR UNO CADA UNO DE LOS COMPONENTES
-	$qry2="select idKit, codProducto from det_kit where idKit=$Cod_kit;";
-	$result2=mysqli_query($link,$qry2);
-	while($row2=mysqli_fetch_array($result2))
-	{
-		$cod_producto=$row2['Cod_producto'];
-	  	if($cod_producto <100000)
-	  	{	
-		  $qrylot="select max(loteProd) as lote from inv_prod where codPresentacion=$cod_producto";
-		  $resultlot=mysqli_query($link,$qrylot);
-		  $rowlot=mysqli_fetch_array($resultlot);
-		  $lote=$rowlot['lote'];
-		  $qryinvt="select inv_prod.codPresentacion, Nombre, invProd as Inv, loteProd as lote from inv_prod, prodpre where inv_prod.codPresentacion=$cod_producto and invProd >0 and inv_prod.codPresentacion=prodpre.Cod_prese and loteProd=$lote";
-		  $resultinvt=mysqli_query($link,$qryinvt);
-		  $rowinv1=mysqli_fetch_array($resultinvt);
-		  $inventario=$rowinv1['Inv'];
-		  $prod_nova=$rowinv1['Nombre'];
-		  $invt= $inventario + $Cantidad;
-		  /*SE ACTUALIZA EL INVENTARIO*/
-		  $qryupt="update inv_prod set invProd=$invt where loteProd=$lote and codPresentacion=$cod_producto";
-		  $resultupt=mysqli_query($link,$qryupt);
-		}
-	    else
-	    {
-		  $qryinv="select inv_distribucion.codDistribucion, Producto, invDistribucion from inv_distribucion, distribucion WHERE inv_distribucion.codDistribucion=distribucion.Id_distribucion and inv_distribucion.codDistribucion=$cod_producto;";
-		  $resultinv=mysqli_query($link,$qryinv);
-		  $rowinv=mysqli_fetch_array($resultinv);	
-		  $invt=$rowinv['inv_dist'];
-		  $cod_prod=$rowinv['Id_distribucion'];
-		  $prod_dist=$rowinv['Producto'];
-		  $invt= $invt + $Cantidad;
-		  $qryupt="update inv_distribucion set invDistribucion=$invt where codDistribucion=$cod_prod";
-		  $resultupt=mysqli_query($link,$qryupt);
-		}
-	}
-}  
-	//SE CARGA A LA TABLA
-	$qryins_kit="insert into desarm_kit (codKit, cantDesarmado, fechDesarmado) values ($Cod_kit, $Cantidad, '$Fecha')";
-	$resultins_prod=mysqli_query($link,$qryins_kit);
-	//SE REALIZA EL COMMIT 
-	mysqli_commit($link);
-	mysqli_autocommit($link, TRUE);
-	mysqli_close($link);
-	echo'<script >
-	alert("Kit desarmados con éxito")
-	self.location="listar_desarm_kits.php"
-	</script>';
+
 ?>

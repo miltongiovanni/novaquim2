@@ -41,10 +41,10 @@ class MPrimasOperaciones
                 LEFT JOIN det_formula df ON mprimas.codMPrima = df.codMPrima
                 LEFT JOIN det_formula_col dfc ON mprimas.codMPrima = dfc.codMprima
                 LEFT JOIN det_formula_mp dfm ON mprimas.codMPrima = dfm.codMPrima
-                LEFT JOIN env_dist ed ON mprimas.codMPrima = ed.Codigo_mp
+                LEFT JOIN mPrimaDist ed ON mprimas.codMPrima = ed.codMPrima
                 LEFT JOIN det_ord_prod dop on mprimas.codMPrima = dop.codMPrima
                 WHERE df.codMPrima IS NULL AND dfc.codMprima IS NULL
-                  AND dfm.codMPrima IS NULL AND ed.Codigo_mp IS NULL AND dop.codMPrima IS NULL
+                  AND dfm.codMPrima IS NULL AND ed.codMPrima IS NULL AND dop.codMPrima IS NULL
                 ORDER BY nomMPrima";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();

@@ -87,13 +87,22 @@ public function deleteKit($idKit)
         return $result;
     }
 
-    public function getKitsEliminar()
+    public function getKitsXDesarmar()
     {
-        $qry = "SELECT kit.idKit, nomKit
-                FROM kit
-                LEFT JOIN ord_prod op on kit.idKit = op.idKit
-                WHERE op.idKit IS NULL
-                ORDER BY nomKit";
+        $qry = "SELECT k.idKit, presentacion producto
+                FROM kit k
+                         LEFT JOIN prodpre p on k.codigo = p.codPresentacion
+                         LEFT JOIN inv_prod ip on p.codPresentacion = ip.codPresentacion
+                WHERE p.presentacion IS NOT NULL
+                  AND invProd > 0
+                UNION
+                SELECT k.idKit, producto
+                FROM kit k
+                         LEFT JOIN distribucion d on k.codigo = d.idDistribucion
+                         LEFT JOIN inv_distribucion id on d.idDistribucion = id.codDistribucion
+                WHERE d.idDistribucion IS NOT NULL
+                  AND invDistribucion > 0
+                ORDER BY producto";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);

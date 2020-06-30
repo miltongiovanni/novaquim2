@@ -4,30 +4,131 @@ include "../includes/valAcc.php";
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<title>Lista de Envasado de Productos de Distribución</title>
-<meta charset="utf-8">
-<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <title>Lista de Envasado de Productos de Distribución</title>
+    <meta charset="utf-8">
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../css/datatables.css">
+    <style>
+        table {
+            table-layout: fixed;
+        }
+
+        .width1 {
+            width: 8%;
+        }
+
+        .width2 {
+            width: 8%;
+        }
+
+        .width3 {
+            width: 49%;
+        }
+
+        .width4 {
+            width: 15%;
+        }
+
+        .width5 {
+            width: 20%;
+        }
+
+    </style>
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/datatables.js"></script>
+    <script src="../js/dataTables.buttons.js"></script>
+    <script src="../js/jszip.js"></script>
+    <script src="../js/pdfmake.js"></script>
+    <script src="../js/vfs_fonts.js"></script>
+    <script src="../js/buttons.html5.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#example').DataTable({
+                "columns": [
+                    {
+                        /*"className": 'details-control',*/
+                        /*"orderable": false,*/
+                        "data": "idEnvDist",
+                        /*"defaultContent": ''*/
+                    },
+                    {
+                        "data": "codDist",
+                    },
+                    {
+                        "data": "producto",
+                    },
+                    {
+                        "data": "cantidad",
+                    },
+                    {
+                        "data": "fechaEnvDist",
+                    },
+                ],
+                "columnDefs":
+                    [{
+                        "targets": [0, 1, 2, 3, 4],
+                        "className": 'dt-body-center'
+                    }
+                    ],
+                "dom": 'Blfrtip',
+                "buttons": [
+                    'copyHtml5',
+                    'excelHtml5'
+                ],
+                "order": [[0, "desc"]],
+                "lengthMenu": [[20, 50, 100, -1], [20, 50, 100, "All"]],
+                "language": {
+                    "lengthMenu": "Mostrando _MENU_ datos por página",
+                    "zeroRecords": "Lo siento no encontró nada",
+                    "info": "Mostrando página _PAGE_ de _PAGES_",
+                    "infoEmpty": "No hay datos disponibles",
+                    "search": "Búsqueda:",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Último",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    },
+                    "infoFiltered": "(Filtrado de _MAX_ en total)"
+
+                },
+                "ajax": "ajax/listaEnvasadoDist.php"
+            });
+        });
+    </script>
 </head>
 <body>
 <div id="contenedor">
 
-<div id="saludo1"><strong>LISTA DE ENVASADO DE PRODUCTOS DE DISTRIBUCIÓN</strong></div> 
-<table width="100%" border="0">
-<tr> 
-  <td><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú"></div></td>
-</tr>
-</table>
+    <div id="saludo1"><strong>LISTA DE ENVASADO DE PRODUCTOS DE DISTRIBUCIÓN</strong></div>
+    <div class="row flex-end">
+        <div class="col-1">
+            <button class="button" onclick="window.location='../menu.php'">
+                <span><STRONG>Ir al Menú</STRONG></span></button>
+        </div>
+    </div>
+    <div class="tabla-50">
+        <table id="example" class="display compact formatoDatos">
+            <thead>
+            <tr>
+                <th class="width1">Id</th>
+                <th class="width2">Código</th>
+                <th class="width3">Producto</th>
+                <th class="width4">Cantidad</th>
+                <th class="width5">Fecha</th>
+            </tr>
+            </thead>
+        </table>
+    </div>
 
-<?php
-include "includes/utilTabla.php";
-include "includes/conect.php" ;
-	$link=conectarServidor();
-    //sentencia SQL    tblusuarios.IdUsuario,
-	$sql="select Id_env_dist as Id, Fch_env_dist as Fecha, Cod_dist as Código, Producto, Cantidad from det_env_dist, distribucion where Cod_dist=Id_distribucion ORDER by Id DESC;";
-	//llamar funcion de tabla
-	verTabla($sql, $link);
-?>
-<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú"></div>
+    <div class="row">
+        <div class="col-1">
+            <button class="button" onclick="window.location='../menu.php'">
+                <span><STRONG>Ir al Menú</STRONG></span></button>
+        </div>
+    </div>
+
 </div>
 </body>
 </html>

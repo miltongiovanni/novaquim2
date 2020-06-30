@@ -70,7 +70,7 @@ while($row= mysqli_fetch_array($result, MYSQLI_BOTH))
 	else
 		$salida1=$rows1['salida1'];
 		
-	$sqls2="select Codigo_mp, sum(cant_medida*Cantidad*Densidad/1000) as salida2 from rel_dist_mp, env_dist, det_env_dist, medida where Codigo_mp=$prod and Cod_MP=env_dist.Id_env_dist  and Cod_umedid=Id_medida and rel_dist_mp.Cod_dist=det_env_dist.Cod_dist and Fch_env_dist>='$Fch';";	
+	$sqls2="select codMPrima, sum(cant_medida*Cantidad*Densidad/1000) as salida2 from rel_dist_mp, mPrimaDist, envasado_dist, medida where codMPrima=$prod and codMPrimaDist=mPrimaDist.codMPrimaDist  and codMedida=Id_medida and rel_dist_mp.codDist=envasado_dist.codDist and fechaEnvDist>='$Fch';";
 	$results2=mysqli_query($link,$sqls2);
 	$rows2=mysqli_fetch_array($results2, MYSQLI_BOTH);
 	if($rows2['salida2']==NULL)

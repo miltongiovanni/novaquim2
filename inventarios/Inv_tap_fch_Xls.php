@@ -73,7 +73,7 @@ while($row= mysqli_fetch_array($result, MYSQLI_BOTH))
 	else
 		$salida1=$rows1['salida1'];
 	//SALIDA POR ENVASADO DE PRODUCTOS DE DISTRIBUCION
-	$sqls2="select sum(Cantidad) as salida2 from det_env_dist, rel_dist_mp where Fch_env_dist>'$Fch' and det_env_dist.Cod_dist=rel_dist_mp.Cod_dist and Cod_envase=$prod;";	
+	$sqls2="select sum(Cantidad) as salida2 from envasado_dist, rel_dist_mp where fechaEnvDist>'$Fch' and envasado_dist.codDist=rel_dist_mp.codDist and codEnvase=$prod;";
 	$results2=mysqli_query($link,$sqls2);
 	$rows2=mysqli_fetch_array($results2, MYSQLI_BOTH);
 	if($rows2['salida2']==NULL)

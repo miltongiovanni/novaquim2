@@ -20,18 +20,18 @@ include "../includes/valAcc.php";
 </head>
 <body>
 <div id="contenedor">
-<div id="saludo"><strong>ENVASADO DE PRODUCTOS DE DISTRIBUCIÓN</strong></div>
+<div id="saludo"><strong>ENVASADO DE PRODUCTOS DE DISTRIBUCIÃ“N</strong></div>
 <form id="form1" name="form1" method="post" action="det_env_dist.php">
 <table border="0" align="center">	
     <tr>
-    	<td width="197"><div align="right"><strong>Producto de Distribución</strong></div></td>
+    	<td width="197"><div align="right"><strong>Producto de DistribuciÃ³n</strong></div></td>
       <td width="221">
       	<div align="center">  
 			<?php
 				include "includes/conect.php";
 				$link=conectarServidor();
 				echo'<select name="IdDist">';
-				$result=mysqli_query($link,"select Cod_dist, Producto from rel_dist_mp, distribucion where Cod_dist=Id_distribucion;");
+				$result=mysqli_query($link,"select codDist, Producto from rel_dist_mp, distribucion where codDist=Id_distribucion;");
 				echo '<option value="" selected>--------------------------------------------------------------</option>';
 				while($row=mysqli_fetch_array($result))
 				{

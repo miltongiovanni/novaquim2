@@ -1,116 +1,112 @@
 <?php
 include "../includes/valAcc.php";
-include "includes/conect.php";
+function cargarClases($classname)
+{
+    require '../clases/' . $classname . '.php';
+}
+
+spl_autoload_register('cargarClases');
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-	<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<title>Creaci髇 de Relaci髇 de Materia Prima con Producto de Distribuci髇</title>
-	<meta charset="utf-8">
-	<script  src="../js/validar.js"></script>
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <title>Creaci贸n de Relaci贸n de Materia Prima con Producto de Distribuci贸n</title>
+    <meta charset="utf-8">
+    <script src="../js/validar.js"></script>
 
 </head>
 <body>
 <div id="contenedor">
-<div id="saludo"><strong>RELACI覰 MATERIA PRIMA CON PRODUCTO DE DISTRIBUCI覰</strong></div>
-<form name="form2" method="POST" action="make_env_dist.php">
-<table border="0" align="center" cellspacing="2" cellpadding="0">
-    <tr> 
-        <td width="152"><div align="right"><strong>Materia Prima</strong></div></td>
-        <td width="459"><select name="Cod_MP">
-          <?php
-                    $link=conectarServidor();
-					$result=mysqli_query($link,"select * from env_dist");
-					echo '<option selected value="">---------------------------------------</option>';
-					while($row=mysqli_fetch_array($result)){
-						echo '<option value='.$row['Id_env_dist'].'>'.$row['Producto'].'</option>';
-					}
-					echo'</select>';
-					mysqli_close($link);
-                ?>
-        </select></td>          
-    </tr>
-    <tr> 
-        <td><div align="right"><strong>Medida</strong></div></td>
-        <td>
-            <select name="IdMedida">
+    <div id="saludo"><strong>RELACI脫N MATERIA PRIMA CON PRODUCTO DE DISTRIBUCI脫N</strong></div>
+    <form name="form2" method="POST" action="make_env_dist.php">
+
+        <div class="form-group row">
+            <label class="col-form-label col-2" for="codMPrimaDist"><strong>Materia Prima</strong></label>
+            <select name="codMPrimaDist" id="codMPrimaDist" class="form-control col-2" style="margin: 0 5px 0 0;">
+                <option disabled selected value="">-----------------------------</option>
                 <?php
-                    $link=conectarServidor();
-                    $qry="select * from medida";	
-                    $result=mysqli_query($link,$qry);
-                    echo '<option value="" selected></option>';
-                    while($row=mysqli_fetch_array($result))
-                    {
-                          echo '<option value="'.$row['Id_medida'].'">'.$row['des_medida'].'</option>';
-                    }
-					mysqli_close($link);
+                $envasadoDistOperador = new EnvasadoDistOperaciones();
+                $mprimas = $envasadoDistOperador->getMPrimasDist();
+                for ($i = 0; $i < count($mprimas); $i++) {
+                    echo '<option value="' . $mprimas[$i]["codMPrimaDist"] . '">' . $mprimas[$i]['producto'] . '</option>';
+                }
+                echo '</select>';
                 ?>
-          </select>       </td>          
-    </tr>
-    <tr> 
-        <td><div align="right"><strong>Envase</strong></div></td>
-        <td>
-            <select name="IdEnvase">
+        </div>
+        <div class="form-group row">
+            <label class="col-form-label col-2" for="codMedida"><strong>Medida</strong></label>
+            <?php
+            $MedidasOperador = new MedidasOperaciones();
+            $medidas = $MedidasOperador->getMedidas();
+            $filas = count($medidas);
+            echo '<select name="codMedida" id="codMedida" class="form-control col-2">';
+            echo '<option selected disabled value="">-----------------------------</option>';
+            for ($i = 0; $i < $filas; $i++) {
+                echo '<option value="' . $medidas[$i]["idMedida"] . '">' . $medidas[$i]['desMedida'] . '</option>';
+            }
+            echo '</select>';
+            ?>
+        </div>
+        <div class="form-group row">
+            <label class="col-form-label col-2" for="codEnvase"><strong>Envase</strong></label>
+            <?php
+            $EnvasesOperador = new EnvasesOperaciones();
+            $envases = $EnvasesOperador->getEnvases();
+            $filas = count($envases);
+            echo '<select name="codEnvase" id="codEnvase" class="form-control col-2">';
+            echo '<option selected value="">-----------------------------</option>';
+            for ($i = 0; $i < $filas; $i++) {
+                echo '<option value="' . $envases[$i]["codEnvase"] . '">' . $envases[$i]['nomEnvase'] . '</option>';
+            }
+            echo '</select>';
+            ?>
+        </div>
+        <div class="form-group row">
+            <label class="col-form-label col-2" for="codTapa"><strong>Tapa</strong></label>
+            <?php
+            $TapasOperador = new TapasOperaciones();
+            $tapas = $TapasOperador->getTapas();
+            $filas = count($tapas);
+            echo '<select name="codTapa" id="codTapa" class="form-control col-2">';
+            echo '<option selected value="">-----------------------------</option>';
+            for ($i = 0; $i < $filas; $i++) {
+                echo '<option value="' . $tapas[$i]["codTapa"] . '">' . $tapas[$i]['tapa'] . '</option>';
+            }
+            echo '</select>';
+
+            ?>
+
+        </div>
+        <div class="form-group row">
+            <label class="col-form-label col-2" for="codDist"><strong>Producto de Distribuci贸n</strong></label>
+            <select name="codDist" id="codDist" class="form-control col-2">
+                <option selected value="">-----------------------------</option>
                 <?php
-                    $link=conectarServidor();
-                    $qry="select * from envase";	
-                    $result=mysqli_query($link,$qry);
-                    echo '<option value="" selected></option>';
-                    while($row=mysqli_fetch_array($result))
-                    {
-                          echo '<option value="'.$row['Cod_envase'].'">'.$row['Nom_envase'].'</option>';
-                    }
-					mysqli_close($link);
+                $EnvasadoDistOperador = new EnvasadoDistOperaciones();
+                $productos = $EnvasadoDistOperador->getProdDistxRelMP();
+                $filas = count($productos);
+                for ($i = 0; $i < $filas; $i++) {
+                    echo '<option value="' . $productos[$i]["idDistribucion"] . '">' . $productos[$i]['producto'] . '</option>';
+                }
                 ?>
-          </select>    	</td>          
-    </tr>
-    <tr> 
-        <td><div align="right"><strong>Tapa</strong></div></td>
-        <td>
-            <select name="IdTapa">
-                <?php
-                    $link=conectarServidor();
-                    $qry="select * from tapas_val";	
-                    $result=mysqli_query($link,$qry);
-                    echo '<option value="" selected></option>';
-                    while($row=mysqli_fetch_array($result))
-                    {
-                          echo '<option value="'.$row['Cod_tapa'].'">'.$row['Nom_tapa'].'</option>';
-                    }
-					mysqli_close($link);
-                ?>
-          	</select>    	</td>          
-    </tr>
-    <tr> 
-        <td><div align="right"><strong>C骴igo Distribuci髇</strong></div></td>
-        <td>
-            <select name="Cod_dist">
-                <?php
-                    $link=conectarServidor();
-                    $qry="select * from distribucion order by Producto";	
-                    $result=mysqli_query($link,$qry);
-                    echo '<option value="" selected></option>';
-                    while($row=mysqli_fetch_array($result))
-                    {
-                          echo '<option value="'.$row['Id_distribucion'].'">'.$row['Producto'].'</option>';
-                    }
-					mysqli_close($link);
-                ?>
-          </select>    	</td>          
-    </tr>
-    <tr><td></td> 
-        <td>
-            <div align="center"><input type="button" value="Guardar" onClick="return Enviar(this.form);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="reset" value="  Reiniciar  "></div>        </td>
-    </tr>
-    <tr>
-        <td colspan="2"><div align="center">&nbsp;</div></td>
-    </tr>
-    <tr> 
-        <td colspan="2"><div align="center"><input type="button" class="resaltado" onClick="history.back()" value="  VOLVER  "></div></td>
-    </tr>
-</table>  
-</form>      
+            </select>
+        </div>
+        <div class="form-group row">
+            <div class="col-1 text-center">
+                <button class="button" onclick="return Enviar(this.form)"><span>Continuar</span></button>
+            </div>
+            <div class="col-1 text-center">
+                <button class="button" type="reset"><span>Reiniciar</span></button>
+            </div>
+        </div>
+    </form>
+    <div class="row">
+        <div class="col-1">
+            <button class="button1" onClick="history.back()"><span>VOLVER</span></button>
+        </div>
+    </div>
+
 </div>
 </body>
 </html>

@@ -76,6 +76,18 @@ class InvProdTerminadosOperaciones
         return $result;
     }
 
+    public function getMaxLoteInvProdTerminado($codPresentacion)
+    {
+        $qry = "SELECT loteProd, invProd
+                FROM inv_prod
+                WHERE codPresentacion = $codPresentacion 
+                AND loteProd= (SELECT MAX(loteProd) FROM inv_prod WHERE codPresentacion=$codPresentacion);";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     public function getTableInvProdTerminado($idCompra, $tipoCompra)
     {
         switch (intval($tipoCompra)) {

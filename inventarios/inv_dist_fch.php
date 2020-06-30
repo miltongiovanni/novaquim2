@@ -78,7 +78,7 @@ while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
   else
 	  $entrada3=$rowe3['entrada3'];
   //ENTRADA POR ENVASADO
-  $sqle4="select sum(Cantidad) as entrada4 from env_dist, rel_dist_mp, det_env_dist where env_dist.Id_env_dist=Cod_MP and rel_dist_mp.Cod_dist=det_env_dist.Cod_dist and Fch_env_dist>='$Fch' and det_env_dist.Cod_dist=$prod;";
+  $sqle4="select sum(Cantidad) as entrada4 from mPrimaDist, rel_dist_mp, envasado_dist where mPrimaDist.codMPrimaDist=codMPrimaDist and rel_dist_mp.codDist=envasado_dist.codDist and fechaEnvDist>='$Fch' and envasado_dist.codDist=$prod;";
   $resulte4=mysqli_query($link,$sqle4);
   $rowe4=mysqli_fetch_array($resulte4, MYSQLI_BOTH);
   if($rowe4['entrada4']==NULL)

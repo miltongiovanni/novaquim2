@@ -49,6 +49,7 @@
     <file url="file://$PROJECT_DIR$/produccion/ajax/listaDetOProdColor.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/produccion/ajax/listaDetOProdMPrima.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/produccion/ajax/listaEnvasado.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/produccion/ajax/listaEnvasadoDist.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/produccion/ajax/listaKits.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/produccion/ajax/listaOProd.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/produccion/ajax/listaOProdA.php" charset="UTF-8" />
@@ -66,7 +67,10 @@
     <file url="file://$PROJECT_DIR$/produccion/crear_kits.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/produccion/crear_kits2.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/produccion/det_kits.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/produccion/env_dist.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/produccion/listarCambios.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/produccion/make_env_dist.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/produccion/rel_env_dist.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/produccion/updateDetOProdColor.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/produccion/updateDetOProdColorForm.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/produccion/updateDetOProdMPrima.php" charset="UTF-8" />

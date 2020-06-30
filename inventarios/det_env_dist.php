@@ -15,7 +15,7 @@ include "../includes/valAcc.php";
 mysqli_autocommit($link, FALSE);
 	//ESTA PARTE ES PARA EL CONSECUTIVO DE LA TABLA
 	$Id=1;
-	$qrylot="select max(Id_env_dist) as Id from det_env_dist";
+	$qrylot= "select max(idEnvDist) as Id from envasado_dist";
 	$resultlot=mysqli_query($link,$qrylot);
 	$rowlot=mysqli_fetch_array($resultlot);
 	if ($rowlot)
@@ -23,7 +23,7 @@ mysqli_autocommit($link, FALSE);
 	else 
 		$Orden=$Id;
 	//SE INSERTA LA CANTIDAD DE PRODUCTO DE DISTRIBUCION ENVASADO
-	$qryins="insert into det_env_dist (Id_env_dist, Fch_env_dist, Cod_dist, Cantidad) values ($Orden, '$Fecha', $IdDist, $Cantidad)";
+	$qryins= "insert into envasado_dist (idEnvDist, fechaEnvDist, codDist, Cantidad) values ($Orden, '$Fecha', $IdDist, $Cantidad)";
 	$resultins=mysqli_query($link,$qryins);
 	//SE CARGA EN EL INVENTARIO
 	$qry_dist="select codDistribucion, invDistribucion from inv_distribucion where codDistribucion=$IdDist;";
@@ -41,7 +41,7 @@ mysqli_autocommit($link, FALSE);
 		$resultins_prod=mysqli_query($link,$qryins_dist);
 	}
 	//SE DESCUENTA EL ENVASE
-	$qry_env="select * from inv_envase where codEnvase = (select codEnvase from rel_dist_mp where Cod_dist=$IdDist)";
+	$qry_env="select * from inv_envase where codEnvase = (select codEnvase from rel_dist_mp where codDist=$IdDist)";
 	$result_env=mysqli_query($link,$qry_env);
 	$row_env=mysqli_fetch_array($result_env);
 	$inv_env=$row_env['inv_envase'];
@@ -62,7 +62,7 @@ mysqli_autocommit($link, FALSE);
 		</script>';
 	}
 	//SE DESCUENTA LA TAPA
-	$qry_val="select * from inv_tapas_val where codTapa = (select codTapa from rel_dist_mp where Cod_dist=$IdDist)";
+	$qry_val="select * from inv_tapas_val where codTapa = (select codTapa from rel_dist_mp where codDist=$IdDist)";
 	$result_val=mysqli_query($link,$qry_val);
 	$row_val=mysqli_fetch_array($result_val);
 	$inv_val=$row_val['inv_tapa'];
@@ -83,8 +83,8 @@ mysqli_autocommit($link, FALSE);
 		</script>';
 	}
 	//SE DESCUENTA EL INVENTARIO DE MATERIA PRIMA
-	$qry_mp="select Cod_dist, cant_medida, Cod_envase, Cod_tapa, Densidad, Codigo_mp 
-	from rel_dist_mp, env_dist, medida where Cod_MP=Id_env_dist and Cod_dist=$IdDist AND Cod_umedid=Id_medida;";
+	$qry_mp= "select codDist, cant_medida, codEnvase, codTapa, Densidad, codMPrima 
+	from rel_dist_mp, mPrimaDist, medida where codMPrimaDist=codMPrimaDist and codDist=$IdDist AND codMedida=Id_medida;";
 	$result_mp=mysqli_query($link,$qry_mp);
 	$row_mp=mysqli_fetch_array($result_mp);
 	$uso=$row_mp['cant_medida']*$Cantidad*$row_mp['Densidad']/1000;
