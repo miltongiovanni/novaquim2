@@ -71,6 +71,18 @@ class RelDisMPrimaOperaciones
         return $result;
     }
 
+    public function getRelEnvDisXDis($idDistribucion)
+    {
+        $qry = "SELECT rdmp.codMPrimaDist, codDist, codMedida, codEnvase, codTapa, codMPrima, densidad
+                FROM rel_dist_mp rdmp
+                LEFT JOIN mprimadist m on rdmp.codMPrimaDist = m.codMPrimaDist
+                WHERE codDist=?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($idDistribucion));
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     public function updateRelEnvDis($datos)
     {
         $qry = "UPDATE rel_dist_mp SET idDis=?, idEnv=?, idTapa=? WHERE idEnvDis=?";

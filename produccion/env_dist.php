@@ -1,5 +1,11 @@
 <?php
 include "../includes/valAcc.php";
+function cargarClases($classname)
+{
+    require '../clases/' . $classname . '.php';
+}
+
+spl_autoload_register('cargarClases');
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -7,66 +13,50 @@ include "../includes/valAcc.php";
 <head>
     <meta charset="utf-8">
     <title>Seleccionar Producto a Envasar</title>
-    <script  src="../js/validar.js"></script>
-    <script  src="scripts/block.js"></script>	
-    <link rel="stylesheet" type="text/css" media="all" href="css/calendar-blue2.css" title="blue">
-    <script  src="scripts/calendar.js"></script>
-    <script  src="scripts/calendar-sp.js"></script>
-    <script  src="scripts/calendario.js"></script>
-    	<script >
-	document.onkeypress = stopRKey; 
-	</script>
+    <script src="../js/validar.js"></script>
 
 </head>
 <body>
 <div id="contenedor">
-<div id="saludo"><strong>ENVASADO DE PRODUCTOS DE DISTRIBUCIÓN</strong></div>
-<form id="form1" name="form1" method="post" action="det_env_dist.php">
-<table border="0" align="center">	
-    <tr>
-    	<td width="197"><div align="right"><strong>Producto de Distribución</strong></div></td>
-      <td width="221">
-      	<div align="center">  
-			<?php
-				include "includes/conect.php";
-				$link=conectarServidor();
-				echo'<select name="IdDist">';
-				$result=mysqli_query($link,"select codDist, Producto from rel_dist_mp, distribucion where codDist=Id_distribucion;");
-				echo '<option value="" selected>--------------------------------------------------------------</option>';
-				while($row=mysqli_fetch_array($result))
-				{
-					echo '<option value='.$row['Cod_dist'].'>'.$row['Producto'].'</option>';
-				}
-				echo'</select>';
-				mysqli_close($link);
-			?>
-      	</div>      </td>
-  	</tr>
-    <tr> 
-<td><div align="right"><strong>Cantidad</strong></div></td>
-<td><input type="text" name="Cantidad" size=15 onKeyPress="return aceptaNum(event)"></td>
-    </tr>
-    <tr>
-      <td><div align="right"><strong>Fecha </strong></div></td>
-      <td colspan="2"><input type="text" name="Fecha" id="sel1" readonly size=20><input type="reset" value=" ... "
-		onclick="return showCalendar('sel1', '%Y-%m-%d', '12', true);"></td>
-    </tr>
-    <tr>
-        <td colspan="2"><div align="center">&nbsp;</div></td>
-    </tr>
-    <tr> 
-        <td align="right"></td>
-      <td align="left"><input type="reset" value="Restablecer" >&nbsp;&nbsp;<input type="button" value="     Enviar     " onclick="return Enviar(this.form);"></td>
-    </tr>
-    <tr>
-        <td colspan="2"><div align="center">&nbsp;</div></td>
-    </tr>
-    <tr> 
-        <td colspan="2">
-        <div align="center"><input type="button" class="resaltado" onClick="history.back()" value="  VOLVER  "></div>        </td>
-    </tr>
-</table>
-</form> 
+    <div id="saludo"><strong>ENVASADO DE PRODUCTOS DE DISTRIBUCIÓN</strong></div>
+    <form id="form1" name="form1" method="post" action="det_env_dist.php">
+        <div class="form-group row">
+            <label class="col-form-label col-2" for="codDist"><strong>Producto de Distribución</strong></label>
+            <select name="codDist" id="codDist" class="form-control col-2">
+                <option selected value="">-----------------------------</option>
+                <?php
+                $RelDisMPrimaOperador = new RelDisMPrimaOperaciones();
+                $productos = $RelDisMPrimaOperador->getRelsDisMPrima();
+                $filas = count($productos);
+                for ($i = 0; $i < $filas; $i++) {
+                    echo '<option value="' . $productos[$i]["codDist"] . '">' . $productos[$i]['producto'] . '</option>';
+                }
+                ?>
+            </select>
+        </div>
+        <div class="form-group row">
+            <label class="col-form-label col-2 text-right" for="fechaEnvDist"><strong>Fecha</strong></label>
+            <input type="date" class="form-control col-2" name="fechaEnvDist" id="fechaEnvDist">
+        </div>
+        <div class="form-group row">
+            <label class="col-form-label col-2 text-right" for="cantidad"><strong>Cantidad</strong></label>
+            <input type="text" class="form-control col-2" name="cantidad" id="cantidad"
+                   onKeyPress="return aceptaNum(event)">
+        </div>
+        <div class="form-group row">
+            <div class="col-1 text-center">
+                <button class="button" onclick="return Enviar(this.form)"><span>Continuar</span></button>
+            </div>
+            <div class="col-1 text-center">
+                <button class="button" type="reset"><span>Reiniciar</span></button>
+            </div>
+        </div>
+    </form>
+    <div class="row">
+        <div class="col-1">
+            <button class="button1" id="back" onClick="history.back()"><span>VOLVER</span></button>
+        </div>
+    </div>
 </div>
 </body>
 </html>
