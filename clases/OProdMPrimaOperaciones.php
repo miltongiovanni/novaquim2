@@ -51,6 +51,26 @@ class OProdMPrimaOperaciones
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result;
     }
+
+    public function getCantMPrimaAcXMes($fecha, $codMPrima)
+    {
+        $qry = "SELECT ROUND(SUM(cantMPrima), 1) cantidadProdMPrima
+                FROM ord_prod_mp opmp
+                         LEFT JOIN det_ord_prod_mp dopm on opmp.loteMP = dopm.loteMP
+                WHERE MONTH(fechProd) = MONTH('$fecha')
+                  AND YEAR(fechProd) = YEAR('$fecha')
+                  AND idMPrima = $codMPrima";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        if($result == null){
+            return 0;
+        } else{
+            return $result['cantidadProdMPrima'];
+        }
+
+    }
+
     public function isValidLote($loteMP)
     {
         $qry = "SELECT * FROM ord_prod_mp WHERE loteMP=?";

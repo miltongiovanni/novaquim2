@@ -77,6 +77,17 @@ class ProductosOperaciones
         return $result;
     }
 
+    public function getNameProducto($codProducto)
+    {
+        $qry = "SELECT nomProducto
+        FROM  productos
+        WHERE codProducto=?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($codProducto));
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result['nomProducto'];
+    }
+
     public function getUltimoProdxCat($idCatProd)
     {
         $qry = "SELECT MAX(codProducto) as Cod from productos where idCatProd=?";

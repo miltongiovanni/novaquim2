@@ -4,36 +4,44 @@ include "../includes/valAcc.php";
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<title>Lista de envasado por orden de producción</title>
-<meta charset="utf-8">
-<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <title>Lista de envasado por orden de producción</title>
+    <meta charset="utf-8">
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="../css/datatables.css">
     <style>
-        #example{
+        #example {
             table-layout: fixed;
         }
-        .width1{
+
+        .width1 {
             width: 2%;
         }
-        .width2{
+
+        .width2 {
             width: 4%;
         }
-        .width3{
+
+        .width3 {
             width: 25%;
         }
-        .width4{
+
+        .width4 {
             width: 24%;
         }
-        .width5{
+
+        .width5 {
             width: 12%;
         }
-        .width6{
+
+        .width6 {
             width: 16%;
         }
-        .width7{
+
+        .width7 {
             width: 9%;
         }
-        .width8{
+
+        .width8 {
             width: 8%;
         }
     </style>
@@ -155,7 +163,7 @@ include "../includes/valAcc.php";
 </head>
 <body>
 <div id="contenedor">
-<div id="saludo1"><strong>LISTADO DE ENVASADO POR ORDEN DE PRODUCCIÓN</strong></div>
+    <div id="saludo1"><strong>LISTADO DE ENVASADO POR ORDEN DE PRODUCCIÓN</strong></div>
     <div class="row flex-end">
         <div class="col-1">
             <button class="button" onclick="window.location='../menu.php'">

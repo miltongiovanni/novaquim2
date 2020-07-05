@@ -50,7 +50,9 @@
     <file url="file://$PROJECT_DIR$/produccion/ajax/listaDetOProdMPrima.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/produccion/ajax/listaEnvasado.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/produccion/ajax/listaEnvasadoDist.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/produccion/ajax/listaEnvasadoProd.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/produccion/ajax/listaKits.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/produccion/ajax/listaMPrimaAcumulada.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/produccion/ajax/listaOProd.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/produccion/ajax/listaOProdA.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/produccion/ajax/listaOProdColor.php" charset="UTF-8" />
@@ -59,6 +61,7 @@
     <file url="file://$PROJECT_DIR$/produccion/buscarForm.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/produccion/buscarOProdMPrima.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/produccion/buscarOprodColor.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/produccion/buscarProducto.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/produccion/cambio_pres.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/produccion/consultaOProd.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/produccion/consultaOProdColor.php" charset="UTF-8" />
@@ -71,6 +74,7 @@
     <file url="file://$PROJECT_DIR$/produccion/env_dist.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/produccion/listarCambios.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/produccion/make_env_dist.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/produccion/mpAcumulada.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/produccion/rel_env_dist.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/produccion/updateDetOProdColor.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/produccion/updateDetOProdColorForm.php" charset="UTF-8" />

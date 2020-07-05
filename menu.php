@@ -31,9 +31,9 @@ for ($i = 0; $i < count($perfiles); $i++) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/styles.css" type="text/css">
     <link href='images/favicon.ico' rel='shortcut icon' type='image/x-icon'>
-    <link href="css/formatoTabla.css" rel="stylesheet">
+    <link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
     <title>Menú Principal</title>
 </head>
 

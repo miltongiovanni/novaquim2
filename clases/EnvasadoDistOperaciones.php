@@ -58,6 +58,26 @@ class EnvasadoDistOperaciones
         return $result;
     }
 
+    public function getCantMPrimaAcXMes($fecha, $codMPrima)
+    {
+        $qry = "SELECT ROUND(SUM(cantidad*densidad*cantMedida/1000),1) cantEnvasadoMPrima
+                FROM envasado_dist
+                LEFT JOIN rel_dist_mp rdm on envasado_dist.codDist = rdm.codDist
+                LEFT JOIN mprimadist m on rdm.codMPrimaDist = m.codMPrimaDist
+                LEFT JOIN medida m2 on rdm.codMedida = m2.idMedida
+                WHERE MONTH(fechaEnvDist) = MONTH('$fecha')
+                  AND YEAR(fechaEnvDist) = YEAR('$fecha')
+                AND codMPrima=$codMPrima";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        if($result == null){
+            return 0;
+        } else{
+            return $result['cantEnvasadoMPrima'];
+        }
+    }
+
     public function getCantidadPorEnvasar($lote)
     {
         $qry = "SELECT ROUND(cantidadKg*2/(densMax+densMin) - IF(SUM(cantPresentacion*cantMedida/1000)>0,SUM(cantPresentacion*cantMedida/1000),0) ,0) uso

@@ -1,62 +1,53 @@
 <?php
 include "../includes/valAcc.php";
+function cargarClases($classname)
+{
+    require '../clases/' . $classname . '.php';
+}
+
+spl_autoload_register('cargarClases');
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <meta charset="utf-8">
-    <title>Seleccionar Producto a revisar Producción</title>
+    <title>Seleccionar Producto a revisar ProducciÃ³n</title>
     <script src="../js/validar.js"></script>
-    <script src="scripts/block.js"></script>
-    <script>
-        document.onkeypress = stopRKey;
-    </script>
-
 </head>
 <body>
 <div id="contenedor">
-    <div id="saludo"><strong>SELECCIONAR EL PRODUCTO A REVISAR PRODUCCIÓN</strong></div>
+    <div id="saludo"><strong>SELECCIONAR EL PRODUCTO A REVISAR PRODUCCIÃ“N</strong></div>
     <form id="form1" name="form1" method="post" action="listarEnvasadoProd.php">
-        <table border="0" align="center" width="700" summary="seleccionar producto a revisar produccion">
-            <tr>
-                <td colspan="2">
-                    <div align="center">&nbsp;</div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-
-                    <div align="center"><strong>Producto:</strong>
-                        <?php
-                        include "includes/conect.php";
-                        $link = conectarServidor();
-                        echo '<select name="producto">';
-                        $result = mysqli_query($link, "select Cod_produc, Nom_produc from productos order by Nom_produc;");
-                        echo '<option selected value="">-----------------------------------------------------------------------------------</option>';
-                        while ($row = mysqli_fetch_array($result)) {
-                            echo '<option value=' . $row['Cod_produc'] . '>' . $row['Nom_produc'] . '</option>';
-                        }
-                        echo '</select>';
-                        mysqli_close($link);
-                        ?>
-                        <input type="submit" name="Submit" value="Continuar" onClick="return Enviar2(this.form);">
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <div align="center">&nbsp;</div>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <div align="center"><input type="button" class="resaltado" onClick="history.back()"
-                                               value="  VOLVER  "></div>
-                </td>
-            </tr>
-        </table>
+        <div class="form-group row">
+            <label class="col-form-label col-1" for="codProducto"><strong>Producto</strong></label>
+            <?php
+            $ProductoOperador = new ProductosOperaciones();
+            $productos = $ProductoOperador->getProductos(true);
+            $filas = count($productos);
+            echo '<select name="codProducto" id="codProducto" class="form-control col-3">';
+            echo '<option selected disabled value="">-----------------------------</option>';
+            for ($i = 0; $i < $filas; $i++) {
+                echo '<option value="' . $productos[$i]["codProducto"] . '">' . $productos[$i]['nomProducto'] . '</option>';
+            }
+            echo '</select>';
+            ?>
+        </div>
+        <div class="form-group row">
+            <div class="col-1 text-center">
+                <button class="button" onclick="return Enviar(this.form)"><span>Continuar</span></button>
+            </div>
+            <div class="col-1 text-center">
+                <button class="button" type="reset"><span>Reiniciar</span></button>
+            </div>
+        </div>
     </form>
+    <div class="row">
+        <div class="col-1">
+            <button class="button1" onClick="history.back()"><span>VOLVER</span></button>
+        </div>
+    </div>
+
 </div>
 </body>
 </html>

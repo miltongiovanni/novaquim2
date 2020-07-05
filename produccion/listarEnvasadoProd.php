@@ -1,101 +1,195 @@
 <?php
 include "../includes/valAcc.php";
+function cargarClases($classname)
+{
+
+    require '../clases/' . $classname . '.php';
+}
+
+spl_autoload_register('cargarClases');
+$codProducto = $_POST['codProducto'];
+$ProductoOperador = new ProductosOperaciones();
+$producto = $ProductoOperador->getNameProducto($codProducto);
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<title>Lista de Envasado por Orden de Producción</title>
-<meta charset="utf-8">
-<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<script  src="../js/validar.js"></script>
-    <script >	function togglecomments (postid) {
-		var whichpost = document.getElementById(postid);
-		if (whichpost.className=="commentshown") { whichpost.className="commenthidden"; } else { whichpost.className="commentshown"; }
-	}</script>
+    <title>Lista de Envasado por Orden de Producción</title>
+    <meta charset="utf-8">
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../css/datatables.css">
+    <style>
+        #example {
+            table-layout: fixed;
+        }
+
+        .width1 {
+            width: 2%;
+        }
+
+        .width2 {
+            width: 4%;
+        }
+
+        .width3 {
+            width: 25%;
+        }
+
+        .width4 {
+            width: 24%;
+        }
+
+        .width5 {
+            width: 12%;
+        }
+
+        .width6 {
+            width: 16%;
+        }
+
+    </style>
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/datatables.js"></script>
+    <script src="../js/dataTables.buttons.js"></script>
+    <script src="../js/jszip.js"></script> <!--Para exportar Excel-->
+    <!--<script src="../js/pdfmake.js"></script>-->  <!--Para exportar PDF-->
+    <!--<script src="../js/vfs_fonts.js"></script>--> <!--Para exportar PDF-->
+    <script src="../js/buttons.html5.js"></script>
+
+    <script>
+
+
+        /* Formatting function for row details - modify as you need */
+        function format(d) {
+            // `d` is the original data object for the row
+            rep = '<table cellpadding="5" cellspacing="0" border="0"  class="display compact" style="padding-left:50px;width:70%;margin:inherit;">' +
+                '<thead>' +
+                '<tr>' +
+                '<th align="center">Código</th>';
+            rep += '<th align="center">Presentación</th>' +
+                '<th align="center">Cantidad</th>' +
+                '</tr>' +
+                '</thead>';
+            for (i = 0; i < d.envasado.length; i++) {
+                rep += '<tr>' +
+                    '<td align="center">' + d.envasado[i].codPresentacion + '</td>';
+                rep += '<td align="center">' + d.envasado[i].presentacion + '</td>' +
+                    '<td align="center">' + d.envasado[i].cantPresentacion + '</td>' +
+                    '</tr>'
+            }
+            rep += '</table>';
+
+            return rep;
+        }
+
+        $(document).ready(function () {
+            var table = $('#example').DataTable({
+                "columns": [
+                    {
+                        "className": 'details-control',
+                        "orderable": false,
+                        "data": null,
+                        "defaultContent": ''
+                    },
+                    {
+                        "data": "lote",
+                        "className": 'dt-body-center'
+                    },
+                    {
+                        "data": "fechProd",
+                        "className": 'dt-body-center'
+                    },
+                    {
+                        "data": "nomPersonal",
+                        "className": 'dt-body-center'
+                    },
+                    {
+                        "data": "cantidadKg",
+                        "className": 'dt-body-center'
+                    },
+                    {
+                        "data": "descEstado",
+                        "className": 'dt-body-center'
+                    },
+                ],
+                "order": [[1, 'desc']],
+                "dom": 'Blfrtip',
+                "paging": true,
+                "buttons": [
+                    'copyHtml5',
+                    'excelHtml5'
+                ],
+                "lengthMenu": [[20, 50, 100, -1], [20, 50, 100, "All"]],
+                "language": {
+                    "lengthMenu": "Mostrando _MENU_ datos por página",
+                    "zeroRecords": "Lo siento no encontró nada",
+                    "info": "Mostrando página _PAGE_ de _PAGES_",
+                    "infoEmpty": "No hay datos disponibles",
+                    "search": "Búsqueda:",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Último",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    },
+                    "infoFiltered": "(Filtrado de _MAX_ en total)"
+
+                },
+                "ajax": "ajax/listaEnvasadoProd.php?codProducto=<?=$codProducto?>",
+                "deferRender": true,  //For speed
+            });
+            // Add event listener for opening and closing details
+            $('#example tbody').on('click', 'td.details-control', function () {
+                var tr = $(this).closest('tr');
+                var row = table.row(tr);
+
+                if (row.child.isShown()) {
+                    // This row is already open - close it
+                    row.child.hide();
+                    tr.removeClass('shown');
+                } else {
+                    // Open this row
+                    row.child(format(row.data())).show();
+                    tr.addClass('shown');
+                }
+            });
+        });
+    </script>
 </head>
 <body>
 
 <div id="contenedor">
-<?php
-include "includes/conect.php" ;
-foreach ($_POST as $nombre_campo => $valor) 
-{ 
-	$asignacion = "\$".$nombre_campo."='".$valor."';"; 
-	//echo $nombre_campo." = ".$valor."<br>";  
-	eval($asignacion); 
-	$link=conectarServidor();  
-	$qrybus="select Cod_produc, Nom_produc from productos where Cod_produc=$producto";
-	$resultbus=mysqli_query($link,$qrybus);
-	$rowbus=mysqli_fetch_array($resultbus);
-} 
-?>
-<div id="saludo1"><strong>LISTADO DE ENVASADO DE<?php echo " ".strtoupper($rowbus['Nom_produc'])." ";  ?>
-POR ORDEN DE PRODUCCIÓN</strong></div>
-<table width="700" align="center" border="0" summary="title">
-  <tr> 
-      <td><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú">
-      </div></td>
-  </tr>
-</table>
-<table border="0" align="center" cellspacing="0" summary="Cuerpo">
-<tr>
-      <th width="23" align="center" class="formatoEncabezados"></th>
-      <th width="76" align="center" class="formatoEncabezados">Lote</th>
-      <th width="338" align="center" class="formatoEncabezados">Producto</th>
-    <th width="106" align="center" class="formatoEncabezados">Fecha Producción</th>
-      <th width="171" align="center" class="formatoEncabezados">Responsable</th>
-    <th width="92" align="center" class="formatoEncabezados">Cantidad</th>
-  </tr>   
-<?php
-//sentencia SQL    tblusuarios.IdUsuario,
-$sql="	SELECT ord_prod.Lote, fechProd as 'Fecha de Producción', Nom_produc as 'Nombre de Producto', 
-cantidadKg as 'Cantidad (Kg)', nom_personal as Responsable
-FROM ord_prod, productos, personal, envasado
-WHERE  codProducto=Cod_produc and codResponsable=Id_personal and ord_prod.Lote=envasado.Lote and Cod_produc=$producto
-Group by Lote order by Lote DESC;";
-$result=mysqli_query($link,$sql);
-$a=1;
-while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
-{
-	$lote=$row['Lote'];
-	echo'<tr';
-	  if (($a % 2)==0) echo ' bgcolor="#B4CBEF" ';
-	  echo '>
-	<td class="formatoDatos"><div align="center"><a href="javascript:togglecomments('."'".'UniqueName'.$a."'".')">+/-</a></div></td>
-	<td class="formatoDatos"><div align="center">'.$row['Lote'].'</div></td>
-	<td class="formatoDatos"><div align="left">'.$row['Nombre de Producto'].'</div></td>
-	<td class="formatoDatos"><div align="center">'.$row['Fecha de Producción'].'</div></td>
-	<td class="formatoDatos"><div align="center">'.$row['Responsable'].'</div></td>
-	<td class="formatoDatos"><div align="center"><script  > document.write(commaSplit('.$row['Cantidad (Kg)'].'))</script></div></td>
-	';
-	
-	echo'</tr>';
-	$sqli="SELECT codPresentacion as Codigo, Nombre as Producto, Can_prese as Cantidad FROM envasado, prodpre
-	WHERE codPresentacion=Cod_prese and Lote=$lote ;";
-	$resulti=mysqli_query($link,$sqli);
-	echo '<tr><td colspan="7"><div class="commenthidden" id="UniqueName'.$a.'"><table width="80%" border="0" align="center" cellspacing="0" summary="Cuerpo">
-	<tr>
-      <th width="6%" class="formatoEncabezados">Código</th>
-	  <th width="50%" class="formatoEncabezados">Producto</th>
-      <th width="5%" class="formatoEncabezados">Cantidad</th>
-  	</tr>';
-	while($rowi=mysqli_fetch_array($resulti, MYSQLI_BOTH))
-	{
-	echo '<tr>
-	<td class="formatoDatos"><div align="center">'.$rowi['Codigo'].'</div></td>
-	<td class="formatoDatos"><div align="left">'.$rowi['Producto'].'</div></td>
-	<td class="formatoDatos"><div align="center"><script  > document.write(commaSplit('.$rowi['Cantidad'].'))</script></div></td>
 
-	</tr>';
-	}
-	echo '</table></div></td></tr>';
-	$a=$a+1;
-}
-mysqli_close($link);//Cerrar la conexion
-?>
+    <div id="saludo1"><strong>LISTADO DE ENVASADO DE <?= strtoupper($producto); ?> POR ORDEN DE PRODUCCIÓN</strong>
+    </div>
+    <div class="row flex-end">
+        <div class="col-1">
+            <button class="button" onclick="window.location='../menu.php'">
+                <span><STRONG>Ir al Menú</STRONG></span></button>
+        </div>
+    </div>
+    <div class="tabla-50">
+        <table id="example" class="display compact formatoDatos">
+            <thead>
+            <tr>
+                <th class="width1"></th>
+                <th class="width2">Lote</th>
+                <th class="width3">Fecha Producción</th>
+                <th class="width4">Responsable</th>
+                <th class="width5">Cantidad (Kg)</th>
+                <th class="width6">Estado</th>
+            </tr>
+            </thead>
+        </table>
+    </div>
 
-</table>
-<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú"></div>
+    <div class="row">
+        <div class="col-1">
+            <button class="button" onclick="window.location='../menu.php'">
+                <span><STRONG>Ir al Menú</STRONG></span>
+            </button>
+        </div>
+    </div>
 </div>
 </body>
 </html>

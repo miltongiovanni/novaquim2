@@ -39,6 +39,20 @@ class OProdOperaciones
         return $result;
     }
 
+    public function getOrdenesProdXProd($codProducto)
+    {
+        $qry = "SELECT lote, fechProd, p2.nomPersonal, ROUND(cantidadKg, 0) cantidadKg, eop.descEstado
+                FROM ord_prod
+                         LEFT JOIN productos p on ord_prod.codProducto = p.codProducto
+                         LEFT JOIN personal p2 on ord_prod.codResponsable = p2.idPersonal
+                         LEFT JOIN estados_o_prod eop on ord_prod.estado = eop.idEstado
+                WHERE p.codProducto = ?;";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($codProducto));
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     public function getTableOProdAnuladas()
     {
         $qry = "SELECT lote, fechProd, p.nomProducto, f.nomFormula, ROUND(cantidadKg, 0) cantidadKg, p2.nomPersonal
@@ -104,16 +118,35 @@ class OProdOperaciones
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result;
     }
+
+    public function getCantMPrimaAcXMes($fecha, $codMPrima)
+    {
+        $qry = "SELECT ROUND(SUM(cantidadMPrima), 1) cantidadProduccion
+                FROM ord_prod op
+                         LEFT JOIN det_ord_prod dop on op.lote = dop.lote
+                WHERE MONTH(fechProd) = MONTH('$fecha')
+                  AND YEAR(fechProd) = YEAR('$fecha')
+                  AND codMPrima = $codMPrima";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        if($result == null){
+            return 0;
+        } else{
+            return $result['cantidadProduccion'];
+        }
+
+    }
+
     public function isValidLote($lote)
     {
         $qry = "SELECT * FROM ord_prod WHERE lote=?";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute(array($lote));
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        if($result==false){
+        if ($result == false) {
             return false;
-        }
-        else{
+        } else {
             return true;
         }
     }
