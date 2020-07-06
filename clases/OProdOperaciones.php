@@ -138,6 +138,24 @@ class OProdOperaciones
 
     }
 
+    public function getCantProductoAcXMes($fecha, $codProducto)
+    {
+        $qry = "SELECT ROUND(SUM(cantidadKg), 0) cantidadProduccion
+                FROM ord_prod op
+                WHERE MONTH(fechProd) = MONTH('$fecha')
+                  AND YEAR(fechProd) = YEAR('$fecha')
+                  AND codProducto = $codProducto";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        if($result['cantidadProduccion'] == null){
+            return 0;
+        } else{
+            return $result['cantidadProduccion'];
+        }
+
+    }
+
     public function isValidLote($lote)
     {
         $qry = "SELECT * FROM ord_prod WHERE lote=?";

@@ -16,7 +16,7 @@ foreach ($_POST as $nombre_campo => $valor) {
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <title>Consulta de uso de Materia Prima por mes</title>
+    <title>Consulta de órdenes de producción por mes</title>
     <meta charset="utf-8">
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="../css/datatables.css">
@@ -50,11 +50,11 @@ foreach ($_POST as $nombre_campo => $valor) {
             var table = $('#example').DataTable({
                 "columns": [
                     {
-                        "data": "codMPrima",
+                        "data": "codProducto",
                         "className": 'dt-body-center'
                     },
                     {
-                        "data": "nomMPrima",
+                        "data": "nomProducto",
                         "className": 'dt-body-center'
                     },
                     <?php
@@ -72,7 +72,7 @@ foreach ($_POST as $nombre_campo => $valor) {
                     endfor;
                     ?>
                 ],
-                /*"order": [[0, 'asc']],*/
+                "order": [[1, 'asc']],
                 "dom": 'Blfrtip',
                 "paging": true,
                 "buttons": [
@@ -95,7 +95,7 @@ foreach ($_POST as $nombre_campo => $valor) {
                     "infoFiltered": "(Filtrado de _MAX_ en total)"
 
                 },
-                "ajax": "ajax/listaMPrimaAcumulada.php?fechRef=<?=$fechRef?>",
+                "ajax": "ajax/listaProdAcumulada.php?fechRef=<?=$fechRef?>",
                 "deferRender": true,  //For speed
             });
         });
@@ -103,7 +103,8 @@ foreach ($_POST as $nombre_campo => $valor) {
 </head>
 <body>
 <div id="contenedor">
-    <div id="saludo1"><strong>CONSULTA DE KG ACUMULADOS DE MATERIA PRIMA POR 12 MESES HASTA <?= $fechRef ?></strong></div>
+    <div id="saludo1"><strong>CONSULTA DE KG ACUMULADOS POR ÓRDENES DE PRODUCCIÓN POR 12 MESES
+            HASTA <?= $fechRef ?></strong></div>
     <div class="row flex-end">
         <div class="col-1">
             <button class="button" onclick="window.location='../menu.php'">
@@ -115,7 +116,7 @@ foreach ($_POST as $nombre_campo => $valor) {
             <thead>
             <tr>
                 <th class="width1">Código</th>
-                <th class="width2">Materia Prima</th>
+                <th class="width2">Presentación de producto</th>
                 <?php
                 $date = date_create($fechRef);
                 $j = 3;
@@ -132,7 +133,6 @@ foreach ($_POST as $nombre_campo => $valor) {
             </thead>
         </table>
     </div>
-
     <div class="row">
         <div class="col-1">
             <button class="button" onclick="window.location='../menu.php'">
@@ -140,8 +140,6 @@ foreach ($_POST as $nombre_campo => $valor) {
             </button>
         </div>
     </div>
-
-
 </div>
 </body>
 </html>

@@ -10,7 +10,7 @@ foreach ($_POST as $nombre_campo => $valor)
 	eval($asignacion); 
 }  
 $link=conectarServidor();
-$qry="update cal_producto set den_prod=$den_prod, ph_prod=$pH, ol_prod=$ol_prod, col_prod=$col_prod, ap_prod=$ap_prod, Obs_prod='$obs_prod' where Lote=$Lote";
+$qry="update cal_producto set densidadProd=$den_prod, pHProd=$pH, olorProd=$ol_prod, colorProd=$col_prod, aparienciaProd=$ap_prod, observacionesProd='$obs_prod' where Lote=$Lote";
 echo $qry;
 $result=mysqli_query($link,$qry);
 mysqli_close($link);

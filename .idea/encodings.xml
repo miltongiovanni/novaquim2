@@ -58,6 +58,7 @@
     <file url="file://$PROJECT_DIR$/produccion/ajax/listaOProdColor.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/produccion/ajax/listaOProdMPrima.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/produccion/ajax/listaOProdSinEnvasar.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/produccion/ajax/listaProdAcumulada.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/produccion/buscarForm.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/produccion/buscarOProdMPrima.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/produccion/buscarOprodColor.php" charset="UTF-8" />
@@ -73,6 +74,7 @@
     <file url="file://$PROJECT_DIR$/produccion/det_kits.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/produccion/env_dist.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/produccion/listarCambios.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/produccion/listarProdAcumulada.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/produccion/make_env_dist.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/produccion/mpAcumulada.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/produccion/rel_env_dist.php" charset="UTF-8" />

@@ -33,7 +33,7 @@ include "../includes/valAcc.php";
 	}
 	$est=$roword['Estado'];
 	$link=conectarServidor();
-	$qrycal="select den_prod,ph_prod,ol_prod,col_prod,ap_prod,Obs_prod from cal_producto where Lote=$Lote;";
+	$qrycal="select densidadProd,pHProd,olorProd,colorProd,aparienciaProd,observacionesProd from cal_producto where Lote=$Lote;";
 	$resultcal=mysqli_query($link,$qrycal);
 	$rowcal=mysqli_fetch_array($resultcal);
 	mysqli_close($link);

@@ -10,7 +10,7 @@ foreach ($_POST as $nombre_campo => $valor)
 	eval($asignacion); 
 }  
 $link=conectarServidor();
-$qry="insert into cal_producto (Lote, den_prod, ph_prod, ol_prod,col_prod, ap_prod, Obs_prod) values ($Lote, $den_prod, $pH, $ol_prod, $col_prod, $ap_prod, '$obs_prod')";
+$qry="insert into cal_producto (Lote, densidadProd, pHProd, olorProd,colorProd, aparienciaProd, observacionesProd) values ($Lote, $den_prod, $pH, $ol_prod, $col_prod, $ap_prod, '$obs_prod')";
 echo $qry;
 $result=mysqli_query($link,$qry);
 mysqli_close($link);
