@@ -1,57 +1,35 @@
 <?php
 include "../includes/valAcc.php";
-include "includes/conect.php";
-?>
-<?php
+function cargarClases($classname)
+{
+	require '../clases/' . $classname . '.php';
+}
+
+spl_autoload_register('cargarClases');
 foreach ($_POST as $nombre_campo => $valor) 
 { 
 	$asignacion = "\$".$nombre_campo."='".$valor."';"; 
-	echo $nombre_campo." = ".$valor."<br>";  
+	//echo $nombre_campo." = ".$valor."<br>";
 	eval($asignacion); 
-}  
-$link=conectarServidor();
-$qry="update cal_producto set densidadProd=$den_prod, pHProd=$pH, olorProd=$ol_prod, colorProd=$col_prod, aparienciaProd=$ap_prod, observacionesProd='$obs_prod' where Lote=$Lote";
-echo $qry;
-$result=mysqli_query($link,$qry);
-mysqli_close($link);
-if($result)
-{  
-	$link=conectarServidor();
-	//$qryInv="update ord_prod set Estado='C' where Lote=$Lote";
-	//$resultInv=mysqli_query($link,$qryInv);
-	//$perfil1=$_SESSION['Perfil'];
-	$ruta="menu.php";
-	/******LOG DE CREACION *********/
-	//$IdUser=$_SESSION['IdUsuario'];
-	//$hh=strftime("%H:").strftime("%M:").strftime("%S");	              
-    //$Fecha=date("Y")."-".date("m")."-".date("d")." ".$hh;
-	//$qryAcces="insert into logusuarios(IdUsuario, Fecha, Motivo) values($IdUser,'$Fecha','CREACION DE CATEGORIA')";
-	//$ResutLog=mysql_db_query("users",$qryAcces);
-	/*********FIN DEL LOG CREACION*****/
-	echo'<form action="det_cal_produccion.php" method="post" name="formulario">';
-	echo '<input name="Lote" type="hidden" value="'.$Lote.'"/>
-	<input type="submit" name="Submit" value="Cambiar" />';
-	echo'</form>';
-	function mover_pag($mensaje)
-	{
-	echo'<script >
-	alert("'.$mensaje.'");
-	document.formulario.submit();
-	</script>';
-	}
-	mysqli_close($link);
-	mover_pag("Control de Calidad modificado correctamente");
 }
-else{
-        $ruta="buscar_lote1.php";
-		$mensaje="Error al ingresar el Control de Calidad";
-		echo'<script >
-   alert("'.$mensaje.'")
-   self.location="'.$ruta.'"
-   </script>';
 
-     }
+$datos = array( $densidadProd, $pHProd, $olorProd, $colorProd, $aparienciaProd, $observacionesProd, $lote);
+$calProdOperador = new CalProdOperaciones();
 
+try {
+	$calProdOperador->updateCalProd($datos);
+	$_SESSION['lote'] = $lote;
+	$ruta = "det_cal_produccion.php";
+	$mensaje = "Control de calidad modificado correctamente";
+
+} catch (Exception $e) {
+	$ruta = "buscar_lote1.php";
+	$mensaje = "Error al modificar el control de calidad";
+} finally {
+	unset($conexion);
+	unset($stmt);
+	mover_pag($ruta, $mensaje);
+}
 
 ?>
 

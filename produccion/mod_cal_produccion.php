@@ -1,5 +1,18 @@
 <?php
 include "../includes/valAcc.php";
+$lote = $_POST['lote'];
+function cargarClases($classname)
+{
+    require '../clases/' . $classname . '.php';
+}
+
+spl_autoload_register('cargarClases');
+$OProdOperador = new OProdOperaciones();
+$ProdOperador = new ProductosOperaciones();
+$ordenProd = $OProdOperador->getOProd($lote);
+$producto = $ProdOperador->getProducto($ordenProd['codProducto']);
+$calProdOperador = new CalProdOperaciones();
+$calProd = $calProdOperador->getCalProd($lote);
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -7,163 +20,126 @@ include "../includes/valAcc.php";
     <title>Detalle Orden de Producción</title>
     <meta charset="utf-8">
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-    <script  src="../js/validar.js"></script>
+    <script src="../js/validar.js"></script>
 
 </head>
-<body> 
+<body>
 <div id="contenedor">
-<div id="saludo1"><strong>CONTROL DE CALIDAD POR PRODUCCIÓN</strong></div>
-<table border="0" align="center" width="57%" >
-<?php
-	include "includes/conect.php";
-	$link=conectarServidor();
-	$Lote=$_POST['Lote'];
-	$qryord="select Lote, fechProd, cantidadKg, codResponsable, Nom_produc, nomFormula, nom_personal, Den_min, Den_max ,pH_min, pH_max, Fragancia, Color, Apariencia 
-			from ord_prod, formula, productos, personal
-			WHERE ord_prod.idFormula=formula.idFormula and formula.codProducto=productos.Cod_produc
-			and ord_prod.codResponsable=personal.Id_personal and Lote=$Lote;";
-	$resultord=mysqli_query($link,$qryord);
-	$roword=mysqli_fetch_array($resultord);
-	if ($roword)
-	{
-	  $qrycal="select densidadProd,pHProd,olorProd,colorProd,aparienciaProd,observacionesProd from cal_producto where Lote=$Lote;";
-	  $resultcal=mysqli_query($link,$qrycal);
-	  $rowcal=mysqli_fetch_array($resultcal);
-	  mysqli_close($link);
-	}
-	else
-	{
-		mover("buscarOProd.php","No existe la Orden de Producción");
-		mysqli_close($link);
-	}
-		
-		
-function mover($ruta,$mensaje)
-{
-	//Funcion que permite el redireccionamiento de los usuarios a otra pagina 
-	echo'<script >
-	alert("'.$mensaje.'")
-	self.location="'.$ruta.'"
-	</script>';
-}
-?>
-<tr>
-      <td width="11%">&nbsp;</td>
-  </tr>
-<tr>
-      <td width="11%"><div align="right"><strong>Lote</strong></div></td>
-    <td width="50%"><div align="left"><?php echo $Lote;?></div></td>
-    <td width="21%"><div align="right"><strong>Fecha de Producción</strong> </div></td>
-    <td width="18%"><?php echo $roword['Fch_prod'];?></td>
-  </tr>
-	<tr>
-      <td><div align="right"><strong>Producto</strong></div></td>
-      <td><?php echo  $roword['Nom_produc']?></td>
-      <td><div align="right"><strong>Cantidad (Kg)</strong></div></td>
-      <td><div align="left"><?php echo $roword['Cant_kg']; ?> </div></td
-    ></tr>
-    <tr>
-      <td><div align="right"><strong>Fórmula</strong></div></td>
-      <td><?php echo  $roword['Nom_form']?></td>
-      <td><div align="right"><strong>Responsable</strong></div></td>
-      <td><?php echo  $roword['nom_personal']?></td>
-    </tr>
-       
-</table>
+    <div id="saludo1"><strong>EDICIÓN DEL CONTROL DE CALIDAD POR PRODUCCIÓN</strong></div>
+    <div class="form-group row">
+        <div class="col-1 text-right"><strong>Lote</strong></div>
+        <div class="col-1 bg-blue"><?= $lote; ?></div>
+        <div class="col-3 text-right"><strong>Cantidad</strong></div>
+        <div class="col-1 bg-blue"><?= $ordenProd['cantidadKg'] ?> Kg</div>
+        <div class="col-1 text-right"><strong>Estado</strong></div>
+        <div class="col-1 bg-blue"><?= $ordenProd['descEstado'] ?></div>
+    </div>
+    <div class="form-group row">
+        <div class="col-1 text-right"><strong>Producto</strong></div>
+        <div class="col-3 bg-blue"><?= $ordenProd['nomProducto'] ?></div>
+        <div class="col-2 text-right"><strong>Fecha de producción</strong></strong></div>
+        <div class="col-2 bg-blue"><?= $ordenProd['fechProd'] ?></div>
+    </div>
+    <div class="form-group row">
+        <div class="col-1 text-right"><strong>Fórmula</strong></div>
+        <div class="col-3 bg-blue"><?= $ordenProd['nomFormula'] ?></div>
+        <div class="col-2 text-right"><strong>Responsable</strong></div>
+        <div class="col-2 bg-blue"><?= $ordenProd['nomPersonal'] ?></div>
+    </div>
+    <div class="form-group row titulo">Control de calidad :</div>
 
-<form name="form2" method="POST" action="updateCalProd.php"> 
-<!--<input type="submit" name='boton' value='Imprimir' onclick='window.print();'> -->
-<table width="40%" border="0" align="center">
- <tr>
-    <td width="17%"><div align="center"><strong>Propiedad</strong></div></td>
-    <td colspan="2"><div align="center"><strong>Especificación</strong></div></td>
-    <td width="27%"><div align="center"><strong>Valor / Cumple</strong></div></td>
-  </tr>
-   <tr>
-    <td width="17%"><div align="center"><strong>pH</strong></div></td>
-    <td width="28%"><div align="center">Max: <?php echo $roword['pH_max']; ?></div></td>
-    <td width="28%"><div align="center">Min: <?php echo $roword['pH_min']; ?></div></td>
-    <td width="27%"><div align="center"><input type="text" name="pH" size=8 onKeyPress="return aceptaNum(event)" value="<?php echo $rowcal['ph_prod']; ?>" ></div></td>
-  </tr>
-   <tr>
-    <td width="17%"><div align="center"><strong>Densidad</strong></div></td>
-    <td width="28%"><div align="center">Max: <?php echo $roword['Den_max']; ?></div></td>
-    <td width="28%"><div align="center">Min: <?php echo $roword['Den_min']; ?></div></td>
-    <td width="27%"><div align="center"><input type="text" name="den_prod" size=8 onKeyPress="return aceptaNum(event)" value="<?php echo $rowcal['den_prod']; ?>" ></div></td>
-  </tr>
-  <tr>
-    <td width="17%"><div align="center"><strong>Olor</strong></div></td>
-    <td colspan="2"><div align="center"><?php echo $roword['Fragancia']; ?></div></td>
-    <td width="27%"><div align="center">
-	<?php if($rowcal['ol_prod']==0)
-	{
-		echo '<select name="ol_prod"> 
-    <option value="0" selected>SI</option>
-    <option value="1">NO</option>
-    </select>';
-	}
-	else
-	{
-		echo '<select name="ol_prod"> 
-    <option value="1" selected>NO</option>
-    <option value="0">SI</option>
-    </select>';
-	}
-	 ?>
-    </div></td>
-  </tr>
-  <tr>
-    <td width="17%"><div align="center"><strong>Color</strong></div></td>
-    <td colspan="2"><div align="center"><?php echo $roword['Color']; ?></div></td>
-    <td width="27%"><div align="center"><?php if($rowcal['col_prod']==0)
-	{
-		echo '<select name="col_prod"> 
-    <option value="0" selected>SI</option>
-    <option value="1">NO</option>
-    </select>';
-	}
-	else
-	{
-		echo '<select name="col_prod"> 
-    <option value="1" selected>NO</option>
-    <option value="0">SI</option>
-    </select>';
-	}
-	 ?></div></td>
-  </tr>
-  <tr>
-    <td width="17%"><div align="center"><strong>Apariencia</strong></div></td>
-    <td colspan="2"><div align="center"><?php echo $roword['Apariencia']; ?></div></td>
-    <td width="27%"><div align="center"><?php if($rowcal['ap_prod']==0)
-	{
-		echo '<select name="ap_prod"> 
-    <option value="0" selected>SI</option>
-    <option value="1">NO</option>
-    </select>';
-	}
-	else
-	{
-		echo '<select name="ap_prod"> 
-    <option value="1" selected>NO</option>
-    <option value="0">SI</option>
-    </select>';
-	}
-	 ?></div></td>
-  </tr>
-    <tr>
-    <td width="17%"><div align="center"><strong>Observaciones</strong></div></td>
-    <td colspan="3"><div align="center"><input type="text" name="obs_prod" size=55 value="<?php echo $rowcal['Obs_prod']; ?>"></div></td>
-  </tr>
-<tr>
-
-
-<tr> 
-        <td align="center" colspan="2"><input type="hidden" name="Lote"  size=55 value="<?php echo $Lote;?>"><input type="reset" value="Restablecer"></td>
-        <td align="center" colspan="2"><input type="button" value="    Continuar    " onclick="return Enviar(this.form);"></td>
-</tr>
-</table>
-</form>
-
+    <form name="form2" method="POST" action="updateCalProd.php">
+        <input type="hidden" name="lote" size=55 value="<?= $lote ?>">
+        <div class="form-group row">
+            <div class="col-1 text-center"><strong>Propiedad</strong></div>
+            <div class="col-2 text-center"><strong>Especificación</strong></div>
+            <div class="col-1 text-center"><strong>Valor / Cumple</strong></div>
+        </div>
+        <div class="form-group row">
+            <div class="col-1 text-center col-form-label"><strong>pH</strong></div>
+            <div class="col-1 bg-blue text-center col-form-label">Min: <?= $producto['pHmin'] ?></div>
+            <div class="col-1 bg-blue text-center col-form-label">Max: <?= $producto['pHmax'] ?></div>
+            <input type="text" class="form-control col-1 mx-2" name="pHProd" onKeyPress="return aceptaNum(event)"
+                   value="<?= $calProd['pHProd'] ?>">
+        </div>
+        <div class="form-group row">
+            <div class="col-1 text-center col-form-label"><strong>Densidad</strong></div>
+            <div class="col-1 bg-blue text-center col-form-label">Min: <?= $producto['densMin'] ?></div>
+            <div class="col-1 bg-blue text-center col-form-label">Max: <?= $producto['densMax'] ?></div>
+            <input type="text" class="form-control col-1 mx-2" name="densidadProd"
+                   onKeyPress="return aceptaNum(event)" value="<?= $calProd['densidadProd'] ?>">
+        </div>
+        <div class="form-group row">
+            <div class="col-1 text-center col-form-label"><strong>Olor</strong></div>
+            <div class="col-2 bg-blue text-center col-form-label"><?= $producto['fragancia'] ?></div>
+            <select name="olorProd" id="olorProd" class="form-control col-1 mx-2">
+                <?php
+                if ($calProd['olorProd'] == 1):
+                    ?>
+                    <option value="1" selected>Si</option>
+                    <option value="0">No</option>
+                <?php
+                else:
+                    ?>
+                    <option value="1">Si</option>
+                    <option value="0" selected>No</option>
+                <?php
+                endif;
+                ?>
+            </select>
+        </div>
+        <div class="form-group row">
+            <div class="col-1 text-center col-form-label"><strong>Color</strong></div>
+            <div class="col-2 bg-blue text-center col-form-label"><?= $producto['color'] ?></div>
+            <select name="colorProd" id="colorProd" class="form-control col-1 mx-2">
+                <?php
+                if ($calProd['colorProd'] == 1):
+                    ?>
+                    <option value="1" selected>Si</option>
+                    <option value="0">No</option>
+                <?php
+                else:
+                    ?>
+                    <option value="1">Si</option>
+                    <option value="0" selected>No</option>
+                <?php
+                endif;
+                ?>
+            </select>
+        </div>
+        <div class="form-group row">
+            <div class="col-1 text-center col-form-label"><strong>Apariencia</strong></div>
+            <div class="col-2 bg-blue text-center col-form-label"><?= $producto['apariencia'] ?></div>
+            <select name="aparienciaProd" id="aparienciaProd" class="form-control col-1 mx-2">
+                <?php
+                if ($calProd['aparienciaProd'] == 1):
+                    ?>
+                    <option value="1" selected>Si</option>
+                    <option value="0">No</option>
+                <?php
+                else:
+                    ?>
+                    <option value="1">Si</option>
+                    <option value="0" selected>No</option>
+                <?php
+                endif;
+                ?>
+            </select>
+        </div>
+        <div class="form-group row">
+            <div class="col-1 text-center col-form-label"><strong>Observaciones</strong></div>
+            <textarea class="form-control col-3 mx-2"
+                      name="observacionesProd"><?= $calProd['observacionesProd'] ?></textarea>
+        </div>
+        <div class="form-group row">
+            <div class="col-1 text-center">
+                <button class="button" type="reset"><span>Reiniciar</span></button>
+            </div>
+            <div class="col-1 text-center">
+                <button class="button" onclick="return Enviar(this.form)"><span>Continuar</span></button>
+            </div>
+        </div>
+    </form>
 </div>
 </body>
 </html>

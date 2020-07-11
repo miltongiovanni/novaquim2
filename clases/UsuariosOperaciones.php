@@ -58,6 +58,18 @@ class UsuariosOperaciones
         return $result;
     }
 
+    public function getResponsableCalidad()
+    {
+        $qry = "SELECT CONCAT(nombre,' ',apellido) as nombre, descripcion
+                FROM usuarios
+                LEFT JOIN perfiles p on usuarios.idPerfil = p.idPerfil
+                WHERE estadoUsuario=2 AND p.idPerfil=9";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     public function getUserPassword($idUsuario, $password)
     {
         $qry = "SELECT * from usuarios WHERE usuario=? AND clave=?";

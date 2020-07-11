@@ -126,20 +126,20 @@ $ordenProd = $OProdOperador->getOProd($lote);
     <div class="form-group row">
         <div class="col-1 text-right"><strong>Lote</strong></div>
         <div class="col-1 bg-blue"><?= $lote; ?></div>
-        <div class="col-2 text-right"><strong>Cantidad</strong></div>
+        <div class="col-3 text-right"><strong>Cantidad</strong></div>
         <div class="col-1 bg-blue"><?= $ordenProd['cantidadKg'] ?> Kg</div>
         <div class="col-1 text-right"><strong>Estado</strong></div>
         <div class="col-1 bg-blue"><?= $ordenProd['descEstado'] ?></div>
     </div>
     <div class="form-group row">
         <div class="col-1 text-right"><strong>Producto</strong></div>
-        <div class="col-2 bg-blue"><?= $ordenProd['nomProducto'] ?></div>
+        <div class="col-3 bg-blue"><?= $ordenProd['nomProducto'] ?></div>
         <div class="col-2 text-right"><strong>Fecha de producción</strong></strong></div>
         <div class="col-2 bg-blue"><?= $ordenProd['fechProd'] ?></div>
     </div>
     <div class="form-group row">
         <div class="col-1 text-right"><strong>Fórmula</strong></div>
-        <div class="col-2 bg-blue"><?= $ordenProd['nomFormula'] ?></div>
+        <div class="col-3 bg-blue"><?= $ordenProd['nomFormula'] ?></div>
         <div class="col-2 text-right"><strong>Responsable</strong></div>
         <div class="col-2 bg-blue"><?= $ordenProd['nomPersonal'] ?></div>
     </div>

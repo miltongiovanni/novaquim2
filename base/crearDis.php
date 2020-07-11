@@ -108,8 +108,8 @@ spl_autoload_register('cargarClases');
                    onkeydown="return aceptaNum(event)">
             <label class="col-form-label col-1" for="cotiza"><strong>Cotizar</strong></label>
             <select name="cotiza" id="cotiza" class="form-control col-3">
-                <option value="1" selected>No</option>
-                <option value="0">Si</option>
+                <option value="1">Si</option>
+                <option value="0" selected>No</option>
             </select>
         </div>
         <div class="form-group row">

@@ -103,10 +103,34 @@ class OProdOperaciones
         return $result;
     }
 
+    public function getOProdXCalidad()
+    {
+        $qry = "SELECT lote
+                FROM ord_prod
+                WHERE estado=2 ORDER BY lote";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    public function getEtiquetasXLote($lote)
+    {
+        $qry = "SELECT DISTINCT nomEtiqueta
+                FROM ord_prod op
+                         LEFT JOIN prodpre p on op.codProducto = p.codProducto
+                         LEFT JOIN etiquetas e on p.codEtiq = e.codEtiqueta
+                WHERE lote = ?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($lote));
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     public function getOProd($lote)
     {
-        $qry = "SELECT lote, fechProd, ord_prod.codProducto, p.nomProducto, f.nomFormula, ROUND(cantidadKg, 0) cantidadKg, p2.nomPersonal, eop.descEstado,
-                densMin, densMax, pHmin, pHmax, fragancia, color, apariencia
+        $qry = "SELECT lote, fechProd, ord_prod.codProducto, p.nomProducto, f.nomFormula, ROUND(cantidadKg, 0) cantidadKg, vencimiento,
+                ord_prod.estado, p2.nomPersonal, eop.descEstado, densMin, densMax, pHmin, pHmax, fragancia, color, apariencia
                 FROM ord_prod
                 LEFT JOIN formula f on ord_prod.idFormula = f.idFormula
                 LEFT JOIN productos p on ord_prod.codProducto = p.codProducto

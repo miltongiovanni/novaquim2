@@ -98,6 +98,19 @@ class PresentacionesOperaciones
         return $result;
     }
 
+    public function getPresentacionesXProd($codProducto)
+    {
+        $qry = "SELECT codPresentacion, presentacion
+                FROM prodpre
+                         LEFT JOIN productos p on prodpre.codProducto = p.codProducto
+                WHERE presentacionActiva = 1
+                  AND p.codProducto =?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($codProducto));
+        $result = $stmt->fetchall(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     public function getNamePresentacion($codPresentacion)
     {
         $qry = "SELECT presentacion FROM prodpre
