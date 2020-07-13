@@ -65,6 +65,7 @@
     <file url="file://$PROJECT_DIR$/produccion/buscarOprodColor.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/produccion/buscarProducto.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/produccion/buscar_lote1.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/produccion/buscar_lote2.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/produccion/cambio_pres.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/produccion/consultaOProd.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/produccion/consultaOProdColor.php" charset="UTF-8" />
@@ -78,6 +79,7 @@
     <file url="file://$PROJECT_DIR$/produccion/listarCambios.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/produccion/listarProdAcumulada.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/produccion/makeCalProd.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/produccion/makeCalProdTerminado.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/produccion/make_env_dist.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/produccion/mpAcumulada.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/produccion/rel_env_dist.php" charset="UTF-8" />

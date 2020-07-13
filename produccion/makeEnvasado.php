@@ -16,13 +16,14 @@ foreach ($_POST as $nombre_campo => $valor) {
 }
 $link = Conectar::conexion();
 $OProdOperador = new OProdOperaciones();
+$ordenProd = $OProdOperador->getOProd($lote);
 $EnvasadoOperador = new EnvasadoOperaciones();
 try {
     $error = 0;
     //COMIENZA LA TRANSACCIÓN
     $link->beginTransaction();
     $volumenEnvasado = $EnvasadoOperador->getVolumenEnvasado($codPresentacion, $cantPresentacion);
-    if (($cantidadPendiente - $volumenEnvasado) < -3) {
+    if (($cantidadPendiente - $volumenEnvasado) < -($ordenProd['cantidadKg']*0.05/($ordenProd['densMin']+ $ordenProd['densMax']))) {
         $link->rollBack();
         $_SESSION['lote'] = $lote;
         $ruta = "det_Envasado.php";
@@ -30,14 +31,9 @@ try {
         mover_pag($ruta, $mensaje);
     } else {
         //SE INSERTA LA CANTIDAD DE PRODUCTO ENVASADO
+
         $datos = array($lote, $codPresentacion, $cantPresentacion);
         $qry = "INSERT INTO envasado (lote, codPresentacion, cantPresentacion)VALUES(?, ?, ?)";
-        $stmt = $link->prepare($qry);
-        $stmt->execute($datos);
-        //SE CARGA EN EL INVENTARIO
-        $InvProdTerminadoOperador = new InvProdTerminadosOperaciones();
-        $datos = array($codPresentacion, $lote, $cantPresentacion);
-        $qry = "INSERT INTO inv_prod VALUES(?, ?, ?)";
         $stmt = $link->prepare($qry);
         $stmt->execute($datos);
         $OperadorPresentacion = new PresentacionesOperaciones();
@@ -92,6 +88,8 @@ try {
             $mensaje = "No hay etiquetas suficientes, sólo hay '.$invEtiq.' unidades";
             mover_pag($ruta, $mensaje);
         }
+
+        ///Se deja el estado en 3 que es parcialmente envasado
         $datos= array(3, $lote);
         $qry = "UPDATE ord_prod SET estado=? WHERE lote=?";
         $stmt = $link->prepare($qry);

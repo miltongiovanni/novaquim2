@@ -36,6 +36,16 @@ class EnvasadoOperaciones
         return $result;
     }
 
+    public function getPresentacionesEnvasadas($lote)
+    {
+        $qry = "SELECT lote, codPresentacion, cantPresentacion FROM envasado
+                WHERE lote = ?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($lote));
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     public function getCantidadPorEnvasar($lote)
     {
         $qry = "SELECT ROUND(cantidadKg*2/(densMax+densMin) - IF(SUM(cantPresentacion*cantMedida/1000)>0,SUM(cantPresentacion*cantMedida/1000),0) ,0) uso
@@ -58,7 +68,7 @@ class EnvasadoOperaciones
                 FROM (SELECT p.codPresentacion, presentacion
                 FROM prodpre p
                     LEFT JOIN ord_prod op on p.codProducto = op.codProducto
-                WHERE op.lote=$lote) t
+                WHERE op.lote=$lote AND p.presentacionActiva=1) t
                 LEFT JOIN envasado e ON e.codPresentacion=t.codPresentacion AND e.lote=$lote
                 WHERE e.codPresentacion IS NULL";
         $stmt = $this->_pdo->prepare($qry);

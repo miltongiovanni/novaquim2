@@ -1,5 +1,11 @@
 <?php
 include "../includes/valAcc.php";
+function cargarClases($classname)
+{
+    require '../clases/' . $classname . '.php';
+}
+
+spl_autoload_register('cargarClases');
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -11,12 +17,21 @@ include "../includes/valAcc.php";
 </head>
 <body>
 <div id="contenedor">
-    <div id="saludo"><strong>CONSULTA DE CALIDAD PRODUCCIÓN</strong></div>
-    <form id="form1" name="form1" method="post" action="consultaCalidad.php">
+    <div id="saludo"><strong>CONTROL DE CALIDAD PRODUCTO TERMINADO</strong></div>
+    <form id="form1" name="form1" method="post" action="consultaCalidad2.php">
         <div class="form-group row">
             <label class="col-form-label col-2 text-right" for="lote"><strong>Orden de producción</strong></label>
-            <input type="text" class="form-control col-1" name="lote" id="lote"
-                   onKeyPress="return aceptaNum(event)">
+            <select name="lote" id="lote" class="form-control col-1">
+                <option selected disabled value="">------------</option>
+                <?php
+                $manager = new OProdOperaciones();
+                $ordenes = $manager->getOProdXCalProdTerminado();
+                for ($i = 0; $i < count($ordenes); $i++) : ?>
+                    <option value="<?= $ordenes[$i]["lote"] ?>"><?= $ordenes[$i]["lote"] ?></option>
+                <?php
+                endfor;
+                ?>
+            </select>
         </div>
         <div class="form-group row">
             <div class="col-1 text-center">

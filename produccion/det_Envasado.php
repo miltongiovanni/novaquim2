@@ -59,7 +59,7 @@ $cantidadPendiente = $EnvasadoOperador->getCantidadPorEnvasar($lote);
     <script src="../js/datatables.js"></script>
     <script src="../js/jszip.js"></script>
     <script src="../js/pdfmake.js"></script>
-    <script src="../js/vfs_fonts.js"></script>en
+    <script src="../js/vfs_fonts.js"></script>
     <script>
         function terminarEnvasado(lote) {
             //alert(idCatProd);

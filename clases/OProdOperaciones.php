@@ -114,6 +114,17 @@ class OProdOperaciones
         return $result;
     }
 
+    public function getOProdXCalProdTerminado()
+    {
+        $qry = "SELECT lote
+                FROM ord_prod
+                WHERE estado=4 ORDER BY lote";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     public function getEtiquetasXLote($lote)
     {
         $qry = "SELECT DISTINCT nomEtiqueta
