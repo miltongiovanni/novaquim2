@@ -144,12 +144,6 @@ include "../includes/valAcc.php";
 <div id="contenedor">
     <div id="saludo1"><strong>HISTÓRICO DE COMPROBANTES DE EGRESO</strong></div>
     <div class="row flex-end">
-        <div class="col-2">
-            <form action="fech_histo_pagos_Xls.php" method="post" target="_blank">
-                <button class="button" type="submit">
-                    <span><STRONG>Exportar a Excel</STRONG></span></button>
-            </form>
-        </div>
         <div class="col-1">
             <button class="button" onclick="window.location='../menu.php'">
                 <span><STRONG>Ir al Menú</STRONG></span></button>

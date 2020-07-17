@@ -4,54 +4,135 @@ include "../includes/valAcc.php";
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<title>Inventario de Envase</title>
-<meta charset="utf-8">
-<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<script  src="../js/validar.js"></script>
+    <title>Inventario de Envase</title>
+    <meta charset="utf-8">
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../css/datatables.css">
+    <style>
+        table {
+            table-layout: fixed;
+        }
+
+        .width1 {
+            width: 20%;
+        }
+
+        .width2 {
+            width: 60%;
+        }
+
+        .width3 {
+            width: 20%;
+        }
+
+    </style>
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/datatables.js"></script>
+    <script src="../js/dataTables.buttons.js"></script>
+    <script src="../js/jszip.js"></script> <!--Para exportar Excel-->
+    <!--<script src="../js/pdfmake.js"></script>-->  <!--Para exportar PDF-->
+    <!--<script src="../js/vfs_fonts.js"></script>--> <!--Para exportar PDF-->
+    <script src="../js/buttons.html5.js"></script>
+
+    <script>
+
+
+        jQuery.extend(jQuery.fn.dataTableExt.oSort, {
+            "chinese-string-asc": function (s1, s2) {
+                if (s1 != null && s1 != undefined && s2 != null && s2 != undefined) {
+                    return s1.localeCompare(s2);
+                } else if (s2 == null || s2 == undefined) {
+                    return s1;
+                } else if (s1 == null || s1 == undefined) {
+                    return s2;
+                }
+            },
+
+            "chinese-string-desc": function (s1, s2) {
+                if (s1 != null && s1 != undefined && s2 != null && s2 != undefined) {
+                    return s2.localeCompare(s1);
+                } else if (s2 == null || s2 == undefined) {
+                    return s1;
+                } else if (s1 == null || s1 == undefined) {
+                    return s2;
+                }
+            }
+        });
+        $(document).ready(function () {
+            var table = $('#example').DataTable({
+                "columns": [
+                    {
+                        "data": "codEnvase",
+                        "className": 'dt-body-center'
+                    },
+                    {
+                        "data": "nomEnvase",
+                        "className": 'dt-body-left'
+                    },
+                    {
+                        "data": "invEnvase",
+                        "className": 'dt-body-center'
+                    },
+                ],
+                "columnDefs": [
+                    {type: 'chinese-string', targets: 1}
+                ],
+                "order": [[1, 'asc']],
+                "dom": 'Blfrtip',
+                "paging": true,
+                "buttons": [
+                    'copyHtml5',
+                    'excelHtml5'
+                ],
+                "lengthMenu": [[20, 50, 100, -1], [20, 50, 100, "All"]],
+                "language": {
+                    "lengthMenu": "Mostrando _MENU_ datos por página",
+                    "zeroRecords": "Lo siento no encontró nada",
+                    "info": "Mostrando página _PAGE_ de _PAGES_",
+                    "infoEmpty": "No hay datos disponibles",
+                    "search": "Búsqueda:",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Último",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    },
+                    "infoFiltered": "(Filtrado de _MAX_ en total)"
+
+                },
+                "ajax": "ajax/listaInvEnvase.php",
+                "deferRender": true,  //For speed
+            });
+        });
+    </script>
 </head>
 <body>
 <div id="contenedor">
-<div id="saludo1"><strong>INVENTARIO DE ENVASE</strong></div>
-<table width="712" border="0" align="center" summary="encabezado">
-  <tr><td width="620" align="right"><form action="Inv_Env_Xls.php" method="post" target="_blank">
-    <input name="Submit" type="submit" class="resaltado" value="Exportar a Excel"></form></td> 
-      <td width="97"><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú"></div></td> 
-  </tr>
-</table>
-<table border="0" align="center" cellspacing="0" summary="cuerpo" >
-<tr>
-    <th width="62" class="formatoEncabezados">Código</th>
-    <th width="265" class="formatoEncabezados">Envase</th>
-    <th width="95" class="formatoEncabezados">Cantidad</th>
-  </tr>   
-<?php
-include "includes/utilTabla.php";
-include "includes/conect.php" ;
-$link=conectarServidor();
-//sentencia SQL    tblusuarios.IdUsuario,
-$sql="	select invEnvase.Cod_envase as Codigo, Nom_envase as Producto, invEnvase as Cantidad from inv_envase, envase
-WHERE inv_envase.codEnvase=envase.Cod_envase;";
-$result=mysqli_query($link,$sql);
-$a=1;
-while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
-{
-	if (($row['Cantidad']!=0)&&($row['Codigo']!=0))
-	{
-	echo'<tr';
-	  if (($a++ % 2)==0) echo ' bgcolor="#B4CBEF" ';
-	  echo '>
-	<td class="formatoDatos"><div align="center">'.$row['Codigo'].'</div></td>
-	<td class="formatoDatos"><div align="left">'.$row['Producto'].'</div></td>
-	<td class="formatoDatos"><div align="center"><script   > document.write(commaSplit('.$row['Cantidad'].'))</script></div></td>';
-	echo'</tr>';
-	}
-}
-mysqli_free_result($result);
-mysqli_close($link);//Cerrar la conexion
-?>
-
-</table>
-<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú"></div>
+    <div id="saludo1"><strong>INVENTARIO DE ENVASE</strong></div>
+    <div class="row flex-end">
+        <div class="col-1">
+            <button class="button" onclick="window.location='../menu.php'">
+                <span><STRONG>Ir al Menú</STRONG></span></button>
+        </div>
+    </div>
+    <div class="tabla-50">
+        <table id="example" class="display compact formatoDatos">
+            <thead>
+            <tr>
+                <th class="width1">Código</th>
+                <th class="width2">Envase</th>
+                <th class="width3">Cantidad</th>
+            </tr>
+            </thead>
+        </table>
+    </div>
+    <div class="row">
+        <div class="col-1">
+            <button class="button" onclick="window.location='../menu.php'">
+                <span><STRONG>Ir al Menú</STRONG></span>
+            </button>
+        </div>
+    </div>
 </div>
 </body>
 </html>

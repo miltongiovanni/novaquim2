@@ -38,36 +38,14 @@ class InvEnvasesOperaciones
         }
     }
 
-    public function getTableInvEnvase($idCompra, $tipoCompra)
+    public function getTableInvEnvase()
     {
-        switch (intval($tipoCompra)) {
-            case 1:
-                $qry = "SELECT idCompra, codigo, nomMPrima Producto, lote, cantidad, CONCAT('$', FORMAT(precio, 0)) precio FROM det_compras
-                        LEFT JOIN mprimas ON codigo=codEnvaserima
-                        WHERE idCompra=$idCompra";
-                break;
-            case 2:
-                $qry = "SELECT codigo, nomEnvase Producto, lote, cantidad, CONCAT('$', FORMAT(precio, 0)) precio FROM det_compras
-                        LEFT JOIN inv_envase ON codigo=codEnvase
-                        WHERE idCompra=$idCompra AND codigo < 100
-                        UNION
-                        SELECT codigo, tapa Producto, lote, cantidad, CONCAT('$', FORMAT(precio, 0)) precio FROM det_compras
-                        LEFT JOIN tapas_val ON codigo=codTapa
-                        WHERE idCompra=$idCompra AND codigo > 100";
-                break;
-            case 3:
-                $qry = "SELECT codigo, nomEtiqueta Producto, lote, cantidad, CONCAT('$', FORMAT(precio, 0)) precio FROM det_compras
-                        LEFT JOIN etiquetas ON codigo=codEtiqueta
-                        WHERE idCompra=$idCompra ;";
-                break;
-            case 5:
-                $qry = "SELECT codigo, producto Producto, lote, cantidad, CONCAT('$', FORMAT(precio, 0)) precio FROM det_compras
-                        LEFT JOIN distribucion ON codigo=idDistribucion
-                        WHERE idCompra=$idCompra";
-                break;
-        }
+        $qry = "SELECT ie.codEnvase, nomEnvase, ROUND(invEnvase) invEnvase
+                FROM inv_envase ie
+                LEFT JOIN envases e on ie.codEnvase = e.codEnvase
+                WHERE invEnvase>0 AND ie.codEnvase>0";
         $stmt = $this->_pdo->prepare($qry);
-        $stmt->execute(array($idCompra));
+        $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
