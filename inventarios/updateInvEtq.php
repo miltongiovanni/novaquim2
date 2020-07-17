@@ -6,7 +6,7 @@ include "includes/conect.php";
 <html lang="es">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Actualización</title>
+<title>ActualizaciÃ³n</title>
 </head>
 <body>
 <?php

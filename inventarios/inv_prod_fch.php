@@ -23,13 +23,13 @@ foreach ($_POST as $nombre_campo => $valor)
 <table  align="center" width="700" border="0" summary="encabezado">
   <tr> <td width="594" align="right"><form action="Inv_Prod_fch_Xls.php" method="post" target="_blank">
     <input name="Submit" type="submit" class="resaltado" value="Exportar a Excel"><input name="Fch" type="hidden" value="<?php echo $Fch ?>"></form></td>
-      <td width="96"><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú">
+      <td width="96"><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al MenÃº">
       </div></td>
   </tr>
 </table>
 <table border="0" align="center" cellspacing="0" summary="cuerpo">
 <tr>
-    <th width="60" class="formatoEncabezados">Código</th>
+    <th width="60" class="formatoEncabezados">CÃ³digo</th>
     <th width="422" class="formatoEncabezados">Producto</th>
     <th width="70" class="formatoEncabezados">Cantidad</th>
     <th width="70" class="formatoEncabezados">Entrada</th>
@@ -58,7 +58,7 @@ $salida1=0;$salida2=0;$salida3=0;$salida4=0;
   <td class="formatoDatos"><div align="center">'.$row['Codigo'].'</div></td>
   <td class="formatoDatos"><div align="left">'.$row['Nombre'].'</div></td>
   <td class="formatoDatos"><div align="center"><script   > document.write(commaSplit('.$row['inventario'].'))</script></div></td>';
-  //ENTRADA POR PRODUCCIÓN
+  //ENTRADA POR PRODUCCIÃ“N
   $sqle1="select SUM(cantPresentacion) as entrada1 from envasado, ord_prod where envasado.Lote=ord_prod.Lote and fechProd>'$Fch' and Con_prese=$prod;";
   $resulte1=mysqli_query($link,$sqle1);
   $rowe1=mysqli_fetch_array($resulte1, MYSQLI_BOTH);
@@ -134,12 +134,12 @@ mysqli_free_result($results2);
 mysqli_free_result($results3);
 mysqli_free_result($results4);
 
-/* cerrar la conexión */
+/* cerrar la conexiÃ³n */
 mysqli_close($link);
 ?>
 
 </table>
-<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú"></div>
+<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al MenÃº"></div>
 </div>
 </body>
 </html>

@@ -23,12 +23,12 @@ foreach ($_POST as $nombre_campo => $valor)
 <table width="727" border="0" align="center" summary="encabezado">
   <tr><td width="620" align="right"><form action="Inv_Env_fch_Xls.php" method="post" target="_blank"><input name="Fch" type="hidden" value="<?php echo $Fch ?>">
     <input name="Submit" type="submit" class="resaltado" value="Exportar a Excel"></form></td> 
-      <td width="97"><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú"></div></td>
+      <td width="97"><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al MenÃº"></div></td>
   </tr>
 </table>
 <table border="0" align="center" cellspacing="0" summary="cuerpo">
 <tr>
-  <th width="67" class="formatoEncabezados">Código</th>
+  <th width="67" class="formatoEncabezados">CÃ³digo</th>
   <th width="382" class="formatoEncabezados">Envase</th>
   <th width="55" class="formatoEncabezados">Cantidad</th>
   <th width="55" class="formatoEncabezados">Entrada</th>
@@ -61,7 +61,7 @@ while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
 	  $entrada1=0;
   else
 	  $entrada1=$rowe1['entrada1'];
-  //ENTRADA POR CAMBIO DE PRESENTACIÓN
+  //ENTRADA POR CAMBIO DE PRESENTACIÃ“N
   $sqle2="SELECT sum(cantPresentacionNvo) as entrada2 from cambios, det_cambios2, prodpre where det_cambios2.idCambio=cambios.idCambio and fechaCambio >='$Fch' and codPresentacionNvo=Cod_prese and Cod_envase=$prod;";
 
   $resulte2=mysqli_query($link,$sqle2);
@@ -105,7 +105,7 @@ while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
 		$salida3=0;
 	else
 		$salida3=$rows3['salida3'];
-	//SALIDA POR VENTA DE JABÓN
+	//SALIDA POR VENTA DE JABÃ“N
 	$sqls4="SELECT sum(cantidad) as salida4 from 
 	(select sum(Can_producto) as cantidad from remision, det_remision, prodpre 
 	where remision.Id_remision=det_remision.Id_remision and Fech_remision>'$Fch' and Cod_producto=Cod_prese and Cod_produc>=504 and Cod_produc<=514 and Cod_envase=$prod
@@ -147,7 +147,7 @@ mysqli_close($link);//Cerrar la conexion
 ?>
 
 </table>
-<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú"></div>
+<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al MenÃº"></div>
 </div>
 </body>
 </html>

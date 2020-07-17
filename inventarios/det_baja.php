@@ -98,7 +98,7 @@ include "../includes/valAcc.php";
 	}
 	if($Crear==2)
 	{
-		//PRECIOS DE PRODUCTOS DE DISTRIBUCIÓN
+		//PRECIOS DE PRODUCTOS DE DISTRIBUCIÃ“N
 		$qryins_d="insert into det_bajas (Cod_baja, Cod_producto, Can_producto) values ( $baja, $cod_producto, $cantidad)";
 		echo $qryins_d;
 				echo'<script >
@@ -136,7 +136,7 @@ include "../includes/valAcc.php";
 		else
 		{
 			mysqli_close($link);
-			mover("baja.php","No existe la Relación de Baja");
+			mover("baja.php","No existe la RelaciÃ³n de Baja");
 		}	
 		function mover($ruta,$mensaje)
 		{
@@ -177,7 +177,7 @@ include "../includes/valAcc.php";
 		 </form>
 		 <form method="post" action="det_baja.php" name="form2">
 		<tr>
-			<td colspan="4"><div align="center"><strong>Productos Distribución</strong></div></td>
+			<td colspan="4"><div align="center"><strong>Productos DistribuciÃ³n</strong></div></td>
 			<td colspan="2"><div align="center"><strong>Unidades</strong></div></td>
 		</tr>
 		<tr>
@@ -198,13 +198,13 @@ include "../includes/valAcc.php";
 		mysqli_close($link);
 	?>
   <tr>
-    <td  colspan="8" class="titulo">Productos de la Baja de Mercancía : </td>    
+    <td  colspan="8" class="titulo">Productos de la Baja de MercancÃ­a : </td>    
   </tr>  
 </table>
 <table border="0" align="center">
           <tr>
           	<th width="56" align="center"></th>
-            <th width="84" align="center">Código</th>
+            <th width="84" align="center">CÃ³digo</th>
             <th width="437" align="center">Producto</th>
 			<th width="127" align="center">Cantidad</th>
             <th width="68" align="center"></th>
@@ -275,7 +275,7 @@ include "../includes/valAcc.php";
                     <form action="Imp_Baja.php" method="post" target="_blank">
                     <div align="center">
                     <input name="baja" type="hidden" value="<?php echo $baja; ?> ">
-                    <input type="submit" name="Submit" value="Imprimir Remisión" >
+                    <input type="submit" name="Submit" value="Imprimir RemisiÃ³n" >
                     </div>
                     </form>  
                 </td> 
@@ -291,7 +291,7 @@ include "../includes/valAcc.php";
         <td>&nbsp;</td>
     </tr>
     <tr> 
-        <td><div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú">
+        <td><div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al MenÃº">
         </div></td>
     </tr>
 </table>

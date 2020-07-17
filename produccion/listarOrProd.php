@@ -9,31 +9,39 @@ include "../includes/valAcc.php";
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="../css/datatables.css">
     <style>
-        table{
+        table {
             table-layout: fixed;
         }
-        .width1{
+
+        .width1 {
             width: 2%;
         }
-        .width2{
+
+        .width2 {
             width: 4%;
         }
-        .width3{
+
+        .width3 {
             width: 25%;
         }
-        .width4{
+
+        .width4 {
             width: 24%;
         }
-        .width5{
+
+        .width5 {
             width: 12%;
         }
-        .width6{
+
+        .width6 {
             width: 16%;
         }
-        .width7{
+
+        .width7 {
             width: 9%;
         }
-        .width8{
+
+        .width8 {
             width: 8%;
         }
     </style>

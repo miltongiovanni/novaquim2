@@ -8,7 +8,7 @@ include "includes/conect.php";
 <head>
 <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
 <meta charset="utf-8">
-<title>Actualizar Inventario de Producto de Distribución</title>
+<title>Actualizar Inventario de Producto de DistribuciÃ³n</title>
 <script  src="../js/validar.js"></script>
 
 </head>

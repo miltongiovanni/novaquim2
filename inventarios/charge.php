@@ -41,11 +41,11 @@ if(($inv_tapa>=$Unidades)&&($inv_envase>=$Unidades))
 	$qry7="update inv_tapas_val set invTapa=$inv_tapa_actual where codTapa=(select Tapa from rel_env_dis where Dist=$cod_dist);";
 	$result7=mysqli_query($link,$qry7);
 	$ruta="menu.php";
-	mover_pag($ruta,"Carga de Envase como Producto de Distribución realizado con Éxito");
+	mover_pag($ruta,"Carga de Envase como Producto de DistribuciÃ³n realizado con Ã‰xito");
 	mysqli_free_result($result1);
 	mysqli_free_result($result2);
 	mysqli_free_result($result3);
-/* cerrar la conexión */
+/* cerrar la conexiÃ³n */
 mysqli_close($link);
 }
 else

@@ -6,18 +6,18 @@ include "../includes/valAcc.php";
 <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
 <head>
 <meta charset="utf-8">
-<title>Ajuste de Inventario de Producto de Distribución</title>
+<title>Ajuste de Inventario de Producto de DistribuciÃ³n</title>
 <script  src="../js/validar.js"></script>
 <script  src="scripts/block.js"></script>
 </head>
 <body>
 <div id="contenedor">
-  <div id="saludo"><strong>SELECCIÓN DE PRODUCTO DE DISTRIBUCIÓN A AJUSTAR INVENTARIO</strong></div>
+  <div id="saludo"><strong>SELECCIÃ“N DE PRODUCTO DE DISTRIBUCIÃ“N A AJUSTAR INVENTARIO</strong></div>
 <form id="form1" name="form1" method="post" action="a_inv_dist2.php">  
 <table width="700" border="0" align="center">
  <tr>
       <td>
-        <div align="center"><strong>Producto de Distribución</strong>
+        <div align="center"><strong>Producto de DistribuciÃ³n</strong>
           <?php
 		  include "includes/conect.php";
 		  $link=conectarServidor();

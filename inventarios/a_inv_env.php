@@ -12,7 +12,7 @@ include "../includes/valAcc.php";
 </head>
 <body>
 <div id="contenedor">
-  <div id="saludo"><strong>SELECCIÓN DE ENVASE A AJUSTAR INVENTARIO</strong></div>
+  <div id="saludo"><strong>SELECCIÃ“N DE ENVASE A AJUSTAR INVENTARIO</strong></div>
 <form id="form1" name="form1" method="post" action="a_inv_env2.php">  
 <table width="700" border="0" align="center">
  <tr>

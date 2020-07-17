@@ -33,13 +33,13 @@ if($Unidades>=$Cantidad)
 	$result5=mysqli_query($link,$qry5);
 	$ruta="menu.php";
 	mysqli_close($link);
-	mover_pag($ruta,"Empaque de Producto realizado con …xito");
+	mover_pag($ruta,"Empaque de Producto realizado con √âxito");
 }
 else
 {
 	$ruta="empacar.php";
 	mysqli_close($link);//Cerrar la conexion
-	mover_pag($ruta,"La paca tiene m·s unidades de producto");
+	mover_pag($ruta,"La paca tiene m√°s unidades de producto");
 
 }
   

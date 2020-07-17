@@ -63,7 +63,7 @@ include "../includes/valAcc.php";
 </table>
 <table width="624" border="0" align="center">
   <tr>
-        <th width="98" align="center">Código</th>
+        <th width="98" align="center">CÃ³digo</th>
         <th width="432" align="center">Producto </th>
         <th width="80" align="center">Cantidad </th>
   	</tr>

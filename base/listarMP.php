@@ -18,6 +18,27 @@ include "../includes/valAcc.php";
     <script src="../js/buttons.html5.js"></script>
 
     <script>
+        jQuery.extend(jQuery.fn.dataTableExt.oSort, {
+            "chinese-string-asc": function (s1, s2) {
+                if (s1 != null && s1 != undefined && s2 != null && s2 != undefined) {
+                    return s1.localeCompare(s2);
+                } else if (s2 == null || s2 == undefined) {
+                    return s1;
+                } else if (s1 == null || s1 == undefined) {
+                    return s2;
+                }
+            },
+
+            "chinese-string-desc": function (s1, s2) {
+                if (s1 != null && s1 != undefined && s2 != null && s2 != undefined) {
+                    return s2.localeCompare(s1);
+                } else if (s2 == null || s2 == undefined) {
+                    return s1;
+                } else if (s1 == null || s1 == undefined) {
+                    return s2;
+                }
+            }
+        });
         $(document).ready(function () {
             $('#example').DataTable({
                 "columns": [
@@ -62,7 +83,11 @@ include "../includes/valAcc.php";
                     [{
                         "targets": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
                         "className": 'dt-body-center'
-                    }
+                    },
+                        {
+                            type: 'chinese-string',
+                            targets: 1
+                        }
                     ],
                 "dom": 'Blfrtip',
                 "buttons": [

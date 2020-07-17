@@ -16,12 +16,12 @@ include "../includes/valAcc.php";
   <tr> <td width="620" align="right"><form action="Inv_Etiq_Xls.php" method="post" target="_blank">
     <input name="Submit" type="submit" class="resaltado" value="Exportar a Excel"></form></td> 
       <td><div align="right">
-          <input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú"></div></td>
+          <input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al MenÃº"></div></td>
   </tr>
 </table>
 <table border="0" align="center" cellspacing="0" >
 <tr>
-    <th width="78" class="formatoEncabezados">Código</th>
+    <th width="78" class="formatoEncabezados">CÃ³digo</th>
     <th width="355" class="formatoEncabezados">Etiquetas</th>
     <th width="92" class="formatoEncabezados">Cantidad</th>
   </tr>   
@@ -50,7 +50,7 @@ mysqli_free_result($result);
 mysqli_close($link);//Cerrar la conexion
 ?>
 </table>
-<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú"></div>
+<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al MenÃº"></div>
 </div>
 </body>
 </html>

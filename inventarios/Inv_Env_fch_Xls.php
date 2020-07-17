@@ -20,7 +20,7 @@ $objPHPExcel->getProperties()->setCreator("Industrias Novaquim")
 							 ->setLastModifiedBy("Milton Espitia")
 							 ->setTitle("Productos")
 							 ->setSubject("Lista de Facturas")
-							 ->setDescription("Lista de Facturas por período")
+							 ->setDescription("Lista de Facturas por perÃ­odo")
 							 ->setKeywords("Lista Facturas")
 							 ->setCategory("Lista");
 // Add some data
@@ -55,7 +55,7 @@ while($row= mysqli_fetch_array($result, MYSQLI_BOTH))
 	  $entrada1=0;
   else
 	  $entrada1=$rowe1['entrada1'];
- //ENTRADA POR CAMBIO DE PRESENTACIÓN
+ //ENTRADA POR CAMBIO DE PRESENTACIÃ“N
   $sqle2="SELECT sum(cantPresentacionNvo) as entrada2 from cambios, det_cambios2, prodpre where det_cambios2.idCambio=cambios.idCambio and fechaCambio >='$Fch' and codPresentacionNvo=Cod_prese and Cod_envase=$prod;";
   $resulte2=mysqli_query($link,$sqle2);
   $rowe2=mysqli_fetch_array($resulte2, MYSQLI_BOTH);
@@ -97,7 +97,7 @@ while($row= mysqli_fetch_array($result, MYSQLI_BOTH))
 		$salida3=0;
 	else
 		$salida3=$rows3['salida3'];
-	//SALIDA POR VENTA DE JABÓN
+	//SALIDA POR VENTA DE JABÃ“N
 	$sqls4="SELECT sum(cantidad) as salida4 from 
 	(select sum(Can_producto) as cantidad from remision, det_remision, prodpre 
 	where remision.Id_remision=det_remision.Id_remision and Fech_remision>'$Fch' and Cod_producto=Cod_prese and Cod_produc>=504 and Cod_produc<=514 and Cod_envase=$prod
@@ -123,7 +123,7 @@ while($row= mysqli_fetch_array($result, MYSQLI_BOTH))
 } 
 // Set active sheet index to the first sheet, so Excel opens this as the first sheet
 $objPHPExcel->setActiveSheetIndex(0);
-// Redirect output to a client’s web browser (Excel5)
+// Redirect output to a clientâ€™s web browser (Excel5)
 header('Content-Type: application/vnd.ms-excel');
 header('Content-Disposition: attachment;filename="Inv_Env_Fch.xls"');
 header('Cache-Control: max-age=0');

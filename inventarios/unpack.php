@@ -44,7 +44,7 @@ if($inv_paca>=$Unidades)
 	$qry5="update inv_distribucion set invDistribucion=$inv_paca_final where codDistribucion=$cod_paca";
 	$result5=mysqli_query($link,$qry5);
 	$ruta="menu.php";
-	mover_pag($ruta,"Desempaque de Producto realizado con Éxito");
+	mover_pag($ruta,"Desempaque de Producto realizado con Ã‰xito");
 	mysqli_close($link);
 }
 else

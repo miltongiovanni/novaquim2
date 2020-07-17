@@ -4,7 +4,7 @@ include "../includes/valAcc.php";
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<title>Inventario de Tapas y V·lvulas en Fecha</title>
+<title>Inventario de Tapas y V√°lvulas en Fecha</title>
 <meta charset="utf-8">
 <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
 	<script  src="../js/validar.js"></script>
@@ -19,16 +19,16 @@ foreach ($_POST as $nombre_campo => $valor)
 		eval($asignacion); 
 	}  
 ?>
-<div id="saludo1"><strong>INVENTARIO DE TAPAS Y V¡LVULAS A <?php echo $Fch; ?></strong></div>
+<div id="saludo1"><strong>INVENTARIO DE TAPAS Y V√ÅLVULAS A <?php echo $Fch; ?></strong></div>
 <table width="727" border="0" align="center" summary="encabezado">
   <tr><td width="620" align="right"><form action="Inv_tap_fch_Xls.php" method="post" target="_blank"><input name="Fch" type="hidden" value="<?php echo $Fch ?>">
     <input name="Submit" type="submit" class="resaltado" value="Exportar a Excel"></form></td> 
-      <td width="97"><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men˙"></div></td>
+      <td width="97"><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men√∫"></div></td>
   </tr>
 </table>
 <table border="0" align="center" cellspacing="0" summary="cuerpo">
 <tr>
-  <th width="67" class="formatoEncabezados">CÛdigo</th>
+  <th width="67" class="formatoEncabezados">C√≥digo</th>
   <th width="382" class="formatoEncabezados">Envase</th>
   <th width="55" class="formatoEncabezados">Cantidad</th>
   <th width="55" class="formatoEncabezados">Entrada</th>
@@ -60,7 +60,7 @@ while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
 	  $entrada1=0;
   else
 	  $entrada1=$rowe1['entrada1'];
-  //ENTRADA POR CAMBIO DE PRESENTACI”N
+  //ENTRADA POR CAMBIO DE PRESENTACI√ìN
   $sqle2="SELECT SUM(cantPresentacionNvo) as entrada2 from cambios, det_cambios2, prodpre where det_cambios2.idCambio=cambios.idCambio and fechaCambio >='$Fch' and codPresentacionNvo=Cod_prese and Cod_tapa=$prod;";
 
   $resulte2=mysqli_query($link,$sqle2);
@@ -96,7 +96,7 @@ while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
 		$salida3=0;
 	else
 		$salida3=$rows3['salida3'];
-	//SALIDA POR VENTA DE JAB”N
+	//SALIDA POR VENTA DE JAB√ìN
 	$sqls4="SELECT sum(cantidad) as salida4 from 
 	(select sum(Can_producto) as cantidad from remision, det_remision, prodpre 
 	where remision.Id_remision=det_remision.Id_remision and Fech_remision>'$Fch' and Cod_producto=Cod_prese and Cod_produc>=504 and Cod_produc<=514 and Cod_envase=$prod
@@ -109,7 +109,7 @@ while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
 		$salida4=0;
 	else
 		$salida4=$rows4['salida4'];
-  //ENTRADA POR CAMBIO DE PRESENTACI”N
+  //ENTRADA POR CAMBIO DE PRESENTACI√ìN
   $sqls5="SELECT SUM(cantPresentacionAnt) as salida5 from cambios, det_cambios, prodpre where det_cambios.idCambio=cambios.idCambio and fechaCambio >='$Fch' and codPresentacionAnt=Cod_prese and Cod_tapa=$prod;";
 
   $results5=mysqli_query($link,$sqls5);
@@ -129,7 +129,7 @@ mysqli_close($link);//Cerrar la conexion
 ?>
 
 </table>
-<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men˙"></div>
+<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men√∫"></div>
 </div>
 </body>
 </html>

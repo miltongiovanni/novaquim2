@@ -12,7 +12,7 @@ include "../includes/valAcc.php";
 </head>
 <body>
 <div id="contenedor">
-  <div id="saludo"><strong>SELECCIÓN DE MATERIA PRIMA A AJUSTAR INVENTARIO</strong></div>
+  <div id="saludo"><strong>SELECCIÃ“N DE MATERIA PRIMA A AJUSTAR INVENTARIO</strong></div>
 <form id="form1" name="form1" method="post" action="a_inv_mp2.php">  
 <table width="700" border="0" align="center">
  <tr>
@@ -29,7 +29,7 @@ include "../includes/valAcc.php";
 				}
 				echo'</select>';
 				mysqli_free_result($result);
-/* cerrar la conexión */
+/* cerrar la conexiÃ³n */
 mysqli_close($link);
 			?>
           <input type="button" value="Continuar" onClick="return Enviar0(this.form);">

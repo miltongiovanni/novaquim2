@@ -15,13 +15,13 @@ include "../includes/valAcc.php";
 
 <table  align="center" width="700" border="0">
   <tr> 
-      <td><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú">
+      <td><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al MenÃº">
       </div></td>
   </tr>
 </table>
 <table  border="0" align="center" cellspacing="0" >
 <tr>
-    <th width="67" class="formatoEncabezados">Código</th>
+    <th width="67" class="formatoEncabezados">CÃ³digo</th>
     <th width="334" class="formatoEncabezados">Etiquetas</th>
     <th width="73" class="formatoEncabezados">Cantidad</th>
     <th width="62" class="formatoEncabezados">Stock</th>
@@ -48,12 +48,12 @@ while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
 	}
 }
 mysqli_free_result($result);
-/* cerrar la conexión */
+/* cerrar la conexiÃ³n */
 mysqli_close($link);
 ?>
 
 </table>
-<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú"></div>
+<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al MenÃº"></div>
 </div>
 </body>
 </html>

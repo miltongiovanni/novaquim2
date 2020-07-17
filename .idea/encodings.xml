@@ -41,6 +41,9 @@
     <file url="file://$PROJECT_DIR$/compras/updateEgresoForm.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/compras/updateGasto.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/compras/updateProv.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/inventarios/ajax/listaInvMPrima.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/inventarios/ajax/listaInvProdTerminado.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/inventarios/inv_mp.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/produccion/ajax/listaArmKits.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/produccion/ajax/listaCambios.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/produccion/ajax/listaDesarmKits.php" charset="UTF-8" />

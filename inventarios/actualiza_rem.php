@@ -17,10 +17,10 @@ include "includes/conect.php";
 include "includes/calcularDias.php";
 $link=conectarServidor();   
 $bd="novaquim"; 
-//revisa el detalle de la remisión
+//revisa el detalle de la remisiÃ³n
 $qry="select Id_remision, Cod_producto, Can_producto, Lote_producto from det_remision where Id_remision>3540 and Cod_producto<100000;";
 $result=mysql_db_query($bd,$qry);
-//COMIENZA LA TRANSACCIÓN
+//COMIENZA LA TRANSACCIÃ“N
 $trans=mysql_query ("BEGIN"); 
 while($row=mysql_fetch_array($result))
 {
@@ -41,7 +41,7 @@ while($row=mysql_fetch_array($result))
 	if (($invt >= $unidades))
 	{
 		$invt= $invt - $unidades;
-		/*SE ADICIONA A LA REMISIÓN*/
+		/*SE ADICIONA A LA REMISIÃ“N*/
 		$qryins_p="insert into det_remision (Id_remision, Cod_producto, Can_producto, Lote_producto) values ($id_remision, $cod_producto, $unidades, $lot_prod)";
 		echo $qryins_p."<br>";				
 		$resultins_p=mysql_db_query($bd,$qryins_p);
@@ -53,7 +53,7 @@ while($row=mysql_fetch_array($result))
 	else
 	{
 		$unidades= $unidades - $invt ;
-		/*SE ADICIONA A LA REMISIÓN*/
+		/*SE ADICIONA A LA REMISIÃ“N*/
 		$qryupd_r="update det_remision set Can_producto=$unidades, Lote_producto=$lote where Id_remision=$id_remision and Cod_producto=$cod_producto";
 		$resultins_p=mysql_db_query($bd,$qryins_p);
 		/*SE ACTUALIZA EL INVENTARIO*/

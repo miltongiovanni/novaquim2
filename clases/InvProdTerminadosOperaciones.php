@@ -54,6 +54,19 @@ class InvProdTerminadosOperaciones
         }
     }
 
+    public function getTableInvProdTerminado()
+    {
+        $qry = "SELECT inv_prod.codPresentacion, presentacion, ROUND(SUM(invProd),0) invtotal
+                FROM inv_prod
+                    LEFT JOIN prodpre p on inv_prod.codPresentacion = p.codPresentacion
+                GROUP BY inv_prod.codPresentacion
+                HAVING SUM(invProd)>0";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     public function getInvTotalProdTerminado($codPresentacion)
     {
         $qry = "SELECT SUM(invProd) invProd FROM inv_prod WHERE codPresentacion=?";
@@ -65,6 +78,18 @@ class InvProdTerminadosOperaciones
         } else {
             return $result['invProd'];
         }
+    }
+
+    public function getDetInv($codPresentacion)
+    {
+        $qry = "SELECT loteProd, ROUND(invProd, 0) invProd
+                FROM inv_prod
+                WHERE codPresentacion = ?
+                  AND invProd > 0";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($codPresentacion));
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
     }
 
     public function getInvProdTerminado($codPresentacion)
@@ -85,40 +110,6 @@ class InvProdTerminadosOperaciones
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $result;
-    }
-
-    public function getTableInvProdTerminado($idCompra, $tipoCompra)
-    {
-        switch (intval($tipoCompra)) {
-            case 1:
-                $qry = "SELECT idCompra, codigo, nomMPrima Producto, lote, cantidad, CONCAT('$', FORMAT(precio, 0)) precio FROM det_compras
-                        LEFT JOIN mprimas ON codigo=codPresentacion
-                        WHERE idCompra=$idCompra";
-                break;
-            case 2:
-                $qry = "SELECT codigo, nomEnvase Producto, lote, cantidad, CONCAT('$', FORMAT(precio, 0)) precio FROM det_compras
-                        LEFT JOIN envases ON codigo=codEnvase
-                        WHERE idCompra=$idCompra AND codigo < 100
-                        UNION
-                        SELECT codigo, tapa Producto, lote, cantidad, CONCAT('$', FORMAT(precio, 0)) precio FROM det_compras
-                        LEFT JOIN tapas_val ON codigo=codTapa
-                        WHERE idCompra=$idCompra AND codigo > 100";
-                break;
-            case 3:
-                $qry = "SELECT codigo, nomEtiqueta Producto, lote, cantidad, CONCAT('$', FORMAT(precio, 0)) precio FROM det_compras
-                        LEFT JOIN etiquetas ON codigo=codEtiqueta
-                        WHERE idCompra=$idCompra ;";
-                break;
-            case 5:
-                $qry = "SELECT codigo, producto Producto, lote, cantidad, CONCAT('$', FORMAT(precio, 0)) precio FROM det_compras
-                        LEFT JOIN distribucion ON codigo=idDistribucion
-                        WHERE idCompra=$idCompra";
-                break;
-        }
-        $stmt = $this->_pdo->prepare($qry);
-        $stmt->execute(array($idCompra));
-        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
 
