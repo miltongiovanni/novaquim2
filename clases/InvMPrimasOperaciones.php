@@ -78,18 +78,70 @@ class InvMPrimasOperaciones
 
     public function getTableInvMPrima()
     {
-        $qry = "SELECT codMP, nomMPrima, SUM(invMP) invtotal
+        $qry = "SELECT codMP, nomMPrima, ROUND(SUM(invMP),3) invtotal
                 FROM inv_mprimas
                          LEFT JOIN mprimas m on inv_mprimas.codMP = m.codMPrima
-                WHERE codMP != 10401 AND codMP != 10402
-                GROUP BY codMP
-                HAVING SUM(invMP) > 0";
+                WHERE codMP != 10401 AND codMP != 10402 AND invMP > 0
+                GROUP BY codMP";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
 
+    public function getEntradasInvMPrimaXFecha($codMPrima, $fecha)
+    {
+        $qry = "SELECT ROUND(SUM(cantidad), 3) entrada
+                FROM compras c
+                LEFT JOIN det_compras dc on c.idCompra = dc.idCompra
+                WHERE tipoCompra=1 AND fechComp >= ? AND codigo=?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($fecha, $codMPrima));
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        if($result){
+            return $result['entrada'];
+        }
+        else{
+            return 0;
+        }
+
+    }
+
+    public function getSalidasInvMPrimaOProdXFecha($codMPrima, $fecha)
+    {
+        $qry = "SELECT ROUND(SUM(cantidadMPrima), 3) salidaProduccion
+                FROM ord_prod op
+                LEFT JOIN det_ord_prod dop on op.lote = dop.lote
+                WHERE fechProd >= ? AND codMPrima=?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($fecha, $codMPrima));
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        if($result){
+            return $result['salidaProduccion'];
+        }
+        else{
+            return 0;
+        }
+    }
+
+    public function getSalidasInvMPrimaEnvDistXFecha($codMPrima, $fecha)
+    {
+        $qry = "SELECT codMPrima, ROUND(SUM(cantMedida*cantidad*densidad/1000), 3) salidaEnvDist
+                FROM rel_dist_mp rdm
+                LEFT JOIN mprimadist m on rdm.codMPrimaDist = m.codMPrimaDist
+                LEFT JOIN medida m2 on rdm.codMedida = m2.idMedida
+                LEFT JOIN envasado_dist ed on rdm.codDist = ed.codDist
+                WHERE codMPrima=? AND fechaEnvDist>=?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($codMPrima, $fecha));
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        if($result){
+            return $result['salidaEnvDist'];
+        }
+        else{
+            return 0;
+        }
+    }
     public function getDetInv($codMP)
     {
         $qry = "SELECT loteMP, invMP, fechLote

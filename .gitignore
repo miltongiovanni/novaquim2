@@ -1,4 +1,4 @@
 /.vscode/
 /_notes/
-.idea/
-.idea/encodings.xml
+.idea/*.xml
+

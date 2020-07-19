@@ -1,5 +1,6 @@
 <?php
 include "../includes/valAcc.php";
+$fecha=$_POST['fecha'];
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -7,23 +8,164 @@ include "../includes/valAcc.php";
 <title>Inventario de Materia Prima</title>
 <meta charset="utf-8">
 <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<script  src="../js/validar.js"></script>
+    <link rel="stylesheet" href="../css/datatables.css">
+    <style>
+        table {
+            table-layout: fixed;
+        }
+
+        .width1 {
+            width: 12%;
+        }
+
+        .width2 {
+            width: 40%;
+        }
+
+        .width3 {
+            width: 12%;
+        }
+
+        .width4 {
+            width: 12%;
+        }
+
+        .width5 {
+            width: 12%;
+        }
+
+        .width6 {
+            width: 12%;
+        }
+
+    </style>
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/datatables.js"></script>
+    <script src="../js/dataTables.buttons.js"></script>
+    <script src="../js/jszip.js"></script> <!--Para exportar Excel-->
+    <!--<script src="../js/pdfmake.js"></script>-->  <!--Para exportar PDF-->
+    <!--<script src="../js/vfs_fonts.js"></script>--> <!--Para exportar PDF-->
+    <script src="../js/buttons.html5.js"></script>
+
+    <script>
+        jQuery.extend(jQuery.fn.dataTableExt.oSort, {
+            "chinese-string-asc": function (s1, s2) {
+                if (s1 != null && s1 != undefined && s2 != null && s2 != undefined) {
+                    return s1.localeCompare(s2);
+                } else if (s2 == null || s2 == undefined) {
+                    return s1;
+                } else if (s1 == null || s1 == undefined) {
+                    return s2;
+                }
+            },
+
+            "chinese-string-desc": function (s1, s2) {
+                if (s1 != null && s1 != undefined && s2 != null && s2 != undefined) {
+                    return s2.localeCompare(s1);
+                } else if (s2 == null || s2 == undefined) {
+                    return s1;
+                } else if (s1 == null || s1 == undefined) {
+                    return s2;
+                }
+            }
+        });
+        $(document).ready(function () {
+            var table = $('#example').DataTable({
+                "columns": [
+                    {
+                        "data": "codMP",
+                        "className": 'dt-body-center'
+                    },
+                    {
+                        "data": "nomMPrima",
+                        "className": 'dt-body-left'
+                    },
+                    {
+                        "data": "invtotal",
+                        "className": 'dt-body-center'
+                    },
+                    {
+                        "data": "entrada",
+                        "className": 'dt-body-center'
+                    },
+                    {
+                        "data": "salida",
+                        "className": 'dt-body-center'
+                    },
+                    {
+                        "data": "inventario",
+                        "className": 'dt-body-center'
+                    },
+                ],
+                "columnDefs": [
+                    {type: 'chinese-string', targets: 1}
+                ],
+                "order": [[1, 'asc']],
+                "dom": 'Blfrtip',
+                "paging": true,
+                "buttons": [
+                    'copyHtml5',
+                    'excelHtml5'
+                ],
+                "lengthMenu": [[20, 50, 100, -1], [20, 50, 100, "All"]],
+                "language": {
+                    "lengthMenu": "Mostrando _MENU_ datos por página",
+                    "zeroRecords": "Lo siento no encontró nada",
+                    "info": "Mostrando página _PAGE_ de _PAGES_",
+                    "infoEmpty": "No hay datos disponibles",
+                    "search": "Búsqueda:",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Último",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    },
+                    "infoFiltered": "(Filtrado de _MAX_ en total)"
+
+                },
+                "ajax": "ajax/listaInvMPrimaFecha.php?fecha=<?= $fecha; ?>",
+                "deferRender": true,  //For speed
+            });
+        });
+    </script>
 </head>
 <body>
 <div id="contenedor">
-<?php
-foreach ($_POST as $nombre_campo => $valor) 
-	{ 
-		$asignacion = "\$".$nombre_campo."='".$valor."';"; 
-		//echo $nombre_campo." = ".$valor."<br>";  
-		eval($asignacion); 
-	}  
-?>
-<div id="saludo1"><strong>INVENTARIO DE MATERIA PRIMA A <?php echo $Fch; ?></strong></div>
+<div id="saludo1"><strong>INVENTARIO DE MATERIA PRIMA A <?= $fecha; ?></strong></div>
+    <div class="row flex-end">
+        <div class="col-1">
+            <button class="button" onclick="window.location='../menu.php'">
+                <span><STRONG>Ir al Menú</STRONG></span></button>
+        </div>
+    </div>
+    <div class="tabla-50">
+        <table id="example" class="display compact formatoDatos">
+            <thead>
+            <tr>
+                <th class="width1">Código</th>
+                <th class="width2">Materia Prima</th>
+                <th class="width3">Cantidad (Kg)</th>
+                <th class="width4">Entrada</th>
+                <th class="width5">Salida</th>
+                <th class="width6">Inventario</th>
+            </tr>
+            </thead>
+        </table>
+    </div>
+
+    <div class="row">
+        <div class="col-1">
+            <button class="button" onclick="window.location='../menu.php'">
+                <span><STRONG>Ir al Menú</STRONG></span>
+            </button>
+        </div>
+    </div>
+
+ <!--
 <table width="713" border="0" align="center">
   <tr>
   	<form action="Inv_MP_fch_Xls.php" method="post" target="_blank"><td width="601" align="right">
-    <input name="Submit" type="submit" class="resaltado" value="Exportar a Excel"></td><input name="Fch" type="hidden" value="<?php echo $Fch ?>"></form> 
+    <input name="Submit" type="submit" class="resaltado" value="Exportar a Excel"></td><input name="Fch" type="hidden" value="<?php /*echo $Fch */?>"></form>
       <td width="102"><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú">
       </div></td>
   </tr>
@@ -38,7 +180,7 @@ foreach ($_POST as $nombre_campo => $valor)
     <th class="formatoEncabezados">Inventario</th>
   </tr>   
 <?php
-include "includes/utilTabla.php";
+/*include "includes/utilTabla.php";
 include "includes/conect.php" ;
 
 
@@ -102,9 +244,9 @@ mysqli_free_result($resulte);
 mysqli_free_result($results1);
 mysqli_free_result($results2);
 mysqli_close($link);//Cerrar la conexion
-?>
+*/?>
 </table>
-<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú"></div>
+<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú"></div>-->
 </div>
 </body>
 </html>
