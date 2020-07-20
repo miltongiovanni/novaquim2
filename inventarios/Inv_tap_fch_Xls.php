@@ -90,11 +90,11 @@ while($row= mysqli_fetch_array($result, MYSQLI_BOTH))
 		$salida3=$rows3['salida3'];
 	//SALIDA POR VENTA DE JABÓN
 	$sqls4="SELECT sum(cantidad) as salida4 from 
-	(select sum(Can_producto) as cantidad from remision, det_remision, prodpre 
-	where remision.Id_remision=det_remision.Id_remision and Fech_remision>'$Fch' and Cod_producto=Cod_prese and Cod_produc>=504 and Cod_produc<=514 and Cod_envase=$prod
+	(select sum(cantProducto) as cantidad from remision, det_remision, prodpre 
+	where remision.idRemision=det_remision.idRemision and fechaRemision>'$Fch' and codProducto=Cod_prese and Cod_produc>=504 and Cod_produc<=514 and Cod_envase=$prod
 	union
-	select sum(Can_producto) as cantidad from remision1, det_remision1, prodpre 
-	where remision1.Id_remision=det_remision1.Id_remision and Fech_remision>'$Fch' and Cod_producto=Cod_prese and Cod_produc>=504 and Cod_produc<=514 and Cod_envase=$prod ) as matriz;";	
+	select sum(cantProducto) as cantidad from remision1, det_remision1, prodpre 
+	where remision1.idRemision=det_remision1.idRemision and fechaRemision>'$Fch' and codProducto=Cod_prese and Cod_produc>=504 and Cod_produc<=514 and Cod_envase=$prod ) as matriz;";
 	$results4=mysqli_query($link,$sqls4);
 	$rows4=mysqli_fetch_array($results4, MYSQLI_BOTH);
 	if($rows4['salida4']==NULL)

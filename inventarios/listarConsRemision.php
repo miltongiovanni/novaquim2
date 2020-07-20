@@ -39,7 +39,7 @@ foreach ($_POST as $nombre_campo => $valor)
 include "includes/utilTabla.php";
 include "includes/conect.php" ;
 $link=conectarServidor();
-$sql="select Id_remision, cliente, Fech_remision, Valor from remision1 where Fech_remision>='$FchIni' and Fech_remision<='$FchFin';";
+$sql="select idRemision, cliente, fechaRemision, Valor from remision1 where fechaRemision>='$FchIni' and fechaRemision<='$FchFin';";
 $result=mysqli_query($link,$sql);
 $a=1;
 while($row=mysqli_fetch_array($result, MYSQLI_BOTH))

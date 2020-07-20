@@ -211,7 +211,7 @@ include "../includes/valAcc.php";
   </tr>
           <?php
 			$link=conectarServidor();
-			$qry="select Id_remision, Cod_producto, Lote_producto, Nombre, SUM(Can_producto) as Cantidad from det_remision1, prodpre where Id_remision=$remision AND Cod_producto=Cod_prese group by Cod_producto;";
+			$qry="select idRemision, codProducto, loteProducto, Nombre, SUM(cantProducto) as Cantidad from det_remision1, prodpre where idRemision=$remision AND codProducto=Cod_prese group by codProducto;";
 			$result=mysqli_query($link,$qry);
 			while($row=mysqli_fetch_array($result))
 			{
@@ -240,7 +240,7 @@ include "../includes/valAcc.php";
 			?>
 		<?php
 			$link=conectarServidor();
-			$qry="select Id_remision, Cod_producto, Producto, Can_producto from det_remision1, distribucion where Id_remision=$remision AND Cod_producto=Id_distribucion;";
+			$qry="select idRemision, codProducto, Producto, cantProducto from det_remision1, distribucion where idRemision=$remision AND codProducto=Id_distribucion;";
 			$result=mysqli_query($link,$qry);
 			while($row=mysqli_fetch_array($result))
 			{

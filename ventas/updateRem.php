@@ -25,7 +25,7 @@ if ($producto < 100000)
 {
   if($cant_ant>$cantidad)
   {
-	$qryr="select Cod_producto, Can_producto, Lote_producto from det_remision1 where Id_remision=$remision and Cod_producto=$producto order by Lote_producto desc;";
+	$qryr="select codProducto, cantProducto, loteProducto from det_remision1 where idRemision=$remision and codProducto=$producto order by loteProducto desc;";
 	$devolucion=$cant_ant-$cantidad;
 	$resultr=mysqli_query($link,$qryr);
 	while(($rowr=mysqli_fetch_array($resultr))||($devolucion!=0))
@@ -45,7 +45,7 @@ if ($producto < 100000)
 		$qrys="update inv_prod set invProd=$inv_final where loteProd=$Lote_producto and codPresentacion=$Cod_producto";
 		$results=mysqli_query($link,$qrys);
 		$ajuste=$Can_producto-$inv_entra;
-		$qryd="update det_remision1 set Can_producto=$ajuste where Id_remision=$remision and Cod_producto=$producto and Lote_producto=$Lote_producto";
+		$qryd="update det_remision1 set cantProducto=$ajuste where idRemision=$remision and codProducto=$producto and loteProducto=$Lote_producto";
 		$resultd=mysqli_query($link,$qryd);
 		$valida=0;
 	  }
@@ -56,7 +56,7 @@ if ($producto < 100000)
 		$inv_final=$inv_actual+$inv_entra;
 		$qrys="update inv_prod set invProd=$inv_final where loteProd=$Lote_producto and codPresentacion=$Cod_producto";
 		$results=mysqli_query($link,$qrys);
-		$qryd="delete from det_remision1 where Id_remision=$remision and Cod_producto=$producto and Lote_producto=$Lote_producto";
+		$qryd="delete from det_remision1 where idRemision=$remision and codProducto=$producto and loteProducto=$Lote_producto";
 		$resultd=mysqli_query($link,$qryd);
 	  }
 	}
@@ -73,19 +73,19 @@ if ($producto < 100000)
 	  if ($inv_actual>=$entrada)
 	  {
 		$inv_final=$inv_actual-$entrada;
-		$qryr="select Cod_producto, Can_producto, Lote_producto from det_remision1 where Id_remision=$remision and Cod_producto=$producto and Lote_producto=$lote_actual";
+		$qryr="select codProducto, cantProducto, loteProducto from det_remision1 where idRemision=$remision and codProducto=$producto and loteProducto=$lote_actual";
 		$resultr=mysqli_query($link,$qryr);
 		if($rowr=mysqli_fetch_array($resultr))
 		{
 		  $cant_actual=$rowr['Can_producto'];
 		  $cant_final=$cant_actual+$entrada;
-		  $qryd="update det_remision1 set Can_producto=$cant_final where Id_remision=$remision and Cod_producto=$producto and Lote_producto=$lote_actual";
+		  $qryd="update det_remision1 set cantProducto=$cant_final where idRemision=$remision and codProducto=$producto and loteProducto=$lote_actual";
 		  $resultd=mysqli_query($link,$qryd);
 		  $valida=0;
 		}
 		else
 		{
-		  $qryd="insert into det_remision1 (Id_remision, Cod_producto, Can_producto, Lote_producto) values($remision, $producto, $entrada, $lote_actual)";
+		  $qryd="insert into det_remision1 (idRemision, codProducto, cantProducto, loteProducto) values($remision, $producto, $entrada, $lote_actual)";
 		  $resultd=mysqli_query($link,$qryd);
 		  $valida=0;
 		}
@@ -97,18 +97,18 @@ if ($producto < 100000)
 	  {
 		$entrada=$entrada-$inv_actual;
 		$inv_final=0;
-		$qryr="select Cod_producto, Can_producto, Lote_producto from det_remision1 where Id_remision=$remision and Cod_producto=$producto and Lote_producto=$lote_actual";
+		$qryr="select codProducto, cantProducto, loteProducto from det_remision1 where idRemision=$remision and codProducto=$producto and loteProducto=$lote_actual";
 		$resultr=mysqli_query($link,$qryr);
 		if($rowr=mysqli_fetch_array($resultr))
 		{
 		  $cant_actual=$rowr['Can_producto'];
 		  $cant_final=$cant_actual+$inv_actual;
-		  $qryd="update det_remision1 set Can_producto=$cant_final where Id_remision=$remision and Cod_producto=$producto and Lote_producto=$lote_actual";
+		  $qryd="update det_remision1 set cantProducto=$cant_final where idRemision=$remision and codProducto=$producto and loteProducto=$lote_actual";
 		  $resultd=mysqli_query($link,$qryd);
 		}
 		else
 		{
-		  $qryd="insert into det_remision1 (Id_remision, Cod_producto, Can_producto, Lote_producto) values($remision, $producto, $inv_actual, $lote_actual)";
+		  $qryd="insert into det_remision1 (idRemision, codProducto, cantProducto, loteProducto) values($remision, $producto, $inv_actual, $lote_actual)";
 		  $resultd=mysqli_query($link,$qryd);
 		}
 		$qrys="update inv_prod set invProd=$inv_final where loteProd=$lote_actual and codPresentacion=$producto";
@@ -126,7 +126,7 @@ else
 	$Inv=$Inv - $cantidad + $cant_ant;
 	$qry3="update inv_distribucion set invDistribucion=$Inv where codDistribucion=$producto;";
 	$result3=mysqli_query($link,$qry3);
-	$qryinv="update det_remision1 set Can_producto=$cantidad where Id_remision=$remision and Cod_producto=$producto";
+	$qryinv="update det_remision1 set cantProducto=$cantidad where idRemision=$remision and codProducto=$producto";
 	$resultinv=mysqli_query($link,$qryinv);
 	$valida=0;
 }	

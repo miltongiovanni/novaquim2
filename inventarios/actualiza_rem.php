@@ -18,7 +18,7 @@ include "includes/calcularDias.php";
 $link=conectarServidor();   
 $bd="novaquim"; 
 //revisa el detalle de la remisión
-$qry="select Id_remision, Cod_producto, Can_producto, Lote_producto from det_remision where Id_remision>3540 and Cod_producto<100000;";
+$qry="select idRemision, codProducto, cantProducto, loteProducto from det_remision where idRemision>3540 and codProducto<100000;";
 $result=mysql_db_query($bd,$qry);
 //COMIENZA LA TRANSACCIÓN
 $trans=mysql_query ("BEGIN"); 
@@ -42,7 +42,7 @@ while($row=mysql_fetch_array($result))
 	{
 		$invt= $invt - $unidades;
 		/*SE ADICIONA A LA REMISIÓN*/
-		$qryins_p="insert into det_remision (Id_remision, Cod_producto, Can_producto, Lote_producto) values ($id_remision, $cod_producto, $unidades, $lot_prod)";
+		$qryins_p="insert into det_remision (idRemision, codProducto, cantProducto, loteProducto) values ($id_remision, $cod_producto, $unidades, $lot_prod)";
 		echo $qryins_p."<br>";				
 		$resultins_p=mysql_db_query($bd,$qryins_p);
 		/*SE ACTUALIZA EL INVENTARIO*/
@@ -54,7 +54,7 @@ while($row=mysql_fetch_array($result))
 	{
 		$unidades= $unidades - $invt ;
 		/*SE ADICIONA A LA REMISIÓN*/
-		$qryupd_r="update det_remision set Can_producto=$unidades, Lote_producto=$lote where Id_remision=$id_remision and Cod_producto=$cod_producto";
+		$qryupd_r="update det_remision set cantProducto=$unidades, loteProducto=$lote where idRemision=$id_remision and codProducto=$cod_producto";
 		$resultins_p=mysql_db_query($bd,$qryins_p);
 		/*SE ACTUALIZA EL INVENTARIO*/
 		$qryupt="update inv_prod set invProd=0 where loteProd=$lot_prod and Cod_prese=$cod_prod";

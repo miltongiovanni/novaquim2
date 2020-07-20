@@ -31,17 +31,17 @@ include "../includes/valAcc.php";
 	$link=conectarServidor();  
 	if ($Crear == 4)
 	{
-		$qryup="update remision1 set cliente='$cliente',Fech_remision='$FchRem', Valor=$valor1 where Id_remision=$remision";
+		$qryup="update remision1 set cliente='$cliente',fechaRemision='$FchRem', Valor=$valor1 where idRemision=$remision";
 		$resultup=mysqli_query($link,$qryup);	
 		mysqli_close($link);
 	}
 	if ($Crear == 3)
 	{
-		$qryins_comp="insert into remision1 (cliente, Fech_remision, Valor) 
+		$qryins_comp="insert into remision1 (cliente, fechaRemision, Valor) 
 					values ( '$cliente', '$FchRem', $valor1)";
 					echo $qryins_comp;
 		$resultins_prod=mysqli_query($link,$qryins_comp);	
-		$qrycam="select MAX(Id_remision) AS Rem from remision1;";
+		$qrycam="select MAX(idRemision) AS Rem from remision1;";
 		$resultqrycam=mysqli_query($link,$qrycam);
 		$row_cam=mysqli_fetch_array($resultqrycam);
 		$remision=$row_cam['Rem'];
@@ -68,7 +68,7 @@ include "../includes/valAcc.php";
 			if (($invt >= $unidades))
 			{
 				$invt= $invt - $unidades;
-				$qryins_p="insert into det_remision1 (Id_remision, Cod_producto, Can_producto, Lote_producto) values ( $remision, $cod_producto, $unidades, $lot_prod)";
+				$qryins_p="insert into det_remision1 (idRemision, codProducto, cantProducto, loteProducto) values ( $remision, $cod_producto, $unidades, $lot_prod)";
 				$resultins_p=mysqli_query($link,$qryins_p);
 				$unidades=0;
 				$qryupt="update inv_prod set invProd=$invt where loteProd=$lot_prod and Cod_prese=$cod_prod";
@@ -79,7 +79,7 @@ include "../includes/valAcc.php";
 				if ($invt>0)
 				{
 				  $unidades= $unidades - $invt;
-				  $qryins_p="insert into det_remision1 (Id_remision, Cod_producto, Can_producto, Lote_producto) values ( $remision, $cod_producto, $invt, $lot_prod)";
+				  $qryins_p="insert into det_remision1 (idRemision, codProducto, cantProducto, loteProducto) values ( $remision, $cod_producto, $invt, $lot_prod)";
 				  $resultins_p=mysqli_query($link,$qryins_p);
 				  $qryupt="update inv_prod set invProd=0 where loteProd=$lot_prod and Cod_prese=$cod_prod";
 				  $resultupt=mysqli_query($link,$qryupt);	
@@ -98,7 +98,7 @@ include "../includes/valAcc.php";
 	if($Crear==2)
 	{
 		//PRECIOS DE PRODUCTOS DE DISTRIBUCIÓN
-		$qryins_d="insert into det_remision1 (Id_remision, Cod_producto, Can_producto) values ( $remision, $cod_producto, $cantidad)";
+		$qryins_d="insert into det_remision1 (idRemision, codProducto, cantProducto) values ( $remision, $cod_producto, $cantidad)";
 		$resultins_d=mysqli_query($link,$qryins_d);
 		$qryinv="select Id_distribucion, invDistribucion from inv_distribucion WHERE Id_distribucion=$cod_producto;";
 		$resultinv=mysqli_query($link,$qryinv);
@@ -124,7 +124,7 @@ include "../includes/valAcc.php";
 ?>
 <?php
 		$link=conectarServidor();
-		$qry="select Id_remision, cliente, Fech_remision from remision1 where Id_remision=$remision;";
+		$qry="select idRemision, cliente, fechaRemision from remision1 where idRemision=$remision;";
 		$result=mysqli_query($link,$qry);
 		$row=mysqli_fetch_array($result);
 		if ($row)
@@ -208,7 +208,7 @@ include "../includes/valAcc.php";
   </tr>
           <?php
 			$link=conectarServidor();
-			$qry="select Id_remision, Cod_producto, Lote_producto, Nombre, SUM(Can_producto) as Cantidad from det_remision1, prodpre where Id_remision=$remision AND Cod_producto=Cod_prese group by Cod_producto;";
+			$qry="select idRemision, codProducto, loteProducto, Nombre, SUM(cantProducto) as Cantidad from det_remision1, prodpre where idRemision=$remision AND codProducto=Cod_prese group by codProducto;";
 			$result=mysqli_query($link,$qry);
 			while($row=mysqli_fetch_array($result))
 			{
@@ -237,7 +237,7 @@ include "../includes/valAcc.php";
 			?>
 		<?php
 			$link=conectarServidor();
-			$qry="select Id_remision, Cod_producto, Producto, Can_producto from det_remision1, distribucion where Id_remision=$remision AND Cod_producto=Id_distribucion;";
+			$qry="select idRemision, codProducto, Producto, cantProducto from det_remision1, distribucion where idRemision=$remision AND codProducto=Id_distribucion;";
 			$result=mysqli_query($link,$qry);
 			while($row=mysqli_fetch_array($result))
 			{

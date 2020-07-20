@@ -7,7 +7,7 @@ include "includes/conect.php";
 include "includes/num_letra.php";
 $link=conectarServidor();
 $remision=$_POST['remision'];
-$qryenc="SELECT Id_remision, Nit_cliente, Fech_remision, Nom_clien, Tel_clien, Dir_clien, Ciudad, Nom_sucursal, Dir_sucursal from remision1, clientes, ciudades, clientes_sucursal where Id_remision=$remision AND Nit_cliente=clientes.Nit_clien and ciudad_clien=Id_ciudad and Id_sucurs=Id_sucursal and clientes_sucursal.Nit_clien=Nit_cliente;";
+$qryenc="SELECT idRemision, Nit_cliente, fechaRemision, Nom_clien, Tel_clien, Dir_clien, Ciudad, Nom_sucursal, Dir_sucursal from remision1, clientes, ciudades, clientes_sucursal where idRemision=$remision AND Nit_cliente=clientes.Nit_clien and ciudad_clien=Id_ciudad and Id_sucurs=Id_sucursal and clientes_sucursal.Nit_clien=Nit_cliente;";
 $resultenc=mysqli_query($link,$qryenc);
 $rowenc=mysqli_fetch_array($resultenc);
 $pdf=new FPDF('P','mm','Letter');
@@ -56,9 +56,9 @@ $pdf->Cell(25,4,'CÓDIGO', 1,0,'C');
 $pdf->Cell(130,4,'PRODUCTO', 1,0,'C');
 $pdf->Cell(20,4,'CANTIDAD', 1,0,'C');
 $pdf->SetFont('Arial','',7);
-$qry="select Id_remision, Cod_producto, Nombre as Producto, sum(Can_producto) as Cantidad FROM det_remision1, prodpre where Id_remision=$remision and Cod_producto<100000 and Cod_producto=Cod_prese group by Producto
+$qry="select idRemision, codProducto, Nombre as Producto, sum(cantProducto) as Cantidad FROM det_remision1, prodpre where idRemision=$remision and codProducto<100000 and codProducto=Cod_prese group by Producto
 union
-select Id_remision, Cod_producto, Producto, Can_producto as Cantidad FROM det_remision1, distribucion where Id_remision=$remision and Cod_producto>100000 and Cod_producto=Id_distribucion;";
+select idRemision, codProducto, Producto, cantProducto as Cantidad FROM det_remision1, distribucion where idRemision=$remision and codProducto>100000 and codProducto=Id_distribucion;";
 $result=mysqli_query($link,$qry);
 $pdf->SetXY(20,30);
 $i=1;
@@ -135,9 +135,9 @@ $pdf->Cell(25,4,'CÓDIGO', 1,0,'C');
 $pdf->Cell(130,4,'PRODUCTO', 1,0,'C');
 $pdf->Cell(20,4,'CANTIDAD', 1,0,'C');
 $pdf->SetFont('Arial','',7);
-$qry="select Id_remision, Cod_producto, Nombre as Producto, sum(Can_producto) as Cantidad FROM det_remision, prodpre where Id_remision=$remision and Cod_producto<100000 and Cod_producto=Cod_prese group by Producto
+$qry="select idRemision, codProducto, Nombre as Producto, sum(cantProducto) as Cantidad FROM det_remision, prodpre where idRemision=$remision and codProducto<100000 and codProducto=Cod_prese group by Producto
 union
-select Id_remision, Cod_producto, Producto, Can_producto as Cantidad FROM det_remision, distribucion where Id_remision=$remision and Cod_producto>100000 and Cod_producto=Id_distribucion;";
+select idRemision, codProducto, Producto, cantProducto as Cantidad FROM det_remision, distribucion where idRemision=$remision and codProducto>100000 and codProducto=Id_distribucion;";
 $result=mysqli_query($link,$qry);
 $pdf->SetXY(20,160);
 $i=1;

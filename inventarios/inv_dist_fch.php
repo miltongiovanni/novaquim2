@@ -89,7 +89,7 @@ while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
   echo '<td class="formatoDatos"><div align="center"><script  > document.write(commaSplit('.$entrada.'))</script></div></td>';
   
     //SALIDA POR VENTAS
-  $sqls1="select sum(Can_producto) as salida1 from det_remision, remision where remision.Id_remision=det_remision.Id_remision and Fech_remision>='$Fch' and Cod_producto=$prod;";
+  $sqls1="select sum(cantProducto) as salida1 from det_remision, remision where remision.idRemision=det_remision.idRemision and fechaRemision>='$Fch' and codProducto=$prod;";
 	$results1=mysqli_query($link,$sqls1);
 	$rows1=mysqli_fetch_array($results1, MYSQLI_BOTH);
 	if($rows1['salida1']==NULL)
@@ -97,7 +97,7 @@ while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
 	else
 		$salida1=$rows1['salida1'];
 	//SALIDA POR REMISION
-	$sqls2="select sum(Can_producto) as salida2 from det_remision1, remision1 where remision1.Id_remision=det_remision1.Id_remision and Fech_remision>='$Fch' and Cod_producto=$prod;";	
+	$sqls2="select sum(cantProducto) as salida2 from det_remision1, remision1 where remision1.idRemision=det_remision1.idRemision and fechaRemision>='$Fch' and codProducto=$prod;";
 	$results2=mysqli_query($link,$sqls2);
 	$rows2=mysqli_fetch_array($results2, MYSQLI_BOTH);
 	if($rows2['salida2']==NULL)

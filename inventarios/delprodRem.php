@@ -20,7 +20,7 @@ include "includes/conect.php";
 	//REVISA EL INVENTARIO DE PRODUCTO
 	if ($producto < 100000)
 	{
-		$qry="select Id_remision, Cod_producto as Codigo, Lote_producto, Nombre as Producto, Can_producto as Cantidad from det_remision1, prodpre where Id_remision=$remision and Cod_producto=$producto and Cod_producto=Cod_prese";
+		$qry="select idRemision, codProducto as Codigo, loteProducto, Nombre as Producto, cantProducto as Cantidad from det_remision1, prodpre where idRemision=$remision and codProducto=$producto and codProducto=Cod_prese";
 		echo $qry."<br>";
 		$result=mysqli_query($link,$qry);
 		while(($row=mysqli_fetch_array($result)))
@@ -41,8 +41,8 @@ include "includes/conect.php";
 	}
 	else
 	{
-		$qry="SELECT Cod_producto as Codigo, Producto, Can_producto as Cantidad, Lote_producto from det_remision1, distribucion 
-		where Cod_producto=Id_distribucion and Id_remision=$remision AND Cod_producto=$producto;";
+		$qry="SELECT codProducto as Codigo, Producto, cantProducto as Cantidad, loteProducto from det_remision1, distribucion 
+		where codProducto=Id_distribucion and idRemision=$remision AND codProducto=$producto;";
 		$result=mysqli_query($link,$qry);
 		$row=mysqli_fetch_array($result);
 		$qry2="select codDistribucion, invDistribucion as Inv from inv_distribucion WHERE codDistribucion=$producto;";
@@ -56,7 +56,7 @@ include "includes/conect.php";
 		$result3=mysqli_query($link,$qry3);
 	}			
 	//ELIMINA EL PRODUCTO DE LA REMISION
-	$qryinv="delete from det_remision1 where Id_remision=$remision and Cod_producto=$producto";
+	$qryinv="delete from det_remision1 where idRemision=$remision and codProducto=$producto";
 	echo $qryinv;
 	echo'<form action="det_remision.php" method="post" name="formulario">';
 	$link=conectarServidor();

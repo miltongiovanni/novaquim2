@@ -54,7 +54,7 @@ foreach ($_POST as $nombre_campo => $valor)
 </tr>
 <tr><td width="108" align="center"><strong>Fecha Venta</strong></td><td width="451" align="center"><strong>Cliente</strong></td><td width="127" align="center"><strong>Unidades</strong></td></tr>
 <?php
-  $qrys="select Fech_remision, Nom_clien, Can_producto from remision, det_remision, clientes where det_remision.Id_remision=remision.Id_remision and Nit_cliente=Nit_clien and Lote_producto=$lote_prod and Cod_producto=$Id_Prod;";
+  $qrys="select fechaRemision, Nom_clien, cantProducto from remision, det_remision, clientes where det_remision.idRemision=remision.idRemision and Nit_cliente=Nit_clien and loteProducto=$lote_prod and codProducto=$Id_Prod;";
   $results=mysqli_query($link,$qrys);
   while($rows=mysqli_fetch_array($results))
   {

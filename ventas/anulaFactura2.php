@@ -25,8 +25,8 @@ foreach ($_POST as $nombre_campo => $valor)
 $link=conectarServidor();   
 $bd="novaquim"; 
 //UNIDADES QUE FUERON FACTURADAS Y SE VAN A DEVOLVER AL INVENTARIO
-$qry="select Cod_producto, Can_producto, Lote_producto from det_remision, remision, factura 
-where det_remision.Id_remision=remision.Id_remision and factura.Id_remision=det_remision.Id_remision and Factura=$factura;";
+$qry="select codProducto, cantProducto, loteProducto from det_remision, remision, factura 
+where det_remision.idRemision=remision.idRemision and factura.Id_remision=det_remision.idRemision and Factura=$factura;";
 echo $qry."<br>";
 if($result=mysql_db_query($bd,$qry))
 {
@@ -89,13 +89,13 @@ else
 	$qry="update factura set Estado='A', Total=0, Subtotal=0, IVA=0, Observaciones='$observa' where Factura=$factura";
 	echo $qry;
 	$result=mysql_db_query($bd,$qry);
-	$qryrem="select remision.Id_remision as remision, Factura from remision, factura where remision.Id_pedido=factura.Id_pedido and Factura=$factura;";
+	$qryrem="select remision.idRemision as remision, Factura from remision, factura where remision.idPedido=factura.Id_pedido and Factura=$factura;";
 	echo $qryrem;
 	$resultrem=mysql_db_query($bd,$qryrem);
 	$rowrem=mysql_fetch_array($resultrem);
 	$id_rem=$rowrem['remision'];	
 	/*ELIMINAR EL DETALLE DE LA FACTURA Y REMISION*/
-	$qry1="DELETE from det_remision WHERE Id_remision=$id_rem;";
+	$qry1="DELETE from det_remision WHERE idRemision=$id_rem;";
 	$result1=mysql_db_query($bd,$qry1);
 	$qry="DELETE from det_factura WHERE Id_fact=$factura;";
 	$result=mysql_db_query($bd,$qry);

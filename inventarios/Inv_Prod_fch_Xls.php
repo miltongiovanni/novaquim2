@@ -71,8 +71,8 @@ while($row= mysqli_fetch_array($result, MYSQLI_BOTH))
 		$entrada3=$rowe3['entrada3'];
 	$entrada=$entrada1 + $entrada2 + $entrada3;
 	$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(4, $i, $entrada);
-$sqls1="select sum(Can_producto) as salida1 from det_remision, remision 
-where remision.Id_remision=det_remision.Id_remision and Fech_remision>'$Fch' and Cod_producto=$prod;";
+$sqls1="select sum(cantProducto) as salida1 from det_remision, remision 
+where remision.idRemision=det_remision.idRemision and fechaRemision>'$Fch' and codProducto=$prod;";
 	$results1=mysqli_query($link,$sqls1);
 	$rows1=mysqli_fetch_array($results1, MYSQLI_BOTH);
 	if($rows1['salida1']==NULL)
@@ -93,7 +93,7 @@ where remision.Id_remision=det_remision.Id_remision and Fech_remision>'$Fch' and
 		$salida3=0;
 	else
 		$salida3=$rows3['salida3'];
-	$sqls4="select sum(Can_producto) as salida4 from det_remision1, remision1 where remision1.Id_remision=det_remision1.Id_remision and Fech_remision>'$Fch' and Cod_producto=$prod;";
+	$sqls4="select sum(cantProducto) as salida4 from det_remision1, remision1 where remision1.idRemision=det_remision1.idRemision and fechaRemision>'$Fch' and codProducto=$prod;";
 	$results4=mysqli_query($link,$sqls4);
 	$rows4=mysqli_fetch_array($results4, MYSQLI_BOTH);
 	if($rows4['salida4']==NULL)

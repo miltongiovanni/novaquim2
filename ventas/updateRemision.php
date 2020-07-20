@@ -30,12 +30,12 @@ include "includes/conect.php";
 	}  
 	if ($producto < 100000)
 	{
-		$qry="select Id_remision, Cod_producto as Codigo, Lote_producto, Nombre as Producto, sum(Can_producto) as Cantidad from det_remision1, prodpre where Id_remision=$remision and Cod_producto=$producto and Cod_producto=Cod_prese";
+		$qry="select idRemision, codProducto as Codigo, loteProducto, Nombre as Producto, sum(cantProducto) as Cantidad from det_remision1, prodpre where idRemision=$remision and codProducto=$producto and codProducto=Cod_prese";
 	}
 	else
 	{
-		$qry="SELECT Cod_producto as Codigo, Producto, Can_producto as Cantidad, Lote_producto from det_remision1, distribucion 
-		where Cod_producto=Id_distribucion and Id_remision=$remision AND Cod_producto=$producto;";
+		$qry="SELECT codProducto as Codigo, Producto, cantProducto as Cantidad, loteProducto from det_remision1, distribucion 
+		where codProducto=Id_distribucion and idRemision=$remision AND codProducto=$producto;";
 	}		
 	$result=mysqli_query($link,$qry);
 	$row=mysqli_fetch_array($result);

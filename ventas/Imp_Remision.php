@@ -7,7 +7,7 @@ include "includes/conect.php";
 include "includes/num_letra.php";
 $link=conectarServidor();
 $remision=$_POST['remision'];
-$qryenc="SELECT Id_remision, Nit_cliente, Fech_remision, Nom_clien, Tel_clien, Dir_clien, Ciudad, Nom_sucursal, Dir_sucursal from remision, clientes, ciudades, clientes_sucursal where Id_remision=$remision AND Nit_cliente=clientes.Nit_clien and ciudad_clien=Id_ciudad and Id_sucurs=Id_sucursal and clientes_sucursal.Nit_clien=Nit_cliente;";
+$qryenc="SELECT idRemision, Nit_cliente, fechaRemision, Nom_clien, Tel_clien, Dir_clien, Ciudad, Nom_sucursal, Dir_sucursal from remision, clientes, ciudades, clientes_sucursal where idRemision=$remision AND Nit_cliente=clientes.Nit_clien and ciudad_clien=Id_ciudad and idSucursal=Id_sucursal and clientes_sucursal.Nit_clien=Nit_cliente;";
 $resultenc=mysqli_query($link,$qryenc);
 $rowenc=mysqli_fetch_array($resultenc);
 $pdf=new FPDF('P','mm','Letter');
@@ -56,7 +56,7 @@ $pdf->Cell(25,4,'CÓDIGO', 1,0,'C');
 $pdf->Cell(130,4,'PRODUCTO', 1,0,'C');
 $pdf->Cell(20,4,'CANTIDAD', 1,0,'C');
 $pdf->SetFont('Arial','',7);
-$qry1="select Id_remision, Cod_producto, Nombre as Producto, sum(Can_producto) as Cantidad FROM det_remision, prodpre where Id_remision=$remision and Cod_producto<100000 and Cod_producto=Cod_prese group by Producto order by Producto";
+$qry1="select idRemision, codProducto, Nombre as Producto, sum(cantProducto) as Cantidad FROM det_remision, prodpre where idRemision=$remision and codProducto<100000 and codProducto=Cod_prese group by Producto order by Producto";
 $result1=mysqli_query($link,$qry1);
 $pdf->SetXY(20,30);
 $i=1;
@@ -72,7 +72,7 @@ while(($row1=mysqli_fetch_array($result1)))
 	$pdf->Ln(2.3);
 	$i++;
 }
-$qry2="select Id_remision, Cod_producto, Producto, Can_producto as Cantidad FROM det_remision, distribucion where Id_remision=$remision and Cod_producto>100000 and Cod_producto<1000000 and Cod_producto=Id_distribucion order by Producto";
+$qry2="select idRemision, codProducto, Producto, cantProducto as Cantidad FROM det_remision, distribucion where idRemision=$remision and codProducto>100000 and codProducto<1000000 and codProducto=Id_distribucion order by Producto";
 $result2=mysqli_query($link,$qry2);
 while(($row2=mysqli_fetch_array($result2)))
 {
@@ -86,7 +86,7 @@ while(($row2=mysqli_fetch_array($result2)))
 	$pdf->Ln(2.3);
 	$i++;
 }
-$qry3="select Id_remision, Cod_producto, DesServicio as Producto, Can_producto as Cantidad FROM det_remision, servicios where Id_remision=$remision and Cod_producto<100 and Cod_producto=IdServicio order by Producto";
+$qry3="select idRemision, codProducto, DesServicio as Producto, cantProducto as Cantidad FROM det_remision, servicios where idRemision=$remision and codProducto<100 and codProducto=IdServicio order by Producto";
 $result3=mysqli_query($link,$qry3);
 while(($row3=mysqli_fetch_array($result3)))
 {
@@ -161,7 +161,7 @@ $pdf->Cell(25,4,'CÓDIGO', 1,0,'C');
 $pdf->Cell(130,4,'PRODUCTO', 1,0,'C');
 $pdf->Cell(20,4,'CANTIDAD', 1,0,'C');
 $pdf->SetFont('Arial','',7);
-$qry1="select Id_remision, Cod_producto, Nombre as Producto, sum(Can_producto) as Cantidad FROM det_remision, prodpre where Id_remision=$remision and Cod_producto<100000 and Cod_producto=Cod_prese group by Producto order by Producto";
+$qry1="select idRemision, codProducto, Nombre as Producto, sum(cantProducto) as Cantidad FROM det_remision, prodpre where idRemision=$remision and codProducto<100000 and codProducto=Cod_prese group by Producto order by Producto";
 $result1=mysqli_query($link,$qry1);
 $pdf->SetXY(20,160);
 $i=1;
@@ -177,7 +177,7 @@ while(($row1=mysqli_fetch_array($result1)))
 	$pdf->Ln(2.3);
 	$i++;
 }
-$qry2="select Id_remision, Cod_producto, Producto, Can_producto as Cantidad FROM det_remision, distribucion where Id_remision=$remision and Cod_producto>100000 and Cod_producto<1000000 and Cod_producto=Id_distribucion order by Producto";
+$qry2="select idRemision, codProducto, Producto, cantProducto as Cantidad FROM det_remision, distribucion where idRemision=$remision and codProducto>100000 and codProducto<1000000 and codProducto=Id_distribucion order by Producto";
 $result2=mysqli_query($link,$qry2);
 while(($row2=mysqli_fetch_array($result2)))
 {

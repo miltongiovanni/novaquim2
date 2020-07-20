@@ -83,7 +83,7 @@ if ($crear==3)// SI HAY DEVOLUCIÓN DE PRODUCTOS
   $not=$valor[1];
   if($cod <100000)
   {	
-	$qrylot="SELECT Lote_producto as Lote from remision, det_remision, factura WHERE remision.Id_remision=det_remision.Id_remision AND factura.Id_remision=remision.Id_remision and Factura=$Fac_orig and Cod_producto=$cod;";
+	$qrylot="SELECT loteProducto as Lote from remision, det_remision, factura WHERE remision.idRemision=det_remision.idRemision AND factura.Id_remision=remision.idRemision and Factura=$Fac_orig and codProducto=$cod;";
 	$resultlot=mysqli_query($link,$qrylot);
 	$row_lot=mysqli_fetch_array($resultlot);
 	$lote=$row_lot['Lote'];

@@ -98,10 +98,9 @@ class InvMPrimasOperaciones
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute(array($fecha, $codMPrima));
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        if($result){
+        if ($result != null) {
             return $result['entrada'];
-        }
-        else{
+        } else {
             return 0;
         }
 
@@ -116,10 +115,9 @@ class InvMPrimasOperaciones
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute(array($fecha, $codMPrima));
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        if($result){
+        if ($result != null) {
             return $result['salidaProduccion'];
-        }
-        else{
+        } else {
             return 0;
         }
     }
@@ -135,13 +133,13 @@ class InvMPrimasOperaciones
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute(array($codMPrima, $fecha));
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        if($result){
+        if ($result) {
             return $result['salidaEnvDist'];
-        }
-        else{
+        } else {
             return 0;
         }
     }
+
     public function getDetInv($codMP)
     {
         $qry = "SELECT loteMP, invMP, fechLote

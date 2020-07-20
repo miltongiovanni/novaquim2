@@ -29,7 +29,7 @@ foreach ($_POST as $nombre_campo => $valor)
 }  
 include "includes/conect.php";
 $link=conectarServidor();
-$result1=mysqli_query($link,"select cliente, Fech_remision, Valor from remision1 where Id_remision=$remision;");
+$result1=mysqli_query($link,"select cliente, fechaRemision, Valor from remision1 where idRemision=$remision;");
 $row1=mysqli_fetch_array($result1);
 
 

@@ -32,7 +32,7 @@ $objPHPExcel->setActiveSheetIndex(0)
 // Rename sheet
 $objPHPExcel->getActiveSheet()->setTitle(iconv("iso-8859-1", "UTF-8",'Ventas por Remisión'));
 $link=conectarServidor();
-$sql="	select Id_remision, cliente, Fech_remision, Valor from remision1 where Fech_remision>='$FchIni' and Fech_remision<='$FchFin';";
+$sql="	select idRemision, cliente, fechaRemision, Valor from remision1 where fechaRemision>='$FchIni' and fechaRemision<='$FchFin';";
 $result=mysqli_query($link,$sql) or die("Error al conectar a la base de datos.");
 $i=2;
 while($row= mysqli_fetch_array($result, MYSQLI_BOTH))
