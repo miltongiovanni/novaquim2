@@ -8,15 +8,15 @@ spl_autoload_register('cargarClases');
 $fecha=$_GET['fecha'];
 
 $InvMPrimaOperador = new InvMPrimasOperaciones();
-$invMPrima = $InvMPrimaOperador->getTableInvMPrima();
+$invMPrima = $InvMPrimaOperador->getTableInvMPrimaFecha($fecha);
 
 $datos = [];
 for ($i = 0; $i < count($invMPrima); $i++) {
     $datos[$i]['codMP'] = $invMPrima[$i]['codMP'];
     $datos[$i]['nomMPrima'] = $invMPrima[$i]['nomMPrima'];
     $datos[$i]['invtotal'] = $invMPrima[$i]['invtotal'];
-    $datos[$i]['entrada'] = $InvMPrimaOperador->getEntradasInvMPrimaXFecha($invMPrima[$i]['codMP'], $fecha);
-    $datos[$i]['salida'] = $InvMPrimaOperador->getSalidasInvMPrimaOProdXFecha($invMPrima[$i]['codMP'], $fecha)+ $InvMPrimaOperador->getSalidasInvMPrimaEnvDistXFecha($invMPrima[$i]['codMP'], $fecha);
+    $datos[$i]['entrada'] = $invMPrima[$i]['entrada'];
+    $datos[$i]['salida'] = $invMPrima[$i]['salidaProduccion']+ $invMPrima[$i]['salidaEnvDist'];
     $datos[$i]['inventario'] = round($datos[$i]['invtotal'] - $datos[$i]['entrada'] + $datos[$i]['salida'], 3);
 }
 $titulo = array(

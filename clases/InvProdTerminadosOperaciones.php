@@ -59,132 +59,69 @@ class InvProdTerminadosOperaciones
         $qry = "SELECT inv_prod.codPresentacion, presentacion, ROUND(SUM(invProd),0) invtotal
                 FROM inv_prod
                     LEFT JOIN prodpre p on inv_prod.codPresentacion = p.codPresentacion
-                GROUP BY inv_prod.codPresentacion
-                ";
+                GROUP BY inv_prod.codPresentacion";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
 
-    public function getEntradaInvProdTerminadoProduccion($codPresentacion, $fecha)
+    public function getTableInvProdTerminadoFecha($fecha)
     {
-        $qry = "SELECT ROUND(SUM(cantPresentacion)) entradaOProduccion
-                FROM ord_prod op
-                LEFT JOIN envasado e on op.lote = e.lote
-                WHERE codPresentacion=?
-                AND fechProd>?";
+        $qry = "SELECT i.codPresentacion,
+                       i.presentacion,
+                       i.invtotal,
+                       ep.entradaOProduccion,
+                       ec.entradaCambio,
+                       entradaKit,
+                       sv.salidaVentas,
+                       sc.salidaCambios,
+                       sk.salidaKits,
+                       sr.salidaRemision
+                FROM (SELECT inv_prod.codPresentacion, presentacion, ROUND(SUM(invProd), 0) invtotal
+                      FROM inv_prod
+                               LEFT JOIN prodpre p on inv_prod.codPresentacion = p.codPresentacion
+                      GROUP BY inv_prod.codPresentacion) i
+                         LEFT JOIN (SELECT codPresentacion, ROUND(SUM(cantPresentacion)) entradaOProduccion
+                                    FROM ord_prod op
+                                             LEFT JOIN envasado e on op.lote = e.lote
+                                    WHERE fechProd >= '$fecha'
+                                    GROUP BY codPresentacion) ep ON i.codPresentacion = ep.codPresentacion
+                         LEFT JOIN (SELECT codPresentacionNvo, ROUND(SUM(cantPresentacionNvo)) entradaCambio
+                                    FROM cambios
+                                             LEFT JOIN det_cambios2 d on cambios.idCambio = d.idCambio
+                                    WHERE fechaCambio > '$fecha'
+                                    GROUP BY codPresentacionNvo) ec ON codPresentacionNvo = i.codPresentacion
+                         LEFT JOIN (SELECT codigo, ROUND(SUM(cantArmado)) entradaKit
+                                    FROM arm_kit ak
+                                             LEFT JOIN kit k on ak.codKit = k.idKit
+                                    WHERE fechArmado > '2020-02-01'
+                                    GROUP BY codigo) ek ON codigo = i.codPresentacion
+                         LEFT JOIN (SELECT codProducto, ROUND(SUM(cantProducto)) salidaVentas
+                                    FROM remision
+                                             LEFT JOIN det_remision dr ON remision.idRemision = dr.idRemision
+                                    WHERE fechaRemision >= '$fecha'
+                                    GROUP BY codProducto) sv ON codProducto = i.codPresentacion
+                         LEFT JOIN (SELECT codPresentacionAnt, SUM(cantPresentacionAnt) salidaCambios
+                                    FROM cambios c
+                                             LEFT JOIN det_cambios dc on c.idCambio = dc.idCambio
+                                    WHERE fechaCambio >= '$fecha'
+                                    GROUP BY codPresentacionAnt) sc ON sc.codPresentacionAnt = i.codPresentacion
+                         LEFT JOIN (SELECT codProducto, SUM(cantArmado) salidaKits
+                                    FROM arm_kit ak
+                                             LEFT JOIN kit k on ak.codKit = k.idKit
+                                             LEFT JOIN det_kit dk on k.idKit = dk.idKit
+                                    WHERE fechArmado >= '$fecha'
+                                    GROUP BY codProducto) sk ON sk.codProducto = i.codPresentacion
+                         LEFT JOIN (SELECT codProducto, ROUND(SUM(cantProducto)) salidaRemision
+                                    FROM remision1 r1
+                                             LEFT JOIN det_remision1 d on r1.idRemision = d.idRemision
+                                    WHERE fechaRemision >= '$fecha'
+                                    GROUP BY codProducto) sr ON sr.codProducto = i.codPresentacion";
         $stmt = $this->_pdo->prepare($qry);
-        $stmt->execute(array($codPresentacion, $fecha));
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        if ($result != null) {
-            return $result['entradaOProduccion'];
-        } else {
-            return 0;
-        }
-    }
-
-    public function getEntradaInvProdTerminadoCambio($codPresentacion, $fecha)
-    {
-        $qry = "SELECT ROUND(SUM(cantPresentacionNvo)) entradaCambio
-                FROM cambios
-                         LEFT JOIN det_cambios2 d on cambios.idCambio = d.idCambio
-                WHERE codPresentacionNvo = ?
-                  AND fechaCambio > ?";
-        $stmt = $this->_pdo->prepare($qry);
-        $stmt->execute(array($codPresentacion, $fecha));
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        if ($result != null) {
-            return $result['entradaCambio'];
-        } else {
-            return 0;
-        }
-    }
-
-    public function getEntradaInvProdTerminadoKit($codPresentacion, $fecha)
-    {
-        $qry = "SELECT ROUND(SUM(cantArmado)) entradaKit
-                FROM arm_kit ak
-                LEFT JOIN kit k on ak.codKit = k.idKit
-                WHERE codigo=?
-                AND fechArmado> ?";
-        $stmt = $this->_pdo->prepare($qry);
-        $stmt->execute(array($codPresentacion, $fecha));
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        if ($result != null) {
-            return $result['entradaKit'];
-        } else {
-            return 0;
-        }
-    }
-
-    public function getSalidaInvProdTerminadoVentas($codPresentacion, $fecha)
-    {
-        $qry = "SELECT ROUND(SUM(cantProducto)) salidaVentas
-                FROM remision
-                         LEFT JOIN det_remision dr ON remision.idRemision = dr.idRemision
-                WHERE codProducto = ?
-                  AND fechaRemision >= ?";
-        $stmt = $this->_pdo->prepare($qry);
-        $stmt->execute(array($codPresentacion, $fecha));
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        if ($result != null) {
-            return $result['salidaVentas'];
-        } else {
-            return 0;
-        }
-    }
-
-    public function getSalidaInvProdTerminadoCambios($codPresentacion, $fecha)
-    {
-        $qry = "SELECT SUM(cantPresentacionAnt) salidaCambios
-                FROM cambios c
-                         LEFT JOIN det_cambios dc on c.idCambio = dc.idCambio
-                WHERE codPresentacionAnt = ?
-                  AND fechaCambio >= ?";
-        $stmt = $this->_pdo->prepare($qry);
-        $stmt->execute(array($codPresentacion, $fecha));
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        if ($result != null) {
-            return $result['salidaCambios'];
-        } else {
-            return 0;
-        }
-    }
-
-    public function getSalidaInvProdTerminadoKits($codPresentacion, $fecha)
-    {
-        $qry = "SELECT SUM(cantArmado) salidaKits
-                FROM arm_kit ak
-                         LEFT JOIN kit k on ak.codKit = k.idKit
-                         LEFT JOIN det_kit dk on k.idKit = dk.idKit
-                WHERE codProducto = ?
-                  AND fechArmado >= ?";
-        $stmt = $this->_pdo->prepare($qry);
-        $stmt->execute(array($codPresentacion, $fecha));
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        if ($result != null) {
-            return $result['salidaKits'];
-        } else {
-            return 0;
-        }
-    }
-
-    public function getSalidaInvProdTerminadoRemisiones($codPresentacion, $fecha)
-    {
-        $qry = "SELECT ROUND(SUM(cantProducto)) salidaRemision
-                FROM remision1 r1
-                         LEFT JOIN det_remision1 d on r1.idRemision = d.idRemision
-                WHERE codProducto = ?
-                  AND fechaRemision >= ?";
-        $stmt = $this->_pdo->prepare($qry);
-        $stmt->execute(array($codPresentacion, $fecha));
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        if ($result != null) {
-            return $result['salidaRemision'];
-        } else {
-            return 0;
-        }
+        $stmt->execute();
+        $result = $stmt->fetchall(PDO::FETCH_ASSOC);
+        return $result;
     }
 
     public function getInvTotalProdTerminado($codPresentacion)
