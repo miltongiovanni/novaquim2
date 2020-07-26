@@ -50,6 +50,77 @@ class InvDistribucionOperaciones
         return $result;
     }
 
+    public function getTableInvDistribucionFecha($fecha)
+    {
+        $qry = "SELECT i.codDistribucion,
+                       i.producto,
+                       i.invDistribucion,
+                       ec.entradaCompras,
+                       eak.entradaArmKits,
+                       edk.entradaDesarmKits,
+                       eed.entradaEnvDistribucion,
+                       sv.salidaVentas,
+                       sr.salidaRemision,
+                       sdk.salidaDesarmadoKits,
+                       sak.salidaArmadoKits
+                FROM (SELECT codDistribucion, producto, round(invDistribucion, 0) invDistribucion
+                      FROM inv_distribucion id
+                               LEFT JOIN distribucion d on id.codDistribucion = d.idDistribucion
+                      WHERE invDistribucion > 0) i
+                         LEFT JOIN (SELECT codigo, ROUND(SUM(cantidad)) entradaCompras
+                                    FROM compras c
+                                             LEFT JOIN det_compras dc on c.idCompra = dc.idCompra
+                                    WHERE tipoCompra = 5
+                                      AND fechComp >= '$fecha'
+                                    GROUP BY codigo) ec ON i.codDistribucion = ec.codigo
+                         LEFT JOIN (SELECT codigo, SUM(cantArmado) entradaArmKits
+                                    FROM arm_kit ak
+                                             LEFT JOIN kit k on ak.codKit = k.idKit
+                                             LEFT JOIN distribucion ON codigo = idDistribucion
+                                    WHERE fechArmado >= '$fecha'
+                                    GROUP BY codigo) eak ON eak.codigo = i.codDistribucion
+                         LEFT JOIN (SELECT codProducto, SUM(cantDesarmado) entradaDesarmKits
+                                    FROM desarm_kit dk
+                                             LEFT JOIN kit k on dk.codKit = k.idKit
+                                             LEFT JOIN det_kit d on k.idKit = d.idKit
+                                             LEFT JOIN distribucion ON codProducto = idDistribucion
+                                    WHERE fechDesarmado >= '$fecha'
+                                    GROUP BY codProducto) edk ON edk.codProducto = i.codDistribucion
+                         LEFT JOIN (SELECT ed.codDist, SUM(cantidad) entradaEnvDistribucion
+                                    FROM envasado_dist ed
+                                             LEFT JOIN rel_dist_mp rdm on ed.codDist = rdm.codDist
+                                             LEFT JOIN mprimadist m on rdm.codMPrimaDist = m.codMPrimaDist
+                                    WHERE fechaEnvDist >= '$fecha'
+                                    GROUP BY codDist) eed ON eed.codDist = i.codDistribucion
+                         LEFT JOIN (SELECT codProducto, ROUND(SUM(cantProducto)) salidaVentas
+                                    FROM remision r
+                                             LEFT JOIN det_remision dr on r.idRemision = dr.idRemision
+                                    WHERE fechaRemision >= '$fecha'
+                                    GROUP BY codProducto) sv ON sv.codProducto = i.codDistribucion
+                         LEFT JOIN (SELECT codProducto, ROUND(SUM(cantProducto)) salidaRemision
+                                    FROM remision1
+                                             LEFT JOIN det_remision1 d on remision1.idRemision = d.idRemision
+                                    WHERE fechaRemision >= '$fecha'
+                                    GROUP BY codProducto) sr ON sr.codProducto = i.codDistribucion
+                         LEFT JOIN (SELECT codigo, SUM(cantDesarmado) salidaDesarmadoKits
+                                    FROM desarm_kit dk
+                                             LEFT JOIN kit k on dk.codKit = k.idKit
+                                             LEFT JOIN distribucion d ON k.codigo = d.idDistribucion
+                                    WHERE fechDesarmado >= '$fecha'
+                                    GROUP BY codigo) sdk ON sdk.codigo = i.codDistribucion
+                         LEFT JOIN (SELECT codProducto, SUM(cantArmado) salidaArmadoKits
+                                    FROM arm_kit ak
+                                             LEFT JOIN kit k on ak.codKit = k.idKit
+                                             LEFT JOIN det_kit dk on k.idKit = dk.idKit
+                                             LEFT JOIN distribucion d ON dk.codProducto = d.idDistribucion
+                                    WHERE fechArmado >= '$fecha'
+                                    GROUP BY codProducto) sak ON sak.codProducto = i.codDistribucion";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     public function getProdPorCategoria($idProv, $idCatProv)
     {
         switch (intval($idCatProv)) {

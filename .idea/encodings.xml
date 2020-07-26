@@ -42,10 +42,12 @@
     <file url="file://$PROJECT_DIR$/compras/updateGasto.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/compras/updateProv.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/inventarios/ajax/listaInvEnvase.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/inventarios/ajax/listaInvEnvasesFecha.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/inventarios/ajax/listaInvEtiqueta.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/inventarios/ajax/listaInvMPrima.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/inventarios/ajax/listaInvMPrimaFecha.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/inventarios/ajax/listaInvProdDistribucion.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/inventarios/ajax/listaInvProdDistribucionFecha.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/inventarios/ajax/listaInvProdTerminado.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/inventarios/ajax/listaInvProdTerminadoFecha.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/inventarios/ajax/listaInvTapas.php" charset="UTF-8" />

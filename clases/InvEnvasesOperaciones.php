@@ -50,6 +50,91 @@ class InvEnvasesOperaciones
         return $result;
     }
 
+    public function getTableInvEnvaseFecha($fecha)
+    {
+        $qry = "SELECT i.codEnvase,
+       i.nomEnvase,
+       i.invEnvase,
+       ec.entradaCompra,
+       ec2.entradaCambio,
+       edk.entradaDesarmadoKits,
+       sp.salidaProduccion,
+       sed.salidaEnvasadoDist,
+       sak.salidaArmadoKits,
+       sj.salidaJabones,
+       sc.salidaCambios
+FROM (SELECT ie.codEnvase, nomEnvase, ROUND(invEnvase) invEnvase
+      FROM inv_envase ie
+               LEFT JOIN envases e on ie.codEnvase = e.codEnvase
+      WHERE invEnvase > 0
+        AND ie.codEnvase > 0) i
+         LEFT JOIN (SELECT codigo, ROUND(SUM(cantidad)) entradaCompra
+                    FROM compras c
+                             LEFT JOIN det_compras dc on c.idCompra = dc.idCompra
+                    WHERE tipoCompra = 2
+                      AND codigo < 100
+                      AND fechComp >= '$fecha'
+                    GROUP BY codigo) ec ON i.codEnvase = ec.codigo
+         LEFT JOIN (SELECT codEnvase, SUM(cantPresentacionNvo) entradaCambio
+                    FROM cambios c
+                             LEFT JOIN det_cambios2 d on c.idCambio = d.idCambio
+                             LEFT JOIN prodpre p on d.codPresentacionNvo = p.codPresentacion
+                    WHERE fechaCambio >= '$fecha'
+                    GROUP BY codEnvase) ec2 ON ec2.codEnvase = i.codEnvase
+         LEFT JOIN (SELECT codEnvase, SUM(cantDesarmado) entradaDesarmadoKits
+                    FROM desarm_kit dk
+                             LEFT JOIN kit k on dk.codKit = k.idKit
+                    WHERE fechDesarmado >= '$fecha'
+                    GROUP BY codEnvase) edk ON edk.codEnvase = i.codEnvase
+         LEFT JOIN (SELECT codEnvase, SUM(cantPresentacion) salidaProduccion
+                    FROM ord_prod op
+                             LEFT JOIN envasado e on op.lote = e.lote
+                             LEFT JOIN prodpre p on e.codPresentacion = p.codPresentacion
+                    WHERE fechProd >= '$fecha'
+                      AND codEnvase > 0
+                    GROUP BY codEnvase) sp ON sp.codEnvase = i.codEnvase
+         LEFT JOIN (SELECT codEnvase, SUM(cantidad) salidaEnvasadoDist
+                    FROM envasado_dist ed
+                             LEFT JOIN rel_dist_mp rdm on ed.codDist = rdm.codDist
+                    WHERE fechaEnvDist >= '$fecha'
+                    GROUP BY codEnvase) sed ON sed.codEnvase = i.codEnvase
+         LEFT JOIN (SELECT codEnvase, SUM(cantArmado) salidaArmadoKits
+                    FROM arm_kit ak
+                             LEFT JOIN kit k on ak.codKit = k.idKit
+                    WHERE fechArmado >= '$fecha' AND codEnvase>0
+                    GROUP BY codEnvase) sak ON sak.codEnvase = i.codEnvase
+         LEFT JOIN (SELECT t.codEnvase, SUM(cantidad) salidaJabones
+                    FROM
+                        (SELECT codEnvase, ROUND(SUM(cantProducto)) cantidad
+                         FROM remision r
+                                  LEFT JOIN det_remision dr on r.idRemision = dr.idRemision
+                                  LEFT JOIN prodpre p on dr.codProducto = p.codPresentacion
+                         WHERE ((p.codProducto >= 504
+                             AND p.codProducto <= 516) OR p.codProducto = 519)
+                           AND fechaRemision > '$fecha'
+                         GROUP BY codEnvase
+                         UNION
+                         SELECT codEnvase, ROUND(SUM(cantProducto)) cantidad
+                         FROM remision1 r1
+                                  LEFT JOIN det_remision1 dr1 on r1.idRemision = dr1.idRemision
+                                  LEFT JOIN prodpre p on dr1.codProducto = p.codPresentacion
+                         WHERE ((p.codProducto >= 504
+                             AND p.codProducto <= 516) OR p.codProducto = 519)
+                           AND fechaRemision > '$fecha'
+                         GROUP BY codEnvase) t
+                    GROUP BY codEnvase) sj ON sj.codEnvase = i.codEnvase
+         LEFT JOIN (SELECT codEnvase, SUM(cantPresentacionAnt) salidaCambios
+                    FROM cambios c
+                             LEFT JOIN det_cambios dc on c.idCambio = dc.idCambio
+                             LEFT JOIN prodpre p on dc.codPresentacionAnt = p.codPresentacion
+                    WHERE fechaCambio >= '$fecha'
+                    GROUP BY codEnvase) sc ON sc.codEnvase = i.codEnvase";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     public function getProdPorCategoria($idProv, $idCatProv)
     {
         switch (intval($idCatProv)) {
