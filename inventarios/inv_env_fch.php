@@ -5,9 +5,9 @@ $fecha = $_POST['fecha'];
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<title>Inventario de Envase en Fecha</title>
-<meta charset="utf-8">
-<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <title>Inventario de Envase en Fecha</title>
+    <meta charset="utf-8">
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="../css/datatables.css">
     <style>
         table {
@@ -131,7 +131,7 @@ $fecha = $_POST['fecha'];
 </head>
 <body>
 <div id="contenedor">
-<div id="saludo1"><strong>INVENTARIO DE ENVASE A <?= $fecha; ?></strong></div>
+    <div id="saludo1"><strong>INVENTARIO DE ENVASE A <?= $fecha; ?></strong></div>
     <div class="row flex-end">
         <div class="col-1">
             <button class="button" onclick="window.location='../menu.php'">

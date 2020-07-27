@@ -5,7 +5,7 @@ $fecha = $_POST['fecha'];
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <title>Inventario de Tapas y Válvulas en Fecha</title>
+    <title>Inventario de Etiqueta en Fecha</title>
     <meta charset="utf-8">
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="../css/datatables.css">
@@ -73,15 +73,15 @@ $fecha = $_POST['fecha'];
             var table = $('#example').DataTable({
                 "columns": [
                     {
-                        "data": "codTapa",
+                        "data": "codEtiq",
                         "className": 'dt-body-center'
                     },
                     {
-                        "data": "tapa",
+                        "data": "nomEtiqueta",
                         "className": 'dt-body-left'
                     },
                     {
-                        "data": "invTapa",
+                        "data": "invEtiq",
                         "className": 'dt-body-center'
                     },
                     {
@@ -123,7 +123,7 @@ $fecha = $_POST['fecha'];
                     "infoFiltered": "(Filtrado de _MAX_ en total)"
 
                 },
-                "ajax": "ajax/listaInvTapasFecha.php?fecha=<?= $fecha; ?>",
+                "ajax": "ajax/listaInvEtiquetasFecha.php?fecha=<?= $fecha; ?>",
                 "deferRender": true,  //For speed
             });
         });
@@ -131,7 +131,7 @@ $fecha = $_POST['fecha'];
 </head>
 <body>
 <div id="contenedor">
-    <div id="saludo1"><strong>INVENTARIO DE TAPAS Y VÁLVULAS A <?= $fecha; ?></strong></div>
+    <div id="saludo1"><strong>INVENTARIO DE ETIQUETAS A <?= $fecha; ?></strong></div>
     <div class="row flex-end">
         <div class="col-1">
             <button class="button" onclick="window.location='../menu.php'">
@@ -143,7 +143,7 @@ $fecha = $_POST['fecha'];
             <thead>
             <tr>
                 <th class="width1">Código</th>
-                <th class="width2">Tapa o válvula</th>
+                <th class="width2">Etiqueta</th>
                 <th class="width3">Cantidad</th>
                 <th class="width4">Entrada</th>
                 <th class="width5">Salida</th>

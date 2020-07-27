@@ -51,6 +51,71 @@ class InvEtiquetasOperaciones
         return $result;
     }
 
+    public function getTableInvEtiquetaFecha($fecha)
+    {
+        $qry = "SELECT i.codEtiq,
+                       i.nomEtiqueta,
+                       i.invEtiq,
+                       ec.entradaCompra,
+                       ec2.entradaCambio,
+                       sp.salidaProduccion,
+                       sj.salidaJabones,
+                       sc.salidaCambios
+                FROM (SELECT codEtiq, nomEtiqueta, invEtiq
+                      FROM inv_etiquetas ie
+                               LEFT JOIN etiquetas e on ie.codEtiq = e.codEtiqueta
+                      WHERE invEtiq > 0
+                        AND codEtiq > 0) i
+                         LEFT JOIN (SELECT codigo, ROUND(SUM(cantidad)) entradaCompra
+                                    FROM compras c
+                                             LEFT JOIN det_compras dc on c.idCompra = dc.idCompra
+                                    WHERE tipoCompra = 3
+                                      AND fechComp >= '$fecha'
+                                    GROUP BY codigo) ec ON i.codEtiq = ec.codigo
+                         LEFT JOIN (SELECT codEtiq, SUM(cantPresentacionNvo) entradaCambio
+                                    FROM cambios c
+                                             LEFT JOIN det_cambios2 d on c.idCambio = d.idCambio
+                                             LEFT JOIN prodpre p on d.codPresentacionNvo = p.codPresentacion
+                                    WHERE fechaCambio >= '$fecha'
+                                    GROUP BY codEtiq) ec2 ON ec2.codEtiq = i.codEtiq
+                         LEFT JOIN (SELECT codEtiq, SUM(cantPresentacion) salidaProduccion
+                                    FROM ord_prod op
+                                             LEFT JOIN envasado e on op.lote = e.lote
+                                             LEFT JOIN prodpre p on e.codPresentacion = p.codPresentacion
+                                    WHERE fechProd >= '$fecha'
+                                      AND codEnvase > 0
+                                    GROUP BY codEtiq) sp ON sp.codEtiq = i.codEtiq
+                         LEFT JOIN (SELECT t.codEtiq, SUM(cantidad) salidaJabones
+                                    FROM (SELECT codEtiq, ROUND(SUM(cantProducto)) cantidad
+                                          FROM remision r
+                                                   LEFT JOIN det_remision dr on r.idRemision = dr.idRemision
+                                                   LEFT JOIN prodpre p on dr.codProducto = p.codPresentacion
+                                          WHERE ((p.codProducto >= 504
+                                              AND p.codProducto <= 516) OR p.codProducto = 519)
+                                            AND fechaRemision > '$fecha'
+                                          GROUP BY codEtiq
+                                          UNION
+                                          SELECT codEtiq, ROUND(SUM(cantProducto)) cantidad
+                                          FROM remision1 r1
+                                                   LEFT JOIN det_remision1 dr1 on r1.idRemision = dr1.idRemision
+                                                   LEFT JOIN prodpre p on dr1.codProducto = p.codPresentacion
+                                          WHERE ((p.codProducto >= 504
+                                              AND p.codProducto <= 516) OR p.codProducto = 519)
+                                            AND fechaRemision > '$fecha'
+                                          GROUP BY codEtiq) t
+                                    GROUP BY codEtiq) sj ON sj.codEtiq = i.codEtiq
+                         LEFT JOIN (SELECT codEtiq, SUM(cantPresentacionAnt) salidaCambios
+                                    FROM cambios c
+                                             LEFT JOIN det_cambios dc on c.idCambio = dc.idCambio
+                                             LEFT JOIN prodpre p on dc.codPresentacionAnt = p.codPresentacion
+                                    WHERE fechaCambio >= '$fecha'
+                                    GROUP BY codEtiq) sc ON sc.codEtiq = i.codEtiq";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     public function getProdPorCategoria($idProv, $idCatProv)
     {
         switch (intval($idCatProv)) {

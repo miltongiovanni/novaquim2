@@ -50,6 +50,78 @@ class InvTapasOperaciones
         return $result;
     }
 
+    public function getTableInvTapasFecha($fecha)
+    {
+        $qry = "SELECT i.codTapa,
+                       i.tapa,
+                       i.invTapa,
+                       ec.entradaCompra,
+                       ec2.entradaCambio,
+                       sp.salidaProduccion,
+                       sed.salidaEnvasadoDist,
+                       sj.salidaJabones,
+                       sc.salidaCambios
+                FROM (SELECT itv.codTapa, tapa, invTapa
+                      FROM inv_tapas_val itv
+                               LEFT JOIN tapas_val tv on itv.codTapa = tv.codTapa
+                      WHERE invTapa > 0
+                        AND itv.codTapa != 114) i
+                         LEFT JOIN (SELECT codigo, ROUND(SUM(cantidad)) entradaCompra
+                                    FROM compras c
+                                             LEFT JOIN det_compras dc on c.idCompra = dc.idCompra
+                                    WHERE tipoCompra = 2
+                                      AND codigo > 100
+                                      AND fechComp >= '$fecha'
+                                    GROUP BY codigo) ec ON i.codTapa = ec.codigo
+                         LEFT JOIN (SELECT codTapa, SUM(cantPresentacionNvo) entradaCambio
+                                    FROM cambios c
+                                             LEFT JOIN det_cambios2 d on c.idCambio = d.idCambio
+                                             LEFT JOIN prodpre p on d.codPresentacionNvo = p.codPresentacion
+                                    WHERE fechaCambio >= '$fecha'
+                                    GROUP BY codTapa) ec2 ON ec2.codTapa = i.codTapa
+                         LEFT JOIN (SELECT codTapa, SUM(cantPresentacion) salidaProduccion
+                                    FROM ord_prod op
+                                             LEFT JOIN envasado e on op.lote = e.lote
+                                             LEFT JOIN prodpre p on e.codPresentacion = p.codPresentacion
+                                    WHERE fechProd >= '$fecha'
+                                      AND codEnvase > 0
+                                    GROUP BY codTapa) sp ON sp.codTapa = i.codTapa
+                         LEFT JOIN (SELECT codTapa, SUM(cantidad) salidaEnvasadoDist
+                                    FROM envasado_dist ed
+                                             LEFT JOIN rel_dist_mp rdm on ed.codDist = rdm.codDist
+                                    WHERE fechaEnvDist >= '$fecha'
+                                    GROUP BY codTapa) sed ON sed.codTapa = i.codTapa
+                         LEFT JOIN (SELECT t.codTapa, SUM(cantidad) salidaJabones
+                                    FROM (SELECT codTapa, ROUND(SUM(cantProducto)) cantidad
+                                          FROM remision r
+                                                   LEFT JOIN det_remision dr on r.idRemision = dr.idRemision
+                                                   LEFT JOIN prodpre p on dr.codProducto = p.codPresentacion
+                                          WHERE ((p.codProducto >= 504
+                                              AND p.codProducto <= 516) OR p.codProducto = 519)
+                                            AND fechaRemision > '$fecha'
+                                          GROUP BY codTapa
+                                          UNION
+                                          SELECT codTapa, ROUND(SUM(cantProducto)) cantidad
+                                          FROM remision1 r1
+                                                   LEFT JOIN det_remision1 dr1 on r1.idRemision = dr1.idRemision
+                                                   LEFT JOIN prodpre p on dr1.codProducto = p.codPresentacion
+                                          WHERE ((p.codProducto >= 504
+                                              AND p.codProducto <= 516) OR p.codProducto = 519)
+                                            AND fechaRemision > '$fecha'
+                                          GROUP BY codTapa) t
+                                    GROUP BY codTapa) sj ON sj.codTapa = i.codTapa
+                         LEFT JOIN (SELECT codTapa, SUM(cantPresentacionAnt) salidaCambios
+                                    FROM cambios c
+                                             LEFT JOIN det_cambios dc on c.idCambio = dc.idCambio
+                                             LEFT JOIN prodpre p on dc.codPresentacionAnt = p.codPresentacion
+                                    WHERE fechaCambio >= '$fecha'
+                                    GROUP BY codTapa) sc ON sc.codTapa = i.codTapa";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     public function getProdPorCategoria($idProv, $idCatProv)
     {
         switch (intval($idCatProv)) {
