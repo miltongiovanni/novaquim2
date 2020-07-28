@@ -89,6 +89,20 @@ class InvMPrimasOperaciones
         return $result;
     }
 
+    public function getTableStockInvMPrima()
+    {
+        $qry = "SELECT codMP, nomMPrima, ROUND(SUM(invMP),3) invTotal, minStockMPrima
+                FROM inv_mprimas imp
+                         LEFT JOIN mprimas m on imp.codMP = m.codMPrima
+                WHERE codMP != 10401 AND codMP != 10402
+                GROUP BY codMP, nomMPrima, minStockMPrima
+                HAVING  SUM(invMP) < minStockMPrima";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     public function getTableInvMPrimaFecha($fecha)
     {
         $qry = "SELECT i.codMP,

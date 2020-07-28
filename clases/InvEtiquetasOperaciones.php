@@ -51,6 +51,20 @@ class InvEtiquetasOperaciones
         return $result;
     }
 
+    public function getTableStockInvEtiqueta()
+    {
+        $qry = "SELECT codEtiq, nomEtiqueta, invEtiq, stockEtiqueta
+                FROM inv_etiquetas ie
+                         LEFT JOIN etiquetas e on ie.codEtiq = e.codEtiqueta
+                WHERE invEtiq > 0
+                  AND codEtiq > 0
+                  AND invEtiq < stockEtiqueta";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     public function getTableInvEtiquetaFecha($fecha)
     {
         $qry = "SELECT i.codEtiq,

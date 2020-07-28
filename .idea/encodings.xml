@@ -53,6 +53,12 @@
     <file url="file://$PROJECT_DIR$/inventarios/ajax/listaInvProdTerminadoFecha.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/inventarios/ajax/listaInvTapas.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/inventarios/ajax/listaInvTapasFecha.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/inventarios/ajax/listaStockInvEnvase.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/inventarios/ajax/listaStockInvEtiqueta.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/inventarios/ajax/listaStockInvMPrima.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/inventarios/ajax/listaStockInvProdDistribucion.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/inventarios/ajax/listaStockInvProdTerminado.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/inventarios/ajax/listaStockInvTapas.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/inventarios/inv_mp.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/produccion/ajax/listaArmKits.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/produccion/ajax/listaCambios.php" charset="UTF-8" />

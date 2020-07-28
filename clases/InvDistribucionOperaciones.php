@@ -50,6 +50,19 @@ class InvDistribucionOperaciones
         return $result;
     }
 
+    public function getTableStockInvDistribucion()
+    {
+        $qry = "SELECT codDistribucion, producto, round(invDistribucion, 0) invDistribucion, stockDis
+                FROM inv_distribucion id
+                         LEFT JOIN distribucion d on id.codDistribucion = d.idDistribucion
+                WHERE invDistribucion > 0
+                  AND invDistribucion < stockDis";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     public function getTableInvDistribucionFecha($fecha)
     {
         $qry = "SELECT i.codDistribucion,

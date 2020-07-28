@@ -66,6 +66,19 @@ class InvProdTerminadosOperaciones
         return $result;
     }
 
+    public function getTableStockInvProdTerminado()
+    {
+        $qry = "SELECT inv_prod.codPresentacion, presentacion, ROUND(SUM(invProd),0) invtotal, stockPresentacion
+                FROM inv_prod
+                         LEFT JOIN prodpre p on inv_prod.codPresentacion = p.codPresentacion
+                GROUP BY inv_prod.codPresentacion, presentacion, stockPresentacion
+                HAVING SUM(invProd) < stockPresentacion";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     public function getTableInvProdTerminadoFecha($fecha)
     {
         $qry = "SELECT i.codPresentacion,
