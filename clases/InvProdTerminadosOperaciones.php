@@ -25,22 +25,6 @@ class InvProdTerminadosOperaciones
         $stmt->execute($datos);
     }
 
-    public function deleteAllDetCompra($idProv)
-    {
-        $qry = "DELETE FROM inv_prod WHERE idProv= ?";
-        $stmt = $this->_pdo->prepare($qry);
-        $stmt->execute(array($idProv));
-    }
-
-    public function getFechaLoteInvProdTerminado($codPresentacion, $loteProd)
-    {
-        $qry = "SELECT fechLote FROM inv_prod WHERE codPresentacion=? AND loteProd=?";
-        $stmt = $this->_pdo->prepare($qry);
-        $stmt->execute(array($codPresentacion, $loteProd));
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $result['fechLote'];
-    }
-
     public function getInvProdTerminadoByLote($codPresentacion, $loteProd)
     {
         $qry = "SELECT invProd FROM inv_prod WHERE codPresentacion=? AND loteProd=?";
@@ -171,6 +155,17 @@ class InvProdTerminadosOperaciones
         return $result;
     }
 
+    public function getLotesPresentacion($codPresentacion)
+    {
+        $qry = "SELECT loteProd
+                FROM inv_prod
+                WHERE codPresentacion =?
+                AND invProd > 0";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($codPresentacion));
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
     public function getMaxLoteInvProdTerminado($codPresentacion)
     {
         $qry = "SELECT loteProd, invProd

@@ -1,54 +1,110 @@
 <?php
 include "../includes/valAcc.php";
+function cargarClases($classname)
+{
+    require '../clases/' . $classname . '.php';
+}
+
+spl_autoload_register('cargarClases');
 ?>
 <!DOCTYPE html>
 <html lang="es">
-<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+
 <head>
-<meta charset="utf-8">
-<title>Ajuste de Inventario de Materia Prima</title>
-<script  src="../js/validar.js"></script>
-<script  src="scripts/block.js"></script>
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <meta charset="utf-8">
+    <title>Ajuste de Inventario de Materia Prima</title>
+    <script src="../js/validar.js"></script>
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script>
+
+        function getLotesMPrima(codMPrima) {
+            $.ajax({
+                url: '../includes/controladorInventarios.php',
+                type: 'POST',
+                data: {
+                    "action": 'findLotesMPrima',
+                    "codMPrima": codMPrima
+                },
+                dataType: 'json',
+                success: function (lotes) {
+                    let rep = '<option selected disabled value="">------------</option>';
+                    for (i = 0; i < lotes.length; i++) {
+                        rep += '<option value="' + lotes[i].loteMP + '">' + lotes[i].loteMP + '</option>';
+                    }
+                    $("#loteMP").html(rep);
+                },
+                fail: function () {
+                    alert("Vous avez un GROS problème");
+                }
+            });
+        }
+
+        function getInvMPrimaXLote(codMPrima, loteMP) {
+            $.ajax({
+                url: '../includes/controladorInventarios.php',
+                type: 'POST',
+                data: {
+                    "action": 'findInvMPrimaXLote',
+                    "codMPrima": codMPrima,
+                    "loteMP": loteMP,
+                },
+                dataType: 'json',
+                success: function (response) {
+                    $("#invMP").val(response);
+                },
+                error: function () {
+                    alert("Vous avez un GROS problème");
+                }
+            });
+        }
+    </script>
 </head>
 <body>
 <div id="contenedor">
-  <div id="saludo"><strong>SELECCIÓN DE MATERIA PRIMA A AJUSTAR INVENTARIO</strong></div>
-<form id="form1" name="form1" method="post" action="a_inv_mp2.php">  
-<table width="700" border="0" align="center">
- <tr>
-      <td>
-        <div align="center"><strong>Materia Prima</strong>
-<?php
-				include "includes/conect.php";
-				$link=conectarServidor();
-				echo'<select name="IdMP">';
-				$result=mysqli_query($link,"select * from mprimas order by Nom_mprima");
-				echo '<option selected value="">-----------------------------------------------------</option>';
-				while($row=mysqli_fetch_array($result)){
-					echo '<option value='.$row['Cod_mprima'].'>'.$row['Nom_mprima'].'</option>';
-				}
-				echo'</select>';
-				mysqli_free_result($result);
-/* cerrar la conexión */
-mysqli_close($link);
-			?>
-          <input type="button" value="Continuar" onClick="return Enviar0(this.form);">
+    <div id="saludo"><strong>SELECCIÓN DE MATERIA PRIMA A AJUSTAR INVENTARIO</strong></div>
+    <form id="form1" name="form1" method="post" action="updateInvMP.php">
+        <div class="form-group row">
+            <label class="col-form-label col-2" for="codMPrima"><strong>Materia prima</strong></label>
+            <select name="codMPrima" id="codMPrima" class="form-control col-2" onchange="getLotesMPrima(this.value)">
+                <option selected disabled value="">-----------------------------</option>
+                <?php
+                $MPrimaOperador = new MPrimasOperaciones();
+                $mPrimas = $MPrimaOperador->getMPrimas();
+                $filas = count($mPrimas);
+                for ($i = 0; $i < $filas; $i++) {
+                    echo '<option value="' . $mPrimas[$i]["codMPrima"] . '">' . $mPrimas[$i]['nomMPrima'] . '</option>';
+                }
+                ?>
+            </select>
         </div>
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2"><div align="center">&nbsp;</div></td>
-    </tr>
-    <tr>
-      <td colspan="2"><div align="center">&nbsp;</div></td>
-    </tr>
-    <tr>
-      <td colspan="2"><div align="center">
-        <input type="button" class="resaltado" onClick="history.back()" value="  VOLVER  ">
-      </div></td>
-    </tr>
-</table>
-</form>
+        <div class="form-group row">
+            <label class="col-form-label col-2" for="loteMP"><strong>Lote</strong></label>
+            <select name="loteMP" id="loteMP" class="form-control col-2"
+                    onchange="getInvMPrimaXLote(document.getElementById('codMPrima').value, this.value)">
+            </select>
+        </div>
+        <div class="form-group row">
+            <label class="col-form-label col-2 text-right"
+                   for=invMP><strong>Inventario</strong></label>
+            <input type="text" class="form-control col-2" name="invMP" id="invMP" onKeyPress="return aceptaNum(event)">
+
+        </div>
+        <div class="form-group row">
+            <div class="col-1 text-center">
+                <button class="button" type="reset"><span>Reiniciar</span></button>
+            </div>
+            <div class="col-1 text-center">
+                <button class="button"
+                        onclick="return Enviar(this.form)"><span>Continuar</span></button>
+            </div>
+        </div>
+    </form>
+    <div class="row">
+        <div class="col-1">
+            <button class="button1" id="back" onClick="history.back()"><span>VOLVER</span></button>
+        </div>
+    </div>
 </div>
 </body>
 </html>

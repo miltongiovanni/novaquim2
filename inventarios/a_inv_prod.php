@@ -1,53 +1,111 @@
 <?php
 include "../includes/valAcc.php";
+function cargarClases($classname)
+{
+    require '../clases/' . $classname . '.php';
+}
+
+spl_autoload_register('cargarClases');
 ?>
 <!DOCTYPE html>
 <html lang="es">
-<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
 <head>
-<meta charset="utf-8">
-<title>Ajuste de Inventario de Producto Terminado</title>
-<script  src="../js/validar.js"></script>
-<script  src="scripts/block.js"></script>
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <meta charset="utf-8">
+    <title>Ajuste de Inventario de Producto Terminado</title>
+    <script src="../js/validar.js"></script>
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script>
+
+        function getLotesPresentacion(codPresentacion) {
+            $.ajax({
+                url: '../includes/controladorInventarios.php',
+                type: 'POST',
+                data: {
+                    "action": 'findLotesPresentacion',
+                    "codPresentacion": codPresentacion
+                },
+                dataType: 'json',
+                success: function (lotes) {
+                    let rep = '<option selected disabled value="">------------</option>';
+                    for (i = 0; i < lotes.length; i++) {
+                        rep += '<option value="' + lotes[i].loteProd + '">' + lotes[i].loteProd + '</option>';
+                    }
+                    $("#loteProd").html(rep);
+                },
+                fail: function () {
+                    alert("Vous avez un GROS problème");
+                }
+            });
+        }
+
+        function getInvPresentacionXLote(codPresentacion, loteProd) {
+            $.ajax({
+                url: '../includes/controladorInventarios.php',
+                type: 'POST',
+                data: {
+                    "action": 'findInvProdTerminadoXLote',
+                    "codPresentacion": codPresentacion,
+                    "loteProd": loteProd,
+                },
+                dataType: 'json',
+                success: function (response) {
+                    $("#invProd").val(response);
+                },
+                error: function () {
+                    alert("Vous avez un GROS problème");
+                }
+            });
+        }
+    </script>
 </head>
 <body>
 <div id="contenedor">
-  <div id="saludo"><strong>SELECCIÓN DE PRODUCTO A AJUSTAR INVENTARIO</strong></div>
-<form id="form1" name="form1" method="post" action="a_inv_prod2.php">  
-<table width="700" border="0" align="center">
- <tr>
-      <td>
-        <div align="center"><strong>Producto</strong>
-		<?php
-		  include "includes/conect.php";
-		  $link=conectarServidor();
-		  echo'<select name="IdProd">';
-		  $result=mysqli_query($link,"select Cod_prese, Nombre from prodpre  where pres_activo=0 order by Nombre;");
-		  echo '<option selected value="">---------------------------------------------------------------------------------</option>';
-		  while($row=mysqli_fetch_array($result))
-		  {
-			  echo '<option value='.$row['Cod_prese'].'>'.$row['Nombre'].'</option>';
-		  }
-		  echo'</select>';
-		  mysqli_close($link);
-		?>
-        <input type="button" value="Continuar" onClick="return Enviar0(this.form);">
+    <div id="saludo"><strong>SELECCIÓN DE PRODUCTO A AJUSTAR INVENTARIO</strong></div>
+    <form id="form1" name="form1" method="post" action="updateInvProd.php">
+        <div class="form-group row">
+            <label class="col-form-label col-2" for="codPresentacion"><strong>Producto</strong></label>
+            <select name="codPresentacion" id="codPresentacion" class="form-control col-3 formatoDatos"
+                    onchange="getLotesPresentacion(this.value)">
+                <option selected disabled value="">-----------------------------</option>
+                <?php
+                $PresentacionOperador = new PresentacionesOperaciones();
+                $presentaciones = $PresentacionOperador->getPresentaciones(true);
+                $filas = count($presentaciones);
+                for ($i = 0; $i < $filas; $i++) {
+                    echo '<option value="' . $presentaciones[$i]["codPresentacion"] . '">' . $presentaciones[$i]['presentacion'] . '</option>';
+                }
+                ?>
+            </select>
         </div>
-      </td>
-    </tr>
-    <tr>
-      <td colspan="2"><div align="center">&nbsp;</div></td>
-    </tr>
-    <tr>
-      <td colspan="2"><div align="center">&nbsp;</div></td>
-    </tr>
-    <tr>
-      <td colspan="2"><div align="center">
-        <input type="button" class="resaltado" onClick="history.back()" value="  VOLVER  ">
-      </div></td>
-    </tr>
-</table>
-</form>
+        <div class="form-group row">
+            <label class="col-form-label col-2" for="loteProd"><strong>Lote</strong></label>
+            <select name="loteProd" id="loteProd" class="form-control col-3 formatoDatos"
+                    onchange="getInvPresentacionXLote(document.getElementById('codPresentacion').value, this.value)">
+            </select>
+        </div>
+        <div class="form-group row">
+            <label class="col-form-label col-2 text-right"
+                   for=invProd><strong>Inventario</strong></label>
+            <input type="text" class="form-control col-3 formatoDatos" name="invProd" id="invProd"
+                   onKeyPress="return aceptaNum(event)">
+
+        </div>
+        <div class="form-group row">
+            <div class="col-1 text-center">
+                <button class="button" type="reset"><span>Reiniciar</span></button>
+            </div>
+            <div class="col-1 text-center">
+                <button class="button"
+                        onclick="return Enviar(this.form)"><span>Continuar</span></button>
+            </div>
+        </div>
+    </form>
+    <div class="row">
+        <div class="col-1">
+            <button class="button1" id="back" onClick="history.back()"><span>VOLVER</span></button>
+        </div>
+    </div>
 </div>
 </body>
 </html>
