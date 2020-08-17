@@ -55,7 +55,7 @@ $cambio = $cambioOperador->getCambio($idCambio);
                 success: function (res) {
                     redireccion();
                 },
-                fail: function () {
+                error: function () {
                     alert("Vous avez un GROS problème");
                 }
             });
@@ -77,7 +77,7 @@ $cambio = $cambioOperador->getCambio($idCambio);
                     }
                     document.getElementById('loteProd').innerHTML = rep;
                 },
-                fail: function () {
+                error: function () {
                     alert("Vous avez un GROS problème");
                 }
             });
@@ -102,7 +102,7 @@ $cambio = $cambioOperador->getCambio($idCambio);
                     document.getElementById('cantPresentacionAnt').innerHTML = rep;
 
                 },
-                fail: function () {
+                error: function () {
                     alert("Vous avez un GROS problème");
                 }
             });

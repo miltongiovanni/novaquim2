@@ -24,7 +24,7 @@ include "../includes/valAcc.php";
                 success: function (provList) {
                     $("#myDiv").html(provList);
                 },
-                fail: function () {
+                error: function () {
                     alert("Vous avez un GROS problème");
                 }
             });
@@ -55,11 +55,10 @@ include "../includes/valAcc.php";
             <input type="date" class="form-control col-2" name="fechVenc" id="fechVenc">
         </div>
         <div class="form-group row">
-            <div class="col-1 text-center" >
-                <button class="button" onclick="return Enviar(this.form)"><span>Continuar</span></button>
-            </div>
-            <div class="col-1 text-center" >
+                        <div class="col-1 text-center" >
                 <button class="button" type="reset"><span>Reiniciar</span></button>
+            </div><div class="col-1 text-center" >
+                <button class="button" onclick="return Enviar(this.form)"><span>Continuar</span></button>
             </div>
         </div>
     </form>

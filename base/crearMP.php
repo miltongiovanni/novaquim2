@@ -32,7 +32,7 @@ spl_autoload_register('cargarClases');
             $("#codMPrima").val(lastCodMP.codigo);
             $("#aliasMPrima").val(lastCodMP.alias);
 		},
-		fail: function () {
+		error: function () {
 			alert("Vous avez un GROS problème");
 		}
 	});

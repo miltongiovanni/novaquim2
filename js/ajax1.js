@@ -43,7 +43,7 @@ function findProveedor(idCatProd) {
         success: function (provList) {
             $("#myDiv").val(nitValid);
         },
-        fail: function () {
+        error: function () {
             alert("Vous avez un GROS problème");
         }
     });

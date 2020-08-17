@@ -22,7 +22,7 @@ include "../includes/valAcc.php";
             success: function (lastCodEnv) {
                 $("#codEnvase").val(lastCodEnv);
             },
-            fail: function () {
+            error: function () {
                 alert("Vous avez un GROS problème");
             }
         });

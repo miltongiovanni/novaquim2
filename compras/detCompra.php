@@ -77,7 +77,7 @@ $compra = $CompraOperador->getCompra($idCompra, $tipoCompra);
                 success: function (res) {
                     redireccion();
                 },
-                fail: function () {
+                error: function () {
                     alert("Vous avez un GROS problème");
                 }
             });
@@ -102,7 +102,7 @@ $compra = $CompraOperador->getCompra($idCompra, $tipoCompra);
                             eliminarSession();
                         }
                     },
-                    fail: function () {
+                    error: function () {
                         alert("Vous avez un GROS problème");
                     }
                 });

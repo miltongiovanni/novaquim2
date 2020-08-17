@@ -28,7 +28,7 @@ spl_autoload_register('cargarClases');
                 success: function (formulasList) {
                     $("#myDiv").html(formulasList);
                 },
-                fail: function () {
+                error: function () {
                     alert("Vous avez un GROS problème");
                 }
             });

@@ -34,7 +34,7 @@ spl_autoload_register('cargarClases');
                     }
                     $("#loteMP").html(rep);
                 },
-                fail: function () {
+                error: function () {
                     alert("Vous avez un GROS problème");
                 }
             });

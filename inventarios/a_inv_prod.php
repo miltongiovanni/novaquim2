@@ -33,7 +33,7 @@ spl_autoload_register('cargarClases');
                     }
                     $("#loteProd").html(rep);
                 },
-                fail: function () {
+                error: function () {
                     alert("Vous avez un GROS problème");
                 }
             });

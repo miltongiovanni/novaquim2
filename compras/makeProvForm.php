@@ -34,7 +34,7 @@ spl_autoload_register('cargarClases');
                 success: function (nitValid) {
                     $("#nitProv").val(nitValid);
                 },
-                fail: function () {
+                error: function () {
                     alert("Vous avez un GROS problème");
                 }
             });

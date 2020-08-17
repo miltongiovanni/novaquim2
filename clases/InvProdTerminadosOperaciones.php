@@ -148,7 +148,7 @@ class InvProdTerminadosOperaciones
 
     public function getInvProdTerminado($codPresentacion)
     {
-        $qry = "SELECT codPresentacion, loteProd, invProd FROM inv_prod WHERE codPresentacion=?";
+        $qry = "SELECT codPresentacion, loteProd, invProd FROM inv_prod WHERE codPresentacion=? AND invProd>0";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute(array($codPresentacion));
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -206,11 +206,16 @@ class InvProdTerminadosOperaciones
     {
         $qry = "SELECT invProd
                 FROM inv_prod
-                WHERE codPresentacion=? AND loteProd =? AND invProd>0;";
+                WHERE codPresentacion=? AND loteProd =?;";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute(array($codPresentacion, $loteProd));
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $result['invProd'];
+        if($result == null){
+            return 0;
+        }else{
+            return $result['invProd'];
+        }
+
     }
 
     public function getDetProveedor($idProv)

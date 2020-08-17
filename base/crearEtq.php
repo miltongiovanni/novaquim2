@@ -22,7 +22,7 @@ include "../includes/valAcc.php";
                 success: function (lastCodEtiq) {
                     $("#codEtiqueta").val(lastCodEtiq);
                 },
-                fail: function () {
+                error: function () {
                     alert("Vous avez un GROS problème");
                 }
             });

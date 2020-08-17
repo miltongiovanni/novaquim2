@@ -228,9 +228,9 @@ include "../includes/valAcc.php";
 				  <td><div align="center">'.$row['Nombre'].'</div></td>
 				  <td><div align="center">'.$row['Cantidad'].'</div></td>
 				  <td align="center" valign="middle">';
-				echo '<form action="delprodRem.php" method="post" name="elimina">
+				echo '<form action="delDetRemision.php" method="post" name="elimina">
 					<input type="submit" name="Submit" value="Eliminar" >
-					<input name="remision" type="hidden" value="'.$remision.'">
+					<input name="remision" type="hidden" value="' .$remision.'">
 					<input name="producto" type="hidden" value="'.$cod.'">
 					<input name="cantidad" type="hidden" value="'.$cantidad.'">
 					</form>';
@@ -259,9 +259,9 @@ include "../includes/valAcc.php";
 			  <td><div align="center">'.$row['Producto'].'</div></td>
 			  <td><div align="center">'.$row['Can_producto'].'</div></td>
 			  <td align="center" valign="middle">';
-				echo '<form action="delprodRem.php" method="post" name="elimina">
+				echo '<form action="delDetRemision.php" method="post" name="elimina">
 				<input type="submit" name="Submit" value="Eliminar" >
-				<input name="remision" type="hidden" value="'.$remision.'">
+				<input name="remision" type="hidden" value="' .$remision.'">
 				<input name="producto" type="hidden" value="'.$cod.'">
 				<input name="cantidad" type="hidden" value="'.$cantidad.'">
 				</form>';

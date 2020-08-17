@@ -22,7 +22,7 @@ include "../includes/valAcc.php";
                 success: function (lastCodTap) {
                     $("#codTapa").val(lastCodTap);
                 },
-                fail: function () {
+                error: function () {
                     alert("Vous avez un GROS problème");
                 }
             });

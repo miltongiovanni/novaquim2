@@ -32,7 +32,7 @@ spl_autoload_register('cargarClases');
 		success: function (lastCodProd) {
             $("#codProducto").val(lastCodProd);
 		},
-		fail: function () {
+		error: function () {
 			alert("Vous avez un GROS problème");
 		}
 	});

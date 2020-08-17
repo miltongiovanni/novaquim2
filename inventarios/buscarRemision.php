@@ -3,41 +3,31 @@ include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
-<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css"><head>
-<meta charset="utf-8">
-<title>Seleccionar Remisión a Modificar</title>
-<script  src="../js/validar.js"></script>
-
-
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+<head>
+    <meta charset="utf-8">
+    <title>Seleccionar Remisión a Modificar</title>
+    <script src="../js/validar.js"></script>
 </head>
 <body>
 <div id="contenedor">
-<div id="saludo"><strong>BUSCAR REMISIÓN A MODIFICAR</strong></div>
-<table border="0" align="center">
-<form id="form1" name="form1" method="post" action="remision2.php">	
-    <tr> 
-        <td width="133"><div align="right"><strong>Remisión&nbsp;</strong></div></td>
-        <td width="143"><input type="text" name="remision" size=15 onKeyPress="return aceptaNum(event)"></td>
-        <input type="hidden" name="Crear" value="5">
-    </tr>
-    <tr>
-        <td colspan="2"><div align="center">&nbsp;</div></td>
-    </tr>
-    <tr> 
-        <td align="right"><input type="reset" value="Restablecer"></td>
-        <td align="left"><input type="button" value="    Continuar    " onclick="return Enviar(this.form);"></td>
+    <div id="saludo"><strong>BUSCAR REMISIÓN A MODIFICAR</strong></div>
 
-    </tr>
-</form>    
-  	<tr>
-        <td colspan="2"><div align="center">&nbsp;</div></td>
-    </tr>
-    <tr>
-        <td colspan="2"><div align="center">&nbsp;</div></td>
-    </tr>
-    <tr> 
-        <td colspan="2"><div align="center"><input type="button" class="resaltado" onClick="history.back()" value="  VOLVER  "></div></td></tr>
-</table>
+    <form id="form1" name="form1" method="post" action="updateRemisionForm.php">
+        <div class="form-group row">
+            <label class="col-form-label col-1 text-right" for="idRemision"><strong>Remisión</strong></label>
+            <input type="text" class="form-control col-1" name="idRemision" id="idRemision"
+                   onKeyPress="return aceptaNum(event)">
+        </div>
+        <div class="form-group row">
+            <div class="col-1 text-center">
+                <button class="button" type="reset"><span>Reiniciar</span></button>
+            </div>
+            <div class="col-1 text-center">
+                <button class="button" onclick="return Enviar(this.form)"><span>Continuar</span></button>
+            </div>
+        </div>
+    </form>
 </div>
 </body>
 </html>

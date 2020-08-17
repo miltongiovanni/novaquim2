@@ -22,12 +22,12 @@ switch ($tipoCompra) {
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <title>Ingreso de la compra de<?= $titulo ?></title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <script  src="../js/validar.js"></script>
+    <script src="../js/validar.js"></script>
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script>
         function findProveedor(idCatProd) {
             let q = document.getElementById("busProv").value;
-            let tipoCompra=<?= $tipoCompra ?>;
+            let tipoCompra = <?= $tipoCompra ?>;
             $.ajax({
                 url: '../includes/controladorCompras.php',
                 type: 'POST',
@@ -40,7 +40,7 @@ switch ($tipoCompra) {
                 success: function (provList) {
                     $("#myDiv").html(provList);
                 },
-                fail: function () {
+                error: function () {
                     alert("Vous avez un GROS problème");
                 }
             });
@@ -60,23 +60,24 @@ switch ($tipoCompra) {
         <div class="form-group row" id="myDiv">
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-2 text-right"  for="numFact"><strong>Número de Factura</strong></label>
-            <input type="text" class="form-control col-2" name="numFact" id="numFact" onKeyPress="return aceptaNum(event)">
+            <label class="col-form-label col-2 text-right" for="numFact"><strong>Número de Factura</strong></label>
+            <input type="text" class="form-control col-2" name="numFact" id="numFact"
+                   onKeyPress="return aceptaNum(event)">
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-2 text-right"  for="fechComp"><strong>Fecha de compra</strong></label>
+            <label class="col-form-label col-2 text-right" for="fechComp"><strong>Fecha de compra</strong></label>
             <input type="date" class="form-control col-2" name="fechComp" id="fechComp">
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-2 text-right"  for="fechVenc"><strong>Fecha de vencimiento</strong></label>
+            <label class="col-form-label col-2 text-right" for="fechVenc"><strong>Fecha de vencimiento</strong></label>
             <input type="date" class="form-control col-2" name="fechVenc" id="fechVenc">
         </div>
         <div class="form-group row">
-            <div class="col-1 text-center" >
-                <button class="button" onclick="return Enviar(this.form)"><span>Continuar</span></button>
-            </div>
-            <div class="col-1 text-center" >
+            <div class="col-1 text-center">
                 <button class="button" type="reset"><span>Reiniciar</span></button>
+            </div>
+            <div class="col-1 text-center">
+                <button class="button" onclick="return Enviar(this.form)"><span>Continuar</span></button>
             </div>
         </div>
     </form>

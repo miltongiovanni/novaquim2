@@ -43,7 +43,8 @@ class InvDistribucionOperaciones
         $qry = "SELECT codDistribucion, producto, round(invDistribucion, 0) invDistribucion
                 FROM inv_distribucion id
                          LEFT JOIN distribucion d on id.codDistribucion = d.idDistribucion
-                WHERE invDistribucion > 0";
+                WHERE invDistribucion > 0
+                ORDER BY producto";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);

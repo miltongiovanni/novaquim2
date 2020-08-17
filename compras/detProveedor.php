@@ -150,7 +150,7 @@ $proveedor = $ProveedorOperador->getProveedor($idProv);
             success: function (res) {
                 window.location='../menu.php';
             },
-            fail: function () {
+            error: function () {
                 alert("Vous avez un GROS problème");
             }
         });

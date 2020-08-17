@@ -33,7 +33,7 @@ spl_autoload_register('cargarClases');
             $("#producto").val(producto.nomProducto);
             $("#idCodCat").val(producto.idCatProd);
 		},
-		fail: function () {
+		error: function () {
 			alert("Vous avez un GROS problème");
 		}
 	});
