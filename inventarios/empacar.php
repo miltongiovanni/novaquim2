@@ -1,54 +1,60 @@
 <?php
 include "../includes/valAcc.php";
+function cargarClases($classname)
+{
+    require '../clases/' . $classname . '.php';
+}
+
+spl_autoload_register('cargarClases');
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-	<title>Organizar Unidades en Pacas</title>
-	<meta charset="utf-8">
-	<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<script  src="../js/validar.js"></script>
-	<script  src="scripts/block.js"></script>
-    <link rel="stylesheet" type="text/css" media="all" href="css/calendar-blue2.css" title="blue">
-    <script  src="scripts/calendar.js"></script>
-    <script  src="scripts/calendar-sp.js"></script>
-    <script  src="scripts/calendario.js"></script>
-    <script >
-		document.onkeypress = stopRKey; 
-	</script>
+    <title>Organizar Unidades en Pacas</title>
+    <meta charset="utf-8">
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script src="../js/validar.js"></script>
 </head>
-<body> 
+<body>
 <div id="contenedor">
-<div id="saludo"><strong>ORGANIZAR UNIDADES EN PACAS</strong></div>
-<table width="50%"  align="center" border="0">
-    <?php
-		include "includes/conect.php";
-		$link=conectarServidor();  
-		echo '<form method="post" action="pack.php" name="form1">
-		 <tr><td><div align="right"><strong>Unidades de Producto sin empacar:</strong></div></td>
-		<td colspan="1" ><div align="left">';
-		echo'<select name="cod_unidad">';
-		$qry="select inv_distribucion.Id_distribucion, Producto from distribucion, rel_dist_emp, inv_distribucion 
-		WHERE inv_distribucion.Id_distribucion=codUnidad and inv_distribucion.Id_distribucion=distribucion.Id_distribucion and invDistribucion>0 order by Producto;";
-		$result=mysqli_query($link,$qry);
-		while($row=mysqli_fetch_array($result))
-		{
-			echo '<option value='.$row['Id_distribucion'].'>'.$row['Producto'].'</option>';
-		}
-		echo '</select>';
-		echo '</div></td>';
-		echo '</tr>
-			  <tr>
-				<td><div align="right"><strong>Cantidad:</strong></div></td>
-				<td><div align="left"><input name="Unidades" type="text" size="30" onKeyPress="return aceptaNum(event)"></div></td>
-			</tr>
-			<tr><td></td><td align="right"><input name="button" onclick="return Enviar(this.form)" type="submit"  value="Empacar"></td><input name="Crear" type="hidden" value="0">
-			</tr>
-			</form>';
-		mysqli_close($link);
-	?>
-</table>
-<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú"></div>
+    <div id="saludo"><strong>ORGANIZAR UNIDADES EN PACAS</strong></div>
+    <form id="form1" name="form1" method="post" action="pack.php">
+        <div class="form-group row">
+            <label class="col-form-label col-3 text-right" for="codUnidad"><strong>Unidades de Producto sin
+                    empacar:</strong></label>
+            <select class="form-control col-3" name="codUnidad" id="codUnidad">
+                <option selected disabled value="">----------------------------</option>
+                <?php
+                $invDistribucionOperador = new InvDistribucionOperaciones();
+                $unidades = $invDistribucionOperador->getProdPorEmpacar();
+                for ($i = 0; $i < count($unidades); $i++):
+                    ?>
+                    <option value="<?= $unidades[$i]['idDistribucion'] ?>"><?= $unidades[$i]['producto'] ?></option>
+                <?php
+                endfor;
+                ?>
+            </select>
+        </div>
+        <div class="form-group row">
+            <label class="col-form-label col-3 text-right" for="unidades"><strong>Cantidad:</strong></label>
+            <input type="text" class="form-control col-3" name="unidades" id="unidades"
+                   onKeyPress="return aceptaNum(event)">
+        </div>
+        <div class="form-group row">
+            <div class="col-1 text-center">
+                <button class="button" type="reset"><span>Reiniciar</span></button>
+            </div>
+            <div class="col-1 text-center">
+                <button class="button" onclick="return Enviar(this.form)"><span>Empacar</span></button>
+            </div>
+        </div>
+    </form>
+    <div class="row">
+        <div class="col-1">
+            <button class="button1" onClick="history.back()"><span>VOLVER</span></button>
+        </div>
+    </div>
+
 </div>
 </body>
 </html>

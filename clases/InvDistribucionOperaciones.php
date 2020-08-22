@@ -51,6 +51,36 @@ class InvDistribucionOperaciones
         return $result;
     }
 
+    public function getProdPorDesempacar()
+    {
+        $qry = "SELECT d.idDistribucion, d.producto
+                FROM distribucion d
+                         LEFT JOIN inv_distribucion id on d.idDistribucion = id.codDistribucion
+                         LEFT JOIN rel_dist_emp rde on d.idDistribucion = rde.codPaca
+                WHERE rde.codPaca IS NOT NULL
+                  AND invDistribucion > 0
+                ORDER BY d.producto";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    public function getProdPorEmpacar()
+    {
+        $qry = "SELECT d.idDistribucion, d.producto
+                FROM distribucion d
+                         LEFT JOIN inv_distribucion id on d.idDistribucion = id.codDistribucion
+                         LEFT JOIN rel_dist_emp rde on d.idDistribucion = rde.codUnidad
+                WHERE rde.codUnidad IS NOT NULL
+                  AND invDistribucion > rde.cantidad
+                ORDER BY d.producto";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     public function getTableStockInvDistribucion()
     {
         $qry = "SELECT codDistribucion, producto, round(invDistribucion, 0) invDistribucion, stockDis

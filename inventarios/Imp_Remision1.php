@@ -1,10 +1,16 @@
 <?php
 include "../includes/valAcc.php";
-?>
-<?php
-require('fpdf.php');
-include "includes/conect.php";
+require '../includes/fpdf.php';
+function cargarClases($classname)
+{
+	require '../clases/' . $classname . '.php';
+}
+
+spl_autoload_register('cargarClases');
 include "includes/num_letra.php";
+$remisionOperador = new RemisionesOperaciones();
+$detRemisionOperador = new DetRemisionesOperaciones();
+
 $link=conectarServidor();
 $remision=$_POST['remision'];
 $qryenc="SELECT idRemision, Nit_cliente, fechaRemision, Nom_clien, Tel_clien, Dir_clien, Ciudad, Nom_sucursal, Dir_sucursal from remision1, clientes, ciudades, clientes_sucursal where idRemision=$remision AND Nit_cliente=clientes.Nit_clien and ciudad_clien=Id_ciudad and Id_sucurs=Id_sucursal and clientes_sucursal.Nit_clien=Nit_cliente;";
@@ -21,7 +27,7 @@ $pdf->SetFont('Arial','B',9.5);
 $pdf->SetXY(50,10);
 $pdf->Cell(50,4,'INDUSTRIAS NOVAQUIM S.A.S.',0,0, 'C');
 $pdf->SetFont('Arial','B',9);
-$pdf->Cell(20,4,'REMISIÓN:',0 , 0, 'R');
+$pdf->Cell(20,4,'REMISIÃ“N:',0 , 0, 'R');
 $pdf->SetFont('Arial','',9);
 $pdf->Cell(6,4,$rowenc['Id_remision'],0,0);
 $pdf->SetFont('Arial','B',9);
@@ -41,7 +47,7 @@ $pdf->Cell(10,4,$rowenc['Fech_remision'],0,1);
 $pdf->SetFont('Arial','B',9);
 $pdf->Cell(50,4,'Tels: 2039484 - 2022912',0,0, 'C');
 $pdf->SetFont('Arial','B',9);
-$pdf->Cell(20,4,'DIRECCIÓN:',0, 0, 'R');
+$pdf->Cell(20,4,'DIRECCIÃ“N:',0, 0, 'R');
 $pdf->SetFont('Arial','',9);
 $pdf->Cell(60,4,$rowenc['Dir_sucursal'], 0,0);
 $pdf->SetFont('Arial','B',9);
@@ -52,7 +58,7 @@ $pdf->SetMargins(20, 30, 20);
 $pdf->SetXY(20,26);
 $pdf->SetFont('Arial','B',9);
 $pdf->Cell(10,4,'ITEM', 1,0,'C');
-$pdf->Cell(25,4,'CÓDIGO', 1,0,'C');
+$pdf->Cell(25,4,'CÃ“DIGO', 1,0,'C');
 $pdf->Cell(130,4,'PRODUCTO', 1,0,'C');
 $pdf->Cell(20,4,'CANTIDAD', 1,0,'C');
 $pdf->SetFont('Arial','',7);
@@ -100,7 +106,7 @@ $pdf->SetFont('Arial','B',9.5);
 $pdf->SetXY(50,140);
 $pdf->Cell(50,4,'INDUSTRIAS NOVAQUIM S.A.S.',0,0, 'C');
 $pdf->SetFont('Arial','B',9);
-$pdf->Cell(20,4,'REMISIÓN:',0 , 0, 'R');
+$pdf->Cell(20,4,'REMISIÃ“N:',0 , 0, 'R');
 $pdf->SetFont('Arial','',9);
 $pdf->Cell(6,4,$rowenc['Id_remision'],0,0);
 $pdf->SetFont('Arial','B',9);
@@ -120,7 +126,7 @@ $pdf->Cell(10,4,$rowenc['Fech_remision'],0,1);
 $pdf->SetFont('Arial','B',9);
 $pdf->Cell(50,4,'Tels: 2039484 - 2022912',0,0, 'C');
 $pdf->SetFont('Arial','B',9);
-$pdf->Cell(20,4,'DIRECCIÓN:',0, 0, 'R');
+$pdf->Cell(20,4,'DIRECCIÃ“N:',0, 0, 'R');
 $pdf->SetFont('Arial','',9);
 $pdf->Cell(60,4,$rowenc['Dir_sucursal'], 0,0);
 $pdf->SetFont('Arial','B',9);
@@ -131,7 +137,7 @@ $pdf->SetMargins(20, 30, 20);
 $pdf->SetXY(20,156);
 $pdf->SetFont('Arial','B',9);
 $pdf->Cell(10,4,'ITEM', 1,0,'C');
-$pdf->Cell(25,4,'CÓDIGO', 1,0,'C');
+$pdf->Cell(25,4,'CÃ“DIGO', 1,0,'C');
 $pdf->Cell(130,4,'PRODUCTO', 1,0,'C');
 $pdf->Cell(20,4,'CANTIDAD', 1,0,'C');
 $pdf->SetFont('Arial','',7);

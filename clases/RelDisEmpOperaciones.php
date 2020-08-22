@@ -44,6 +44,25 @@ class RelDisEmpOperaciones
         return $result;
     }
 
+    public function getUnidadByPaca($codPaca)
+    {
+        $qry = "SELECT codUnidad, cantidad FROM rel_dist_emp WHERE codPaca = ?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($codPaca));
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    public function getPacaByUnidad($codUnidad)
+    {
+        $qry = "SELECT codPaca, cantidad FROM rel_dist_emp WHERE codUnidad = ?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($codUnidad));
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+
     public function getTableRelsDisEmp()
     {
         $qry = "SELECT idPacUn, codPaca, d.producto paca, codUnidad, d2.producto unidad, cantidad FROM rel_dist_emp
