@@ -23,7 +23,7 @@ include "../includes/valAcc.php";
 			include "includes/conect.php";
 			$link=conectarServidor();
 			echo'<select name="pedido" id="combo">';
-			$result=mysql_db_query("novaquim","select Id_pedido from pedido, clientes where Nit_cliente=Nit_clien and Id_cat_clien=13 and pedido.Estado='L';");
+			$result=mysql_db_query("novaquim","select idPedido from pedido, clientes where Nit_cliente=nitCliente and idCatCliente=13 and pedido.Estado='L';");
 			$total=mysql_num_rows($result);
 			echo '<option selected value="">--------</option>';
 			while($row=mysql_fetch_array($result))

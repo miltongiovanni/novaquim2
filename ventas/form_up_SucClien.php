@@ -56,7 +56,7 @@ if($Crear==1)
   <table align="center" width="52%" summary="Encabezado">
     <?php
 	  	$link=conectarServidor();
-		$qry="select Nit_clien, Nom_clien from clientes where Nit_clien='$NIT';";
+		$qry="select nitCliente, nomCliente from clientes where nitCliente='$NIT';";
 		$result=mysqli_query($link,$qry);
 		$row=mysqli_fetch_array($result);
 		$qrys="select Nom_sucursal, Tel_sucursal, Dir_sucursal, Ciudad_sucursal, ciudad from clientes_sucursal, ciudades where Nit_clien='$NIT' and Id_sucursal=$Id_sucursal and Ciudad_sucursal=Id_ciudad;";

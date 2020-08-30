@@ -28,9 +28,9 @@ include "../includes/valAcc.php";
 	$pedido=$_POST['pedido'];
 	$link=conectarServidor();  
 	$bd="novaquim";   
-	$qry="Select nom_clien, Id_pedido, Fech_pedido, Fech_entrega, Cod_vend, nom_personal, tipo_precio 
+	$qry="Select nomCliente, idPedido, fechaPedido, fechaEntrega, codVendedor, nom_personal, tipo_precio 
 		FROM pedido, personal, clientes, tip_precio 
-		where Cod_vend=Id_personal and Id_pedido=$pedido and nit_clien=nit_cliente and Id_precio=tip_precio;";
+		where codVendedor=Id_personal and idPedido=$pedido and nitCliente=nit_cliente and Id_precio=tipoPrecio;";
 	$result=mysql_db_query($bd,$qry);
 	$row=mysql_fetch_array($result);
 	mysql_close($link);
@@ -144,7 +144,7 @@ include "../includes/valAcc.php";
 			}
 			if ($validar==0)
 			{
-				$qryup="UPDATE pedido SET Estado='L' WHERE Id_pedido=$pedido;";
+				$qryup="UPDATE pedido SET Estado='L' WHERE idPedido=$pedido;";
 				$resultup=mysql_db_query($bd,$qryup);	
 			}
 			mysql_close($link);

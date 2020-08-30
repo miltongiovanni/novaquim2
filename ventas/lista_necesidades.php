@@ -28,7 +28,7 @@ include "../includes/valAcc.php";
 	if($_POST['seleccion1'])    //and (Id_pedido=915 or Id_pedido=916)
 	{
 	  	$opciones_clien = implode(",", $_POST['seleccion1']);
-		$qryd="Select nom_clien, Id_pedido, Fech_pedido, Fech_entrega, Cod_vend, nom_personal FROM pedido, personal, clientes where Cod_vend=Id_personal  and nit_clien=nit_cliente and (";
+		$qryd="Select nomCliente, idPedido, fechaPedido, fechaEntrega, codVendedor, nom_personal FROM pedido, personal, clientes where codVendedor=Id_personal  and nitCliente=nit_cliente and (";
 		//print_r($opciones_prod);
 		$a=count($_POST['seleccion1']);
 		for ($j = 0; $j < $a; $j++) 

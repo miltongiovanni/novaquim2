@@ -4,7 +4,7 @@ include "includes/utilTabla.php";
 include "includes/conect.php" ;
 $cliente=$_POST['cliente'];
 $link=conectarServidor();  
-$qrybus="select Nom_clien from clientes where Nit_clien='$cliente'";
+$qrybus="select nomCliente from clientes where nitCliente='$cliente'";
 $resultbus=mysqli_query($link, $qrybus);
 $rowbus=mysqli_fetch_array($resultbus);
 ?>
@@ -28,7 +28,7 @@ $rowbus=mysqli_fetch_array($resultbus);
 <?php
 	$link=conectarServidor();
     //sentencia SQL    tblusuarios.IdUsuario,
-	$sql="select Id_caja as 'Id', Fact as Factura, Nom_clien as Cliente, CONCAT('$ ', FORMAT(cobro,0)) as Pago, Fecha, formaPago as 'Forma de Pago' from r_caja, factura, clientes, form_pago where Fact=Factura and Nit_cliente=Nit_clien AND Nit_cliente='$cliente' and form_pago=idFormaPago order  by Id DESC;";
+	$sql="select Id_caja as 'Id', Fact as Factura, nomCliente as Cliente, CONCAT('$ ', FORMAT(cobro,0)) as Pago, Fecha, formaPago as 'Forma de Pago' from r_caja, factura, clientes, form_pago where Fact=Factura and Nit_cliente=nitCliente AND Nit_cliente='$cliente' and form_pago=idFormaPago order  by Id DESC;";
 	//llamar funcion de tabla
 	verTabla($sql, $link);
 ?>

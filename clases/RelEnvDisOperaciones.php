@@ -36,7 +36,7 @@ class RelEnvDisOperaciones
 
     public function getRelsEnvDis()
     {
-        $qry = "SELECT rel_env_dis.idEnvDis, d.producto FROM rel_env_dis
+        $qry = "SELECT rel_env_dis.idEnvDis, idDis, d.producto FROM rel_env_dis
                 LEFT JOIN distribucion d on rel_env_dis.idDis = d.idDistribucion
                 ORDER BY producto";
         $stmt = $this->_pdo->prepare($qry);
@@ -66,6 +66,19 @@ class RelEnvDisOperaciones
                 WHERE idEnvDis=?";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute(array($idEnvDis));
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    public function getRelEnvDisByidDis($idDis)
+    {
+        $qry = "SELECT rel_env_dis.idEnvDis, rel_env_dis.idDis, d.producto, e.codEnvase, e.nomEnvase, tv.codTapa, tv.tapa FROM rel_env_dis
+                LEFT JOIN distribucion d on rel_env_dis.idDis = d.idDistribucion
+                LEFT JOIN envases e on rel_env_dis.idEnv = e.codEnvase
+                LEFT JOIN tapas_val tv on rel_env_dis.idTapa = tv.codTapa
+                WHERE idDis=?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($idDis));
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result;
     }

@@ -12,7 +12,7 @@ foreach ($_POST as $nombre_campo => $valor)
 $bd="novaquim";
 $link=conectarServidor();
 
-$qryf="select Factura, Nit_cliente, Nom_clien, Ret_iva, Ret_ica, Ret_fte from factura, clientes where Factura=$factura and Nit_cliente=Nit_clien ;";
+$qryf="select Factura, Nit_cliente, nomCliente, retIva, retIca, retFte from factura, clientes where Factura=$factura and Nit_cliente=nitCliente ;";
 $resultf=mysql_db_query($bd,$qryf);
 $rowf=mysql_fetch_array($resultf);
 $reten_iva=$rowf['Ret_iva'];
@@ -35,15 +35,15 @@ $sql="update factura
 	SET Total=round($total),
 	Subtotal=round($subtotal),
 	IVA=round($iva10 + $iva16),
-	Reten_iva=round($reteiva),
-	Reten_ica=round($reteica),
-	Reten_fte=round($retefuente)
+	retencionIva=round($reteiva),
+	retencionIca=round($reteica),
+	retencionFte=round($retefuente)
 	where Factura=$factura;";	
 $result=mysql_db_query($bd,$sql);
 if($result)
 {  
 	$ruta="menu.php";
-	$sqlup="update Pedido SET Estado='F' where Id_pedido=(select Id_pedido from factura where Factura=$factura);";
+	$sqlup="update Pedido SET Estado='F' where idPedido=(select idPedido from factura where Factura=$factura);";
 	$resultup=mysql_db_query($bd,$sqlup);
 	mysql_close($link);
    	mover_pag($ruta,"Factura creada correctamente");

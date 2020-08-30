@@ -43,11 +43,11 @@ $objPHPExcel->setActiveSheetIndex(0)
 // Rename sheet
 $objPHPExcel->getActiveSheet()->setTitle('Lista de Facturas');
 $link=conectarServidor();
-$sql="	select Nota, Nit_cliente, Nom_clien,  Fecha, Total, Subtotal, IVA, Fac_orig, Fac_dest, det_nota_c.Cod_producto as Codigo, Nombre as Producto, det_nota_c.Can_producto, tasa, prec_producto as Precio, Cuenta_cont from nota_c, clientes, det_nota_c, prodpre, det_factura, tasa_iva, productos 
-where Nit_cliente=Nit_clien and Fecha>='$FchIni' and Fecha<='$FchFin' and Nota=Id_nota and det_nota_c.Cod_producto=Cod_prese and Id_fact=Fac_orig and det_factura.Cod_producto=det_nota_c.Cod_producto and Cod_iva=Id_tasa and prodpre.Cod_produc=productos.Cod_produc
+$sql="	select Nota, Nit_cliente, nomCliente,  Fecha, Total, Subtotal, IVA, Fac_orig, Fac_dest, det_nota_c.Cod_producto as Codigo, Nombre as Producto, det_nota_c.Can_producto, tasa, prec_producto as Precio, Cuenta_cont from nota_c, clientes, det_nota_c, prodpre, det_factura, tasa_iva, productos 
+where Nit_cliente=nitCliente and Fecha>='$FchIni' and Fecha<='$FchFin' and Nota=Id_nota and det_nota_c.Cod_producto=Cod_prese and Id_fact=Fac_orig and det_factura.Cod_producto=det_nota_c.Cod_producto and Cod_iva=Id_tasa and prodpre.Cod_produc=productos.Cod_produc
 union
-select Nota, Nit_cliente, Nom_clien,  Fecha, Total, Subtotal, IVA, Fac_orig, Fac_dest, det_nota_c.Cod_producto as Codigo, Producto, det_nota_c.Can_producto, tasa, prec_producto as Precio, Cuenta_cont  from nota_c, clientes, det_nota_c, distribucion, det_factura, tasa_iva  
-where Nit_cliente=Nit_clien and Fecha>='$FchIni' and Fecha<='$FchFin' and Nota=Id_nota and det_nota_c.Cod_producto=Id_distribucion and Id_fact=Fac_orig and det_factura.Cod_producto=det_nota_c.Cod_producto and Cod_iva=Id_tasa order by Nota";
+select Nota, Nit_cliente, nomCliente,  Fecha, Total, Subtotal, IVA, Fac_orig, Fac_dest, det_nota_c.Cod_producto as Codigo, Producto, det_nota_c.Can_producto, tasa, prec_producto as Precio, Cuenta_cont  from nota_c, clientes, det_nota_c, distribucion, det_factura, tasa_iva  
+where Nit_cliente=nitCliente and Fecha>='$FchIni' and Fecha<='$FchFin' and Nota=Id_nota and det_nota_c.Cod_producto=Id_distribucion and Id_fact=Fac_orig and det_factura.Cod_producto=det_nota_c.Cod_producto and Cod_iva=Id_tasa order by Nota";
 			
 $result=mysqli_query($link,$sql) or die("Error al conectar a la base de datos.");
 $i=2;

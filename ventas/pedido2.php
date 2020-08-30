@@ -36,7 +36,7 @@ include "../includes/valAcc.php";
    	  <td width="379">
 		<?php
 			$link=conectarServidor();
-			$result=mysqli_query($link,"select Nit_clien, Nom_clien from clientes where Nit_clien='$cliente'");
+			$result=mysqli_query($link,"select nitCliente, nomCliente from clientes where nitCliente='$cliente'");
 			$row=mysqli_fetch_array($result);
 			echo '<input type="text" name="nom_cliente" readonly value="'.$row['Nom_clien'].'" size=50>';
 			echo '<input type="hidden" name="cliente" readonly value="'.$row['Nit_clien'].'">';

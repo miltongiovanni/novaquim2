@@ -26,7 +26,7 @@ include "../includes/valAcc.php";
 				include "includes/conect.php";
 				$link=conectarServidor();
 				echo'<select name="cliente" id="combo">';
-				$result=mysqli_query($link,"select Nit_clien, Nom_clien from clientes order by Nom_clien");
+				$result=mysqli_query($link,"select nitCliente, nomCliente from clientes order by nomCliente");
 				echo '<option selected value="">-----------------------------------------------------------------------------------</option>';
 				while($row=mysqli_fetch_array($result)){
 					echo '<option value='.$row['Nit_clien'].'>'.$row['Nom_clien'].'</option>';

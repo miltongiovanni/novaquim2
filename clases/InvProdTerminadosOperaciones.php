@@ -166,6 +166,19 @@ class InvProdTerminadosOperaciones
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
+
+    public function getAllLotesPresentacion($codPresentacion)
+    {
+        $qry = "SELECT loteProd
+                FROM inv_prod
+                WHERE codPresentacion =?
+                ORDER BY loteProd DESC";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($codPresentacion));
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     public function getMaxLoteInvProdTerminado($codPresentacion)
     {
         $qry = "SELECT loteProd, invProd
@@ -216,6 +229,26 @@ class InvProdTerminadosOperaciones
             return $result['invProd'];
         }
 
+    }
+
+    public function getDetRemisionTrazabilidad($codPresentacion, $loteProd)
+    {
+        $qry = "SELECT fechaRemision, nomCliente, ROUND(cantProducto) cantProducto
+                FROM det_remision dr
+                         LEFT JOIN remision r on r.idRemision = dr.idRemision
+                         LEFT JOIN clientes c on c.idCliente = r.idCliente
+                WHERE codProducto = $codPresentacion
+                  AND loteProducto = $loteProd
+                UNION
+                SELECT fechaRemision, cliente nomCliente, ROUND(cantProducto) cantProducto
+                FROM det_remision1 dr1
+                         LEFT JOIN remision1 r1 on r1.idRemision = dr1.idRemision
+                WHERE codProducto = $codPresentacion
+                  AND loteProducto = $loteProd";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);;
+        return $result;
     }
 
     public function getDetProveedor($idProv)

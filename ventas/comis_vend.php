@@ -56,12 +56,12 @@ $rowbus=mysqli_fetch_array($resultbus);
 $link=conectarServidor();
 $database="novaquim";
 //sentencia SQL    tblusuarios.IdUsuario,
-$sql="select Factura, Nom_clien, Descuento, Total, Subtotal, IVA, Fech_Canc, sum(empresa) as nova, sum(distribucion) as dis, sum(empresa*com_nova) as com_nova, sum(distribucion*com_dist) as com_dist, (sum(empresa*com_nova)+sum(distribucion*com_dist)) as com_tot from
-(select Factura, Nom_clien, Descuento, Total, Reten_iva, Reten_ica, Reten_fte, Subtotal, IVA, Fech_Canc, sum(Can_producto*prec_producto*(1-Descuento)) as empresa, 0 as distribucion, com_dist, com_nova 
-from factura, det_factura, clientes, personal where Nit_clien=Nit_cliente and cod_vend=$vendedor and Fech_Canc>='$FchIni' and Fech_Canc<='$FchFin' and Factura=Id_fact and Cod_producto<100000 AND cod_vend=Id_personal group by Factura
+$sql="select Factura, nomCliente, Descuento, Total, Subtotal, IVA, fechaCancelacion, sum(empresa) as nova, sum(distribucion) as dis, sum(empresa*com_nova) as com_nova, sum(distribucion*com_dist) as com_dist, (sum(empresa*com_nova)+sum(distribucion*com_dist)) as com_tot from
+(select Factura, nomCliente, Descuento, Total, retencionIva, retencionIca, retencionFte, Subtotal, IVA, fechaCancelacion, sum(Can_producto*prec_producto*(1-Descuento)) as empresa, 0 as distribucion, com_dist, com_nova 
+from factura, det_factura, clientes, personal where nitCliente=Nit_cliente and codVendedor=$vendedor and fechaCancelacion>='$FchIni' and fechaCancelacion<='$FchFin' and Factura=Id_fact and Cod_producto<100000 AND codVendedor=Id_personal group by Factura
 union
-select Factura, Nom_clien, Descuento, Total, Reten_iva, Reten_ica, Reten_fte, Subtotal, IVA, Fech_Canc, 0 as empresa, sum(Can_producto*prec_producto*(1-Descuento)) as distribucion, com_dist, com_nova 
-from factura, det_factura, clientes, personal where Nit_clien=Nit_cliente and cod_vend=$vendedor and Fech_Canc>='$FchIni' and Fech_Canc<='$FchFin' and Factura=Id_fact and Cod_producto>100000 AND cod_vend=Id_personal group by Factura) as tabla group by Factura;
+select Factura, nomCliente, Descuento, Total, retencionIva, retencionIca, retencionFte, Subtotal, IVA, fechaCancelacion, 0 as empresa, sum(Can_producto*prec_producto*(1-Descuento)) as distribucion, com_dist, com_nova 
+from factura, det_factura, clientes, personal where nitCliente=Nit_cliente and codVendedor=$vendedor and fechaCancelacion>='$FchIni' and fechaCancelacion<='$FchFin' and Factura=Id_fact and Cod_producto>100000 AND codVendedor=Id_personal group by Factura) as tabla group by Factura;
 ";
 $result=mysqli_query($link,$sql);
 $sum_com_dist=0;

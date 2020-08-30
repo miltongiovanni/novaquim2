@@ -12,7 +12,7 @@ foreach ($_POST as $nombre_campo => $valor)
 	eval($asignacion); 
 }  
 $link=conectarServidor();
-$qrybus="select Nom_clien from clientes where Nit_clien='$cliente'";
+$qrybus="select nomCliente from clientes where nitCliente='$cliente'";
 $resultbus=mysqli_query($link,$qrybus);
 $rowbus=mysqli_fetch_array($resultbus);
 $nombre=$rowbus['Nom_clien'];
@@ -40,7 +40,7 @@ $objPHPExcel->setActiveSheetIndex(0)
 // Rename sheet
 $objPHPExcel->getActiveSheet()->setTitle('Estado de cuenta');
 
-$sql="select Factura, Fech_fact, Fech_venc, Total, (Total-Reten_iva-Reten_ica-Reten_fte) as 'Valor a Cobrar', (Total-Reten_iva-Reten_ica-Reten_fte-(select SUM(cobro) from r_caja where Fact=Factura group by Fact)) as 'Saldo', Fech_Canc, Estado 
+$sql="select Factura, fechaFactura, fechaVenc, Total, (Total-retencionIva-retencionIca-retencionFte) as 'Valor a Cobrar', (Total-retencionIva-retencionIca-retencionFte-(select SUM(cobro) from r_caja where Fact=Factura group by Fact)) as 'Saldo', fechaCancelacion, Estado 
 from factura where Nit_cliente='$cliente' ORDER BY Factura desc;";
 $result=mysqli_query($link,$sql) or die("Error al conectar a la base de datos.");
 $i=3;

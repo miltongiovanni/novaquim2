@@ -221,6 +221,20 @@ class DetComprasOperaciones
         return $result;
     }
 
+    public function getDetComprasMPTrazabilidad($codMPrima, $loteMP )
+    {
+        $qry = "SELECT fechComp, nomProv, cantidad
+                FROM det_compras dc
+                         LEFT JOIN compras c on c.idCompra = dc.idCompra
+                         LEFT JOIN proveedores p on c.idProv = p.idProv
+                WHERE codigo = ?
+                  AND lote = ?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($codMPrima, $loteMP));
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     public function productoExiste($idCompra, $codigo)
     {
         $qry = "SELECT COUNT(*) c from det_compras where idCompra=? AND codigo=?";

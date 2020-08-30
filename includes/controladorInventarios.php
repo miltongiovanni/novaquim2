@@ -101,11 +101,27 @@ function findLotesMPrima()
     echo json_encode($lotes);
 }
 
+function findAllLotesMPrima()
+{
+    $codMPrima = $_POST['codMPrima'];
+    $InvMPrimaOperador = new InvMPrimasOperaciones();
+    $lotes = $InvMPrimaOperador->getAllLotesMPrima($codMPrima);
+    echo json_encode($lotes);
+}
+
 function findLotesPresentacion()
 {
     $codPresentacion = $_POST['codPresentacion'];
     $InvProdOperador = new InvProdTerminadosOperaciones();
     $inv = $InvProdOperador->getLotesPresentacion($codPresentacion);
+    echo json_encode($inv);
+}
+
+function findAllLotesPresentacion()
+{
+    $codPresentacion = $_POST['codPresentacion'];
+    $InvProdOperador = new InvProdTerminadosOperaciones();
+    $inv = $InvProdOperador->getAllLotesPresentacion($codPresentacion);
     echo json_encode($inv);
 }
 
@@ -192,6 +208,9 @@ switch ($action) {
     case 'findLotesMPrima':
         findLotesMPrima();
         break;
+    case 'findAllLotesMPrima':
+        findAllLotesMPrima();
+        break;
     case 'findLotesPresentacion':
         findLotesPresentacion();
         break;
@@ -213,9 +232,9 @@ switch ($action) {
     case 'findInvEtiqueta':
         findInvEtiqueta();
         break;
-    /*case 'selectionarTipoKit':
-        selectionarTipoKit();
-        break;*/
+    case 'findAllLotesPresentacion':
+        findAllLotesPresentacion();
+        break;
     case 'eliminarSession':
         eliminarSession();
         break;

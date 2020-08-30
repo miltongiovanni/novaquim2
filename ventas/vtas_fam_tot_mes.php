@@ -78,7 +78,7 @@ while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
 	for ($b=$mes1; $b<=$mes2; $b++)
 	{
 	  $sqlv="select sum(Can_producto) as cant, sum(prec_producto*Can_producto) as sub 
-from det_factura, factura, prodpre where Factura=Id_fact and  Fech_fact>='$FchIni' and Fech_fact<='$FchFin' and Cod_prese=Cod_producto and month(Fech_fact)=$b and Cod_ant=$codigo_ant";
+from det_factura, factura, prodpre where Factura=Id_fact and  fechaFactura>='$FchIni' and fechaFactura<='$FchFin' and Cod_prese=Cod_producto and month(fechaFactura)=$b and Cod_ant=$codigo_ant";
 //echo $sqlv."<br>";
 	  $resultv=mysqli_query($link,$sqlv);
 	  $rowv=mysqli_fetch_array($resultv, MYSQLI_BOTH);

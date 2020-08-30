@@ -41,8 +41,8 @@ $link=conectarServidorBD($servidorBD, $usuario, $password);
 //conectar con la tabla (ej. use datos;)
 conectarBD($database, $link);  
 //sentencia SQL    tblusuarios.IdUsuario,
-$sql="	select Id_pedido, Fech_pedido, Fech_entrega, tipo_precio, Nom_clien, pedido.Estado, Nom_sucursal, Dir_sucursal, nom_personal from pedido, tip_precio, clientes, clientes_sucursal, personal 
-where Nit_cliente=clientes.Nit_clien and clientes_sucursal.Nit_clien=clientes.Nit_clien and tip_precio=Id_precio and Id_sucurs=Id_sucursal and Id_cat_clien=13 and cod_vend=Id_personal  AND (pedido.Estado='P' or pedido.Estado='L') order by Id_pedido DESC;";
+$sql="	select idPedido, fechaPedido, fechaEntrega, tipo_precio, nomCliente, pedido.Estado, Nom_sucursal, Dir_sucursal, nom_personal from pedido, tip_precio, clientes, clientes_sucursal, personal 
+where Nit_cliente=clientes.nitCliente and clientes_sucursal.Nit_clien=clientes.nitCliente and tipoPrecio=Id_precio and idSucursal=Id_sucursal and idCatCliente=13 and codVendedor=Id_personal  AND (pedido.Estado='P' or pedido.Estado='L') order by idPedido DESC;";
 $result=mysql_db_query($database,$sql);
 $a=1;
 while($row=mysql_fetch_array($result, MYSQLI_BOTH))

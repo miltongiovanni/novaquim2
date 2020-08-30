@@ -41,11 +41,11 @@ $objPHPExcel->setActiveSheetIndex(0)
 $objPHPExcel->getActiveSheet()->setTitle('Clientes');
 $link=conectarServidor();
 if ($Estado=='A')
-	$sql="select Nit_clien as Nit, Nom_clien as Cliente, Dir_clien as Direccion, Contacto, Cargo, Tel_clien as Tel1, nom_personal as vendor, desCatClien, Fax_clien As Fax, Cel_clien as Cel, Eml_clien as Eml, ciudad, max(Fech_fact) as Ult_compra
-from clientes, Personal, cat_clien, ciudades, factura where cod_vend=Id_Personal and Id_cat_clien=idCatClien and Ciudad_clien=Id_ciudad and  Nit_cliente=Nit_clien AND clientes.Estado='A' group by Nit_clien order by Cliente";
+	$sql="select nitCliente as Nit, nomCliente as Cliente, dirCliente as Direccion, contactoCliente, cargoCliente, telCliente as Tel1, nom_personal as vendor, desCatClien, faxCliente As Fax, celCliente as Cel, emailCliente as Eml, ciudad, max(fechaFactura) as Ult_compra
+from clientes, Personal, cat_clien, ciudades, factura where codVendedor=Id_Personal and idCatCliente=idCatClien and ciudadCliente=Id_ciudad and  Nit_cliente=nitCliente AND clientes.estadoCliente='A' group by nitCliente order by Cliente";
 if ($Estado=='N')
-	$sql="	select Nit_clien as Nit, Nom_clien as Cliente, Dir_clien as Direccion, Contacto, Cargo, Tel_clien as Tel1, nom_personal as vendor, desCatClien, Fax_clien As Fax, Cel_clien as Cel, Eml_clien as Eml, ciudad, max(Fech_fact) as Ult_compra
-from clientes, Personal, cat_clien, ciudades, factura where cod_vend=Id_Personal and Id_cat_clien=idCatClien and Ciudad_clien=Id_ciudad and  Nit_cliente=Nit_clien AND clientes.Estado='N' group by Nit_clien order by Cliente;";
+	$sql="	select nitCliente as Nit, nomCliente as Cliente, dirCliente as Direccion, contactoCliente, cargoCliente, telCliente as Tel1, nom_personal as vendor, desCatClien, faxCliente As Fax, celCliente as Cel, emailCliente as Eml, ciudad, max(fechaFactura) as Ult_compra
+from clientes, Personal, cat_clien, ciudades, factura where codVendedor=Id_Personal and idCatCliente=idCatClien and ciudadCliente=Id_ciudad and  Nit_cliente=nitCliente AND clientes.estadoCliente='N' group by nitCliente order by Cliente;";
 $result=mysqli_query($link,$sql) or die("Error al conectar a la base de datos.");
 $i=2;
 while($row= mysqli_fetch_array($result, MYSQLI_BOTH))

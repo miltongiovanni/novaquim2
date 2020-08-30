@@ -12,9 +12,9 @@ foreach ($_POST as $nombre_campo => $valor)
 	eval($asignacion); 
 }  
 $link=conectarServidor();
-$sql1="Select nom_clien, Id_pedido, Fech_pedido, Fech_entrega, Cod_vend, nom_personal, tipo_precio, pedido.Estado, Nom_sucursal, Dir_sucursal, Tel_sucursal
+$sql1="Select nomCliente, idPedido, fechaPedido, fechaEntrega, codVendedor, nom_personal, tipo_precio, pedido.Estado, Nom_sucursal, Dir_sucursal, Tel_sucursal
 		FROM pedido, personal, clientes, tip_precio, clientes_sucursal 
-		where Cod_vend=Id_personal and Id_pedido=$pedido and clientes.nit_clien=nit_cliente and Id_precio=tip_precio and Id_sucurs=Id_sucursal and clientes_sucursal.Nit_clien=Nit_cliente";
+		where codVendedor=Id_personal and idPedido=$pedido and clientes.nitCliente=nit_cliente and Id_precio=tipoPrecio and idSucursal=Id_sucursal and clientes_sucursal.Nit_clien=Nit_cliente";
 $result1=mysqli_query($link,$sql1) or die("Error al conectar a la base de datos.");
 $row1= mysqli_fetch_array($result1, MYSQLI_BOTH);
 // Create new PHPExcel object
@@ -52,7 +52,7 @@ $objPHPExcel->getActiveSheet()->setTitle('Pedido '."$pedido");
 
 $sql="select Cod_producto, Can_producto, Nombre as Producto, Prec_producto, 0.19 as tasa 
 from det_pedido, prodpre, pedido 
-where Cod_producto=Cod_prese and det_pedido.Id_Ped=$pedido and det_pedido.Id_ped=pedido.Id_pedido order by Nombre;";
+where Cod_producto=Cod_prese and det_pedido.Id_Ped=$pedido and det_pedido.Id_ped=pedido.idPedido order by Nombre;";
 $result=mysqli_query($link,$sql) or die("Error al conectar a la base de datos.");
 $i=6;
 while($row= mysqli_fetch_array($result, MYSQLI_BOTH))
@@ -65,7 +65,7 @@ while($row= mysqli_fetch_array($result, MYSQLI_BOTH))
 } 
 $sql="select Cod_producto, Can_producto, Producto, Prec_producto, tasa 
 from det_pedido, distribucion, pedido, tasa_iva 
-where Cod_producto=Id_distribucion and det_pedido.Id_Ped=$pedido and det_pedido.Id_ped=pedido.Id_pedido and Cod_iva=Id_tasa order by Producto;";
+where Cod_producto=Id_distribucion and det_pedido.Id_Ped=$pedido and det_pedido.Id_ped=pedido.idPedido and Cod_iva=Id_tasa order by Producto;";
 $result=mysqli_query($link,$sql) or die("Error al conectar a la base de datos.");
 while($row= mysqli_fetch_array($result, MYSQLI_BOTH))
 {
@@ -77,7 +77,7 @@ while($row= mysqli_fetch_array($result, MYSQLI_BOTH))
 } 
 $sql="select Cod_producto, DesServicio as Producto, Can_producto, Prec_producto, tasa  
 from det_pedido, servicios, pedido, tasa_iva  
-where Cod_producto=IdServicio and Id_ped=Id_pedido and Id_ped=$pedido and Cod_iva=Id_tasa order by DesServicio;";
+where Cod_producto=IdServicio and Id_ped=idPedido and Id_ped=$pedido and Cod_iva=Id_tasa order by DesServicio;";
 $result=mysqli_query($link,$sql) or die("Error al conectar a la base de datos.");
 while($row= mysqli_fetch_array($result, MYSQIL_BOTH))
 {

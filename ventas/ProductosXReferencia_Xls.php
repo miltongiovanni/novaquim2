@@ -34,9 +34,9 @@ $objPHPExcel->setActiveSheetIndex(0)
 $objPHPExcel->getActiveSheet()->setTitle('Ventas por Referencia');
 $link=conectarServidor();
 $bd="novaquim";
-$sql="	select Fech_fact, Cod_producto, Nombre, SUM(Can_producto) as Cantidad, prec_producto 
+$sql="	select fechaFactura, Cod_producto, Nombre, SUM(Can_producto) as Cantidad, prec_producto 
 from factura, det_factura, prodpre 
-where Factura=Id_fact and Cod_producto=Cod_prese and Fech_fact>='$FchIni' and Fech_fact<'$FchFin' group BY Cod_producto;";
+where Factura=Id_fact and Cod_producto=Cod_prese and fechaFactura>='$FchIni' and fechaFactura<'$FchFin' group BY Cod_producto;";
 $result=mysqli_query($link,$sql) or die("Error al conectar a la base de datos.");
 $i=2;
 while($row= mysqli_fetch_array($result, MYSQLI_BOTH))

@@ -35,9 +35,9 @@ class PDF extends FPDF
 include "includes/conect.php";
 $link=conectarServidor();
 $pedido=$_POST['pedido'];
-$qryord="Select nom_clien, Id_pedido, Fech_pedido, Fech_entrega, Cod_vend, nom_personal, tipo_precio, pedido.Estado, Nom_sucursal, Dir_sucursal, Tel_clien 
+$qryord="Select nomCliente, idPedido, fechaPedido, fechaEntrega, codVendedor, nom_personal, tipo_precio, pedido.Estado, Nom_sucursal, Dir_sucursal, telCliente 
 		FROM pedido, personal, clientes, tip_precio, clientes_sucursal 
-		where Cod_vend=Id_personal and Id_pedido=$pedido and clientes.nit_clien=nit_cliente and Id_precio=tip_precio and Id_sucurs=Id_sucursal and clientes_sucursal.Nit_clien=Nit_cliente";
+		where codVendedor=Id_personal and idPedido=$pedido and clientes.nitCliente=nit_cliente and Id_precio=tipoPrecio and idSucursal=Id_sucursal and clientes_sucursal.Nit_clien=Nit_cliente";
 $resultord=mysqli_query($link,$qryord);
 $roword=mysqli_fetch_array($resultord);
 //$cod_prod=$roword['Codigo'];

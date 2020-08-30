@@ -30,7 +30,7 @@ foreach ($_POST as $nombre_campo => $valor)
 }  	
 	include "includes/conect.php";
 	$link=conectarServidor();
-	$qry="select Nom_clien from clientes where Nit_clien='$cliente'";	
+	$qry="select nomCliente from clientes where nitCliente='$cliente'";
 	$result=mysqli_query($link,$qry);
 	$row=mysqli_fetch_array($result);
 	echo mb_strtoupper($row['Nom_clien']);

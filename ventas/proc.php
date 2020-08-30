@@ -3,7 +3,7 @@ include "includes/conect.php";
 
 $q=$_POST['q'];
 $link=conectarServidor();
-$sql="select Nit_clien, Nom_clien from clientes where Nom_clien like '%".$q."%' order by Nom_clien ";
+$sql="select nitCliente, nomCliente from clientes where nomCliente like '%".$q."%' order by nomCliente ";
 $res=mysqli_query($link, $sql);
 
 if(mysqli_num_rows($res)==0)

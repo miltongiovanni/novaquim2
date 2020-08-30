@@ -28,7 +28,7 @@ $link=conectarServidor();
 if (($crear==2)&&($CliExis == 1))
 { 
 
-  $qryb="select Nom_clien, Contacto, Cargo, Tel_clien, Fax_clien, Cel_clien, Dir_clien, Eml_clien, Id_cat_clien, Ciudad_clien, cod_vend, desCatClien, ciudad, nom_personal from clientes, cat_clien, ciudades, personal where Nit_clien='$cliente' and Id_cat_clien=idCatClien and Ciudad_clien=Id_ciudad and cod_vend=Id_personal;";
+  $qryb="select nomCliente, contactoCliente, cargoCliente, telCliente, faxCliente, celCliente, dirCliente, emailCliente, idCatCliente, ciudadCliente, codVendedor, desCatClien, ciudad, nom_personal from clientes, cat_clien, ciudades, personal where nitCliente='$cliente' and idCatCliente=idCatClien and ciudadCliente=Id_ciudad and codVendedor=Id_personal;";
   $resultb=mysqli_query($link,$qryb);
   $rowb=mysqli_fetch_array($resultb);
 		
@@ -60,7 +60,7 @@ if (($crear==1)&&($CliExis==1))
   if ($CliExis==0)
 	$qry="select Id_cliente, Nom_clien from clientes_cotiz order BY Nom_clien;";
   else
-	$qry="select Nit_clien as Id_cliente, Nom_clien from clientes where Nit_clien<>'0-0' and Estado='A' order by Nom_clien;";
+	$qry="select nitCliente as Id_cliente, nomCliente from clientes where nitCliente<>'0-0' and estadoCliente='A' order by nomCliente;";
   
   $result=mysqli_query($link, $qry);
   echo '<option selected value="">-----------------------------------------------------------------------------------</option>';

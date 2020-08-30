@@ -19,7 +19,7 @@ include "includes/conect.php";
 <?php
 	  $link=conectarServidor();
 	  $nit=$_POST['cliente'];
-	  $qry="select * from clientes where Nit_clien='$nit'";
+	  $qry="select * from clientes where nitCliente='$nit'";
 	  $result=mysqli_query($link,$qry);
 	  $row=mysqli_fetch_array($result);
 	  $city=$row['Ciudad_clien'];
@@ -49,7 +49,7 @@ include "includes/conect.php";
   <td colspan="2"><?php echo'<input name="Contacto" type="text" value="'.$row['Contacto'].'">';?></td>
   <td colspan="3"><?php echo'<input name="direccion" type="text" size="40" value="'.$row['Dir_clien'].'">';?></td>
   <td colspan="1"><?php 
-      $qrya="select Id_ciudad, ciudad from clientes, ciudades WHERE Ciudad_clien=Id_ciudad and Nit_clien='$nit';";
+      $qrya="select Id_ciudad, ciudad from clientes, ciudades WHERE ciudadCliente=Id_ciudad and nitCliente='$nit';";
       $resulta=mysqli_query($link,$qrya);
       $rowa=mysqli_fetch_array($resulta); 			
       echo'<select name="Id_Ciudad">';
@@ -73,7 +73,7 @@ include "includes/conect.php";
   <td colspan="2"><?php echo'<input name="Cargo" type="text" value="'.$row['Cargo'].'">';?></td>
   <td colspan="3"><?php echo'<input name="email" type="text" value="'.$row['Eml_clien'].'" onChange="TestMail(document.form1.email.value)" size="40">';?></td>
   <td colspan="2"><?php
-      $qrya="select Id_cat_clien, desCatClien from clientes, cat_clien WHERE Id_cat_clien=idCatClien and Nit_clien='$nit';";
+      $qrya="select idCatCliente, desCatClien from clientes, cat_clien WHERE idCatCliente=idCatClien and nitCliente='$nit';";
       $resulta=mysqli_query($link,$qrya);
       $rowa=mysqli_fetch_array($resulta); 			
       echo'<select name="Id_Cat">';
@@ -159,7 +159,7 @@ include "includes/conect.php";
       ?></td>
   <td colspan="3"><div align="center">
     <?php
-      $qrya="select Id_personal, nom_personal from personal, clientes where Id_personal=cod_vend and Nit_clien='$nit' ;";
+      $qrya="select Id_personal, nom_personal from personal, clientes where Id_personal=codVendedor and nitCliente='$nit' ;";
       $resulta=mysqli_query($link,$qrya);
       $rowa=mysqli_fetch_array($resulta); 			
       echo'<select name="Id_vendor">';

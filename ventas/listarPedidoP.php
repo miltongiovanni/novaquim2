@@ -33,7 +33,7 @@ include "../includes/valAcc.php";
 include "includes/utilTabla.php";
 include "includes/conect.php" ;
 $link=conectarServidor();
-$sql="	select Id_pedido, Fech_pedido, Fech_entrega, tipo_precio, Nom_clien, pedido.Estado, Nom_sucursal, Dir_sucursal from pedido, tip_precio, clientes, clientes_sucursal where Nit_cliente=clientes.Nit_clien and clientes_sucursal.Nit_clien=clientes.Nit_clien and tip_precio=Id_precio and Id_sucurs=Id_sucursal AND (pedido.Estado='P' or pedido.Estado='L')  order by Id_pedido";
+$sql="	select idPedido, fechaPedido, fechaEntrega, tipo_precio, nomCliente, pedido.Estado, Nom_sucursal, Dir_sucursal from pedido, tip_precio, clientes, clientes_sucursal where Nit_cliente=clientes.nitCliente and clientes_sucursal.Nit_clien=clientes.nitCliente and tipoPrecio=Id_precio and idSucursal=Id_sucursal AND (pedido.Estado='P' or pedido.Estado='L')  order by idPedido";
 $result=mysqli_query($link,$sql);
 $a=1;
 while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
@@ -66,7 +66,7 @@ while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
 	UNION
 	select Id_ped, Cod_producto, Producto, Can_producto, Prec_producto from det_pedido, distribucion where Id_ped=$pedido and Cod_producto >=100000 and Cod_producto=Id_distribucion
 	union
-select Id_ped, Cod_producto, DesServicio as Producto, Can_producto, Prec_producto from det_pedido, servicios, pedido  where Cod_producto=IdServicio and Id_ped=Id_pedido and Id_ped=$pedido;";
+select Id_ped, Cod_producto, DesServicio as Producto, Can_producto, Prec_producto from det_pedido, servicios, pedido  where Cod_producto=IdServicio and Id_ped=idPedido and Id_ped=$pedido;";
 	$resulti=mysqli_query($link,$sqli);
 	echo '<tr><td colspan="7"><div class="commenthidden" id="UniqueName'.$a.'"><table width="60%" border="0" align="center" cellspacing="0" summary="detalle">
 	<tr>

@@ -42,6 +42,8 @@
     <file url="file://$PROJECT_DIR$/compras/updateGasto.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/compras/updateProv.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/inventarios/Imp_Remision1.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/inventarios/ajax/listaCompraMPTrazabilidad.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/inventarios/ajax/listaDetOProdMPTrazabilidad.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/inventarios/ajax/listaInvEnvase.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/inventarios/ajax/listaInvEnvasesFecha.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/inventarios/ajax/listaInvEtiqueta.php" charset="UTF-8" />
@@ -60,10 +62,16 @@
     <file url="file://$PROJECT_DIR$/inventarios/ajax/listaStockInvProdDistribucion.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/inventarios/ajax/listaStockInvProdTerminado.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/inventarios/ajax/listaStockInvTapas.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/inventarios/ajax/listaVentaPresentacionTrazabilidad.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/inventarios/bus_traz_mp.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/inventarios/bus_traz_prod.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/inventarios/cargarEnvase.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/inventarios/consultaRemision.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/inventarios/delDetRemision.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/inventarios/det_remision.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/inventarios/inv_mp.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/inventarios/traz_mp.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/inventarios/traz_prod.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/inventarios/updateDetRemision.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/inventarios/updateDetRemisionForm.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/inventarios/updateRemision.php" charset="UTF-8" />

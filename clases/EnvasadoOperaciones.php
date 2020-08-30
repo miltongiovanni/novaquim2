@@ -79,10 +79,11 @@ class EnvasadoOperaciones
 
     public function getEnvasado($lote, $codPresentacion)
     {
-        $qry = "SELECT p.codPresentacion, presentacion, cantPresentacion, codEnvase, codTapa, codEtiq
+        $qry = "SELECT p.codPresentacion, presentacion, cantPresentacion, codEnvase, codTapa, codEtiq, op.fechProd
                 FROM envasado e
                    LEFT JOIN prodpre p on e.codPresentacion = p.codPresentacion
-                WHERE lote= ? AND e.codPresentacion=?";
+                   LEFT JOIN ord_prod op on op.lote = e.lote
+                WHERE e.lote= ? AND e.codPresentacion=?";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute(array($lote, $codPresentacion));
         $result = $stmt->fetch(PDO::FETCH_ASSOC);;

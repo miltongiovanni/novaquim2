@@ -49,6 +49,20 @@ class DetOProdOperaciones
         return $result;
     }
 
+    public function getDetOrdMPTrazabilidad($codMPrima, $loteMP)
+    {
+        $qry = "SELECT dop.lote, fechProd, nomProducto, cantidadMPrima
+                FROM det_ord_prod dop
+                         LEFT JOIN ord_prod op ON dop.lote = op.lote
+                         LEFT JOIN productos p ON op.codProducto = p.codProducto
+                WHERE dop.codMPrima = ?
+                  AND loteMP = ?
+                ORDER BY fechProd";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($codMPrima, $loteMP));
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);;
+        return $result;
+    }
 
     public function productoExiste($lote, $producto)
     {

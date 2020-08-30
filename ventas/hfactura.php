@@ -10,7 +10,7 @@ foreach ($_POST as $nombre_campo => $valor)
 		eval($asignacion); 
 	}  
 $link=conectarServidor();
-$sql="update pedido SET Estado='P' where Id_pedido=$pedido";	
+$sql="update pedido SET Estado='P' where idPedido=$pedido";
 $result=mysqli_query($link,$sql);
 if($result)
 {  

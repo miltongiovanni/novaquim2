@@ -38,7 +38,7 @@ if(($dias_v>=0)&&($dias_f>=0))
 	$rowlot=mysqli_fetch_array($resultlot);
 	$Id_Rem=$rowlot['rem'];		
 	/*CREACIÓN DEL ENCABEZADO DE LA FACTURA*/
-	$qry="insert into factura (Factura, Nit_cliente, Fech_fact, Fech_venc, tip_precio, Ord_compra, Id_pedido, Descuento, Estado, Id_remision, Observaciones) values ($factura, '$nit','$FchVta','$FchVen', $tip_prec, $ord_comp, $pedido, $descuento/100, 'E', $Id_Rem, '$observa')";
+	$qry="insert into factura (Factura, Nit_cliente, fechaFactura, fechaVenc, tipPrecio, ordenCompra, idPedido, Descuento, Estado, idRemision, Observaciones) values ($factura, '$nit','$FchVta','$FchVen', $tip_prec, $ord_comp, $pedido, $descuento/100, 'E', $Id_Rem, '$observa')";
 	$result=mysqli_query($link,$qry);
 	//CON BASE EN EL PEDIDO SE LLENA LA FACTURA
 	$qryped="select Id_ped, Cod_producto as Producto, Can_producto as Cantidad, Prec_producto as Precio, tasa 
@@ -127,13 +127,13 @@ select Id_ped, Cod_producto as Producto, Can_producto as Cantidad, Prec_producto
 	
 	//CALCULA LOS TOTALES DE IVA, DESCUENTO 
 	
-		$qry="select Factura, Cod_producto, Can_producto, Nombre as Producto, tasa, Id_tasa, prec_producto, Descuento, Ciudad_clien, Id_cat_clien 
+		$qry="select Factura, Cod_producto, Can_producto, Nombre as Producto, tasa, Id_tasa, prec_producto, Descuento, ciudadCliente, idCatCliente 
 		from det_factura, prodpre, tasa_iva, factura, clientes
-		where Factura=Id_fact and Factura=$factura and Cod_producto<100000 and Cod_producto=Cod_prese and Cod_iva=Id_tasa  and clientes.Nit_clien=factura.Nit_cliente 
+		where Factura=Id_fact and Factura=$factura and Cod_producto<100000 and Cod_producto=Cod_prese and Cod_iva=Id_tasa  and clientes.nitCliente=factura.Nit_cliente 
 		UNION 
-		select Factura, Cod_producto, Can_producto, Producto, tasa, Id_tasa, prec_producto, Descuento, Ciudad_clien, Id_cat_clien 
+		select Factura, Cod_producto, Can_producto, Producto, tasa, Id_tasa, prec_producto, Descuento, ciudadCliente, idCatCliente 
 		from det_factura, distribucion, tasa_iva, factura, clientes 
-		where Factura=Id_fact and Factura=$factura and Cod_producto>100000 AND Cod_producto=Id_distribucion AND Cod_iva=Id_tasa  and clientes.Nit_clien=factura.Nit_cliente;";
+		where Factura=Id_fact and Factura=$factura and Cod_producto>100000 AND Cod_producto=Id_distribucion AND Cod_iva=Id_tasa  and clientes.nitCliente=factura.Nit_cliente;";
 		$result=mysqli_query($link,$qry);
 		$subtotal=0;
 		$descuento=0;
@@ -149,7 +149,7 @@ select Id_ped, Cod_producto as Producto, Can_producto as Cantidad, Prec_producto
 			if ($row['Id_tasa']==3)
 				$iva16 += $row['Can_producto']*$row['prec_producto']*$row['tasa']*(1-$row['Descuento']);
 		}
-		$qryf="select Factura, Nit_cliente, Nom_clien, Ret_iva, Ret_ica, Ret_fte, Ciudad_clien, Id_cat_clien from factura, clientes where Factura=$factura and Nit_cliente=Nit_clien ;";
+		$qryf="select Factura, Nit_cliente, nomCliente, retIva, retIca, retFte, ciudadCliente, idCatCliente from factura, clientes where Factura=$factura and Nit_cliente=nitCliente ;";
 		echo $qryf;
 		$resultf=mysqli_query($link,$qryf);
 		$rowf=mysqli_fetch_array($resultf);
@@ -180,15 +180,15 @@ select Id_ped, Cod_producto as Producto, Can_producto as Cantidad, Prec_producto
 			SET Total=round($total),
 			Subtotal=round($subtotal),
 			IVA=round($iva10 + $iva16),
-			Reten_iva=round($reteiva),
-			Reten_ica=round($reteica),
-			Reten_fte=round($retefuente)
+			retencionIva=round($reteiva),
+			retencionIca=round($reteica),
+			retencionFte=round($retefuente)
 			where Factura=$factura;";	
 	    echo $sql;
 		$result=mysqli_query($link,$sql);
 		if($result)
 		{  
-			$sqlup="update Pedido SET Estado='F' where Id_pedido=(select Id_pedido from factura where Factura=$factura);";
+			$sqlup="update Pedido SET Estado='F' where idPedido=(select idPedido from factura where Factura=$factura);";
 			$resultup=mysqli_query($link,$sqlup);
 		}
 		else

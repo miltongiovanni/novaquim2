@@ -21,7 +21,7 @@ include "../includes/valAcc.php";
 			include "includes/conect.php";
 			$link=conectarServidor();
 			echo'<select name="pedido" id="combo">';
-			$result=mysql_db_query("novaquim","select Id_pedido from pedido, clientes where Nit_cliente=Nit_clien and pedido.Estado='P' order by Id_pedido;");
+			$result=mysql_db_query("novaquim","select idPedido from pedido, clientes where Nit_cliente=nitCliente and pedido.Estado='P' order by idPedido;");
 			$total=mysql_num_rows($result);
 			echo '<option selected value="">----------</option>';
 			while($row=mysql_fetch_array($result))

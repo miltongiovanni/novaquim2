@@ -21,7 +21,7 @@ foreach ($_POST as $nombre_campo => $valor)
 }  
 $link=conectarServidor();   
 //ACTUALIZACIÓN DEL ENCABEZADO DEL PEDIDO
-$qry="update pedido set Estado='A' where Id_pedido=$pedido";
+$qry="update pedido set Estado='A' where idPedido=$pedido";
 $result=mysqli_query($link,$qry);
 //ELIMINAR EL DETALLE DE LA FACTURA
 $qry="DELETE from det_pedido WHERE Id_ped=$pedido";

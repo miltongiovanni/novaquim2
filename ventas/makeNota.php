@@ -60,18 +60,18 @@ if ($crear==6)
   echo'</form>'; 
   echo' <script  > document.formulario.submit(); </script>';
 }
-$qrynot="select Nota, Nit_cliente, Fecha, Fac_orig, Fac_dest, motivo, Total, Subtotal, IVA, Nom_clien, Tel_clien, Dir_clien, Ciudad from nota_c, clientes, ciudades where Nota=$mensaje and Nit_cliente=Nit_clien and Ciudad_clien=Id_ciudad";
+$qrynot="select Nota, Nit_cliente, Fecha, Fac_orig, Fac_dest, motivo, Total, Subtotal, IVA, nomCliente, telCliente, dirCliente, Ciudad from nota_c, clientes, ciudades where Nota=$mensaje and Nit_cliente=nitCliente and ciudadCliente=Id_ciudad";
 $resultnot=mysqli_query($link,$qrynot);
 $rownot=mysqli_fetch_array($resultnot);
 $Fac_orig=$rownot['Fac_orig'];	
 $motivo=$rownot['motivo'];
 $Fac_dest=$rownot['Fac_dest'];	
-$qryffacor="select Fech_fact as FechFactOr from factura where Factura=$Fac_orig";
+$qryffacor="select fechaFactura as FechFactOr from factura where Factura=$Fac_orig";
 $resulffacor=mysqli_query($link,$qryffacor);
 $rowffacor=mysqli_fetch_array($resulffacor);
 $FechFactOr=$rowffacor['FechFactOr'];
 
-$qryffacde="select Fech_fact as FechFactDe from factura where Factura=$Fac_dest";
+$qryffacde="select fechaFactura as FechFactDe from factura where Factura=$Fac_dest";
 $resulffacde=mysqli_query($link,$qryffacde);
 $rowffacde=mysqli_fetch_array($resulffacde);
 $FechFactDe=$rowffacde['FechFactDe'];
@@ -83,7 +83,7 @@ if ($crear==3)// SI HAY DEVOLUCIÓN DE PRODUCTOS
   $not=$valor[1];
   if($cod <100000)
   {	
-	$qrylot="SELECT loteProducto as Lote from remision, det_remision, factura WHERE remision.idRemision=det_remision.idRemision AND factura.Id_remision=remision.idRemision and Factura=$Fac_orig and codProducto=$cod;";
+	$qrylot="SELECT loteProducto as Lote from remision, det_remision, factura WHERE remision.idRemision=det_remision.idRemision AND factura.idRemision=remision.idRemision and Factura=$Fac_orig and codProducto=$cod;";
 	$resultlot=mysqli_query($link,$qrylot);
 	$row_lot=mysqli_fetch_array($resultlot);
 	$lote=$row_lot['Lote'];
@@ -187,7 +187,7 @@ if ($crear==5) //PARA CANCELAR SI LA NOTA ES POR TODA LA FACTURA
   $totalf=$rows['totalf'];
   if (abs($totalf-$totaln)<1000)
   {
-  	$qryr="update factura set Estado='C', Fech_Canc='$Fechan' where Factura=$Fac_dest;";
+  	$qryr="update factura set Estado='C', fechaCancelacion='$Fechan' where Factura=$Fac_dest;";
     $resultr=mysqli_query($link,$qryr);
   }
 }

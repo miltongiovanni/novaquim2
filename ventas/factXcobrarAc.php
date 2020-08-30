@@ -36,8 +36,8 @@ include "includes/conect.php" ;
 
 $fecha_actual=date("Y")."-".date("m")."-".date("d");
 $link=conectarServidor();
-$sql="	select  Nom_clien, Nit_clien, Contacto, Cargo, Tel_clien, Cel_clien, Dir_clien, sum(Total) as sumtotal, sum(Reten_iva) as sumretiva, sum(Reten_ica) as sumretic, sum(Reten_fte) as sumrfte, sum(IVA) as sumiva
-			from factura, clientes WHERE Nit_cliente=Nit_clien and factura.Estado='P' and Factura>00 and Fech_venc<'$fecha_actual' group by Nom_clien order by sumtotal desc;";
+$sql="	select  nomCliente, nitCliente, contactoCliente, cargoCliente, telCliente, celCliente, dirCliente, sum(Total) as sumtotal, sum(retencionIva) as sumretiva, sum(retencionIca) as sumretic, sum(retencionFte) as sumrfte, sum(IVA) as sumiva
+			from factura, clientes WHERE Nit_cliente=nitCliente and factura.Estado='P' and Factura>00 and fechaVenc<'$fecha_actual' group by nomCliente order by sumtotal desc;";
 $result=mysqli_query($link,$sql);
 
 
@@ -60,8 +60,8 @@ while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
 	';
 	
 	echo'</tr>';
-	$sqli="select Factura, Fech_fact, Fech_venc, Total, Reten_iva, Reten_ica, Reten_fte, Subtotal, IVA 
-			from factura WHERE Nit_cliente='$Nit_clien' and Estado='P' and Fech_venc<'$fecha_actual';";
+	$sqli="select Factura, fechaFactura, fechaVenc, Total, retencionIva, retencionIca, retencionFte, Subtotal, IVA 
+			from factura WHERE Nit_cliente='$Nit_clien' and Estado='P' and fechaVenc<'$fecha_actual';";
 	$resulti=mysqli_query($link,$sqli);
 	
 	echo '<tr><td colspan="9"><div class="commenthidden" id="UniqueName'.$a.'"><table width="100%" border="0" align="center" cellspacing="0" summary="detalle">

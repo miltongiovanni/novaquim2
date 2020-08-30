@@ -32,7 +32,7 @@ include "../includes/valAcc.php";
 include "includes/utilTabla.php";
 include "includes/conect.php" ;
 $link=conectarServidor();
-$sql="	select Id_pedido, Fech_pedido, Fech_entrega, nom_personal as Vendedor, tipo_precio, Nom_clien, pedido.Estado from pedido, personal, tip_precio, clientes where Nit_cliente=Nit_clien AND Cod_vend=Id_personal and tip_precio=Id_precio AND pedido.Estado='A'  order by Id_pedido DESC";
+$sql="	select idPedido, fechaPedido, fechaEntrega, nom_personal as Vendedor, tipo_precio, nomCliente, pedido.Estado from pedido, personal, tip_precio, clientes where Nit_cliente=nitCliente AND codVendedor=Id_personal and tipoPrecio=Id_precio AND pedido.Estado='A'  order by idPedido DESC";
 $result=mysqli_query($link,$sql);
 $a=1;
 while($row=mysqli_fetch_array($result, MYSQLI_BOTH))

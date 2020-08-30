@@ -50,8 +50,8 @@ $vendedor=$rowv['nom_personal'];
 
 //conectar con la tabla (ej. use datos;) 
 //sentencia SQL    tblusuarios.IdUsuario,
-$sql="	select Nit_clien as Nit, Nom_clien as Cliente, Dir_clien as Direccion, Contacto, Cargo, Tel_clien as Tel1, desCatClien, Fax_clien As Fax, Cel_clien as Cel, Eml_clien as Eml, ciudad 
-from clientes, cat_clien, ciudades where cod_vend=$IdPersonal and Id_cat_clien=idCatClien and Ciudad_clien=Id_ciudad AND Estado='A' order by Cliente";
+$sql="	select nitCliente as Nit, nomCliente as Cliente, dirCliente as Direccion, contactoCliente, cargoCliente, telCliente as Tel1, desCatClien, faxCliente As Fax, celCliente as Cel, emailCliente as Eml, ciudad 
+from clientes, cat_clien, ciudades where codVendedor=$IdPersonal and idCatCliente=idCatClien and ciudadCliente=Id_ciudad AND estadoCliente='A' order by Cliente";
 $result=mysqli_query($link,$sql);
 $a=1;
 while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
@@ -68,10 +68,10 @@ while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
 	<td class="formatoDatos"><div align="left">'.$row['Cargo'].'</div></td>
 	<td class="formatoDatos"><div align="left">'.$row['Tel1'].'</div></td>';
 	echo'</tr>';
-	$sqli="select Factura, Fech_fact, Fech_venc, Id_remision, Ord_compra, Nom_clien, Tel_clien, Dir_clien, 
+	$sqli="select Factura, fechaFactura, fechaVenc, idRemision, ordenCompra, nomCliente, telCliente, dirCliente, 
 		Ciudad, nom_personal as vendedor, Total, factura.Estado 
 		from factura, clientes, personal,ciudades
-		where Nit_cliente=Nit_clien and Nit_cliente='$nit' and Id_ciudad=Ciudad_clien and Cod_vend=Id_personal ORDER BY factura desc";
+		where Nit_cliente=nitCliente and Nit_cliente='$nit' and Id_ciudad=ciudadCliente and codVendedor=Id_personal ORDER BY factura desc";
 	$resulti=mysqli_query($link,$sqli);
 	echo '<tr><td colspan="7"><div class="commenthidden" id="UniqueName'.$a.'"><table width="75%" border="0" align="center" cellspacing="0" summary="cuerpo">
 	<tr>

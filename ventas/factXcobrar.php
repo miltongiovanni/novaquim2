@@ -49,8 +49,8 @@ include "includes/calcularDias.php";
 	  $link=conectarServidor();
 	  if($link)
 	  	{  
-			$qry="select Factura, Nom_clien, Contacto, Cargo, Tel_clien, Cel_clien, Fech_fact, Fech_venc, Total, Descuento, Total_R, Reten_iva, Reten_ica, Reten_fte, Subtotal, IVA 
-			from factura, clientes WHERE Nit_cliente=Nit_clien and factura.Estado='P' and Factura>00;";
+			$qry="select Factura, nomCliente, contactoCliente, cargoCliente, telCliente, celCliente, fechaFactura, fechaVenc, Total, Descuento, totalR, retencionIva, retencionIca, retencionFte, Subtotal, IVA 
+			from factura, clientes WHERE Nit_cliente=nitCliente and factura.Estado='P' and Factura>00;";
 			$result=mysqli_query($link,$qry);	
 			$a=1;
 			while($row=mysqli_fetch_array($result))
@@ -92,7 +92,7 @@ include "includes/calcularDias.php";
 				$ptotal=$Total_R-$parcial-$pago_nc;
 				if (abs($ptotal)<1000)
 				{
-					$qryupt="update factura set Estado='C', Fech_Canc='$Fecha_nc', Reten_iva=0, Reten_ica=0, Reten_fte=0  where Factura=$factura";
+					$qryupt="update factura set Estado='C', fechaCancelacion='$Fecha_nc', retencionIva=0, retencionIca=0, retencionFte=0  where Factura=$factura";
 					$resulupdate=mysqli_query($link, $qryupt);
 				}
 				$dias=Calc_Dias($fecVen,$fecha_actual);

@@ -7,7 +7,7 @@ include "includes/conect.php";
 include "includes/num_letra.php";
 $link=conectarServidor();
 $remision=$_POST['remision'];
-$qryenc="SELECT idRemision, Nit_cliente, fechaRemision, Nom_clien, Tel_clien, Dir_clien, Ciudad, Nom_sucursal, Dir_sucursal from remision, clientes, ciudades, clientes_sucursal where idRemision=$remision AND Nit_cliente=clientes.Nit_clien and ciudad_clien=Id_ciudad and idSucursal=Id_sucursal and clientes_sucursal.Nit_clien=Nit_cliente;";
+$qryenc="SELECT idRemision, Nit_cliente, fechaRemision, nomCliente, telCliente, dirCliente, Ciudad, Nom_sucursal, Dir_sucursal from remision, clientes, ciudades, clientes_sucursal where idRemision=$remision AND Nit_cliente=clientes.nitCliente and ciudadCliente=Id_ciudad and idSucursal=Id_sucursal and clientes_sucursal.Nit_clien=Nit_cliente;";
 $resultenc=mysqli_query($link,$qryenc);
 $rowenc=mysqli_fetch_array($resultenc);
 $pdf=new FPDF('P','mm','Letter');

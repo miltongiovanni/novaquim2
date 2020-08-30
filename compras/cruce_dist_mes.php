@@ -61,7 +61,7 @@ while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
 	$mes=$fecha1[1];
 	for ($b=0; $b<=$meses; $b++)
 	{
-	  $sqlv="select sum(Can_producto) as ventames from det_factura, factura where fech_fact>='$FchIni' and fech_fact<='$FchFin' and Factura=Id_fact and Cod_producto=$codigo and MONTH(fech_fact)=$mes ;";
+	  $sqlv="select sum(Can_producto) as ventames from det_factura, factura where fechaFactura>='$FchIni' and fechaFactura<='$FchFin' and Factura=Id_fact and Cod_producto=$codigo and MONTH(fechaFactura)=$mes ;";
 	  $resultv=mysqli_query($link,$sqlv);
 	  $rowv=mysqli_fetch_array($resultv, MYSQLI_BOTH);
 	  $ventames=$rowv['ventames'];

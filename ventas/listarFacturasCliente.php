@@ -41,10 +41,10 @@ foreach ($_POST as $nombre_campo => $valor)
 }  
 include "includes/conect.php" ;
 $link=conectarServidor();
-$sql="	select Factura, Id_pedido, Nit_cliente, Fech_fact, Fech_venc, Id_remision, Ord_compra, Nom_clien, Tel_clien, Dir_clien, 
+$sql="	select Factura, idPedido, Nit_cliente, fechaFactura, fechaVenc, idRemision, ordenCompra, nomCliente, telCliente, dirCliente, 
 		Ciudad, nom_personal as vendedor, Total, factura.Estado 
 		from factura, clientes, personal,ciudades
-		where Nit_cliente=Nit_clien and Id_ciudad=Ciudad_clien and Cod_vend=Id_personal and Nit_cliente='$cliente' ORDER BY factura desc;";
+		where Nit_cliente=nitCliente and Id_ciudad=ciudadCliente and codVendedor=Id_personal and Nit_cliente='$cliente' ORDER BY factura desc;";
 $result=mysqli_query($link,$sql);
 $a=1;
 while($row=mysqli_fetch_array($result, MYSQLI_BOTH))

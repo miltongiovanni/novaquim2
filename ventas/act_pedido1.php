@@ -42,10 +42,10 @@ include "../includes/valAcc.php";
 		<?php
 			$link=conectarServidor();
 			echo'<select name="Nit_cliente" id="combo">';
-			$result=mysqli_query($link, "select Nit_cliente, Nom_clien from pedido, clientes WHERE Nit_cliente=Nit_clien and Id_pedido=$pedido;");
+			$result=mysqli_query($link, "select Nit_cliente, nomCliente from pedido, clientes WHERE Nit_cliente=nitCliente and idPedido=$pedido;");
 			$row=mysqli_fetch_array($result);
 			echo '<option selected value="'.$row['Nit_cliente'].'">'.$row['Nom_clien'].'</option>';
-			$result1=mysqli_query($link, "select Nit_clien, Nom_clien from clientes order by Nom_clien;");
+			$result1=mysqli_query($link, "select nitCliente, nomCliente from clientes order by nomCliente;");
 			while($row1=mysqli_fetch_array($result1))
 			{	
 				if($row['Nit_cliente']!=$row1['Nit_clien'])

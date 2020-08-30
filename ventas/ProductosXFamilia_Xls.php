@@ -33,9 +33,9 @@ $objPHPExcel->setActiveSheetIndex(0)
 // Rename sheet
 $objPHPExcel->getActiveSheet()->setTitle('Ventas por Familia');
 $link=conectarServidor();
-$sql="	select Fech_fact, Cod_producto, Producto, SUM(Can_producto) as Cantidad, prec_producto, Cod_ant 
+$sql="	select fechaFactura, Cod_producto, Producto, SUM(Can_producto) as Cantidad, prec_producto, Cod_ant 
 from factura, det_factura, prodpre, precios 
-where Factura=Id_fact and Cod_producto=Cod_prese and Cod_ant=codigo_ant and Fech_fact>='$FchIni' and Fech_fact<'$FchFin' group BY Cod_ant order by Cantidad desc;;";
+where Factura=Id_fact and Cod_producto=Cod_prese and Cod_ant=codigo_ant and fechaFactura>='$FchIni' and fechaFactura<'$FchFin' group BY Cod_ant order by Cantidad desc;;";
 $result=mysqli_query($link,$sql) or die("Error al conectar a la base de datos.");
 $i=2;
 while($row= mysqli_fetch_array($result, MYSQLI_BOTH))

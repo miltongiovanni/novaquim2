@@ -49,14 +49,14 @@ include "../includes/valAcc.php";
 		$dias_e=Calc_Dias($FchEnt,$fecha_actual);
 		if(($dias_p>=0)&&($dias_e>=0)&&($dias_ep>=0))
 		{		  
-		  $qrycam="select MAX(Id_pedido) AS Pedido from pedido;";
+		  $qrycam="select MAX(idPedido) AS Pedido from pedido;";
 		  $resultqrycam=mysqli_query($link,$qrycam);
 		  $row_cam=mysqli_fetch_array($resultqrycam);
 		  $pedido=$row_cam['Pedido']+1;
-		  $qryins_comp="insert into pedido (Id_pedido, Nit_cliente, Fech_pedido, Fech_entrega, tip_precio, Estado, Id_sucurs) 
+		  $qryins_comp="insert into pedido (idPedido, Nit_cliente, fechaPedido, fechaEntrega, tipoPrecio, Estado, idSucursal) 
 					    values ($pedido, '$cliente', '$FchPed', '$FchEnt', $tip_precio, 'P', $sucursal)";
 		  $resultins_prod=mysqli_query($link,$qryins_comp);	
-		  $qrycam="select MAX(Id_pedido) AS Pedido from pedido;";
+		  $qrycam="select MAX(idPedido) AS Pedido from pedido;";
 		  $resultqrycam=mysqli_query($link,$qrycam);
 		  $row_cam=mysqli_fetch_array($resultqrycam);
 		  $pedido=$row_cam['Pedido'];
@@ -97,7 +97,7 @@ include "../includes/valAcc.php";
 	}
 	if ($Crear==6)
 	{
-		  $qry_upd="update pedido set Nit_cliente='$cliente', Fech_pedido='$FchPed', Fech_entrega='$FchEnt', tip_precio=$tip_precio, Estado='P', Id_sucurs=$sucursal where Id_pedido=$pedido";
+		  $qry_upd="update pedido set Nit_cliente='$cliente', fechaPedido='$FchPed', fechaEntrega='$FchEnt', tipoPrecio=$tip_precio, Estado='P', idSucursal=$sucursal where idPedido=$pedido";
 		  //echo $qry_upd;
 		  $result_upd=mysqli_query($link,$qry_upd);	
 		  mysqli_close($link);
@@ -122,8 +122,8 @@ include "../includes/valAcc.php";
 			//PRECIOS DE PRODUCTOS DE LA EMPRESA
 			$qryins_p="insert into det_pedido (Id_ped, Cod_producto, Can_producto, Prec_producto) values ($pedido, $cod_producto, $cantidad, 0)";
 			$resultins_p=mysqli_query($link,$qryins_p);
-			$qrybus="select Id_pedido, tip_precio, Cod_producto, fabrica, distribuidor, detal, mayor, super from pedido, det_pedido, prodpre 
-			where Id_pedido=$pedido AND Id_pedido=Id_ped And Cod_producto <100000 and Cod_producto=Cod_prese and Cod_producto=$cod_producto;";
+			$qrybus="select idPedido, tipoPrecio, Cod_producto, fabrica, distribuidor, detal, mayor, super from pedido, det_pedido, prodpre 
+			where idPedido=$pedido AND idPedido=Id_ped And Cod_producto <100000 and Cod_producto=Cod_prese and Cod_producto=$cod_producto;";
 			$resultbus=mysqli_query($link,$qrybus);
 			$rowbus=mysqli_fetch_array($resultbus);
 			switch ($rowbus['tip_precio']) 
@@ -205,9 +205,9 @@ include "../includes/valAcc.php";
 		mysqli_close($link);
 	}
 	$link=conectarServidor(); 
-	$qry2="Select nom_clien, Id_pedido, Fech_pedido, Fech_entrega, Cod_vend, nom_personal, tipo_precio, pedido.Estado, Nom_sucursal, Dir_sucursal, Tel_clien 
+	$qry2="Select nomCliente, idPedido, fechaPedido, fechaEntrega, codVendedor, nom_personal, tipo_precio, pedido.Estado, Nom_sucursal, Dir_sucursal, telCliente 
 		FROM pedido, personal, clientes, tip_precio, clientes_sucursal 
-		where Cod_vend=Id_personal and Id_pedido=$pedido and clientes.nit_clien=nit_cliente and Id_precio=tip_precio and Id_sucurs=Id_sucursal and clientes_sucursal.Nit_clien=Nit_cliente";
+		where codVendedor=Id_personal and idPedido=$pedido and clientes.nitCliente=nit_cliente and Id_precio=tipoPrecio and idSucursal=Id_sucursal and clientes_sucursal.Nit_clien=Nit_cliente";
 	$result2=mysqli_query($link,$qry2);
 	if ($row2=mysqli_fetch_array($result2))
 	{
@@ -347,7 +347,7 @@ include "../includes/valAcc.php";
   </tr>
           <?php
 			$link=conectarServidor();
-			$qry="select Cod_producto, Can_producto, Nombre, Prec_producto, Estado from det_pedido, prodpre, pedido where Cod_producto=Cod_prese and det_pedido.Id_Ped=$pedido and det_pedido.Id_ped=pedido.Id_pedido order by Nombre;";
+			$qry="select Cod_producto, Can_producto, Nombre, Prec_producto, Estado from det_pedido, prodpre, pedido where Cod_producto=Cod_prese and det_pedido.Id_Ped=$pedido and det_pedido.Id_ped=pedido.idPedido order by Nombre;";
 			$i=0;
 			$a=0;
 			if ($result=mysqli_query($link,$qry))
@@ -402,7 +402,7 @@ include "../includes/valAcc.php";
 			?>
 		<?php
 			$link=conectarServidor();
-			$qry="select Cod_producto, Can_producto, Producto, Prec_producto, Estado from det_pedido, distribucion, pedido where Cod_producto=Id_distribucion and det_pedido.Id_Ped=$pedido and det_pedido.Id_ped=pedido.Id_pedido order by Producto;";
+			$qry="select Cod_producto, Can_producto, Producto, Prec_producto, Estado from det_pedido, distribucion, pedido where Cod_producto=Id_distribucion and det_pedido.Id_Ped=$pedido and det_pedido.Id_ped=pedido.idPedido order by Producto;";
 			if ($result=mysqli_query($link,$qry))
 			{
 				while($row=mysqli_fetch_array($result))
@@ -453,7 +453,7 @@ include "../includes/valAcc.php";
 					echo '</td></tr>';
 				}
 			}
-			$qry="select Cod_producto, DesServicio as Producto, Can_producto, Prec_producto, Estado from det_pedido, servicios, pedido  where Cod_producto=IdServicio and Id_ped=Id_pedido and Id_ped=$pedido order by DesServicio;";
+			$qry="select Cod_producto, DesServicio as Producto, Can_producto, Prec_producto, Estado from det_pedido, servicios, pedido  where Cod_producto=IdServicio and Id_ped=idPedido and Id_ped=$pedido order by DesServicio;";
 			if ($result=mysqli_query($link,$qry))
 			{
 				while($row=mysqli_fetch_array($result))

@@ -50,14 +50,14 @@ include "../includes/valAcc.php";
 		$dias_e=Calc_Dias($FchEnt,$fecha_actual);
 		if(($dias_p>=0)&&($dias_e>=0)&&($dias_ep>=0))
 		{		  
-		  $qrycam="select MAX(Id_pedido) AS Pedido from pedido;";
+		  $qrycam="select MAX(idPedido) AS Pedido from pedido;";
 		  $resultqrycam=mysql_db_query($bd,$qrycam);
 		  $row_cam=mysql_fetch_array($resultqrycam);
 		  $pedido=$row_cam['Pedido']+1;
-		  $qryins_comp="insert into pedido (Id_pedido, Nit_cliente, Fech_pedido, Fech_entrega, tip_precio, Estado, Id_sucurs) 
+		  $qryins_comp="insert into pedido (idPedido, Nit_cliente, fechaPedido, fechaEntrega, tipoPrecio, Estado, idSucursal) 
 					    values ($pedido, '$cliente', '$FchPed', '$FchEnt', $tip_precio, 'P', $sucursal)";
 		  $resultins_prod=mysql_db_query($bd,$qryins_comp);	
-		  $qrycam="select MAX(Id_pedido) AS Pedido from pedido;";
+		  $qrycam="select MAX(idPedido) AS Pedido from pedido;";
 		  $resultqrycam=mysql_db_query($bd,$qrycam);
 		  $row_cam=mysql_fetch_array($resultqrycam);
 		  $pedido=$row_cam['Pedido'];
@@ -107,8 +107,8 @@ include "../includes/valAcc.php";
 			//PRECIOS DE PRODUCTOS DE LA EMPRESA
 			$qryins_p="insert into det_pedido (Id_ped, Cod_producto, Can_producto, Prec_producto) values ($pedido, $cod_producto, $cantidad, 0)";
 			$resultins_p=mysql_db_query($bd,$qryins_p);
-			$qrybus="select Id_pedido, tip_precio, Cod_producto, directa from pedido, det_pedido, prodpre 
-			where Id_pedido=$pedido AND Id_pedido=Id_ped And Cod_producto <100000 and Cod_producto=Cod_prese and Cod_producto=$cod_producto;";
+			$qrybus="select idPedido, tipoPrecio, Cod_producto, directa from pedido, det_pedido, prodpre 
+			where idPedido=$pedido AND idPedido=Id_ped And Cod_producto <100000 and Cod_producto=Cod_prese and Cod_producto=$cod_producto;";
 			$resultbus=mysql_db_query($bd,$qrybus);
 			$rowbus=mysql_fetch_array($resultbus);
 			$precio=$rowbus['directa']*(1+$sobre/100);
@@ -180,9 +180,9 @@ include "../includes/valAcc.php";
 		mysql_close($link);
 	}
 	$link=conectarServidor(); 
-	$qry2="Select nom_clien, Id_pedido, Fech_pedido, Fech_entrega, Cod_vend, nom_personal, tipo_precio, pedido.Estado, Nom_sucursal, Dir_sucursal, Tel_clien 
+	$qry2="Select nomCliente, idPedido, fechaPedido, fechaEntrega, codVendedor, nom_personal, tipo_precio, pedido.Estado, Nom_sucursal, Dir_sucursal, telCliente 
 		FROM pedido, personal, clientes, tip_precio, clientes_sucursal 
-		where Cod_vend=Id_personal and Id_pedido=$pedido and clientes.nit_clien=nit_cliente and Id_precio=tip_precio and Id_sucurs=Id_sucursal and clientes_sucursal.Nit_clien=Nit_cliente";
+		where codVendedor=Id_personal and idPedido=$pedido and clientes.nitCliente=nit_cliente and Id_precio=tipoPrecio and idSucursal=Id_sucursal and clientes_sucursal.Nit_clien=Nit_cliente";
 	$result2=mysql_db_query($bd,$qry2);
 	if ($row2=mysql_fetch_array($result2))
 	{
@@ -323,7 +323,7 @@ include "../includes/valAcc.php";
           <?php
 			$link=conectarServidor();
 			$bd="novaquim";
-			$qry="select Cod_producto, Can_producto, Nombre, Prec_producto, Estado from det_pedido, prodpre, pedido where Cod_producto=Cod_prese and det_pedido.Id_Ped=$pedido and det_pedido.Id_ped=pedido.Id_pedido order by Nombre;";
+			$qry="select Cod_producto, Can_producto, Nombre, Prec_producto, Estado from det_pedido, prodpre, pedido where Cod_producto=Cod_prese and det_pedido.Id_Ped=$pedido and det_pedido.Id_ped=pedido.idPedido order by Nombre;";
 			$i=0;
 			if ($result=mysql_db_query($bd,$qry))
 			{
@@ -378,7 +378,7 @@ include "../includes/valAcc.php";
 		<?php
 			$link=conectarServidor();
 			$bd="novaquim";
-			$qry="select Cod_producto, Can_producto, Producto, Prec_producto, Estado from det_pedido, distribucion, pedido where Cod_producto=Id_distribucion and det_pedido.Id_Ped=$pedido and det_pedido.Id_ped=pedido.Id_pedido order by Producto;";
+			$qry="select Cod_producto, Can_producto, Producto, Prec_producto, Estado from det_pedido, distribucion, pedido where Cod_producto=Id_distribucion and det_pedido.Id_Ped=$pedido and det_pedido.Id_ped=pedido.idPedido order by Producto;";
 			if ($result=mysql_db_query($bd,$qry))
 			{
 				while($row=mysql_fetch_array($result))
@@ -429,7 +429,7 @@ include "../includes/valAcc.php";
 					echo '</td></tr>';
 				}
 			}
-			$qry="select Id_ped, Cod_producto, Can_producto, Prec_producto, Producto, Estado from det_pedido, herramientas, pedido where Id_ped=$pedido and Cod_producto>1000000 and Cod_producto=Id_herramienta and det_pedido.Id_ped=pedido.Id_pedido order by Producto;";
+			$qry="select Id_ped, Cod_producto, Can_producto, Prec_producto, Producto, Estado from det_pedido, herramientas, pedido where Id_ped=$pedido and Cod_producto>1000000 and Cod_producto=Id_herramienta and det_pedido.Id_ped=pedido.idPedido order by Producto;";
 			if ($result=mysql_db_query($bd,$qry))
 			{
 				while($row=mysql_fetch_array($result))

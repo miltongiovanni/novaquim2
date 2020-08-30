@@ -7,9 +7,9 @@ include "includes/conect.php";
 include "includes/num_letra.php";
 $link=conectarServidor();
 $Recibo=$_POST['Recibo'];
-$qryenc="select Id_caja, cobro, Fecha, descuento_f, form_pago, reten, No_cheque, Cod_banco, Banco, Factura, Nit_cliente, Nom_clien, Contacto, Cargo, 
-Tel_clien, Fech_fact, Fech_venc, Total, Total_R, Reten_iva, factura.Reten_ica, Reten_fte, Subtotal, IVA 
-from r_caja, factura, clientes, bancos where Id_caja=$Recibo and  Nit_cliente=Nit_clien and Factura=Fact and Id_banco=Cod_banco;";
+$qryenc="select Id_caja, cobro, Fecha, descuento_f, form_pago, reten, No_cheque, Cod_banco, Banco, Factura, Nit_cliente, nomCliente, contactoCliente, cargoCliente, 
+telCliente, fechaFactura, fechaVenc, Total, totalR, retencionIva, factura.retencionIca, retencionFte, Subtotal, IVA 
+from r_caja, factura, clientes, bancos where Id_caja=$Recibo and  Nit_cliente=nitCliente and Factura=Fact and Id_banco=Cod_banco;";
 $resultenc=mysqli_query($link,$qryenc);
 $rowenc=mysqli_fetch_array($resultenc);
 $pdf=new FPDF('P','mm','Letter');

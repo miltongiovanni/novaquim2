@@ -9,7 +9,7 @@ foreach ($_POST as $nombre_campo => $valor)
 	eval($asignacion); 
 }  
 $link=conectarServidor();  
-$qrybus="select Nom_clien from clientes where Nit_clien='$cliente'";
+$qrybus="select nomCliente from clientes where nitCliente='$cliente'";
 $resultbus=mysqli_query($link,$qrybus);
 $rowbus=mysqli_fetch_array($resultbus);
 ?>
@@ -64,7 +64,7 @@ else
    	$inicio = ($pagina - 1) * $TAMANO_PAGINA; 
 }
 $link=conectarServidor();
-$sql="	select Nota, Nom_clien, Fecha, Fac_orig, Fac_dest, Motivo, Total from nota_c, clientes where Nit_cliente=Nit_clien and Nit_cliente='$cliente' order by Nota DESC;";
+$sql="	select Nota, nomCliente, Fecha, Fac_orig, Fac_dest, Motivo, Total from nota_c, clientes where Nit_cliente=nitCliente and Nit_cliente='$cliente' order by Nota DESC;";
 $result=mysqli_query($link,$sql);
 
 $num_total_registros = mysqli_num_rows($result); 
@@ -85,7 +85,7 @@ if ($total_paginas > 1){
 }
 echo '</div>';
 
-$ssql="	select Nota, Nom_clien, Fecha, Fac_orig, Fac_dest, Motivo, Total from nota_c, clientes where Nit_cliente=Nit_clien and Nit_cliente='$cliente' order by Nota DESC  limit " . $inicio . "," . $TAMANO_PAGINA; 
+$ssql="	select Nota, nomCliente, Fecha, Fac_orig, Fac_dest, Motivo, Total from nota_c, clientes where Nit_cliente=nitCliente and Nit_cliente='$cliente' order by Nota DESC  limit " . $inicio . "," . $TAMANO_PAGINA;
 $rs = mysqli_query($link,$ssql);
 
 

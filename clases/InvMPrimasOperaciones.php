@@ -88,6 +88,17 @@ class InvMPrimasOperaciones
         return $result;
     }
 
+    public function getAllLotesMPrima($codMPrima)
+    {
+        $qry = "SELECT loteMP
+                FROM inv_mprimas
+                WHERE codMP=?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($codMPrima));
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     public function getTableInvMPrima()
     {
         $qry = "SELECT codMP, nomMPrima, ROUND(SUM(invMP),3) invtotal

@@ -11,7 +11,7 @@
 <?php
 	include "includes/cliObj.php";
 	$nit_cliente=$_POST['cliente'];
-	$qry="select * from clientes where Nit_clien='$nit_cliente'";
+	$qry="select * from clientes where nitCliente='$nit_cliente'";
 	$link=conectarServidor();
 	$result=mysqli_query($link,$qry);
 	$row=mysqli_fetch_array($result);

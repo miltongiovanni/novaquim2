@@ -37,7 +37,7 @@ foreach ($_POST as $nombre_campo => $valor)
 			if ($CliExis==0)
 			$qry="select Id_cliente, Nom_clien from clientes_cotiz order BY Nom_clien;";
 			else
-			$qry="select Nit_clien as Id_cliente, Nom_clien from clientes where Nit_clien<>'0-0' order by Nom_clien;";
+			$qry="select nitCliente as Id_cliente, nomCliente from clientes where nitCliente<>'0-0' order by nomCliente;";
 			$result=mysql_db_query("novaquim", $qry);
 			$total=mysql_num_rows($result);
 			echo '<option selected value="">-----------------------------------------------------------------------------------</option>';

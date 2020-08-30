@@ -34,14 +34,14 @@ foreach ($_POST as $nombre_campo => $valor)
 		$bd="novaquim";
 		if ($Crear==5)
 		{
-			$qryup="Update factura set Fech_fact='$FchVta',Fech_venc='$FchVen', Ord_compra=$ord_comp, Descuento=$descuento/100, Observaciones='$observa' where Factura=$factura";
+			$qryup="Update factura set fechaFactura='$FchVta',fechaVenc='$FchVen', ordenCompra=$ord_comp, Descuento=$descuento/100, Observaciones='$observa' where Factura=$factura";
 			$resultup=mysql_db_query($bd,$qryup);
 			
 		}
-		$qry="select Factura, Id_pedido, Nit_cliente, Fech_fact, Fech_venc, Id_remision, Ord_compra, Nom_clien, Tel_clien, Dir_clien, 
+		$qry="select Factura, idPedido, Nit_cliente, fechaFactura, fechaVenc, idRemision, ordenCompra, nomCliente, telCliente, dirCliente, 
 		Ciudad, nom_personal as vendedor, Observaciones 
 		from factura, clientes, personal, ciudades
-		where Nit_cliente=Nit_clien and Cod_vend=Id_personal and Ciudad_clien=Id_ciudad  and  Factura=$factura;";
+		where Nit_cliente=nitCliente and codVendedor=Id_personal and ciudadCliente=Id_ciudad  and  Factura=$factura;";
 		$result=mysql_db_query($bd,$qry);
 		$row=mysql_fetch_array($result);
 		$pedido=$row['Id_pedido'];
@@ -237,7 +237,7 @@ foreach ($_POST as $nombre_campo => $valor)
 	$Total= $subtotal_1+$subtotal_2+$subtotal_3-$descuento_1-$descuento_2-$descuento_3+$iva10_1+$iva10_2+$iva10_3+$iva16_1+$iva16_2+$iva16_3;
 	$Tot=number_format($Total, 0, '.', ',');
 	$subtotal=$subtotal_1+$subtotal_2+$subtotal_3;
-	$qryf="select Factura, Nit_cliente, Nom_clien, Ret_iva, Ret_ica, Ret_fte from factura, clientes where Factura=$factura and Nit_cliente=Nit_clien ;";
+	$qryf="select Factura, Nit_cliente, nomCliente, retIva, retIca, retFte from factura, clientes where Factura=$factura and Nit_cliente=nitCliente ;";
 	$resultf=mysql_db_query($bd,$qryf);
 	$rowf=mysql_fetch_array($resultf);
 	$reten_iva=$rowf['Ret_iva'];
@@ -292,9 +292,9 @@ foreach ($_POST as $nombre_campo => $valor)
 		SET Total=round($Total),
 		Subtotal=round($subtotal_1+$subtotal_2),
 		IVA=round($iva10_1+$iva10_2 + $iva16_1+$iva16_2),
-		Reten_iva=round($reteiva),
-		Reten_ica=round($reteica),
-		Reten_fte=round($retefuente)
+		retencionIva=round($reteiva),
+		retencionIca=round($reteica),
+		retencionFte=round($retefuente)
 		where Factura=$factura;";	
 	$result=mysql_db_query($bd,$sql);
 	mysql_close($link);

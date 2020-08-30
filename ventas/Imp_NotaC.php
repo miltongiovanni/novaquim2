@@ -46,7 +46,7 @@ class PDF extends FPDF
 
 
 $link=conectarServidor();
-$qryenc="select Nota, Nit_cliente, Fecha, Fac_orig, Fac_dest, motivo, Total, Subtotal, IVA, Nom_clien, Tel_clien, Dir_clien, Ciudad from nota_c, clientes, ciudades where Nota=$mensaje and Nit_cliente=Nit_clien and Ciudad_clien=Id_ciudad";
+$qryenc="select Nota, Nit_cliente, Fecha, Fac_orig, Fac_dest, motivo, Total, Subtotal, IVA, nomCliente, telCliente, dirCliente, Ciudad from nota_c, clientes, ciudades where Nota=$mensaje and Nit_cliente=nitCliente and ciudadCliente=Id_ciudad";
 $resultenc=mysqli_query($link,$qryenc);
 $rowenc=mysqli_fetch_array($resultenc);
 $pdf=new PDF('P','mm','Letter');
@@ -90,12 +90,12 @@ $pdf->SetFont('Arial','B',10);
 $motivo=$rowenc['motivo'];
 $Fac_orig=$rowenc['Fac_orig'];	
 $Fac_dest=$rowenc['Fac_dest'];	
-$qryffacor="select Fech_fact as FechFactOr from factura where Factura=$Fac_orig";
+$qryffacor="select fechaFactura as FechFactOr from factura where Factura=$Fac_orig";
 $resulffacor=mysqli_query($link,$qryffacor);
 $rowffacor=mysqli_fetch_array($resulffacor);
 $FechFactOr=$rowffacor['FechFactOr'];
 
-$qryffacde="select Fech_fact as FechFactDe from factura where Factura=$Fac_dest";
+$qryffacde="select fechaFactura as FechFactDe from factura where Factura=$Fac_dest";
 $resulffacde=mysqli_query($link,$qryffacde);
 $rowffacde=mysqli_fetch_array($resulffacde);
 $FechFactDe=$rowffacde['FechFactDe'];

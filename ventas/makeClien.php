@@ -18,7 +18,7 @@ if ($tipo==2)
 $bd="novaquim";
 $link=conectarServidor();   
 echo $NIT_F;
-$sql="select * from clientes where Nit_clien='$NIT_F';";
+$sql="select * from clientes where nitCliente='$NIT_F';";
 $result=mysqli_query($link,$sql);
 $row=mysqli_fetch_array($result, MYSQLI_BOTH);
 if ($row)

@@ -52,7 +52,7 @@ else
    	$inicio = ($pagina - 1) * $TAMANO_PAGINA; 
 }
 $link=conectarServidor();
-$sql="	select Nota, Nom_clien, Fecha, Fac_orig, Fac_dest, Motivo, Total from nota_c, clientes where Nit_cliente=Nit_clien order by Nota DESC;";
+$sql="	select Nota, nomCliente, Fecha, Fac_orig, Fac_dest, Motivo, Total from nota_c, clientes where Nit_cliente=nitCliente order by Nota DESC;";
 $result=mysqli_query($link,$sql);
 
 $num_total_registros = mysqli_num_rows($result); 
@@ -73,7 +73,7 @@ if ($total_paginas > 1){
 }
 echo '</div>';
 
-$ssql="	select Nota, Nom_clien, Fecha, Fac_orig, Fac_dest, Motivo, Total from nota_c, clientes where Nit_cliente=Nit_clien order by Nota DESC limit " . $inicio . "," . $TAMANO_PAGINA; 
+$ssql="	select Nota, nomCliente, Fecha, Fac_orig, Fac_dest, Motivo, Total from nota_c, clientes where Nit_cliente=nitCliente order by Nota DESC limit " . $inicio . "," . $TAMANO_PAGINA;
 $rs = mysqli_query($link,$ssql);
 
 

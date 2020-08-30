@@ -54,10 +54,10 @@ else
    	$inicio = ($pagina - 1) * $TAMANO_PAGINA; 
 }
 $link=conectarServidor();
-$sql="	select Factura, Id_pedido, Nit_cliente, Fech_fact, Fech_venc, Id_remision, Ord_compra, Nom_clien, Tel_clien, Dir_clien, 
+$sql="	select Factura, idPedido, Nit_cliente, fechaFactura, fechaVenc, idRemision, ordenCompra, nomCliente, telCliente, dirCliente, 
 		Ciudad, nom_personal as vendedor, Total, factura.Estado 
 		from factura, clientes, personal,ciudades
-		where Nit_cliente=Nit_clien and Id_ciudad=Ciudad_clien and Cod_vend=Id_personal  and Id_cat_clien<>13 ORDER BY factura desc";
+		where Nit_cliente=nitCliente and Id_ciudad=ciudadCliente and codVendedor=Id_personal  and idCatCliente<>13 ORDER BY factura desc";
 $result=mysqli_query($link,$sql);
 $num_total_registros = mysqli_num_rows($result); 
 //calculo el total de páginas 
@@ -78,10 +78,10 @@ if ($total_paginas > 1){
 echo '</div>';
 
 //construyo la sentencia SQL 
-$ssql = "	select Factura, Id_pedido, Nit_cliente, Fech_fact, Fech_venc, Id_remision, Ord_compra, Nom_clien, Tel_clien, Dir_clien, 
+$ssql = "	select Factura, idPedido, Nit_cliente, fechaFactura, fechaVenc, idRemision, ordenCompra, nomCliente, telCliente, dirCliente, 
 		Ciudad, nom_personal as vendedor, Total, factura.Estado 
 		from factura, clientes, personal,ciudades
-		where Nit_cliente=Nit_clien and Id_ciudad=Ciudad_clien and Cod_vend=Id_personal  and Id_cat_clien<>13 ORDER BY factura desc limit " . $inicio . "," . $TAMANO_PAGINA;
+		where Nit_cliente=nitCliente and Id_ciudad=ciudadCliente and codVendedor=Id_personal  and idCatCliente<>13 ORDER BY factura desc limit " . $inicio . "," . $TAMANO_PAGINA;
 $rs = mysqli_query($link,$ssql);
 $a=1;
 while($row=mysqli_fetch_array($rs, MYSQLI_BOTH))

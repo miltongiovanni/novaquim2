@@ -10,10 +10,10 @@ $factura=$_POST['factura'];
 
 
 
-$qryenc="select Factura, Id_pedido, Nit_cliente, Fech_fact, Fech_venc, Id_remision, Ord_compra, Nom_clien, Tel_clien, Dir_clien, factura.Estado, 
-		Ciudad, nom_personal as vendedor, Observaciones, Ret_fte
+$qryenc="select Factura, idPedido, Nit_cliente, fechaFactura, fechaVenc, idRemision, ordenCompra, nomCliente, telCliente, dirCliente, factura.Estado, 
+		Ciudad, nom_personal as vendedor, Observaciones, retFte
 		from factura, clientes, personal, ciudades
-		where Nit_cliente=Nit_clien and Cod_vend=Id_personal and ciudad_clien=Id_ciudad and Factura=$factura;";
+		where Nit_cliente=nitCliente and codVendedor=Id_personal and ciudadCliente=Id_ciudad and Factura=$factura;";
 $resultenc=mysqli_query($link,$qryenc);
 $rowenc=mysqli_fetch_array($resultenc);
 $est=$rowenc['Estado'];
@@ -221,7 +221,7 @@ $Sub=number_format($subtotal_1+$subtotal_2+$subtotal_3, 0, '.', ',');
 $Des=number_format($descuento_1+$descuento_2+$descuento_3, 0, '.', ',');
 $descuento=$descuento_1+$descuento_2+$descuento_3;
 $subtotal=$subtotal_1+$subtotal_2+$subtotal_3;
-$qryf="select Factura, Nit_cliente, Nom_clien, Ret_iva, Ret_ica, Ret_fte, Subtotal, Ciudad_clien, Id_cat_clien from factura, clientes where Factura=$factura and Nit_cliente=Nit_clien ;";
+$qryf="select Factura, Nit_cliente, nomCliente, retIva, retIca, retFte, Subtotal, ciudadCliente, idCatCliente from factura, clientes where Factura=$factura and Nit_cliente=nitCliente ;";
 	$resultf=mysqli_query($link,$qryf);
 	$rowf=mysqli_fetch_array($resultf);
 	$Ciudad_clien=$rowf['Ciudad_clien'];

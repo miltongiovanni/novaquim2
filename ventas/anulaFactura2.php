@@ -26,7 +26,7 @@ $link=conectarServidor();
 $bd="novaquim"; 
 //UNIDADES QUE FUERON FACTURADAS Y SE VAN A DEVOLVER AL INVENTARIO
 $qry="select codProducto, cantProducto, loteProducto from det_remision, remision, factura 
-where det_remision.idRemision=remision.idRemision and factura.Id_remision=det_remision.idRemision and Factura=$factura;";
+where det_remision.idRemision=remision.idRemision and factura.idRemision=det_remision.idRemision and Factura=$factura;";
 echo $qry."<br>";
 if($result=mysql_db_query($bd,$qry))
 {
@@ -89,7 +89,7 @@ else
 	$qry="update factura set Estado='A', Total=0, Subtotal=0, IVA=0, Observaciones='$observa' where Factura=$factura";
 	echo $qry;
 	$result=mysql_db_query($bd,$qry);
-	$qryrem="select remision.idRemision as remision, Factura from remision, factura where remision.idPedido=factura.Id_pedido and Factura=$factura;";
+	$qryrem="select remision.idRemision as remision, Factura from remision, factura where remision.idPedido=factura.idPedido and Factura=$factura;";
 	echo $qryrem;
 	$resultrem=mysql_db_query($bd,$qryrem);
 	$rowrem=mysql_fetch_array($resultrem);

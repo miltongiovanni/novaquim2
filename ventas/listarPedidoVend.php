@@ -81,9 +81,9 @@ else
 }
 
 $link=conectarServidor();
-$sql="	select Id_pedido, Fech_pedido, Fech_entrega, tipo_precio, Nom_clien, pedido.Estado, Nom_sucursal, Dir_sucursal 
+$sql="	select idPedido, fechaPedido, fechaEntrega, tipo_precio, nomCliente, pedido.Estado, Nom_sucursal, Dir_sucursal 
 from pedido, tip_precio, clientes, clientes_sucursal 
-where Nit_cliente=clientes.Nit_clien and clientes_sucursal.Nit_clien=clientes.Nit_clien and  tip_precio=Id_precio and Id_sucurs=Id_sucursal and Cod_vend=$IdPersonal order by Id_pedido DESC;";
+where Nit_cliente=clientes.nitCliente and clientes_sucursal.Nit_clien=clientes.nitCliente and  tipoPrecio=Id_precio and idSucursal=Id_sucursal and codVendedor=$IdPersonal order by idPedido DESC;";
 $result=mysqli_query($link,$sql);
 
 $num_total_registros = mysqli_num_rows($result); 
@@ -106,9 +106,9 @@ echo '</div>';
 
 
 //construyo la sentencia SQL 
-$ssql = "select Id_pedido, Fech_pedido, Fech_entrega, tipo_precio, Nom_clien, pedido.Estado, Nom_sucursal, Dir_sucursal 
+$ssql = "select idPedido, fechaPedido, fechaEntrega, tipo_precio, nomCliente, pedido.Estado, Nom_sucursal, Dir_sucursal 
 from pedido, tip_precio, clientes, clientes_sucursal 
-where Nit_cliente=clientes.Nit_clien and clientes_sucursal.Nit_clien=clientes.Nit_clien and  tip_precio=Id_precio and Id_sucurs=Id_sucursal and Cod_vend=$IdPersonal order by Id_pedido DESC limit " . $inicio . "," . $TAMANO_PAGINA; 
+where Nit_cliente=clientes.nitCliente and clientes_sucursal.Nit_clien=clientes.nitCliente and  tipoPrecio=Id_precio and idSucursal=Id_sucursal and codVendedor=$IdPersonal order by idPedido DESC limit " . $inicio . "," . $TAMANO_PAGINA;
 $rs = mysqli_query($link,$ssql);
 $a=1;
 while($row=mysqli_fetch_array($rs, MYSQLI_BOTH))
@@ -140,7 +140,7 @@ while($row=mysqli_fetch_array($rs, MYSQLI_BOTH))
 	UNION
 	select Id_ped, Cod_producto, Producto, Can_producto, Prec_producto from det_pedido, distribucion where Id_ped=$pedido and Cod_producto >=100000 and Cod_producto=Id_distribucion
 	union
-select Id_ped, Cod_producto, DesServicio as Producto, Can_producto, Prec_producto from det_pedido, servicios, pedido  where Cod_producto=IdServicio and Id_ped=Id_pedido and Id_ped=$pedido;";
+select Id_ped, Cod_producto, DesServicio as Producto, Can_producto, Prec_producto from det_pedido, servicios, pedido  where Cod_producto=IdServicio and Id_ped=idPedido and Id_ped=$pedido;";
 	$resulti=mysqli_query($link,$sqli);
 	echo '<tr><td colspan="7"><div class="commenthidden" id="UniqueName'.$a.'"><table width="60%" border="0" align="center" cellspacing="0" summary="detalle">
 	<tr>

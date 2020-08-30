@@ -24,7 +24,7 @@ include "../includes/valAcc.php";
 			include "includes/conect.php";
 			$link=conectarServidor();
 			echo'<select name="pedido" id="combo">';
-			$result=mysqli_query($link,"select Id_pedido from pedido, clientes where Nit_cliente=Nit_clien and pedido.Estado='P' order by Id_pedido;");
+			$result=mysqli_query($link,"select idPedido from pedido, clientes where Nit_cliente=nitCliente and pedido.Estado='P' order by idPedido;");
 			echo '<option selected value="">----------</option>';
 			while($row=mysqli_fetch_array($result))
 			{
