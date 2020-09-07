@@ -30,14 +30,14 @@ $dias_f=Calc_Dias($FchVen,$FchVta);
 if(($dias_v>=0)&&($dias_f>=0))
 {
 	$link=conectarServidor();   
-	/*CREACIÓN DEL ENCABEZADO DE LA REMISIÓN*/
+	/*CREACIÃ“N DEL ENCABEZADO DE LA REMISIÃ“N*/
 	$qryr="insert into remision (Nit_cliente, fechaRemision, idPedido, idSucursal) values ('$nit','$FchVta', $pedido, $id_sucursal)";
 	$resultr=mysqli_query($link,$qryr);
 	$qrylot="select max(idRemision) as rem from remision";
 	$resultlot=mysqli_query($link,$qrylot);
 	$rowlot=mysqli_fetch_array($resultlot);
 	$Id_Rem=$rowlot['rem'];		
-	/*CREACIÓN DEL ENCABEZADO DE LA FACTURA*/
+	/*CREACIÃ“N DEL ENCABEZADO DE LA FACTURA*/
 	$qry="insert into factura (Factura, Nit_cliente, fechaFactura, fechaVenc, tipPrecio, ordenCompra, idPedido, Descuento, Estado, idRemision, Observaciones) values ($factura, '$nit','$FchVta','$FchVen', $tip_prec, $ord_comp, $pedido, $descuento/100, 'E', $Id_Rem, '$observa')";
 	$result=mysqli_query($link,$qry);
 	//CON BASE EN EL PEDIDO SE LLENA LA FACTURA
@@ -75,7 +75,7 @@ select Id_ped, Cod_producto as Producto, Can_producto as Cantidad, Prec_producto
 				  if (($invt >= $unidades))
 				  {
 					  $invt= $invt - $unidades;
-					  /*SE ADICIONA A LA REMISIÓN*/
+					  /*SE ADICIONA A LA REMISIÃ“N*/
 					  $qryins_p="insert into det_remision (idRemision, codProducto, cantProducto, loteProducto) values ($Id_Rem, $cod_producto, $unidades, $lot_prod)";
 					  echo $qryins_p."<br>";				
 					  $resultins_p=mysqli_query($link,$qryins_p);
@@ -87,7 +87,7 @@ select Id_ped, Cod_producto as Producto, Can_producto as Cantidad, Prec_producto
 				  else
 				  {
 					  $unidades= $unidades - $invt ;
-					  /*SE ADICIONA A LA REMISIÓN*/
+					  /*SE ADICIONA A LA REMISIÃ“N*/
 					  $qryins_p="insert into det_remision (idRemision, codProducto, cantProducto, loteProducto) values ($Id_Rem, $cod_producto, $invt, $lot_prod)";
 					  $resultins_p=mysqli_query($link,$qryins_p);
 					  /*SE ACTUALIZA EL INVENTARIO*/
@@ -108,7 +108,7 @@ select Id_ped, Cod_producto as Producto, Can_producto as Cantidad, Prec_producto
 				$invt= $invt - $unidades;
 				$qryupt="update inv_distribucion set invDistribucion=$invt where codDistribucion=$cod_prod";
 				$resultupt=mysqli_query($link,$qryupt);
-				/*SE ADICIONA A LA REMISIÓN*/
+				/*SE ADICIONA A LA REMISIÃ“N*/
 				$qryins_p="insert into det_remision (idRemision, codProducto, cantProducto) values ($Id_Rem, $cod_producto, $unidades)";
 				echo $qryins_p;
 				$resultins_p=mysqli_query($link,$qryins_p);
@@ -116,7 +116,7 @@ select Id_ped, Cod_producto as Producto, Can_producto as Cantidad, Prec_producto
 		}
 		if($cod_producto<100)
 		{
-		  /*SE ADICIONA A LA REMISIÓN*/
+		  /*SE ADICIONA A LA REMISIÃ“N*/
 		  $qryins_p="insert into det_remision (idRemision, codProducto, cantProducto) values ($Id_Rem, $cod_producto, $unidades)";
 		  $resultins_p=mysqli_query($link,$qryins_p);			
 		}

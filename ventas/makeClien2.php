@@ -26,7 +26,7 @@ if($result=$cliente->makeClient($NIT, $Cliente, $Direccion, $Contacto, $Cargo, $
 			document.form3.submit();
 			</script>';	
 		$link=conectarServidor();
-		$qrys="insert into clientes_sucursal (Nit_clien, Nom_sucursal, Dir_sucursal, Tel_sucursal, Ciudad_sucursal, Id_sucursal )
+		$qrys="insert into clientes_sucursal (Nit_clien, nomSucursal, dirSucursal, telSucursal, ciudadSucursal, idSucursal )
         values ('$NIT', '$Cliente','$Direccion', $Tel1, $ciudad_cli, 1 )";
 		$results=mysqli_query($link,$qrys);
 		/******LOG DE CREACION *********

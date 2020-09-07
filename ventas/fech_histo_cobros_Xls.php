@@ -4,7 +4,7 @@ include "../includes/valAcc.php";
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <title>Selección del rango de fecha de pagos</title>
+    <title>SelecciÃ³n del rango de fecha de pagos</title>
     <meta charset="utf-8">
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <script  src="../js/validar.js"></script>
@@ -19,7 +19,7 @@ include "../includes/valAcc.php";
 </head>
 <body> 
 <div id="contenedor">
-<div id="saludo"><strong>SELECCIÓN DEL RANGO DE FECHA DE COBROS</strong></div>
+<div id="saludo"><strong>SELECCIÃ“N DEL RANGO DE FECHA DE COBROS</strong></div>
 <form method="post" action="histo_cobros_Xls.php" name="form1">	
   	<table align="center">
      <tr>

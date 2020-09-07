@@ -27,12 +27,12 @@ $idCategoria=$lastcategorias+1;
       <div class="form-group row">
           <label class="col-form-label col-1 text-right"  for="idCatMP"><strong>Código</strong></label>
         <input type="text" class="form-control col-2" name="idCatMP" id="idCatMP" size=30 maxlength="30"
-          value="<?= $idCategoria ?>" readonly>
+          value="<?= $idCategoria ?>" readonly required>
       </div>
       <div class="form-group row">
         <label class="col-form-label col-1 text-right"  for="catMP"><strong>Categoría</strong></label>
         <input type="text" class="form-control col-2" name="catMP" id="catMP" size=30
-          onKeyPress="return aceptaLetra(event)" maxlength="30">
+          onKeyPress="return aceptaLetra(event)" maxlength="30" required>
       </div>
       <div class="form-group row">
                 <div class="col-1 text-center" >

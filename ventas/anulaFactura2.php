@@ -85,7 +85,7 @@ else
 	alert("Error al eliminar los productos de la factura")
 	</script>';
 }
-	/*ACTUALIZACIÓN DEL ENCABEZADO DE LA FACTURA*/
+	/*ACTUALIZACIÃ“N DEL ENCABEZADO DE LA FACTURA*/
 	$qry="update factura set Estado='A', Total=0, Subtotal=0, IVA=0, Observaciones='$observa' where Factura=$factura";
 	echo $qry;
 	$result=mysql_db_query($bd,$qry);
@@ -100,7 +100,7 @@ else
 	$qry="DELETE from det_factura WHERE Id_fact=$factura;";
 	$result=mysql_db_query($bd,$qry);
 	$ruta="listarFacturasVD.php";
-    mover_pag($ruta,"Factura Anulada con Éxito");
+    mover_pag($ruta,"Factura Anulada con Ã‰xito");
 	mysql_close($link);
 	
 

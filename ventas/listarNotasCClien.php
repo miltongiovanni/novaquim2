@@ -16,23 +16,23 @@ $rowbus=mysqli_fetch_array($resultbus);
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<title>Lista de Notas CrÈdito</title>
+<title>Lista de Notas Cr√©dito</title>
 <meta charset="utf-8">
 <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
 	<script  src="../js/validar.js"></script>
 </head>
 <body>
 <div id="contenedor">
-<div id="saludo1"><strong>LISTA DE NOTAS CR…DITO <?php echo strtoupper($rowbus['Nom_clien']); ?></strong></div>
+<div id="saludo1"><strong>LISTA DE NOTAS CR√âDITO <?php echo strtoupper($rowbus['Nom_clien']); ?></strong></div>
 <table  align="center" width="700" border="0" summary="encabezado">
   <tr> 
-      <td><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men˙"></div></td>
+      <td><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men√∫"></div></td>
   </tr>
 </table>
 <table border="0" align="center" cellspacing="0" cellpadding="0" summary="Cuerpo">
 	<tr>
       <th width="8" class="formatoEncabezados"></th>
-      <th width="95" class="formatoEncabezados">Nota CrÈdito</th>
+      <th width="95" class="formatoEncabezados">Nota Cr√©dito</th>
       <th width="379" class="formatoEncabezados">Cliente</th>
       <th width="113" class="formatoEncabezados">Fecha</th>
       <th width="110" class="formatoEncabezados">Factura Origen</th>
@@ -46,7 +46,7 @@ $rowbus=mysqli_fetch_array($resultbus);
 //Limito la busqueda 
 $TAMANO_PAGINA = 20; 
 
-//examino la p·gina a mostrar y el inicio del registro a mostrar 
+//examino la p√°gina a mostrar y el inicio del registro a mostrar 
 if(isset($_GET['pagina'])) 
 {
     $pagina = $_GET['pagina']; 
@@ -68,18 +68,18 @@ $sql="	select Nota, nomCliente, Fecha, Fac_orig, Fac_dest, Motivo, Total from no
 $result=mysqli_query($link,$sql);
 
 $num_total_registros = mysqli_num_rows($result); 
-//calculo el total de p·ginas 
+//calculo el total de p√°ginas 
 $total_paginas = ceil($num_total_registros / $TAMANO_PAGINA); 
 
-//muestro los distintos Ìndices de las p·ginas, si es que hay varias p·ginas 
+//muestro los distintos √≠ndices de las p√°ginas, si es que hay varias p√°ginas 
 echo '<div id="paginas" align="center">';
 if ($total_paginas > 1){ 
    	for ($i=1;$i<=$total_paginas;$i++){ 
       	 if ($pagina == $i) 
-         	 //si muestro el Ìndice de la p·gina actual, no coloco enlace 
+         	 //si muestro el √≠ndice de la p√°gina actual, no coloco enlace 
          	 echo $pagina . " "; 
       	 else 
-         	 //si el Ìndice no corresponde con la p·gina mostrada actualmente, coloco el enlace para ir a esa p·gina 
+         	 //si el √≠ndice no corresponde con la p√°gina mostrada actualmente, coloco el enlace para ir a esa p√°gina 
          	 echo "<a href='listarNotasC.php?pagina=" . $i ."'>" . $i . "</a>&nbsp;"; 
    	} 
 }
@@ -94,7 +94,7 @@ while($row=mysqli_fetch_array($rs, MYSQLI_BOTH))
 {
 	$mensaje=$row['Nota'];
 	if ($row['Motivo']==0)
-		$motivo="DevoluciÛn";
+		$motivo="Devoluci√≥n";
 	else
 		$motivo="Descuento no aplicado";
 	$Tot=number_format($row['Total'], 0, '.', ',');
@@ -123,7 +123,7 @@ while($row=mysqli_fetch_array($rs, MYSQLI_BOTH))
 	$resulti=mysqli_query($link,$sqli);
 	echo '<tr><td colspan="7"><div class="commenthidden" id="UniqueName'.$a.'"><table width="750" border="0" align="center" cellspacing="0" summary="Detalle">
 	<tr>
-      <th width="40" class="formatoEncabezados">CÛdigo</th>
+      <th width="40" class="formatoEncabezados">C√≥digo</th>
 	  <th width="250" class="formatoEncabezados">Producto</th>
       <th width="40" class="formatoEncabezados">Cantidad</th>
   	</tr>';
@@ -145,7 +145,7 @@ mysqli_close($link);//Cerrar la conexion
 ?>
 
 </table>
-<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men˙"></div>
+<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men√∫"></div>
 </div>
  </body>
 </html>

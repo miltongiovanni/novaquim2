@@ -4,17 +4,17 @@ include "../includes/valAcc.php";
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<title>HistÛrico de Cobros Facturas</title>
+<title>Hist√≥rico de Cobros Facturas</title>
 <meta charset="utf-8">
 <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <div id="contenedor">
-<div id="saludo1"><strong>HIST”RICO DE PAGOS DE FACTURAS GENERAL</strong></div>
+<div id="saludo1"><strong>HIST√ìRICO DE PAGOS DE FACTURAS GENERAL</strong></div>
 <table width="711" border="0" align="center" summary="encabezado">
   <tr> <td width="611" align="right"><form action="fech_histo_cobros_Xls.php" method="post"><input name="Submit" type="submit" class="formatoBoton" value="Exportar a Excel">
     </form></td>
-      <td width="90"><div align="right"><input type="button" class="formatoBoton" onClick="window.location='menu.php'" value="Ir al Men˙">
+      <td width="90"><div align="right"><input type="button" class="formatoBoton" onClick="window.location='menu.php'" value="Ir al Men√∫">
       </div></td>
   </tr>
 </table>
@@ -38,7 +38,7 @@ include "includes/conect.php" ;
 //Limito la busqueda 
 $TAMANO_PAGINA = 19; 
 
-//examino la p·gina a mostrar y el inicio del registro a mostrar 
+//examino la p√°gina a mostrar y el inicio del registro a mostrar 
 if(isset($_GET['pagina'])) 
 {
     $pagina = $_GET['pagina']; 
@@ -60,18 +60,18 @@ $sql="	select Id_caja as 'Id', Fact as Factura, nomCliente as Cliente, CONCAT('$
 from r_caja, factura, clientes, form_pago where Fact=Factura and Nit_cliente=nitCliente and form_pago=idFormaPago order by Id DESC";
 $result=mysqli_query($link,$sql);
 $num_total_registros = mysqli_num_rows($result); 
-//calculo el total de p·ginas 
+//calculo el total de p√°ginas 
 $total_paginas = ceil($num_total_registros / $TAMANO_PAGINA); 
 
-//muestro los distintos Ìndices de las p·ginas, si es que hay varias p·ginas 
+//muestro los distintos √≠ndices de las p√°ginas, si es que hay varias p√°ginas 
 echo '<div id="paginas" align="center">';
 if ($total_paginas > 1){ 
    	for ($i=1;$i<=$total_paginas;$i++){ 
       	 if ($pagina == $i) 
-         	 //si muestro el Ìndice de la p·gina actual, no coloco enlace 
+         	 //si muestro el √≠ndice de la p√°gina actual, no coloco enlace 
          	 echo $pagina . " "; 
       	 else 
-         	 //si el Ìndice no corresponde con la p·gina mostrada actualmente, coloco el enlace para ir a esa p·gina 
+         	 //si el √≠ndice no corresponde con la p√°gina mostrada actualmente, coloco el enlace para ir a esa p√°gina 
          	 echo "<a href='hist_cobros.php?pagina=" . $i . "'>" .$i. "</a>&nbsp;"; 
    	} 
 }
@@ -111,7 +111,7 @@ mysqli_close($link);//Cerrar la conexion
 ?>
 </table>
 
-<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men˙"></div>
+<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men√∫"></div>
 </div>
 </body>
 </html>

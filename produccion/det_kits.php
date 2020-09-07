@@ -126,7 +126,7 @@ $kit = $KitOperador->getKit($idKit);
         </div>
         <div class="form-group row">
             <select name="codProducto" id="codProducto" class="form-control col-4"
-                    style="margin: 0 5px 0 0;" onchange="findLotePresentacion(this.value);">
+                    style="margin: 0 5px 0 0;" onchange="findLotePresentacion(this.value);" required>
                 <option selected disabled value="">------------------------------</option>
                 <?php
                 $presentaciones = $DetKitOperador->getProdNovaquim($idKit);
@@ -150,7 +150,7 @@ $kit = $KitOperador->getKit($idKit);
         </div>
         <div class="form-group row">
             <select name="codProducto" id="codProducto" class="form-control col-4"
-                    style="margin: 0 5px 0 0;" onchange="findLotePresentacion(this.value);">
+                    style="margin: 0 5px 0 0;" onchange="findLotePresentacion(this.value);" required>
                 <option selected disabled value="">------------------------------</option>
                 <?php
                 $prodsDistribucion = $DetKitOperador->getProdDistribucion($idKit);

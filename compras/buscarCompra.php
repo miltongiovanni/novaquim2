@@ -30,7 +30,7 @@ switch ($tipoCompra) {
         <div class="form-group row">
             <label class="col-form-label col-1 text-right" for="idCompra"><strong>No. de compra</strong></label>
             <input type="text" class="form-control col-2" name="idCompra" id="idCompra"
-                   onKeyPress="return aceptaNum(event)">
+                   onKeyPress="return aceptaNum(event)" required>
         </div>
         <div class="form-group row">
                         <div class="col-1 text-center" >

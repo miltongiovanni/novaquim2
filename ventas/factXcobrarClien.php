@@ -19,7 +19,7 @@ $cliente=$_POST[cliente];
   <tr> <td width="85%" align="right"><form action="FacturasXCobrarCli_Xls.php" method="post" target="_blank"><input name="cliente" type="hidden" value="<?php echo $cliente; ?>"><input name="Submit" type="submit" value="Exportar a Excel"></form></td>
     <td width="196"><form action="Imp_EstadoCobros.php" method="post" target="_blank"><input type="submit" name="Submit" value="Imprimir Estado de Cartera">
     </form></td>
-     <td width="86"><input type="button" onClick="window.location='menu.php'" value="Ir al Menú"></td>
+     <td width="86"><input type="button" onClick="window.location='menu.php'" value="Ir al MenÃº"></td>
   </tr>
 </table>
 <table  border="0" align="center" cellspacing="0"  cellpadding="0">
@@ -30,7 +30,7 @@ $cliente=$_POST[cliente];
     <th width="75" class="formatoEncabezados" scope="col">Fecha Vencimiento</th>
     <th width="340" class="formatoEncabezados" scope="col">Cliente</th>
     <th width="210" class="formatoEncabezados" scope="col">Contacto</th>
-    <th width="53" class="formatoEncabezados" scope="col">Teléfono</th>
+    <th width="53" class="formatoEncabezados" scope="col">TelÃ©fono</th>
     <th width="80" class="formatoEncabezados" scope="col">Celular</th>
     <th width="80" class="formatoEncabezados" scope="col">Valor Factura </th>
     <th width="80" class="formatoEncabezados" scope="col">Valor a Cobrar </th>
@@ -173,7 +173,7 @@ $cliente=$_POST[cliente];
 				<td colspan="2" class="titulo"><div align="left">$ <script > document.write(commaSplit('.$total.'))</script></div> </td>
 				</tr>';
 			mysqli_free_result($result);
-			/* cerrar la conexión */
+			/* cerrar la conexiÃ³n */
 			mysqli_close($link);
 	 	}
 		else 
@@ -182,7 +182,7 @@ $cliente=$_POST[cliente];
 		}
 	  ?>
 </table>
-<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú"></div>
+<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al MenÃº"></div>
 </div>
 </body>
 </html>

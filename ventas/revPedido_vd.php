@@ -4,7 +4,7 @@ include "../includes/valAcc.php";
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<title>Lista de Órdenes de Pedido Pendientes por Facturar</title>
+<title>Lista de Ã“rdenes de Pedido Pendientes por Facturar</title>
 <meta charset="utf-8">
 <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
 	<script  src="../js/validar.js"></script>
@@ -26,11 +26,11 @@ include "../includes/valAcc.php";
 </head>
 <body>
 <div id="contenedor">
-<div id="saludo1"><strong>LISTA DE ÓRDENES DE PEDIDO PENDIENTES PARA REVISIÓN</strong></div> 
+<div id="saludo1"><strong>LISTA DE Ã“RDENES DE PEDIDO PENDIENTES PARA REVISIÃ“N</strong></div> 
 <form name="revision_pedidos"  method="post" action="lista_necesidades_vd.php">
 <table width="100%" border="0" summary="encabezado">
   <tr> <td width="16%"><div align="right"><input type="checkbox"  id="seleccionar" name="seleccionar" onclick='seleccionar1(this.form, "seleccion1[]")'>Seleccionar Todos/Ninguno</div></td>
-      <td width="84%"><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú"></div></td>
+      <td width="84%"><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al MenÃº"></div></td>
   </tr>
 </table>
 
@@ -41,7 +41,7 @@ include "../includes/valAcc.php";
     <th width="23%" class="formatoEncabezados">Cliente</th>
     <th width="9%" class="formatoEncabezados">Fecha Pedido</th>
     <th width="9%" class="formatoEncabezados">Fecha Entrega</th>
-    <th width="18%" class="formatoEncabezados">Dirección Entrega</th>
+    <th width="18%" class="formatoEncabezados">DirecciÃ³n Entrega</th>
   </tr>   
 <?php
 include "includes/utilTabla.php";
@@ -56,7 +56,7 @@ $link=conectarServidorBD($servidorBD, $usuario, $password);
 //conectar con la tabla (ej. use datos;)
 conectarBD($database, $link);  
 //sentencia SQL    tblusuarios.IdUsuario,
-$sql="	select idPedido, fechaPedido, fechaEntrega, tipo_precio, nomCliente, pedido.Estado, Nom_sucursal, Dir_sucursal from pedido, tip_precio, clientes, clientes_sucursal where Nit_cliente=clientes.nitCliente and clientes_sucursal.Nit_clien=clientes.nitCliente and tipoPrecio=Id_precio and idSucursal=Id_sucursal AND pedido.Estado='P'  and idCatCliente=13 order by idPedido";
+$sql="	select idPedido, fechaPedido, fechaEntrega, tipo_precio, nomCliente, pedido.Estado, nomSucursal, dirSucursal from pedido, tip_precio, clientes, clientes_sucursal where Nit_cliente=clientes.nitCliente and clientes_sucursal.Nit_clien=clientes.nitCliente and tipoPrecio=Id_precio and idSucursal=idSucursal AND pedido.Estado='P'  and idCatCliente=13 order by idPedido";
 $result=mysql_db_query($database,$sql);
 $a=1;
 while($row=mysql_fetch_array($result, MYSQLI_BOTH))
@@ -65,7 +65,7 @@ while($row=mysql_fetch_array($result, MYSQLI_BOTH))
 	echo'<tr';
 	  if (($a % 2)==0) echo ' bgcolor="#B4CBEF" ';
 	  echo '>
-	<td class="formatoDatos"><div align="center"><input type="checkbox" id="seleccion1" class=”check” name="seleccion1[]"  align="left" value="'.$pedido.'"></div></td>
+	<td class="formatoDatos"><div align="center"><input type="checkbox" id="seleccion1" class=â€checkâ€ name="seleccion1[]"  align="left" value="'.$pedido.'"></div></td>
 	<td class="formatoDatos"><div align="center">'.$row['Id_pedido'].'</div></td>
 	<td class="formatoDatos"><div align="left">'.$row['Nom_clien'].'</div></td>
 	<td class="formatoDatos"><div align="center">'.$row['Fech_pedido'].'</div></td>

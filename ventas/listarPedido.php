@@ -4,17 +4,17 @@ include "../includes/valAcc.php";
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<title>Lista de ”rdenes de Pedido</title>
+<title>Lista de √ìrdenes de Pedido</title>
 <meta charset="utf-8">
 <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
 	<script  src="../js/validar.js"></script>
 </head>
 <body>
 <div id="contenedor">
-<div id="saludo1"><strong>LISTA DE ”RDENES DE PEDIDO</strong></div>
+<div id="saludo1"><strong>LISTA DE √ìRDENES DE PEDIDO</strong></div>
 <table width="100%" border="0" summary="encabezado">
   <tr> 
-      <td><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men˙"></div></td>
+      <td><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men√∫"></div></td>
   </tr>
 </table>
 <table border="0" align="center" cellspacing="0" cellpadding="0" summary="cuerpo" width="100%">
@@ -25,7 +25,7 @@ include "../includes/valAcc.php";
     <th width="9%" class="formatoEncabezados">Fecha Pedido</th>
     <th width="9%" class="formatoEncabezados">Fecha Entrega</th>
     <th width="23%" class="formatoEncabezados">Lugar Entrega</th>
-    <th width="18%" class="formatoEncabezados">DirecciÛn Entrega</th>
+    <th width="18%" class="formatoEncabezados">Direcci√≥n Entrega</th>
     <th width="5%" class="formatoEncabezados">Precio</th>
     <th width="7%" class="formatoEncabezados">Estado</th>
   </tr>   
@@ -36,7 +36,7 @@ include "includes/conect.php" ;
 //Limito la busqueda 
 $TAMANO_PAGINA = 20; 
 
-//examino la p·gina a mostrar y el inicio del registro a mostrar 
+//examino la p√°gina a mostrar y el inicio del registro a mostrar 
 if(isset($_GET['pagina'])) 
 {
     $pagina = $_GET['pagina']; 
@@ -54,22 +54,22 @@ else
 }
 
 $link=conectarServidor();
-$sql="	select idPedido, fechaPedido, fechaEntrega, tipo_precio, nomCliente, pedido.Estado, Nom_sucursal, Dir_sucursal from pedido, tip_precio, clientes, clientes_sucursal where Nit_cliente=clientes.nitCliente and clientes_sucursal.Nit_clien=clientes.nitCliente and tipoPrecio=Id_precio and idSucursal=Id_sucursal order by idPedido DESC;";
+$sql="	select idPedido, fechaPedido, fechaEntrega, tipo_precio, nomCliente, pedido.Estado, nomSucursal, dirSucursal from pedido, tip_precio, clientes, clientes_sucursal where Nit_cliente=clientes.nitCliente and clientes_sucursal.Nit_clien=clientes.nitCliente and tipoPrecio=Id_precio and idSucursal=idSucursal order by idPedido DESC;";
 $result=mysqli_query($link,$sql);
 
 $num_total_registros = mysqli_num_rows($result); 
-//calculo el total de p·ginas 
+//calculo el total de p√°ginas 
 $total_paginas = ceil($num_total_registros / $TAMANO_PAGINA); 
 
-//muestro los distintos Ìndices de las p·ginas, si es que hay varias p·ginas 
+//muestro los distintos √≠ndices de las p√°ginas, si es que hay varias p√°ginas 
 echo '<div id="paginas" align="center">';
 if ($total_paginas > 1){ 
    	for ($i=1;$i<=$total_paginas;$i++){ 
       	 if ($pagina == $i) 
-         	 //si muestro el Ìndice de la p·gina actual, no coloco enlace 
+         	 //si muestro el √≠ndice de la p√°gina actual, no coloco enlace 
          	 echo $pagina . " "; 
       	 else 
-         	 //si el Ìndice no corresponde con la p·gina mostrada actualmente, coloco el enlace para ir a esa p·gina 
+         	 //si el √≠ndice no corresponde con la p√°gina mostrada actualmente, coloco el enlace para ir a esa p√°gina 
          	 echo "<a href='listarPedido.php?pagina=" . $i . "'>" . $i . "</a>&nbsp;"; 
    	} 
 }
@@ -77,7 +77,7 @@ echo '</div>';
 
 
 //construyo la sentencia SQL 
-$ssql = "select idPedido, fechaPedido, fechaEntrega, tipo_precio, nomCliente, pedido.Estado, Nom_sucursal, Dir_sucursal from pedido, tip_precio, clientes, clientes_sucursal where Nit_cliente=clientes.nitCliente and clientes_sucursal.Nit_clien=clientes.nitCliente and tipoPrecio=Id_precio and idSucursal=Id_sucursal  order by idPedido DESC limit " . $inicio . "," . $TAMANO_PAGINA;
+$ssql = "select idPedido, fechaPedido, fechaEntrega, tipo_precio, nomCliente, pedido.Estado, nomSucursal, dirSucursal from pedido, tip_precio, clientes, clientes_sucursal where Nit_cliente=clientes.nitCliente and clientes_sucursal.Nit_clien=clientes.nitCliente and tipoPrecio=Id_precio and idSucursal=idSucursal  order by idPedido DESC limit " . $inicio . "," . $TAMANO_PAGINA;
 
 $rs = mysqli_query($link,$ssql);
 $a=1;
@@ -114,7 +114,7 @@ select Id_ped, Cod_producto, DesServicio as Producto, Can_producto, Prec_product
 	$resulti=mysqli_query($link,$sqli);
 	echo '<tr><td colspan="7"><div class="commenthidden" id="UniqueName'.$a.'"><table width="60%" border="0" align="center" cellspacing="0" summary="detalle">
 	<tr>
-      <th width="6%" class="formatoEncabezados">CÛdigo</th>
+      <th width="6%" class="formatoEncabezados">C√≥digo</th>
 	  <th width="50%" class="formatoEncabezados">Producto</th>
       <th width="5%" class="formatoEncabezados">Cantidad</th>
 	  <th width="15%" class="formatoEncabezados">Precio Venta</th>
@@ -131,16 +131,16 @@ select Id_ped, Cod_producto, DesServicio as Producto, Can_producto, Prec_product
 	echo '</table></div></td></tr>';
 	$a=$a+1;
 }
-//pongo el n˙mero de registros total, el tamaÒo de p·gina y la p·gina que se muestra 
-/*echo "N˙mero de registros encontrados: " . $num_total_registros . "<br>"; 
-echo "Se muestran p·ginas de " . $TAMANO_PAGINA . " registros cada una<br>"; 
-echo "Mostrando la p·gina " . $pagina . " de " . $total_paginas . "<p>"; */
+//pongo el n√∫mero de registros total, el tama√±o de p√°gina y la p√°gina que se muestra 
+/*echo "N√∫mero de registros encontrados: " . $num_total_registros . "<br>"; 
+echo "Se muestran p√°ginas de " . $TAMANO_PAGINA . " registros cada una<br>"; 
+echo "Mostrando la p√°gina " . $pagina . " de " . $total_paginas . "<p>"; */
 mysqli_free_result($result);
 mysqli_free_result($resulti);
 mysqli_close($link);//Cerrar la conexion
 ?>
 </table>
-<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men˙"></div>
+<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men√∫"></div>
 </div>
 </body>
 </html>

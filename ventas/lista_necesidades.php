@@ -77,7 +77,7 @@ include "../includes/valAcc.php";
 		</table>';
 		echo '<table border="0" align="center" width="80%" summary="detalle">
 		<tr class="formatoDatos">
-				<th width="12%" align="center">Código</th>
+				<th width="12%" align="center">CÃ³digo</th>
 				<th width="62%" align="center">Producto </th>
 				<th width="12%" align="center">Cantidad </th>
 				<th width="14%" align="center">Precio</th>
@@ -166,9 +166,9 @@ include "../includes/valAcc.php";
 	}  
 	else
 	{
-		//echo "no escogió productos de novaquim <br>";Id_Ped=915 or Id_Ped=916)
+		//echo "no escogiÃ³ productos de novaquim <br>";Id_Ped=915 or Id_Ped=916)
 		echo' <script >
-		alert("Debe escoger algún pedido");
+		alert("Debe escoger algÃºn pedido");
 		history.back();
 		</script>';
 	}
@@ -187,7 +187,7 @@ include "../includes/valAcc.php";
                     </form>                </div></td>
   </tr>
 </table> 
-<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú"></div>
+<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al MenÃº"></div>
 </div>
 </body>
 </html>

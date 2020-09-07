@@ -18,7 +18,7 @@ include "../includes/valAcc.php";
 <form action="aplicaPago.php" method="post" name="aplicapagos">
 <table width="65%" border="0" align="center">
     <tr>
-    	<td colspan="4"><strong><span class="titulo">Aplicación de Pagos </span></strong></td>
+    	<td colspan="4"><strong><span class="titulo">AplicaciÃ³n de Pagos </span></strong></td>
     </tr>
 	<?php
 	include "includes/conect.php" ;

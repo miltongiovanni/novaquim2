@@ -6,7 +6,7 @@ include "../includes/valAcc.php";
 
 <head>
 <meta charset="utf-8">
-<title>Seleccionar Cliente a Consultar Notas Crédito</title>
+<title>Seleccionar Cliente a Consultar Notas CrÃ©dito</title>
 <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
 <script  src="../js/validar.js"></script>
 <script  src="scripts/ajax.js"></script>
@@ -14,7 +14,7 @@ include "../includes/valAcc.php";
 </head>
 <body>
 <div id="contenedor">
-<div id="saludo"><strong>CONSULTA DE NOTAS CRÉDITO POR CLIENTE</strong></div>
+<div id="saludo"><strong>CONSULTA DE NOTAS CRÃ‰DITO POR CLIENTE</strong></div>
 <form id="form1" name="form1" method="post" action="listarNotasCClien.php">
 <table width="100%" border="0" align="center" summary="cuerpo">
 <tr>

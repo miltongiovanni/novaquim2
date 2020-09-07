@@ -22,7 +22,7 @@ spl_autoload_register('cargarClases');
     <form id="form1" name="form1" method="post" action="deleteProd.php">
         <div class="form-group row">
             <label class="col-form-label col-1" for="codProducto"><strong>Producto</strong></label>
-            <select name="codProducto" id="codProducto" class="form-control col-2">
+            <select name="codProducto" id="codProducto" class="form-control col-2" required>
                 <option selected value="">-----------------------------</option>
                 <?php
                 $ProductoOperador = new ProductosOperaciones();

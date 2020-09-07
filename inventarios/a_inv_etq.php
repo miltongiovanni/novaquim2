@@ -43,7 +43,7 @@ spl_autoload_register('cargarClases');
         <div class="form-group row">
             <label class="col-form-label col-2" for="codEtiqueta"><strong>Etiqueta</strong></label>
             <select name="codEtiqueta" id="codEtiqueta" class="form-control col-3 formatoDatos"
-                    onchange="getInvTapa(this.value)">
+                    onchange="getInvTapa(this.value)" required>
                 <option selected disabled value="">-----------------------------</option>
                 <?php
                 $etiquetaOperador = new EtiquetasOperaciones();

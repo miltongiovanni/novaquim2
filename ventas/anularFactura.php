@@ -24,7 +24,7 @@ include "../includes/valAcc.php";
         <td width="257"><input type="text" name="factura" size=10 onKeyPress="return aceptaNum(event)"></td><input type="hidden" name="Crear" value="5">
     </tr>
     <tr>
-        <td align="right"><strong>Razón de Anulación</strong></td>
+        <td align="right"><strong>RazÃ³n de AnulaciÃ³n</strong></td>
         <td><textarea name="observa" id="textarea" cols="40" rows="5" ></textarea></td>
     </tr>
     <tr>

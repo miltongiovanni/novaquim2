@@ -21,14 +21,14 @@ spl_autoload_register('cargarClases');
     <form method="post" action="makeCambio.php" name="form1">
         <div class="form-group row">
             <label class="col-form-label col-2 text-right" for="fechaCambio"><strong>Fecha del cambio</strong></label>
-            <input type="date" class="form-control col-2" name="fechaCambio" id="fechaCambio">
+            <input type="date" class="form-control col-2" name="fechaCambio" id="fechaCambio" required>
         </div>
         <div class="form-group row">
             <label class="col-form-label col-2" for="codPersonal"><strong>Responsable</strong></label>
             <?php
             $PersonalOperador = new PersonalOperaciones();
             $personal = $PersonalOperador->getPersonalProd();
-            echo '<select name="codPersonal" id="codPersonal" class="form-control col-2" ;>';
+            echo '<select name="codPersonal" id="codPersonal" class="form-control col-2"  required>';
             echo '<option selected disabled value="">-----------------------------</option>';
             for ($i = 0; $i < count($personal); $i++) {
                 echo '<option value="' . $personal[$i]["idPersonal"] . '">' . $personal[$i]['nomPersonal'] . '</option>';

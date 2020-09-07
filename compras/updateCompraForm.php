@@ -60,7 +60,7 @@ if (!$CompraOperador->isValidIdCompra($idCompra)) {
                 <?php
                 $ProveedorOperador = new ProveedoresOperaciones();
                 $proveedores = $ProveedorOperador->getProveedoresByTipo($tipoCompra);
-                echo '<select name="idProv" id="idProv" class="form-control col-2">';
+                echo '<select name="idProv" id="idProv" class="form-control col-2" required>';
                 echo '<option selected value=' . $compra['idProv'] . '>' . $compra['nomProv'] . '</option>';
                 for ($i = 0; $i < count($proveedores); $i++) {
                     if ($compra['idProv'] != $proveedores[$i]['idProv']) {

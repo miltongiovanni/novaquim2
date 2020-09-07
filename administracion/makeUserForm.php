@@ -24,37 +24,37 @@ spl_autoload_register('cargarClases');
             <div class="form-group row">
                 <label class="col-form-label col-1 text-right"  for="nombre"><strong>Nombre</strong></label>
                 <input type="text" class="form-control col-2" name="nombre" id="nombre" size=30 onKeyPress="return aceptaLetra(event)"
-                    maxlength="30">
+                    maxlength="30" required>
             </div>
             <div class="form-group row">
                 <label class="col-form-label col-1 text-right"  for="apellido"><strong>Apellidos</strong></label>
                 <input type="text" class="form-control col-2" name="apellido" id="apellido" size=30 onKeyPress="return aceptaLetra(event)"
-                    maxlength="30">
+                    maxlength="30" required>
             </div>
             <div class="form-group row">
                 <label class="col-form-label col-1" for="usuario"><b>Usuario</b></label>
-                <input type="text" class="form-control col-2" id="usuario" maxlength="10" name="usuario" size=30>
+                <input type="text" class="form-control col-2" id="usuario" maxlength="10" name="usuario" size=30 required>
             </div>
             <div class="form-group row">
                 <label class="col-form-label col-1" for="idPerfil"><strong>Perfil</strong></label>
-                <select class="form-control col-2" name="idPerfil" id="idPerfil">
+                <select class="form-control col-2" name="idPerfil" id="idPerfil" required>
                     <?php
                     $perfilOperador = new PerfilesOperaciones();
                     $perfiles = $perfilOperador->getPerfiles();
                     echo '<option value="6" selected>USUARIO</option>';
                     for ($i = 0; $i < count($perfiles); $i++) {
                         if ($perfiles[$i]['idPerfil']!=6)
-                            echo '<option value="'.$perfiles[$i]['idPerfil'].'">'.$perfiles[$i]['descripcion'].'</option>';
+                            echo '<option value="'.$perfiles[$i]['idPerfil'].'">'.$perfiles[$i]['perfil'].'</option>';
                     }
                 ?>
                 </select>
             </div>
             <div class="form-group row">
                 <div class="col-1 text-center">
-                    <button class="button"  onclick="return Enviar(this.form)"><span>Continuar</span></button>
+                    <button class="button"  type="reset"><span>Reiniciar</span></button>
                 </div>
                 <div class="col-1 text-center">
-                    <button class="button"  type="reset"><span>Reiniciar</span></button>
+                    <button class="button"  onclick="return Enviar(this.form)"><span>Continuar</span></button>
                 </div>
             </div>
         </form>

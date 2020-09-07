@@ -4,17 +4,17 @@ include "../includes/valAcc.php";
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<title>Lista de Órdenes de Pedido Anuladas</title>
+<title>Lista de Ã“rdenes de Pedido Anuladas</title>
 <meta charset="utf-8">
 <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
 	<script  src="../js/validar.js"></script>
 </head>
 <body>
 <div id="contenedor">
-<div id="saludo1"><strong>LISTA DE ÓRDENES DE PEDIDO ANULADAS</strong></div>
+<div id="saludo1"><strong>LISTA DE Ã“RDENES DE PEDIDO ANULADAS</strong></div>
 <table width="100%" border="0" summary="encabezado">
   <tr> 
-      <td><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú"></div></td>
+      <td><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al MenÃº"></div></td>
   </tr>
 </table>
 <table border="0" align="center" cellspacing="0" cellpadding="0" summary="cuerpo">
@@ -66,7 +66,7 @@ while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
 	$resulti=mysqli_query($link,$sqli);
 	echo '<tr><td colspan="7"><div class="commenthidden" id="UniqueName'.$a.'"><table width="60%" border="0" align="center" cellspacing="0" summary="detalle">
 	<tr>
-      <th width="6%" class="formatoEncabezados">Código</th>
+      <th width="6%" class="formatoEncabezados">CÃ³digo</th>
 	  <th width="50%" class="formatoEncabezados">Producto</th>
       <th width="5%" class="formatoEncabezados">Cantidad</th>
   	</tr>';
@@ -84,11 +84,11 @@ while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
 }
 mysqli_free_result($result);
 mysqli_free_result($resulti);
-/* cerrar la conexión */
+/* cerrar la conexiÃ³n */
 mysqli_close($link);
 ?>
 </table>
-<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú"></div>
+<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al MenÃº"></div>
 </div>
 </body>
 </html>

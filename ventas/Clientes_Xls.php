@@ -20,7 +20,7 @@ $objPHPExcel->getProperties()->setCreator("Industrias Novaquim")
 							 ->setLastModifiedBy("Milton Espitia")
 							 ->setTitle("Productos")
 							 ->setSubject("Lista de Clentes")
-							 ->setDescription("Lista de Facturas por período")
+							 ->setDescription("Lista de Facturas por perÃ­odo")
 							 ->setKeywords("Lista Facturas")
 							 ->setCategory("Lista");
 // Add some data
@@ -28,11 +28,11 @@ $objPHPExcel->setActiveSheetIndex(0)
             ->setCellValue('A1', 'Nit')
 			->setCellValue('B1', 'Cliente')
 			->setCellValue('C1', 'Contacto')
-			->setCellValue('D1', iconv("iso-8859-1", "UTF-8",'Teléfono'))
+			->setCellValue('D1', iconv("iso-8859-1", "UTF-8",'TelÃ©fono'))
 			->setCellValue('E1', iconv("iso-8859-1", "UTF-8",'Cargo'))
 			->setCellValue('F1', iconv("iso-8859-1", "UTF-8",'Fax'))
 			->setCellValue('G1', iconv("iso-8859-1", "UTF-8",'Celular'))
-			->setCellValue('H1', iconv("iso-8859-1", "UTF-8",'Dirección'))
+			->setCellValue('H1', iconv("iso-8859-1", "UTF-8",'DirecciÃ³n'))
 			->setCellValue('I1', iconv("iso-8859-1", "UTF-8",'E-mail'))
 			->setCellValue('J1', iconv("iso-8859-1", "UTF-8",'Actividad'))
 			->setCellValue('K1', iconv("iso-8859-1", "UTF-8",'Vendedor'))
@@ -42,10 +42,10 @@ $objPHPExcel->getActiveSheet()->setTitle('Clientes');
 $link=conectarServidor();
 if ($Estado=='A')
 	$sql="select nitCliente as Nit, nomCliente as Cliente, dirCliente as Direccion, contactoCliente, cargoCliente, telCliente as Tel1, nom_personal as vendor, desCatClien, faxCliente As Fax, celCliente as Cel, emailCliente as Eml, ciudad, max(fechaFactura) as Ult_compra
-from clientes, Personal, cat_clien, ciudades, factura where codVendedor=Id_Personal and idCatCliente=idCatClien and ciudadCliente=Id_ciudad and  Nit_cliente=nitCliente AND clientes.estadoCliente='A' group by nitCliente order by Cliente";
+from clientes, Personal, cat_clien, ciudades, factura where codVendedor=Id_Personal and idCatCliente=idCatClien and ciudadCliente=IdCiudad and  Nit_cliente=nitCliente AND clientes.estadoCliente='A' group by nitCliente order by Cliente";
 if ($Estado=='N')
 	$sql="	select nitCliente as Nit, nomCliente as Cliente, dirCliente as Direccion, contactoCliente, cargoCliente, telCliente as Tel1, nom_personal as vendor, desCatClien, faxCliente As Fax, celCliente as Cel, emailCliente as Eml, ciudad, max(fechaFactura) as Ult_compra
-from clientes, Personal, cat_clien, ciudades, factura where codVendedor=Id_Personal and idCatCliente=idCatClien and ciudadCliente=Id_ciudad and  Nit_cliente=nitCliente AND clientes.estadoCliente='N' group by nitCliente order by Cliente;";
+from clientes, Personal, cat_clien, ciudades, factura where codVendedor=Id_Personal and idCatCliente=idCatClien and ciudadCliente=IdCiudad and  Nit_cliente=nitCliente AND clientes.estadoCliente='N' group by nitCliente order by Cliente;";
 $result=mysqli_query($link,$sql) or die("Error al conectar a la base de datos.");
 $i=2;
 while($row= mysqli_fetch_array($result, MYSQLI_BOTH))
@@ -65,7 +65,7 @@ while($row= mysqli_fetch_array($result, MYSQLI_BOTH))
 } 
 // Set active sheet index to the first sheet, so Excel opens this as the first sheet
 $objPHPExcel->setActiveSheetIndex(0);
-// Redirect output to a client’s web browser (Excel5)
+// Redirect output to a clientâ€™s web browser (Excel5)
 header('Content-Type: application/vnd.ms-excel');
 if ($Estado=='A')
 	header('Content-Disposition: attachment;filename="Clientes Activos.xls"');
@@ -76,7 +76,7 @@ header('Cache-Control: max-age=0');
 $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
 $objWriter->save('php://output');
 mysqli_free_result($result);
-/* cerrar la conexión */
+/* cerrar la conexiÃ³n */
 mysqli_close($link);
 exit;
 ?>

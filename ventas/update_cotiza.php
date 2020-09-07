@@ -4,7 +4,7 @@ include "../includes/valAcc.php";
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<title>Cotización</title>
+<title>CotizaciÃ³n</title>
 <meta charset="utf-8">
 <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
 	<script  src="../js/validar.js"></script>
@@ -29,7 +29,7 @@ include "../includes/valAcc.php";
 	}  
 	if($_POST['seleccion1']==NULL)
 	{
-	  //echo "no escogió productos de novaquim <br>";
+	  //echo "no escogiÃ³ productos de novaquim <br>";
 		echo' <script >
 		alert("Debe escoger alguna Familia de los productos Nova");
 		history.back();
@@ -39,7 +39,7 @@ include "../includes/valAcc.php";
 	{
 		$opciones_prod = implode(",", $_POST['seleccion1']);
 	}
-	//SELECCIONA LOS PRODUCTOS DE DISTRIBUCIÓN
+	//SELECCIONA LOS PRODUCTOS DE DISTRIBUCIÃ“N
 	if($_POST['seleccion'])
 	{
 		$opciones_dist = implode(",", $_POST['seleccion']);
@@ -68,7 +68,7 @@ include "../includes/valAcc.php";
 	else
 	{
 		mysqli_close($link);
-		mover_pag("buscarCotiza.php","Error al ingresar la Cotización");
+		mover_pag("buscarCotiza.php","Error al ingresar la CotizaciÃ³n");
 	}
 function mover_pag($ruta,$mensaje)
 {	

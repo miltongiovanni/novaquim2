@@ -23,7 +23,7 @@ spl_autoload_register('cargarClases');
     <form id="form1" name="form1" method="post" action="listacompraxDist.php">
         <div class="form-group row">
             <label class="col-form-label col-1" for="idDistribucion"><strong>Producto</strong></label>
-            <select name="idDistribucion" id="idDistribucion" class="form-control col-2">
+            <select name="idDistribucion" id="idDistribucion" class="form-control col-2" required>
                 <option selected disabled value="">-----------------------------</option>
                 <?php
                 $ProductoDistribucionOperador = new ProductosDistribucionOperaciones();

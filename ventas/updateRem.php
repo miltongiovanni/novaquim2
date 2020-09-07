@@ -6,7 +6,7 @@ include "includes/conect.php";
 <html lang="es">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
-<title>Actualización</title>
+<title>ActualizaciÃ³n</title>
 </head>
 <body>
 <?php
@@ -140,7 +140,7 @@ echo '<input name="remision" type="hidden" value="'.$remision.'"/>
 if($valida==0)
 {
 	$ruta="";
-	mover_pag($ruta,"Remisión Actualizada correctamente");
+	mover_pag($ruta,"RemisiÃ³n Actualizada correctamente");
 }
 echo'</form>';
 function mover_pag($ruta,$mensaje)

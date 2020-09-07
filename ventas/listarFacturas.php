@@ -14,7 +14,7 @@ include "../includes/valAcc.php";
 <div id="saludo1"><strong>LISTA DE FACTURAS DE VENTA</strong></div> 
 <table  align="center" width="700" border="0">
   <tr> 
-      <td><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men˙"></div></td>
+      <td><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men√∫"></div></td>
   </tr>
 </table>
 <table border="0" align="center" cellspacing="0" cellpadding="0">
@@ -22,7 +22,7 @@ include "../includes/valAcc.php";
       <th width="8" class="formatoEncabezados"></th>
       <th width="50" class="formatoEncabezados">Factura</th>
       <th width="49" class="formatoEncabezados">Pedido</th>
-      <th width="61" class="formatoEncabezados">RemisiÛn</th>
+      <th width="61" class="formatoEncabezados">Remisi√≥n</th>
       <th width="379" class="formatoEncabezados">Cliente</th>
       <th width="113" class="formatoEncabezados">Fecha Factura</th>
       <th width="113" class="formatoEncabezados">Fecha Vencimiento</th>
@@ -36,7 +36,7 @@ include "includes/conect.php" ;
 //Limito la busqueda 
 $TAMANO_PAGINA = 20; 
 
-//examino la p·gina a mostrar y el inicio del registro a mostrar 
+//examino la p√°gina a mostrar y el inicio del registro a mostrar 
 if(isset($_GET['pagina'])) 
 {
     $pagina = $_GET['pagina']; 
@@ -57,21 +57,21 @@ $link=conectarServidor();
 $sql="	select Factura, idPedido, Nit_cliente, fechaFactura, fechaVenc, idRemision, ordenCompra, nomCliente, telCliente, dirCliente, 
 		Ciudad, nom_personal as vendedor, Total, factura.Estado 
 		from factura, clientes, personal,ciudades
-		where Nit_cliente=nitCliente and Id_ciudad=ciudadCliente and codVendedor=Id_personal  and idCatCliente<>13 ORDER BY factura desc";
+		where Nit_cliente=nitCliente and IdCiudad=ciudadCliente and codVendedor=Id_personal  and idCatCliente<>13 ORDER BY factura desc";
 $result=mysqli_query($link,$sql);
 $num_total_registros = mysqli_num_rows($result); 
-//calculo el total de p·ginas 
+//calculo el total de p√°ginas 
 $total_paginas = ceil($num_total_registros / $TAMANO_PAGINA); 
 
-//muestro los distintos Ìndices de las p·ginas, si es que hay varias p·ginas 
+//muestro los distintos √≠ndices de las p√°ginas, si es que hay varias p√°ginas 
 echo '<div id="paginas" align="center">';
 if ($total_paginas > 1){ 
    	for ($i=1;$i<=$total_paginas;$i++){ 
       	 if ($pagina == $i) 
-         	 //si muestro el Ìndice de la p·gina actual, no coloco enlace 
+         	 //si muestro el √≠ndice de la p√°gina actual, no coloco enlace 
          	 echo $pagina . " "; 
       	 else 
-         	 //si el Ìndice no corresponde con la p·gina mostrada actualmente, coloco el enlace para ir a esa p·gina 
+         	 //si el √≠ndice no corresponde con la p√°gina mostrada actualmente, coloco el enlace para ir a esa p√°gina 
          	 echo "<a href='listarFacturas.php?pagina=" . $i . "'>" .$i. "</a>&nbsp;"; 
    	} 
 }
@@ -81,7 +81,7 @@ echo '</div>';
 $ssql = "	select Factura, idPedido, Nit_cliente, fechaFactura, fechaVenc, idRemision, ordenCompra, nomCliente, telCliente, dirCliente, 
 		Ciudad, nom_personal as vendedor, Total, factura.Estado 
 		from factura, clientes, personal,ciudades
-		where Nit_cliente=nitCliente and Id_ciudad=ciudadCliente and codVendedor=Id_personal  and idCatCliente<>13 ORDER BY factura desc limit " . $inicio . "," . $TAMANO_PAGINA;
+		where Nit_cliente=nitCliente and IdCiudad=ciudadCliente and codVendedor=Id_personal  and idCatCliente<>13 ORDER BY factura desc limit " . $inicio . "," . $TAMANO_PAGINA;
 $rs = mysqli_query($link,$ssql);
 $a=1;
 while($row=mysqli_fetch_array($rs, MYSQLI_BOTH))
@@ -118,7 +118,7 @@ select Factura, Cod_producto, Can_producto, DesServicio as Producto, tasa, prec_
 	$resulti=mysqli_query($link,$sqli);
 	echo '<tr><td colspan="7"><div class="commenthidden" id="UniqueName'.$a.'"><table width="75%" border="0" align="center" cellspacing="0" bordercolor="#CCCCCC">
 	<tr>
-      <th width="8%" class="formatoEncabezados">CÛdigo</th>
+      <th width="8%" class="formatoEncabezados">C√≥digo</th>
 	  <th width="60%" class="formatoEncabezados">Producto</th>
       <th width="6%" class="formatoEncabezados">Cantidad</th>
   	</tr>';

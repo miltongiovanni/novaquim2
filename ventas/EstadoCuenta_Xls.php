@@ -23,7 +23,7 @@ $objPHPExcel->getProperties()->setCreator("Industrias Novaquim")
 							 ->setLastModifiedBy("Milton Espitia")
 							 ->setTitle("Productos")
 							 ->setSubject("Lista de Facturas")
-							 ->setDescription("Lista de Facturas por período")
+							 ->setDescription("Lista de Facturas por perÃ­odo")
 							 ->setKeywords("Lista Facturas")
 							 ->setCategory("Lista");
 // Add some data
@@ -35,7 +35,7 @@ $objPHPExcel->setActiveSheetIndex(0)
 			->setCellValue('D2', 'Total')
 			->setCellValue('E2', 'Valor a Cobrar')
 			->setCellValue('F2', 'Saldo')
-			->setCellValue('G2', iconv("iso-8859-1", "UTF-8",'Fecha Cancelación'))
+			->setCellValue('G2', iconv("iso-8859-1", "UTF-8",'Fecha CancelaciÃ³n'))
 			->setCellValue('H2', 'Estado');
 // Rename sheet
 $objPHPExcel->getActiveSheet()->setTitle('Estado de cuenta');
@@ -71,12 +71,12 @@ while($row= mysqli_fetch_array($result, MYSQLI_BOTH))
 
 // Set active sheet index to the first sheet, so Excel opens this as the first sheet
 $objPHPExcel->setActiveSheetIndex(0);
-// Redirect output to a client’s web browser (Excel5)
+// Redirect output to a clientâ€™s web browser (Excel5)
 header('Content-Type: application/vnd.ms-excel');
 header('Content-Disposition: attachment;filename="EstadoCuenta'.$nombre.'.xls"');
 header('Cache-Control: max-age=0');
 mysqli_free_result($result);
-/* cerrar la conexión */
+/* cerrar la conexiÃ³n */
 mysqli_close($link);
 $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
 $objWriter->save('php://output');

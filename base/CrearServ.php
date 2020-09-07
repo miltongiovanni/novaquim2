@@ -32,7 +32,7 @@ $lastservicio++;
             <label class="col-form-label col-2"  for="desServicio"><strong>Descripción
                     Servicio</strong></label>
             <input type="text" class="form-control col-2" name="desServicio" id="desServicio"
-                   onKeyPress="return aceptaLetra(event)">
+                   onKeyPress="return aceptaLetra(event)" required>
         </div>
         <div class="form-group row">
 
@@ -41,7 +41,7 @@ $lastservicio++;
             $manager = new TasaIvaOperaciones();
             $tasas = $manager->getTasasIva();
             $filas = count($tasas);
-            echo '<select name="codIva" id="codIva" class="form-control col-2">';
+            echo '<select name="codIva" id="codIva" class="form-control col-2" required>';
             echo '<option selected disabled value="">-----------------------------</option>';
             for ($i = 0; $i < $filas; $i++) {
                 echo '<option value="' . $tasas[$i]["idTasaIva"] . '">' . $tasas[$i]['iva'] . '</option>';

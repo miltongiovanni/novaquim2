@@ -7,13 +7,13 @@ include "includes/conect.php";
 <head>
 <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
 <meta charset="utf-8">
-<title>Actualizar Cotización Personalizada</title>
+<title>Actualizar CotizaciÃ³n Personalizada</title>
 <script  src="../js/validar.js"></script>
 
 </head>
 <body>
 <div id="contenedor">
-<div id="saludo"><strong>ACTUALIZACIÓN DEL PRODUCTO EN LA COTIZACIÓN</strong></div>
+<div id="saludo"><strong>ACTUALIZACIÃ“N DEL PRODUCTO EN LA COTIZACIÃ“N</strong></div>
 <form action="updateCotP.php" method="post" name="actualiza">
 <table width="55%" border="0" align="center" summary="cuerpo">
   <tr>
@@ -60,7 +60,7 @@ include "includes/conect.php";
  	echo '</td>';	
 	echo '</tr>';
 	mysqli_free_result($result);
-/* cerrar la conexión */
+/* cerrar la conexiÃ³n */
 mysqli_close($link);
 	?>
 	<tr>

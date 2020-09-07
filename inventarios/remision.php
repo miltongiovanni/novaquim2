@@ -3,7 +3,7 @@ include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
-<head>b
+<head>
     <title>Remisión de Productos</title>
     <meta charset="utf-8">
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
@@ -15,16 +15,16 @@ include "../includes/valAcc.php";
     <form method="post" action="makeRemision.php" name="form1">
         <div class="form-group row">
             <label class="col-form-label col-2 text-right" for="cliente"><strong>Cliente</strong></label>
-            <input type="text" class="form-control col-2" name="cliente" id="cliente">
+            <input type="text" class="form-control col-2" name="cliente" id="cliente" required>
         </div>
         <div class="form-group row">
             <label class="col-form-label col-2 text-right" for="fechaRemision"><strong>Fecha</strong></label>
-            <input type="date" class="form-control col-2" name="fechaRemision" id="fechaRemision">
+            <input type="date" class="form-control col-2" name="fechaRemision" id="fechaRemision" required>
         </div>
         <div class="form-group row">
             <label class="col-form-label col-2 text-right" for="valor"><strong>Valor</strong></label>
             <input type="text" class="form-control col-2" name="valor" id="valor"
-                   onKeyPress="return aceptaNum(event)">
+                   onKeyPress="return aceptaNum(event)" required>
         </div>
         <div class="form-group row">
             <div class="col-1 text-center">

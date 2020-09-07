@@ -5,7 +5,7 @@ include "../includes/valAcc.php";
 require('fpdf.php');
 class PDF extends FPDF
 {
-  //Cabecera de página
+  //Cabecera de pÃ¡gina
   function Header()
   {
 	  //Logo
@@ -14,30 +14,30 @@ class PDF extends FPDF
 	  //$this->SetFont('Arial','B',16);
 	  //Movernos a la derecha
 	  //$this->SetXY(70,43);
-	  //Título
+	  //TÃ­tulo
 	  //$this->Cell(70,10,'ORDEN DE PEDIDO',0,0,'C');
-	  //Salto de línea
+	  //Salto de lÃ­nea
 	  $this->Ln(10);
   }
-  //Pie de página
+  //Pie de pÃ¡gina
   function Footer()
   {
-	  //Posición: a 1,5 cm del final
+	  //PosiciÃ³n: a 1,5 cm del final
 	  $this->SetY(-15);
 	  //Arial italic 8
 	  $this->SetFont('Arial','',10);
-	  //Número de página
-	  $this->Cell(0,10,'Elaboró: ______________________________________   Aprobó: __________________________________',0,0,'C');
+	  //NÃºmero de pÃ¡gina
+	  $this->Cell(0,10,'ElaborÃ³: ______________________________________   AprobÃ³: __________________________________',0,0,'C');
   }
 }
 
-//Creación del objeto de la clase heredada
+//CreaciÃ³n del objeto de la clase heredada
 include "includes/conect.php";
 $link=conectarServidor();
 $pedido=$_POST['pedido'];
-$qryord="Select nomCliente, idPedido, fechaPedido, fechaEntrega, codVendedor, nom_personal, tipo_precio, pedido.Estado, Nom_sucursal, Dir_sucursal, telCliente 
+$qryord="Select nomCliente, idPedido, fechaPedido, fechaEntrega, codVendedor, nom_personal, tipo_precio, pedido.Estado, nomSucursal, dirSucursal, telCliente 
 		FROM pedido, personal, clientes, tip_precio, clientes_sucursal 
-		where codVendedor=Id_personal and idPedido=$pedido and clientes.nitCliente=nit_cliente and Id_precio=tipoPrecio and idSucursal=Id_sucursal and clientes_sucursal.Nit_clien=Nit_cliente";
+		where codVendedor=Id_personal and idPedido=$pedido and clientes.nitCliente=nit_cliente and Id_precio=tipoPrecio and idSucursal=idSucursal and clientes_sucursal.Nit_clien=Nit_cliente";
 $resultord=mysqli_query($link,$qryord);
 $roword=mysqli_fetch_array($resultord);
 //$cod_prod=$roword['Codigo'];
@@ -58,13 +58,13 @@ $pdf->SetFont('Arial','',10);
 $pdf->SetXY(10,55);
 $pdf->Cell(35,5,'Cliente: ');
 $pdf->Cell(90,5,$roword['nom_clien']);
-$pdf->Cell(30,5,'Teléfono: ');
+$pdf->Cell(30,5,'TelÃ©fono: ');
 $pdf->Cell(30,5,$roword['Tel_clien'],0,1);
 $pdf->Cell(35,5,'Lugar de Entrega: ');
 $pdf->Cell(90,5,$roword['Nom_sucursal']);
 $pdf->Cell(30,5,'Fecha de Pedido: ');
 $pdf->Cell(30,5,$roword['Fech_pedido'],0,1);
-$pdf->Cell(35,5,'Dirección de Entrega: ');
+$pdf->Cell(35,5,'DirecciÃ³n de Entrega: ');
 $pdf->Cell(90,5,$roword['Dir_sucursal']);
 $pdf->Cell(30,5,'Fecha de Entrega:');
 $pdf->Cell(30,5,$roword['Fech_entrega'],0,1);

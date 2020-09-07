@@ -12,9 +12,9 @@ foreach ($_POST as $nombre_campo => $valor)
 	eval($asignacion); 
 }  
 $link=conectarServidor();
-$sql1="Select nomCliente, idPedido, fechaPedido, fechaEntrega, codVendedor, nom_personal, tipo_precio, pedido.Estado, Nom_sucursal, Dir_sucursal, Tel_sucursal
+$sql1="Select nomCliente, idPedido, fechaPedido, fechaEntrega, codVendedor, nom_personal, tipo_precio, pedido.Estado, nomSucursal, dirSucursal, telSucursal
 		FROM pedido, personal, clientes, tip_precio, clientes_sucursal 
-		where codVendedor=Id_personal and idPedido=$pedido and clientes.nitCliente=nit_cliente and Id_precio=tipoPrecio and idSucursal=Id_sucursal and clientes_sucursal.Nit_clien=Nit_cliente";
+		where codVendedor=Id_personal and idPedido=$pedido and clientes.nitCliente=nit_cliente and Id_precio=tipoPrecio and idSucursal=idSucursal and clientes_sucursal.Nit_clien=Nit_cliente";
 $result1=mysqli_query($link,$sql1) or die("Error al conectar a la base de datos.");
 $row1= mysqli_fetch_array($result1, MYSQLI_BOTH);
 // Create new PHPExcel object
@@ -24,7 +24,7 @@ $objPHPExcel->getProperties()->setCreator("Industrias Novaquim")
 							 ->setLastModifiedBy("Milton Espitia")
 							 ->setTitle("Productos")
 							 ->setSubject("Lista de Facturas")
-							 ->setDescription("Lista de Facturas por período")
+							 ->setDescription("Lista de Facturas por perÃ­odo")
 							 ->setKeywords("Lista Facturas")
 							 ->setCategory("Lista");
 // Add some data
@@ -33,13 +33,13 @@ $objPHPExcel->setActiveSheetIndex(0)
 			->setCellValue('B1', iconv("iso-8859-1", "UTF-8",$row1['nom_clien']))
 			->setCellValue('A2', 'Lugar de entrega')
 			->setCellValue('B2', iconv("iso-8859-1", "UTF-8",$row1['Nom_sucursal']))
-			->setCellValue('A3', iconv("iso-8859-1", "UTF-8",'Dirección de entrega'))
+			->setCellValue('A3', iconv("iso-8859-1", "UTF-8",'DirecciÃ³n de entrega'))
 			->setCellValue('B3', iconv("iso-8859-1", "UTF-8",$row1['Dir_sucursal']))
 			->setCellValue('C1', 'Pedido')
 			->setCellValue('D1', iconv("iso-8859-1", "UTF-8",$row1['Id_pedido']))
 			->setCellValue('C2', 'Fecha')
 			->setCellValue('D2', iconv("iso-8859-1", "UTF-8",$row1['Fech_pedido']))
-			->setCellValue('C3', iconv("iso-8859-1", "UTF-8",'Teléfono'))
+			->setCellValue('C3', iconv("iso-8859-1", "UTF-8",'TelÃ©fono'))
 			->setCellValue('D3', iconv("iso-8859-1", "UTF-8",$row1['Tel_sucursal']))
 
             ->setCellValue('A5', 'Cod Producto')
@@ -89,7 +89,7 @@ while($row= mysqli_fetch_array($result, MYSQIL_BOTH))
 } 
 // Set active sheet index to the first sheet, so Excel opens this as the first sheet
 $objPHPExcel->setActiveSheetIndex(0);
-// Redirect output to a client’s web browser (Excel5)
+// Redirect output to a clientâ€™s web browser (Excel5)
 header('Content-Type: application/vnd.ms-excel');
 header('Content-Disposition: attachment;filename="Pedido '."$pedido".'.xls"');
 header('Cache-Control: max-age=0');
@@ -97,7 +97,7 @@ header('Cache-Control: max-age=0');
 $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
 $objWriter->save('php://output');
 mysqli_free_result($result);
-/* cerrar la conexión */
+/* cerrar la conexiÃ³n */
 mysqli_close($link);
 exit;
 ?>

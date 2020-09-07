@@ -21,7 +21,7 @@ spl_autoload_register('cargarClases');
     <form method="post" action="makeenvaseDis.php" name="form1">
         <div class="form-group row">
             <label class="col-form-label col-2" for="idDis"><strong>Producto de Distribución</strong></label>
-            <select name="idDis" id="idDis" class="form-control col-2">
+            <select name="idDis" id="idDis" class="form-control col-2" required>
                 <option selected value="">-----------------------------</option>
                 <?php
                 $ProductoDistribucionOperador = new ProductosDistribucionOperaciones();
@@ -35,7 +35,7 @@ spl_autoload_register('cargarClases');
         </div>
         <div class="form-group row">
             <label class="col-form-label col-2" for="idEnv"><strong>Envase</strong></label>
-            <select name="idEnv" id="idEnv" class="form-control col-2">
+            <select name="idEnv" id="idEnv" class="form-control col-2" required>
                 <option selected value="">-----------------------------</option>
                 <?php
                 $EnvasesOperador = new EnvasesOperaciones();
@@ -49,7 +49,7 @@ spl_autoload_register('cargarClases');
         </div>
         <div class="form-group row">
             <label class="col-form-label col-2" for="idTapa"><strong>Tapa</strong></label>
-            <select name="idTapa" id="idTapa" class="form-control col-2">
+            <select name="idTapa" id="idTapa" class="form-control col-2" required>
                 <option selected value="">-----------------------------</option>
                 <?php
                 $TapasOperador = new TapasOperaciones();

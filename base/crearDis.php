@@ -50,7 +50,7 @@ spl_autoload_register('cargarClases');
             $manager = new CategoriasDisOperaciones();
             $categorias = $manager->getCatsDis();
             $filas = count($categorias);
-            echo '<select name="idCatDis" id="idCatDis" class="form-control col-2" onchange="idProducto(this.value);">';
+            echo '<select name="idCatDis" id="idCatDis" class="form-control col-2" onchange="idProducto(this.value);" required>';
             echo '<option disabled selected value="">-----------------------------</option>';
             for ($i = 0; $i < $filas; $i++) {
                 echo '<option value="' . $categorias[$i]["idCatDis"] . '">' . $categorias[$i]['catDis'] . '</option>';
@@ -80,20 +80,20 @@ spl_autoload_register('cargarClases');
             <label class="col-form-label col-1"
                                                                         for="producto"><strong>Producto</strong></label>
             <input type="text" class="form-control col-3" name="producto" id="producto"
-                   onKeyPress="return aceptaLetra(event)" maxlength="50">
+                   onKeyPress="return aceptaLetra(event)" maxlength="50" required>
         </div>
         <div class="form-group row">
 
             <label class="col-form-label col-2"  for="precioVta"><strong>Precio de
                     Venta</strong></label>
             <input type="text" class="form-control col-2" name="precioVta" id="precioVta"
-                   onKeyPress="return aceptaNum(event)">
+                   onKeyPress="return aceptaNum(event)" required>
             <label class="col-form-label col-1" for="codIva"><strong>Iva</strong></label>
             <?php
             $manager = new TasaIvaOperaciones();
             $tasas = $manager->getTasasIva();
             $filas = count($tasas);
-            echo '<select name="codIva" id="codIva" class="form-control col-3">';
+            echo '<select name="codIva" id="codIva" class="form-control col-3" required>';
             echo '<option selected disabled value="">-----------------------------</option>';
             for ($i = 0; $i < $filas; $i++) {
                 echo '<option value="' . $tasas[$i]["idTasaIva"] . '">' . $tasas[$i]['iva'] . '</option>';
@@ -104,8 +104,8 @@ spl_autoload_register('cargarClases');
         <div class="form-group row">
             <label class="col-form-label col-2"  for="stockDis"><strong>Stock
                     Min</strong></label>
-            <input type="number" class="form-control col-2" min="0" name="stockDis"  id="stockDis" pattern="[0-9]"
-                   onkeydown="return aceptaNum(event)">
+            <input type="text" class="form-control col-2" min="0" name="stockDis"  id="stockDis" pattern="[0-9]"
+                   onkeydown="return aceptaNum(event)" required>
             <label class="col-form-label col-1" for="cotiza"><strong>Cotizar</strong></label>
             <select name="cotiza" id="cotiza" class="form-control col-3">
                 <option value="1">Si</option>

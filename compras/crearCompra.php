@@ -62,15 +62,15 @@ switch ($tipoCompra) {
         <div class="form-group row">
             <label class="col-form-label col-2 text-right" for="numFact"><strong>Número de Factura</strong></label>
             <input type="text" class="form-control col-2" name="numFact" id="numFact"
-                   onKeyPress="return aceptaNum(event)">
+                   onKeyPress="return aceptaNum(event)" required>
         </div>
         <div class="form-group row">
             <label class="col-form-label col-2 text-right" for="fechComp"><strong>Fecha de compra</strong></label>
-            <input type="date" class="form-control col-2" name="fechComp" id="fechComp">
+            <input type="date" class="form-control col-2" name="fechComp" id="fechComp" required>
         </div>
         <div class="form-group row">
             <label class="col-form-label col-2 text-right" for="fechVenc"><strong>Fecha de vencimiento</strong></label>
-            <input type="date" class="form-control col-2" name="fechVenc" id="fechVenc">
+            <input type="date" class="form-control col-2" name="fechVenc" id="fechVenc" required>
         </div>
         <div class="form-group row">
             <div class="col-1 text-center">

@@ -23,7 +23,7 @@ spl_autoload_register('cargarClases');
     <form id="form1" name="form1" method="post" action="listacompraxEnv.php">
         <div class="form-group row">
             <label class="col-form-label col-1" for="idTapOEnv"><strong>Envase o tapa</strong></label>
-            <select name="idTapOEnv" id="idTapOEnv" class="form-control col-2">
+            <select name="idTapOEnv" id="idTapOEnv" class="form-control col-2" required>
                 <option selected disabled value="">-----------------------------</option>
                 <?php
                 $EnvasesOperador = new EnvasesOperaciones();

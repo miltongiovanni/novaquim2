@@ -4,7 +4,7 @@ include "../includes/valAcc.php";
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <title>Actualización de Orden de Pedido</title>
+    <title>ActualizaciÃ³n de Orden de Pedido</title>
     <meta charset="utf-8">
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <script  src="../js/validar.js"></script>
@@ -19,7 +19,7 @@ include "../includes/valAcc.php";
 </head>
 <body> 
 <div id="contenedor">
-<div id="saludo"><strong>ACTUALIZACIÓN DE ORDEN DE PEDIDO</strong></div>
+<div id="saludo"><strong>ACTUALIZACIÃ“N DE ORDEN DE PEDIDO</strong></div>
 <?php
 	include "includes/conect.php";
 	foreach ($_POST as $nombre_campo => $valor) 
@@ -54,7 +54,7 @@ include "../includes/valAcc.php";
 			echo'</select>';
 			mysqli_free_result($result);
 			mysqli_free_result($result1);
-			/* cerrar la conexión */
+			/* cerrar la conexiÃ³n */
 			mysqli_close($link);
 		?>        </td>
     </tr>

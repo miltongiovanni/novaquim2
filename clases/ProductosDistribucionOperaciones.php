@@ -87,7 +87,7 @@ class ProductosDistribucionOperaciones
     public function getUltimoProdDisxCat($idCatDis)
     {
         $qry = "SELECT MAX(idDistribucion) as Cod from distribucion where idCatDis=?";
-        $stmt = $upthis->_pdo->prepare($qry);
+        $stmt = $this->_pdo->prepare($qry);
         $stmt->execute(array($idCatDis));
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result['Cod'];

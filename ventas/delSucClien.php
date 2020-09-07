@@ -6,7 +6,7 @@ include "includes/conect.php";
 <html lang="es">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Acualización</title>
+<title>AcualizaciÃ³n</title>
 </head>
 <body>
 <?php
@@ -17,7 +17,7 @@ include "includes/conect.php";
 		eval($asignacion); 
 	}  
 	//ELIMINA LA SUCURSAL DEL CLIENTE
-	$qryinv="delete FROM clientes_sucursal where Nit_clien='$NIT' AND Id_sucursal=$Id_sucursal";
+	$qryinv="delete FROM clientes_sucursal where Nit_clien='$NIT' AND idSucursal=$Id_sucursal";
 	echo $qryinv;
 	echo'<form action="detCliente.php" method="post" name="formulario">';
 	$link=conectarServidor();

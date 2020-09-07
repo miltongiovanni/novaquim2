@@ -42,13 +42,13 @@ include "../includes/valAcc.php";
             <div class="form-group row">
                 <label class="col-form-label col-2"
                     for="nomEtiqueta"><strong>Etiqueta</strong></label>
-                <input type="text" class="form-control col-2" name="nomEtiqueta" id="nomEtiqueta" maxlength="50">
+                <input type="text" class="form-control col-2" name="nomEtiqueta" id="nomEtiqueta" maxlength="50" required>
             </div>
             <div class="form-group row">
                 <label class="col-form-label col-2"  for="stockEtiqueta"><strong>Stock
                         Etiqueta</strong></label>
                 <input type="text" class="form-control col-2" name="stockEtiqueta" id="stockEtiqueta"
-                    onKeyPress="return aceptaNum(event)">
+                    onKeyPress="return aceptaNum(event)" required>
                 <input type="hidden" class="form-control col-2" name="codIva" id="codIva" value="3">
             </div>
             <div class="form-group row">

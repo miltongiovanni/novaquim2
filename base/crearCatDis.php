@@ -32,11 +32,14 @@ $idCategoria=$lastcategorias+1;
                 <label class="col-form-label col-1"
                     for="catDis"><strong>Categoría</strong></label>
                 <input type="text" class="form-control col-2" name="catDis" id="catDis" size=30
-                    onKeyPress="return aceptaLetra(event)" maxlength="30">
+                    onKeyPress="return aceptaLetra(event)" maxlength="30" required>
             </div>
             <div class="form-group row">
                 <div class="col-1 text-center" >
                     <button class="button"  type="reset"><span>Reiniciar</span></button>
+                </div>
+                <div class="col-1 text-center" >
+                    <button class="button"  onclick="return Enviar(this.form)"><span>Continuar</span></button>
                 </div>
             </div>
         </form>

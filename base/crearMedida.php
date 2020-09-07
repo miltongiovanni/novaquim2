@@ -26,7 +26,7 @@ spl_autoload_register('cargarClases');
                     $MedidasOperador = new MedidasOperaciones();
                     $medidas = $MedidasOperador->getMedidas();
                     $filas = count($medidas);
-                    echo '<select name="codMedida" id="codMedida" class="form-control col-2">';
+                    echo '<select name="codMedida" id="codMedida" class="form-control col-2" required>';
                     echo '<option selected disabled value="">-----------------------------</option>';
                     for ($i = 0; $i < $filas; $i++) {
                         echo '<option value="' . $medidas[$i]["idMedida"] . '">' . $medidas[$i]['desMedida'] . '</option>';
@@ -34,7 +34,7 @@ spl_autoload_register('cargarClases');
                     echo '</select>';
                 ?>
                 <label class="col-form-label col-2" for="presentacion"><strong>Presentación</strong></label>
-                <input name="presentacion" id="presentacion" class="form-control col-3" type="text" value="" />
+                <input name="presentacion" id="presentacion" class="form-control col-3" type="text" value="" required />
                 
             </div>
             <div class="form-group row">  
@@ -43,7 +43,7 @@ spl_autoload_register('cargarClases');
                     $EnvasesOperador = new EnvasesOperaciones();
                     $envases = $EnvasesOperador->getEnvases();
                     $filas = count($envases);
-                    echo '<select name="codEnvase" id="codEnvase" class="form-control col-2">';
+                    echo '<select name="codEnvase" id="codEnvase" class="form-control col-2" required>';
                     echo '<option selected value="">-----------------------------</option>';
                     for ($i = 0; $i < $filas; $i++) {
                         echo '<option value="' . $envases[$i]["codEnvase"] . '">' . $envases[$i]['nomEnvase'] . '</option>';
@@ -55,7 +55,7 @@ spl_autoload_register('cargarClases');
                     $ProductoOperador = new ProductosOperaciones();
                     $productos = $ProductoOperador->getProductos(true);
                     $filas = count($productos);
-                    echo '<select name="codProducto" id="codProducto" class="form-control col-3" onchange="idProducto(this.value);">';
+                    echo '<select name="codProducto" id="codProducto" class="form-control col-3" onchange="idProducto(this.value);" required>';
                     echo '<option selected disabled value="">-----------------------------</option>';
                     for ($i = 0; $i < $filas; $i++) {
                         echo '<option value="' . $productos[$i]["codProducto"] . '">' . $productos[$i]['nomProducto'] . '</option>';
@@ -85,7 +85,7 @@ spl_autoload_register('cargarClases');
                     $PrecioOperador = new PreciosOperaciones();
                     $precios = $PrecioOperador->getPrecios(1);
                     $filas = count($precios);
-                    echo '<select name="codigoGen" id="codigoGen" class="form-control col-3">';
+                    echo '<select name="codigoGen" id="codigoGen" class="form-control col-3" required>';
                     echo '<option selected value="">-----------------------------</option>';
                     for ($i = 0; $i < $filas; $i++) {
                         echo '<option value="' . $precios[$i]["codigoGen"] . '">' . $precios[$i]['producto'] . '</option>';
@@ -97,13 +97,13 @@ spl_autoload_register('cargarClases');
             </div>
             <div class="form-group row">
                 <label class="col-form-label col-1" for="stockPresentacion"><strong>Stock Mínimo</strong></label>
-                <input name="stockPresentacion" id="stockPresentacion" type="text" value="" class="form-control col-2" onKeyPress="return aceptaNum(event)" />
+                <input name="stockPresentacion" id="stockPresentacion" type="text" value="" class="form-control col-2" onKeyPress="return aceptaNum(event)" required />
                 <label class="col-form-label col-2" for="codTapa"><strong>Tapa</strong></label>
                 <?php
                     $TapasOperador = new TapasOperaciones();
                     $tapas = $TapasOperador->getTapas();
                     $filas = count($tapas);
-                    echo '<select name="codTapa" id="codTapa" class="form-control col-3">';
+                    echo '<select name="codTapa" id="codTapa" class="form-control col-3" required>';
                     echo '<option selected value="">-----------------------------</option>';
                     for ($i = 0; $i < $filas; $i++) {
                         echo '<option value="' . $tapas[$i]["codTapa"] . '">' . $tapas[$i]['tapa'] . '</option>';
@@ -124,7 +124,7 @@ spl_autoload_register('cargarClases');
                     $EtiquetasOperador = new EtiquetasOperaciones();
                     $etiquetas = $EtiquetasOperador->getEtiquetas();
                     $filas = count($etiquetas);
-                    echo '<select name="codEtiq" id="codEtiq" class="form-control col-3">';
+                    echo '<select name="codEtiq" id="codEtiq" class="form-control col-3" required>';
                     echo '<option selected value="">-----------------------------</option>';
                     for ($i = 0; $i < $filas; $i++) {
                         echo '<option value="' . $etiquetas[$i]["codEtiqueta"] . '">' . $etiquetas[$i]['nomEtiqueta'] . '</option>';
@@ -136,10 +136,10 @@ spl_autoload_register('cargarClases');
             </div>
             <div class="form-group row">
                 <div class="col-1 text-center" >
-                    <button class="button" onclick="return Enviar(this.form)"><span>Continuar</span></button>
+                    <button class="button"  type="reset"><span>Reiniciar</span></button>
                 </div>
                 <div class="col-1 text-center" >
-                    <button class="button"  type="reset"><span>Reiniciar</span></button>
+                    <button class="button" onclick="return Enviar(this.form)"><span>Continuar</span></button>
                 </div>
             </div>
         </form>

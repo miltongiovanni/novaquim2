@@ -42,7 +42,7 @@ $pdf->Cell(47,4,$rowenc['Fecha'],0,0, 'C');
 
 $pdf->SetXY(20,40);
 $pdf->SetFont('Arial','B',9);
-$pdf->Cell(140,5,'Recibí de:','LTR', 0, 'L');
+$pdf->Cell(140,5,'RecibÃ­ de:','LTR', 0, 'L');
 $pdf->SetXY(20,45);
 $pdf->SetFont('Arial','',9);
 $pdf->Cell(140,5,$rowenc['Nom_clien'],'LBR',0,'L');
@@ -93,7 +93,7 @@ $DESC=number_format($descuento_f, 0, '.', ',');
 if (($Total-$Reten_fte-$Reten_ica-$Reten_iva)< $cobro)
 $concepto="Abono a Factura ";
 else
-$concepto="Cancelación de Factura ";
+$concepto="CancelaciÃ³n de Factura ";
 $concepto.= $Factura;
 $pdf->SetXY(20,65);
 $pdf->SetFont('Arial','',9);
@@ -141,12 +141,12 @@ if ($form_pago==1)
 $pdf->Cell(5,5,'X', 'BTR',0, 'C');
 else
 $pdf->Cell(5,5,'', 'BTR',0, 'C');
-$pdf->Cell(20,5,'Nota Crédito', 'LBT',0, 'L');
+$pdf->Cell(20,5,'Nota CrÃ©dito', 'LBT',0, 'L');
 if ($form_pago==2)
 $pdf->Cell(5,5,'X', 'BTR',0, 'C');
 else
 $pdf->Cell(5,5,'', 'BTR',0, 'C');
-$pdf->Cell(23,5,'Consignación', 'LBT',0, 'L');
+$pdf->Cell(23,5,'ConsignaciÃ³n', 'LBT',0, 'L');
 if ($form_pago==3)
 $pdf->Cell(5,5,'X', 'BTR',0, 'C');
 else
@@ -202,7 +202,7 @@ $pdf->Cell(47,4,$rowenc['Fecha'],0,0, 'C');
 
 $pdf->SetXY(20,170);
 $pdf->SetFont('Arial','B',9);
-$pdf->Cell(140,5,'Recibí de:','LTR', 0, 'L');
+$pdf->Cell(140,5,'RecibÃ­ de:','LTR', 0, 'L');
 $pdf->SetXY(20,175);
 $pdf->SetFont('Arial','',9);
 $pdf->Cell(140,5,$rowenc['Nom_clien'],'LBR',0,'L');
@@ -233,7 +233,7 @@ $pdf->Cell(20,5,'Descuento :','LTR',0, 'L');
 if (($Total-$Reten_fte-$Reten_ica-$Reten_iva)< $cobro)
 $concepto="Abono a Factura ";
 else
-$concepto="Cancelación de Factura ";
+$concepto="CancelaciÃ³n de Factura ";
 $concepto.= $Factura;
 $pdf->SetXY(20,195);
 $pdf->SetFont('Arial','',9);
@@ -277,12 +277,12 @@ if ($form_pago==1)
 $pdf->Cell(5,5,'X', 'BTR',0, 'C');
 else
 $pdf->Cell(5,5,'', 'BTR',0, 'C');
-$pdf->Cell(20,5,'Nota Crédito', 'LBT',0, 'L');
+$pdf->Cell(20,5,'Nota CrÃ©dito', 'LBT',0, 'L');
 if ($form_pago==2)
 $pdf->Cell(5,5,'X', 'BTR',0, 'C');
 else
 $pdf->Cell(5,5,'', 'BTR',0, 'C');
-$pdf->Cell(23,5,'Consignación', 'LBT',0, 'L');
+$pdf->Cell(23,5,'ConsignaciÃ³n', 'LBT',0, 'L');
 if ($form_pago==3)
 $pdf->Cell(5,5,'X', 'BTR',0, 'C');
 else

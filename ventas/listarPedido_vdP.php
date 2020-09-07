@@ -4,17 +4,17 @@ include "../includes/valAcc.php";
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<title>Lista de Órdenes de Pedido Pendientes por Facturar</title>
+<title>Lista de Ã“rdenes de Pedido Pendientes por Facturar</title>
 <meta charset="utf-8">
 <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
 	<script  src="../js/validar.js"></script>
 </head>
 <body>
 <div id="contenedor">
-<div id="saludo1"><strong>LISTA DE ÓRDENES DE PEDIDO DE VENTA DIRECTA PENDIENTES POR FACTURAR</strong></div> 
+<div id="saludo1"><strong>LISTA DE Ã“RDENES DE PEDIDO DE VENTA DIRECTA PENDIENTES POR FACTURAR</strong></div> 
 <table width="100%" border="0" summary="encabezado">
   <tr> 
-      <td><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú"></div></td>
+      <td><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al MenÃº"></div></td>
   </tr>
 </table>
 <table border="0" align="center" cellspacing="0" cellpadding="0" summary="cuerpo" width="100%">
@@ -24,7 +24,7 @@ include "../includes/valAcc.php";
     <th width="23%" class="formatoEncabezados">Cliente</th>
     <th width="9%" class="formatoEncabezados">Fecha Pedido</th>
     <th width="9%" class="formatoEncabezados">Fecha Entrega</th>
-    <th width="18%" class="formatoEncabezados">Dirección Entrega</th>
+    <th width="18%" class="formatoEncabezados">DirecciÃ³n Entrega</th>
     <th width="23%" class="formatoEncabezados">Directora de Zona</th>
     <th width="7%" class="formatoEncabezados">Estado</th>
   </tr>   
@@ -41,8 +41,8 @@ $link=conectarServidorBD($servidorBD, $usuario, $password);
 //conectar con la tabla (ej. use datos;)
 conectarBD($database, $link);  
 //sentencia SQL    tblusuarios.IdUsuario,
-$sql="	select idPedido, fechaPedido, fechaEntrega, tipo_precio, nomCliente, pedido.Estado, Nom_sucursal, Dir_sucursal, nom_personal from pedido, tip_precio, clientes, clientes_sucursal, personal 
-where Nit_cliente=clientes.nitCliente and clientes_sucursal.Nit_clien=clientes.nitCliente and tipoPrecio=Id_precio and idSucursal=Id_sucursal and idCatCliente=13 and codVendedor=Id_personal  AND (pedido.Estado='P' or pedido.Estado='L') order by idPedido DESC;";
+$sql="	select idPedido, fechaPedido, fechaEntrega, tipo_precio, nomCliente, pedido.Estado, nomSucursal, dirSucursal, nom_personal from pedido, tip_precio, clientes, clientes_sucursal, personal 
+where Nit_cliente=clientes.nitCliente and clientes_sucursal.Nit_clien=clientes.nitCliente and tipoPrecio=Id_precio and idSucursal=idSucursal and idCatCliente=13 and codVendedor=Id_personal  AND (pedido.Estado='P' or pedido.Estado='L') order by idPedido DESC;";
 $result=mysql_db_query($database,$sql);
 $a=1;
 while($row=mysql_fetch_array($result, MYSQLI_BOTH))
@@ -78,7 +78,7 @@ while($row=mysql_fetch_array($result, MYSQLI_BOTH))
 	$resulti=mysql_db_query($database,$sqli);
 	echo '<tr><td colspan="7"><div class="commenthidden" id="UniqueName'.$a.'"><table width="60%" border="0" align="center" cellspacing="0" summary="detalle">
 	<tr>
-      <th width="6%" class="formatoEncabezados">Código</th>
+      <th width="6%" class="formatoEncabezados">CÃ³digo</th>
 	  <th width="50%" class="formatoEncabezados">Producto</th>
       <th width="5%" class="formatoEncabezados">Cantidad</th>
   	</tr>';
@@ -97,7 +97,7 @@ while($row=mysql_fetch_array($result, MYSQLI_BOTH))
 mysql_close($link);//Cerrar la conexion
 ?>
 </table>
-<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú"></div>
+<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al MenÃº"></div>
 </div>
 </body>
 </html>

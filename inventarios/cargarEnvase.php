@@ -21,7 +21,7 @@ spl_autoload_register('cargarClases');
     <form method="post" action="charge.php" name="form1">
         <div class="form-group row">
             <label class="col-form-label col-3 text-right" for="idDis"><strong>Envase:</strong></label>
-            <select class="form-control col-3" name="idDis" id="idDis">
+            <select class="form-control col-3" name="idDis" id="idDis" required>
                 <option selected disabled value="">----------------------------</option>
                 <?php
                 $relEnvDisOperador = new RelEnvDisOperaciones();
@@ -37,7 +37,7 @@ spl_autoload_register('cargarClases');
         <div class="form-group row">
             <label class="col-form-label col-3 text-right" for="unidades"><strong>Cantidad:</strong></label>
             <input type="text" class="form-control col-3" name="unidades" id="unidades"
-                   onKeyPress="return aceptaNum(event)">
+                   onKeyPress="return aceptaNum(event)" required>
         </div>
         <div class="form-group row">
             <div class="col-1 text-center">

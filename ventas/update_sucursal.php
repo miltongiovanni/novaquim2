@@ -11,7 +11,7 @@ foreach ($_POST as $nombre_campo => $valor)
 		eval($asignacion); 
 	}  
 $link=conectarServidor();
-$qry="update clientes_sucursal set Nom_sucursal='$nom_sucursal', Dir_sucursal='$dir_sucursal', Tel_sucursal=$tel_sucursal, Ciudad_sucursal=$ciudad_sucursal where Nit_clien='$NIT' and Id_sucursal=$Id_Sucursal";
+$qry="update clientes_sucursal set nomSucursal='$nom_sucursal', dirSucursal='$dir_sucursal', telSucursal=$tel_sucursal, ciudadSucursal=$ciudad_sucursal where Nit_clien='$NIT' and idSucursal=$Id_Sucursal";
 $result=mysqli_query($link,$qry);
 if($result)
 {

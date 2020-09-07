@@ -14,12 +14,12 @@ include "includes/conect.php";
 
 <body>
 <div id="contenedor">
-<div id="saludo"><strong>ACTUALIZACIÓN DE CLIENTE DE COTIZACIÓN</strong></div>
+<div id="saludo"><strong>ACTUALIZACIÃ“N DE CLIENTE DE COTIZACIÃ“N</strong></div>
 
 <?php
 	  $link=conectarServidor();
 	  $cliente_cot=$_POST['cliente_cot'];
-	  $qry="select Id_cliente, Nom_clien, Contacto, Cargo, Tel_clien, Fax_clien, Cel_clien, Dir_clien, Eml_clien, Id_cat_clien, desCatClien, Ciudad_clien , ciudad, cod_vend, nom_personal from clientes_cotiz, ciudades, cat_clien, personal where Ciudad_clien=Id_ciudad and Id_cat_clien=idCatClien and cod_vend=Id_personal and Id_cliente='$cliente_cot'";
+	  $qry="select Id_cliente, Nom_clien, Contacto, Cargo, Tel_clien, Fax_clien, Cel_clien, Dir_clien, Eml_clien, Id_cat_clien, desCatClien, Ciudad_clien , ciudad, cod_vend, nom_personal from clientes_cotiz, ciudades, cat_clien, personal where Ciudad_clien=IdCiudad and Id_cat_clien=idCatClien and cod_vend=Id_personal and Id_cliente='$cliente_cot'";
 	  $result=mysqli_query($link, $qry);
 	  $row=mysqli_fetch_array($result);
 	  $city=$row['Ciudad_clien'];
@@ -39,7 +39,7 @@ include "includes/conect.php";
         $Idcity=$row['Ciudad_clien'];
         $city=$row['ciudad'];
         echo'<select name="ciudad_cli">';
-        $qry1="select Id_ciudad, ciudad from ciudades where Id_ciudad<>$Idcity order by ciudad;";
+        $qry1="select IdCiudad, ciudad from ciudades where IdCiudad<>$Idcity order by ciudad;";
         $result1=mysqli_query($link, $qry1);
         echo '<option selected value="'.$Idcity.'">'.$city.'</option>';
         while($row1=mysqli_fetch_array($result)){
@@ -49,13 +49,13 @@ include "includes/conect.php";
         ?></td>
   </tr>
   <tr> 
-    <td><div align="right"><b>Dirección</b></div></td>
+    <td><div align="right"><b>DirecciÃ³n</b></div></td>
     <td colspan="3"><input type="text"  maxlength="50" name="Direccion" size=60 id="Direccion"
     <?php 
     echo 'value="'.$row['Dir_clien'].'"';
     ?>
     ></td>
-    <td><div align="right"><strong>Teléfono</strong></div></td>
+    <td><div align="right"><strong>TelÃ©fono</strong></div></td>
     <td><input type="text" name="Tel1" maxlength="7" size=15 onKeyPress="return aceptaNum(event)" id="Tel1"
     <?php
     echo 'value="'.$row['Tel_clien'].'"';

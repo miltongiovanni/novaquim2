@@ -120,7 +120,7 @@ $proveedor = $ProveedorOperador->getProveedor($idProv);
             $manager = new CategoriasProvOperaciones();
             $categorias = $manager->getCatsProv();
             $filas = count($categorias);
-            echo '<select name="idCatProv" id="idCatProv" class="form-control col-2" >';
+            echo '<select name="idCatProv" id="idCatProv" class="form-control col-2"  required>';
             echo '<option selected value="' . $proveedor['idCatProv'] . '">' . $proveedor['desCatProv'] . '</option>';
             for ($i = 0; $i < $filas; $i++) {
                 if ($proveedor['idCatProv'] != $categorias[$i]["idCatProv"]) {
@@ -130,7 +130,7 @@ $proveedor = $ProveedorOperador->getProveedor($idProv);
             echo '</select>';
             ?>
             <label class="col-form-label col-2" for="autoretProv"><strong>Autorretenedor</strong></label>
-            <select name="autoretProv" id="autoretProv" class="form-control col-2">
+            <select name="autoretProv" id="autoretProv" class="form-control col-2" required>
                 <?php
                 if ($proveedor['autoretProv'] == 0) {
                     ?>
@@ -146,7 +146,7 @@ $proveedor = $ProveedorOperador->getProveedor($idProv);
                 ?>
             </select>
             <label class="col-form-label col-2" for="regProv"><strong>Régimen Proveedor</strong></label>
-            <select name="regProv" id="regProv" class="form-control col-2">
+            <select name="regProv" id="regProv" class="form-control col-2" required>
                 <?php
                 if ($proveedor['regProv'] == 0) {
                     ?>
@@ -168,7 +168,7 @@ $proveedor = $ProveedorOperador->getProveedor($idProv);
             $manager = new TasaReteIcaOperaciones();
             $categorias = $manager->getTasasReteIca();
             $filas = count($categorias);
-            echo '<select name="idTasaIcaProv" id="idTasaIcaProv" class="form-control col-2" >';
+            echo '<select name="idTasaIcaProv" id="idTasaIcaProv" class="form-control col-2"  required>';
             echo '<option selected value="' . $proveedor['idTasaIcaProv'] . '">' . $proveedor['reteica'] . '</option>';
             for ($i = 0; $i < $filas; $i++) {
                 if ($proveedor['idTasaIcaProv'] != $categorias[$i]["idTasaRetIca"]) {
@@ -182,7 +182,7 @@ $proveedor = $ProveedorOperador->getProveedor($idProv);
             $manager = new TasaRetefuenteOperaciones();
             $categorias=$manager->getTasasRetefuente();
             $filas = count($categorias);
-            echo '<select name="idRetefuente" id="idRetefuente" class="form-control col-2" >';
+            echo '<select name="idRetefuente" id="idRetefuente" class="form-control col-2"  required>';
             echo '<option selected value="' . $proveedor['idRetefuente'] . '">' . $proveedor['retefuente'] . '</option>';
             for ($i = 0; $i < $filas; $i++) {
                 if ($proveedor['idRetefuente'] != $categorias[$i]["idTasaRetefuente"]) {
@@ -192,7 +192,7 @@ $proveedor = $ProveedorOperador->getProveedor($idProv);
             echo '</select>';
             ?>
             <label class="col-form-label col-2" for="regProv"><strong>Estado Proveedor</strong></label>
-            <select name="estProv" id="estProv" class="form-control col-2">
+            <select name="estProv" id="estProv" class="form-control col-2" required>
                 <?php
                 if ($proveedor['estProv'] == 0) {
                     ?>

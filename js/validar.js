@@ -11,15 +11,18 @@ function Longitud(form) {
 function Enviar(form) {
     for (i = 0; i < form.elements.length; i++) {
         if (form.elements[i].type === "text" || form.elements[i].type === "date" || form.elements[i].type === "select-one" || form.elements[i].type === "password") {
-            if (form.elements[i].value === "") {
-                if (form.elements[i].type === "text" || form.elements[i].type === "date" || form.elements[i].type === "password") {
-                    alert("Por favor complete todos los campos del formulario");
+            if (form.elements[i].value === "" && form.elements[i].required) {
+                if ((form.elements[i].type === "text" || form.elements[i].type === "date" || form.elements[i].type === "password") && form.elements[i].required ) {
+                    alert("Este campo es requerido");
                     form.elements[i].focus();
                     return false;
                 } else {
-                    alert("Por favor selecione un valor para el campo");
-                    form.elements[i].focus();
-                    return false;
+                    if(form.elements[i].required){
+                        alert("Por favor selecione un valor para el campo");
+                        form.elements[i].autofocus();
+                        return false;
+                    }
+
                 }
             } // form
         }

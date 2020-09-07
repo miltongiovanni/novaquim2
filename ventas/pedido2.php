@@ -4,7 +4,7 @@ include "../includes/valAcc.php";
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <title>Creaci髇 de Orden de Pedido</title>
+    <title>Creaci贸n de Orden de Pedido</title>
     <meta charset="utf-8">
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <script  src="../js/validar.js"></script>
@@ -19,7 +19,7 @@ include "../includes/valAcc.php";
 </head>
 <body> 
 <div id="contenedor">
-<div id="saludo"><strong>CREACI覰 DE ORDEN DE PEDIDO</strong></div>
+<div id="saludo"><strong>CREACI脫N DE ORDEN DE PEDIDO</strong></div>
 <?php
 	include "includes/conect.php";
 	foreach ($_POST as $nombre_campo => $valor) 
@@ -41,7 +41,7 @@ include "../includes/valAcc.php";
 			echo '<input type="text" name="nom_cliente" readonly value="'.$row['Nom_clien'].'" size=50>';
 			echo '<input type="hidden" name="cliente" readonly value="'.$row['Nit_clien'].'">';
 			mysqli_free_result($result);
-/* cerrar la conexi髇 */
+/* cerrar la conexi贸n */
 mysqli_close($link);
 		?>        </td>
     </tr>
@@ -51,7 +51,7 @@ mysqli_close($link);
 		<?php
 			$link=conectarServidor();
 			echo'<select name="sucursal" id="combo">';
-			$result=mysqli_query($link,"SELECT Id_sucursal, Nom_sucursal from clientes_sucursal where Nit_clien='$cliente';");
+			$result=mysqli_query($link,"SELECT idSucursal, nomSucursal from clientes_sucursal where Nit_clien='$cliente';");
 			
 			while($row=mysqli_fetch_array($result))
 			{	
@@ -62,7 +62,7 @@ mysqli_close($link);
 			}
 			echo'</select>';
 			mysqli_free_result($result);
-/* cerrar la conexi髇 */
+/* cerrar la conexi贸n */
 mysqli_close($link);
 		?>        </td>
     </tr>
@@ -91,7 +91,7 @@ mysqli_close($link);
 				}
 				echo'</select>';
 				mysqli_free_result($result);
-/* cerrar la conexi髇 */
+/* cerrar la conexi贸n */
 mysqli_close($link);
 	   ?>	  </td>
     </tr>

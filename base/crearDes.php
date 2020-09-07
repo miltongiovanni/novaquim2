@@ -21,7 +21,7 @@ spl_autoload_register('cargarClases');
     <form method="post" action="makeDes.php" name="form1">
         <div class="form-group row">
             <label class="col-form-label col-2" for="codPaca"><strong>Producto empacado</strong></label>
-            <select name="codPaca" id="codPaca" class="form-control col-2">
+            <select name="codPaca" id="codPaca" class="form-control col-2" required>
                 <option selected value="">-----------------------------</option>
                 <?php
                 $ProductoDistribucionOperador = new ProductosDistribucionOperaciones();
@@ -35,7 +35,7 @@ spl_autoload_register('cargarClases');
         </div>
         <div class="form-group row">
             <label class="col-form-label col-2" for="codUnidad"><strong>Producto por unidad</strong></label>
-            <select name="codUnidad" id="codUnidad" class="form-control col-2">
+            <select name="codUnidad" id="codUnidad" class="form-control col-2" required>
                 <option selected value="">-----------------------------</option>
                 <?php
                 $ProductoDistribucionOperador = new ProductosDistribucionOperaciones();
@@ -51,7 +51,7 @@ spl_autoload_register('cargarClases');
             <label class="col-form-label col-2"  for="cantidad"><strong>Unidades por
                     empaque</strong></label>
             <input type="text" class="form-control col-2" name="cantidad" id="cantidad"
-                   onKeyPress="return aceptaNum(event)">
+                   onKeyPress="return aceptaNum(event)" required>
         </div>
         <div class="row form-group">
             <div class="col-1">

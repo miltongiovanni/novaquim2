@@ -33,7 +33,7 @@ foreach ($_POST as $nombre_campo => $valor) {
             $FormulaMPrimaOperador = new FormulasMPrimaOperaciones();
             $formulas = $FormulaMPrimaOperador->getFormulasMPrima();
             $filas = count($formulas);
-            echo '<select name="idFormulaMPrima" id="idFormulaMPrima" class="form-control col-2">';
+            echo '<select name="idFormulaMPrima" id="idFormulaMPrima" class="form-control col-2" required>';
             echo '<option selected disabled value="">-----------------------------</option>';
             for ($i = 0; $i < $filas; $i++) {
                 echo '<option value="' . $formulas[$i]["idFormulaMPrima"] . '">' . $formulas[$i]['nomMPrima'] . '</option>';
@@ -43,14 +43,14 @@ foreach ($_POST as $nombre_campo => $valor) {
         </div>
         <div class="form-group row">
             <label class="col-form-label col-2 text-right" for="fechProd"><strong>Fecha de Producción</strong></label>
-            <input type="date" class="form-control col-2" name="fechProd" id="fechProd">
+            <input type="date" class="form-control col-2" name="fechProd" id="fechProd" required>
         </div>
         <div class="form-group row">
             <label class="col-form-label col-2" for="codPersonal"><strong>Responsable</strong></label>
             <?php
             $PersonalOperador = new PersonalOperaciones();
             $personal = $PersonalOperador->getPersonalProd();
-            echo '<select name="codPersonal" id="codPersonal" class="form-control col-2" >';
+            echo '<select name="codPersonal" id="codPersonal" class="form-control col-2"  required>';
             echo '<option selected disabled value="">-----------------------------</option>';
             for ($i = 0; $i < count($personal); $i++) {
                 echo '<option value="' . $personal[$i]["idPersonal"] . '">' . $personal[$i]['nomPersonal'] . '</option>';
@@ -62,7 +62,7 @@ foreach ($_POST as $nombre_campo => $valor) {
             <label class="col-form-label col-2 text-right" for="cantKg"><strong>Cantidad a Producir
                     (Kg)</strong></label>
             <input type="text" class="form-control col-2" name="cantKg" id="cantKg"
-                   onKeyPress="return aceptaNum(event)">
+                   onKeyPress="return aceptaNum(event)"  required>
         </div>
         <div class="form-group row">
     <div class="col-1 text-center">

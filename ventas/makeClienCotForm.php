@@ -6,7 +6,7 @@ include "includes/conect.php";
 <html lang="es">
 <head>
 <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-<title>Creación de Clientes para Cotización</title>
+<title>CreaciÃ³n de Clientes para CotizaciÃ³n</title>
 <meta charset="utf-8">
 <script  src="../js/validar.js"></script>
 <script  src="scripts/block.js"></script>	
@@ -28,7 +28,7 @@ $link=conectarServidor();
 if (($crear==2)&&($CliExis == 1))
 { 
 
-  $qryb="select nomCliente, contactoCliente, cargoCliente, telCliente, faxCliente, celCliente, dirCliente, emailCliente, idCatCliente, ciudadCliente, codVendedor, desCatClien, ciudad, nom_personal from clientes, cat_clien, ciudades, personal where nitCliente='$cliente' and idCatCliente=idCatClien and ciudadCliente=Id_ciudad and codVendedor=Id_personal;";
+  $qryb="select nomCliente, contactoCliente, cargoCliente, telCliente, faxCliente, celCliente, dirCliente, emailCliente, idCatCliente, ciudadCliente, codVendedor, desCatClien, ciudad, nom_personal from clientes, cat_clien, ciudades, personal where nitCliente='$cliente' and idCatCliente=idCatClien and ciudadCliente=IdCiudad and codVendedor=Id_personal;";
   $resultb=mysqli_query($link,$qryb);
   $rowb=mysqli_fetch_array($resultb);
 		
@@ -44,7 +44,7 @@ if (($crear==2)&&($CliExis == 1))
 
 }
 ?>   
-<div id="saludo"><strong>CREACIÓN DE CLIENTES PARA COTIZACIÓN</strong></div>
+<div id="saludo"><strong>CREACIÃ“N DE CLIENTES PARA COTIZACIÃ“N</strong></div>
 <?php
 if (($crear==1)&&($CliExis==1))
 {
@@ -105,10 +105,10 @@ if ((($crear==1)&&($CliExis == 0))||($crear!=1))
 		{
 			$city=$rowb['Ciudad_clien'];
         	$cityn=$rowb['ciudad'];
-          	$qry1="select Id_ciudad, ciudad from ciudades where Id_ciudad<>$city order by ciudad;";
+          	$qry1="select IdCiudad, ciudad from ciudades where IdCiudad<>$city order by ciudad;";
 		 }
         else
-          $qry1="select Id_ciudad, ciudad from ciudades order by ciudad;";
+          $qry1="select IdCiudad, ciudad from ciudades order by ciudad;";
         $result=mysqli_query($link, $qry1);
         if($CliExis == 1)
           echo '<option selected value="'.$city.'">'.$cityn.'</option>';
@@ -121,14 +121,14 @@ if ((($crear==1)&&($CliExis == 0))||($crear!=1))
         ?></td>
   </tr>
   <tr> 
-    <td><div align="right"><b>Dirección</b></div></td>
+    <td><div align="right"><b>DirecciÃ³n</b></div></td>
     <td colspan="3"><input type="text"  maxlength="60" name="Direccion" size=60 id="Direccion"
     <?php 
     if($CliExis == 1)
     echo 'value="'.$rowb['Dir_clien'].'"';
     ?>
     ></td>
-    <td><div align="right"><strong>Teléfono</strong></div></td>
+    <td><div align="right"><strong>TelÃ©fono</strong></div></td>
     <td><input type="text" name="Tel1" maxlength="7" size=15 onKeyPress="return aceptaNum(event)" id="Tel1"
     <?php
     if($CliExis == 1)

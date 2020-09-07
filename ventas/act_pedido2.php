@@ -4,7 +4,7 @@ include "../includes/valAcc.php";
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <title>Creación de Orden de Pedido</title>
+    <title>CreaciÃ³n de Orden de Pedido</title>
     <meta charset="utf-8">
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <script  src="../js/validar.js"></script>
@@ -19,7 +19,7 @@ include "../includes/valAcc.php";
 </head>
 <body> 
 <div id="contenedor">
-<div id="saludo"><strong>CREACIÓN DE ORDEN DE PEDIDO</strong></div>
+<div id="saludo"><strong>CREACIÃ“N DE ORDEN DE PEDIDO</strong></div>
 <?php
 	include "includes/conect.php";
 	foreach ($_POST as $nombre_campo => $valor) 
@@ -31,7 +31,7 @@ include "../includes/valAcc.php";
 	$link=conectarServidor();
 	$result11=mysqli_query($link,"update pedido set Nit_cliente='$Nit_cliente' where idPedido=$pedido");
 	
-	$qry22="select idPedido, Nit_cliente, fechaPedido, fechaEntrega, tipoPrecio, Estado, idSucursal, tipo_precio, Nom_sucursal from pedido, tip_precio, clientes_sucursal where tipoPrecio=Id_precio and Nit_cliente=Nit_clien and idSucursal=Id_sucursal and idPedido=$pedido";
+	$qry22="select idPedido, Nit_cliente, fechaPedido, fechaEntrega, tipoPrecio, Estado, idSucursal, tipo_precio, nomSucursal from pedido, tip_precio, clientes_sucursal where tipoPrecio=Id_precio and Nit_cliente=Nit_clien and idSucursal=idSucursal and idPedido=$pedido";
 	$result22=mysqli_query($link, $qry22);
 	$row22=mysqli_fetch_array($result22);
 ?>
@@ -60,8 +60,8 @@ include "../includes/valAcc.php";
 		<?php
 			$link=conectarServidor();
 			echo'<select name="sucursal" id="combo">';
-			$result=mysqli_query($link, "SELECT Id_sucursal, Nom_sucursal from clientes_sucursal where Nit_clien='$Nit_cliente';");
-			$result1=mysqli_query($link, "select Id_sucursal, Nom_sucursal from pedido, clientes, clientes_sucursal WHERE Nit_cliente=clientes.nitCliente and clientes.nitCliente=clientes_sucursal.Nit_clien and idSucursal=Id_sucursal and  idPedido=$pedido;");
+			$result=mysqli_query($link, "SELECT idSucursal, nomSucursal from clientes_sucursal where Nit_clien='$Nit_cliente';");
+			$result1=mysqli_query($link, "select idSucursal, nomSucursal from pedido, clientes, clientes_sucursal WHERE Nit_cliente=clientes.nitCliente and clientes.nitCliente=clientes_sucursal.Nit_clien and idSucursal=idSucursal and  idPedido=$pedido;");
 			$row1=mysqli_fetch_array($result1);
 			echo '<option selected value='.$row1['Id_sucursal'].'>'.$row1['Nom_sucursal'].'</option>';
 			while($row=mysqli_fetch_array($result))

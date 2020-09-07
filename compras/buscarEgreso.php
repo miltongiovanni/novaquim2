@@ -16,7 +16,7 @@ include "../includes/valAcc.php";
         <div class="form-group row">
             <label class="col-form-label col-1 text-right" for="idEgreso"><strong>No. de egreso</strong></label>
             <input type="text" class="form-control col-2" name="idEgreso" id="idEgreso"
-                   onKeyPress="return aceptaNum(event)">
+                   onKeyPress="return aceptaNum(event)" required>
         </div>
         <div class="form-group row"><div class="col-1 text-center">
                 <button class="button" type="reset"><span>Reiniciar</span></button>

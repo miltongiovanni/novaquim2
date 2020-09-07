@@ -4,7 +4,7 @@ include "../includes/valAcc.php";
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <title>Actualizar Cotizaci髇</title>
+    <title>Actualizar Cotizaci贸n</title>
     <meta charset="utf-8">
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <script  src="../js/validar.js"></script>
@@ -18,7 +18,7 @@ include "../includes/valAcc.php";
 	</script></head>
 <body>
 <div id="contenedor">
-<div id="saludo1"><strong>MODIFICAR COTIZACI覰</strong></div>
+<div id="saludo1"><strong>MODIFICAR COTIZACI脫N</strong></div>
 <?php
 foreach ($_POST as $nombre_campo => $valor) 
 { 
@@ -41,7 +41,7 @@ $seleccion1 = explode(",", $rows['productos']);
 <form method="post" action="update_cotiza.php" name="form1">	
   	<table align="center" width="55%">
     <tr>
-      	<td width="22%" align="right"><strong>No. Cotizaci髇</strong></td>
+      	<td width="22%" align="right"><strong>No. Cotizaci贸n</strong></td>
    	  <td colspan="3"><input type="text" name="cotiza" id="sel1" value="<?php echo $cotiza; ?>" readonly size=20></td>
     </tr>
     <tr>
@@ -61,7 +61,7 @@ $seleccion1 = explode(",", $rows['productos']);
         </td>
     </tr>
      <tr>
-      <td align="right"><strong>Fecha de Cotizaci髇</strong></td>
+      <td align="right"><strong>Fecha de Cotizaci贸n</strong></td>
       <td colspan="3"><input type="text" name="FchCot" id="sel1" value="<?php echo $rows['Fech_Cotizacion']; ?>" readonly size=20><input type="reset" value=" ... "
 		onclick="return showCalendar('sel1', '%Y-%m-%d', '12', true);"></td>
     </tr>
@@ -70,12 +70,12 @@ $seleccion1 = explode(",", $rows['productos']);
       	<td align="right"><strong>Destino</strong></td>
       	<td colspan="3">
         <input name="Destino" type="radio" id="Destino_0" value="1" checked> 
-        Impresi髇
+        Impresi贸n
         <input type="radio" name="Destino" value="2" id="Destino_1"> 
-        Correo electr髇ico</td>
+        Correo electr贸nico</td>
     </tr>
     <tr>
-      	<td align="right"><strong>Presentaci髇</strong></td>
+      	<td align="right"><strong>Presentaci贸n</strong></td>
       	<td colspan="3">
         <?php
 			if ($presentaciones==1)
@@ -115,7 +115,7 @@ $seleccion1 = explode(",", $rows['productos']);
 		if ($precio==1)
 		{
 			echo '<input type="radio" name="precio" value="1" id="precio_0"  checked> 
-        	F醔rica
+        	F谩brica
         	<input name="precio" type="radio" value="2" id="precio_1"> 
         	Distribuidor
         	<input type="radio" name="precio" value="3" id="precio_2"> 
@@ -128,7 +128,7 @@ $seleccion1 = explode(",", $rows['productos']);
 		if ($precio==2)
 		{
 			echo '<input type="radio" name="precio" value="1" id="precio_0"> 
-        	F醔rica
+        	F谩brica
         	<input name="precio" type="radio" value="2" id="precio_1"  checked> 
         	Distribuidor
         	<input type="radio" name="precio" value="3" id="precio_2"> 
@@ -141,7 +141,7 @@ $seleccion1 = explode(",", $rows['productos']);
 		if ($precio==3)
 		{
 			echo '<input type="radio" name="precio" value="1" id="precio_0"> 
-        	F醔rica
+        	F谩brica
         	<input name="precio" type="radio" value="2" id="precio_1"> 
         	Distribuidor
         	<input type="radio" name="precio" value="3" id="precio_2"  checked> 
@@ -154,7 +154,7 @@ $seleccion1 = explode(",", $rows['productos']);
 		if ($precio==4)
 		{
 			echo '<input type="radio" name="precio" value="1" id="precio_0"> 
-        	F醔rica
+        	F谩brica
         	<input name="precio" type="radio" value="2" id="precio_1"> 
         	Distribuidor
         	<input type="radio" name="precio" value="3" id="precio_2"> 
@@ -167,7 +167,7 @@ $seleccion1 = explode(",", $rows['productos']);
 		if ($precio==5)
 		{
 			echo '<input type="radio" name="precio" value="1" id="precio_0"> 
-        	F醔rica
+        	F谩brica
         	<input name="precio" type="radio" value="2" id="precio_1"> 
         	Distribuidor
         	<input type="radio" name="precio" value="3" id="precio_2"> 
@@ -194,7 +194,7 @@ $seleccion1 = explode(",", $rows['productos']);
 				}
 				
 	   ?>       </td>
-    	<td width="18%" align="right"><strong>Familia Distribuci髇</strong></td>
+    	<td width="18%" align="right"><strong>Familia Distribuci贸n</strong></td>
   		<td width="29%" colspan="2" align="left"><?php
 				$resultdist=mysqli_query($link,"select Id_cat_dist, Des_cat_dist from cat_dist;");
 				while($rowdist=mysqli_fetch_array($resultdist))

@@ -13,7 +13,7 @@ $factura=$_POST['factura'];
 $qryenc="select Factura, idPedido, Nit_cliente, fechaFactura, fechaVenc, idRemision, ordenCompra, nomCliente, telCliente, dirCliente, factura.Estado, 
 		Ciudad, nom_personal as vendedor, Observaciones, retFte
 		from factura, clientes, personal, ciudades
-		where Nit_cliente=nitCliente and codVendedor=Id_personal and ciudadCliente=Id_ciudad and Factura=$factura;";
+		where Nit_cliente=nitCliente and codVendedor=Id_personal and ciudadCliente=IdCiudad and Factura=$factura;";
 $resultenc=mysqli_query($link,$qryenc);
 $rowenc=mysqli_fetch_array($resultenc);
 $est=$rowenc['Estado'];
@@ -50,15 +50,15 @@ $pdf->Cell(35,3.5,'VENCIMIENTO:',0, 0, 'R');
 $pdf->SetFont('Arial','',10);
 $pdf->Cell(35,3.5,$rowenc['Fech_venc'],0,1);
 $pdf->SetFont('Arial','B',10);
-$pdf->Cell(25,3.5,'DIRECCIÓN:',0, 0, 'R');
+$pdf->Cell(25,3.5,'DIRECCIÃ“N:',0, 0, 'R');
 $pdf->SetFont('Arial','',10);
 $pdf->Cell(110,3.5,($rowenc['Dir_clien']));
 $pdf->SetFont('Arial','B',10);
-$pdf->Cell(35,3.5,'REMISIÓN:',0 , 0, 'R');
+$pdf->Cell(35,3.5,'REMISIÃ“N:',0 , 0, 'R');
 $pdf->SetFont('Arial','',10);
 $pdf->Cell(35,3.5,$rowenc['Id_remision'],0,1);
 $pdf->SetFont('Arial','B',10);
-$pdf->Cell(25,3.5,'TELÉFONO:',0, 0, 'R');
+$pdf->Cell(25,3.5,'TELÃ‰FONO:',0, 0, 'R');
 $pdf->SetFont('Arial','',10);
 $pdf->Cell(110,3.5,$rowenc['Tel_clien']);
 $pdf->SetFont('Arial','B',10);
@@ -79,7 +79,7 @@ $pdf->SetFont('Arial','',10);
 if ($rowenc['Fech_fact']==$rowenc['Fech_venc'])
 	$pago="Contado"; 
 else
-	$pago="Crédito";
+	$pago="CrÃ©dito";
 $pdf->Cell(35,3.5,$pago,0,1);
 $pdf->SetFont('Arial','B',10);
 $pdf->Cell(25,3.5,'VENDEDOR:',0, 0, 'R');
@@ -91,7 +91,7 @@ $pdf->SetFont('Arial','',10);
 $pdf->Cell(35,3.5,$rowenc['Id_pedido'],0,1);
 $pdf->SetXY(10,51);
 $pdf->SetFont('Arial','B',10);
-$pdf->Cell(25,4,'CÓDIGO', 1,0,'C');
+$pdf->Cell(25,4,'CÃ“DIGO', 1,0,'C');
 $pdf->Cell(100,4,'PRODUCTO ', 1,0,'C');
 $pdf->Cell(10,4,'CAN ', 1,0,'C');
 $pdf->Cell(10,4,'IVA ', 1,0,'C');

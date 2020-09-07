@@ -21,7 +21,7 @@ $bd="novaquim";
 </head>
 <body> 
 <div id="contenedor">
-<div id="saludo"><strong>SELECCI”N DE VENDEDOR Y PERÕODO PARA REVISAR COMISIONES</strong></div>
+<div id="saludo"><strong>SELECCI√ìN DE VENDEDOR Y PER√çODO PARA REVISAR COMISIONES</strong></div>
 <form method="post" action="comis_vend.php" name="form1">	
 	<table align="center">
     <tr>

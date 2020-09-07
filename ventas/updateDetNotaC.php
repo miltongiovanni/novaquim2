@@ -7,13 +7,13 @@ include "includes/conect.php";
 <head>
 <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
 <meta charset="utf-8">
-<title>Actualizar datos de la Nota Crédito</title>
+<title>Actualizar datos de la Nota CrÃ©dito</title>
 <script  src="../js/validar.js"></script>
 
 </head>
 <body>
 <div id="contenedor">
-<div id="saludo"><strong>ACTUALIZACIÓN DEL PRODUCTO EN LA NOTA CRÉDITO</strong></div>
+<div id="saludo"><strong>ACTUALIZACIÃ“N DEL PRODUCTO EN LA NOTA CRÃ‰DITO</strong></div>
 <form action="updateProdNota.php" method="post" name="actualiza">
 <table width="55%" border="0" align="center" summary="cuerpo">
   <tr>

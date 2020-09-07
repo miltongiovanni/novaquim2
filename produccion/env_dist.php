@@ -22,7 +22,7 @@ spl_autoload_register('cargarClases');
     <form id="form1" name="form1" method="post" action="det_env_dist.php">
         <div class="form-group row">
             <label class="col-form-label col-2" for="codDist"><strong>Producto de Distribución</strong></label>
-            <select name="codDist" id="codDist" class="form-control col-2">
+            <select name="codDist" id="codDist" class="form-control col-2" required>
                 <option selected value="">-----------------------------</option>
                 <?php
                 $RelDisMPrimaOperador = new RelDisMPrimaOperaciones();
@@ -36,12 +36,12 @@ spl_autoload_register('cargarClases');
         </div>
         <div class="form-group row">
             <label class="col-form-label col-2 text-right" for="fechaEnvDist"><strong>Fecha</strong></label>
-            <input type="date" class="form-control col-2" name="fechaEnvDist" id="fechaEnvDist">
+            <input type="date" class="form-control col-2" name="fechaEnvDist" id="fechaEnvDist" required>
         </div>
         <div class="form-group row">
             <label class="col-form-label col-2 text-right" for="cantidad"><strong>Cantidad</strong></label>
             <input type="text" class="form-control col-2" name="cantidad" id="cantidad"
-                   onKeyPress="return aceptaNum(event)">
+                   onKeyPress="return aceptaNum(event)" required>
         </div>
         <div class="form-group row">
     <div class="col-1 text-center">

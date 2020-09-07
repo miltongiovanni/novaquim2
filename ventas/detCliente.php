@@ -43,11 +43,11 @@ if($Crear==0)
 if($Crear==1)
 {
 	$link=conectarServidor();   
-	$qrybus="select MAX(Id_sucursal) AS Id from clientes_sucursal where Nit_clien='$NIT';";
+	$qrybus="select MAX(idSucursal) AS Id from clientes_sucursal where Nit_clien='$NIT';";
 	$resultbus=mysqli_query($link,$qrybus);
 	$rowbus=mysqli_fetch_array($resultbus);
 	$id=$rowbus['Id']+1;
-	$qryins="insert into clientes_sucursal (Nit_clien, Nom_sucursal, Tel_sucursal, Dir_sucursal, Ciudad_sucursal, Id_sucursal) values ('$NIT', '$nom_sucursal', '$tel_sucursal','$dir_sucursal', '$ciudad_sucursal',$id)";
+	$qryins="insert into clientes_sucursal (Nit_clien, nomSucursal, telSucursal, dirSucursal, ciudadSucursal, idSucursal) values ('$NIT', '$nom_sucursal', '$tel_sucursal','$dir_sucursal', '$ciudad_sucursal',$id)";
 	$resultqryins=mysqli_query($link,$qryins);
 	mysqli_close($link);
 }
@@ -79,18 +79,18 @@ if($Crear==1)
       <td colspan="3"><input type="text" name="nom_sucursal" size=60 id="Cliente" maxlength="60"></td>    
     </tr>
     <tr>
-    	<td><div align="right"><b>Dirección</b></div></td>
+    	<td><div align="right"><b>DirecciÃ³n</b></div></td>
         <td colspan="3"><input type="text"  maxlength="50" name="dir_sucursal" size=60 id="Direccion" ></td>
     </tr>
     <tr>
-    <td><div align="right"><strong>Teléfono</strong></div></td>
+    <td><div align="right"><strong>TelÃ©fono</strong></div></td>
         <td width="17%"><input type="text" name="tel_sucursal" maxlength="7" size=15 onKeyPress="return aceptaNum(event)" id="Tel1" ></td>
         <td width="11%"><div align="right"><b>Ciudad</b></div></td>
         <td width="43%"> 
 			<?php
 				$link=conectarServidor();
 				echo'<select name="ciudad_sucursal">';
-				$result=mysqli_query($link,"select Id_ciudad, ciudad from ciudades;");
+				$result=mysqli_query($link,"select IdCiudad, ciudad from ciudades;");
 				echo '<option selected value="">----------------------------</option>';
 				while($row=mysqli_fetch_array($result)){
 					echo '<option value='.$row['Id_ciudad'].'>'.$row['ciudad'].'</option>';
@@ -111,14 +111,14 @@ if($Crear==1)
   		<th width="6%" align="center"></th>
         <th width="6%" align="center">Id</th>
       	<th width="27%" align="center">Nombre Sucursal</th>
-   	  	<th width="10%" align="center">Teléfono </th>
-      	<th width="34%" align="center">Direccción Sucursal</th>
+   	  	<th width="10%" align="center">TelÃ©fono </th>
+      	<th width="34%" align="center">DireccciÃ³n Sucursal</th>
         <th width="12%" align="center">Ciudad</th>
         <th width="11%" align="center">&nbsp;</th>
    </tr>
           <?php
 			$link=conectarServidor();
-			$qry="select Id_sucursal, Nom_sucursal, Tel_sucursal, Dir_sucursal, ciudad from clientes_sucursal, ciudades where Nit_clien='$NIT' and Ciudad_sucursal=Id_ciudad order by Id_sucursal;";
+			$qry="select idSucursal, nomSucursal, telSucursal, dirSucursal, ciudad from clientes_sucursal, ciudades where Nit_clien='$NIT' and ciudadSucursal=IdCiudad order by idSucursal;";
 			$result=mysqli_query($link,$qry);
 			$a=1;
 			while($row=mysqli_fetch_array($result))

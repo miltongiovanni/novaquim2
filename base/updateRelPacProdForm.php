@@ -35,7 +35,7 @@ $relacion = $relDisEmpOperador->getRelDisEmp($idPacUn);
         <input id="idPacUn" name="idPacUn" type="hidden" value="<?= $idPacUn ?>">
         <div class="form-group row">
             <label class="col-form-label col-2" for="codPaca"><strong>Producto empacado</strong></label>
-            <select name="codPaca" id="codPaca" class="form-control col-2">
+            <select name="codPaca" id="codPaca" class="form-control col-2" required>
                 <option selected value="<?= $relacion['codPaca'] ?>"><?= $relacion['paca'] ?></option>
                 <?php
                 $ProductoDistribucionOperador = new ProductosDistribucionOperaciones();
@@ -51,7 +51,7 @@ $relacion = $relDisEmpOperador->getRelDisEmp($idPacUn);
         </div>
         <div class="form-group row">
             <label class="col-form-label col-2" for="codUnidad"><strong>Producto por unidad</strong></label>
-            <select name="codUnidad" id="codUnidad" class="form-control col-2">
+            <select name="codUnidad" id="codUnidad" class="form-control col-2" required>
                 <option selected value="<?= $relacion['codUnidad'] ?>"><?= $relacion['unidad'] ?></option>
                 <?php
                 $ProductoDistribucionOperador = new ProductosDistribucionOperaciones();

@@ -25,7 +25,7 @@ spl_autoload_register('cargarClases');
             $KitOperador = new KitsOperaciones();
             $kits = $KitOperador->getKitsXDesarmar();
             $filas = count($kits);
-            echo '<select name="codKit" id="codKit" class="form-control col-2">';
+            echo '<select name="codKit" id="codKit" class="form-control col-2" required>';
             echo '<option selected disabled value="">-----------------------------</option>';
             for ($i = 0; $i < $filas; $i++) {
                 echo '<option value="' . $kits[$i]["idKit"] . '">' . $kits[$i]['producto'] . '</option>';
@@ -36,11 +36,11 @@ spl_autoload_register('cargarClases');
         <div class="form-group row">
             <label class="col-form-label col-1 text-right" for="cantDesarmado"><strong>Cantidad</strong></label>
             <input type="text" class="form-control col-2" name="cantDesarmado" id="cantDesarmado"
-                   onKeyPress="return aceptaNum(event)">
+                   onKeyPress="return aceptaNum(event)" required>
         </div>
         <div class="form-group row">
             <label class="col-form-label col-1 text-right" for="fechDesarmado"><strong>Fecha</strong></label>
-            <input type="date" class="form-control col-2" name="fechDesarmado" id="fechDesarmado">
+            <input type="date" class="form-control col-2" name="fechDesarmado" id="fechDesarmado" required>
         </div>
         <div class="form-group row">
     <div class="col-1 text-center">

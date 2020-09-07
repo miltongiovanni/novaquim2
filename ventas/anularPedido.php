@@ -4,7 +4,7 @@ include "../includes/valAcc.php";
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <title>Anular Orden de Producción</title>
+    <title>Anular Orden de ProducciÃ³n</title>
     <meta charset="utf-8">
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <script  src="../js/validar.js"></script>
@@ -20,7 +20,7 @@ foreach ($_POST as $nombre_campo => $valor)
 	eval($asignacion); 
 }  
 $link=conectarServidor();   
-//ACTUALIZACIÓN DEL ENCABEZADO DEL PEDIDO
+//ACTUALIZACIÃ“N DEL ENCABEZADO DEL PEDIDO
 $qry="update pedido set Estado='A' where idPedido=$pedido";
 $result=mysqli_query($link,$qry);
 //ELIMINAR EL DETALLE DE LA FACTURA
@@ -28,7 +28,7 @@ $qry="DELETE from det_pedido WHERE Id_ped=$pedido";
 $result=mysqli_query($link,$qry);
 $ruta="listarPedidoA.php";
 mysqli_close($link);
-mover_pag($ruta,"Orden de Pedido Anulada con Éxito");
+mover_pag($ruta,"Orden de Pedido Anulada con Ã‰xito");
 
 
 ?>

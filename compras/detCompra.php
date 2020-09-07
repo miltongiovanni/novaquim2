@@ -249,7 +249,7 @@ $compra = $CompraOperador->getCompra($idCompra, $tipoCompra);
                     <?php
                     $productos = $DetComprasOperador->getProdPorProveedorCompra($compra['idProv'], $tipoCompra, $idCompra);
                     $filas = count($productos);
-                    echo '<select name="codigo" id="codigo" class="form-control col-2" style="margin: 0 5px;">';
+                    echo '<select name="codigo" id="codigo" class="form-control col-2" style="margin: 0 5px;" required>';
                     echo '<option disabled selected value="">-----------------------------</option>';
                     for ($i = 0; $i < $filas; $i++) {
                         echo '<option value="' . $productos[$i]["Codigo"] . '">' . $productos[$i]['Producto'] . '</option>';
@@ -289,7 +289,7 @@ $compra = $CompraOperador->getCompra($idCompra, $tipoCompra);
                     $manager = new DetProveedoresOperaciones();
                     $productos = $DetComprasOperador->getProdPorProveedorCompra($compra['idProv'], $tipoCompra, $idCompra);
                     $filas = count($productos);
-                    echo '<select name="codigo" id="codigo" class="form-control col-2" style="margin: 0 5px;">';
+                    echo '<select name="codigo" id="codigo" class="form-control col-2" style="margin: 0 5px;" required>';
                     echo '<option disabled selected value="">-----------------------------</option>';
                     for ($i = 0; $i < $filas; $i++) {
                         echo '<option value="' . $productos[$i]["Codigo"] . '">' . $productos[$i]['Producto'] . '</option>';
@@ -326,7 +326,7 @@ $compra = $CompraOperador->getCompra($idCompra, $tipoCompra);
                     $manager = new DetProveedoresOperaciones();
                     $productos = $DetComprasOperador->getProdPorProveedorCompra($compra['idProv'], $tipoCompra, $idCompra);
                     $filas = count($productos);
-                    echo '<select name="codigo" id="codigo" class="form-control col-2" style="margin: 0 5px;">';
+                    echo '<select name="codigo" id="codigo" class="form-control col-2" style="margin: 0 5px;" required>';
                     echo '<option disabled selected value="">-----------------------------</option>';
                     for ($i = 0; $i < $filas; $i++) {
                         echo '<option value="' . $productos[$i]["Codigo"] . '">' . $productos[$i]['Producto'] . '</option>';
@@ -364,7 +364,7 @@ $compra = $CompraOperador->getCompra($idCompra, $tipoCompra);
                     $manager = new DetProveedoresOperaciones();
                     $productos = $DetComprasOperador->getProdPorProveedorCompra($compra['idProv'], $tipoCompra, $idCompra);
                     $filas = count($productos);
-                    echo '<select name="codigo" id="codigo" class="form-control col-2" style="margin: 0 5px;">';
+                    echo '<select name="codigo" id="codigo" class="form-control col-2" style="margin: 0 5px;" required>';
                     echo '<option disabled selected value="">-----------------------------</option>';
                     for ($i = 0; $i < $filas; $i++) {
                         echo '<option value="' . $productos[$i]["Codigo"] . '">' . $productos[$i]['Producto'] . '</option>';

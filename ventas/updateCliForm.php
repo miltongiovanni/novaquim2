@@ -14,7 +14,7 @@ include "includes/conect.php";
 
 <body>
 <div id="contenedor">
-<div id="saludo1"><strong>ACTUALIZACIÓN DE CLIENTE</strong></div>
+<div id="saludo1"><strong>ACTUALIZACIÃ“N DE CLIENTE</strong></div>
 
 <?php
 	  $link=conectarServidor();
@@ -30,7 +30,7 @@ include "includes/conect.php";
 <tr> 
   <td colspan="2"><strong>NIT</strong></td>
   <td colspan="3"><strong>Cliente</strong></td>
-  <td><strong>Teléfono</strong></td>
+  <td><strong>TelÃ©fono</strong></td>
   <td colspan="2"><strong>Fax</strong></td>
 </tr>
 <tr> 
@@ -41,7 +41,7 @@ include "includes/conect.php";
 </tr>
 <tr> 
   <td colspan="2"><strong>Contacto</strong></td>
-  <td colspan="3"><strong>Dirección</strong></td>
+  <td colspan="3"><strong>DirecciÃ³n</strong></td>
   <td colspan="1"><strong>Ciudad</strong></td>
   <td colspan="2"><strong>Celular</strong></td>
 </tr>
@@ -49,11 +49,11 @@ include "includes/conect.php";
   <td colspan="2"><?php echo'<input name="Contacto" type="text" value="'.$row['Contacto'].'">';?></td>
   <td colspan="3"><?php echo'<input name="direccion" type="text" size="40" value="'.$row['Dir_clien'].'">';?></td>
   <td colspan="1"><?php 
-      $qrya="select Id_ciudad, ciudad from clientes, ciudades WHERE ciudadCliente=Id_ciudad and nitCliente='$nit';";
+      $qrya="select IdCiudad, ciudad from clientes, ciudades WHERE ciudadCliente=IdCiudad and nitCliente='$nit';";
       $resulta=mysqli_query($link,$qrya);
       $rowa=mysqli_fetch_array($resulta); 			
       echo'<select name="Id_Ciudad">';
-      $resultp=mysqli_query($link,"select Id_ciudad, ciudad from ciudades;");
+      $resultp=mysqli_query($link,"select IdCiudad, ciudad from ciudades;");
       echo '<option selected value='.$rowa['Id_ciudad'].'>'.$rowa['ciudad'].'</option>';
       while($rowp=mysqli_fetch_array($resultp))
       {
@@ -206,13 +206,13 @@ include "includes/conect.php";
 	<tr>
         <th width="5%" align="center">Id</th>
       	<th width="28%" align="center">Nombre Sucursal</th>
-   	  <th width="12%" align="center">Teléfono </th>
-      	<th width="40%" align="center">Direccción Sucursal</th>
+   	  <th width="12%" align="center">TelÃ©fono </th>
+      	<th width="40%" align="center">DireccciÃ³n Sucursal</th>
         <th width="15%" align="center">Ciudad Sucursal</th>
    </tr>
           <?php
 			$link=conectarServidor();
-			$qry="select Id_sucursal, Nom_sucursal, Tel_sucursal, Dir_sucursal, ciudad from clientes_sucursal, ciudades where Nit_clien='$nit' and Ciudad_sucursal=Id_ciudad order by Id_sucursal;";
+			$qry="select idSucursal, nomSucursal, telSucursal, dirSucursal, ciudad from clientes_sucursal, ciudades where Nit_clien='$nit' and ciudadSucursal=IdCiudad order by idSucursal;";
 			$result=mysqli_query($link,$qry);
 			while($rowp=mysqli_fetch_array($result))
 			{

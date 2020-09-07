@@ -19,7 +19,7 @@ include "../includes/valAcc.php";
 </head>
 <body> 
 <div id="contenedor">
-<div id="saludo"><strong>VENTAS POR FAMILIA DISTRIBUCIÓN POR MES</strong></div>
+<div id="saludo"><strong>VENTAS POR FAMILIA DISTRIBUCIÃ“N POR MES</strong></div>
 <form method="post" action="vtas_dist_tot_mes.php" name="form1">	
 	<table align="center">
     <tr>

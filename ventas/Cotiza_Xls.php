@@ -20,21 +20,21 @@ $objPHPExcel->getProperties()->setCreator("Industrias Novaquim")
 							 ->setLastModifiedBy("Milton Espitia")
 							 ->setTitle("Productos")
 							 ->setSubject("Lista de Facturas")
-							 ->setDescription("Lista de Facturas por per韔do")
+							 ->setDescription("Lista de Facturas por per铆odo")
 							 ->setKeywords("Lista Facturas")
 							 ->setCategory("Lista");
 // Add some data
 $objPHPExcel->setActiveSheetIndex(0)
-            ->setCellValue('A1', iconv("iso-8859-1", "UTF-8","Cotizaci髇"))
-			->setCellValue('B1', iconv("iso-8859-1", "UTF-8","Fecha Cotizaci髇"))
-			->setCellValue('C1', iconv("iso-8859-1", "UTF-8","Cliente Cotizaci髇"))
+            ->setCellValue('A1', iconv("iso-8859-1", "UTF-8","Cotizaci贸n"))
+			->setCellValue('B1', iconv("iso-8859-1", "UTF-8","Fecha Cotizaci贸n"))
+			->setCellValue('C1', iconv("iso-8859-1", "UTF-8","Cliente Cotizaci贸n"))
 			->setCellValue('D1', iconv("iso-8859-1", "UTF-8","Tipo de Cliente"))
 			->setCellValue('E1', iconv("iso-8859-1", "UTF-8","Precio"))
 			->setCellValue('F1', iconv("iso-8859-1", "UTF-8","Contacto"))
 			->setCellValue('G1', iconv("iso-8859-1", "UTF-8","Cargo"))
-			->setCellValue('H1', iconv("iso-8859-1", "UTF-8","Tel閒ono"))
+			->setCellValue('H1', iconv("iso-8859-1", "UTF-8","Tel茅fono"))
 			->setCellValue('I1', iconv("iso-8859-1", "UTF-8","Celular"))
-			->setCellValue('J1', iconv("iso-8859-1", "UTF-8","Direcci髇 Cliente"))
+			->setCellValue('J1', iconv("iso-8859-1", "UTF-8","Direcci贸n Cliente"))
 			->setCellValue('K1', iconv("iso-8859-1", "UTF-8","E-mail Cliente"))
 			->setCellValue('L1', iconv("iso-8859-1", "UTF-8","Vendedor"));
 // Rename sheet
@@ -64,7 +64,7 @@ while($row= mysqli_fetch_array($result, MYSQLI_BOTH))
 
 // Set active sheet index to the first sheet, so Excel opens this as the first sheet
 $objPHPExcel->setActiveSheetIndex(0);
-// Redirect output to a client抯 web browser (Excel5)
+// Redirect output to a client鈥檚 web browser (Excel5)
 header('Content-Type: application/vnd.ms-excel');
 header('Content-Disposition: attachment;filename="Cotizaciones.xls"');
 header('Cache-Control: max-age=0');
@@ -72,7 +72,7 @@ header('Cache-Control: max-age=0');
 $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
 $objWriter->save('php://output');
 mysqli_free_result($result);
-/* cerrar la conexi髇 */
+/* cerrar la conexi贸n */
 mysqli_close($link);
 exit;
 ?>

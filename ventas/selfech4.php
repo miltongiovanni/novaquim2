@@ -6,7 +6,7 @@ $bd="novaquim";
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <title>Ventas por familia de productos distribución por mes</title>
+    <title>Ventas por familia de productos distribuciÃ³n por mes</title>
     <meta charset="utf-8">
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <script  src="../js/validar.js"></script>
@@ -21,7 +21,7 @@ $bd="novaquim";
 </head>
 <body> 
 <div id="contenedor">
-<div id="saludo"><strong>VENTAS POR FAMILIA PRODUCTOS DISTRIBUCIÓN POR MES</strong></div> 
+<div id="saludo"><strong>VENTAS POR FAMILIA PRODUCTOS DISTRIBUCIÃ“N POR MES</strong></div> 
 <form method="post" action="vtas_dist_tot_mes_vend.php" name="form1">	
 	<table align="center">
     <tr>

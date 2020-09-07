@@ -30,9 +30,9 @@ include "../includes/valAcc.php";
 		eval($asignacion); 
 		}  
 		$link=conectarServidor();
-		$qry="Select nit_cliente, nomCliente, idPedido, fechaPedido, fechaEntrega, codVendedor, nom_personal, tipo_precio, Id_precio, pedido.Estado, Nom_sucursal, Dir_sucursal, idSucursal 
+		$qry="Select nit_cliente, nomCliente, idPedido, fechaPedido, fechaEntrega, codVendedor, nom_personal, tipo_precio, Id_precio, pedido.Estado, nomSucursal, dirSucursal, idSucursal 
 		FROM pedido, personal, clientes, tip_precio, clientes_sucursal 
-		where codVendedor=Id_personal and idPedido=$pedido and clientes.nitCliente=nit_cliente and Id_precio=tipoPrecio and idSucursal=Id_sucursal and clientes_sucursal.Nit_clien=nit_cliente";
+		where codVendedor=Id_personal and idPedido=$pedido and clientes.nitCliente=nit_cliente and Id_precio=tipoPrecio and idSucursal=idSucursal and clientes_sucursal.Nit_clien=nit_cliente";
 		$result=mysqli_query($link,$qry);
 		$row=mysqli_fetch_array($result);
 		if ($row)
@@ -46,13 +46,13 @@ include "../includes/valAcc.php";
 			if($estado=='A')
 			{
 				mysqli_close($link);
-				mover("crearFactura.php","El Pedido est· Anulado");
+				mover("crearFactura.php","El Pedido est√° Anulado");
 			}
 			if($estado=='P')
 			{
 				mysqli_close($link);
 				echo'<script >
-				alert("El pedido no est· listo");
+				alert("El pedido no est√° listo");
 				</script>';
 				echo '<form method="post" action="inv_ped.php" name="form3">'; 
 				echo'<input name="pedido" type="hidden" value="'.$pedido.'">'; 
@@ -95,7 +95,7 @@ include "../includes/valAcc.php";
         <td><?php echo $row['Nom_sucursal'];?><input type="hidden" name="id_sucursal" value="<?php echo $row['Id_sucurs'];?>"></td>
     </tr>
     <tr>
-        <td align="right"><strong>DirecciÛn de Entrega</strong></td>
+        <td align="right"><strong>Direcci√≥n de Entrega</strong></td>
         <td><?php echo $row['Dir_sucursal'];?></td>
     </tr>
     <tr>

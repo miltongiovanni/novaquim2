@@ -196,10 +196,10 @@ if($Pago==1)
       <td><div align="left"><?php echo '$ <script > document.write(commaSplit('.$row['Total'].'))</script>' ;?></div></td>
     </tr>
         <?php
-	if ($Reten==0)//Reten es para preguntar si va a hacer retención, es 0 para preguntar y 1 si responde
+	if ($Reten==0)//Reten es para preguntar si va a hacer retenciÃ³n, es 0 para preguntar y 1 si responde
 	echo '<tr><td>&nbsp;</td></tr>
 	<tr>
-      <td class="titulo" colspan="3" align="right">Cliente Aplicó Retención</td>
+      <td class="titulo" colspan="3" align="right">Cliente AplicÃ³ RetenciÃ³n</td>
       <td colspan="2"><div align="center"><select name="retencion"><option selected value=0>No</option><option value=1>Si</option></select></div></td>
       <td><input onClick="return Enviar(this.form)" type="button"  value="Continuar"></td>
     </tr>
@@ -248,7 +248,7 @@ if($Pago==1)
 		$resultupf=mysqli_query($link, $qryupf);
 		
 	echo '<tr>
-      <td><div align="right"><strong>Retención en la fuente:</strong></div></td>
+      <td><div align="right"><strong>RetenciÃ³n en la fuente:</strong></div></td>
       <td><div align="left">$ <script > document.write(commaSplit('.$retefuente.'))</script> </div></td>
       <td colspan="2" ><div align="right"><strong>ReteIca:</strong></div></td>
       <td>$ <script > document.write(commaSplit('.$reteica.'))</script> </td>
@@ -267,23 +267,23 @@ if($Pago==1)
 	?>
     
     <?php
-	if (($Reten==1)&&($Reten_pago==0)&&($retencion==1))//Para preguntar la tasa de retención
+	if (($Reten==1)&&($Reten_pago==0)&&($retencion==1))//Para preguntar la tasa de retenciÃ³n
 	echo '<tr><td>&nbsp;</td></tr>
 	<tr>
-      <td class="titulo" colspan="3" align="right">Tasa de Retención en la fuente</td>
+      <td class="titulo" colspan="3" align="right">Tasa de RetenciÃ³n en la fuente</td>
       <td colspan="2"><div align="center"><select name="t_reten"><option selected value=0.025>2.5%</option><option value=0.015>1.5%</option><option value=0.035>3.5%</option><option value=0.04>4%</option><option value=0>0%</option></select></div></td>
       <td></td>
     </tr>
 
 	<tr>
-      <td class="titulo" colspan="3" align="right">Aplicó Retención de ICA</td>
+      <td class="titulo" colspan="3" align="right">AplicÃ³ RetenciÃ³n de ICA</td>
       <td colspan="2"><div align="center"><select name="Retica"><option selected value=0>No</option><option value=1>Si</option></select></div></td>
       <td><input onClick="return Enviar(this.form)" type="button"  value="Continuar"></td>
     </tr>
     <tr><td>&nbsp;</td><td><input name="Pago" type="hidden" value="4">
     <input name="factura" type="hidden" value="'.$factura.'"><input name="retencion" type="hidden" value="'.$retencion.'"><input name="Recibo" type="hidden" value="'.$Recibo.'"><input name="Reten" type="hidden" value="2"><input name="Reten_pago" type="hidden" value="1">  
 	</td></tr>';
-	if (($Reten==1)&&($Reten_pago==0)&&($retencion==0))//Para preguntar la tasa de retención
+	if (($Reten==1)&&($Reten_pago==0)&&($retencion==0))//Para preguntar la tasa de retenciÃ³n
 	{
 	  //echo '<form method="post" action="recibo_caja1.php" name="form3">';
 	  echo '<tr><td>&nbsp;</td><td><input name="Pago" type="hidden" value="4">
@@ -319,7 +319,7 @@ if($Pago==1)
       <td align="center" colspan="1"><input type="text" name="fecha" id="sel1" readonly size=12><input type="reset" value=" ... " onclick="return showCalendar';
 	  echo "('sel1', '%Y-%m-%d', '12', true)";
 	  echo '" ></td>
-      <td colspan="2"><div align="center"><select name="Form_pago"><option selected value=0>Efectivo</option><option value=1>Transferencia</option><option value=2>Nota Crédito</option><option value=3>Consignación</option><option value=4>Cheque</option><option value=5>Dar de Baja</option></select></div></td>
+      <td colspan="2"><div align="center"><select name="Form_pago"><option selected value=0>Efectivo</option><option value=1>Transferencia</option><option value=2>Nota CrÃ©dito</option><option value=3>ConsignaciÃ³n</option><option value=4>Cheque</option><option value=5>Dar de Baja</option></select></div></td>
 	  <td colspan="2"><div align="center"><select name="Cod_banco">
 	  
 	   
@@ -386,7 +386,7 @@ while($row=mysqli_fetch_array($result))
 	$i++;
 }
 mysqli_free_result($result);
-/* cerrar la conexión */
+/* cerrar la conexiÃ³n */
 mysqli_close($link);
 ?>
     <tr>

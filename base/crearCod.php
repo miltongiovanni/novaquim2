@@ -52,7 +52,7 @@ spl_autoload_register('cargarClases');
                     $ProductoOperador = new ProductosOperaciones();
                     $productos = $ProductoOperador->getProductos(true);
                     $filas = count($productos);
-                    echo '<select name="codProducto" class="form-control col-2" onchange="idProducto(this.value);">';
+                    echo '<select name="codProducto" class="form-control col-2" onchange="idProducto(this.value);" required>';
                     echo '<option selected disabled value="">-----------------------------</option>';
                     for ($i = 0; $i < $filas; $i++) {
                         echo '<option value="' . $productos[$i]["codProducto"] . '">' . $productos[$i]['nomProducto'] . '</option>';
@@ -70,7 +70,7 @@ spl_autoload_register('cargarClases');
                     $MedidaOperador = new MedidasOperaciones();
                     $medidas = $MedidaOperador->getMedidas();
                     $filas = count($medidas);
-                    echo '<select name="medida" class="form-control col-2" >';
+                    echo '<select name="medida" class="form-control col-2" required>';
                     echo '<option selected disabled value="">-----------------------------</option>';
                     for ($i = 0; $i < $filas; $i++) {
                         echo '<option value="' . $medidas[$i]["idMedida"].','.  $medidas[$i]["desMedida"] . '">' . $medidas[$i]['desMedida'] . '</option>';
@@ -81,14 +81,14 @@ spl_autoload_register('cargarClases');
             <div class="form-group row">
                 <label class="col-form-label col-1 text-right"
                     for="fabrica"><strong>Precio fábrica</strong></label>
-                <input type="text" class="form-control col-2" name="fabrica" id="fabrica" maxlength="50" onKeyPress="return aceptaNum(event)">
+                <input type="text" class="form-control col-2" name="fabrica" id="fabrica" maxlength="50" onKeyPress="return aceptaNum(event)" required>
             </div>
             <div class="form-group row">
                 <div class="col-1 text-center" >
-                    <button class="button"  onclick="return Enviar(this.form)"><span>Continuar</span></button>
+                    <button class="button"  type="reset"><span>Reiniciar</span></button>
                 </div>
                 <div class="col-1 text-center" >
-                    <button class="button"  type="reset"><span>Reiniciar</span></button>
+                    <button class="button"  onclick="return Enviar(this.form)"><span>Continuar</span></button>
                 </div>
             </div>
 

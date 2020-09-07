@@ -103,7 +103,7 @@ include "../includes/valAcc.php";
     </tr><input type="hidden" name="Crear" value="5"><input type="hidden" name="pedido" value="<?php echo $row['Id_pedido'] ;?>"><input type="hidden" name="factura" value="<?php echo $row['Factura'] ;?>">
     <tr><td colspan="2"><div align="center">&nbsp;</div></td></tr>
     <tr><td colspan="2"><div align="center">&nbsp;</div></td></tr>
-    <tr><td colspan="2"> <div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="  Ir al Menú  "></div></td></tr>
+    <tr><td colspan="2"> <div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="  Ir al MenÃº  "></div></td></tr>
 </form> 
 </table>
 </div>

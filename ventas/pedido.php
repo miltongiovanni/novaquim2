@@ -4,7 +4,7 @@ include "../includes/valAcc.php";
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <title>Creación de Orden de Pedido</title>
+    <title>CreaciÃ³n de Orden de Pedido</title>
     <meta charset="utf-8">
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <script  src="../js/validar.js"></script>
@@ -20,7 +20,7 @@ include "../includes/valAcc.php";
 </head>
 <body> 
 <div id="contenedor">
-<div id="saludo"><strong>CREACIÓN DE ORDEN DE PEDIDO</strong></div>
+<div id="saludo"><strong>CREACIÃ“N DE ORDEN DE PEDIDO</strong></div>
 <form method="post" action="pedido2.php" name="form1">	
   	<table align="center" width="40%">
     <tr>

@@ -4,7 +4,7 @@ include "../includes/valAcc.php";
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<title>Detalle de la Cotización</title>
+<title>Detalle de la CotizaciÃ³n</title>
 <meta charset="utf-8">
 <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
 	<script  src="../js/validar.js"></script>
@@ -19,7 +19,7 @@ include "../includes/valAcc.php";
 </head>
 <body> 
 <div id="contenedor">
-<div id="saludo1"><strong>DETALLE DE LA COTIZACIÓN</strong></div>
+<div id="saludo1"><strong>DETALLE DE LA COTIZACIÃ“N</strong></div>
 <?php
 include "includes/conect.php";
 $link=conectarServidor();
@@ -34,7 +34,7 @@ if ($Crear==3)
 {  	  
   if($_POST['seleccion1']==NULL)
   {
-	//echo "no escogió productos de novaquim <br>";
+	//echo "no escogiÃ³ productos de novaquim <br>";
 	echo' <script >
 	alert("Debe escoger alguna Familia de los productos Nova");
 	self.location="cotizacion.php";
@@ -55,7 +55,7 @@ if ($Crear==3)
 		$qry="select DISTINCT codigo_ant, Producto, prodpre.mayor as precio from prodpre, productos, precios WHERE Cod_ant=codigo_ant and prodpre.Cod_produc=productos.Cod_produc and Cotiza=0 ";
 	if($precio==5)
 		$qry="select DISTINCT codigo_ant, Producto, prodpre.super as precio from prodpre, productos, precios WHERE Cod_ant=codigo_ant and prodpre.Cod_produc=productos.Cod_produc and Cotiza=0 ";	
-	//SELECCIONA EL TIPO DE PRESENTACIONES 1 PARA TODAS, 2 PARA PEQUEÑAS Y 3 PARA GRANDES
+	//SELECCIONA EL TIPO DE PRESENTACIONES 1 PARA TODAS, 2 PARA PEQUEÃ‘AS Y 3 PARA GRANDES
 	if ($Presentaciones==1)
 		$wh="";
 	if ($Presentaciones==2)
@@ -98,7 +98,7 @@ if ($Crear==3)
 	}
 	else
 	{
-		//echo "no escogió productos de distribución <br>";
+		//echo "no escogiÃ³ productos de distribuciÃ³n <br>";
 		$No_dist=1;
 	}
 	$link=conectarServidor();   
@@ -128,7 +128,7 @@ if ($Crear==3)
 	  else
 	  {
 		  mysqli_close($link);
-		  mover_pag("cotizacion.php","Error al ingresar la Cotización");
+		  mover_pag("cotizacion.php","Error al ingresar la CotizaciÃ³n");
 	  }
 	}
   }
@@ -147,17 +147,17 @@ $qryb="select Id_Cotizacion, Nom_clien, Fech_Cotizacion, precio, presentaciones,
 $resultb=mysqli_query($link,$qryb);		
 $rowb=mysqli_fetch_array($resultb);
 if ($Destino==1)
-$dest="Impresión";
+$dest="ImpresiÃ³n";
 if ($Destino==2)
-$dest="Correo Electrónico";
+$dest="Correo ElectrÃ³nico";
 if($rowb['presentaciones']==1)
 $presen="Todas";
 if($rowb['presentaciones']==2)
-$presen="Pequeñas";
+$presen="PequeÃ±as";
 if($rowb['presentaciones']==3)
 $presen="Grandes";
 if($rowb['precio']==1)
-$precio_c="Fábrica";
+$precio_c="FÃ¡brica";
 if($rowb['precio']==2)
 $precio_c="Distribuidor";
 if($rowb['precio']==3)
@@ -172,10 +172,10 @@ $prodnova= array();
 if (in_array(1, $seleccion1)) $prodnova[]=" Limpieza Equipos";
 if (in_array(2, $seleccion1)) $prodnova[]=" Limpieza General  ";
 if (in_array(3, $seleccion1)) $prodnova[]=" Mantenimiento de pisos ";
-if (in_array(4, $seleccion1)) $prodnova[]=" Productos para Lavandería ";
-if (in_array(5, $seleccion1)) $prodnova[]=" Aseo Doméstico y Oficina ";
+if (in_array(4, $seleccion1)) $prodnova[]=" Productos para LavanderÃ­a ";
+if (in_array(5, $seleccion1)) $prodnova[]=" Aseo DomÃ©stico y Oficina ";
 if (in_array(6, $seleccion1)) $prodnova[]=" Higiene Cocina ";
-if (in_array(7, $seleccion1)) $prodnova[]=" Línea Automotriz ";
+if (in_array(7, $seleccion1)) $prodnova[]=" LÃ­nea Automotriz ";
 /*
 
 for ($k = 0; $k <= $c; $k++) 
@@ -183,10 +183,10 @@ for ($k = 0; $k <= $c; $k++)
 if ($seleccion1[$k]==1) $prodnova[]=" Limpieza Equipos";
 if ($seleccion1[$k]==2) $prodnova[]=" Limpieza General  ";
 if ($seleccion1[$k]==3) $prodnova[]=" Mantenimiento de pisos  ";
-if ($seleccion1[$k]==4) $prodnova[]=" Productos para Lavandería  ";
-if ($seleccion1[$k]==5) $prodnova[]=" Aseo Doméstico y Oficina  ";
+if ($seleccion1[$k]==4) $prodnova[]=" Productos para LavanderÃ­a  ";
+if ($seleccion1[$k]==5) $prodnova[]=" Aseo DomÃ©stico y Oficina  ";
 if ($seleccion1[$k]==6) $prodnova[]=" Higiene Cocina  ";
-if ($seleccion1[$k]==7) $prodnova[]=" Línea Automotriz  ";
+if ($seleccion1[$k]==7) $prodnova[]=" LÃ­nea Automotriz  ";
 }*/
 $opciones_prod = implode(",", $prodnova);
 if ($rowb['distribucion'])
@@ -196,12 +196,12 @@ $b=count($seleccion);
 $distrib= array();
 if (in_array(1, $seleccion)) $distrib[]=" Implementos de Aseo";
 if (in_array(2, $seleccion)) $distrib[]=" Desechables ";
-if (in_array(3, $seleccion)) $distrib[]=" Cafetería ";
+if (in_array(3, $seleccion)) $distrib[]=" CafeterÃ­a ";
 if (in_array(4, $seleccion)) $distrib[]=" Abarrotes ";
-if (in_array(5, $seleccion)) $distrib[]=" Distribución Aseo ";
+if (in_array(5, $seleccion)) $distrib[]=" DistribuciÃ³n Aseo ";
 if (in_array(6, $seleccion)) $distrib[]=" Aseo Personal ";
 if (in_array(7, $seleccion)) $distrib[]=" Hogar ";
-if (in_array(8, $seleccion)) $distrib[]=" Papelería ";
+if (in_array(8, $seleccion)) $distrib[]=" PapelerÃ­a ";
 if (in_array(9, $seleccion)) $distrib[]=" Otros ";
 
 
@@ -209,19 +209,19 @@ if (in_array(9, $seleccion)) $distrib[]=" Otros ";
 {
   if ($seleccion[$j]==1) $distrib[]=" Implementos de Aseo";
   if ($seleccion[$j]==2) $distrib[]=" Desechables  ";
-  if ($seleccion[$j]==3) $distrib[]=" Cafetería  ";
+  if ($seleccion[$j]==3) $distrib[]=" CafeterÃ­a  ";
   if ($seleccion[$j]==4) $distrib[]=" Abarrotes  ";
-  if ($seleccion[$j]==5) $distrib[]=" Distribución Aseo  ";
+  if ($seleccion[$j]==5) $distrib[]=" DistribuciÃ³n Aseo  ";
   if ($seleccion[$j]==6) $distrib[]=" Aseo Personal  ";
   if ($seleccion[$j]==7) $distrib[]=" Hogar  ";
-  if ($seleccion[$j]==8) $distrib[]=" Papelería  ";
+  if ($seleccion[$j]==8) $distrib[]=" PapelerÃ­a  ";
   if ($seleccion[$j]==9) $distrib[]=" Otros  ";
 }*/
 $opciones_dist = implode(",", $distrib);
 }
 else
 {
-$opciones_dist = 'No eligió Productos de Distribución';
+$opciones_dist = 'No eligiÃ³ Productos de DistribuciÃ³n';
 }
 ?>
 <table align="center" width="68%">
@@ -229,7 +229,7 @@ $opciones_dist = 'No eligió Productos de Distribución';
         <td colspan="3">&nbsp;</td>
     </tr>
     <tr>
-    	<td width="23%" align="right"><strong>No. Cotización:</strong></td>
+    	<td width="23%" align="right"><strong>No. CotizaciÃ³n:</strong></td>
    	  	<td colspan="2"><?php echo  $num_cotiza;  ?></td>
     </tr>
 	<tr>
@@ -237,7 +237,7 @@ $opciones_dist = 'No eligió Productos de Distribución';
    	  	<td colspan="2"><?php echo  $rowb['Nom_clien'];  ?></td>
     </tr>
     <tr>
-      	<td align="right"><strong>Fecha de Cotización:</strong></td>
+      	<td align="right"><strong>Fecha de CotizaciÃ³n:</strong></td>
       	<td colspan="2"><?php echo  $rowb['Fech_Cotizacion'];  ?></td>
     </tr>
     <tr>
@@ -245,7 +245,7 @@ $opciones_dist = 'No eligió Productos de Distribución';
       	<td colspan="2"><?php echo  $dest;  ?></td>
     </tr>
     <tr>
-      	<td align="right"><strong>Presentación:</strong></td>
+      	<td align="right"><strong>PresentaciÃ³n:</strong></td>
       	<td colspan="2"><?php echo  $presen;  ?></td>
     </tr>
     <tr>
@@ -257,7 +257,7 @@ $opciones_dist = 'No eligió Productos de Distribución';
   		<td colspan="2"><?php echo  $opciones_prod;  ?></td>
     </tr>    
     <tr>
-    	<td align="right"><strong>Productos de Distribución</strong></td>
+    	<td align="right"><strong>Productos de DistribuciÃ³n</strong></td>
   		<td colspan="2"><?php echo  $opciones_dist;  ?></td>
     </tr>
     <tr>
@@ -275,7 +275,7 @@ $opciones_dist = 'No eligió Productos de Distribución';
         <td colspan="3">&nbsp;</td>
     </tr>
   </table>
-<div align="center"><input name="" type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir a Menú"></div>
+<div align="center"><input name="" type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir a MenÃº"></div>
 </div>
 </body>
 </html>

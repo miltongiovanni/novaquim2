@@ -15,7 +15,7 @@ function buscarCatProdForm($action)
     $manager = new CategoriasProdOperaciones();
     $categorias = $manager->getCatsProd();
     $filas = count($categorias);
-    $rep .= '<select name="idCatProd" id="idCatProd" class="form-control col-2">';
+    $rep .= '<select name="idCatProd" id="idCatProd" class="form-control col-2" required>';
     $rep .= '<option selected value="">-----------------------------</option>';
     for ($i = 0; $i < $filas; $i++) {
         $rep .= '<option value="' . $categorias[$i]["idCatProd"] . '">' . $categorias[$i]['catProd'] . '</option>';
@@ -39,7 +39,7 @@ function buscarCatMPForm($action)
     $manager = new CategoriasMPOperaciones();
     $categorias = $manager->getCatsMP();
     $filas = count($categorias);
-    $rep .= '<select name="idCatMP" id="idCatMP" class="form-control col-2">';
+    $rep .= '<select name="idCatMP" id="idCatMP" class="form-control col-2" required>';
     $rep .= '<option selected value="">-----------------------------</option>';
     for ($i = 0; $i < $filas; $i++) {
         $rep .= '<option value="' . $categorias[$i]["idCatMP"] . '">' . $categorias[$i]['catMP'] . '</option>';
@@ -63,7 +63,7 @@ function buscarCatDisForm($action)
     $manager = new CategoriasDisOperaciones();
     $categorias = $manager->getCatsDis();
     $filas = count($categorias);
-    $rep .= '<select name="idCatDis" id="idCatDis" class="form-control col-2">';
+    $rep .= '<select name="idCatDis" id="idCatDis" class="form-control col-2" required>';
     $rep .= '<option selected value="">-----------------------------</option>';
     for ($i = 0; $i < $filas; $i++) {
         $rep .= '<option value="' . $categorias[$i]["idCatDis"] . '">' . $categorias[$i]['catDis'] . '</option>';
@@ -87,7 +87,7 @@ function buscarProductoForm($action, $actif)
     $ProductoOperador = new ProductosOperaciones();
     $productos = $ProductoOperador->getProductos($actif);
     $filas = count($productos);
-    $rep .= '<select name="codProducto"  id="codProducto" class="form-control col-2">';
+    $rep .= '<select name="codProducto"  id="codProducto" class="form-control col-2" required>';
     $rep .= '<option selected value="">-----------------------------</option>';
     for ($i = 0; $i < $filas; $i++) {
         $rep .= '<option value="' . $productos[$i]["codProducto"] . '">' . $productos[$i]['nomProducto'] . '</option>';
@@ -111,7 +111,7 @@ function buscarMPrimaForm($action)
     $MPrimasOperador = new MPrimasOperaciones();
     $mprimas = $MPrimasOperador->getMPrimas();
     $filas = count($mprimas);
-    $rep .= '<select name="codMPrima" id="codMPrima" class="form-control col-2">';
+    $rep .= '<select name="codMPrima" id="codMPrima" class="form-control col-2" required>';
     $rep .= '<option selected value="">-----------------------------</option>';
     for ($i = 0; $i < $filas; $i++) {
         $rep .= '<option value="' . $mprimas[$i]["codMPrima"] . '">' . $mprimas[$i]['nomMPrima'] . '</option>';
@@ -135,7 +135,7 @@ function buscarEtiquetaForm($action)
     $EtiquetasOperador = new EtiquetasOperaciones();
     $etiquetas = $EtiquetasOperador->getEtiquetas();
     $filas = count($etiquetas);
-    $rep .= '<select name="codEtiqueta" id="codEtiqueta" class="form-control col-2">';
+    $rep .= '<select name="codEtiqueta" id="codEtiqueta" class="form-control col-2" required>';
     $rep .= '<option selected value="">-----------------------------</option>';
     for ($i = 0; $i < $filas; $i++) {
         $rep .= '<option value="' . $etiquetas[$i]["codEtiqueta"] . '">' . $etiquetas[$i]['nomEtiqueta'] . '</option>';
@@ -159,7 +159,7 @@ function buscarTapaForm($action)
     $TapasOperador = new TapasOperaciones();
     $tapas = $TapasOperador->getTapas();
     $filas = count($tapas);
-    $rep .= '<select name="codTapa" id="codTapa" class="form-control col-2">';
+    $rep .= '<select name="codTapa" id="codTapa" class="form-control col-2" required>';
     $rep .= '<option selected value="">-----------------------------</option>';
     for ($i = 0; $i < $filas; $i++) {
         $rep .= '<option value="' . $tapas[$i]["codTapa"] . '">' . $tapas[$i]['tapa'] . '</option>';
@@ -183,7 +183,7 @@ function buscarEnvaseForm($action)
     $EnvasesOperador = new EnvasesOperaciones();
     $envases = $EnvasesOperador->getEnvases();
     $filas = count($envases);
-    $rep .= '<select name="codEnvase" id="codEnvase" class="form-control col-2">';
+    $rep .= '<select name="codEnvase" id="codEnvase" class="form-control col-2" required>';
     $rep .= '<option selected value="">-----------------------------</option>';
     for ($i = 0; $i < $filas; $i++) {
         $rep .= '<option value="' . $envases[$i]["codEnvase"] . '">' . $envases[$i]['nomEnvase'] . '</option>';
@@ -207,7 +207,7 @@ function buscarPrecioForm($action, $actif)
     $PrecioOperador = new PreciosOperaciones();
     $precios = $PrecioOperador->getPrecios($actif);
     $filas = count($precios);
-    $rep .= '<select name="codigoGen" id="codigoGen" class="form-control col-2">';
+    $rep .= '<select name="codigoGen" id="codigoGen" class="form-control col-2" required>';
     $rep .= '<option selected value="">-----------------------------</option>';
     for ($i = 0; $i < $filas; $i++) {
         $rep .= '<option value="' . $precios[$i]["codigoGen"] . '">' . $precios[$i]['producto'] . '</option>';
@@ -231,7 +231,7 @@ function buscarPresentacionForm($action, $actif)
     $PresentacionOperador = new PresentacionesOperaciones();
     $presentaciones = $PresentacionOperador->getPresentaciones($actif);
     $filas = count($presentaciones);
-    $rep .= '<select name="codPresentacion" id="codPresentacion" class="form-control col-3">';
+    $rep .= '<select name="codPresentacion" id="codPresentacion" class="form-control col-3" required>';
     $rep .= '<option selected value="">----------------------------------------------------</option>';
     for ($i = 0; $i < $filas; $i++) {
         $rep .= '<option value="' . $presentaciones[$i]["codPresentacion"] . '">' . $presentaciones[$i]['presentacion'] . '</option>';
@@ -255,7 +255,7 @@ function buscarProductoDistribucionForm($action, $actif)
     $ProductoDistribucionOperador = new ProductosDistribucionOperaciones();
     $productos = $ProductoDistribucionOperador->getProductosDistribucion($actif);
     $filas = count($productos);
-    $rep .= '<select name="idDistribucion" id="idDistribucion" class="form-control col-2">';
+    $rep .= '<select name="idDistribucion" id="idDistribucion" class="form-control col-2" required>';
     $rep .= '<option selected value="">-----------------------------</option>';
     for ($i = 0; $i < $filas; $i++) {
         $rep .= '<option value="' . $productos[$i]["idDistribucion"] . '">' . $productos[$i]['producto'] . '</option>';
@@ -279,7 +279,7 @@ function buscarServicioForm($action, $actif)
     $servicioperador = new ServiciosOperaciones();
     $servicios = $servicioperador->getServicios($actif);
     $filas = count($servicios);
-    $rep .= '<select name="idServicio" id="idServicio" class="form-control col-2">';
+    $rep .= '<select name="idServicio" id="idServicio" class="form-control col-2" required>';
     $rep .= '<option selected value="">-----------------------------</option>';
     for ($i = 0; $i < $filas; $i++) {
         $rep .= '<option value="' . $servicios[$i]["idServicio"] . '">' . $servicios[$i]['desServicio'] . '</option>';
@@ -303,7 +303,7 @@ function buscarRelEnvDisForm($action)
     $relEnvDisOperador = new RelEnvDisOperaciones();
     $relaciones = $relEnvDisOperador->getRelsEnvDis();
     $filas = count($relaciones);
-    $rep .= '<select name="idEnvDis" id="idEnvDis" class="form-control col-2">';
+    $rep .= '<select name="idEnvDis" id="idEnvDis" class="form-control col-2" required>';
     $rep .= '<option selected value="">-----------------------------</option>';
     for ($i = 0; $i < $filas; $i++) {
         $rep .= '<option value="' . $relaciones[$i]["idEnvDis"] . '">' . $relaciones[$i]['producto'] . '</option>';
@@ -327,7 +327,7 @@ function buscarRelPacProdForm($action)
     $relDisEmpOperador = new RelDisEmpOperaciones();
     $relaciones = $relDisEmpOperador->getRelsDisEmp();
     $filas = count($relaciones);
-    $rep .= '<select name="idPacUn" id="idPacUn" class="form-control col-2">';
+    $rep .= '<select name="idPacUn" id="idPacUn" class="form-control col-2" required>';
     $rep .= '<option selected value="">-----------------------------</option>';
     for ($i = 0; $i < $filas; $i++) {
         $rep .= '<option value="' . $relaciones[$i]["idPacUn"] . '">' . $relaciones[$i]['producto'] . '</option>';
@@ -351,7 +351,7 @@ function buscarCatProvForm($action)
     $manager = new CategoriasProvOperaciones();
     $categorias = $manager->getCatsProv();
     $filas = count($categorias);
-    $rep .= '<select name="idCatProv" id="idCatProv" class="form-control col-2">';
+    $rep .= '<select name="idCatProv" id="idCatProv" class="form-control col-2" required>';
     $rep .= '<option selected value="">-----------------------------</option>';
     for ($i = 0; $i < $filas; $i++) {
         $rep .= '<option value="' . $categorias[$i]["idCatProv"] . '">' . $categorias[$i]['desCatProv'] . '</option>';
@@ -374,7 +374,7 @@ function buscarCatCliForm($action)
     $manager = new CategoriasCliOperaciones();
     $categorias = $manager->getCatsCli();
     $filas = count($categorias);
-    $rep .= '<select name="idCatClien" id="idCatClien" class="form-control col-2">';
+    $rep .= '<select name="idCatClien" id="idCatClien" class="form-control col-2" required>';
     $rep .= '<option selected value="">-----------------------------</option>';
     for ($i = 0; $i < $filas; $i++) {
         $rep .= '<option value="' . $categorias[$i]["idCatClien"] . '">' . $categorias[$i]['desCatClien'] . '</option>';

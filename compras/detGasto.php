@@ -217,7 +217,7 @@ $gasto = $GastoOperador->getGasto($idGasto);
                 $manager = new TasaIvaOperaciones();
                 $tasas = $manager->getTasasIva();
                 $filas = count($tasas);
-                echo '<select name="codIva" id="codIva" class="form-control col-1">';
+                echo '<select name="codIva" id="codIva" class="form-control col-1" required>';
                 echo '<option selected disabled value="">-------------</option>';
                 for ($i = 0; $i < $filas; $i++) {
                     echo '<option value="' . $tasas[$i]["idTasaIva"] . '">' . $tasas[$i]['iva'] . '</option>';

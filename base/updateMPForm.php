@@ -59,7 +59,7 @@ $mprima = $MPrimaOperador->getMPrima($codMPrima);
             $manager = new TasaIvaOperaciones();
             $tasas = $manager->getTasasIva();
             $filas = count($tasas);
-            echo '<select name="codIva" id="codIva" class="form-control col-2">';
+            echo '<select name="codIva" id="codIva" class="form-control col-2" required>';
             echo '<option selected value="' . $mprima['codIva'] . '">' . $mprima['iva'] . '</option>';
             for ($i = 0; $i < $filas; $i++) {
                 if ($mprima['codIva'] != $tasas[$i]["idTasaIva"])

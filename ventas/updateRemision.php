@@ -13,7 +13,7 @@ include "includes/conect.php";
 </head>
 <body>
 <div id="contenedor">
-<div id="saludo"><strong>ACTUALIZACIÓN DEL PRODUCTO EN EL PEDIDO</strong></div>
+<div id="saludo"><strong>ACTUALIZACIÃ“N DEL PRODUCTO EN EL PEDIDO</strong></div>
 <table border="0" align="center">
   <tr>
     <td width="359"><div align="center"><strong>Producto</strong></div></td>

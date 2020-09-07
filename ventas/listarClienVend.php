@@ -32,7 +32,7 @@ $vendedor=$rowv['nom_personal'];
 <div id="saludo1"><strong>LISTA DE CLIENTES DE <?php echo mb_strtoupper($vendedor); ?> </strong></div> 
 <table  align="center" width="700" border="0" summary="encabezado">
   <tr> 
-      <td><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú"></div></td>
+      <td><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al MenÃº"></div></td>
   </tr>
 </table>
 <table border="0" align="center" cellspacing="0" summary="cuerpo">
@@ -40,10 +40,10 @@ $vendedor=$rowv['nom_personal'];
       <th width="10" class="formatoEncabezados"></th>
     <th width="100" align="center" class="formatoEncabezados">NIT</th>
     <th width="348" align="center" class="formatoEncabezados">Cliente</th>
-    <th width="300" align="center" class="formatoEncabezados">Dirección</th>
+    <th width="300" align="center" class="formatoEncabezados">DirecciÃ³n</th>
 	<th width="156" align="center" class="formatoEncabezados">Contacto</th>
     <th width="141" align="center" class="formatoEncabezados">Cargo Contacto</th>
-	<th width="61" align="center" class="formatoEncabezados">Teléfono</th>
+	<th width="61" align="center" class="formatoEncabezados">TelÃ©fono</th>
   </tr>   
 <?php
 //conectar con el servidor de BD
@@ -51,7 +51,7 @@ $vendedor=$rowv['nom_personal'];
 //conectar con la tabla (ej. use datos;) 
 //sentencia SQL    tblusuarios.IdUsuario,
 $sql="	select nitCliente as Nit, nomCliente as Cliente, dirCliente as Direccion, contactoCliente, cargoCliente, telCliente as Tel1, desCatClien, faxCliente As Fax, celCliente as Cel, emailCliente as Eml, ciudad 
-from clientes, cat_clien, ciudades where codVendedor=$IdPersonal and idCatCliente=idCatClien and ciudadCliente=Id_ciudad AND estadoCliente='A' order by Cliente";
+from clientes, cat_clien, ciudades where codVendedor=$IdPersonal and idCatCliente=idCatClien and ciudadCliente=IdCiudad AND estadoCliente='A' order by Cliente";
 $result=mysqli_query($link,$sql);
 $a=1;
 while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
@@ -71,7 +71,7 @@ while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
 	$sqli="select Factura, fechaFactura, fechaVenc, idRemision, ordenCompra, nomCliente, telCliente, dirCliente, 
 		Ciudad, nom_personal as vendedor, Total, factura.Estado 
 		from factura, clientes, personal,ciudades
-		where Nit_cliente=nitCliente and Nit_cliente='$nit' and Id_ciudad=ciudadCliente and codVendedor=Id_personal ORDER BY factura desc";
+		where Nit_cliente=nitCliente and Nit_cliente='$nit' and IdCiudad=ciudadCliente and codVendedor=Id_personal ORDER BY factura desc";
 	$resulti=mysqli_query($link,$sqli);
 	echo '<tr><td colspan="7"><div class="commenthidden" id="UniqueName'.$a.'"><table width="75%" border="0" align="center" cellspacing="0" summary="cuerpo">
 	<tr>
@@ -99,7 +99,7 @@ mysqli_close($link);//Cerrar la conexion
 ?>
 
 </table>
-<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú"></div>
+<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al MenÃº"></div>
 </div>
  </body>
 </html>

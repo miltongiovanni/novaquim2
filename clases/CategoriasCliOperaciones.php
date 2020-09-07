@@ -24,7 +24,7 @@ class CategoriasCliOperaciones
     }
     public function getCatsCli()
     {
-        $qry = "SELECT idCatClien, desCatClien FROM cat_clien order by idCatClien";
+        $qry = "SELECT idCatClien, desCatClien FROM cat_clien order by desCatClien";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);

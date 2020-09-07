@@ -14,7 +14,7 @@ include "../includes/valAcc.php";
 <div id="saludo1"><strong>LISTA DE FACTURAS DE VENTA </strong></div> 
 <table  align="center" width="700" border="0" summary="encabezado">
   <tr> 
-      <td><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú"></div></td>
+      <td><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al MenÃº"></div></td>
   </tr>
 </table>
 <table border="0" align="center" cellspacing="0" summary="cuerpo">
@@ -22,7 +22,7 @@ include "../includes/valAcc.php";
       <th width="8" class="formatoEncabezados"></th>
       <th width="50" class="formatoEncabezados">Factura</th>
       <th width="49" class="formatoEncabezados">Pedido</th>
-      <th width="61" class="formatoEncabezados">Remisión</th>
+      <th width="61" class="formatoEncabezados">RemisiÃ³n</th>
       <th width="379" class="formatoEncabezados">Cliente</th>
       <th width="113" class="formatoEncabezados">Fecha Factura</th>
       <th width="113" class="formatoEncabezados">Fecha Vencimiento</th>
@@ -44,7 +44,7 @@ $link=conectarServidor();
 $sql="	select Factura, idPedido, Nit_cliente, fechaFactura, fechaVenc, idRemision, ordenCompra, nomCliente, telCliente, dirCliente, 
 		Ciudad, nom_personal as vendedor, Total, factura.Estado 
 		from factura, clientes, personal,ciudades
-		where Nit_cliente=nitCliente and Id_ciudad=ciudadCliente and codVendedor=Id_personal and Nit_cliente='$cliente' ORDER BY factura desc;";
+		where Nit_cliente=nitCliente and IdCiudad=ciudadCliente and codVendedor=Id_personal and Nit_cliente='$cliente' ORDER BY factura desc;";
 $result=mysqli_query($link,$sql);
 $a=1;
 while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
@@ -81,7 +81,7 @@ select Factura, Cod_producto, Can_producto, DesServicio as Producto, tasa, prec_
 	$resulti=mysqli_query($link,$sqli);
 	echo '<tr><td colspan="7"><div class="commenthidden" id="UniqueName'.$a.'"><table width="75%" border="0" align="center" cellspacing="0" summary="cuerpo">
 	<tr>
-      <th width="8%" class="formatoEncabezados">Código</th>
+      <th width="8%" class="formatoEncabezados">CÃ³digo</th>
 	  <th width="60%" class="formatoEncabezados">Producto</th>
       <th width="6%" class="formatoEncabezados">Cantidad</th>
   	</tr>';
@@ -99,12 +99,12 @@ select Factura, Cod_producto, Can_producto, DesServicio as Producto, tasa, prec_
 }
 mysqli_free_result($result);
 mysqli_free_result($resulti);
-/* cerrar la conexión */
+/* cerrar la conexiÃ³n */
 mysqli_close($link);
 ?>
 
 </table>
-<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú"></div>
+<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al MenÃº"></div>
 </div>
  </body>
 </html>

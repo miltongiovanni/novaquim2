@@ -137,7 +137,7 @@ $cambio = $cambioOperador->getCambio($idCambio);
             </div>
             <div class="form-group row">
                 <select name="codPresentacionAnt" id="codPresentacionAnt" class="form-control col-4"
-                        style="margin: 0 5px 0 0;" onchange="findLotePresentacion(this.value);">
+                        style="margin: 0 5px 0 0;" onchange="findLotePresentacion(this.value);" required>
                     <option selected disabled value="">------------------------------</option>
                     <?php
                     $InvProdTerminadoOperador = new InvProdTerminadosOperaciones();
@@ -149,7 +149,7 @@ $cambio = $cambioOperador->getCambio($idCambio);
                 </select>
 
                 <select name="loteProd" id="loteProd" class="form-control col-1" style="margin: 0 5px 0 0;"
-                        onchange="findInvLotePresentacion(this.value);">
+                        onchange="findInvLotePresentacion(this.value);" required>
                 </select>
                 <select name="cantPresentacionAnt" id="cantPresentacionAnt" class="form-control col-1"
                         style="margin: 0 5px 0 0;">
@@ -196,7 +196,7 @@ $cambio = $cambioOperador->getCambio($idCambio);
             </div>
             <div class="form-group row">
                 <select name="codPresentacionNvo" id="codPresentacionNvo" class="form-control col-4"
-                        style="margin: 0 5px 0 0;">
+                        style="margin: 0 5px 0 0;" required>
                     <option selected disabled value="">------------------------------</option>
                     <?php
                     $presentaciones = $DetCambioOperador->getPresentacionesByCod($detCambio['codPresentacionAnt'], $idCambio, $volCambiar);

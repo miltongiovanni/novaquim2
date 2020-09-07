@@ -44,15 +44,15 @@ include "../includes/valAcc.php";
         </div>
         <div class="form-group row">
             <label class="col-form-label col-2 text-right"  for="numFact"><strong>Número de Factura</strong></label>
-            <input type="text" class="form-control col-2" name="numFact" id="numFact" onKeyPress="return aceptaNum(event)">
+            <input type="text" class="form-control col-2" name="numFact" id="numFact" onKeyPress="return aceptaNum(event)" required>
         </div>
         <div class="form-group row">
             <label class="col-form-label col-2 text-right"  for="fechGasto"><strong>Fecha de compra</strong></label>
-            <input type="date" class="form-control col-2" name="fechGasto" id="fechGasto">
+            <input type="date" class="form-control col-2" name="fechGasto" id="fechGasto" required>
         </div>
         <div class="form-group row">
             <label class="col-form-label col-2 text-right"  for="fechVenc"><strong>Fecha de vencimiento</strong></label>
-            <input type="date" class="form-control col-2" name="fechVenc" id="fechVenc">
+            <input type="date" class="form-control col-2" name="fechVenc" id="fechVenc" required>
         </div>
         <div class="form-group row">
                         <div class="col-1 text-center" >

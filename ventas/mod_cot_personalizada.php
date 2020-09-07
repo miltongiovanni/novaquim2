@@ -6,7 +6,7 @@ include "../includes/valAcc.php";
 <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Seleccionar Categoría</title>
+<title>Seleccionar CategorÃ­a</title>
 <script  src="../js/validar.js"></script>
 
 	
@@ -14,11 +14,11 @@ include "../includes/valAcc.php";
 <body>
 <div id="contenedor">
 
-<div id="saludo"><strong>SELECCIÓN  DE COTIZACIÓN PERSONALIZADA</strong></div> 
+<div id="saludo"><strong>SELECCIÃ“N  DE COTIZACIÃ“N PERSONALIZADA</strong></div> 
 <form id="form1" name="form1" method="post" action="det_cot_personalizada.php">
 <table border="0" align="center">
   	<tr>
-    	<td width="85" align="right"><strong>Cotización</strong></td>
+    	<td width="85" align="right"><strong>CotizaciÃ³n</strong></td>
 		<td width="96">
       	<div align="center"><input type="text" name="cotizacion" size=10 onKeyPress="return aceptaNum(event)">
         </div></td>

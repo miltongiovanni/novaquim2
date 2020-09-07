@@ -98,7 +98,7 @@ include "../includes/valAcc.php";
 	}
 	if($Crear==1)
 	{
-		//MIRA CUANTOS PRODUCTOS HAY EN EL PEDIDO  --- DEBE SER M¡XIMO 40 PRODUCTOS
+		//MIRA CUANTOS PRODUCTOS HAY EN EL PEDIDO  --- DEBE SER M√ÅXIMO 40 PRODUCTOS
 		$qry1="select * from det_pedido where Id_ped=$pedido";
 		$result1=mysql_db_query($bd,$qry1);
 		$items=mysql_num_rows ($result1);
@@ -119,7 +119,7 @@ include "../includes/valAcc.php";
 		else
 		{
 			echo'<script >
-			alert("M·ximo 40 productos por pedido")
+			alert("M√°ximo 40 productos por pedido")
 			</script>';	
 			mysql_close($link);
 		}
@@ -127,13 +127,13 @@ include "../includes/valAcc.php";
 	}
 	if($Crear==2)
 	{
-		//MIRA CUANTOS PRODUCTOS HAY EN EL PEDIDO  --- DEBE SER M¡XIMO 40 PRODUCTOS
+		//MIRA CUANTOS PRODUCTOS HAY EN EL PEDIDO  --- DEBE SER M√ÅXIMO 40 PRODUCTOS
 		$qry1="select * from det_pedido where Id_ped=$pedido";
 		$result1=mysql_db_query($bd,$qry1);
 		$items=mysql_num_rows ($result1);
 		if ($items<40)
 		{	
-			//PRECIOS DE PRODUCTOS DE DISTRIBUCI”N
+			//PRECIOS DE PRODUCTOS DE DISTRIBUCI√ìN
 			$qryins_d="insert into det_pedido (Id_ped, Cod_producto, Can_producto, Prec_producto) values ( $pedido, $cod_producto, $cantidad, 0)";
 			$resultins_d=mysql_db_query($bd,$qryins_d);
 			$qrybus="select Id_ped, Cod_producto, Precio_vta, directa from det_pedido, distribucion 
@@ -147,14 +147,14 @@ include "../includes/valAcc.php";
 		else
 		{
 			echo'<script >
-			alert("M·ximo 40 productos por pedido")
+			alert("M√°ximo 40 productos por pedido")
 			</script>';	
 		}
 		mysql_close($link);
 	}
 	if($Crear==4)
 	{
-		//MIRA CUANTOS PRODUCTOS HAY EN EL PEDIDO  --- DEBE SER M¡XIMO 40 PRODUCTOS
+		//MIRA CUANTOS PRODUCTOS HAY EN EL PEDIDO  --- DEBE SER M√ÅXIMO 40 PRODUCTOS
 		$qry1="select * from det_pedido where Id_ped=$pedido";
 		$result1=mysql_db_query($bd,$qry1);
 		$items=mysql_num_rows ($result1);
@@ -174,15 +174,15 @@ include "../includes/valAcc.php";
 		else
 		{
 			echo'<script >
-			alert("M·ximo 40 productos por pedido")
+			alert("M√°ximo 40 productos por pedido")
 			</script>';	
 		}
 		mysql_close($link);
 	}
 	$link=conectarServidor(); 
-	$qry2="Select nomCliente, idPedido, fechaPedido, fechaEntrega, codVendedor, nom_personal, tipo_precio, pedido.Estado, Nom_sucursal, Dir_sucursal, telCliente 
+	$qry2="Select nomCliente, idPedido, fechaPedido, fechaEntrega, codVendedor, nom_personal, tipo_precio, pedido.Estado, nomSucursal, dirSucursal, telCliente 
 		FROM pedido, personal, clientes, tip_precio, clientes_sucursal 
-		where codVendedor=Id_personal and idPedido=$pedido and clientes.nitCliente=nit_cliente and Id_precio=tipoPrecio and idSucursal=Id_sucursal and clientes_sucursal.Nit_clien=Nit_cliente";
+		where codVendedor=Id_personal and idPedido=$pedido and clientes.nitCliente=nit_cliente and Id_precio=tipoPrecio and idSucursal=idSucursal and clientes_sucursal.Nit_clien=Nit_cliente";
 	$result2=mysql_db_query($bd,$qry2);
 	if ($row2=mysql_fetch_array($result2))
 	{
@@ -228,7 +228,7 @@ include "../includes/valAcc.php";
         
       <td align="right"  ><strong>Tipo de Precio</strong></td>
    	  <td colspan="1" align="left"><?php echo $row2['tipo_precio']; ?></td>
-      <td align="right"  ><strong>TelÈfono</strong></td>
+      <td align="right"  ><strong>Tel√©fono</strong></td>
    	  <td colspan="1" align="left"><?php echo $row2['Tel_clien']; ?></td>
     </tr>
     <tr>
@@ -236,7 +236,7 @@ include "../includes/valAcc.php";
       	<td colspan="1" align="left"><?php echo $row2['Nom_sucursal']; ?></td>
       	
         
-      <td align="right"  ><strong>DirecciÛn de Entrega</strong></td>
+      <td align="right"  ><strong>Direcci√≥n de Entrega</strong></td>
    	  <td colspan="2" align="left"><?php echo $row2['Dir_sucursal']; ?></td>
     </tr>
     <tr><td colspan="6">&nbsp;</td></tr>
@@ -270,7 +270,7 @@ include "../includes/valAcc.php";
 			 <form method="post" action="det_pedidoVD.php" name="form2">
 			 <table border="0"  align="center" cellpadding="0" summary="cuerpo1">
 			<tr>
-				<td colspan="4"><div align="center"><strong>Productos DistribuciÛn</strong></div></td>
+				<td colspan="4"><div align="center"><strong>Productos Distribuci√≥n</strong></div></td>
 				<td colspan="1"><div align="center"><strong>Unidades</strong></div></td>
 			</tr>
 			<tr>
@@ -314,7 +314,7 @@ include "../includes/valAcc.php";
           <tr>
           	<th width="56"></th>
           	<th width="41" align="center"><strong>Item</strong></th>
-            <th width="67" align="center"><strong>CÛdigo</strong></th>
+            <th width="67" align="center"><strong>C√≥digo</strong></th>
             <th width="417" align="center"><strong>Producto </strong></th>
 			<th width="86" align="center" ><strong>Cantidad </strong></th>
             <th width="94" align="center"><strong>Precio </strong></th>
@@ -514,7 +514,7 @@ include "../includes/valAcc.php";
 		  echo'<input name="Crear" type="hidden" value="0">'; 
 		  echo'<input name="pedido" type="hidden" value="'.$pedido.'">'; 
 	  ?> 
-<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men˙"></div>
+<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men√∫"></div>
 </div> 
 </body>
 </html>

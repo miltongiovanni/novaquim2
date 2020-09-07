@@ -4,7 +4,7 @@ include "../includes/valAcc.php";
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <title>Consulta de Notas Crédico por Fecha</title>
+    <title>Consulta de Notas CrÃ©dico por Fecha</title>
     <meta charset="utf-8">
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <script  src="../js/validar.js"></script>
@@ -19,7 +19,7 @@ include "../includes/valAcc.php";
 </head>
 <body> 
 <div id="contenedor">
-<div id="saludo"><strong>CONSULTA DE NOTAS CRÉDITO POR FECHA</strong></div>
+<div id="saludo"><strong>CONSULTA DE NOTAS CRÃ‰DITO POR FECHA</strong></div>
 <form method="post" action="listarConsNotas.php" name="form1">	
   	<table align="center">
    <tr>

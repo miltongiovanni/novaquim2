@@ -18,7 +18,7 @@ include "../includes/valAcc.php";
 <div id="saludo1"><strong>LISTA DE COTIZACIONES</strong></div>
 <table align="center" width="100%" border="0">
   <tr> 
-        <td width="1177" align="right"> <form action="Cotiza_Xls.php" method="post" target="_blank"><input name="Submit" type="submit" class="resaltado" value="Exportar a Excel"></form></td><td width="93"><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú">
+        <td width="1177" align="right"> <form action="Cotiza_Xls.php" method="post" target="_blank"><input name="Submit" type="submit" class="resaltado" value="Exportar a Excel"></form></td><td width="93"><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al MenÃº">
         </div></td>
     </tr>
 </table>
@@ -27,9 +27,9 @@ include "../includes/valAcc.php";
     <th width="2%" class="formatoEncabezados"></th>
     <th width="3%" class="formatoEncabezados">Id</th>
     <th width="29%" class="formatoEncabezados">Cliente</th>
-    <th width="16%" class="formatoEncabezados">Categoría Cliente</th>
+    <th width="16%" class="formatoEncabezados">CategorÃ­a Cliente</th>
     <th width="14%" class="formatoEncabezados">Vendedor</th>
-    <th width="12%" class="formatoEncabezados">Fecha Cotización</th>
+    <th width="12%" class="formatoEncabezados">Fecha CotizaciÃ³n</th>
     <th width="10%" class="formatoEncabezados">Precio</th>
     <th width="14%" class="formatoEncabezados">Presentaciones </th>
   </tr>   
@@ -54,14 +54,14 @@ include "../includes/valAcc.php";
 	  <td class="formatoDatos"><div align="center">'.$row['Des_cat_cli'].'</div></td>
 	  <td class="formatoDatos"><div align="center">'.$row['nom_personal'].'</div></td>
 	  <td class="formatoDatos"><div align="center">'.$row['Fech_Cotizacion'].'</div></td>';
-	  if ($row['precio']==1) $precio="Fábrica";
+	  if ($row['precio']==1) $precio="FÃ¡brica";
 	  if ($row['precio']==2) $precio="Distribuidor";
 	  if ($row['precio']==3) $precio="Detal";
 	  if ($row['precio']==4) $precio="Mayorista";
 	  if ($row['precio']==5) $precio="Super";
 	  echo '<td class="formatoDatos"><div align="center">'.$precio.'</div></td>';
 	  if ($row['presentaciones']==1) $presentacion="Todas";
-	  if ($row['presentaciones']==2) $presentacion="Pequeñas";
+	  if ($row['presentaciones']==2) $presentacion="PequeÃ±as";
 	  if ($row['presentaciones']==3) $presentacion="Grandes";
 	  echo '<td class="formatoDatos"><div align="center">'.$presentacion.'</div></td>';
 	  
@@ -71,10 +71,10 @@ include "../includes/valAcc.php";
 	  if (in_array(1, $seleccion1)) $prodnova[]=" Limpieza Equipos";
 	  if (in_array(2, $seleccion1)) $prodnova[]=" Limpieza General  ";
 	  if (in_array(3, $seleccion1)) $prodnova[]=" Mantenimiento de pisos ";
-	  if (in_array(4, $seleccion1)) $prodnova[]=" Productos para Lavandería ";
-	  if (in_array(5, $seleccion1)) $prodnova[]=" Aseo Doméstico y Oficina ";
+	  if (in_array(4, $seleccion1)) $prodnova[]=" Productos para LavanderÃ­a ";
+	  if (in_array(5, $seleccion1)) $prodnova[]=" Aseo DomÃ©stico y Oficina ";
 	  if (in_array(6, $seleccion1)) $prodnova[]=" Higiene Cocina ";
-	  if (in_array(7, $seleccion1)) $prodnova[]=" Línea Automotriz ";
+	  if (in_array(7, $seleccion1)) $prodnova[]=" LÃ­nea Automotriz ";
 
 	  $opciones_prod = implode(",", $prodnova);
 	  if ($row['distribucion'])
@@ -84,25 +84,25 @@ include "../includes/valAcc.php";
 		$distrib="";
 		if (in_array(1, $seleccion)) $distrib[]=" Implementos de Aseo";
 		if (in_array(2, $seleccion)) $distrib[]=" Desechables ";
-		if (in_array(3, $seleccion)) $distrib[]=" Cafetería ";
+		if (in_array(3, $seleccion)) $distrib[]=" CafeterÃ­a ";
 		if (in_array(4, $seleccion)) $distrib[]=" Abarrotes ";
-		if (in_array(5, $seleccion)) $distrib[]=" Distribución Aseo ";
+		if (in_array(5, $seleccion)) $distrib[]=" DistribuciÃ³n Aseo ";
 		if (in_array(6, $seleccion)) $distrib[]=" Aseo Personal ";
 		if (in_array(7, $seleccion)) $distrib[]=" Hogar ";
-		if (in_array(8, $seleccion)) $distrib[]=" Papelería ";
+		if (in_array(8, $seleccion)) $distrib[]=" PapelerÃ­a ";
 		if (in_array(9, $seleccion)) $distrib[]=" Otros ";
 		$opciones_dist = implode(",", $distrib);
 	  }
 	  else
 	  {
-		  $opciones_dist = 'No eligió Productos de Distribución';
+		  $opciones_dist = 'No eligiÃ³ Productos de DistribuciÃ³n';
 	  }
 	  echo'</tr>';
 	  echo '<tr><td colspan="9"><div class="commenthidden" id="UniqueName'.$a.'"><table width="100%" border="0" align="center" cellspacing="0" bordercolor="#CCCCCC">
 	  <tr>
 		<th width="45%" class="formatoEncabezados">Productos Novaquim</th>
 		<th width="10%" class="formatoEncabezados"></th>
-		<th width="45%" class="formatoEncabezados">Productos de Distribución</th>
+		<th width="45%" class="formatoEncabezados">Productos de DistribuciÃ³n</th>
 	  </tr>';
 	  echo '<tr>
 	  <td class="formatoDatos"><div align="center">'.$opciones_prod.'</div></td>
@@ -115,7 +115,7 @@ include "../includes/valAcc.php";
 	 mysqli_close($link);//Cerrar la conexion
 ?>
 </table>
-<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú"></div>
+<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al MenÃº"></div>
 </div>
 </body>
 </html>

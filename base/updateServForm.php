@@ -41,7 +41,7 @@ $servicio = $servicioperador->getServicio($idServicio);
             $manager = new TasaIvaOperaciones();
             $tasas = $manager->getTasasIva();
             $filas = count($tasas);
-            echo '<select name="codIva" id="codIva" class="form-control col-2">';
+            echo '<select name="codIva" id="codIva" class="form-control col-2" required>';
             echo '<option selected value="' . $servicio['codIva'] . '">' . $servicio['iva'] . '</option>';
             for ($i = 0; $i < $filas; $i++) {
                 if ($servicio['codIva'] != $tasas[$i]["idTasaIva"]) {

@@ -5,7 +5,7 @@ include "../includes/valAcc.php";
 <html lang="es">
 <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css"><head>
 <meta charset="utf-8">
-<title>Seleccionar Nota de Crédito a  Modificar</title>
+<title>Seleccionar Nota de CrÃ©dito a  Modificar</title>
 <script  src="../js/validar.js"></script>
 <script  src="scripts/block.js"></script>	
 	<script >
@@ -15,11 +15,11 @@ include "../includes/valAcc.php";
 </head>
 <body>
 <div id="contenedor">
-<div id="saludo"><strong> NOTA DE CRÉDITO A MODIFICAR</strong></div>
+<div id="saludo"><strong> NOTA DE CRÃ‰DITO A MODIFICAR</strong></div>
 <table border="0" align="center">
 <form id="form1" name="form1" method="post" action="ModNotaC.php">	
     <tr> 
-        <td width="152"><div align="right"><strong>No. de Nota Crédito&nbsp;</strong></div></td>
+        <td width="152"><div align="right"><strong>No. de Nota CrÃ©dito&nbsp;</strong></div></td>
         <td width="143"><input type="text" name="nota" size=12 onKeyPress="return aceptaNum(event)"></td><input type="hidden" name="crear" value="2">
     </tr>
     <tr>

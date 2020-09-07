@@ -6,7 +6,7 @@ include "includes/conect.php";
 <html lang="es">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Acualización</title>
+<title>AcualizaciÃ³n</title>
 </head>
 <body>
 <?php
@@ -26,7 +26,7 @@ include "includes/conect.php";
 	if($result==1)
 	{
 		$ruta="";
-		mover_pag($ruta,"Cotización Actualizada correctamente");
+		mover_pag($ruta,"CotizaciÃ³n Actualizada correctamente");
 	}
 	echo'</form>';
 	

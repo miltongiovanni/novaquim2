@@ -35,7 +35,7 @@ $relacion = $relEnvDisOperador->getRelEnvDis($idEnvDis);
         <input id="idEnvDis" name="idEnvDis" type="hidden" value="<?= $idEnvDis ?>">
         <div class="form-group row">
             <label class="col-form-label col-2" for="idDis"><strong>Producto de Distribución</strong></label>
-            <select name="idDis" id="idDis" class="form-control col-2">
+            <select name="idDis" id="idDis" class="form-control col-2" required>
                 <option selected value="<?= $relacion['idDistribucion'] ?>"><?= $relacion['producto'] ?></option>
                 <?php
                 $ProductoDistribucionOperador = new ProductosDistribucionOperaciones();
@@ -51,7 +51,7 @@ $relacion = $relEnvDisOperador->getRelEnvDis($idEnvDis);
         </div>
         <div class="form-group row">
             <label class="col-form-label col-2" for="idEnv"><strong>Envase</strong></label>
-            <select name="idEnv" id="idEnv" class="form-control col-2">
+            <select name="idEnv" id="idEnv" class="form-control col-2" required>
                 <option selected value="<?= $relacion['codEnvase'] ?>"><?= $relacion['nomEnvase'] ?></option>
                 <?php
                 $EnvasesOperador = new EnvasesOperaciones();
@@ -67,7 +67,7 @@ $relacion = $relEnvDisOperador->getRelEnvDis($idEnvDis);
         </div>
         <div class="form-group row">
             <label class="col-form-label col-2" for="idTapa"><strong>Tapa</strong></label>
-            <select name="idTapa" id="idTapa" class="form-control col-2">
+            <select name="idTapa" id="idTapa" class="form-control col-2" required>
                 <option selected value="<?= $relacion['codTapa'] ?>"><?= $relacion['tapa'] ?></option>
                 <?php
                 $TapasOperador = new TapasOperaciones();

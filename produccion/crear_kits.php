@@ -46,7 +46,7 @@ spl_autoload_register('cargarClases');
         <div class="form-group row">
 
             <label class="col-form-label col-2" for="tipo"><strong>Tipo de kit</strong></label>
-            <select name="tipo" id="tipo" class="form-control col-2" onchange="seleccionarTipo(this.value);">
+            <select name="tipo" id="tipo" class="form-control col-2" onchange="seleccionarTipo(this.value);" required>
                 <option disabled selected value="">---------------</option>
                 <option value=1>Kit Novaquim</option>
                 <option value=2>Kit Distribución</option>
@@ -60,7 +60,7 @@ spl_autoload_register('cargarClases');
             $EnvasesOperador = new EnvasesOperaciones();
             $envases = $EnvasesOperador->getEnvases();
             $filas = count($envases);
-            echo '<select name="codEnvase" id="codEnvase" class="form-control col-2">';
+            echo '<select name="codEnvase" id="codEnvase" class="form-control col-2" required>';
             echo '<option disabled selected value="">-----------------------------</option>';
             for ($i = 0; $i < $filas; $i++) {
                 echo '<option value="' . $envases[$i]["codEnvase"] . '">' . $envases[$i]['nomEnvase'] . '</option>';
@@ -70,10 +70,10 @@ spl_autoload_register('cargarClases');
         </div>
         <div class="form-group row">
             <div class="col-1 text-center" >
-                <button class="button"  onclick="return Enviar(this.form)"><span>Continuar</span></button>
+                <button class="button"  type="reset"><span>Reiniciar</span></button>
             </div>
             <div class="col-1 text-center" >
-                <button class="button"  type="reset"><span>Reiniciar</span></button>
+                <button class="button"  onclick="return Enviar(this.form)"><span>Continuar</span></button>
             </div>
         </div>
     </form>

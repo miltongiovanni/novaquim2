@@ -6,7 +6,7 @@ include "includes/conect.php";
 <html lang="es">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Acualización</title>
+<title>AcualizaciÃ³n</title>
 </head>
 <body>
 <?php
@@ -17,7 +17,7 @@ foreach ($_POST as $nombre_campo => $valor)
   eval($asignacion); 
 }  
 $link=conectarServidor();
-//ESTO ES PARA MIRAR LA CANTIDAD DE PRODUCTO QUE TENÌA LA NOTA
+//ESTO ES PARA MIRAR LA CANTIDAD DE PRODUCTO QUE TENÃŒA LA NOTA
 $qrycanot="select Can_producto as CantNota from det_nota_c where Id_Nota=$mensaje and Cod_producto=$codigo;";
 $resultcanot=mysqli_query($link,$qrycanot);
 $row_canot=mysqli_fetch_array($resultcanot);
@@ -25,7 +25,7 @@ $CantNota=$row_canot['CantNota'];
 $cambio=$cantidad-$CantNota;
 if($codigo <100000)
 {	
- //SI ES PRODUCTO DE LÍNEA
+ //SI ES PRODUCTO DE LÃNEA
   $qrylot="SELECT loteProducto as Lote from remision, det_remision, factura, nota_c 
   WHERE remision.idRemision=det_remision.idRemision AND factura.idRemision=remision.idRemision and Factura=Fac_orig and codProducto=$codigo and Nota=$mensaje;";
   $resultlot=mysqli_query($link,$qrylot);
@@ -48,7 +48,7 @@ if($codigo <100000)
 	$qryupt="update inv_prod set invProd=$invt where loteProd=$lote and Cod_prese=$codigo";
   }
   $resultupt=mysqli_query($link,$qryupt);
-  //ACTUALIZACIÓN DEL DETALLE DE LA NOTA DE CREDITOS
+  //ACTUALIZACIÃ“N DEL DETALLE DE LA NOTA DE CREDITOS
   $qryr="update det_nota_c set Can_producto=$cantidad where Id_Nota=$mensaje and Cod_producto=$codigo";
   $resultr=mysqli_query($link,$qryr);
   echo' <script >

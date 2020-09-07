@@ -4,17 +4,17 @@ include "../includes/valAcc.php";
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<title>Lista de Clientes de Cotización</title>
+<title>Lista de Clientes de CotizaciÃ³n</title>
 <meta charset="utf-8">
 <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
 <script  src="../js/validar.js"></script>
 </head>
 <body>
 <div id="contenedor">
-<div id="saludo1"><strong>LISTA DE CLIENTES DE COTIZACIÓN</strong></div>
+<div id="saludo1"><strong>LISTA DE CLIENTES DE COTIZACIÃ“N</strong></div>
 <table  align="center" width="700"border="0">
   <tr> 
-      <td><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú">
+      <td><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al MenÃº">
       </div></td>
   </tr>
 </table>
@@ -23,10 +23,10 @@ include "../includes/valAcc.php";
 	<th width="10" class="formatoEncabezados"></th>
     <th width="100" align="center" class="formatoEncabezados">Id</th>
     <th width="348" align="center" class="formatoEncabezados">Cliente</th>
-    <th width="300" align="center" class="formatoEncabezados">Dirección</th>
+    <th width="300" align="center" class="formatoEncabezados">DirecciÃ³n</th>
 	<th width="156" align="center" class="formatoEncabezados">Contacto</th>
     <th width="141" align="center" class="formatoEncabezados">Cargo Contacto</th>
-	<th width="61" align="center" class="formatoEncabezados">Teléfono</th>
+	<th width="61" align="center" class="formatoEncabezados">TelÃ©fono</th>
 	<th width="155" align="center" class="formatoEncabezados">Actividad</th>
   </tr>   
 <?php
@@ -55,7 +55,7 @@ while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
 	<tr>
 	  <th width="60" class="formatoEncabezados">Fax</th>
 	  <th width="100" class="formatoEncabezados">Celular</th>
-      <th width="200" class="formatoEncabezados">Correo Electrónico</th>
+      <th width="200" class="formatoEncabezados">Correo ElectrÃ³nico</th>
   	</tr>';
 	echo '<tr>
 	<td class="formatoDatos"><div align="left">'.$row['Fax_clien'].'</div></td>
@@ -81,7 +81,7 @@ mysqli_close($link);//Cerrar la conexion
         <td>&nbsp;</td>
     </tr>
     <tr> 
-      <td><div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú">
+      <td><div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al MenÃº">
       </div></td>
     </tr>
 </table>

@@ -20,7 +20,7 @@ $objPHPExcel->getProperties()->setCreator("Industrias Novaquim")
 							 ->setLastModifiedBy("Milton Espitia")
 							 ->setTitle("Productos")
 							 ->setSubject("Lista de Facturas")
-							 ->setDescription("Lista de Facturas por período")
+							 ->setDescription("Lista de Facturas por perÃ­odo")
 							 ->setKeywords("Lista Facturas")
 							 ->setCategory("Lista");
 // Add some data
@@ -29,7 +29,7 @@ $objPHPExcel->setActiveSheetIndex(0)
 			->setCellValue('B1', 'Cliente')
 			->setCellValue('C1', 'Contacto')
 			->setCellValue('D1', 'Cargo')
-            ->setCellValue('E1', iconv("iso-8859-1", "UTF-8",'Teléfono'))
+            ->setCellValue('E1', iconv("iso-8859-1", "UTF-8",'TelÃ©fono'))
 			->setCellValue('F1', 'Celular')
 			->setCellValue('G1', 'Fecha Factura')
 			->setCellValue('H1', 'Fecha Vencimiento')
@@ -40,7 +40,7 @@ $objPHPExcel->setActiveSheetIndex(0)
 // Rename sheet
 $objPHPExcel->getActiveSheet()->setTitle(iconv("iso-8859-1", "UTF-8",'Facturas por Cobrar'));
 $link=conectarServidor();
-$sql="	select Factura, nomCliente as Cliente, contactoCliente, cargoCliente, telCliente as Teléfono, celCliente as Celular, fechaFactura as 'Fecha Factura', fechaVenc as 'Fecha Vmto', Total ,(Total - retencionIva- retencionIca - retencionFte) as 'Valor a Cobrar', Subtotal
+$sql="	select Factura, nomCliente as Cliente, contactoCliente, cargoCliente, telCliente as TelÃ©fono, celCliente as Celular, fechaFactura as 'Fecha Factura', fechaVenc as 'Fecha Vmto', Total ,(Total - retencionIva- retencionIca - retencionFte) as 'Valor a Cobrar', Subtotal
 from factura, clientes WHERE Nit_cliente=nitCliente and factura.Estado='P' ;";
 $result=mysqli_query($link,$sql) or die("Error al conectar a la base de datos.");
 $i=2;
@@ -60,7 +60,7 @@ while($row= mysqli_fetch_array($result, MYSQLI_BOTH))
 	$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(1, $i, iconv("iso-8859-1", "UTF-8",$row['Cliente']));
 	$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(2, $i,iconv("iso-8859-1", "UTF-8", $row['Contacto']));
 	$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(3, $i, iconv("iso-8859-1", "UTF-8",$row['Cargo']));
-	$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(4, $i, iconv("iso-8859-1", "UTF-8",$row['Teléfono']));
+	$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(4, $i, iconv("iso-8859-1", "UTF-8",$row['TelÃ©fono']));
 	$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(5, $i, iconv("iso-8859-1", "UTF-8",$row['Celular']));
 	$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(6, $i, iconv("iso-8859-1", "UTF-8",$row['Fecha Factura']));
 	$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(7, $i, iconv("iso-8859-1", "UTF-8",$row['Fecha Vmto']));
@@ -72,7 +72,7 @@ while($row= mysqli_fetch_array($result, MYSQLI_BOTH))
 
 // Set active sheet index to the first sheet, so Excel opens this as the first sheet
 $objPHPExcel->setActiveSheetIndex(0);
-// Redirect output to a client’s web browser (Excel5)
+// Redirect output to a clientâ€™s web browser (Excel5)
 header('Content-Type: application/vnd.ms-excel');
 header('Content-Disposition: attachment;filename="Cobros.xls"');
 header('Cache-Control: max-age=0');

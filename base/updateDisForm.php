@@ -54,7 +54,7 @@ $productoDistribucion = $ProductoDistribucionOperador->getProductoDistribucion($
             $manager = new TasaIvaOperaciones();
             $tasas = $manager->getTasasIva();
             $filas = count($tasas);
-            echo '<select name="codIva" id="codIva" class="form-control col-3">';
+            echo '<select name="codIva" id="codIva" class="form-control col-3" required>';
             echo '<option selected value="' . $productoDistribucion['codIva'] . '">' . $productoDistribucion['iva'] . '</option>';
             for ($i = 0; $i < $filas; $i++) {
                 if ($tasas[$i]["idTasaIva"] != $productoDistribucion['codIva']) {
@@ -72,7 +72,7 @@ $productoDistribucion = $ProductoDistribucionOperador->getProductoDistribucion($
             <label class="col-form-label col-1" for="cotiza"><strong>Cotizar</strong></label>
             <?php
             if ($productoDistribucion['cotiza'] == 0) {
-                echo '<select name="cotiza" id="cotiza" class="form-control col-3">
+                echo '<select name="cotiza" id="cotiza" class="form-control col-3" required>
                     <option value="0" selected>No</option>
                     <option value="1">Si</option>
                 </select>';

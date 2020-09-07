@@ -25,7 +25,7 @@ foreach ($_POST as $nombre_campo => $valor)
 <table width="100%"  align="center" border="0">
   <tr> 
       <form action="vtas_dist_tot_mes_vend_Xls.php" method="post" target="_blank"><td width="91%" align="right"><input name="Submit" type="submit" class="resaltado" value="Exportar a Excel"></td><input name="FchIni" type="hidden" value="<?php echo $FchIni ?>"><input name="FchFin" type="hidden" value="<?php echo $FchFin ?>"><input name="vendedor" type="hidden" value="<?php echo $vendedor ?>"></form>
-   <td width="9%"><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú"></div></td>
+   <td width="9%"><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al MenÃº"></div></td>
   </tr>
 </table>
 <table border="0" align="center" cellspacing="0"> 
@@ -38,7 +38,7 @@ $fecha1=explode('-', $FchIni);
 $mes1=$fecha1[1];
 $mes2=$fecha2[1];
 echo '<tr>';
-//echo '<th class="formatoEncabezados" rowspan="2">Código</th>';
+//echo '<th class="formatoEncabezados" rowspan="2">CÃ³digo</th>';
 echo '<th class="formatoEncabezados" rowspan="2">Producto</th>';
 
 for ($m=$mes1; $m<=$mes2; $m++)
@@ -98,12 +98,12 @@ where Factura=Id_fact and  fechaFactura>='$FchIni' and fechaFactura<='$FchFin' a
 }
 mysqli_free_result($result);
 mysqli_free_result($resultv);
-/* cerrar la conexión */
+/* cerrar la conexiÃ³n */
 mysqli_close($link);
 ?>
 
 </table>
-<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú"></div>
+<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al MenÃº"></div>
 </div>
 </body>
 </html>

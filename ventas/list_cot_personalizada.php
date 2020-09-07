@@ -18,7 +18,7 @@ include "../includes/valAcc.php";
 <div id="saludo1"><strong>LISTA DE COTIZACIONES PERSONALIZADAS</strong></div>
 <table align="center" width="100%" border="0">
   <tr> 
-        <td><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú">
+        <td><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al MenÃº">
         </div></td>
     </tr>
 </table>
@@ -27,9 +27,9 @@ include "../includes/valAcc.php";
     <th width="2%" class="formatoEncabezados"></th>
     <th width="3%" class="formatoEncabezados">Id</th>
     <th width="29%" class="formatoEncabezados">Cliente</th>
-    <th width="16%" class="formatoEncabezados">Categoría Cliente</th>
+    <th width="16%" class="formatoEncabezados">CategorÃ­a Cliente</th>
     <th width="14%" class="formatoEncabezados">Vendedor</th>
-    <th width="12%" class="formatoEncabezados">Fecha Cotización</th>
+    <th width="12%" class="formatoEncabezados">Fecha CotizaciÃ³n</th>
     <th width="10%" class="formatoEncabezados">Precio</th>
   </tr>   
 <?php
@@ -54,7 +54,7 @@ include "../includes/valAcc.php";
 	  <td class="formatoDatos"><div align="center">'.$row['Des_cat_cli'].'</div></td>
 	  <td class="formatoDatos"><div align="center">'.$row['nom_personal'].'</div></td>
 	  <td class="formatoDatos"><div align="center">'.$row['Fech_Cotizacion'].'</div></td>';
-	  if ($row['tip_precio']==1) $precio="Fábrica";
+	  if ($row['tip_precio']==1) $precio="FÃ¡brica";
 	  if ($row['tip_precio']==2) $precio="Distribuidor";
 	  if ($row['tip_precio']==3) $precio="Detal";
 	  if ($row['tip_precio']==4) $precio="Mayorista";
@@ -67,7 +67,7 @@ include "../includes/valAcc.php";
 	$resulti=mysqli_query($link,$sqli);
 	  echo '<tr><td colspan="9"><div class="commenthidden" id="UniqueName'.$a.'"><table width="100%" border="0" align="center" cellspacing="0" bordercolor="#CCCCCC">
 	  <tr>
-      <th width="6%" class="formatoEncabezados">Código</th>
+      <th width="6%" class="formatoEncabezados">CÃ³digo</th>
 	  <th width="50%" class="formatoEncabezados">Producto</th>
       <th width="5%" class="formatoEncabezados">Cantidad</th>
 	  <th width="15%" class="formatoEncabezados">Precio Venta</th>
@@ -87,7 +87,7 @@ include "../includes/valAcc.php";
 	 mysqli_close($link);//Cerrar la conexion
 ?>
 </table>
-<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú"></div>
+<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al MenÃº"></div>
 </div>
 </body>
 </html>

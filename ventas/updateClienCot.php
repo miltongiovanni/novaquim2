@@ -37,7 +37,7 @@ echo '<form method="post" action="listarClientCot.php" name="form3">';
 //echo '<input type="submit" name="Submit" value="">'; 
 echo '</form>';
 echo'<script >
-	alert("Cliente de Cotización Actualizado Correctamente");
+	alert("Cliente de CotizaciÃ³n Actualizado Correctamente");
 	document.form3.submit();
 	</script>';	
 

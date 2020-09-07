@@ -87,7 +87,7 @@ $saldo = intval($egreso['treal']) - $abono;
                 $manager = new FormaPagoOperaciones();
                 $formas = $manager->getFormasPago();
                 $filas = count($formas);
-                echo '<select name="formPago" id="formPago" class="form-control col-1" style="margin: 0 5px;">';
+                echo '<select name="formPago" id="formPago" class="form-control col-1" style="margin: 0 5px;" required>';
                 echo '<option disabled selected value="">---------------</option>';
                 for ($i = 0; $i < $filas; $i++) {
                     echo '<option value="' . $formas[$i]["idFormaPago"] . '">' . $formas[$i]['formaPago'] . '</option>';

@@ -32,7 +32,7 @@ foreach ($_POST as $nombre_campo => $valor)
   <tr> <td width="473"><input name="cliente" type="hidden" value="<?php echo $cliente; ?>"></td>
     <td width="127"><input type="submit" name="Submit" value="Exportar a Excel">
     </td>
-     <td width="86"><input type="button" onClick="window.location='menu.php'" value="Ir al Menú"></td>
+     <td width="86"><input type="button" onClick="window.location='menu.php'" value="Ir al MenÃº"></td>
   </tr>
 </table></form>
 <table border="0" align="center" cellspacing="0" cellpadding="0">
@@ -44,7 +44,7 @@ foreach ($_POST as $nombre_campo => $valor)
 	<th width="120" align="center" class="formatoEncabezados">Total Factura</th>
     <th width="120" align="center" class="formatoEncabezados">Valor a Cobrar</th>
 	<th width="120" align="center" class="formatoEncabezados">Saldo Pendiente</th>
-	<th width="128" align="center" class="formatoEncabezados">Fecha de Cancelación</th>
+	<th width="128" align="center" class="formatoEncabezados">Fecha de CancelaciÃ³n</th>
     <th width="42" align="center" class="formatoEncabezados">Estado</th>
   </tr>   
 <?php
@@ -107,11 +107,11 @@ while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
 	$a=$a+1;
 }
 mysqli_free_result($result);
-/* cerrar la conexión */
+/* cerrar la conexiÃ³n */
 mysqli_close($link);
 ?>
 </table>
-<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú"></div>
+<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al MenÃº"></div>
 </div>
 </body>
 </html>

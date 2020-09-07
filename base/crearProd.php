@@ -52,7 +52,7 @@ spl_autoload_register('cargarClases');
                     $manager = new CategoriasProdOperaciones();
                     $categorias=$manager->getCatsProd();
                     $filas=count($categorias);
-                    echo '<select name="idCatProd" id="idCatProd" class="form-control col-2" onchange="idProducto(this.value);">';
+                    echo '<select name="idCatProd" id="idCatProd" class="form-control col-2" onchange="idProducto(this.value);" required>';
                     echo '<option disabled selected value="">-----------------------------</option>';
                     for($i=0; $i<$filas; $i++)
                         {                            
@@ -65,36 +65,36 @@ spl_autoload_register('cargarClases');
             </div>
             <div class="form-group row">
                 <label class="col-form-label col-1 text-right"  for="nomProducto"><strong>Producto</strong></label>
-                <input type="text" class="form-control col-2" name="nomProducto" id="nomProducto" onKeyPress="return aceptaLetra(event)" maxlength="50">
+                <input type="text" class="form-control col-2" name="nomProducto" id="nomProducto" onKeyPress="return aceptaLetra(event)" maxlength="50" required>
                 <label class="col-form-label col-1 text-right"  for="apariencia"><strong>Apariencia</strong></label>
-                <input type="text" class="form-control col-2" name="apariencia" id="apariencia" onKeyPress="return aceptaLetra(event)">
+                <input type="text" class="form-control col-2" name="apariencia" id="apariencia" onKeyPress="return aceptaLetra(event)" required>
             </div>
             <div class="form-group row">
                 <label class="col-form-label col-1 text-right"  for="densMin"><strong>Densidad Min</strong></label>
-                <input type="text" class="form-control col-2" name="densMin" id="densMin" onKeyPress="return aceptaNum(event)">
+                <input type="text" class="form-control col-2" name="densMin" id="densMin" onKeyPress="return aceptaNum(event)" required>
                 <label class="col-form-label col-1 text-right"  for="densMax"><strong>Densidad Max</strong></label>
-                <input type="text" class="form-control col-2" name="densMax" id="densMax" onKeyPress="return aceptaNum(event)">
+                <input type="text" class="form-control col-2" name="densMax" id="densMax" onKeyPress="return aceptaNum(event)" required>
             </div>
 
             <div class="form-group row">
                 <label class="col-form-label col-1 text-right"  for="pHmin"><strong>pH Min</strong></label>
-                <input type="text" class="form-control col-2" name="pHmin" id="pHmin" onKeyPress="return aceptaNum(event)">
+                <input type="text" class="form-control col-2" name="pHmin" id="pHmin" onKeyPress="return aceptaNum(event)" required>
                 <label class="col-form-label col-1 text-right"  for="pHmax"><strong>pH Max</strong></label>
-                <input type="text" class="form-control col-2" name="pHmax" id="pHmax" onKeyPress="return aceptaNum(event)">
+                <input type="text" class="form-control col-2" name="pHmax" id="pHmax" onKeyPress="return aceptaNum(event)" required>
             </div>
 
             <div class="form-group row">
                 <label class="col-form-label col-1 text-right"  for="fragancia"><strong>Fragancia</strong></label>
-                <input type="text" class="form-control col-2" name="fragancia" id="fragancia" onKeyPress="return aceptaLetra(event)" maxlength="30">
+                <input type="text" class="form-control col-2" name="fragancia" id="fragancia" onKeyPress="return aceptaLetra(event)" maxlength="30" required>
                 <label class="col-form-label col-1 text-right"  for="color"><strong>Color</strong></label>
-                <input type="text" class="form-control col-2" name="color" id="color" onKeyPress="return aceptaLetra(event)" maxlength="30">
+                <input type="text" class="form-control col-2" name="color" id="color" onKeyPress="return aceptaLetra(event)" maxlength="30" required>
             </div>
             <div class="form-group row">
                 <div class="col-1 text-center" >
-                    <button class="button"  onclick="return Enviar(this.form)"><span>Continuar</span></button>
+                    <button class="button"  type="reset"><span>Reiniciar</span></button>
                 </div>
                 <div class="col-1 text-center" >
-                    <button class="button"  type="reset"><span>Reiniciar</span></button>
+                    <button class="button"  onclick="return Enviar(this.form)"><span>Continuar</span></button>
                 </div>
             </div>
         </form>

@@ -20,26 +20,26 @@ include "../includes/valAcc.php";
 		<form action="change.php" method="POST" name="Cambio_clave" id="Cambio_clave">
 			<div class="form-group row">
 				<label class="col-form-label col-2 text-right"  for="nombre"><b>Nombre de usuario</b></label>
-				<input  class="form-control col-2" name="nombre" id="nombre" value="<?php echo $nombre ?>" readonly size="20">
+				<input  class="form-control col-2" name="nombre" id="nombre" value="<?php echo $nombre ?>" readonly size="20" required>
 			</div>
 			<div class="form-group row">
 				<label class="col-form-label col-2 text-right"  for="password"><strong>Contraseña actual</strong></label>
-				<input  class="form-control col-2" type="password" name="password" id="password" size="20">
+				<input  class="form-control col-2" type="password" name="password" id="password" size="20" required>
 			</div>
 			<div class="form-group row">
 				<label class="col-form-label col-2 text-right"  for="newPass"><strong>Contraseña nueva</strong></label>
-				<input  class="form-control col-2" type="password" name="newPass" id="newPass" size="20">
+				<input  class="form-control col-2" type="password" name="newPass" id="newPass" size="20" required>
 			</div>
 			<div class="form-group row">
 				<label class="col-form-label col-2 text-right"  for="confPass"><strong>Confirmación contraseña</strong></label>
-				<input  class="form-control col-2" type="password" name="confPass" id="confPass" size="20">
+				<input  class="form-control col-2" type="password" name="confPass" id="confPass" size="20" required>
 			</div>
 			<div class="form-group row">
+                <div class="col-1 text-center">
+                    <button class="button"  type="reset"><span>Reiniciar</span></button>
+                </div>
 				<div class="col-1 text-center">
 					<button class="button"  onclick="return Enviar(this.form)"><span>Cambiar</span></button>
-				</div>
-				<div class="col-1 text-center">
-					<button class="button"  type="reset"><span>Reiniciar</span></button>
 				</div>
 			</div>
 		</form>

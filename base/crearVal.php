@@ -40,19 +40,19 @@ include "../includes/valAcc.php";
             </div>
             <div class="form-group row">
                 <label class="col-form-label col-1 text-right"  for="tapa"><strong>Tapa</strong></label>
-                <input type="text" class="form-control col-2" name="tapa" id="tapa" maxlength="50">
+                <input type="text" class="form-control col-2" name="tapa" id="tapa" maxlength="50" required>
             </div>
             <div class="form-group row">
                 <label class="col-form-label col-1 text-right"  for="stockTapa"><strong>Stock Tapa</strong></label>
-                <input type="text" class="form-control col-2" name="stockTapa" id="stockTapa" onKeyPress="return aceptaNum(event)">
+                <input type="text" class="form-control col-2" name="stockTapa" id="stockTapa" onKeyPress="return aceptaNum(event)" required>
                 <input type="hidden" class="form-control col-2" name="codIva" id="codIva" value="3">
             </div>
             <div class="form-group row">
                 <div class="col-1 text-center" >
-                    <button class="button"  onclick="return Enviar(this.form)"><span>Continuar</span></button>
+                    <button class="button"  type="reset"><span>Reiniciar</span></button>
                 </div>
                 <div class="col-1 text-center" >
-                    <button class="button"  type="reset"><span>Reiniciar</span></button>
+                    <button class="button"  onclick="return Enviar(this.form)"><span>Continuar</span></button>
                 </div>
             </div>
         </form>

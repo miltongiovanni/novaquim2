@@ -4,7 +4,7 @@ include "../includes/valAcc.php";
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <title>Consulta de Ventas por Remisión</title>
+    <title>Consulta de Ventas por RemisiÃ³n</title>
     <meta charset="utf-8">
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <script  src="../js/validar.js"></script>
@@ -19,7 +19,7 @@ include "../includes/valAcc.php";
 </head>
 <body> 
 <div id="contenedor">
-<div id="saludo"><strong>CONSULTA DE VENTAS POR REMISIÓN</strong></div> 
+<div id="saludo"><strong>CONSULTA DE VENTAS POR REMISIÃ“N</strong></div> 
 <form method="post" action="listarConsRemision.php" name="form1">	
 	<table align="center">
     <tr>

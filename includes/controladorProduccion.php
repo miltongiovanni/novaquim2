@@ -17,7 +17,7 @@ function findFormulaByProd()
     if (count($formulas) == 0) {
         echo '<input type="text" class="form-control col-2" value="No hay sugerencias" readOnly>';
     } else {
-        echo '<select name="idFormula" id="idFormula" class="form-control col-12">';
+        echo '<select name="idFormula" id="idFormula" class="form-control col-12" required>';
         for ($i = 0; $i < count($formulas); $i++) {
             echo '<option value=' . $formulas[$i]['idFormula'] . '>' . $formulas[$i]['nomFormula'] . '</option>';
         }
@@ -35,7 +35,7 @@ function findProveedorBytipoCompra()
         echo '<input type="text" class="form-control col-4" value="No hay sugerencias" readOnly>';
     } else {
         echo '<br>';
-        echo '<select name="idProv" id="idProv" class="form-control col-4">';
+        echo '<select name="idProv" id="idProv" class="form-control col-4" required>';
         for ($i = 0; $i < count($proveedores); $i++) {
             echo '<option value=' . $proveedores[$i]['idProv'] . '>' . $proveedores[$i]['nomProv'] . '</option>';
         }
@@ -68,7 +68,7 @@ function selectionarTipoKit()
         $PresentacionOperador = new PresentacionesOperaciones();
         $kitsXCrear = $PresentacionOperador->getKitsXCrear();
         $rep .='<label class="col-form-label col-2" for="codigo"><strong>Kit Novaquim</strong></label>';
-        $rep .= '<select name="codigo" id="codigo" class="form-control col-2">';
+        $rep .= '<select name="codigo" id="codigo" class="form-control col-2" required>';
         for ($i = 0; $i < count($kitsXCrear); $i++) {
             $rep .= '<option value=' . $kitsXCrear[$i]['codPresentacion'] . '>' . $kitsXCrear[$i]['presentacion'] . '</option>';
         }
@@ -78,7 +78,7 @@ function selectionarTipoKit()
         $DistribucionOperador = new ProductosDistribucionOperaciones();
         $productos = $DistribucionOperador->getProductosDistribucion(true);
         $rep .='<label class="col-form-label col-2" for="codigo"><strong>Kit Distribución</strong></label>';
-        $rep .= '<select name="codigo" id="codigo" class="form-control col-2">';
+        $rep .= '<select name="codigo" id="codigo" class="form-control col-2" required>';
         for ($i = 0; $i < count($productos); $i++) {
             $rep .= '<option value=' . $productos[$i]['idDistribucion'] . '>' . $productos[$i]['producto'] . '</option>';
         }

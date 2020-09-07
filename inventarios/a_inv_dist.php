@@ -42,7 +42,7 @@ spl_autoload_register('cargarClases');
         <div class="form-group row">
             <label class="col-form-label col-2" for="codDistribucion"><strong>Producto</strong></label>
             <select name="codDistribucion" id="codDistribucion" class="form-control col-3 formatoDatos"
-                    onchange="getInvProdDistribucion(this.value)">
+                    onchange="getInvProdDistribucion(this.value)" required>
                 <option selected disabled value="">-----------------------------</option>
                 <?php
                 $prodDistribucionOperador = new ProductosDistribucionOperaciones();

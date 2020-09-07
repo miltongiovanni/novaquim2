@@ -107,7 +107,7 @@ $proveedor = $ProveedorOperador->getProveedor($idProv);
             $DetProveedorOperador = new DetProveedoresOperaciones();
             $productos = $DetProveedorOperador->getProdPorCategoria($idProv, $proveedor['idCatProv']);
             $filas = count($productos);
-            echo '<select name="Codigo" id="Codigo" class="form-control col-3" >';
+            echo '<select name="Codigo" id="Codigo" class="form-control col-3"  required>';
             echo '<option disabled selected value="">----------------------------------</option>';
             for ($i = 0; $i < $filas; $i++) {
                 echo '<option value="' . $productos[$i]["Codigo"] . '">' . $productos[$i]['Producto'] . '</option>';

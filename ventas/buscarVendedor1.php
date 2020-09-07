@@ -30,7 +30,7 @@ include "../includes/valAcc.php";
 				}
 				echo'</select>';
 				mysqli_free_result($result);
-/* cerrar la conexión */
+/* cerrar la conexiÃ³n */
 mysqli_close($link);
 			?>
           <input type="submit" name="Submit" value="Continuar" onClick="return Enviar2(this.form);">

@@ -46,7 +46,7 @@ spl_autoload_register('cargarClases');
     <form id="form1" name="form1" method="post" action="traz_prod.php">
         <div class="form-group row">
             <label class="col-form-label col-2" for="codPresentacion"><strong>Producto Terminado</strong></label>
-            <select name="codPresentacion" id="codPresentacion" class="form-control col-2" onchange="getLotesPresentacion(this.value)">
+            <select name="codPresentacion" id="codPresentacion" class="form-control col-3" onchange="getLotesPresentacion(this.value)" required>
                 <option selected disabled value="">-----------------------------</option>
                 <?php
                 $presentacionOperador = new PresentacionesOperaciones();
@@ -60,7 +60,7 @@ spl_autoload_register('cargarClases');
         </div>
         <div class="form-group row">
             <label class="col-form-label col-2" for="loteProd"><strong>Lote</strong></label>
-            <select name="loteProd" id="loteProd" class="form-control col-2">
+            <select name="loteProd" id="loteProd" class="form-control col-3" required>
             </select>
         </div>
         <div class="form-group row">

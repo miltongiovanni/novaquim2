@@ -14,7 +14,7 @@ include "../includes/valAcc.php";
 <div id="saludo1"><strong>CARTERA VENCIDA POR CLIENTE</strong></div> 
 <table width="100%" border="0" summary="encabezado">
   <tr> 
-      <td><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men˙"></div></td>
+      <td><div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men√∫"></div></td>
   </tr>
 </table>
 <table border="0" align="center" cellspacing="0" cellpadding="0" summary="cuerpo" width="100%">
@@ -24,9 +24,9 @@ include "../includes/valAcc.php";
     <th width="8%" class="formatoEncabezados">NIT</th>
     <th width="14%" class="formatoEncabezados">Contacto</th>
     <th width="9%" class="formatoEncabezados">Cargo</th>
-    <th width="9%" class="formatoEncabezados">TelÈfono</th>
+    <th width="9%" class="formatoEncabezados">Tel√©fono</th>
     <th width="9%" class="formatoEncabezados">Celular</th>
-    <th width="17%" class="formatoEncabezados">DirecciÛn </th>
+    <th width="17%" class="formatoEncabezados">Direcci√≥n </th>
     <th width="10%" class="formatoEncabezados">Total adeucado</th>
   </tr>   
 <?php
@@ -109,16 +109,16 @@ while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
 	echo '</table></div></td></tr>';
 	$a=$a+1;
 }
-//pongo el n˙mero de registros total, el tamaÒo de p·gina y la p·gina que se muestra 
-/*echo "N˙mero de registros encontrados: " . $num_total_registros . "<br>"; 
-echo "Se muestran p·ginas de " . $TAMANO_PAGINA . " registros cada una<br>"; 
-echo "Mostrando la p·gina " . $pagina . " de " . $total_paginas . "<p>"; */
+//pongo el n√∫mero de registros total, el tama√±o de p√°gina y la p√°gina que se muestra 
+/*echo "N√∫mero de registros encontrados: " . $num_total_registros . "<br>"; 
+echo "Se muestran p√°ginas de " . $TAMANO_PAGINA . " registros cada una<br>"; 
+echo "Mostrando la p√°gina " . $pagina . " de " . $total_paginas . "<p>"; */
 mysqli_free_result($result);
 mysqli_free_result($resulti);
 mysqli_close($link);//Cerrar la conexion
 ?>
 </table>
-<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men˙"></div>
+<div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Men√∫"></div>
 </div>
 </body>
 </html>

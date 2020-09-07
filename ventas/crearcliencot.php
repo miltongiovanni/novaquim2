@@ -4,7 +4,7 @@ include "../includes/valAcc.php";
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <title>Crear Cotización</title>
+    <title>Crear CotizaciÃ³n</title>
     <meta charset="utf-8">
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <script  src="../js/validar.js"></script>
@@ -18,7 +18,7 @@ include "../includes/valAcc.php";
 	</script></head>
 <body>
 <div id="contenedor">
-<div id="saludo"><strong>CREAR CLIENTE PARA COTIZACIÓN</strong></div>
+<div id="saludo"><strong>CREAR CLIENTE PARA COTIZACIÃ“N</strong></div>
 <form method="post" action="makeClienCotForm.php" name="form1">	
   	<table align="center" width="22%">
     <tr>

@@ -10,7 +10,7 @@ include "includes/conect.php";
 $link=conectarServidor();
 $qryord="select Id_cotiz_p, Fech_Cotizacion, Nom_clien, Contacto, clientes_cotiz.Cargo, Tel_clien, Fax_clien, Cel_clien, Dir_clien, Eml_clien, tipo_precio, nom_personal, cel_personal, ciudad, destino, Eml_personal, cargos_personal.cargo as c_vendedor 
 from  cot_personalizada, clientes_cotiz, tip_precio, personal, ciudades, cargos_personal 
-where Cliente_cot=Id_cliente and tip_precio=Id_precio and cod_vend=Id_personal and Ciudad_clien=Id_ciudad and cargo_personal=Id_cargo and Id_cotiz_p=$cotizacion";
+where Cliente_cot=Id_cliente and tip_precio=Id_precio and cod_vend=Id_personal and Ciudad_clien=IdCiudad and cargo_personal=Id_cargo and Id_cotiz_p=$cotizacion";
 $resultord=mysqli_query($link,$qryord);
 $roword=mysqli_fetch_array($resultord);
 $destino=$roword['destino'];
@@ -21,7 +21,7 @@ require('fpdf.php');
 
 class PDF extends FPDF
 {
-//Cabecera de página
+//Cabecera de pÃ¡gina
 function Header()
 {
 	 if($this->PageNo()==1)
@@ -32,26 +32,26 @@ function Header()
 		/*$this->SetFont('Arial','B',16);
 		//Movernos a la derecha
 		$this->SetXY(70,45);
-		//Título
+		//TÃ­tulo
 		$this->Cell(70,10,'ORDEN DE PEDIDO',0,0,'C');
-		//Salto de línea
+		//Salto de lÃ­nea
 		$this->Ln(20);*/
 	}
 }
 
-//Pie de página
+//Pie de pÃ¡gina
 function Footer()
 {
-	//Posición: a 1,5 cm del final
+	//PosiciÃ³n: a 1,5 cm del final
 	$this->SetXY(15,263);
 	//Arial italic 8
 	$this->SetFont('Arial','',8);
-	//Número de página
-	$this->Cell(182,10,'Dirección: Bogotá D.C. Calle 35 C Sur No. 26 F - 40  PBX: 2039484 - 2022912  Website:www.novaquim.com   E-mail: info@novaquim.com',0,0,'C');
+	//NÃºmero de pÃ¡gina
+	$this->Cell(182,10,'DirecciÃ³n: BogotÃ¡ D.C. Calle 35 C Sur No. 26 F - 40  PBX: 2039484 - 2022912  Website:www.novaquim.com   E-mail: info@novaquim.com',0,0,'C');
 }
 }
 
-//Creación del objeto de la clase heredada
+//CreaciÃ³n del objeto de la clase heredada
 
 
 $Nom_clien=$roword['Nom_clien'];
@@ -77,15 +77,15 @@ $pdf->Write(4,$roword['ciudad']);
 $fecha = time();
 $pdf->Cell(30,4, FechaFormateada($fecha),0,1);
 $pdf->Ln(4);
-$pdf->Cell(60,4,'Señores:',0,1);
+$pdf->Cell(60,4,'SeÃ±ores:',0,1);
 $pdf->Cell(60,4,$roword['Nom_clien'],0,1);
 $pdf->Cell(60,4,'Atn. '.$roword['Contacto'],0,1);
 $pdf->Cell(60,4,$Cargo,0,1);
 $pdf->Cell(60,4,'E.    S.    D.',0,1);
 $pdf->Ln(1);
-$pdf->Cell(0,5,'Cotización No. '.$roword['Id_cotiz_p'].' - '.date("y"),0,1, 'C');
+$pdf->Cell(0,5,'CotizaciÃ³n No. '.$roword['Id_cotiz_p'].' - '.date("y"),0,1, 'C');
 $pdf->Ln(2);
-$pdf->MultiCell(0,5,'Tenemos el gusto de poner a su consideración nuestra propuesta comercial para su servicio.');
+$pdf->MultiCell(0,5,'Tenemos el gusto de poner a su consideraciÃ³n nuestra propuesta comercial para su servicio.');
 //PRODUCTOS NOVAQUIM
 $qry="select Cod_producto, Can_producto, Nombre, format(Prec_producto,0) as precio, format(Can_producto* Prec_producto,0) as subtot from det_cot_personalizada, prodpre, cot_personalizada where Cod_producto=Cod_prese and Id_cotiz_p=$cotizacion and Id_cotiz_p=Id_cot_per order by Nombre";
 $pdf->Ln(2);
@@ -113,7 +113,7 @@ while($row=mysqli_fetch_array($result))
 	$pdf->Ln(3.5);
 }
 
-//PRODUCTOS DE DISTRIBUCIÓN
+//PRODUCTOS DE DISTRIBUCIÃ“N
 $qryd="select Cod_producto, Can_producto, Producto, format(Prec_producto,0) as precio, format(Can_producto* Prec_producto,0) as subtot 
 from det_cot_personalizada, distribucion, cot_personalizada where Cod_producto=Id_distribucion and Id_cotiz_p=$cotizacion and Id_cotiz_p=Id_cot_per order by Producto";
 $resultd=mysqli_query($link,$qryd);
@@ -136,7 +136,7 @@ $row_tot=mysqli_fetch_array($resulttot);
 $total=number_format($row_tot['Total'],0,'.',',');
 $pdf->SetFont('helvetica','B',8);
 
-$pdf->Cell(152,3,'TOTAL COTIZACIÓN',0,0,'R');
+$pdf->Cell(152,3,'TOTAL COTIZACIÃ“N',0,0,'R');
 $pdf->Cell(19,3,'$ '.$total,0,1,'R');
 $pdf->SetFont('Baker','',11);
 $f=fopen('textos/cotiza2.txt','r');
@@ -172,19 +172,19 @@ $pdf->Line(10,260,200,260);*/
 mysqli_close($link);
 $pdf->Output();
 function FechaFormateada($FechaStamp){
-$ano = date('Y',$FechaStamp); //<-- Año
-$mes = date('m',$FechaStamp); //<-- número de mes (01-31)
-$dia = date('d',$FechaStamp); //<-- Día del mes (1-31)
-$dialetra = date('w',$FechaStamp);  //Día de la semana(0-7)
+$ano = date('Y',$FechaStamp); //<-- AÃ±o
+$mes = date('m',$FechaStamp); //<-- nÃºmero de mes (01-31)
+$dia = date('d',$FechaStamp); //<-- DÃ­a del mes (1-31)
+$dialetra = date('w',$FechaStamp);  //DÃ­a de la semana(0-7)
 switch($dialetra)
 {
 case 0: $dialetra="Domingo"; break;
 case 1: $dialetra="Lunes"; break;
 case 2: $dialetra="Martes"; break;
-case 3: $dialetra="Miércoles"; break;
+case 3: $dialetra="MiÃ©rcoles"; break;
 case 4: $dialetra="Jueves"; break;
 case 5: $dialetra="Viernes"; break;
-case 6: $dialetra="Sábado"; break;
+case 6: $dialetra="SÃ¡bado"; break;
 }
 switch($mes) {
 case '01': $mesletra="Enero"; break;

@@ -6,14 +6,14 @@ include "../includes/valAcc.php";
 <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
 <head>
 <meta charset="utf-8">
-<title>Seleccionar Cliente a Revisar Histórico de Pagos</title>
+<title>Seleccionar Cliente a Revisar HistÃ³rico de Pagos</title>
 <script  src="../js/validar.js"></script>
 <script  src="scripts/ajax.js"></script>
 
 </head>
 <body>
 <div id="contenedor">
-<div id="saludo1"><strong>SELECCIONAR CLIENTE A REVISAR HISTÓRICO DE PAGOS</strong></div>
+<div id="saludo1"><strong>SELECCIONAR CLIENTE A REVISAR HISTÃ“RICO DE PAGOS</strong></div>
 
 <table width="700"  align="center" border="0">
   	<tr>

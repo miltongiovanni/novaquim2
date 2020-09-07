@@ -45,7 +45,7 @@ if (!$GastoOperador->isValidIdGasto($idGasto)) {
                 <?php
                 $ProveedorOperador = new ProveedoresOperaciones();
                 $proveedores = $ProveedorOperador->getAllProveedoresGastos();
-                echo '<select name="idProv" id="idProv" class="form-control col-2">';
+                echo '<select name="idProv" id="idProv" class="form-control col-2" required>';
                 echo '<option selected value=' . $gasto['idProv'] . '>' . $gasto['nomProv'] . '</option>';
                 for ($i = 0; $i < count($proveedores); $i++) {
                     if ($gasto['idProv'] != $proveedores[$i]['idProv']) {

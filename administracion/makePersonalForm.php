@@ -24,7 +24,7 @@ spl_autoload_register('cargarClases');
             <div class="form-group row">
                 <label class="col-form-label col-1 text-right"  for="nomPersonal"><strong>Nombre</strong></label>
                 <input type="text" class="form-control col-2" name="nomPersonal" id="nomPersonal" size=30
-                    onKeyPress="return aceptaLetra(event)" maxlength="30">
+                    onKeyPress="return aceptaLetra(event)" maxlength="30" required>
             </div>
             <div class="form-group row">
                 <label class="col-form-label col-1 text-right"
@@ -38,7 +38,7 @@ spl_autoload_register('cargarClases');
             </div>
             <div class="form-group row">
                 <label class="col-form-label col-1" for="activoPersonal"><strong>Estado</strong></label>
-                <select class="form-control col-2" name="activoPersonal" id="activoPersonal">
+                <select class="form-control col-2" name="activoPersonal" id="activoPersonal" required>
                     <?php
                     $estadoPersonasOperador = new EstadosPersonasOperaciones();
                     $estados = $estadoPersonasOperador->getEstadosPersonas();
@@ -52,7 +52,7 @@ spl_autoload_register('cargarClases');
             </div>
             <div class="form-group row">
                 <label class="col-form-label col-1" for="areaPersonal"><strong>Área</strong></label>
-                <select class="form-control col-2" name="areaPersonal" id="areaPersonal">
+                <select class="form-control col-2" name="areaPersonal" id="areaPersonal" required>
                     <?php
                     $areaPersonalOperador = new AreasPersonalOperaciones();
                     $areas = $areaPersonalOperador->getAreasPersonal();
@@ -65,7 +65,7 @@ spl_autoload_register('cargarClases');
             </div>
             <div class="form-group row">
                 <label class="col-form-label col-1" for="cargoPersonal"><strong>Cargo</strong></label>
-                <select class="form-control col-2" name="cargoPersonal" id="cargoPersonal">
+                <select class="form-control col-2" name="cargoPersonal" id="cargoPersonal" required>
                     <?php
                     $cargoPersonalOperador = new cargosPersonalOperaciones();
                     $cargos = $cargoPersonalOperador->getCargosPersonal();

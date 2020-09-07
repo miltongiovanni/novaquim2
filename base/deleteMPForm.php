@@ -23,7 +23,7 @@ spl_autoload_register('cargarClases');
     <form id="form1" name="form1" method="post" action="deleteMP.php">
         <div class="form-group row">
             <label class="col-form-label col-1" for="codMPrima"><strong>Materia Prima</strong></label>
-            <select name="codMPrima" id="codMPrima" class="form-control col-2">
+            <select name="codMPrima" id="codMPrima" class="form-control col-2" required>
                 <option selected value="">-----------------------------</option>
                 <?php
                 $MPrimasOperador = new MPrimasOperaciones();

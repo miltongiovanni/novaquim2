@@ -4,7 +4,7 @@ include "../includes/valAcc.php";
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <title>Creaci髇 de Orden de Pedido</title>
+    <title>Creaci贸n de Orden de Pedido</title>
     <meta charset="utf-8">
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <script  src="../js/validar.js"></script>
@@ -19,7 +19,7 @@ include "../includes/valAcc.php";
 </head>
 <body> 
 <div id="contenedor">
-<div id="saludo"><strong>CREACI覰 DE COTIZACI覰 PERSONALIZADA</strong></div>
+<div id="saludo"><strong>CREACI脫N DE COTIZACI脫N PERSONALIZADA</strong></div>
 <form method="post" action="det_cot_personalizada.php" name="form1">	
   	<table width="451" border="0" align="center">
     <tr>
@@ -39,7 +39,7 @@ include "../includes/valAcc.php";
 		?>        </td>
     </tr>
      <tr>
-      <td align="right"><strong>Fecha de Cotizaci髇</strong></td>
+      <td align="right"><strong>Fecha de Cotizaci贸n</strong></td>
       <td colspan="3"><input type="text" name="FchCot" id="sel1" readonly size=20><input type="reset" value=" ... "
 		onclick="return showCalendar('sel1', '%Y-%m-%d', '10', true);"></td>
     </tr>
@@ -48,9 +48,9 @@ include "../includes/valAcc.php";
       	<td align="right"><strong>Destino</strong></td>
       	<td colspan="3">
         <input name="Destino" type="radio" id="Destino_0" value="1" checked> 
-        Impresi髇
+        Impresi贸n
         <input type="radio" name="Destino" value="2" id="Destino_1"> 
-        Correo electr髇ico</td>
+        Correo electr贸nico</td>
     </tr> 
     <tr>
       <td align="right"><strong>Tipo de Precio</strong></td>

@@ -22,7 +22,7 @@ spl_autoload_register('cargarClases');
         <div class="form-group row">
             <label class="col-form-label col-3 text-right" for="codUnidad"><strong>Unidades de Producto sin
                     empacar:</strong></label>
-            <select class="form-control col-3" name="codUnidad" id="codUnidad">
+            <select class="form-control col-3" name="codUnidad" id="codUnidad" required>
                 <option selected disabled value="">----------------------------</option>
                 <?php
                 $invDistribucionOperador = new InvDistribucionOperaciones();
@@ -38,7 +38,7 @@ spl_autoload_register('cargarClases');
         <div class="form-group row">
             <label class="col-form-label col-3 text-right" for="unidades"><strong>Cantidad:</strong></label>
             <input type="text" class="form-control col-3" name="unidades" id="unidades"
-                   onKeyPress="return aceptaNum(event)">
+                   onKeyPress="return aceptaNum(event)" required>
         </div>
         <div class="form-group row">
             <div class="col-1 text-center">

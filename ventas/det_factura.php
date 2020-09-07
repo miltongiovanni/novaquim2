@@ -40,7 +40,7 @@ foreach ($_POST as $nombre_campo => $valor)
 		$qry="select Factura, idPedido, Nit_cliente, fechaFactura, fechaVenc, idRemision, ordenCompra, nomCliente, telCliente, dirCliente, 
 		Ciudad, nom_personal as vendedor, Observaciones, factura.Estado  
 		from factura, clientes, personal, ciudades
-		where Nit_cliente=nitCliente and codVendedor=Id_personal and ciudadCliente=Id_ciudad  and  Factura=$factura;";
+		where Nit_cliente=nitCliente and codVendedor=Id_personal and ciudadCliente=IdCiudad  and  Factura=$factura;";
 		$result=mysqli_query($link,$qry);
 		$rowe=mysqli_fetch_array($result);
 		$pedido=$rowe['Id_pedido'];
@@ -74,13 +74,13 @@ foreach ($_POST as $nombre_campo => $valor)
       <td class="font2"><div align="left"><?php echo $rowe['Fech_venc']; ?> </div></td>
     </tr>
     <tr>
-      <td class="font2" ><div align="right"><strong>DIRECCIÓN:</strong></div></td>
+      <td class="font2" ><div align="right"><strong>DIRECCIÃ“N:</strong></div></td>
       <td colspan="3" class="font2"><?php echo utf8_encode($rowe['Dir_clien']); ?></td>
-      <td class="font2"><div align="right"><strong>REMISIÓN:</strong></div></td>
+      <td class="font2"><div align="right"><strong>REMISIÃ“N:</strong></div></td>
       <td class="font2"><div align="left"><?php echo $rowe['Id_remision']; ?> </div></td>
     </tr>
     <tr>
-      <td class="font2" ><div align="right"><strong>TELÉFONO:</strong></div></td>
+      <td class="font2" ><div align="right"><strong>TELÃ‰FONO:</strong></div></td>
       <td colspan="1" class="font2"><?php echo $rowe['Tel_clien']; ?></td>
       <td class="font2" ><div align="right"><strong>CIUDAD:</strong></div></td>
       <td colspan="1" class="font2"><?php echo utf8_encode($rowe['Ciudad']); ?></td>
@@ -97,7 +97,7 @@ foreach ($_POST as $nombre_campo => $valor)
 	  <?php if ($rowe['Fech_fact']==$rowe['Fech_venc'])
 	  		echo "Contado"; 
 		else
-			echo utf8_encode("Crédito"); ?> 
+			echo utf8_encode("CrÃ©dito"); ?> 
       </div></td>
       <td class="font2"><div align="right"><strong>PEDIDO:</strong></div></td>
       <td class="font2"><div align="left"><?php echo $rowe['Id_pedido']; ?> </div></td>
@@ -108,7 +108,7 @@ foreach ($_POST as $nombre_campo => $valor)
         <td  colspan="6">&nbsp;</td>
       </tr>
       <tr>
-        <th width="53" align="center" class="font2"><strong>CÓDIGO</strong></th>
+        <th width="53" align="center" class="font2"><strong>CÃ“DIGO</strong></th>
         <th width="358" align="center" class="font2"><strong>PRODUCTO</strong></th>
         <th width="50" align="center" class="font2"><strong>CAN </strong></th>
         <th width="47" align="center" class="font2"><strong>IVA </strong></th>
@@ -398,7 +398,7 @@ foreach ($_POST as $nombre_campo => $valor)
         </form></td>
         
         <td colspan="3"><form action="Imp_Remision.php" method="post" target="_blank"><input name="remision" type="hidden" value="<?php echo $remision; ?> ">
-            <div align="center"><input name="Submit" type="submit" class="formatoBoton1"  value="Imprimir Remisión"></div></form>
+            <div align="center"><input name="Submit" type="submit" class="formatoBoton1"  value="Imprimir RemisiÃ³n"></div></form>
         </td>
         
         <td><form action="factura2.php" method="post"><input name="factura" type="hidden" value="<?php echo $factura; ?>">

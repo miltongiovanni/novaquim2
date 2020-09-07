@@ -41,7 +41,7 @@ foreach ($_POST as $nombre_campo => $valor)
 		$qry="select Factura, idPedido, Nit_cliente, fechaFactura, fechaVenc, idRemision, ordenCompra, nomCliente, telCliente, dirCliente, 
 		Ciudad, nom_personal as vendedor, Observaciones 
 		from factura, clientes, personal, ciudades
-		where Nit_cliente=nitCliente and codVendedor=Id_personal and ciudadCliente=Id_ciudad  and  Factura=$factura;";
+		where Nit_cliente=nitCliente and codVendedor=Id_personal and ciudadCliente=IdCiudad  and  Factura=$factura;";
 		$result=mysql_db_query($bd,$qry);
 		$row=mysql_fetch_array($result);
 		$pedido=$row['Id_pedido'];
@@ -66,13 +66,13 @@ foreach ($_POST as $nombre_campo => $valor)
       <td class="font2"><div align="left"><?php echo $row['Fech_venc']; ?> </div></td>
     </tr>
     <tr>
-      <td class="font2" ><div align="right"><strong>DIRECCIÓN:</strong></div></td>
+      <td class="font2" ><div align="right"><strong>DIRECCIÃ“N:</strong></div></td>
       <td colspan="3" class="font2"><?php echo $row['Dir_clien']; ?></td>
-      <td class="font2"><div align="right"><strong>REMISIÓN:</strong></div></td>
+      <td class="font2"><div align="right"><strong>REMISIÃ“N:</strong></div></td>
       <td class="font2"><div align="left"><?php echo $row['Id_remision']; ?> </div></td>
     </tr>
     <tr>
-      <td class="font2" ><div align="right"><strong>TELÉFONO:</strong></div></td>
+      <td class="font2" ><div align="right"><strong>TELÃ‰FONO:</strong></div></td>
       <td colspan="1" class="font2"><?php echo $row['Tel_clien']; ?></td>
       <td class="font2" ><div align="right"><strong>CIUDAD:</strong></div></td>
       <td colspan="1" class="font2"><?php echo $row['Ciudad']; ?></td>
@@ -89,7 +89,7 @@ foreach ($_POST as $nombre_campo => $valor)
 	  <?php if ($row['Fech_fact']==$row['Fech_venc'])
 	  		echo "Contado"; 
 		else
-			echo "Crédito"; ?> 
+			echo "CrÃ©dito"; ?> 
       </div></td>
       <td class="font2"><div align="right"><strong>PEDIDO:</strong></div></td>
       <td class="font2"><div align="left"><?php echo $row['Id_pedido']; ?> </div></td>
@@ -100,7 +100,7 @@ foreach ($_POST as $nombre_campo => $valor)
         <td  colspan="6">&nbsp;</td>
       </tr>
       <tr>
-        <th width="53" align="center" class="font2"><strong>CÓDIGO</strong></th>
+        <th width="53" align="center" class="font2"><strong>CÃ“DIGO</strong></th>
         <th width="358" align="center" class="font2"><strong>PRODUCTO</strong></th>
         <th width="50" align="center" class="font2"><strong>CAN </strong></th>
         <th width="47" align="center" class="font2"><strong>IVA </strong></th>
@@ -306,7 +306,7 @@ foreach ($_POST as $nombre_campo => $valor)
         </form></td>
         
         <td colspan="3"><form action="Imp_Remision.php" method="post" target="_blank"><input name="remision" type="hidden" value="<?php echo $remision; ?> ">
-            <div align="center"><input type="submit" name="Submit" value="Imprimir Remisión"></div></form>
+            <div align="center"><input type="submit" name="Submit" value="Imprimir RemisiÃ³n"></div></form>
         </td>
         
         <td><form action="factura2VD.php" method="post"><input name="factura" type="hidden" value="<?php echo $factura; ?>">

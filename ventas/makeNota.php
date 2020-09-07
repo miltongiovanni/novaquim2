@@ -4,7 +4,7 @@ include "../includes/valAcc.php";
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <title>Creación Nota de Crédito</title>
+    <title>CreaciÃ³n Nota de CrÃ©dito</title>
     <meta charset="utf-8">
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <script  src="../js/validar.js"></script>
@@ -16,7 +16,7 @@ include "../includes/valAcc.php";
 </head>
 <body> 
 <div id="contenedor">
-<div id="saludo1"><strong>DETALLE DE LA NOTA CRÉDITO</strong></div>
+<div id="saludo1"><strong>DETALLE DE LA NOTA CRÃ‰DITO</strong></div>
 <?php
 foreach ($_POST as $nombre_campo => $valor) 
 { 
@@ -30,7 +30,7 @@ $link=conectarServidor();
 
 if ($crear==1)
 {
-  //PARA CREAR NOTA DE CRÉDITO
+  //PARA CREAR NOTA DE CRÃ‰DITO
   $qrycam="select MAX(Nota) AS Notas from nota_c;";
   $resultqrycam=mysqli_query($link,$qrycam);
   $row_cam=mysqli_fetch_array($resultqrycam);
@@ -40,7 +40,7 @@ if ($crear==1)
   $resultqrydesc=mysqli_query($link,$qrydesc);
   $row_desc=mysqli_fetch_array($resultqrydesc);
   $Descuento=$row_desc['Descuento'];
-  //CREACIÓN DEL ENCABEZADO DE LA NOTA DE CRÉDITO
+  //CREACIÃ“N DEL ENCABEZADO DE LA NOTA DE CRÃ‰DITO
   $qryr="insert into nota_c (Nota, Nit_cliente, Fecha, Fac_orig, Fac_dest, motivo, Des_fac_or) values ($mensaje, '$cliente','$Fecha', $fact_ori, $fact_des, $razon, $Descuento)";
   $resultr=mysqli_query($link,$qryr);
   //CREAR 2 PARA SALIR DEL ENCABEZADO
@@ -51,7 +51,7 @@ if ($crear==1)
 }
 if ($crear==6)
 {
-	//MODIFICAR EL ENCABEZADO DE LA NOTA DE CRÉDITO
+	//MODIFICAR EL ENCABEZADO DE LA NOTA DE CRÃ‰DITO
   $qryr="update nota_c set Fecha='$Fecha', Fac_orig=$fact_ori, Fac_dest=$fact_des, motivo=$razon where Nota=$mensaje";
   $resultr=mysqli_query($link,$qryr);
   //CREAR 2 PARA SALIR DEL ENCABEZADO
@@ -60,7 +60,7 @@ if ($crear==6)
   echo'</form>'; 
   echo' <script  > document.formulario.submit(); </script>';
 }
-$qrynot="select Nota, Nit_cliente, Fecha, Fac_orig, Fac_dest, motivo, Total, Subtotal, IVA, nomCliente, telCliente, dirCliente, Ciudad from nota_c, clientes, ciudades where Nota=$mensaje and Nit_cliente=nitCliente and ciudadCliente=Id_ciudad";
+$qrynot="select Nota, Nit_cliente, Fecha, Fac_orig, Fac_dest, motivo, Total, Subtotal, IVA, nomCliente, telCliente, dirCliente, Ciudad from nota_c, clientes, ciudades where Nota=$mensaje and Nit_cliente=nitCliente and ciudadCliente=IdCiudad";
 $resultnot=mysqli_query($link,$qrynot);
 $rownot=mysqli_fetch_array($resultnot);
 $Fac_orig=$rownot['Fac_orig'];	
@@ -76,7 +76,7 @@ $resulffacde=mysqli_query($link,$qryffacde);
 $rowffacde=mysqli_fetch_array($resulffacde);
 $FechFactDe=$rowffacde['FechFactDe'];
 
-if ($crear==3)// SI HAY DEVOLUCIÓN DE PRODUCTOS
+if ($crear==3)// SI HAY DEVOLUCIÃ“N DE PRODUCTOS
 {	
   $valor=explode(",", $codigo);
   $cod=$valor[0];
@@ -158,7 +158,7 @@ if ($crear==3)// SI HAY DEVOLUCIÓN DE PRODUCTOS
 }
 if ($crear==4) //SI NO SE HA HECHO DESCUENTO
 {
-  //CREACIÓN DEL DETALLE DE LA NOTA DE CRÉDITO CUANDO NO SE HA HECHO EL DESCUENTO
+  //CREACIÃ“N DEL DETALLE DE LA NOTA DE CRÃ‰DITO CUANDO NO SE HA HECHO EL DESCUENTO
   $qrys="select Id_Nota, Cod_producto from det_nota_c where Id_Nota=$mensaje";
   echo $qrys;
   $results=mysqli_query($link,$qrys);
@@ -196,7 +196,7 @@ if ($crear==5) //PARA CANCELAR SI LA NOTA ES POR TODA LA FACTURA
 ?>
 <table  align="center" border="0" summary="encabezado">
     <tr>
-      <td width="136"><div align="right"><strong>NOTA CRÉDITO:</strong> </div></td>
+      <td width="136"><div align="right"><strong>NOTA CRÃ‰DITO:</strong> </div></td>
       <td width="208"><div align="left"><?php echo $mensaje;?></div></td>
       <td width="66"><div align="right"><strong>NIT:</strong></div></td>
       <td width="120" colspan="1"><?php echo $rownot['Nit_cliente']; ?></td>
@@ -210,7 +210,7 @@ if ($crear==5) //PARA CANCELAR SI LA NOTA ES POR TODA LA FACTURA
       <td colspan="1"><?php echo $rownot['Fac_orig']; ?></td>
     </tr>
     <tr>
-      <td ><div align="right"><strong>DIRECCIÓN:</strong></div></td>
+      <td ><div align="right"><strong>DIRECCIÃ“N:</strong></div></td>
       <td colspan="3"><?php echo $rownot['Dir_clien']; ?></td>
       <td ><div align="right"><strong>FACTURA AFECTA:</strong></div></td>
       <td colspan="1"><?php echo $rownot['Fac_dest']; ?></td>
@@ -218,11 +218,11 @@ if ($crear==5) //PARA CANCELAR SI LA NOTA ES POR TODA LA FACTURA
 </table>
 <form action="makeNota.php" method="post" name="formulario">
 <?php 
-if (($motivo==0)&&(($crear==5)||($crear==2)))  //CREAR 2 PARA ENTRAR EN LA OPCIÓN 0 MOTIVO DEVOLUCIÓN DE PRODUCTOS
+if (($motivo==0)&&(($crear==5)||($crear==2)))  //CREAR 2 PARA ENTRAR EN LA OPCIÃ“N 0 MOTIVO DEVOLUCIÃ“N DE PRODUCTOS
 {
 	echo '<table width="668" border="0" align="center" summary="carga">
 	<tr>
-	<th colspan="3" align="center"><strong>PRODUCTOS PARA DEVOLUCIÓN</strong></th>
+	<th colspan="3" align="center"><strong>PRODUCTOS PARA DEVOLUCIÃ“N</strong></th>
 	</tr>
 	<tr>
 	<th width="406" align="center" class="font2"><strong>Producto</strong></th>
@@ -279,7 +279,7 @@ if (($motivo==1) && ($crear==2))// CREAR 2 ACTIVAR LA OPCION DE MOTIVO 1 QUE ES 
 		</tr>
 		<tr>
 		  <th width="20"> </th>
-		  <th width="53" align="center" class="font2"><strong>CÓDIGO</strong></th>
+		  <th width="53" align="center" class="font2"><strong>CÃ“DIGO</strong></th>
 		  <th width="358" align="center" class="font2"><strong>PRODUCTO</strong></th>
 		  <th width="50" align="center" class="font2"><strong>CAN</strong></th>
 		  <th width="47" align="center" class="font2"><strong>IVA</strong></th>
@@ -423,7 +423,7 @@ if (($motivo==1) && ($crear==2))// CREAR 2 ACTIVAR LA OPCION DE MOTIVO 1 QUE ES 
 		  $subtotalf= number_format($subtotal, 0, '.', ',');
 		  echo '<table border="0" align="center" summary="detalle">
 		<tr>
-		  <th width="473" align="center"><strong>DESCRIPCIÓN</strong></th>
+		  <th width="473" align="center"><strong>DESCRIPCIÃ“N</strong></th>
 		  <th width="136" align="center"><strong>VALOR</strong></th>
          </tr>
          <tr>
@@ -468,7 +468,7 @@ if (($motivo==1) && ($crear==2))// CREAR 2 ACTIVAR LA OPCION DE MOTIVO 1 QUE ES 
         <td width="209" colspan="1" align="center">
         <form action="Imp_NotaC.php" method="post" target="_blank">
             <input name="nota" type="hidden" value="<?php echo $mensaje; ?>">
-            <input name="Submit" type="submit" class="formatoBoton1" value="Imprimir Nota Crédito" >
+            <input name="Submit" type="submit" class="formatoBoton1" value="Imprimir Nota CrÃ©dito" >
         </form>
         </td>
         <td width="115" colspan="1" align="center">

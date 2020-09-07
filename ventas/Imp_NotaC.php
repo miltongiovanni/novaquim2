@@ -9,7 +9,7 @@ $mensaje=$_POST['nota'];
 
 class PDF extends FPDF
 {
-  //Cabecera de página
+  //Cabecera de pÃ¡gina
   function Header()
   {
 	  $mensaje=$_POST['nota'];
@@ -27,26 +27,26 @@ class PDF extends FPDF
 	  $this->Cell(40,4,'ICA Tarifa 11.04 por Mil',0,0,'C');
 	  $this->SetFont('Arial','B',14);
 	  //Movernos a la derecha
-	  //Título
+	  //TÃ­tulo
 	  $this->SetXY(135,14);
-	  $this->Cell(70,10,'NOTA CRÉDITO No. '.$mensaje.'-'.$yearIni,0,0,'C');
+	  $this->Cell(70,10,'NOTA CRÃ‰DITO No. '.$mensaje.'-'.$yearIni,0,0,'C');
   }
-  //Pie de página
+  //Pie de pÃ¡gina
   function Footer()
   {
-	  //Posición: a 1,5 cm del final
+	  //PosiciÃ³n: a 1,5 cm del final
 	  $this->SetY(-15);
 	//Arial italic 8
 	$this->SetFont('Arial','',8);
-	//Número de página
-	$this->Cell(0,10,'Dirección: Calle 35 C Sur No. 26F - 40  PBX: 2039484 - 2022912  Website:www.novaquim.com   E-mail: info@novaquim.com',0,0,'C');
+	//NÃºmero de pÃ¡gina
+	$this->Cell(0,10,'DirecciÃ³n: Calle 35 C Sur No. 26F - 40  PBX: 2039484 - 2022912  Website:www.novaquim.com   E-mail: info@novaquim.com',0,0,'C');
   }
 }
 
 
 
 $link=conectarServidor();
-$qryenc="select Nota, Nit_cliente, Fecha, Fac_orig, Fac_dest, motivo, Total, Subtotal, IVA, nomCliente, telCliente, dirCliente, Ciudad from nota_c, clientes, ciudades where Nota=$mensaje and Nit_cliente=nitCliente and ciudadCliente=Id_ciudad";
+$qryenc="select Nota, Nit_cliente, Fecha, Fac_orig, Fac_dest, motivo, Total, Subtotal, IVA, nomCliente, telCliente, dirCliente, Ciudad from nota_c, clientes, ciudades where Nota=$mensaje and Nit_cliente=nitCliente and ciudadCliente=IdCiudad";
 $resultenc=mysqli_query($link,$qryenc);
 $rowenc=mysqli_fetch_array($resultenc);
 $pdf=new PDF('P','mm','Letter');
@@ -71,7 +71,7 @@ $pdf->Cell(35,3.5,'FACT ORIGEN NOTA:',0, 0, 'R');
 $pdf->SetFont('Arial','',10);
 $pdf->Cell(35,3.5,$rowenc['Fac_orig'],0,1);
 $pdf->SetFont('Arial','B',10);
-$pdf->Cell(25,3.5,'DIRECCIÓN:',0, 0, 'R');
+$pdf->Cell(25,3.5,'DIRECCIÃ“N:',0, 0, 'R');
 $pdf->SetFont('Arial','',10);
 $pdf->Cell(110,3.5,$rowenc['Dir_clien']);
 $pdf->SetFont('Arial','B',10);
@@ -79,7 +79,7 @@ $pdf->Cell(35,3.5,'FACT AFECTA NOTA:',0 , 0, 'R');
 $pdf->SetFont('Arial','',10);
 $pdf->Cell(35,3.5,$rowenc['Fac_dest'],0,1);
 $pdf->SetFont('Arial','B',10);
-$pdf->Cell(25,3.5,'TELÉFONO:',0, 0, 'R');
+$pdf->Cell(25,3.5,'TELÃ‰FONO:',0, 0, 'R');
 $pdf->SetFont('Arial','',10);
 $pdf->Cell(110,3.5,$rowenc['Tel_clien']);
 $pdf->SetFont('Arial','B',10);
@@ -102,7 +102,7 @@ $FechFactDe=$rowffacde['FechFactDe'];
 
 if ($motivo==0)
 {
-	$orden="Devolución";
+	$orden="DevoluciÃ³n";
 	$qry="select det_nota_c.Cod_producto as codigo, Nombre as producto, det_nota_c.Can_producto as cantidad, tasa, Id_tasa, Des_fac_or, prec_producto as precio, (prec_producto*det_nota_c.Can_producto) AS subtotal FROM det_nota_c, nota_c, det_factura, prodpre, 	
 	  tasa_iva
 	  where Id_Nota=Nota and Id_Nota=$mensaje and det_nota_c.Cod_producto<100000 and Fac_orig=Id_fact AND det_nota_c.Cod_producto=det_factura.Cod_producto AND det_nota_c.Cod_producto=Cod_prese and Cod_iva=Id_tasa 
@@ -125,7 +125,7 @@ $pdf->Cell(35,3.5,$pago,0,1);*/
 $pdf->SetFont('Arial','B',10);
 $pdf->SetXY(10,51);
 $pdf->SetFont('Arial','B',10);
-$pdf->Cell(25,4,'CÓDIGO', 1,0,'C');
+$pdf->Cell(25,4,'CÃ“DIGO', 1,0,'C');
 $pdf->Cell(100,4,'PRODUCTO ', 1,0,'C');
 $pdf->Cell(10,4,'CAN ', 1,0,'C');
 $pdf->Cell(10,4,'IVA ', 1,0,'C');

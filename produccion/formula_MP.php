@@ -21,7 +21,7 @@ spl_autoload_register('cargarClases');
     <form method="post" action="makeFormulaMPrima.php" name="form1">
         <div class="form-group row">
             <label class="col-form-label col-2" for="codMPrima"><strong>Materia Prima</strong></label>
-            <select name="codMPrima" id="codMPrima" class="form-control col-2">
+            <select name="codMPrima" id="codMPrima" class="form-control col-2" required>
                 <option selected disabled value="">-----------------------------</option>
                 <?php
                 $FormulaMPrimaOperador = new FormulasMPrimaOperaciones();

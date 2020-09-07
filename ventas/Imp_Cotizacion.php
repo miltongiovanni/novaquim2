@@ -13,7 +13,7 @@ require('fpdf.php');
 class PDF extends FPDF
 {
 	
-//Cabecera de p·gina
+//Cabecera de p√°gina
 function Header()
 {
 	 if($this->PageNo()==1)
@@ -24,32 +24,32 @@ function Header()
 		/*$this->SetFont('Arial','B',16);
 		//Movernos a la derecha
 		$this->SetXY(70,45);
-		//TÌtulo
+		//T√≠tulo
 		$this->Cell(70,10,'ORDEN DE PEDIDO',0,0,'C');
-		//Salto de lÌnea
+		//Salto de l√≠nea
 		$this->Ln(20);*/
 	}
 }
 
-//Pie de p·gina
+//Pie de p√°gina
 function Footer()
 {
-	//PosiciÛn: a 1,5 cm del final
+	//Posici√≥n: a 1,5 cm del final
 	$this->SetXY(15,263);
 	//$this->SetY(-15);
 	//Arial italic 8
 	$this->SetFont('Arial','',8);
-	//N˙mero de p·gina
-	$this->Cell(185,10,'DirecciÛn: Bogot· D.C. Calle 35 C Sur No. 26 F - 40  PBX: 2039484 - 2022912  Website:www.novaquim.com   E-mail: info@novaquim.com',0,0,'C');
+	//N√∫mero de p√°gina
+	$this->Cell(185,10,'Direcci√≥n: Bogot√° D.C. Calle 35 C Sur No. 26 F - 40  PBX: 2039484 - 2022912  Website:www.novaquim.com   E-mail: info@novaquim.com',0,0,'C');
 }
 }
 
-//CreaciÛn del objeto de la clase heredada
+//Creaci√≥n del objeto de la clase heredada
 include "includes/conect.php";
 $link=conectarServidor();
 $qryord="select Id_Cotizacion, Nom_clien, Dir_clien, Contacto, clientes_cotiz.Cargo, Fech_Cotizacion, precio, presentaciones, productos, distribucion, Ciudad, nom_personal, cel_personal, Eml_personal, cargos_personal.cargo as cargo_personal, desCatClien 
 from cotizaciones, clientes_cotiz, personal, cat_clien, cargos_personal, ciudades 
-WHERE Id_Cotizacion=$Cotizacion and cliente=Id_cliente AND cod_vend=Id_personal AND Id_cat_clien=idCatClien and cod_vend=Id_personal and cargo_personal=Id_cargo and Ciudad_clien=Id_ciudad";
+WHERE Id_Cotizacion=$Cotizacion and cliente=Id_cliente AND cod_vend=Id_personal AND Id_cat_clien=idCatClien and cod_vend=Id_personal and cargo_personal=Id_cargo and Ciudad_clien=IdCiudad";
 $resultord=mysqli_query($link,$qryord);
 $roword=mysqli_fetch_array($resultord);
 $Nom_clien=$roword['Nom_clien'];
@@ -80,13 +80,13 @@ $pdf->Write(5,$roword['Ciudad']);
 $fecha = time();
 $pdf->Cell(30,5, FechaFormateada($fecha),0,1);
 $pdf->Ln(12);
-$pdf->Cell(60,5,'SeÒores:',0,1);
+$pdf->Cell(60,5,'Se√±ores:',0,1);
 $pdf->Cell(60,5,$roword['Nom_clien'],0,1);
 $pdf->Cell(60,5,'Atn. '.$roword['Contacto'],0,1);
 $pdf->Cell(60,5,$Cargo,0,1);
 $pdf->Cell(100,5,$Dir_clien,0,1);
 $pdf->Ln(12);
-$pdf->Cell(60,5,'Apreciado(a) SeÒor(a): ', 0, 1);
+$pdf->Cell(60,5,'Apreciado(a) Se√±or(a): ', 0, 1);
 $pdf->Ln(12);
 //Abrir fichero de texto
 $f=fopen('textos/cotiza1.txt','r');
@@ -104,12 +104,12 @@ $pdf->AddPage();
 $pdf->Write(5,$roword['Ciudad']);
 $pdf->Cell(30,5, FechaFormateada($fecha),0,1);
 $pdf->Ln(5);
-$pdf->Cell(60,5,'SeÒores:',0,1);
+$pdf->Cell(60,5,'Se√±ores:',0,1);
 $pdf->Cell(60,5,$roword['Nom_clien'],0,1);
 $pdf->Ln(5);
-$pdf->Cell(0,5,'CotizaciÛn No. '.$roword['Id_Cotizacion'].' - '.date("y"),0,1, 'C');
+$pdf->Cell(0,5,'Cotizaci√≥n No. '.$roword['Id_Cotizacion'].' - '.date("y"),0,1, 'C');
 $pdf->Ln(5);
-$pdf->MultiCell(0,5,'Tenemos el gusto de poner a su consideraciÛn nuestra propuesta comercial para el servicio de su organizaciÛn.');
+$pdf->MultiCell(0,5,'Tenemos el gusto de poner a su consideraci√≥n nuestra propuesta comercial para el servicio de su organizaci√≥n.');
 //SE DETERMINA A QUE PRECIO SE VA A COTIZAR
 if($precio==1)
 	$qry="select codigo_ant, producto, cant_medida, Cod_produc, fabrica as precio from precios, (select DISTINCTROW Cod_ant, cant_medida, prodpre.Cod_produc, Id_cat_prod from prodpre, precios, medida, productos where Cod_ant=codigo_ant and Cod_umedid=Id_medida and prodpre.Cod_produc=productos.Cod_produc and pres_activo=0 and Cotiza=0 group by Cod_ant) as tabla  where pres_activa=0 and codigo_ant=Cod_ant";
@@ -121,7 +121,7 @@ if($precio==4)
 	$qry="select codigo_ant, producto, cant_medida, Cod_produc, mayor as precio from precios, (select DISTINCTROW Cod_ant, cant_medida, prodpre.Cod_produc, Id_cat_prod from prodpre, precios, medida, productos where Cod_ant=codigo_ant and Cod_umedid=Id_medida and prodpre.Cod_produc=productos.Cod_produc and pres_activo=0 and Cotiza=0 group by Cod_ant) as tabla  where pres_activa=0 and codigo_ant=Cod_ant";
 if($precio==5)
 	$qry="select codigo_ant, producto, cant_medida, Cod_produc, super as precio from precios, (select DISTINCTROW Cod_ant, cant_medida, prodpre.Cod_produc, Id_cat_prod from prodpre, precios, medida, productos where Cod_ant=codigo_ant and Cod_umedid=Id_medida and prodpre.Cod_produc=productos.Cod_produc and pres_activo=0 and Cotiza=0 group by Cod_ant) as tabla  where pres_activa=0 and codigo_ant=Cod_ant";	
-//SELECCIONA EL TIPO DE PRESENTACIONES 1 PARA TODAS, 2 PARA PEQUE—AS Y 3 PARA GRANDES
+//SELECCIONA EL TIPO DE PRESENTACIONES 1 PARA TODAS, 2 PARA PEQUE√ëAS Y 3 PARA GRANDES
 if ($presentaciones==1)
 	$wh=" and cant_medida<=20000";
 if ($presentaciones==2)
@@ -159,7 +159,7 @@ while($row=mysqli_fetch_array($result))
 	$pdf->Ln(3.5);
 }
 
-//SELECCIONA LOS PRODUCTOS DE DISTRIBUCI”N
+//SELECCIONA LOS PRODUCTOS DE DISTRIBUCI√ìN
 $qryd="select Id_distribucion, Producto, precio_vta from distribucion where Cotiza=0";
 if($distribucion!=NULL)
 {
@@ -178,7 +178,7 @@ if($distribucion!=NULL)
 	$resultd=mysqli_query($link,$qryd);
 	$rowd=mysqli_fetch_array($resultd);
 	//if ($No_dist==0)
-	$pdf->Cell(0,5,'PRODUCTOS DE DISTRIBUCI”N *',0,1, 'C');
+	$pdf->Cell(0,5,'PRODUCTOS DE DISTRIBUCI√ìN *',0,1, 'C');
 	$pdf->SetFont('Arial','',8);
 	while($rowd=mysqli_fetch_array($resultd))
 	{
@@ -198,7 +198,7 @@ if($distribucion!=NULL)
 }
 else
 {
-	//echo "no escogiÛ productos de distribuciÛn <br>";
+	//echo "no escogi√≥ productos de distribuci√≥n <br>";
 }
 $pdf->SetFont('Baker','',11);
 	$f=fopen('textos/cotiza2.txt','r');
@@ -230,19 +230,19 @@ $pdf->Line(10,260,200,260);*/
 mysqli_close($link);
 $pdf->Output();
 function FechaFormateada($FechaStamp){
-$ano = date('Y',$FechaStamp); //<-- AÒo
-$mes = date('m',$FechaStamp); //<-- n˙mero de mes (01-31)
-$dia = date('d',$FechaStamp); //<-- DÌa del mes (1-31)
-$dialetra = date('w',$FechaStamp);  //DÌa de la semana(0-7)
+$ano = date('Y',$FechaStamp); //<-- A√±o
+$mes = date('m',$FechaStamp); //<-- n√∫mero de mes (01-31)
+$dia = date('d',$FechaStamp); //<-- D√≠a del mes (1-31)
+$dialetra = date('w',$FechaStamp);  //D√≠a de la semana(0-7)
 switch($dialetra)
 {
 case 0: $dialetra="Domingo"; break;
 case 1: $dialetra="Lunes"; break;
 case 2: $dialetra="Martes"; break;
-case 3: $dialetra="MiÈrcoles"; break;
+case 3: $dialetra="Mi√©rcoles"; break;
 case 4: $dialetra="Jueves"; break;
 case 5: $dialetra="Viernes"; break;
-case 6: $dialetra="S·bado"; break;
+case 6: $dialetra="S√°bado"; break;
 }
 switch($mes) {
 case '01': $mesletra="Enero"; break;
