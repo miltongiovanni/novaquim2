@@ -46,7 +46,7 @@ class PDF extends FPDF
 
 
 $link=conectarServidor();
-$qryenc="select Nota, Nit_cliente, Fecha, Fac_orig, Fac_dest, motivo, Total, Subtotal, IVA, nomCliente, telCliente, dirCliente, Ciudad from nota_c, clientes, ciudades where Nota=$mensaje and Nit_cliente=nitCliente and ciudadCliente=IdCiudad";
+$qryenc="select Nota, Nit_cliente, Fecha, Fac_orig, Fac_dest, motivo, Total, Subtotal, IVA, nomCliente, telCliente, dirCliente, Ciudad from nota_c, clientes, ciudades where Nota=$mensaje and Nit_cliente=nitCliente and ciudadCliente=idCiudad";
 $resultenc=mysqli_query($link,$qryenc);
 $rowenc=mysqli_fetch_array($resultenc);
 $pdf=new PDF('P','mm','Letter');

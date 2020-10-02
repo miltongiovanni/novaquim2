@@ -28,7 +28,7 @@ $link=conectarServidor();
 if (($crear==2)&&($CliExis == 1))
 { 
 
-  $qryb="select nomCliente, contactoCliente, cargoCliente, telCliente, faxCliente, celCliente, dirCliente, emailCliente, idCatCliente, ciudadCliente, codVendedor, desCatClien, ciudad, nom_personal from clientes, cat_clien, ciudades, personal where nitCliente='$cliente' and idCatCliente=idCatClien and ciudadCliente=IdCiudad and codVendedor=Id_personal;";
+  $qryb="select nomCliente, contactoCliente, cargoCliente, telCliente, faxCliente, celCliente, dirCliente, emailCliente, idCatCliente, ciudadCliente, codVendedor, desCatClien, ciudad, nom_personal from clientes, cat_clien, ciudades, personal where nitCliente='$cliente' and idCatCliente=idCatClien and ciudadCliente=idCiudad and codVendedor=Id_personal;";
   $resultb=mysqli_query($link,$qryb);
   $rowb=mysqli_fetch_array($resultb);
 		
@@ -105,10 +105,10 @@ if ((($crear==1)&&($CliExis == 0))||($crear!=1))
 		{
 			$city=$rowb['Ciudad_clien'];
         	$cityn=$rowb['ciudad'];
-          	$qry1="select IdCiudad, ciudad from ciudades where IdCiudad<>$city order by ciudad;";
+          	$qry1="select idCiudad, ciudad from ciudades where idCiudad<>$city order by ciudad;";
 		 }
         else
-          $qry1="select IdCiudad, ciudad from ciudades order by ciudad;";
+          $qry1="select idCiudad, ciudad from ciudades order by ciudad;";
         $result=mysqli_query($link, $qry1);
         if($CliExis == 1)
           echo '<option selected value="'.$city.'">'.$cityn.'</option>';

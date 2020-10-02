@@ -24,7 +24,7 @@ class CiudadesOperaciones
     }
     public function getCiudades()
     {
-        $qry = "SELECT idCiudad, ciudad FROM ciudades order by idCiudad";
+        $qry = "SELECT idCiudad, ciudad FROM ciudades";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -33,11 +33,11 @@ class CiudadesOperaciones
 
     public function getCiudad($idCiudad)
     {
-        $qry = "SELECT idCiudad, ciudad from ciudades where idCiudad=?";
+        $qry = "SELECT ciudad from ciudades where idCiudad=?";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute(array($idCiudad));
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $result;
+        return $result['ciudad'];
     }
 
     public function updateCiudad($datos)

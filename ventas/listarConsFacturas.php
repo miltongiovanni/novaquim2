@@ -47,7 +47,7 @@ $link=conectarServidor();
 $sql="	select Factura, idPedido, Nit_cliente, fechaFactura, fechaVenc, idRemision, ordenCompra, nomCliente, telCliente, dirCliente, 
 		Ciudad, nom_personal as vendedor, Total, factura.Estado 
 		from factura, clientes, personal,ciudades
-		where Nit_cliente=nitCliente and codVendedor=Id_personal and IdCiudad=ciudadCliente and fechaFactura>='$FchIni' and fechaFactura<='$FchFin' ORDER BY factura desc;";
+		where Nit_cliente=nitCliente and codVendedor=Id_personal and idCiudad=ciudadCliente and fechaFactura>='$FchIni' and fechaFactura<='$FchFin' ORDER BY factura desc;";
 $result=mysqli_query($link,$sql);
 $a=1;
 while($row=mysqli_fetch_array($result, MYSQLI_BOTH))

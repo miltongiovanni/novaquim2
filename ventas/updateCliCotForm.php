@@ -19,7 +19,7 @@ include "includes/conect.php";
 <?php
 	  $link=conectarServidor();
 	  $cliente_cot=$_POST['cliente_cot'];
-	  $qry="select Id_cliente, Nom_clien, Contacto, Cargo, Tel_clien, Fax_clien, Cel_clien, Dir_clien, Eml_clien, Id_cat_clien, desCatClien, Ciudad_clien , ciudad, cod_vend, nom_personal from clientes_cotiz, ciudades, cat_clien, personal where Ciudad_clien=IdCiudad and Id_cat_clien=idCatClien and cod_vend=Id_personal and Id_cliente='$cliente_cot'";
+	  $qry="select Id_cliente, Nom_clien, Contacto, Cargo, Tel_clien, Fax_clien, Cel_clien, Dir_clien, Eml_clien, Id_cat_clien, desCatClien, Ciudad_clien , ciudad, cod_vend, nom_personal from clientes_cotiz, ciudades, cat_clien, personal where Ciudad_clien=idCiudad and Id_cat_clien=idCatClien and cod_vend=Id_personal and Id_cliente='$cliente_cot'";
 	  $result=mysqli_query($link, $qry);
 	  $row=mysqli_fetch_array($result);
 	  $city=$row['Ciudad_clien'];
@@ -39,7 +39,7 @@ include "includes/conect.php";
         $Idcity=$row['Ciudad_clien'];
         $city=$row['ciudad'];
         echo'<select name="ciudad_cli">';
-        $qry1="select IdCiudad, ciudad from ciudades where IdCiudad<>$Idcity order by ciudad;";
+        $qry1="select idCiudad, ciudad from ciudades where idCiudad<>$Idcity order by ciudad;";
         $result1=mysqli_query($link, $qry1);
         echo '<option selected value="'.$Idcity.'">'.$city.'</option>';
         while($row1=mysqli_fetch_array($result)){

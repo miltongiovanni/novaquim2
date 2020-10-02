@@ -13,7 +13,7 @@ $factura=$_POST['factura'];
 $qryenc="select Factura, idPedido, Nit_cliente, fechaFactura, fechaVenc, idRemision, ordenCompra, nomCliente, telCliente, dirCliente, factura.Estado, 
 		Ciudad, nom_personal as vendedor, Observaciones, retFte
 		from factura, clientes, personal, ciudades
-		where Nit_cliente=nitCliente and codVendedor=Id_personal and ciudadCliente=IdCiudad and Factura=$factura;";
+		where Nit_cliente=nitCliente and codVendedor=Id_personal and ciudadCliente=idCiudad and Factura=$factura;";
 $resultenc=mysqli_query($link,$qryenc);
 $rowenc=mysqli_fetch_array($resultenc);
 $est=$rowenc['Estado'];

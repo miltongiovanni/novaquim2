@@ -1,31 +1,32 @@
 <?php
 include "../includes/valAcc.php";
-?>
-<?php
-include "includes/cliObj.php";
-include "includes/calcularDias.php";
-foreach ($_POST as $nombre_campo => $valor) 
-	{ 
-		$asignacion = "\$".$nombre_campo."='".$valor."';"; 
-		//echo $nombre_campo." = ".$valor."<br>";  
-		eval($asignacion); 
-	}  
-$cliente=new Client();
-if($result=$cliente->updateClient($nit, $nom_cliente, $direccion, $Contacto, $Cargo, $celular, $tel1, $fax, $email, $Id_Cat, $Estado, $Id_Ciudad, $Ret_iva, $Ret_ica, $Ret_fte, $Id_vendor))
+// On enregistre notre autoload.
+function cargarClases($classname)
 {
-	echo '<form method="post" action="listarClien2.php" name="form3">';
-	echo'<input name="Estado" type="hidden" value="'.$Estado.'">';
-	//echo '<input type="submit" name="Submit" value="">'; 
-	echo '</form>';
-	echo'<script >
-		alert("Cliente Actualizado Correctamente");
-		document.form3.submit();
-		</script>';	
-}
-else
-{
-	$ruta="buscarClien.php";
-	mover_pag($ruta,"Error al Actualizar el Cliente");
+	require '../clases/' . $classname . '.php';
 }
 
-?>
+spl_autoload_register('cargarClases');
+
+foreach ($_POST as $nombre_campo => $valor) {
+	$asignacion = "\$" . $nombre_campo . "='" . $valor . "';";
+	//echo $nombre_campo . " = " . $valor . "<br>";
+	eval($asignacion);
+}
+
+$datos = array($nitCliente, $nomCliente, $contactoCliente, $cargoCliente, $telCliente, $celCliente, $dirCliente, $emailCliente, $estadoCliente, $idCatCliente, $ciudadCliente, $retIva, $retIca, $retFte, $codVendedor, $exenIva, $idCliente);
+$clienteOperador = new ClientesOperaciones();
+
+try {
+	$clienteOperador->updateCliente($datos);
+	$ruta = "listarClien.php?estadocliente=".$estadoCliente;
+	$mensaje = "Cliente actualizado correctamente";
+
+} catch (Exception $e) {
+	$ruta = "buscarClien.php";
+	$mensaje = "Error al actualizar el cliente";
+} finally {
+	unset($conexion);
+	unset($stmt);
+	mover_pag($ruta, $mensaje);
+}

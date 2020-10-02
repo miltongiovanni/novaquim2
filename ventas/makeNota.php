@@ -60,7 +60,7 @@ if ($crear==6)
   echo'</form>'; 
   echo' <script  > document.formulario.submit(); </script>';
 }
-$qrynot="select Nota, Nit_cliente, Fecha, Fac_orig, Fac_dest, motivo, Total, Subtotal, IVA, nomCliente, telCliente, dirCliente, Ciudad from nota_c, clientes, ciudades where Nota=$mensaje and Nit_cliente=nitCliente and ciudadCliente=IdCiudad";
+$qrynot="select Nota, Nit_cliente, Fecha, Fac_orig, Fac_dest, motivo, Total, Subtotal, IVA, nomCliente, telCliente, dirCliente, Ciudad from nota_c, clientes, ciudades where Nota=$mensaje and Nit_cliente=nitCliente and ciudadCliente=idCiudad";
 $resultnot=mysqli_query($link,$qrynot);
 $rownot=mysqli_fetch_array($resultnot);
 $Fac_orig=$rownot['Fac_orig'];	

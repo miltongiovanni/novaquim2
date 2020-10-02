@@ -1,6 +1,10 @@
 <?php
 include "../includes/valAcc.php";
 include "../includes/calcularDias.php";
+
+if(isset($_GET['estadocliente'])){
+    $estadoCliente = $_GET['estadocliente'];
+}
 if ($estadoCliente == 1) {
     $titulo = 'Lista de Clientes Activos';
     $encabezado = 'LISTADO DE CLIENTES ACTIVOS DE INDUSTRIAS NOVAQUIM';
@@ -55,7 +59,19 @@ if ($estadoCliente == 1) {
 
             return rep;
         }
+        /* Formatting function for row details - modify as you need */
+        function diffDate(fecha) {
+            let fechUltCompra = new Date(fecha);
+            let hoy = new Date();
 
+            // The number of milliseconds in one day
+            const ONE_DAY = 1000 * 60 * 60 * 24;
+
+            // Calculate the difference in milliseconds
+            const differenceMs = hoy - fechUltCompra;
+            // Convert back to days and return
+            return Math.round(differenceMs / ONE_DAY);
+        }
         $(document).ready(function () {
             let estadoCliente = <?=$estadoCliente?>;
             var table = $('#example').DataTable({
@@ -114,6 +130,13 @@ if ($estadoCliente == 1) {
                     "infoFiltered": "(Filtrado de _MAX_ en total)"
 
                 },
+                "createdRow": function (row, data, dataIndex) {
+                if (diffDate(data.ultimaCompra) > 120) {
+                    $('td', row).addClass('formatoDataTable1');
+                } else if (diffDate(data.ultimaCompra) <= 120 && diffDate(data.ultimaCompra) > 60) {
+                    $('td', row).addClass('formatoDataTable2');
+                }
+            },
                 "ajax": "ajax/listaClientes.php?estadoCliente=" + estadoCliente
             });
             // Add event listener for opening and closing details

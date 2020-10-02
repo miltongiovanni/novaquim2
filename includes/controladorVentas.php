@@ -22,18 +22,18 @@ function nitCliente()
 }
 
 
-function findProveedor()
+function findCliente()
 {
     $q = $_POST['q'];
-    $ProveedorOperador = new ProveedoresOperaciones();
-    $proveedores = $ProveedorOperador->getProveedoresByName($q);
-    if (count($proveedores) == 0) {
+    $clienteOperador = new ClientesOperaciones();
+    $clientes = $clienteOperador->getClientesByName($q);
+    if (count($clientes) == 0) {
         echo '<input type="text" class="form-control col-2" value="No hay sugerencias" readOnly>';
     } else {
         echo '<br>';
-        echo '<select name="idProv" id="idProv" class="form-control col-3">';
-        for ($i = 0; $i < count($proveedores); $i++) {
-            echo '<option value=' . $proveedores[$i]['idProv'] . '>' . $proveedores[$i]['nomProv'] . '</option>';
+        echo '<select name="idCliente" id="idCliente" class="form-control col-3">';
+        for ($i = 0; $i < count($clientes); $i++) {
+            echo '<option value=' . $clientes[$i]['idCliente'] . '>' . $clientes[$i]['nomCliente'] . '</option>';
         }
         echo '</select>';
     }
@@ -132,8 +132,8 @@ switch ($action) {
     case 'nitCliente':
         nitCliente();
         break;
-    case 'findProveedor':
-        findProveedor();
+    case 'findCliente':
+        findCliente();
         break;
     case 'findProveedorBytipoCompra':
         findProveedorBytipoCompra();

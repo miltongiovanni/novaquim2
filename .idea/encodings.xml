@@ -121,6 +121,10 @@
     <file url="file://$PROJECT_DIR$/produccion/updateDetOProdColorForm.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/produccion/updateDetOProdMPrima.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/produccion/updateDetOProdMPrimaForm.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ventas/makeClien.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ventas/makeSucursalCliente.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ventas/updateClien.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ventas/update_sucursal.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/widgets/facXPagarTotales.php" charset="UTF-8" />
     <file url="PROJECT" charset="windows-1252" />
   </component>

@@ -40,7 +40,7 @@ foreach ($_POST as $nombre_campo => $valor)
 		$qry="select Factura, idPedido, Nit_cliente, fechaFactura, fechaVenc, idRemision, ordenCompra, nomCliente, telCliente, dirCliente, 
 		Ciudad, nom_personal as vendedor, Observaciones, factura.Estado  
 		from factura, clientes, personal, ciudades
-		where Nit_cliente=nitCliente and codVendedor=Id_personal and ciudadCliente=IdCiudad  and  Factura=$factura;";
+		where Nit_cliente=nitCliente and codVendedor=Id_personal and ciudadCliente=idCiudad  and  Factura=$factura;";
 		$result=mysqli_query($link,$qry);
 		$rowe=mysqli_fetch_array($result);
 		$pedido=$rowe['Id_pedido'];

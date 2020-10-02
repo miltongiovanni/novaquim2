@@ -10,7 +10,7 @@ include "includes/conect.php";
 $link=conectarServidor();
 $qryord="select Id_cotiz_p, Fech_Cotizacion, Nom_clien, Contacto, clientes_cotiz.Cargo, Tel_clien, Fax_clien, Cel_clien, Dir_clien, Eml_clien, tipo_precio, nom_personal, cel_personal, ciudad, destino, Eml_personal, cargos_personal.cargo as c_vendedor 
 from  cot_personalizada, clientes_cotiz, tip_precio, personal, ciudades, cargos_personal 
-where Cliente_cot=Id_cliente and tip_precio=Id_precio and cod_vend=Id_personal and Ciudad_clien=IdCiudad and cargo_personal=Id_cargo and Id_cotiz_p=$cotizacion";
+where Cliente_cot=Id_cliente and tip_precio=Id_precio and cod_vend=Id_personal and Ciudad_clien=idCiudad and cargo_personal=Id_cargo and Id_cotiz_p=$cotizacion";
 $resultord=mysqli_query($link,$qryord);
 $roword=mysqli_fetch_array($resultord);
 $destino=$roword['destino'];

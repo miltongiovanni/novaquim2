@@ -42,10 +42,10 @@ $objPHPExcel->getActiveSheet()->setTitle('Clientes');
 $link=conectarServidor();
 if ($Estado=='A')
 	$sql="select nitCliente as Nit, nomCliente as Cliente, dirCliente as Direccion, contactoCliente, cargoCliente, telCliente as Tel1, nom_personal as vendor, desCatClien, faxCliente As Fax, celCliente as Cel, emailCliente as Eml, ciudad, max(fechaFactura) as Ult_compra
-from clientes, Personal, cat_clien, ciudades, factura where codVendedor=Id_Personal and idCatCliente=idCatClien and ciudadCliente=IdCiudad and  Nit_cliente=nitCliente AND clientes.estadoCliente='A' group by nitCliente order by Cliente";
+from clientes, Personal, cat_clien, ciudades, factura where codVendedor=Id_Personal and idCatCliente=idCatClien and ciudadCliente=idCiudad and  Nit_cliente=nitCliente AND clientes.estadoCliente='A' group by nitCliente order by Cliente";
 if ($Estado=='N')
 	$sql="	select nitCliente as Nit, nomCliente as Cliente, dirCliente as Direccion, contactoCliente, cargoCliente, telCliente as Tel1, nom_personal as vendor, desCatClien, faxCliente As Fax, celCliente as Cel, emailCliente as Eml, ciudad, max(fechaFactura) as Ult_compra
-from clientes, Personal, cat_clien, ciudades, factura where codVendedor=Id_Personal and idCatCliente=idCatClien and ciudadCliente=IdCiudad and  Nit_cliente=nitCliente AND clientes.estadoCliente='N' group by nitCliente order by Cliente;";
+from clientes, Personal, cat_clien, ciudades, factura where codVendedor=Id_Personal and idCatCliente=idCatClien and ciudadCliente=idCiudad and  Nit_cliente=nitCliente AND clientes.estadoCliente='N' group by nitCliente order by Cliente;";
 $result=mysqli_query($link,$sql) or die("Error al conectar a la base de datos.");
 $i=2;
 while($row= mysqli_fetch_array($result, MYSQLI_BOTH))

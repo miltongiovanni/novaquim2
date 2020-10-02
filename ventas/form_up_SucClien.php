@@ -1,124 +1,65 @@
 <?php
 include "../includes/valAcc.php";
+// On enregistre notre autoload.
+function cargarClases($classname)
+{
+    require '../clases/' . $classname . '.php';
+}
+
+spl_autoload_register('cargarClases');
+foreach ($_POST as $nombre_campo => $valor) {
+    $asignacion = "\$" . $nombre_campo . "='" . $valor . "';";
+    //echo $nombre_campo." = ".$valor."<br>";
+    eval($asignacion);
+}
+$clienteSucursalOperador = new ClientesSucursalOperaciones();
+$sucursal = $clienteSucursalOperador->getSucursalCliente($idCliente, $idSucursal);
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<title>Modificar Sucursal </title>
-<meta charset="utf-8">
-<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<script  src="../js/validar.js"></script>
-	<script  src="scripts/block.js"></script>
-        <link rel="stylesheet" type="text/css" media="all" href="css/calendar-blue2.css" title="blue">
-    <script  src="scripts/calendar.js"></script>
-    <script  src="scripts/calendar-sp.js"></script>
-    <script  src="scripts/calendario.js"></script>
-    	<script >
-	document.onkeypress = stopRKey; 
-	</script>
+    <title>Modificar Sucursal </title>
+    <meta charset="utf-8">
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script src="../js/validar.js"></script>
 </head>
-<body> 
+<body>
 <div id="contenedor">
-<div id="saludo1"><strong>ACTUALIZACIÓN DE SUCURSAL POR CLIENTE</strong></div>
-<?php
-include "includes/conect.php";
-foreach ($_POST as $nombre_campo => $valor) 
-{ 
-	$asignacion = "\$".$nombre_campo."='".$valor."';"; 
-	//echo $nombre_campo." = ".$valor."<br>";  
-	eval($asignacion); 
-}  
-if($Crear==0)
-{
-		/*echo '<form method="post" action="detProveedor.php" name="form3">';
-		echo '<input name="NIT" type="hidden" value="'.$NIT.'"/>
-		<input name="IdCat" type="hidden" value="'.$IdCat.'"/>
-		<input name="Crear" type="hidden" value="1"/>
-		<input type="submit" name="Submit" value="Cambiar" />';
-		echo'<script >
-			document.form3.submit();
-			</script>';	*/
-} 
-
-if($Crear==1)
-{
-	$link=conectarServidor();   
-	$qrybus="select MAX(idSucursal) AS Id from clientes_sucursal where Nit_clien='$NIT';";
-	$resultbus=mysqli_query($link,$qrybus);
-	$rowbus=mysqli_fetch_array($resultbus);
-	$id=$rowbus['Id']+1;
-	$qryins="insert into clientes_sucursal (Nit_clien, nomSucursal, telSucursal, dirSucursal, ciudadSucursal, idSucursal) values ('$NIT', '$nom_sucursal', '$tel_sucursal','$dir_sucursal', '$ciudad_sucursal',$id)";
-	$resultqryins=mysqli_query($link,$qryins);
-	mysqli_close($link);
-}
-?>
-
-  <table align="center" width="52%" summary="Encabezado">
-    <?php
-	  	$link=conectarServidor();
-		$qry="select nitCliente, nomCliente from clientes where nitCliente='$NIT';";
-		$result=mysqli_query($link,$qry);
-		$row=mysqli_fetch_array($result);
-		$qrys="select nomSucursal, telSucursal, dirSucursal, ciudadSucursal, ciudad from clientes_sucursal, ciudades where Nit_clien='$NIT' and idSucursal=$Id_sucursal and ciudadSucursal=IdCiudad;";
-		$results=mysqli_query($link,$qrys);
-		$rows=mysqli_fetch_array($results);
-		mysqli_close($link);
-	 ?>
-     <tr><td width="13%">&nbsp;</td></tr>
-    <tr>
-      <td align="left"><strong>Cliente: </strong></td>
-      <td width="59%" align="left"><?php echo  $row['Nom_clien']?></td>
-      <td width="9%"><strong>NIT:</strong></td>
-      <td width="19%"><?php echo  $row['Nit_clien']?></td>
-    </tr>
-    </table>
-<form method="post" action="update_sucursal.php" name="form1">
-<table align="center" summary="Detalle" width="52%">
- 	<tr>
-        <td align="center" colspan="4">&nbsp; </td>
-    </tr>
-    <tr>
-      <td colspan="5"><div align="center"><strong>MODIFICAR SUCURSAL</strong></div></td>
-    </tr>
-     <tr>
-        <td align="center" colspan="4">&nbsp; </td>
-    </tr>
-    <tr>
-      <td width="10%"><div align="right"><strong>Nombre</strong></div></td>
-      <td colspan="3"><input type="text" name="nom_sucursal" size=60 id="Cliente" maxlength="60" value="<?php echo  $rows['Nom_sucursal']?>"></td>    
-    </tr>
-    <tr>
-    	<td><div align="right"><b>Dirección</b></div></td>
-        <td colspan="3"><input type="text"  maxlength="50" name="dir_sucursal" size=60 id="Direccion" value="<?php echo  $rows['Dir_sucursal']?>"></td>
-    </tr>
-    <tr>
-    <td><div align="right"><strong>Teléfono</strong></div></td>
-        <td width="17%"><input type="text" name="tel_sucursal" maxlength="10" size=15 onKeyPress="return aceptaNum(event)" id="Tel1" value="<?php echo  $rows['Tel_sucursal']?>"></td>
-        <td width="11%"><div align="right"><b>Ciudad</b></div></td>
-        <td width="43%"> 
-			<?php
-				$link=conectarServidor();
-				echo'<select name="ciudad_sucursal">';
-				$result=mysqli_query($link,"select IdCiudad, ciudad from ciudades;");
-				echo '<option selected value="'.$rows['Ciudad_sucursal'].'">'.$rows['ciudad'].'</option>';
-				while($row=mysqli_fetch_array($result))
-				{
-					if ($row['Id_ciudad']<>$rows['Ciudad_sucursal'])
-					echo '<option value='.$row['Id_ciudad'].'>'.$row['ciudad'].'</option>';
-				}
-				echo'</select>';
-				mysqli_close($link);
-	   		?>	  
-       </td>
-    </tr>
-    <tr>
-        <td align="center" colspan="4">&nbsp; </td>
-    </tr>
-    <tr>
-    	<td align="center" colspan="4"><input name="submit" type="submit" onClick="return Enviar(this.form)"  value="Actualizar"><?php echo '<input name="NIT" type="hidden" value="'.$NIT.'">'; echo '<input name="Id_Sucursal" type="hidden" value="'.$Id_sucursal.'">'; ?> </td>
-    </tr>
-</table>
-</form>
+    <div id="saludo1"><strong>ACTUALIZACIÓN DE SUCURSAL POR CLIENTE</strong></div>
+    <form name="form2" method="POST" action="update_sucursal.php">
+        <input name="idCliente" id="idCliente" type="hidden" value="<?= $idCliente ?>">
+        <input name="idSucursal" id="idSucursal" type="hidden" value="<?= $idSucursal ?>">
+        <div class=" row ">
+            <label class="col-form-label col-3 text-left mx-2" for="nomSucursal"><strong>Cliente</strong></label>
+            <label class="col-form-label col-1 text-left mx-2" for="telSucursal"><strong>Teléfono</strong></label>
+            <label class="col-form-label col-3 text-left mx-2" for="dirSucursal"><strong>Dirección</strong></label>
+            <label class="col-form-label col-2 text-left mx-2" for="ciudadSucursal"><strong>Ciudad</strong></label>
+        </div>
+        <div class="form-group row">
+            <input type="text" class="form-control col-3 mx-2" name="nomSucursal" id="nomSucursal" value="<?= $sucursal['nomSucursal'] ?>" required>
+            <input type="text" class="form-control col-1 mx-2" name="telSucursal" id="telSucursal" maxlength="10"
+                   value="<?= $sucursal['telSucursal'] ?>" onKeyPress="return aceptaNum(event)">
+            <input type="text" class="form-control col-3 mx-2" name="dirSucursal" id="dirSucursal" value="<?= $sucursal['dirSucursal'] ?>" required>
+            <select name="ciudadSucursal" id="ciudadSucursal" class="form-control col-2 mx-2" required>
+                <option selected value="<?= $sucursal['idCiudad'] ?>"><?= $sucursal['ciudad'] ?></option>
+                <?php
+                $manager = new CiudadesOperaciones();
+                $ciudades = $manager->getCiudades();
+                $filas = count($ciudades);
+                for ($i = 0; $i < $filas; $i++) {
+                    if ($ciudades[$i]["idCiudad"] != 1) {
+                        echo '<option value="' . $ciudades[$i]["idCiudad"] . '">' . $ciudades[$i]['ciudad'] . '</option>';
+                    }
+                }
+                ?>
+            </select>
+        </div>
+        <div class="form-group row mt-3">
+            <div class="col-2 text-center">
+                <button class="button" onclick="return Enviar(this.form)"><span>Actualizar sucursal</span></button>
+            </div>
+        </div>
+    </form>
 </div>
 </body>
 </html>

@@ -51,7 +51,7 @@ $vendedor=$rowv['nom_personal'];
 //conectar con la tabla (ej. use datos;) 
 //sentencia SQL    tblusuarios.IdUsuario,
 $sql="	select nitCliente as Nit, nomCliente as Cliente, dirCliente as Direccion, contactoCliente, cargoCliente, telCliente as Tel1, desCatClien, faxCliente As Fax, celCliente as Cel, emailCliente as Eml, ciudad 
-from clientes, cat_clien, ciudades where codVendedor=$IdPersonal and idCatCliente=idCatClien and ciudadCliente=IdCiudad AND estadoCliente='A' order by Cliente";
+from clientes, cat_clien, ciudades where codVendedor=$IdPersonal and idCatCliente=idCatClien and ciudadCliente=idCiudad AND estadoCliente='A' order by Cliente";
 $result=mysqli_query($link,$sql);
 $a=1;
 while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
@@ -71,7 +71,7 @@ while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
 	$sqli="select Factura, fechaFactura, fechaVenc, idRemision, ordenCompra, nomCliente, telCliente, dirCliente, 
 		Ciudad, nom_personal as vendedor, Total, factura.Estado 
 		from factura, clientes, personal,ciudades
-		where Nit_cliente=nitCliente and Nit_cliente='$nit' and IdCiudad=ciudadCliente and codVendedor=Id_personal ORDER BY factura desc";
+		where Nit_cliente=nitCliente and Nit_cliente='$nit' and idCiudad=ciudadCliente and codVendedor=Id_personal ORDER BY factura desc";
 	$resulti=mysqli_query($link,$sqli);
 	echo '<tr><td colspan="7"><div class="commenthidden" id="UniqueName'.$a.'"><table width="75%" border="0" align="center" cellspacing="0" summary="cuerpo">
 	<tr>

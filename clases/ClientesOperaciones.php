@@ -12,7 +12,7 @@ class ClientesOperaciones
     public function makeCliente($datos)
     {
         /*Preparo la insercion */
-        $qry = "INSERT INTO clientes VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $qry = "INSERT INTO clientes (nitCliente, nomCliente, contactoCliente, cargoCliente, telCliente, celCliente, dirCliente, emailCliente, estadoCliente, idCatCliente, ciudadCliente, retIva, retIca, retFte, codVendedor, fchCreacionCliente, exenIva) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute($datos);
         return $this->_pdo->lastInsertId();
@@ -100,7 +100,7 @@ class ClientesOperaciones
                 FROM clientes c
                          LEFT JOIN cat_clien cc ON c.idCatCliente = cc.idCatClien
                          LEFT JOIN personal p ON c.codVendedor = p.idPersonal
-                         LEFT JOIN ciudades c1 ON c.ciudadCliente = c1.IdCiudad
+                         LEFT JOIN ciudades c1 ON c.ciudadCliente = c1.idCiudad
                          LEFT JOIN (SELECT max(fechaFactura) ultimaCompra, idCliente FROM factura GROUP BY idCliente) uc
                                    ON uc.idCliente = c.idCliente
                 WHERE c.estadoCliente = ? AND ultimaCompra IS NOT NULL";
@@ -112,13 +112,32 @@ class ClientesOperaciones
 
     public function getCliente($idCliente)
     {
-        $qry = "SELECT idCliente, nitCliente, nomCliente, dirProv, contProv, autoretProv, regProv, estadoCliente, telProv, emailProv, clientes.idCatCliente,
-                       desCatProv, idTasaIcaProv, CONCAT(format((tasaRetIca),2), ' por mil') reteica, idRetefuente,
-                       CONCAT(descRetefuente, ' - ', format((tasaRetefuente*100),2), ' %') retefuente
-                FROM clientes
-                LEFT JOIN cat_prov cp on clientes.idCatCliente = cp.idCatCliente
-                LEFT JOIN tasa_reteica tr on clientes.idTasaIcaProv = tr.idTasaRetIca
-                LEFT JOIN tasa_retefuente t on clientes.idRetefuente = t.idTasaRetefuente
+        $qry = "SELECT idCliente,
+                       nitCliente,
+                       nomCliente,
+                       contactoCliente,
+                       cargoCliente,
+                       telCliente,
+                       celCliente,
+                       dirCliente,
+                       emailCliente,
+                       estadoCliente,
+                       c.idCatCliente,
+                       cc.desCatClien,
+                       ciudadCliente,
+                       ciudad,
+                       retIva,
+                       retIca,
+                       retFte,
+                       codVendedor,
+                       nomPersonal,
+                       retCree,
+                       fchCreacionCliente,
+                       exenIva
+                FROM clientes c
+                LEFT JOIN ciudades c2 on c.ciudadCliente = c2.idCiudad
+                LEFT JOIN personal p on p.idPersonal = c.codVendedor
+                LEFT JOIN cat_clien cc on cc.idCatClien = c.idCatCliente
                 WHERE idCliente=?";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute(array($idCliente));
@@ -137,9 +156,9 @@ class ClientesOperaciones
 
     public function updateCliente($datos)
     {
-        $qry = "UPDATE clientes SET nitCliente=?, nomCliente=?, contactoCliente=?, cargoCliente=?, telCliente=?, faxCliente=?,
+        $qry = "UPDATE clientes SET nitCliente=?, nomCliente=?, contactoCliente=?, cargoCliente=?, telCliente=?,
                 celCliente=?,  dirCliente=?, emailCliente=?, estadoCliente=?, idCatCliente=?, ciudadCliente=?,  retIva=?,
-                retIca=?, retFte=?, codVendedor=?, retCree=?, fchCreacionCliente=? WHERE idCliente=?";
+                retIca=?, retFte=?, codVendedor=?, exenIva=? WHERE idCliente=?";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute($datos);
     }

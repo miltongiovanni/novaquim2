@@ -15,20 +15,22 @@ foreach ($_POST as $nombre_campo => $valor) {
 }
 
 $clienteSucursalOperador = new ClientesSucursalOperaciones();
-$datos = array($dirSucursal, $ciudadSucursal, $telSucursal, $nomSucursal, $idCliente, $idSucursal);
-
+$idSucursal = $clienteSucursalOperador->getMaxSucursalByIdCliente($idCliente) + 1;
+$datos = array($idCliente, $idSucursal, $dirSucursal, $ciudadSucursal, $telSucursal, $nomSucursal);
 try {
-    $clienteSucursalOperador->updateClienteSucursal($datos);
+    $lastIdCliente = $clienteSucursalOperador->makeClienteSucursal($datos);
     $_SESSION['idCliente'] = $idCliente;
     $ruta = "detCliente.php";
-    $mensaje = "Sucursal actualizada correctamente";
+    $mensaje = "Sucursal del cliente creada con éxito";
 
 } catch (Exception $e) {
-    $_SESSION['idCliente'] = $idCliente;
-    $ruta = "detCliente.php";
-    $mensaje = "Error al actualizar la sucursal";
+    $ruta = "makeClienForm.php";
+    $mensaje = "Error al crear la sucursal del Cliente";
 } finally {
     unset($conexion);
     unset($stmt);
     mover_pag($ruta, $mensaje);
 }
+
+
+

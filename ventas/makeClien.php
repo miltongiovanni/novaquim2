@@ -1,42 +1,45 @@
 <?php
 include "../includes/valAcc.php";
-?><?php
-include "includes/conect.php";
-include "includes/calcularDias.php";
-include "includes/nit_verif.php";
-
-foreach ($_POST as $nombre_campo => $valor) 
-{ 
-	$asignacion = "\$".$nombre_campo."='".$valor."';"; 
-	echo $nombre_campo." = ".$valor."<br>";  
-	eval($asignacion); 
-}  
-if ($tipo==1)
-	$NIT_F=number_format($NIT, 0, '.', '.')."-".verifica($NIT);
-if ($tipo==2)
-	$NIT_F=number_format($NIT, 0, '.', '.');
-$bd="novaquim";
-$link=conectarServidor();   
-echo $NIT_F;
-$sql="select * from clientes where nitCliente='$NIT_F';";
-$result=mysqli_query($link,$sql);
-$row=mysqli_fetch_array($result, MYSQLI_BOTH);
-if ($row)
+// On enregistre notre autoload.
+function cargarClases($classname)
 {
-   echo'<script >
-   alert("Cliente o Nit ya existente")
-   </script>';
-	echo'<form action="updateCliForm.php" method="post" name="formulario">';
-	echo '<input name="cliente" type="hidden" value="'.$NIT_F.'"><input type="submit" name="Submit" value="Cambiar" />';
-	echo'</form>'; 
-	echo' <script > 	document.formulario.submit(); 	</script>';
-	mysqli_close($link);//Cerrar la conexion
+    require '../clases/' . $classname . '.php';
 }
-echo'<form action="makeClienForm2.php" method="post" name="formulario">';
-echo '<input name="nit" type="hidden" value="'.$NIT_F.'"><input name="ciudad_cli" type="hidden" value="'.$ciudad_cli.'"><input name="tip_cli" type="hidden" value="'.$tipo.'"><input type="submit" name="Submit" value="Cambiar" />';
-echo'</form>'; 
-echo' <script > 	document.formulario.submit(); 	</script>';
+
+spl_autoload_register('cargarClases');
+
+foreach ($_POST as $nombre_campo => $valor) {
+    $asignacion = "\$" . $nombre_campo . "='" . $valor . "';";
+    echo $nombre_campo . " = " . $valor . "<br>";
+    eval($asignacion);
+}
+
+$estadoCliente = 1;
+$fchCreacionCliente = date("Y-m-d");
+$datos = array($nitCliente, $nomCliente, $contactoCliente, $cargoCliente, $telCliente, $celCliente, $dirCliente, $emailCliente, $estadoCliente, $idCatCliente, $ciudadCliente, $retIva, $retIca, $retFte, $codVendedor, $fchCreacionCliente, 0);
+$clienteOperador = new ClientesOperaciones();
+try {
+    $nitExist = $clienteOperador->checkNit($nitCliente);
+    if (isset($nitExist['idCliente']) && $nitExist['idCliente'] != null) {
+        $_SESSION['idCliente'] = $nitExist['idCliente'];
+        header('Location: detCliente.php');
+    } else {
+        $lastIdCliente = $clienteOperador->makeCliente($datos);
+        $datosSucursal = array($lastIdCliente, 1, $dirCliente, $ciudadCliente, $telCliente, $nomCliente);
+        $clienteSucursalOperador = new ClientesSucursalOperaciones();
+        $clienteSucursalOperador->makeClienteSucursal($datosSucursal);
+        $_SESSION['idCliente'] = $lastIdCliente;
+        $ruta = "detCliente.php";
+        $mensaje = "Cliente creado con éxito";
+    }
+} catch (Exception $e) {
+    $ruta = "makeClienForm.php";
+    $mensaje = "Error al crear el Cliente";
+} finally {
+    unset($conexion);
+    unset($stmt);
+    mover_pag($ruta, $mensaje);
+}
 
 
 
-?>

@@ -12,7 +12,7 @@ class ClientesSucursalOperaciones
     public function makeClienteSucursal($datos)
     {
         /*Preparo la insercion */
-        $qry = "INSERT INTO clientes_sucursal VALUES(?, ?, ?,? ,? ,?)";
+        $qry = "INSERT INTO clientes_sucursal (idCliente, idSucursal, dirSucursal, ciudadSucursal, telSucursal, nomSucursal) VALUES(?, ?, ?,? ,? ,?)";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute($datos);
         return $this->_pdo->lastInsertId();
@@ -48,29 +48,25 @@ class ClientesSucursalOperaciones
 
     public function getTableClienteSucursales($idCliente)
     {
-        $qry = "SELECT Codigo, nomMPrima Producto FROM mprimas, clientes_sucursal dp
-                LEFT JOIN clientes_sucursal p on dp.idCliente = p.idCliente
-                WHERE Codigo=codMPrima  AND p.idCatProv=1 AND dp.idCliente = $idCliente 
-                UNION
-                SELECT Codigo, nomEnvase Producto FROM envases, clientes_sucursal dp
-                LEFT JOIN clientes_sucursal p on dp.idCliente = p.idCliente
-                WHERE Codigo=codEnvase  AND p.idCatProv=2 AND dp.idCliente = $idCliente
-                UNION
-                SELECT Codigo, tapa Producto FROM tapas_val, clientes_sucursal dp
-                LEFT JOIN clientes_sucursal p on dp.idCliente = p.idCliente
-                WHERE Codigo=codTapa  AND p.idCatProv=2 AND dp.idCliente = $idCliente
-                UNION
-                SELECT Codigo, nomEtiqueta Producto FROM etiquetas, clientes_sucursal dp
-                LEFT JOIN clientes_sucursal p on dp.idCliente = p.idCliente
-                WHERE Codigo=codEtiqueta  AND p.idCatProv=3 AND dp.idCliente = $idCliente
-                UNION
-                SELECT Codigo, producto Producto FROM distribucion, clientes_sucursal dp
-                LEFT JOIN clientes_sucursal p on dp.idCliente = p.idCliente
-                WHERE Codigo=idDistribucion  AND p.idCatProv=5 AND dp.idCliente = $idCliente
-                ORDER BY Producto";
+        $qry = "SELECT idSucursal, nomSucursal, telSucursal,dirSucursal, ciudad, idCiudad
+                FROM clientes_sucursal cs
+                LEFT JOIN ciudades c on cs.ciudadSucursal = c.idCiudad
+                WHERE idCliente = ?";
         $stmt = $this->_pdo->prepare($qry);
-        $stmt->execute();
+        $stmt->execute(array($idCliente));
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    public function getSucursalCliente($idCliente, $idSucursal)
+    {
+        $qry = "SELECT idSucursal, nomSucursal, telSucursal,dirSucursal, ciudad, idCiudad
+                FROM clientes_sucursal cs
+                LEFT JOIN ciudades c on cs.ciudadSucursal = c.idCiudad
+                WHERE idCliente = ? AND idSucursal = ?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($idCliente, $idSucursal));
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result;
     }
 
@@ -156,13 +152,13 @@ class ClientesSucursalOperaciones
         return $result;
     }
 
-    public function getUltimoProdxCat($idCatProd)
+    public function getMaxSucursalByIdCliente($idCliente)
     {
-        $qry = "SELECT MAX(codProveedor) as Cod from clientes_sucursal where idCatProd=?";
+        $qry = "SELECT MAX(idSucursal) AS id FROM clientes_sucursal WHERE idCliente=?";
         $stmt = $this->_pdo->prepare($qry);
-        $stmt->execute(array($idCatProd));
+        $stmt->execute(array($idCliente));
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $result['Cod'];
+        return $result['id'];
     }
 
 
