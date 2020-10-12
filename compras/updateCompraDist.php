@@ -22,12 +22,14 @@ include "includes/conect.php";
   </tr>
   <form action="updateComDist.php" method="post" name="actualiza">
   <?php
-	foreach ($_POST as $nombre_campo => $valor) 
-	{ 
-		$asignacion = "\$".$nombre_campo."='".$valor."';"; 
-		//echo $nombre_campo." = ".$valor."<br>";  
-		eval($asignacion); 
-	}  
+	foreach ($_POST as $nombre_campo => $valor) {
+    ${$nombre_campo} = $valor;
+    if(is_array($valor)){
+        //echo $nombre_campo.print_r($valor).'<br>';
+    }else{
+        //echo $nombre_campo. '=' .${$nombre_campo}.'<br>';
+    }
+}
 	$link=conectarServidor();
 	$qry="select Codigo, Producto, Cantidad, Precio from det_compras, distribucion WHERE idCompra=$factura and Codigo=$codigo AND 	Codigo=Id_distribucion;";
 	$result=mysqli_query($link, $qry);

@@ -14,12 +14,14 @@ include "../includes/valAcc.php";
 <div id="saludo1"><strong>CONSULTA DE VENTAS POR FAMILIA DE PRODUCTOS POR MES</strong></div> 
 
 <?php
-foreach ($_POST as $nombre_campo => $valor) 
-{ 
-	$asignacion = "\$".$nombre_campo."='".$valor."';"; 
-	//echo $nombre_campo." = ".$valor."<br>";  
-	eval($asignacion); 
-}  
+foreach ($_POST as $nombre_campo => $valor) {
+    ${$nombre_campo} = $valor;
+    if(is_array($valor)){
+        //echo $nombre_campo.print_r($valor).'<br>';
+    }else{
+        //echo $nombre_campo. '=' .${$nombre_campo}.'<br>';
+    }
+}
 
 ?>
 <table width="100%"  align="center" border="0">

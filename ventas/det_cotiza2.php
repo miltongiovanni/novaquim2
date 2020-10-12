@@ -23,13 +23,15 @@ include "../includes/valAcc.php";
 <?php
 	include "includes/conect.php";
 	$link=conectarServidor();
-	foreach ($_POST as $nombre_campo => $valor) 
-	{ 
-		$asignacion = "\$".$nombre_campo."='".$valor."';"; 
-		//echo $nombre_campo." = ".$valor."<br>";  
-		eval($asignacion); 
-	}  	
-	$qryb="select Id_Cotizacion, Nom_clien, Fech_Cotizacion, precio, presentaciones, distribucion, productos, nom_personal from cotizaciones, clientes_cotiz, personal where Id_Cotizacion=$Cotizacion and cliente=Id_cliente and Id_personal=cod_vend;";
+	foreach ($_POST as $nombre_campo => $valor) {
+    ${$nombre_campo} = $valor;
+    if(is_array($valor)){
+        //echo $nombre_campo.print_r($valor).'<br>';
+    }else{
+        //echo $nombre_campo. '=' .${$nombre_campo}.'<br>';
+    }
+}	
+	$qryb="select idCotizacion, nomCliente, fechaCotizacion, precioCotizacion, presentaciones, distribucion, productos, nom_personal from cotizaciones, clientes_cotiz, personal where idCotizacion=$Cotizacion and idCliente=idCliente and Id_personal=codVendedor;";
   $resultb=mysqli_query($link,$qryb);		
   $rowb=mysqli_fetch_array($resultb);
   if ($Destino==1)

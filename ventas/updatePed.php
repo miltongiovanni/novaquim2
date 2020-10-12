@@ -10,12 +10,14 @@ include "includes/conect.php";
 </head>
 <body>
 <?php
-	foreach ($_POST as $nombre_campo => $valor) 
-	{ 
-		$asignacion = "\$".$nombre_campo."='".$valor."';"; 
-		//echo $nombre_campo." = ".$valor."<br>";  
-		eval($asignacion); 
-	}  
+	foreach ($_POST as $nombre_campo => $valor) {
+    ${$nombre_campo} = $valor;
+    if(is_array($valor)){
+        //echo $nombre_campo.print_r($valor).'<br>';
+    }else{
+        //echo $nombre_campo. '=' .${$nombre_campo}.'<br>';
+    }
+}
 	$qryinv="update det_pedido set Can_producto=$cantidad, Prec_producto=$precio where Id_ped=$pedido and Cod_producto=$producto";
 	echo'<form action="det_pedido.php" method="post" name="formulario">';
 	$link=conectarServidor();

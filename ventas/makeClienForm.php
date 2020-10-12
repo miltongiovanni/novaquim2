@@ -46,7 +46,7 @@ spl_autoload_register('cargarClases');
     <div id="saludo"><strong>CREACIÓN DE CLIENTES</strong></div>
     <form name="form2" method="POST" action="makeClien.php">
         <div class=" row ">
-            <label class="col-form-label col-2 text-left mx-2"><strong>Tipo</strong></label>
+            <label class="col-form-label col-2 text-left mx-2"><strong>Tipo NIT</strong></label>
             <label class="col-form-label col-2 text-left mx-2"
                    for="numero"><strong>Número</strong></label>
             <label class="col-form-label col-2 text-left mx-2" for="nitCliente"><strong>NIT</strong></label>

@@ -24,7 +24,6 @@ if ($estadoCliente == 1) {
 
     <meta charset="utf-8">
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-    <script src="../js/validar.js"></script>
     <link rel="stylesheet" href="../css/datatables.css">
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/datatables.js"></script>

@@ -19,12 +19,14 @@ include "../includes/valAcc.php";
 <div id="saludo1"><strong>FALTANTE DE LOS PEDIDOS</strong></div>
 <?php
 	include "includes/conect.php";
-	foreach ($_POST as $nombre_campo => $valor) 
-	{ 
-		$asignacion = "\$".$nombre_campo."='".$valor."';"; 
-		//echo $nombre_campo." = ".$valor."<br>";  
-		eval($asignacion); 
-	}  	
+	foreach ($_POST as $nombre_campo => $valor) {
+    ${$nombre_campo} = $valor;
+    if(is_array($valor)){
+        //echo $nombre_campo.print_r($valor).'<br>';
+    }else{
+        //echo $nombre_campo. '=' .${$nombre_campo}.'<br>';
+    }
+}	
 	if($_POST['seleccion1'])    //and (Id_pedido=915 or Id_pedido=916)
 	{
 	  	$opciones_clien = implode(",", $_POST['seleccion1']);

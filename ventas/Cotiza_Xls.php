@@ -5,12 +5,14 @@ error_reporting(E_ALL);
 /** PHPExcel */
 require_once 'Classes/PHPExcel.php';
 
-foreach ($_POST as $nombre_campo => $valor) 
-{ 
-	$asignacion = "\$".$nombre_campo."='".$valor."';"; 
-	//echo $nombre_campo." = ".$valor."<br>";  
-	eval($asignacion); 
-}  
+foreach ($_POST as $nombre_campo => $valor) {
+    ${$nombre_campo} = $valor;
+    if(is_array($valor)){
+        //echo $nombre_campo.print_r($valor).'<br>';
+    }else{
+        //echo $nombre_campo. '=' .${$nombre_campo}.'<br>';
+    }
+}
 
 
 // Create new PHPExcel object
@@ -41,8 +43,8 @@ $objPHPExcel->setActiveSheetIndex(0)
 $objPHPExcel->getActiveSheet()->setTitle('Lista de Cotizaciones');
 $link=conectarServidor();
 $sql="	
-select Id_Cotizacion, Fech_Cotizacion, Nom_clien, desCatClien, tipo_precio,  Contacto, Cargo, Tel_clien, Cel_clien, Dir_clien, Eml_clien, nom_personal 
-from cotizaciones, clientes_cotiz, personal, cat_clien, tip_precio where cliente=Id_cliente and cod_vend=Id_personal and Id_cat_clien=idCatClien and precio=Id_precio;";
+select idCotizacion, fechaCotizacion, nomCliente, desCatClien, tipo_precio,  contactoCliente, cargoContacto, telCliente, celCliente, dirCliente, emailCliente, nom_personal 
+from cotizaciones, clientes_cotiz, personal, cat_clien, tip_precio where idCliente=idCliente and codVendedor=Id_personal and idCatCliente=idCatClien and precioCotizacion=Id_precio;";
 			
 $result=mysqli_query($link,$sql) or die("Error al conectar a la base de datos.");
 $i=2;

@@ -5,12 +5,14 @@ error_reporting(E_ALL);
 /** PHPExcel */
 require_once 'Classes/PHPExcel.php';
 
-foreach ($_POST as $nombre_campo => $valor) 
-{ 
-	$asignacion = "\$".$nombre_campo."='".$valor."';"; 
-	//echo $nombre_campo." = ".$valor."<br>";  
-	eval($asignacion); 
-}  
+foreach ($_POST as $nombre_campo => $valor) {
+    ${$nombre_campo} = $valor;
+    if(is_array($valor)){
+        //echo $nombre_campo.print_r($valor).'<br>';
+    }else{
+        //echo $nombre_campo. '=' .${$nombre_campo}.'<br>';
+    }
+}
 $link=conectarServidor();
 $sql1="Select nomCliente, idPedido, fechaPedido, fechaEntrega, codVendedor, nom_personal, tipo_precio, pedido.Estado, nomSucursal, dirSucursal, telSucursal
 		FROM pedido, personal, clientes, tip_precio, clientes_sucursal 

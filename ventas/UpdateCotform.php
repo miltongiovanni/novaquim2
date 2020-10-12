@@ -20,15 +20,17 @@ include "../includes/valAcc.php";
 <div id="contenedor">
 <div id="saludo1"><strong>MODIFICAR COTIZACIÓN</strong></div>
 <?php
-foreach ($_POST as $nombre_campo => $valor) 
-{ 
-	$asignacion = "\$".$nombre_campo."='".$valor."';"; 
-	//echo $nombre_campo." = ".$valor."<br>";  
-	eval($asignacion); 
-}  
+foreach ($_POST as $nombre_campo => $valor) {
+    ${$nombre_campo} = $valor;
+    if(is_array($valor)){
+        //echo $nombre_campo.print_r($valor).'<br>';
+    }else{
+        //echo $nombre_campo. '=' .${$nombre_campo}.'<br>';
+    }
+}
 include "includes/conect.php";
 $link=conectarServidor();
-$qrys="select Id_Cotizacion, cliente, Fech_Cotizacion, precio, presentaciones, distribucion, productos, Nom_clien from cotizaciones, clientes_cotiz where cliente=Id_cliente and Id_Cotizacion=$cotiza;";
+$qrys="select idCotizacion, idCliente, fechaCotizacion, precioCotizacion, presentaciones, distribucion, productos, nomCliente from cotizaciones, clientes_cotiz where idCliente=idCliente and idCotizacion=$cotiza;";
 $results=mysqli_query($link,$qrys);
 $rows=mysqli_fetch_array($results); 
 $id_cliente=$rows['cliente'];
@@ -49,7 +51,7 @@ $seleccion1 = explode(",", $rows['productos']);
    	  <td colspan="3">
 	  <?php
 			echo'<select name="cliente" id="combo">';
-			$result=mysqli_query($link,"select Id_cliente, Nom_clien from clientes_cotiz order BY Nom_clien;");
+			$result=mysqli_query($link,"select idCliente, nomCliente from clientes_cotiz order BY nomCliente;");
 			echo '<option selected value="'.$id_cliente.'">'.$nom_cliente.'</option>';
 			while($row=mysqli_fetch_array($result))
 			{

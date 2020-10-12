@@ -1,145 +1,125 @@
 <?php
 include "../includes/valAcc.php";
-include "includes/conect.php";
+function cargarClases($classname)
+{
+    require '../clases/' . $classname . '.php';
+}
+
+spl_autoload_register('cargarClases');
+$idCliente = $_POST['idCliente'];
+$clienteCotizacionOperador = new ClientesCotizacionOperaciones();
+$cliente = $clienteCotizacionOperador->getCliente($idCliente);
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-<meta charset="utf-8">
-<title>Actualizar datos del Cliente</title>
-<script  src="../js/validar.js"></script>
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <meta charset="utf-8">
+    <title>Actualizar datos del Cliente</title>
+    <script src="../js/validar.js"></script>
 
 </head>
 
 <body>
 <div id="contenedor">
-<div id="saludo"><strong>ACTUALIZACIÓN DE CLIENTE DE COTIZACIÓN</strong></div>
+    <div id="saludo"><strong>ACTUALIZACIÓN DE CLIENTE DE COTIZACIÓN</strong></div>
+    <form id="form1" name="form1" method="post" action="updateClienCot.php">
+        <input type="hidden" name="idCliente" value="<?= $cliente['idCliente'] ?>">
+        <div class=" row ">
+            <label class="col-form-label col-3 text-left mr-2" for="nomCliente"><strong>Cliente</strong></label>
+            <label class="col-form-label col-1 text-left mx-3" for="ciudadCliente"><strong>Ciudad</strong></label>
+            <label class="col-form-label col-3 text-left ml-2" for="dirCliente"><strong>Dirección</strong></label>
+        </div>
+        <div class="form-group row">
+            <input type="text" class="form-control col-3 mr-2" name="nomCliente" id="nomCliente"
+                   value="<?= $cliente['nomCliente'] ?>" required>
+            <select name="idCiudad" id="idCiudad" class="form-control col-1 mx-3" required>
+                <option selected value="<?= $cliente['idCiudad'] ?>"><?= $cliente['ciudad'] ?></option>
+                <?php
+                $manager = new CiudadesOperaciones();
+                $ciudades = $manager->getCiudades();
+                $filas = count($ciudades);
+                for ($i = 0; $i < $filas; $i++) {
+                    if ($ciudades[$i]["idCiudad"] != $cliente['idCiudad']) {
+                        echo '<option value="' . $ciudades[$i]["idCiudad"] . '">' . $ciudades[$i]['ciudad'] . '</option>';
+                    }
 
-<?php
-	  $link=conectarServidor();
-	  $cliente_cot=$_POST['cliente_cot'];
-	  $qry="select Id_cliente, Nom_clien, Contacto, Cargo, Tel_clien, Fax_clien, Cel_clien, Dir_clien, Eml_clien, Id_cat_clien, desCatClien, Ciudad_clien , ciudad, cod_vend, nom_personal from clientes_cotiz, ciudades, cat_clien, personal where Ciudad_clien=idCiudad and Id_cat_clien=idCatClien and cod_vend=Id_personal and Id_cliente='$cliente_cot'";
-	  $result=mysqli_query($link, $qry);
-	  $row=mysqli_fetch_array($result);
-	  $city=$row['Ciudad_clien'];
-?>
+                }
+                echo '';
+                ?>
+            </select>
+            <input type="text" class="form-control col-3 ml-2" name="dirCliente" id="dirCliente"
+                   value="<?= $cliente['dirCliente'] ?>" required>
+        </div>
+        <div class="row">
+            <label class="col-form-label col-2 text-left mr-2" for="telCliente"><strong>Teléfono</strong></label>
+            <label class="col-form-label col-2 text-left mx-3" for="emailCliente"><strong>Correo
+                    electrónico</strong></label>
+            <label class="col-form-label col-3 text-left ml-2" for="idCatCliente"><strong>Actividad</strong></label>
+        </div>
+        <div class="form-group row">
+            <input type="text" class="form-control col-2 mr-2" name="telCliente" id="telCliente" maxlength="10"
+                   onKeyPress="return aceptaNum(event)" value="<?= $cliente['telCliente'] ?>">
+            <input type="email" class="form-control col-2 mx-3" name="emailCliente" id="emailCliente"
+                   value="<?= $cliente['emailCliente'] ?>">
+            <select name="idCatCliente" id="idCatCliente" class="form-control col-3 ml-2" required>
+                <option selected value="<?= $cliente['idCatCliente'] ?>"><?= $cliente['desCatClien'] ?></option>
+                <?php
+                $manager = new CategoriasCliOperaciones();
+                $categorias = $manager->getCatsCli();
+                $filas = count($categorias);
+                for ($i = 0; $i < $filas; $i++) {
+                    if ($categorias[$i]["idCatClien"] != $cliente['idCatCliente']) {
+                        echo '<option value="' . $categorias[$i]["idCatClien"] . '">' . $categorias[$i]['desCatClien'] . '</option>';
+                    }
+                }
+                ?>
+            </select>
+        </div>
+        <div class="row">
+            <label class="col-form-label col-2 text-left mr-2" for="contactoCliente"><strong>Nombre
+                    Contacto</strong></label>
+            <label class="col-form-label col-2 text-left mx-2" for="cargoContacto"><strong>Cargo
+                    Contacto</strong></label>
+            <label class="col-form-label col-1 text-left mx-2" for="cargoContacto"><strong>Celular</strong></label>
+            <label class="col-form-label col-2 text-left ml-2" for="codVendedor"><strong>Vendedor</strong></label>
+        </div>
+        <div class="form-group row">
+            <input type="text" class="form-control col-2 mr-2" name="contactoCliente" id="contactoCliente"
+                   value="<?= $cliente['dirCliente'] ?>" required>
+            <input type="text" class="form-control col-2 mx-2" name="cargoContacto" id="cargoContacto"
+                   value="<?= $cliente['dirCliente'] ?>" required>
+            <input type="text" class="form-control col-1 mx-2" name="celCliente" id="celCliente" maxlength="10"
+                   onKeyPress="return aceptaNum(event)" value="<?= $cliente['celCliente'] ?>">
+            <select name="codVendedor" id="codVendedor" class="form-control col-2 ml-2" required>
+                <option selected value="<?= $cliente['codVendedor'] ?>"><?= $cliente['nomPersonal'] ?></option>
+                <?php
+                $PersonalOperador = new PersonalOperaciones();
+                $personal = $PersonalOperador->getPersonal(true);
+                for ($i = 0; $i < count($personal); $i++) {
+                    if ($personal[$i]["idPersonal"] != $cliente['codVendedor']) {
+                        echo '<option value="' . $personal[$i]["idPersonal"] . '">' . $personal[$i]['nomPersonal'] . '</option>';
+                    }
+                }
+                ?>
+            </select>
+        </div>
+        <div class="form-group row">
+            <div class="col-1 text-center">
+                <button class="button" type="reset"><span>Reiniciar</span></button>
+            </div>
+            <div class="col-1 text-center">
+                <button class="button" onclick="return Enviar(this.form)"><span>Continuar</span></button>
+            </div>
+        </div>
 
-<form id="form1" name="form1" method="post" action="updateClienCot.php">
-<table align="center">
-  <tr> 
-    <td><div align="right"><strong>Cliente</strong></div></td>
-    <td colspan="3"><input type="text" name="cliente" size=60 id="Cliente"
-    <?php
-    echo 'value="'.$row['Nom_clien'].'"';
-    ?>
-     maxlength="60"></td>
-    <td><div align="right"><b>Ciudad</b></div></td>
-    <td><?php
-        $Idcity=$row['Ciudad_clien'];
-        $city=$row['ciudad'];
-        echo'<select name="ciudad_cli">';
-        $qry1="select idCiudad, ciudad from ciudades where idCiudad<>$Idcity order by ciudad;";
-        $result1=mysqli_query($link, $qry1);
-        echo '<option selected value="'.$Idcity.'">'.$city.'</option>';
-        while($row1=mysqli_fetch_array($result)){
-            echo '<option value='.$row1['Id_ciudad'].'>'.$row1['ciudad'].'</option>';
-        }
-        echo'</select>';
-        ?></td>
-  </tr>
-  <tr> 
-    <td><div align="right"><b>Dirección</b></div></td>
-    <td colspan="3"><input type="text"  maxlength="50" name="Direccion" size=60 id="Direccion"
-    <?php 
-    echo 'value="'.$row['Dir_clien'].'"';
-    ?>
-    ></td>
-    <td><div align="right"><strong>Teléfono</strong></div></td>
-    <td><input type="text" name="Tel1" maxlength="7" size=15 onKeyPress="return aceptaNum(event)" id="Tel1"
-    <?php
-    echo 'value="'.$row['Tel_clien'].'"';
-    ?>
-    ></td>
-  </tr>
-  <tr> 
-    <td><div align="right"><b>Contacto</b></div></td>
-    <td colspan="3"><input type="text"  maxlength="34" name="Contacto" size=60 id="Contacto"
-        <?php
-    echo 'value="'.$row['Contacto'].'"';
-    ?>
-    ></td>
-    <td><div align="right"><strong>Fax</strong></div></td>
-    <td><input type="text" name="Fax" size=15 onKeyPress="return aceptaNum(event)" id="Fax" 
-	<?php
-    echo 'value="'.$row['Fax_clien'].'"';
-    ?>></td>
-  </tr>
-  <tr> 
-    <td><div align="right"><strong>Cargo</strong></div></td>
-    <td colspan="3"><input type="text"  maxlength="34" name="Cargo" size=60
-    <?php
-    echo 'value="'.$row['Cargo'].'"';
-    ?>
-    ></td>
-    <td><div align="right"><strong>Celular</strong></div></td>
-    <td><input type="text" name="celular" size=15 onKeyPress="return aceptaNum(event)" id="Fax"   
-     <?php
-    echo 'value="'.$row['Cel_clien'].'"';
-    ?>
-    ></td>
-  </tr>
-  <tr>
-    <td><div align="right"><strong>e-mail</strong></div></td>
-    <td colspan="3"><input type="text" name="email" onChange="TestMail(document.form2.Email.value)" size=60
-    <?php
-    echo 'value="'.$row['Eml_clien'].'"';
-    ?>
-    ></td>
-    <td><div align="right"><strong>Actividad</strong></div></td>
-    <td colspan="2">
-    <select name="IdCat" id="IdCat">
-	<?php  
-		$catcli=$row['Id_cat_clien'];
-        $catclin=$row['Des_cat_cli'];
-        $qry2="select idCatClien, desCatClien from cat_clien where idCatClien<>$catcli order by desCatClien";
-        $result2=mysqli_query($link,$qry2);
-        echo '<option selected value="'.$catcli.'">'.$catclin.'</option>';
-        while($row2=mysqli_fetch_array($result2))
-        {
-                echo '<option value="'.$row2['Id_cat_cli'].'">'.$row2['Des_cat_cli'].'</option>';
-        }
-    ?>
-    </select></td>													
-  </tr>
-  <tr> 
-    <td><div align="right"><strong>Vendedor</strong></div></td>
-    <td colspan="1">
-	<?php
-	  $vend=$row['cod_vend'];
-      $vendn=$row['nom_personal'];
-	  echo'<select name="vendedor">';
-      $qry3="select Id_personal , nom_personal FROM personal where Activo=1 and Id_personal<>$vend order by nom_personal;";
-	  $result3=mysqli_query($link,$qry3);
-      echo '<option selected value="'.$vend.'">'.$vendn.'</option>';
-	  while($row3=mysqli_fetch_array($result3)){
-		  echo '<option value='.$row3['Id_personal'].'>'.$row3['nom_personal'].'</option>';
-	  }
-	  echo'</select>';
-	  mysqli_close($link);
-    ?>
-    </td>
-  </tr>
-  <tr> 
-    <td colspan="6" align="center"><input type="hidden" value="<?php echo $cliente_cot; ?>" name="cliente_cot" >  <input type="button" class="formatoBoton1" onClick="return Enviar(this.form);" value="     Actualizar     " >&nbsp;&nbsp;</td>
-  </tr>
-  <tr>
-    <td colspan="6"><div align="center">&nbsp;</div></td>
-  </tr>
-</table>
-</form>
+    </form>
 
-<div align="center"><input type="button" class="resaltado" onClick="history.back()" value="  VOLVER  "></div>
+    <div class="row">
+        <div class="col-1">
+            <button class="button1" id="back" onClick="history.back()"><span>VOLVER</span></button>
+        </div>
+    </div>
 </div>
 </body>
 </html>

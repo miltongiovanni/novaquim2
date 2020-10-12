@@ -29,7 +29,7 @@ include "../includes/valAcc.php";
 			include "includes/conect.php";
 			$link=conectarServidor();
 			echo'<select name="cliente" id="combo">';
-			$result=mysqli_query($link,"select Id_cliente, Nom_clien from clientes_cotiz order BY Nom_clien");
+			$result=mysqli_query($link,"select idCliente, nomCliente from clientes_cotiz order BY nomCliente");
 			echo '<option selected value="">-----------------------------------------------------------------------------------</option>';
 			while($row=mysqli_fetch_array($result)){
 				echo '<option value='.$row['Id_cliente'].'>'.$row['Nom_clien'].'</option>';

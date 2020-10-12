@@ -287,7 +287,7 @@ font {
 .form-control {
     display: block;
     width: 100%;
-    /*height: calc(2.25rem + 2px);*/
+    height: calc(2.25rem + 2px);
     padding: 0.175rem 0.75rem;
     font-size: 1rem;
     line-height: 1.5;
@@ -390,9 +390,9 @@ img {
 
 label {
     display: inline-block;
-    margin-bottom: 0.5rem;
+    /*margin-bottom: 0.5rem;*/
     text-align: right;
-    font-weight: 600;
+    font-weight: 400;
 }
 
 legend {
@@ -946,6 +946,11 @@ table {
     width: 100%;
     margin-top: 20px;
     margin-bottom: 10px;
+}
+
+.tabla-90 {
+    width: 90%;
+    margin: 0 auto 10px auto;
 }
 
 .tabla-80 {

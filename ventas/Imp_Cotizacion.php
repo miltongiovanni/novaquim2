@@ -3,12 +3,14 @@ include "../includes/valAcc.php";
 ?><?php
 
 $Destino="";
-foreach ($_POST as $nombre_campo => $valor) 
-	{ 
-		$asignacion = "\$".$nombre_campo."='".$valor."';"; 
-		//echo $nombre_campo." = ".$valor."<br>";  
-		eval($asignacion); 
-	}  
+foreach ($_POST as $nombre_campo => $valor) {
+    ${$nombre_campo} = $valor;
+    if(is_array($valor)){
+        //echo $nombre_campo.print_r($valor).'<br>';
+    }else{
+        //echo $nombre_campo. '=' .${$nombre_campo}.'<br>';
+    }
+}
 require('fpdf.php');
 class PDF extends FPDF
 {
@@ -47,9 +49,9 @@ function Footer()
 //Creación del objeto de la clase heredada
 include "includes/conect.php";
 $link=conectarServidor();
-$qryord="select Id_Cotizacion, Nom_clien, Dir_clien, Contacto, clientes_cotiz.Cargo, Fech_Cotizacion, precio, presentaciones, productos, distribucion, Ciudad, nom_personal, cel_personal, Eml_personal, cargos_personal.cargo as cargo_personal, desCatClien 
+$qryord="select idCotizacion, nomCliente, dirCliente, contactoCliente, clientes_cotiz.cargoContacto, fechaCotizacion, precioCotizacion, presentaciones, productos, distribucion, Ciudad, nom_personal, cel_personal, Eml_personal, cargos_personal.cargo as cargo_personal, desCatClien 
 from cotizaciones, clientes_cotiz, personal, cat_clien, cargos_personal, ciudades 
-WHERE Id_Cotizacion=$Cotizacion and cliente=Id_cliente AND cod_vend=Id_personal AND Id_cat_clien=idCatClien and cod_vend=Id_personal and cargo_personal=Id_cargo and Ciudad_clien=idCiudad";
+WHERE idCotizacion=$Cotizacion and idCliente=idCliente AND codVendedor=Id_personal AND idCatCliente=idCatClien and codVendedor=Id_personal and cargo_personal=Id_cargo and idCiudad=idCiudad";
 $resultord=mysqli_query($link,$qryord);
 $roword=mysqli_fetch_array($resultord);
 $Nom_clien=$roword['Nom_clien'];

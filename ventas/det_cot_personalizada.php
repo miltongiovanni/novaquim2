@@ -24,12 +24,14 @@ include "../includes/valAcc.php";
 <?php
 include "includes/conect.php";
 include "includes/calcularDias.php";
-foreach ($_POST as $nombre_campo => $valor) 
-{ 
-	$asignacion = "\$".$nombre_campo."='".$valor."';"; 
-	//echo $nombre_campo." = ".$valor."<br>";  
-	eval($asignacion); 
-}  
+foreach ($_POST as $nombre_campo => $valor) {
+    ${$nombre_campo} = $valor;
+    if(is_array($valor)){
+        //echo $nombre_campo.print_r($valor).'<br>';
+    }else{
+        //echo $nombre_campo. '=' .${$nombre_campo}.'<br>';
+    }
+}
 function mover($ruta,$mensaje)
 {
 	//Funcion que permite el redireccionamiento de los usuarios a otra pagina 
@@ -121,8 +123,8 @@ if($Crear==2)
 	  </script>';
 }
 $link=conectarServidor(); 
-$qry2="select Id_cotiz_p, Fech_Cotizacion, Nom_clien, Contacto, Cargo, Tel_clien, Fax_clien, Cel_clien, Dir_clien, Eml_clien, tipo_precio, nom_personal, cel_personal 
-from  cot_personalizada, clientes_cotiz, tip_precio, personal where Cliente_cot=Id_cliente and tip_precio=Id_precio and cod_vend=Id_personal and Id_cotiz_p=$cotizacion";
+$qry2="select Id_cotiz_p, Fech_Cotizacion, nomCliente, contactoCliente, cargoContacto, telCliente, Fax_clien, celCliente, dirCliente, emailCliente, tipo_precio, nom_personal, cel_personal 
+from  cot_personalizada, clientes_cotiz, tip_precio, personal where Cliente_cot=idCliente and tip_precio=Id_precio and codVendedor=Id_personal and Id_cotiz_p=$cotizacion";
 $result2=mysqli_query($link,$qry2);
 if ($row2=mysqli_fetch_array($result2))
 {

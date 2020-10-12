@@ -24,12 +24,14 @@ include "includes/conect.php";
   </tr>
   <form action="updateComEtq.php" method="post" name="actualiza">
   <?php
-	foreach ($_POST as $nombre_campo => $valor) 
-	{ 
-		$asignacion = "\$".$nombre_campo."='".$valor."';"; 
-		//echo $nombre_campo." = ".$valor."<br>";  
-		eval($asignacion); 
-	}  
+	foreach ($_POST as $nombre_campo => $valor) {
+    ${$nombre_campo} = $valor;
+    if(is_array($valor)){
+        //echo $nombre_campo.print_r($valor).'<br>';
+    }else{
+        //echo $nombre_campo. '=' .${$nombre_campo}.'<br>';
+    }
+}
 	$link=conectarServidor();
 	$qry="select Codigo, Nom_etiq, Cantidad, Precio from det_compras, etiquetas where idCompra=$factura and Codigo=$codigo AND Codigo=Cod_etiq;";
 	$result=mysqli_query($link,$qry);

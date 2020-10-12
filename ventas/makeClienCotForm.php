@@ -1,242 +1,131 @@
 <?php
 include "../includes/valAcc.php";
-include "includes/conect.php";
+function cargarClases($classname)
+{
+    require '../clases/' . $classname . '.php';
+}
+
+spl_autoload_register('cargarClases');
+
+$cliExis = $_POST['cliExis'];
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-<title>Creación de Clientes para Cotización</title>
-<meta charset="utf-8">
-<script  src="../js/validar.js"></script>
-<script  src="scripts/block.js"></script>	
-<script >
-document.onkeypress = stopRKey; 
-</script>
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <title>Creación de Clientes para Cotización</title>
+    <meta charset="utf-8">
+    <script src="../js/validar.js"></script>
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/findCliente.js"></script>
 </head>
 
 <body>
 <div id="contenedor">
-<?php
-foreach ($_POST as $nombre_campo => $valor) 
-{ 
-  $asignacion = "\$".$nombre_campo."='".$valor."';"; 
-  echo $nombre_campo." = ".$valor."<br>";  
-  eval($asignacion); 
-}    
-$link=conectarServidor();
-if (($crear==2)&&($CliExis == 1))
-{ 
-
-  $qryb="select nomCliente, contactoCliente, cargoCliente, telCliente, faxCliente, celCliente, dirCliente, emailCliente, idCatCliente, ciudadCliente, codVendedor, desCatClien, ciudad, nom_personal from clientes, cat_clien, ciudades, personal where nitCliente='$cliente' and idCatCliente=idCatClien and ciudadCliente=idCiudad and codVendedor=Id_personal;";
-  $resultb=mysqli_query($link,$qryb);
-  $rowb=mysqli_fetch_array($resultb);
-		
-		/* echo '<form method="post" action="det_cotiza.php" name="form5" target="_blank">';
-		  echo'<input name="Crear" type="hidden" value="5">';
-		  echo'<input name="Destino" type="hidden" value="'.$Destino.'">';
-		  echo'<input name="num_cotiza" type="hidden" value="'.$num_cotiza.'">';
-		  echo '<input type="submit" name="Submit" value="Analizar" >'; 
-		  echo '</form>';
-		  echo'<script >
-			  document.form5.submit();
-			  </script>';  */
-
-}
-?>   
-<div id="saludo"><strong>CREACIÓN DE CLIENTES PARA COTIZACIÓN</strong></div>
-<?php
-if (($crear==1)&&($CliExis==1))
-{
-?>
-<form method="post" action="makeClienCotForm.php" name="form1">	
-<table align="center" width="36%">
-<tr>
-  <td width="18%" align="right"><strong>Cliente</strong></td>
-  <td colspan="3">
-  <?php
-  $link=conectarServidor();
-  echo'<select name="cliente" id="combo">';
-  if ($CliExis==0)
-	$qry="select Id_cliente, Nom_clien from clientes_cotiz order BY Nom_clien;";
-  else
-	$qry="select nitCliente as Id_cliente, nomCliente from clientes where nitCliente<>'0-0' and estadoCliente='A' order by nomCliente;";
-  
-  $result=mysqli_query($link, $qry);
-  echo '<option selected value="">-----------------------------------------------------------------------------------</option>';
-  while($row=mysqli_fetch_array($result))
-  {
-	  echo '<option value='.$row['Id_cliente'].'>'.$row['Nom_clien'].'</option>';
-  }
-  echo'</select>';
-  ?>
-  </td>
-</tr>
-<tr> 
-<td colspan="2" align="right"><input name="crear" value="2"  type="hidden" ><input name="CliExis" value="1"  type="hidden" >
-<input type="button" class="formatoBoton1" value=" Continuar " onClick="return Enviar(this.form);" ></td>
-</tr>
-</table>
-</form>
-<?php
-}
-?>
-<?php
-if ((($crear==1)&&($CliExis == 0))||($crear!=1))
-{
-	echo "estoy adentro";
-?>
-
-<form name="form2" method="POST" action="makeClienCot.php">
-<table align="center">
-  <tr> 
-    <td><div align="right"><strong>Cliente</strong></div></td>
-    <td colspan="3"><input type="text"  name="Cliente" size=60 id="Cliente"
-    <?php
-    if($CliExis==1)
-    echo 'value="'.$rowb['Nom_clien'].'"';
-    ?>
-     maxlength="60"></td>
-    <td><div align="right"><b>Ciudad</b></div></td>
-    <td><?php
-        
-        echo'<select name="ciudad_cli">';
-        if($CliExis == 1)
-		{
-			$city=$rowb['Ciudad_clien'];
-        	$cityn=$rowb['ciudad'];
-          	$qry1="select idCiudad, ciudad from ciudades where idCiudad<>$city order by ciudad;";
-		 }
-        else
-          $qry1="select idCiudad, ciudad from ciudades order by ciudad;";
-        $result=mysqli_query($link, $qry1);
-        if($CliExis == 1)
-          echo '<option selected value="'.$city.'">'.$cityn.'</option>';
-        else
-          echo '<option selected value="">------------------------------------</option>';
-        while($row=mysqli_fetch_array($result)){
-            echo '<option value='.$row['Id_ciudad'].'>'.$row['ciudad'].'</option>';
-        }
-        echo'</select>';
-        ?></td>
-  </tr>
-  <tr> 
-    <td><div align="right"><b>Dirección</b></div></td>
-    <td colspan="3"><input type="text"  maxlength="60" name="Direccion" size=60 id="Direccion"
-    <?php 
-    if($CliExis == 1)
-    echo 'value="'.$rowb['Dir_clien'].'"';
-    ?>
-    ></td>
-    <td><div align="right"><strong>Teléfono</strong></div></td>
-    <td><input type="text" name="Tel1" maxlength="7" size=15 onKeyPress="return aceptaNum(event)" id="Tel1"
-    <?php
-    if($CliExis == 1)
-    echo 'value="'.$rowb['Tel_clien'].'"';
-    ?>
-    ></td>
-  </tr>
-  <tr> 
-    <td><div align="right"><b>Contacto</b></div></td>
-    <td colspan="3"><input type="text"  maxlength="40" name="Contacto" size=60 id="Contacto"
+    <div id="saludo"><strong>CREACIÓN DE CLIENTES PARA COTIZACIÓN</strong></div>
+    <form name="form2" method="POST" action="makeClienCot.php">
+        <input type="hidden" name="cliExis" value="<?= $cliExis ?>">
         <?php
-    if($CliExis == 1)
-    echo 'value="'.$rowb['Contacto'].'"';
-    ?>
-    ></td>
-    <td><div align="right"><strong>Fax</strong></div></td>
-    <td><input type="text" name="Fax" size=15 onKeyPress="return aceptaNum(event)" id="Fax" 
-	<?php
-    if($CliExis == 1)
-    echo 'value="'.$rowb['Fax_clien'].'"';
-    ?>></td>
-  </tr>
-  <tr> 
-    <td><div align="right"><strong>Cargo</strong></div></td>
-    <td colspan="3"><input type="text"  maxlength="30" name="Cargo" size=60
-    <?php
-    if($CliExis == 1)
-    echo 'value="'.$rowb['Cargo'].'"';
-    ?>
-    ></td>
-    <td><div align="right"><strong>Celular</strong></div></td>
-    <td><input type="text" name="celular" maxlength="11" size=15 onKeyPress="return aceptaNum(event)" id="Fax"   
-     <?php
-    if($CliExis == 1)
-    echo 'value="'.$rowb['Cel_clien'].'"';
-    ?>
-    ></td>
-  </tr>
-  <tr>
-    <td><div align="right"><strong>e-mail</strong></div></td>
-    <td colspan="3"><input type="text" name="email" maxlength="30" onChange="TestMail(document.form2.Email.value)" size=60
-    <?php
-    if($CliExis == 1)
-    echo 'value="'.$rowb['Eml_clien'].'"';
-    ?>
-    ></td>
-    <td><div align="right"><strong>Actividad</strong></div></td>
-    <td colspan="2">
-    <select name="IdCat" id="IdCat">
-	<?php  
-		
-		if($CliExis == 1){
-		$catcli=$rowb['Id_cat_clien'];
-        $catclin=$rowb['Des_cat_cli'];
-          $qry2="select idCatClien, desCatClien from cat_clien where idCatClien<>$catcli order by desCatClien";}
-        else
-          $qry2="select idCatClien, desCatClien from cat_clien order by desCatClien";
-        $result=mysqli_query($link,$qry2);
-		if($CliExis == 1)
-          echo '<option selected value="'.$catcli.'">'.$catclin.'</option>';
-        else
-		  echo '<option value="" selected>-----------------------</option>';
-        while($row=mysqli_fetch_array($result))
-        {
-                echo '<option value="'.$row['Id_cat_cli'].'">'.$row['Des_cat_cli'].'</option>';
-        }
-    ?>
-    </select></td>													
-  </tr>
-  <tr> 
-    <td><div align="right"><strong>Vendedor</strong></div></td>
-    <td colspan="1">
-	<?php
-	  
-	  echo'<select name="vendedor">';
-	  if($CliExis == 1){
-		$vend=$rowb['cod_vend'];
-		$vendn=$rowb['nom_personal'];
-		$qry3="select Id_personal , nom_personal FROM personal where Activo=1 and Id_personal<>$vend order by nom_personal;";}
-        else
-	  	  $qry3="select Id_personal , nom_personal FROM personal where Activo=1 order by nom_personal;";
-	  $result=mysqli_query($link,$qry3);
-	  if($CliExis == 1)
-        echo '<option selected value="'.$vend.'">'.$vendn.'</option>';
-      else
-	    echo '<option selected value="">------------------------------------</option>';
-	  while($row=mysqli_fetch_array($result)){
-		  echo '<option value='.$row['Id_personal'].'>'.$row['nom_personal'].'</option>';
-	  }
-	  echo'</select>';
-	  mysqli_close($link);
-    ?>
-    </td>
-  </tr>
-  <tr> 
-    <td colspan="6" align="center"><input type="button" class="formatoBoton1" onClick="return Enviar(this.form);" value="     Crear     " >&nbsp;&nbsp;<input type="reset" class="formatoBoton1" value="Restablecer"></td>
-  </tr>
-  <tr>
-    <td colspan="6"><div align="center">&nbsp;</div></td>
-  </tr>
-<?php
-  }
-  ?>
-  <tr> 
-     <td colspan="6"><div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="VOLVER"></div></td>
-  </tr>
-</table>
-</form>
+        if ($cliExis == 1) :
+            ?>
+            <div class="form-group row">
+                <label class="col-form-label col-2" for="busClien"><strong>Cliente</strong></label>
+                <input type="text" class="form-control col-2" id="busClien" name="busClien" onkeyup="findCliente()"
+                       required/>
+            </div>
+            <div class="form-group row" id="myDiv">
+            </div>
+            <div class="row form-group">
+                <div class="col-1">
+                    <button class="button" onclick="return Enviar(this.form)">
+                        <span>Continuar</span></button>
+                </div>
+            </div>
+        <?php
+        else:
+            ?>
+            <div class=" row ">
+                <label class="col-form-label col-3 text-left mr-2" for="nomCliente"><strong>Cliente</strong></label>
+                <label class="col-form-label col-1 text-left mx-3" for="ciudadCliente"><strong>Ciudad</strong></label>
+                <label class="col-form-label col-3 text-left ml-2" for="dirCliente"><strong>Dirección</strong></label>
+            </div>
+            <div class="form-group row">
+                <input type="text" class="form-control col-3 mr-2" name="nomCliente" id="nomCliente" required>
+                <?php
+                $manager = new CiudadesOperaciones();
+                $ciudades = $manager->getCiudades();
+                $filas = count($ciudades);
+                echo '<select name="ciudadCliente" id="ciudadCliente" class="form-control col-1 mx-3"  required>';
+                for ($i = 0; $i < $filas; $i++) {
+                    echo '<option value="' . $ciudades[$i]["idCiudad"] . '">' . $ciudades[$i]['ciudad'] . '</option>';
+                }
+                echo '</select>';
+                ?>
+                <input type="text" class="form-control col-3 ml-2" name="dirCliente" id="dirCliente" required>
+            </div>
+            <div class="row">
+                <label class="col-form-label col-2 text-left mr-2" for="telCliente"><strong>Teléfono</strong></label>
+                <label class="col-form-label col-2 text-left mx-3" for="emailCliente"><strong>Correo
+                        electrónico</strong></label>
+                <label class="col-form-label col-3 text-left ml-2" for="idCatCliente"><strong>Actividad</strong></label>
+            </div>
+            <div class="form-group row">
+                <input type="text" class="form-control col-2 mr-2" name="telCliente" id="telCliente" maxlength="10"
+                       onKeyPress="return aceptaNum(event)">
+                <input type="email" class="form-control col-2 mx-3" name="emailCliente" id="emailCliente">
+                <?php
+                $manager = new CategoriasCliOperaciones();
+                $categorias = $manager->getCatsCli();
+                $filas = count($categorias);
+                echo '<select name="idCatCliente" id="idCatCliente" class="form-control col-3 ml-2" required>';
+                echo '<option disabled selected value="">-----------------------------</option>';
+                for ($i = 0; $i < $filas; $i++) {
+                    echo '<option value="' . $categorias[$i]["idCatClien"] . '">' . $categorias[$i]['desCatClien'] . '</option>';
+                }
+                echo '</select>';
+                ?>
+            </div>
+            <div class="row">
+                <label class="col-form-label col-2 text-left mr-2" for="contactoCliente"><strong>Nombre
+                        Contacto</strong></label>
+                <label class="col-form-label col-2 text-left mx-2" for="cargoContacto"><strong>Cargo
+                        Contacto</strong></label>
+                <label class="col-form-label col-1 text-left mx-2" for="cargoContacto"><strong>Celular</strong></label>
+                <label class="col-form-label col-2 text-left ml-2" for="codVendedor"><strong>Vendedor</strong></label>
+            </div>
+            <div class="form-group row">
+                <input type="text" class="form-control col-2 mr-2" name="contactoCliente" id="contactoCliente" required>
+                <input type="text" class="form-control col-2 mx-2" name="cargoContacto" id="cargoContacto" required>
+                <input type="text" class="form-control col-1 mx-2" name="celCliente" id="celCliente" maxlength="10"
+                       onKeyPress="return aceptaNum(event)">
+                <?php
+                $PersonalOperador = new PersonalOperaciones();
+                $personal = $PersonalOperador->getPersonal(true);
+                echo '<select name="codVendedor" id="codVendedor" class="form-control col-2 ml-2" required >';
+                echo '<option selected disabled value="">-----------------------------</option>';
+                for ($i = 0; $i < count($personal); $i++) {
+                    echo '<option value="' . $personal[$i]["idPersonal"] . '">' . $personal[$i]['nomPersonal'] . '</option>';
+                }
+                echo '</select>';
+                ?>
+            </div>
+            <div class="form-group row">
+                <div class="col-1 text-center">
+                    <button class="button" type="reset"><span>Reiniciar</span></button>
+                </div>
+                <div class="col-1 text-center">
+                    <button class="button" onclick="return Enviar(this.form)"><span>Continuar</span></button>
+                </div>
+            </div>
+        <?php
+        endif;
+        ?>
+    </form>
+    <div class="row">
+        <div class="col-1">
+            <button class="button1" id="back" onClick="history.back()"><span>VOLVER</span></button>
+        </div>
+    </div>
 </div>
 </body>
 </html>

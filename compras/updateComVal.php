@@ -10,12 +10,14 @@ include "includes/conect.php";
 </head>
 <body>
 <?php
-	foreach ($_POST as $nombre_campo => $valor) 
-	{ 
-		$asignacion = "\$".$nombre_campo."='".$valor."';"; 
-		//echo $nombre_campo." = ".$valor."<br>";  
-		eval($asignacion); 
-	}  
+	foreach ($_POST as $nombre_campo => $valor) {
+    ${$nombre_campo} = $valor;
+    if(is_array($valor)){
+        //echo $nombre_campo.print_r($valor).'<br>';
+    }else{
+        //echo $nombre_campo. '=' .${$nombre_campo}.'<br>';
+    }
+}
 	$bd="novaquim";
 	$qryinv="update det_compras set Cantidad=$cantidad where idCompra=$Factura and Codigo=$codigo";
 	echo'<form action="detCompraval.php" method="post" name="formulario">';

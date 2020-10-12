@@ -1,10 +1,12 @@
 <?php
 include "../includes/valAcc.php";
-foreach ($_POST as $nombre_campo => $valor) 
-{ 
-  $asignacion = "\$".$nombre_campo."='".$valor."';"; 
-  echo $nombre_campo." = ".$valor."<br>";  
-  eval($asignacion); 
+foreach ($_POST as $nombre_campo => $valor) {
+    ${$nombre_campo} = $valor;
+    if(is_array($valor)){
+        //echo $nombre_campo.print_r($valor).'<br>';
+    }else{
+        //echo $nombre_campo. '=' .${$nombre_campo}.'<br>';
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -35,7 +37,7 @@ foreach ($_POST as $nombre_campo => $valor)
 			$link=conectarServidor();
 			echo'<select name="cliente" id="combo">';
 			if ($CliExis==0)
-			$qry="select Id_cliente, Nom_clien from clientes_cotiz order BY Nom_clien;";
+			$qry="select idCliente, nomCliente from clientes_cotiz order BY nomCliente;";
 			else
 			$qry="select nitCliente as Id_cliente, nomCliente from clientes where nitCliente<>'0-0' order by nomCliente;";
 			$result=mysql_db_query("novaquim", $qry);

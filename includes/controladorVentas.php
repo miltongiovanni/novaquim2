@@ -39,6 +39,22 @@ function findCliente()
     }
 }
 
+function findClienteCotizacion()
+{
+    $q = $_POST['q'];
+    $clienteOperador = new ClientesCotizacionOperaciones();
+    $clientes = $clienteOperador->getClientesByName($q);
+    if (count($clientes) == 0) {
+        echo '<input type="text" class="form-control col-12" value="No hay sugerencias" readOnly>';
+    } else {
+        echo '<select name="idCliente" id="idCliente" class="form-control col-12" required>';
+        for ($i = 0; $i < count($clientes); $i++) {
+            echo '<option value=' . $clientes[$i]['idCliente'] . '>' . $clientes[$i]['nomCliente'] . '</option>';
+        }
+        echo '</select>';
+    }
+}
+
 function findProveedorBytipoCompra()
 {
     $q = $_POST['q'];
@@ -134,6 +150,9 @@ switch ($action) {
         break;
     case 'findCliente':
         findCliente();
+        break;
+    case 'findClienteCotizacion':
+        findClienteCotizacion();
         break;
     case 'findProveedorBytipoCompra':
         findProveedorBytipoCompra();

@@ -3,54 +3,42 @@ include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
-<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
 <head>
-<meta charset="utf-8">
-<title>Seleccionar Cliente de Cotización a Modificar</title>
-<script  src="../js/validar.js"></script>
-<script  src="scripts/block.js"></script>	
-	<script >
-	document.onkeypress = stopRKey; 
-	</script>
+    <meta charset="utf-8">
+    <title>Seleccionar Cliente de Cotización a Modificar</title>
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/findCliente.js"></script>
 
 </head>
 <body>
 <div id="contenedor">
-<div id="saludo"><strong>SELECCIONAR CLIENTE DE COTIZACIÓN A MODIFICAR</strong></div>
-<table border="0" align="center" width="700">
-  	<tr>
-    	<td colspan="2"><div align="center">&nbsp;</div></td>
-    </tr>
-    <tr>
-    	<td>
-		<form id="form1" name="form1" method="post" action="updateCliCotForm.php">
-      	<div align="center"><strong>Cliente:</strong>
-<?php
-				include "includes/conect.php";
-				$link=conectarServidor();
-				echo'<select name="cliente_cot" id="combo">';
-				$result=mysqli_query($link,"select Id_cliente, Nom_clien from clientes_cotiz order by Nom_clien;");
-				echo '<option selected value="">-----------------------------------------------------------------------------------</option>';
-				while($row=mysqli_fetch_array($result)){
-					echo '<option value='.$row['Id_cliente'].'>'.$row['Nom_clien'].'</option>';
-				}
-				echo'</select>';
-				mysqli_free_result($result);
-/* cerrar la conexión */
-mysqli_close($link)
-			?>
-            <input type="button" value="Continuar" onClick="return Enviar2(this.form);">
-      	</div>
-    	</form>    
-        </td>
-  	</tr>
-    <tr>
-    	<td colspan="2"><div align="center">&nbsp;</div></td>
-    </tr>
-    <tr> 
-        <td colspan="2"><div align="center"><input type="button" class="resaltado" onClick="history.back()" value="  VOLVER  "></div></td>
-    </tr>
-</table>
+    <div id="saludo"><strong>SELECCIONAR CLIENTE DE COTIZACIÓN A MODIFICAR</strong></div>
+    <form id="form1" name="form1" method="post" action="updateCliCotForm.php">
+        <div class="form-group row">
+            <label class="col-form-label col-2" for="busClien"><strong>Cliente</strong></label>
+            <input type="text" class="form-control col-2" id="busClien" name="busClien"
+                   onkeyup="findClienteCotizacion()"
+                   required/>
+        </div>
+        <div class="form-group row">
+            <div class="col-4" id="myDiv">
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-1">
+                <button class="button" onclick="return Enviar(this.form)">
+                    <span>Continuar</span></button>
+            </div>
+        </div>
+    </form>
+
+    <div class="row form-group">
+        <div class="col-1">
+            <button class="button1" onclick="history.back()">
+                <span>VOLVER</span></button>
+        </div>
+    </div>
 </div>
 </body>
 </html>

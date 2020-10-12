@@ -36,9 +36,9 @@ include "../includes/valAcc.php";
 	include "includes/utilTabla.php";
 	include "includes/conect.php" ;
 	$link=conectarServidor();
-	$sql="select Id_Cotiz_p, Nom_clien, desCatClien, nom_personal, Fech_Cotizacion, tip_precio, destino 
+	$sql="select Id_Cotiz_p, nomCliente, desCatClien, nom_personal, Fech_Cotizacion, tip_precio, destino 
 	from cot_personalizada, clientes_cotiz, Personal, cat_clien 
-	where Cliente_cot=Id_cliente and cod_vend=Id_personal and Id_cat_clien=idCatClien order by Id_Cotiz_p desc;";
+	where Cliente_cot=idCliente and codVendedor=Id_personal and idCatCliente=idCatClien order by Id_Cotiz_p desc;";
 	//llamar funcion de tabla
 	$result=mysqli_query($link,$sql);
 	$a=1;

@@ -24,12 +24,14 @@ include "includes/conect.php";
   
   <?php
 	$link=conectarServidor();
-	foreach ($_POST as $nombre_campo => $valor) 
-	{ 
-		$asignacion = "\$".$nombre_campo."='".$valor."';"; 
-		//echo $nombre_campo." = ".$valor."<br>";  
-		eval($asignacion); 
-	}  
+	foreach ($_POST as $nombre_campo => $valor) {
+    ${$nombre_campo} = $valor;
+    if(is_array($valor)){
+        //echo $nombre_campo.print_r($valor).'<br>';
+    }else{
+        //echo $nombre_campo. '=' .${$nombre_campo}.'<br>';
+    }
+}
 	if ($producto < 100000)
 	{
 		$qry="select Cod_producto as Codigo, DesServicio as Producto, Can_producto as Cantidad, Prec_producto as Precio from det_pedido, servicios where Cod_producto=IdServicio and Id_ped=$pedido AND Cod_producto=$producto;";

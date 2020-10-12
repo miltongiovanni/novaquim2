@@ -1,41 +1,40 @@
 <?php include "../includes/valAcc.php";
-?>
-<?php
-include "includes/calcularDias.php";
-include "includes/conect.php";
-foreach ($_POST as $nombre_campo => $valor) 
-{ 
-	$asignacion = "\$".$nombre_campo."='".$valor."';"; 
-	//echo $nombre_campo." = ".$valor."<br>";  
-	eval($asignacion); 
-}  
-$bd="novaquim";
-$link=conectarServidor();
-$qry="insert into clientes_cotiz (Nom_clien, Contacto, Cargo, Tel_clien, Fax_clien, Cel_clien, Dir_clien, Eml_clien, Id_cat_clien, Ciudad_clien, cod_vend)
-	  values ('$Cliente', '$Contacto', '$Cargo', $Tel1, $Fax, $celular, '$Direccion', '$email', $IdCat, $ciudad_cli, $vendedor)"; 
-$result=mysqli_query($link,$qry);
-if($result)
-{			
-		$ruta="listarClientCot.php";
-		mysqli_close($link);//Cerrar la conexion        
-		mover_pag($ruta,"Cliente Creado Correctamente");
-		/******LOG DE CREACION *********
-		$IdUser=$_SESSION['IdUsuario'];
-		$hh=strftime("%H:").strftime("%M:").strftime("%S");	              
-        $Fecha=date("Y")."-".date("m")."-".date("d")." ".$hh;
-		$qryAcces="insert into logusuarios(IdUsuario, Fecha, Motivo) values($IdUser,'$Fecha','CREACION DE USUARIO')";
-		$ResutLog=mysql_db_query("users",$qryAcces);
-		/*********FIN DEL LOG CREACION*****/
-}
-else
+// On enregistre notre autoload.
+function cargarClases($classname)
 {
-	$ruta="makeClienCotForm.php";
-	mysqli_close($link);//Cerrar la conexion        
-	mover_pag($ruta,"Error al crear el Cliente");
+    require '../clases/' . $classname . '.php';
+}
 
- }
+spl_autoload_register('cargarClases');
+
+foreach ($_POST as $nombre_campo => $valor) {
+    ${$nombre_campo} = $valor;
+    if(is_array($valor)){
+        //echo $nombre_campo.print_r($valor).'<br>';
+    }else{
+        //echo $nombre_campo. '=' .${$nombre_campo}.'<br>';
+    }
+}
 
 
+$clienteCotizacionOperador = new ClientesCotizacionOperaciones();
+if ($cliExis == 1) {
+    $clienteOperador = new ClientesOperaciones();
+    $cliente = $clienteOperador->getCliente($idCliente);
+    $datos = array($cliente['nomCliente'], $cliente['contactoCliente'], $cliente['cargoCliente'], $cliente['telCliente'], $cliente['celCliente'], $cliente['dirCliente'], $cliente['emailCliente'], $cliente['idCatCliente'], $cliente['ciudadCliente'], $cliente['codVendedor']);
+} else {
+    $datos = array($nomCliente, $contactoCliente, $cargoContacto, $telCliente, $celCliente, $dirCliente, $emailCliente, $idCatCliente, $idCiudad, $codVendedor);
+}
+try {
+    $lastIdCliente = $clienteCotizacionOperador->makeCliente($datos);
+    $ruta = "listarClientCot.php";
+    $mensaje = "Cliente creado con éxito";
+} catch (Exception $e) {
+    $ruta = "makeClienCotForm.php";
+    $mensaje = "Error al crear el Cliente";
+} finally {
+    unset($conexion);
+    unset($stmt);
+    mover_pag($ruta, $mensaje);
+}
 
-
-?>

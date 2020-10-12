@@ -4,11 +4,13 @@ include "../includes/valAcc.php";
 include "includes/empleadObj.php";
 include "includes/calcularDias.php";
 
-foreach ($_POST as $nombre_campo => $valor) 
-{ 
-	$asignacion = "\$".$nombre_campo."='".$valor."';"; 
-	echo $nombre_campo." = ".$valor."<br>";  
-	eval($asignacion); 
+foreach ($_POST as $nombre_campo => $valor) {
+    ${$nombre_campo} = $valor;
+    if(is_array($valor)){
+        //echo $nombre_campo.print_r($valor).'<br>';
+    }else{
+        //echo $nombre_campo. '=' .${$nombre_campo}.'<br>';
+    }
 }  
 $empleado=new emplead();
 if($result=$empleado->makeEmplead($cedula, $nombre1, $nombre2, $apellido1, $apellido2, $arl_emp, $emps_emp, $afp_emp, $caja_emp, $FchIng, $sal_emp, $estado, $area, $cargo, $ces_emp, $cat_arl_emp))

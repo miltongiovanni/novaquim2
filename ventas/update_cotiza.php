@@ -21,12 +21,14 @@ include "../includes/valAcc.php";
 <?php
 	include "includes/conect.php";
 	$link=conectarServidor();
-	foreach ($_POST as $nombre_campo => $valor) 
-	{ 
-		$asignacion = "\$".$nombre_campo."='".$valor."';"; 
-		//echo $nombre_campo." = ".$valor."<br>";  
-		eval($asignacion); 
-	}  
+	foreach ($_POST as $nombre_campo => $valor) {
+    ${$nombre_campo} = $valor;
+    if(is_array($valor)){
+        //echo $nombre_campo.print_r($valor).'<br>';
+    }else{
+        //echo $nombre_campo. '=' .${$nombre_campo}.'<br>';
+    }
+}
 	if($_POST['seleccion1']==NULL)
 	{
 	  //echo "no escogió productos de novaquim <br>";
@@ -50,7 +52,7 @@ include "../includes/valAcc.php";
 		$No_dist=1;
 	}
 	$link=conectarServidor();   
-	$qryUpd="update cotizaciones set cliente=$cliente, Fech_Cotizacion='$FchCot', precio=$precio, presentaciones=$Presentaciones, distribucion='$opciones_dist', productos='$opciones_prod'  where Id_cotizacion=$cotiza";	
+	$qryUpd="update cotizaciones set idCliente=$cliente, fechaCotizacion='$FchCot', precioCotizacion=$precio, presentaciones=$Presentaciones, distribucion='$opciones_dist', productos='$opciones_prod'  where idCotizacion=$cotiza";
 	if($resultUpd=mysqli_query($link,$qryUpd))
 	{
 		mysqli_close($link);

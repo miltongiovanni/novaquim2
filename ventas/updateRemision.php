@@ -22,12 +22,14 @@ include "includes/conect.php";
   <form action="updateRem.php" method="post" name="actualiza">
   <?php
 	$link=conectarServidor();
-	foreach ($_POST as $nombre_campo => $valor) 
-	{ 
-		$asignacion = "\$".$nombre_campo."='".$valor."';"; 
-		//echo $nombre_campo." = ".$valor."<br>";  
-		eval($asignacion); 
-	}  
+	foreach ($_POST as $nombre_campo => $valor) {
+    ${$nombre_campo} = $valor;
+    if(is_array($valor)){
+        //echo $nombre_campo.print_r($valor).'<br>';
+    }else{
+        //echo $nombre_campo. '=' .${$nombre_campo}.'<br>';
+    }
+}
 	if ($producto < 100000)
 	{
 		$qry="select idRemision, codProducto as Codigo, loteProducto, Nombre as Producto, sum(cantProducto) as Cantidad from det_remision1, prodpre where idRemision=$remision and codProducto=$producto and codProducto=Cod_prese";

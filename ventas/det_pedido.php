@@ -26,12 +26,14 @@ include "../includes/valAcc.php";
 	$encabfecha='USUARIO: '.$_SESSION['User'].' |   FECHA: '.date('d-m-Y  h:i:s');
 	date_default_timezone_set('America/Bogota');
 	//echo  $encabfecha;
-	foreach ($_POST as $nombre_campo => $valor) 
-	{ 
-		$asignacion = "\$".$nombre_campo."='".$valor."';"; 
-		//echo $nombre_campo." = ".$valor."<br>";  
-		eval($asignacion); 
-	}  
+	foreach ($_POST as $nombre_campo => $valor) {
+    ${$nombre_campo} = $valor;
+    if(is_array($valor)){
+        //echo $nombre_campo.print_r($valor).'<br>';
+    }else{
+        //echo $nombre_campo. '=' .${$nombre_campo}.'<br>';
+    }
+}
 	function mover($ruta,$mensaje)
 	{
 		//Funcion que permite el redireccionamiento de los usuarios a otra pagina 

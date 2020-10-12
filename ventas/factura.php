@@ -23,12 +23,14 @@ include "../includes/valAcc.php";
 <table width="47%" align="center">
      <?php
 	 	include "includes/conect.php";
-		foreach ($_POST as $nombre_campo => $valor) 
-		{ 
-		$asignacion = "\$".$nombre_campo."='".$valor."';"; 
-		//echo $nombre_campo." = ".$valor."<br>";  
-		eval($asignacion); 
-		}  
+		foreach ($_POST as $nombre_campo => $valor) {
+    ${$nombre_campo} = $valor;
+    if(is_array($valor)){
+        //echo $nombre_campo.print_r($valor).'<br>';
+    }else{
+        //echo $nombre_campo. '=' .${$nombre_campo}.'<br>';
+    }
+}
 		$link=conectarServidor();
 		$qry="Select nit_cliente, nomCliente, idPedido, fechaPedido, fechaEntrega, codVendedor, nom_personal, tipo_precio, Id_precio, pedido.Estado, nomSucursal, dirSucursal, idSucursal 
 		FROM pedido, personal, clientes, tip_precio, clientes_sucursal 
