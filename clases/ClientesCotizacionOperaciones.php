@@ -25,14 +25,9 @@ class ClientesCotizacionOperaciones
         $stmt->execute(array($idCliente));
     }
 
-    public function getClientes($actif)
+    public function getClientes()
     {
-        if ($actif == true) {
-            $qry = "SELECT idCliente, nomCliente FROM clientes_cotiz WHERE estadoCliente=1 ORDER BY nomCliente;";
-        } else {
-            $qry = "SELECT idCliente, nomCliente FROM clientes_cotiz ORDER BY nomCliente;";
-        }
-
+        $qry = "SELECT idCliente, nomCliente FROM clientes_cotiz ORDER BY nomCliente;";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
