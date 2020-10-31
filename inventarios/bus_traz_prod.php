@@ -9,8 +9,8 @@ spl_autoload_register('cargarClases');
 ?>
 <!DOCTYPE html>
 <html lang="es">
-<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
 <head>
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <meta charset="utf-8">
     <title>Seleccionar Producto a revisar Trazabilidad</title>
     <script src="../js/validar.js"></script>

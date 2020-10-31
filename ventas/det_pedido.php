@@ -8,14 +8,7 @@ include "../includes/valAcc.php";
 <meta charset="utf-8">
 <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
 	<script  src="../js/validar.js"></script>
-	<script  src="scripts/block.js"></script>
-    <link rel="stylesheet" type="text/css" media="all" href="css/calendar-blue2.css" title="blue">
-    <script  src="scripts/calendar.js"></script>
-    <script  src="scripts/calendar-sp.js"></script>
-    <script  src="scripts/calendario.js"></script>
-    <script >
-	document.onkeypress = stopRKey; 
-	</script>
+
 </head>
 <body>
 <div id="contenedor">

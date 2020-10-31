@@ -35,8 +35,8 @@ $objPHPExcel->setActiveSheetIndex(0)
 // Rename sheet
 $objPHPExcel->getActiveSheet()->setTitle('Cotizacion Personalizada');
 $link=conectarServidor();
-$sql="select Cod_producto, Can_producto, Nombre as Producto, Prec_producto, 0.16 as tasa
-from det_cot_personalizada, prodpre where Cod_producto=Cod_prese and Id_cot_per=$cotizacion order by Nombre;";
+$sql="select codProducto, canProducto, Nombre as Producto, precioProducto, 0.16 as tasa
+from det_cot_personalizada, prodpre where codProducto=Cod_prese and idCotPersonalizada=$cotizacion order by Nombre;";
 $result=mysqli_query($link,$sql) or die("Error al conectar a la base de datos.");
 $i=2;
 while($row= mysqli_fetch_array($result, MYSQLI_BOTH))
@@ -47,8 +47,8 @@ while($row= mysqli_fetch_array($result, MYSQLI_BOTH))
 	$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(3, $i,iconv("iso-8859-1", "UTF-8", $row['Prec_producto']));
 	$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(4, $i++, iconv("iso-8859-1", "UTF-8",$row['tasa']));
 } 
-$sql="select Cod_producto, Can_producto, Producto, Prec_producto, tasa
-from det_cot_personalizada, distribucion, tasa_iva where Cod_producto=Id_distribucion and Id_cot_per=$cotizacion and Cod_iva=Id_tasa order by Producto";
+$sql="select codProducto, canProducto, Producto, precioProducto, tasa
+from det_cot_personalizada, distribucion, tasa_iva where codProducto=Id_distribucion and idCotPersonalizada=$cotizacion and Cod_iva=Id_tasa order by Producto";
 $result=mysqli_query($link,$sql) or die("Error al conectar a la base de datos.");
 while($row= mysqli_fetch_array($result, MYSQLI_BOTH))
 {

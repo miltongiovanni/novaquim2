@@ -8,14 +8,7 @@ include "../includes/valAcc.php";
 	<title>Modificación Nota Crédito</title>
 	<meta charset="utf-8">
 	<script  src="../js/validar.js"></script>
-	<script  src="scripts/block.js"></script>
-    <link rel="stylesheet" type="text/css" media="all" href="css/calendar-blue2.css" title="blue">
-    <script  src="scripts/calendar.js"></script>
-    <script  src="scripts/calendar-sp.js"></script>
-    <script  src="scripts/calendario.js"></script>
-    <script >
-		document.onkeypress = stopRKey; 
-	</script>
+
 
 </head>
 <body>

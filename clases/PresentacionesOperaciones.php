@@ -97,6 +97,17 @@ class PresentacionesOperaciones
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result;
     }
+    public function getPrecioPresentacion($codPresentacion, $tipoPrecio)
+    {
+        $qry = "SELECT codPresentacion, fabrica, distribuidor, detal, mayor, super
+                FROM prodpre
+                         LEFT JOIN precios p2 on prodpre.codigoGen = p2.codigoGen
+                WHERE codPresentacion =?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($codPresentacion));
+        $result = $stmt->fetch(PDO::FETCH_NUM);
+        return $result[$tipoPrecio];
+    }
 
     public function getPresentacionesXProd($codProducto)
     {

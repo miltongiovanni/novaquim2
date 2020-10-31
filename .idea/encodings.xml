@@ -124,9 +124,11 @@
     <file url="file://$PROJECT_DIR$/produccion/updateDetOProdMPrimaForm.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ventas/ajax/listaClientesCotizacion.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ventas/ajax/listaCotizaciones.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ventas/ajax/listaCotizacionesPersonalizadas.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ventas/makeClien.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ventas/makeClienCot.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ventas/makeCotizacion.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ventas/makeCotizacionPersonalizada.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ventas/makeSucursalCliente.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ventas/updateClien.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ventas/update_sucursal.php" charset="UTF-8" />

@@ -8,6 +8,7 @@ class ProductosDistribucionOperaciones
     {
         $this->setDb();
     }
+
     public function makeProductoDistribucion($datos)
     {
         /*Preparo la insercion */
@@ -33,6 +34,20 @@ class ProductosDistribucionOperaciones
         return $result['precioCom'];
     }
 
+    public function getPrecioVtaProductoDistribucion($idDistribucion)
+    {
+        $qry = "SELECT precioVta FROM distribucion WHERE idDistribucion=?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($idDistribucion));
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($result) {
+            return $result['precioVta'];
+        } else {
+            return false;
+        }
+
+    }
+
     public function getProductosDistribucion($actif)
     {
         if ($actif == true) {
@@ -46,6 +61,7 @@ class ProductosDistribucionOperaciones
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
+
     public function getTableProductosDistribucion()
     {
         $qry = "SELECT idDistribucion, producto, CONCAT('$ ',format(round(precioVta),0)) precio, CONCAT(format((tasaIva*100),1), ' %') iva, catDis, CONCAT ('003000', codSiigo) coSiigo

@@ -36,8 +36,8 @@ $detalle = $DetFormulaOperador->getDetFormula($idFormula, $codMPrima);
                    style="margin: 0 5px;"><strong>Orden</strong></label>
         </div>
         <div class="form-group row">
-            <input type="text" style="margin: 0 5px;" class="form-control col-3" name="porcentaje" readonly
-                   id="porcentaje" onKeyPress="return aceptaNum(event)" value="<?= $detalle['nomMPrima'] ?>">
+            <input type="text" style="margin: 0 5px;" class="form-control col-3" name="nomMPrima" readonly
+                   id="nomMPrima" value="<?= $detalle['nomMPrima'] ?>">
             <input type="text" style="margin: 0 5px;" class="form-control col-1" name="porcentaje"
                    id="porcentaje" onKeyPress="return aceptaNum(event)" value="<?= $detalle['porcentaje'] * 100 ?>">
             <input type="text" style="margin: 0 5px;" class="form-control col-1" name="orden" id="orden"

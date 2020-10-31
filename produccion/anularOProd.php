@@ -9,8 +9,8 @@ spl_autoload_register('cargarClases');
 ?>
 <!DOCTYPE html>
 <html lang="es">
-<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
 <head>
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>Seleccionar Orden de Producción a Anular</title>
     <script src="../js/validar.js"></script>
