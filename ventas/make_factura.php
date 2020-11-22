@@ -43,18 +43,18 @@ if(($dias_v>=0)&&($dias_f>=0))
 	$qry="insert into factura (Factura, Nit_cliente, fechaFactura, fechaVenc, tipPrecio, ordenCompra, idPedido, Descuento, Estado, idRemision, Observaciones) values ($factura, '$nit','$FchVta','$FchVen', $tip_prec, $ord_comp, $pedido, $descuento/100, 'E', $Id_Rem, '$observa')";
 	$result=mysqli_query($link,$qry);
 	//CON BASE EN EL PEDIDO SE LLENA LA FACTURA
-	$qryped="select Id_ped, Cod_producto as Producto, Can_producto as Cantidad, Prec_producto as Precio, tasa 
+	$qryped="select idPedido, codProducto as Producto, cantProducto as Cantidad, precioProducto as Precio, tasa 
 	from det_pedido, prodpre, tasa_iva 
-	where Id_ped=$pedido AND Cod_producto=Cod_prese AND Cod_iva=Id_tasa and Cod_producto<100000
+	where idPedido=$pedido AND codProducto=Cod_prese AND Cod_iva=Id_tasa and codProducto<100000
 	UNION
-	select Id_ped, Cod_producto as Producto, Can_producto as Cantidad, Prec_producto as Precio, tasa 
+	select idPedido, codProducto as Producto, cantProducto as Cantidad, precioProducto as Precio, tasa 
 	FROM det_pedido, distribucion, tasa_iva 
-	where Id_ped=$pedido and Cod_producto>=100000 and Cod_producto=distribucion.Id_distribucion 
+	where idPedido=$pedido and codProducto>=100000 and codProducto=distribucion.Id_distribucion 
 	and Cod_iva=Id_tasa
 	union
-select Id_ped, Cod_producto as Producto, Can_producto as Cantidad, Prec_producto as Precio, tasa 
+select idPedido, codProducto as Producto, cantProducto as Cantidad, precioProducto as Precio, tasa 
  from det_pedido, servicios, tasa_iva 
- where Cod_producto<100 and Cod_producto=IdServicio and Cod_iva=Id_tasa and Id_ped=$pedido;";
+ where codProducto<100 and codProducto=IdServicio and Cod_iva=Id_tasa and idPedido=$pedido;";
 	$resultped=mysqli_query($link,$qryped);
 	while($rowped=mysqli_fetch_array($resultped))
 	{

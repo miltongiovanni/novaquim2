@@ -33,7 +33,7 @@ include "includes/conect.php";
 }
 	if ($codigo < 100)
 	{
-		$qry="select Cod_producto as Codigo, DesServicio as Producto, Can_producto as Cantidad, Prec_producto as Precio from det_pedido, servicios where Cod_producto=IdServicio and Id_ped=$pedido AND Cod_producto=$codigo;";
+		$qry="select codProducto as Codigo, DesServicio as Producto, cantProducto as Cantidad, precioProducto as Precio from det_pedido, servicios where codProducto=IdServicio and idPedido=$pedido AND codProducto=$codigo;";
 	}
 	if (($codigo < 100000)&&($codigo > 100))
 	{

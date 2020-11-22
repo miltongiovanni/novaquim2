@@ -36,7 +36,7 @@ $objPHPExcel->getActiveSheet()->setTitle('Necesidades Inv');
 $link=conectarServidor();
 $i=2;
 
-$qry_prod="SELECT Cod_producto, SUM(Can_producto) as Cantidad, Nombre as Producto, Prec_producto from det_pedido, prodpre where Cod_producto=Cod_prese and Cod_producto <100000 and (";
+$qry_prod="SELECT codProducto, SUM(cantProducto) as Cantidad, Nombre as Producto, precioProducto from det_pedido, prodpre where codProducto=Cod_prese and codProducto <100000 and (";
 $a=count($seleccion);
 for ($j = 0; $j < $a; $j++) 
 {
@@ -73,7 +73,7 @@ while($row_prod=mysqli_fetch_array($result_prod, MYSQLI_BOTH))
 	}
 }
 //PRODCUTOS DE DISTRIBUCION
-$qry_dist="select Cod_producto, sum(Can_producto) as Cantidad, Producto, Prec_producto from det_pedido, distribucion where Cod_producto=Id_distribucion and Cod_producto >=100000 and (";
+$qry_dist="select codProducto, sum(cantProducto) as Cantidad, Producto, precioProducto from det_pedido, distribucion where codProducto=Id_distribucion and codProducto >=100000 and (";
 for ($j = 0; $j < $a; $j++) 
 {
 	$qry_dist=$qry_dist."Id_Ped=".($seleccion[$j]);

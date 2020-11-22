@@ -118,8 +118,8 @@ if($con)
 					 $_SESSION['Autorizado']=true;
 					 $_SESSION['User']=$nombre;
 					 $_SESSION['IdUsuario']=$row['idUsuario'];
-					 $_SESSION['Perfil']=MD5($perfil_admin);
-					 $perfil =md5( $row['idPerfil']);
+					 $_SESSION['Perfil']=$perfil_admin;
+					 $perfil = $row['idPerfil'];
 					 //echo $perfil.'<br>';
 					 /******LOG DE ACCESO AL SISTEMA********
 					 $IdUser=$row['IdUsuario'];
@@ -145,8 +145,8 @@ if($con)
 					 $_SESSION['Autorizado']=true;
 					 $_SESSION['User']=$nombre;
 					 $_SESSION['IdUsuario']=$row['idUsuario'];
-					 $_SESSION['Perfil']=MD5($perfil_admin);				 
-					 $perfil =md5( $row['idPerfil']);
+					 $_SESSION['Perfil']=$perfil_admin;
+					 $perfil =$row['idPerfil'];
 					/******LOG DE VENCIMIENTO DE CLAVE********
 					 $IdUser=$row['IdUsuario'];
 					 $hh=strftime("%H:").strftime("%M:").strftime("%S");	              
@@ -193,7 +193,7 @@ if($con)
 			$_SESSION['Autorizado']=true;
 			$_SESSION['User']=$nombre;
 			$_SESSION['IdUsuario']=$row['idUsuario'];
-			$_SESSION['Perfil']=MD5($perfil_admin);
+			$_SESSION['Perfil']=$perfil_admin;
 			mover_pag($ruta,$mensaje);
 		}
    	}

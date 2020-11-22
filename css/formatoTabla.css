@@ -309,15 +309,15 @@ font {
 }
 
 .formatoEncabezados {
-    font-weight: 300;
+    font-weight: 600;
     text-align: center;
-    font-size: 0.8em;
-    background-color: #000066;
-    color: #ffffff;
+    font-size: 0.9em;
+    background-color: #FFFFFF;
+    color: #000066;
 }
 
 .formatoDatos {
-    font-size: 0.8em;
+    font-size: 0.9em;
     color: #000066;
 }
 
@@ -386,6 +386,10 @@ img {
 
 .justify-content-around {
     justify-content: space-around !important;
+}
+
+.justify-content-between {
+    justify-content: space-between !important;
 }
 
 label {
@@ -935,7 +939,11 @@ tr:nth-child(even) {
 }
 
 table {
-    margin: auto;
+    width: 100%;
+    margin: 0 auto;
+    clear: both;
+    border-collapse: separate;
+    border-spacing: 0;
 }
 
 .table2 {

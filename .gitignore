@@ -1,16 +1,3 @@
 /.vscode/
 /_notes/
-.idea/*.xml
-
-.idea/encodings.xml
-.idea/php.xml
-.idea/encodings.xml
-.idea/encodings.xml
-.idea/encodings.xml
-.idea/dictionaries/milto.xml
-.idea/codeStyles/codeStyleConfig.xml
-.idea/codeStyles/codeStyleConfig.xml
-.idea/encodings.xml
-.idea/encodings.xml
-.idea/encodings.xml
-.idea/encodings.xml
+/.idea/

@@ -125,12 +125,18 @@
     <file url="file://$PROJECT_DIR$/ventas/ajax/listaClientesCotizacion.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ventas/ajax/listaCotizaciones.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ventas/ajax/listaCotizacionesPersonalizadas.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ventas/ajax/listaPedidos.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ventas/ajax/listaPedidosCliente.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ventas/buscarPedido.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ventas/consultaPedido.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ventas/makeClien.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ventas/makeClienCot.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ventas/makeCotizacion.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ventas/makeCotizacionPersonalizada.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ventas/makePedido.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ventas/makeSucursalCliente.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ventas/updateClien.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ventas/updatePedido.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ventas/update_sucursal.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/widgets/facXPagarTotales.php" charset="UTF-8" />
     <file url="PROJECT" charset="windows-1252" />

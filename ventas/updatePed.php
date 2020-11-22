@@ -1,38 +1,36 @@
 <?php
 include "../includes/valAcc.php";
-include "includes/conect.php";
-?>
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Acualización</title>
-</head>
-<body>
-<?php
-	foreach ($_POST as $nombre_campo => $valor) {
+
+// On enregistre notre autoload.
+function cargarClases($classname)
+{
+    require '../clases/' . $classname . '.php';
+}
+
+spl_autoload_register('cargarClases');
+
+foreach ($_POST as $nombre_campo => $valor) {
     ${$nombre_campo} = $valor;
-    if(is_array($valor)){
+    if (is_array($valor)) {
         //echo $nombre_campo.print_r($valor).'<br>';
-    }else{
-        //echo $nombre_campo. '=' .${$nombre_campo}.'<br>';
+    } else {
+        //echo $nombre_campo . '=' . ${$nombre_campo} . '<br>';
     }
 }
-	$qryinv="update det_pedido set Can_producto=$cantidad, Prec_producto=$precio where Id_ped=$pedido and Cod_producto=$producto";
-	echo'<form action="det_pedido.php" method="post" name="formulario">';
-	$link=conectarServidor();
-	$result=mysqli_query($link,$qryinv);
-	echo '<input name="pedido" type="hidden" value="'.$pedido.'"/><input name="sobre" type="hidden" value="'.$sobre.'">
-	<input name="Crear" type="hidden" value="5"/>
-	<input type="submit" name="Submit" value="Cambiar" />';
-	if($result==1)
-	{
-		$ruta="";
-		mover_pag($ruta,"Pedido Actualizado correctamente");
-	}
-	echo'</form>';
-	
-	mysqli_close($link);
-?>
-</body>
-</html>
+$detPedidoOperador = new DetPedidoOperaciones();
+$datos = array($cantProducto, $precioProducto, $idPedido, $codProducto);
+try {
+    $detPedidoOperador->updateDetPedido($datos);
+    $_SESSION['idPedido'] = $idPedido;
+    $ruta = "det_pedido.php";
+    $mensaje = "Detalle del pedido actualizado con éxito";
+
+} catch (Exception $e) {
+    $_SESSION['idPedido'] = $idPedido;
+    $ruta = "det_pedido.php";
+    $mensaje = "Error al actualizar el detalle del pedido";
+} finally {
+    unset($conexion);
+    unset($stmt);
+    mover_pag($ruta, $mensaje);
+}

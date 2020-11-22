@@ -5,37 +5,27 @@ include "../includes/valAcc.php";
 <html lang="es">
 
 <head>
-<meta charset="utf-8">
-<title>Seleccionar Cliente a Modificar</title>
-<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-<script  src="../js/validar.js"></script>
-<script  src="scripts/ajax.js"></script>
-
+    <meta charset="utf-8">
+    <title>Consulta pedidos por cliente</title>
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script src="../js/validar.js"></script>
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/findCliente.js"></script>
 </head>
 <body>
 <div id="contenedor">
-<div id="saludo"><strong>CONSULTA DE PEDIDOS POR CLIENTE</strong></div> 
-<form id="form1" name="form1" method="post" action="listarPedidoClien.php">
-<table width="100%" border="0" align="center" summary="cuerpo">
-<tr>
-    	<td colspan="2"><div align="center">&nbsp;</div></td>
-    </tr>
-  	<tr>
-    	<td>
-      	<div align="center"><strong>Cliente:</strong><input type="text" id="bus" name="bus" onkeyup="loadXMLDoc()" required /><div id="myDiv"></div>
-        <br>
-            <input type="submit" name="Submit" value="Continuar" onClick="return Enviar2(this.form);">
-      	</div>
-        </td>
-  	</tr>
-    <tr>
-    	<td colspan="2"><div align="center">&nbsp;</div></td>
-    </tr>
-    <tr> 
-        <td colspan="2"><div align="center"><input type="button" class="resaltado" onClick="history.back()" value="  VOLVER  "></div></td>
-    </tr>
-</table>
-</form>
+    <div id="saludo"><strong>CONSULTA DE PEDIDOS POR CLIENTE</strong></div>
+    <?php
+    include "../includes/ventas.php";
+    $rep = buscarClienteForm("listarPedidoClien.php");
+    echo $rep;
+    ?>
+    <div class="row form-group">
+        <div class="col-1">
+            <button class="button1" onclick="history.back()">
+                <span>VOLVER</span></button>
+        </div>
+    </div>
 </div>
 </body>
 </html>

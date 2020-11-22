@@ -146,10 +146,10 @@ class CotizacionesPersonalizadasOperaciones
     public function getProdTerminadosByIdCotizacion($idCotPersonalizada)
     {
         $qry = "SELECT t.codPresentacion, t.presentacion
-                FROM (SELECT DISTINCT ip.codPresentacion, p.presentacion
-                      FROM inv_prod ip
-                               LEFT JOIN prodpre p on ip.codPresentacion = p.codPresentacion
-                      WHERE invProd > 0) t
+                FROM (SELECT DISTINCT pp.codPresentacion, pp.presentacion
+                      FROM prodpre pp
+                      WHERE cotiza = 1
+                        AND presentacionActiva = 1) t
                          LEFT JOIN (SELECT codProducto FROM det_cot_personalizada WHERE idCotPersonalizada = ?) dr1
                                    ON dr1.codProducto = t.codPresentacion
                 WHERE dr1.codProducto IS NULL
@@ -163,13 +163,12 @@ class CotizacionesPersonalizadasOperaciones
 
     public function getProdDistribucionByIdCotizacion($idCotPersonalizada)
     {
-        $qry = "SELECT codDistribucion, producto
-                FROM (SELECT codDistribucion, producto
-                      FROM inv_distribucion id
-                               LEFT JOIN distribucion d on id.codDistribucion = d.idDistribucion
-                      WHERE invDistribucion > 0) t
+        $qry = "SELECT idDistribucion, producto
+                FROM (SELECT d.idDistribucion, d.producto
+                      FROM distribucion d
+                      WHERE cotiza = 1 AND activo =1) t
                          LEFT JOIN (SELECT codProducto FROM det_cot_personalizada WHERE idCotPersonalizada = ?) dr1
-                                   ON dr1.codProducto = t.codDistribucion
+                                   ON dr1.codProducto = t.idDistribucion
                 WHERE dr1.codProducto IS NULL
                 ORDER BY producto";
         $stmt = $this->_pdo->prepare($qry);

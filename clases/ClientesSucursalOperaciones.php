@@ -32,16 +32,13 @@ class ClientesSucursalOperaciones
         $stmt->execute(array($idCliente));
     }
 
-    public function getClienteSucursales($actif)
+    public function getSucursalesCliente($idCliente)
     {
-        if ($actif == true) {
-            $qry = "SELECT idCliente, nomProv FROM clientes_sucursal WHERE estProv=1 ORDER BY nomProv;";
-        } else {
-            $qry = "SELECT idCliente, nomProv FROM clientes_sucursal ORDER BY nomProv;";
-        }
-
+        $qry = "SELECT idSucursal, nomSucursal
+                FROM clientes_sucursal cs
+                WHERE idCliente = ?";
         $stmt = $this->_pdo->prepare($qry);
-        $stmt->execute();
+        $stmt->execute(array($idCliente));
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }

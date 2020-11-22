@@ -1,20 +1,24 @@
 <?php
 include "../includes/valAcc.php";
-function cargarClases($classname)
-{
-    require '../clases/' . $classname . '.php';
+switch ($estadoPedido) {
+    case 'A':
+        $titulo = ' anulados';
+        break;
+    case 'P':
+        $titulo = ' pendientes';
+        break;
+    case 'N':
+        $titulo = '';
+        break;
+    default:
+        $titulo = '';
+        break;
 }
-
-spl_autoload_register('cargarClases');
-$idCliente = $_POST['idCliente'];
-$clienteOperaciones = new ClientesOperaciones();
-$cliente = $clienteOperaciones->getCliente($idCliente);
-
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <title>Lista de órdenes de pedido por cliente</title>
+    <title>Lista de Órdenes de Pedido<?= $titulo ?></title>
     <meta charset="utf-8">
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="../css/datatables.css">
@@ -24,35 +28,38 @@ $cliente = $clienteOperaciones->getCliente($idCliente);
         }
 
         .width1 {
-            width: 5%;
+            width: 2%;
         }
 
         .width2 {
-            width: 5%;
+            width: 4%;
         }
 
         .width3 {
-            width: 10%;
+            width: 26%;
         }
 
         .width4 {
-            width: 10%;
+            width: 5%;
         }
 
         .width5 {
-            width: 25%;
+            width: 5%;
         }
 
         .width6 {
-            width: 25%;
+            width: 26%;
         }
 
         .width7 {
-            width: 10%;
+            width: 17%;
         }
 
         .width8 {
-            width: 10%;
+            width: 7%;
+        }
+        .width9 {
+            width: 7%;
         }
     </style>
     <script src="../js/jquery-3.3.1.min.js"></script>
@@ -89,7 +96,7 @@ $cliente = $clienteOperaciones->getCliente($idCliente);
         }
 
         $(document).ready(function () {
-            let idCliente = '<?=$idCliente?>';
+            let estadoPedido = '<?=$estadoPedido?>';
             var table = $('#example').DataTable({
                 "columns": [
                     {
@@ -101,6 +108,10 @@ $cliente = $clienteOperaciones->getCliente($idCliente);
                     {
                         "data": "idPedido",
                         "className": 'dt-body-center'
+                    },
+                    {
+                        "data": "nomCliente",
+                        "className": 'dt-body-left'
                     },
                     {
                         "data": "fechaPedido",
@@ -150,7 +161,7 @@ $cliente = $clienteOperaciones->getCliente($idCliente);
                     "infoFiltered": "(Filtrado de _MAX_ en total)"
 
                 },
-                "ajax": "ajax/listaPedidosCliente.php?idCliente=" + idCliente,
+                "ajax": "ajax/listaPedidos.php?estadoPedido=" + estadoPedido,
             });
             // Add event listener for opening and closing details
             $('#example tbody').on('click', 'td.details-control', function () {
@@ -172,7 +183,7 @@ $cliente = $clienteOperaciones->getCliente($idCliente);
 </head>
 <body>
 <div id="contenedor">
-    <div id="saludo1"><strong>LISTA DE ÓRDENES DE PEDIDO <?= $cliente['nomCliente'] ?></strong></div>
+    <div id="saludo1"><strong>LISTA DE ÓRDENES DE PEDIDO<?= $titulo ?></strong></div>
     <div class="row flex-end mb-3">
         <div class="col-1">
             <button class="button" onclick="window.location='../menu.php'">
@@ -185,12 +196,13 @@ $cliente = $clienteOperaciones->getCliente($idCliente);
             <tr>
                 <th class="width1"></th>
                 <th class="width2">Pedido</th>
-                <th class="width3">Fecha Pedido</th>
-                <th class="width4">Fecha Entrega</th>
-                <th class="width5">Lugar Entrega</th>
-                <th class="width6">Dirección Entrega</th>
-                <th class="width7">Precio</th>
-                <th class="width8">Estado</th>
+                <th class="width3">Cliente</th>
+                <th class="width4">Fecha Pedido</th>
+                <th class="width5">Fecha Entrega</th>
+                <th class="width6">Lugar Entrega</th>
+                <th class="width7">Dirección Entrega</th>
+                <th class="width8">Precio</th>
+                <th class="width9">Estado</th>
             </tr>
             </thead>
         </table>

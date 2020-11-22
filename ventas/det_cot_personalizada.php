@@ -338,7 +338,7 @@ $distribucionOperador = new ProductosDistribucionOperaciones();
         <strong>Detalle de la cotización personalizada</strong>
     </div>
     <div class="tabla-70">
-        <table id="example" class="display compact formatoDatos">
+        <table id="example" class="display compact">
             <thead>
             <tr>
                 <th class="width1"></th>

@@ -32,9 +32,9 @@ include "../includes/valAcc.php";
     }
 }
 		$link=conectarServidor();
-		$qry="Select nit_cliente, nomCliente, idPedido, fechaPedido, fechaEntrega, codVendedor, nom_personal, tipo_precio, Id_precio, pedido.Estado, nomSucursal, dirSucursal, idSucursal 
+		$qry="Select nit_cliente, nomCliente, idPedido, fechaPedido, fechaEntrega, codVendedor, nom_personal, tipoPrecio, idPrecio, pedido.Estado, nomSucursal, dirSucursal, idSucursal 
 		FROM pedido, personal, clientes, tip_precio, clientes_sucursal 
-		where codVendedor=Id_personal and idPedido=$pedido and clientes.nitCliente=nit_cliente and Id_precio=tipoPrecio and idSucursal=idSucursal and clientes_sucursal.Nit_clien=nit_cliente";
+		where codVendedor=Id_personal and idPedido=$pedido and clientes.nitCliente=nit_cliente and idPrecio=tipoPrecio and idSucursal=idSucursal and clientes_sucursal.Nit_clien=nit_cliente";
 		$result=mysqli_query($link,$qry);
 		$row=mysqli_fetch_array($result);
 		if ($row)

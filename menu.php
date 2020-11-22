@@ -16,7 +16,7 @@ $perfiles = $perfilOperador->getPerfiles();
 
 for ($i = 0; $i < count($perfiles); $i++) {
     $idPerfil = $perfiles[$i]['idPerfil'];
-    if (md5($idPerfil) == $perfil1) {
+    if ($idPerfil == $perfil1) {
         $perfil = $idPerfil;
         break;
     }
@@ -42,7 +42,7 @@ for ($i = 0; $i < count($perfiles); $i++) {
     <?php
 
     $menum = new MenusOperaciones();
-    $menuItems = $menum->getMenuItems($perfil);
+    $menuItems = $menum->getMenuItemsPerfil($perfil);
     //print_r($menuItems);
     //echo count($menuItems);
 
