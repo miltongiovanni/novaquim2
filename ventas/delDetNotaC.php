@@ -23,8 +23,8 @@ $link=conectarServidor();
 if($codigo <100000)
 {	
  //SI ES PRODUCTO DE LÍNEA
-  $qrylot="SELECT loteProducto as Lote from remision, det_remision, factura, nota_c 
-  WHERE remision.idRemision=det_remision.idRemision AND factura.idRemision=remision.idRemision and Factura=Fac_orig and codProducto=$codigo and Nota=$mensaje;";
+  $qrylot= "SELECT loteProducto as Lote from remision, det_remision, factura, nota_c 
+  WHERE remision.idRemision=det_remision.idRemision AND factura.idRemision=remision.idRemision and idFactura=Fac_orig and codProducto=$codigo and Nota=$mensaje;";
   $resultlot=mysqli_query($link,$qrylot);
   $row_lot=mysqli_fetch_array($resultlot);
   $lote=$row_lot['Lote'];  

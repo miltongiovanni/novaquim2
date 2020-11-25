@@ -46,12 +46,12 @@ $objPHPExcel->setActiveSheetIndex(0)
 // Rename sheet
 $objPHPExcel->getActiveSheet()->setTitle('Comisiones');
 
-$sql="select Factura, nomCliente, Descuento, Total, Subtotal, IVA, fechaCancelacion, sum(empresa) as nova, sum(distribucion) as dis, sum(empresa*com_nova) as com_nova, sum(distribucion*com_dist) as com_dist, (sum(empresa*com_nova)+sum(distribucion*com_dist)) as com_tot from
-(select Factura, nomCliente, Descuento, Total, retencionIva, retencionIca, retencionFte, Subtotal, IVA, fechaCancelacion, sum(Can_producto*prec_producto*(1-Descuento)) as empresa, 0 as distribucion, com_dist, com_nova 
-from factura, det_factura, clientes, personal where nitCliente=Nit_cliente and codVendedor=$vendedor and fechaCancelacion>='$FchIni' and fechaCancelacion<='$FchFin' and Factura=Id_fact and Cod_producto<100000 AND codVendedor=Id_personal group by Factura
+$sql="select idFactura, nomCliente, Descuento, Total, Subtotal, IVA, fechaCancelacion, sum(empresa) as nova, sum(distribucion) as dis, sum(empresa*com_nova) as com_nova, sum(distribucion*com_dist) as com_dist, (sum(empresa*com_nova)+sum(distribucion*com_dist)) as com_tot from
+(select idFactura, nomCliente, Descuento, Total, retencionIva, retencionIca, retencionFte, Subtotal, IVA, fechaCancelacion, sum(cantProducto*precioProducto*(1-Descuento)) as empresa, 0 as distribucion, com_dist, com_nova 
+from factura, det_factura, clientes, personal where nitCliente=Nit_cliente and codVendedor=$vendedor and fechaCancelacion>='$FchIni' and fechaCancelacion<='$FchFin' and idFactura=idFactura and codProducto<100000 AND codVendedor=Id_personal group by idFactura
 union
-select Factura, nomCliente, Descuento, Total, retencionIva, retencionIca, retencionFte, Subtotal, IVA, fechaCancelacion, 0 as empresa, sum(Can_producto*prec_producto*(1-Descuento)) as distribucion, com_dist, com_nova 
-from factura, det_factura, clientes, personal where nitCliente=Nit_cliente and codVendedor=$vendedor and fechaCancelacion>='$FchIni' and fechaCancelacion<='$FchFin' and Factura=Id_fact and Cod_producto>100000 AND codVendedor=Id_personal group by Factura) as tabla group by Factura;";
+select idFactura, nomCliente, Descuento, Total, retencionIva, retencionIca, retencionFte, Subtotal, IVA, fechaCancelacion, 0 as empresa, sum(cantProducto*precioProducto*(1-Descuento)) as distribucion, com_dist, com_nova 
+from factura, det_factura, clientes, personal where nitCliente=Nit_cliente and codVendedor=$vendedor and fechaCancelacion>='$FchIni' and fechaCancelacion<='$FchFin' and idFactura=idFactura and codProducto>100000 AND codVendedor=Id_personal group by idFactura) as tabla group by idFactura;";
 $result=mysqli_query($link,$sql) or die("Error al conectar a la base de datos.");
 $i=3;
 while($row= mysqli_fetch_array($result, MYSQLI_BOTH))

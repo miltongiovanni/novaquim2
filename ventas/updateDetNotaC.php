@@ -37,13 +37,13 @@ include "includes/conect.php";
 	}
 	if (($codigo < 100000)&&($codigo > 100))
 	{
-		$qry="select Nota as nota, det_nota_c.Cod_producto, det_nota_c.Can_producto as canNota, det_factura.Can_producto as canFac, Nombre as Producto, prec_producto as precio  
-from nota_c,det_nota_c, det_factura, prodpre WHERE Id_Nota=$mensaje and Nota=Id_Nota and Id_fact=Fac_orig and det_nota_c.Cod_producto=Cod_prese and det_factura.Cod_producto=Cod_prese and det_nota_c.Cod_producto=$codigo;";
+		$qry="select Nota as nota, det_nota_c.Cod_producto, det_nota_c.Can_producto as canNota, det_factura.cantProducto as canFac, Nombre as Producto, precioProducto as precio  
+from nota_c,det_nota_c, det_factura, prodpre WHERE Id_Nota=$mensaje and Nota=Id_Nota and idFactura=Fac_orig and det_nota_c.Cod_producto=Cod_prese and det_factura.codProducto=Cod_prese and det_nota_c.Cod_producto=$codigo;";
 	}
 	if ($codigo >= 100000)
 	{
-		$qry="select Nota as nota, det_nota_c.Cod_producto, det_nota_c.Can_producto as canNota, det_factura.Can_producto as canFac, Producto, prec_producto as precio 
-from nota_c,det_nota_c, det_factura, distribucion WHERE Id_Nota=$mensaje and Nota=Id_Nota and Id_fact=Fac_orig and det_nota_c.Cod_producto=Id_distribucion and det_factura.Cod_producto=Id_distribucion and det_nota_c.Cod_producto=$codigo;";
+		$qry="select Nota as nota, det_nota_c.Cod_producto, det_nota_c.Can_producto as canNota, det_factura.cantProducto as canFac, Producto, precioProducto as precio 
+from nota_c,det_nota_c, det_factura, distribucion WHERE Id_Nota=$mensaje and Nota=Id_Nota and idFactura=Fac_orig and det_nota_c.Cod_producto=Id_distribucion and det_factura.codProducto=Id_distribucion and det_nota_c.Cod_producto=$codigo;";
 	}
 	$result=mysqli_query($link,$qry);
 	$row=mysqli_fetch_array($result);

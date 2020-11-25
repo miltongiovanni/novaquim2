@@ -42,20 +42,20 @@ $objPHPExcel->setActiveSheetIndex(0)
 // Rename sheet
 $objPHPExcel->getActiveSheet()->setTitle('Lista de Facturas');
 $link=conectarServidor();
-$sql="	select Factura, Nit_cliente, nomCliente, fechaFactura, Subtotal, Total,  Descuento, det_factura.Cod_producto as Codigo, Can_producto, prec_producto, tasa, Cuenta_cont 
+$sql= "	select idFactura, Nit_cliente, nomCliente, fechaFactura, Subtotal, Total,  Descuento, det_factura.codProducto as Codigo, cantProducto, precioProducto, tasa, Cuenta_cont 
 from factura, det_factura, prodpre, tasa_iva, productos, clientes 
-where fechaFactura>='$FchIni' and fechaFactura<='$FchFin'  and Factura=Id_fact and Cod_producto<100000 
-and Cod_iva=Id_tasa and Cod_producto=Cod_prese and prodpre.Cod_produc=productos.Cod_produc and Nit_cliente=nitCliente
+where fechaFactura>='$FchIni' and fechaFactura<='$FchFin'  and idFactura=idFactura and codProducto<100000 
+and Cod_iva=Id_tasa and codProducto=Cod_prese and prodpre.Cod_produc=productos.Cod_produc and Nit_cliente=nitCliente
 union
-select Factura, Nit_cliente, nomCliente, fechaFactura, Subtotal, Total,  Descuento, det_factura.Cod_producto as Codigo, Can_producto, prec_producto, tasa, Cuenta_cont 
+select idFactura, Nit_cliente, nomCliente, fechaFactura, Subtotal, Total,  Descuento, det_factura.codProducto as Codigo, cantProducto, precioProducto, tasa, Cuenta_cont 
 from factura, det_factura, distribucion, tasa_iva, clientes 
-where fechaFactura>='$FchIni' and fechaFactura<='$FchFin' and Factura=Id_fact and Cod_producto>=100000 
-and Cod_iva=Id_tasa and Cod_producto=Id_distribucion and Nit_cliente=nitCliente
+where fechaFactura>='$FchIni' and fechaFactura<='$FchFin' and idFactura=idFactura and codProducto>=100000 
+and Cod_iva=Id_tasa and codProducto=Id_distribucion and Nit_cliente=nitCliente
 union
-select Factura, Nit_cliente, nomCliente, fechaFactura, Subtotal, Total,  Descuento, det_factura.Cod_producto as Codigo, Can_producto, prec_producto, tasa, Cuenta_cont 
+select idFactura, Nit_cliente, nomCliente, fechaFactura, Subtotal, Total,  Descuento, det_factura.codProducto as Codigo, cantProducto, precioProducto, tasa, Cuenta_cont 
 from factura, det_factura, servicios, tasa_iva, clientes 
-where fechaFactura>='$FchIni' and fechaFactura<='$FchFin' and Factura=Id_fact and Cod_producto<100 
-and Cod_iva=Id_tasa and Cod_producto=IdServicio and Nit_cliente=nitCliente;";
+where fechaFactura>='$FchIni' and fechaFactura<='$FchFin' and idFactura=idFactura and codProducto<100 
+and Cod_iva=Id_tasa and codProducto=IdServicio and Nit_cliente=nitCliente;";
 $result=mysqli_query($link,$sql) or die("Error al conectar a la base de datos.");
 $i=2;
 while($row= mysqli_fetch_array($result, MYSQLI_BOTH))

@@ -54,10 +54,10 @@ else
    	$inicio = ($pagina - 1) * $TAMANO_PAGINA; 
 }
 $link=conectarServidor();
-$sql="	select Factura, idPedido, Nit_cliente, fechaFactura, fechaVenc, idRemision, ordenCompra, nomCliente, telCliente, dirCliente, 
+$sql= "	select idFactura, idPedido, Nit_cliente, fechaFactura, fechaVenc, idRemision, ordenCompra, nomCliente, telCliente, dirCliente, 
 		Ciudad, nom_personal as vendedor, Total, factura.Estado 
 		from factura, clientes, personal,ciudades
-		where Nit_cliente=nitCliente and idCiudad=ciudadCliente and codVendedor=Id_personal  and idCatCliente<>13 ORDER BY factura desc";
+		where Nit_cliente=nitCliente and idCiudad=ciudadCliente and codVendedor=Id_personal  and idCatCliente<>13 ORDER BY idFactura desc";
 $result=mysqli_query($link,$sql);
 $num_total_registros = mysqli_num_rows($result); 
 //calculo el total de páginas 
@@ -78,10 +78,10 @@ if ($total_paginas > 1){
 echo '</div>';
 
 //construyo la sentencia SQL 
-$ssql = "	select Factura, idPedido, Nit_cliente, fechaFactura, fechaVenc, idRemision, ordenCompra, nomCliente, telCliente, dirCliente, 
+$ssql = "	select idFactura, idPedido, Nit_cliente, fechaFactura, fechaVenc, idRemision, ordenCompra, nomCliente, telCliente, dirCliente, 
 		Ciudad, nom_personal as vendedor, Total, factura.Estado 
 		from factura, clientes, personal,ciudades
-		where Nit_cliente=nitCliente and idCiudad=ciudadCliente and codVendedor=Id_personal  and idCatCliente<>13 ORDER BY factura desc limit " . $inicio . "," . $TAMANO_PAGINA;
+		where Nit_cliente=nitCliente and idCiudad=ciudadCliente and codVendedor=Id_personal  and idCatCliente<>13 ORDER BY idFactura desc limit " . $inicio . "," . $TAMANO_PAGINA;
 $rs = mysqli_query($link,$ssql);
 $a=1;
 while($row=mysqli_fetch_array($rs, MYSQLI_BOTH))
@@ -104,17 +104,17 @@ while($row=mysqli_fetch_array($rs, MYSQLI_BOTH))
 	';
 	
 	echo'</tr>';
-	$sqli="select Factura, Cod_producto, Can_producto, Nombre as Producto, tasa, prec_producto, Descuento 
+	$sqli= "select idFactura, codProducto, cantProducto, Nombre as Producto, tasa, precioProducto, Descuento 
 	from det_factura, prodpre, tasa_iva, factura 
-	where Factura=Id_fact and Factura=$factura and Cod_producto<100000 and Cod_producto=Cod_prese and Cod_iva=Id_tasa 
+	where idFactura=idFactura and idFactura=$factura and codProducto<100000 and codProducto=Cod_prese and Cod_iva=Id_tasa 
 	UNION 
-	select Factura, Cod_producto, Can_producto, Producto, tasa, prec_producto, Descuento 
+	select idFactura, codProducto, cantProducto, Producto, tasa, precioProducto, Descuento 
 	from det_factura, distribucion, tasa_iva, factura 
-	where Factura=Id_fact and Factura=$factura and Cod_producto>100000 and Cod_producto<1000000 AND Cod_producto=Id_distribucion AND Cod_iva=Id_tasa
+	where idFactura=idFactura and idFactura=$factura and codProducto>100000 and codProducto<1000000 AND codProducto=Id_distribucion AND Cod_iva=Id_tasa
 	union
-select Factura, Cod_producto, Can_producto, DesServicio as Producto, tasa, prec_producto, Descuento 
+select idFactura, codProducto, cantProducto, DesServicio as Producto, tasa, precioProducto, Descuento 
 	from det_factura, servicios, tasa_iva, factura 
-	where Factura=Id_fact and Factura=$factura and Cod_producto<100 AND Cod_producto=IdServicio AND Cod_iva=Id_tasa";
+	where idFactura=idFactura and idFactura=$factura and codProducto<100 AND codProducto=IdServicio AND Cod_iva=Id_tasa";
 	$resulti=mysqli_query($link,$sqli);
 	echo '<tr><td colspan="7"><div class="commenthidden" id="UniqueName'.$a.'"><table width="75%" border="0" align="center" cellspacing="0" bordercolor="#CCCCCC">
 	<tr>

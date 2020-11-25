@@ -42,7 +42,7 @@ $objPHPExcel->setActiveSheetIndex(0)
 // Rename sheet
 $objPHPExcel->getActiveSheet()->setTitle(iconv("iso-8859-1", "UTF-8",'Facturas por Cobrar'));
 $link=conectarServidor();
-$sql="	select Factura, nomCliente as Cliente, contactoCliente, cargoCliente, telCliente as Teléfono, celCliente as Celular, fechaFactura as 'Fecha Factura', fechaVenc as 'Fecha Vmto', Total ,(Total - retencionIva- retencionIca - retencionFte) as 'Valor a Cobrar', Subtotal
+$sql= "	select idFactura, nomCliente as Cliente, contactoCliente, cargoCliente, telCliente as Teléfono, celCliente as Celular, fechaFactura as 'Fecha Factura', fechaVenc as 'Fecha Vmto', Total ,(Total - retencionIva- retencionIca - retencionFte) as 'Valor a Cobrar', Subtotal
 from factura, clientes WHERE Nit_cliente=nitCliente and factura.Estado='P' ;";
 $result=mysqli_query($link,$sql) or die("Error al conectar a la base de datos.");
 $i=2;

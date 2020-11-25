@@ -90,9 +90,9 @@ while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
 	$objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($j++, $i, iconv("iso-8859-1", "UTF-8",$producto));
 	for ($b=$mes1; $b<=$mes2; $b++)
 	{
-	  $sqlv="select sum(Can_producto) as cant, sum(prec_producto*Can_producto) as sub 
+	  $sqlv= "select sum(cantProducto) as cant, sum(precioProducto*cantProducto) as sub 
 from det_factura, factura, distribucion, cat_dist, clientes  
-where Factura=Id_fact and  fechaFactura>='$FchIni' and fechaFactura<='$FchFin' and Id_distribucion=Cod_producto and distribucion.Id_Cat_dist=cat_dist.Id_Cat_dist and month(fechaFactura)=$b and cat_dist.Id_cat_dist=$Id_cat_dist and Nit_cliente=nitCliente and codVendedor=$vendedor";
+where idFactura=idFactura and  fechaFactura>='$FchIni' and fechaFactura<='$FchFin' and Id_distribucion=codProducto and distribucion.Id_Cat_dist=cat_dist.Id_Cat_dist and month(fechaFactura)=$b and cat_dist.Id_cat_dist=$Id_cat_dist and Nit_cliente=nitCliente and codVendedor=$vendedor";
 	  $resultv=mysqli_query($link,$sqlv);
 	  $rowv=mysqli_fetch_array($resultv, MYSQLI_BOTH);
 	  $cant=$rowv['cant'];

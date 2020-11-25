@@ -73,7 +73,7 @@ if($Pago==0)
 }*/
 if($Pago==1)
 {
-	$qryFact="select Factura, fechaFactura, fechaVenc, Total, retencionIva, retencionIca, retencionFte, retencionCree, Subtotal, IVA, totalR from factura WHERE Factura=$factura;";
+	$qryFact= "select idFactura, fechaFactura, fechaVenc, Total, retencionIva, retencionIca, retencionFte, retencionCree, Subtotal, IVA, totalR from factura WHERE idFactura=$factura;";
 	$Reten_pago=2;
 	$resultfact=mysqli_query($link, $qryFact);
 	$rowfact=mysqli_fetch_array($resultfact);
@@ -101,7 +101,7 @@ if($Pago==1)
 		{	
 			if($total==($parcial+$abono))
 			{				
-				$qryupt="update factura set Estado='C', fechaCancelacion='$fecha', retencionIva=$Reten_iva, retencionIca=$Reten_ica, retencionFte=$Reten_fte where Factura=$factura";
+				$qryupt= "update factura set Estado='C', fechaCancelacion='$fecha', retencionIva=$Reten_iva, retencionIca=$Reten_ica, retencionFte=$Reten_fte where idFactura=$factura";
 				$resulupdate=mysqli_query($link, $qryupt);
 				//echo $qryupt."result ".$resulupdate;
 				
@@ -127,7 +127,7 @@ if($Pago==1)
 			}
 			else
 			{
-				$qryupt="update factura set retencionIva=$Reten_iva, retencionIca=$Reten_ica, retencionFte=$Reten_fte where Factura=$factura";
+				$qryupt= "update factura set retencionIva=$Reten_iva, retencionIca=$Reten_ica, retencionFte=$Reten_fte where idFactura=$factura";
 				$resulupdate=mysqli_query($link, $qryupt);
 				//echo $qryupt;
 				echo' <script >
@@ -175,8 +175,8 @@ if($Pago==1)
     </tr>
     <?php
 	  	$link=conectarServidor();
-	 	$qry="select Factura, Nit_cliente, nomCliente, contactoCliente, cargoCliente, telCliente, fechaFactura, fechaVenc, Total, retencionIva, retencionIca, retencionFte, retencionCree, Subtotal, IVA, totalR 
-			from factura, clientes WHERE Nit_cliente=nitCliente and Factura=$factura;";
+	 	$qry= "select idFactura, Nit_cliente, nomCliente, contactoCliente, cargoCliente, telCliente, fechaFactura, fechaVenc, Total, retencionIva, retencionIca, retencionFte, retencionCree, Subtotal, IVA, totalR 
+			from factura, clientes WHERE Nit_cliente=nitCliente and idFactura=$factura;";
 		$result=mysqli_query($link, $qry);
 		$row=mysqli_fetch_array($result);
 		$nit=$row['Nit_cliente'];
@@ -221,7 +221,7 @@ if($Pago==1)
 	if ($Reten_pago==1)
 	{
 		
-		$qryf="select Factura, Nit_cliente, Descuento, nomCliente, retIva, retIca, retFte, retCree, Subtotal, IVA from factura, clientes where Factura=$factura and Nit_cliente=nitCliente ;";
+		$qryf= "select idFactura, Nit_cliente, Descuento, nomCliente, retIva, retIca, retFte, retCree, Subtotal, IVA from factura, clientes where idFactura=$factura and Nit_cliente=nitCliente ;";
 		$resultf=mysqli_query($link, $qryf);
 		$rowf=mysqli_fetch_array($resultf);
 		$Descuento=$rowf['Descuento'];
@@ -255,7 +255,7 @@ if($Pago==1)
 			  $reteica=0;
 			
 		}
-		$qryupf="update factura set retencionIva=$reteiva , retencionIca=$reteica , retencionFte=$retefuente where Factura=$factura;";
+		$qryupf= "update factura set retencionIva=$reteiva , retencionIca=$reteica , retencionFte=$retefuente where idFactura=$factura;";
 		$resultupf=mysqli_query($link, $qryupf);
 		
 	echo '<tr>

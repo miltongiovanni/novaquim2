@@ -40,9 +40,9 @@ foreach ($_POST as $nombre_campo => $valor) {
 include "includes/utilTabla.php";
 include "includes/conect.php" ;
 $link=conectarServidor();
-$sql="select fechaFactura, Cod_producto, Nombre, SUM(Can_producto) as Cantidad, prec_producto 
+$sql= "select fechaFactura, codProducto, Nombre, SUM(cantProducto) as Cantidad, precioProducto 
 from factura, det_factura, prodpre 
-where Factura=Id_fact and Cod_producto=Cod_prese and fechaFactura>='$FchIni' and fechaFactura<'$FchFin' group BY Cod_producto order by Cantidad desc;";
+where idFactura=idFactura and codProducto=Cod_prese and fechaFactura>='$FchIni' and fechaFactura<'$FchFin' group BY codProducto order by Cantidad desc;";
 $result=mysqli_query($link,$sql);
 $a=1;
 while($row=mysqli_fetch_array($result, MYSQLI_BOTH))

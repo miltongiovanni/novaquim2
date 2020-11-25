@@ -35,14 +35,14 @@ foreach ($_POST as $nombre_campo => $valor) {
 		$link=conectarServidor();
 		if ($Crear==5)
 		{
-			$qryup="Update factura set fechaFactura='$FchVta',fechaVenc='$FchVen', ordenCompra=$ord_comp, Descuento=$descuento/100, Observaciones='$observa' where Factura=$factura";
+			$qryup= "Update factura set fechaFactura='$FchVta',fechaVenc='$FchVen', ordenCompra=$ord_comp, Descuento=$descuento/100, Observaciones='$observa' where idFactura=$factura";
 			$resultup=mysqli_query($link,$qryup);
 			
 		}
-		$qry="select Factura, idPedido, Nit_cliente, fechaFactura, fechaVenc, idRemision, ordenCompra, nomCliente, telCliente, dirCliente, 
+		$qry= "select idFactura, idPedido, Nit_cliente, fechaFactura, fechaVenc, idRemision, ordenCompra, nomCliente, telCliente, dirCliente, 
 		Ciudad, nom_personal as vendedor, Observaciones, factura.Estado  
 		from factura, clientes, personal, ciudades
-		where Nit_cliente=nitCliente and codVendedor=Id_personal and ciudadCliente=idCiudad  and  Factura=$factura;";
+		where Nit_cliente=nitCliente and codVendedor=Id_personal and ciudadCliente=idCiudad  and  idFactura=$factura;";
 		$result=mysqli_query($link,$qry);
 		$rowe=mysqli_fetch_array($result);
 		$pedido=$rowe['Id_pedido'];
@@ -120,9 +120,9 @@ foreach ($_POST as $nombre_campo => $valor) {
       <?php
 	include "includes/num_letra.php";
     $link=conectarServidor();
-    $qry="select Factura, Cod_producto, Can_producto, Nombre as Producto, tasa, Id_tasa, prec_producto, Descuento 
+    $qry= "select idFactura, codProducto, cantProducto, Nombre as Producto, tasa, Id_tasa, precioProducto, Descuento 
 	from det_factura, prodpre, tasa_iva, factura 
-	where Factura=Id_fact and Factura=$factura and Cod_producto<100000 and Cod_producto>100 and Cod_producto=Cod_prese and Cod_iva=Id_tasa order by Producto;";
+	where idFactura=idFactura and idFactura=$factura and codProducto<100000 and codProducto>100 and codProducto=Cod_prese and Cod_iva=Id_tasa order by Producto;";
     $result=mysqli_query($link,$qry);
 	$subtotal_1=0;
 	$descuento_1=0;
@@ -180,9 +180,9 @@ foreach ($_POST as $nombre_campo => $valor) {
 			echo '><div align="center">$ '.$tot.'</div></td>
 			</tr>';
     }
-	$qry="select Factura, Cod_producto, Can_producto, Producto, tasa, Id_tasa, prec_producto, Descuento 
+	$qry= "select idFactura, codProducto, cantProducto, Producto, tasa, Id_tasa, precioProducto, Descuento 
 	from det_factura, distribucion, tasa_iva, factura 
-	where Factura=Id_fact and Factura=$factura and Cod_producto>100000 AND Cod_producto=Id_distribucion AND Cod_iva=Id_tasa order by Producto;";
+	where idFactura=idFactura and idFactura=$factura and codProducto>100000 AND codProducto=Id_distribucion AND Cod_iva=Id_tasa order by Producto;";
     $result=mysqli_query($link,$qry);
 	$subtotal_2=0;
 	$descuento_2=0;
@@ -239,9 +239,9 @@ foreach ($_POST as $nombre_campo => $valor) {
 			echo '><div align="center">$ '.$tot.'</div></td>
 			</tr>';
     }
-	$qry="select Factura, Cod_producto, Can_producto, DesServicio as Producto, tasa, prec_producto, Descuento 
+	$qry= "select idFactura, codProducto, cantProducto, DesServicio as Producto, tasa, precioProducto, Descuento 
 	from det_factura, servicios, tasa_iva, factura 
-	where Factura=Id_fact and Factura=$factura and Cod_producto<100 AND Cod_producto=IdServicio AND Cod_iva=Id_tasa order by Producto;";
+	where idFactura=idFactura and idFactura=$factura and codProducto<100 AND codProducto=IdServicio AND Cod_iva=Id_tasa order by Producto;";
     $result=mysqli_query($link,$qry);
 	$subtotal_3=0;
 	$descuento_3=0;
@@ -304,7 +304,7 @@ foreach ($_POST as $nombre_campo => $valor) {
 	$Des=number_format($descuento, 0, '.', ',');
 	
 	$subtotal=$subtotal_1+$subtotal_2+$subtotal_3;
-	$qryf="select Factura, Nit_cliente, nomCliente, retIva, retIca, retFte, Subtotal, ciudadCliente, idCatCliente from factura, clientes where Factura=$factura and Nit_cliente=nitCliente ;";
+	$qryf= "select idFactura, Nit_cliente, nomCliente, retIva, retIca, retFte, Subtotal, ciudadCliente, idCatCliente from factura, clientes where idFactura=$factura and Nit_cliente=nitCliente ;";
 	$resultf=mysqli_query($link,$qryf);
 	$rowf=mysqli_fetch_array($resultf);
 	$Ciudad_clien=$rowf['Ciudad_clien'];
@@ -381,7 +381,7 @@ foreach ($_POST as $nombre_campo => $valor) {
 		<td colspan="5" class="font2"><div align="right"><strong>TOTAL</strong></div></td>
 		<td class="font2"><div align="center"><strong>$ '.$Tot.'</strong></div></td>
 		</tr>';
-	$sql="update factura 
+	$sql= "update factura 
 		SET Total=round($Total),
 		Subtotal=round($subtotal_1+$subtotal_2+$subtotal_3),
 		IVA=round($iva05_1+$iva05_2+$iva05_3+$iva16_1+$iva16_2+$iva16_3),
@@ -389,7 +389,7 @@ foreach ($_POST as $nombre_campo => $valor) {
 		retencionIva=round($reteiva),
 		retencionIca=round($reteica),
 		retencionFte=round($retefuente)
-		where Factura=$factura;";	
+		where idFactura=$factura;";
 	$result=mysqli_query($link,$sql);
 	mysqli_close($link);
     ?>

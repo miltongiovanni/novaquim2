@@ -10,10 +10,10 @@ $factura=$_POST['factura'];
 
 
 
-$qryenc="select Factura, idPedido, Nit_cliente, fechaFactura, fechaVenc, idRemision, ordenCompra, nomCliente, telCliente, dirCliente, factura.Estado, 
+$qryenc= "select idFactura, idPedido, Nit_cliente, fechaFactura, fechaVenc, idRemision, ordenCompra, nomCliente, telCliente, dirCliente, factura.Estado, 
 		Ciudad, nom_personal as vendedor, Observaciones, retFte
 		from factura, clientes, personal, ciudades
-		where Nit_cliente=nitCliente and codVendedor=Id_personal and ciudadCliente=idCiudad and Factura=$factura;";
+		where Nit_cliente=nitCliente and codVendedor=Id_personal and ciudadCliente=idCiudad and idFactura=$factura;";
 $resultenc=mysqli_query($link,$qryenc);
 $rowenc=mysqli_fetch_array($resultenc);
 $est=$rowenc['Estado'];
@@ -22,7 +22,7 @@ $reten_fte=$rowenc['Ret_fte'];
 
 if ($est!='C')
 {
-	$qryup="Update factura set Estado='P' where Factura=$factura";
+	$qryup= "Update factura set Estado='P' where idFactura=$factura";
 	$resultup=mysqli_query($link,$qryup);		
 }
 
@@ -98,9 +98,9 @@ $pdf->Cell(10,4,'IVA ', 1,0,'C');
 $pdf->Cell(22,4,'VR. UNIT ',1,0,'C');
 $pdf->Cell(25,4,'SUBTOTAL ', 1,0,'C');
 $pdf->SetFont('Arial','',10);
-$qry="select Factura, Cod_producto, Can_producto, Nombre as Producto, tasa, Id_tasa, prec_producto, Descuento 
+$qry= "select idFactura, codProducto, cantProducto, Nombre as Producto, tasa, Id_tasa, precioProducto, Descuento 
 	from det_factura, prodpre, tasa_iva, factura 
-	where Factura=Id_fact and Factura=$factura and Cod_producto<100000 and Cod_producto>100 and Cod_producto=Cod_prese and Cod_iva=Id_tasa order by Producto;";
+	where idFactura=idFactura and idFactura=$factura and codProducto<100000 and codProducto>100 and codProducto=Cod_prese and Cod_iva=Id_tasa order by Producto;";
 $result=mysqli_query($link,$qry);
 $pdf->SetXY(10,55);
 $subtotal_1=0;
@@ -141,9 +141,9 @@ $pdf->Cell(22,4,"$ $Prec",0,0,'R');
 $pdf->Cell(25,4,"$ $tot",0,0,'R');
 $pdf->Ln(4);
 }
-$qry="select Factura, Cod_producto, Can_producto, Producto, tasa, Id_tasa, prec_producto, Descuento 
+$qry= "select idFactura, codProducto, cantProducto, Producto, tasa, Id_tasa, precioProducto, Descuento 
 	from det_factura, distribucion, tasa_iva, factura 
-	where Factura=Id_fact and Factura=$factura and Cod_producto>100000 AND Cod_producto=Id_distribucion AND Cod_iva=Id_tasa order by Producto;";
+	where idFactura=idFactura and idFactura=$factura and codProducto>100000 AND codProducto=Id_distribucion AND Cod_iva=Id_tasa order by Producto;";
 $result=mysqli_query($link,$qry);
 $subtotal_2=0;
 $descuento_2=0;
@@ -185,9 +185,9 @@ $pdf->Cell(22,4,"$ $Prec",0,0,'R');
 $pdf->Cell(25,4,"$ $tot",0,0,'R');
 $pdf->Ln(4);
 }
-$qry="select Factura, Cod_producto, Can_producto, DesServicio as Producto, tasa, prec_producto, Descuento 
+$qry= "select idFactura, codProducto, cantProducto, DesServicio as Producto, tasa, precioProducto, Descuento 
 	from det_factura, servicios, tasa_iva, factura 
-	where Factura=Id_fact and Factura=$factura and Cod_producto<100 AND Cod_producto=IdServicio AND Cod_iva=Id_tasa order by Producto;";
+	where idFactura=idFactura and idFactura=$factura and codProducto<100 AND codProducto=IdServicio AND Cod_iva=Id_tasa order by Producto;";
 $subtotal_3=0;
 $descuento_3=0;
 $iva05_3=0;
@@ -221,7 +221,7 @@ $Sub=number_format($subtotal_1+$subtotal_2+$subtotal_3, 0, '.', ',');
 $Des=number_format($descuento_1+$descuento_2+$descuento_3, 0, '.', ',');
 $descuento=$descuento_1+$descuento_2+$descuento_3;
 $subtotal=$subtotal_1+$subtotal_2+$subtotal_3;
-$qryf="select Factura, Nit_cliente, nomCliente, retIva, retIca, retFte, Subtotal, ciudadCliente, idCatCliente from factura, clientes where Factura=$factura and Nit_cliente=nitCliente ;";
+$qryf= "select idFactura, Nit_cliente, nomCliente, retIva, retIca, retFte, Subtotal, ciudadCliente, idCatCliente from factura, clientes where idFactura=$factura and Nit_cliente=nitCliente ;";
 	$resultf=mysqli_query($link,$qryf);
 	$rowf=mysqli_fetch_array($resultf);
 	$Ciudad_clien=$rowf['Ciudad_clien'];

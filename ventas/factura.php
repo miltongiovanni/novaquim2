@@ -69,7 +69,7 @@ include "../includes/valAcc.php";
 			mysqli_close($link);
 			mover("crearFactura.php","No existe la Orden de Pedido");
 		}
-		$qry2="select MAX(factura) as Factura from factura;";
+		$qry2= "select MAX(idFactura) as Factura from factura;";
 		$result2=mysqli_query($link,$qry2);
 		$row2=mysqli_fetch_array($result2);
 		$fact=$row2['Factura']+1;	

@@ -50,8 +50,8 @@ foreach ($_POST as $nombre_campo => $valor) {
     <th width="42" align="center" class="formatoEncabezados">Estado</th>
   </tr>   
 <?php
-$sql="	select Factura, fechaFactura, fechaVenc, Total, (Total-retencionIva-retencionIca-retencionFte) as 'Valor a Cobrar', (Total-retencionIva-retencionIca-retencionFte-(select SUM(cobro) from r_caja where Fact=Factura group by Fact)) as 'Saldo', fechaCancelacion, Estado 
-from factura where Nit_cliente='$cliente' ORDER BY Factura desc;";
+$sql="	select idFactura, fechaFactura, fechaVenc, Total, (Total-retencionIva-retencionIca-retencionFte) as 'Valor a Cobrar', (Total-retencionIva-retencionIca-retencionFte-(select SUM(cobro) from r_caja where Fact=idFactura group by Fact)) as 'Saldo', fechaCancelacion, Estado 
+from factura where Nit_cliente='$cliente' ORDER BY idFactura desc;";
 $result=mysqli_query($link,$sql);
 $a=1;
 while($row=mysqli_fetch_array($result, MYSQLI_BOTH))

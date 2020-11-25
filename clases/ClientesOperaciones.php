@@ -103,7 +103,7 @@ class ClientesOperaciones
                          LEFT JOIN ciudades c1 ON c.ciudadCliente = c1.idCiudad
                          LEFT JOIN (SELECT max(fechaFactura) ultimaCompra, idCliente FROM factura GROUP BY idCliente) uc
                                    ON uc.idCliente = c.idCliente
-                WHERE c.estadoCliente = ? AND ultimaCompra IS NOT NULL";
+                WHERE c.estadoCliente = ?";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute(array($activo));
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -161,6 +161,13 @@ class ClientesOperaciones
                 retIca=?, retFte=?, codVendedor=?, exenIva=? WHERE idCliente=?";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute($datos);
+    }
+
+    public function disableCliente($idCliente)
+    {
+        $qry = "UPDATE clientes SET estadoCliente=0 WHERE idCliente=?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($idCliente));
     }
 
     public function setDb()

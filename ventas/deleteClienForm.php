@@ -4,50 +4,29 @@ include "../includes/valAcc.php";
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Eliminar Cliente</title>
-<script  src="../js/validar.js"></script>
-<script  src="scripts/ajax.js"></script>
-<script  src="scripts/block.js"></script>	
-	<script >
-	document.onkeypress = stopRKey; 
-	</script>
-
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Desactivar Cliente</title>
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script src="../js/validar.js"></script>
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/findCliente.js"></script>
 </head>
 
 
 <body>
 <div id="contenedor">
-<div id="saludo"><strong>SELECCIONAR CLIENTE A ELIMINAR</strong></div>
-
-<table width="700" border="0" align="center">
-	<tr>
-		<td>&nbsp;</td>
-	</tr>
-	<tr>
-		<td colspan="2">
-			<form method="post" action="deleteCli.php">
-			<div align="center"><strong>Cliente: </strong><input type="text" id="bus" name="bus" onkeyup="loadXMLDoc()" required /><div id="myDiv"></div>
-        <br>
-			  <input name="button" type="submit" value="Eliminar" onClick="return Enviar2(this.form);"></div>
-			<div align="center"></div>
-			<div align="right"></div>
-			</form>    
-		</td>
-	</tr>
-	<tr>
-        <td colspan="2"><div align="center">&nbsp;</div></td>
-    </tr>
-    <tr>
-        <td colspan="2"><div align="center">&nbsp;</div></td>
-    </tr>
-    <tr> 
-        <td colspan="2">
-        <div align="center"><input type="button" class="resaltado" onClick="history.back()" value="  VOLVER  "></div>
-        </td>
-    </tr>
-</table>
+    <div id="saludo"><strong>SELECCIONAR CLIENTE A DESACTIVAR</strong></div>
+    <?php
+    include "../includes/ventas.php";
+    $rep = buscarClienteForm("deleteCli.php");
+    echo $rep;
+    ?>
+    <div class="row form-group">
+        <div class="col-1">
+            <button class="button1" onclick="history.back()">
+                <span>VOLVER</span></button>
+        </div>
+    </div>
 </div>
 </body>
 </html>

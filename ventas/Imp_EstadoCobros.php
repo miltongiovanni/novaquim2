@@ -23,7 +23,7 @@ $pdf->Cell(15,3.5,'Fch Canc', 1,0,'C');
 $pdf->Cell(15,3.5,'Valor', 1,0,'C');
 $pdf->Cell(10,3.5,'F Pago', 1,0,'C');
 $pdf->SetFont('Arial','',8);
-$qry="select Factura, nomCliente, contactoCliente, cargoCliente, dirCliente, telCliente, celCliente, fechaFactura, fechaVenc, Total, retencionIva, retencionIca, retencionFte, Subtotal, IVA from factura, clientes WHERE Nit_cliente=nitCliente and factura.Estado='P';";
+$qry= "select idFactura, nomCliente, contactoCliente, cargoCliente, dirCliente, telCliente, celCliente, fechaFactura, fechaVenc, Total, retencionIva, retencionIca, retencionFte, Subtotal, IVA from factura, clientes WHERE Nit_cliente=nitCliente and factura.Estado='P';";
 $result=mysqli_query($link,$qry);
 $i=0;
 while($row=mysqli_fetch_array($result))

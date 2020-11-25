@@ -33,9 +33,9 @@ include "../includes/valAcc.php";
 }
 		$link=conectarServidor();
 		$bd="novaquim";
-		$qry="select Factura, Nit_cliente, nomCliente, fechaFactura, fechaVenc, codVendedor, nom_personal, tipPrecio, tipoPrecio, ordenCompra, Descuento, idPedido, Observaciones 
+		$qry= "select idFactura, Nit_cliente, nomCliente, fechaFactura, fechaVenc, codVendedor, nom_personal, tipPrecio, tipoPrecio, ordenCompra, Descuento, idPedido, Observaciones 
 			from factura, clientes,	personal, tip_precio 
-			WHERE factura.Nit_cliente=nitCliente and codVendedor=Id_personal and tipPrecio=idPrecio and Factura=$factura";
+			WHERE factura.Nit_cliente=nitCliente and codVendedor=Id_personal and tipPrecio=idPrecio and idFactura=$factura";
 		$result=mysql_db_query($bd,$qry);
 		$row=mysql_fetch_array($result);
 		if ($row)

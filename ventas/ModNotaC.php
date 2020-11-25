@@ -60,7 +60,7 @@ foreach ($_POST as $nombre_campo => $valor)
         <td colspan="2"><div align="right"><strong>Factura por la cual se origina la Nota</strong></div></td>
         <td width="89"><?php 
 				echo'<select name="fact_ori" id="fact_origen">';
-				$result=mysqli_query($link,"select Factura from factura where Nit_cliente='$cliente' and Estado<>'A' order by Factura DESC");
+				$result=mysqli_query($link, "select idFactura from factura where Nit_cliente='$cliente' and Estado<>'A' order by idFactura DESC");
 				echo '<option selected value="'.$Fac_orig.'">'.$Fac_orig.'</option>';
 				while($row=mysqli_fetch_array($result))
 				{
@@ -75,7 +75,7 @@ foreach ($_POST as $nombre_campo => $valor)
         <td colspan="2"><div align="right"><strong>Factura a la cual afecta la Nota</strong></div></td>
         <td><?php 
 				echo'<select name="fact_des" id="fact_destino">';
-				$result=mysqli_query($link,"select Factura from factura where Nit_cliente='$cliente' order by Factura DESC");
+				$result=mysqli_query($link, "select idFactura from factura where Nit_cliente='$cliente' order by idFactura DESC");
 				echo '<option selected value="'.$Fac_dest.'">'.$Fac_dest.'</option>';
 				while($row=mysqli_fetch_array($result))
 				{

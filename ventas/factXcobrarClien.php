@@ -48,7 +48,7 @@ $cliente=$_POST[cliente];
 	  $link=conectarServidor();
 	  if($link)
 	  	{  
-			$qry="select Factura, nomCliente, contactoCliente, cargoCliente, telCliente, celCliente, fechaFactura, fechaVenc, Total, Descuento, totalR,  retencionIva, retencionIca, retencionFte, 	Subtotal, IVA 
+			$qry= "select idFactura, nomCliente, contactoCliente, cargoCliente, telCliente, celCliente, fechaFactura, fechaVenc, Total, Descuento, totalR,  retencionIva, retencionIca, retencionFte, 	Subtotal, IVA 
 			from factura, clientes WHERE Nit_cliente=nitCliente and factura.Estado='P' and Nit_cliente='$cliente';";
 			$result=mysqli_query($link,$qry);
 			$a=1;
