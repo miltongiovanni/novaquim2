@@ -1,6 +1,6 @@
 <?php
 
-class PedidosOperaciones
+class FacturasOperaciones
 {
     private $_pdo; // Instance de PDO.
 
@@ -9,28 +9,28 @@ class PedidosOperaciones
         $this->setDb();
     }
 
-    public function makePedido($datos)
+    public function makeFactura($datos)
     {
         /*Preparo la insercion */
-        $qry = "INSERT INTO pedido (idCliente, fechaPedido, fechaEntrega, tipoPrecio, estado, idSucursal) VALUES(?, ?, ?, ?, ?, ?)";
+        $qry = "INSERT INTO factura (idCliente, fechaFactura, fechaEntrega, tipoPrecio, estado, idSucursal) VALUES(?, ?, ?, ?, ?, ?)";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute($datos);
         return $this->_pdo->lastInsertId();
     }
 
-    public function deletePedido($idPedido)
+    public function deleteFactura($idFactura)
     {
-        $qry = "DELETE FROM pedido WHERE idPedido= ?";
+        $qry = "DELETE FROM factura WHERE idFactura= ?";
         $stmt = $this->_pdo->prepare($qry);
-        $stmt->execute(array($idPedido));
+        $stmt->execute(array($idFactura));
     }
 
 
-    public function isValidIdPedido($idPedido)
+    public function isValidIdFactura($idFactura)
     {
-        $qry = "SELECT * FROM pedido WHERE idPedido=?";
+        $qry = "SELECT * FROM factura WHERE idFactura=?";
         $stmt = $this->_pdo->prepare($qry);
-        $stmt->execute(array($idPedido));
+        $stmt->execute(array($idFactura));
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         if($result==false){
             return false;
@@ -42,16 +42,16 @@ class PedidosOperaciones
 
     public function getCotizacionsByTipo($tipoCompra)
     {
-        $qry = "SELECT idPedido, nomCotizacion FROM pedido WHERE idCatCotizacion = $tipoCompra ORDER BY nomCotizacion;";
+        $qry = "SELECT idFactura, nomCotizacion FROM factura WHERE idCatCotizacion = $tipoCompra ORDER BY nomCotizacion;";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute(array());
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
 
-    public function getPedidosByEstado($estado)
+    public function getFacturasByEstado($estado)
     {
-        $qry = "SELECT idPedido FROM pedido WHERE estado=?";
+        $qry = "SELECT idFactura FROM factura WHERE estado=?";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute(array($estado));
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -60,7 +60,7 @@ class PedidosOperaciones
 
     public function getCotizacionsByName($q)
     {
-        $qry = "SELECT idPedido, nomCotizacion FROM pedido WHERE nomCotizacion like '%" . $q . "%' ORDER BY nomCotizacion;";
+        $qry = "SELECT idFactura, nomCotizacion FROM factura WHERE nomCotizacion like '%" . $q . "%' ORDER BY nomCotizacion;";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute(array());
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -119,7 +119,7 @@ class PedidosOperaciones
         return $result;
     }
 
-    public function getProductosDistPedido($distribucion)
+    public function getProductosDistFactura($distribucion)
     {
         $qryd = '';
         if ($distribucion != NULL) {
@@ -144,131 +144,97 @@ class PedidosOperaciones
         return $result;
     }
 
-    public function getProdTerminadosByIdPedido($idPedido)
+    public function getProdTerminadosByIdFactura($idFactura)
     {
         $qry = "SELECT t.codPresentacion, t.presentacion
                 FROM (SELECT pp.codPresentacion, pp.presentacion
                       FROM prodpre pp
                       WHERE cotiza = 1
                         AND presentacionActiva = 1) t
-                         LEFT JOIN (SELECT codProducto FROM det_pedido WHERE idPedido = ?) dr1
+                         LEFT JOIN (SELECT codProducto FROM det_factura WHERE idFactura = ?) dr1
                                    ON dr1.codProducto = t.codPresentacion
                 WHERE dr1.codProducto IS NULL
                 ORDER BY t.presentacion";
         $stmt = $this->_pdo->prepare($qry);
-        $stmt->execute(array($idPedido));
+        $stmt->execute(array($idFactura));
         $result = $stmt->fetchall(PDO::FETCH_ASSOC);
         return $result;
     }
 
 
-    public function getProdDistribucionByIdPedido($idPedido)
+    public function getProdDistribucionByIdFactura($idFactura)
     {
         $qry = "SELECT idDistribucion, producto
                 FROM (SELECT d.idDistribucion, d.producto
                       FROM distribucion d
                       WHERE cotiza = 1 AND activo =1) t
-                         LEFT JOIN (SELECT codProducto FROM det_pedido WHERE idPedido = ?) dr1
+                         LEFT JOIN (SELECT codProducto FROM det_factura WHERE idFactura = ?) dr1
                                    ON dr1.codProducto = t.idDistribucion
                 WHERE dr1.codProducto IS NULL
                 ORDER BY producto";
         $stmt = $this->_pdo->prepare($qry);
-        $stmt->execute(array($idPedido));
+        $stmt->execute(array($idFactura));
         $result = $stmt->fetchall(PDO::FETCH_ASSOC);
         return $result;
     }
 
-    public function getServicioByIdPedido($idPedido)
+    public function getServicioByIdFactura($idFactura)
     {
         $qry = "SELECT idServicio, desServicio
                 FROM (SELECT idServicio, desServicio
                       FROM servicios s
                       WHERE activo =1) t
-                         LEFT JOIN (SELECT codProducto FROM det_pedido WHERE idPedido = ?) dr1
+                         LEFT JOIN (SELECT codProducto FROM det_factura WHERE idFactura = ?) dr1
                                    ON dr1.codProducto = t.idServicio
                 WHERE dr1.codProducto IS NULL
                 ORDER BY desServicio";
         $stmt = $this->_pdo->prepare($qry);
-        $stmt->execute(array($idPedido));
+        $stmt->execute(array($idFactura));
         $result = $stmt->fetchall(PDO::FETCH_ASSOC);
         return $result;
     }
 
     public function getCotizacionesGastos($q)
     {
-        $qry = "SELECT idPedido, nomCotizacion FROM pedido WHERE (idCatCotizacion=5 OR idCatCotizacion=6) AND nomCotizacion like '%" . $q . "%' ORDER BY nomCotizacion;";
+        $qry = "SELECT idFactura, nomCotizacion FROM factura WHERE (idCatCotizacion=5 OR idCatCotizacion=6) AND nomCotizacion like '%" . $q . "%' ORDER BY nomCotizacion;";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
 
-    public function getTablePedidos($estado)
+    public function getTableFacturas()
     {
-        if($estado == 'A'){
-            $qry = "SELECT idPedido,
-                       fechaPedido,
-                       fechaEntrega,
-                       tp.tipoPrecio,
+        $qry = "SELECT idFactura,
+                       idPedido,
+                       idRemision,
                        nomCliente,
-                       IF(p.estado='A', 'Anulado', IF(p.estado='F', 'Facturado', IF(p.estado='P','Pendiente', 'Por facturar'))) estadoPedido,
-                       nomSucursal,
-                       dirSucursal
-                FROM pedido p
-                         LEFT JOIN clientes c on c.idCliente = p.idCliente
-                         LEFT JOIN clientes_sucursal cs on p.idCliente = cs.idCliente AND p.idSucursal = cs.idSucursal
-                         LEFT JOIN tip_precio tp ON p.tipoPrecio = tp.idPrecio
-                 WHERE p.estado='A'
-                 ";
-        }elseif ($estado == 'P'){
-            $qry = "SELECT idPedido,
-                       fechaPedido,
-                       fechaEntrega,
+                       fechaFactura,
+                       fechaVenc,
                        tp.tipoPrecio,
-                       nomCliente,
-                       IF(p.estado='A', 'Anulado', IF(p.estado='F', 'Facturado', IF(p.estado='P','Pendiente', 'Por facturar'))) estadoPedido,
-                       nomSucursal,
-                       dirSucursal
-                FROM pedido p
-                         LEFT JOIN clientes c on c.idCliente = p.idCliente
-                         LEFT JOIN clientes_sucursal cs on p.idCliente = cs.idCliente AND p.idSucursal = cs.idSucursal
-                         LEFT JOIN tip_precio tp ON p.tipoPrecio = tp.idPrecio
-                 WHERE p.estado='P' OR p.estado='L'
-                 ";
-        }else{
-            $qry = "SELECT idPedido,
-                       fechaPedido,
-                       fechaEntrega,
-                       tp.tipoPrecio,
-                       nomCliente,
-                       IF(p.estado='A', 'Anulado', IF(p.estado='F', 'Facturado', IF(p.estado='P','Pendiente', 'Por facturar'))) estadoPedido,
-                       nomSucursal,
-                       dirSucursal
-                FROM pedido p
-                         LEFT JOIN clientes c on c.idCliente = p.idCliente
-                         LEFT JOIN clientes_sucursal cs on p.idCliente = cs.idCliente AND p.idSucursal = cs.idSucursal
-                         LEFT JOIN tip_precio tp ON p.tipoPrecio = tp.idPrecio
-                 WHERE( YEAR(now())-YEAR(fechaPedido))<=1
-                 ";
-        }
-
+                       IF(f.estado='A', 'Anulada', IF(f.estado='C', 'Cancelada', 'Pendiente')) estadoFactura,
+                       CONCAT('$', FORMAT(total, 0)) totalFactura
+                FROM factura f
+                         LEFT JOIN clientes c on c.idCliente = f.idCliente
+                         LEFT JOIN tip_precio tp ON f.tipPrecio = tp.idPrecio
+                WHERE( YEAR(now())-YEAR(fechaFactura))<=1";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
 
-    public function getTablePedidosCliente($idCliente)
+    public function getTableFacturasCliente($idCliente)
     {
-        $qry = "SELECT idPedido,
-                       fechaPedido,
+        $qry = "SELECT idFactura,
+                       fechaFactura,
                        fechaEntrega,
                        tp.tipoPrecio,
                        nomCliente,
-                       IF(p.estado='A', 'Anulado', IF(p.estado='F', 'Facturado', IF(p.estado='P','Pendiente', 'Por facturar'))) estadoPedido,
+                       IF(p.estado='A', 'Anulado', IF(p.estado='F', 'Facturado', IF(p.estado='P','Pendiente', 'Por facturar'))) estadoFactura,
                        nomSucursal,
                        dirSucursal
-                FROM pedido p
+                FROM factura p
                          LEFT JOIN clientes c on c.idCliente = p.idCliente
                          LEFT JOIN clientes_sucursal cs on p.idCliente = cs.idCliente AND p.idSucursal = cs.idSucursal
                          LEFT JOIN tip_precio tp ON p.tipoPrecio = tp.idPrecio
@@ -281,59 +247,58 @@ class PedidosOperaciones
         return $result;
     }
 
-    public function getTablePedidosPendientes()
+    public function getTableFacturasPendientes($idCliente)
     {
-        $qry = "SELECT idPedido,
-                       fechaPedido,
+        $qry = "SELECT idFactura,
+                       fechaFactura,
                        fechaEntrega,
                        tp.tipoPrecio,
-                       nomCliente,
-                       IF(p.estado='A', 'Anulado', IF(p.estado='F', 'Facturado', IF(p.estado='P','Pendiente', 'Por facturar'))) estadoPedido,
+                       IF(p.estado='A', 'Anulado', IF(p.estado='F', 'Facturado', IF(p.estado='P','Pendiente', 'Por facturar'))) estadoFactura,
                        nomSucursal,
                        dirSucursal
-                FROM pedido p
+                FROM factura p
                          LEFT JOIN clientes c on c.idCliente = p.idCliente
                          LEFT JOIN clientes_sucursal cs on p.idCliente = cs.idCliente AND p.idSucursal = cs.idSucursal
                          LEFT JOIN tip_precio tp ON p.tipoPrecio = tp.idPrecio
-                 WHERE p.estado='P'";
+                 WHERE c.idCliente=$idCliente";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
-    public function getPedido($idPedido)
+    public function getFactura($idFactura)
     {
-        $qry = "SELECT idPedido,
+        $qry = "SELECT idFactura,
                        p.idCliente,
                        nomCliente,
                        telCliente,
-                       fechaPedido,
+                       fechaFactura,
                        fechaEntrega,
                        p.tipoPrecio idPrecio,
                        tp.tipoPrecio,
                        p.estado,
                        IF(p.estado = 'A', 'Anulado',
-                          IF(p.estado = 'F', 'Facturado', IF(p.estado = 'P', 'Pendiente', 'Por facturar'))) estadoPedido,
+                          IF(p.estado = 'F', 'Facturado', IF(p.estado = 'P', 'Pendiente', 'Por facturar'))) estadoFactura,
                        p.idSucursal,
                        nomSucursal,
                        dirSucursal,
                        codVendedor,
                        nomPersonal
-                FROM pedido p
+                FROM factura p
                          LEFT JOIN clientes c on c.idCliente = p.idCliente
                          LEFT JOIN clientes_sucursal cs on p.idCliente = cs.idCliente AND p.idSucursal = cs.idSucursal
                          LEFT JOIN tip_precio tp on tp.idPrecio = p.tipoPrecio
                          LEFT JOIN personal p2 on c.codVendedor = p2.idPersonal
-                WHERE idPedido =$idPedido";
+                WHERE idFactura =$idFactura";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result;
     }
 
-    public function getPedidoForPrint($idPedido)
+    public function getFacturaForPrint($idFactura)
     {
-        $qry = "SELECT idPedido,
+        $qry = "SELECT idFactura,
                        c.idCliente,
                        nomCliente,
                        contactoCliente,
@@ -350,33 +315,33 @@ class PedidosOperaciones
                        emlPersonal,
                        cargo,
                        cc2.desCatClien
-                FROM pedido c
+                FROM factura c
                          LEFT JOIN clientes_cotiz cc on cc.idCliente = c.idCliente
                          LEFT JOIN personal p on p.idPersonal = cc.codVendedor
                          LEFT JOIN ciudades c2 on c2.idCiudad = cc.idCiudad
                          LEFT JOIN cargos_personal cp ON p.cargoPersonal = cp.idCargo
                          LEFT JOIN cat_clien cc2 on cc2.idCatClien = cc.idCatCliente
-                WHERE idPedido =?";
+                WHERE idFactura =?";
         $stmt = $this->_pdo->prepare($qry);
-        $stmt->execute(array($idPedido));
+        $stmt->execute(array($idFactura));
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result;
     }
 
-    public function updatePedido($datos)
+    public function updateFactura($datos)
     {
-        $qry = "UPDATE pedido SET idCliente=?, fechaPedido=?, fechaEntrega=?, tipoPrecio=?, estado=?, idSucursal=?
-                 WHERE idPedido=?";
+        $qry = "UPDATE factura SET idCliente=?, fechaFactura=?, fechaEntrega=?, tipoPrecio=?, estado=?, idSucursal=?
+                 WHERE idFactura=?";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute($datos);
     }
 
-    public function updateEstadoPedido($estado, $idPedido)
+    public function updateEstadoFactura($estado, $idFactura)
     {
-        $qry = "UPDATE pedido SET estado=?
-                 WHERE idPedido=?";
+        $qry = "UPDATE factura SET estado=?
+                 WHERE idFactura=?";
         $stmt = $this->_pdo->prepare($qry);
-        $stmt->execute(array($estado, $idPedido));
+        $stmt->execute(array($estado, $idFactura));
     }
 
     public function setDb()

@@ -125,6 +125,7 @@
     <file url="file://$PROJECT_DIR$/ventas/ajax/listaClientesCotizacion.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ventas/ajax/listaCotizaciones.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ventas/ajax/listaCotizacionesPersonalizadas.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ventas/ajax/listaFacturas.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ventas/ajax/listaPedidos.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ventas/ajax/listaPedidosCliente.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ventas/buscarPedido.php" charset="UTF-8" />
