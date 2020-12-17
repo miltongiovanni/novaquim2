@@ -3,39 +3,35 @@ include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
-<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css"><head>
-<meta charset="utf-8">
-<title>Seleccionar Factura a Modificar</title>
-<script  src="../js/validar.js"></script>
-<script  src="scripts/block.js"></script>	
-	<script >
-	document.onkeypress = stopRKey; 
-	</script>
-
+<head>
+    <meta charset="utf-8">
+    <title>Seleccionar Factura a Modificar</title>
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script src="../js/validar.js"></script>
 </head>
 <body>
 <div id="contenedor">
-<div id="saludo"><strong>INGRESAR FACTURA A MODIFICAR</strong></div> 
-<table border="0" align="center">
-<form id="form1" name="form1" method="post" action="det_factura.php">	
-    <tr> 
-        <td width="124"><div align="right"><strong>No. de Factura&nbsp;</strong></div></td>
-        <td width="143"><input type="text" name="factura" size=12 onKeyPress="return aceptaNum(event)"></td><input type="hidden" name="Crear" value="6">
-    </tr>
-    <tr>
-        <td colspan="2"><div align="center">&nbsp;</div></td>
-    </tr>
-    <tr> 
-        <td align="right"><input type="reset" value="Restablecer"></td>
-        <td align="left"><input type="button" value="   Continuar   " onclick="return Enviar(this.form);"></td>
-    </tr>
-</form>    
-  	<tr>
-        <td colspan="2"><div align="center">&nbsp;</div></td>
-    </tr>
-    <tr> 
-        <td colspan="2"><div align="center"><input type="button" class="resaltado" onClick="history.back()" value="  VOLVER  "></div></td></tr>
-</table>
+    <div id="saludo"><strong>INGRESAR FACTURA A MODIFICAR</strong></div>
+    <form id="form1" name="form1" method="post" action="consultaFactura.php">
+    <div class="form-group row">
+        <label class="col-form-label col-1 text-right" for="idFactura"><strong>No. de Factura</strong></label>
+        <input type="text" class="form-control col-2" name="idFactura" id="idFactura"
+               onKeyPress="return aceptaNum(event)" required>
+    </div>
+    <div class="form-group row"><div class="col-1 text-center">
+            <button class="button" type="reset"><span>Reiniciar</span></button>
+        </div>
+        <div class="col-1 text-center">
+            <button class="button" onclick="return Enviar(this.form)"><span>Continuar</span></button>
+        </div>
+
+    </div>
+    </form>
+    <div class="row">
+        <div class="col-1">
+            <button class="button1" id="back" onClick="history.back()"><span>VOLVER</span></button>
+        </div>
+    </div>
 </div>
 </body>
 </html>

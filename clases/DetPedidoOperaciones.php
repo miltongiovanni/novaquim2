@@ -57,6 +57,35 @@ class DetPedidoOperaciones
         return $result;
     }
 
+    public function getDetPedidoFactura($idPedido)
+    {
+        $qry = "SELECT dp.idPedido, dp.codProducto, presentacion as Producto, cantProducto, ROUND(precioProducto/(1+tasaIva)) precio, codIva
+                FROM det_pedido dp
+                         LEFT JOIN prodpre p on dp.codProducto = p.codPresentacion
+                         LEFT JOIN tasa_iva ti ON p.codIva = ti.idTasaIva
+                WHERE dp.idPedido = $idPedido
+                  AND dp.codProducto > 10000
+                  AND dp.codProducto < 100000
+                UNION
+                SELECT dp.idPedido, dp.codProducto, producto as Producto, cantProducto, ROUND(precioProducto/(1+tasaIva)) precio, codIva
+                FROM det_pedido dp
+                         LEFT JOIN distribucion d on dp.codProducto = d.idDistribucion
+                         LEFT JOIN tasa_iva t on t.idTasaIva = d.codIva
+                WHERE dp.idPedido = $idPedido
+                  AND dp.codProducto > 100000
+                UNION
+                SELECT dp.idPedido, dp.codProducto, desServicio as Producto, cantProducto, ROUND(precioProducto/(1+tasaIva)) precio, s.codIva
+                FROM det_pedido dp
+                         LEFT JOIN servicios s on dp.codProducto = s.idServicio
+                         LEFT JOIN tasa_iva i on i.idTasaIva = s.codIva
+                WHERE dp.idPedido = $idPedido
+                  AND dp.codProducto < 100";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);;
+        return $result;
+    }
+
     public function getTotalSelPedido($selPedido)
     {
         $qry = "SELECT dp.codProducto, SUM(cantProducto) cantidad, presentacion producto, 1 orden

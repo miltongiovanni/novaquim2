@@ -25,6 +25,15 @@ class RemisionesOperaciones
         return $this->_pdo->lastInsertId();
     }
 
+    public function makeRemisionFactura($datos)
+    {
+        /*Preparo la insercion */
+        $qry = "INSERT INTO remision (idCliente, fechaRemision, idPedido, idSucursal) VALUES (?, ?, ?, ?)";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute($datos);
+        return $this->_pdo->lastInsertId();
+    }
+
     public function getTableRemisiones()
     {
         $qry = "SELECT idRemision, nitProv, nomProv, numFact, fechRemision, fechVenc, descEstado, CONCAT('$', FORMAT(totalRemision, 0)) totalRemision,
@@ -42,13 +51,20 @@ class RemisionesOperaciones
 
     public function getRemision($idRemision)
     {
-        $qry = "SELECT idRemision, remision1.idProv, nitProv, nomProv, numFact, fechRemision, fechVenc, estadoRemision, descEstado, CONCAT('$', FORMAT(totalRemision, 0)) totalRemision,
-                       CONCAT('$', FORMAT(retefuenteRemision, 0)) retefuenteRemision, CONCAT('$', FORMAT(reteicaRemision, 0)) reteicaRemision,
-                       CONCAT('$', FORMAT(totalRemision-retefuenteRemision-reteicaRemision, 0))  vreal
-                FROM remision1
-                         LEFT JOIN estados e on remision1.estadoRemision = e.idEstado
-                         LEFT JOIN proveedores p on remision1.idProv = p.idProv
-                WHERE idRemision=?";
+        $qry = "SELECT idRemision,
+                       nitCliente,
+                       fechaRemision,
+                       nomCliente,
+                       telCliente,
+                       dirCliente,
+                       ciudad,
+                       nomSucursal,
+                       dirSucursal
+                FROM remision
+                         LEFT JOIN clientes c on c.idCliente = remision.idCliente
+                         LEFT JOIN clientes_sucursal cs on c.idCliente = cs.idCliente
+                         LEFT JOIN ciudades c2 on c2.idCiudad = c.ciudadCliente
+                WHERE idRemision =?";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute(array($idRemision));
         $result = $stmt->fetch(PDO::FETCH_ASSOC);

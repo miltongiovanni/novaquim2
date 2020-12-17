@@ -1,420 +1,311 @@
 <?php
 include "../includes/valAcc.php";
+include "../includes/ventas.php";
+include "../includes/num_letra.php";
+
+if (isset($_POST['idFactura'])) {
+    $idFactura = $_POST['idFactura'];
+} elseif (isset($_SESSION['idFactura'])) {
+    $idFactura = $_SESSION['idFactura'];
+}
+$facturaOperador = new FacturasOperaciones();
+$factura = $facturaOperador->getFactura($idFactura);
+$totales = calcularTotalesFactura($idFactura, $factura['descuento']);
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<title>Detalle de Factura de Venta</title>
-<meta charset="utf-8">
-<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-<script  src="../js/validar.js"></script>
-<script  src="scripts/block.js"></script>
-	<link rel="stylesheet" type="text/css" media="all" href="css/calendar-blue2.css" title="blue">
-<script  src="scripts/calendar.js"></script>
-<script  src="scripts/calendar-sp.js"></script>
-<script  src="scripts/calendario.js"></script>
-<script >
-document.onkeypress = stopRKey; 
-</script>
+    <title>Detalle de Factura de Venta</title>
+    <meta charset="utf-8">
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../css/datatables.css">
+    <style>
+        table {
+            table-layout: fixed;
+        }
+
+        .width1 {
+            width: 15%;
+        }
+
+        .width2 {
+            width: 55%;
+        }
+
+        .width3 {
+            width: 10%;
+        }
+
+        .width4 {
+            width: 10%;
+        }
+
+        .width5 {
+            width: 10%;
+        }
+
+        .width6 {
+            width: 10%;
+        }
+
+    </style>
+    <script src="../js/validar.js"></script>
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/datatables.js"></script>
+    <script src="../js/dataTables.buttons.js"></script>
+    <script src="../js/jszip.js"></script> <!--Para exportar Excel-->
+    <!--<script src="../js/pdfmake.js"></script>-->  <!--Para exportar PDF-->
+    <!--<script src="../js/vfs_fonts.js"></script>--> <!--Para exportar PDF-->
+    <script src="../js/buttons.html5.js"></script>
+    <script>
+        function redireccion() {
+            window.location.href = "../menu.php";
+        }
+
+        function eliminarSession() {
+            let variable = 'idFactura';
+            $.ajax({
+                url: '../includes/controladorVentas.php',
+                type: 'POST',
+                data: {
+                    "action": 'eliminarSession',
+                    "variable": variable,
+                },
+                dataType: 'text',
+                success: function (res) {
+                    redireccion();
+                },
+                error: function () {
+                    alert("Vous avez un GROS problème");
+                }
+            });
+        }
+
+        $(document).ready(function () {
+            let idFactura = <?=$idFactura?>;
+            let ruta = "ajax/listaDetFactura.php?idFactura=" + idFactura;
+            $('#example').DataTable({
+                "columns": [
+                    {
+                        "data": "codigo",
+                        "className": 'dt-body-center'
+                    },
+                    {
+                        "data": "producto",
+                        "className": 'dt-body-left'
+                    },
+                    {
+                        "data": "cantProducto",
+                        "className": 'dt-body-center'
+                    },
+                    {
+                        "data": "iva",
+                        "className": 'dt-body-center'
+                    },
+                    {
+                        "data": "precioProducto",
+                        "className": 'dt-body-center'
+                    },
+                    {
+                        "data": "subtotal",
+                        "className": 'dt-body-center'
+                    },
+                ],
+                "columnDefs": [{
+                    "searchable": false,
+                    "orderable": false,
+                    "targets": 1
+                }],
+                "dom": 'Blfrtip',
+                "buttons": [
+                    'copyHtml5',
+                    'excelHtml5'
+                ],
+                "paging": false,
+                "ordering": false,
+                "info": false,
+                "searching": false,
+                "lengthMenu": [[20, 50, 100, -1], [20, 50, 100, "All"]],
+                "language": {
+                    "lengthMenu": "Mostrando _MENU_ datos por página",
+                    "zeroRecords": "Lo siento no encontró nada",
+                    "info": "Mostrando página _PAGE_ de _PAGES_",
+                    "infoEmpty": "No hay datos disponibles",
+                    "search": "Búsqueda:",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Último",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    },
+                    "infoFiltered": "(Filtrado de _MAX_ en total)"
+
+                },
+                "ajax": ruta
+            });
+        });
+    </script>
 </head>
-<body> 
+<body>
 <div id="contenedor">
-<div id="saludo1"><strong>DETALLE DE FACTURA DE VENTA</strong></div> 
-<?php
-include "includes/conect.php";
-foreach ($_POST as $nombre_campo => $valor) {
-    ${$nombre_campo} = $valor;
-    if(is_array($valor)){
-        //echo $nombre_campo.print_r($valor).'<br>';
-    }else{
-        //echo $nombre_campo. '=' .${$nombre_campo}.'<br>';
-    }
-}
-?>
- <?php
-		$link=conectarServidor();
-		if ($Crear==5)
-		{
-			$qryup= "Update factura set fechaFactura='$FchVta',fechaVenc='$FchVen', ordenCompra=$ord_comp, Descuento=$descuento/100, Observaciones='$observa' where idFactura=$factura";
-			$resultup=mysqli_query($link,$qryup);
-			
-		}
-		$qry= "select idFactura, idPedido, Nit_cliente, fechaFactura, fechaVenc, idRemision, ordenCompra, nomCliente, telCliente, dirCliente, 
-		Ciudad, nom_personal as vendedor, Observaciones, factura.Estado  
-		from factura, clientes, personal, ciudades
-		where Nit_cliente=nitCliente and codVendedor=Id_personal and ciudadCliente=idCiudad  and  idFactura=$factura;";
-		$result=mysqli_query($link,$qry);
-		$rowe=mysqli_fetch_array($result);
-		$pedido=$rowe['Id_pedido'];
-		$remision=$rowe['Id_remision']; 
-		$Observaciones= $rowe['Observaciones'];
-		$est=$rowe['Estado'];
-		if ($rowe['Estado']=='A')
-	  	$estado='Anulada';
-		if ($rowe['Estado']=='E')
-	  	$estado='En Proceso';
-		if ($rowe['Estado']=='P')
-	  	$estado='Pendiente';
-		if ($rowe['Estado']=='C')
-	  	$estado='Cancelada';
-		mysqli_close($link);
-	 ?>
-<table  align="center" border="0" summary="encabezado">
-    <tr>
-      <td width="99" class="font2"><div align="right"><strong>No.  FACTURA:</strong> </div></td>
-      <td width="134" class="font2"><div align="left"><?php echo $factura;?></div></td>
-      <td width="118" class="font2"><div align="right"><strong>NIT:</strong></div></td>
-      <td width="77" colspan="1" class="font2"><?php echo $rowe['Nit_cliente']; ?></td>
-      <td width="132" class="font2"><div align="right"><strong>FECHA FACTURA:</strong></div></td>
-      <td width="87" class="font2"><?php echo  $rowe['Fech_fact']?></td>
-    </tr>
-   
-    <tr>
-      <td class="font2"><div align="right"><strong>CLIENTE:</strong></div></td>
-      <td colspan="3" class="font2"><?php echo  utf8_encode($rowe['Nom_clien']); ?></td>
-      <td class="font2"><div align="right"><strong>FECH VENCIMIENTO:</strong></div></td>
-      <td class="font2"><div align="left"><?php echo $rowe['Fech_venc']; ?> </div></td>
-    </tr>
-    <tr>
-      <td class="font2" ><div align="right"><strong>DIRECCIÓN:</strong></div></td>
-      <td colspan="3" class="font2"><?php echo utf8_encode($rowe['Dir_clien']); ?></td>
-      <td class="font2"><div align="right"><strong>REMISIÓN:</strong></div></td>
-      <td class="font2"><div align="left"><?php echo $rowe['Id_remision']; ?> </div></td>
-    </tr>
-    <tr>
-      <td class="font2" ><div align="right"><strong>TELÉFONO:</strong></div></td>
-      <td colspan="1" class="font2"><?php echo $rowe['Tel_clien']; ?></td>
-      <td class="font2" ><div align="right"><strong>CIUDAD:</strong></div></td>
-      <td colspan="1" class="font2"><?php echo utf8_encode($rowe['Ciudad']); ?></td>
-      <td class="font2"><div align="right"><strong>ORDEN DE COMPRA:</strong></div></td>
-      <td class="font2"><div align="left">
-	  <?php if ($rowe['Ord_compra']!=0)
-	  	  	echo $rowe['Ord_compra']; ?> 
-      </div></td>
-    </tr>
-    <tr>
-      <td class="font2" ><div align="right"><strong>VENDEDOR:</strong></div></td>
-      <td colspan="1" class="font2"><?php echo $rowe['vendedor']; ?></td><td class="font2"><div align="right"><strong>FORMA DE PAGO:</strong></div></td>
-      <td class="font2"><div align="left">
-	  <?php if ($rowe['Fech_fact']==$rowe['Fech_venc'])
-	  		echo "Contado"; 
-		else
-			echo utf8_encode("Crédito"); ?> 
-      </div></td>
-      <td class="font2"><div align="right"><strong>PEDIDO:</strong></div></td>
-      <td class="font2"><div align="left"><?php echo $rowe['Id_pedido']; ?> </div></td>
-    </tr>
-    </table>
-	<table border="0" align="center" summary="detalle">
-      <tr>
-        <td  colspan="6">&nbsp;</td>
-      </tr>
-      <tr>
-        <th width="53" align="center" class="font2"><strong>CÓDIGO</strong></th>
-        <th width="358" align="center" class="font2"><strong>PRODUCTO</strong></th>
-        <th width="50" align="center" class="font2"><strong>CAN </strong></th>
-        <th width="47" align="center" class="font2"><strong>IVA </strong></th>
-        <th width="80" align="center" class="font2"><strong>VLR. UNIT</strong></th>
-        <th width="109" align="center" class="font2"><strong>VLR. TOTAL</strong></th>
-      </tr>
-      <?php
-	include "includes/num_letra.php";
-    $link=conectarServidor();
-    $qry= "select idFactura, codProducto, cantProducto, Nombre as Producto, tasa, Id_tasa, precioProducto, Descuento 
-	from det_factura, prodpre, tasa_iva, factura 
-	where idFactura=idFactura and idFactura=$factura and codProducto<100000 and codProducto>100 and codProducto=Cod_prese and Cod_iva=Id_tasa order by Producto;";
-    $result=mysqli_query($link,$qry);
-	$subtotal_1=0;
-	$descuento_1=0;
-	$iva05_1=0;
-	$iva16_1=0;
-	$a=0;
-    while($row=mysqli_fetch_array($result))
-    {
-		$subtotal_1 += $row['Can_producto']*$row['prec_producto'];
-		$descuento_1 += $row['Can_producto']*$row['prec_producto']*$row['Descuento'] ;
-		$Prec=number_format($row['prec_producto'], 0, '.', ',');
-		$tot=number_format($row['prec_producto']*$row['Can_producto'], 0, '.', ',');
-		if ($row['tasa']==0.05)
-			$iva05_1 += $row['Can_producto']*$row['prec_producto']*$row['tasa']*(1-$row['Descuento']);
-		if ($rowe['Fech_fact']<FECHA_C)
-		{
-			if ($row['Id_tasa']==3)
-			$iva16_1 += $row['Can_producto']*$row['prec_producto']*0.16*(1-$row['Descuento']);
-		}
-		else
-		{
-		if ($row['Id_tasa']==3)
-			$iva16_1 += $row['Can_producto']*$row['prec_producto']*$row['tasa']*(1-$row['Descuento']);
-		}
-		echo'<tr>
-			<td class="font2"';
-			if (($a % 2)==0) echo ' bgcolor="#B4CBEF" ';
-			echo '><div align="center">'.$row['Cod_producto'].'</div></td>
-			<td class="font2"';
-			if (($a % 2)==0) echo ' bgcolor="#B4CBEF" ';
-			echo '><div align="left">'.utf8_encode($row['Producto']).'</div></td>
-			<td class="font2"';
-			if (($a % 2)==0) echo ' bgcolor="#B4CBEF" ';
-			echo '><div align="center">'.$row['Can_producto'].'</div></td>
-			<td class="font2"';
-			if ($rowe['Fech_fact']<FECHA_C)
-		    {	
-			if (($a % 2)==0) echo ' bgcolor="#B4CBEF" ';
-			echo '><div align="center">16 %</div></td>
-			<td class="font2"';
-			}
-			else
-			{
-				if (($a % 2)==0) echo ' bgcolor="#B4CBEF" ';
-			echo '><div align="center">'.($row['tasa']*100).' %</div></td>
-			<td class="font2"';
-			}
-			
-			
-			
-			if (($a % 2)==0) echo ' bgcolor="#B4CBEF" ';
-			echo '><div align="center">$ '.$Prec.'</div></td>
-			<td class="font2"';
-			if (($a++ % 2)==0) echo ' bgcolor="#B4CBEF" ';
-			echo '><div align="center">$ '.$tot.'</div></td>
-			</tr>';
-    }
-	$qry= "select idFactura, codProducto, cantProducto, Producto, tasa, Id_tasa, precioProducto, Descuento 
-	from det_factura, distribucion, tasa_iva, factura 
-	where idFactura=idFactura and idFactura=$factura and codProducto>100000 AND codProducto=Id_distribucion AND Cod_iva=Id_tasa order by Producto;";
-    $result=mysqli_query($link,$qry);
-	$subtotal_2=0;
-	$descuento_2=0;
-	$iva05_2=0;
-	$iva16_2=0;
-    while($row=mysqli_fetch_array($result))
-    {
-		$subtotal_2 += $row['Can_producto']*$row['prec_producto'];
-		$descuento_2 += $row['Can_producto']*$row['prec_producto']*$row['Descuento'] ;
-		$Prec=number_format($row['prec_producto'], 0, '.', ',');
-		$tot=number_format($row['prec_producto']*$row['Can_producto'], 0, '.', ',');
-		if ($row['tasa']==0.05)
-			$iva05_2 += $row['Can_producto']*$row['prec_producto']*$row['tasa']*(1-$row['Descuento']);
-		if ($rowe['Fech_fact']<FECHA_C)
-		{
-			if ($row['Id_tasa']==3)
-			$iva16_2 += $row['Can_producto']*$row['prec_producto']*0.16*(1-$row['Descuento']);
-		}
-		else
-		{
-		if ($row['Id_tasa']==3)
-			$iva16_2 += $row['Can_producto']*$row['prec_producto']*$row['tasa']*(1-$row['Descuento']);
-		}	
-			
-		
-		echo'<tr>
-			<td class="font2"';
-			if (($a % 2)==0) echo ' bgcolor="#B4CBEF" ';
-			echo '><div align="center">'.$row['Cod_producto'].'</div></td>
-			<td class="font2"';
-			if (($a % 2)==0) echo ' bgcolor="#B4CBEF" ';
-			echo '><div align="left">'.$row['Producto'].'</div></td>
-			<td class="font2"';
-			if (($a % 2)==0) echo ' bgcolor="#B4CBEF" ';
-			echo '><div align="center">'.$row['Can_producto'].'</div></td>
-			<td class="font2"';
-			if ($rowe['Fech_fact']<FECHA_C)
-		    {	
-			if (($a % 2)==0) echo ' bgcolor="#B4CBEF" ';
-			echo '><div align="center">16 %</div></td>
-			<td class="font2"';
-			}
-			else
-			{
-				if (($a % 2)==0) echo ' bgcolor="#B4CBEF" ';
-			echo '><div align="center">'.($row['tasa']*100).' %</div></td>
-			<td class="font2"';
-			}
-			
-			if (($a % 2)==0) echo ' bgcolor="#B4CBEF" ';
-			echo '><div align="center">$ '.$Prec.'</div></td>
-			<td class="font2"';
-			if (($a++ % 2)==0) echo ' bgcolor="#B4CBEF" ';
-			echo '><div align="center">$ '.$tot.'</div></td>
-			</tr>';
-    }
-	$qry= "select idFactura, codProducto, cantProducto, DesServicio as Producto, tasa, precioProducto, Descuento 
-	from det_factura, servicios, tasa_iva, factura 
-	where idFactura=idFactura and idFactura=$factura and codProducto<100 AND codProducto=IdServicio AND Cod_iva=Id_tasa order by Producto;";
-    $result=mysqli_query($link,$qry);
-	$subtotal_3=0;
-	$descuento_3=0;
-	$iva05_3=0;
-	$iva16_3=0;
-    while($row=mysqli_fetch_array($result))
-    {
-		$subtotal_3 += $row['Can_producto']*$row['prec_producto'];
-		$descuento_3 += $row['Can_producto']*$row['prec_producto']*$row['Descuento'] ;
-		$Prec=number_format($row['prec_producto'], 0, '.', ',');
-		$tot=number_format($row['prec_producto']*$row['Can_producto'], 0, '.', ',');
-		if ($row['tasa']==0.05)
-			$iva05_3 += $row['Can_producto']*$row['prec_producto']*$row['tasa']*(1-$row['Descuento']);
-			
-		if ($rowe['Fech_fact']<FECHA_C)
-		{
-			if ($row['Id_tasa']==3)
-			$iva16_3 += $row['Can_producto']*$row['prec_producto']*0.16*(1-$row['Descuento']);
-		}
-		else
-		{
-		if ($row['Id_tasa']==3)
-			$iva16_3 += $row['Can_producto']*$row['prec_producto']*$row['tasa']*(1-$row['Descuento']);
-		}	
-				
-		echo'<tr>
-			<td class="font2"';
-			if (($a % 2)==0) echo ' bgcolor="#B4CBEF" ';
-			echo '><div align="center">'.$row['Cod_producto'].'</div></td>
-			<td class="font2"';
-			if (($a % 2)==0) echo ' bgcolor="#B4CBEF" ';
-			echo '><div align="left">'.$row['Producto'].'</div></td>
-			<td class="font2"';
-			if (($a % 2)==0) echo ' bgcolor="#B4CBEF" ';
-			echo '><div align="center">'.$row['Can_producto'].'</div></td>
-			<td class="font2"';
-			if ($rowe['Fech_fact']<FECHA_C)
-		    {	
-			if (($a % 2)==0) echo ' bgcolor="#B4CBEF" ';
-			echo '><div align="center">16 %</div></td>
-			<td class="font2"';
-			}
-			else
-			{
-				if (($a % 2)==0) echo ' bgcolor="#B4CBEF" ';
-			echo '><div align="center">'.($row['tasa']*100).' %</div></td>
-			<td class="font2"';
-			}
-			if (($a % 2)==0) echo ' bgcolor="#B4CBEF" ';
-			echo '><div align="center">$ '.$Prec.'</div></td>
-			<td class="font2"';
-			if (($a++ % 2)==0) echo ' bgcolor="#B4CBEF" ';
-			echo '><div align="center">$ '.$tot.'</div></td>
-			</tr>';
-    }
-	$Iva_05=number_format($iva05_1+$iva05_2+$iva05_3, 0, '.', ',');
-	$Iva_16=number_format($iva16_1+$iva16_2+$iva16_3, 0, '.', ',');
-	$Sub=number_format($subtotal_1+$subtotal_2+$subtotal_3, 0, '.', ',');
-	$descuento=$descuento_1+$descuento_2+$descuento_3;
-	$Des=number_format($descuento, 0, '.', ',');
-	
-	$subtotal=$subtotal_1+$subtotal_2+$subtotal_3;
-	$qryf= "select idFactura, Nit_cliente, nomCliente, retIva, retIca, retFte, Subtotal, ciudadCliente, idCatCliente from factura, clientes where idFactura=$factura and Nit_cliente=nitCliente ;";
-	$resultf=mysqli_query($link,$qryf);
-	$rowf=mysqli_fetch_array($resultf);
-	$Ciudad_clien=$rowf['Ciudad_clien'];
-	$Id_cat_clien=$rowf['Id_cat_clien'];
-	$reten_iva=$rowf['Ret_iva'];
-	$reten_ica=$rowf['Ret_ica'];
-	$reten_fte=$rowf['Ret_fte'];
-	$subtotal=$rowf['Subtotal'];
-	if (($subtotal >= BASE_C))
-	{	
-		if ($reten_fte==1)
-		{
-			$retefuente=round(($subtotal-$descuento)*0.025);
-			if (($Ciudad_clien==1)&&($Id_cat_clien!=1))
-			{
-			$reteica=round(($subtotal-$descuento)*0.01104);
-			}
-			else
-			$reteica=0;
-		}
-		else
-		{
-			$retefuente=0;
-			$reteica=0;
-		}
-		if ($reten_iva==1)
-			$reteiva=round(($iva05_1+$iva05_2+$iva05_3+$iva16_1+$iva16_2+$iva16_3)*0.15);
-		else
-			$reteiva=0;
-	}
-	else
-	{
-		$retefuente=0;$reteiva=0;$reteica=0;
-	}
-	$Ret=number_format($retefuente, 0, '.', ',');
-	$Retica=number_format($reteica, 0, '.', ',');
-	$Total= $subtotal_1+$subtotal_2+$subtotal_3-$descuento_1-$descuento_2-$descuento_3+$iva05_1+$iva05_2+$iva05_3+$iva16_1+$iva16_2+$iva16_3-$retefuente-$reteica;
-	$Tot=number_format($Total, 0, '.', ',');
-	echo'<tr>
-		<td class="font2"><div align="left"><strong>SON:</strong></div></td>
-		<td colspan="4" class="font2"><div align="right"><strong>SUBTOTAL</strong></div></td>
-		<td class="font2"><div align="center"><strong>$ '.$Sub.'</strong></div></td>
-		</tr>';
-	echo'<tr>
-		<td colspan="3" rowspan="4" class="font2"><div align="left"><strong>'.numletra(round($Total)).'</strong></div></td>
-		<td colspan="2" class="font2"><div align="right"><strong>DESCUENTO</strong></div></td>
-		<td class="font2"><div align="center"><strong>$ '.$Des.'</strong></div></td>
-		</tr>
-		<tr>
-		<td colspan="2" class="font2"><div align="right"><strong>RETEFUENTE</strong></div></td>
-		<td class="font2"><div align="center"><strong>$ '.$Ret.'</strong></div></td>
-		</tr>
-		<tr>
-		<td colspan="2" class="font2"><div align="right"><strong>RETEICA</strong></div></td>
-		<td class="font2"><div align="center"><strong>$ '.$Retica.'</strong></div></td>
-		</tr>';
-	echo'<tr>
-		<td colspan="2" class="font2"><div align="right"><strong>IVA 5%</strong></div></td>
-		<td class="font2"><div align="center"><strong>$ '.$Iva_05.'</strong></div></td>
-		</tr>';
-	echo'<tr>
-		<td class="font2"><div align="left"><strong>OBSERVACIONES:</strong></div></td>
-		<td colspan="3" rowspan="2" class="font2"><div align="left">'.$Observaciones.'</div></td>
-		<td colspan="1" class="font2"><div align="right"><strong>';
-	if ($rowe['Fech_fact']<FECHA_C)
-			echo 'IVA 16%';
-	else
-		echo 'IVA 19%';
-			
-	echo'</strong></div></td>
-		<td class="font2"><div align="center"><strong>$ '.$Iva_16.'</strong></div></td>
-		</tr>';
-	echo'<tr>
-		<td colspan="5" class="font2"><div align="right"><strong>TOTAL</strong></div></td>
-		<td class="font2"><div align="center"><strong>$ '.$Tot.'</strong></div></td>
-		</tr>';
-	$sql= "update factura 
-		SET Total=round($Total),
-		Subtotal=round($subtotal_1+$subtotal_2+$subtotal_3),
-		IVA=round($iva05_1+$iva05_2+$iva05_3+$iva16_1+$iva16_2+$iva16_3),
-		totalR=round(Subtotal+IVA-$descuento),
-		retencionIva=round($reteiva),
-		retencionIca=round($reteica),
-		retencionFte=round($retefuente)
-		where idFactura=$factura;";
-	$result=mysqli_query($link,$sql);
-	mysqli_close($link);
-    ?>
-      <tr>
-        <td colspan="2"><form action="Imp_Factura.php" method="post" target="_blank">
-        <input name="factura" type="hidden" value="<?php echo $factura; ?>">
-            <div align="center"><input name="Submit" type="submit" class="formatoBoton1" value="Imprimir Factura" ></div>
-        </form></td>
-        
-        <td colspan="3"><form action="Imp_Remision.php" method="post" target="_blank"><input name="remision" type="hidden" value="<?php echo $remision; ?> ">
-            <div align="center"><input name="Submit" type="submit" class="formatoBoton1"  value="Imprimir Remisión"></div></form>
-        </td>
-        
-        <td><form action="factura2.php" method="post"><input name="factura" type="hidden" value="<?php echo $factura; ?>">
-            <div align="left"><input name="Submit" type="submit" class="formatoBoton1"
-            <?php
-			if ($est!='E')
-			echo 'disabled';
-			?>
-            
-             value="Modificar" ></div></form>
-       </td> 
-      </tr>
-    </table>
-<div align="center"><input type="button" class="formatoBoton1" onClick="window.location='menu.php'" value="Terminar"></div>
+    <div id="saludo1"><strong>DETALLE DE FACTURA DE VENTA</strong></div>
+    <div class="form-group row">
+        <div class="col-1 text-right"><strong>No. de Factura</strong></div>
+        <div class="col-1 bg-blue"><?= $idFactura; ?></div>
+        <div class="col-2 text-right"><strong>No. de Pedido</strong></div>
+        <div class="col-1 bg-blue"><?= $factura['idPedido']; ?></div>
+        <div class="col-1 text-right"><strong>Remision</strong></div>
+        <div class="col-1 bg-blue"><?= $factura['idRemision'] ?></div>
+        <div class="col-1 text-right"><strong>Estado</strong></div>
+        <div class="col-1 bg-blue"><?= $factura['estadoFactura'] ?></div>
+    </div>
+    <div class="form-group row">
+        <div class="col-1 text-right"><strong>Nit</strong></div>
+        <div class="col-1 bg-blue"><?= $factura['nitCliente'] ?></div>
+        <div class="col-1 text-right"><strong>Cliente</strong></strong></div>
+        <div class="col-4 bg-blue"><?= $factura['nomCliente'] ?></div>
+        <div class="col-1 text-right"><strong>Teléfono</strong></div>
+        <div class="col-1 bg-blue"><?= $factura['telCliente'] ?></div>
+    </div>
+    <div class="form-group row">
+        <div class="col-1 text-right"><strong>Fecha Factura</strong></div>
+        <div class="col-1 bg-blue"><?= $factura['fechaFactura'] ?></div>
+        <div class="col-1 text-right"><strong>Dirección </strong></div>
+        <div class="col-4 bg-blue"><?= $factura['dirCliente'] ?></div>
+        <div class="col-1 text-right"><strong>Ciudad</strong></div>
+        <div class="col-1 bg-blue"><?= $factura['Ciudad'] ?></div>
+    </div>
+    <div class="form-group row">
+        <div class="col-1 text-right"><strong>Vencimiento</strong></div>
+        <div class="col-1 bg-blue"><?= $factura['fechaVenc'] ?></div>
+        <div class="col-1 text-right"><strong>Orden compra</strong></div>
+        <div class="col-1 bg-blue"><?= $factura['ordenCompra'] != 0 ? $factura['ordenCompra'] : '' ?></div>
+        <div class="col-1 text-right"><strong>Forma de pago</strong></div>
+        <div class="col-1 bg-blue"><?= $factura['fechaFactura'] == $factura['fechaVenc'] ? 'Contado' : 'Crédito' ?></div>
+        <div class="col-1 text-right"><strong>Vendedor</strong></div>
+        <div class="col-2 bg-blue"><?= $factura['vendedor'] ?></div>
+    </div>
+    <div class="form-group titulo row">
+        <strong>Detalle</strong>
+    </div>
+    <div class="tabla-70">
+        <table id="example" class="display compact formatoDatos">
+            <thead>
+            <tr>
+                <th class="width1">Código</th>
+                <th class="width2">Producto</th>
+                <th class="width3">Cantidad</th>
+                <th class="width4">Iva</th>
+                <th class="width5">Vlr Unitario</th>
+                <th class="width6">Vlr Total</th>
+            </tr>
+            </thead>
+        </table>
+
+    </div>
+    <div class="tabla-70">
+        <div class="row formatoDatos">
+            <div class="col-9"><strong>SON:</strong></div>
+            <div class="col-1 mr-3 px-0">
+                <div class=" text-left">
+                    <strong>SUBTOTAL</strong>
+                </div>
+            </div>
+            <div class="col-1 ml-3 px-0" style=" flex: 0 0 10%; max-width: 10%;">
+                <div class="text-right">
+                    <strong>$<?= number_format($factura['subtotal'], 2, '.', ',') ?></strong>
+                </div>
+            </div>
+        </div>
+        <div class="row formatoDatos">
+            <div class="col-9"><?= numletra(round($factura['total'])) ?></div>
+            <div class="col-1 mr-3 px-0">
+                <div class=" text-left">
+                    <strong>DESCUENTO</strong>
+                </div>
+                <div class=" text-left">
+                    <strong>RETEFUENTE</strong>
+                </div>
+                <div class=" text-left">
+                    <strong>RETEICA</strong>
+                </div>
+            </div>
+            <div class="col-1 ml-3 px-0" style=" flex: 0 0 10%; max-width: 10%;">
+                <div class="text-right">
+                    <strong>$<?= number_format($totales['descuento'], 2, '.', ',') ?></strong>
+                </div>
+                <div class="text-right">
+                    <strong>$<?= number_format($factura['retencionFte'], 2, '.', ',') ?></strong>
+                </div>
+                <div class="text-right">
+                    <strong>$<?= number_format($factura['retencionIca'], 2, '.', ',') ?></strong>
+                </div>
+            </div>
+        </div>
+        <div class="row formatoDatos">
+            <div class="col-9"><strong>OBSERVACIONES:</strong></div>
+            <div class="col-1 mr-3 px-0">
+                <strong>IVA 5%</strong>
+            </div>
+            <div class="col-1  ml-3 px-0" style=" flex: 0 0 10%; max-width: 10%;">
+                <div class="text-right">
+                    <strong>$<?= number_format($totales['iva10Real'], 2, '.', ',') ?></strong>
+                </div>
+            </div>
+        </div>
+        <div class="row formatoDatos">
+            <div class="col-9"><?= $factura['observaciones'] ?></div>
+            <div class="col-1 mr-3 px-0">
+                <div class=" text-left">
+                    <strong><?= $factura['fechaFactura'] < FECHA_C ? 'IVA 16%' : 'IVA 19%' ?></strong>
+                </div>
+                <div class=" text-left">
+                    <strong>TOTAL</strong>
+                </div>
+            </div>
+            <div class="col-1  ml-3 px-0" style=" flex: 0 0 10%; max-width: 10%;">
+                <div class="text-right">
+                    <strong>$<?= number_format($totales['iva16Real'], 2, '.', ',') ?></strong>
+                </div>
+                <div class="text-right">
+                    <strong>$<?= number_format($factura['total'], 2, '.', ',') ?></strong>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-2">
+            <form action="Imp_Factura.php" method="post" target="_blank">
+                <input name="idFactura" type="hidden" value="<?php echo $idFactura; ?>">
+                <button name="Submit" type="submit" class="button"><span>Imprimir Factura</span></button>
+            </form>
+        </div>
+
+        <div class="col-2">
+            <form action="Imp_Remision.php" method="post" target="_blank">
+                <input name="idRemision" type="hidden" value="<?php echo $factura['idRemision']; ?> ">
+                <button name="Submit" type="submit" class="button"><span>Imprimir Remisión</span></button>
+            </form>
+        </div>
+        <?php
+        if ($factura['Estado'] == 'E'):
+            ?>
+            <div class="col-2">
+                <form action="updateFacturaForm.php" method="post">
+                    <input name="idFactura" type="hidden" value="<?php echo $idFactura; ?>">
+                    <button name="Submit" type="submit" class="button"><span>Modificar</span></button>
+                </form>
+            </div>
+        <?php
+        endif;
+        ?>
+    </div>
+    <div class="row">
+        <div class="col-1">
+            <button class="button" id="back" onClick="eliminarSession()"><span>Terminar</span>
+            </button>
+        </div>
+    </div>
 </div>
 </body>
 </html>

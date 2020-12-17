@@ -57,7 +57,7 @@ try {
                 if ($inv >= $unidades) {
                     $nvoInv = $inv - $unidades;
                     $datos = array($idRemision, $codProducto, $unidades, $lote);
-                    $detRemisionOperador->makeDetRemision($datos);
+                    $detRemisionOperador->makeDetRemisionFactura($datos);
                     $unidades = 0;
                     $datos = array($nvoInv, $codProducto, $lote);
                     $invProdTerminadoOperador->updateInvProdTerminado($datos);

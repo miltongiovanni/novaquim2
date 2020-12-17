@@ -28,3 +28,54 @@ function buscarClienteForm($action)
     </form>';
     return $rep;
 }
+
+function calcularTotalesFactura($idFactura, $tasaDescuento)
+{
+    $facturaOperador = new FacturasOperaciones();
+    $totalesFactura = $facturaOperador->getTotalesFactura($idFactura);
+    $subtotal = $totalesFactura['subtotalfactura'];
+    $descuento = $subtotal * $tasaDescuento;
+    $iva10 = $totalesFactura['iva10factura'];
+    $iva16 = $totalesFactura['iva19factura'];
+    $iva10Real = $iva10 * (1 - $tasaDescuento);
+    $iva16Real = $iva16 * (1 - $tasaDescuento);
+    $detCliente = $facturaOperador->getDetClienteFactura($idFactura);
+    $ciudadCliente = $detCliente['ciudadCliente'];
+    $idCatCliente = $detCliente['idCatCliente'];
+    $retIva = $detCliente['retIva'];
+    $retIca = $detCliente['retIca'];
+    $retFte = $detCliente['retFte'];
+    $exenIva = $detCliente['exenIva'];
+    if ($exenIva == 1) {
+        $iva = 0;
+    } else {
+        $iva = $iva10Real + $iva16Real;
+    }
+    if ($retIva == 1) {
+        $reteiva = round(($iva10Real + $iva16Real) * 0.15);
+    } else {
+        $reteiva = 0;
+    }
+    if (($subtotal >= BASE_C) /*|| ($retFte == 1)*/) {
+        $retefuente = round(($subtotal - $descuento) * 0.025);
+        if (($ciudadCliente == 1) && ($idCatCliente != 1)) {
+            $reteica = round(($subtotal - $descuento) * 0.01104);
+        } else {
+            $reteica = 0;
+        }
+    } else {
+        $retefuente = 0;
+        $reteica = 0;
+    }
+    $rep =[
+    'subtotal'=>$subtotal,
+    'descuento'=>$descuento,
+    'iva10Real'=>$iva10Real,
+    'iva16Real'=>$iva16Real,
+    'iva'=>$iva,
+    'reteiva'=>$reteiva,
+    'retefuente'=>$retefuente,
+    'reteica'=>$reteica,
+];
+    return $rep;
+}

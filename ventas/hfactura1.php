@@ -1,34 +1,26 @@
 <?php
-include "../includes/valAcc.php";
-?>
-<?php
-include "includes/conect.php";
-foreach ($_POST as $nombre_campo => $valor) {
-    ${$nombre_campo} = $valor;
-    if(is_array($valor)){
-        //echo $nombre_campo.print_r($valor).'<br>';
-    }else{
-        //echo $nombre_campo. '=' .${$nombre_campo}.'<br>';
-    }
-}
-$link=conectarServidor();
-$sql="update pedido SET Estado='L' where idPedido=$pedido";
-$result=mysqli_query($link,$sql);
-if($result)
-{  
-	$ruta="menu.php";
-	mover_pag($ruta,"Pedido Habilitado para facturar correctamente");
-}
-else
+include "../includes/valAcc.php";// On enregistre notre autoload.
+function cargarClases($classname)
 {
-	$ruta="menu.php";
-	mover_pag($ruta,"Error al habilitar el Pedido");
+    require '../clases/' . $classname . '.php';
 }
 
+spl_autoload_register('cargarClases');
+$idPedido = $_POST['idPedido'];
+$pedidoOperador = new PedidosOperaciones();
+try {
+    $pedidoOperador->updateEstadoPedido('L', $idPedido);
+    $ruta = "../menu.php";
+    $mensaje = "Pedido Habilitado para facturar correctamente";
 
-
-mysqli_close($link);//Cerrar la conexion
-?>
+} catch (Exception $e) {
+    $ruta = "../menu.php";
+    $mensaje = "Error al habilitar el Pedido";
+} finally {
+    unset($conexion);
+    unset($stmt);
+    mover_pag($ruta, $mensaje);
+}
 
 
 

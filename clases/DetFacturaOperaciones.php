@@ -11,7 +11,7 @@ class DetFacturaOperaciones
 
     public function makeDetFactura($datos)
     {
-        $qry = "INSERT INTO det_factura (idFactura, codProducto, cantProducto, precioProducto) VALUES (?, ?, ?, ?)";
+        $qry = "INSERT INTO det_factura (idFactura, codProducto, cantProducto, precioProducto, idTasaIvaProducto) VALUES (?, ?, ?, ?, ?)";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute($datos);
         return $this->_pdo->lastInsertId();
@@ -33,27 +33,52 @@ class DetFacturaOperaciones
 
     public function getDetFactura($idFactura)
     {
-        $qry = "SELECT dp.idFactura, dp.codProducto, presentacion as Producto, cantProducto, CONCAT('$', FORMAT(precioProducto, 0)) precioProducto
+        $qry = "SELECT CONCAT('003000', codSiigo)              codigo,
+                       presentacion as                         producto,
+                       cantProducto,
+                       CONCAT(ROUND( tasaIva*100, 0), ' %')   iva,
+                       CONCAT('$ ', FORMAT(precioProducto, 0)) precioProducto,
+                       CONCAT('$ ', FORMAT(precioProducto*cantProducto, 0)) subtotal,
+                       1 orden
                 FROM det_factura dp
                          LEFT JOIN prodpre p on dp.codProducto = p.codPresentacion
+                         LEFT JOIN tasa_iva ti on ti.idTasaIva = dp.idTasaIvaProducto
+                         LEFT JOIN factura f on f.idFactura = dp.idFactura
                 WHERE dp.idFactura = $idFactura
                   AND dp.codProducto > 10000
                   AND dp.codProducto < 100000
                 UNION
-                SELECT dp.idFactura, dp.codProducto, producto as Producto, cantProducto, CONCAT('$', FORMAT(precioProducto, 0))precioProducto
+                SELECT CONCAT('003000', codSiigo)             codigo,
+                       producto as                            producto,
+                       cantProducto,
+                       CONCAT(ROUND( tasaIva*100, 0), ' %')  iva,
+                       CONCAT('$', FORMAT(precioProducto, 0)) precioProducto,
+                       CONCAT('$ ', FORMAT(precioProducto*cantProducto, 0)) subtotal,
+                       2 orden
                 FROM det_factura dp
                          LEFT JOIN distribucion d on dp.codProducto = d.idDistribucion
+                         LEFT JOIN tasa_iva t on t.idTasaIva = dp.idTasaIvaProducto
+                         LEFT JOIN factura f on f.idFactura = dp.idFactura
                 WHERE dp.idFactura = $idFactura
                   AND dp.codProducto > 100000
                 UNION
-                SELECT dp.idFactura, dp.codProducto, desServicio as Producto, cantProducto, precioProducto
+                SELECT CONCAT('003000', codSiigo)            codigo,
+                       desServicio as                        producto,
+                       cantProducto,
+                       CONCAT(ROUND( tasaIva*100, 0), ' %') iva,
+                       CONCAT('$', FORMAT(precioProducto, 0)) precioProducto,
+                       CONCAT('$ ', FORMAT(precioProducto*cantProducto, 0)) subtotal,
+                       3 orden
                 FROM det_factura dp
                          LEFT JOIN servicios s on dp.codProducto = s.idServicio
+                         LEFT JOIN tasa_iva i on i.idTasaIva = dp.idTasaIvaProducto
+                         LEFT JOIN factura f on f.idFactura = dp.idFactura
                 WHERE dp.idFactura = $idFactura
-                  AND dp.codProducto < 100";
+                  AND dp.codProducto < 100
+                  ORDER BY orden, producto";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();
-        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);;
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
 

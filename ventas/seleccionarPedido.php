@@ -24,7 +24,6 @@ include "../includes/valAcc.php";
             <div class="col-1 text-center">
                 <button class="button" onclick="return Enviar(this.form)"><span>Continuar</span></button>
             </div>
-
         </div>
     </form>
     <div class="row">

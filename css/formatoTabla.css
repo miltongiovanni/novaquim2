@@ -981,6 +981,9 @@ table {
     margin: 0 auto 10px auto;;
 }
 
+textarea.form-control {
+    height: auto;
+}
 .text-bold {
     font-weight: bold;
 }

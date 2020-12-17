@@ -3,43 +3,35 @@ include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
-<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css"><head>
-<meta charset="utf-8">
-<title>Habilitar Pedido para Facturar</title>
-<script  src="../js/validar.js"></script>
-
-	
+<head>
+    <meta charset="utf-8">
+    <title>Habilitar Pedido para Facturar</title>
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script src="../js/validar.js"></script>
 </head>
 <body>
 <div id="contenedor">
-<div id="saludo"><strong>HABILITAR PEDIDO PARA FACTURAR</strong></div> 
-
-<table border="0" align="center">
-<form id="form1" name="form1" method="post" action="hfactura1.php">	
-  	<tr>
-    	<td colspan="2">&nbsp;</td>
-  	</tr>
-    <tr> 
-        <td width="119"><div align="right"><strong>No. de Pedido&nbsp;</strong></div></td>
-        <td width="100"><input type="text" name="pedido" size=10 onKeyPress="return aceptaNum(event)"></td>
-    </tr>
-    <tr>
-        <td colspan="2"><div align="center">&nbsp;</div></td>
-    </tr>
-    <tr> 
-        <td><div align="right"><input type="reset" value="Restablecer"></div></td>
-        <td><div align="left"><input type="button" value="  Continuar " onclick="return Enviar(this.form);"></div></td>
-    </tr>
-</form>    
-  	<tr>
-        <td colspan="2"><div align="center">&nbsp;</div></td>
-    </tr>
-    <tr>
-        <td colspan="2"><div align="center">&nbsp;</div></td>
-    </tr>
-    <tr> 
-        <td colspan="2"><div align="center"><input type="button" class="resaltado" onClick="history.back()" value="  VOLVER  "></div></td></tr>
-</table>
+    <div id="saludo"><strong>HABILITAR PEDIDO PARA FACTURAR</strong></div>
+    <form id="form1" name="form1" method="post" action="hfactura1.php">
+        <div class="form-group row">
+            <label class="col-form-label col-1 text-right" for="idPedido"><strong>No. de pedido</strong></label>
+            <input type="text" class="form-control col-2" name="idPedido" id="idPedido"
+                   onKeyPress="return aceptaNum(event)" required>
+        </div>
+        <div class="form-group row">
+            <div class="col-1 text-center">
+                <button class="button" type="reset"><span>Reiniciar</span></button>
+            </div>
+            <div class="col-1 text-center">
+                <button class="button" onclick="return Enviar(this.form)"><span>Continuar</span></button>
+            </div>
+        </div>
+    </form>
+    <div class="row">
+        <div class="col-1">
+            <button class="button1" id="back" onClick="history.back()"><span>VOLVER</span></button>
+        </div>
+    </div>
 </div>
 </body>
 </html>

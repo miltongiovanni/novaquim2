@@ -1,228 +1,137 @@
 <?php
 include "../includes/valAcc.php";
-?>
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <title>Ingreso de Compra de Materia Prima</title>
-    <meta charset="utf-8">
-    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-    <script  src="../js/validar.js"></script>
-    <script  src="scripts/block.js"></script>
-    <script >
-		document.onkeypress = stopRKey; 
-	</script>
-</head>
-<body> 
-<div align="center"><img src="images/LogoNova.JPG"/></div>
-<?php
-include "includes/conect.php";
-include "includes/calcularDias.php";
+include "../includes/calcularDias.php";
+include "../includes/ventas.php";
 foreach ($_POST as $nombre_campo => $valor) {
     ${$nombre_campo} = $valor;
-    if(is_array($valor)){
+    if (is_array($valor)) {
         //echo $nombre_campo.print_r($valor).'<br>';
-    }else{
-        //echo $nombre_campo. '=' .${$nombre_campo}.'<br>';
+    } else {
+        //echo $nombre_campo . '=' . ${$nombre_campo} . '<br>';
     }
-} 
-$fecha_actual=date("Y")."-".date("m")."-".date("d"); 
-$dias_v=Calc_Dias($FchVen,$fecha_actual);
-$dias_f=Calc_Dias($FchVen,$FchVta);
-if(($dias_v>=0)&&($dias_f>=0))
-{
-	$link=conectarServidor();   
-	/*CREACIÓN DEL ENCABEZADO DE LA REMISIÓN*/
-	$qryr="insert into remision (Nit_cliente, fechaRemision, idPedido, idSucursal) values ('$nit','$FchVta', $pedido, $id_sucursal)";
-	$resultr=mysqli_query($link,$qryr);
-	$qrylot="select max(idRemision) as rem from remision";
-	$resultlot=mysqli_query($link,$qrylot);
-	$rowlot=mysqli_fetch_array($resultlot);
-	$Id_Rem=$rowlot['rem'];		
-	/*CREACIÓN DEL ENCABEZADO DE LA FACTURA*/
-	$qry= "insert into factura (idFactura, Nit_cliente, fechaFactura, fechaVenc, tipPrecio, ordenCompra, idPedido, Descuento, Estado, idRemision, Observaciones) values ($factura, '$nit','$FchVta','$FchVen', $tip_prec, $ord_comp, $pedido, $descuento/100, 'E', $Id_Rem, '$observa')";
-	$result=mysqli_query($link,$qry);
-	//CON BASE EN EL PEDIDO SE LLENA LA FACTURA
-	$qryped="select idPedido, codProducto as Producto, cantProducto as Cantidad, precioProducto as Precio, tasa 
-	from det_pedido, prodpre, tasa_iva 
-	where idPedido=$pedido AND codProducto=Cod_prese AND Cod_iva=Id_tasa and codProducto<100000
-	UNION
-	select idPedido, codProducto as Producto, cantProducto as Cantidad, precioProducto as Precio, tasa 
-	FROM det_pedido, distribucion, tasa_iva 
-	where idPedido=$pedido and codProducto>=100000 and codProducto=distribucion.Id_distribucion 
-	and Cod_iva=Id_tasa
-	union
-select idPedido, codProducto as Producto, cantProducto as Cantidad, precioProducto as Precio, tasa 
- from det_pedido, servicios, tasa_iva 
- where codProducto<100 and codProducto=IdServicio and Cod_iva=Id_tasa and idPedido=$pedido;";
-	$resultped=mysqli_query($link,$qryped);
-	while($rowped=mysqli_fetch_array($resultped))
-	{
-		$cod_producto=$rowped['Producto'];
-		$cantidad=$rowped['Cantidad'];	
-		$precio=round(($rowped['Precio']/(1+$rowped['tasa'])),0);
-		/*DESCARGA DEL INVENTARIO*/
-		$unidades=$cantidad;
-		$i=1;
-		if(($cod_producto<100000)&&($cod_producto>100))
-		{
-			$qryinv="select codPresentacion, lote_prod, inv_prod from inv_prod where codPresentacion=$cod_producto and inv_prod >0 order by lote_prod;";
-			$resultinv=mysqli_query($link,$qryinv);
-			while(($rowinv=mysqli_fetch_array($resultinv))&&($unidades>0))
-			{
-				  $invt=$rowinv['inv_prod'];
-				  $i=$i+1;
-				  $lot_prod=$rowinv['lote_prod'];
-				  $cod_prod=$rowinv['Cod_prese'];
-				  if (($invt >= $unidades))
-				  {
-					  $invt= $invt - $unidades;
-					  /*SE ADICIONA A LA REMISIÓN*/
-					  $qryins_p="insert into det_remision (idRemision, codProducto, cantProducto, loteProducto) values ($Id_Rem, $cod_producto, $unidades, $lot_prod)";
-					  echo $qryins_p."<br>";				
-					  $resultins_p=mysqli_query($link,$qryins_p);
-					  /*SE ACTUALIZA EL INVENTARIO*/
-					  $qryupt="update inv_prod set invProd=$invt where loteProd=$lot_prod and Cod_prese=$cod_prod";
-					  $resultupt=mysqli_query($link,$qryupt);
-					  $unidades=0;
-				  }
-				  else
-				  {
-					  $unidades= $unidades - $invt ;
-					  /*SE ADICIONA A LA REMISIÓN*/
-					  $qryins_p="insert into det_remision (idRemision, codProducto, cantProducto, loteProducto) values ($Id_Rem, $cod_producto, $invt, $lot_prod)";
-					  $resultins_p=mysqli_query($link,$qryins_p);
-					  /*SE ACTUALIZA EL INVENTARIO*/
-					  $qryupt="update inv_prod set invProd=0 where loteProd=$lot_prod and Cod_prese=$cod_prod";
-					  $resultupt=mysqli_query($link,$qryupt);	
-				  }
-			}
-		}
-		if($cod_producto>100000)
-		{
-			$qryinv="select codDistribucion, invDistribucion from inv_distribucion WHERE codDistribucion=$cod_producto;";
-			$resultinv=mysqli_query($link,$qryinv);
-			$unidades=$cantidad;
-			while($rowinv=mysqli_fetch_array($resultinv))
-			{
-				$invt=$rowinv['inv_dist'];
-				$cod_prod=$rowinv['Id_distribucion'];
-				$invt= $invt - $unidades;
-				$qryupt="update inv_distribucion set invDistribucion=$invt where codDistribucion=$cod_prod";
-				$resultupt=mysqli_query($link,$qryupt);
-				/*SE ADICIONA A LA REMISIÓN*/
-				$qryins_p="insert into det_remision (idRemision, codProducto, cantProducto) values ($Id_Rem, $cod_producto, $unidades)";
-				echo $qryins_p;
-				$resultins_p=mysqli_query($link,$qryins_p);
-			}
-		}
-		if($cod_producto<100)
-		{
-		  /*SE ADICIONA A LA REMISIÓN*/
-		  $qryins_p="insert into det_remision (idRemision, codProducto, cantProducto) values ($Id_Rem, $cod_producto, $unidades)";
-		  $resultins_p=mysqli_query($link,$qryins_p);			
-		}
-		/*SE ADICIONA A LA FACTURA*/
-		$qrydet="insert into det_factura (idFactura, codProducto, cantProducto, precioProducto) values ($factura, $cod_producto, $cantidad, $precio);";
-		$resultdet=mysqli_query($link,$qrydet);
-	}
-	
-	//CALCULA LOS TOTALES DE IVA, DESCUENTO 
-	
-		$qry= "select idFactura, codProducto, cantProducto, Nombre as Producto, tasa, Id_tasa, precioProducto, Descuento, ciudadCliente, idCatCliente 
-		from det_factura, prodpre, tasa_iva, factura, clientes
-		where idFactura=idFactura and idFactura=$factura and codProducto<100000 and codProducto=Cod_prese and Cod_iva=Id_tasa  and clientes.nitCliente=factura.Nit_cliente 
-		UNION 
-		select idFactura, codProducto, cantProducto, Producto, tasa, Id_tasa, precioProducto, Descuento, ciudadCliente, idCatCliente 
-		from det_factura, distribucion, tasa_iva, factura, clientes 
-		where idFactura=idFactura and idFactura=$factura and codProducto>100000 AND codProducto=Id_distribucion AND Cod_iva=Id_tasa  and clientes.nitCliente=factura.Nit_cliente;";
-		$result=mysqli_query($link,$qry);
-		$subtotal=0;
-		$descuento=0;
-		$iva10=0;
-		$iva16=0;
-		while($row=mysqli_fetch_array($result))
-		{
-			$subtotal += $row['Can_producto']*$row['prec_producto'];
-			$codigo=$row['Cod_producto'];
-			$descuento += $row['Can_producto']*$row['prec_producto']*$row['Descuento'] ;
-			if ($row['tasa']==0.1)
-				$iva10 += $row['Can_producto']*$row['prec_producto']*$row['tasa']*(1-$row['Descuento']);
-			if ($row['Id_tasa']==3)
-				$iva16 += $row['Can_producto']*$row['prec_producto']*$row['tasa']*(1-$row['Descuento']);
-		}
-		$qryf= "select idFactura, Nit_cliente, nomCliente, retIva, retIca, retFte, ciudadCliente, idCatCliente from factura, clientes where idFactura=$factura and Nit_cliente=nitCliente ;";
-		echo $qryf;
-		$resultf=mysqli_query($link,$qryf);
-		$rowf=mysqli_fetch_array($resultf);
-		$Ciudad_clien=$rowf['Ciudad_clien'];
-		$Id_cat_clien=$rowf['Id_cat_clien'];
-		$reten_iva=$rowf['Ret_iva'];
-		$reten_ica=$rowf['Ret_ica'];
-		$reten_fte=$rowf['Ret_fte'];
-		if ($reten_iva==1)
-			$reteiva=round(($iva10 + $iva16)*0.15);
-		else
-			$reteiva=0;
-		if (($subtotal >= BASE_C)||($reten_fte==1))
-		{
-			$retefuente=round(($subtotal-$descuento)*0.025);
-			if (($Ciudad_clien==1)&&($Id_cat_clien!=1))
-			$reteica=round(($subtotal-$descuento)*0.01104);
-			else
-			$reteica=0;
-		}
-		else
-		{
-			$retefuente=0;
-			$reteica=0;
-		}
-	$total= $subtotal-$descuento+$iva10+$iva16;
-		$sql= "update factura 
-			SET Total=round($total),
-			Subtotal=round($subtotal),
-			IVA=round($iva10 + $iva16),
-			retencionIva=round($reteiva),
-			retencionIca=round($reteica),
-			retencionFte=round($retefuente)
-			where idFactura=$factura;";
-	    echo $sql;
-		$result=mysqli_query($link,$sql);
-		if($result)
-		{  
-			$sqlup= "update Pedido SET Estado='F' where idPedido=(select idPedido from factura where idFactura=$factura);";
-			$resultup=mysqli_query($link,$sqlup);
-		}
-		else
-		{
-			$ruta="menu.php";
-			mysqli_close($link);
-			mover_pag($ruta,"Error al crear la Factura");
-		}
-		mysqli_close($link);
-		echo'<form action="det_factura.php" method="post" name="formulario">';
-		echo '<input name="factura" type="hidden" value="'.$factura.'"/><input name="Crear" type="hidden" value="6"/><input type="submit" name="Submit" value="Cambiar" />';
-		echo'</form>'; 
-		echo' <script > document.formulario.submit(); </script>';		
 }
-else
-{
-  if($dias_v<0)
-	{
-		echo'<script >
+$tasaDescuento = $descuento / 100;
+$facturaOperador = new FacturasOperaciones();
+$detFacturaOperador = new DetFacturaOperaciones();
+$remisionOperador = new RemisionesOperaciones();
+$detPedidoOperador = new DetPedidoOperaciones();
+$invProdTerminadoOperador = new InvProdTerminadosOperaciones();
+$invDistribucionOperador = new InvDistribucionOperaciones();
+$pedidoOperador = new PedidosOperaciones();
+if ($facturaOperador->isValidIdFactura($idFactura)) {
+    $ruta = "CrearFactura.php";
+
+    $mensaje = "Número de factura ya existe, intente de nuevo";
+    mover_pag($ruta, $mensaje);
+}
+$fecha_actual = hoy();
+$dias_v = Calc_Dias($fechaVenc, $fecha_actual);
+$dias_f = Calc_Dias($fechaVenc, $fechaFactura);
+if (($dias_v >= 0) && ($dias_f >= 0)) {
+    try {
+        /*CREACIÓN DEL ENCABEZADO DE LA REMISIÓN*/
+        $datos = array($idCliente, $fechaFactura, $idPedido, $idSucursal);
+        $idRemision=$remisionOperador->makeRemisionFactura($datos);
+
+        /*CREACIÓN DEL ENCABEZADO DE LA FACTURA*/
+        $datos = array($idFactura, $idPedido, $idCliente, $fechaFactura, $fechaVenc, $tipPrecio, 'E', $idRemision, $ordenCompra, $tasaDescuento, $observaciones);
+        $facturaOperador->makeFactura($datos);
+        //CON BASE EN EL PEDIDO SE LLENA LA FACTURA
+        $detPedido = $detPedidoOperador->getDetPedidoFactura($idPedido);
+        for ($i = 0; $i < count($detPedido); $i++) {
+            $codProducto = $detPedido[$i]['codProducto'];
+            $cantidad = $detPedido[$i]['codProducto'];
+            $precio = $detPedido[$i]['precio'];
+            $codIva = $detPedido[$i]['codIva'];
+            /*DESCARGA DEL INVENTARIO*/
+            $unidades = $cantidad;
+            $i = 1;
+            if (($codProducto < 100000) && ($codProducto > 100)) {
+                $invProdTerminado = $invProdTerminadoOperador->getInvProdTerminado($codProducto);
+                for ($j = 0; $j < count($invProdTerminado); $j++) {
+                    $inv = $invProdTerminado[$i]['invProd'];
+                    $lote = $invProdTerminado[$i]['loteProd'];
+                    if (($invt >= $unidades)) {
+                        $nvoInv = $inv - $unidades;
+                        /*SE ADICIONA A LA REMISIÓN*/
+                        $datos = array($idRemision, $codProducto, $unidades, $lote);
+                        $detRemisionOperador->makeDetRemision($datos);
+                        $unidades = 0;
+                        /*SE ACTUALIZA EL INVENTARIO*/
+                        $datos = array($nvoInv, $codProducto, $lote);
+                        $invProdTerminadoOperador->updateInvProdTerminado($datos);
+                        break;
+                    } else {
+                        $unidades = $unidades - $invt;
+                        /*SE ADICIONA A LA REMISIÓN*/
+                        $datos = array(0, $codProducto, $lote);
+                        $invProdTerminadoOperador->updateInvProdTerminado($datos);
+                        /*SE ACTUALIZA EL INVENTARIO*/
+                        $datos = array($idRemision, $codProducto, $inv, $lote);
+                        $detRemisionOperador->makeDetRemision($datos);
+                    }
+                }
+            }
+            if ($codProducto > 100000) {
+                //PRODUCTOS DE DISTRIBUCIÓN
+                $invDistribucionOperador = new InvDistribucionOperaciones();
+                $invDistribucion = $invDistribucionOperador->getInvDistribucion($codProducto);
+                $nvoInvDistribucion = $invDistribucion - $cantProducto;
+                /*SE ACTUALIZA EL INVENTARIO*/
+                $datos = array($nvoInvDistribucion, $codProducto);
+                $invDistribucionOperador->updateInvDistribucion($datos);
+                /*SE ADICIONA A LA REMISIÓN*/
+                $datos = array($idRemision, $codProducto, $cantProducto, 0);
+                $detRemisionOperador->makeDetRemision($datos);
+            }
+            if ($cod_producto < 100) {
+                /*SE ADICIONA A LA REMISIÓN*/
+                $datos = array($idRemision, $codProducto, $cantProducto, 0);
+                $detRemisionOperador->makeDetRemision($datos);
+            }
+            /*SE ADICIONA A LA FACTURA*/
+            $datos = array($idFactura, $codProducto, $cantProducto, $precio, $codIva);
+            $detFacturaOperador->makeDetFactura($datos);
+        }
+
+        //CALCULA LOS TOTALES DE IVA, DESCUENTO
+        $totales = calcularTotalesFactura($idFactura, $tasaDescuento);
+        $subtotal= $totales['subtotal'];
+        $descuento= $totales['descuento'];
+        $iva10Real= $totales['iva10Real'];
+        $iva16Real= $totales['iva16Real'];
+        $iva= $totales['iva'];
+        $reteiva= $totales['reteiva'];
+        $retefuente= $totales['retefuente'];
+        $reteica= $totales['reteica'];
+        $total = $subtotal - $descuento + $iva - $reteiva - $retefuente - $reteica;
+        $totalR = round($subtotal - $descuento + $iva);
+        $datos = array($total, $reteiva, $reteica, $retefuente, $subtotal, $iva, $totalR, $idFactura);
+        $facturaOperador->updateTotalesFactura($datos);
+        $pedidoOperador->updateEstadoPedido('F', $idPedido);
+        $_SESSION['idFactura'] = $idFactura;
+        $ruta = "det_factura.php";
+        $mensaje = "Factura creada con éxito";
+    }catch (Exception $e){
+        $ruta = "crearFactura.php";
+        $mensaje = "Error al crear la Factura";
+    } finally
+    {
+        unset($conexion);
+        unset($stmt);
+        mover_pag($ruta, $mensaje);
+    }
+} else {
+    if ($dias_v < 0) {
+        echo '<script >
 		alert("La fecha de vencimiento de la factura no puede ser menor que la fecha actual");
 		self.location="crearFactura.php";
-		</script>';	
-	}
-  if($dias_f<0)
-	{
-		echo'<script >
+		</script>';
+    }
+    if ($dias_f < 0) {
+        echo '<script >
 		alert("La fecha de vencimiento de la factura no puede ser menor que la fecha de la factura");
 		self.location="crearFactura.php";
-		</script>';	
-	}
+		</script>';
+    }
 }
-
-?>
-</body>
-</html>

@@ -12,7 +12,7 @@ class FacturasOperaciones
     public function makeFactura($datos)
     {
         /*Preparo la insercion */
-        $qry = "INSERT INTO factura (idCliente, fechaFactura, fechaEntrega, tipoPrecio, estado, idSucursal) VALUES(?, ?, ?, ?, ?, ?)";
+        $qry = "INSERT INTO factura (idFactura, idPedido, idCliente, fechaFactura, fechaVenc, tipPrecio, estado, idRemision, ordenCompra, descuento, observaciones) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute($datos);
         return $this->_pdo->lastInsertId();
@@ -40,13 +40,13 @@ class FacturasOperaciones
         }
     }
 
-    public function getCotizacionsByTipo($tipoCompra)
+    public function getEstadoFactura($idFactura)
     {
-        $qry = "SELECT idFactura, nomCotizacion FROM factura WHERE idCatCotizacion = $tipoCompra ORDER BY nomCotizacion;";
+        $qry = "SELECT estado FROM factura WHERE idFactura = $idFactura";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute(array());
-        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        return $result;
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result['estado'];
     }
 
     public function getFacturasByEstado($estado)
@@ -58,12 +58,56 @@ class FacturasOperaciones
         return $result;
     }
 
-    public function getCotizacionsByName($q)
+    public function getTotalesFactura($idFactura)
     {
-        $qry = "SELECT idFactura, nomCotizacion FROM factura WHERE nomCotizacion like '%" . $q . "%' ORDER BY nomCotizacion;";
+        $qry = "SELECT idFactura, SUM(subtotal) subtotalfactura, SUM(iva10) iva10factura, SUM(iva19) iva19factura
+                FROM
+                    (SELECT dp.idFactura, cantProducto, precioProducto,
+                            cantProducto*precioProducto subtotal, IF(idTasaIvaProducto=5 OR idTasaIvaProducto=2, cantProducto*precioProducto*tasaIva,0  ) iva10,
+                            IF(idTasaIvaProducto=3 OR idTasaIvaProducto=7, cantProducto*precioProducto*tasaIva,0 ) iva19
+                     FROM det_factura dp
+                              LEFT JOIN factura f on f.idFactura = dp.idFactura
+                              LEFT JOIN prodpre p on dp.codProducto = p.codPresentacion
+                              LEFT JOIN tasa_iva ti on ti.idTasaIva = dp.idTasaIvaProducto
+                     WHERE dp.idFactura = $idFactura
+                       AND dp.codProducto > 10000
+                       AND dp.codProducto < 100000
+                     UNION
+                     SELECT dp.idFactura, cantProducto, precioProducto,
+                            cantProducto*precioProducto subtotal, IF(idTasaIvaProducto=5 OR idTasaIvaProducto=2, cantProducto*precioProducto*tasaIva,0  ) iva10,
+                            IF(idTasaIvaProducto=3 OR idTasaIvaProducto=7, cantProducto*precioProducto*tasaIva,0 ) iva19
+                     FROM det_factura dp
+                              LEFT JOIN factura f on f.idFactura = dp.idFactura
+                              LEFT JOIN distribucion d on dp.codProducto = d.idDistribucion
+                              LEFT JOIN tasa_iva ti on ti.idTasaIva = dp.idTasaIvaProducto
+                     WHERE dp.idFactura = $idFactura
+                       AND dp.codProducto > 100000
+                     UNION
+                     SELECT dp.idFactura, cantProducto, precioProducto,
+                            cantProducto*precioProducto subtotal, IF(idTasaIvaProducto=5 OR idTasaIvaProducto=2, cantProducto*precioProducto*tasaIva,0  ) iva10,
+                            IF(idTasaIvaProducto=3 OR idTasaIvaProducto=7, cantProducto*precioProducto*tasaIva,0 ) iva19
+                     FROM det_factura dp
+                              LEFT JOIN factura f on f.idFactura = dp.idFactura
+                              LEFT JOIN servicios s on dp.codProducto = s.idServicio
+                              LEFT JOIN tasa_iva i on i.idTasaIva = dp.idTasaIvaProducto
+                     WHERE dp.idFactura = $idFactura
+                       AND dp.codProducto < 100) t
+                GROUP BY idFactura";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute(array());
-        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    public function getDetClienteFactura($idFactura)
+    {
+        $qry = "SELECT idFactura, idCatCliente, nomCliente,ciudadCliente, retIva, retIca, retFte, codVendedor, retCree, fchCreacionCliente, exenIva
+                FROM factura f
+                LEFT JOIN clientes c on c.idCliente = f.idCliente
+                WHERE idFactura = $idFactura";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array());
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result;
     }
 
@@ -269,29 +313,39 @@ class FacturasOperaciones
     public function getFactura($idFactura)
     {
         $qry = "SELECT idFactura,
-                       p.idCliente,
-                       nomCliente,
-                       telCliente,
-                       fechaFactura,
-                       fechaEntrega,
-                       p.tipoPrecio idPrecio,
-                       tp.tipoPrecio,
-                       p.estado,
-                       IF(p.estado = 'A', 'Anulado',
-                          IF(p.estado = 'F', 'Facturado', IF(p.estado = 'P', 'Pendiente', 'Por facturar'))) estadoFactura,
-                       p.idSucursal,
-                       nomSucursal,
-                       dirSucursal,
-                       codVendedor,
-                       nomPersonal
-                FROM factura p
-                         LEFT JOIN clientes c on c.idCliente = p.idCliente
-                         LEFT JOIN clientes_sucursal cs on p.idCliente = cs.idCliente AND p.idSucursal = cs.idSucursal
-                         LEFT JOIN tip_precio tp on tp.idPrecio = p.tipoPrecio
-                         LEFT JOIN personal p2 on c.codVendedor = p2.idPersonal
-                WHERE idFactura =$idFactura";
+                   idPedido,
+                   f.idCliente,
+                   nitCliente,
+                   descuento,
+                   fechaFactura,
+                   fechaVenc,
+                   idRemision,
+                   ordenCompra,
+                   tipPrecio,
+                   nomCliente,
+                   telCliente,
+                   dirCliente,
+                   Ciudad,
+                   idPersonal,
+                   nomPersonal vendedor,
+                   observaciones,
+                   retencionIva,
+                   retencionFte,
+                   retencionIca,
+                   total,
+                   subtotal,
+                   iva,
+                   f.Estado,
+                   IF(f.estado = 'A', 'Anulada',
+                      IF(f.estado = 'P', 'Pendiente', IF(f.estado = 'C', 'Cancelada', 'En proceso'))) estadoFactura
+            
+            FROM factura f
+                     LEFT JOIN clientes c on c.idCliente = f.idCliente
+                     LEFT JOIN personal p on p.idPersonal = c.codVendedor
+                     LEFT JOIN ciudades c2 on c2.idCiudad = c.ciudadCliente
+            WHERE idFactura = ?";
         $stmt = $this->_pdo->prepare($qry);
-        $stmt->execute();
+        $stmt->execute(array($idFactura));
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result;
     }
@@ -328,9 +382,17 @@ class FacturasOperaciones
         return $result;
     }
 
+    public function updateTotalesFactura($datos)
+    {
+        $qry = "UPDATE factura SET total=?, retencionIva=?, retencionIca=?, retencionFte=?, subtotal=?, iva=?, totalR=?
+                 WHERE idFactura=?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute($datos);
+    }
+
     public function updateFactura($datos)
     {
-        $qry = "UPDATE factura SET idCliente=?, fechaFactura=?, fechaEntrega=?, tipoPrecio=?, estado=?, idSucursal=?
+        $qry = "UPDATE factura SET fechaFactura=?, fechaVenc=?, tipPrecio=?, descuento=?
                  WHERE idFactura=?";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute($datos);

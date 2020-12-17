@@ -1,56 +1,52 @@
 <?php
 include "../includes/valAcc.php";
+function cargarClases($classname)
+{
+    require '../clases/' . $classname . '.php';
+}
+
+spl_autoload_register('cargarClases');
 ?>
 <!DOCTYPE html>
 <html lang="es">
-<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css"><head>
-<meta charset="utf-8">
-<title>Crear Factura a partir del Pedido</title>
-<script  src="../js/validar.js"></script>
+<head>
+    <meta charset="utf-8">
+    <title>Crear Factura a partir del Pedido</title>
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script src="../js/validar.js"></script>
 
 
 </head>
 <body>
 <div id="contenedor">
-<div id="saludo"><strong>CREAR FACTURA A PARTIR DEL PEDIDO</strong></div> 
-<form id="form1" name="form1" method="post" action="factura.php">
-<table border="0" align="center">
-    <tr> 
-        <td width="116"><div align="right"><strong>No. de Pedido&nbsp;</strong></div></td>
-        <td width="118"><?php
-			include "includes/conect.php";
-			$link=conectarServidor();
-			echo'<select name="pedido" id="combo">';
-			$result=mysqli_query($link,"select idPedido from pedido, clientes where Nit_cliente=nitCliente and pedido.Estado='L';");
-			echo '<option selected value="">--------</option>';
-			while($row=mysqli_fetch_array($result))
-			{
-				echo '<option value='.$row['Id_pedido'].'>'.$row['Id_pedido'].'</option>';
-			}
-			echo'</select>';
-			mysqli_free_result($result);
-/* cerrar la conexión */
-mysqli_close($link);
-		?></td>
-    </tr>
-    <tr>
-        <td colspan="2"><div align="center">&nbsp;</div></td>
-    </tr>
-    <tr> 
-        <td ><div align="right"><input type="reset" value="Restablecer"></div></td>
-        <td ><div align="left"><input type="button" value="    Continuar   " onclick="return Enviar(this.form);" ></div></td>
-    </tr>
-  
-  	<tr>
-        <td colspan="2"><div align="center">&nbsp;</div></td>
-    </tr>
-    <tr>
-        <td colspan="2"><div align="center">&nbsp;</div></td>
-    </tr>
-    <tr> 
-        <td colspan="2"><div align="center"><input type="button" class="resaltado" onClick="history.back()" value="  VOLVER  "></div></td></tr>
-</table>
-</form>  
+    <div id="saludo"><strong>CREAR FACTURA A PARTIR DEL PEDIDO</strong></div>
+    <form id="form1" name="form1" method="post" action="factura.php">
+        <div class="form-group row">
+            <label class="col-form-label col-2" for="lote"><strong>Orden de pedido</strong></label>
+            <select name="idPedido" id="idPedido" class="form-control col-1" required>
+                <option selected disabled value="">------------</option>
+                <?php
+                $manager = new PedidosOperaciones();
+                $pedidos = $manager->getPedidosByEstado('L');
+                for ($i = 0; $i < count($pedidos); $i++) : ?>
+                    <option value="<?= $pedidos[$i]["idPedido"] ?>"><?= $pedidos[$i]["idPedido"] ?></option>
+                <?php
+                endfor;
+                ?>
+            </select>
+        </div>
+        <div class="row form-group">
+            <div class="col-1">
+                <button class="button" onclick="return Enviar(this.form)">
+                    <span>Continuar</span></button>
+            </div>
+        </div>
+    </form>
+    <div class="row form-group">
+        <div class="col-1">
+            <button class="button1" onclick="history.back()"><span>VOLVER</span></button>
+        </div>
+    </div>
 </div>
 </body>
 </html>
