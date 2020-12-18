@@ -32,6 +32,13 @@ class DetRemisionesOperaciones
         $stmt->execute($datos);
     }
 
+    public function deleteDetRemisionFactura($idRemision)
+    {
+        $qry = "DELETE FROM det_remision WHERE idRemision= ?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($idRemision));
+    }
+
 
     public function getTableDetRemisiones($idRemision)
     {
@@ -86,6 +93,25 @@ class DetRemisionesOperaciones
                          LEFT JOIN distribucion ON dr1.codProducto = idDistribucion
                 WHERE idRemision = $idRemision
                   AND dr1.codProducto > 100000 AND dr1.codProducto=$codProducto";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);;
+        return $result;
+    }
+
+    public function getDetRemisionLote($idRemision)
+    {
+        $qry = "SELECT dr.codProducto, presentacion producto, cantProducto, loteProducto
+                FROM det_remision dr
+                         LEFT JOIN prodpre p on dr.codProducto = p.codPresentacion
+                WHERE idRemision = $idRemision
+                  AND dr.codProducto < 100000 AND dr.codProducto>10000
+                UNION
+                SELECT dr.codProducto, producto, cantProducto, loteProducto
+                FROM det_remision dr
+                         LEFT JOIN distribucion ON dr.codProducto = idDistribucion
+                WHERE idRemision = $idRemision
+                  AND dr.codProducto > 100000 ";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);;

@@ -14,6 +14,7 @@ $tasaDescuento = $descuento / 100;
 $facturaOperador = new FacturasOperaciones();
 $detFacturaOperador = new DetFacturaOperaciones();
 $remisionOperador = new RemisionesOperaciones();
+$detRemisionOperador = new DetRemisionesOperaciones();
 $detPedidoOperador = new DetPedidoOperaciones();
 $invProdTerminadoOperador = new InvProdTerminadosOperaciones();
 $invDistribucionOperador = new InvDistribucionOperaciones();
@@ -51,7 +52,7 @@ if (($dias_v >= 0) && ($dias_f >= 0)) {
                 for ($j = 0; $j < count($invProdTerminado); $j++) {
                     $inv = $invProdTerminado[$i]['invProd'];
                     $lote = $invProdTerminado[$i]['loteProd'];
-                    if (($invt >= $unidades)) {
+                    if (($inv >= $unidades)) {
                         $nvoInv = $inv - $unidades;
                         /*SE ADICIONA A LA REMISIÓN*/
                         $datos = array($idRemision, $codProducto, $unidades, $lote);
@@ -62,7 +63,7 @@ if (($dias_v >= 0) && ($dias_f >= 0)) {
                         $invProdTerminadoOperador->updateInvProdTerminado($datos);
                         break;
                     } else {
-                        $unidades = $unidades - $invt;
+                        $unidades = $unidades - $inv;
                         /*SE ADICIONA A LA REMISIÓN*/
                         $datos = array(0, $codProducto, $lote);
                         $invProdTerminadoOperador->updateInvProdTerminado($datos);

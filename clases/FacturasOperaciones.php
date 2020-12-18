@@ -406,6 +406,15 @@ class FacturasOperaciones
         $stmt->execute(array($estado, $idFactura));
     }
 
+    public function anularFactura($observaciones, $idFactura)
+    {
+        $qry = "UPDATE factura SET estado='A', observaciones=?, total=0, subtotal=0, iva=0, descuento=0, 
+                   retencionIva=0, retencionIca=0, retencionFte=0, totalR=0
+                 WHERE idFactura=?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($observaciones, $idFactura));
+    }
+
     public function setDb()
     {
 

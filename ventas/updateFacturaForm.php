@@ -75,7 +75,7 @@ $factura = $facturaOperador->getFactura($idFactura);
         </div>
         <div class="form-group row">
             <label class="col-2 text-right col-form-label" for="observaciones"><strong>Observaciones</strong></label>
-            <textarea class="form-control col-5 mx-2" name="observaciones"><?=$factura['observaciones']?></textarea>
+            <textarea class="form-control col-5" name="observaciones"><?=$factura['observaciones']?></textarea>
         </div>
         <div class="row form-group">
             <div class="col-1">
