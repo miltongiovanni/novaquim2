@@ -41,22 +41,21 @@ if (($dias_v >= 0) && ($dias_f >= 0)) {
         $detPedido = $detPedidoOperador->getDetPedidoFactura($idPedido);
         for ($i = 0; $i < count($detPedido); $i++) {
             $codProducto = $detPedido[$i]['codProducto'];
-            $cantidad = $detPedido[$i]['codProducto'];
+            $cantidad = $detPedido[$i]['cantProducto'];
             $precio = $detPedido[$i]['precio'];
             $codIva = $detPedido[$i]['codIva'];
             /*DESCARGA DEL INVENTARIO*/
             $unidades = $cantidad;
-            $i = 1;
             if (($codProducto < 100000) && ($codProducto > 100)) {
                 $invProdTerminado = $invProdTerminadoOperador->getInvProdTerminado($codProducto);
                 for ($j = 0; $j < count($invProdTerminado); $j++) {
-                    $inv = $invProdTerminado[$i]['invProd'];
-                    $lote = $invProdTerminado[$i]['loteProd'];
+                    $inv = $invProdTerminado[$j]['invProd'];
+                    $lote = $invProdTerminado[$j]['loteProd'];
                     if (($inv >= $unidades)) {
                         $nvoInv = $inv - $unidades;
                         /*SE ADICIONA A LA REMISIÓN*/
                         $datos = array($idRemision, $codProducto, $unidades, $lote);
-                        $detRemisionOperador->makeDetRemision($datos);
+                        $detRemisionOperador->makeDetRemisionFactura($datos);
                         $unidades = 0;
                         /*SE ACTUALIZA EL INVENTARIO*/
                         $datos = array($nvoInv, $codProducto, $lote);
@@ -64,34 +63,28 @@ if (($dias_v >= 0) && ($dias_f >= 0)) {
                         break;
                     } else {
                         $unidades = $unidades - $inv;
-                        /*SE ADICIONA A LA REMISIÓN*/
+                        /*SE ACTUALIZA EL INVENTARIO*/
                         $datos = array(0, $codProducto, $lote);
                         $invProdTerminadoOperador->updateInvProdTerminado($datos);
-                        /*SE ACTUALIZA EL INVENTARIO*/
+                        /*SE ADICIONA A LA REMISIÓN*/
                         $datos = array($idRemision, $codProducto, $inv, $lote);
-                        $detRemisionOperador->makeDetRemision($datos);
+                        $detRemisionOperador->makeDetRemisionFactura($datos);
                     }
                 }
-            }
-            if ($codProducto > 100000) {
+            }elseif ($codProducto > 100000) {
                 //PRODUCTOS DE DISTRIBUCIÓN
                 $invDistribucionOperador = new InvDistribucionOperaciones();
                 $invDistribucion = $invDistribucionOperador->getInvDistribucion($codProducto);
-                $nvoInvDistribucion = $invDistribucion - $cantProducto;
+                $nvoInvDistribucion = $invDistribucion - $cantidad;
                 /*SE ACTUALIZA EL INVENTARIO*/
                 $datos = array($nvoInvDistribucion, $codProducto);
                 $invDistribucionOperador->updateInvDistribucion($datos);
                 /*SE ADICIONA A LA REMISIÓN*/
-                $datos = array($idRemision, $codProducto, $cantProducto, 0);
-                $detRemisionOperador->makeDetRemision($datos);
-            }
-            if ($cod_producto < 100) {
-                /*SE ADICIONA A LA REMISIÓN*/
-                $datos = array($idRemision, $codProducto, $cantProducto, 0);
-                $detRemisionOperador->makeDetRemision($datos);
+                $datos = array($idRemision, $codProducto, $cantidad, 0);
+                $detRemisionOperador->makeDetRemisionFactura($datos);
             }
             /*SE ADICIONA A LA FACTURA*/
-            $datos = array($idFactura, $codProducto, $cantProducto, $precio, $codIva);
+            $datos = array($idFactura, $codProducto, $cantidad, $precio, $codIva);
             $detFacturaOperador->makeDetFactura($datos);
         }
 

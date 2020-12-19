@@ -24,7 +24,7 @@ if($codigo <100000)
 {	
  //SI ES PRODUCTO DE LÍNEA
   $qrylot= "SELECT loteProducto as Lote from remision, det_remision, factura, nota_c 
-  WHERE remision.idRemision=det_remision.idRemision AND factura.idRemision=remision.idRemision and idFactura=Fac_orig and codProducto=$codigo and Nota=$mensaje;";
+  WHERE remision.idRemision=det_remision.idRemision AND factura.idRemision=remision.idRemision and idFactura=facturaOrigen and codProducto=$codigo and idNotaC=$mensaje;";
   $resultlot=mysqli_query($link,$qrylot);
   $row_lot=mysqli_fetch_array($resultlot);
   $lote=$row_lot['Lote'];  
@@ -65,7 +65,7 @@ else
 	$resultupt=mysqli_query($link,$qryupt);
 }
 //ACTUALIZACIÓN DEL DETALLE DE LA NOTA DE CREDITOS
-  $qryr="delete from det_nota_c where Id_Nota=$mensaje and Cod_producto=$codigo;";
+  $qryr="delete from det_nota_c where idNotaC=$mensaje and codProducto=$codigo;";
   $resultr=mysqli_query($link,$qryr);
   echo' <script >
 		  alert("Borrado producto de la nota de credito");

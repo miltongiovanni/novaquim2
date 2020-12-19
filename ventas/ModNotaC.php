@@ -26,7 +26,7 @@ foreach ($_POST as $nombre_campo => $valor)
 <?php
 	include "includes/conect.php";
 	$link=conectarServidor();
-	$qry="select nomCliente, Nit_cliente, Fecha, Fac_orig, Fac_dest, motivo from clientes, nota_c where Nota=$mensaje and Nit_cliente=nitCliente;";
+	$qry="select nomCliente, Nit_cliente, fechaNotaC, facturaOrigen, facturaDestino, motivo from clientes, nota_c where idNotaC=$mensaje and Nit_cliente=nitCliente;";
 	$result=mysqli_query($link,$qry);
 	$row=mysqli_fetch_array($result);
 	$cliente=$row['Nit_cliente'];

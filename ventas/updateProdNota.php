@@ -20,7 +20,7 @@ foreach ($_POST as $nombre_campo => $valor) {
 }  
 $link=conectarServidor();
 //ESTO ES PARA MIRAR LA CANTIDAD DE PRODUCTO QUE TENÌA LA NOTA
-$qrycanot="select Can_producto as CantNota from det_nota_c where Id_Nota=$mensaje and Cod_producto=$codigo;";
+$qrycanot="select cantProducto as CantNota from det_nota_c where idNotaC=$mensaje and codProducto=$codigo;";
 $resultcanot=mysqli_query($link,$qrycanot);
 $row_canot=mysqli_fetch_array($resultcanot);
 $CantNota=$row_canot['CantNota'];  
@@ -29,7 +29,7 @@ if($codigo <100000)
 {	
  //SI ES PRODUCTO DE LÍNEA
   $qrylot= "SELECT loteProducto as Lote from remision, det_remision, factura, nota_c 
-  WHERE remision.idRemision=det_remision.idRemision AND factura.idRemision=remision.idRemision and idFactura=Fac_orig and codProducto=$codigo and Nota=$mensaje;";
+  WHERE remision.idRemision=det_remision.idRemision AND factura.idRemision=remision.idRemision and idFactura=facturaOrigen and codProducto=$codigo and idNotaC=$mensaje;";
   $resultlot=mysqli_query($link,$qrylot);
   $row_lot=mysqli_fetch_array($resultlot);
   $lote=$row_lot['Lote'];  
@@ -51,7 +51,7 @@ if($codigo <100000)
   }
   $resultupt=mysqli_query($link,$qryupt);
   //ACTUALIZACIÓN DEL DETALLE DE LA NOTA DE CREDITOS
-  $qryr="update det_nota_c set Can_producto=$cantidad where Id_Nota=$mensaje and Cod_producto=$codigo";
+  $qryr="update det_nota_c set cantProducto=$cantidad where idNotaC=$mensaje and codProducto=$codigo";
   $resultr=mysqli_query($link,$qryr);
   echo' <script >
 		  alert("Actualizando producto fab en nota de credito");
@@ -79,7 +79,7 @@ else
 	}
 	$resultupt=mysqli_query($link,$qryupt);
 	//INSERCION DEL DETALLE DE LA NOTA DE CREDITOS
-	$qryr="update det_nota_c set Can_producto=$cantidad where Id_Nota=$mensaje and Cod_producto=$codigo";
+	$qryr="update det_nota_c set cantProducto=$cantidad where idNotaC=$mensaje and codProducto=$codigo";
 	$resultr=mysqli_query($link,$qryr);
 	echo'<form action="makeNota.php" method="post" name="formulario">';
 	echo '<input name="nota" type="hidden" value="'.$mensaje.'"><input name="crear" type="hidden" value="5"><input type="submit" name="Submit" value="Cambiar" >';

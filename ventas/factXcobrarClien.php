@@ -71,7 +71,7 @@ $cliente=$_POST[cliente];
 					$parcial=$rowpag['Parcial'];
 				else
 					$parcial=0;
-				$qrync="select round(Total)as pago_nc, Fecha  from nota_c where Fecha>'2016-04-05' and Fac_dest=$fact";
+				$qrync="select round(totalNotaC)as pago_nc, fechaNotaC  from nota_c where fechaNotaC>'2016-04-05' and facturaDestino=$fact";
 				//echo " ".$qrync." ";
 				$resultnc=mysqli_query($link,$qrync);
 				$rownc=mysqli_fetch_array($resultnc);

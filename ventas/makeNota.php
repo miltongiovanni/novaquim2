@@ -33,7 +33,7 @@ $link=conectarServidor();
 if ($crear==1)
 {
   //PARA CREAR NOTA DE CRÉDITO
-  $qrycam="select MAX(Nota) AS Notas from nota_c;";
+  $qrycam="select MAX(idNotaC) AS Notas from nota_c;";
   $resultqrycam=mysqli_query($link,$qrycam);
   $row_cam=mysqli_fetch_array($resultqrycam);
   $mensaje=$row_cam['Notas']+1;
@@ -43,7 +43,7 @@ if ($crear==1)
   $row_desc=mysqli_fetch_array($resultqrydesc);
   $Descuento=$row_desc['Descuento'];
   //CREACIÓN DEL ENCABEZADO DE LA NOTA DE CRÉDITO
-  $qryr="insert into nota_c (Nota, Nit_cliente, Fecha, Fac_orig, Fac_dest, motivo, Des_fac_or) values ($mensaje, '$cliente','$Fecha', $fact_ori, $fact_des, $razon, $Descuento)";
+  $qryr="insert into nota_c (idNotaC, Nit_cliente, fechaNotaC, facturaOrigen, facturaDestino, motivo, descuentoFactOrigen) values ($mensaje, '$cliente','$Fecha', $fact_ori, $fact_des, $razon, $Descuento)";
   $resultr=mysqli_query($link,$qryr);
   //CREAR 2 PARA SALIR DEL ENCABEZADO
   echo'<form action="makeNota.php" method="post" name="formulario">';
@@ -54,7 +54,7 @@ if ($crear==1)
 if ($crear==6)
 {
 	//MODIFICAR EL ENCABEZADO DE LA NOTA DE CRÉDITO
-  $qryr="update nota_c set Fecha='$Fecha', Fac_orig=$fact_ori, Fac_dest=$fact_des, motivo=$razon where Nota=$mensaje";
+  $qryr="update nota_c set fechaNotaC='$Fecha', facturaOrigen=$fact_ori, facturaDestino=$fact_des, motivo=$razon where idNotaC=$mensaje";
   $resultr=mysqli_query($link,$qryr);
   //CREAR 2 PARA SALIR DEL ENCABEZADO
   echo'<form action="makeNota.php" method="post" name="formulario">';
@@ -62,7 +62,7 @@ if ($crear==6)
   echo'</form>'; 
   echo' <script  > document.formulario.submit(); </script>';
 }
-$qrynot="select Nota, Nit_cliente, Fecha, Fac_orig, Fac_dest, motivo, Total, Subtotal, IVA, nomCliente, telCliente, dirCliente, Ciudad from nota_c, clientes, ciudades where Nota=$mensaje and Nit_cliente=nitCliente and ciudadCliente=idCiudad";
+$qrynot="select idNotaC, Nit_cliente, fechaNotaC, facturaOrigen, facturaDestino, motivo, totalNotaC, subtotalNotaC, ivaNotaC, nomCliente, telCliente, dirCliente, Ciudad from nota_c, clientes, ciudades where idNotaC=$mensaje and Nit_cliente=nitCliente and ciudadCliente=idCiudad";
 $resultnot=mysqli_query($link,$qrynot);
 $rownot=mysqli_fetch_array($resultnot);
 $Fac_orig=$rownot['Fac_orig'];	
@@ -107,7 +107,7 @@ if ($crear==3)// SI HAY DEVOLUCIÓN DE PRODUCTOS
 	}
 	$resultupt=mysqli_query($link,$qryupt);
 	//INSERCION DEL DETALLE DE LA NOTA DE CREDITO
-	$qryr="insert into det_nota_c (Id_Nota, Cod_producto, Can_producto) values ($mensaje, $cod, $cantidad)";
+	$qryr="insert into det_nota_c (idNotaC, codProducto, cantProducto) values ($mensaje, $cod, $cantidad)";
 	$resultr=mysqli_query($link,$qryr);
 	echo'<form action="makeNota.php" method="post" name="formulario">';
 	echo '<input name="nota" type="hidden" value="'.$mensaje.'"><input name="crear" type="hidden" value="5"><input type="submit" name="Submit" class="formatoBoton1" value="Cambiar" >';
@@ -138,7 +138,7 @@ if ($crear==3)// SI HAY DEVOLUCIÓN DE PRODUCTOS
 	  }
 	  $resultupt=mysqli_query($link,$qryupt);
 	  //INSERCION DEL DETALLE DE LA NOTA DE CREDITOS
-	  $qryr="insert into det_nota_c (Id_Nota, Cod_producto, Can_producto) values ($mensaje, $cod, $cantidad)";
+	  $qryr="insert into det_nota_c (idNotaC, codProducto, cantProducto) values ($mensaje, $cod, $cantidad)";
 	  $resultr=mysqli_query($link,$qryr);
 	  echo'<form action="makeNota.php" method="post" name="formulario">';
 	  echo '<input name="nota" type="hidden" value="'.$mensaje.'"><input name="crear" type="hidden" value="5"><input type="submit" name="Submit" value="Cambiar" >';
@@ -161,15 +161,15 @@ if ($crear==3)// SI HAY DEVOLUCIÓN DE PRODUCTOS
 if ($crear==4) //SI NO SE HA HECHO DESCUENTO
 {
   //CREACIÓN DEL DETALLE DE LA NOTA DE CRÉDITO CUANDO NO SE HA HECHO EL DESCUENTO
-  $qrys="select Id_Nota, Cod_producto from det_nota_c where Id_Nota=$mensaje";
+  $qrys="select idNotaC, codProducto from det_nota_c where idNotaC=$mensaje";
   echo $qrys;
   $results=mysqli_query($link,$qrys);
   $rows=mysqli_fetch_array($results);
   
   if ($rows['Cod_producto']==0)
-  	$qryr="update det_nota_c set Cod_producto=0, Can_producto=$descuento where Id_Nota=$mensaje";
+  	$qryr="update det_nota_c set codProducto=0, cantProducto=$descuento where idNotaC=$mensaje";
 if ($rows['Cod_producto']==NULL)
-  	$qryr="insert into det_nota_c (Id_Nota, Cod_producto, Can_producto) values ($mensaje, 0,$descuento)";
+  	$qryr="insert into det_nota_c (idNotaC, codProducto, cantProducto) values ($mensaje, 0,$descuento)";
   echo $qryr; 
   $resultr=mysqli_query($link,$qryr);
   echo'<form action="makeNota.php" method="post" name="formulario">';
@@ -180,7 +180,7 @@ if ($rows['Cod_producto']==NULL)
 if ($crear==5) //PARA CANCELAR SI LA NOTA ES POR TODA LA FACTURA
 {
   //CONSULTA EL TOTAL DE NOTA
-  $qrys= "SELECT round(nota_c.Total) as totaln, Fecha, Fac_dest, factura.Total as totalf FROM nota_c, factura where Nota=$mensaje and idFactura=Fac_dest";
+  $qrys= "SELECT round(nota_c.totalNotaC) as totaln, fechaNotaC, facturaDestino, factura.Total as totalf FROM nota_c, factura where idNotaC=$mensaje and idFactura=facturaDestino";
   $results=mysqli_query($link,$qrys);
   $rows=mysqli_fetch_array($results);
   $totaln=$rows['totaln'];
@@ -236,10 +236,10 @@ if (($motivo==0)&&(($crear==5)||($crear==2)))  //CREAR 2 PARA ENTRAR EN LA OPCI�
 	select codProducto, Producto, cantProducto from det_factura, distribucion where idFactura=$Fac_orig and codProducto=Id_distribucion";
 	$resultd=mysqli_query($link,$qryd);
 	echo'<select name="codigo" id="codigo" onChange="loadXMLDoc()" required>';
-	$result=mysqli_query($link," select Tabla.codProducto, Tabla.Producto, Nota 
-	FROM (select codProducto, Nombre as Producto, cantProducto, Nota from det_factura, prodpre, nota_c where idFactura=Fac_orig and codProducto=Cod_prese and Nota=$mensaje
-	union select codProducto, Producto, cantProducto, Nota from det_factura, distribucion, nota_c where idFactura=Fac_orig and codProducto=Id_distribucion and Nota=$mensaje) as Tabla 
-	LEFT JOIN det_nota_c ON Tabla.codProducto=det_nota_c.Cod_producto AND Id_Nota=$mensaje where det_nota_c.Cod_producto IS NULL;");
+	$result=mysqli_query($link," select Tabla.codProducto, Tabla.Producto, idNotaC 
+	FROM (select codProducto, Nombre as Producto, cantProducto, idNotaC from det_factura, prodpre, nota_c where idFactura=facturaOrigen and codProducto=Cod_prese and idNotaC=$mensaje
+	union select codProducto, Producto, cantProducto, idNotaC from det_factura, distribucion, nota_c where idFactura=facturaOrigen and codProducto=Id_distribucion and idNotaC=$mensaje) as Tabla 
+	LEFT JOIN det_nota_c ON Tabla.codProducto=det_nota_c.codProducto AND idNotaC=$mensaje where det_nota_c.codProducto IS NULL;");
 	echo '<option value="" selected>'."--------------------------------------------".'</option>';
 	while($row=mysqli_fetch_array($result))
 	{
@@ -291,13 +291,13 @@ if (($motivo==1) && ($crear==2))// CREAR 2 ACTIVAR LA OPCION DE MOTIVO 1 QUE ES 
 		</tr>';
 	  
 	  $link=conectarServidor();
-	  $qry="select det_nota_c.Cod_producto as codigo, Nombre as producto, det_nota_c.Can_producto as cantidad, tasa, Id_tasa, Des_fac_or, precioProducto as precio, (precioProducto*det_nota_c.Can_producto) AS subtotal FROM det_nota_c, nota_c, det_factura, prodpre, 	
+	  $qry="select det_nota_c.codProducto as codigo, Nombre as producto, det_nota_c.cantProducto as cantidad, tasa, Id_tasa, descuentoFactOrigen, precioProducto as precio, (precioProducto*det_nota_c.cantProducto) AS subtotal FROM det_nota_c, nota_c, det_factura, prodpre, 	
 	  tasa_iva 
-	  where Id_Nota=Nota and Id_Nota=$mensaje and det_nota_c.Cod_producto<100000 and Fac_orig=idFactura AND det_nota_c.Cod_producto=det_factura.codProducto AND det_nota_c.Cod_producto=Cod_prese and Cod_iva=Id_tasa 
+	  where idNotaC=idNotaC and idNotaC=$mensaje and det_nota_c.codProducto<100000 and facturaOrigen=idFactura AND det_nota_c.codProducto=det_factura.codProducto AND det_nota_c.codProducto=Cod_prese and Cod_iva=Id_tasa 
 	  union
-	  select det_nota_c.Cod_producto as codigo, Producto as producto,det_nota_c.Can_producto as cantidad, tasa, Id_tasa, Des_fac_or,  precioProducto as precio, (precioProducto*det_nota_c.Can_producto) AS subtotal from det_nota_c, nota_c, det_factura, distribucion, 	
+	  select det_nota_c.codProducto as codigo, Producto as producto,det_nota_c.cantProducto as cantidad, tasa, Id_tasa, descuentoFactOrigen,  precioProducto as precio, (precioProducto*det_nota_c.cantProducto) AS subtotal from det_nota_c, nota_c, det_factura, distribucion, 	
 	  tasa_iva 
-	  where Id_Nota=Nota and Id_Nota=$mensaje and det_nota_c.Cod_producto>100000 AND Fac_orig=idFactura AND det_nota_c.Cod_producto=det_factura.codProducto AND det_nota_c.Cod_producto=Id_distribucion and Cod_iva=Id_tasa ;";
+	  where idNotaC=idNotaC and idNotaC=$mensaje and det_nota_c.codProducto>100000 AND facturaOrigen=idFactura AND det_nota_c.codProducto=det_factura.codProducto AND det_nota_c.codProducto=Id_distribucion and Cod_iva=Id_tasa ;";
 	  $result=mysqli_query($link,$qry);
 	  $subtotal=0;
 	  $descuento=0;
@@ -405,7 +405,7 @@ if (($motivo==1) && ($crear==2))// CREAR 2 ACTIVAR LA OPCION DE MOTIVO 1 QUE ES 
 		  <td colspan="6"><div align="right"><strong>TOTAL</strong></div></td>
 		  <td><div align="center"><strong>$ '.$Tot.'</strong></div></td>
 		  </tr></table>';
-	  $qryupd="update nota_c set Total=$Total , Subtotal=$subtotal, IVA=$iva where Nota=$mensaje";
+	  $qryupd="update nota_c set totalNotaC=$Total , subtotalNotaC=$subtotal, ivaNotaC=$iva where idNotaC=$mensaje";
 	  $result=mysqli_query($link,$qryupd);
 	  mysqli_close($link);
 	  echo '<form method="post" action="detCompramp.php" name="form3">';
@@ -415,7 +415,7 @@ if (($motivo==1) && ($crear==2))// CREAR 2 ACTIVAR LA OPCION DE MOTIVO 1 QUE ES 
 	}
 	if (($motivo==1) && ($crear==5))
 	  {
-		  $qrydet= "select Can_producto as Descuento, Factura.Subtotal from det_nota_c, nota_c, factura where Id_Nota=$mensaje and Id_Nota=Nota and Fac_orig=idFactura;";
+		  $qrydet= "select cantProducto as Descuento, Factura.Subtotal from det_nota_c, nota_c, factura where idNotaC=$mensaje and idNotaC=idNotaC and facturaOrigen=idFactura;";
 		  $resultdet=mysqli_query($link,$qrydet);
 	  	  $rowdet=mysqli_fetch_array($resultdet);
 	  	  $desct=$rowdet['Descuento'];
@@ -461,7 +461,7 @@ if (($motivo==1) && ($crear==2))// CREAR 2 ACTIVAR LA OPCION DE MOTIVO 1 QUE ES 
 		  
 		  
 		  
-	  $qryupd="update nota_c set Total=$Total , Subtotal=$subtotal, IVA=$iva where Nota=$mensaje";
+	  $qryupd="update nota_c set totalNotaC=$Total , subtotalNotaC=$subtotal, ivaNotaC=$iva where idNotaC=$mensaje";
 	  $result=mysqli_query($link,$qryupd);
 	  }
     ?>

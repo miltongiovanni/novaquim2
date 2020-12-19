@@ -66,7 +66,7 @@ else
    	$inicio = ($pagina - 1) * $TAMANO_PAGINA; 
 }
 $link=conectarServidor();
-$sql="	select Nota, nomCliente, Fecha, Fac_orig, Fac_dest, Motivo, Total from nota_c, clientes where Nit_cliente=nitCliente and Nit_cliente='$cliente' order by Nota DESC;";
+$sql="	select idNotaC, nomCliente, fechaNotaC, facturaOrigen, facturaDestino, Motivo, totalNotaC from nota_c, clientes where Nit_cliente=nitCliente and Nit_cliente='$cliente' order by idNotaC DESC;";
 $result=mysqli_query($link,$sql);
 
 $num_total_registros = mysqli_num_rows($result); 
@@ -87,7 +87,7 @@ if ($total_paginas > 1){
 }
 echo '</div>';
 
-$ssql="	select Nota, nomCliente, Fecha, Fac_orig, Fac_dest, Motivo, Total from nota_c, clientes where Nit_cliente=nitCliente and Nit_cliente='$cliente' order by Nota DESC  limit " . $inicio . "," . $TAMANO_PAGINA;
+$ssql="	select idNotaC, nomCliente, fechaNotaC, facturaOrigen, facturaDestino, Motivo, totalNotaC from nota_c, clientes where Nit_cliente=nitCliente and Nit_cliente='$cliente' order by idNotaC DESC  limit " . $inicio . "," . $TAMANO_PAGINA;
 $rs = mysqli_query($link,$ssql);
 
 
@@ -113,15 +113,15 @@ while($row=mysqli_fetch_array($rs, MYSQLI_BOTH))
 	<td class="formatoDatos"><div align="center">$ <script > document.write(commaSplit('.round($row['Total'],0).'))</script></div></td>';
 	
 	echo'</tr>';
-	$sqli="select det_nota_c.Cod_producto as codigo, Nombre as producto, det_nota_c.Can_producto as cantidad 
+	$sqli="select det_nota_c.codProducto as codigo, Nombre as producto, det_nota_c.cantProducto as cantidad 
 	FROM det_nota_c, nota_c, det_factura, prodpre
-	where Id_Nota=Nota and Id_Nota=$mensaje and det_nota_c.Cod_producto<100000 and det_nota_c.Cod_producto>0  AND det_nota_c.Cod_producto=Cod_prese 
+	where idNotaC=idNotaC and idNotaC=$mensaje and det_nota_c.codProducto<100000 and det_nota_c.codProducto>0  AND det_nota_c.codProducto=Cod_prese 
 	union
-	select det_nota_c.Cod_producto as codigo, Producto as producto,det_nota_c.Can_producto as cantidad
+	select det_nota_c.codProducto as codigo, Producto as producto,det_nota_c.cantProducto as cantidad
 	from det_nota_c, nota_c, det_factura, distribucion
-	where Id_Nota=Nota and Id_Nota=$mensaje and det_nota_c.Cod_producto>100000 AND det_nota_c.Cod_producto=Id_distribucion
+	where idNotaC=idNotaC and idNotaC=$mensaje and det_nota_c.codProducto>100000 AND det_nota_c.codProducto=Id_distribucion
 	union
-	select Cod_producto as codigo, CONCAT ('Descuento de ', Can_producto, '% no aplicado en la factura')  as producto, Can_producto AS cantidad from det_nota_c where Id_Nota=$mensaje AND Cod_producto=0";
+	select codProducto as codigo, CONCAT ('Descuento de ', cantProducto, '% no aplicado en la factura')  as producto, cantProducto AS cantidad from det_nota_c where idNotaC=$mensaje AND codProducto=0";
 	$resulti=mysqli_query($link,$sqli);
 	echo '<tr><td colspan="7"><div class="commenthidden" id="UniqueName'.$a.'"><table width="750" border="0" align="center" cellspacing="0" summary="Detalle">
 	<tr>

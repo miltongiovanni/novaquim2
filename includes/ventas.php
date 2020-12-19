@@ -33,12 +33,23 @@ function calcularTotalesFactura($idFactura, $tasaDescuento)
 {
     $facturaOperador = new FacturasOperaciones();
     $totalesFactura = $facturaOperador->getTotalesFactura($idFactura);
-    $subtotal = $totalesFactura['subtotalfactura'];
-    $descuento = $subtotal * $tasaDescuento;
-    $iva10 = $totalesFactura['iva10factura'];
-    $iva16 = $totalesFactura['iva19factura'];
-    $iva10Real = $iva10 * (1 - $tasaDescuento);
-    $iva16Real = $iva16 * (1 - $tasaDescuento);
+    if ($totalesFactura){
+        $subtotal = $totalesFactura['subtotalfactura'];
+        $iva10 = $totalesFactura['iva10factura'];
+        $iva16 = $totalesFactura['iva19factura'];
+        $descuento = $subtotal * $tasaDescuento;
+        $iva10Real = $iva10 * (1 - $tasaDescuento);
+        $iva16Real = $iva16 * (1 - $tasaDescuento);
+    }
+    else{
+        $subtotal = 0;
+        $iva10 = 0;
+        $iva16 = 0;
+        $descuento = 0;
+        $iva10Real = 0;
+        $iva16Real = 0;
+    }
+
     $detCliente = $facturaOperador->getDetClienteFactura($idFactura);
     $ciudadCliente = $detCliente['ciudadCliente'];
     $idCatCliente = $detCliente['idCatCliente'];

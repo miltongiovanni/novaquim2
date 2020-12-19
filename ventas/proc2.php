@@ -7,8 +7,8 @@ $valor=explode(",", $q);
 $cod=$valor[0];
 $not=$valor[1];
 $link=conectarServidor(); 
-$sql="select tabla.Producto, tabla.cantProducto from (select codProducto, Nombre as Producto, cantProducto, Nota from det_factura, prodpre, nota_c where idFactura=Fac_orig and codProducto=Cod_prese and Nota=$not
-union select codProducto, Producto, cantProducto, Nota from det_factura, distribucion, nota_c where idFactura=Fac_orig and codProducto=Id_distribucion and Nota=$not) as tabla WHERE tabla.codProducto=$cod;";
+$sql="select tabla.Producto, tabla.cantProducto from (select codProducto, Nombre as Producto, cantProducto, idNotaC from det_factura, prodpre, nota_c where idFactura=facturaOrigen and codProducto=Cod_prese and idNotaC=$not
+union select codProducto, Producto, cantProducto, idNotaC from det_factura, distribucion, nota_c where idFactura=facturaOrigen and codProducto=Id_distribucion and idNotaC=$not) as tabla WHERE tabla.codProducto=$cod;";
 $res=mysqli_query($link, $sql);
 $fila=mysqli_fetch_array($res);
 $can=$fila['Can_producto'];
