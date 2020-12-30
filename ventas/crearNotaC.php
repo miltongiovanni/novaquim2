@@ -4,49 +4,79 @@ include "../includes/valAcc.php";
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-<meta charset="utf-8">
-<title>Seleccionar Cliente a Crear Nota</title>
-<script  src="../js/validar.js"></script>
-
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <meta charset="utf-8">
+    <title>Crear Nota Crédito</title>
+    <script src="../js/validar.js"></script>
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/findCliente.js"></script>
+    <script>
+        function findFacturasCliente(idCliente) {
+            $.ajax({
+                url: '../includes/controladorVentas.php',
+                type: 'POST',
+                data: {
+                    "action": 'findFacturasByCliente',
+                    "idCliente": idCliente
+                },
+                dataType: 'html',
+                success: function (facturasList) {
+                    $("#facturaOrigen").html(facturasList);
+                    $("#facturaDestino").html(facturasList);
+                },
+                error: function () {
+                    alert("Vous avez un GROS problème");
+                }
+            });
+        }
+    </script>
 
 </head>
 <body>
 <div id="contenedor">
-<div id="saludo"><strong>SELECCIONAR CLIENTE AL QUE SE LE VA A CREAR NOTA</strong></div>
-<table border="0" align="center" width="700" summary="cuerpo">
-  	<tr>
-    	<td colspan="2"><div align="center">&nbsp;</div></td>
-    </tr>
-    <tr>
-    	<td>
-		<form id="form1" name="form1" method="post" action="crearNotaC2.php">
-      	<div align="center"><strong>Cliente:</strong>
-<?php
-				include "includes/conect.php";
-				$link=conectarServidor();
-				echo'<select name="cliente" id="combo">';
-				$result=mysqli_query($link,"select nitCliente, nomCliente from clientes order by nomCliente");
-				echo '<option selected value="">-----------------------------------------------------------------------------------</option>';
-				while($row=mysqli_fetch_array($result)){
-					echo '<option value='.$row['Nit_clien'].'>'.$row['Nom_clien'].'</option>';
-				}
-				echo'</select>';
-				mysqli_free_result($result);
-				mysqli_close($link);
-			?>
-            <input name="Submit" type="submit" class="formatoBoton1" onClick="return Enviar2(this.form);" value="Continuar">
-      	</div>
-    	</form>    
-        </td>
-  	</tr>
-    <tr>
-    	<td colspan="2"><div align="center">&nbsp;</div></td>
-    </tr>
-    <tr> 
-        <td colspan="2"><div align="center"><input type="button" class="formatoBoton1" onClick="history.back()" value="  VOLVER  "></div></td>
-    </tr>
-</table>
+    <div id="saludo"><strong>CREAR NOTA CRÉDITO</strong></div>
+    <form id="form1" name="form1" method="post" action="makeNotaC.php">
+        <div class="form-group row">
+            <label class="col-form-label col-2" for="busClien"><strong>Cliente</strong></label>
+            <input type="text" class="form-control col-1" id="busClien" name="busClien"
+                   onkeyup="findClienteNotaCr()"
+                   required/>
+            <div class="col-4" id="myDiv"></div>
+        </div>
+        <div class="form-group row">
+            <label class="col-form-label col-2" for="motivo"><strong>Razón de la Nota</strong></label>
+            <select name="motivo" size="1" id="motivo" class="form-control col-5">
+                <option value="0" selected="">Devolución de Productos</option>
+                <option value="1">Descuento no aplicado</option>
+            </select>
+        </div>
+        <div class="form-group row">
+            <label class="col-form-label col-2" for="facturaOrigen"><strong>Factura origen de la Nota</strong></label>
+            <select name="facturaOrigen" id="facturaOrigen" class="form-control col-5" required>
+            </select>
+        </div>
+        <div class="form-group row">
+            <label class="col-form-label col-2" for="facturaDestino"><strong>Factura destino de la Nota</strong></label>
+            <select name="facturaDestino" id="facturaDestino" class="form-control col-5" required>
+            </select>
+        </div>
+        <div class="form-group row">
+            <label class="col-form-label col-2 text-right" for="fechaNotaC"><strong>Fecha Nota Crédito</strong></label>
+            <input type="date" class="form-control col-5" name="fechaNotaC" id="fechaNotaC" required>
+        </div>
+        <div class="row form-group">
+            <div class="col-1">
+                <button class="button" onclick="return Enviar(this.form)">
+                    <span>Continuar</span></button>
+            </div>
+        </div>
+    </form>
+    <div class="row form-group">
+        <div class="col-1">
+            <button class="button1" onclick="history.back()">
+                <span>VOLVER</span></button>
+        </div>
+    </div>
 </div>
 </body>
 </html>

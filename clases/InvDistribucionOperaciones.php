@@ -38,6 +38,19 @@ class InvDistribucionOperaciones
         }
     }
 
+    public function existeInvDistribucion($codDistribucion)
+    {
+        $qry = "SELECT invDistribucion FROM inv_distribucion WHERE codDistribucion=? ";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($codDistribucion));
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($result == null) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
     public function getTableInvDistribucion()
     {
         $qry = "SELECT codDistribucion, producto, round(invDistribucion, 0) invDistribucion

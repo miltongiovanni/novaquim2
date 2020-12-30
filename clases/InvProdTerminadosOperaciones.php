@@ -8,6 +8,8 @@ class InvProdTerminadosOperaciones
     {
         $this->setDb();
     }
+//INSERT INTO table (id, name, age) VALUES(1, "A", 19) ON DUPLICATE KEY UPDATE
+//name="A", age=19
 
     public function makeInvProdTerminado($datos)
     {
@@ -35,6 +37,19 @@ class InvProdTerminadosOperaciones
             return 0;
         } else {
             return $result['invProd'];
+        }
+    }
+
+    public function existeInvProdTerminadoByLote($codPresentacion, $loteProd)
+    {
+        $qry = "SELECT invProd FROM inv_prod WHERE codPresentacion=? AND loteProd=?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($codPresentacion, $loteProd));
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($result == null) {
+            return false;
+        } else {
+            return true;
         }
     }
 

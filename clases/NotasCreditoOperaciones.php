@@ -12,7 +12,7 @@ class NotasCreditoOperaciones
     public function makeNotaC($datos)
     {
         /*Preparo la insercion */
-        $qry = "INSERT INTO nota_c (idNotaC, idPedido, idCliente, fechaNotaC, fechaVenc, tipPrecio, estado, idRemision, ordenCompra, descuento, observaciones) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $qry = "INSERT INTO nota_c (idCliente, fechaNotaC, facturaOrigen, facturaDestino, motivo, descuentoFactOrigen) VALUES(?, ?, ?, ?, ?, ?)";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute($datos);
         return $this->_pdo->lastInsertId();
@@ -60,38 +60,48 @@ class NotasCreditoOperaciones
 
     public function getTotalesNotaC($idNotaC)
     {
-        $qry = "SELECT idNotaC, SUM(subtotal) subtotalnota_c, SUM(iva10) iva10nota_c, SUM(iva19) iva19nota_c
-                FROM
-                    (SELECT dp.idNotaC, cantProducto, precioProducto,
-                            cantProducto*precioProducto subtotal, IF(idTasaIvaProducto=5 OR idTasaIvaProducto=2, cantProducto*precioProducto*tasaIva,0  ) iva10,
-                            IF(idTasaIvaProducto=3 OR idTasaIvaProducto=7, cantProducto*precioProducto*tasaIva,0 ) iva19
-                     FROM det_nota_c dp
-                              LEFT JOIN nota_c f on f.idNotaC = dp.idNotaC
-                              LEFT JOIN prodpre p on dp.codProducto = p.codPresentacion
-                              LEFT JOIN tasa_iva ti on ti.idTasaIva = dp.idTasaIvaProducto
-                     WHERE dp.idNotaC = $idNotaC
-                       AND dp.codProducto > 10000
-                       AND dp.codProducto < 100000
-                     UNION
-                     SELECT dp.idNotaC, cantProducto, precioProducto,
-                            cantProducto*precioProducto subtotal, IF(idTasaIvaProducto=5 OR idTasaIvaProducto=2, cantProducto*precioProducto*tasaIva,0  ) iva10,
-                            IF(idTasaIvaProducto=3 OR idTasaIvaProducto=7, cantProducto*precioProducto*tasaIva,0 ) iva19
-                     FROM det_nota_c dp
-                              LEFT JOIN nota_c f on f.idNotaC = dp.idNotaC
-                              LEFT JOIN distribucion d on dp.codProducto = d.idDistribucion
-                              LEFT JOIN tasa_iva ti on ti.idTasaIva = dp.idTasaIvaProducto
-                     WHERE dp.idNotaC = $idNotaC
-                       AND dp.codProducto > 100000
-                     UNION
-                     SELECT dp.idNotaC, cantProducto, precioProducto,
-                            cantProducto*precioProducto subtotal, IF(idTasaIvaProducto=5 OR idTasaIvaProducto=2, cantProducto*precioProducto*tasaIva,0  ) iva10,
-                            IF(idTasaIvaProducto=3 OR idTasaIvaProducto=7, cantProducto*precioProducto*tasaIva,0 ) iva19
-                     FROM det_nota_c dp
-                              LEFT JOIN nota_c f on f.idNotaC = dp.idNotaC
-                              LEFT JOIN servicios s on dp.codProducto = s.idServicio
-                              LEFT JOIN tasa_iva i on i.idTasaIva = dp.idTasaIvaProducto
-                     WHERE dp.idNotaC = $idNotaC
-                       AND dp.codProducto < 100) t
+        $qry = "SELECT idNotaC,
+                       CONCAT('$', FORMAT(SUM(subtotal), 0))                           subtotalnota_c,
+                       ROUND(SUM(subtotal), 0)                                         subtotal,
+                       CONCAT('$', FORMAT(SUM(iva10), 0))                              iva10nota_c,
+                       CONCAT('$', FORMAT(SUM(iva19), 0))                              iva19nota_c,
+                       CONCAT('$', FORMAT(SUM(subtotal) + SUM(iva19) + SUM(iva10), 0)) totalFormatNota_c,
+                       ROUND(SUM(iva19) + SUM(iva10), 0)                               iva,
+                       ROUND(SUM(subtotal) + SUM(iva19) + SUM(iva10), 0)               totalNotaC
+                FROM (SELECT dnc.idNotaC,
+                             dnc.cantProducto,
+                             precioProducto,
+                             dnc.cantProducto * precioProducto * (1 - descuentoFactOrigen)                  subtotal,
+                             IF(idTasaIvaProducto = 5 OR idTasaIvaProducto = 2,
+                                dnc.cantProducto * precioProducto * tasaIva * (1 - descuentoFactOrigen), 0) iva10,
+                             IF(idTasaIvaProducto = 3 OR idTasaIvaProducto = 7,
+                                dnc.cantProducto * precioProducto * tasaIva * (1 - descuentoFactOrigen), 0) iva19
+                      FROM det_nota_c dnc
+                               LEFT JOIN nota_c nc on nc.idNotaC = dnc.idNotaC
+                               LEFT JOIN factura f ON nc.facturaOrigen = f.idFactura
+                               LEFT JOIN det_factura df ON df.codProducto = dnc.codProducto AND df.idFactura = f.idFactura
+                               LEFT JOIN prodpre p on dnc.codProducto = p.codPresentacion
+                               LEFT JOIN tasa_iva ti on ti.idTasaIva = df.idTasaIvaProducto
+                      WHERE dnc.idNotaC = $idNotaC
+                        AND dnc.codProducto > 10000
+                        AND dnc.codProducto < 100000
+                      UNION
+                      SELECT dnc2.idNotaC,
+                             dnc2.cantProducto,
+                             precioProducto,
+                             dnc2.cantProducto * precioProducto * (1 - descuentoFactOrigen)                  subtotal,
+                             IF(idTasaIvaProducto = 5 OR idTasaIvaProducto = 2,
+                                dnc2.cantProducto * precioProducto * tasaIva * (1 - descuentoFactOrigen), 0) iva10,
+                             IF(idTasaIvaProducto = 3 OR idTasaIvaProducto = 7,
+                                dnc2.cantProducto * precioProducto * tasaIva * (1 - descuentoFactOrigen), 0) iva19
+                      FROM det_nota_c dnc2
+                               LEFT JOIN nota_c nc2 on nc2.idNotaC = dnc2.idNotaC
+                               LEFT JOIN factura f ON nc2.facturaOrigen = f.idFactura
+                               LEFT JOIN det_factura df ON df.codProducto = dnc2.codProducto AND df.idFactura = f.idFactura
+                               LEFT JOIN distribucion d on dnc2.codProducto = d.idDistribucion
+                               LEFT JOIN tasa_iva ti on ti.idTasaIva = df.idTasaIvaProducto
+                      WHERE dnc2.idNotaC = $idNotaC
+                        AND dnc2.codProducto > 100000) t
                 GROUP BY idNotaC";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute(array());
@@ -111,56 +121,47 @@ class NotasCreditoOperaciones
         return $result;
     }
 
-    public function getProductosCotizacion($precio, $presentaciones, $productos_c)
+    public function getProductosNotaC($idNotaC, $facturaOrigen)
     {
-        if ($precio == 1) {
-            $lista = 'fabrica';
-        }
-        if ($precio == 2) {
-            $lista = 'distribuidor';
-        }
-        if ($precio == 3) {
-            $lista = 'detal';
-        }
-        if ($precio == 4) {
-            $lista = 'mayor';
-        }
-        if ($precio == 5) {
-            $lista = 'super';
-        }
-        //SELECCIONA EL TIPO DE PRESENTACIONES 1 PARA TODAS, 2 PARA PEQUEÑAS Y 3 PARA GRANDES
-        if ($presentaciones == 1)
-            $wh = " AND cantMedida<=20000";
-        if ($presentaciones == 2)
-            $wh = " AND cantMedida<4000";
-        if ($presentaciones == 3)
-            $wh = " AND cantMedida>3500";
-        $seleccion_p = explode(",", $productos_c);
-        $b = count($seleccion_p);
-        $qryp = " AND (";
-        for ($k = 0; $k < $b; $k++) {
-            $qryp = $qryp . " p2.idCatProd=" . ($seleccion_p[$k]);
-            if ($k <= ($b - 2))
-                $qryp = $qryp . " OR ";
-        }
-        $qryp = $qryp . ")";
-        $qry = "SELECT DISTINCT pr.codigoGen,
-                                producto,
-                                FORMAT($lista, 0)      $lista
-                FROM precios pr
-                         LEFT JOIN prodpre p on pr.codigoGen = p.codigoGen
-                         LEFT JOIN medida m on p.codMedida = m.idMedida
-                         LEFT JOIN productos p2 on p.codProducto = p2.codProducto
-                         LEFT JOIN cat_prod cp on p2.idCatProd = cp.idCatProd
-                WHERE presActiva = 1
-                  AND presLista = 1
-                  $wh
-                  $qryp
-                  ORDER BY producto";
+        $qry = "SELECT t.codProducto, t.producto, t.cantProducto
+                FROM (SELECT df.codProducto, presentacion as producto, cantProducto
+                      FROM det_factura df
+                               LEFT JOIN prodpre p ON df.codProducto = p.codPresentacion
+                      WHERE idFactura = $facturaOrigen
+                        AND p.codPresentacion IS NOT NULL
+                      UNION
+                      SELECT codProducto, producto, cantProducto
+                      FROM det_factura df2
+                               LEFT JOIN distribucion d ON df2.codProducto = d.idDistribucion
+                      WHERE idFactura = $facturaOrigen
+                        AND d.idDistribucion IS NOT NULL) t
+                         LEFT JOIN (SELECT codProducto FROM det_nota_c WHERE idNotaC=$idNotaC) dnc ON t.codProducto = dnc.codProducto
+                WHERE dnc.codProducto  IS NULL";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();
-        $result = $stmt->fetchAll(PDO::FETCH_NUM);
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
+    }
+
+    public function getCantDetProductosNotaC($facturaOrigen, $codProducto)
+    {
+        $qry = "SELECT t.codProducto, t.producto, t.cantProducto
+                FROM (SELECT df.codProducto, presentacion as producto, cantProducto
+                      FROM det_factura df
+                               LEFT JOIN prodpre p ON df.codProducto = p.codPresentacion
+                      WHERE idFactura = $facturaOrigen
+                        AND p.codPresentacion IS NOT NULL
+                      UNION
+                      SELECT codProducto, producto, cantProducto
+                      FROM det_factura df2
+                               LEFT JOIN distribucion d ON df2.codProducto = d.idDistribucion
+                      WHERE idFactura = $facturaOrigen
+                        AND d.idDistribucion IS NOT NULL) t
+                WHERE t.codProducto  =$codProducto;";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result['cantProducto'];
     }
 
     public function getProductosDistNotaC($distribucion)
@@ -309,37 +310,20 @@ class NotasCreditoOperaciones
     public function getNotaC($idNotaC)
     {
         $qry = "SELECT idNotaC,
-                   idPedido,
-                   f.idCliente,
-                   nitCliente,
-                   descuento,
-                   fechaNotaC,
-                   fechaVenc,
-                   idRemision,
-                   ordenCompra,
-                   tipPrecio,
-                   nomCliente,
-                   telCliente,
-                   dirCliente,
-                   Ciudad,
-                   idPersonal,
-                   nomPersonal vendedor,
-                   observaciones,
-                   retencionIva,
-                   retencionFte,
-                   retencionIca,
-                   total,
-                   subtotal,
-                   iva,
-                   f.Estado,
-                   IF(f.estado = 'A', 'Anulada',
-                      IF(f.estado = 'P', 'Pendiente', IF(f.estado = 'C', 'Cancelada', 'En proceso'))) estadoNotaC
-            
-            FROM nota_c f
-                     LEFT JOIN clientes c on c.idCliente = f.idCliente
-                     LEFT JOIN personal p on p.idPersonal = c.codVendedor
-                     LEFT JOIN ciudades c2 on c2.idCiudad = c.ciudadCliente
-            WHERE idNotaC = ?";
+                       nc.idCliente,
+                       nomCliente,
+                       fechaNotaC,
+                       facturaOrigen,
+                       facturaDestino,
+                       motivo,
+                       IF(motivo = 0, 'Devolución', 'Descuento no aplicado') descMotivo,
+                       ROUND(totalNotaC) totalNotaC,
+                       CONCAT('$', FORMAT(SUM(totalNotaC), 0))totalNotaCrFormated,
+                       CONCAT('$', FORMAT(SUM(subtotalNotaC), 0))subtotalNotaC,
+                       CONCAT('$', FORMAT(SUM(ivaNotaC), 0))ivaNotaC
+                FROM nota_c nc
+                         LEFT JOIN clientes c on c.idCliente = nc.idCliente
+                         WHERE idNotaC=?";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute(array($idNotaC));
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -380,7 +364,7 @@ class NotasCreditoOperaciones
 
     public function updateTotalesNotaC($datos)
     {
-        $qry = "UPDATE nota_c SET total=?, retencionIva=?, retencionIca=?, retencionFte=?, subtotal=?, iva=?, totalR=?
+        $qry = "UPDATE nota_c SET subtotalNotaC=?, totalNotaC=?, ivaNotaC=?
                  WHERE idNotaC=?";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute($datos);
@@ -388,7 +372,7 @@ class NotasCreditoOperaciones
 
     public function updateNotaC($datos)
     {
-        $qry = "UPDATE nota_c SET fechaNotaC=?, fechaVenc=?, tipPrecio=?, descuento=?
+        $qry = "UPDATE nota_c SET fechaNotaC=?, facturaOrigen=?, facturaDestino=?, motivo=?, descuentoFactOrigen=?
                  WHERE idNotaC=?";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute($datos);

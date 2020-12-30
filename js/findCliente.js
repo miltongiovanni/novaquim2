@@ -13,7 +13,7 @@ function findCliente() {
             $("#myDiv").html(clienList);
         },
         fail: function () {
-            alert("Vous avez un GROS problËme");
+            alert("Vous avez un GROS probl√®me");
         }
     });
 }
@@ -31,7 +31,7 @@ function findClientePedido() {
             $("#myDiv").html(clienList);
         },
         fail: function () {
-            alert("Vous avez un GROS problËme");
+            alert("Vous avez un GROS probl√®me");
         }
     });
 }
@@ -49,7 +49,26 @@ function findClienteCotizacion() {
             $("#myDiv").html(clienList);
         },
         fail: function () {
-            alert("Vous avez un GROS problËme");
+            alert("Vous avez un GROS probl√®me");
+        }
+    });
+}
+
+function findClienteNotaCr() {
+    let q = document.getElementById("busClien").value;
+    $.ajax({
+        url: '../includes/controladorVentas.php',
+        type: 'POST',
+        data: {
+            "action": 'findClienteNotaC',
+            "q": q,
+        },
+        dataType: 'html',
+        success: function (clienList) {
+            $("#myDiv").html(clienList);
+        },
+        fail: function () {
+            alert("Vous avez un GROS probl√®me");
         }
     });
 }

@@ -83,38 +83,41 @@ function findSucursalesByCliente()
     }
 }
 
-function findProveedorBytipoCompra()
+function cantDetNotaC()
+{
+    $facturaOrigen = $_POST['facturaOrigen'];
+    $codProducto = $_POST['codProducto'];
+    $notaCrOperador = new NotasCreditoOperaciones();
+    $cantidad = $notaCrOperador->getCantDetProductosNotaC($facturaOrigen,$codProducto );
+    for ($i = $cantidad; $i >0; $i--) {
+        echo '<option value=' . $i . '>' . $i . '</option>';
+    }
+}
+
+function findClienteNotaC()
 {
     $q = $_POST['q'];
-    $tipoCompra = $_POST['tipoCompra'];
-    $ProveedorOperador = new ProveedoresOperaciones();
-    $proveedores = $ProveedorOperador->getProveedoresByNameAndTipoCompra($q, $tipoCompra);
-    if (count($proveedores) == 0) {
-        echo '<input type="text" class="form-control col-4" value="No hay sugerencias" readOnly>';
+    $clienteOperador = new ClientesOperaciones();
+    $clientes = $clienteOperador->getClientesByName($q);
+    if (count($clientes) == 0) {
+        echo '<input type="text" class="form-control col-12" value="No hay sugerencias" readOnly>';
     } else {
-        echo '<br>';
-        echo '<select name="idProv" id="idProv" class="form-control col-4">';
-        for ($i = 0; $i < count($proveedores); $i++) {
-            echo '<option value=' . $proveedores[$i]['idProv'] . '>' . $proveedores[$i]['nomProv'] . '</option>';
+        echo '<select name="idCliente" id="idCliente" class="form-control col-12" onchange="findFacturasCliente(this.value);" required>';
+        echo '<option value="" selected disabled>Escoja un cliente</option>';
+        for ($i = 0; $i < count($clientes); $i++) {
+            echo '<option value=' . $clientes[$i]['idCliente'] . '>' . $clientes[$i]['nomCliente'] . '</option>';
         }
         echo '</select>';
     }
 }
 
-function findProveedorGasto()
+function findFacturasByCliente()
 {
-    $q = $_POST['q'];
-    $ProveedorOperador = new ProveedoresOperaciones();
-    $proveedores = $ProveedorOperador->getProveedoresGastos($q);
-    if (count($proveedores) == 0) {
-        echo '<input type="text" class="form-control col-4" value="No hay sugerencias" readOnly>';
-    } else {
-        echo '<br>';
-        echo '<select name="idProv" id="idProv" class="form-control col-4">';
-        for ($i = 0; $i < count($proveedores); $i++) {
-            echo '<option value=' . $proveedores[$i]['idProv'] . '>' . $proveedores[$i]['nomProv'] . '</option>';
-        }
-        echo '</select>';
+    $idCliente = $_POST['idCliente'];
+    $facturaOperador = new FacturasOperaciones();
+    $facturas = $facturaOperador->getFacturasClienteForNotas($idCliente);
+    for ($i = 0; $i < count($facturas); $i++) {
+        echo '<option value=' . $facturas[$i]['idFactura'] . '>' . $facturas[$i]['idFactura'] . '</option>';
     }
 }
 
@@ -188,11 +191,11 @@ switch ($action) {
     case 'findSucursalesByCliente':
         findSucursalesByCliente();
         break;
-    case 'findProveedorBytipoCompra':
-        findProveedorBytipoCompra();
+    case 'findClienteNotaC':
+        findClienteNotaC();
         break;
-    case 'updateEstadoCompra':
-        updateEstadoCompra();
+    case 'cantDetNotaC':
+        cantDetNotaC();
         break;
     case 'findProveedorGasto':
         findProveedorGasto();

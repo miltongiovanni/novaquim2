@@ -81,36 +81,59 @@ class DetNotaCrOperaciones
         return $result;
     }
 
-    public function getTableDetNotaCr($idNotaC)
+    public function getTableDetNotaCrDev($idNotaC)
     {
-        $qry = "SELECT dcp.codProducto, p.presentacion producto, cantProducto, CONCAT('$', FORMAT(precioProducto, 0)) precioProducto,
-                       CONCAT('$', FORMAT(precioProducto*cantProducto, 0)) subtotal, 1 orden
-                FROM det_nota_c dcp
-                         LEFT JOIN prodpre p on dcp.codProducto = p.codPresentacion
-                WHERE idNotaC = $idNotaC
-                  AND dcp.codProducto < 100000 AND dcp.codProducto > 10000
+        $qry = "SELECT dnc.codProducto,
+                       presentacion                          producto,
+                       ROUND(dnc.cantProducto)                      cantidad,
+                       CONCAT(ROUND(ti.tasaIva * 100), ' %') iva,
+                       CONCAT('$', FORMAT(precioProducto, 0)) precioProducto,
+                       CONCAT('$', FORMAT(precioProducto * dnc.cantProducto, 0))     subtotal
+                FROM det_nota_c dnc
+                         LEFT JOIN nota_c nc on nc.idNotaC = dnc.idNotaC
+                         LEFT JOIN factura f ON nc.facturaOrigen = f.idFactura
+                         LEFT JOIN det_factura df ON df.codProducto = dnc.codProducto AND df.idFactura = f.idFactura
+                         LEFT JOIN prodpre p ON dnc.codProducto = p.codPresentacion
+                         LEFT JOIN tasa_iva ti on ti.idTasaIva = df.idTasaIvaProducto
+                WHERE dnc.idNotaC = $idNotaC
+                  AND dnc.codProducto < 100000
+                  AND dnc.codProducto > 10000
                 UNION
-                SELECT dcp.codProducto, producto, cantProducto, CONCAT('$', FORMAT(precioProducto, 0)) precioProducto,
-                       CONCAT('$', FORMAT(precioProducto*cantProducto, 0)) subtotal, 2 orden
-                FROM det_nota_c dcp
-                         LEFT JOIN distribucion d on dcp.codProducto = d.idDistribucion
-                WHERE idNotaC = $idNotaC
-                  AND dcp.codProducto >= 100000
-                UNION
-                SELECT dcp.codProducto, s.desServicio producto, cantProducto, CONCAT('$', FORMAT(precioProducto, 0)) precioProducto,
-                       CONCAT('$', FORMAT(precioProducto*cantProducto, 0)) subtotal, 3 orden
-                FROM det_nota_c dcp
-                         LEFT JOIN servicios s on dcp.codProducto = s.idServicio
-                WHERE idNotaC = $idNotaC
-                  AND dcp.codProducto < 10000
-                ORDER BY orden, producto";
+                SELECT dnc2.codProducto,
+                       Producto          as                 producto,
+                       ROUND(dnc2.cantProducto) as          cantidad,
+                       CONCAT(ROUND(t.tasaIva * 100), ' %') iva,
+                       CONCAT('$', FORMAT(precioProducto, 0)) precioProducto,
+                       CONCAT('$', FORMAT(precioProducto * dnc2.cantProducto, 0))     subtotal
+                FROM det_nota_c dnc2
+                         LEFT JOIN nota_c nc on nc.idNotaC = dnc2.idNotaC
+                         LEFT JOIN factura f ON nc.facturaOrigen = f.idFactura
+                         LEFT JOIN det_factura df ON df.codProducto = dnc2.codProducto AND df.idFactura = f.idFactura
+                         LEFT JOIN distribucion d ON dnc2.codProducto = d.idDistribucion
+                         LEFT JOIN tasa_iva t on t.idTasaIva = df.idTasaIvaProducto
+                WHERE dnc2.idNotaC = $idNotaC
+                  AND dnc2.codProducto > 100000";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);;
         return $result;
     }
 
- public function getTotalFactura($idNotaC)
+    public function getTableDetNotaCrDes($idNotaC)
+    {
+        $qry = "SELECT codProducto                                                          codigo,
+                       CONCAT('Descuento de ', ROUND(cantProducto, 2), '% no aplicado en la factura') producto,
+                       ROUND(cantProducto,2)                                                          cantidad
+                FROM det_nota_c
+                WHERE idNotaC = $idNotaC
+                  AND codProducto = 0";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);;
+        return $result;
+    }
+
+    public function getTotalFactura($idNotaC)
     {
         $qry = "SELECT CONCAT('$', FORMAT(SUM(cantProducto*precioProducto), 0)) totalFactura
                 FROM det_nota_c dp
@@ -118,15 +141,15 @@ class DetNotaCrOperaciones
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute(array($idNotaC));
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        if($result){
+        if ($result) {
             return $result['totalFactura'];
-        }else{
+        } else {
             return 0;
         }
 
     }
 
- public function getTotalItemsFactura($idNotaC)
+    public function getTotalItemsFactura($idNotaC)
     {
         $qry = "SELECT COUNT(*) c
                 FROM det_nota_c dcp
@@ -134,29 +157,45 @@ class DetNotaCrOperaciones
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute(array($idNotaC));
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        if($result){
+        if ($result) {
             return $result['c'];
-        }else{
+        } else {
             return 0;
         }
     }
 
-    public function getDetProdFactura($idNotaC, $codProducto)
+    public function hasDescNotaCr($idNotaC)
+    {
+        $qry = "SELECT idNotaC, codProducto
+                FROM det_nota_c
+                WHERE idNotaC = ?
+                  AND codProducto = 0;";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($idNotaC));
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($result) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function getDetProdNotaCr($idNotaC, $codProducto)
     {
         if ($codProducto > 100000) {
-            $qry = "SELECT producto, cantProducto, precioProducto
+            $qry = "SELECT producto, cantProducto
                     FROM det_nota_c dcp
                              LEFT JOIN distribucion d ON dcp.codProducto=d.idDistribucion
                     WHERE idNotaC = ?
                       AND dcp.codProducto = ?";
-        }elseif($codProducto < 10000){
-            $qry = "SELECT desServicio producto, cantProducto, precioProducto
+        } elseif ($codProducto < 10000) {
+            $qry = "SELECT desServicio producto, cantProducto
                     FROM det_nota_c dcp
                              LEFT JOIN servicios s on dcp.codProducto = s.idServicio
                     WHERE idNotaC = ?
                       AND dcp.codProducto = ?;";
-        }else{
-            $qry = "SELECT presentacion producto, cantProducto, precioProducto
+        } else {
+            $qry = "SELECT presentacion producto, cantProducto
                     FROM det_nota_c dcp
                              LEFT JOIN prodpre p on dcp.codProducto = p.codPresentacion
                     WHERE idNotaC = ?
@@ -170,7 +209,7 @@ class DetNotaCrOperaciones
 
     public function updateDetNotaCr($datos)
     {
-        $qry = "UPDATE det_nota_c SET cantProducto=?, precioProducto=?  WHERE idNotaC=? AND codProducto=?";
+        $qry = "UPDATE det_nota_c SET cantProducto=?  WHERE idNotaC=? AND codProducto=?";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute($datos);
     }
