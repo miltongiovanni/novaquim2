@@ -391,6 +391,9 @@ endif;
             <div class="col-9"><?= numletra($notaC['totalNotaC']) ?></div>
             <div class="col-1 mr-3 px-0">
                 <div class=" text-left">
+                    <strong>DESCUENTO</strong>
+                </div>
+                <div class=" text-left">
                     <strong>IVA 5%</strong>
                 </div>
                 <div class=" text-left">
@@ -401,6 +404,9 @@ endif;
                 </div>
             </div>
             <div class="col-1 ml-3 px-0" style=" flex: 0 0 10%; max-width: 10%;">
+                <div class="text-right">
+                    <strong><?= $notaC['descuentoNotaC']  ?></strong>
+                </div>
                 <div class="text-right">
                     <strong><?= $notaC['motivo'] == 0 ? $totalesNotaC['iva10nota_c'] : '$0' ?></strong>
                 </div>

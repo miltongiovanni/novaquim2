@@ -121,11 +121,14 @@ class DetNotaCrOperaciones
 
     public function getTableDetNotaCrDes($idNotaC)
     {
-        $qry = "SELECT codProducto                                                          codigo,
+        $qry = "SELECT codProducto                                                                    codigo,
                        CONCAT('Descuento de ', ROUND(cantProducto, 2), '% no aplicado en la factura') producto,
-                       ROUND(cantProducto,2)                                                          cantidad
-                FROM det_nota_c
-                WHERE idNotaC = $idNotaC
+                       ROUND(cantProducto, 2)                                                         cantidad,
+                       CONCAT('$', FORMAT(f.subtotal * dnc.cantProducto / 100, 0))                    valor
+                FROM det_nota_c dnc
+                         LEFT JOIN nota_c nc on nc.idNotaC = dnc.idNotaC
+                         LEFT JOIN factura f on nc.facturaOrigen = f.idFactura
+                WHERE dnc.idNotaC = $idNotaC
                   AND codProducto = 0";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();

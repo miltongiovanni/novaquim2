@@ -32,10 +32,9 @@ class NotasCreditoOperaciones
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute(array($idNotaC));
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        if($result==false){
+        if ($result == false) {
             return false;
-        }
-        else{
+        } else {
             return true;
         }
     }
@@ -307,23 +306,32 @@ class NotasCreditoOperaciones
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
+
     public function getNotaC($idNotaC)
     {
         $qry = "SELECT idNotaC,
                        nc.idCliente,
                        nomCliente,
+                       nitCliente,
+                       dirCliente,
+                       telCliente,
+                       ciudad,
                        fechaNotaC,
                        facturaOrigen,
                        facturaDestino,
+                       f.fechaFactura,
+                       CONCAT('$', FORMAT(subtotalNotaC*descuentoFactOrigen, 0)) descuentoNotaC,
                        motivo,
                        IF(motivo = 0, 'Devolución', 'Descuento no aplicado') descMotivo,
-                       ROUND(totalNotaC) totalNotaC,
-                       CONCAT('$', FORMAT(SUM(totalNotaC), 0))totalNotaCrFormated,
-                       CONCAT('$', FORMAT(SUM(subtotalNotaC), 0))subtotalNotaC,
-                       CONCAT('$', FORMAT(SUM(ivaNotaC), 0))ivaNotaC
+                       ROUND(totalNotaC)                                     totalNotaC,
+                       CONCAT('$', FORMAT(SUM(totalNotaC), 0))               totalNotaCrFormated,
+                       CONCAT('$', FORMAT(SUM(subtotalNotaC), 0))            subtotalNotaC,
+                       CONCAT('$', FORMAT(SUM(ivaNotaC), 0))                 ivaNotaC
                 FROM nota_c nc
                          LEFT JOIN clientes c on c.idCliente = nc.idCliente
-                         WHERE idNotaC=?";
+                         LEFT JOIN ciudades c2 on c.ciudadCliente = c2.idCiudad
+                LEFT JOIN factura f on nc.facturaOrigen = f.idFactura
+                WHERE idNotaC =?";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute(array($idNotaC));
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
