@@ -268,33 +268,32 @@ class FacturasOperaciones
         return $result;
     }
 
+    public function getTableFacturasCliente($idCliente)
+    {
+        $qry = "SELECT idFactura,
+                       idPedido,
+                       idRemision,
+                       nomCliente,
+                       fechaFactura,
+                       fechaVenc,
+                       tp.tipoPrecio,
+                       IF(f.estado='A', 'Anulada', IF(f.estado='C', 'Cancelada', 'Pendiente')) estadoFactura,
+                       CONCAT('$', FORMAT(total, 0)) totalFactura
+                FROM factura f
+                         LEFT JOIN clientes c on c.idCliente = f.idCliente
+                         LEFT JOIN tip_precio tp ON f.tipPrecio = tp.idPrecio
+                WHERE f.idCliente=$idCliente";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     public function getFacturasClienteForNotas($idCliente)
     {
         $qry = "SELECT idFactura FROM factura f WHERE f.idCliente=? AND (f.estado!='A' AND f.estado!='C') ORDER BY idFactura DESC";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute(array($idCliente));
-        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        return $result;
-    }
-    public function getTableFacturasCliente($idCliente)
-    {
-        $qry = "SELECT idFactura,
-                       fechaFactura,
-                       fechaEntrega,
-                       tp.tipoPrecio,
-                       nomCliente,
-                       IF(p.estado='A', 'Anulado', IF(p.estado='F', 'Facturado', IF(p.estado='P','Pendiente', 'Por facturar'))) estadoFactura,
-                       nomSucursal,
-                       dirSucursal
-                FROM factura p
-                         LEFT JOIN clientes c on c.idCliente = p.idCliente
-                         LEFT JOIN clientes_sucursal cs on p.idCliente = cs.idCliente AND p.idSucursal = cs.idSucursal
-                         LEFT JOIN tip_precio tp ON p.tipoPrecio = tp.idPrecio
-                 WHERE p.estado='A'
-                 ";
-
-        $stmt = $this->_pdo->prepare($qry);
-        $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
