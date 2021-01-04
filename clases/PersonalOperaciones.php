@@ -26,13 +26,18 @@ class PersonalOperaciones
     public function getPersonal($actif)
     {
         if ($actif == true) {
-            $qry = "SELECT idPersonal, nomPersonal, celPersonal, emlPersonal, areas_personal.area, cargo, activoPersonal, areaPersonal, cargoPersonal, areaPersonal  
-            from personal, areas_personal, cargos_personal
-            wHERE areaPersonal=idArea and activoPersonal=1 AND cargoPersonal=idCargo order by idPersonal";
+            $qry = "SELECT idPersonal, nomPersonal, celPersonal, emlPersonal, ap.area, cargo, activoPersonal, areaPersonal, cargoPersonal, areaPersonal
+                    FROM personal p
+                       LEFT JOIN areas_personal ap on ap.idArea = p.areaPersonal
+                       LEFT JOIN cargos_personal cp on cp.idCargo = p.cargoPersonal
+                    WHERE  activoPersonal = 1
+                    ORDER BY idPersonal";
         } else {
-            $qry = "SELECT idPersonal, nomPersonal, celPersonal, emlPersonal, areas_personal.area, cargo, activoPersonal, areaPersonal, cargoPersonal, areaPersonal  
-            from personal, areas_personal, cargos_personal
-            wHERE areaPersonal=idArea AND cargoPersonal=idCargo order by idPersonal";
+            $qry = "SELECT idPersonal, nomPersonal, celPersonal, emlPersonal, ap.area, cargo, activoPersonal, areaPersonal, cargoPersonal, areaPersonal
+                    FROM personal p
+                       LEFT JOIN areas_personal ap on ap.idArea = p.areaPersonal
+                       LEFT JOIN cargos_personal cp on cp.idCargo = p.cargoPersonal
+                    ORDER BY idPersonal";
         }
 
         $stmt = $this->_pdo->prepare($qry);
@@ -40,6 +45,22 @@ class PersonalOperaciones
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
+
+    public function getVendedores()
+    {
+        $qry = "SELECT idPersonal,
+                       nomPersonal vendedor
+                FROM personal
+                WHERE activoPersonal = 1 AND areaPersonal=3
+                ORDER BY nomPersonal;";
+
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+
     public function getTablePersonal()
     {
         $qry = "SELECT idPersonal, nomPersonal, celPersonal, emlPersonal, area, cargo
@@ -52,6 +73,99 @@ class PersonalOperaciones
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
+
+    public function getTableComisionVendedor($idVendedor, $fechaInicio, $fechaFin)
+    {
+        $qry = "SELECT f.idFactura,
+               nomCliente,
+               CONCAT(ROUND(descuento*100, 1), ' %') desct,
+               CONCAT('$',FORMAT(subtotal, 0)) subtot,
+               fechaCancelacion,
+               CONCAT('$',FORMAT(IF(ventaEmpresa IS NULL, 0, ventaEmpresa), 0))                 vtaEmpresa,
+               CONCAT('$',FORMAT(IF(comisionEmpresa IS NULL, 0, comisionEmpresa), 0 ))          comEmpresa,
+               CONCAT('$',FORMAT(IF(ventaDistribucion IS NULL, 0, ventaDistribucion), 0))       vtaDistribucion,
+               CONCAT('$',FORMAT(IF(comisionDistribucion IS NULL, 0, comisionDistribucion), 0)) comDistribucion,
+               CONCAT('$',FORMAT(IF(comisionEmpresa IS NULL, 0, comisionEmpresa) +
+                                 IF(comisionDistribucion IS NULL, 0, comisionDistribucion), 0)) comTotal
+        FROM factura f
+                 LEFT JOIN clientes c on c.idCliente = f.idCliente
+                 LEFT JOIN personal p on p.idPersonal = c.codVendedor
+                 LEFT JOIN (SELECT f.idFactura,
+                                   SUM(cantProducto * precioProducto * (1 - descuento))                   as ventaEmpresa,
+                                   SUM(cantProducto * precioProducto * (1 - descuento) * comNovaPersonal) as comisionEmpresa
+                            FROM factura f
+                                     LEFT JOIN det_factura df on f.idFactura = df.idFactura
+                                     LEFT JOIN clientes c on c.idCliente = f.idCliente
+                                     LEFT JOIN personal p on p.idPersonal = c.codVendedor
+                            WHERE codVendedor = 3
+                              AND fechaCancelacion >= '$fechaInicio'
+                              AND fechaCancelacion <= '$fechaFin'
+                              AND codProducto < 100000
+                              AND codProducto > 10000
+                            GROUP BY f.idFactura) t1 ON t1.idFactura = f.idFactura
+                 LEFT JOIN (SELECT f.idFactura,
+                                   SUM(cantProducto * precioProducto * (1 - descuento))                  as ventaDistribucion,
+                                   SUM(cantProducto * precioProducto * (1 - descuento) * comDisPersonal) as comisionDistribucion
+                            FROM factura f
+                                     LEFT JOIN det_factura df on f.idFactura = df.idFactura
+                                     LEFT JOIN clientes c on c.idCliente = f.idCliente
+                                     LEFT JOIN personal p on p.idPersonal = c.codVendedor
+                            WHERE codVendedor = 3
+                              AND fechaCancelacion >= '$fechaInicio'
+                              AND fechaCancelacion <= '$fechaFin'
+                              AND codProducto > 100000
+                            GROUP BY f.idFactura) t2 ON t2.idFactura = f.idFactura
+        WHERE codVendedor = $idVendedor
+          AND fechaCancelacion >= '$fechaInicio'
+          AND fechaCancelacion <= '$fechaFin'";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+    public function getTotalComisionVendedor($idVendedor, $fechaInicio, $fechaFin)
+    {
+        $qry = "SELECT CONCAT('$', FORMAT(SUM(comisionEmpresa), 0))        comEmpresa,
+                       CONCAT('$', FORMAT(SUM(comisionDistribucion), 0))   comDistribucion,
+                       CONCAT('$', FORMAT((SUM(comisionEmpresa) +
+                                           SUM(comisionDistribucion)), 0)) comTotal
+                FROM factura f
+                         LEFT JOIN clientes c on c.idCliente = f.idCliente
+                         LEFT JOIN personal p on p.idPersonal = c.codVendedor
+                         LEFT JOIN (SELECT f.idFactura,
+                                           SUM(cantProducto * precioProducto * (1 - descuento))                   as ventaEmpresa,
+                                           SUM(cantProducto * precioProducto * (1 - descuento) * comNovaPersonal) as comisionEmpresa
+                                    FROM factura f
+                                             LEFT JOIN det_factura df on f.idFactura = df.idFactura
+                                             LEFT JOIN clientes c on c.idCliente = f.idCliente
+                                             LEFT JOIN personal p on p.idPersonal = c.codVendedor
+                                    WHERE codVendedor = 3
+                                      AND fechaCancelacion >= '$fechaInicio'
+                                      AND fechaCancelacion <= '2020-01-31'
+                                      AND codProducto < 100000
+                                      AND codProducto > 10000
+                                    GROUP BY f.idFactura) t1 ON t1.idFactura = f.idFactura
+                         LEFT JOIN (SELECT f.idFactura,
+                                           SUM(cantProducto * precioProducto * (1 - descuento))                  as ventaDistribucion,
+                                           SUM(cantProducto * precioProducto * (1 - descuento) * comDisPersonal) as comisionDistribucion
+                                    FROM factura f
+                                             LEFT JOIN det_factura df on f.idFactura = df.idFactura
+                                             LEFT JOIN clientes c on c.idCliente = f.idCliente
+                                             LEFT JOIN personal p on p.idPersonal = c.codVendedor
+                                    WHERE codVendedor = $idVendedor
+                                      AND fechaCancelacion >= '$fechaInicio'
+                                      AND fechaCancelacion <= '$fechaFin'
+                                      AND codProducto > 100000
+                                    GROUP BY f.idFactura) t2 ON t2.idFactura = f.idFactura
+                WHERE codVendedor = 3
+                  AND fechaCancelacion >= '$fechaInicio'
+                  AND fechaCancelacion <= '$fechaFin'";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     public function getPersonalProd()
     {
         $qry = "SELECT idPersonal, nomPersonal 
