@@ -50,7 +50,7 @@ foreach ($_POST as $nombre_campo => $valor) {
     <th width="42" align="center" class="formatoEncabezados">Estado</th>
   </tr>   
 <?php
-$sql="	select idFactura, fechaFactura, fechaVenc, Total, (Total-retencionIva-retencionIca-retencionFte) as 'Valor a Cobrar', (Total-retencionIva-retencionIca-retencionFte-(select SUM(cobro) from r_caja where Fact=idFactura group by Fact)) as 'Saldo', fechaCancelacion, Estado 
+$sql="	select idFactura, fechaFactura, fechaVenc, Total, (Total-retencionIva-retencionIca-retencionFte) as 'Valor a Cobrar', (Total-retencionIva-retencionIca-retencionFte-(select SUM(cobro) from r_caja where idFactura=idFactura group by idFactura)) as 'Saldo', fechaCancelacion, Estado 
 from factura where Nit_cliente='$cliente' ORDER BY idFactura desc;";
 $result=mysqli_query($link,$sql);
 $a=1;
@@ -89,7 +89,7 @@ while($row=mysqli_fetch_array($result, MYSQLI_BOTH))
 	';
 	
 	echo'</tr>';
-	$sqli="select Id_caja, cobro, Fecha from r_caja where Fact=$factura";
+	$sqli="select idRecCaja, cobro, fechaRecCaja from r_caja where idFactura=$factura";
 	$resulti=mysqli_query($link,$sqli);
 	echo '<tr><td colspan="7"><div class="commenthidden" id="UniqueName'.$a.'"><table border="0" align="center" cellspacing="0" bordercolor="#CCCCCC">
 	<tr>

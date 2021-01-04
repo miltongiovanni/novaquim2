@@ -50,7 +50,7 @@ while($row= mysqli_fetch_array($result, MYSQLI_BOTH))
 	//$factura=$row['Factura'];
 	$fecVen=$row['Fecha Vmto'];
 	$fact=$row['Factura'];
-	$qryp="select sum(cobro) as Parcial from r_caja where Fact=$fact";
+	$qryp="select sum(cobro) as Parcial from r_caja where idFactura=$fact";
 	$resultpago=mysqli_query($link,$qryp);
 	$rowpag=mysqli_fetch_array($resultpago);
 	if($rowpag['Parcial'])

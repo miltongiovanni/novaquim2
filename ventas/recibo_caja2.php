@@ -29,7 +29,7 @@ foreach ($_POST as $nombre_campo => $valor) {
 $link=conectarServidor();  
 if($Pago==3)
 {
-	$qryrc="select Fact, cobro, Fecha, descuento_f, form_pago, formaPago, reten, reten_cree, No_cheque, Cod_banco, Banco from r_caja, form_pago, bancos where form_pago=idFormaPago and Cod_banco=Id_banco and Id_caja=$recibo_c";
+	$qryrc="select idFactura, cobro, fechaRecCaja, descuento_f, form_pago, formaPago, reten, reten_cree, idCheque, codBanco, Banco from r_caja, form_pago, bancos where form_pago=idFormaPago and codBanco=idBanco and idRecCaja=$recibo_c";
 	//echo $qryrc;
 	$resultqryrc=mysqli_query($link, $qryrc);
 	$row_rc=mysqli_fetch_array($resultqryrc);
@@ -82,7 +82,7 @@ if($Pago==1)
 	$Reten_fte=$rowfact['Reten_fte'];
 	$Reten_cree=$rowfact['Reten_cree'];
 	/*validacion del valor a pagar"*/
-	$qrytot="select sum(cobro) as Parcial from r_caja where Fact=$factura and Id_caja<>$Recibo";
+	$qrytot="select sum(cobro) as Parcial from r_caja where idFactura=$factura and idRecCaja<>$Recibo";
 	$resultot=mysqli_query($link, $qrytot);
 	$rowtot=mysqli_fetch_array($resultot);
 	$parcial=$rowtot['Parcial'];
@@ -94,7 +94,7 @@ if($Pago==1)
    	}
 	else
 	{
-		$qry="update r_caja set cobro=$abono, Fecha='$fecha', descuento_f=$descuento, form_pago=$Form_pago, reten=$retencion, reten_ica=$Retica, No_cheque=$No_cheque, Cod_banco=$Cod_banco where Id_caja=$Recibo";
+		$qry="update r_caja set cobro=$abono, fechaRecCaja='$fecha', descuento_f=$descuento, form_pago=$Form_pago, reten=$retencion, reten_ica=$Retica, idCheque=$No_cheque, codBanco=$Cod_banco where idRecCaja=$Recibo";
 		//echo "<br><br><br><br><br><br><br>".$qry."<br>";
 		$result=mysqli_query($link, $qry);
    		if($result)
@@ -180,7 +180,7 @@ if($Pago==1)
 		$result=mysqli_query($link, $qry);
 		$row=mysqli_fetch_array($result);
 		$nit=$row['Nit_cliente'];
-		$qry3="select sum(cobro) as Parcial from r_caja where Fact=$factura";
+		$qry3="select sum(cobro) as Parcial from r_caja where idFactura=$factura";
 		$result3=mysqli_query($link, $qry3);
 		$row3=mysqli_fetch_array($result3);
 		$valTot=$row['Total'];
@@ -317,7 +317,7 @@ if($Pago==1)
     <?php 
 	if ($Reten_pago==1)
 	{
-	$qryrc="select Fact, cobro, Fecha, descuento_f, form_pago, formaPago, reten, reten_cree, No_cheque, Cod_banco, Banco from r_caja, form_pago, bancos where form_pago=idFormaPago and Cod_banco=Id_banco and Id_caja=$Recibo";
+	$qryrc="select idFactura, cobro, fechaRecCaja, descuento_f, form_pago, formaPago, reten, reten_cree, idCheque, codBanco, Banco from r_caja, form_pago, bancos where form_pago=idFormaPago and codBanco=idBanco and idRecCaja=$Recibo";
 	$resultqryrc=mysqli_query($link, $qryrc);
 	$row_rc=mysqli_fetch_array($resultqryrc);
 	$factura=$row_rc['Fact'];

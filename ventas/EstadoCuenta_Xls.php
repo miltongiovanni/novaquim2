@@ -42,7 +42,7 @@ $objPHPExcel->setActiveSheetIndex(0)
 // Rename sheet
 $objPHPExcel->getActiveSheet()->setTitle('Estado de cuenta');
 
-$sql="select idFactura, fechaFactura, fechaVenc, Total, (Total-retencionIva-retencionIca-retencionFte) as 'Valor a Cobrar', (Total-retencionIva-retencionIca-retencionFte-(select SUM(cobro) from r_caja where Fact=idFactura group by Fact)) as 'Saldo', fechaCancelacion, Estado 
+$sql="select idFactura, fechaFactura, fechaVenc, Total, (Total-retencionIva-retencionIca-retencionFte) as 'Valor a Cobrar', (Total-retencionIva-retencionIca-retencionFte-(select SUM(cobro) from r_caja where idFactura=idFactura group by idFactura)) as 'Saldo', fechaCancelacion, Estado 
 from factura where Nit_cliente='$cliente' ORDER BY idFactura desc;";
 $result=mysqli_query($link,$sql) or die("Error al conectar a la base de datos.");
 $i=3;

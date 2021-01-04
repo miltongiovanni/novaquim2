@@ -30,12 +30,12 @@ foreach ($_POST as $nombre_campo => $valor) {
 $link=conectarServidor();  
 if($Pago==3)
 {
-	$qryrc="select Fact from r_caja where Id_caja=$recibo_c";
+	$qryrc="select idFactura from r_caja where idRecCaja=$recibo_c";
 	$resultqryrc=mysqli_query($link, $qryrc);
 	$row_rc=mysqli_fetch_array($resultqryrc);
 	$factura=$row_rc['Fact'];   
 	$Recibo=$recibo_c;
-    $qrypag= "select cobro, reten, r_caja.reten_ica, retencionFte, Subtotal, Descuento from r_caja, factura where Fact=$factura and Fact=idFactura";
+    $qrypag= "select cobro, reten, r_caja.reten_ica, retencionFte, Subtotal, Descuento from r_caja, factura where idFactura=$factura and idFactura=idFactura";
     $resultpag=mysqli_query($link, $qrypag);
     $rowpag=mysqli_fetch_array($resultpag);
     if($rowpag)
@@ -53,7 +53,7 @@ if($Pago==3)
 }
 if($Pago==0)
 {
-	$qrycam="select MAX(Id_caja) AS Recibo from r_caja;";
+	$qrycam="select MAX(idRecCaja) AS Recibo from r_caja;";
 	$resultqrycam=mysqli_query($link, $qrycam);
 	$row_cam=mysqli_fetch_array($resultqrycam);
 	$Recibo=$row_cam['Recibo']+1;   
@@ -69,7 +69,7 @@ if($Pago==1)
 	$Reten_fte=$rowfact['Reten_fte'];
 	$Total_R=$rowfact['Total_R'];
 	/*validacion del valor a pagar"*/
-	$qrytot="select sum(cobro) as Parcial from r_caja where Fact=$factura";
+	$qrytot="select sum(cobro) as Parcial from r_caja where idFactura=$factura";
 	$resultot=mysqli_query($link, $qrytot);
 	$rowtot=mysqli_fetch_array($resultot);
 	$parcial=$rowtot['Parcial'];
@@ -82,7 +82,7 @@ if($Pago==1)
    	}
 	else
 	{
-		$qry="insert into r_caja (Id_caja, Fact, cobro, Fecha, descuento_f, form_pago, reten, reten_ica, No_cheque, Cod_banco) values($Recibo, $factura, $abono, '$fecha', $descuento, $Form_pago, $retencion, $Retica, $No_cheque, $Cod_banco)";
+		$qry="insert into r_caja (idRecCaja, idFactura, cobro, fechaRecCaja, descuento_f, form_pago, reten, reten_ica, idCheque, codBanco) values($Recibo, $factura, $abono, '$fecha', $descuento, $Form_pago, $retencion, $Retica, $No_cheque, $Cod_banco)";
 		//echo "<br>".$qry."<br>";
 		$result=mysqli_query($link, $qry);
    		if($result)
@@ -166,7 +166,7 @@ if($Pago==1)
 		$result=mysqli_query($link, $qry);
 		$row=mysqli_fetch_array($result);
 		$nit=$row['Nit_cliente'];
-		$qry3="select sum(cobro) as Parcial from r_caja where Fact=$factura";
+		$qry3="select sum(cobro) as Parcial from r_caja where idFactura=$factura";
 		$result3=mysqli_query($link, $qry3);
 		$row3=mysqli_fetch_array($result3);
 		$valTot=$row['Total'];
@@ -362,7 +362,7 @@ if($Pago==1)
 </tr>
 <?php
 //$Fact=$Factura;
-$qry="select Fact, cobro, Fecha, Id_caja, formaPago from r_caja, form_pago where Fact=$factura and form_pago=idFormaPago;";
+$qry="select idFactura, cobro, fechaRecCaja, idRecCaja, formaPago from r_caja, form_pago where idFactura=$factura and form_pago=idFormaPago;";
 $result=mysqli_query($link, $qry);
 $i=1;
 while($row=mysqli_fetch_array($result))

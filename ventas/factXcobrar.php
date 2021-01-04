@@ -65,7 +65,7 @@ include "includes/calcularDias.php";
 				$Total_R=$row['Total_R'];
 				$reteica=$row['Reten_ica'];
 				$reteiva=$row['Reten_iva'];
-				$qryp="select sum(cobro) as Parcial from r_caja where Fact=$fact";
+				$qryp="select sum(cobro) as Parcial from r_caja where idFactura=$fact";
 				$resultpago=mysqli_query($link,$qryp);
 				$rowpag=mysqli_fetch_array($resultpago);
 				if($rowpag['Parcial'])

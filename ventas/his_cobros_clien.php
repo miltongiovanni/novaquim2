@@ -28,7 +28,7 @@ $rowbus=mysqli_fetch_array($resultbus);
 <?php
 	$link=conectarServidor();
     //sentencia SQL    tblusuarios.IdUsuario,
-	$sql= "select Id_caja as 'Id', Fact as Factura, nomCliente as Cliente, CONCAT('$ ', FORMAT(cobro,0)) as Pago, Fecha, formaPago as 'Forma de Pago' from r_caja, factura, clientes, form_pago where Fact=idFactura and Nit_cliente=nitCliente AND Nit_cliente='$cliente' and form_pago=idFormaPago order  by Id DESC;";
+	$sql= "select idRecCaja as 'Id', idFactura as Factura, nomCliente as Cliente, CONCAT('$ ', FORMAT(cobro,0)) as Pago, fechaRecCaja, formaPago as 'Forma de Pago' from r_caja, factura, clientes, form_pago where idFactura=idFactura and Nit_cliente=nitCliente AND Nit_cliente='$cliente' and form_pago=idFormaPago order  by Id DESC;";
 	//llamar funcion de tabla
 	verTabla($sql, $link);
 ?>
