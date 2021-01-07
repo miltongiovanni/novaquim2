@@ -9,6 +9,63 @@ include "../includes/valAcc.php";
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <script src="../js/validar.js"></script>
     <link rel="stylesheet" href="../css/datatables.css">
+    <style>
+        #example {
+            table-layout: fixed;
+        }
+
+        .width1 {
+            width: 2%;
+        }
+
+        .width2 {
+            width: 4%;
+        }
+
+        .width3 {
+            width: 6%;
+        }
+
+        .width4 {
+            width: 26%;
+        }
+
+        .width5 {
+            width: 8%;
+        }
+
+        .width6 {
+            width: 6%;
+        }
+
+        .width7 {
+            width: 6%;
+        }
+
+        .width8 {
+            width: 7%;
+        }
+
+        .width9 {
+            width: 7%;
+        }
+
+        .width10 {
+            width: 7%;
+        }
+
+        .width11 {
+            width: 7%;
+        }
+
+        .width12 {
+            width: 7%;
+        }
+
+        .width13 {
+            width: 7%;
+        }
+    </style>
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/datatables.js"></script>
     <script src="../js/dataTables.buttons.js"></script>
@@ -153,19 +210,19 @@ include "../includes/valAcc.php";
         <table id="example" class="display compact formatoDatos">
             <thead>
             <tr>
-                <th width="2%"></th>
-                <th width="4%">Id</th>
-                <th width="6%">Factura</th>
-                <th width="26%">Proveedor</th>
-                <th width="8%">Tipo Compra</th>
-                <th width="6%">Fecha Factura</th>
-                <th width="6%">Fecha Vto</th>
-                <th width="7%">Valor Factura</th>
-                <th width="7%">Retefuente</th>
-                <th width="7%">Rete Ica</th>
-                <th width="7%">Valor a Pagar</th>
-                <th width="7%">Valor Pagado</th>
-                <th width="7%">Saldo</th>
+                <th class="width1" ></th>
+                <th class="width2" >Id</th>
+                <th class="width3">Factura</th>
+                <th class="width4">Proveedor</th>
+                <th class="width5">Tipo Compra</th>
+                <th class="width6">Fecha Factura</th>
+                <th class="width7">Fecha Vto</th>
+                <th class="width8">Valor Factura</th>
+                <th class="width9">Retefuente</th>
+                <th class="width10">Rete Ica</th>
+                <th class="width11">Valor a Pagar</th>
+                <th class="width12">Valor Pagado</th>
+                <th class="width13">Saldo</th>
             </tr>
             </thead>
         </table>

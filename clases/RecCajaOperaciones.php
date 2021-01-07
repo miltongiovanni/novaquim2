@@ -1,0 +1,310 @@
+<?php
+
+class RecCajaOperaciones
+{
+    private $_pdo; // Instance de PDO.
+
+    public function __construct()
+    {
+        $this->setDb();
+    }
+
+    public function makeRecCaja($datos)
+    {
+        /*Preparo la insercion */
+        $qry = "INSERT INTO r_caja (idFactura, cobro, fechaRecCaja, descuento_f, form_pago, reten, reten_cree, idCheque, codBanco, reten_ica) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute($datos);
+        return $this->_pdo->lastInsertId();
+    }
+    public function isValidIdRecCaja($idRecCaja)
+    {
+        $qry = "SELECT * FROM r_caja WHERE idRecCaja=?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($idRecCaja));
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        if($result==false){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+    public function deleteRecCaja($idRecCaja)
+    {
+        $qry = "DELETE FROM r_caja WHERE idProv= ?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($idRecCaja));
+    }
+
+    public function getRecCajaes($actif)
+    {
+        if ($actif == true) {
+            $qry = "SELECT idProv, nomProv FROM r_caja WHERE estProv=1 ORDER BY nomProv;";
+        } else {
+            $qry = "SELECT idProv, nomProv FROM r_caja ORDER BY nomProv;";
+        }
+
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    public function getRecCajaesByTipo($tipoCompra)
+    {
+        $qry = "SELECT idProv, nomProv FROM r_caja WHERE idCatProv = $tipoCompra ORDER BY nomProv;";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array());
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    public function getAllRecCajaesGastos()
+    {
+        $qry = "SELECT idProv, nomProv FROM r_caja WHERE (idCatProv = 5 OR idCatProv = 6) ORDER BY nomProv;";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array());
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    public function getRecCajaesByName($q)
+    {
+        $qry = "SELECT idProv, nomProv FROM r_caja WHERE nomProv like '%" . $q . "%' ORDER BY nomProv;";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array());
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    public function getRecCajaesByNameAndTipoCompra($q, $tipoCompra)
+    {
+        $qry = "SELECT idProv, nomProv FROM r_caja WHERE idCatProv=? AND nomProv like '%" . $q . "%' ORDER BY nomProv;";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($tipoCompra));
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    public function getRecCajaesGastos($q)
+    {
+        $qry = "SELECT idProv, nomProv FROM r_caja WHERE (idCatProv=5 OR idCatProv=6) AND nomProv like '%" . $q . "%' ORDER BY nomProv;";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    public function getTableRecCajas()
+    {
+        $qry = "SELECT f.idFactura,
+                       nomCliente,
+                       contactoCliente,
+                       cargoCliente,
+                       dirCliente,
+                       telCliente,
+                       celCliente,
+                       fechaFactura,
+                       fechaVenc,
+                       CONCAT('$', FORMAT(Total, 0))                                                                       TotalFormat,
+                       descuento * f.subtotal                                                                              des,
+                       CONCAT('$', FORMAT(totalR, 0))                                                                      totalRFormat,
+                       retencionIva,
+                       retencionIca,
+                       retencionFte,
+                       Subtotal,
+                       IVA,
+                       parcial,
+                       pago_nc,
+                       fechaNotaC,
+                       CONCAT('$', FORMAT(IF(parcial IS NULL, 0, parcial) + IF(pago_nc IS NULL, 0, pago_nc),0))           cobradoFormat,
+                       CONCAT('$', FORMAT(total - (IF(parcial IS NULL, 0, parcial) + IF(pago_nc IS NULL, 0, pago_nc)), 0)) saldo
+                
+                FROM factura f
+                         LEFT JOIN clientes c on c.idCliente = f.idCliente
+                         LEFT JOIN (SELECT SUM(cobro) parcial, idFactura FROM r_caja GROUP BY idFactura) t ON t.idFactura = f.idFactura
+                         LEFT JOIN (SELECT ROUND(totalNotaC) as pago_nc, fechaNotaC, facturaDestino
+                                    FROM nota_c
+                                    WHERE fechaNotaC > '2016-04-05') n ON n.facturaDestino = f.idFactura
+                WHERE f.Estado = 'P'
+                ORDER BY f.idFactura";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    public function getFormRecCaja($idRecCaja)
+    {
+        $qry = "SELECT idRecCaja, e.idCompra, e.tipoCompra, CONCAT('$', FORMAT(pago, 0)) pago, pago pagon, fechPago, descuentoE, formPago, formaPago, estadoCompra,
+                       numFact, fechComp, fechVenc, CONCAT('$', FORMAT(total, 0)) total, nitProv, nomProv, CONCAT('$', FORMAT(retefuente, 0)) retefuente, CONCAT('$', FORMAT(reteica, 0)) reteica, pago vlr_pago,
+                       CONCAT('$', FORMAT(total-retefuente-reteica, 0))  vreal, (total-retefuente-reteica) treal 
+                FROM r_caja e
+                LEFT JOIN ( SELECT idCompra id, tipoCompra, numFact, fechComp, fechVenc, totalCompra total, estadoCompra,
+                              nitProv, nomProv, retefuenteCompra retefuente, reteicaCompra reteica
+                       FROM compras c
+                                LEFT JOIN proveedores p on c.idProv = p.idProv
+                       UNION
+                       SELECT idGasto id, tipoCompra, numFact, fechGasto fechComp, fechVenc, totalGasto total, estadoGasto estadoCompra,
+                              nitProv, nomProv, retefuenteGasto retefuente, reteicaGasto reteica
+                       FROM gastos g
+                                LEFT JOIN proveedores p on g.idProv = p.idProv
+                ) t ON e.idCompra=t.id AND e.tipoCompra=t.tipoCompra
+                LEFT JOIN form_pago fp on e.formPago = fp.idFormaPago 
+                WHERE idRecCaja=?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($idRecCaja));
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    public function getRecCaja($idRecCaja)
+    {
+        $qry = "SELECT idRecCaja, e.idCompra, e.tipoCompra, pago, fechPago, descuentoE,
+                       numFact, fechComp, fechVenc, total, nitProv, nomProv, retefuente, reteica,
+                       (total-retefuente-reteica)  vreal FROM r_caja e
+                LEFT JOIN ( SELECT idCompra id, tipoCompra, numFact, fechComp, fechVenc, totalCompra total,
+                            nitProv, nomProv, retefuenteCompra retefuente, reteicaCompra reteica
+                            FROM compras c
+                            LEFT JOIN proveedores p on c.idProv = p.idProv
+                            UNION
+                            SELECT idGasto id, tipoCompra, numFact, fechGasto fechComp, fechVenc, totalGasto total,
+                            nitProv, nomProv, retefuenteGasto retefuente, reteicaGasto reteica
+                            FROM gastos g
+                            LEFT JOIN proveedores p on g.idProv = p.idProv
+                          ) t ON e.idCompra=t.id AND e.tipoCompra=t.tipoCompra
+                WHERE idRecCaja=?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($idRecCaja));
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    public function getTotalesxPagarxVen8dias()
+    {
+        $qry = "SELECT SUM(subtotal) total
+                FROM
+                (SELECT (SUM(totalCompra) - SUM(retefuenteCompra) - SUM(reteicaCompra) - IF(SUM(pago) IS NULL, 0, SUM(pago)) - IF(SUM(descuentoE) IS NULL, 0 , SUM(descuentoE))) subtotal
+                FROM compras c
+                LEFT JOIN r_caja e on c.idCompra = e.idCompra AND c.tipoCompra=e.tipoCompra
+                WHERE estadoCompra=3 AND DATEDIFF(fechVenc, NOW())>= 8
+                UNION
+                SELECT (SUM(totalGasto)- SUM(retefuenteGasto)- SUM(reteicaGasto)- IF(SUM(pago) IS NULL, 0, SUM(pago))- IF(SUM(descuentoE) IS NULL, 0 , SUM(descuentoE))) subtotal
+                FROM gastos g
+                LEFT JOIN r_caja e2 on g.tipoCompra = e2.tipoCompra AND g.idGasto=e2.idCompra
+                WHERE estadoGasto=3 AND DATEDIFF(fechVenc, NOW())>= 8) t;";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result['total'];
+    }
+
+    public function getTotalesxPagarxVencidos()
+    {
+        $qry = "SELECT SUM(subtotal) total
+                FROM
+                (SELECT (SUM(totalCompra) - SUM(retefuenteCompra) - SUM(reteicaCompra) - IF(SUM(pago) IS NULL, 0, SUM(pago)) - IF(SUM(descuentoE) IS NULL, 0 , SUM(descuentoE))) subtotal
+                FROM compras c
+                LEFT JOIN r_caja e on c.idCompra = e.idCompra AND c.tipoCompra=e.tipoCompra
+                WHERE estadoCompra=3 AND DATEDIFF(fechVenc, NOW())< 0
+                UNION
+                SELECT (SUM(totalGasto)- SUM(retefuenteGasto)- SUM(reteicaGasto)- IF(SUM(pago) IS NULL, 0, SUM(pago))- IF(SUM(descuentoE) IS NULL, 0 , SUM(descuentoE))) subtotal
+                FROM gastos g
+                LEFT JOIN r_caja e2 on g.tipoCompra = e2.tipoCompra AND g.idGasto=e2.idCompra
+                WHERE estadoGasto=3 AND DATEDIFF(fechVenc, NOW())< 0) t;";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result['total'];
+    }
+
+    public function getTotalesxPagarxVenc1sem()
+    {
+        $qry = "SELECT subtotal total
+                FROM
+                (SELECT (SUM(totalCompra) - SUM(retefuenteCompra) - SUM(reteicaCompra) - IF(SUM(pago) IS NULL, 0, SUM(pago)) - IF(SUM(descuentoE) IS NULL, 0 , SUM(descuentoE))) subtotal
+                FROM compras c
+                LEFT JOIN r_caja e on c.idCompra = e.idCompra AND c.tipoCompra=e.tipoCompra
+                WHERE estadoCompra=3 AND DATEDIFF(fechVenc, NOW())>= 0  AND DATEDIFF(fechVenc, NOW())< 8
+                UNION
+                SELECT (SUM(totalGasto)- SUM(retefuenteGasto)- SUM(reteicaGasto)- IF(SUM(pago) IS NULL, 0, SUM(pago))- IF(SUM(descuentoE) IS NULL, 0 , SUM(descuentoE))) subtotal
+                FROM gastos g
+                LEFT JOIN r_caja e2 on g.tipoCompra = e2.tipoCompra AND g.idGasto=e2.idCompra
+                WHERE estadoGasto=3 AND DATEDIFF(fechVenc,NOW() )>= 0  AND DATEDIFF(fechVenc, NOW())< 8) t;";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result['total'];
+    }
+
+    public function getPagosXIdTipoCompra($id, $tipoCompra)
+    {
+        $qry = "SELECT CONCAT('$', FORMAT(pago, 0)) pago, CONCAT('$', FORMAT(descuentoE, 0)) descuento, fechPago, formaPago
+                FROM r_caja 
+                LEFT JOIN form_pago fp on r_caja.formPago = fp.idFormaPago
+                WHERE idCompra=? and tipoCompra=?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($id, $tipoCompra));
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    public function getPagoXIdTipoCompra($id, $tipoCompra)
+    {
+        $qry = "SELECT SUM(pago) parcial FROM r_caja WHERE idCompra=? and tipoCompra=?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($id, $tipoCompra));
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($result && $result != null) {
+            return $result['parcial'];
+        } else {
+            return 0;
+        }
+    }
+
+    public function getTableComprasXPagar()
+    {
+        $qry = "SELECT idCompra id, tipoCompra, tipoComp, numFact, fechComp, fechVenc, totalCompra total, subtotalCompra subtotal,
+                       nomProv, retefuenteCompra retefuente, reteicaCompra reteica
+                FROM compras c
+                LEFT JOIN proveedores p on c.idProv = p.idProv
+                LEFT JOIN tip_compra tc on c.tipoCompra = tc.idTipo
+                WHERE estadoCompra=3
+                UNION
+                SELECT idGasto id, tipoCompra, tipoComp, numFact, fechGasto fechComp, fechVenc, totalGasto total, subtotalGasto subtotal,
+                       nomProv, retefuenteGasto retefuente, reteicaGasto reteica
+                FROM gastos g
+                LEFT JOIN proveedores p on g.idProv = p.idProv
+                LEFT JOIN tip_compra t on g.tipoCompra = t.idTipo
+                WHERE estadoGasto=3
+                ORDER BY fechVenc";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    public function checkRecCaja($idCompra, $tipoCompra)
+    {
+        $qry = "SELECT idRecCaja  FROM r_caja WHERE idCompra = ? AND tipoCompra = ?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($idCompra, $tipoCompra));
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    public function updateRecCaja($datos)
+    {
+        $qry = "UPDATE r_caja SET pago=?, fechPago=?, descuentoE=?, formPago=? WHERE idRecCaja=?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute($datos);
+    }
+
+    public function setDb()
+    {
+
+        $this->_pdo = Conectar::conexion(); //Almacenamos en _pdo la llamada la clase estática Conectar;
+
+    }
+}
