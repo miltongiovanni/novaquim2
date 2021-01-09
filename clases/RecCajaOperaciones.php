@@ -96,7 +96,7 @@ class RecCajaOperaciones
         return $result;
     }
 
-    public function getTableRecCajas()
+    public function getTableFacturasXcobrar()
     {
         $qry = "SELECT f.idFactura,
                        nomCliente,
@@ -127,8 +127,72 @@ class RecCajaOperaciones
                          LEFT JOIN (SELECT ROUND(totalNotaC) as pago_nc, fechaNotaC, facturaDestino
                                     FROM nota_c
                                     WHERE fechaNotaC > '2016-04-05') n ON n.facturaDestino = f.idFactura
+                WHERE f.Estado = 'P'";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    public function getTableFacturasAccClienteXcobrar()
+    {
+        $qry = "SELECT c.idCliente,
+                       nomCliente,
+                       nitCliente,
+                       contactoCliente,
+                       cargoCliente,
+                       telCliente,
+                       celCliente,
+                       dirCliente,
+                       CONCAT('$', FORMAT(SUM(total - (IF(parcial IS NULL, 0, parcial) + IF(pago_nc IS NULL, 0, pago_nc))),
+                                          0)) totalSaldoFormat
+                
+                FROM factura f
+                         LEFT JOIN clientes c on c.idCliente = f.idCliente
+                         LEFT JOIN (SELECT SUM(cobro) parcial, idFactura FROM r_caja GROUP BY idFactura) t
+                                   ON t.idFactura = f.idFactura AND f.Estado = 'P'
+                         LEFT JOIN (SELECT ROUND(totalNotaC) as pago_nc, fechaNotaC, facturaDestino
+                                    FROM nota_c
+                                    WHERE fechaNotaC > '2016-04-05') n ON n.facturaDestino = f.idFactura AND f.Estado = 'P'
                 WHERE f.Estado = 'P'
-                ORDER BY f.idFactura";
+                  AND DATEDIFF(fechaVenc, NOW()) < 0
+                GROUP BY f.idCliente";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    public function getDetalleFacturasAccClienteXcobrar($idCliente)
+    {
+        $qry = "SELECT f.idFactura,
+                   fechaFactura,
+                   fechaVenc,
+                   CONCAT('$', FORMAT(Subtotal, 0))                                                                    SubtotalFormat,
+                   CONCAT('$', FORMAT(retencionIva, 0))                                                                retencionIvaFormat,
+                   CONCAT('$', FORMAT(retencionIca, 0))                                                                retencionIcaFormat,
+                   CONCAT('$', FORMAT(retencionFte, 0))                                                                retencionFteFormat,
+                   CONCAT('$', FORMAT(iva, 0))                                                                         ivaFormat,
+                   CONCAT('$', FORMAT(Total, 0))                                                                       TotalFormat,
+                   CONCAT('$', FORMAT(totalR, 0))                                                                      totalRFormat,
+                   IVA,
+                   CONCAT('$', FORMAT(IF(parcial IS NULL, 0, parcial) + IF(pago_nc IS NULL, 0, pago_nc),
+                                      0))                                                                              cobradoFormat,
+                   CONCAT('$', FORMAT(total - (IF(parcial IS NULL, 0, parcial) + IF(pago_nc IS NULL, 0, pago_nc)), 0)) saldo
+            
+            FROM factura f
+                     LEFT JOIN (SELECT SUM(cobro) parcial, rc.idFactura
+                                FROM r_caja rc
+                                         LEFT JOIN factura f2 on f2.idFactura = rc.idFactura
+                                WHERE f2.idCliente = $idCliente
+                                  AND f2.estado = 'P'
+                                GROUP BY rc.idFactura) t ON t.idFactura = f.idFactura
+                     LEFT JOIN (SELECT ROUND(totalNotaC) as pago_nc, facturaDestino
+                                FROM nota_c
+                                WHERE fechaNotaC > '2016-04-05' AND idCliente=$idCliente) n ON n.facturaDestino = f.idFactura
+            WHERE f.estado = 'P'
+              AND DATEDIFF(fechaVenc, NOW()) < 0
+              AND f.idCliente = $idCliente";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -181,61 +245,58 @@ class RecCajaOperaciones
         return $result;
     }
 
-    public function getTotalesxPagarxVen8dias()
+    public function getTotalesxCobrarxVen8dias()
     {
-        $qry = "SELECT SUM(subtotal) total
-                FROM
-                (SELECT (SUM(totalCompra) - SUM(retefuenteCompra) - SUM(reteicaCompra) - IF(SUM(pago) IS NULL, 0, SUM(pago)) - IF(SUM(descuentoE) IS NULL, 0 , SUM(descuentoE))) subtotal
-                FROM compras c
-                LEFT JOIN r_caja e on c.idCompra = e.idCompra AND c.tipoCompra=e.tipoCompra
-                WHERE estadoCompra=3 AND DATEDIFF(fechVenc, NOW())>= 8
-                UNION
-                SELECT (SUM(totalGasto)- SUM(retefuenteGasto)- SUM(reteicaGasto)- IF(SUM(pago) IS NULL, 0, SUM(pago))- IF(SUM(descuentoE) IS NULL, 0 , SUM(descuentoE))) subtotal
-                FROM gastos g
-                LEFT JOIN r_caja e2 on g.tipoCompra = e2.tipoCompra AND g.idGasto=e2.idCompra
-                WHERE estadoGasto=3 AND DATEDIFF(fechVenc, NOW())>= 8) t;";
+        $qry = "SELECT SUM(total - (IF(parcial IS NULL, 0, parcial) + IF(pago_nc IS NULL, 0, pago_nc))) totalSaldo,
+                       CONCAT('$', FORMAT(SUM(total - (IF(parcial IS NULL, 0, parcial) + IF(pago_nc IS NULL, 0, pago_nc))), 0)) totalSaldoFormat
+                
+                FROM factura f
+                         LEFT JOIN clientes c on c.idCliente = f.idCliente
+                         LEFT JOIN (SELECT SUM(cobro) parcial, idFactura FROM r_caja GROUP BY idFactura) t ON t.idFactura = f.idFactura
+                         LEFT JOIN (SELECT ROUND(totalNotaC) as pago_nc, fechaNotaC, facturaDestino
+                                    FROM nota_c
+                                    WHERE fechaNotaC > '2016-04-05') n ON n.facturaDestino = f.idFactura
+                WHERE f.Estado = 'P' AND DATEDIFF(fechaVenc,NOW() )>= 8";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $result['total'];
+        return $result;
     }
 
-    public function getTotalesxPagarxVencidos()
+    public function getTotalesxCobrarxVencidos()
     {
-        $qry = "SELECT SUM(subtotal) total
-                FROM
-                (SELECT (SUM(totalCompra) - SUM(retefuenteCompra) - SUM(reteicaCompra) - IF(SUM(pago) IS NULL, 0, SUM(pago)) - IF(SUM(descuentoE) IS NULL, 0 , SUM(descuentoE))) subtotal
-                FROM compras c
-                LEFT JOIN r_caja e on c.idCompra = e.idCompra AND c.tipoCompra=e.tipoCompra
-                WHERE estadoCompra=3 AND DATEDIFF(fechVenc, NOW())< 0
-                UNION
-                SELECT (SUM(totalGasto)- SUM(retefuenteGasto)- SUM(reteicaGasto)- IF(SUM(pago) IS NULL, 0, SUM(pago))- IF(SUM(descuentoE) IS NULL, 0 , SUM(descuentoE))) subtotal
-                FROM gastos g
-                LEFT JOIN r_caja e2 on g.tipoCompra = e2.tipoCompra AND g.idGasto=e2.idCompra
-                WHERE estadoGasto=3 AND DATEDIFF(fechVenc, NOW())< 0) t;";
+        $qry = "SELECT SUM(total - (IF(parcial IS NULL, 0, parcial) + IF(pago_nc IS NULL, 0, pago_nc))) totalSaldo,
+                       CONCAT('$', FORMAT(SUM(total - (IF(parcial IS NULL, 0, parcial) + IF(pago_nc IS NULL, 0, pago_nc))), 0)) totalSaldoFormat
+                
+                FROM factura f
+                         LEFT JOIN clientes c on c.idCliente = f.idCliente
+                         LEFT JOIN (SELECT SUM(cobro) parcial, idFactura FROM r_caja GROUP BY idFactura) t ON t.idFactura = f.idFactura
+                         LEFT JOIN (SELECT ROUND(totalNotaC) as pago_nc, fechaNotaC, facturaDestino
+                                    FROM nota_c
+                                    WHERE fechaNotaC > '2016-04-05') n ON n.facturaDestino = f.idFactura
+                WHERE f.Estado = 'P' AND DATEDIFF(fechaVenc,NOW() )< 0";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $result['total'];
+        return $result;
     }
 
-    public function getTotalesxPagarxVenc1sem()
+    public function getTotalesxCobrarxVenc1sem()
     {
-        $qry = "SELECT subtotal total
-                FROM
-                (SELECT (SUM(totalCompra) - SUM(retefuenteCompra) - SUM(reteicaCompra) - IF(SUM(pago) IS NULL, 0, SUM(pago)) - IF(SUM(descuentoE) IS NULL, 0 , SUM(descuentoE))) subtotal
-                FROM compras c
-                LEFT JOIN r_caja e on c.idCompra = e.idCompra AND c.tipoCompra=e.tipoCompra
-                WHERE estadoCompra=3 AND DATEDIFF(fechVenc, NOW())>= 0  AND DATEDIFF(fechVenc, NOW())< 8
-                UNION
-                SELECT (SUM(totalGasto)- SUM(retefuenteGasto)- SUM(reteicaGasto)- IF(SUM(pago) IS NULL, 0, SUM(pago))- IF(SUM(descuentoE) IS NULL, 0 , SUM(descuentoE))) subtotal
-                FROM gastos g
-                LEFT JOIN r_caja e2 on g.tipoCompra = e2.tipoCompra AND g.idGasto=e2.idCompra
-                WHERE estadoGasto=3 AND DATEDIFF(fechVenc,NOW() )>= 0  AND DATEDIFF(fechVenc, NOW())< 8) t;";
+        $qry = "SELECT SUM(total - (IF(parcial IS NULL, 0, parcial) + IF(pago_nc IS NULL, 0, pago_nc))) totalSaldo,
+                       CONCAT('$', FORMAT(SUM(total - (IF(parcial IS NULL, 0, parcial) + IF(pago_nc IS NULL, 0, pago_nc))), 0)) totalSaldoFormat
+                
+                FROM factura f
+                         LEFT JOIN clientes c on c.idCliente = f.idCliente
+                         LEFT JOIN (SELECT SUM(cobro) parcial, idFactura FROM r_caja GROUP BY idFactura) t ON t.idFactura = f.idFactura
+                         LEFT JOIN (SELECT ROUND(totalNotaC) as pago_nc, fechaNotaC, facturaDestino
+                                    FROM nota_c
+                                    WHERE fechaNotaC > '2016-04-05') n ON n.facturaDestino = f.idFactura
+                WHERE f.Estado = 'P' AND DATEDIFF(fechaVenc,NOW() )>= 0  AND DATEDIFF(fechaVenc, NOW())< 8";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $result['total'];
+        return $result;
     }
 
     public function getPagosXIdTipoCompra($id, $tipoCompra)

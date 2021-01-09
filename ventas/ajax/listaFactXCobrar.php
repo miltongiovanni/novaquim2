@@ -7,7 +7,7 @@ function cargarClases($classname)
 
 spl_autoload_register('cargarClases');
 $RecCajaOperador = new RecCajaOperaciones();
-$facturas = $RecCajaOperador->getTableRecCajas();
+$facturas = $RecCajaOperador->getTableFacturasXcobrar();
 $datos = [];/*
 for ($i = 0; $i < count($compras); $i++) {
     $id = $compras[$i]['id'];

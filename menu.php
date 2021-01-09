@@ -100,6 +100,9 @@ for ($i = 0; $i < count($perfiles); $i++) {
         <div class="col-4 card">
             <?php include_once ("widgets/facXPagarTotales.php") ; ?>
         </div>
+        <div class="col-4 card">
+            <?php include_once ("widgets/facXCobrarTotales.php") ; ?>
+        </div>
     </div>
 </div>
 </body>
