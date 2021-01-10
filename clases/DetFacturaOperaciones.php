@@ -43,7 +43,6 @@ class DetFacturaOperaciones
                 FROM det_factura dp
                          LEFT JOIN prodpre p on dp.codProducto = p.codPresentacion
                          LEFT JOIN tasa_iva ti on ti.idTasaIva = dp.idTasaIvaProducto
-                         LEFT JOIN factura f on f.idFactura = dp.idFactura
                 WHERE dp.idFactura = $idFactura
                   AND dp.codProducto > 10000
                   AND dp.codProducto < 100000
@@ -58,7 +57,6 @@ class DetFacturaOperaciones
                 FROM det_factura dp
                          LEFT JOIN distribucion d on dp.codProducto = d.idDistribucion
                          LEFT JOIN tasa_iva t on t.idTasaIva = dp.idTasaIvaProducto
-                         LEFT JOIN factura f on f.idFactura = dp.idFactura
                 WHERE dp.idFactura = $idFactura
                   AND dp.codProducto > 100000
                 UNION
@@ -72,7 +70,6 @@ class DetFacturaOperaciones
                 FROM det_factura dp
                          LEFT JOIN servicios s on dp.codProducto = s.idServicio
                          LEFT JOIN tasa_iva i on i.idTasaIva = dp.idTasaIvaProducto
-                         LEFT JOIN factura f on f.idFactura = dp.idFactura
                 WHERE dp.idFactura = $idFactura
                   AND dp.codProducto < 100
                   ORDER BY orden, producto";
