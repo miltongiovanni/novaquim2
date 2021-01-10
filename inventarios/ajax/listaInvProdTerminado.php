@@ -16,6 +16,8 @@ for ($i = 0; $i < count($invProdTerminado); $i++) {
     $datos[$i]['codPresentacion'] = $invProdTerminado[$i]['codPresentacion'];
     $datos[$i]['presentacion'] = $invProdTerminado[$i]['presentacion'];
     $datos[$i]['invtotal'] = $invProdTerminado[$i]['invtotal'];
+    $datos[$i]['invL'] = $invProdTerminado[$i]['invL'];
+    $datos[$i]['invReal'] = $invProdTerminado[$i]['invReal'];
     $datos[$i]['detInvProdTerminado'] = $detInvProdTerminado;
 }
 $titulo = array(

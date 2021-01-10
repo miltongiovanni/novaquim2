@@ -14,19 +14,25 @@ include "../includes/valAcc.php";
         }
 
         .width1 {
-            width: 10%;
+            width: 5%;
         }
 
         .width2 {
-            width: 20%;
+            width: 7%;
         }
 
         .width3 {
-            width: 50%;
+            width: 55%;
         }
 
         .width4 {
-            width: 20%;
+            width: 11%;
+        }
+        .width5 {
+            width: 11%;
+        }
+        .width6 {
+            width: 11%;
         }
 
     </style>
@@ -104,6 +110,14 @@ include "../includes/valAcc.php";
                         "data": "invtotal",
                         "className": 'dt-body-center'
                     },
+                    {
+                        "data": "invL",
+                        "className": 'dt-body-center'
+                    },
+                    {
+                        "data": "invReal",
+                        "className": 'dt-body-center'
+                    },
                 ],
                 "columnDefs": [
                     {type: 'chinese-string', targets: 2}
@@ -161,14 +175,16 @@ include "../includes/valAcc.php";
                 <span><STRONG>Ir al Menú</STRONG></span></button>
         </div>
     </div>
-    <div class="tabla-50">
+    <div class="tabla-60">
         <table id="example" class="display compact formatoDatos">
             <thead>
             <tr>
                 <th class="width1"></th>
                 <th class="width2">Código</th>
                 <th class="width3">Producto</th>
-                <th class="width4">Cantidad</th>
+                <th class="width4">Cantidad inventario</th>
+                <th class="width5">Cantidad alistamiento</th>
+                <th class="width6">Cantidad disponible</th>
             </tr>
             </thead>
         </table>

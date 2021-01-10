@@ -72,8 +72,9 @@ $validar=0;
             $producto = $detalle[$i]['producto'];
             if ($cod < 100000 && $cod>10000) {
                 $invProducto = $invProdOperador->getInvTotalProdTerminado($cod);
+                $invListo = $invProdOperador->getInvProdTerminadoListo($cod);
                 if($invProducto<$cantidad){
-                    $cantidad = $cantidad - $invProducto;
+                    $cantidad = $cantidad - $invProducto - $invListo;
                     echo '<tr>
 							<td><div align="center">' . $cod . '</div></td>
 							<td><div align="center">' . $producto . '</div></td>
@@ -86,8 +87,9 @@ $validar=0;
                 $cantidad = $detalle[$i]['cantProducto'];
                 $producto = $detalle[$i]['producto'];
                 $invProducto= $invDistOperador->getInvDistribucion($cod);
+                $invListo= $invDistOperador->getInvDistribucionListo($cod);
                 if($invProducto<$cantidad){
-                    $cantidad = $cantidad - $invProducto;
+                    $cantidad = $cantidad - $invProducto - $invListo;
                     echo '<tr>
 							<td><div align="center">' . $cod . '</div></td>
 							<td><div align="center">' . $producto . '</div></td>

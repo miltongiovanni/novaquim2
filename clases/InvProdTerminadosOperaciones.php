@@ -55,10 +55,20 @@ class InvProdTerminadosOperaciones
 
     public function getTableInvProdTerminado()
     {
-        $qry = "SELECT inv_prod.codPresentacion, presentacion, ROUND(SUM(invProd),0) invtotal
-                FROM inv_prod
-                    LEFT JOIN prodpre p on inv_prod.codPresentacion = p.codPresentacion
-                GROUP BY inv_prod.codPresentacion";
+        $qry = "SELECT codPresentacion,
+                       presentacion,
+                       invtotal,
+                       IF(invListo IS NULL, 0, invListo)              invL,
+                       (invtotal - IF(invListo IS NULL, 0, invListo)) invReal
+                FROM (SELECT inv_prod.codPresentacion, presentacion, ROUND(SUM(invProd), 0) invtotal
+                      FROM inv_prod
+                               LEFT JOIN prodpre p on inv_prod.codPresentacion = p.codPresentacion
+                      GROUP BY inv_prod.codPresentacion) t1
+                         LEFT JOIN (SELECT SUM(cantProducto) invListo, dp.codProducto
+                                    FROM pedido p
+                                             LEFT JOIN det_pedido dp on p.idPedido = dp.idPedido
+                                    WHERE p.estado = 'L'
+                                    GROUP BY dp.codProducto) t2 ON t1.codPresentacion = t2.codProducto";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -146,6 +156,23 @@ class InvProdTerminadosOperaciones
             return 0;
         } else {
             return $result['invProd'];
+        }
+    }
+
+    public function getInvProdTerminadoListo($codPresentacion)
+    {
+        $qry = "SELECT SUM(cantProducto) invListo
+                FROM pedido p
+                         LEFT JOIN det_pedido dp on p.idPedido = dp.idPedido
+                WHERE p.estado = 'L'
+                  AND codProducto = ?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($codPresentacion));
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($result == null) {
+            return 0;
+        } else {
+            return $result['invListo'];
         }
     }
 

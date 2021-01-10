@@ -38,6 +38,23 @@ class InvDistribucionOperaciones
         }
     }
 
+    public function getInvDistribucionListo($codDistribucion)
+    {
+        $qry = "SELECT SUM(cantProducto) invListo
+                FROM pedido p
+                         LEFT JOIN det_pedido dp on p.idPedido = dp.idPedido
+                WHERE p.estado = 'L'
+                  AND codProducto = ?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($codDistribucion));
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($result == null) {
+            return 0;
+        } else {
+            return $result['invListo'];
+        }
+    }
+
     public function existeInvDistribucion($codDistribucion)
     {
         $qry = "SELECT invDistribucion FROM inv_distribucion WHERE codDistribucion=? ";
@@ -53,11 +70,19 @@ class InvDistribucionOperaciones
 
     public function getTableInvDistribucion()
     {
-        $qry = "SELECT codDistribucion, producto, round(invDistribucion, 0) invDistribucion
+        $qry = "SELECT codDistribucion,
+                       producto,
+                       round(invDistribucion, 0)                                  invTotal,
+                       IF(invListo IS NULL, 0, invListo)                          invL,
+                       ROUND(invDistribucion - IF(invListo IS NULL, 0, invListo)) invReal
                 FROM inv_distribucion id
                          LEFT JOIN distribucion d on id.codDistribucion = d.idDistribucion
-                WHERE invDistribucion > 0
-                ORDER BY producto";
+                         LEFT JOIN (SELECT SUM(cantProducto) invListo, dp.codProducto
+                                    FROM pedido p
+                                             LEFT JOIN det_pedido dp on p.idPedido = dp.idPedido
+                                    WHERE p.estado = 'L'
+                                    GROUP BY dp.codProducto) t ON codDistribucion = t.codProducto
+                WHERE invDistribucion > 0";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
