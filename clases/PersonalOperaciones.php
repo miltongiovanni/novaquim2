@@ -141,7 +141,7 @@ class PersonalOperaciones
                                              LEFT JOIN personal p on p.idPersonal = c.codVendedor
                                     WHERE codVendedor = 3
                                       AND fechaCancelacion >= '$fechaInicio'
-                                      AND fechaCancelacion <= '2020-01-31'
+                                      AND fechaCancelacion <= '$fechaFin'
                                       AND codProducto < 100000
                                       AND codProducto > 10000
                                     GROUP BY f.idFactura) t1 ON t1.idFactura = f.idFactura

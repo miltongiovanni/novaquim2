@@ -324,22 +324,18 @@ class RecCajaOperaciones
         }
     }
 
-    public function getTableComprasXPagar()
+    public function getTableRecCaja()
     {
-        $qry = "SELECT idCompra id, tipoCompra, tipoComp, numFact, fechComp, fechVenc, totalCompra total, subtotalCompra subtotal,
-                       nomProv, retefuenteCompra retefuente, reteicaCompra reteica
-                FROM compras c
-                LEFT JOIN proveedores p on c.idProv = p.idProv
-                LEFT JOIN tip_compra tc on c.tipoCompra = tc.idTipo
-                WHERE estadoCompra=3
-                UNION
-                SELECT idGasto id, tipoCompra, tipoComp, numFact, fechGasto fechComp, fechVenc, totalGasto total, subtotalGasto subtotal,
-                       nomProv, retefuenteGasto retefuente, reteicaGasto reteica
-                FROM gastos g
-                LEFT JOIN proveedores p on g.idProv = p.idProv
-                LEFT JOIN tip_compra t on g.tipoCompra = t.idTipo
-                WHERE estadoGasto=3
-                ORDER BY fechVenc";
+        $qry = "SELECT idRecCaja,
+                   rc.idFactura,
+                   nomCliente,
+                   CONCAT('$ ', FORMAT(cobro, 0)) pago,
+                   fechaRecCaja,
+                   formaPago
+            FROM r_caja rc
+                     LEFT JOIN factura f on f.idFactura = rc.idFactura
+                     LEFT JOIN clientes c on c.idCliente = f.idCliente
+                     LEFT JOIN form_pago fp on fp.idFormaPago = rc.form_pago";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);

@@ -91,9 +91,9 @@ include "../includes/valAcc.php";
                     {
                         "orderable": false,
                         "data": function (row) {
-                            let rep = '<form action="recibo_caja1.php" method="post" name="elimina">' +
+                            let rep = '<form action="recibo_caja.php" method="post" name="elimina">' +
                                 '          <input name="factura" type="hidden" value="' + row.idFactura + '">' +
-                                '          <input type="button" name="Submit" onclick="return Enviar(this.form)" class="formatoBoton1"  value="Pagar">' +
+                                '          <input type="button" name="Submit" onclick="return Enviar(this.form)" class="formatoBoton1"  value="Cobrar">' +
                                 '       </form>'
                             return rep;
                         },

@@ -113,8 +113,8 @@ if($Pago==1)
 					echo' <script >
 					alert("Pago Aplicado Correctamente");
 					</script>';
-					echo '<form id="form7" name="form7" method="post" action="recibo_caja1.php">	
-                   <input type="text" name="recibo_c" value="'.$Recibo.'" >
+					echo '<form id="form7" name="form7" method="post" action="recibo_caja.php">	
+                   <input type="text" name="recibo_c" value="' .$Recibo.'" >
                    <input name="Retica" type="hidden" value="'.$Retica.'"><input name="Ret_fte" type="hidden" value="'.$Ret_fte.'">
 				   <input type="hidden" name="Pago" value="3">
                    <td align="left"><input type="button" value="      Continuar      " >
@@ -133,8 +133,8 @@ if($Pago==1)
 				echo' <script >
 					alert("Pago Aplicado Correctamente 2");
 					</script>';
-					echo '<form id="form7" name="form7" method="post" action="recibo_caja1.php">	
-                   <input type="text" name="recibo_c" value="'.$Recibo.'" >
+					echo '<form id="form7" name="form7" method="post" action="recibo_caja.php">	
+                   <input type="text" name="recibo_c" value="' .$Recibo.'" >
                    <input name="Retica" type="hidden" value="'.$Retica.'"><input name="Ret_fte" type="hidden" value="'.$Ret_fte.'">
 				   <input type="hidden" name="Pago" value="3">
                    <td align="left"><input type="button" value="      Continuar      " >
@@ -296,7 +296,7 @@ if($Pago==1)
 	</td></tr>';
 	if (($Reten==1)&&($Reten_pago==0)&&($retencion==0))//Para preguntar la tasa de retención
 	{
-	  //echo '<form method="post" action="recibo_caja1.php" name="form3">';
+	  //echo '<form method="post" action="recibo_caja.php" name="form3">';
 	  echo '<tr><td>&nbsp;</td><td><input name="Pago" type="hidden" value="4">
 	  <input name="factura" type="hidden" value="'.$factura.'">
 	  <input name="retencion" type="hidden" value="'.$retencion.'">

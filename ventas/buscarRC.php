@@ -13,7 +13,7 @@ include "../includes/valAcc.php";
 <body>
 <div id="contenedor">
 <div id="saludo"><strong>SELECCIONAR RECIBO DE CAJA A CONSULTAR</strong></div> 
-<form id="form1" name="form1" method="post" action="recibo_caja1.php">	
+<form id="form1" name="form1" method="post" action="recibo_caja.php">
 <table width="24%" border="0" align="center">
     <tr> 
         <td width="64%"><div align="right"><strong>No. de Recibo de Caja:</strong></div></td>

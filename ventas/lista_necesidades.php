@@ -6,88 +6,10 @@ function cargarClases($classname)
 }
 
 spl_autoload_register('cargarClases');
-if ($_POST['seleccion1'])    //and (Id_pedido=915 or Id_pedido=916)
+if ($_POST['seleccion1'])
 {
     $selPedidos=$_POST['seleccion1'];
-    /*$opciones_clien = implode(",", $_POST['seleccion1']);
-   cho '<table border="0" align="center" width="80%" summary="detalle">
-       <tr class="formatoDatos">
-               <th width="12%" align="center">Código</th>
-               <th width="62%" align="center">Producto </th>
-               <th width="12%" align="center">Cantidad </th>
-               <th width="14%" align="center">Precio</th>
-       </tr>';
-   $qry_prod = "SELECT codProducto, SUM(cantProducto) as Cantidad, Nombre as Producto, precioProducto from det_pedido, prodpre where codProducto=Cod_prese and codProducto <100000 and (";
-   $a = count($_POST['seleccion1']);
-   for ($j = 0; $j < $a; $j++) {
-       $qry_prod = $qry_prod . "Id_Ped=" . ($_POST['seleccion1'][$j]);
-       if ($j <= ($a - 2))
-           $qry_prod = $qry_prod . " or ";
-   }
-   $qry_prod = $qry_prod . ") group by Cod_producto order by Producto";
-   $result_prod = mysqli_query($link, $qry_prod);
-   while ($row_prod = mysqli_fetch_array($result_prod, MYSQLI_BOTH)) {
-       $cod = $row_prod['Cod_producto'];
-       $cantidad = $row_prod['Cantidad'];
-       $qrybus = "select codPresentacion as Codigo, SUM(invProd) as Inventario from inv_prod WHERE codPresentacion=$cod group by codPresentacion;";
-       $resultbus = mysqli_query($link, $qrybus);
-       $rowbus = mysqli_fetch_array($resultbus);
-       if ($rowbus) {
-           if ($rowbus['Inventario'] < $cantidad) {
-               $cantidad = $cantidad - $rowbus['Inventario'];
-               echo '<tr class="formatoDatos">
-                 <td><div align="center">' . $row_prod['Cod_producto'] . '</div></td>
-                 <td><div align="left">' . $row_prod['Producto'] . '</div></td>
-                 <td><div align="center">' . $cantidad . '</div></td>
-                 <td><div align="center">' . $row_prod['Prec_producto'] . '</div></td>
-                 </tr>';
-           }
-       } else {
-           echo '<tr class="formatoDatos">
-             <td><div align="center">' . $row_prod['Cod_producto'] . '</div></td>
-             <td><div align="left">' . $row_prod['Producto'] . '</div></td>
-             <td><div align="center">' . $cantidad . '</div></td>
-             <td><div align="center">' . $row_prod['Prec_producto'] . '</div></td>
-             </tr>';
-       }
-   }
-   //PRODCUTOS DE DISTRIBUCION
-   $qry_dist = "select codProducto, sum(cantProducto) as Cantidad, Producto, precioProducto from det_pedido, distribucion where codProducto=Id_distribucion and codProducto >=100000 and (";
-   $a = count($_POST['seleccion1']);
-   for ($j = 0; $j < $a; $j++) {
-       $qry_dist = $qry_dist . "Id_Ped=" . ($_POST['seleccion1'][$j]);
-       if ($j <= ($a - 2))
-           $qry_dist = $qry_dist . " or ";
-   }
-   $qry_dist = $qry_dist . ") group by Cod_producto order by Producto";
-   $result_dist = mysqli_query($link, $qry_dist);
-   while ($row_dist = mysqli_fetch_array($result_dist, MYSQLI_BOTH)) {
-       $cod = $row_dist['Cod_producto'];
-       $cantidad = $row_dist['Cantidad'];
-       $qrybus = "SELECT Id_distribucion AS Codigo, invDistribucion as Inventario from inv_distribucion WHERE Id_distribucion=$cod;";
-       $resultbus = mysqli_query($link, $qrybus);
-       $rowbus = mysqli_fetch_array($resultbus);
-       if ($rowbus) {
-           if ($rowbus['Inventario'] < $cantidad) {
-               $cantidad = $cantidad - $rowbus['Inventario'];
-               echo '<tr class="formatoDatos">
-                   <td><div align="center">' . $row_dist['Cod_producto'] . '</div></td>
-                   <td><div align="left">' . $row_dist['Producto'] . '</div></td>
-                   <td><div align="center">' . $cantidad . '</div></td>
-                   <td><div align="center">' . $row_dist['Prec_producto'] . '</div></td>
-                   </tr>';
-           }
-       } else {
-           echo '<tr class="formatoDatos">
-               <td><div align="center">' . $row_dist['Cod_producto'] . '</div></td>
-               <td><div align="left">' . $row_dist['Producto'] . '</div></td>
-               <td><div align="center">' . $cantidad . '</div></td>
-               <td><div align="center">' . $row_dist['Prec_producto'] . '</div></td>
-               </tr>';
-       }
-   }*/
 } else {
-    //echo "no escogió productos de novaquim <br>";Id_Ped=915 or Id_Ped=916)
     echo ' <script >
 		alert("Debe escoger algún pedido");
 		history.back();

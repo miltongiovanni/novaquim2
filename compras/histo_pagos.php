@@ -7,6 +7,65 @@ include "../includes/valAcc.php";
     <title>Histórico de Comprobantes de Egreso</title>
     <meta charset="utf-8">
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <style>
+        table {
+            table-layout: fixed;
+        }
+
+        .width1 {
+            width: 2%;
+        }
+
+        .width2 {
+            width: 4%;
+        }
+
+        .width3 {
+            width: 4%;
+        }
+
+        .width4 {
+            width: 8%;
+        }
+
+        .width5 {
+            width: 6%;
+        }
+
+        .width6 {
+            width: 26%;
+        }
+
+        .width7 {
+            width: 6%;
+        }
+
+        .width8 {
+            width: 7%;
+        }
+
+        .width9 {
+            width: 7%;
+        }
+
+        .width10 {
+            width: 7%;
+        }
+        .width11 {
+            width: 6%;
+        }
+        .width12 {
+            width: 7%;
+        }
+        .width13 {
+            width: 2%;
+        }
+
+        table.dataTable.compact thead th,
+        table.dataTable.compact thead td {
+            padding: 4px 4px 4px 4px;
+        }
+    </style>
     <script src="../js/validar.js"></script>
     <link rel="stylesheet" href="../css/datatables.css">
     <script src="../js/jquery-3.3.1.min.js"></script>
@@ -153,19 +212,19 @@ include "../includes/valAcc.php";
         <table id="example" class="display compact formatoDatos">
             <thead>
             <tr>
-                <th width="2%"></th>
-                <th width="4%">Id</th>
-                <th width="4%">Id Compra</th>
-                <th width="8%">Tipo Compra</th>
-                <th width="6%">Nit</th>
-                <th width="26%">Proveedor</th>
-                <th width="6%">Factura</th>
-                <th width="7%">Valor a Pagar</th>
-                <th width="7%">Valor Pagado</th>
-                <th width="7%">Descuento</th>
-                <th width="6%">Fecha Pago</th>
-                <th width="7%">Forma de Pago</th>
-                <th width="2%"></th>
+                <th class="width1"></th>
+                <th class="width2">Id</th>
+                <th class="width3">Id Compra</th>
+                <th class="width4">Tipo Compra</th>
+                <th class="width5">Nit</th>
+                <th class="width6">Proveedor</th>
+                <th class="width7">Factura</th>
+                <th class="width8">Valor a Pagar</th>
+                <th class="width9">Valor Pagado</th>
+                <th class="width10">Descuento</th>
+                <th class="width11">Fecha Pago</th>
+                <th class="width12">Forma de Pago</th>
+                <th class="width13"></th>
             </tr>
             </thead>
         </table>
@@ -178,122 +237,6 @@ include "../includes/valAcc.php";
         </div>
     </div>
 
-
-<!--    <table border="0" cellspacing="0" cellpadding="0" align="center" summary="encabezado" width="100%">
-        <tr>
-            <td width="93%" align="right">
-                <form action="fech_histo_pagos_Xls.php" method="post"><input name="Submit" type="submit"
-                                                                             class="resaltado" value="Exportar a Excel">
-                </form>
-            </td>
-            <td width="7%">
-                <div align="right"><input type="button" class="resaltado" onClick="window.location='menu.php'"
-                                          value="Ir al Menú"></div>
-            </td>
-        </tr>
-    </table>
-
-    <table border="0" align="center" cellspacing="0" cellpadding="0" width="100%">
-        <tr>
-            <th width="4%" class="formatoEncabezados">Id</th>
-            <th width="9%" class="formatoEncabezados">Nit</th>
-            <th width="25%" class="formatoEncabezados">Proveedor</th>
-            <th width="5%" class="formatoEncabezados">Factura</th>
-            <th width="9%" class="formatoEncabezados">Total</th>
-            <th width="9%" class="formatoEncabezados">Valor Pagado</th>
-            <th width="8%" class="formatoEncabezados">Fecha Compra</th>
-            <th width="8%" class="formatoEncabezados">Fecha Vto</th>
-            <th width="8%" class="formatoEncabezados">Fecha Canc</th>
-            <th width="8%" class="formatoEncabezados">Forma de Pago</th>
-            <th width="7%" class="formatoEncabezados">&nbsp;</th>
-        </tr>
-        <?php
-/*        include "includes/utilTabla.php";
-        include "includes/conect.php";
-
-        //Limito la busqueda
-        $TAMANO_PAGINA = 20;
-
-        //examino la página a mostrar y el inicio del registro a mostrar
-        if (isset($_GET['pagina'])) {
-            $pagina = $_GET['pagina'];
-        } else
-            $pagina = NULL;
-        if (!$pagina) {
-            $inicio = 0;
-            $pagina = 1;
-        } else {
-            $inicio = ($pagina - 1) * $TAMANO_PAGINA;
-        }
-
-        $link = conectarServidor();
-        $sql = " select idEgreso as Id, nit_prov as Nit, Nom_provee as Proveedor, numFact as Factura, totalCompra as Total, pago as 'Valor Pagado', fechComp as 'Fecha Compra', fechVenc as 'Fecha Vencimiento', fechPago as 'Fecha Canc', formaPago as 'Forma de Pago' 
-from egreso, compras, proveedores, form_pago 
-WHERE egreso.idCompra=compras.idCompra and nit_prov=nitProv and tipoCompra<6 and formPago=Id_fpago
-union
-select idEgreso as Id, nit_prov as Nit, Nom_provee as Proveedor, numFact as Factura, totalGasto as Total, pago as 'Valor Pagado', fechGasto as 'Fecha Compra', fechVenc as 'Fecha Vencimiento', fechPago as 'Fecha Canc', forma_pago as 'Forma de Pago'
-from egreso, gastos, proveedores, form_pago 
-WHERE egreso.idCompra=gastos.idGasto and nit_prov=nitProv and tipoCompra=6 and formPago=Id_fpago order by Id DESC;";
-        //llamar funcion de tabla
-        $result = mysqli_query($link, $sql);
-        $num_total_registros = mysqli_num_rows($result);
-        //calculo el total de páginas
-        $total_paginas = ceil($num_total_registros / $TAMANO_PAGINA);
-
-        //muestro los distintos índices de las páginas, si es que hay varias páginas
-        echo '<div id="paginas" align="center">';
-        if ($total_paginas > 1) {
-            for ($i = 1; $i <= $total_paginas; $i++) {
-                if ($pagina == $i)
-                    //si muestro el índice de la página actual, no coloco enlace
-                    echo $pagina . " ";
-                else
-                    //si el índice no corresponde con la página mostrada actualmente, coloco el enlace para ir a esa página
-                    echo "<a href='histo_pagos.php?pagina=" . $i . "'>" . $i . "</a>&nbsp;";
-            }
-        }
-        echo '</div>';
-
-        //construyo la sentencia SQL
-        $ssql = "select idEgreso as Id, nit_prov as Nit, Nom_provee as Proveedor, numFact as Factura, totalCompra as Total, pago as 'Valor Pagado', fechComp as 'Fecha Compra', fechVenc as 'Fecha Vencimiento', fechPago as 'Fecha Canc', forma_pago as 'Forma de Pago' 
-from egreso, compras, proveedores, form_pago 
-WHERE egreso.idCompra=compras.idCompra and nit_prov=nitProv and tipoCompra<6 and formPago=idFormaPago
-union
-select idEgreso as Id, nit_prov as Nit, Nom_provee as Proveedor, numFact as Factura, totalGasto as Total, pago as 'Valor Pagado', fechGasto as 'Fecha Compra', fechVenc as 'Fecha Vencimiento', fechPago as 'Fecha Canc', forma_pago as 'Forma de Pago'
-from egreso, gastos, proveedores, form_pago 
-WHERE egreso.idCompra=gastos.idGasto and nit_prov=nitProv and tipoCompra=6 and formPago=idFormaPago order by Id DESC limit " . $inicio . "," . $TAMANO_PAGINA;
-        $rs = mysqli_query($link, $ssql);
-        $a = 1;
-        while ($row = mysqli_fetch_array($rs, MYSQLI_BOTH)) {
-            $nit = $row['Nit'];
-            $egreso = $row['Id'];
-            echo '<tr';
-            if (($a % 2) == 0) echo ' bgcolor="#B4CBEF" ';
-            echo '>
-	<td class="formatoDatos"><div align="center">' . $row['Id'] . '</div></td>
-	
-	<td class="formatoDatos"><div align="center">' . $row['Nit'] . '</div></td>
-	<td class="formatoDatos"><div align="left">' . $row['Proveedor'] . '</div></td>	
-	<td class="formatoDatos"><div align="center">' . $row['Factura'] . '</div></td>
-	<td class="formatoDatos"><div align="center">$ ' . number_format($row['Total'], 0, '.', ',') . '</div></td>
-	<td class="formatoDatos"><div align="center">$ ' . number_format($row['Valor Pagado'], 0, '.', ',') . '</div></td>
-	<td class="formatoDatos"><div align="center">' . $row['Fecha Compra'] . '</div></td>
-	<td class="formatoDatos"><div align="center">' . $row['Fecha Vencimiento'] . '</div></td>
-	<td class="formatoDatos"><div align="center">' . $row['Fecha Canc'] . '</div></td>
-	<td class="formatoDatos"><div align="center">' . $row['Forma de Pago'] . '</div></td>
-	<td class="formatoDatos"><div align="center"><form action="Imp_Egreso.php" method="post" target="_blank" name="imprime' . $a . '"><input name="egreso" type="hidden" value="' . $egreso . '"><input name="Submit" type="submit" value="Imprimir" class="formatoBoton"></form></div></td>
-	';
-
-            echo '</tr>';
-            echo '</tr>';
-            $a = $a + 1;
-        }
-
-        */?>
-    </table>
-
-    <div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'"
-                               value="Ir al Menú"></div>-->
 </div>
 </body>
 </html>

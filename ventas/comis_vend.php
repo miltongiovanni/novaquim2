@@ -17,7 +17,6 @@ foreach ($_POST as $nombre_campo => $valor) {
 $personalOperador = new PersonalOperaciones();
 $personal = $personalOperador->getPerson($idPersonal);
 $totales = $personalOperador->getTotalComisionVendedor($idPersonal, $fechaInicial, $fechaFinal);
-
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -175,7 +174,7 @@ $totales = $personalOperador->getTotalComisionVendedor($idPersonal, $fechaInicia
     <div id="saludo1"><strong>CONSULTA DE COMISIONES DEL
             VENDEDOR <?php echo mb_strtoupper($personal['nomPersonal']); ?></strong></div>
     <div class="tabla-100">
-        <table id="example" class="display compact">
+        <table id="example" class="display compact formatoDatos">
             <thead>
             <tr>
                 <th class="width1">Factura</th>
