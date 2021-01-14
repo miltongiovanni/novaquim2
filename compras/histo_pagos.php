@@ -6,6 +6,7 @@ include "../includes/valAcc.php";
 <head>
     <title>Histórico de Comprobantes de Egreso</title>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="../css/datatables.css">
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <style>
         table {
@@ -13,7 +14,7 @@ include "../includes/valAcc.php";
         }
 
         .width1 {
-            width: 2%;
+            width: 5%;
         }
 
         .width2 {
@@ -21,23 +22,23 @@ include "../includes/valAcc.php";
         }
 
         .width3 {
-            width: 4%;
+            width: 5%;
         }
 
         .width4 {
-            width: 8%;
+            width: 7%;
         }
 
         .width5 {
-            width: 6%;
+            width: 7%;
         }
 
         .width6 {
-            width: 26%;
+            width: 20%;
         }
 
         .width7 {
-            width: 6%;
+            width: 7%;
         }
 
         .width8 {
@@ -49,16 +50,16 @@ include "../includes/valAcc.php";
         }
 
         .width10 {
-            width: 7%;
+            width: 2%;
         }
         .width11 {
-            width: 6%;
+            width: 7%;
         }
         .width12 {
             width: 7%;
         }
         .width13 {
-            width: 2%;
+            width: 5%;
         }
 
         table.dataTable.compact thead th,
@@ -67,7 +68,6 @@ include "../includes/valAcc.php";
         }
     </style>
     <script src="../js/validar.js"></script>
-    <link rel="stylesheet" href="../css/datatables.css">
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/datatables.js"></script>
     <script src="../js/dataTables.buttons.js"></script>
@@ -124,7 +124,7 @@ include "../includes/valAcc.php";
                     },
                     {
                         "data": "nomProv",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-left'
                     },
                     {
                         "data": "numFact",
@@ -132,15 +132,15 @@ include "../includes/valAcc.php";
                     },
                     {
                         "data": "vreal",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-right'
                     },
                     {
                         "data": "pago",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-right'
                     },
                     {
                         "data": "descuento",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-right'
                     },
                     {
                         "data": "fechPago",
@@ -221,7 +221,7 @@ include "../includes/valAcc.php";
                 <th class="width7">Factura</th>
                 <th class="width8">Valor a Pagar</th>
                 <th class="width9">Valor Pagado</th>
-                <th class="width10">Descuento</th>
+                <th class="width10">Desc</th>
                 <th class="width11">Fecha Pago</th>
                 <th class="width12">Forma de Pago</th>
                 <th class="width13"></th>

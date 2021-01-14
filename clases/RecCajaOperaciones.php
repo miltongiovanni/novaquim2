@@ -199,6 +199,35 @@ class RecCajaOperaciones
         return $result;
     }
 
+    public function getEstadoCuentaCliente($idCliente)
+    {
+        $qry = "SELECT f.idFactura,
+                       fechaFactura,
+                       fechaVenc,
+                       CONCAT('$', FORMAT(total, 0)) totalFactura,
+                       CONCAT('$', FORMAT((ROUND(totalR) - retencionIva - retencionIca - retencionFte), 0)) totalReal,
+                       CONCAT('$', FORMAT(IF(abonos IS NULL, 0, abonos), 0))                                abono,
+                       CONCAT('$', FORMAT(IF(notaC IS NULL, 0, notaC), 0))                                  totalNotaC,
+                       CONCAT('$', FORMAT(
+                               (ROUND(totalR) - retencionIva - retencionIca - retencionFte - IF(abonos IS NULL, 0, abonos) -
+                                IF(notaC IS NULL, 0, notaC)), 0)) as                                        'Saldo',
+                       fechaCancelacion,
+                       IF(estado = 'C', 'Cancelada', 'Pendiente')                                           estadoFactura
+                FROM factura f
+                         LEFT JOIN (SELECT SUM(cobro) abonos, idFactura FROM r_caja group by idFactura) t ON
+                    t.idFactura = f.idFactura
+                         LEFT JOIN (SELECT ROUND(totalNotaC) notaC, facturaDestino
+                                    FROM nota_c
+                                    WHERE fechaNotaC > '2016-04-05') nc ON nc.facturaDestino = f.idFactura
+                WHERE idCliente = $idCliente
+                  AND estado != 'A'
+                ORDER BY idFactura desc";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     public function getFormRecCaja($idRecCaja)
     {
         $qry = "SELECT idRecCaja, e.idCompra, e.tipoCompra, CONCAT('$', FORMAT(pago, 0)) pago, pago pagon, fechPago, descuentoE, formPago, formaPago, estadoCompra,
@@ -225,20 +254,35 @@ class RecCajaOperaciones
 
     public function getRecCaja($idRecCaja)
     {
-        $qry = "SELECT idRecCaja, e.idCompra, e.tipoCompra, pago, fechPago, descuentoE,
-                       numFact, fechComp, fechVenc, total, nitProv, nomProv, retefuente, reteica,
-                       (total-retefuente-reteica)  vreal FROM r_caja e
-                LEFT JOIN ( SELECT idCompra id, tipoCompra, numFact, fechComp, fechVenc, totalCompra total,
-                            nitProv, nomProv, retefuenteCompra retefuente, reteicaCompra reteica
-                            FROM compras c
-                            LEFT JOIN proveedores p on c.idProv = p.idProv
-                            UNION
-                            SELECT idGasto id, tipoCompra, numFact, fechGasto fechComp, fechVenc, totalGasto total,
-                            nitProv, nomProv, retefuenteGasto retefuente, reteicaGasto reteica
-                            FROM gastos g
-                            LEFT JOIN proveedores p on g.idProv = p.idProv
-                          ) t ON e.idCompra=t.id AND e.tipoCompra=t.tipoCompra
-                WHERE idRecCaja=?";
+        $qry = "SELECT idRecCaja,
+                       cobro,
+                       fechaRecCaja,
+                       descuento_f,
+                       form_pago,
+                       reten,
+                       idCheque,
+                       codBanco,
+                       banco,
+                       rc.idFactura,
+                       nitCliente,
+                       nomCliente,
+                       contactoCliente,
+                       cargoCliente,
+                       telCliente,
+                       fechaFactura,
+                       fechaVenc,
+                       Total,
+                       totalR,
+                       retencionIva,
+                       f.retencionIca,
+                       retencionFte,
+                       subtotal,
+                       iva
+                FROM r_caja rc
+                         LEFT JOIN factura f ON f.idFactura = rc.idFactura
+                         LEFT JOIN clientes c on c.idCliente = f.idCliente
+                         LEFT JOIN bancos b on b.idBanco = rc.codBanco
+                WHERE idRecCaja =?";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute(array($idRecCaja));
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -336,6 +380,22 @@ class RecCajaOperaciones
                      LEFT JOIN factura f on f.idFactura = rc.idFactura
                      LEFT JOIN clientes c on c.idCliente = f.idCliente
                      LEFT JOIN form_pago fp on fp.idFormaPago = rc.form_pago";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    public function getRecCajaFactura($idFactura)
+    {
+        $qry = "SELECT idRecCaja,
+                        CONCAT('$ ', FORMAT(cobro, 0)) pago,
+                       fechaRecCaja,
+                       formaPago
+                FROM r_caja rc
+                         LEFT JOIN factura f on f.idFactura = rc.idFactura
+                         LEFT JOIN clientes c on c.idCliente = f.idCliente
+                         LEFT JOIN form_pago fp on fp.idFormaPago = rc.form_pago WHERE rc.idFactura=$idFactura";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
