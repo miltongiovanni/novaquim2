@@ -21,6 +21,7 @@ $detNotaCrOperador = new DetNotaCrOperaciones();
 $notaC = $notaCrOperador->getNotaC($idNotaC);
 $facturaOperador = new FacturasOperaciones();
 $facturaOrigen = $facturaOperador->getFactura($notaC['facturaOrigen']);
+$facturaDestino = $facturaOperador->getFactura($notaC['facturaDestino']);
 $detRemisionOperador = new DetRemisionesOperaciones();
 $detRemision = $detRemisionOperador->getDetRemisionProducto($facturaOrigen['idRemision'], $codProducto);
 $cambio = $cantProducto - $cantAnterior;
@@ -70,6 +71,9 @@ try {
     $totalesNotaC = $notaCrOperador->getTotalesNotaC($idNotaC);
     $datos = array($totalesNotaC['subtotal'], $totalesNotaC['totalNotaC'], $totalesNotaC['iva'], $idNotaC);
     $notaCrOperador->updateTotalesNotaC($datos);
+    if (abs($facturaDestino['totalR'] - $facturaDestino['retencionFte'] - $facturaDestino['retencionIca'] - $facturaDestino['retencionIva'] - $totalesNotaC['totalNotaC']) < 100) {
+        $facturaOperador->cancelarFactura($notaC['fechaNotaC'], $notaC['facturaDestino']);
+    }
     $_SESSION['idNotaC'] = $idNotaC;
     $ruta = "detalleNotaC.php";
     $mensaje = "Detalle de nota crédito actualizado con éxito";

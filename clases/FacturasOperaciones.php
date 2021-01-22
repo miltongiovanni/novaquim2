@@ -340,6 +340,7 @@ class FacturasOperaciones
                    retencionFte,
                    retencionIca,
                    total,
+                   totalR,
                    subtotal,
                    iva,
                    f.Estado,
@@ -420,6 +421,13 @@ class FacturasOperaciones
                  WHERE idFactura=?";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute(array($observaciones, $idFactura));
+    }
+
+    public function cancelarFactura($fechaCancelacion, $idFactura)
+    {
+        $qry = "UPDATE factura SET estado='C', fechaCancelacion=? WHERE idFactura=?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($fechaCancelacion, $idFactura));
     }
 
     public function setDb()

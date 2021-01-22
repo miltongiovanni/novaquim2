@@ -21,6 +21,7 @@ $detNotaCrOperador = new DetNotaCrOperaciones();
 $notaC = $notaCrOperador->getNotaC($idNotaC);
 $facturaOperador = new FacturasOperaciones();
 $facturaOrigen = $facturaOperador->getFactura($notaC['facturaOrigen']);
+$facturaDestino = $facturaOperador->getFactura($notaC['facturaDestino']);
 
 try {
     if ($motivo == 0) {
@@ -71,6 +72,9 @@ try {
         $totalesNotaC = $notaCrOperador->getTotalesNotaC($idNotaC);
         $datos = array($totalesNotaC['subtotal'], $totalesNotaC['totalNotaC'], $totalesNotaC['iva'], $idNotaC);
         $notaCrOperador->updateTotalesNotaC($datos);
+        if (abs($facturaDestino['totalR'] - $facturaDestino['retencionFte'] - $facturaDestino['retencionIca'] - $facturaDestino['retencionIva'] - $totalesNotaC['totalNotaC']) < 100) {
+            $facturaOperador->cancelarFactura($notaC['fechaNotaC'], $notaC['facturaDestino']);
+        }
     } else {
         if ($detNotaCrOperador->hasDescNotaCr($idNotaC)) {
             //update

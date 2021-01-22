@@ -121,13 +121,26 @@ function findFacturasByCliente()
     }
 }
 
-function updateEstadoCompra()
+function aplicarRetefuente()
 {
-    $idCompra = $_POST['idCompra'];
-    $estadoCompra = $_POST['estadoCompra'];
-    $CompraOperador = new ComprasOperaciones();
-    $datos = array($estadoCompra, $idCompra);
-    $CompraOperador->updateEstadoCompra($datos);
+    $tasaRetencion = $_POST['tasaRetencion'];
+    $idFactura = $_POST['idFactura'];
+    $facturaOperador = new FacturasOperaciones();
+    $factura=$facturaOperador->getFactura($idFactura);
+    $datos=array(round($factura['totalR'])-$factura['subtotal']*(1-$factura['descuento'])*$tasaRetencion , $factura['retencionIva'], $factura['retencionIca'], $factura['subtotal']*(1-$factura['descuento'])*$tasaRetencion, $factura['subtotal'], $factura['iva'], round($factura['totalR']), $idFactura);
+    $facturaOperador->updateTotalesFactura($datos);
+    $rep['msg'] = "OK";
+    echo json_encode($rep);
+}
+function aplicarReteica()
+{
+    $tasaRetencion = $_POST['tasaRetencion'];
+    $idFactura = $_POST['idFactura'];
+    $facturaOperador = new FacturasOperaciones();
+    $factura=$facturaOperador->getFactura($idFactura);
+    $reteica=round($factura['subtotal']*(1-$factura['descuento'])*$tasaRetencion);
+    $datos=array(round($factura['totalR'])-$reteica , $factura['retencionIva'], $reteica, $factura['retencionFte'], $factura['subtotal'], $factura['iva'], round($factura['totalR']), $idFactura);
+    $facturaOperador->updateTotalesFactura($datos);
     $rep['msg'] = "OK";
     echo json_encode($rep);
 }
@@ -197,8 +210,11 @@ switch ($action) {
     case 'cantDetNotaC':
         cantDetNotaC();
         break;
-    case 'findProveedorGasto':
-        findProveedorGasto();
+    case 'aplicarRetefuente':
+        aplicarRetefuente();
+        break;
+    case 'aplicarReteica':
+        aplicarReteica();
         break;
     case 'updateEstadoGasto':
         updateEstadoGasto();

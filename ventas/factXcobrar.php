@@ -62,6 +62,7 @@ include "../includes/valAcc.php";
         }
 
     </style>
+    <script src="../js/validar.js"></script>
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/datatables.js"></script>
     <script src="../js/dataTables.buttons.js"></script>
@@ -91,8 +92,8 @@ include "../includes/valAcc.php";
                     {
                         "orderable": false,
                         "data": function (row) {
-                            let rep = '<form action="recibo_caja.php" method="post" name="elimina">' +
-                                '          <input name="factura" type="hidden" value="' + row.idFactura + '">' +
+                            let rep = '<form action="makeRecCaja.php" method="post" name="elimina">' +
+                                '          <input name="idFactura" type="hidden" value="' + row.idFactura + '">' +
                                 '          <input type="button" name="Submit" onclick="return Enviar(this.form)" class="formatoBoton1"  value="Cobrar">' +
                                 '       </form>'
                             return rep;

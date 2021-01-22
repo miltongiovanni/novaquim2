@@ -9,12 +9,12 @@ class RecCajaOperaciones
         $this->setDb();
     }
 
-    public function makeRecCaja($datos)
+    public function makeRecCaja($idFactura)
     {
         /*Preparo la insercion */
-        $qry = "INSERT INTO r_caja (idFactura, cobro, fechaRecCaja, descuento_f, form_pago, reten, reten_cree, idCheque, codBanco, reten_ica) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $qry = "INSERT INTO r_caja (idFactura, cobro, fechaRecCaja, descuento_f, idCheque, codBanco) VALUES(?, 0, NOW(), 0, 0, 0)";
         $stmt = $this->_pdo->prepare($qry);
-        $stmt->execute($datos);
+        $stmt->execute(array($idFactura));
         return $this->_pdo->lastInsertId();
     }
     public function isValidIdRecCaja($idRecCaja)
@@ -271,7 +271,7 @@ class RecCajaOperaciones
                        telCliente,
                        fechaFactura,
                        fechaVenc,
-                       Total,
+                       total,
                        totalR,
                        retencionIva,
                        f.retencionIca,
@@ -402,6 +402,37 @@ class RecCajaOperaciones
         return $result;
     }
 
+    public function getCobrosFactura($idFactura)
+    {
+        $qry = "SELECT SUM(cobro) parcial
+                FROM r_caja
+                WHERE idFactura =$idFactura";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array());
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        if($result==null){
+            return 0;
+        }else{
+            return $result['parcial'];
+        }
+
+    }
+    public function getCobrosAnterioresFactura($idFactura, $idRecCaja)
+    {
+        $qry = "SELECT SUM(cobro) parcial
+                FROM r_caja
+                WHERE idFactura =$idFactura AND idRecCaja!=$idRecCaja";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array());
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        if($result==null){
+            return 0;
+        }else{
+            return $result['parcial'];
+        }
+
+    }
+
     public function checkRecCaja($idCompra, $tipoCompra)
     {
         $qry = "SELECT idRecCaja  FROM r_caja WHERE idCompra = ? AND tipoCompra = ?";
@@ -413,7 +444,7 @@ class RecCajaOperaciones
 
     public function updateRecCaja($datos)
     {
-        $qry = "UPDATE r_caja SET pago=?, fechPago=?, descuentoE=?, formPago=? WHERE idRecCaja=?";
+        $qry = "UPDATE r_caja SET cobro=?, fechaRecCaja=?, descuento_f=?, form_pago=?, reten=?, idCheque=?, codBanco=?, reten_ica=? WHERE idRecCaja=?";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute($datos);
     }
