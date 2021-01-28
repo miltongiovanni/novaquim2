@@ -20,7 +20,7 @@ spl_autoload_register('cargarClases');
     <div id="saludo"><strong>BUSCAR ORDEN DE PEDIDO A MODIFICAR</strong></div>
     <form id="form1" name="form1" method="post" action="updatePedidoForm.php">
         <div class="form-group row">
-            <label class="col-form-label col-2" for="lote"><strong>Orden de pedido</strong></label>
+            <label class="col-form-label col-2" for="idPedido"><strong>Orden de pedido</strong></label>
             <select name="idPedido" id="idPedido" class="form-control col-1" required>
                 <option selected disabled value="">------------</option>
                 <?php

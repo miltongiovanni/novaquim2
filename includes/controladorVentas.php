@@ -145,14 +145,25 @@ function aplicarReteica()
     echo json_encode($rep);
 }
 
-function updateEstadoGasto()
+function prodEmprCantTotalYear()
 {
-    $idGasto = $_POST['idGasto'];
-    $estadoGasto = $_POST['estadoGasto'];
-    $GastoOperador = new GastosOperaciones();
-    $datos = array($estadoGasto, $idGasto);
-    $GastoOperador->updateEstadoGasto($datos);
-    $rep['msg'] = "OK";
+    $year = $_POST['year'];
+    $type = $_POST['type'];
+    $detFacturaOperador = new DetFacturaOperaciones();
+    $totalCant= $detFacturaOperador->getTotalProductosEmpresaPorYear($year);
+    if($type==1){
+        $prodCant= $detFacturaOperador->getCantTotalProductosEmpresaPorYear($year);
+        $rep['cant'] = array_column($prodCant, 'cant');
+        $rep['cant'][] = $totalCant['cant'] - array_sum(array_column($prodCant, 'cant'));
+        $rep['productos'] = array_column($prodCant, 'producto');
+    }else{
+        $prodCant= $detFacturaOperador->getValTotalProductosEmpresaPorYear($year);
+        $rep['cant'] = array_column($prodCant, 'sub');
+        $rep['cant'][] = $totalCant['sub'] - array_sum(array_column($prodCant, 'sub'));
+        $rep['productos'] = array_column($prodCant, 'producto');
+    }
+
+    $rep['productos'][]= 'Otros productos';
     echo json_encode($rep);
 }
 
@@ -216,8 +227,8 @@ switch ($action) {
     case 'aplicarReteica':
         aplicarReteica();
         break;
-    case 'updateEstadoGasto':
-        updateEstadoGasto();
+    case 'prodEmprCantTotalYear':
+        prodEmprCantTotalYear();
         break;
     case 'eliminarSession':
         eliminarSession();

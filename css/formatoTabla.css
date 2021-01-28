@@ -321,6 +321,11 @@ font {
     color: #000066;
 }
 
+.formatoDatos5 {
+    font-size: 0.8em;
+    color: #000066;
+}
+
 .formatoBoton {
     background-color: #000066;
     border-width: thin;

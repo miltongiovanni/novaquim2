@@ -4,58 +4,48 @@ include "../includes/valAcc.php";
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <title>Ventas por familia de productos Nova por mes</title>
+    <title>Ventas por familia de productos Novaquim por mes</title>
     <meta charset="utf-8">
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-    <script  src="../js/validar.js"></script>
-	<script  src="scripts/block.js"></script>	
-    <link rel="stylesheet" type="text/css" media="all" href="css/calendar-blue2.css" title="blue">
-    <script  src="scripts/calendar.js"></script>
-    <script  src="scripts/calendar-sp.js"></script>
-    <script  src="scripts/calendario.js"></script>
-    	<script >
-	document.onkeypress = stopRKey; 
-	</script>
+    <script src="../js/validar.js"></script>
 </head>
-<body> 
+<body>
 <div id="contenedor">
-<div id="saludo"><strong>VENTAS POR FAMILIA PRODUCTOS NOVA POR MES</strong></div> 
-<form method="post" action="vtas_fam_tot_mes.php" name="form1">	
-	<table align="center">
-    <tr>
-      	<td>&nbsp;</td>
-      	<td>&nbsp;</td>
-    </tr>
-     <tr>
-      <td align="right"><strong>Fecha Inicial</strong></td>
-      <td><input type="text" name="FchIni" id="sel1" readonly size=20><input type="reset" value=" ... "
-		onclick="return showCalendar('sel1', '%Y-%m-%d', '12', true);"></td>
-    </tr>
-    <tr>
-      <td align="right"><strong>Fecha Final</strong></td>
-      <td><input type="text" name="FchFin" id="sel2" readonly size=20><input type="reset" value=" ... "
-		onclick="return showCalendar('sel2', '%Y-%m-%d', '12', true);"></td>
-    </tr>
-    <tr>
-      <td colspan="2"><div align="center">&nbsp;</div></td>
-    </tr>    <input name="Crear" type="hidden" value="3">
-    <tr>
-   	  <td>&nbsp;</td>
-   	  <td><div align="right"><input name="button" type="button" onClick="return Enviar(this.form);" value="Continuar"></div></td>
-    </tr>
-    <tr>
-      <td colspan="2"><div align="center">&nbsp;</div></td>
-    </tr>
-    <tr>
-        <td colspan="2"><div align="center">&nbsp;</div></td>
-    </tr>
-    <tr> 
-        <td colspan="2">
-        <div align="center"><input type="button" class="resaltado" onClick="history.back()" value="  VOLVER  "></div>        </td>
-    </tr>
+    <div id="saludo"><strong>VENTAS POR FAMILIA PRODUCTOS NOVA POR MES</strong></div>
+    <form method="post" action="vtas_fam_tot_mes.php" name="form1">
+        <div class="form-group row">
+            <label class="col-form-label col-1" for="year"><strong>Año</strong></label>
+            <select name="year" id="year" class="form-control col-1" required>
+                <?php
+                $year=intval(date("Y"));
+                for ($i = $year; $i >= 2011; $i--) : ?>
+                    <option value="<?= $i ?>"><?= $i ?></option>
+                <?php
+                endfor;
+                ?>
+            </select>
+        </div>
+        <div class="form-group row">
+            <label class="col-form-label col-1" for="year"><strong>Tipo</strong></label>
+            <select name="type" id="type" class="form-control col-1" required>
+                    <option value="1">Unidades</option>
+                    <option value="2">Valores</option>
+            </select>
+        </div>
+        <div class="row form-group">
+            <div class="col-1">
+                <button class="button" onclick="return Enviar(this.form)">
+                    <span>Continuar</span></button>
+            </div>
+        </div>
+    </form>
+    <div class="row form-group">
+        <div class="col-1">
+            <button class="button1" onclick="history.back()"><span>VOLVER</span></button>
+        </div>
+    </div>
 
-  </table>
-</form> 
+
 </div>
 </body>
 </html>

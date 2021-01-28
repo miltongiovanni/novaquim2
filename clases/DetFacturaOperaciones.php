@@ -102,6 +102,207 @@ class DetFacturaOperaciones
         return $result;
     }
 
+    public function getAcumuladoProductosEmpresaPorMesProducto($year)
+    {
+        $qry = "SELECT t.codigoGen,
+                       t.producto,
+                       MAX(CASE WHEN mes = 1 THEN cant ELSE 0 END)  AS cant_enero,
+                       MAX(CASE WHEN mes = 2 THEN cant ELSE 0 END)  AS cant_febrero,
+                       MAX(CASE WHEN mes = 3 THEN cant ELSE 0 END)  AS cant_marzo,
+                       MAX(CASE WHEN mes = 4 THEN cant ELSE 0 END)  AS cant_abril,
+                       MAX(CASE WHEN mes = 5 THEN cant ELSE 0 END)  AS cant_mayo,
+                       MAX(CASE WHEN mes = 6 THEN cant ELSE 0 END)  AS cant_junio,
+                       MAX(CASE WHEN mes = 7 THEN cant ELSE 0 END)  AS cant_julio,
+                       MAX(CASE WHEN mes = 8 THEN cant ELSE 0 END)  AS cant_agosto,
+                       MAX(CASE WHEN mes = 9 THEN cant ELSE 0 END)  AS cant_septiembre,
+                       MAX(CASE WHEN mes = 10 THEN cant ELSE 0 END) AS cant_octubre,
+                       MAX(CASE WHEN mes = 11 THEN cant ELSE 0 END) AS cant_noviembre,
+                       MAX(CASE WHEN mes = 12 THEN cant ELSE 0 END) AS cant_diciembre,
+                       CONCAT('$', FORMAT(MAX(CASE WHEN mes = 1 THEN sub ELSE 0 END), 0))   AS sub_enero,
+                       CONCAT('$', FORMAT(MAX(CASE WHEN mes = 2 THEN sub ELSE 0 END), 0))   AS sub_febrero,
+                       CONCAT('$', FORMAT(MAX(CASE WHEN mes = 3 THEN sub ELSE 0 END), 0))   AS sub_marzo,
+                       CONCAT('$', FORMAT(MAX(CASE WHEN mes = 4 THEN sub ELSE 0 END), 0))   AS sub_abril,
+                       CONCAT('$', FORMAT(MAX(CASE WHEN mes = 5 THEN sub ELSE 0 END), 0))   AS sub_mayo,
+                       CONCAT('$', FORMAT(MAX(CASE WHEN mes = 6 THEN sub ELSE 0 END), 0))   AS sub_junio,
+                       CONCAT('$', FORMAT(MAX(CASE WHEN mes = 7 THEN sub ELSE 0 END), 0))   AS sub_julio,
+                       CONCAT('$', FORMAT(MAX(CASE WHEN mes = 8 THEN sub ELSE 0 END), 0))   AS sub_agosto,
+                       CONCAT('$', FORMAT(MAX(CASE WHEN mes = 9 THEN sub ELSE 0 END), 0))   AS sub_septiembre,
+                       CONCAT('$', FORMAT(MAX(CASE WHEN mes = 10 THEN sub ELSE 0 END), 0))  AS sub_octubre,
+                       CONCAT('$', FORMAT(MAX(CASE WHEN mes = 11 THEN sub ELSE 0 END), 0))  AS sub_noviembre,
+                       CONCAT('$', FORMAT(MAX(CASE WHEN mes = 12 THEN sub ELSE 0 END), 0))  AS sub_diciembre
+                FROM (SELECT SUM(cantProducto) cant,
+                             SUM(cantProducto*precioProducto) sub,
+                             MONTH(fechaFactura) mes,
+                             p.codigoGen,
+                             p2.producto
+                      FROM det_factura df
+                               LEFT JOIN factura f on f.idFactura = df.idFactura
+                               LEFT JOIN prodpre p on df.codProducto = p.codPresentacion
+                               LEFT JOIN precios p2 on p2.codigoGen = p.codigoGen
+                      WHERE df.codProducto < 100000 AND df.codProducto>10000
+                        AND YEAR(fechaFactura) = $year
+                      GROUP BY mes, p.codigoGen) t
+                GROUP BY t.codigoGen, t.producto";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);;
+        return $result;
+    }
+
+    public function getAcumuladoProductosDistribucionPorMesProducto($year)
+    {
+        $qry = "SELECT t.idCatDis,
+               t.catDis,
+               MAX(CASE WHEN mes = 1 THEN cant ELSE 0 END)  AS cant_enero,
+               MAX(CASE WHEN mes = 2 THEN cant ELSE 0 END)  AS cant_febrero,
+               MAX(CASE WHEN mes = 3 THEN cant ELSE 0 END)  AS cant_marzo,
+               MAX(CASE WHEN mes = 4 THEN cant ELSE 0 END)  AS cant_abril,
+               MAX(CASE WHEN mes = 5 THEN cant ELSE 0 END)  AS cant_mayo,
+               MAX(CASE WHEN mes = 6 THEN cant ELSE 0 END)  AS cant_junio,
+               MAX(CASE WHEN mes = 7 THEN cant ELSE 0 END)  AS cant_julio,
+               MAX(CASE WHEN mes = 8 THEN cant ELSE 0 END)  AS cant_agosto,
+               MAX(CASE WHEN mes = 9 THEN cant ELSE 0 END)  AS cant_septiembre,
+               MAX(CASE WHEN mes = 10 THEN cant ELSE 0 END) AS cant_octubre,
+               MAX(CASE WHEN mes = 11 THEN cant ELSE 0 END) AS cant_noviembre,
+               MAX(CASE WHEN mes = 12 THEN cant ELSE 0 END) AS cant_diciembre,
+               MAX(CASE WHEN mes = 1 THEN sub ELSE 0 END)   AS sub_enero,
+               MAX(CASE WHEN mes = 2 THEN sub ELSE 0 END)   AS sub_febrero,
+               MAX(CASE WHEN mes = 3 THEN sub ELSE 0 END)   AS sub_marzo,
+               MAX(CASE WHEN mes = 4 THEN sub ELSE 0 END)   AS sub_abril,
+               MAX(CASE WHEN mes = 5 THEN sub ELSE 0 END)   AS sub_mayo,
+               MAX(CASE WHEN mes = 6 THEN sub ELSE 0 END)   AS sub_junio,
+               MAX(CASE WHEN mes = 7 THEN sub ELSE 0 END)   AS sub_julio,
+               MAX(CASE WHEN mes = 8 THEN sub ELSE 0 END)   AS sub_agosto,
+               MAX(CASE WHEN mes = 9 THEN sub ELSE 0 END)   AS sub_septiembre,
+               MAX(CASE WHEN mes = 10 THEN sub ELSE 0 END)  AS sub_octubre,
+               MAX(CASE WHEN mes = 11 THEN sub ELSE 0 END)  AS sub_noviembre,
+               MAX(CASE WHEN mes = 12 THEN sub ELSE 0 END)  AS sub_diciembre
+        FROM (SELECT IF(SUM(cantProducto) is null,0,SUM(cantProducto))  cant,
+                     IF(SUM(cantProducto*precioProducto) is null, 0, SUM(cantProducto*precioProducto)) sub,
+                     MONTH(fechaFactura) mes,
+                     cd.idCatDis,
+                     cd.catDis
+              FROM det_factura df
+                       LEFT JOIN factura f on f.idFactura = df.idFactura
+                       LEFT JOIN distribucion d on df.codProducto = d.idDistribucion
+                       LEFT JOIN cat_dis cd on cd.idCatDis = d.idCatDis
+              WHERE df.codProducto > 100000
+                AND YEAR(fechaFactura) = $year
+              GROUP BY mes, idCatDis) t
+        GROUP BY t.idCatDis, t.catDis";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);;
+        return $result;
+    }
+
+    public function getTotalProductosEmpresaPorMes($year)
+    {
+        $qry = "SELECT IF(SUM(cantProducto) is null,0,SUM(cantProducto))  cant,
+                       IF(SUM(cantProducto*precioProducto) is null, 0, SUM(cantProducto*precioProducto)) sub,
+                       MONTH(fechaFactura) mes
+                FROM det_factura df
+                         LEFT JOIN factura f on f.idFactura = df.idFactura
+                WHERE df.codProducto < 100000 AND df.codProducto>10000
+                  AND YEAR(fechaFactura) = $year
+                GROUP BY mes";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);;
+        return $result;
+    }
+
+    public function getCantTotalProductosEmpresaPorYear($year)
+    {
+        $qry = "SELECT IF(SUM(cantProducto) is null, 0, SUM(cantProducto))                                   cant,
+                       IF(SUM(cantProducto * precioProducto) is null, 0, SUM(cantProducto * precioProducto)) sub,
+                       YEAR(fechaFactura)                                                                   year,
+                       p.codigoGen,
+                       p2.producto
+                FROM det_factura df
+                         LEFT JOIN factura f on f.idFactura = df.idFactura
+                         LEFT JOIN prodpre p on df.codProducto = p.codPresentacion
+                         LEFT JOIN precios p2 on p2.codigoGen = p.codigoGen
+                WHERE df.codProducto < 100000 AND df.codProducto>10000
+                  AND YEAR(fechaFactura) = 2019
+                GROUP BY year, p.codigoGen
+                ORDER BY cant DESC LIMIT 20";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);;
+        return $result;
+    }
+
+    public function getValTotalProductosEmpresaPorYear($year)
+    {
+        $qry = "SELECT IF(SUM(cantProducto) is null, 0, SUM(cantProducto))                                   cant,
+                       IF(SUM(cantProducto * precioProducto) is null, 0, SUM(cantProducto * precioProducto)) sub,
+                       YEAR(fechaFactura)                                                                   year,
+                       p.codigoGen,
+                       p2.producto
+                FROM det_factura df
+                         LEFT JOIN factura f on f.idFactura = df.idFactura
+                         LEFT JOIN prodpre p on df.codProducto = p.codPresentacion
+                         LEFT JOIN precios p2 on p2.codigoGen = p.codigoGen
+                WHERE df.codProducto < 100000 AND df.codProducto>10000
+                  AND YEAR(fechaFactura) = $year
+                GROUP BY year, p.codigoGen
+                ORDER BY sub DESC LIMIT 20";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);;
+        return $result;
+    }
+
+    public function getTotalProductosEmpresaPorYear($year)
+    {
+        $qry = "SELECT IF(SUM(cantProducto) is null,0,SUM(cantProducto))  cant,
+                       IF(SUM(cantProducto*precioProducto) is null, 0, SUM(cantProducto*precioProducto)) sub,
+                       YEAR(fechaFactura) year
+                FROM det_factura df
+                         LEFT JOIN factura f on f.idFactura = df.idFactura
+                WHERE df.codProducto < 100000 AND df.codProducto>10000
+                  AND YEAR(fechaFactura) = $year
+                GROUP BY year";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);;
+        return $result;
+    }
+
+
+    public function getTotalProductosDistribucionPorMes($year)
+    {
+        $qry = "SELECT IF(SUM(cantProducto) is null,0,SUM(cantProducto))  cant,
+                       IF(SUM(cantProducto*precioProducto) is null, 0, SUM(cantProducto*precioProducto)) sub,
+                       MONTH(fechaFactura) mes
+                FROM det_factura df
+                         LEFT JOIN factura f on f.idFactura = df.idFactura
+                WHERE df.codProducto > 100000 
+                  AND YEAR(fechaFactura) = $year
+                GROUP BY mes";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);;
+        return $result;
+    }
+
+    public function getTotalProductosDistribucionPorYear($year)
+    {
+        $qry = "SELECT IF(SUM(cantProducto) is null,0,SUM(cantProducto))  cant,
+                       IF(SUM(cantProducto*precioProducto) is null, 0, SUM(cantProducto*precioProducto)) sub,
+                       YEAR(fechaFactura) year
+                FROM det_factura df
+                         LEFT JOIN factura f on f.idFactura = df.idFactura
+                WHERE df.codProducto > 100000 
+                  AND YEAR(fechaFactura) = $year
+                GROUP BY year";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);;
+        return $result;
+    }
+
     public function getTableDetFactura($idFactura)
     {
         $qry = "SELECT dcp.codProducto, p.presentacion producto, cantProducto, CONCAT('$', FORMAT(precioProducto, 0)) precioProducto,
