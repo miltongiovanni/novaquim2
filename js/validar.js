@@ -1,3 +1,5 @@
+
+
 function Longitud(form) {
     for (i = 0; i < form.elements.length; i++) {
         //Rutina para validar  la longitud de los campos
@@ -13,13 +15,15 @@ function Enviar(form) {
         if (form.elements[i].type === "text" || form.elements[i].type === "date" || form.elements[i].type === "select-one" || form.elements[i].type === "password") {
             if (form.elements[i].value === "" && form.elements[i].required) {
                 if ((form.elements[i].type === "text" || form.elements[i].type === "date" || form.elements[i].type === "password") && form.elements[i].required ) {
-                    alert("Este campo es requerido");
-                    form.elements[i].focus();
+                    //alert("Este campo es requerido");
+                    alerta('Este campo es requerido', 'warning', '', form.elements[i]);
+                    //form.elements[i].focus();
                     return false;
                 } else {
                     if(form.elements[i].required){
-                        alert("Por favor selecione un valor para el campo");
-                        form.elements[i].autofocus();
+                        //alert("Por favor selecione un valor para el campo");
+                        alerta('Por favor selecione un valor para el campo', 'warning', '', form.elements[i]);
+                        //form.elements[i].autofocus();
                         return false;
                     }
 
@@ -27,13 +31,69 @@ function Enviar(form) {
             } // form
         }
     }
-    var pregunta = confirm("\u00BFEst\u00E1 Seguro?");
-    if (pregunta === true) {
+    //var pregunta = confirm("\u00BFEst\u00E1 Seguro?");
+    var pregunta = confirmation(form);
+    console.log(pregunta);
+    /*if (pregunta === true) {
         form.submit();
     } else
-        return false;
+        return false;*/
 }
 
+function alerta(text, icon, ruta, formElement){
+    swal({
+        /*title: "Industrias Novaquim S.A.S.",*/
+        text: text,
+        icon: icon,
+        button: {
+            text: "Aceptar",
+            value: true,
+            visible: true,
+            className: "",
+            closeModal: true,
+        },
+    }).then((value) => {
+        if(value){
+            if(formElement !== ''){
+                formElement.focus();
+            }
+        }
+    });
+}
+
+function confirmation(form){
+    swal({
+        title: "Confirmación",
+        text: "Está seguro?",
+        icon: "info",
+        buttons: {
+            cancel: {
+                text: "No",
+                value: null,
+                visible: true,
+                className: "",
+                closeModal: true,
+            },
+            confirm: {
+                text: "Si",
+                value: true,
+                visible: true,
+                className: "",
+                closeModal: true
+            }
+        },
+    }).then((value) => {
+        if (value) {
+            /*swal("Poof! Your imaginary file has been deleted!", {
+                icon: "success",
+            });*/
+            form.submit();
+        } else {
+            /*swal("Your imaginary file is safe!");*/
+            return false;
+        }
+    });
+}
 /*
 function Enviar0(form) {
 	for (i = 0; i < form.elements.length; i++) {
@@ -149,6 +209,7 @@ function togglecomments(postid) {
     }
 }
 
+
 /*
 	function stopRKey(evt) 
 	{
@@ -160,3 +221,5 @@ function togglecomments(postid) {
 		}
 	}
 */
+
+

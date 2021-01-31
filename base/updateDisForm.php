@@ -102,7 +102,7 @@ $productoDistribucion = $ProductoDistribucionOperador->getProductoDistribucion($
         </div>
         <div class="form-group row">
             <div class="col-1 text-center">
-                <button class="button" onclick="return Enviar(this.form)"><span>Continuar</span></button>
+                <button class="button" type="button" onclick="return Enviar(this.form)"><span>Continuar</span></button>
             </div>
 
         </div>

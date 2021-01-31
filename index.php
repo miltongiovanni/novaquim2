@@ -1,3 +1,8 @@
+<?php
+session_start();
+var_dump($_SESSION);
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -7,7 +12,7 @@
     <link rel="icon" href="images/favicon.ico" type="image/ico" sizes="16x16">
     <title>Sistema de Información de Industrias Novaquim S.A.S.</title>
 
-
+    <script src="node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="js/validar.js"></script>
 
 </head>
@@ -18,10 +23,10 @@
     <form method="POST" action="administracion/login.php">
         <div class="form-group row">
             <div class="col-1 text-right">
-                <label class="col-form-label" for="nombre">Usuario</label>
+                <label class="col-form-label" for="username">Usuario</label>
             </div>
             <div class="col-1">
-                <input type="text" class="form-control" name="nombre" id="nombre" maxlength="10" placeholder="Usuario"
+                <input type="text" class="form-control" name="username" id="username" maxlength="10" placeholder="Usuario" required
                        autofocus>
             </div>
         </div>
@@ -30,7 +35,7 @@
                 <label class="col-form-label" for="password">Contraseña</label>
             </div>
             <div class="col-1"><input type="password" class="form-control" name="password" id="password" maxlength="15"
-                                      placeholder="Contraseña">
+                                     required placeholder="Contraseña">
             </div>
         </div>
         <div class="form-group row">
@@ -38,7 +43,7 @@
                 <button class="button" type="reset"><span>Reiniciar</span></button>
             </div>
             <div class="col-1 text-center">
-                <button class="button" onclick="return Enviar(this.form)"><span>Continuar</span></button>
+                <button class="button" type="button" onclick="return Enviar(this.form)"><span>Continuar</span></button>
             </div>
         </div>
 

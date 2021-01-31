@@ -109,7 +109,7 @@ if ($_POST['seleccion1'])
     <div id="saludo1"><strong>FALTANTE DE LOS PEDIDOS</strong></div>
     <div class="row flex-end mb-3">
         <div class="col-1">
-            <button class="button" onclick="window.location='../menu.php'">
+            <button class="button" type="button" onclick="window.location='../menu.php'">
                 <span><STRONG>Ir al Menú</STRONG></span></button>
         </div>
     </div>
@@ -128,7 +128,7 @@ if ($_POST['seleccion1'])
 
     <div class="row">
         <div class="col-1">
-            <button class="button" onclick="window.location='../menu.php'">
+            <button class="button" type="button" onclick="window.location='../menu.php'">
                 <span><STRONG>Ir al Menú</STRONG></span>
             </button>
         </div>

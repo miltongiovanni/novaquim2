@@ -15,12 +15,12 @@ include "../includes/valAcc.php";
 	<div id="contenedor">
 		<div id="saludo"><strong>CAMBIO DE CONTRASEÑA</strong></div>
 		<?php
-			$nombre= $_SESSION['User'];
+			$username= $_SESSION['User'];
 		?>
 		<form action="change.php" method="POST" name="Cambio_clave" id="Cambio_clave">
 			<div class="form-group row">
-				<label class="col-form-label col-2 text-right"  for="nombre"><b>Nombre de usuario</b></label>
-				<input  class="form-control col-2" name="nombre" id="nombre" value="<?php echo $nombre ?>" readonly size="20" required>
+				<label class="col-form-label col-2 text-right"  for="username"><b>Nombre de usuario</b></label>
+				<input  class="form-control col-2" name="username" id="username" value="<?php echo $username ?>" readonly size="20" required>
 			</div>
 			<div class="form-group row">
 				<label class="col-form-label col-2 text-right"  for="password"><strong>Contraseña actual</strong></label>

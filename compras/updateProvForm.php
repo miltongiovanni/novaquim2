@@ -210,7 +210,7 @@ $proveedor = $ProveedorOperador->getProveedor($idProv);
         </div>
         <div class="form-group row">
             <div class="col-2 text-center" >
-                <button class="button" onclick="return Enviar(this.form)"><span>Actualizar Proveedor</span></button>
+                <button class="button" type="button" onclick="return Enviar(this.form)"><span>Actualizar Proveedor</span></button>
             </div>
             <div class="col-1 text-center" >
                 <button class="button" type="reset"><span>Reiniciar</span></button>
@@ -219,7 +219,7 @@ $proveedor = $ProveedorOperador->getProveedor($idProv);
     </form>
     <div class="row">
         <div class="col-3">
-            <button class="button" onClick="window.location='detProveedor.php'">
+            <button class="button" type="button" onClick="window.location='detProveedor.php'">
                 <span>Adicionar o cambiar productos</span></button>
         </div>
     </div>

@@ -126,7 +126,7 @@ $porcentajeTotal = $DetFormulaColorOperador->getPorcentajeTotal($idFormulaColor)
                 <input type="text" style="margin: 0 5px;" class="form-control col-1" name="porcentaje"
                        id="porcentaje" onKeyPress="return aceptaNum(event)">
                 <div class="col-2 text-center" style="padding: 0 20px;">
-                    <button class="button" onclick="return Enviar(this.form)"><span>Adicionar detalle</span>
+                    <button class="button" type="button" onclick="return Enviar(this.form)"><span>Adicionar detalle</span>
                     </button>
                 </div>
         </div>
@@ -158,7 +158,7 @@ $porcentajeTotal = $DetFormulaColorOperador->getPorcentajeTotal($idFormulaColor)
 
     <div class="row">
         <div class="col-1">
-            <button class="button" id="back" onclick="window.location='../menu.php'"><span>Terminar</span>
+            <button class="button" type="button" id="back" onclick="window.location='../menu.php'"><span>Terminar</span>
             </button>
         </div>
     </div>

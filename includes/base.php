@@ -24,7 +24,7 @@ function buscarCatProdForm($action)
 
     $rep .= '</div>
     <div class="row form-group">
-    <div class="col-1"><button class="button"  onclick="return Enviar(this.form)">
+    <div class="col-1"><button class="button" type="button" onclick="return Enviar(this.form)">
             <span>Continuar</span></button></div>
     </div>
     </form>';
@@ -48,7 +48,7 @@ function buscarCatMPForm($action)
 
     $rep .= '</div>
     <div class="row form-group">
-    <div class="col-1"><button class="button"  onclick="return Enviar(this.form)">
+    <div class="col-1"><button class="button" type="button" onclick="return Enviar(this.form)">
             <span>Continuar</span></button></div>
     </div>
     </form>';
@@ -72,7 +72,7 @@ function buscarCatDisForm($action)
 
     $rep .= '</div>
     <div class="row form-group">
-    <div class="col-1"><button class="button"  onclick="return Enviar(this.form)">
+    <div class="col-1"><button class="button" type="button" onclick="return Enviar(this.form)">
             <span>Continuar</span></button></div>
     </div>
     </form>';
@@ -96,7 +96,7 @@ function buscarProductoForm($action, $actif)
 
     $rep .= '</div>
         <div class="row form-group">
-        <div class="col-1"><button class="button"  onclick="return Enviar(this.form)">
+        <div class="col-1"><button class="button" type="button" onclick="return Enviar(this.form)">
                 <span>Continuar</span></button></div>
         </div>
         </form>';
@@ -120,7 +120,7 @@ function buscarMPrimaForm($action)
 
     $rep .= '</div>
         <div class="row form-group">
-        <div class="col-1"><button class="button"  onclick="return Enviar(this.form)">
+        <div class="col-1"><button class="button" type="button" onclick="return Enviar(this.form)">
                 <span>Continuar</span></button></div>
         </div>
         </form>';
@@ -144,7 +144,7 @@ function buscarEtiquetaForm($action)
 
     $rep .= '</div>
         <div class="row form-group">
-        <div class="col-1"><button class="button"  onclick="return Enviar(this.form)">
+        <div class="col-1"><button class="button" type="button" onclick="return Enviar(this.form)">
                 <span>Continuar</span></button></div>
         </div>
         </form>';
@@ -168,7 +168,7 @@ function buscarTapaForm($action)
 
     $rep .= '</div>
         <div class="row form-group">
-        <div class="col-1"><button class="button"  onclick="return Enviar(this.form)">
+        <div class="col-1"><button class="button" type="button" onclick="return Enviar(this.form)">
                 <span>Continuar</span></button></div>
         </div>
         </form>';
@@ -192,7 +192,7 @@ function buscarEnvaseForm($action)
 
     $rep .= '</div>
         <div class="row form-group">
-        <div class="col-1"><button class="button"  onclick="return Enviar(this.form)">
+        <div class="col-1"><button class="button" type="button" onclick="return Enviar(this.form)">
                 <span>Continuar</span></button></div>
         </div>
         </form>';
@@ -216,7 +216,7 @@ function buscarPrecioForm($action, $actif)
 
     $rep .= '</div>
         <div class="row form-group">
-        <div class="col-1"><button class="button"  onclick="return Enviar(this.form)">
+        <div class="col-1"><button class="button" type="button" onclick="return Enviar(this.form)">
                 <span>Continuar</span></button></div>
         </div>
         </form>';
@@ -240,7 +240,7 @@ function buscarPresentacionForm($action, $actif)
 
     $rep .= '</div>
         <div class="row form-group">
-        <div class="col-1"><button class="button"  onclick="return Enviar(this.form)">
+        <div class="col-1"><button class="button" type="button" onclick="return Enviar(this.form)">
                 <span>Continuar</span></button></div>
         </div>
         </form>';
@@ -264,7 +264,7 @@ function buscarProductoDistribucionForm($action, $actif)
 
     $rep .= '</div>
         <div class="row form-group">
-        <div class="col-1"><button class="button"  onclick="return Enviar(this.form)">
+        <div class="col-1"><button class="button" type="button" onclick="return Enviar(this.form)">
                 <span>Continuar</span></button></div>
         </div>
         </form>';
@@ -288,7 +288,7 @@ function buscarServicioForm($action, $actif)
 
     $rep .= '</div>
         <div class="row form-group">
-        <div class="col-1"><button class="button"  onclick="return Enviar(this.form)">
+        <div class="col-1"><button class="button" type="button" onclick="return Enviar(this.form)">
                 <span>Continuar</span></button></div>
         </div>
         </form>';
@@ -312,7 +312,7 @@ function buscarRelEnvDisForm($action)
 
     $rep .= '</div>
         <div class="row form-group">
-        <div class="col-1"><button class="button"  onclick="return Enviar(this.form)">
+        <div class="col-1"><button class="button" type="button"  onclick="return Enviar(this.form)">
                 <span>Continuar</span></button></div>
         </div>
         </form>';
@@ -336,7 +336,7 @@ function buscarRelPacProdForm($action)
 
     $rep .= '</div>
         <div class="row form-group">
-        <div class="col-1"><button class="button"  onclick="return Enviar(this.form)">
+        <div class="col-1"><button class="button" type="button" onclick="return Enviar(this.form)">
                 <span>Continuar</span></button></div>
         </div>
         </form>';
@@ -360,7 +360,7 @@ function buscarCatProvForm($action)
 
     $rep .= '</div>
     <div class="row form-group">
-    <div class="col-1"><button class="button"  onclick="return Enviar(this.form)">
+    <div class="col-1"><button class="button" type="button" onclick="return Enviar(this.form)">
             <span>Continuar</span></button></div>
     </div>
     </form>';
@@ -383,7 +383,7 @@ function buscarCatCliForm($action)
 
     $rep .= '</div>
     <div class="row form-group">
-    <div class="col-1"><button class="button"  onclick="return Enviar(this.form)">
+    <div class="col-1"><button class="button" type="button" onclick="return Enviar(this.form)">
             <span>Continuar</span></button></div>
     </div>
     </form>';

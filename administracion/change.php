@@ -19,30 +19,30 @@ foreach ($_POST as $nombre_campo => $valor) {
 $usuarioOperador = new UsuariosOperaciones();
 
 //Ejecutamos la sentencia SQL
-$usuario1=strtoupper ($nombre);
+$usuario1=strtoupper ($username);
 $password1=md5(strtoupper ($password));
 $row=$usuarioOperador->getUserPassword($usuario1, $password1);
 if($row)
 {
-	$nombre=$usuario1;
+	$username=$usuario1;
 	$id=$row['idUsuario'];
 
 		$antPass=strtoupper ($password);
 		$newPass=strtoupper ($newPass);
 		$confnewPass= strtoupper ($confPass);
 		$longPass=strlen($newPass);
-        if(($newPass=='123456')||($newPass==$antPass)||($newPass==$nombre)||($newPass!=$confnewPass)||($longPass<6))
+        if(($newPass=='123456')||($newPass==$antPass)||($newPass==$username)||($newPass!=$confnewPass)||($longPass<6))
         {
 			echo'<script >
 			alert("Password inadecuado, Recuerde utilizar una longitud mayor a 6 caracteres")
-			self.location="cambio.php?Nombre='.$Nombre.'&Id='.$Id.'"
+			self.location="cambio.php?Nombre='.$username.'&Id='.$Id.'"
 			</script>';
 		}
 		else
 		{
 			//Creamos la sentencia SQL y la ejecutamos
 			$fec=Fecha::Hoy();
-			$result1=$usuarioOperador->changeClave($newPass, $fec, $nombre);
+			$result1=$usuarioOperador->changeClave($newPass, $fec, $username);
 			if($result1)
 			{
 				echo'<script >
@@ -52,7 +52,7 @@ if($row)
 			}
 			else
 			{
-				$nombre=$_POST['nombre'];
+				$username=$_POST['username'];
 				$id=$row['idUsuario'];
 				echo'<script >
 				alert("Password inadecuado");

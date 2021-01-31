@@ -120,7 +120,7 @@ $cotizacion['distribucion'] = str_replace("9", " Otros", $cotizacion['distribuci
     </div>
     <div class="row">
         <div class="col-1">
-            <button class="button" onclick="window.location='../menu.php'">
+            <button class="button" type="button" onclick="window.location='../menu.php'">
                 <span>Ir a Menú</span>
             </button>
         </div>

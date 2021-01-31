@@ -59,7 +59,7 @@ $sucursal = $clienteSucursalOperador->getSucursalCliente($idCliente, $idSucursal
         </div>
         <div class="form-group row mt-3">
             <div class="col-2 text-center">
-                <button class="button" onclick="return Enviar(this.form)"><span>Actualizar sucursal</span></button>
+                <button class="button" type="button" onclick="return Enviar(this.form)"><span>Actualizar sucursal</span></button>
             </div>
         </div>
     </form>

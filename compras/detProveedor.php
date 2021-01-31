@@ -118,7 +118,7 @@ $proveedor = $ProveedorOperador->getProveedor($idProv);
             echo '</select>';
             ?>
             <div class="col-2" style="padding: 4px 25px">
-                <button class="button" onclick="return Enviar(this.form)"><span>Adicionar producto</span></button>
+                <button class="button" type="button" onclick="return Enviar(this.form)"><span>Adicionar producto</span></button>
             </div>
         </div>
     </form>
@@ -133,7 +133,7 @@ $proveedor = $ProveedorOperador->getProveedor($idProv);
     </table>
     <div class="row">
         <div class="col-1">
-            <button class="button" onclick="eliminarSession(); ">
+            <button class="button" type="button" onclick="eliminarSession(); ">
                 <span><STRONG>Terminar</STRONG></span>
             </button>
         </div>

@@ -228,7 +228,7 @@ $gasto = $GastoOperador->getGasto($idGasto);
                 echo '</select>';
                 ?>
                 <div class="col-2 text-center" style="padding: 0 20px;">
-                    <button class="button" onclick="return Enviar(this.form)"><span>Adicionar detalle</span>
+                    <button class="button" type="button" onclick="return Enviar(this.form)"><span>Adicionar detalle</span>
                     </button>
                 </div>
             </div>
@@ -252,7 +252,7 @@ $gasto = $GastoOperador->getGasto($idGasto);
     </table>
     <div class="row">
         <div class="col-1">
-            <button class="button" id="back" onClick="updateEstadoGasto(<?= $idGasto ?>)"><span>Terminar</span>
+            <button class="button" type="button" id="back" onClick="updateEstadoGasto(<?= $idGasto ?>)"><span>Terminar</span>
             </button>
         </div>
     </div>

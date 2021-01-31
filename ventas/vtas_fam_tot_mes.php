@@ -223,7 +223,7 @@ $type = $_POST['type'];
     </div>
     <div class="row">
         <div class="col-1">
-            <button class="button" id="back" onClick="window.location='../menu.php'"><span>Terminar</span>
+            <button class="button" type="button" id="back" onClick="window.location='../menu.php'"><span>Terminar</span>
             </button>
         </div>
     </div>

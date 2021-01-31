@@ -25,14 +25,38 @@ class UsuariosOperaciones
     public function getUsers($actif)
     {
         if($actif==true){
-            $qry = "SELECT idUsuario, nombre, apellido, usuario, estadoUsuario, usuarios.idPerfil, perfiles.descripcion perfil, estados_usuarios.descripcion estado, fecCrea, fecCambio 
-            FROM usuarios, perfiles, estados_usuarios WHERE usuarios.idPerfil=perfiles.idPerfil AND estadoUsuario=idEstado AND estadoUsuario=2 ORDER BY idUsuario;";
+            $qry = "SELECT idUsuario,
+                           nombre,
+                           apellido,
+                           usuario,
+                           estadoUsuario,
+                           u.idPerfil,
+                           p.descripcion         perfil,
+                           eu.descripcion estado,
+                           fecCrea,
+                           fecCambio
+                    FROM usuarios u
+                    LEFT JOIN perfiles p on u.idPerfil = p.idPerfil
+                    LEFT JOIN estados_usuarios eu on eu.idEstado = u.estadoUsuario
+                    WHERE  estadoUsuario = 2
+                    ORDER BY idUsuario";
         }
         else{
-            $qry = "SELECT idUsuario, nombre, apellido, usuario, estadoUsuario, usuarios.idPerfil, perfiles.descripcion perfil, estados_usuarios.descripcion estado, fecCrea, fecCambio 
-            FROM usuarios, perfiles, estados_usuarios WHERE usuarios.idPerfil=perfiles.idPerfil AND estadoUsuario=idEstado ORDER BY idUsuario;";
+            $qry = "SELECT idUsuario,
+                           nombre,
+                           apellido,
+                           usuario,
+                           estadoUsuario,
+                           u.idPerfil,
+                           p.descripcion         perfil,
+                           eu.descripcion estado,
+                           fecCrea,
+                           fecCambio
+                    FROM usuarios u
+                    LEFT JOIN perfiles p on u.idPerfil = p.idPerfil
+                    LEFT JOIN estados_usuarios eu on eu.idEstado = u.estadoUsuario
+                    ORDER BY idUsuario";
         }
-        
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -40,8 +64,21 @@ class UsuariosOperaciones
     }
     public function getTableUsers()
     {
-        $qry = "SELECT idUsuario, nombre, apellido, usuario, estadoUsuario, usuarios.idPerfil, perfiles.descripcion perfil, estados_usuarios.descripcion estado, fecCrea, fecCambio 
-        FROM usuarios, perfiles, estados_usuarios WHERE usuarios.idPerfil=perfiles.idPerfil AND estadoUsuario=idEstado AND (estadoUsuario=2 OR estadoUsuario=1) ORDER BY idUsuario;";
+        $qry = "SELECT idUsuario,
+                       nombre,
+                       apellido,
+                       usuario,
+                       estadoUsuario,
+                       u.idPerfil,
+                       p.descripcion  perfil,
+                       eu.descripcion estado,
+                       fecCrea,
+                       fecCambio
+                FROM usuarios u
+                         LEFT JOIN perfiles p on u.idPerfil = p.idPerfil
+                         LEFT JOIN estados_usuarios eu on eu.idEstado = u.estadoUsuario
+                WHERE estadoUsuario = 2 OR estadoUsuario = 1
+                ORDER BY idUsuario";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -50,10 +87,70 @@ class UsuariosOperaciones
 
     public function getUser($idUsuario)
     {
-        $qry = "SELECT idUsuario, nombre, apellido, usuario, estadoUsuario, usuarios.idPerfil, perfiles.descripcion perfil, estados_usuarios.descripcion estado, fecCrea, fecCambio 
-        FROM usuarios, perfiles, estados_usuarios WHERE usuarios.idPerfil=perfiles.idPerfil AND estadoUsuario=idEstado AND idUsuario=? ORDER BY idUsuario;";
+        $qry = "SELECT idUsuario,
+                       nombre,
+                       apellido,
+                       usuario,
+                       estadoUsuario,
+                       u.idPerfil,
+                       p.descripcion  perfil,
+                       eu.descripcion estado,
+                       fecCrea,
+                       intentos,
+                       fecCambio
+                FROM usuarios u
+                         LEFT JOIN perfiles p on u.idPerfil = p.idPerfil
+                         LEFT JOIN estados_usuarios eu on eu.idEstado = u.estadoUsuario
+                WHERE idUsuario = ?";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute(array($idUsuario));
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    public function getUserByUsername($username)
+    {
+        $qry = "SELECT idUsuario,
+                       nombre,
+                       apellido,
+                       usuario,
+                       estadoUsuario,
+                       u.idPerfil,
+                       p.descripcion  perfil,
+                       eu.descripcion estado,
+                       fecCrea,
+                       intentos,
+                       fecCambio
+                FROM usuarios u
+                         LEFT JOIN perfiles p on u.idPerfil = p.idPerfil
+                         LEFT JOIN estados_usuarios eu on eu.idEstado = u.estadoUsuario
+                WHERE usuario = ?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($username));
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    public function validarUsuario($username, $password)
+    {
+        $qry = "SELECT idUsuario,
+                       nombre,
+                       apellido,
+                       usuario,
+                       estadoUsuario,
+                       u.idPerfil,
+                       p.descripcion  perfil,
+                       eu.descripcion estado,
+                       fecCrea,
+                       intentos,
+                       fecCambio
+                FROM usuarios u
+                         LEFT JOIN perfiles p on u.idPerfil = p.idPerfil
+                         LEFT JOIN estados_usuarios eu on eu.idEstado = u.estadoUsuario
+                WHERE usuario = ?
+                  AND clave = ?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($username, $password));
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result;
     }
@@ -89,6 +186,13 @@ class UsuariosOperaciones
     public function updateUser($datos)
     {
         $qry = "UPDATE usuarios SET nombre=?, apellido=?, usuario=?, estadousuario=?, idPerfil=?, fecCambio=?,  intentos=? WHERE idUsuario=?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute($datos);
+    }
+
+    public function updateIntentos($datos)
+    {
+        $qry = "UPDATE usuarios SET intentos=? WHERE idUsuario=?";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute($datos);
     }

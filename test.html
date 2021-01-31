@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <link rel="icon" href="images/favicon.ico" type="image/ico" sizes="16x16">
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="js/validar.js"></script>
+   <!-- <script>
+        function confirmation(){
+            swal({
+                title: "Here a title!",
+                text: "Esta seguro?",
+                icon: "info",
+                buttons: {
+                    cancel: {
+                        text: "No",
+                        value: null,
+                        visible: true,
+                        className: "",
+                        closeModal: true,
+                    },
+                    confirm: {
+                        text: "Si",
+                        value: true,
+                        visible: true,
+                        className: "",
+                        closeModal: true
+                    }
+                },
+            }).then((willDelete) => {
+                if (willDelete) {
+                    swal("Poof! Your imaginary file has been deleted!", {
+                        icon: "success",
+                    });
+                } else {
+                    swal("Your imaginary file is safe!");
+                }
+            });
+        }
+    </script>-->
+</head>
+<body>
+<div class="row">
+    <div class="col-2">
+        <button class="button" onclick="alert('Alert this pages');"><span>Test the alert</span></button>
+    </div>
+    <div class="col-2">
+        <button class="button"
+                onclick='swal({
+                title: "Here a title!",
+                text: "Hello world!",
+                icon: "info",
+                button: {
+                text: "Hey ho!",
+                value: true,
+                visible: true,
+                className: "button",
+                closeModal: true,
+                },
+                });'><span>Test sweetAlert</span></button>
+    </div>
+    <div class="col-2">
+        <button class="button"
+                onclick='swal({
+                title: "Here a title!",
+                text: "Esta seguro?",
+                icon: "info",
+                buttons: {
+                    cancel: {
+                        text: "No",
+                        value: null,
+                        visible: true,
+                        className: "",
+                        closeModal: true,
+                    },
+                    confirm: {
+                        text: "Si",
+                        value: true,
+                        visible: true,
+                        className: "",
+                        closeModal: true
+                    }
+                },
+                }).then((willDelete) => {
+                          if (willDelete) {
+                            swal("Poof! Your imaginary file has been deleted!", {
+                              icon: "success",
+                            });
+                          } else {
+                            swal("Your imaginary file is safe!");
+                          }
+                        });'>
+            <span>Test sweetAlert2</span></button>
+    </div>
+
+    <div class="col-2">
+        <button class="button"
+                onclick='confirmation()'>
+            <span>Test sweetAlert3</span></button>
+    </div>
+
+</div>
+
+<br>
+
+
+</body>
+</html>

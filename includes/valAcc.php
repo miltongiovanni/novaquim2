@@ -1,3 +1,8 @@
+
+<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+<!--<script src="js/jquery-3.3.1.min.js"></script>-->
+<script src="../js/validar.js"></script>
+
 <?php
 //$err=error_reporting(16);
 session_start();
@@ -17,12 +22,7 @@ function mover_pag($ruta, $mensaje)
    	self.location="' . $ruta . '"
    	</script>';
 }
-function var_dump_pre($mixed = null) {
-	echo '<pre>';
-	var_dump($mixed);
-	echo '</pre>';
-	return null;
-}
+
 /*session_start();
 // Establecer tiempo de vida de la sesión en segundos
 $inactividad = 600;
