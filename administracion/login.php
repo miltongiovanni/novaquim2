@@ -3,22 +3,25 @@
 
 <head>
     <meta charset="utf-8">
+    <title>Login</title>
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../js/validar.js"></script>
 </head>
 
 <body>
 <?php
 
-function chargerClasse($classname)
+function cargarClases($classname)
 {
     require '../clases/' . $classname . '.php';
 }
 
-spl_autoload_register('chargerClasse');
-function mover_pag($ruta, $mensaje)
+spl_autoload_register('cargarClases');
+function mover_pag($ruta, $mensaje, $icon, $formElement = '')
 {
     echo '<script >
-   	alert("' . $mensaje . '")
-   	self.location="' . $ruta . '"
+   	alerta("' . $mensaje . '","' . $icon . '","' . $ruta . '","' . $formElement . '" );
    	</script>';
 }
 
@@ -41,7 +44,7 @@ if ((strlen($_POST['username'])) <= 16)    //El nombre de usuario no debe supera
     $username = strtoupper($_POST['username']);
     $password = md5(strtoupper($_POST['password']));
 } else {
-    mover_pag("../index.php", "El nombre del usuario es muy grande");
+    mover_pag("../index.php", "El nombre del usuario es muy grande", "warning");
 }
 //Validacion de nombre y usuario
 $usuario = $usuarioOperador->validarUsuario($username, $password);
@@ -54,12 +57,11 @@ if (!$usuario) {//si existen datos pero la clave esta errada
         $usuarioOperador->updateIntentos($datos);
         $ruta = "../index.php";
         $mensaje = "Password incorrecto, por favor verifique la información";
-        mover_pag($ruta, $mensaje);
+        mover_pag($ruta, $mensaje, 'error');
     } else {
         $ruta = "../index.php";
-        /*********FIN DEL LOG DE acceso*******/
         $mensaje = "El usuario no existe, por favor verifique la información";
-        mover_pag($ruta, $mensaje);
+        mover_pag($ruta, $mensaje, 'error');
     }
 } else    //si se superan los controles iniciales
 {
@@ -73,7 +75,7 @@ if (!$usuario) {//si existen datos pero la clave esta errada
     if ($op == 3) {//Si el usuario está bloqueado no se le deja continuar
         $ruta = "../index.php";
         $mensaje = "Usuario bloqueado, consulte al administrador del sistema";
-        mover_pag($ruta, $mensaje);
+        mover_pag($ruta, $mensaje, 'warning');
     } elseif ($op == 2) {//Cuando el usuario es 2 esta activo de lo contrario se toma como nuevo
         if ($intentos <= 3)//Numero de intentos
         {
@@ -89,7 +91,7 @@ if (!$usuario) {//si existen datos pero la clave esta errada
                 $perfil = $usuario['idPerfil'];
                 //echo $perfil.'<br>';
                 $ruta = "../menu.php";
-                mover_pag($ruta, $usuario['nombre'] . " bienvenid@ al Sistema de Inventarios de Industrias Novaquim S.A.S.");
+                mover_pag($ruta, $usuario['nombre'] . " bienvenid@ al Sistema de Información de Industrias Novaquim S.A.S.", 'success');
             } else {
 
                 $ruta = "cambio.php";
@@ -103,14 +105,12 @@ if (!$usuario) {//si existen datos pero la clave esta errada
                 $_SESSION['IdUsuario'] = $usuario['idUsuario'];
                 $_SESSION['Perfil'] = $perfil_admin;
                 $perfil = $usuario['idPerfil'];
-                /*********FIN DEL LOG VENCIMIENTO DE CLAVE*****/
-                mover_pag($ruta, $mensaje);
+                mover_pag($ruta, $mensaje, 'warning');
             }
         } else {
             $ruta = "../index.php";
             $mensaje = "La clave se encuentra bloqueada por favor contacte al administrador";
-            /*********FIN DEL LOG BLOQUEO*****/
-            mover_pag($ruta, $mensaje);
+            mover_pag($ruta, $mensaje, 'warning');
         }
     } else {//Primer ingreso
         $ruta = "cambio.php";
@@ -121,7 +121,7 @@ if (!$usuario) {//si existen datos pero la clave esta errada
         $_SESSION['User'] = $username;
         $_SESSION['IdUsuario'] = $usuario['idUsuario'];
         $_SESSION['Perfil'] = $perfil_admin;
-        mover_pag($ruta, $mensaje);
+        mover_pag($ruta, $mensaje, 'info');
     }
 }
 

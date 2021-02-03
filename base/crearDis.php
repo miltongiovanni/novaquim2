@@ -13,6 +13,7 @@ spl_autoload_register('cargarClases');
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <title>Creación de Productos de Distribución</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/validar.js"></script>
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script>
@@ -116,13 +117,13 @@ spl_autoload_register('cargarClases');
                         <div class="col-1 text-center" >
                 <button class="button" type="reset"><span>Reiniciar</span></button>
             </div><div class="col-1 text-center" >
-                <button class="button" onclick="return Enviar(this.form)"><span>Continuar</span></button>
+                <button class="button" type="button" onclick="return Enviar(this.form)"><span>Continuar</span></button>
             </div>
         </div>
     </form>
     <div class="row">
         <div class="col-1">
-            <button class="button1" onClick="history.back()"><span>VOLVER</span></button>
+            <button class="button1" type="button" onClick="history.back()"><span>VOLVER</span></button>
         </div>
     </div>
 </div>

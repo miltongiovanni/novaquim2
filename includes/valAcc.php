@@ -13,13 +13,12 @@ if($_SESSION['Autorizado']!=1)
   	 {
 		 $ruta = "../novaquim/index.php";
 		 $mensaje = "Acceso no autorizado, verifique sus datos de acceso";
-		 mover_pag($ruta, $mensaje);
+		 mover_pag($ruta, $mensaje, 'error');
 	}
-function mover_pag($ruta, $mensaje)
+function mover_pag($ruta, $mensaje, $icon,  $formElement='')
 {
-	echo '<script >
-   	alert("' . $mensaje . '")
-   	self.location="' . $ruta . '"
+    echo '<script >
+   	alerta("' . $mensaje . '","' . $icon . '","' . $ruta . '","' . $formElement . '" );
    	</script>';
 }
 

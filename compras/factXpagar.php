@@ -7,6 +7,7 @@ include "../includes/valAcc.php";
     <meta charset="utf-8">
     <title>Facturas por pagar</title>
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/validar.js"></script>
     <link rel="stylesheet" href="../css/datatables.css">
     <style>

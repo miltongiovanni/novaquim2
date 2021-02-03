@@ -31,7 +31,8 @@ if (!$GastoOperador->isValidIdGasto($idGasto)) {
         <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
         <title>Actualización de gastos</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-        <script src="../js/validar.js"></script>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../js/validar.js"></script>
     </head>
     <body>
     <div id="contenedor">

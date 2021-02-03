@@ -7,6 +7,20 @@ function cargarClases($classname)
 
 spl_autoload_register('cargarClases');
 ?>
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+	<meta charset="utf-8">
+	<title>Actualizar datos del Usuario</title>
+	<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+	<script src="../js/validar.js"></script>
+</head>
+
+<body>
+
 <?php
 
 
@@ -26,15 +40,19 @@ try {
 	$personalOperador->updatePersonal($datos);
 	$ruta = "listarPersonal.php";
 	$mensaje =  "Personal Actualizado correctamente";
+	$icon = 'success';
 	
 } catch (Exception $e) {
 	$ruta = "buscarPersonal.php";
 	$mensaje = "Error al actualizar al Personal";
+	$icon = 'error';
 } finally {
 	unset($conexion);
 	unset($stmt);
-	mover_pag($ruta, $mensaje);
+	mover_pag($ruta, $mensaje, $icon);
 }
 
 
 ?>
+</body>
+</html>

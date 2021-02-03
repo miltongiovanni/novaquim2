@@ -12,9 +12,10 @@ spl_autoload_register('cargarClases');
 <html lang="es">
 
 <head>
-	<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<meta charset="utf-8">
 	<title>Cambio de Contrase&ntilde;a</title>
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <meta charset="utf-8">
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
 	<script  src="../js/validar.js"></script>
 </head>
 
@@ -47,12 +48,12 @@ spl_autoload_register('cargarClases');
 				<input class="form-control col-2" type="password" name="confPass" id="confPass" size="20">
 			</div>
 			<div class="form-group row">
+                <div class="col-1 text-center">
+                    <button class="button"  type="reset"><span>Reiniciar</span></button>
+                </div>
 				<div class="col-1 text-center">
-					<button class="button" 
+					<button class="button"  type="button"
 						onclick="return Enviar(this.form)"><span>Cambiar</span></button>
-				</div>
-				<div class="col-1 text-center">
-					<button class="button"  type="reset"><span>Reiniciar</span></button>
 				</div>
 			</div>
 			

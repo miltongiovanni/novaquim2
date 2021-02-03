@@ -25,7 +25,7 @@ for($i=0; $i<$filas; $i++)
 
     $rep .=  '</div>
 <div class="row form-group">
-<div class="col-1"><button class="button"  onclick="return Enviar(this.form)">
+<div class="col-1"><button class="button" type="button" onclick="return Enviar(this.form)">
         <span>Continuar</span></button></div>
 </div>
 </form>';
@@ -49,7 +49,7 @@ function buscarPersonalForm($action, $actif){
     
         $rep .=  '</div>
     <div class="row form-group">
-    <div class="col-1"><button class="button"  onclick="return Enviar(this.form)">
+    <div class="col-1"><button class="button"type="button" onclick="return Enviar(this.form)">
             <span>Continuar</span></button></div>
     </div>
     </form>';

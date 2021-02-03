@@ -63,13 +63,13 @@ spl_autoload_register('cargarClases');
         </div>
         <div class="row form-group">
             <div class="col-1">
-                <button class="button" onclick="return Enviar(this.form)"><span>Continuar</span></button>
+                <button class="button" type="button" onclick="return Enviar(this.form)"><span>Continuar</span></button>
             </div>
         </div>
     </form>
     <div class="row">
         <div class="col-1">
-            <button class="button1" onClick="history.back()"><span>VOLVER</span></button>
+            <button class="button1" type="button" onClick="history.back()"><span>VOLVER</span></button>
         </div>
     </div>
 </div>

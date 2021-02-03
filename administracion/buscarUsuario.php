@@ -8,6 +8,7 @@ include "../includes/valAcc.php";
 <head>
     <meta charset="utf-8">
     <title>Seleccionar Usuario a Actualizar</title>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script  src="../js/validar.js"></script>
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
 </head>
@@ -23,7 +24,7 @@ include "../includes/valAcc.php";
         ?>
         
         <div class="row form-group">
-            <div class="col-1"><button class="button1"  onclick="history.back()">
+            <div class="col-1"><button class="button1" type="button" onclick="history.back()">
                     <span>VOLVER</span></button></div>
         </div>
 

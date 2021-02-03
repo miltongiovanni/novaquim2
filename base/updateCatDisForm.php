@@ -37,7 +37,7 @@ $categoriaDis = $catsDisOperador->getCatDis($idCatDis);
                 <div class="col-1 text-center" >
                     <button class="button"  type="reset"><span>Reiniciar</span></button>
                 </div><div class="col-1 text-center" >
-                    <button class="button"
+                    <button class="button" type="button"
                         onclick="return Enviar(this.form)"><span>Continuar</span></button>
                 </div>
             </div>

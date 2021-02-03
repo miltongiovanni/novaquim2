@@ -1,6 +1,21 @@
 <?php
 include "../includes/valAcc.php";
+?>
+<!DOCTYPE html>
+<html lang="es">
 
+<head>
+	<meta charset="utf-8">
+	<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+	<link rel="icon" href="../images/favicon.ico" type="image/ico" sizes="16x16">
+	<title>Change</title>
+
+	<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+	<script src="../js/validar.js"></script>
+
+</head>
+<body>
+<?php
 function cargarClases($classname)
 {
   require '../clases/'.$classname.'.php';
@@ -33,10 +48,9 @@ if($row)
 		$longPass=strlen($newPass);
         if(($newPass=='123456')||($newPass==$antPass)||($newPass==$username)||($newPass!=$confnewPass)||($longPass<6))
         {
-			echo'<script >
-			alert("Password inadecuado, Recuerde utilizar una longitud mayor a 6 caracteres")
-			self.location="cambio.php?Nombre='.$username.'&Id='.$Id.'"
-			</script>';
+			$ruta = "cambio.php";
+			$mensaje = "Password inadecuado, Recuerde utilizar una longitud mayor a 6 caracteres";
+			mover_pag($ruta, $mensaje, 'error');
 		}
 		else
 		{
@@ -45,27 +59,26 @@ if($row)
 			$result1=$usuarioOperador->changeClave($newPass, $fec, $username);
 			if($result1)
 			{
-				echo'<script >
-				alert("Cambio Exitoso")
-				self.location="listarUsuarios.php"
-				</script>';
+				$ruta = "listarUsuarios.php";
+				$mensaje = "Cambio Exitoso";
+				mover_pag($ruta, $mensaje, 'success');
 			}
 			else
 			{
 				$username=$_POST['username'];
 				$id=$row['idUsuario'];
-				echo'<script >
-				alert("Password inadecuado");
-				self.location="cambio.php";
-				</script>';
+				$ruta = "cambio.php";
+				$mensaje = "Error al cambiar la clave";
+				mover_pag($ruta, $mensaje, 'error');
 			}
 		}
 }
 else
 {
-	echo'<script >
-	alert("Los datos no corresponden")
-	self.location="../index.php"
-	</script>';
+	$ruta = "../index.php";
+	$mensaje = "Los datos no corresponden";
+	mover_pag($ruta, $mensaje, 'error');
 }
 ?>
+</body>
+</html>

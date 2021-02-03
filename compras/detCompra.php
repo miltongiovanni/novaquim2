@@ -56,6 +56,7 @@ $compra = $CompraOperador->getCompra($idCompra, $tipoCompra);
             padding: 4px 4px 4px 4px;
         }
     </style>
+<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/validar.js"></script>
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/datatables.js"></script>

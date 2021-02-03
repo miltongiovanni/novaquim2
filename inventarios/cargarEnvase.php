@@ -44,7 +44,7 @@ spl_autoload_register('cargarClases');
                 <button class="button" type="reset"><span>Reiniciar</span></button>
             </div>
             <div class="col-1 text-center">
-                <button class="button" onclick="return Enviar(this.form)"><span>Cargar
+                <button class="button" type="button" onclick="return Enviar(this.form)"><span>Cargar
                     </span></button>
             </div>
         </div>

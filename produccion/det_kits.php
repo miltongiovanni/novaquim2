@@ -26,6 +26,7 @@ $kit = $KitOperador->getKit($idKit);
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="../css/datatables.css">
+<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/validar.js"></script>
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/datatables.js"></script>
@@ -136,7 +137,7 @@ $kit = $KitOperador->getKit($idKit);
                 ?>
             </select>
             <div class="col-2 text-center" style="padding: 0 20px;">
-                <button class="button" onclick="return Enviar(this.form)"><span>Continuar</span>
+                <button class="button" type="button" onclick="return Enviar(this.form)"><span>Continuar</span>
                 </button>
             </div>
         </div>
@@ -160,7 +161,7 @@ $kit = $KitOperador->getKit($idKit);
                 ?>
             </select>
             <div class="col-2 text-center" style="padding: 0 20px;">
-                <button class="button" onclick="return Enviar(this.form)"><span>Continuar</span>
+                <button class="button" type="button" onclick="return Enviar(this.form)"><span>Continuar</span>
                 </button>
             </div>
         </div>

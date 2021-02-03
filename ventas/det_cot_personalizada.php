@@ -28,6 +28,7 @@ $distribucionOperador = new ProductosDistribucionOperaciones();
     <title>Ingreso de Productos en la Cotización</title>
     <meta charset="utf-8">
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/validar.js"></script>
     <link rel="stylesheet" href="../css/datatables.css">
     <style>

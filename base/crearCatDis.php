@@ -44,7 +44,7 @@ $idCategoria=$lastcategorias+1;
             </div>
         </form>
         <div class="row">
-            <div class="col-1"><button class="button1" id="back"  onClick="history.back()">
+            <div class="col-1"><button class="button1" id="back" type="button" onClick="history.back()">
                     <span>VOLVER</span></button></div>
         </div>
     </div>

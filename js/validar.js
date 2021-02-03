@@ -1,5 +1,3 @@
-
-
 function Longitud(form) {
     for (i = 0; i < form.elements.length; i++) {
         //Rutina para validar  la longitud de los campos
@@ -14,13 +12,13 @@ function Enviar(form) {
     for (i = 0; i < form.elements.length; i++) {
         if (form.elements[i].type === "text" || form.elements[i].type === "date" || form.elements[i].type === "select-one" || form.elements[i].type === "password") {
             if (form.elements[i].value === "" && form.elements[i].required) {
-                if ((form.elements[i].type === "text" || form.elements[i].type === "date" || form.elements[i].type === "password") && form.elements[i].required ) {
+                if ((form.elements[i].type === "text" || form.elements[i].type === "date" || form.elements[i].type === "password") && form.elements[i].required) {
                     //alert("Este campo es requerido");
                     alerta('Este campo es requerido', 'warning', '', form.elements[i]);
                     //form.elements[i].focus();
                     return false;
                 } else {
-                    if(form.elements[i].required){
+                    if (form.elements[i].required) {
                         //alert("Por favor selecione un valor para el campo");
                         alerta('Por favor selecione un valor para el campo', 'warning', '', form.elements[i]);
                         //form.elements[i].autofocus();
@@ -40,7 +38,7 @@ function Enviar(form) {
         return false;*/
 }
 
-function alerta(text, icon, ruta, formElement){
+function alerta(text, icon, ruta, formElement) {
     swal({
         /*title: "Industrias Novaquim S.A.S.",*/
         text: text,
@@ -53,15 +51,19 @@ function alerta(text, icon, ruta, formElement){
             closeModal: true,
         },
     }).then((value) => {
-        if(value){
-            if(formElement !== ''){
+        if (value) {
+            if (formElement !== '') {
                 formElement.focus();
+            } else {
+                if (ruta !== '') {
+                    self.location = ruta;
+                }
             }
         }
     });
 }
 
-function confirmation(form){
+function confirmation(form) {
     swal({
         title: "Confirmación",
         text: "Está seguro?",
@@ -94,6 +96,7 @@ function confirmation(form){
         }
     });
 }
+
 /*
 function Enviar0(form) {
 	for (i = 0; i < form.elements.length; i++) {
@@ -168,7 +171,7 @@ function fecha() {
 }
 
 /*
-function Enviar2(form) {
+function Enviar(form) {
 	for (i = 0; i < form.elements.length; i++) {
 		if (document.getElementById('combo').value == '') {
 			alert("Debe seleccionar un valor");

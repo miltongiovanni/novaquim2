@@ -83,7 +83,7 @@ $relacion = $relEnvDisOperador->getRelEnvDis($idEnvDis);
         </div>
         <div class="row form-group">
             <div class="col-1">
-                <button class="button" onclick="return Enviar(this.form)"><span>Continuar</span></button>
+                <button class="button" type="button" onclick="return Enviar(this.form)"><span>Continuar</span></button>
             </div>
         </div>
     </form>

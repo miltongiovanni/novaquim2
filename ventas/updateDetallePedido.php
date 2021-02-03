@@ -18,6 +18,7 @@ $detalle = $DetPedidoOperador->getDetProdPedido($idPedido, $codProducto);
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <meta charset="utf-8">
     <title>Actualizar datos del Pedido</title>
+<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/validar.js"></script>
 
 </head>
@@ -42,7 +43,7 @@ $detalle = $DetPedidoOperador->getDetProdPedido($idPedido, $codProducto);
         </div>
         <div class="form-group row">
             <div class="col-2 text-center" style="padding: 0 20px;">
-                <button class="button" onclick="return Enviar(this.form)"><span>Actualizar detalle</span></button>
+                <button class="button" type="button" onclick="return Enviar(this.form)"><span>Actualizar detalle</span></button>
             </div>
         </div>
     </form>

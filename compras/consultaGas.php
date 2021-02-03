@@ -35,7 +35,7 @@ include "../includes/valAcc.php";
 				mysqli_free_result($result);
 				mysqli_close($link);
 			?>
-        <input type="submit" name="Submit" value="Continuar" onClick="return Enviar2(this.form);"/>
+        <input type="submit" name="Submit" value="Continuar" onClick="return Enviar(this.form);"/>
       	</div>
     	</form>    
         </td>

@@ -9,6 +9,7 @@ $type = $_POST['type'];
     <title>Consulta de Venta de Productos por Referencia</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/validar.js"></script>
     <link rel="stylesheet" href="../css/datatables.css">
     <style>

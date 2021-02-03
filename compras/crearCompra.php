@@ -22,6 +22,7 @@ switch ($tipoCompra) {
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <title>Ingreso de la compra de<?= $titulo ?></title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/validar.js"></script>
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script>
@@ -77,7 +78,7 @@ switch ($tipoCompra) {
                 <button class="button" type="reset"><span>Reiniciar</span></button>
             </div>
             <div class="col-1 text-center">
-                <button class="button" onclick="return Enviar(this.form)"><span>Continuar</span></button>
+                <button class="button" type="button" onclick="return Enviar(this.form)"><span>Continuar</span></button>
             </div>
         </div>
     </form>

@@ -73,7 +73,7 @@ include "../includes/valAcc.php";
     <div id="saludo1"><strong>LISTADO DE ETIQUETAS</strong></div>
     <div class="row flex-end">
         <div class="col-1">
-            <button class="button" onclick="window.location='../menu.php'">
+            <button class="button" type="button" onclick="window.location='../menu.php'">
                 <span><STRONG>Ir al Menú</STRONG></span></button>
         </div>
     </div>
@@ -91,7 +91,7 @@ include "../includes/valAcc.php";
 
     <div class="row">
         <div class="col-1">
-            <button class="button" onclick="window.location='../menu.php'">
+            <button class="button" type="button" onclick="window.location='../menu.php'">
                 <span><STRONG>Ir al Menú</STRONG></span></button>
         </div>
     </div>

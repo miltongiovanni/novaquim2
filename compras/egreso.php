@@ -23,6 +23,7 @@ $saldo = intval($egreso['treal']) - $abono;
     <title>Pago de Facturas de Compra y de Gastos</title>
     <meta charset="utf-8">
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/validar.js"></script>
 </head>
 <body>
@@ -100,7 +101,7 @@ $saldo = intval($egreso['treal']) - $abono;
                 <input type="text" style="margin: 0 5px;" class="form-control col-1" name="descuentoE" id="descuentoE"
                        onKeyPress="return aceptaNum(event)" value="0">
                 <div class="col-2 text-center" style="padding: 0 20px;">
-                    <button class="button" onclick="return Enviar(this.form)"><span>Adicionar pago</span>
+                    <button class="button" type="button" onclick="return Enviar(this.form)"><span>Adicionar pago</span>
                     </button>
                 </div>
             </div>

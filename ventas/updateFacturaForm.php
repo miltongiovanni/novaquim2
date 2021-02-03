@@ -79,7 +79,7 @@ $factura = $facturaOperador->getFactura($idFactura);
         </div>
         <div class="row form-group">
             <div class="col-1">
-                <button class="button" onclick="return Enviar(this.form)">
+                <button class="button" type="button" onclick="return Enviar(this.form)">
                     <span>Continuar</span></button>
             </div>
         </div>

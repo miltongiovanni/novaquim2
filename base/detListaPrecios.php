@@ -8,6 +8,7 @@ include "../includes/valAcc.php";
     <title>Lista de Precios</title>
     <meta charset="utf-8">
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/validar.js"></script>
 </head>
 
@@ -96,7 +97,7 @@ include "../includes/valAcc.php";
                 <input name="query" type="hidden" value="<?php echo $qry; ?>">
                 <input name="opciones_prec1" type="hidden" value="<?php echo $opciones_prec1; ?>">
 
-                <button class="button" onclick="return Enviar(this.form)">
+                <button class="button" type="submit" onclick="return Enviar(this.form)">
                     <span>Imprimir Lista</span></button>
 
             </form>
@@ -105,7 +106,7 @@ include "../includes/valAcc.php";
     </div>
     <div class="row form-group">
         <div class="col-1">
-            <button class="button"
+            <button class="button" type="button"
                     onclick="window.location='../menu.php'">
                 <span><STRONG>Ir al Menú</STRONG></span></button>
         </div>

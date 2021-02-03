@@ -21,7 +21,7 @@ include "../includes/valAcc.php";
         ?>
 
         <div class="row form-group">
-            <div class="col-1"><button class="button1"  onclick="history.back()">
+            <div class="col-1"><button class="button1" type="button" onclick="history.back()">
                     <span>VOLVER</span></button></div>
         </div>
     </div>

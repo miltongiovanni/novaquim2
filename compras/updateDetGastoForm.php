@@ -27,6 +27,7 @@ $detalle = $DetGastoOperador->getDetGasto($idGasto, $producto);
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>Actualizar detalle del gasto</title>
+<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/validar.js"></script>
 </head>
 <body>

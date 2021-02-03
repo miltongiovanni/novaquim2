@@ -28,7 +28,7 @@ include "../includes/valAcc.php";
         
       	<div align="center"><strong>Cliente: </strong><input type="text" id="bus" name="bus" onkeyup="loadXMLDoc()" required /><div id="myDiv"></div>
         <br>
-            <input type="button" value="Continuar" onClick="return Enviar2(this.form);">
+            <input type="button" value="Continuar" onClick="return Enviar(this.form);">
       	</div>
     	</form>    
         </td>

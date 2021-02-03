@@ -25,6 +25,7 @@ $detalle = $DetOProdOperador->getDetOProd($lote, $codMPrima);
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <meta charset="utf-8">
     <title>Actualizar datos de detalle orden de producción</title>
+<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/validar.js"></script>
 </head>
 <body>

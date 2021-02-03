@@ -172,6 +172,7 @@ $detComprasMPrimaOperador = new DetComprasOperaciones();
             });
         });
     </script>
+<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/validar.js"></script>
 </head>
 <body>

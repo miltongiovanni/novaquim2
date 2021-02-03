@@ -35,6 +35,7 @@ $cambio = $cambioOperador->getCambio($idCambio);
     <title>Cambio de presentación de Producto</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/validar.js"></script>
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script>
@@ -155,7 +156,7 @@ $cambio = $cambioOperador->getCambio($idCambio);
                         style="margin: 0 5px 0 0;">
                 </select>
                 <div class="col-2 text-center" style="padding: 0 20px;">
-                    <button class="button" onclick="return Enviar(this.form)"><span>Continuar</span>
+                    <button class="button" type="button" onclick="return Enviar(this.form)"><span>Continuar</span>
                     </button>
                 </div>
             </div>
@@ -213,7 +214,7 @@ $cambio = $cambioOperador->getCambio($idCambio);
                 <input type="text" style="margin: 0 5px 0 0;" class="form-control col-1" name="cantPresentacionNvo"
                        id="cantPresentacionNvo" onKeyPress="return aceptaNum(event)">
                 <div class="col-2 text-center" style="padding: 0 20px;">
-                    <button class="button" onclick="return Enviar(this.form)"><span>Continuar</span>
+                    <button class="button" type="button" onclick="return Enviar(this.form)"><span>Continuar</span>
                     </button>
                 </div>
             </div>
