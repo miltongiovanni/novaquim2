@@ -13,21 +13,32 @@ $idCatClien = $_POST['idCatClien'];
 $desCatClien = $_POST['desCatClien'];
 $datos = array($desCatClien, $idCatClien);
 $catsCliOperador = new CategoriasCliOperaciones();
-
+?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <meta charset="utf-8">
+    <title>Actualizar datos de Tipo de Cliente</title>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../js/validar.js"></script>
+</head>
+<body>
+<?php
 try {
     $catsCliOperador->updateCatCli($datos);
     $ruta = "listarCatCli.php";
     $mensaje = "Categoría de cliente actualizada correctamente";
-
+    $icon = "success";
 } catch (Exception $e) {
     $ruta = "buscarCatCli.php";
     $mensaje = "Error al actualizar la categoría de cliente";
+    $icon = "error";
 } finally {
     unset($conexion);
     unset($stmt);
-    mover_pag($ruta, $mensaje);
+    mover_pag($ruta, $mensaje, $icon);
 }
-
-
-
 ?>
+</body>
+</html>

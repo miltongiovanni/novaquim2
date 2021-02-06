@@ -31,5 +31,5 @@ try {
     $ruta = "detO_Prod_col.php";
     $mensaje = "Error al actualizar Orden de Producción de color";
 } finally {
-    mover_pag($ruta, $mensaje);
+    mover_pag($ruta, $mensaje, $icon);
 }

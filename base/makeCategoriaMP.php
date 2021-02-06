@@ -15,6 +15,23 @@ foreach ($_POST as $nombre_campo => $valor) {
         //echo $nombre_campo. '=' .${$nombre_campo}.'<br>';
     }
 }
+?>
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+	<title>Creación de Categoría de Materias Primas</title>
+	<meta charset="utf-8">
+	<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+	<script  src="../js/validar.js"></script>
+
+</head>
+
+<body>
+
+<?php
 $datos = array($idCatMP, $catMP);
 $catsMPOperador = new CategoriasMPOperaciones();
 
@@ -22,50 +39,16 @@ try {
 	$lastCatMP=$catsMPOperador->makeCatMP($datos);
 	$ruta = "listarCatMP.php";
 	$mensaje =  "Categoría de materia prima creada correctamente";
-	
+	$icon="success";
 } catch (Exception $e) {
 	$ruta = "crearCategoriaMP.php";
 	$mensaje = "Error al crear la categoría de materia prima";
+	$icon="error";
 } finally {
 	unset($conexion);
 	unset($stmt);
-	mover_pag($ruta, $mensaje);
+	mover_pag($ruta, $mensaje, $icon);
 }
-
-
-include "includes/calcularDias.php";
-include "includes/conect.php";
-foreach ($_POST as $nombre_campo => $valor) 
-{ 
-	$asignacion = "\$".$nombre_campo."='".$valor."';"; 
-//	echo $nombre_campo." = ".$valor."<br>";  
-	eval($asignacion); 
-}  
-$link=conectarServidor();  
-$bd="novaquim";
-$qry="insert into cat_mp (Id_cat_mp, Des_cat_mp) values ($cod_cat_mp,'$categoria')";
-$result=mysqli_query($link, $qry);
-if($result)
-{
-	//$perfil1=$_SESSION['Perfil'];
-	$ruta="listarcateg_MP.php";
-	/******LOG DE CREACION *********/
-	//$IdUser=$_SESSION['IdUsuario'];
-	//$hh=strftime("%H:").strftime("%M:").strftime("%S");	              
-    //$Fecha=date("Y")."-".date("m")."-".date("d")." ".$hh;
-	//$qryAcces="insert into logusuarios(IdUsuario, Fecha, Motivo) values($IdUser,'$Fecha','CREACION DE CATEGORIA')";
-	//$ResutLog=mysql_db_query("users",$qryAcces);
-	/*********FIN DEL LOG CREACION*****/
-    mover_pag($ruta,"Categoria de Materia Prima creada correctamente");
-}
-else{
-        $ruta="crearCategoria_MP.php";
-        mover_pag($ruta,"Error al crear la Categor�a de Materia Prima");
-     }
-mysqli_free_result($result);
-/* cerrar la conexi�n */
-mysqli_close($link);
-
-
-
 ?>
+</body>
+</html>

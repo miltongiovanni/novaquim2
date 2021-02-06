@@ -31,7 +31,7 @@ try {
         $_SESSION['lote'] = $lote;
         $ruta = "det_Envasado.php";
         $mensaje = "No se puede envasar la presentación del producto, se necesita " . round($volumenEnvasado, 2) . " litros y sólo hay " . round($cantidadPendiente, 2) . " litros";
-        mover_pag($ruta, $mensaje);
+        mover_pag($ruta, $mensaje, $icon);
     } else {
         //SE INSERTA LA CANTIDAD DE PRODUCTO ENVASADO
 
@@ -56,7 +56,7 @@ try {
             $_SESSION['lote'] = $lote;
             $ruta = "det_Envasado.php";
             $mensaje = "No hay envase suficiente solo hay '.$invEnvase.' unidades";
-            mover_pag($ruta, $mensaje);
+            mover_pag($ruta, $mensaje, $icon);
         }
         //Tapa
         $InvTapaOperador = new InvTapasOperaciones();
@@ -73,7 +73,7 @@ try {
             $_SESSION['lote'] = $lote;
             $ruta = "det_Envasado.php";
             $mensaje = "No hay tapas o válvulas suficientes, sólo hay '.$invTapa.' unidades";
-            mover_pag($ruta, $mensaje);
+            mover_pag($ruta, $mensaje, $icon);
         }
         //Etiqueta
         $InvEtiquetaOperador = new InvEtiquetasOperaciones();
@@ -89,7 +89,7 @@ try {
             $_SESSION['lote'] = $lote;
             $ruta = "det_Envasado.php";
             $mensaje = "No hay etiquetas suficientes, sólo hay '.$invEtiq.' unidades";
-            mover_pag($ruta, $mensaje);
+            mover_pag($ruta, $mensaje, $icon);
         }
 
         ///Se deja el estado en 3 que es parcialmente envasado
@@ -111,7 +111,7 @@ try {
     $ruta = "det_Envasado.php";
     $mensaje = "Error al envasar el producto";
 } finally {
-    mover_pag($ruta, $mensaje);
+    mover_pag($ruta, $mensaje, $icon);
 }
 
 

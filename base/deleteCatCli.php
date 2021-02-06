@@ -6,7 +6,18 @@ function cargarClases($classname)
 {
     require '../clases/' . $classname . '.php';
 }
-
+?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Eliminar Tipo de Cliente</title>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../js/validar.js"></script>
+</head>
+<body>
+<?php
 spl_autoload_register('cargarClases');
 
 $idCatClien = $_POST['idCatClien'];
@@ -15,18 +26,16 @@ try {
     $catsCliOperador->deleteCatCli($idCatClien);
     $ruta = "listarCatCli.php";
     $mensaje = "Categoría de cliente eliminada correctamente";
-
+    $icon = "success";
 } catch (Exception $e) {
     $ruta = "deleteCatCliForm.php";
     $mensaje = "Error al eliminar la categoría de cliente";
+    $icon = "error";
 } finally {
     unset($conexion);
     unset($stmt);
-    mover_pag($ruta, $mensaje);
+    mover_pag($ruta, $mensaje, $icon);
 }
-
-
-
 ?>
 </body>
 </html>

@@ -16,7 +16,8 @@ $categoriaProv = $catsProvOperador->getCatProv($idCatProv);
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <meta charset="utf-8">
     <title>Actualizar datos de Tipo de Proveedor</title>
-    <script  src="../js/validar.js"></script>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../js/validar.js"></script>
 </head>
 <body>
 <div id="contenedor">
@@ -30,15 +31,16 @@ $categoriaProv = $catsProvOperador->getCatProv($idCatProv);
                    value="<?= $categoriaProv['idCatProv']; ?>" readonly>
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-1"  for="desCatProv"><strong>Descripción</strong></label>
+            <label class="col-form-label col-1" for="desCatProv"><strong>Descripción</strong></label>
             <input type="text" class="form-control col-2" name="desCatProv" id="desCatProv" size=30
                    onKeyPress="return aceptaLetra(event)"
                    value="<?= $categoriaProv['desCatProv']; ?>" maxlength="30">
         </div>
         <div class="form-group row">
-                        <div class="col-1 text-center" >
+            <div class="col-1 text-center">
                 <button class="button" type="reset"><span>Reiniciar</span></button>
-            </div><div class="col-1 text-center" >
+            </div>
+            <div class="col-1 text-center">
                 <button class="button" type="button" onclick="return Enviar(this.form)"><span>Continuar</span></button>
             </div>
         </div>

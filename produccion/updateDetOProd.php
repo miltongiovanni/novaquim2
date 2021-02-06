@@ -32,7 +32,7 @@ try {
     $ruta = "detO_Prod.php";
     $mensaje = "Error al actualizar Orden de Producción";
 } finally {
-    mover_pag($ruta, $mensaje);
+    mover_pag($ruta, $mensaje, $icon);
 }
 
 

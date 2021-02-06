@@ -17,6 +17,20 @@ foreach ($_POST as $nombre_campo => $valor) {
         //echo $nombre_campo. '=' .${$nombre_campo}.'<br>';
     }
 }
+?>
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+	<title>Creación de Materias Primas</title>
+	<meta charset="utf-8">
+	<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+	<script src="../js/validar.js"></script>
+</head>
+
+<body>
+<?php
 
 $datos = array($codMPrima, $nomMPrima, $aliasMPrima, $idCatMPrima, $minStockMprima, $aparienciaMPrima, $olorMPrima, $colorMPrima, $pHmPrima, $densidadMPrima, $codIva );
 $MPrimaOperador = new MPrimasOperaciones();
@@ -25,19 +39,21 @@ try {
 	$lastCodProducto=$MPrimaOperador->makeMPrima($datos);
 	$ruta = "listarMP.php";
 	$mensaje =  "Materia prima creada correctamente";
-	
+	$icon = "success";
 } catch (Exception $e) {
 	$ruta = "crearMP.php";
 	$mensaje = "Error al crear la materia prima";
+	$icon = "error";
 } finally {
 	unset($conexion);
 	unset($stmt);
-	mover_pag($ruta, $mensaje);
+	mover_pag($ruta, $mensaje, $icon);
 }
 
 
 ?>
 
-
+</body>
+</html>
 
 

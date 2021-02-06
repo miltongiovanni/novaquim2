@@ -31,5 +31,5 @@ try {
 } finally {
     unset($conexion);
     unset($stmt);
-    mover_pag($ruta, $mensaje);
+    mover_pag($ruta, $mensaje, $icon);
 }

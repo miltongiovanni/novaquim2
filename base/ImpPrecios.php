@@ -16,7 +16,6 @@ function cargarClases($classname)
 spl_autoload_register('cargarClases');
 $PrecioOperador = new PreciosOperaciones();
 $precios = $PrecioOperador->getTablePreciosPDF($query);
-
 class PDF extends FPDF
 {
     //Cabecera de p�gina
@@ -86,3 +85,4 @@ for($i=0; $i<$filas; $i++)
 	$pdf->Ln(3.5);
 }
 $pdf->Output();
+?>

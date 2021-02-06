@@ -1,51 +1,61 @@
 <?php
-	include "../includes/valAcc.php";
+include "../includes/valAcc.php";
 // On enregistre notre autoload.
 function cargarClases($classname)
 {
-	require '../clases/' . $classname . '.php';
+    require '../clases/' . $classname . '.php';
 }
+
 spl_autoload_register('cargarClases');
 foreach ($_POST as $nombre_campo => $valor) {
     ${$nombre_campo} = $valor;
-    if(is_array($valor)){
+    if (is_array($valor)) {
         //echo $nombre_campo.print_r($valor).'<br>';
-    }else{
+    } else {
         //echo $nombre_campo. '=' .${$nombre_campo}.'<br>';
     }
 }
 $datos = array($idDis, $idEnv, $idTapa);
 $relEnvDisoperador = new RelEnvDisOperaciones();
+?>
 
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Relación Envase con Productos de Distribución</title>
+    <meta charset="utf-8">
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../js/validar.js"></script>
+</head>
+<body>
+<?php
 try {
-	$relDis = $relEnvDisoperador->checkDistribucion($idDis);
-	if ( $relDis['idEnvDis']  != null ){
-		$_SESSION['idEnvDis'] = $relDis['idEnvDis'];
-		header('Location: updateRelEnvDisForm.php');
-	}
-	else{
-		$lastCodRelEnvDis=$relEnvDisoperador->makeRelEnvDis($datos);
-		$ruta = "listarenvaseDis.php";
-		$mensaje =  "Relación creada con Éxito";
-	}
+    $relDis = $relEnvDisoperador->checkDistribucion($idDis);
+    if ($relDis['idEnvDis'] != null) {
+        $_SESSION['idEnvDis'] = $relDis['idEnvDis'];
+        $ruta = "updateRelEnvDisForm.php";
+        $mensaje = "Relación existente";
+        $icon = "warning";
+    } else {
+        $lastCodRelEnvDis = $relEnvDisoperador->makeRelEnvDis($datos);
+        $ruta = "listarenvaseDis.php";
+        $mensaje = "Relación creada con Éxito";
+        $icon = "success";
+    }
 
 
 } catch (Exception $e) {
-	$ruta = "envaseDis.php";
-	$mensaje = "Error al crear la relación";
+    $ruta = "envaseDis.php";
+    $mensaje = "Error al crear la relación";
+    $icon = "error";
 } finally {
-	unset($conexion);
-	unset($stmt);
-	mover_pag($ruta, $mensaje);
+    unset($conexion);
+    unset($stmt);
+    mover_pag($ruta, $mensaje, $icon);
 }
 
-
-
-
-function enviar_mensaje($mensaje){
-	echo'<script >
-   alert("'.$mensaje.'");
-   </script>';
-}
 
 ?>
+</body>
+</html>

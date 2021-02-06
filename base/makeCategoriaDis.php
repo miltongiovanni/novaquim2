@@ -15,6 +15,21 @@ foreach ($_POST as $nombre_campo => $valor) {
         //echo $nombre_campo. '=' .${$nombre_campo}.'<br>';
     }
 }
+?>
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+	<title>Creación categorías productos de distribución</title>
+	<meta charset="utf-8">
+	<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+	<script src="../js/validar.js"></script>
+</head>
+
+<body>
+<?php
 $datos = array($idCatDis, $catDis);
 $catsDisOperador = new CategoriasDisOperaciones();
 
@@ -22,16 +37,19 @@ try {
 	$lastCatDis=$catsDisOperador->makeCatDis($datos);
 	$ruta = "listarCatDis.php";
 	$mensaje =  "Categoría de producto creada correctamente";
-	
+	$icon = "success";
 } catch (Exception $e) {
 	$ruta = "crearCategoriaDis.php";
 	$mensaje = "Error al crear la categoría de producto";
+	$icon = "error";
 } finally {
 	unset($conexion);
 	unset($stmt);
-	mover_pag($ruta, $mensaje);
+	mover_pag($ruta, $mensaje, $icon);
 }
 
 
 
 ?>
+</body>
+</html>

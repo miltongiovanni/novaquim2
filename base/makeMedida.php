@@ -11,13 +11,27 @@ spl_autoload_register('cargarClases');
 
 foreach ($_POST as $nombre_campo => $valor) {
     ${$nombre_campo} = $valor;
-    if(is_array($valor)){
+    if (is_array($valor)) {
         //echo $nombre_campo.print_r($valor).'<br>';
-    }else{
+    } else {
         //echo $nombre_campo. '=' .${$nombre_campo}.'<br>';
     }
 }
+?>
 
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <title>Creación de Presentación de Productos</title>
+    <meta charset="utf-8">
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../js/validar.js"></script>
+</head>
+
+<body>
+<?php
 $PresentacionOperador = new PresentacionesOperaciones();
 $codPresentacion = ($codProducto * 100) + $codMedida;
 $valida = $PresentacionOperador->validarPresentacion($codPresentacion);
@@ -27,20 +41,24 @@ if ($valida == 0) {
         $lastcodPresentacion = $PresentacionOperador->makePresentacion($datos);
         $ruta = "listarmed.php";
         $mensaje = "Presentación creada correctamente";
-
+        $icon = "success";
     } catch (Exception $e) {
         $ruta = "crearMedida.php";
         $mensaje = "Error al crear la presentación";
+        $icon = "error";
     } finally {
         unset($conexion);
         unset($stmt);
-        mover_pag($ruta, $mensaje);
+        mover_pag($ruta, $mensaje, $icon);
     }
 
 } else {
     $ruta = "crearMedida.php";
     $mensaje = "Código de Presentación existente";
-    mover_pag($ruta, $mensaje);
+    $icon = "info";
+    mover_pag($ruta, $mensaje, $icon);
 }
-
+?>
+</body>
+</html>
 

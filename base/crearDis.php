@@ -13,7 +13,7 @@ spl_autoload_register('cargarClases');
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <title>Creación de Productos de Distribución</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/validar.js"></script>
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script>
@@ -46,7 +46,7 @@ spl_autoload_register('cargarClases');
     <form name="form2" method="POST" action="makeDis.php">
         <div class="form-group row">
 
-            <label class="col-form-label col-2" for="idCatDis"><strong>Categoría</strong></label>
+            <label class="col-form-label col-1" for="idCatDis"><strong>Categoría</strong></label>
             <?php
             $manager = new CategoriasDisOperaciones();
             $categorias = $manager->getCatsDis();
@@ -60,6 +60,7 @@ spl_autoload_register('cargarClases');
             ?>
             <?php
             $link = Conectar::conexion();
+
             $qry = "SELECT MAX(siigo) maxsiigo FROM (SELECT MAX(codSiigo) siigo FROM distribucion  WHERE CodIva=3
                     union
                     SELECT MAX(codSiigo) siigo FROM prodpre  WHERE CodIva=3
@@ -75,17 +76,17 @@ spl_autoload_register('cargarClases');
                    onKeyPress="return aceptaNum(event)" value="<?= ($row['maxsiigo'] + 1) ?>" readonly/>
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-2"  for="idDistribucion"><strong>Código</strong></label>
+            <label class="col-form-label col-1" for="idDistribucion"><strong>Código</strong></label>
             <input type="text" class="form-control col-2" name="idDistribucion" id="idDistribucion"
                    onKeyPress="return aceptaNum(event)" readOnly>
             <label class="col-form-label col-1"
-                                                                        for="producto"><strong>Producto</strong></label>
+                   for="producto"><strong>Producto</strong></label>
             <input type="text" class="form-control col-3" name="producto" id="producto"
                    onKeyPress="return aceptaLetra(event)" maxlength="50" required>
         </div>
         <div class="form-group row">
 
-            <label class="col-form-label col-2"  for="precioVta"><strong>Precio de
+            <label class="col-form-label col-1" for="precioVta"><strong>Precio
                     Venta</strong></label>
             <input type="text" class="form-control col-2" name="precioVta" id="precioVta"
                    onKeyPress="return aceptaNum(event)" required>
@@ -103,9 +104,9 @@ spl_autoload_register('cargarClases');
             ?>
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-2"  for="stockDis"><strong>Stock
+            <label class="col-form-label col-1" for="stockDis"><strong>Stock
                     Min</strong></label>
-            <input type="text" class="form-control col-2" min="0" name="stockDis"  id="stockDis" pattern="[0-9]"
+            <input type="text" class="form-control col-2" min="0" name="stockDis" id="stockDis" pattern="[0-9]"
                    onkeydown="return aceptaNum(event)" required>
             <label class="col-form-label col-1" for="cotiza"><strong>Cotizar</strong></label>
             <select name="cotiza" id="cotiza" class="form-control col-3">
@@ -114,9 +115,10 @@ spl_autoload_register('cargarClases');
             </select>
         </div>
         <div class="form-group row">
-                        <div class="col-1 text-center" >
+            <div class="col-1 text-center">
                 <button class="button" type="reset"><span>Reiniciar</span></button>
-            </div><div class="col-1 text-center" >
+            </div>
+            <div class="col-1 text-center">
                 <button class="button" type="button" onclick="return Enviar(this.form)"><span>Continuar</span></button>
             </div>
         </div>

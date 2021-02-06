@@ -16,7 +16,7 @@ $cotizacion = $cotizacionOperador->getCotizacionP($idCotPersonalizada);
 if (!$cotizacion) {
     $ruta = "mod_cot_personalizada.php";
     $mensaje = "No existe una cotización personalizada con ese número.  Intente de nuevo.";
-    mover_pag($ruta, $mensaje);
+    mover_pag($ruta, $mensaje, $icon);
     exit;
 }
 $presentacionOperador = new PresentacionesOperaciones();

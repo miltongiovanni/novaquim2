@@ -27,7 +27,7 @@ try {
     $ruta = "../menu.php";
     $mensaje = "Error al anular Orden de Producción";
 } finally {
-    mover_pag($ruta, $mensaje);
+    mover_pag($ruta, $mensaje, $icon);
 }
 
 ?>

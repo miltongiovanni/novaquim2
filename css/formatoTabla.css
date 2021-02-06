@@ -1006,27 +1006,27 @@ table {
 
 .tabla-90 {
     width: 90%;
-    margin: 0 auto 10px auto;
+    margin: 10px auto;
 }
 
 .tabla-80 {
     width: 80%;
-    margin: 0 auto 10px auto;
+    margin: 10px auto;
 }
 
 .tabla-70 {
     width: 70%;
-    margin: 0 auto 10px auto;;
+    margin: 10px auto;
 }
 
 .tabla-60 {
     width: 60%;
-    margin: 0 auto 10px auto;;
+    margin: 10px auto;;
 }
 
 .tabla-50 {
     width: 50%;
-    margin: 0 auto 10px auto;;
+    margin: 10px auto;;
 }
 
 textarea.form-control {

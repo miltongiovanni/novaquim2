@@ -8,6 +8,7 @@ include "../includes/valAcc.php";
     <title>Listado de Presentaciones de Producto</title>
     <meta charset="utf-8">
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script  src="../js/validar.js"></script>
     <link rel="stylesheet" href="../css/datatables.css">
     <script src="../js/jquery-3.3.1.min.js"></script>
@@ -49,8 +50,12 @@ include "../includes/valAcc.php";
                 ],
                 "columnDefs":
                     [{
-                        "targets": [0, 1, 2, 3, 4, 5, 6],
+                        "targets": [0, 5],
                         "className": 'dt-body-center'
+                    },
+                        {
+                        "targets": [ 6],
+                        "className": 'dt-body-right'
                     }
                     ],
                 "dom": 'Blfrtip',
@@ -90,7 +95,7 @@ include "../includes/valAcc.php";
                 <span><STRONG>Ir al Menú</STRONG></span></button>
         </div>
     </div>
-    <div class="tabla-80">
+    <div class="tabla-90">
         <table id="example" class="display compact formatoDatos">
             <thead>
             <tr>

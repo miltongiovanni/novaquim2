@@ -23,7 +23,7 @@ if ($facturaOperador->isValidIdFactura($idFactura)) {
     $ruta = "CrearFactura.php";
 
     $mensaje = "Número de factura ya existe, intente de nuevo";
-    mover_pag($ruta, $mensaje);
+    mover_pag($ruta, $mensaje, $icon);
 }
 $fecha_actual = hoy();
 $dias_v = Calc_Dias($fechaVenc, $fecha_actual);
@@ -113,7 +113,7 @@ if (($dias_v >= 0) && ($dias_f >= 0)) {
     {
         unset($conexion);
         unset($stmt);
-        mover_pag($ruta, $mensaje);
+        mover_pag($ruta, $mensaje, $icon);
     }
 } else {
     if ($dias_v < 0) {

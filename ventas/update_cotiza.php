@@ -21,7 +21,7 @@ if (!isset($seleccionProd)) {
     $_SESSION['idCotizacion'] = $idCotizacion;
     $ruta = "UpdateCotform.php";
     $mensaje = "Debe escoger alguna familia de los productos Novaquim";
-    mover_pag($ruta, $mensaje);
+    mover_pag($ruta, $mensaje, $icon);
 } else {
     $cotizacionOperador = new CotizacionesOperaciones();
     $opcionesProd = implode(",", $seleccionProd);
@@ -41,6 +41,6 @@ if (!isset($seleccionProd)) {
     } finally {
         unset($conexion);
         unset($stmt);
-        mover_pag($ruta, $mensaje);
+        mover_pag($ruta, $mensaje, $icon);
     }
 }

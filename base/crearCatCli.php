@@ -16,7 +16,8 @@ $idCategoria = $lastcategorias + 1;
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <title>Creación de Tipo de Cliente</title>
     <meta charset="utf-8">
-    <script  src="../js/validar.js"></script>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../js/validar.js"></script>
 
 </head>
 <body>
@@ -37,9 +38,10 @@ $idCategoria = $lastcategorias + 1;
                    maxlength="30" required>
         </div>
         <div class="form-group row">
-                        <div class="col-1 text-center" >
+            <div class="col-1 text-center">
                 <button class="button" type="reset"><span>Reiniciar</span></button>
-            </div><div class="col-1 text-center" >
+            </div>
+            <div class="col-1 text-center">
                 <button class="button" type="button" onclick="return Enviar(this.form)"><span>Continuar</span></button>
             </div>
         </div>

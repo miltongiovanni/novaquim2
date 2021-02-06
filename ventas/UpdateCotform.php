@@ -17,7 +17,7 @@ $cotizacion = $cotizacionOperador->getCotizacion($idCotizacion);
 if (!$cotizacion) {
     $ruta = "buscarCotiza.php";
     $mensaje = "No existe una cotización con ese número.  Intente de nuevo.";
-    mover_pag($ruta, $mensaje);
+    mover_pag($ruta, $mensaje, $icon);
     exit;
 } else {
     $seleccionProd = explode(",", $cotizacion['productos']);

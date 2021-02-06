@@ -8,6 +8,7 @@ include "../includes/valAcc.php";
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
 	<title>Seleccionar categoría de productos de Distribución</title>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
 	<script  src="../js/validar.js"></script>
 
 </head>

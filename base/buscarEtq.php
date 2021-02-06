@@ -8,6 +8,7 @@ include "../includes/valAcc.php";
 	<meta charset="utf-8">
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
 	<title>Seleccionar Etiqueta a Actualizar</title>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
 	<script  src="../js/validar.js"></script>
 </head>
 

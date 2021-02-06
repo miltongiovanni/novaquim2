@@ -42,7 +42,7 @@ try {
         $link->rollBack();
         $ruta = "desarm_kits.php";
         $mensaje = "No hay inventario suficiente de " . $nomProd . " solo hay " . round($inv_bus, 0) . " unidades";
-        mover_pag($ruta, $mensaje);
+        mover_pag($ruta, $mensaje, $icon);
     } else {
         //SE DESCUENTA LA CANTIDAD DE KITS
         if ($codigo < 100000) {
@@ -126,7 +126,7 @@ try {
     $ruta = "desarm_kits.php";
     $mensaje = "Error al desarmar los kits";
 } finally {
-    mover_pag($ruta, $mensaje);
+    mover_pag($ruta, $mensaje, $icon);
 }
 
 ?>

@@ -55,7 +55,7 @@ try {
         $link->rollBack();
         $ruta = "env_dist.php";
         $mensaje = "No hay envase suficiente solo hay '.$invEnvase.' unidades";
-        mover_pag($ruta, $mensaje);
+        mover_pag($ruta, $mensaje, $icon);
     }
     //SE DESCUENTA LA TAPA
     $InvTapaOperador = new InvTapasOperaciones();
@@ -70,7 +70,7 @@ try {
         $link->rollBack();
         $ruta = "env_dist.php";
         $mensaje = "No hay tapas o válvulas suficientes, sólo hay '.$invTapa.' unidades";
-        mover_pag($ruta, $mensaje);
+        mover_pag($ruta, $mensaje, $icon);
 
     }
     //SE DESCUENTA EL INVENTARIO DE MATERIA PRIMA
@@ -91,7 +91,7 @@ try {
         $ruta = "env_dist.php";
         $materiaPrima = $MPrimaOperador->getNomMPrima($codMPrima);
         $mensaje = "No hay inventario suficiente de " . $materiaPrima . " hay " . round($invTotalMPrima, 2) . " Kg";
-        mover_pag($ruta, $mensaje);
+        mover_pag($ruta, $mensaje, $icon);
     } else {
         $uso1 = $uso;
         $invMPrima = $InvMPrimaOperador->getInvMPrima($codMPrima);
@@ -122,6 +122,6 @@ try {
     $ruta = "env_dist.php";
     $mensaje = "Error al empacar los productos de distribución";
 } finally {
-    mover_pag($ruta, $mensaje);
+    mover_pag($ruta, $mensaje, $icon);
 }
 

@@ -38,7 +38,7 @@ try {
         $ruta = "arm_kits.php";
         $nomEnvase = $EnvaseOperador->getNomEnvase($codEnvase);
         $mensaje = "No hay inventario suficiente de " . $nomEnvase . " solo hay " . round($invEnvase, 0) . " unidades";
-        mover_pag($ruta, $mensaje);
+        mover_pag($ruta, $mensaje, $icon);
     }
     $DetKitOperador = new DetKitsOperaciones();
     $detKit = $DetKitOperador->getTableDetKits($codKit);
@@ -76,7 +76,7 @@ try {
                 $ruta = "arm_kits.php";
                 $nomProductoTerminado = $PresentacionOperador->getNamePresentacion($codProducto);
                 $mensaje = "No hay inventario suficiente de " . $nomProductoTerminado . " solo hay " . round($invProdTerminado, 0) . " unidades";
-                mover_pag($ruta, $mensaje);
+                mover_pag($ruta, $mensaje, $icon);
             }
         } else {
             //PRODUCTO DE DISTRIBUCION
@@ -94,7 +94,7 @@ try {
                 $ruta = "arm_kits.php";
                 $nomProdDistribucion = $ProdDistribucionOperador->getNomProductoDistribucion($codProducto);
                 $mensaje = "No hay inventario suficiente de " . $nomProdDistribucion . " solo hay " . round($invDist, 0) . " unidades";
-                mover_pag($ruta, $mensaje);
+                mover_pag($ruta, $mensaje, $icon);
             }
         }
     }
@@ -141,7 +141,7 @@ try {
     $ruta = "arm_kits.php";
     $mensaje = "Error al armar los kits";
 } finally {
-    mover_pag($ruta, $mensaje);
+    mover_pag($ruta, $mensaje, $icon);
 }
 
 

@@ -36,7 +36,7 @@ if (($diasEntregaPedido >= 0) && ($diasEntrega >= 0)) {
     } finally {
         unset($conexion);
         unset($stmt);
-        mover_pag($ruta, $mensaje);
+        mover_pag($ruta, $mensaje, $icon);
     }
 } else {
     if ($diasEntrega < 0) {

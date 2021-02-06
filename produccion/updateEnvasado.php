@@ -26,7 +26,7 @@ try {
         $_SESSION['lote'] = $lote;
         $ruta = "det_Envasado.php";
         $mensaje = "No se puede envasar la presentación del producto, se necesita " . round($volumenEnvasado, 2) . " litros y sólo hay " . round($cantidadPendiente, 2) . " litros";
-        mover_pag($ruta, $mensaje);
+        mover_pag($ruta, $mensaje, $icon);
     } else {
         //SE ACTUALIZA EL INVENTARIO
         $InvProdTerminadoOperador = new InvProdTerminadosOperaciones();
@@ -66,7 +66,7 @@ try {
     $ruta = "det_Envasado.php";
     $mensaje = "Error al actualizar el envasado del producto";
 } finally {
-    mover_pag($ruta, $mensaje);
+    mover_pag($ruta, $mensaje, $icon);
 }
 
 ?>

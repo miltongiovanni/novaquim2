@@ -64,7 +64,7 @@ try {
     $ruta = "det_cambio_pres.php";
     $mensaje = "Error al seleccionar la presentación de origen";
 } finally {
-    mover_pag($ruta, $mensaje);
+    mover_pag($ruta, $mensaje, $icon);
 }
 
 

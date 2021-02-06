@@ -16,7 +16,8 @@ $categoriaCli = $catsCliOperador->getCatCli($idCatClien);
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <meta charset="utf-8">
     <title>Actualizar datos de Tipo de Cliente</title>
-    <script  src="../js/validar.js"></script>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../js/validar.js"></script>
 </head>
 <body>
 <div id="contenedor">
@@ -29,15 +30,16 @@ $categoriaCli = $catsCliOperador->getCatCli($idCatClien);
                    value="<?= $categoriaCli['idCatClien']; ?>" readonly>
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-1 text-right"  for="desCatClien"><strong>Descripción</strong></label>
+            <label class="col-form-label col-1 text-right" for="desCatClien"><strong>Descripción</strong></label>
             <input type="text" class="form-control col-2" name="desCatClien" id="desCatClien" size=30
                    onKeyPress="return aceptaLetra(event)"
                    value="<?= $categoriaCli['desCatClien']; ?>" maxlength="30">
         </div>
         <div class="form-group row">
-                        <div class="col-1 text-center" >
+            <div class="col-1 text-center">
                 <button class="button" type="reset"><span>Reiniciar</span></button>
-            </div><div class="col-1 text-center" >
+            </div>
+            <div class="col-1 text-center">
                 <button class="button" type="button" onclick="return Enviar(this.form)"><span>Continuar</span></button>
             </div>
         </div>

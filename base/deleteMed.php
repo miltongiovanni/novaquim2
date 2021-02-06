@@ -4,23 +4,41 @@ include "../includes/valAcc.php";
 // On enregistre notre autoload.
 function cargarClases($classname)
 {
-	require '../clases/' . $classname . '.php';
+    require '../clases/' . $classname . '.php';
 }
 
 spl_autoload_register('cargarClases');
 $codPresentacion = $_POST['codPresentacion'];
 $PresentacionOperador = new PresentacionesOperaciones();
-try {
-	$PresentacionOperador->deletePresentacion($codPresentacion);
-	$ruta = "listarmed.php";
-	$mensaje = "Presentación eliminada correctamente";
-} catch (Exception $e) {
-	$ruta = "../menu.php";
-	$mensaje = "Error al eliminar la presentación";
-} finally {
-	unset($conexion);
-	unset($stmt);
-	mover_pag($ruta, $mensaje);
-}
+?>
 
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <meta charset="utf-8">
+    <title>Eliminar presentación de producto</title>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../js/validar.js"></script>
+</head>
+
+<body>
+<?php
+try {
+    $PresentacionOperador->deletePresentacion($codPresentacion);
+    $ruta = "listarmed.php";
+    $mensaje = "Presentación eliminada correctamente";
+    $icon = "success";
+} catch (Exception $e) {
+    $ruta = "../menu.php";
+    $mensaje = "Error al eliminar la presentación";
+    $icon = "error";
+} finally {
+    unset($conexion);
+    unset($stmt);
+    mover_pag($ruta, $mensaje, $icon);
+}
+?>
+</body>
+</html>
 

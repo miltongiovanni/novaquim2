@@ -11,28 +11,45 @@ spl_autoload_register('cargarClases');
 
 foreach ($_POST as $nombre_campo => $valor) {
     ${$nombre_campo} = $valor;
-    if(is_array($valor)){
+    if (is_array($valor)) {
         //echo $nombre_campo.print_r($valor).'<br>';
-    }else{
+    } else {
         //echo $nombre_campo. '=' .${$nombre_campo}.'<br>';
     }
 }
+?>
 
-$datos = array( 1, $codPresentacion);
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <title>Seleccionar Presentación de Producto</title>
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../js/validar.js"></script>
+</head>
+
+<body>
+<?php
+
+$datos = array(1, $codPresentacion);
 $PresentacionOperador = new PresentacionesOperaciones();
 
 try {
-	$PresentacionOperador->activarDesactivarPresentacion($datos);
-	$ruta = "listarmed.php";
-	$mensaje =  "Presentación activada correctamente";
-	
+    $PresentacionOperador->activarDesactivarPresentacion($datos);
+    $ruta = "listarmed.php";
+    $mensaje = "Presentación activada correctamente";
+    $icon = "success";
 } catch (Exception $e) {
-	$ruta = "buscarMed1.php";
-	$mensaje = "Error al activar la presentación";
+    $ruta = "buscarMed1.php";
+    $mensaje = "Error al activar la presentación";
+    $icon = "error";
 } finally {
-	unset($conexion);
-	unset($stmt);
-	mover_pag($ruta, $mensaje);
+    unset($conexion);
+    unset($stmt);
+    mover_pag($ruta, $mensaje, $icon);
 }
-
-
+?>
+</body>
+</html>

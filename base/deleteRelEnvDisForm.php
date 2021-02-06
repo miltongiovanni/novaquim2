@@ -7,6 +7,7 @@ include "../includes/valAcc.php";
 <head>
     <meta charset="utf-8">
     <title>Seleccionar Relación Envase Producto de Distribución a Eliminar</title>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script  src="../js/validar.js"></script>
 </head>
 <body>

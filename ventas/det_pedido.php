@@ -18,7 +18,7 @@ $totalPedido = $detPedidoOperador->getTotalPedido($idPedido);
 if (!$pedido) {
     $ruta = "buscarPedido.php";
     $mensaje = "No existe un pedido con ese número.  Intente de nuevo.";
-    mover_pag($ruta, $mensaje);
+    mover_pag($ruta, $mensaje, $icon);
     exit;
 }
 date_default_timezone_set('America/Bogota');

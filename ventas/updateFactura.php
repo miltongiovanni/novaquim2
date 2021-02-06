@@ -48,7 +48,7 @@ if (($dias_v >= 0) && ($dias_f >= 0)) {
     } finally {
         unset($conexion);
         unset($stmt);
-        mover_pag($ruta, $mensaje);
+        mover_pag($ruta, $mensaje, $icon);
     }
 } else {
     if ($dias_v < 0) {

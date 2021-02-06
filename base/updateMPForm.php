@@ -18,7 +18,8 @@ $mprima = $MPrimaOperador->getMPrima($codMPrima);
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <meta charset="utf-8">
     <title>Actualizar datos de Materia Prima</title>
-    <script  src="../js/validar.js"></script>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../js/validar.js"></script>
 </head>
 
 <body>
@@ -35,14 +36,14 @@ $mprima = $MPrimaOperador->getMPrima($codMPrima);
                    for="codMPrima"><strong>Código</strong></label>
             <input type="text" class="form-control col-2" name="codMPrima" id="codMPrima" readOnly
                    value="<?= $mprima['codMPrima']; ?>">
-            <label class="col-form-label col-1 text-right"  for="aliasMPrima"><strong>Alias M
+            <label class="col-form-label col-1 text-right" for="aliasMPrima"><strong>Alias M
                     Prima</strong></label>
             <input type="text" class="form-control col-2" name="aliasMPrima" id="aliasMPrima" readOnly
                    value="<?= $mprima['aliasMPrima']; ?>">
 
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-1 text-right"  for="nomMPrima"><strong>Materia
+            <label class="col-form-label col-1 text-right" for="nomMPrima"><strong>Materia
                     Prima</strong></label>
             <input type="text" class="form-control col-2" name="nomMPrima" id="nomMPrima"
                    value="<?= $mprima['nomMPrima']; ?>">
@@ -67,13 +68,13 @@ $mprima = $MPrimaOperador->getMPrima($codMPrima);
             }
             echo '</select>';
             ?>
-            <label class="col-form-label col-1 text-right"  for="minStockMprima"><strong>Stock
+            <label class="col-form-label col-1 text-right" for="minStockMprima"><strong>Stock
                     Min</strong></label>
             <input type="text" class="form-control col-2" name="minStockMprima" id="minStockMprima"
                    onKeyPress="return aceptaNum(event)" value="<?= $mprima['minStockMprima']; ?>">
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-1 text-right"  for="pHmPrima"><strong>pH</strong></label>
+            <label class="col-form-label col-1 text-right" for="pHmPrima"><strong>pH</strong></label>
             <input type="text" class="form-control col-2" name="pHmPrima" id="pHmPrima"
                    placeholder="Si no tiene escribir N.A." value="<?= $mprima['pHmPrima']; ?>">
             <label class="col-form-label col-1 text-right"
@@ -93,8 +94,12 @@ $mprima = $MPrimaOperador->getMPrima($codMPrima);
                    onKeyPress="return aceptaLetra(event)" maxlength="30" value="<?= $mprima['olorMPrima']; ?>">
         </div>
         <div class="form-group row">
-                        <div class="col-1 text-center" >
+            <div class="col-1 text-center">
                 <button class="button" type="reset"><span>Reiniciar</span></button>
+            </div>
+            <div class="col-1 text-center">
+                <button class="button" type="button"
+                        onclick="return Enviar(this.form)"><span>Continuar</span></button>
             </div>
         </div>
     </form>

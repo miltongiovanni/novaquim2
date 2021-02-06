@@ -31,5 +31,5 @@ try {
     $ruta = "detO_Prod_MP.php";
     $mensaje = "Error al actualizar el detalle orden de producción de materia prima";
 } finally {
-    mover_pag($ruta, $mensaje);
+    mover_pag($ruta, $mensaje, $icon);
 }

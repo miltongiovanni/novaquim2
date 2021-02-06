@@ -1,8 +1,4 @@
 
-<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-<!--<script src="js/jquery-3.3.1.min.js"></script>-->
-<script src="../js/validar.js"></script>
-
 <?php
 //$err=error_reporting(16);
 session_start();

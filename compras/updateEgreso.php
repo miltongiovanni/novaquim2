@@ -31,7 +31,7 @@ if(($abono + $pago + $descuentoE) > $egreso['vreal'] ){
     $_SESSION['idEgreso'] = $idEgreso;
     $ruta = "egreso.php";
     $mensaje = "El pago sobrepasa el valor de la factura";
-    mover_pag($ruta, $mensaje);
+    mover_pag($ruta, $mensaje, $icon);
 }
 else{
     try {
@@ -56,7 +56,7 @@ else{
     } finally {
         unset($conexion);
         unset($stmt);
-        mover_pag($ruta, $mensaje);
+        mover_pag($ruta, $mensaje, $icon);
     }
 
 }

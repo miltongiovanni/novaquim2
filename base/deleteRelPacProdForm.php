@@ -3,11 +3,13 @@ include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
-<head><link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+<head>
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
 
     <meta charset="utf-8">
     <title>Seleccionar Relación Paca Unidad Producto de Distribución a Eliminar</title>
-    <script  src="../js/validar.js"></script>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../js/validar.js"></script>
 </head>
 <body>
 <div id="contenedor">

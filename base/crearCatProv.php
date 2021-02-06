@@ -16,7 +16,8 @@ $idCategoria = $lastcategorias + 1;
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <title>Creación Categoría de Proveedor</title>
     <meta charset="utf-8">
-    <script  src="../js/validar.js"></script>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../js/validar.js"></script>
 
 </head>
 <body>

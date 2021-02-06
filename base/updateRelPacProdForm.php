@@ -8,9 +8,8 @@ function cargarClases($classname)
 spl_autoload_register('cargarClases');
 if (isset($_POST['idPacUn'])) {
     $idPacUn = $_POST['idPacUn'];
-}
-else{
-    if(isset($_SESSION['idPacUn'])){
+} else {
+    if (isset($_SESSION['idPacUn'])) {
         $idPacUn = $_SESSION['idPacUn'];
         unset($_SESSION['idPacUn']);
     }
@@ -26,7 +25,8 @@ $relacion = $relDisEmpOperador->getRelDisEmp($idPacUn);
     <title>Relación Paca Unidad Productos de Distribución</title>
     <meta charset="utf-8">
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-    <script  src="../js/validar.js"></script>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../js/validar.js"></script>
 </head>
 <body>
 <div id="contenedor">
@@ -66,10 +66,10 @@ $relacion = $relDisEmpOperador->getRelDisEmp($idPacUn);
             </select>
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-2 text-right"  for="cantidad"><strong>Unidades por
+            <label class="col-form-label col-2 text-right" for="cantidad"><strong>Unidades por
                     empaque</strong></label>
             <input type="text" class="form-control col-2" name="cantidad" id="cantidad"
-                   onKeyPress="return aceptaNum(event)"  value="<?= $relacion['cantidad'] ?>">
+                   onKeyPress="return aceptaNum(event)" value="<?= $relacion['cantidad'] ?>">
         </div>
         <div class="row form-group">
             <div class="col-1">

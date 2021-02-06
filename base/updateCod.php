@@ -17,6 +17,23 @@ foreach ($_POST as $nombre_campo => $valor) {
         //echo $nombre_campo. '=' .${$nombre_campo}.'<br>';
     }
 }
+?>
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <meta charset="utf-8">
+    <title>Actualizar datos de Código Genérico</title>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../js/validar.js"></script>
+
+</head>
+
+<body>
+
+
+<?php
 $distribuidor= (round($fabrica*2*1.12,-2))/2;
 $detal= (round($fabrica*2*1.4,-2))/2;
 $mayor= (round($distribuidor*2*0.93,-2))/2;
@@ -26,17 +43,20 @@ $datos = array($producto, $fabrica, $distribuidor, $detal, $mayor, $super, $pres
 
 
 try {
-	$PrecioOperador->updatePrecio($datos);
-	$ruta = "listarCod.php";
-	$mensaje =  "Código genérico actualizado correctamente";
-	
+    $PrecioOperador->updatePrecio($datos);
+    $ruta = "listarCod.php";
+    $mensaje =  "Código genérico actualizado correctamente";
+    $icon = "success";
 } catch (Exception $e) {
-	$ruta = "buscarCod.php";
-	$mensaje = "Error al actualizar el código genérico";
+    $ruta = "buscarCod.php";
+    $mensaje = "Error al actualizar el código genérico";
+    $icon = "error";
 } finally {
-	unset($conexion);
-	unset($stmt);
-	mover_pag($ruta, $mensaje);
+    unset($conexion);
+    unset($stmt);
+    mover_pag($ruta, $mensaje, $icon);
 }
 
 ?>
+</body>
+</html>

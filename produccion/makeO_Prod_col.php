@@ -48,7 +48,7 @@ try {
             $ruta = "crearOProdColor.php";
             $materiaPrima = $MPrimaOperador->getNomMPrima($codMPrima);
             $mensaje = "No hay inventario suficiente de " . $materiaPrima . " hay " . round($invTotalMPrima, 2) . " Kg";
-            mover_pag($ruta, $mensaje);
+            mover_pag($ruta, $mensaje, $icon);
             break;
         } else {
             $uso1 = $uso;
@@ -91,5 +91,5 @@ try {
     $ruta = "crearOProdColor.php";
     $mensaje = "Error al crear la Orden de Producción de Color";
 } finally {
-    mover_pag($ruta, $mensaje);
+    mover_pag($ruta, $mensaje, $icon);
 }

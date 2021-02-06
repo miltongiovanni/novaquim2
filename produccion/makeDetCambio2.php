@@ -74,7 +74,7 @@ try {
     $ruta = "det_cambio_pres.php";
     $mensaje = "Error al cambiar la presentación";
 } finally {
-    mover_pag($ruta, $mensaje);
+    mover_pag($ruta, $mensaje, $icon);
 }
 
 

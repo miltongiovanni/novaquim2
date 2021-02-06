@@ -17,7 +17,20 @@ foreach ($_POST as $nombre_campo => $valor) {
         //echo $nombre_campo. '=' .${$nombre_campo}.'<br>';
     }
 }
+?>
 
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+	<title>Creación de Etiquetas</title>
+	<meta charset="utf-8">
+	<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+	<script src="../js/validar.js"></script>
+</head>
+<body>
+<?php
 $EtiquetaOperador = new EtiquetasOperaciones();
 $datos = array($codEtiqueta, $nomEtiqueta,  $stockEtiqueta, $codIva );
 
@@ -25,19 +38,21 @@ try {
 	$lastCodEtiqueta=$EtiquetaOperador->makeEtiqueta($datos);
 	$ruta = "listarEtq.php";
 	$mensaje =  "Etiqueta creada correctamente";
-	
+	$icon = "success";
 } catch (Exception $e) {
 	$ruta = "crearEtq.php";
 	$mensaje = "Error al crear la etiqueta";
+	$icon = "error";
 } finally {
 	unset($conexion);
 	unset($stmt);
-	mover_pag($ruta, $mensaje);
+	mover_pag($ruta, $mensaje, $icon);
 }
 	
 
 ?>
-
+</body>
+</html>
 
 
 

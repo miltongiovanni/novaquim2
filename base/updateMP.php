@@ -11,29 +11,46 @@ spl_autoload_register('cargarClases');
 
 foreach ($_POST as $nombre_campo => $valor) {
     ${$nombre_campo} = $valor;
-    if(is_array($valor)){
+    if (is_array($valor)) {
         //echo $nombre_campo.print_r($valor).'<br>';
-    }else{
+    } else {
         //echo $nombre_campo. '=' .${$nombre_campo}.'<br>';
     }
 }
+?>
 
-$datos = array($nomMPrima, $aliasMPrima, $idCatMPrima, $minStockMprima, $aparienciaMPrima, $olorMPrima, $colorMPrima, $pHmPrima, $densidadMPrima, $codIva, $codMPrima );
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <meta charset="utf-8">
+    <title>Actualizar datos de Materia Prima</title>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../js/validar.js"></script>
+</head>
+
+<body>
+<?php
+$datos = array($nomMPrima, $aliasMPrima, $idCatMPrima, $minStockMprima, $aparienciaMPrima, $olorMPrima, $colorMPrima, $pHmPrima, $densidadMPrima, $codIva, $codMPrima);
 $MPrimaOperador = new MPrimasOperaciones();
 
 try {
-	$MPrimaOperador->updateMPrima($datos);
-	$ruta = "listarMP.php";
-	$mensaje =  "Materia prima actualzada correctamente";
-	
+    $MPrimaOperador->updateMPrima($datos);
+    $ruta = "listarMP.php";
+    $mensaje = "Materia prima actualizada correctamente";
+    $icon = "success";
 } catch (Exception $e) {
-	$ruta = "buscarMP.php";
-	$mensaje = "Error al actualizar la materia prima";
+    $ruta = "buscarMP.php";
+    $mensaje = "Error al actualizar la materia prima";
+    $icon = "error";
 } finally {
-	unset($conexion);
-	unset($stmt);
-	mover_pag($ruta, $mensaje);
+    unset($conexion);
+    unset($stmt);
+    mover_pag($ruta, $mensaje, $icon);
 }
 
 
 ?>
+</body>
+</html>

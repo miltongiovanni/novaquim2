@@ -14,7 +14,7 @@ $cliente = $OperadorCliente->getCliente($idCliente);
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="utf-8">
     <title>Estado de Cuenta por Cliente</title>
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
 <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
