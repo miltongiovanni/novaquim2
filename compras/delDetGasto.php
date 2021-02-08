@@ -16,7 +16,18 @@ foreach ($_POST as $nombre_campo => $valor) {
         //echo $nombre_campo. '=' .${$nombre_campo}.'<br>';
     }
 }
-
+?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <meta charset="utf-8">
+    <title>Eliminar detalle del gasto</title>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../js/validar.js"></script>
+</head>
+<body>
+<?php
 $GastoOperador = new GastosOperaciones();
 $DetGastoOperador = new DetGastosOperaciones();
 
@@ -27,16 +38,17 @@ try {
     $_SESSION['idGasto'] = $idGasto;
     $ruta = "detGasto.php";
     $mensaje = "Detalle de gasto eliminado con éxito";
+    $icon = "success";
 } catch (Exception $e) {
     $_SESSION['idGasto'] = $idGasto;
     $ruta = "detGasto.php";
     $mensaje = "Error al eliminar el detalle del gasto";
+    $icon = "error";
 } finally {
     unset($conexion);
     unset($stmt);
     mover_pag($ruta, $mensaje, $icon);
 }
-
-
-
 ?>
+</body>
+</html>

@@ -5,7 +5,7 @@ include "../includes/valAcc.php";
 <html lang="es">
 <head>
     <title>Lista de Kits Armados</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8">
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="../css/datatables.css">
     <style>

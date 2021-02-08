@@ -2,9 +2,9 @@
 include "../includes/valAcc.php";
 foreach ($_POST as $nombre_campo => $valor) {
     ${$nombre_campo} = $valor;
-    if(is_array($valor)){
+    if (is_array($valor)) {
         //echo $nombre_campo.print_r($valor).'<br>';
-    }else{
+    } else {
         //echo $nombre_campo. '=' .${$nombre_campo}.'<br>';
     }
 }
@@ -30,9 +30,9 @@ if (!$GastoOperador->isValidIdGasto($idGasto)) {
     <head>
         <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
         <title>Actualización de gastos</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="../js/validar.js"></script>
+        <meta charset="utf-8">
+        <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+        <script src="../js/validar.js"></script>
     </head>
     <body>
     <div id="contenedor">
@@ -77,13 +77,14 @@ if (!$GastoOperador->isValidIdGasto($idGasto)) {
                        value="<?= $gasto['fechVenc'] ?>">
             </div>
             <div class="form-group row">
-    <div class="col-1 text-center">
-                <button class="button" type="reset"><span>Reiniciar</span></button>
+                <div class="col-1 text-center">
+                    <button class="button" type="reset"><span>Reiniciar</span></button>
+                </div>
+                <div class="col-1 text-center">
+                    <button class="button" type="button" onclick="return Enviar(this.form)"><span>Continuar</span>
+                    </button>
+                </div>
             </div>
-            <div class="col-1 text-center">
-                <button class="button" type="button" onclick="return Enviar(this.form)"><span>Continuar</span></button>
-            </div>
-        </div>
         </form>
         <div class="row">
             <div class="col-1">
@@ -93,6 +94,6 @@ if (!$GastoOperador->isValidIdGasto($idGasto)) {
     </div>
     </body>
     </html>
-<?php
+    <?php
 }
 ?>

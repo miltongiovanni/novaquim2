@@ -17,7 +17,18 @@ foreach ($_POST as $nombre_campo => $valor) {
         //echo $nombre_campo. '=' .${$nombre_campo}.'<br>';
     }
 }
-
+?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <title>Creación de Servicios</title>
+    <meta charset="utf-8">
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../js/validar.js"></script>
+</head>
+<body>
+<?php
 $datos = array($idCompra, $tipoCompra);
 $EgresoOperador = new EgresoOperaciones();
 
@@ -31,16 +42,17 @@ try {
         $_SESSION['idEgreso'] = $lastIdEgreso;
         $ruta = "egreso.php";
         $mensaje = "Egreso creado con éxito";
+        $icon = "success";
     }
 } catch (Exception $e) {
     $ruta = "factXpagar.php";
     $mensaje = "Error al crear el comprobante de egreso";
+    $icon = "error";
 } finally {
     unset($conexion);
     unset($stmt);
     mover_pag($ruta, $mensaje, $icon);
 }
-
-
-
 ?>
+</body>
+</html>

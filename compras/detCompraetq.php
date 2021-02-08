@@ -5,7 +5,7 @@ include "../includes/valAcc.php";
 <html lang="es">
 <head>
 <title>Ingreso de Compra de Etiqueta</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta charset="utf-8">
 <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
 	<script  src="../js/validar.js"></script>
 

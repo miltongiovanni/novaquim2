@@ -7,8 +7,9 @@ include "../includes/valAcc.php";
 <head>
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <title>Ingreso de gastos</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <script  src="../js/validar.js"></script>
+    <meta charset="utf-8">
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../js/validar.js"></script>
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script>
         function findProveedor(idCatProd) {
@@ -43,21 +44,23 @@ include "../includes/valAcc.php";
         <div class="form-group row" id="myDiv">
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-2 text-right"  for="numFact"><strong>Número de Factura</strong></label>
-            <input type="text" class="form-control col-2" name="numFact" id="numFact" onKeyPress="return aceptaNum(event)" required>
+            <label class="col-form-label col-2 text-right" for="numFact"><strong>Número de Factura</strong></label>
+            <input type="text" class="form-control col-2" name="numFact" id="numFact"
+                   onKeyPress="return aceptaNum(event)" required>
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-2 text-right"  for="fechGasto"><strong>Fecha de compra</strong></label>
+            <label class="col-form-label col-2 text-right" for="fechGasto"><strong>Fecha de compra</strong></label>
             <input type="date" class="form-control col-2" name="fechGasto" id="fechGasto" required>
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-2 text-right"  for="fechVenc"><strong>Fecha de vencimiento</strong></label>
+            <label class="col-form-label col-2 text-right" for="fechVenc"><strong>Fecha de vencimiento</strong></label>
             <input type="date" class="form-control col-2" name="fechVenc" id="fechVenc" required>
         </div>
         <div class="form-group row">
-                        <div class="col-1 text-center" >
+            <div class="col-1 text-center">
                 <button class="button" type="reset"><span>Reiniciar</span></button>
-            </div><div class="col-1 text-center" >
+            </div>
+            <div class="col-1 text-center">
                 <button class="button" type="button" onclick="return Enviar(this.form)"><span>Continuar</span></button>
             </div>
         </div>

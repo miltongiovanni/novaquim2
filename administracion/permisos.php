@@ -12,7 +12,7 @@ spl_autoload_register('cargarClases');
 <html lang="es">
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8">
     <title>Asignación de Permisos al Usuario</title>
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <script src="../js/md5.js"></script>

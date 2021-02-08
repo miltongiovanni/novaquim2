@@ -6,7 +6,7 @@ include "../includes/valAcc.php";
 
 <head>
     <title>Lista de Envase</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8">
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="../css/datatables.css">
     <script src="../js/jquery-3.3.1.min.js"></script>

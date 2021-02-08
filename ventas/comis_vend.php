@@ -22,7 +22,7 @@ $totales = $personalOperador->getTotalComisionVendedor($idPersonal, $fechaInicia
 <html lang="es">
 <head>
     <title>Consulta de Venta de Productos por Referencia</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8">
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="../css/datatables.css">
     <style>

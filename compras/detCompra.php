@@ -7,9 +7,9 @@ if (isset($_SESSION['idCompra'])) {//Si la factura existe
 }
 foreach ($_POST as $nombre_campo => $valor) {
     ${$nombre_campo} = $valor;
-    if(is_array($valor)){
+    if (is_array($valor)) {
         //echo $nombre_campo.print_r($valor).'<br>';
-    }else{
+    } else {
         //echo $nombre_campo. '=' .${$nombre_campo}.'<br>';
     }
 }
@@ -56,7 +56,7 @@ $compra = $CompraOperador->getCompra($idCompra, $tipoCompra);
             padding: 4px 4px 4px 4px;
         }
     </style>
-<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/validar.js"></script>
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/datatables.js"></script>
@@ -86,12 +86,12 @@ $compra = $CompraOperador->getCompra($idCompra, $tipoCompra);
                 }
             });
         }
+
         function updateEstadoCompra(idCompra) {
             let estadoActualCompra = <?=$compra['estadoCompra']?>;
             if (estadoActualCompra != 2) {
                 eliminarSession();
-            }
-            else{
+            } else {
                 $.ajax({
                     url: '../includes/controladorCompras.php',
                     type: 'POST',
@@ -269,7 +269,7 @@ $compra = $CompraOperador->getCompra($idCompra, $tipoCompra);
                     <input type="date" style="margin: 0 0 0 5px; flex: 0 0 10%; max-width: 10%;" class="form-control"
                            name="fechLote" id="fechLote">
                     <div class="col-2 text-center" style="padding: 0 20px;">
-                        <button class="button" onclick="return Enviar(this.form)"><span>Adicionar producto</span>
+                        <button class="button" type="button" onclick="return Enviar(this.form)"><span>Adicionar producto</span>
                         </button>
                     </div>
                 </div>
@@ -306,7 +306,7 @@ $compra = $CompraOperador->getCompra($idCompra, $tipoCompra);
                     <input type="text" style="margin: 0 5px;" class="form-control col-1" name="precio" id="precio"
                            onKeyPress="return aceptaNum(event)">
                     <div class="col-2 text-center" style="padding: 0 20px;">
-                        <button class="button" onclick="return Enviar(this.form)"><span>Adicionar producto</span>
+                        <button class="button" type="button" onclick="return Enviar(this.form)"><span>Adicionar producto</span>
                         </button>
                     </div>
                 </div>
@@ -343,7 +343,7 @@ $compra = $CompraOperador->getCompra($idCompra, $tipoCompra);
                     <input type="text" style="margin: 0 5px;" class="form-control col-1" name="precio" id="precio"
                            onKeyPress="return aceptaNum(event)">
                     <div class="col-2 text-center" style="padding: 0 20px;">
-                        <button class="button" onclick="return Enviar(this.form)"><span>Adicionar producto</span>
+                        <button class="button" type="button" onclick="return Enviar(this.form)"><span>Adicionar producto</span>
                         </button>
                     </div>
                 </div>
@@ -381,7 +381,7 @@ $compra = $CompraOperador->getCompra($idCompra, $tipoCompra);
                     <input type="text" style="margin: 0 5px;" class="form-control col-1" name="precio" id="precio"
                            onKeyPress="return aceptaNum(event)">
                     <div class="col-2 text-center" style="padding: 0 20px;">
-                        <button class="button" onclick="return Enviar(this.form)"><span>Adicionar producto</span>
+                        <button class="button" type="button" onclick="return Enviar(this.form)"><span>Adicionar producto</span>
                         </button>
                     </div>
                 </div>
@@ -401,18 +401,18 @@ $compra = $CompraOperador->getCompra($idCompra, $tipoCompra);
             <th width="8%"></th>
             <th width="8%">Código</th>
             <?php
-            if($tipoCompra==1){
+            if ($tipoCompra == 1) {
                 ?>
                 <th width="36%">Materia Prima</th>
                 <th width="5%">Iva</th>
                 <th width="10%">Cantidad(Kg)</th>
                 <th width="10%">Precio/Kg</th>
                 <th width="15%">Lote M. Prima</th>
-            <?php
+                <?php
             }
             ?>
             <?php
-            if($tipoCompra==2){
+            if ($tipoCompra == 2) {
                 ?>
                 <th width="41%">Envase o tapa</th>
                 <th width="5%">Iva</th>
@@ -423,7 +423,7 @@ $compra = $CompraOperador->getCompra($idCompra, $tipoCompra);
             }
             ?>
             <?php
-            if($tipoCompra==3){
+            if ($tipoCompra == 3) {
                 ?>
                 <th width="41%">Etiqueta</th>
                 <th width="5%">Iva</th>
@@ -434,7 +434,7 @@ $compra = $CompraOperador->getCompra($idCompra, $tipoCompra);
             }
             ?>
             <?php
-            if($tipoCompra==5){
+            if ($tipoCompra == 5) {
                 ?>
                 <th width="41%">Producto</th>
                 <th width="5%">Iva</th>

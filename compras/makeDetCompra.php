@@ -11,12 +11,24 @@ spl_autoload_register('cargarClases');
 
 foreach ($_POST as $nombre_campo => $valor) {
     ${$nombre_campo} = $valor;
-    if(is_array($valor)){
+    if (is_array($valor)) {
         //echo $nombre_campo.print_r($valor).'<br>';
-    }else{
+    } else {
         //echo $nombre_campo. '=' .${$nombre_campo}.'<br>';
     }
 }
+?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Detalle compra</title>
+    <meta charset="utf-8">
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../js/validar.js"></script>
+</head>
+<body>
+<?php
 $CompraOperador = new ComprasOperaciones();
 $DetCompraOperador = new DetComprasOperaciones();
 
@@ -123,17 +135,18 @@ try {
     $_SESSION['tipoCompra'] = $tipoCompra;
     $ruta = "detCompra.php";
     $mensaje = "Detalle de compra adicionado con éxito";
+    $icon = "success";
 } catch (Exception $e) {
     $_SESSION['idCompra'] = $idCompra;
     $_SESSION['tipoCompra'] = $tipoCompra;
     $ruta = "detCompra.php";
-    $ruta = $rutaError;
     $mensaje = "Error al ingresar el detalle de la factura de compra";
+    $icon = "error";
 } finally {
     unset($conexion);
     unset($stmt);
     mover_pag($ruta, $mensaje, $icon);
 }
-
-
 ?>
+</body>
+</html>

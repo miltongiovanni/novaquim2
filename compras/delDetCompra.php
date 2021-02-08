@@ -16,11 +16,22 @@ foreach ($_POST as $nombre_campo => $valor) {
         //echo $nombre_campo. '=' .${$nombre_campo}.'<br>';
     }
 }
-
+?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <meta charset="utf-8">
+    <title>Eliminar detalle compra</title>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../js/validar.js"></script>
+</head>
+<body>
+<?php
 $CompraOperador = new ComprasOperaciones();
 $DetCompraOperador = new DetComprasOperaciones();
 $detalle = $DetCompraOperador->getDetCompra($idCompra, $tipoCompra, $codigo);
-
+$lote=$detalle['lote'];
 try {
     $datos = array($idCompra, $codigo);
     $DetCompraOperador->deleteDetCompra( $datos);
@@ -66,17 +77,18 @@ try {
     $_SESSION['tipoCompra'] = $tipoCompra;
     $ruta = "detCompra.php";
     $mensaje = "Detalle de compra eliminado con éxito";
+    $icon = "success";
 } catch (Exception $e) {
     $_SESSION['idCompra'] = $idCompra;
     $_SESSION['tipoCompra'] = $tipoCompra;
     $ruta = "detCompra.php";
     $mensaje = "Error al eliminar el detalle de la factura de compra";
+    $icon = "error";
 } finally {
     unset($conexion);
     unset($stmt);
     mover_pag($ruta, $mensaje, $icon);
 }
-
-
-
 ?>
+</body>
+</html>

@@ -23,7 +23,7 @@ $saldo = intval($egreso['treal']) - $abono;
     <title>Actualización de pago de Facturas de Compra y de Gastos</title>
     <meta charset="utf-8">
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/validar.js"></script>
 </head>
 <body>
@@ -82,16 +82,17 @@ $saldo = intval($egreso['treal']) - $abono;
             </div>
         </div>
         <div class="form-group row">
-            <input type="date" style="margin: 0 5px 0 0 ; flex: 0 0 10%; max-width: 10%;" class="form-control" value="<?= $egreso['fechPago']; ?>"
+            <input type="date" style="margin: 0 5px 0 0 ; flex: 0 0 10%; max-width: 10%;" class="form-control"
+                   value="<?= $egreso['fechPago']; ?>"
                    name="fechPago" id="fechPago">
             <?php
             $manager = new FormaPagoOperaciones();
             $formas = $manager->getFormasPago();
             $filas = count($formas);
             echo '<select name="formPago" id="formPago" class="form-control col-1" style="margin: 0 5px;">';
-            echo '<option selected value="'.$egreso['formPago'].'">'.$egreso['formaPago'].'</option>';
+            echo '<option selected value="' . $egreso['formPago'] . '">' . $egreso['formaPago'] . '</option>';
             for ($i = 0; $i < $filas; $i++) {
-                if ($egreso['formPago']!=$formas[$i]["idFormaPago"]){
+                if ($egreso['formPago'] != $formas[$i]["idFormaPago"]) {
                     echo '<option value="' . $formas[$i]["idFormaPago"] . '">' . $formas[$i]['formaPago'] . '</option>';
                 }
             }
@@ -103,7 +104,7 @@ $saldo = intval($egreso['treal']) - $abono;
             <input type="text" style="margin: 0 5px;" class="form-control col-1" name="descuentoE" id="descuentoE"
                    onKeyPress="return aceptaNum(event)" value="<?= $egreso['descuentoE']; ?>">
             <div class="col-2 text-center" style="padding: 0 20px;">
-                <button class="button" onclick="return Enviar(this.form)"><span>Modificar pago</span>
+                <button class="button" type="button" onclick="return Enviar(this.form)"><span>Modificar pago</span>
                 </button>
             </div>
         </div>

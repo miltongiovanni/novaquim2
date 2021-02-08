@@ -21,8 +21,8 @@ switch ($tipoCompra) {
 <head>
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <title>Ingreso de la compra de<?= $titulo ?></title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <meta charset="utf-8">
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/validar.js"></script>
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script>

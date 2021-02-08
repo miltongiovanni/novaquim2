@@ -6,9 +6,9 @@ if (isset($_SESSION['idGasto'])) {//Si la factura existe
 }
 foreach ($_POST as $nombre_campo => $valor) {
     ${$nombre_campo} = $valor;
-    if(is_array($valor)){
+    if (is_array($valor)) {
         //echo $nombre_campo.print_r($valor).'<br>';
-    }else{
+    } else {
         //echo $nombre_campo. '=' .${$nombre_campo}.'<br>';
     }
 }
@@ -36,7 +36,7 @@ $gasto = $GastoOperador->getGasto($idGasto);
             padding: 4px 4px 4px 4px;
         }
     </style>
-<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/validar.js"></script>
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/datatables.js"></script>
@@ -229,7 +229,8 @@ $gasto = $GastoOperador->getGasto($idGasto);
                 echo '</select>';
                 ?>
                 <div class="col-2 text-center" style="padding: 0 20px;">
-                    <button class="button" type="button" onclick="return Enviar(this.form)"><span>Adicionar detalle</span>
+                    <button class="button" type="button" onclick="return Enviar(this.form)">
+                        <span>Adicionar detalle</span>
                     </button>
                 </div>
             </div>
@@ -253,7 +254,8 @@ $gasto = $GastoOperador->getGasto($idGasto);
     </table>
     <div class="row">
         <div class="col-1">
-            <button class="button" type="button" id="back" onClick="updateEstadoGasto(<?= $idGasto ?>)"><span>Terminar</span>
+            <button class="button" type="button" id="back" onClick="updateEstadoGasto(<?= $idGasto ?>)">
+                <span>Terminar</span>
             </button>
         </div>
     </div>

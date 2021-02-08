@@ -9,8 +9,7 @@ spl_autoload_register('cargarClases');
 if (isset($_POST['idProv'])) {
     $idProv = $_POST['idProv'];
     $_SESSION['idProv'] = $idProv;
-}
-else{
+} else {
     if (isset($_SESSION['idProv'])) {
         $idProv = $_SESSION['idProv'];
     }
@@ -26,7 +25,7 @@ $proveedor = $ProveedorOperador->getProveedor($idProv);
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <meta charset="utf-8">
     <title>Actualizar datos del Proveedor</title>
-<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/validar.js"></script>
     <link rel="stylesheet" href="../css/datatables.css">
     <script src="../js/jquery-3.3.1.min.js"></script>
@@ -87,14 +86,14 @@ $proveedor = $ProveedorOperador->getProveedor($idProv);
     <form id="form1" name="form1" method="post" action="updateProv.php">
         <input type="hidden" class="form-control col-2" name="idProv" id="idProv" value="<?= $idProv ?>">
         <div class="form-group row">
-            <label class="col-form-label col-2 text-right"  for="nitProv"><strong>NIT</strong></label>
+            <label class="col-form-label col-2 text-right" for="nitProv"><strong>NIT</strong></label>
             <input type="text" class="form-control col-2" name="nitProv" id="nitProv"
                    value="<?= $proveedor['nitProv'] ?>" readOnly>
             <label class="col-form-label col-2 text-right"
                    for="nomProv"><strong>Proveedor</strong></label>
             <input type="text" class="form-control col-2" name="nomProv" id="nomProv"
                    value="<?= $proveedor['nomProv'] ?>">
-            <label class="col-form-label col-2 text-right"  for="contProv"><strong>Nombre
+            <label class="col-form-label col-2 text-right" for="contProv"><strong>Nombre
                     Contacto</strong></label>
             <input type="text" class="form-control col-2" name="contProv" id="contProv"
                    value="<?= $proveedor['contProv'] ?>">
@@ -109,7 +108,7 @@ $proveedor = $ProveedorOperador->getProveedor($idProv);
             <input type="text" class="form-control col-2" name="telProv" id="telProv"
                    value="<?= $proveedor['telProv'] ?>"
                    onKeyPress="return aceptaNum(event)">
-            <label class="col-form-label col-2 text-right"  for="emailProv"><strong>Correo
+            <label class="col-form-label col-2 text-right" for="emailProv"><strong>Correo
                     electrónico</strong></label>
             <input type="email" class="form-control col-2" name="emailProv" id="emailProv"
                    value="<?= $proveedor['emailProv'] ?>">
@@ -181,7 +180,7 @@ $proveedor = $ProveedorOperador->getProveedor($idProv);
             <label class="col-form-label col-2" for="idRetefuente"><strong>Tasa Retefuente</strong></label>
             <?php
             $manager = new TasaRetefuenteOperaciones();
-            $categorias=$manager->getTasasRetefuente();
+            $categorias = $manager->getTasasRetefuente();
             $filas = count($categorias);
             echo '<select name="idRetefuente" id="idRetefuente" class="form-control col-2"  required>';
             echo '<option selected value="' . $proveedor['idRetefuente'] . '">' . $proveedor['retefuente'] . '</option>';
@@ -210,10 +209,11 @@ $proveedor = $ProveedorOperador->getProveedor($idProv);
             </select>
         </div>
         <div class="form-group row">
-            <div class="col-2 text-center" >
-                <button class="button" type="button" onclick="return Enviar(this.form)"><span>Actualizar Proveedor</span></button>
+            <div class="col-2 text-center">
+                <button class="button" type="button" onclick="return Enviar(this.form)">
+                    <span>Actualizar Proveedor</span></button>
             </div>
-            <div class="col-1 text-center" >
+            <div class="col-1 text-center">
                 <button class="button" type="reset"><span>Reiniciar</span></button>
             </div>
         </div>

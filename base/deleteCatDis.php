@@ -15,7 +15,7 @@ spl_autoload_register('cargarClases');
 
 <head>
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8">
     <title>Eliminar categoría producto de distribución</title>
     <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/validar.js"></script>

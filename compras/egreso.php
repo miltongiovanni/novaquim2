@@ -82,7 +82,7 @@ $saldo = intval($egreso['treal']) - $abono;
                 </div>
             </div>
             <div class="form-group row">
-                <input type="date input-date" class="form-control"
+                <input type="date" class="form-control input-date"
                        name="fechPago" id="fechPago">
                 <?php
                 $manager = new FormaPagoOperaciones();
@@ -146,7 +146,7 @@ $saldo = intval($egreso['treal']) - $abono;
         <div class="col-1 text-center">
             <form action="updateEgresoForm.php" method="post" name="elimina">
                 <input name="idEgreso" type="hidden" value="<?= $idEgreso; ?>">
-                <input type="button" name="Submit" onclick="return Enviar(this.form)" class="formatoBoton"  value="Modificar">
+                <input type="button" onclick="return Enviar(this.form)" class="formatoBoton"  value="Modificar">
             </form>
         </div>
         <?php endif; ?>
