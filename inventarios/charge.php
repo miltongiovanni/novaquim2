@@ -7,7 +7,18 @@ function cargarClases($classname)
 }
 
 spl_autoload_register('cargarClases');
-
+?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Cargar Envase como Producto de Distribución</title>
+    <meta charset="utf-8">
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../js/validar.js"></script>
+</head>
+<body>
+<?php
 $invDistribucionOperador = new InvDistribucionOperaciones();
 $relEnvDisOperador = new RelEnvDisOperaciones();
 $invEnvaseOperador = new InvEnvasesOperaciones();
@@ -36,18 +47,22 @@ try {
 
         $ruta = "../menu.php";
         $mensaje = "Carga de envase como producto de distribución realizado con éxito";
+        $icon = "success";
     } else {
         $ruta = "cargarEnvase.php";
         $mensaje = "No hay inventario suficiente de Envases o Tapa";
+        $icon = "warning";
     }
 
 } catch (Exception $e) {
     $ruta = "cargarEnvase.php";
     $mensaje = "Error al cargar el envase como producto de distribución";
+    $icon = "error";
 } finally {
     unset($conexion);
     unset($stmt);
     mover_pag($ruta, $mensaje, $icon);
 }
-
-
+?>
+</body>
+</html>

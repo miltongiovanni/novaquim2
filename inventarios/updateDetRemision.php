@@ -7,7 +7,18 @@ function cargarClases($classname)
 }
 
 spl_autoload_register('cargarClases');
-
+?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <meta charset="utf-8">
+    <title>Actualizar detalle de la remisión</title>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../js/validar.js"></script>
+</head>
+<body>
+<?php
 $idRemision = $_POST['idRemision'];
 $codProducto = $_POST['codProducto'];
 $cantProducto = $_POST['cantProducto'];
@@ -23,12 +34,13 @@ try {
     if ($codProducto < 100000) {
         //PRODUCTOS DE LA EMPRESA
         $diffCantidad = $cantProducto - $cantProductoAnt;
-        if ($diffCantidad > 0) {
+        if ($diffCantidad >= 0) {
             $invTotalProd = $invProdTerminadoOperador->getInvTotalProdTerminado($codProducto);
             if ($diffCantidad > $invTotalProd) {
                 $_SESSION['idRemision'] = $idRemision;
                 $ruta = "det_remision.php";
                 $mensaje = "No hay inventario suficiente";
+                $icon = "warning";
             } else {
                 $unidades = $diffCantidad;
                 $invProdTerminado = $invProdTerminadoOperador->getInvProdTerminado($codProducto);
@@ -54,6 +66,7 @@ try {
                 $_SESSION['idRemision'] = $idRemision;
                 $ruta = "det_remision.php";
                 $mensaje = "Detalle de la remisión actualizado con éxito";
+                $icon = "success";
             }
         } else {//problema
             $productos = $detRemisionOperador->getDetRemision($idRemision, $codProducto);
@@ -85,6 +98,7 @@ try {
                 $_SESSION['idRemision'] = $idRemision;
                 $ruta = "det_remision.php";
                 $mensaje = "Detalle de la remisión actualizado con éxito";
+                $icon = "success";
             }
         }
     }
@@ -93,6 +107,7 @@ try {
     $_SESSION['idRemision'] = $idRemision;
     $ruta = "det_remision.php";
     $mensaje = "Error al actualizar el detalle de la remisión";
+    $icon = "error";
 } finally {
     unset($conexion);
     unset($stmt);
@@ -101,3 +116,5 @@ try {
 
 
 ?>
+</body>
+</html>

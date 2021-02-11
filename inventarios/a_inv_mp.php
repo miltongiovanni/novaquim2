@@ -14,7 +14,7 @@ spl_autoload_register('cargarClases');
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <meta charset="utf-8">
     <title>Ajuste de Inventario de Materia Prima</title>
-<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/validar.js"></script>
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script>
@@ -67,7 +67,8 @@ spl_autoload_register('cargarClases');
     <form id="form1" name="form1" method="post" action="updateInvMP.php">
         <div class="form-group row">
             <label class="col-form-label col-2" for="codMPrima"><strong>Materia prima</strong></label>
-            <select name="codMPrima" id="codMPrima" class="form-control col-2" onchange="getLotesMPrima(this.value)" required>
+            <select name="codMPrima" id="codMPrima" class="form-control col-2" onchange="getLotesMPrima(this.value)"
+                    required>
                 <option selected disabled value="">-----------------------------</option>
                 <?php
                 $MPrimaOperador = new MPrimasOperaciones();
@@ -96,7 +97,7 @@ spl_autoload_register('cargarClases');
                 <button class="button" type="reset"><span>Reiniciar</span></button>
             </div>
             <div class="col-1 text-center">
-                <button class="button"
+                <button class="button" type="button"
                         onclick="return Enviar(this.form)"><span>Continuar</span></button>
             </div>
         </div>

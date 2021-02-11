@@ -10,14 +10,15 @@ spl_autoload_register('cargarClases');
 <!DOCTYPE html>
 <html lang="es">
 <head>
-	<title>Cargar Envase como Producto de Distribución</title>
-	<meta charset="utf-8">
-	<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<script  src="../js/validar.js"></script>
+    <title>Cargar Envase como Producto de Distribución</title>
+    <meta charset="utf-8">
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../js/validar.js"></script>
 </head>
 <body>
 <div id="contenedor">
-<div id="saludo"><strong>CARGAR ENVASE AL INVENTARIO DE DISTRIBUCIÓN</strong></div>
+    <div id="saludo"><strong>CARGAR ENVASE AL INVENTARIO DE DISTRIBUCIÓN</strong></div>
     <form method="post" action="charge.php" name="form1">
         <div class="form-group row">
             <label class="col-form-label col-3 text-right" for="idDis"><strong>Envase:</strong></label>
@@ -51,7 +52,7 @@ spl_autoload_register('cargarClases');
     </form>
     <div class="row">
         <div class="col-1">
-            <button class="button1" onClick="history.back()"><span>VOLVER</span></button>
+            <button class="button1" onClick="window.location='../menu.php'"><span>VOLVER</span></button>
         </div>
     </div>
 </div>

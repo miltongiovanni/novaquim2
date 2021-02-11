@@ -9,7 +9,18 @@ function cargarClases($classname)
 spl_autoload_register('cargarClases');
 $idRemision = $_POST['idRemision'];
 $codProducto = $_POST['codProducto'];
-
+?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <title>Eliminación detalle de remisión</title>
+    <meta charset="utf-8">
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../js/validar.js"></script>
+</head>
+<body>
+<?php
 $remisionOperador = new RemisionesOperaciones();
 $detRemisionOperador = new DetRemisionesOperaciones();
 $invProdTerminadoOperador = new InvProdTerminadosOperaciones();
@@ -43,15 +54,17 @@ try {
     $_SESSION['idRemision'] = $idRemision;
     $ruta = "det_remision.php";
     $mensaje = "Detalle de remisión eliminado correctamente";
+    $icon = "success";
 } catch (Exception $e) {
     $_SESSION['idRemision'] = $idRemision;
     $ruta = "det_remision.php";
     $mensaje = "Error al eliminar el detalle de la remisión";
+    $icon = "error";
 } finally {
     unset($conexion);
     unset($stmt);
     mover_pag($ruta, $mensaje, $icon);
 }
-
-
 ?>
+</body>
+</html>

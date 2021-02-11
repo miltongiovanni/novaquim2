@@ -13,7 +13,7 @@ spl_autoload_register('cargarClases');
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <meta charset="utf-8">
     <title>Ajuste de Inventario de Producto Terminado</title>
-<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/validar.js"></script>
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script>
@@ -82,7 +82,8 @@ spl_autoload_register('cargarClases');
         <div class="form-group row">
             <label class="col-form-label col-2" for="loteProd"><strong>Lote</strong></label>
             <select name="loteProd" id="loteProd" class="form-control col-3 formatoDatos"
-                    onchange="getInvPresentacionXLote(document.getElementById('codPresentacion').value, this.value)" required>
+                    onchange="getInvPresentacionXLote(document.getElementById('codPresentacion').value, this.value)"
+                    required>
             </select>
         </div>
         <div class="form-group row">
@@ -97,7 +98,7 @@ spl_autoload_register('cargarClases');
                 <button class="button" type="reset"><span>Reiniciar</span></button>
             </div>
             <div class="col-1 text-center">
-                <button class="button"
+                <button class="button" type="button"
                         onclick="return Enviar(this.form)"><span>Continuar</span></button>
             </div>
         </div>

@@ -15,6 +15,19 @@ foreach ($_POST as $nombre_campo => $valor) {
         //echo $nombre_campo. '=' .${$nombre_campo}.'<br>';
     }
 }
+?>
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <title>Ajuste de Inventario de Envase</title>
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../js/validar.js"></script>
+</head>
+<body>
+<?php
 $datos = array($invEnvase, $codEnvase);
 $invEnvaseOperador = new InvEnvasesOperaciones();
 
@@ -22,13 +35,16 @@ try {
     $invEnvaseOperador->updateInvEnvase($datos);
     $ruta = "../menu.php";
     $mensaje = "Inventario actualizado correctamente";
-
+    $icon = "success";
 } catch (Exception $e) {
     $ruta = "a_inv_dist.php";
     $mensaje = "Error al actualizar el inventario";
+    $icon = "error";
 } finally {
     unset($conexion);
     unset($stmt);
     mover_pag($ruta, $mensaje, $icon);
 }
 ?>
+</body>
+</html>

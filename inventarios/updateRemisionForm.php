@@ -2,9 +2,9 @@
 include "../includes/valAcc.php";
 foreach ($_POST as $nombre_campo => $valor) {
     ${$nombre_campo} = $valor;
-    if(is_array($valor)){
+    if (is_array($valor)) {
         //echo $nombre_campo.print_r($valor).'<br>';
-    }else{
+    } else {
         //echo $nombre_campo. '=' .${$nombre_campo}.'<br>';
     }
 }
@@ -16,10 +16,10 @@ function cargarClases($classname)
 spl_autoload_register('cargarClases');
 $remisionOperador = new RemisionesOperaciones();
 if (!$remisionOperador->isValidIdRemision($idRemision)) {
-    echo ' <script >
-				alert("El número de remisión no es válido, vuelva a intentar de nuevo");
-				history.back();
-			</script>';
+    $ruta = "buscarRemision.php";
+    $mensaje = "El número de remisión no es válido, vuelva a intentar de nuevo";
+    $icon = "error";
+    mover_pag($ruta, $mensaje, $icon);
 } else {
 
     $remision = $remisionOperador->getRemisionById($idRemision);
@@ -31,8 +31,8 @@ if (!$remisionOperador->isValidIdRemision($idRemision)) {
         <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
         <title>Actualización de remisión</title>
         <meta charset="utf-8">
-    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="../js/validar.js"></script>
+        <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+        <script src="../js/validar.js"></script>
     </head>
     <body>
     <div id="contenedor">
@@ -64,7 +64,8 @@ if (!$remisionOperador->isValidIdRemision($idRemision)) {
                     <button class="button" type="reset"><span>Reiniciar</span></button>
                 </div>
                 <div class="col-1 text-center">
-                    <button class="button" onclick="return Enviar(this.form)"><span>Continuar</span></button>
+                    <button class="button" type="button" onclick="return Enviar(this.form)"><span>Continuar</span>
+                    </button>
                 </div>
             </div>
         </form>

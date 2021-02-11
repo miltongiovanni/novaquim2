@@ -15,6 +15,18 @@ foreach ($_POST as $nombre_campo => $valor) {
         //echo $nombre_campo. '=' .${$nombre_campo}.'<br>';
     }
 }
+?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <meta charset="utf-8">
+    <title>Ajuste de Inventario de Producto Terminado</title>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../js/validar.js"></script>
+</head>
+<body>
+<?php
 $datos = array($invProd, $codPresentacion, $loteProd);
 $invProdTerminadoOperador = new InvProdTerminadosOperaciones();
 
@@ -22,13 +34,16 @@ try {
     $invProdTerminadoOperador->updateInvProdTerminado($datos);
     $ruta = "../menu.php";
     $mensaje = "Inventario actualizado correctamente";
-
+    $icon = "success";
 } catch (Exception $e) {
     $ruta = "a_inv_prod.php";
     $mensaje = "Error al actualizar el inventario";
+    $icon = "error";
 } finally {
     unset($conexion);
     unset($stmt);
     mover_pag($ruta, $mensaje, $icon);
 }
 ?>
+</body>
+</html>

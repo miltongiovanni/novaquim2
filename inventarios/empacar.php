@@ -13,7 +13,7 @@ spl_autoload_register('cargarClases');
     <title>Organizar Unidades en Pacas</title>
     <meta charset="utf-8">
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/validar.js"></script>
 </head>
 <body>
@@ -52,7 +52,7 @@ spl_autoload_register('cargarClases');
     </form>
     <div class="row">
         <div class="col-1">
-            <button class="button1" onClick="history.back()"><span>VOLVER</span></button>
+            <button class="button1" onClick="window.location='../menu.php'"><span>VOLVER</span></button>
         </div>
     </div>
 

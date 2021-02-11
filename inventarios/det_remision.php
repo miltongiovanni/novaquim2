@@ -5,9 +5,9 @@ if (isset($_SESSION['idRemision'])) {//Si idRemision existe
 }
 foreach ($_POST as $nombre_campo => $valor) {
     ${$nombre_campo} = $valor;
-    if(is_array($valor)){
+    if (is_array($valor)) {
         //echo $nombre_campo.print_r($valor).'<br>';
-    }else{
+    } else {
         //echo $nombre_campo. '=' .${$nombre_campo}.'<br>';
     }
 }
@@ -29,7 +29,7 @@ $remision = $remisionOperador->getRemisionById($idRemision);
     <title>Ingreso de Productos a la Remisión</title>
     <meta charset="utf-8">
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/validar.js"></script>
     <link rel="stylesheet" href="../css/datatables.css">
     <style>
@@ -190,7 +190,7 @@ $remision = $remisionOperador->getRemisionById($idRemision);
             <input type="text" style="margin: 0 5px 0 0;" class="form-control col-1" name="cantProducto"
                    id="cantProducto" onKeyPress="return aceptaNum(event)">
             <div class="col-2 text-center" style="padding: 0 20px;">
-                <button class="button" onclick="return Enviar(this.form)"><span>Adicionar detalle</span>
+                <button class="button" type="button" onclick="return Enviar(this.form)"><span>Adicionar detalle</span>
                 </button>
             </div>
         </div>
@@ -216,7 +216,7 @@ $remision = $remisionOperador->getRemisionById($idRemision);
             <input type="text" style="margin: 0 5px 0 0;" class="form-control col-1" name="cantProducto"
                    id="cantProducto" onKeyPress="return aceptaNum(event)">
             <div class="col-2 text-center" style="padding: 0 20px;">
-                <button class="button" onclick="return Enviar(this.form)"><span>Adicionar detalle</span>
+                <button class="button" type="button" onclick="return Enviar(this.form)"><span>Adicionar detalle</span>
                 </button>
             </div>
         </div>
