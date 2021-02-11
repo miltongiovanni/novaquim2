@@ -16,6 +16,18 @@ foreach ($_POST as $nombre_campo => $valor) {
     }
 }
 // $Cod_kit,  $Cantidad, $Fecha
+?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Armado de Kits</title>
+    <meta charset="utf-8">
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../js/validar.js"></script>
+</head>
+<body>
+<?php
 //Envasado
 $link = Conectar::conexion();
 try {
@@ -38,7 +50,9 @@ try {
         $ruta = "arm_kits.php";
         $nomEnvase = $EnvaseOperador->getNomEnvase($codEnvase);
         $mensaje = "No hay inventario suficiente de " . $nomEnvase . " solo hay " . round($invEnvase, 0) . " unidades";
+        $icon = "warning";
         mover_pag($ruta, $mensaje, $icon);
+        exit;
     }
     $DetKitOperador = new DetKitsOperaciones();
     $detKit = $DetKitOperador->getTableDetKits($codKit);
@@ -76,7 +90,9 @@ try {
                 $ruta = "arm_kits.php";
                 $nomProductoTerminado = $PresentacionOperador->getNamePresentacion($codProducto);
                 $mensaje = "No hay inventario suficiente de " . $nomProductoTerminado . " solo hay " . round($invProdTerminado, 0) . " unidades";
+                $icon = "warning";
                 mover_pag($ruta, $mensaje, $icon);
+                exit;
             }
         } else {
             //PRODUCTO DE DISTRIBUCION
@@ -94,7 +110,9 @@ try {
                 $ruta = "arm_kits.php";
                 $nomProdDistribucion = $ProdDistribucionOperador->getNomProductoDistribucion($codProducto);
                 $mensaje = "No hay inventario suficiente de " . $nomProdDistribucion . " solo hay " . round($invDist, 0) . " unidades";
+                $icon = "warning";
                 mover_pag($ruta, $mensaje, $icon);
+                exit;
             }
         }
     }
@@ -134,15 +152,19 @@ try {
     $link->commit();
     $ruta = "listar_arm_kits.php";
     $mensaje = "Kit Creados y Cargados con Éxito";
+    $icon = "success";
 } catch (Exception $e) {
     //echo $e->getMessage();
     //Rollback the transaction.
     $link->rollBack();
     $ruta = "arm_kits.php";
     $mensaje = "Error al armar los kits";
+    $icon = "error";
 } finally {
     mover_pag($ruta, $mensaje, $icon);
 }
-
+?>
+</body>
+</html>
 
 

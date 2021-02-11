@@ -6,7 +6,7 @@ include "../includes/valAcc.php";
 <head>
     <meta charset="utf-8">
     <title>Modificar consumo de Materia Prima por Orden de Producción</title>
-<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/validar.js"></script>
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
 
@@ -22,11 +22,11 @@ include "../includes/valAcc.php";
                    onKeyPress="return aceptaNum(event)" required>
         </div>
         <div class="form-group row">
-    <div class="col-1 text-center">
+            <div class="col-1 text-center">
                 <button class="button" type="reset"><span>Reiniciar</span></button>
             </div>
             <div class="col-1 text-center">
-                <button class="button" onclick="return Enviar(this.form)"><span>Continuar</span></button>
+                <button class="button" type="button" onclick="return Enviar(this.form)"><span>Continuar</span></button>
             </div>
         </div>
     </form>

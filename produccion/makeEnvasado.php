@@ -11,12 +11,24 @@ spl_autoload_register('cargarClases');
 
 foreach ($_POST as $nombre_campo => $valor) {
     ${$nombre_campo} = $valor;
-    if(is_array($valor)){
+    if (is_array($valor)) {
         //echo $nombre_campo.print_r($valor).'<br>';
-    }else{
+    } else {
         //echo $nombre_campo. '=' .${$nombre_campo}.'<br>';
     }
 }
+?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Envasado de productos por lote</title>
+    <meta charset="utf-8">
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../js/validar.js"></script>
+</head>
+<body>
+<?php
 $link = Conectar::conexion();
 $OProdOperador = new OProdOperaciones();
 $ordenProd = $OProdOperador->getOProd($lote);
@@ -26,12 +38,14 @@ try {
     //COMIENZA LA TRANSACCIÓN
     $link->beginTransaction();
     $volumenEnvasado = $EnvasadoOperador->getVolumenEnvasado($codPresentacion, $cantPresentacion);
-    if (($cantidadPendiente - $volumenEnvasado) < -($ordenProd['cantidadKg']*0.05/($ordenProd['densMin']+ $ordenProd['densMax']))) {
+    if (($cantidadPendiente - $volumenEnvasado) < -($ordenProd['cantidadKg'] * 0.05 / ($ordenProd['densMin'] + $ordenProd['densMax']))) {
         $link->rollBack();
         $_SESSION['lote'] = $lote;
         $ruta = "det_Envasado.php";
         $mensaje = "No se puede envasar la presentación del producto, se necesita " . round($volumenEnvasado, 2) . " litros y sólo hay " . round($cantidadPendiente, 2) . " litros";
+        $icon = "warning";
         mover_pag($ruta, $mensaje, $icon);
+        exit;
     } else {
         //SE INSERTA LA CANTIDAD DE PRODUCTO ENVASADO
 
@@ -56,7 +70,9 @@ try {
             $_SESSION['lote'] = $lote;
             $ruta = "det_Envasado.php";
             $mensaje = "No hay envase suficiente solo hay '.$invEnvase.' unidades";
+            $icon = "warning";
             mover_pag($ruta, $mensaje, $icon);
+            exit;
         }
         //Tapa
         $InvTapaOperador = new InvTapasOperaciones();
@@ -73,7 +89,9 @@ try {
             $_SESSION['lote'] = $lote;
             $ruta = "det_Envasado.php";
             $mensaje = "No hay tapas o válvulas suficientes, sólo hay '.$invTapa.' unidades";
+            $icon = "warning";
             mover_pag($ruta, $mensaje, $icon);
+            exit;
         }
         //Etiqueta
         $InvEtiquetaOperador = new InvEtiquetasOperaciones();
@@ -89,11 +107,13 @@ try {
             $_SESSION['lote'] = $lote;
             $ruta = "det_Envasado.php";
             $mensaje = "No hay etiquetas suficientes, sólo hay '.$invEtiq.' unidades";
+            $icon = "warning";
             mover_pag($ruta, $mensaje, $icon);
+            exit;
         }
 
         ///Se deja el estado en 3 que es parcialmente envasado
-        $datos= array(3, $lote);
+        $datos = array(3, $lote);
         $qry = "UPDATE ord_prod SET estado=? WHERE lote=?";
         $stmt = $link->prepare($qry);
         $stmt->execute($datos);
@@ -101,6 +121,7 @@ try {
         $_SESSION['lote'] = $lote;
         $ruta = "det_Envasado.php";
         $mensaje = "Envasado creado correctamente";
+        $icon = "success";
     }
 
 } catch (Exception $e) {
@@ -110,8 +131,11 @@ try {
     $_SESSION['lote'] = $lote;
     $ruta = "det_Envasado.php";
     $mensaje = "Error al envasar el producto";
+    $icon = "error";
 } finally {
     mover_pag($ruta, $mensaje, $icon);
 }
-
+?>
+</body>
+</html>
 

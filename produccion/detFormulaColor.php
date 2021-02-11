@@ -3,7 +3,7 @@ include "../includes/valAcc.php";
 
 if (isset($_POST['idFormulaColor'])) {
     $idFormulaColor = $_POST['idFormulaColor'];
-}else{
+} else {
     if (isset($_SESSION['idFormulaColor'])) {
         $idFormulaColor = $_SESSION['idFormulaColor'];
     }
@@ -33,7 +33,7 @@ $porcentajeTotal = $DetFormulaColorOperador->getPorcentajeTotal($idFormulaColor)
             padding: 4px 4px 4px 4px;
         }
     </style>
-<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/validar.js"></script>
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/datatables.js"></script>
@@ -127,7 +127,8 @@ $porcentajeTotal = $DetFormulaColorOperador->getPorcentajeTotal($idFormulaColor)
                 <input type="text" style="margin: 0 5px;" class="form-control col-1" name="porcentaje"
                        id="porcentaje" onKeyPress="return aceptaNum(event)">
                 <div class="col-2 text-center" style="padding: 0 20px;">
-                    <button class="button" type="button" onclick="return Enviar(this.form)"><span>Adicionar detalle</span>
+                    <button class="button" type="button" onclick="return Enviar(this.form)">
+                        <span>Adicionar detalle</span>
                     </button>
                 </div>
         </div>

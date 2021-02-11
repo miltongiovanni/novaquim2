@@ -13,7 +13,7 @@ spl_autoload_register('cargarClases');
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <meta charset="utf-8">
     <title>Seleccionar orden de producción</title>
-<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/validar.js"></script>
 </head>
 <body>
@@ -39,7 +39,7 @@ spl_autoload_register('cargarClases');
                 <button class="button" type="reset"><span>Reiniciar</span></button>
             </div>
             <div class="col-1 text-center">
-                <button class="button" onclick="return Enviar(this.form)"><span>Continuar</span></button>
+                <button class="button" type="button" onclick="return Enviar(this.form)"><span>Continuar</span></button>
             </div>
         </div>
     </form>

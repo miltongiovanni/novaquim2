@@ -10,10 +10,10 @@ spl_autoload_register('cargarClases');
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <meta charset="utf-8">
     <title>Seleccionar Producto a Envasar</title>
-<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/validar.js"></script>
 
 </head>
@@ -45,7 +45,7 @@ spl_autoload_register('cargarClases');
                    onKeyPress="return aceptaNum(event)" required>
         </div>
         <div class="form-group row">
-    <div class="col-1 text-center">
+            <div class="col-1 text-center">
                 <button class="button" type="reset"><span>Reiniciar</span></button>
             </div>
             <div class="col-1 text-center">
@@ -55,7 +55,7 @@ spl_autoload_register('cargarClases');
     </form>
     <div class="row">
         <div class="col-1">
-            <button class="button1" id="back" onClick="history.back()"><span>VOLVER</span></button>
+            <button class="button1" id="back" onClick="window.location='../menu.php'"><span>VOLVER</span></button>
         </div>
     </div>
 </div>

@@ -13,7 +13,7 @@ spl_autoload_register('cargarClases');
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <meta charset="utf-8">
     <title>Eliminar fórmula de solución de color</title>
-<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/validar.js"></script>
 </head>
 <body>
@@ -23,22 +23,22 @@ spl_autoload_register('cargarClases');
         <div class="form-group row">
             <label class="col-form-label col-2" for="idFormulaColor"><strong>Fórmula de color</strong></label>
             <select name="idFormulaColor" id="idFormulaColor" class="form-control col-2" required>
-            <option selected disabled value="">-----------------------------</option>
-            <?php
-            $FormulaColorOperador = new FormulasColorOperaciones();
-            $formulas = $FormulaColorOperador->getFormulasColorEliminar();
-            for ($i = 0; $i < count($formulas); $i++) {
-                echo '<option value="' . $formulas[$i]["idFormulaColor"] . '">' . $formulas[$i]['nomMPrima'] . '</option>';
-            }
-            ?>
+                <option selected disabled value="">-----------------------------</option>
+                <?php
+                $FormulaColorOperador = new FormulasColorOperaciones();
+                $formulas = $FormulaColorOperador->getFormulasColorEliminar();
+                for ($i = 0; $i < count($formulas); $i++) {
+                    echo '<option value="' . $formulas[$i]["idFormulaColor"] . '">' . $formulas[$i]['nomMPrima'] . '</option>';
+                }
+                ?>
             </select>
         </div>
         <div class="form-group row">
-    <div class="col-1 text-center">
+            <div class="col-1 text-center">
                 <button class="button" type="reset"><span>Reiniciar</span></button>
             </div>
             <div class="col-1 text-center">
-                <button class="button" onclick="return Enviar(this.form)"><span>Continuar</span></button>
+                <button class="button" type="button" onclick="return Enviar(this.form)"><span>Continuar</span></button>
             </div>
         </div>
     </form>

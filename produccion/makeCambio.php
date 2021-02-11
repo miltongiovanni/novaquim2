@@ -11,13 +11,24 @@ spl_autoload_register('cargarClases');
 
 foreach ($_POST as $nombre_campo => $valor) {
     ${$nombre_campo} = $valor;
-    if(is_array($valor)){
+    if (is_array($valor)) {
         //echo $nombre_campo.print_r($valor).'<br>';
-    }else{
+    } else {
         //echo $nombre_campo. '=' .${$nombre_campo}.'<br>';
     }
 }
-
+?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Creación cambio de presentación de producto</title>
+    <meta charset="utf-8">
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../js/validar.js"></script>
+</head>
+<body>
+<?php
 $datos = array($codPersonal, $fechaCambio);
 $cambioOperador = new CambiosOperaciones();
 try {
@@ -25,14 +36,18 @@ try {
     $_SESSION['idCambio'] = $idCambio;
     $ruta = "det_cambio_pres.php";
     $mensaje = "Cambio de presentación creado correctamente";
-
+    $icon = "success";
 } catch (Exception $e) {
 
     $ruta = "../menu.php";
     $mensaje = "Error al crear el cambio de presentación";
+    $icon = "error";
 } finally {
     unset($conexion);
     unset($stmt);
     mover_pag($ruta, $mensaje, $icon);
 }
+?>
+</body>
+</html>
 

@@ -8,13 +8,25 @@ function cargarClases($classname)
 spl_autoload_register('cargarClases');
 foreach ($_POST as $nombre_campo => $valor) {
     ${$nombre_campo} = $valor;
-    if(is_array($valor)){
+    if (is_array($valor)) {
         //echo $nombre_campo.print_r($valor).'<br>';
-    }else{
+    } else {
         //echo $nombre_campo. '=' .${$nombre_campo}.'<br>';
     }
 }
 // $Cod_kit,  $cantDesarmado, $Fecha
+?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Desarmado de Kits</title>
+    <meta charset="utf-8">
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../js/validar.js"></script>
+</head>
+<body>
+<?php
 //Envasado
 try {
     $link = Conectar::conexion();
@@ -42,7 +54,9 @@ try {
         $link->rollBack();
         $ruta = "desarm_kits.php";
         $mensaje = "No hay inventario suficiente de " . $nomProd . " solo hay " . round($inv_bus, 0) . " unidades";
+        $icon = "warning";
         mover_pag($ruta, $mensaje, $icon);
+        exit;
     } else {
         //SE DESCUENTA LA CANTIDAD DE KITS
         if ($codigo < 100000) {
@@ -118,15 +132,18 @@ try {
     $link->commit();
     $ruta = "listar_desarm_kits.php";
     $mensaje = "Kit desarmados con éxito";
-
+    $icon = "success";
 } catch (Exception $e) {
     //echo $e->getMessage();
     //Rollback the transaction.
     $link->rollBack();
     $ruta = "desarm_kits.php";
     $mensaje = "Error al desarmar los kits";
+    $icon = "error";
 } finally {
     mover_pag($ruta, $mensaje, $icon);
 }
 
 ?>
+</body>
+</html>

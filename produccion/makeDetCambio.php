@@ -11,12 +11,24 @@ spl_autoload_register('cargarClases');
 
 foreach ($_POST as $nombre_campo => $valor) {
     ${$nombre_campo} = $valor;
-    if(is_array($valor)){
+    if (is_array($valor)) {
         //echo $nombre_campo.print_r($valor).'<br>';
-    }else{
+    } else {
         //echo $nombre_campo. '=' .${$nombre_campo}.'<br>';
     }
 }
+?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Cambio de presentación de Producto</title>
+    <meta charset="utf-8">
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../js/validar.js"></script>
+</head>
+<body>
+<?php
 $CambioOperador = new CambiosOperaciones();
 $DetCambioOperador = new DetCambiosOperaciones();
 $PresentacionOperador = new PresentacionesOperaciones();
@@ -36,35 +48,38 @@ try {
     $codEnvase = $presentacion['codEnvase'];
     $invEnvase = $InvEnvaseOperador->getInvEnvase($codEnvase);
     $nvoInvEnvase = $invEnvase + $cantPresentacionAnt;
-    $datos= array($nvoInvEnvase, $codEnvase);
+    $datos = array($nvoInvEnvase, $codEnvase);
     $InvEnvaseOperador->updateInvEnvase($datos);
     //Tapa
     $InvTapaOperador = new InvTapasOperaciones();
     $codTapa = $presentacion['codTapa'];
     $invTapa = $InvTapaOperador->getInvTapas($codTapa);
     $nvoInvTapa = $invTapa + $cantPresentacionAnt;
-    $datos=array($nvoInvTapa,$codTapa );
+    $datos = array($nvoInvTapa, $codTapa);
     $InvEnvaseOperador->updateInvEnvase($datos);
     //Etiqueta
     $InvEtiquetaOperador = new InvEtiquetasOperaciones();
     $codEtiq = $presentacion['codEtiq'];
     $invEtiq = $InvEtiquetaOperador->getInvEtiqueta($codEtiq);
     $nvoInvEtiq = $invEtiq + $cantPresentacionAnt;
-    $datos=array($nvoInvEtiq,$codEtiq );
+    $datos = array($nvoInvEtiq, $codEtiq);
     $InvEtiquetaOperador->updateInvEtiqueta($datos);
     $_SESSION['idCambio'] = $idCambio;
     $_SESSION['presOrigen'] = true;
     $ruta = "det_cambio_pres.php";
     $mensaje = "Presentación de origen seleccionada correctamente";
-
+    $icon = "success";
 } catch (Exception $e) {
     //echo $e->getMessage();
     //Rollback the transaction.
     $_SESSION['idCambio'] = $idCambio;
     $ruta = "det_cambio_pres.php";
     $mensaje = "Error al seleccionar la presentación de origen";
+    $icon = "error";
 } finally {
     mover_pag($ruta, $mensaje, $icon);
 }
 
-
+?>
+</body>
+</html>

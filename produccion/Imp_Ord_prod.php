@@ -56,7 +56,7 @@ $pdf->Cell(100,6,utf8_decode($OProd['nomProducto']));
 $pdf->Cell(30,6,'Responsable : ');
 $pdf->Cell(40,6,utf8_decode($OProd['nomPersonal']),0,1);
 $pdf->Cell(20,6,utf8_decode('Fórmula : '));
-$pdf->Cell(100,6,$OProd['nomFormula']);
+$pdf->Cell(100,6,utf8_decode($OProd['nomFormula']));
 $pdf->Cell(30,6,'Cantidad (Kg): ');
 $pdf->Cell(30,6,$OProd['cantidadKg'],0,1);
 $pdf->SetXY(15,75);

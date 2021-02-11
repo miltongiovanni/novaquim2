@@ -13,7 +13,7 @@ spl_autoload_register('cargarClases');
     <title>Ingreso de Fórmulas de Producto</title>
     <meta charset="utf-8">
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/validar.js"></script>
 </head>
 <body>
@@ -39,7 +39,7 @@ spl_autoload_register('cargarClases');
             <input name="nomFormula" id="nomFormula" class="form-control col-3" type="text" value="" required/>
         </div>
         <div class="form-group row">
-    <div class="col-1 text-center">
+            <div class="col-1 text-center">
                 <button class="button" type="reset"><span>Reiniciar</span></button>
             </div>
             <div class="col-1 text-center">

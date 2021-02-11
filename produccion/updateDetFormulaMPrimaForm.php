@@ -16,15 +16,16 @@ $detalle = $DetFormulaMPrimaOperador->getDetFormulaMPrima($idFormulaMPrima, $cod
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-<meta charset="utf-8">
-<title>Actualizar Formulación de MPrima</title>
-<script  src="../js/validar.js"></script>
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <meta charset="utf-8">
+    <title>Actualizar Formulación de MPrima</title>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../js/validar.js"></script>
 
 </head>
 <body>
 <div id="contenedor">
-<div id="saludo"><strong>ACTUALIZACIÓN DE FORMULACIÓN DE MATERIA PRIMA</strong></div>
+    <div id="saludo"><strong>ACTUALIZACIÓN DE FORMULACIÓN DE MATERIA PRIMA</strong></div>
     <form action="updateDetFormulaMPrima.php" method="post" name="actualiza">
         <input name="idFormulaMPrima" type="hidden" value="<?= $idFormulaMPrima; ?>">
         <input name="codMPrima" type="hidden" value="<?= $codMPrima; ?>">
@@ -42,7 +43,7 @@ $detalle = $DetFormulaMPrimaOperador->getDetFormulaMPrima($idFormulaMPrima, $cod
         </div>
         <div class="form-group row">
             <div class="col-2 text-center" style="padding: 0 20px;">
-                <button class="button" onclick="return Enviar(this.form)"><span>Actualizar detalle</span></button>
+                <button class="button" type="button" onclick="return Enviar(this.form)"><span>Actualizar detalle</span></button>
             </div>
         </div>
     </form>

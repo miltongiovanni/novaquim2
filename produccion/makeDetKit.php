@@ -15,6 +15,18 @@ foreach ($_POST as $nombre_campo => $valor) {
         //echo $nombre_campo. '=' .${$nombre_campo}.'<br>';
     }
 }
+?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Detalle de Kit</title>
+    <meta charset="utf-8">
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../js/validar.js"></script>
+</head>
+<body>
+<?php
 $datos = array($idKit, $codProducto);
 $DetKitOperador = new DetKitsOperaciones();
 try {
@@ -22,14 +34,16 @@ try {
     $_SESSION['idKit'] = $idKit;
     $ruta = "det_kits.php";
     $mensaje = "Detalle de Kit agregado correctamente";
-
+    $icon = "success";
 } catch (Exception $e) {
-
     $ruta = "../menu.php";
     $mensaje = "Error al crear el detalle de kit";
+    $icon = "error";
 } finally {
     unset($conexion);
     unset($stmt);
     mover_pag($ruta, $mensaje, $icon);
 }
-
+?>
+</body>
+</html>

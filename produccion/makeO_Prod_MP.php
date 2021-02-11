@@ -9,12 +9,24 @@ spl_autoload_register('cargarClases');
 //ESTOS SON LOS DATOS QUE RECIBE DE LA ORDEN DE PRODUCCIÓN
 foreach ($_POST as $nombre_campo => $valor) {
     ${$nombre_campo} = $valor;
-    if(is_array($valor)){
+    if (is_array($valor)) {
         //echo $nombre_campo.print_r($valor).'<br>';
-    }else{
+    } else {
         //echo $nombre_campo. '=' .${$nombre_campo}.'<br>';
     }
 }
+?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Preparación de Materia Prima</title>
+    <meta charset="utf-8">
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../js/validar.js"></script>
+</head>
+<body>
+<?php
 $link = Conectar::conexion();
 try {
     $error = 0;
@@ -25,7 +37,7 @@ try {
     $OProdMPrimaOperador = new OProdMPrimaOperaciones();
     $loteMP = $OProdMPrimaOperador->getLastLote() + 1;
     $FormulaMPrimaOperador = new FormulasMPrimaOperaciones();
-    $codMPrima= $FormulaMPrimaOperador->getCodFormulaMPrima($idFormulaMPrima);
+    $codMPrima = $FormulaMPrimaOperador->getCodFormulaMPrima($idFormulaMPrima);
     $datos = array($loteMP, $fechProd, $idFormulaMPrima, $cantKg, $codPersonal, $codMPrima);
     $qry = "INSERT INTO ord_prod_mp (loteMP, fechProd, idFormMP, cantKg, codPersonal, codMPrima) VALUES (?, ?, ?, ?, ?, ?)";
     $stmt = $link->prepare($qry);
@@ -48,8 +60,9 @@ try {
             $ruta = "crearOProdMPrima.php";
             $materiaPrima = $MPrimaOperador->getNomMPrima($codMPrima);
             $mensaje = "No hay inventario suficiente de " . $materiaPrima . " hay " . round($invTotalMPrima, 2) . " Kg";
+            $icon = "warning";
             mover_pag($ruta, $mensaje, $icon);
-            break;
+            exit;
         } else {
             $uso1 = $uso;
             $invMPrima = $InvMPrimaOperador->getInvMPrima($codMPrima);
@@ -84,12 +97,17 @@ try {
     $_SESSION['loteMP'] = $loteMP;
     $ruta = "detO_Prod_mp.php";
     $mensaje = "Orden de producción de materia prima creada correctamente";
+    $icon = "success";
 } catch (Exception $e) {
     //echo $e->getMessage();
     //Rollback the transaction.
     $link->rollBack();
     $ruta = "crearOProdMPrima.php";
     $mensaje = "Error al crear la orden de producción de materia prima";
+    $icon = "error";
 } finally {
     mover_pag($ruta, $mensaje, $icon);
 }
+?>
+</body>
+</html>

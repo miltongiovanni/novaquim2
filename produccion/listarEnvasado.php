@@ -170,7 +170,7 @@ include "../includes/valAcc.php";
                 <span><STRONG>Ir al Menú</STRONG></span></button>
         </div>
     </div>
-    <div class="tabla-80">
+    <div class="tabla-90">
         <table id="example" class="display compact formatoDatos">
             <thead>
             <tr>

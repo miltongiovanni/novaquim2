@@ -8,6 +8,19 @@ function cargarClases($classname)
 }
 
 spl_autoload_register('cargarClases');
+?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <meta charset="utf-8">
+    <title>Actualizar Formulación de Color</title>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../js/validar.js"></script>
+
+</head>
+<body>
+<?php
 $DetFormulaColorOperador = new DetFormulaColorOperaciones();
 $datos = array($idFormulaColor, $codMPrima);
 try {
@@ -15,13 +28,18 @@ try {
     $_SESSION['idFormulaColor'] = $idFormulaColor;
     $ruta = "detFormulaColor.php";
     $mensaje = "Detalle de fórmula de color eliminado con éxito";
+    $icon = "success";
 } catch (Exception $e) {
     $_SESSION['idFormulaColor'] = $idFormulaColor;
     $ruta = "detFormulaColor.php";
-    $ruta = $rutaError;
     $mensaje = "Error al eliminar el detalle de la fórmula de color";
+    $icon = "success";
 } finally {
     unset($conexion);
     unset($stmt);
     mover_pag($ruta, $mensaje, $icon);
 }
+?>
+</body>
+</html>
+

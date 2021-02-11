@@ -26,7 +26,7 @@ $calProd = $calProdOperador->getCalProd($lote);
     <title>Detalle Control de Calidad de producto</title>
     <meta charset="utf-8">
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/validar.js"></script>
 
 </head>
@@ -96,30 +96,38 @@ $calProd = $calProdOperador->getCalProd($lote);
     <div class="form-group row">
         <div class="col-8">
             <div class="form-group row justify-content-around">
+                <?php if ($ordenProd['estado'] != 2) : ?>
+                    <div class="col-3">
+                        <form action="Imp_Cert_an.php" method="post" target="_blank">
+                            <input name="lote" type="hidden" value="<?= $lote; ?>">
+                            <button class="button" type="submit">
+                                <span>Imprimir certificado</span>
+                            </button>
+                        </form>
+                    </div>
+                <?php
+                endif;
+                ?>
                 <div class="col-3">
-                    <form action="Imp_Cert_an.php" method="post" target="_blank">
+                    <form action="mod_cal_produccion.php" method="post">
                         <input name="lote" type="hidden" value="<?= $lote; ?>">
-                        <button class="button" type="submit" <?php if ($ordenProd['estado'] == 2) echo 'disabled'; ?>>
-                            <span>Imprimir certificado</span>
+                        <button class="button" type="button" onclick="return Enviar(this.form)">
+                            <span>Editar control de calidad</span>
                         </button>
                     </form>
                 </div>
-                <div class="col-3">
-                    <form action="mod_cal_produccion.php" method="post">
-                            <input name="lote" type="hidden" value="<?= $lote; ?>">
-                            <button class="button" type="submit">
-                                <span>Editar control de calidad</span>
-                            </button>
-                    </form>
-                </div>
-                <div class="col-3">
-                    <form action="Imp_Env_prod.php" method="post" target="_blank">
+                <?php if ($ordenProd['estado'] != 2) : ?>
+                    <div class="col-3">
+                        <form action="Imp_Env_prod.php" method="post" target="_blank">
                             <input name="lote" type="hidden" value="<?php echo $lote; ?>">
-                            <button class="button" type="submit" <?php if ($ordenProd['estado'] == 2) echo 'disabled'; ?>>
+                            <button class="button" type="submit">
                                 <span>Imprimir orden envasado</span>
                             </button>
-                    </form>
-                </div>
+                        </form>
+                    </div>
+                <?php
+                endif;
+                ?>
             </div>
         </div>
     </div>

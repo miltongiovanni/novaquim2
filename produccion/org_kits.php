@@ -13,10 +13,8 @@ spl_autoload_register('cargarClases');
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <title>Organización de Kits de Productos de Distribución</title>
     <meta charset="utf-8">
-<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/validar.js"></script>
-
-
 </head>
 <body>
 <div id="contenedor">
@@ -36,7 +34,7 @@ spl_autoload_register('cargarClases');
             ?>
         </div>
         <div class="form-group row">
-    <div class="col-1 text-center">
+            <div class="col-1 text-center">
                 <button class="button" type="reset"><span>Reiniciar</span></button>
             </div>
             <div class="col-1 text-center">

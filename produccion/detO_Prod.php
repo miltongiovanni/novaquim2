@@ -3,7 +3,7 @@ include "../includes/valAcc.php";
 
 if (isset($_POST['lote'])) {
     $lote = $_POST['lote'];
-}else{
+} else {
     if (isset($_SESSION['lote'])) {
         $lote = $_SESSION['lote'];
     }
@@ -56,7 +56,7 @@ $ordenProd = $OProdOperador->getOProd($lote);
         }
     </style>
 
-<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/validar.js"></script>
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/datatables.js"></script>
@@ -127,10 +127,10 @@ $ordenProd = $OProdOperador->getOProd($lote);
     <div class="form-group row">
         <div class="col-1 text-right"><strong>Lote</strong></div>
         <div class="col-1 bg-blue"><?= $lote; ?></div>
-        <div class="col-3 text-right"><strong>Cantidad</strong></div>
+        <div class="col-2 text-right"><strong>Cantidad</strong></div>
         <div class="col-1 bg-blue"><?= $ordenProd['cantidadKg'] ?> Kg</div>
         <div class="col-1 text-right"><strong>Estado</strong></div>
-        <div class="col-1 bg-blue"><?= $ordenProd['descEstado'] ?></div>
+        <div class="col-2 bg-blue"><?= $ordenProd['descEstado'] ?></div>
     </div>
     <div class="form-group row">
         <div class="col-1 text-right"><strong>Producto</strong></div>

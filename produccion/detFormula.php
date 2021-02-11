@@ -3,7 +3,7 @@ include "../includes/valAcc.php";
 
 if (isset($_POST['idFormula'])) {
     $idFormula = $_POST['idFormula'];
-}else{
+} else {
     if (isset($_SESSION['idFormula'])) {
         $idFormula = $_SESSION['idFormula'];
     }
@@ -13,6 +13,7 @@ function cargarClases($classname)
 {
     require '../clases/' . $classname . '.php';
 }
+
 spl_autoload_register('cargarClases');
 
 $formulaOperador = new FormulasOperaciones();
@@ -33,7 +34,7 @@ $porcentajeTotal = $DetFormulaOperador->getPorcentajeTotal($idFormula);
             padding: 4px 4px 4px 4px;
         }
     </style>
-<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/validar.js"></script>
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/datatables.js"></script>
@@ -113,17 +114,20 @@ $porcentajeTotal = $DetFormulaOperador->getPorcentajeTotal($idFormula);
     <div id="saludo1"><strong>DETALLE DE FÓRMULA DE <?= strtoupper($nomFormula); ?>
         </strong></div>
     <form method="post" action="makeDetFormula.php" name="form1">
-            <input name="idFormula" type="hidden" value="<?= $idFormula; ?>">
-            <div class="row">
-                <label class="col-form-label col-3 text-center" for="codMPrima" style="margin: 0 5px 0 0;"><strong>Materia Prima</strong></label>
-                <label class="col-form-label col-1 text-center" for="porcentaje" style="margin: 0 5px;"><strong>% en fórmula</strong></label>
-                <label class="col-form-label col-1 text-center" for="orden" style="margin: 0 5px;"><strong>Orden</strong></label>
-                <div class="col-2 text-center">
-                </div>
+        <input name="idFormula" type="hidden" value="<?= $idFormula; ?>">
+        <div class="row">
+            <label class="col-form-label col-3 text-center" for="codMPrima" style="margin: 0 5px 0 0;"><strong>Materia
+                    Prima</strong></label>
+            <label class="col-form-label col-1 text-center" for="porcentaje" style="margin: 0 5px;"><strong>% en
+                    fórmula</strong></label>
+            <label class="col-form-label col-1 text-center" for="orden"
+                   style="margin: 0 5px;"><strong>Orden</strong></label>
+            <div class="col-2 text-center">
             </div>
-            <div class="form-group row">
-                <select name="codMPrima" id="codMPrima" class="form-control col-3" style="margin: 0 5px 0 0;" required>
-                    <option disabled selected value="">-----------------------------</option>
+        </div>
+        <div class="form-group row">
+            <select name="codMPrima" id="codMPrima" class="form-control col-3" style="margin: 0 5px 0 0;" required>
+                <option disabled selected value="">-----------------------------</option>
                 <?php
                 $mprimas = $DetFormulaOperador->getMPrimasFormula($idFormula);
                 for ($i = 0; $i < count($mprimas); $i++) {
@@ -136,10 +140,11 @@ $porcentajeTotal = $DetFormulaOperador->getPorcentajeTotal($idFormula);
                 <input type="text" style="margin: 0 5px;" class="form-control col-1" name="orden" id="orden"
                        onKeyPress="return aceptaNum(event)">
                 <div class="col-2 text-center" style="padding: 0 20px;">
-                    <button class="button" type="button" onclick="return Enviar(this.form)"><span>Adicionar detalle</span>
+                    <button class="button" type="button" onclick="return Enviar(this.form)">
+                        <span>Adicionar detalle</span>
                     </button>
                 </div>
-            </div>
+        </div>
     </form>
     <div class="form-group titulo row">
         <strong>Detalle de la fórmula</strong>
@@ -161,7 +166,7 @@ $porcentajeTotal = $DetFormulaOperador->getPorcentajeTotal($idFormula);
         <table width="100%">
             <tr>
                 <td width="70%" class="text-right text-bold">Total</td>
-                <td width="15%" class="text-right text-bold"><?=$porcentajeTotal ?></td>
+                <td width="15%" class="text-right text-bold"><?= $porcentajeTotal ?></td>
                 <td width="15%"></td>
             </tr>
         </table>

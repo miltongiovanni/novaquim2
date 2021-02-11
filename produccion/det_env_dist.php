@@ -8,12 +8,25 @@ function cargarClases($classname)
 spl_autoload_register('cargarClases');
 foreach ($_POST as $nombre_campo => $valor) {
     ${$nombre_campo} = $valor;
-    if(is_array($valor)){
+    if (is_array($valor)) {
         //echo $nombre_campo.print_r($valor).'<br>';
-    }else{
+    } else {
         //echo $nombre_campo. '=' .${$nombre_campo}.'<br>';
     }
 }
+?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <meta charset="utf-8">
+    <title>Seleccionar Producto a Envasar</title>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../js/validar.js"></script>
+
+</head>
+<body>
+<?php
 //Envasado
 $link = Conectar::conexion();
 $EnvasadoDistOperador = new EnvasadoDistOperaciones();
@@ -55,7 +68,9 @@ try {
         $link->rollBack();
         $ruta = "env_dist.php";
         $mensaje = "No hay envase suficiente solo hay '.$invEnvase.' unidades";
+        $icon = "warning";
         mover_pag($ruta, $mensaje, $icon);
+        exit;
     }
     //SE DESCUENTA LA TAPA
     $InvTapaOperador = new InvTapasOperaciones();
@@ -70,8 +85,9 @@ try {
         $link->rollBack();
         $ruta = "env_dist.php";
         $mensaje = "No hay tapas o válvulas suficientes, sólo hay '.$invTapa.' unidades";
+        $icon = "warning";
         mover_pag($ruta, $mensaje, $icon);
-
+        exit;
     }
     //SE DESCUENTA EL INVENTARIO DE MATERIA PRIMA
     $codMPrima = $relDisMPrima['codMPrima'];
@@ -91,7 +107,9 @@ try {
         $ruta = "env_dist.php";
         $materiaPrima = $MPrimaOperador->getNomMPrima($codMPrima);
         $mensaje = "No hay inventario suficiente de " . $materiaPrima . " hay " . round($invTotalMPrima, 2) . " Kg";
+        $icon = "warning";
         mover_pag($ruta, $mensaje, $icon);
+        exit;
     } else {
         $uso1 = $uso;
         $invMPrima = $InvMPrimaOperador->getInvMPrima($codMPrima);
@@ -115,13 +133,17 @@ try {
     $link->commit();
     $ruta = "../menu.php";
     $mensaje = "Productos Cargados correctamente";
+    $icon = "success";
 } catch (Exception $e) {
     //echo $e->getMessage();
     //Rollback the transaction.
     $link->rollBack();
     $ruta = "env_dist.php";
     $mensaje = "Error al empacar los productos de distribución";
+    $icon = "error";
 } finally {
     mover_pag($ruta, $mensaje, $icon);
 }
-
+?>
+</body>
+</html>

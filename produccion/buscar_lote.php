@@ -12,7 +12,7 @@ spl_autoload_register('cargarClases');
 <head>
     <meta charset="utf-8">
     <title>OP para Control de Calidad</title>
-<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/validar.js"></script>
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
 </head>
@@ -36,7 +36,7 @@ spl_autoload_register('cargarClases');
         </div>
         <div class="row form-group">
             <div class="col-1">
-                <button class="button" onclick="return Enviar(this.form)">
+                <button class="button" type="button" onclick="return Enviar(this.form)">
                     <span>Continuar</span></button>
             </div>
         </div>

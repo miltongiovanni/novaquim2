@@ -3,8 +3,7 @@ include "../includes/valAcc.php";
 
 if (isset($_POST['lote'])) {
     $lote = $_POST['lote'];
-}
-else{
+} else {
     if (isset($_SESSION['lote'])) {
         $lote = $_SESSION['lote'];
     }
@@ -54,7 +53,7 @@ $cantidadPendiente = $EnvasadoOperador->getCantidadPorEnvasar($lote);
         }
     </style>
 
-<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/validar.js"></script>
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/datatables.js"></script>
@@ -74,14 +73,14 @@ $cantidadPendiente = $EnvasadoOperador->getCantidadPorEnvasar($lote);
                 },
                 dataType: 'text',
                 success: function (message) {
-                    alert('Envasado finalizado correctamente');
-                    window.location='../menu.php';
+                    alerta('Envasado finalizado correctamente','../menu.php', 'success');
                 },
                 error: function () {
                     alert("Vous avez un GROS problème");
                 }
             });
         }
+
         $(document).ready(function () {
             let lote = <?=$lote?>;
             let cantidadPendiente = <?=$cantidadPendiente?>;
@@ -154,18 +153,6 @@ $cantidadPendiente = $EnvasadoOperador->getCantidadPorEnvasar($lote);
         <div class="col-2 text-right"><strong>Fecha de producción</strong></strong></div>
         <div class="col-2 bg-blue"><?= $ordenProd['fechProd'] ?></div>
     </div>
-    <?php
-    /*
-
-        if ($Crear == 2)
-        {
-            $link=conectarServidor();
-            $qry_up_ord="update ord_prod set Estado='E' where Lote=$Lote";
-            $result_up_ord=mysqli_query($link,$qry_up_ord);
-            mysqli_close($link);
-            mover("menu.php","Producto terminado de envasar éxitosamente");
-        }*/
-    ?>
     <div class="form-group titulo row">
         Adicionar Envasado
     </div>
@@ -213,7 +200,7 @@ $cantidadPendiente = $EnvasadoOperador->getCantidadPorEnvasar($lote);
         <table width="100% formatoDatos">
             <tr>
                 <td width="85%" class="text-right text-bold formatoDatos">Cantidad pendiente en litros</td>
-                <td width="15%" class="text-center text-bold formatoDatos"><?=$cantidadPendiente ?></td>
+                <td width="15%" class="text-center text-bold formatoDatos"><?= $cantidadPendiente ?></td>
             </tr>
         </table>
     </div>

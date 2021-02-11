@@ -13,16 +13,16 @@ spl_autoload_register('cargarClases');
     <title>Preparación de Materia Prima</title>
     <meta charset="utf-8">
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/validar.js"></script>
 </head>
 <body>
 <?php
 foreach ($_POST as $nombre_campo => $valor) {
     ${$nombre_campo} = $valor;
-    if(is_array($valor)){
+    if (is_array($valor)) {
         //echo $nombre_campo.print_r($valor).'<br>';
-    }else{
+    } else {
         //echo $nombre_campo. '=' .${$nombre_campo}.'<br>';
     }
 }
@@ -66,20 +66,20 @@ foreach ($_POST as $nombre_campo => $valor) {
             <label class="col-form-label col-2 text-right" for="cantKg"><strong>Cantidad a Producir
                     (Kg)</strong></label>
             <input type="text" class="form-control col-2" name="cantKg" id="cantKg"
-                   onKeyPress="return aceptaNum(event)"  required>
+                   onKeyPress="return aceptaNum(event)" required>
         </div>
         <div class="form-group row">
-    <div class="col-1 text-center">
+            <div class="col-1 text-center">
                 <button class="button" type="reset"><span>Reiniciar</span></button>
             </div>
             <div class="col-1 text-center">
-                <button class="button" onclick="return Enviar(this.form)"><span>Continuar</span></button>
+                <button class="button" type="button" onclick="return Enviar(this.form)"><span>Continuar</span></button>
             </div>
         </div>
     </form>
     <div class="row">
         <div class="col-1">
-            <button class="button1" id="back" onClick="history.back()"><span>VOLVER</span></button>
+            <button class="button1" id="back" onClick="window.location='../menu.php'"><span>VOLVER</span></button>
         </div>
     </div>
 </div>

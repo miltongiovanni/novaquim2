@@ -3,7 +3,7 @@ include "../includes/valAcc.php";
 
 if (isset($_POST['idFormulaMPrima'])) {
     $idFormulaMPrima = $_POST['idFormulaMPrima'];
-}else{
+} else {
     if (isset($_SESSION['idFormulaMPrima'])) {
         $idFormulaMPrima = $_SESSION['idFormulaMPrima'];
     }
@@ -24,16 +24,16 @@ $porcentajeTotal = $DetFormulaMPrimaOperador->getPorcentajeTotal($idFormulaMPrim
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<title>Porcentaje de Materias Primas en la Fórmula</title>
-<meta charset="utf-8">
-<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <title>Porcentaje de Materias Primas en la Fórmula</title>
+    <meta charset="utf-8">
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="../css/datatables.css">
     <style>
         table.dataTable.compact thead th, table.dataTable.compact thead td {
             padding: 4px 4px 4px 4px;
         }
     </style>
-<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/validar.js"></script>
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/datatables.js"></script>
@@ -103,7 +103,7 @@ $porcentajeTotal = $DetFormulaMPrimaOperador->getPorcentajeTotal($idFormulaMPrim
 
 
 </head>
-<body> 
+<body>
 
 
 <?php
@@ -177,9 +177,9 @@ mysqli_close($link);
 		$row=mysqli_fetch_array($result);
 		mysqli_free_result($result);
 mysqli_close($link);*/
-	 ?>  
+?>
 <div id="contenedor">
-<div id="saludo1"><strong>DETALLE DE FÓRMULA DE <?= $nomFormula; ?></strong></div>
+    <div id="saludo1"><strong>DETALLE DE FÓRMULA DE <?= $nomFormula; ?></strong></div>
     <form method="post" action="makeDetFormulaMPrima.php" name="form1">
         <input name="idFormulaMPrima" type="hidden" value="<?= $idFormulaMPrima; ?>">
         <div class="row">
@@ -203,7 +203,7 @@ mysqli_close($link);*/
                 <input type="text" style="margin: 0 5px;" class="form-control col-1" name="porcentaje"
                        id="porcentaje" onKeyPress="return aceptaNum(event)">
                 <div class="col-2 text-center" style="padding: 0 20px;">
-                    <button class="button" onclick="return Enviar(this.form)"><span>Adicionar detalle</span>
+                    <button class="button" type="button" onclick="return Enviar(this.form)"><span>Adicionar detalle</span>
                     </button>
                 </div>
         </div>

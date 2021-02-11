@@ -17,7 +17,18 @@ foreach ($_POST as $nombre_campo => $valor) {
         //echo $nombre_campo. '=' .${$nombre_campo}.'<br>';
     }
 }
-
+?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Orden de Producción</title>
+    <meta charset="utf-8">
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../js/validar.js"></script>
+</head>
+<body>
+<?php
 $link = Conectar::conexion();
 try {
     $error = 0;
@@ -51,8 +62,9 @@ try {
             $ruta = "crearOProd.php";
             $materiaPrima = $MPrimaOperador->getNomMPrima($codMPrima);
             $mensaje = "No hay inventario suficiente de " . $materiaPrima . " hay " . round($invTotalMPrima, 2) . " Kg";
+            $icon = "warning";
             mover_pag($ruta, $mensaje, $icon);
-            break;
+            exit;
         } else {
             $uso1 = $uso;
             $invMPrima = $InvMPrimaOperador->getInvMPrima($codMPrima);
@@ -87,14 +99,17 @@ try {
     $_SESSION['lote'] = $lote;
     $ruta = "detO_Prod.php";
     $mensaje = "Orden de Producción Creada correctamente";
+    $icon = "success";
 } catch (Exception $e) {
     //echo $e->getMessage();
     //Rollback the transaction.
     $link->rollBack();
     $ruta = "crearOProd.php";
     $mensaje = "Error al crear la Orden de Producción";
+    $icon = "error";
 } finally {
     mover_pag($ruta, $mensaje, $icon);
 }
-
-
+?>
+</body>
+</html>

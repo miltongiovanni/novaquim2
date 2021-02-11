@@ -14,27 +14,27 @@ include "../includes/valAcc.php";
         }
 
         .width1 {
-            width: 2%;
+            width: 3%;
         }
 
         .width2 {
-            width: 4%;
+            width: 5%;
         }
 
         .width3 {
-            width: 25%;
+            width: 32%;
         }
 
         .width4 {
-            width: 24%;
+            width: 20%;
         }
 
         .width5 {
-            width: 12%;
+            width: 25%;
         }
 
         .width6 {
-            width: 16%;
+            width: 15%;
         }
     </style>
     <script src="../js/jquery-3.3.1.min.js"></script>
@@ -51,7 +51,7 @@ include "../includes/valAcc.php";
         /* Formatting function for row details - modify as you need */
         function format(d) {
             // `d` is the original data object for the row
-            rep = '<table cellpadding="5" cellspacing="0" border="0"  class="display compact" style="padding-left:50px;width:50%;margin:inherit;">' +
+            rep = '<table cellpadding="5" cellspacing="0" border="0"  class="display compact" style="padding-left:50px;width:80%;margin:inherit;">' +
                 '<thead>' +
                 '<tr>' +
                 '<th align="center">Código</th>' +

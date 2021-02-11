@@ -35,7 +35,7 @@ $cambio = $cambioOperador->getCambio($idCambio);
     <title>Cambio de presentación de Producto</title>
     <meta charset="utf-8">
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/validar.js"></script>
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script>
@@ -61,6 +61,7 @@ $cambio = $cambioOperador->getCambio($idCambio);
                 }
             });
         }
+
         function findLotePresentacion(codPresentacion) {
             //alert(idCatProd);
             $.ajax({

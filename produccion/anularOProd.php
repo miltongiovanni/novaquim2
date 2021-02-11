@@ -10,10 +10,10 @@ spl_autoload_register('cargarClases');
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <meta charset="utf-8">
     <title>Seleccionar Orden de Producción a Anular</title>
-<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/validar.js"></script>
 
 
