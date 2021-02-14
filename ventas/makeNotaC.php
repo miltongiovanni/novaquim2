@@ -17,24 +17,35 @@ foreach ($_POST as $nombre_campo => $valor) {
         //echo $nombre_campo . '=' . ${$nombre_campo} . '<br>';
     }
 }
+?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Crear Nota Crédito</title>
+    <meta charset="utf-8">
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../js/validar.js"></script>
+</head>
+<body>
+<?php
 $fechaActual = hoy();
 $diasNotaC = Calc_Dias($fechaNotaC, $fechaActual);
 $facturaOperador = new FacturasOperaciones();
 $facturaOr = $facturaOperador->getFactura($facturaOrigen);
-
-
 if ($diasNotaC >= 0) {
     $notaCreditoOperador = new NotasCreditoOperaciones();
     $datos = array($idCliente, $fechaNotaC, $facturaOrigen, $facturaDestino, $motivo, $facturaOr['descuento']);
-
     try {
         $lastIdNotaCr = $notaCreditoOperador->makeNotaC($datos);
         $_SESSION['idNotaC'] = $lastIdNotaCr;
         $ruta = "detalleNotaC.php";
         $mensaje = "Nota crédito creada con éxito";
+        $icon = "success";
     } catch (Exception $e) {
         $ruta = "crearNotaC.php";
         $mensaje = "Error al crear la nota crédito";
+        $icon = "error";
     } finally {
         unset($conexion);
         unset($stmt);
@@ -42,10 +53,12 @@ if ($diasNotaC >= 0) {
     }
 } else {
     if ($diasNotaC < 0) {
-        echo '<script >
-				alert("La fecha de la nota crédito no puede ser menor que la actual");
-				self.location="pedido.php";
-				</script>';
+        $ruta = "crearNotaC.php";
+        $mensaje = "La fecha de la nota crédito no puede ser menor que la actual";
+        $icon = "error";
+        mover_pag($ruta, $mensaje, $icon);
     }
 }
-
+?>
+</body>
+</html>

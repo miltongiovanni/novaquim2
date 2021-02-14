@@ -16,6 +16,19 @@ foreach ($_POST as $nombre_campo => $valor) {
         //echo $nombre_campo . '=' . ${$nombre_campo} . '<br>';
     }
 }
+?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <meta charset="utf-8">
+    <title>Actualizar datos de la Nota Crédito</title>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../js/validar.js"></script>
+
+</head>
+<body>
+<?php
 $notaCrOperador = new NotasCreditoOperaciones();
 $detNotaCrOperador = new DetNotaCrOperaciones();
 $notaC = $notaCrOperador->getNotaC($idNotaC);
@@ -57,10 +70,10 @@ try {
             $invDistibucionOperador->updateInvDistribucion($datos);
 
         } else {//Insert inventario
-            if($invDistibucionOperador->existeInvDistribucion($codProducto)){
+            if ($invDistibucionOperador->existeInvDistribucion($codProducto)) {
                 $datos = array($cantProducto, $codProducto);
                 $invDistibucionOperador->updateInvDistribucion($datos);
-            }else{
+            } else {
                 $datos = array($codProducto, $cantProducto);
                 $invDistibucionOperador->makeInvDistribucion($datos);
             }
@@ -77,14 +90,17 @@ try {
     $_SESSION['idNotaC'] = $idNotaC;
     $ruta = "detalleNotaC.php";
     $mensaje = "Detalle de nota crédito actualizado con éxito";
-
+    $icon = "success";
 } catch (Exception $e) {
     $_SESSION['idNotaC'] = $idNotaC;
     $ruta = "detalleNotaC.php";
     $mensaje = "Error al actualizar el detalle de nota crédito";
+    $icon = "error";
 } finally {
     unset($conexion);
     unset($stmt);
     mover_pag($ruta, $mensaje, $icon);
 }
-
+?>
+</body>
+</html>

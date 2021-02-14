@@ -11,9 +11,9 @@ spl_autoload_register('cargarClases');
 <html lang="es">
 <head>
     <meta charset="utf-8">
-    <title>Ingresar Orden de Pedido a Anular</title>
+    <title>Seleccionar Orden de Pedido a Anular</title>
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/validar.js"></script>
 </head>
 <body>
@@ -36,7 +36,7 @@ spl_autoload_register('cargarClases');
         </div>
         <div class="row form-group">
             <div class="col-1">
-                <button class="button" onclick="return Enviar(this.form)">
+                <button class="button" type="button" onclick="return Enviar(this.form)">
                     <span>Continuar</span></button>
             </div>
         </div>

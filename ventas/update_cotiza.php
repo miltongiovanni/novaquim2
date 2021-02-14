@@ -16,6 +16,18 @@ foreach ($_POST as $nombre_campo => $valor) {
         //echo $nombre_campo . '=' . ${$nombre_campo} . '<br>';
     }
 }
+?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Actualizar Cotización</title>
+    <meta charset="utf-8">
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../js/validar.js"></script>
+</head>
+<body>
+<?php
 $opcionesDis = '';
 if (!isset($seleccionProd)) {
     $_SESSION['idCotizacion'] = $idCotizacion;
@@ -35,12 +47,17 @@ if (!isset($seleccionProd)) {
         $_SESSION['idCotizacion'] = $idCotizacion;
         $ruta = "det_cotiza.php";
         $mensaje = "Cotización actualizada con éxito";
+        $icon = "success";
     } catch (Exception $e) {
         $ruta = "cotizacion.php";
         $mensaje = "Error al actualizar la Cotización";
+        $icon = "error";
     } finally {
         unset($conexion);
         unset($stmt);
         mover_pag($ruta, $mensaje, $icon);
     }
 }
+?>
+</body>
+</html>

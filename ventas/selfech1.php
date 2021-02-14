@@ -7,7 +7,7 @@ include "../includes/valAcc.php";
     <title>Ventas por familia de productos Novaquim por mes</title>
     <meta charset="utf-8">
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/validar.js"></script>
 </head>
 <body>
@@ -18,7 +18,7 @@ include "../includes/valAcc.php";
             <label class="col-form-label col-1" for="year"><strong>Año</strong></label>
             <select name="year" id="year" class="form-control col-1" required>
                 <?php
-                $year=intval(date("Y"));
+                $year = intval(date("Y"));
                 for ($i = $year; $i >= 2011; $i--) : ?>
                     <option value="<?= $i ?>"><?= $i ?></option>
                 <?php
@@ -29,8 +29,8 @@ include "../includes/valAcc.php";
         <div class="form-group row">
             <label class="col-form-label col-1" for="year"><strong>Tipo</strong></label>
             <select name="type" id="type" class="form-control col-1" required>
-                    <option value="1">Unidades</option>
-                    <option value="2">Valores</option>
+                <option value="1">Unidades</option>
+                <option value="2">Valores</option>
             </select>
         </div>
         <div class="row form-group">

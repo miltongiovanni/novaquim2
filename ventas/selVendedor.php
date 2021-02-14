@@ -1,7 +1,8 @@
 <?php
 include "../includes/valAcc.php";
-function cargarClases($classname){
-    require '../clases/'.$classname.'.php';
+function cargarClases($classname)
+{
+    require '../clases/' . $classname . '.php';
 }
 
 spl_autoload_register('cargarClases');
@@ -12,7 +13,7 @@ spl_autoload_register('cargarClases');
     <title>Seleccionar Vendedor y periodo a revisar comisiones</title>
     <meta charset="utf-8">
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/validar.js"></script>
 
 </head>
@@ -21,7 +22,7 @@ spl_autoload_register('cargarClases');
     <div id="saludo"><strong>SELECCIÓN DE VENDEDOR Y PERÍODO PARA REVISAR COMISIONES</strong></div>
     <form method="post" action="comis_vend.php" name="form1">
         <div class="form-group row">
-            <label class="col-form-label col-1" for="combo"><strong>Personal</strong></label>
+            <label class="col-form-label col-1" for="combo"><strong>Vendedor</strong></label>
             <select name="idPersonal" class="form-control col-2" required>
                 <option selected disabled value="">-----------------------------</option>
                 <?php
@@ -53,8 +54,10 @@ spl_autoload_register('cargarClases');
     </form>
 
     <div class="row form-group">
-        <div class="col-1"><button class="button"  onclick="history.back()">
-                <span>VOLVER</span></button></div>
+        <div class="col-1">
+            <button class="button" onclick="history.back()">
+                <span>VOLVER</span></button>
+        </div>
     </div>
 </body>
 </html>

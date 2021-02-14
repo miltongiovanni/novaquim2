@@ -8,15 +8,31 @@ function cargarClases($classname)
 }
 
 spl_autoload_register('cargarClases');
+?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Seleccionar Factura a Modificar</title>
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../js/validar.js"></script>
+</head>
+<body>
+<?php
 $idFactura = $_POST['idFactura'];
 $facturaOperador = new FacturasOperaciones();
 if (!$facturaOperador->isValidIdFactura($idFactura)) {
-    echo ' <script >
-				alert("El número de factura no es válido, vuelva a intentar de nuevo");
-				history.back();
-			</script>';
+    $ruta = "buscarFactura.php";
+    $mensaje = "El número de factura no es válido, vuelva a intentar de nuevo";
+    $icon = "warning";
+    mover_pag($ruta, $mensaje, $icon);
+    exit;
 } else {
     $_SESSION['idFactura'] = $idFactura;
     header("Location: det_factura.php");
     exit;
 }
+?>
+</body>
+</html>

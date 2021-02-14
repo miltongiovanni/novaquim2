@@ -17,6 +17,19 @@ foreach ($_POST as $nombre_campo => $valor) {
         //echo $nombre_campo . '=' . ${$nombre_campo} . '<br>';
     }
 }
+?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <meta charset="utf-8">
+    <title>Actualizar Cotización Personalizada</title>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../js/validar.js"></script>
+
+</head>
+<body>
+<?php
 $detCotizacionOperador = new DetCotizacionPersonalizadaOperaciones();
 $datos = array($idCotPersonalizada, $codProducto);
 try {
@@ -24,14 +37,17 @@ try {
     $_SESSION['idCotPersonalizada'] = $idCotPersonalizada;
     $ruta = "det_cot_personalizada.php";
     $mensaje = "Detalle de la cotización personalizada eliminado con éxito";
-
+    $icon = "success";
 } catch (Exception $e) {
     $_SESSION['idCotPersonalizada'] = $idCotPersonalizada;
     $ruta = "det_cot_personalizada.php";
     $mensaje = "Error al eliminar el detalle de la cotización personalizada";
+    $icon = "error";
 } finally {
     unset($conexion);
     unset($stmt);
     mover_pag($ruta, $mensaje, $icon);
 }
-
+?>
+</body>
+</html>

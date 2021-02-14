@@ -11,13 +11,21 @@ foreach ($_POST as $nombre_campo => $valor) {
     }
 }
 
-
+?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Factura de Venta</title>
+    <meta charset="utf-8">
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../js/validar.js"></script>
+</head>
+<body>
+<?php
 $tasaDescuento = $descuento / 100;
 $facturaOperador = new FacturasOperaciones();
 $detFacturaOperador = new DetFacturaOperaciones();
-
-
-
 $fecha_actual = hoy();
 $dias_v = Calc_Dias($fechaVenc, $fecha_actual);
 $dias_f = Calc_Dias($fechaVenc, $fechaFactura);
@@ -42,9 +50,11 @@ if (($dias_v >= 0) && ($dias_f >= 0)) {
         $_SESSION['idFactura'] = $idFactura;
         $ruta = "det_factura.php";
         $mensaje = "Factura actualizada con éxito";
+        $icon = "success";
     } catch (Exception $e) {
         $ruta = "buscarFactura.php";
         $mensaje = "Error al actualizar la Factura";
+        $icon = "error";
     } finally {
         unset($conexion);
         unset($stmt);
@@ -52,15 +62,20 @@ if (($dias_v >= 0) && ($dias_f >= 0)) {
     }
 } else {
     if ($dias_v < 0) {
-        echo '<script >
-		alert("La fecha de vencimiento de la factura no puede ser menor que la fecha actual");
-		self.location="buscarFactura.php";
-		</script>';
+        $ruta = "buscarFactura.php";
+        $mensaje = "La fecha de vencimiento de la factura no puede ser menor que la fecha actual";
+        $icon = "error";
+        mover_pag($ruta, $mensaje, $icon);
+        exit;
     }
     if ($dias_f < 0) {
-        echo '<script >
-		alert("La fecha de vencimiento de la factura no puede ser menor que la fecha de la factura");
-		self.location="buscarFactura.php";
-		</script>';
+        $ruta = "buscarFactura.php";
+        $mensaje = "La fecha de vencimiento de la factura no puede ser menor que la fecha de la factura";
+        $icon = "error";
+        mover_pag($ruta, $mensaje, $icon);
+        exit;
     }
 }
+?>
+</body>
+</html>

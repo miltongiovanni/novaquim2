@@ -17,6 +17,18 @@ foreach ($_POST as $nombre_campo => $valor) {
         //echo $nombre_campo . '=' . ${$nombre_campo} . '<br>';
     }
 }
+?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Creación de Orden de Pedido</title>
+    <meta charset="utf-8">
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../js/validar.js"></script>
+</head>
+<body>
+<?php
 $fechaActual = hoy();
 $diasPedido = Calc_Dias($fechaPedido, $fechaActual);
 $diasEntrega = Calc_Dias($fechaEntrega, $fechaPedido);
@@ -33,9 +45,11 @@ if (($diasPedido >= 0) && ($diasEntregaPedido >= 0) && ($diasEntrega >= 0)) {
         $_SESSION['idPedido'] = $lastIdPedido;
         $ruta = "det_pedido.php";
         $mensaje = "Pedido creado con éxito";
+        $icon = "success";
     } catch (Exception $e) {
         $ruta = "pedido.php";
         $mensaje = "Error al crear el pedido";
+        $icon = "error";
     } finally {
         unset($conexion);
         unset($stmt);
@@ -61,4 +75,6 @@ if (($diasPedido >= 0) && ($diasEntregaPedido >= 0) && ($diasEntrega >= 0)) {
 				</script>';
     }
 }
-
+?>
+</body>
+</html>

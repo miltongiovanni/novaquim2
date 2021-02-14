@@ -33,14 +33,14 @@ class DetNotaCrOperaciones
 
     public function getDetNotaCr($idNotaC)
     {
-        $qry = "SELECT dnc.codProducto as codigo, presentacion as producto, dnc.cantProducto as cantidad
+        $qry = "SELECT CONCAT('003000', codSiigo) codigo, presentacion as producto, dnc.cantProducto as cantidad
                 FROM det_nota_c dnc
                          LEFT JOIN prodpre p ON dnc.codProducto = p.codPresentacion
                 WHERE dnc.idNotaC = $idNotaC
                   AND dnc.codProducto < 100000
                   AND dnc.codProducto > 10000
                 UNION
-                SELECT dnc2.codProducto as codigo, Producto as producto, dnc2.cantProducto as cantidad
+                SELECT CONCAT('003000', codSiigo) codigo, Producto as producto, dnc2.cantProducto as cantidad
                 FROM det_nota_c dnc2
                          LEFT JOIN distribucion d ON dnc2.codProducto = d.idDistribucion
                 WHERE idNotaC = $idNotaC
@@ -83,7 +83,7 @@ class DetNotaCrOperaciones
 
     public function getTableDetNotaCrDev($idNotaC)
     {
-        $qry = "SELECT dnc.codProducto,
+        $qry = "SELECT CONCAT('003000', dnc.codProducto) codProducto,
                        presentacion                          producto,
                        ROUND(dnc.cantProducto)                      cantidad,
                        CONCAT(ROUND(ti.tasaIva * 100), ' %') iva,
@@ -99,7 +99,7 @@ class DetNotaCrOperaciones
                   AND dnc.codProducto < 100000
                   AND dnc.codProducto > 10000
                 UNION
-                SELECT dnc2.codProducto,
+                SELECT CONCAT('003000', dnc2.codProducto) codProducto,
                        Producto          as                 producto,
                        ROUND(dnc2.cantProducto) as          cantidad,
                        CONCAT(ROUND(t.tasaIva * 100), ' %') iva,

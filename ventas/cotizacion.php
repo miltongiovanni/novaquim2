@@ -13,7 +13,7 @@ spl_autoload_register('cargarClases');
     <title>Crear Cotización</title>
     <meta charset="utf-8">
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/validar.js"></script>
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/findCliente.js"></script>
@@ -31,7 +31,8 @@ spl_autoload_register('cargarClases');
         </div>
 
         <div class="form-group row">
-            <label class="col-form-label col-2 text-right" for="fechaCotizacion"><strong>Fecha de Cotización</strong></label>
+            <label class="col-form-label col-2 text-right" for="fechaCotizacion"><strong>Fecha de
+                    Cotización</strong></label>
             <input type="date" class="form-control col-5" name="fechaCotizacion" id="fechaCotizacion" required>
         </div>
         <div class="form-group row">
@@ -70,28 +71,32 @@ spl_autoload_register('cargarClases');
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-2 text-right" for="fechaCotizacion"><strong>Familia de Productos</strong></label>
+            <label class="col-form-label col-2 text-right" for="fechaCotizacion"><strong>Familia de
+                    Productos</strong></label>
             <div class="col-2">
                 <?php
-                $catProdOperador =  new CategoriasProdOperaciones();
+                $catProdOperador = new CategoriasProdOperaciones();
                 $categorias = $catProdOperador->getCatsProd();
-                for($i=0; $i<count($categorias); $i++):
-                ?>
-                    <input type="checkbox" name="seleccionProd[]" id="categoriaProd<?=$i?>" value="<?=$categorias[$i]['idCatProd']?>">
-                    <label for="categoriaProd<?=$i?>"> <?=$categorias[$i]['catProd']?></label><br>
+                for ($i = 0; $i < count($categorias); $i++):
+                    ?>
+                    <input type="checkbox" name="seleccionProd[]" id="categoriaProd<?= $i ?>"
+                           value="<?= $categorias[$i]['idCatProd'] ?>">
+                    <label for="categoriaProd<?= $i ?>"> <?= $categorias[$i]['catProd'] ?></label><br>
                 <?php
                 endfor;
                 ?>
             </div>
-            <label class="col-form-label col-2 text-right" for="fechaCotizacion"><strong>Familia Distribución</strong></label>
+            <label class="col-form-label col-2 text-right" for="fechaCotizacion"><strong>Familia
+                    Distribución</strong></label>
             <div class="col-2">
                 <?php
-                $catDisOperador =  new CategoriasDisOperaciones();
+                $catDisOperador = new CategoriasDisOperaciones();
                 $categorias = $catDisOperador->getCatsDis();
-                for($i=0; $i<count($categorias); $i++):
+                for ($i = 0; $i < count($categorias); $i++):
                     ?>
-                    <input type="checkbox" name="seleccionDis[]" id="categoriaDis<?=$i?>" value="<?=$categorias[$i]['idCatDis']?>">
-                    <label for="categoriaDis<?=$i?>"> <?=$categorias[$i]['catDis']?></label><br>
+                    <input type="checkbox" name="seleccionDis[]" id="categoriaDis<?= $i ?>"
+                           value="<?= $categorias[$i]['idCatDis'] ?>">
+                    <label for="categoriaDis<?= $i ?>"> <?= $categorias[$i]['catDis'] ?></label><br>
                 <?php
                 endfor;
                 ?>
@@ -107,7 +112,7 @@ spl_autoload_register('cargarClases');
     </form>
     <div class="row form-group">
         <div class="col-1">
-            <button class="button1" onclick="history.back()">
+            <button class="button1" onclick="window.location='../menu.php'">
                 <span>VOLVER</span></button>
         </div>
     </div>

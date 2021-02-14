@@ -24,8 +24,7 @@ $nomCliente = $cliente['nomCliente'];
     <meta charset="utf-8">
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="../css/datatables.css">
-
-<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/validar.js"></script>
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/datatables.js"></script>
@@ -119,7 +118,7 @@ $nomCliente = $cliente['nomCliente'];
             <label class="col-form-label col-2 text-left mx-2" for="ciudadSucursal"><strong>Ciudad</strong></label>
         </div>
         <div class="form-group row">
-            <input type="text" class="form-control col-3 mx-2" name="nomSucursal" id="nomSucursal" required >
+            <input type="text" class="form-control col-3 mx-2" name="nomSucursal" id="nomSucursal" required>
             <input type="text" class="form-control col-1 mx-2" name="telSucursal" id="telSucursal" maxlength="10"
                    onKeyPress="return aceptaNum(event)">
             <input type="text" class="form-control col-3 mx-2" name="dirSucursal" id="dirSucursal" required>
@@ -139,7 +138,8 @@ $nomCliente = $cliente['nomCliente'];
         </div>
         <div class="form-group row mt-3">
             <div class="col-2 text-center">
-                <button class="button" onclick="return Enviar(this.form)"><span>Agregar sucursal</span></button>
+                <button class="button" type="button" onclick="return Enviar(this.form)"><span>Agregar sucursal</span>
+                </button>
             </div>
         </div>
     </form>

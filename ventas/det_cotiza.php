@@ -37,7 +37,7 @@ $cotizacion['distribucion'] = str_replace("9", " Otros", $cotizacion['distribuci
     <title>Detalle de la Cotización</title>
     <meta charset="utf-8">
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/validar.js"></script>
 </head>
 <body>
@@ -108,7 +108,8 @@ $cotizacion['distribucion'] = str_replace("9", " Otros", $cotizacion['distribuci
         <div class="col-2">
             <form id="form1" name="form1" method="post" action="UpdateCotform.php">
                 <input name="idCotizacion" type="hidden" value="<?php echo $idCotizacion; ?>">
-                <button class="button" type="button" onClick="return Enviar(this.form);"><span>Modificar cotización</span>
+                <button class="button" type="button" onClick="return Enviar(this.form);">
+                    <span>Modificar cotización</span>
                 </button>
             </form>
         </div>

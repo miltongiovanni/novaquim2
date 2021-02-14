@@ -17,8 +17,8 @@ $reciboOperador = new RecCajaOperaciones();
 $recibo = $reciboOperador->getRecCaja($idRecCaja);
 $cobros = $reciboOperador->getCobrosFactura($recibo['idFactura']);
 $recibos = $reciboOperador->getRecCajaFactura($recibo['idFactura']);
-$abono= $reciboOperador->getCobrosAnterioresFactura($recibo['idFactura'], $idRecCaja);
-$abono = $abono == null? 0: $abono;
+$abono = $reciboOperador->getCobrosAnterioresFactura($recibo['idFactura'], $idRecCaja);
+$abono = $abono == null ? 0 : $abono;
 $retefuente = $recibo['retencionFte'];
 $retencionIca = $recibo['retencionIca'];
 $subtotal = $recibo['subtotal'];
@@ -27,7 +27,7 @@ if ($retefuente > 0) {
 } else {
     $tasaRetefuente = 0;
 }
-$saldo = round($recibo['totalR'] - $recibo['retencionFte'] - $recibo['retencionIca'] - $recibo['retencionIva'] - $abono - $recibo['cobro'] );
+$saldo = round($recibo['totalR'] - $recibo['retencionFte'] - $recibo['retencionIca'] - $recibo['retencionIva'] - $abono - $recibo['cobro']);
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -35,7 +35,7 @@ $saldo = round($recibo['totalR'] - $recibo['retencionFte'] - $recibo['retencionI
     <title>Recibo de caja</title>
     <meta charset="utf-8">
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/validar.js"></script>
 
     <script src="../js/jquery-3.3.1.min.js"></script>
@@ -89,7 +89,7 @@ $saldo = round($recibo['totalR'] - $recibo['retencionFte'] - $recibo['retencionI
                 dataType: 'text',
                 success: function (response) {
                     //document.location.reload();
-                    self.location='recibo_caja';
+                    self.location = 'recibo_caja';
                 },
                 error: function () {
                     alert("Vous avez un GROS problème");
@@ -115,7 +115,7 @@ $saldo = round($recibo['totalR'] - $recibo['retencionFte'] - $recibo['retencionI
                 },
                 dataType: 'text',
                 success: function (response) {
-                    self.location='recibo_caja';
+                    self.location = 'recibo_caja';
                 },
                 error: function () {
                     alert("Vous avez un GROS problème");
@@ -236,12 +236,13 @@ $saldo = round($recibo['totalR'] - $recibo['retencionFte'] - $recibo['retencionI
                    id="idCheque" value="<?= $recibo['idCheque']; ?>"
                    onKeyPress="return aceptaNum(event)">
             <input type="text" class="form-control col-1 mx-1" name="cobro"
-                   id="cobro" value="<?= round($recibo['totalR'] - $recibo['retencionFte'] - $recibo['retencionIca'] - $recibo['retencionIva'] - $abono) ?>"
+                   id="cobro"
+                   value="<?= round($recibo['totalR'] - $recibo['retencionFte'] - $recibo['retencionIca'] - $recibo['retencionIva'] - $abono) ?>"
                    onKeyPress="return aceptaNum(event)">
             <input type="text" class="form-control col-1 mx-1" name="descuento_f" id="descuento_f"
                    onKeyPress="return aceptaNum(event)" value="<?= $recibo['descuento_f']; ?>">
             <div class="col-2 text-center" style="padding: 0 20px;">
-                <button class="button" onclick="return Enviar(this.form)"><span>Actualizar valor</span>
+                <button class="button" type="button" onclick="return Enviar(this.form)"><span>Actualizar valor</span>
                 </button>
             </div>
         </div>

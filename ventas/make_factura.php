@@ -10,6 +10,17 @@ foreach ($_POST as $nombre_campo => $valor) {
         //echo $nombre_campo . '=' . ${$nombre_campo} . '<br>';
     }
 }
+?>
+    <!DOCTYPE html>
+    <html lang="es">
+    <head>
+        <title>Factura de Venta</title>
+        <meta charset="utf-8">
+        <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+        <script src="../js/validar.js"></script>
+    </head>
+    <body>
+<?php
 $tasaDescuento = $descuento / 100;
 $facturaOperador = new FacturasOperaciones();
 $detFacturaOperador = new DetFacturaOperaciones();
@@ -21,9 +32,10 @@ $invDistribucionOperador = new InvDistribucionOperaciones();
 $pedidoOperador = new PedidosOperaciones();
 if ($facturaOperador->isValidIdFactura($idFactura)) {
     $ruta = "CrearFactura.php";
-
     $mensaje = "Número de factura ya existe, intente de nuevo";
+    $icon = "warning";
     mover_pag($ruta, $mensaje, $icon);
+    exit;
 }
 $fecha_actual = hoy();
 $dias_v = Calc_Dias($fechaVenc, $fecha_actual);
@@ -32,7 +44,7 @@ if (($dias_v >= 0) && ($dias_f >= 0)) {
     try {
         /*CREACIÓN DEL ENCABEZADO DE LA REMISIÓN*/
         $datos = array($idCliente, $fechaFactura, $idPedido, $idSucursal);
-        $idRemision=$remisionOperador->makeRemisionFactura($datos);
+        $idRemision = $remisionOperador->makeRemisionFactura($datos);
 
         /*CREACIÓN DEL ENCABEZADO DE LA FACTURA*/
         $datos = array($idFactura, $idPedido, $idCliente, $fechaFactura, $fechaVenc, $tipPrecio, 'E', $idRemision, $ordenCompra, $tasaDescuento, $observaciones);
@@ -71,7 +83,7 @@ if (($dias_v >= 0) && ($dias_f >= 0)) {
                         $detRemisionOperador->makeDetRemisionFactura($datos);
                     }
                 }
-            }elseif ($codProducto > 100000) {
+            } elseif ($codProducto > 100000) {
                 //PRODUCTOS DE DISTRIBUCIÓN
                 $invDistribucionOperador = new InvDistribucionOperaciones();
                 $invDistribucion = $invDistribucionOperador->getInvDistribucion($codProducto);
@@ -90,14 +102,14 @@ if (($dias_v >= 0) && ($dias_f >= 0)) {
 
         //CALCULA LOS TOTALES DE IVA, DESCUENTO
         $totales = calcularTotalesFactura($idFactura, $tasaDescuento);
-        $subtotal= $totales['subtotal'];
-        $descuento= $totales['descuento'];
-        $iva10Real= $totales['iva10Real'];
-        $iva16Real= $totales['iva16Real'];
-        $iva= $totales['iva'];
-        $reteiva= $totales['reteiva'];
-        $retefuente= $totales['retefuente'];
-        $reteica= $totales['reteica'];
+        $subtotal = $totales['subtotal'];
+        $descuento = $totales['descuento'];
+        $iva10Real = $totales['iva10Real'];
+        $iva16Real = $totales['iva16Real'];
+        $iva = $totales['iva'];
+        $reteiva = $totales['reteiva'];
+        $retefuente = $totales['retefuente'];
+        $reteica = $totales['reteica'];
         $total = $subtotal - $descuento + $iva - $reteiva - $retefuente - $reteica;
         $totalR = round($subtotal - $descuento + $iva);
         $datos = array($total, $reteiva, $reteica, $retefuente, $subtotal, $iva, $totalR, $idFactura);
@@ -106,26 +118,30 @@ if (($dias_v >= 0) && ($dias_f >= 0)) {
         $_SESSION['idFactura'] = $idFactura;
         $ruta = "det_factura.php";
         $mensaje = "Factura creada con éxito";
-    }catch (Exception $e){
+        $icon = "success";
+    } catch (Exception $e) {
         $ruta = "crearFactura.php";
         $mensaje = "Error al crear la Factura";
-    } finally
-    {
+        $icon = "error";
+    } finally {
         unset($conexion);
         unset($stmt);
         mover_pag($ruta, $mensaje, $icon);
     }
 } else {
     if ($dias_v < 0) {
-        echo '<script >
-		alert("La fecha de vencimiento de la factura no puede ser menor que la fecha actual");
-		self.location="crearFactura.php";
-		</script>';
+        $ruta = "crearFactura.php";
+        $mensaje = "La fecha de vencimiento de la factura no puede ser menor que la fecha actual";
+        $icon = "error";
+        mover_pag($ruta, $mensaje, $icon);
     }
     if ($dias_f < 0) {
-        echo '<script >
-		alert("La fecha de vencimiento de la factura no puede ser menor que la fecha de la factura");
-		self.location="crearFactura.php";
-		</script>';
+        $ruta = "crearFactura.php";
+        $mensaje = "La fecha de vencimiento de la factura no puede ser menor que la fecha de la factura";
+        $icon = "error";
+        mover_pag($ruta, $mensaje, $icon);
     }
 }
+?>
+    </body>
+</html>

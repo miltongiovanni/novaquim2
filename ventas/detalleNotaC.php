@@ -37,11 +37,11 @@ $totalesNotaC = $notaCrOperador->getTotalesNotaC($idNotaC);
         }
 
         .width2 {
-            width: 7%;
+            width: 11%;
         }
 
         .width3 {
-            width: 44%;
+            width: 40%;
         }
 
         .width4 {
@@ -71,13 +71,12 @@ $totalesNotaC = $notaCrOperador->getTotalesNotaC($idNotaC);
         .width10 {
             width: 20%;
         }
-
         table.dataTable.compact thead th,
         table.dataTable.compact thead td {
             padding: 4px 4px 4px 4px;
         }
     </style>
-<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/validar.js"></script>
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/datatables.js"></script>
@@ -221,29 +220,6 @@ $totalesNotaC = $notaCrOperador->getTotalesNotaC($idNotaC);
 <body>
 <div id="contenedor">
     <div id="saludo1"><strong>DETALLE DE LA NOTA CRÉDITO</strong></div>
-    <?php
-    /*
-
-
-    if ($crear==5) //PARA CANCELAR SI LA NOTA ES POR TODA LA FACTURA
-    {
-      //CONSULTA EL TOTAL DE NOTA
-      $qrys= "SELECT round(nota_c.totalNotaC) as totaln, fechaNotaC, facturaDestino, factura.Total as totalf FROM nota_c, factura where idNotaC=$mensaje and idFactura=facturaDestino";
-      $results=mysqli_query($link,$qrys);
-      $rows=mysqli_fetch_array($results);
-      $totaln=$rows['totaln'];
-      $Fac_dest=$rows['Fac_dest'];
-      $Fechan=$rows['Fecha'];
-      $totalf=$rows['totalf'];
-      if (abs($totalf-$totaln)<1000)
-      {
-          $qryr= "update factura set Estado='C', fechaCancelacion='$Fechan' where idFactura=$Fac_dest;";
-        $resultr=mysqli_query($link,$qryr);
-      }
-    }
-    */
-
-    ?>
     <div class="form-group row">
         <div class="col-1 text-right"><strong>Nota crédito</strong></div>
         <div class="col-1 bg-blue"><?= $idNotaC; ?></div>
@@ -268,70 +244,58 @@ $totalesNotaC = $notaCrOperador->getTotalesNotaC($idNotaC);
         <?php
         if ($notaC['motivo'] == 0) : // DEVOLUCIÓN DE PRODUCTOS
 
-        ?>
-        <div class="form-group titulo row">
-            <strong>Productos para devolución</strong>
-        </div>
-        <div class="row">
-            <div class="col-4 text-center" style="margin: 0 5px;"><strong>Producto</strong></div>
-            <div class="col-1 text-center" style="margin: 0 5px;"><strong>Cantidad</strong></div>
-            <div class="col-2 text-center"></div>
-        </div>
-        <div class="form-group row">
-            <select name="codProducto" id="codProducto" class="form-control col-4 mr-3"
-                    onchange="cantDetNotaC(<?= $notaC['facturaOrigen']; ?>, this.value)">
-                <option selected disabled value="">Escoja un producto</option>
-                <?php
-                $prodDev = $notaCrOperador->getProductosNotaC($idNotaC, $notaC['facturaOrigen']);
-                for ($i = 0; $i < count($prodDev); $i++) {
-                    echo '<option value="' . $prodDev[$i]["codProducto"] . '">' . $prodDev[$i]['producto'] . '</option>';
-                }
-                ?>
-            </select>
-            <select name="cantProducto" id="cantProducto" class="form-control col-1" required>
-            </select>
-            <div class="col-2 text-center" style="padding: 0 20px;">
-                <button class="button" onclick="return Enviar(this.form)"><span>Adicionar detalle</span>
-                </button>
+            ?>
+            <div class="form-group titulo row">
+                <strong>Productos para devolución</strong>
             </div>
-        </div>
+            <div class="row">
+                <div class="col-4 text-center" style="margin: 0 5px;"><strong>Producto</strong></div>
+                <div class="col-1 text-center" style="margin: 0 5px;"><strong>Cantidad</strong></div>
+                <div class="col-2 text-center"></div>
+            </div>
+            <div class="form-group row">
+                <select name="codProducto" id="codProducto" class="form-control col-4 mr-3"
+                        onchange="cantDetNotaC(<?= $notaC['facturaOrigen']; ?>, this.value)">
+                    <option selected disabled value="">Escoja un producto</option>
+                    <?php
+                    $prodDev = $notaCrOperador->getProductosNotaC($idNotaC, $notaC['facturaOrigen']);
+                    for ($i = 0; $i < count($prodDev); $i++) {
+                        echo '<option value="' . $prodDev[$i]["codProducto"] . '">' . $prodDev[$i]['producto'] . '</option>';
+                    }
+                    ?>
+                </select>
+                <select name="cantProducto" id="cantProducto" class="form-control col-1" required>
+                </select>
+                <div class="col-2 text-center" style="padding: 0 20px;">
+                    <button class="button" type="button" onclick="return Enviar(this.form)">
+                        <span>Adicionar detalle</span>
+                    </button>
+                </div>
+            </div>
 
-<?php
+        <?php
 
-elseif ($notaC['motivo'] == 1)://  DESCUENTO NO REALIZADO
+        elseif ($notaC['motivo'] == 1)://  DESCUENTO NO REALIZADO
 
-    /*echo '<table border="0" align="center" summary="carga">
-      <tr>
-        <th width="105" align="center"><strong>DESCUENTO</strong></th>
-      </tr>
-      <tr>
-        <td align="center"><input type="text" name="descuento" size=5 onKeyPress="return aceptaNum(event)"> %';
-   echo '</td>
-            <td width="125" align="right"><input name="submit" class="formatoBoton1" onClick="return Enviar(this.form)" type="submit"  value="Continuar" >
-          <input name="crear" type="hidden" value="4"><input name="nota" type="hidden" value="'.$mensaje.'">
-        </td>
-      </tr>
-    </table>';	*/
-
-    ?>
-    <div class="form-group titulo row">
-        <strong>Descuento no realizado</strong>
-    </div>
-    <div class="row">
-        <div class="col-1 text-center" style="margin: 0 5px;"><strong>Descuento</strong></div>
-        <div class="col-2 text-center"></div>
-    </div>
-    <div class="form-group row">
-        <input type="text" style="margin: 0 5px 0 0;" class="form-control col-1" name="cantProducto"
-               id="cantProducto" onKeyPress="return aceptaNum(event)">%
-        <div class="col-2 text-center" style="padding: 0 20px;">
-            <button class="button" onclick="return Enviar(this.form)"><span>Continuar</span>
-            </button>
-        </div>
-    </div>
-<?php
-endif;
-?>
+            ?>
+            <div class="form-group titulo row">
+                <strong>Descuento no realizado</strong>
+            </div>
+            <div class="row">
+                <div class="col-1 text-center" style="margin: 0 5px;"><strong>Descuento</strong></div>
+                <div class="col-2 text-center"></div>
+            </div>
+            <div class="form-group row">
+                <input type="text" style="margin: 0 5px 0 0;" class="form-control col-1" name="cantProducto"
+                       id="cantProducto" onKeyPress="return aceptaNum(event)">%
+                <div class="col-2 text-center" style="padding: 0 20px;">
+                    <button class="button" type="button" onclick="return Enviar(this.form)"><span>Continuar</span>
+                    </button>
+                </div>
+            </div>
+        <?php
+        endif;
+        ?>
     </form>
     <div class="form-group titulo row">
         <strong>Detalle nota crédito</strong>
@@ -406,7 +370,7 @@ endif;
             </div>
             <div class="col-1 ml-3 px-0" style=" flex: 0 0 10%; max-width: 10%;">
                 <div class="text-right">
-                    <strong><?= $notaC['descuentoNotaC']  ?></strong>
+                    <strong><?= $notaC['descuentoNotaC'] ?></strong>
                 </div>
                 <div class="text-right">
                     <strong><?= $notaC['motivo'] == 0 ? $totalesNotaC['iva10nota_c'] : '$0' ?></strong>
@@ -430,7 +394,7 @@ endif;
         <div class="col-2">
             <form action="updateNotaCrForm.php" method="post">
                 <input name="idNotaC" type="hidden" value="<?php echo $idNotaC; ?>">
-                <button name="Submit" type="submit" class="button"><span>Modificar</span></button>
+                <button name="Submit" type="button" onclick="return Enviar(this.form)" class="button"><span>Modificar</span></button>
             </form>
         </div>
     </div>

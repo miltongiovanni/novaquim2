@@ -13,10 +13,8 @@ spl_autoload_register('cargarClases');
     <meta charset="utf-8">
     <title>Crear Factura a partir del Pedido</title>
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/validar.js"></script>
-
-
 </head>
 <body>
 <div id="contenedor">

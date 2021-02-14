@@ -16,7 +16,7 @@ $cliente = $clienteCotizacionOperador->getCliente($idCliente);
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <meta charset="utf-8">
     <title>Actualizar datos del Cliente</title>
-<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/validar.js"></script>
 
 </head>

@@ -14,11 +14,25 @@ foreach ($_POST as $nombre_campo => $valor) {
         //echo $nombre_campo . '=' . ${$nombre_campo} . '<br>';
     }
 }
+?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Crear Cotización</title>
+    <meta charset="utf-8">
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../js/validar.js"></script>
+</head>
+<body>
+<?php
 $opcionesDis = '';
 if (!isset($seleccionProd)) {
     $ruta = "cotizacion.php";
     $mensaje = "Debe escoger alguna familia de los productos Novaquim";
+    $icon = "warning";
     mover_pag($ruta, $mensaje, $icon);
+    exit;
 } else {
     $cotizacionOperador = new CotizacionesOperaciones();
     $opcionesProd = implode(",", $seleccionProd);
@@ -32,12 +46,15 @@ if (!isset($seleccionProd)) {
         $_SESSION['idCotizacion'] = $lastIdCotizacion;
         $ruta = "det_cotiza.php";
         $mensaje = "Cotización creada con éxito";
+        $icon = "success";
     } catch (Exception $e) {
         $ruta = "cotizacion.php";
         $mensaje = "Error al crear la Cotización";
+        $icon = "error";
     } finally {
         unset($conexion);
         unset($stmt);
         mover_pag($ruta, $mensaje, $icon);
     }
 }
+?>

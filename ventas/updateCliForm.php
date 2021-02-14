@@ -18,8 +18,7 @@ $cliente = $clienteOperador->getCliente($idCliente);
     <title>Actualizar datos del Cliente</title>
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="../css/datatables.css">
-
-<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/validar.js"></script>
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/datatables.js"></script>
@@ -293,7 +292,7 @@ $cliente = $clienteOperador->getCliente($idCliente);
         </div>
         <div class="form-group row">
             <div class="col-2 text-center">
-                <button class="button" onclick="return Enviar(this.form)"><span>Actualizar cliente</span></button>
+                <button class="button" type="button" onclick="return Enviar(this.form)"><span>Actualizar cliente</span></button>
             </div>
         </div>
     </form>

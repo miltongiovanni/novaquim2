@@ -62,7 +62,6 @@ include "../includes/valAcc.php";
                 '<th align="center">Código</th>' +
                 '<th align="center">Producto</th>' +
                 '<th align="center">Cantidad</th>' +
-                '<th align="center">Precio Venta</th>' +
                 '</thead>';
             for(i=0; i<d.detNotaCr.length; i++){
                 rep += '<tr>' +

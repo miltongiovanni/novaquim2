@@ -72,8 +72,8 @@ $idCliente = $_POST['idCliente'];
                 '</thead>';
             for(i=0; i<d.detFactura.length; i++){
                 rep += '<tr>' +
-                    '<td align="center">' + d.detFactura[i].codProducto + '</td>' +
-                    '<td align="left">' + d.detFactura[i].Producto + '</td>' +
+                    '<td align="center">' + d.detFactura[i].codigo + '</td>' +
+                    '<td align="left">' + d.detFactura[i].producto + '</td>' +
                     '<td align="center">' + d.detFactura[i].cantProducto + '</td>' +
                     '<td align="center">' + d.detFactura[i].precioProducto + '</td>' +
                     '</tr>'

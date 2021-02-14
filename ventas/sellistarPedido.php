@@ -77,7 +77,7 @@ $pedidos = $pedidoOperador->getTablePedidosPendientes();
         </table>
         <div class="row form-group">
             <div class="col-1">
-                <button class="button" onclick="return Enviar(this.form)">
+                <button class="button" type="button" onclick="return Enviar(this.form)">
                     <span>Consultar</span></button>
             </div>
         </div>

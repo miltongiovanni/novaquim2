@@ -16,6 +16,18 @@ foreach ($_POST as $nombre_campo => $valor) {
         //echo $nombre_campo . '=' . ${$nombre_campo} . '<br>';
     }
 }
+?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Detalle de Orden de Pedido</title>
+    <meta charset="utf-8">
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../js/validar.js"></script>
+</head>
+<body>
+<?php
 $pedidoOperador = new PedidosOperaciones();
 $detPedidoOperador = new DetPedidoOperaciones();
 
@@ -37,11 +49,13 @@ if ($totalItems < 40) {
         $_SESSION['idPedido'] = $idPedido;
         $ruta = "det_pedido.php";
         $mensaje = "Detalle del pedido adicionado con éxito";
+        $icon = "success";
 
     } catch (Exception $e) {
         $_SESSION['idPedido'] = $idPedido;
         $ruta = "det_pedido.php";
         $mensaje = "Error al ingresar el detalle del pedido";
+        $icon = "error";
     } finally {
         unset($conexion);
         unset($stmt);
@@ -49,8 +63,12 @@ if ($totalItems < 40) {
     }
 
 } else {
-    echo '<script >
-        alert("Máximo 40 productos por pedido")
-        </script>';
+    $_SESSION['idPedido'] = $idPedido;
+    $ruta = "det_pedido.php";
+    $mensaje = "Máximo 40 productos por pedido";
+    $icon = "warning";
+    mover_pag($ruta, $mensaje, $icon);
 }
-
+?>
+</body>
+</html>

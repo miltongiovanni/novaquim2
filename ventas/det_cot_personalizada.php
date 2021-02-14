@@ -11,16 +11,6 @@ if (isset($_POST['idCotPersonalizada'])) {
 } elseif (isset($_SESSION['idCotPersonalizada'])) {
     $idCotPersonalizada = $_SESSION['idCotPersonalizada'];
 }
-$cotizacionOperador = new CotizacionesPersonalizadasOperaciones();
-$cotizacion = $cotizacionOperador->getCotizacionP($idCotPersonalizada);
-if (!$cotizacion) {
-    $ruta = "mod_cot_personalizada.php";
-    $mensaje = "No existe una cotización personalizada con ese número.  Intente de nuevo.";
-    mover_pag($ruta, $mensaje, $icon);
-    exit;
-}
-$presentacionOperador = new PresentacionesOperaciones();
-$distribucionOperador = new ProductosDistribucionOperaciones();
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -28,7 +18,7 @@ $distribucionOperador = new ProductosDistribucionOperaciones();
     <title>Ingreso de Productos en la Cotización</title>
     <meta charset="utf-8">
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/validar.js"></script>
     <link rel="stylesheet" href="../css/datatables.css">
     <style>
@@ -55,6 +45,7 @@ $distribucionOperador = new ProductosDistribucionOperaciones();
         .width5 {
             width: 5%;
         }
+
         .width6 {
             width: 8%;
         }
@@ -150,11 +141,11 @@ $distribucionOperador = new ProductosDistribucionOperaciones();
                         "className": 'dt-body-center'
                     }
                 ],
-                "columnDefs": [ {
+                "columnDefs": [{
                     "searchable": false,
                     "orderable": false,
                     "targets": 1
-                } ],
+                }],
                 "dom": 'Blfrtip',
                 "buttons": [
                     'copyHtml5',
@@ -186,6 +177,20 @@ $distribucionOperador = new ProductosDistribucionOperaciones();
     </script>
 </head>
 <body>
+
+<?php
+$cotizacionOperador = new CotizacionesPersonalizadasOperaciones();
+$cotizacion = $cotizacionOperador->getCotizacionP($idCotPersonalizada);
+if (!$cotizacion) {
+    $ruta = "mod_cot_personalizada.php";
+    $mensaje = "No existe una cotización personalizada con ese número.  Intente de nuevo.";
+    $icon = "warning";
+    mover_pag($ruta, $mensaje, $icon);
+    exit;
+}
+$presentacionOperador = new PresentacionesOperaciones();
+$distribucionOperador = new ProductosDistribucionOperaciones();
+?>
 <div id="contenedor">
     <div id="saludo1"><strong>DETALLE DE LA COTIZACIÓN PERSONALIZADA</strong></div>
     <div class="form-group row">
@@ -252,7 +257,7 @@ $distribucionOperador = new ProductosDistribucionOperaciones();
                 $productos = $cotizacionOperador->getProdDistribucionByIdCotizacion($idCotPersonalizada);
                 $filas = count($productos);
                 for ($i = 0; $i < $filas; $i++) {
-                    echo '<option value="' . $productos[$i]["codDistribucion"] . '">' . $productos[$i]['producto'] . '</option>';
+                    echo '<option value="' . $productos[$i]["idDistribucion"] . '">' . $productos[$i]['producto'] . '</option>';
                 }
                 ?>
             </select>

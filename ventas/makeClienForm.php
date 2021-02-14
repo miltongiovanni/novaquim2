@@ -13,7 +13,7 @@ spl_autoload_register('cargarClases');
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <title>Creación de Clientes</title>
     <meta charset="utf-8">
-<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/validar.js"></script>
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script>
@@ -62,7 +62,8 @@ spl_autoload_register('cargarClases');
                     <input type="radio" id="tipo_1" name="tipo" value="2" onchange="nitClientes()">&nbsp;&nbsp;Cédula
                 </label>
             </div>
-            <input type="text" class="form-control col-2 mx-2" name="numero" id="numero" onKeyPress="return aceptaNum(event)"
+            <input type="text" class="form-control col-2 mx-2" name="numero" id="numero"
+                   onKeyPress="return aceptaNum(event)"
                    onkeyup="nitClientes()" required>
             <input type="text" class="form-control col-2 mx-2" name="nitCliente" id="nitCliente"
                    onKeyPress="return aceptaNum(event)" readOnly required>
@@ -70,7 +71,8 @@ spl_autoload_register('cargarClases');
         </div>
         <div class="row">
             <label class="col-form-label col-2 text-left mx-2" for="telCliente"><strong>Teléfono</strong></label>
-            <label class="col-form-label col-2 text-left mx-2" for="emailCliente"><strong>Correo electrónico</strong></label>
+            <label class="col-form-label col-2 text-left mx-2" for="emailCliente"><strong>Correo
+                    electrónico</strong></label>
             <label class="col-form-label col-2 text-left mx-2" for="ciudadCliente"><strong>Ciudad</strong></label>
             <label class="col-form-label col-3 text-left mx-2" for="dirCliente"><strong>Dirección</strong></label>
         </div>
@@ -91,15 +93,19 @@ spl_autoload_register('cargarClases');
             <input type="text" class="form-control col-3 mx-2" name="dirCliente" id="dirCliente" required>
         </div>
         <div class="row">
-            <label class="col-form-label col-2 text-left mx-2" for="contactoCliente"><strong>Nombre Contacto</strong></label>
-            <label class="col-form-label col-2 text-left mx-2" for="cargoCliente"><strong>Cargo Contacto</strong></label>
-            <label class="col-form-label col-2 text-left mx-2" for="celCliente"><strong>Celular Contacto</strong></label>
+            <label class="col-form-label col-2 text-left mx-2" for="contactoCliente"><strong>Nombre
+                    Contacto</strong></label>
+            <label class="col-form-label col-2 text-left mx-2" for="cargoCliente"><strong>Cargo
+                    Contacto</strong></label>
+            <label class="col-form-label col-2 text-left mx-2" for="celCliente"><strong>Celular
+                    Contacto</strong></label>
             <label class="col-form-label col-3 text-left mx-2" for="idCatCliente"><strong>Actividad</strong></label>
         </div>
         <div class="form-group row">
             <input type="text" class="form-control col-2 mx-2" name="contactoCliente" id="contactoCliente" required>
             <input type="text" class="form-control col-2 mx-2" name="cargoCliente" id="cargoCliente" required>
-            <input type="text" class="form-control col-2 mx-2" name="celCliente" id="celCliente"  onKeyPress="return aceptaNum(event)" maxlength="10" required>
+            <input type="text" class="form-control col-2 mx-2" name="celCliente" id="celCliente"
+                   onKeyPress="return aceptaNum(event)" maxlength="10" required>
             <?php
             $manager = new CategoriasCliOperaciones();
             $categorias = $manager->getCatsCli();
@@ -151,7 +157,7 @@ spl_autoload_register('cargarClases');
                 <button class="button" type="reset"><span>Reiniciar</span></button>
             </div>
             <div class="col-1 text-center">
-                <button class="button" onclick="return Enviar(this.form)"><span>Continuar</span></button>
+                <button class="button" type="button" onclick="return Enviar(this.form)"><span>Continuar</span></button>
             </div>
         </div>
     </form>

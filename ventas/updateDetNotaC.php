@@ -19,7 +19,7 @@ $detalle = $detNotaCrOperador->getDetProdNotaCr($idNotaC, $codProducto);
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <meta charset="utf-8">
     <title>Actualizar datos de la Nota Crédito</title>
-<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/validar.js"></script>
 
 </head>
@@ -50,7 +50,7 @@ $detalle = $detNotaCrOperador->getDetProdNotaCr($idNotaC, $codProducto);
                 ?>
             </select>
             <div class="col-2 text-center" style="padding: 0 20px;">
-                <button class="button" onclick="return Enviar(this.form)"><span>Cambiar</span>
+                <button class="button" type="button" onclick="return Enviar(this.form)"><span>Cambiar</span>
                 </button>
             </div>
         </div>

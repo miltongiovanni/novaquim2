@@ -3,14 +3,12 @@ include "../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
-<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
 <head>
     <meta charset="utf-8">
     <title>Seleccionar Recibo de Caja a consultar</title>
-<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/validar.js"></script>
-
-
 </head>
 <body>
 <div id="contenedor">
@@ -27,7 +25,7 @@ include "../includes/valAcc.php";
                 <button class="button" type="reset"><span>Reiniciar</span></button>
             </div>
             <div class="col-1 text-center">
-                <button class="button" onclick="return Enviar(this.form)"><span>Continuar</span></button>
+                <button class="button" type="button" onclick="return Enviar(this.form)"><span>Continuar</span></button>
             </div>
         </div>
     </form>

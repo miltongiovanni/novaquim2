@@ -49,7 +49,7 @@ $totales = calcularTotalesFactura($idFactura, $factura['descuento']);
         }
 
     </style>
-<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/validar.js"></script>
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/datatables.js"></script>
@@ -294,7 +294,7 @@ $totales = calcularTotalesFactura($idFactura, $factura['descuento']);
             <div class="col-2">
                 <form action="updateFacturaForm.php" method="post">
                     <input name="idFactura" type="hidden" value="<?php echo $idFactura; ?>">
-                    <button name="Submit" type="submit" class="button"><span>Modificar</span></button>
+                    <button name="Submit" type="button" onclick="return Enviar(this.form)" class="button"><span>Modificar</span></button>
                 </form>
             </div>
         <?php

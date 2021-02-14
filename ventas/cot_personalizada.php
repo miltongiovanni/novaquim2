@@ -7,7 +7,7 @@ include "../includes/valAcc.php";
     <title>Creación cotización personalizada</title>
     <meta charset="utf-8">
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/validar.js"></script>
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/findCliente.js"></script>
@@ -61,7 +61,7 @@ include "../includes/valAcc.php";
     </form>
     <div class="row form-group">
         <div class="col-1">
-            <button class="button1" onclick="history.back()">
+            <button class="button1" onclick="window.location='../menu.php">
                 <span>VOLVER</span></button>
         </div>
     </div>

@@ -15,7 +15,7 @@ $cliExis = $_POST['cliExis'];
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <title>Creación de Clientes para Cotización</title>
     <meta charset="utf-8">
-<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/validar.js"></script>
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/findCliente.js"></script>
@@ -38,7 +38,7 @@ $cliExis = $_POST['cliExis'];
             </div>
             <div class="row form-group">
                 <div class="col-1">
-                    <button class="button" onclick="return Enviar(this.form)">
+                    <button class="button" type="button" onclick="return Enviar(this.form)">
                         <span>Continuar</span></button>
                 </div>
             </div>
@@ -115,7 +115,7 @@ $cliExis = $_POST['cliExis'];
                     <button class="button" type="reset"><span>Reiniciar</span></button>
                 </div>
                 <div class="col-1 text-center">
-                    <button class="button" onclick="return Enviar(this.form)"><span>Continuar</span></button>
+                    <button class="button" type="button" onclick="return Enviar(this.form)"><span>Continuar</span></button>
                 </div>
             </div>
         <?php

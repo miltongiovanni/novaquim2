@@ -18,6 +18,7 @@ $totalPedido = $detPedidoOperador->getTotalPedido($idPedido);
 if (!$pedido) {
     $ruta = "buscarPedido.php";
     $mensaje = "No existe un pedido con ese número.  Intente de nuevo.";
+    $icon = "error";
     mover_pag($ruta, $mensaje, $icon);
     exit;
 }
@@ -70,7 +71,7 @@ $distribucionOperador = new ProductosDistribucionOperaciones();
             width: 8%;
         }
     </style>
-<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/validar.js"></script>
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/datatables.js"></script>
@@ -111,7 +112,7 @@ $distribucionOperador = new ProductosDistribucionOperaciones();
                 "columns": [
                     {
                         "data": function (row) {
-                            let rep='';
+                            let rep = '';
                             if (estado === 'P') {
                                 rep = '<form action="updateDetallePedido.php" method="post" name="actualiza">' +
                                     '          <input name="idPedido" type="hidden" value="' + idPedido + '">' +
@@ -149,7 +150,7 @@ $distribucionOperador = new ProductosDistribucionOperaciones();
                     },
                     {
                         "data": function (row) {
-                            let rep='';
+                            let rep = '';
                             if (estado === 'P') {
                                 rep = '<form action="delprodPed.php" method="post" name="elimina">' +
                                     '          <input name="idPedido" type="hidden" value="' + idPedido + '">' +
@@ -255,7 +256,8 @@ $distribucionOperador = new ProductosDistribucionOperaciones();
                 <input type="text" style="margin: 0 5px 0 0;" class="form-control col-1" name="cantProducto"
                        id="cantProducto" onKeyPress="return aceptaNum(event)">
                 <div class="col-2 text-center" style="padding: 0 20px;">
-                    <button class="button" type="button" onclick="return Enviar(this.form)"><span>Adicionar detalle</span>
+                    <button class="button" type="button" onclick="return Enviar(this.form)">
+                        <span>Adicionar detalle</span>
                     </button>
                 </div>
             </div>
@@ -282,7 +284,8 @@ $distribucionOperador = new ProductosDistribucionOperaciones();
                 <input type="text" style="margin: 0 5px 0 0;" class="form-control col-1" name="cantProducto"
                        id="cantProducto" onKeyPress="return aceptaNum(event)">
                 <div class="col-2 text-center" style="padding: 0 20px;">
-                    <button class="button" type="button" onclick="return Enviar(this.form)"><span>Adicionar detalle</span>
+                    <button class="button" type="button" onclick="return Enviar(this.form)">
+                        <span>Adicionar detalle</span>
                     </button>
                 </div>
             </div>
@@ -312,7 +315,8 @@ $distribucionOperador = new ProductosDistribucionOperaciones();
                 <input type="text" style="margin: 0 5px 0 0;" class="form-control col-1" name="precioProducto"
                        id="precioProducto" onKeyPress="return aceptaNum(event)">
                 <div class="col-2 text-center" style="padding: 0 20px;">
-                    <button class="button" type="button" onclick="return Enviar(this.form)"><span>Adicionar detalle</span>
+                    <button class="button" type="button" onclick="return Enviar(this.form)">
+                        <span>Adicionar detalle</span>
                     </button>
                 </div>
             </div>
@@ -361,7 +365,7 @@ $distribucionOperador = new ProductosDistribucionOperaciones();
             <div class="col-2">
                 <form action="inv_ped.php" method="post">
                     <input name="idPedido" type="hidden" value="<?= $idPedido; ?>">
-                    <button class="button" type="submit"><span>Verificar existencias</span></button>
+                    <button class="button" type="button" onclick="return Enviar(this.form)"><span>Verificar existencias</span></button>
                 </form>
             </div>
         <?php
