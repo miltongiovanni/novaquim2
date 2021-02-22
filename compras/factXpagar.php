@@ -157,7 +157,7 @@ include "../includes/valAcc.php";
                     },
                 ],
 
-                "order": [[5, 'asc']],
+                "order": [[6, 'asc']],
                 "deferRender": true,  //For speed
                 "dom": 'Blfrtip',
                 "buttons": [

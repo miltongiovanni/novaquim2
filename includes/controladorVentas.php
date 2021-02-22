@@ -189,6 +189,38 @@ function prodEmprCantTotalYearVend()
     echo json_encode($rep);
 }
 
+
+function prodDistCantTotalYear()
+{
+    $year = $_POST['year'];
+    $type = $_POST['type'];
+    $detFacturaOperador = new DetFacturaOperaciones();
+    $totalCant= $detFacturaOperador->getTotalProductosDistribucionPorYear($year);
+    $rep['productos'] = array_column($totalCant, 'catDis');
+    if($type==1){
+        $rep['cant'] = array_column($totalCant, 'cant');
+    }else{
+        $rep['cant'] = array_column($totalCant, 'sub');
+    }
+    echo json_encode($rep);
+}
+
+function prodDistCantTotalYearVend()
+{
+    $year = $_POST['year'];
+    $type = $_POST['type'];
+    $codVendedor = $_POST['codVendedor'];
+    $detFacturaOperador = new DetFacturaOperaciones();
+    $totalCant= $detFacturaOperador->getTotalProductosDistribucionPorYearVend($year, $codVendedor);
+    $rep['productos'] = array_column($totalCant, 'catDis');
+    if($type==1){
+        $rep['cant'] = array_column($totalCant, 'cant');
+    }else{
+        $rep['cant'] = array_column($totalCant, 'sub');
+    }
+    echo json_encode($rep);
+}
+
 function eliminarSession()
 {
     $variable = $_POST['variable'];
@@ -254,6 +286,12 @@ switch ($action) {
         break;
     case 'prodEmprCantTotalYearVend':
         prodEmprCantTotalYearVend();
+        break;
+    case 'prodDistCantTotalYear':
+        prodDistCantTotalYear();
+        break;
+    case 'prodDistCantTotalYearVend':
+        prodDistCantTotalYearVend();
         break;
     case 'eliminarSession':
         eliminarSession();

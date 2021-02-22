@@ -21,8 +21,8 @@ spl_autoload_register('cargarClases');
     <div id="saludo"><strong>VENTAS POR FAMILIA PRODUCTOS NOVA POR MES</strong></div>
     <form method="post" action="vtas_fam_tot_mes_vend.php" name="form1">
         <div class="form-group row">
-            <label class="col-form-label col-1" for="combo"><strong>Vendedor</strong></label>
-            <select name="idPersonal" class="form-control col-2" required>
+            <label class="col-form-label col-1" for="idPersonal"><strong>Vendedor</strong></label>
+            <select id="idPersonal" name="idPersonal" class="form-control col-2" required>
                 <option selected disabled value="">-----------------------------</option>
                 <?php
                 $manager = new PersonalOperaciones();
@@ -50,7 +50,7 @@ spl_autoload_register('cargarClases');
         </div>
         <div class="form-group row">
             <label class="col-form-label col-1" for="year"><strong>Tipo</strong></label>
-            <select name="type" id="type" class="form-control col-2" required>
+            <select name="type" id="year" class="form-control col-2" required>
                 <option value="1">Unidades</option>
                 <option value="2">Valores</option>
             </select>
