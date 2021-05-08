@@ -50,8 +50,12 @@ include "../includes/valAcc.php";
                 ],
                 "columnDefs":
                     [{
-                        "targets": [0, 1, 2, 3, 4, 5, 6],
+                        "targets": [0],
                         "className": 'dt-body-center'
+                    },
+                        {
+                        "targets": [ 2, 3, 4, 5, 6],
+                        "className": 'dt-body-right'
                     }
                     ],
                 "dom": 'Blfrtip',
