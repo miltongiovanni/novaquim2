@@ -57,7 +57,7 @@ if (!$remisionOperador->isValidIdRemision($idRemision)) {
             <div class="form-group row">
                 <label class="col-form-label col-2 text-right" for="valor"><strong>Valor</strong></label>
                 <input type="text" class="form-control col-2" name="valor" id="valor" value="<?= $remision['valor'] ?>"
-                       onKeyPress="return aceptaNum(event)">
+                       onkeydown="return aceptaNum(event)">
             </div>
             <div class="form-group row">
                 <div class="col-1 text-center">

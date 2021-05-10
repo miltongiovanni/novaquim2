@@ -16,7 +16,7 @@ include "../includes/valAcc.php";
     <form id="form1" name="form1" method="post" action="anulaFactura.php">
         <div class="form-group row">
             <label class="col-form-label col-2 text-right" for="idFactura"><strong>No. de Factura</strong></label>
-            <input type="text" class="form-control col-3" onKeyPress="return aceptaNum(event)" name="idFactura"
+            <input type="text" class="form-control col-3" onkeydown="return aceptaNum(event)" name="idFactura"
                    id="idFactura" required>
         </div>
         <div class="form-group row">
@@ -46,7 +46,7 @@ include "../includes/valAcc.php";
                 <td width="128">
                     <div align="right"><strong>No. de Factura&nbsp;</strong></div>
                 </td>
-                <td width="257"><input type="text" name="factura" size=10 onKeyPress="return aceptaNum(event)"></td>
+                <td width="257"><input type="text" name="factura" size=10 onkeydown="return aceptaNum(event)"></td>
                 <input type="hidden" name="Crear" value="5">
             </tr>
             <tr>

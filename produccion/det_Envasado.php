@@ -176,7 +176,7 @@ $cantidadPendiente = $EnvasadoOperador->getCantidadPorEnvasar($lote);
                 ?>
             </select>
             <input type="text" style="margin: 0 5px 0 0;" class="form-control col-1" name="cantPresentacion"
-                   id="cantPresentacion" onKeyPress="return aceptaNum(event)">
+                   id="cantPresentacion" onkeydown="return aceptaNum(event)">
             <div class="col-2 text-center" style="padding: 0 20px;">
                 <button class="button" type="button" onclick="return Enviar(this.form)"><span>Adicionar envasado</span>
                 </button>

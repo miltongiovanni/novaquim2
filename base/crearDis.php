@@ -73,23 +73,23 @@ spl_autoload_register('cargarClases');
             ?>
             <label class="col-form-label col-1" for="codSiigo"><strong>Código Siigo</strong></label>
             <input type="text" name="codSiigo" id="codSiigo" class="form-control col-3"
-                   onKeyPress="return aceptaNum(event)" value="<?= ($row['maxsiigo'] + 1) ?>" readonly/>
+                   onkeydown="return aceptaNum(event)" value="<?= ($row['maxsiigo'] + 1) ?>" readonly/>
         </div>
         <div class="form-group row">
             <label class="col-form-label col-1" for="idDistribucion"><strong>Código</strong></label>
             <input type="text" class="form-control col-2" name="idDistribucion" id="idDistribucion"
-                   onKeyPress="return aceptaNum(event)" readOnly>
+                   onkeydown="return aceptaNum(event)" readOnly>
             <label class="col-form-label col-1"
                    for="producto"><strong>Producto</strong></label>
             <input type="text" class="form-control col-3" name="producto" id="producto"
-                   onKeyPress="return aceptaLetra(event)" maxlength="50" required>
+                   onkeydown="return aceptaLetra(event)" maxlength="50" required>
         </div>
         <div class="form-group row">
 
             <label class="col-form-label col-1" for="precioVta"><strong>Precio
                     Venta</strong></label>
             <input type="text" class="form-control col-2" name="precioVta" id="precioVta"
-                   onKeyPress="return aceptaNum(event)" required>
+                   onkeydown="return aceptaNum(event)" required>
             <label class="col-form-label col-1" for="codIva"><strong>Iva</strong></label>
             <?php
             $manager = new TasaIvaOperaciones();

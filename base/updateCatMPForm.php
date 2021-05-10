@@ -33,7 +33,7 @@ $categoriaMP = $catsMPOperador->getCatMP($idCatMP);
         <div class="form-group row">
             <label class="col-form-label col-1 text-right" for="catMP"><strong>Categoría</strong></label>
             <input type="text" class="form-control col-2" name="catMP" id="catMP" size=30
-                   onKeyPress="return aceptaLetra(event)" value="<?= $categoriaMP['catMP']; ?>" maxlength="30">
+                   onkeydown="return aceptaLetra(event)" value="<?= $categoriaMP['catMP']; ?>" maxlength="30">
         </div>
         <div class="form-group row">
             <div class="col-1 text-center">

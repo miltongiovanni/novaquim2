@@ -254,7 +254,7 @@ $distribucionOperador = new ProductosDistribucionOperaciones();
                     ?>
                 </select>
                 <input type="text" style="margin: 0 5px 0 0;" class="form-control col-1" name="cantProducto"
-                       id="cantProducto" onKeyPress="return aceptaNum(event)">
+                       id="cantProducto" onkeydown="return aceptaNum(event)">
                 <div class="col-2 text-center" style="padding: 0 20px;">
                     <button class="button" type="button" onclick="return Enviar(this.form)">
                         <span>Adicionar detalle</span>
@@ -282,7 +282,7 @@ $distribucionOperador = new ProductosDistribucionOperaciones();
                     ?>
                 </select>
                 <input type="text" style="margin: 0 5px 0 0;" class="form-control col-1" name="cantProducto"
-                       id="cantProducto" onKeyPress="return aceptaNum(event)">
+                       id="cantProducto" onkeydown="return aceptaNum(event)">
                 <div class="col-2 text-center" style="padding: 0 20px;">
                     <button class="button" type="button" onclick="return Enviar(this.form)">
                         <span>Adicionar detalle</span>
@@ -311,9 +311,9 @@ $distribucionOperador = new ProductosDistribucionOperaciones();
                     ?>
                 </select>
                 <input type="text" style="margin: 0 5px 0 0;" class="form-control col-1" name="cantProducto"
-                       id="cantProducto" onKeyPress="return aceptaNum(event)">
+                       id="cantProducto" onkeydown="return aceptaNum(event)">
                 <input type="text" style="margin: 0 5px 0 0;" class="form-control col-1" name="precioProducto"
-                       id="precioProducto" onKeyPress="return aceptaNum(event)">
+                       id="precioProducto" onkeydown="return aceptaNum(event)">
                 <div class="col-2 text-center" style="padding: 0 20px;">
                     <button class="button" type="button" onclick="return Enviar(this.form)">
                         <span>Adicionar detalle</span>

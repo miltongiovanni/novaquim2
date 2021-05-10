@@ -60,13 +60,13 @@ spl_autoload_register('cargarClases');
 
             <label class="col-form-label col-2 text-right"
                    for="codProducto"><strong>Número</strong></label>
-            <input type="text" class="form-control col-2" name="numero" id="numero" onKeyPress="return aceptaNum(event)"
+            <input type="text" class="form-control col-2" name="numero" id="numero" onkeydown="return aceptaNum(event)"
                    onkeyup="nitProveedor()" required>
         </div>
         <div class="form-group row">
             <label class="col-form-label col-2 text-right" for="nitProv"><strong>NIT</strong></label>
             <input type="text" class="form-control col-2" name="nitProv" id="nitProv"
-                   onKeyPress="return aceptaNum(event)" readOnly>
+                   onkeydown="return aceptaNum(event)" readOnly>
             <label class="col-form-label col-2 text-right" for="nomProv"><strong>Proveedor</strong></label>
             <input type="text" class="form-control col-2" name="nomProv" id="nomProv" required>
         </div>
@@ -75,7 +75,7 @@ spl_autoload_register('cargarClases');
             <input type="text" class="form-control col-2" name="dirProv" id="dirProv" required>
             <label class="col-form-label col-2 text-right" for="telProv"><strong>Teléfono</strong></label>
             <input type="text" class="form-control col-2" name="telProv" id="telProv"
-                   onKeyPress="return aceptaNum(event)" required>
+                   onkeydown="return aceptaNum(event)" required>
         </div>
         <div class="form-group row">
             <label class="col-form-label col-2 text-right" for="contProv"><strong>Nombre Contacto</strong></label>

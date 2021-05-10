@@ -60,7 +60,7 @@ $cliente = $clienteCotizacionOperador->getCliente($idCliente);
         </div>
         <div class="form-group row">
             <input type="text" class="form-control col-2 mr-2" name="telCliente" id="telCliente" maxlength="10"
-                   onKeyPress="return aceptaNum(event)" value="<?= $cliente['telCliente'] ?>">
+                   onkeydown="return aceptaNum(event)" value="<?= $cliente['telCliente'] ?>">
             <input type="email" class="form-control col-2 mx-3" name="emailCliente" id="emailCliente"
                    value="<?= $cliente['emailCliente'] ?>">
             <select name="idCatCliente" id="idCatCliente" class="form-control col-3 ml-2" required>
@@ -91,7 +91,7 @@ $cliente = $clienteCotizacionOperador->getCliente($idCliente);
             <input type="text" class="form-control col-2 mx-2" name="cargoContacto" id="cargoContacto"
                    value="<?= $cliente['dirCliente'] ?>" required>
             <input type="text" class="form-control col-1 mx-2" name="celCliente" id="celCliente" maxlength="10"
-                   onKeyPress="return aceptaNum(event)" value="<?= $cliente['celCliente'] ?>">
+                   onkeydown="return aceptaNum(event)" value="<?= $cliente['celCliente'] ?>">
             <select name="codVendedor" id="codVendedor" class="form-control col-2 ml-2" required>
                 <option selected value="<?= $cliente['codVendedor'] ?>"><?= $cliente['nomPersonal'] ?></option>
                 <?php

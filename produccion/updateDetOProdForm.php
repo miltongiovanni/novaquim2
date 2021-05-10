@@ -49,7 +49,7 @@ $detalle = $DetOProdOperador->getDetOProd($lote, $codMPrima);
             <label class="col-form-label col-1 text-right" for="cantidadMPrima"><strong>Cantidad MP</strong></label>
             <input type="text" class="form-control col-2" name="cantidadMPrima" id="cantidadMPrima"
                    value="<?= $detalle['cantidadMPrima'] ?>"
-                   onKeyPress="return aceptaNum(event)">
+                   onkeydown="return aceptaNum(event)">
         </div>
         <div class="form-group row">
             <div class="col-1 text-center">

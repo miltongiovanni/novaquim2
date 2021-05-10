@@ -38,7 +38,7 @@ spl_autoload_register('cargarClases');
         <div class="form-group row">
             <label class="col-form-label col-1 text-right" for="cantArmado"><strong>Cantidad</strong></label>
             <input type="text" class="form-control col-2" name="cantArmado" id="cantArmado"
-                   onKeyPress="return aceptaNum(event)" required>
+                   onkeydown="return aceptaNum(event)" required>
         </div>
         <div class="form-group row">
             <label class="col-form-label col-1 text-right" for="fechArmado"><strong>Fecha</strong></label>

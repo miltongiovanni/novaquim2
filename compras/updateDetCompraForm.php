@@ -78,12 +78,12 @@ $detalle = $DetCompraOperador->getDetCompra($idCompra, $tipoCompra, $codigo);
         <div class="form-group row">
             <label class="col-form-label col-1 text-right" for="cantidad"><strong>Cantidad</strong></label>
             <input type="text" class="form-control col-2" name="cantidad" id="cantidad"
-                   value="<?= $detalle['cantidad'] ?>" onKeyPress="return aceptaNum(event)">
+                   value="<?= $detalle['cantidad'] ?>" onkeydown="return aceptaNum(event)">
         </div>
         <div class="form-group row">
             <label class="col-form-label col-1 text-right" for="precio"><strong>Precio</strong></label>
             <input type="text" class="form-control col-2" name="precio" id="precio" value="<?= $detalle['precio'] ?>"
-                   onKeyPress="return aceptaNum(event)">
+                   onkeydown="return aceptaNum(event)">
 
         </div>
         <div class="form-group row">

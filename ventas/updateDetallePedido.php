@@ -37,9 +37,9 @@ $detalle = $DetPedidoOperador->getDetProdPedido($idPedido, $codProducto);
             <input type="text" class="form-control col-4 mx-2" name="producto" readonly
                    id="producto" value="<?= $detalle['producto'] ?>">
             <input type="text" class="form-control col-1 mx-2" name="cantProducto"
-                   id="cantProducto" onKeyPress="return aceptaNum(event)" value="<?= $detalle['cantProducto'] ?>">
+                   id="cantProducto" onkeydown="return aceptaNum(event)" value="<?= $detalle['cantProducto'] ?>">
             <input type="text" class="form-control col-1 mx-2" name="precioProducto" id="precioProducto"
-                   onKeyPress="return aceptaNum(event)" value="<?= $detalle['precioProducto'] ?>">
+                   onkeydown="return aceptaNum(event)" value="<?= $detalle['precioProducto'] ?>">
         </div>
         <div class="form-group row">
             <div class="col-2 text-center" style="padding: 0 20px;">

@@ -213,7 +213,7 @@ $cambio = $cambioOperador->getCambio($idCambio);
                 <input name="loteProd" id="loteProd" class="form-control col-1" style="margin: 0 5px 0 0;"
                        value="<?= $detCambio['loteProd'] ?>"/>
                 <input type="text" style="margin: 0 5px 0 0;" class="form-control col-1" name="cantPresentacionNvo"
-                       id="cantPresentacionNvo" onKeyPress="return aceptaNum(event)">
+                       id="cantPresentacionNvo" onkeydown="return aceptaNum(event)">
                 <div class="col-2 text-center" style="padding: 0 20px;">
                     <button class="button" type="button" onclick="return Enviar(this.form)"><span>Continuar</span>
                     </button>

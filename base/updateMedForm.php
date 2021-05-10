@@ -28,7 +28,7 @@ $presentacion = $PresentacionOperador->getPresentacion($codPresentacion);
         <div class="form-group row">
             <label class="col-form-label col-1" for="codPresentacion"><strong>Código</strong></label>
             <input type="text" name="codPresentacion" id="codPresentacion" class="form-control col-2"
-                   onKeyPress="return aceptaNum(event)" value="<?= $codPresentacion ?>" readonly/>
+                   onkeydown="return aceptaNum(event)" value="<?= $codPresentacion ?>" readonly/>
 
             <label class="col-form-label col-2" for="presentacion"><strong>Presentación</strong></label>
             <input name="presentacion" id="presentacion" class="form-control col-3" type="text"
@@ -71,7 +71,7 @@ $presentacion = $PresentacionOperador->getPresentacion($codPresentacion);
             <label class="col-form-label col-1" for="stockPresentacion"><strong>Stock Mínimo</strong></label>
             <input name="stockPresentacion" id="stockPresentacion" type="text"
                    value="<?= $presentacion['stockPresentacion'] ?>" class="form-control col-2"
-                   onKeyPress="return aceptaNum(event)"/>
+                   onkeydown="return aceptaNum(event)"/>
             <label class="col-form-label col-2" for="codTapa"><strong>Tapa</strong></label>
             <?php
             $TapasOperador = new TapasOperaciones();

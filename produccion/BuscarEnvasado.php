@@ -20,8 +20,8 @@ include "../includes/valAcc.php";
     	<td colspan="2">&nbsp;</td>
   	</tr>
     <tr> 
-        <td width="64%"><div align="right"><strong>Orden de Producción&nbsp;</strong></div></td>
-        <td width="36%"><input type="text" name="Lote" size=15 onKeyPress="return aceptaNum(event)"></td>
+        <td width="64%"><div align="right"><strong>Orden de Producciï¿½n&nbsp;</strong></div></td>
+        <td width="36%"><input type="text" name="Lote" size=15 onkeydown="return aceptaNum(event)"></td>
     </tr>
     <tr>
         <td colspan="2"><div align="center">&nbsp;</div></td>

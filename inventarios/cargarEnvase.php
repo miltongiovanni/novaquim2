@@ -38,7 +38,7 @@ spl_autoload_register('cargarClases');
         <div class="form-group row">
             <label class="col-form-label col-3 text-right" for="unidades"><strong>Cantidad:</strong></label>
             <input type="text" class="form-control col-3" name="unidades" id="unidades"
-                   onKeyPress="return aceptaNum(event)" required>
+                   onkeydown="return aceptaNum(event)" required>
         </div>
         <div class="form-group row">
             <div class="col-1 text-center">

@@ -50,7 +50,7 @@ $mprima = $MPrimaOperador->getMPrima($codMPrima);
             <label class="col-form-label col-1 text-right"
                    for="aparienciaMPrima"><strong>Apariencia</strong></label>
             <input type="text" class="form-control col-2" name="aparienciaMPrima" id="aparienciaMPrima"
-                   onKeyPress="return aceptaLetra(event)" value="<?= $mprima['aparienciaMPrima']; ?>">
+                   onkeydown="return aceptaLetra(event)" value="<?= $mprima['aparienciaMPrima']; ?>">
 
         </div>
         <div class="form-group row">
@@ -71,7 +71,7 @@ $mprima = $MPrimaOperador->getMPrima($codMPrima);
             <label class="col-form-label col-1 text-right" for="minStockMprima"><strong>Stock
                     Min</strong></label>
             <input type="text" class="form-control col-2" name="minStockMprima" id="minStockMprima"
-                   onKeyPress="return aceptaNum(event)" value="<?= $mprima['minStockMprima']; ?>">
+                   onkeydown="return aceptaNum(event)" value="<?= $mprima['minStockMprima']; ?>">
         </div>
         <div class="form-group row">
             <label class="col-form-label col-1 text-right" for="pHmPrima"><strong>pH</strong></label>
@@ -87,11 +87,11 @@ $mprima = $MPrimaOperador->getMPrima($codMPrima);
             <label class="col-form-label col-1 text-right"
                    for="colorMPrima"><strong>Color</strong></label>
             <input type="text" class="form-control col-2" name="colorMPrima" id="colorMPrima"
-                   onKeyPress="return aceptaLetra(event)" maxlength="30" value="<?= $mprima['colorMPrima']; ?>">
+                   onkeydown="return aceptaLetra(event)" maxlength="30" value="<?= $mprima['colorMPrima']; ?>">
             <label class="col-form-label col-1 text-right"
                    for="olorMPrima"><strong>Olor</strong></label>
             <input type="text" class="form-control col-2" name="olorMPrima" id="olorMPrima"
-                   onKeyPress="return aceptaLetra(event)" maxlength="30" value="<?= $mprima['olorMPrima']; ?>">
+                   onkeydown="return aceptaLetra(event)" maxlength="30" value="<?= $mprima['olorMPrima']; ?>">
         </div>
         <div class="form-group row">
             <div class="col-1 text-center">

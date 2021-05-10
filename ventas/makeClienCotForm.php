@@ -72,7 +72,7 @@ $cliExis = $_POST['cliExis'];
             </div>
             <div class="form-group row">
                 <input type="text" class="form-control col-2 mr-2" name="telCliente" id="telCliente" maxlength="10"
-                       onKeyPress="return aceptaNum(event)">
+                       onkeydown="return aceptaNum(event)">
                 <input type="email" class="form-control col-2 mx-3" name="emailCliente" id="emailCliente">
                 <?php
                 $manager = new CategoriasCliOperaciones();
@@ -98,7 +98,7 @@ $cliExis = $_POST['cliExis'];
                 <input type="text" class="form-control col-2 mr-2" name="contactoCliente" id="contactoCliente" required>
                 <input type="text" class="form-control col-2 mx-2" name="cargoContacto" id="cargoContacto" required>
                 <input type="text" class="form-control col-1 mx-2" name="celCliente" id="celCliente" maxlength="10"
-                       onKeyPress="return aceptaNum(event)">
+                       onkeydown="return aceptaNum(event)">
                 <?php
                 $PersonalOperador = new PersonalOperaciones();
                 $personal = $PersonalOperador->getPersonal(true);

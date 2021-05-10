@@ -60,7 +60,7 @@ $calProd = $calProdOperador->getCalProd($lote);
             <div class="col-1 text-center col-form-label"><strong>pH</strong></div>
             <div class="col-1 bg-blue text-center col-form-label">Min: <?= $producto['pHmin'] ?></div>
             <div class="col-1 bg-blue text-center col-form-label">Max: <?= $producto['pHmax'] ?></div>
-            <input type="text" class="form-control col-1 mx-2" name="pHProd" onKeyPress="return aceptaNum(event)"
+            <input type="text" class="form-control col-1 mx-2" name="pHProd" onkeydown="return aceptaNum(event)"
                    value="<?= $calProd['pHProd'] ?>">
         </div>
         <div class="form-group row">
@@ -68,7 +68,7 @@ $calProd = $calProdOperador->getCalProd($lote);
             <div class="col-1 bg-blue text-center col-form-label">Min: <?= $producto['densMin'] ?></div>
             <div class="col-1 bg-blue text-center col-form-label">Max: <?= $producto['densMax'] ?></div>
             <input type="text" class="form-control col-1 mx-2" name="densidadProd"
-                   onKeyPress="return aceptaNum(event)" value="<?= $calProd['densidadProd'] ?>">
+                   onkeydown="return aceptaNum(event)" value="<?= $calProd['densidadProd'] ?>">
         </div>
         <div class="form-group row">
             <div class="col-1 text-center col-form-label"><strong>Olor</strong></div>

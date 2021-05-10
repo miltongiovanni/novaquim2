@@ -25,13 +25,13 @@ spl_autoload_register('cargarClases');
         <div class="form-group row">
             <label class="col-form-label col-1 text-right" for="nombre"><strong>Nombre</strong></label>
             <input type="text" class="form-control col-2" name="nombre" id="nombre" size=30
-                   onKeyPress="return aceptaLetra(event)"
+                   onkeydown="return aceptaLetra(event)"
                    maxlength="30" required>
         </div>
         <div class="form-group row">
             <label class="col-form-label col-1 text-right" for="apellido"><strong>Apellidos</strong></label>
             <input type="text" class="form-control col-2" name="apellido" id="apellido" size=30
-                   onKeyPress="return aceptaLetra(event)"
+                   onkeydown="return aceptaLetra(event)"
                    maxlength="30" required>
         </div>
         <div class="form-group row">

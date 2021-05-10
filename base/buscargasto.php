@@ -19,7 +19,7 @@ include "../includes/valAcc.php";
                 <td>
                     <div align="right"><strong>No. de Gasto&nbsp;</strong></div>
                 </td>
-                <td><input type="text" name="Factura" size=15 onKeyPress="return aceptaNum(event)"></td>
+                <td><input type="text" name="Factura" size=15 onkeydown="return aceptaNum(event)"></td>
                 <input type="hidden" name="CrearFactura" value="5">
             </tr>
             <tr>

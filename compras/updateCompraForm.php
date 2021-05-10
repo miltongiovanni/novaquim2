@@ -77,7 +77,7 @@ if (!$CompraOperador->isValidIdCompra($idCompra)) {
             <div class="form-group row">
                 <label class="col-form-label col-2 text-right" for="numFact"><strong>Número de Factura</strong></label>
                 <input type="text" class="form-control col-2" name="numFact" id="numFact"
-                       value="<?= $compra['numFact'] ?>" onKeyPress="return aceptaNum(event)">
+                       value="<?= $compra['numFact'] ?>" onkeydown="return aceptaNum(event)">
             </div>
             <div class="form-group row">
                 <label class="col-form-label col-2 text-right" for="fechComp"><strong>Fecha de compra</strong></label>

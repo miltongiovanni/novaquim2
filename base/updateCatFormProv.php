@@ -33,7 +33,7 @@ $categoriaProv = $catsProvOperador->getCatProv($idCatProv);
         <div class="form-group row">
             <label class="col-form-label col-1" for="desCatProv"><strong>Descripción</strong></label>
             <input type="text" class="form-control col-2" name="desCatProv" id="desCatProv" size=30
-                   onKeyPress="return aceptaLetra(event)"
+                   onkeydown="return aceptaLetra(event)"
                    value="<?= $categoriaProv['desCatProv']; ?>" maxlength="30">
         </div>
         <div class="form-group row">

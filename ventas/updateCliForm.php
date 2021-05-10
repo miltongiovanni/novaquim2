@@ -124,10 +124,10 @@ $cliente = $clienteOperador->getCliente($idCliente);
                 </label>
             </div>
             <input type="text" class="form-control col-2 mx-2" name="numero" id="numero"
-                   onKeyPress="return aceptaNum(event)"
+                   onkeydown="return aceptaNum(event)"
                    onkeyup="nitClientes()">
             <input type="text" class="form-control col-2 mx-2" name="nitCliente" id="nitCliente"
-                   value="<?= $cliente['nitCliente'] ?>" onKeyPress="return aceptaNum(event)" readOnly required>
+                   value="<?= $cliente['nitCliente'] ?>" onkeydown="return aceptaNum(event)" readOnly required>
             <input type="text" class="form-control col-3 mx-2" name="nomCliente" id="nomCliente"
                    value="<?= $cliente['nomCliente'] ?>" required>
         </div>
@@ -140,7 +140,7 @@ $cliente = $clienteOperador->getCliente($idCliente);
         </div>
         <div class="form-group row">
             <input type="text" class="form-control col-2 mx-2" name="telCliente" id="telCliente" maxlength="10"
-                   onKeyPress="return aceptaNum(event)" value="<?= $cliente['telCliente'] ?>">
+                   onkeydown="return aceptaNum(event)" value="<?= $cliente['telCliente'] ?>">
             <input type="email" class="form-control col-2 mx-2" name="emailCliente" id="emailCliente"
                    value="<?= $cliente['emailCliente'] ?>">
             <select name="ciudadCliente" id="ciudadCliente" class="form-control col-2 mx-2" required>
@@ -174,7 +174,7 @@ $cliente = $clienteOperador->getCliente($idCliente);
             <input type="text" class="form-control col-2 mx-2" name="cargoCliente" id="cargoCliente"
                    value="<?= $cliente['cargoCliente'] ?>" required>
             <input type="text" class="form-control col-2 mx-2" name="celCliente" id="celCliente"
-                   onKeyPress="return aceptaNum(event)" maxlength="10" value="<?= $cliente['celCliente'] ?>" required>
+                   onkeydown="return aceptaNum(event)" maxlength="10" value="<?= $cliente['celCliente'] ?>" required>
             <select name="idCatCliente" id="idCatCliente" class="form-control col-3 mx-2" required>
                 <option selected
                         value="<?= $cliente['idCatCliente'] ?>"><?= $cliente['desCatClien'] ?></option>

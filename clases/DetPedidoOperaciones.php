@@ -86,6 +86,24 @@ class DetPedidoOperaciones
         return $result;
     }
 
+    public function getDetPedidoRemision($idPedido)
+    {
+        $qry = "SELECT dp.idPedido, dp.codProducto,  cantProducto
+                FROM det_pedido dp
+                WHERE dp.idPedido = $idPedido
+                  AND dp.codProducto > 10000
+                  AND dp.codProducto < 100000
+                UNION
+                SELECT dp.idPedido, dp.codProducto, cantProducto
+                FROM det_pedido dp
+                WHERE dp.idPedido = $idPedido
+                  AND dp.codProducto > 100000";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);;
+        return $result;
+    }
+
     public function getTotalSelPedido($selPedido)
     {
         $qry = "SELECT dp.codProducto, SUM(cantProducto) cantidad, presentacion producto, 1 orden

@@ -38,7 +38,7 @@ $envase = $EtiquetaOperador->getEtiqueta($codEtiqueta);
         <div class="form-group row">
             <label class="col-form-label col-1 text-right" for="stockEtiqueta"><strong>Stock Etiqueta</strong></label>
             <input type="text" class="form-control col-2" name="stockEtiqueta" id="stockEtiqueta"
-                   onKeyPress="return aceptaNum(event)" value="<?= $envase['stockEtiqueta']; ?>">
+                   onkeydown="return aceptaNum(event)" value="<?= $envase['stockEtiqueta']; ?>">
             <input type="hidden" class="form-control col-2" name="codIva" id="codIva" value="3">
         </div>
         <div class="form-group row">

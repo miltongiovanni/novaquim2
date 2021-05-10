@@ -73,7 +73,7 @@ spl_autoload_register('cargarClases');
             <input type="text" class="form-control col-2" name="nomMPrima" id="nomMPrima" required>
             <label class="col-form-label col-1 text-right" for="aparienciaMPrima"><strong>Apariencia</strong></label>
             <input type="text" class="form-control col-2" name="aparienciaMPrima" id="aparienciaMPrima"
-                   onKeyPress="return aceptaLetra(event)" required>
+                   onkeydown="return aceptaLetra(event)" required>
 
         </div>
         <div class="form-group row">
@@ -92,7 +92,7 @@ spl_autoload_register('cargarClases');
             ?>
             <label class="col-form-label col-1 text-right" for="minStockMprima"><strong>Stock Min</strong></label>
             <input type="text" class="form-control col-2" name="minStockMprima" id="minStockMprima"
-                   onKeyPress="return aceptaNum(event)" required>
+                   onkeydown="return aceptaNum(event)" required>
         </div>
         <div class="form-group row">
             <label class="col-form-label col-1 text-right" for="pHmPrima"><strong>pH</strong></label>
@@ -106,10 +106,10 @@ spl_autoload_register('cargarClases');
         <div class="form-group row">
             <label class="col-form-label col-1 text-right" for="colorMPrima"><strong>Color</strong></label>
             <input type="text" class="form-control col-2" name="colorMPrima" id="colorMPrima"
-                   onKeyPress="return aceptaLetra(event)" maxlength="30" required>
+                   onkeydown="return aceptaLetra(event)" maxlength="30" required>
             <label class="col-form-label col-1 text-right" for="olorMPrima"><strong>Olor</strong></label>
             <input type="text" class="form-control col-2" name="olorMPrima" id="olorMPrima"
-                   onKeyPress="return aceptaLetra(event)" maxlength="30" required>
+                   onkeydown="return aceptaLetra(event)" maxlength="30" required>
         </div>
 
         <div class="form-group row">

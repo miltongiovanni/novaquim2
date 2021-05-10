@@ -234,13 +234,13 @@ $saldo = round($recibo['totalR'] - $recibo['retencionFte'] - $recibo['retencionI
             </select>
             <input type="text" class="form-control col-1 mx-1" name="idCheque"
                    id="idCheque" value="<?= $recibo['idCheque']; ?>"
-                   onKeyPress="return aceptaNum(event)">
+                   onkeydown="return aceptaNum(event)">
             <input type="text" class="form-control col-1 mx-1" name="cobro"
                    id="cobro"
                    value="<?= round($recibo['totalR'] - $recibo['retencionFte'] - $recibo['retencionIca'] - $recibo['retencionIva'] - $abono) ?>"
-                   onKeyPress="return aceptaNum(event)">
+                   onkeydown="return aceptaNum(event)">
             <input type="text" class="form-control col-1 mx-1" name="descuento_f" id="descuento_f"
-                   onKeyPress="return aceptaNum(event)" value="<?= $recibo['descuento_f']; ?>">
+                   onkeydown="return aceptaNum(event)" value="<?= $recibo['descuento_f']; ?>">
             <div class="col-2 text-center" style="padding: 0 20px;">
                 <button class="button" type="button" onclick="return Enviar(this.form)"><span>Actualizar valor</span>
                 </button>

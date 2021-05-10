@@ -14,7 +14,7 @@ include "../includes/valAcc.php";
     <script  src="scripts/calendar-sp.js"></script>
     <script  src="scripts/calendario.js"></script>
     	<script >
-	document.onkeypress = stopRKey; 
+	document.onkeydown = stopRKey; 
 	</script>
 </head>
 <body> 
@@ -75,7 +75,7 @@ else
       <td><?php echo  $row['Cant_kg']?></td>
     </tr>
     <tr>
-      <td ><strong>Fecha de Producción</strong></td>
+      <td ><strong>Fecha de Producciï¿½n</strong></td>
       <td colspan="2"><?php echo $row['Fch_prod']; ?></td>
       <td><strong>Responsable</strong></td>
       <td><div align="left"><?php echo $row['nom_personal']; ?> </div></td>
@@ -94,8 +94,8 @@ else
       <table width="100%" border="1" align="center">
           <tr>
             <th width="10%"></th>
-            <th width="18%">Código</th>
-            <th width="62%">Producto por Presentación</th>
+            <th width="18%">Cï¿½digo</th>
+            <th width="62%">Producto por Presentaciï¿½n</th>
             <th width="20%">Cantidad </th>
           </tr>
           <?php

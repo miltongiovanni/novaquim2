@@ -39,7 +39,7 @@ mysql_close($link);
 	<td colspan="2" class="titulo">&nbsp;</td>
 </tr>
 <tr>
-	<td colspan="2" align="left" class="titulo">Especificación</td>
+	<td colspan="2" align="left" class="titulo">Especificaciï¿½n</td>
 </tr>
 <tr>
 	<td width="50%" align="right"><strong>Apariencia:</strong></td>
@@ -58,7 +58,7 @@ mysql_close($link);
 	<td width="53%"><?php echo strtoupper($rowe['pH_mp']); ?></td>
 </tr>
 <tr>
-	<td width="47%" align="right"><strong>Gravedad Específica:</strong></td>
+	<td width="47%" align="right"><strong>Gravedad Especï¿½fica:</strong></td>
 	<td width="53%"><?php echo strtoupper($rowe['densidad_mp']); ?>&nbsp;&plusmn;&nbsp;0.05</td>
 </tr>
 <tr>
@@ -69,7 +69,7 @@ mysql_close($link);
 <form id="form1" name="form1" method="post" action="controlMP.php">
 	<table border="0" align="center" width="50%">
     <tr>
-	<td align="left" class="titulo">Resultados Análisis</td>
+	<td align="left" class="titulo">Resultados Anï¿½lisis</td>
 	<td align="left" class="titulo">Cumple / Valor</td>
 </tr>
 <tr>
@@ -88,19 +88,19 @@ mysql_close($link);
 	<td width="48%" align="right"><strong>pH:</strong></td>
 	<td width="38%">
     <?php if($rowe['pH_mp']<>'N.A.')
-	   	echo '<input name="pH_comp" type="text" size=20 onKeyPress="return aceptaNum(event)"  value="">';
+	   	echo '<input name="pH_comp" type="text" size=20 onkeydown="return aceptaNum(event)"  value="">';
 	   else
-	   	echo '<input name="pH_comp" type="text" size=20 onKeyPress="return aceptaNum(event)" readonly value="'.$rowe['pH_mp'].'">';
+	   	echo '<input name="pH_comp" type="text" size=20 onkeydown="return aceptaNum(event)" readonly value="'.$rowe['pH_mp'].'">';
 	?>
      </td>
 </tr>
 <tr>
-	<td width="48%" align="right"><strong>Gravedad Específica:</strong></td>
+	<td width="48%" align="right"><strong>Gravedad Especï¿½fica:</strong></td>
 	<td width="38%">
     <?php if($rowe['densidad_mp']<>'N.A.')
-	   	echo '<input name="dens_mp" type="text" size=20 onKeyPress="return aceptaNum(event)"  value="">';
+	   	echo '<input name="dens_mp" type="text" size=20 onkeydown="return aceptaNum(event)"  value="">';
 	   else
-	   	echo '<input name="dens_mp" type="text" size=20 onKeyPress="return aceptaNum(event)" readonly value="'.$rowe['densidad_mp'].'">';
+	   	echo '<input name="dens_mp" type="text" size=20 onkeydown="return aceptaNum(event)" readonly value="'.$rowe['densidad_mp'].'">';
 	?>
     </td>
 </tr>

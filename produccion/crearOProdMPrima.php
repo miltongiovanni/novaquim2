@@ -66,7 +66,7 @@ foreach ($_POST as $nombre_campo => $valor) {
             <label class="col-form-label col-2 text-right" for="cantKg"><strong>Cantidad a Producir
                     (Kg)</strong></label>
             <input type="text" class="form-control col-2" name="cantKg" id="cantKg"
-                   onKeyPress="return aceptaNum(event)" required>
+                   onkeydown="return aceptaNum(event)" required>
         </div>
         <div class="form-group row">
             <div class="col-1 text-center">

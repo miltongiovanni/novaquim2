@@ -107,7 +107,7 @@ $proveedor = $ProveedorOperador->getProveedor($idProv);
                    for="telProv"><strong>Teléfono</strong></label>
             <input type="text" class="form-control col-2" name="telProv" id="telProv"
                    value="<?= $proveedor['telProv'] ?>"
-                   onKeyPress="return aceptaNum(event)">
+                   onkeydown="return aceptaNum(event)">
             <label class="col-form-label col-2 text-right" for="emailProv"><strong>Correo
                     electrónico</strong></label>
             <input type="email" class="form-control col-2" name="emailProv" id="emailProv"

@@ -38,7 +38,7 @@ $tapa = $TapaOperador->getTapa($codTapa);
         <div class="form-group row">
             <label class="col-form-label col-1 text-right" for="stockTapa"><strong>Stock Tapa</strong></label>
             <input type="text" class="form-control col-2" name="stockTapa" id="stockTapa"
-                   onKeyPress="return aceptaNum(event)" value="<?= $tapa['stockTapa']; ?>">
+                   onkeydown="return aceptaNum(event)" value="<?= $tapa['stockTapa']; ?>">
             <input type="hidden" class="form-control col-2" name="codIva" id="codIva" value="3">
         </div>
         <div class="form-group row">
