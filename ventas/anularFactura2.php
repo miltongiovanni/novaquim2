@@ -21,7 +21,7 @@ include "../includes/valAcc.php";
   	</tr>
     <tr> 
         <td width="128"><div align="right"><strong>No. de Factura&nbsp;</strong></div></td>
-        <td width="257"><input type="text" name="factura" size=10 onKeyPress="return aceptaNum(event)"></td><input type="hidden" name="Crear" value="5">
+        <td width="257"><input type="text" name="factura" size=10 onkeydown="return aceptaNum(event)"></td><input type="hidden" name="Crear" value="5">
     </tr>
     <tr>
         <td align="right"><strong>Razón de Anulación</strong></td>

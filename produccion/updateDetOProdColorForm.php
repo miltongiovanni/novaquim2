@@ -48,7 +48,7 @@ $detalle = $DetOProdColorOperador->getDetOProdColor($loteColor, $codMPrima);
             <label class="col-form-label col-1 text-right" for="cantMPrima"><strong>Cantidad MP</strong></label>
             <input type="text" class="form-control col-2" name="cantMPrima" id="cantMPrima"
                    value="<?= $detalle['cantMPrima'] ?>"
-                   onKeyPress="return aceptaNum(event)">
+                   onkeydown="return aceptaNum(event)">
         </div>
         <div class="form-group row">
             <div class="col-1 text-center">

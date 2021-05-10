@@ -63,10 +63,10 @@ spl_autoload_register('cargarClases');
                 </label>
             </div>
             <input type="text" class="form-control col-2 mx-2" name="numero" id="numero"
-                   onKeyPress="return aceptaNum(event)"
+                   onkeydown="return aceptaNum(event)"
                    onkeyup="nitClientes()" required>
             <input type="text" class="form-control col-2 mx-2" name="nitCliente" id="nitCliente"
-                   onKeyPress="return aceptaNum(event)" readOnly required>
+                   onkeydown="return aceptaNum(event)" readOnly required>
             <input type="text" class="form-control col-3 mx-2" name="nomCliente" id="nomCliente" required>
         </div>
         <div class="row">
@@ -78,7 +78,7 @@ spl_autoload_register('cargarClases');
         </div>
         <div class="form-group row">
             <input type="text" class="form-control col-2 mx-2" name="telCliente" id="telCliente" maxlength="10"
-                   onKeyPress="return aceptaNum(event)">
+                   onkeydown="return aceptaNum(event)">
             <input type="email" class="form-control col-2 mx-2" name="emailCliente" id="emailCliente">
             <?php
             $manager = new CiudadesOperaciones();
@@ -105,7 +105,7 @@ spl_autoload_register('cargarClases');
             <input type="text" class="form-control col-2 mx-2" name="contactoCliente" id="contactoCliente" required>
             <input type="text" class="form-control col-2 mx-2" name="cargoCliente" id="cargoCliente" required>
             <input type="text" class="form-control col-2 mx-2" name="celCliente" id="celCliente"
-                   onKeyPress="return aceptaNum(event)" maxlength="10" required>
+                   onkeydown="return aceptaNum(event)" maxlength="10" required>
             <?php
             $manager = new CategoriasCliOperaciones();
             $categorias = $manager->getCatsCli();

@@ -214,9 +214,9 @@ $gasto = $GastoOperador->getGasto($idGasto);
                 <input type="text" style="margin: 0 5px 0 0;" class="form-control col-3" name="producto"
                        id="producto">
                 <input type="text" style="margin: 0 5px 0 0;" class="form-control col-1" name="cantGasto"
-                       id="cantGasto" onKeyPress="return aceptaNum(event)">
+                       id="cantGasto" onkeydown="return aceptaNum(event)">
                 <input type="text" style="margin: 0 5px;" class="form-control col-1" name="precGasto" id="precGasto"
-                       onKeyPress="return aceptaNum(event)">
+                       onkeydown="return aceptaNum(event)">
                 <?php
                 $manager = new TasaIvaOperaciones();
                 $tasas = $manager->getTasasIva();

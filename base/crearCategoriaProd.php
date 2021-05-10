@@ -34,7 +34,7 @@ $idCategoria = $lastcategorias + 1;
         <div class="form-group row">
             <label class="col-form-label col-1 text-right" for="catProd"><strong>Categoría</strong></label>
             <input type="text" class="form-control col-2" name="catProd" id="catProd" size=30
-                   onKeyPress="return aceptaLetra(event)"
+                   onkeydown="return aceptaLetra(event)"
                    maxlength="30" required>
         </div>
         <div class="form-group row">

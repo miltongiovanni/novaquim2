@@ -52,7 +52,7 @@ spl_autoload_register('cargarClases');
             <label class="col-form-label col-2" for="cantidad"><strong>Unidades por
                     empaque</strong></label>
             <input type="text" class="form-control col-2" name="cantidad" id="cantidad"
-                   onKeyPress="return aceptaNum(event)" required>
+                   onkeydown="return aceptaNum(event)" required>
         </div>
         <div class="row form-group">
             <div class="col-1">

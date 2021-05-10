@@ -11,7 +11,7 @@ include "../includes/valAcc.php";
 <script  src="scripts/block.js"></script>
 <script  src="scripts/ajax.js"></script>
 	<script >
-	document.onkeypress = stopRKey; 
+	document.onkeydown = stopRKey;
 	</script>
 
 </head>

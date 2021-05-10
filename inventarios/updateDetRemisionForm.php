@@ -44,7 +44,7 @@ $detalle = $detRemisionOperador->getDetTotalRemision($idRemision, $codProducto);
         <div class="form-group row">
             <label class="col-form-label col-1 text-right" for="cantProducto"><strong>Cantidad</strong></label>
             <input type="text" class="form-control col-4" name="cantProducto" id="cantProducto"
-                   value="<?= $detalle['cantProducto'] ?>" onKeyPress="return aceptaNum(event)">
+                   value="<?= $detalle['cantProducto'] ?>" onkeydown="return aceptaNum(event)">
         </div>
         <div class="form-group row">
             <div class="col-1 text-center">

@@ -43,7 +43,7 @@ $precio = $PrecioOperador->getPrecio($codigoGen);
             <label class="col-form-label col-1" for="fabrica"><strong>Precio
                     fábrica</strong></label>
             <input type="text" class="form-control col-2" name="fabrica" id="fabrica" maxlength="50"
-                   value="<?= $precio['fabrica']; ?>" onKeyPress="return aceptaNum(event)">
+                   value="<?= $precio['fabrica']; ?>" onkeydown="return aceptaNum(event)">
         </div>
         <div class="form-group row">
             <label class="col-form-label col-1" for="presActiva"><strong>Activo</strong></label>

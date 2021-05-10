@@ -78,12 +78,12 @@ $factura = $facturaOperador->getFactura($idFactura);
         </div>
         <div class="form-group row">
             <label class="col-form-label col-2 text-right" for="ordenCompra"><strong>Orden de Compra</strong></label>
-            <input type="text" class="form-control col-5" onKeyPress="return aceptaNum(event)" name="ordenCompra"
+            <input type="text" class="form-control col-5" onkeydown="return aceptaNum(event)" name="ordenCompra"
                    value="<?= $factura['ordenCompra'] ?>" id="ordenCompra">
         </div>
         <div class="form-group row">
             <label class="col-form-label col-2 text-right" for="descuento"><strong>Descuento</strong></label>
-            <input type="text" class="form-control col-5" onKeyPress="return aceptaNum(event)" name="descuento"
+            <input type="text" class="form-control col-5" onkeydown="return aceptaNum(event)" name="descuento"
                    value="<?= $factura['descuento'] * 100 ?>" id="descuento">
         </div>
         <div class="form-group row">

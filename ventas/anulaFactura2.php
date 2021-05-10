@@ -10,7 +10,7 @@ include "../includes/valAcc.php";
     <script  src="../js/validar.js"></script>
     <script  src="scripts/block.js"></script>
     <script >
-	document.onkeypress = stopRKey; 
+	document.onkeydown = stopRKey; 
 	</script>
 </head>
 <body> 

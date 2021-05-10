@@ -33,7 +33,7 @@ $servicio = $servicioperador->getServicio($idServicio);
             <label class="col-form-label col-2 text-right"  for="desServicio"><strong>Descripción
                     Servicio</strong></label>
             <input type="text" class="form-control col-2" name="desServicio" id="desServicio"
-                   value="<?= $servicio['desServicio'] ?>" onKeyPress="return aceptaLetra(event)">
+                   value="<?= $servicio['desServicio'] ?>" onkeydown="return aceptaLetra(event)">
         </div>
         <div class="form-group row">
 

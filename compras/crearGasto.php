@@ -46,7 +46,7 @@ include "../includes/valAcc.php";
         <div class="form-group row">
             <label class="col-form-label col-2 text-right" for="numFact"><strong>Número de Factura</strong></label>
             <input type="text" class="form-control col-2" name="numFact" id="numFact"
-                   onKeyPress="return aceptaNum(event)" required>
+                   onkeydown="return aceptaNum(event)" required>
         </div>
         <div class="form-group row">
             <label class="col-form-label col-2 text-right" for="fechGasto"><strong>Fecha de compra</strong></label>

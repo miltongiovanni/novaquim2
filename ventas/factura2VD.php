@@ -14,7 +14,7 @@ include "../includes/valAcc.php";
     <script  src="scripts/calendar-sp.js"></script>
     <script  src="scripts/calendario.js"></script>
     	<script >
-	document.onkeypress = stopRKey; 
+	document.onkeydown = stopRKey;
 	</script>
 </head>
 <body> 	
@@ -87,11 +87,11 @@ include "../includes/valAcc.php";
     </tr>
     <tr>
         <td align="right"><strong>Orden de Compra</strong></td>
-        <td><input name="ord_comp" type="text" size=20 onKeyPress="return aceptaNum(event)"  value="<?php echo $row['Ord_compra'];?>"/></td>
+        <td><input name="ord_comp" type="text" size=20 onkeydown="return aceptaNum(event)"  value="<?php echo $row['Ord_compra'];?>"/></td>
     </tr>
     <tr>
         <td align="right"><strong>Descuento</strong></td>
-        <td><input name="descuento" type="text" size=20 onKeyPress="return aceptaNum(event)" value="<?php echo $row['Descuento']*100;?>" /></td>
+        <td><input name="descuento" type="text" size=20 onkeydown="return aceptaNum(event)" value="<?php echo $row['Descuento']*100;?>" /></td>
     </tr>
     <tr>
         <td align="right"><strong>Observaciones</strong></td>

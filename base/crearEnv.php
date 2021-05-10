@@ -45,7 +45,7 @@ include "../includes/valAcc.php";
             </div>
             <div class="form-group row">
                 <label class="col-form-label col-1 text-right"  for="stockEnvase"><strong>Stock Envase</strong></label>
-                <input type="text" class="form-control col-2" name="stockEnvase" id="stockEnvase" onKeyPress="return aceptaNum(event)" required>
+                <input type="text" class="form-control col-2" name="stockEnvase" id="stockEnvase" onkeydown="return aceptaNum(event)" required>
                 <input type="hidden" class="form-control col-2" name="codIva" id="codIva" value="3">
             </div>
             <div class="form-group row">

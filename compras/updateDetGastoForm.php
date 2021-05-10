@@ -43,13 +43,13 @@ $detalle = $DetGastoOperador->getDetGasto($idGasto, $producto);
         <div class="form-group row">
             <label class="col-form-label col-1 text-right" for="cantGasto"><strong>Cantidad</strong></label>
             <input type="text" class="form-control col-2" name="cantGasto" id="cantGasto"
-                   value="<?= $detalle['cantGasto'] ?>" onKeyPress="return aceptaNum(event)">
+                   value="<?= $detalle['cantGasto'] ?>" onkeydown="return aceptaNum(event)">
         </div>
         <div class="form-group row">
             <label class="col-form-label col-1 text-right" for="precGasto"><strong>Precio</strong></label>
             <input type="text" class="form-control col-2" name="precGasto" id="precGasto"
                    value="<?= $detalle['precGasto'] ?>"
-                   onKeyPress="return aceptaNum(event)">
+                   onkeydown="return aceptaNum(event)">
 
         </div>
         <div class="form-group row">

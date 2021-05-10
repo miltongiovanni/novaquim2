@@ -33,7 +33,7 @@ $categoriaDis = $catsDisOperador->getCatDis($idCatDis);
         <div class="form-group row">
             <label class="col-form-label col-1" for="catDis"><strong>Categoría</strong></label>
             <input type="text" class="form-control col-2" name="catDis" id="catDis" size=30
-                   onKeyPress="return aceptaLetra(event)" value="<?= $categoriaDis['catDis']; ?>" maxlength="30">
+                   onkeydown="return aceptaLetra(event)" value="<?= $categoriaDis['catDis']; ?>" maxlength="30">
         </div>
         <div class="form-group row">
             <div class="col-1 text-center">

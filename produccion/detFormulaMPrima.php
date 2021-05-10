@@ -201,7 +201,7 @@ mysqli_close($link);*/
                 echo '</select>';
                 ?>
                 <input type="text" style="margin: 0 5px;" class="form-control col-1" name="porcentaje"
-                       id="porcentaje" onKeyPress="return aceptaNum(event)">
+                       id="porcentaje" onkeydown="return aceptaNum(event)">
                 <div class="col-2 text-center" style="padding: 0 20px;">
                     <button class="button" type="button" onclick="return Enviar(this.form)"><span>Adicionar detalle</span>
                     </button>

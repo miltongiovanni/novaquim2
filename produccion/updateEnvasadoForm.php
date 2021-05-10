@@ -46,7 +46,7 @@ $presentacion = $EnvasadoOperador->getEnvasado($lote, $codPresentacion);
             <label class="col-form-label col-2 text-right" for="cantPresentacion"><strong>Cantidad</strong></label>
             <input type="text" class="form-control col-3" name="cantPresentacion" id="cantPresentacion"
                    value="<?= $presentacion['cantPresentacion'] ?>"
-                   onKeyPress="return aceptaNum(event)">
+                   onkeydown="return aceptaNum(event)">
         </div>
         <div class="form-group row">
     <div class="col-1 text-center">

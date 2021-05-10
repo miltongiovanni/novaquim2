@@ -49,10 +49,24 @@ class RemisionesOperaciones
         return $result;
     }
 
+    public function getTableSalidaRemisiones()
+    {
+        $qry = "SELECT idRemision, fechaRemision, nomCliente, nomSucursal, r.idPedido, fechaPedido
+                FROM remision r
+                         LEFT JOIN clientes c on c.idCliente = r.idCliente
+                         LEFT JOIN clientes_sucursal cs on cs.idCliente = r.idCliente AND r.idSucursal=cs.idSucursal
+                         LEFT JOIN pedido p on r.idPedido = p.idPedido WHERE( YEAR(now())-YEAR(fechaRemision))<=1";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     public function getRemision($idRemision)
     {
         $qry = "SELECT idRemision,
                        nitCliente,
+                       idPedido,
                        fechaRemision,
                        nomCliente,
                        telCliente,
@@ -60,9 +74,9 @@ class RemisionesOperaciones
                        ciudad,
                        nomSucursal,
                        dirSucursal
-                FROM remision
-                         LEFT JOIN clientes c on c.idCliente = remision.idCliente
-                         LEFT JOIN clientes_sucursal cs on c.idCliente = cs.idCliente
+                FROM remision r
+                         LEFT JOIN clientes c on c.idCliente = r.idCliente
+                         LEFT JOIN clientes_sucursal cs on r.idCliente = cs.idCliente AND cs.idSucursal=r.idSucursal
                          LEFT JOIN ciudades c2 on c2.idCiudad = c.ciudadCliente
                 WHERE idRemision =?";
         $stmt = $this->_pdo->prepare($qry);
@@ -131,13 +145,26 @@ class RemisionesOperaciones
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute(array($idRemision));
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        if($result==false){
+        if ($result == false) {
             return false;
-        }
-        else{
+        } else {
             return true;
         }
     }
+
+    public function isValidRemision($idRemision)
+    {
+        $qry = "SELECT * FROM remision WHERE idRemision=?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($idRemision));
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($result == false) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
     public function updateRemision($datos)
     {
         $qry = "UPDATE remision1 SET cliente=?, fechaRemision=?, valor=? WHERE idRemision=?";

@@ -10,7 +10,7 @@ include "../includes/valAcc.php";
 <script  src="../js/validar.js"></script>
 <script  src="scripts/block.js"></script>	
 	<script >
-	document.onkeypress = stopRKey; 
+	document.onkeydown = stopRKey; 
 	</script>
 </head>
 <body>
@@ -128,7 +128,7 @@ include "../includes/valAcc.php";
       <td><strong>Valor Cobrado </strong></td>
       <td>&nbsp;</td>
       <td><div align="right">
-        <input name="Valor" type="text" id="Valor" size="30" onkeypress="return aceptaNum(event)"/>
+        <input name="Valor" type="text" id="Valor" size="30" onkeydown="return aceptaNum(event)"/>
       </div></td>
     </tr>
     <tr>

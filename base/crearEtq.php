@@ -49,7 +49,7 @@ include "../includes/valAcc.php";
             <label class="col-form-label col-2" for="stockEtiqueta"><strong>Stock
                     Etiqueta</strong></label>
             <input type="text" class="form-control col-2" name="stockEtiqueta" id="stockEtiqueta"
-                   onKeyPress="return aceptaNum(event)" required>
+                   onkeydown="return aceptaNum(event)" required>
             <input type="hidden" class="form-control col-2" name="codIva" id="codIva" value="3">
         </div>
         <div class="form-group row">

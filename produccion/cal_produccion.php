@@ -58,13 +58,13 @@ $producto = $ProdOperador->getProducto($ordenProd['codProducto']);
             <div class="col-1 text-center col-form-label"><strong>pH</strong></div>
             <div class="col-1 bg-blue text-center col-form-label">Min: <?= $producto['pHmin'] ?></div>
             <div class="col-1 bg-blue text-center col-form-label">Max: <?= $producto['pHmax'] ?></div>
-            <input type="text" class="form-control col-1 mx-2" name="pHProd" onKeyPress="return aceptaNum(event)">
+            <input type="text" class="form-control col-1 mx-2" name="pHProd" onkeydown="return aceptaNum(event)">
         </div>
         <div class="form-group row">
             <div class="col-1 text-center col-form-label"><strong>Densidad</strong></div>
             <div class="col-1 bg-blue text-center col-form-label">Min: <?= $producto['densMin'] ?></div>
             <div class="col-1 bg-blue text-center col-form-label">Max: <?= $producto['densMax'] ?></div>
-            <input type="text" class="form-control col-1 mx-2" name="densidadProd" onKeyPress="return aceptaNum(event)">
+            <input type="text" class="form-control col-1 mx-2" name="densidadProd" onkeydown="return aceptaNum(event)">
         </div>
         <div class="form-group row">
             <div class="col-1 text-center col-form-label"><strong>Olor</strong></div>

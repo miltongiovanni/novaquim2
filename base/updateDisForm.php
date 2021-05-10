@@ -42,14 +42,14 @@ $productoDistribucion = $ProductoDistribucionOperador->getProductoDistribucion($
                    for="producto"><strong>Producto</strong></label>
             <input type="text" class="form-control col-3" name="producto" id="producto"
                    value="<?= ($productoDistribucion['producto']) ?>"
-                   onKeyPress="return aceptaLetra(event)" maxlength="50">
+                   onkeydown="return aceptaLetra(event)" maxlength="50">
         </div>
         <div class="form-group row">
 
             <label class="col-form-label col-2 text-right"  for="precioVta"><strong>Precio de
                     Venta</strong></label>
             <input type="text" class="form-control col-2" name="precioVta" id="precioVta"
-                   value="<?= ($productoDistribucion['precioVta']) ?>" onKeyPress="return aceptaNum(event)">
+                   value="<?= ($productoDistribucion['precioVta']) ?>" onkeydown="return aceptaNum(event)">
             <label class="col-form-label col-1" for="codIva"><strong>Iva</strong></label>
             <?php
             $manager = new TasaIvaOperaciones();

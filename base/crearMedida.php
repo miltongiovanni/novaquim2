@@ -82,7 +82,7 @@ spl_autoload_register('cargarClases');
             ?>
             <label class="col-form-label col-1" for="codSiigo"><strong>Código Siigo</strong></label>
             <input type="text" name="codSiigo" id="codSiigo" class="form-control col-2"
-                   onKeyPress="return aceptaNum(event)" value="<?= ($row['maxsiigo'] + 1) ?>" readonly/>
+                   onkeydown="return aceptaNum(event)" value="<?= ($row['maxsiigo'] + 1) ?>" readonly/>
             <label class="col-form-label col-2" for="codigoGen"><strong>Código General</strong></label>
             <?php
             $PrecioOperador = new PreciosOperaciones();
@@ -101,7 +101,7 @@ spl_autoload_register('cargarClases');
         <div class="form-group row">
             <label class="col-form-label col-1" for="stockPresentacion"><strong>Stock Mínimo</strong></label>
             <input name="stockPresentacion" id="stockPresentacion" type="text" value="" class="form-control col-2"
-                   onKeyPress="return aceptaNum(event)" required/>
+                   onkeydown="return aceptaNum(event)" required/>
             <label class="col-form-label col-2" for="codTapa"><strong>Tapa</strong></label>
             <?php
             $TapasOperador = new TapasOperaciones();

@@ -16,6 +16,7 @@ $pedido = $pedidoOperador->getPedido($idPedido);
     <title>Factura de Venta</title>
     <meta charset="utf-8">
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/validar.js"></script>
 </head>
 <body>
@@ -34,7 +35,7 @@ $pedido = $pedidoOperador->getPedido($idPedido);
         </div>
         <div class="form-group row">
             <input type="text" class="form-control col-2" name="idFactura" id="idFactura"
-                   onKeyPress="return aceptaNum(event)" required>
+                   onkeydown="return aceptaNum(event)" required>
             <input type="date" class="form-control col-2 mx-2" name="fechaFactura" id="fechaFactura"
                    value="<?= $pedido['fechaEntrega']; ?>" required>
             <input type="date" class="form-control col-2" name="fechaVenc" id="fechaVenc" value="" required>
@@ -59,7 +60,7 @@ $pedido = $pedidoOperador->getPedido($idPedido);
             <input type="text" class="form-control col-4 mr-2" name="nomSucursal" id="nomSucursal"
                    value="<?= $pedido['nomSucursal']; ?>" readonly>
             <input type="text" class="form-control col-2 ml-2" name="ordenCompra" id="ordenCompra"
-                   onKeyPress="return aceptaNum(event)" value="0" required>
+                   onkeydown="return aceptaNum(event)" value="0" required>
         </div>
         <div class="row">
             <label class="col-form-label col-4 text-left mr-2" for="dirSucursal"><strong>Dirección de
@@ -70,7 +71,7 @@ $pedido = $pedidoOperador->getPedido($idPedido);
             <input type="text" class="form-control col-4 mr-2" name="dirSucursal" id="dirSucursal"
                    value="<?= $pedido['dirSucursal']; ?>" readonly>
             <input type="text" class="form-control col-2 ml-2" name="descuento" id="descuento"
-                   onKeyPress="return aceptaNum(event)" value="0" required>
+                   onkeydown="return aceptaNum(event)" value="0" required>
         </div>
         <div class="row">
             <label class="col-form-label col-6 text-left" for="observaciones"><strong>Observaciones</strong></label>

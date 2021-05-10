@@ -18,7 +18,7 @@ include "../includes/valAcc.php";
         <div class="form-group row">
             <label class="col-form-label col-1 text-right" for="idGasto"><strong>No. de gasto</strong></label>
             <input type="text" class="form-control col-1" name="idGasto" id="idGasto"
-                   onKeyPress="return aceptaNum(event)" required>
+                   onkeydown="return aceptaNum(event)" required>
         </div>
         <div class="form-group row">
                         <div class="col-1 text-center" >

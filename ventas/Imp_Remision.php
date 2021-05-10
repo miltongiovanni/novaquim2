@@ -28,9 +28,13 @@ $pdf->Cell(18,4,utf8_decode('REMISIÓN:'),0 , 0, 'R');
 $pdf->SetFont('Arial','',8);
 $pdf->Cell(11,4,$remision['idRemision'],0,0);
 $pdf->SetFont('Arial','B',8);
+$pdf->Cell(14,4,utf8_decode('PEDIDO:'),0 , 0, 'R');
+$pdf->SetFont('Arial','',8);
+$pdf->Cell(11,4,$remision['idPedido'],0,0);
+$pdf->SetFont('Arial','B',8);
 $pdf->Cell(15,4,'CLIENTE:',0, 0, 'R');
 $pdf->SetFont('Arial','',8);
-$pdf->Cell(75,4,utf8_decode($remision['nomCliente']),0,1);
+$pdf->Cell(55,4,utf8_decode($remision['nomCliente']),0,1);
 $pdf->SetFont('Arial','B',8);
 $pdf->Cell(43,4,'Calle 35 C Sur No. 26 F - 40',0,0, 'C');
 $pdf->SetFont('Arial','B',8);
@@ -62,7 +66,7 @@ $pdf->SetFont('Arial','',7);
 $pdf->SetXY(20,26);
 for($i=0; $i<count($detalle); $i++)
 {
-	$codprod=$detalle[$i]['codProducto'];
+	$codprod=$detalle[$i]['codigo'];
 	$prod=$detalle[$i]['producto'];
 	$cant=$detalle[$i]['cantProducto'];
 	$pdf->Cell(10,3,$i+1,'L',0,'C');
@@ -102,9 +106,13 @@ $pdf->Cell(18,4,utf8_decode('REMISIÓN:'),0 , 0, 'R');
 $pdf->SetFont('Arial','',8);
 $pdf->Cell(11,4,$remision['idRemision'],0,0);
 $pdf->SetFont('Arial','B',8);
+$pdf->Cell(14,4,utf8_decode('PEDIDO:'),0 , 0, 'R');
+$pdf->SetFont('Arial','',8);
+$pdf->Cell(11,4,$remision['idPedido'],0,0);
+$pdf->SetFont('Arial','B',8);
 $pdf->Cell(15,4,'CLIENTE:',0, 0, 'R');
 $pdf->SetFont('Arial','',8);
-$pdf->Cell(75,4,utf8_decode($remision['nomCliente']),0,1);
+$pdf->Cell(55,4,utf8_decode($remision['nomCliente']),0,1);
 $pdf->SetFont('Arial','B',8);
 $pdf->Cell(43,4,'Calle 35 C Sur No. 26 F - 40',0,0, 'C');
 $pdf->SetFont('Arial','B',8);
@@ -137,7 +145,7 @@ $pdf->SetXY(20,156);
 $pdf->SetFont('Arial','',7);
 for($i=0; $i<count($detalle); $i++)
 {
-	$codprod=$detalle[$i]['codProducto'];
+	$codprod=$detalle[$i]['codigo'];
 	$prod=$detalle[$i]['producto'];
 	$cant=$detalle[$i]['cantProducto'];
 	$pdf->Cell(10,3,$i+1,'L',0,'C');
