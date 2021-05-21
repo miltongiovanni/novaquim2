@@ -23,13 +23,10 @@ foreach ($_POST as $nombre_campo => $valor) {
     <body>
 <?php
 $tasaDescuento = $descuento / 100;
+$pedidosList = explode(',', $idPedido);
 $facturaOperador = new FacturasOperaciones();
 $detFacturaOperador = new DetFacturaOperaciones();
-$remisionOperador = new RemisionesOperaciones();
-$detRemisionOperador = new DetRemisionesOperaciones();
 $detPedidoOperador = new DetPedidoOperaciones();
-$invProdTerminadoOperador = new InvProdTerminadosOperaciones();
-$invDistribucionOperador = new InvDistribucionOperaciones();
 $pedidoOperador = new PedidosOperaciones();
 if ($facturaOperador->isValidIdFactura($idFactura)) {
     $ruta = "CrearFactura.php";
@@ -41,61 +38,19 @@ if ($facturaOperador->isValidIdFactura($idFactura)) {
 $fecha_actual = hoy();
 $dias_v = Calc_Dias($fechaVenc, $fecha_actual);
 $dias_f = Calc_Dias($fechaVenc, $fechaFactura);
+
 if (($dias_v >= 0) && ($dias_f >= 0)) {
     try {
-        /*CREACIÓN DEL ENCABEZADO DE LA REMISIÓN*/
-        $datos = array($idCliente, $fechaFactura, $idPedido, $idSucursal);
-        $idRemision = $remisionOperador->makeRemisionFactura($datos);
-
         /*CREACIÓN DEL ENCABEZADO DE LA FACTURA*/
         $datos = array($idFactura, $idPedido, $idCliente, $fechaFactura, $fechaVenc, $tipPrecio, 'E', $idRemision, $ordenCompra, $tasaDescuento, $observaciones);
         $facturaOperador->makeFactura($datos);
         //CON BASE EN EL PEDIDO SE LLENA LA FACTURA
-        $detPedido = $detPedidoOperador->getDetPedidoFactura($idPedido);
+        $detPedido = $detPedidoOperador->getTotalPedidosPorFacturar($idPedido);
         for ($i = 0; $i < count($detPedido); $i++) {
             $codProducto = $detPedido[$i]['codProducto'];
-            $cantidad = $detPedido[$i]['cantProducto'];
+            $cantidad = $detPedido[$i]['cantidad'];
             $precio = $detPedido[$i]['precio'];
             $codIva = $detPedido[$i]['codIva'];
-            /*DESCARGA DEL INVENTARIO*/
-            $unidades = $cantidad;
-            if (($codProducto < 100000) && ($codProducto > 100)) {
-                $invProdTerminado = $invProdTerminadoOperador->getInvProdTerminado($codProducto);
-                for ($j = 0; $j < count($invProdTerminado); $j++) {
-                    $inv = $invProdTerminado[$j]['invProd'];
-                    $lote = $invProdTerminado[$j]['loteProd'];
-                    if (($inv >= $unidades)) {
-                        $nvoInv = $inv - $unidades;
-                        /*SE ADICIONA A LA REMISIÓN*/
-                        $datos = array($idRemision, $codProducto, $unidades, $lote);
-                        $detRemisionOperador->makeDetRemisionFactura($datos);
-                        $unidades = 0;
-                        /*SE ACTUALIZA EL INVENTARIO*/
-                        $datos = array($nvoInv, $codProducto, $lote);
-                        $invProdTerminadoOperador->updateInvProdTerminado($datos);
-                        break;
-                    } else {
-                        $unidades = $unidades - $inv;
-                        /*SE ACTUALIZA EL INVENTARIO*/
-                        $datos = array(0, $codProducto, $lote);
-                        $invProdTerminadoOperador->updateInvProdTerminado($datos);
-                        /*SE ADICIONA A LA REMISIÓN*/
-                        $datos = array($idRemision, $codProducto, $inv, $lote);
-                        $detRemisionOperador->makeDetRemisionFactura($datos);
-                    }
-                }
-            } elseif ($codProducto > 100000) {
-                //PRODUCTOS DE DISTRIBUCIÓN
-                $invDistribucionOperador = new InvDistribucionOperaciones();
-                $invDistribucion = $invDistribucionOperador->getInvDistribucion($codProducto);
-                $nvoInvDistribucion = $invDistribucion - $cantidad;
-                /*SE ACTUALIZA EL INVENTARIO*/
-                $datos = array($nvoInvDistribucion, $codProducto);
-                $invDistribucionOperador->updateInvDistribucion($datos);
-                /*SE ADICIONA A LA REMISIÓN*/
-                $datos = array($idRemision, $codProducto, $cantidad, 0);
-                $detRemisionOperador->makeDetRemisionFactura($datos);
-            }
             /*SE ADICIONA A LA FACTURA*/
             $datos = array($idFactura, $codProducto, $cantidad, $precio, $codIva);
             $detFacturaOperador->makeDetFactura($datos);
@@ -115,7 +70,9 @@ if (($dias_v >= 0) && ($dias_f >= 0)) {
         $totalR = round($subtotal - $descuento + $iva);
         $datos = array($total, $reteiva, $reteica, $retefuente, $subtotal, $iva, $totalR, $idFactura);
         $facturaOperador->updateTotalesFactura($datos);
-        $pedidoOperador->updateEstadoPedido('F', $idPedido);
+        foreach ($pedidosList as $pedido){
+            $pedidoOperador->updateEstadoPedido('F', $pedido);
+        }
         $_SESSION['idFactura'] = $idFactura;
         $ruta = "det_factura.php";
         $mensaje = "Factura creada con éxito";

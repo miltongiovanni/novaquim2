@@ -15,15 +15,27 @@ $detFacturaOperador = new DetFacturaOperaciones();
 $detRemisionOperador = new DetRemisionesOperaciones();
 $invProdTerminadoOperador = new InvProdTerminadosOperaciones();
 $invDistribucionOperador = new InvDistribucionOperaciones();
-
+$remisionOperador = new RemisionesOperaciones();
+?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Anular Factura</title>
+    <meta charset="utf-8">
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../js/validar.js"></script>
+</head>
+<body>
+<?php
 $factura = $facturaOperador->getFactura($idFactura);
-$idRemision = $factura['idRemision'];
-$detalleRemision = $detRemisionOperador->getDetRemisionLote($idRemision);
+$remisiones = explode(',', $factura['idRemision']);
+$detalleRemision = $detRemisionOperador->getDetRemisionesFacturaLote($factura['idRemision']);
 
 try {
     for ($i = 0; $i < count($detalleRemision); $i++) {
         $codProducto = $detalleRemision[$i]['codProducto'];
-        $cantProducto = $detalleRemision[$i]['cantProducto'];
+        $cantProducto = $detalleRemision[$i]['cantidadProducto'];
         $loteProducto = $detalleRemision[$i]['loteProducto'];
 
         /*DESCARGA DEL INVENTARIO*/
@@ -49,17 +61,24 @@ try {
     /*SE BORRA EL DETALLE DE LA FACTURA*/
     $detFacturaOperador->deleteAllDetFactura($idFactura);
     /*SE BORRA EL DETALLE DE LA REMISION*/
-    $detRemisionOperador->deleteDetRemisionFactura($idRemision);
+    foreach ($remisiones as $remision) {
+        $detRemisionOperador->deleteDetRemisionFactura($remision);
+        $remisionOperador->deleteSalidaRemision($remision);
+    }
     //CAMBIA EL ESTADO DE LA FACTURA
     $facturaOperador->anularFactura($observaciones, $idFactura);
     $ruta = "listarFacturas.php";
     $mensaje = "Factura anulada con éxito";
-}catch (Exception $e){
+    $icon = "success";
+} catch (Exception $e) {
     $ruta = "anularFactura.php";
     $mensaje = "Error al anular la factura";
-} finally
-{
+    $icon = "error";
+} finally {
     unset($conexion);
     unset($stmt);
     mover_pag($ruta, $mensaje, $icon);
 }
+?>
+</body>
+</html>

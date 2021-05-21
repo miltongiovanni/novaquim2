@@ -1,7 +1,7 @@
 <?php
 include "includes/valAcc.php";
 include "includes/conect.php";
-$perfil1 = $_SESSION['Perfil'];
+$perfil1 = isset($_SESSION['Perfil'])? $_SESSION['Perfil'] : '' ;
 // On enregistre notre autoload.
 
 function cargarClases($classname)
@@ -88,7 +88,7 @@ for ($i = 0; $i < count($perfiles); $i++) {
         <div class="col-1"><img src="images/LogoNova.jpg"></div>
         <div class="col-11 text-center">
             <?php
-            $idUsuario = $_SESSION['IdUsuario'];
+            $idUsuario = isset($_SESSION['IdUsuario'])? $_SESSION['IdUsuario']: '';
             $usuarioOperador = new UsuariosOperaciones();
             $row = $usuarioOperador->getUser($idUsuario);
             $nombre = $row['nombre'];

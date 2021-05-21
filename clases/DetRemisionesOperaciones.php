@@ -117,6 +117,27 @@ class DetRemisionesOperaciones
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);;
         return $result;
     }
+
+    public function getDetRemisionesFacturaLote($idRemision)
+    {
+        $qry = "SELECT dr.codProducto, presentacion producto, SUM(cantProducto) cantidadProducto, loteProducto
+                FROM det_remision dr
+                         LEFT JOIN prodpre p on dr.codProducto = p.codPresentacion
+                WHERE idRemision IN (20046,20047,20043,20044)
+                  AND dr.codProducto < 100000 AND dr.codProducto>10000
+                GROUP BY loteProducto, presentacion, dr.codProducto
+                UNION
+                SELECT dr.codProducto, producto, cantProducto cantidadProducto, loteProducto
+                FROM det_remision dr
+                         LEFT JOIN distribucion ON dr.codProducto = idDistribucion
+                WHERE idRemision IN (20046,20047,20043,20044)
+                  AND dr.codProducto > 100000 ";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);;
+        return $result;
+    }
+
     public function getDetRemisionProducto($idRemision, $codProducto)
     {
         $qry = "SELECT dr.codProducto, presentacion producto, cantProducto, loteProducto

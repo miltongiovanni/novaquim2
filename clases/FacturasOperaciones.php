@@ -60,7 +60,7 @@ class FacturasOperaciones
 
     public function getTotalesFactura($idFactura)
     {
-        $qry = "SELECT idFactura, SUM(subtotal) subtotalfactura, SUM(iva10) iva10factura, SUM(iva19) iva19factura
+        $qry = "SELECT idFactura, SUM(subtotal) subtotalfactura, ROUND(SUM(iva10)) iva10factura, ROUND(SUM(iva19)) iva19factura
                 FROM
                     (SELECT dp.idFactura, cantProducto, precioProducto,
                             cantProducto*precioProducto subtotal, IF(idTasaIvaProducto=5 OR idTasaIvaProducto=2, cantProducto*precioProducto*tasaIva,0  ) iva10,

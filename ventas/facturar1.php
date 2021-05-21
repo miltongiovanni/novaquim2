@@ -5,14 +5,14 @@ include "../includes/valAcc.php";
 <html lang="es">
 <head>
     <meta charset="utf-8">
-    <title>Habilitar Pedido para Facturar</title>
+    <title>Habilitar Pedido para Entregar</title>
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/validar.js"></script>
 </head>
 <body>
 <div id="contenedor">
-    <div id="saludo"><strong>HABILITAR PEDIDO PARA FACTURAR</strong></div>
+    <div id="saludo"><strong>HABILITAR PEDIDO PARA ENTREGAR</strong></div>
     <form id="form1" name="form1" method="post" action="hfactura1.php">
         <div class="form-group row">
             <label class="col-form-label col-1 text-right" for="idPedido"><strong>No. de pedido</strong></label>

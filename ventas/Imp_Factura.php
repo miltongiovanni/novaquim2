@@ -44,41 +44,41 @@ $pdf->Cell(25,3.5,utf8_decode('DIRECCIÓN:'),0, 0, 'R');
 $pdf->SetFont('Arial','',10);
 $pdf->Cell(110,3.5,(utf8_decode($factura['dirCliente'])));
 $pdf->SetFont('Arial','B',10);
-$pdf->Cell(35,3.5,utf8_decode('REMISIÓN:'),0 , 0, 'R');
+$pdf->Cell(35,3.5,'FORMA DE PAGO:',0 , 0, 'R');
 $pdf->SetFont('Arial','',10);
-$pdf->Cell(35,3.5,$factura['idRemision'],0,1);
+if ($factura['fechaFactura']==$factura['fechaVenc'])
+	$pago="Contado";
+else
+	$pago="Crédito";
+$pdf->Cell(35,3.5,utf8_decode($pago),0,1);
 $pdf->SetFont('Arial','B',10);
 $pdf->Cell(25,3.5,utf8_decode('TELÉFONO:'),0, 0, 'R');
 $pdf->SetFont('Arial','',10);
-$pdf->Cell(110,3.5,$factura['telCliente']);
+$pdf->Cell(50,3.5,$factura['telCliente']);
+$pdf->SetFont('Arial','B',10);
+$pdf->Cell(35,3.5,utf8_decode('REMISIÓN(ES):'),0 , 0, 'R');
+$pdf->SetFont('Arial','',10);
+$pdf->Cell(95,3.5,$factura['idRemision'],0,1);
+$pdf->SetFont('Arial','B',10);
+$pdf->Cell(25,3.5,'CIUDAD:',0, 0, 'R');
+$pdf->SetFont('Arial','',10);
+$pdf->Cell(50,3.5,utf8_decode($factura['Ciudad']));
+$pdf->SetFont('Arial','B',10);
+$pdf->Cell(35,3.5,'PEDIDO(S):',0 , 0, 'R');
+$pdf->SetFont('Arial','',10);
+$pdf->Cell(95,3.5,$factura['idPedido'],0,1);
+$pdf->SetFont('Arial','B',10);
+$pdf->Cell(25,3.5,'VENDEDOR:',0, 0, 'R');
+$pdf->SetFont('Arial','',10);
+$pdf->Cell(110,3.5,utf8_decode($factura['vendedor']));
 $pdf->SetFont('Arial','B',10);
 $pdf->Cell(35,3.5,'ORDEN DE COMPRA:',0 , 0, 'R');
 $pdf->SetFont('Arial','',10);
 if ($factura['ordenCompra']!=0)
 	$orden="";
 else
-$orden=$factura['ordenCompra'];
+	$orden=$factura['ordenCompra'];
 $pdf->Cell(35,3.5,$orden,0,1);
-$pdf->SetFont('Arial','B',10);
-$pdf->Cell(25,3.5,'CIUDAD:',0, 0, 'R');
-$pdf->SetFont('Arial','',10);
-$pdf->Cell(110,3.5,utf8_decode($factura['Ciudad']));
-$pdf->SetFont('Arial','B',10);
-$pdf->Cell(35,3.5,'FORMA DE PAGO:',0 , 0, 'R');
-$pdf->SetFont('Arial','',10);
-if ($factura['fechaFactura']==$factura['fechaVenc'])
-	$pago="Contado"; 
-else
-	$pago="Crédito";
-$pdf->Cell(35,3.5,utf8_decode($pago),0,1);
-$pdf->SetFont('Arial','B',10);
-$pdf->Cell(25,3.5,'VENDEDOR:',0, 0, 'R');
-$pdf->SetFont('Arial','',10);
-$pdf->Cell(110,3.5,utf8_decode($factura['vendedor']));
-$pdf->SetFont('Arial','B',10);
-$pdf->Cell(35,3.5,'PEDIDO:',0 , 0, 'R');
-$pdf->SetFont('Arial','',10);
-$pdf->Cell(35,3.5,$factura['idPedido'],0,1);
 $pdf->SetXY(10,51);
 $pdf->SetFont('Arial','B',10);
 $pdf->Cell(25,4,utf8_decode('CÓDIGO'), 1,0,'C');

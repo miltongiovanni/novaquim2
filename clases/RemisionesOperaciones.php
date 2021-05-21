@@ -34,6 +34,13 @@ class RemisionesOperaciones
         return $this->_pdo->lastInsertId();
     }
 
+    public function deleteSalidaRemision($idRemision)
+    {
+        $qry = "DELETE FROM remision WHERE idRemision= ?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($idRemision));
+    }
+
     public function getTableRemisiones()
     {
         $qry = "SELECT idRemision, nitProv, nomProv, numFact, fechRemision, fechVenc, descEstado, CONCAT('$', FORMAT(totalRemision, 0)) totalRemision,

@@ -241,7 +241,7 @@ class PedidosOperaciones
                        fechaEntrega,
                        tp.tipoPrecio,
                        nomCliente,
-                       IF(p.estado='A', 'Anulado', IF(p.estado='F', 'Facturado', IF(p.estado='P','Pendiente', 'Por facturar'))) estadoPedido,
+                       IF(p.estado='A', 'Anulado', IF(p.estado='F', 'Facturado', IF(p.estado='P','Pendiente', IF(p.estado='E','Entregado', 'Por facturar')))) estadoPedido,
                        nomSucursal,
                        dirSucursal
                 FROM pedido p
@@ -265,7 +265,7 @@ class PedidosOperaciones
                        fechaEntrega,
                        tp.tipoPrecio,
                        nomCliente,
-                       IF(p.estado='A', 'Anulado', IF(p.estado='F', 'Facturado', IF(p.estado='P','Pendiente', 'Por facturar'))) estadoPedido,
+                       IF(p.estado='A', 'Anulado', IF(p.estado='F', 'Facturado', IF(p.estado='P','Pendiente', IF(p.estado='E','Por entregar', 'Por facturar')))) estadoPedido,
                        nomSucursal,
                        dirSucursal
                 FROM pedido p
@@ -281,6 +281,44 @@ class PedidosOperaciones
         return $result;
     }
 
+    public function getPedidosPorFacturarCliente($idCliente)
+    {
+        $qry = "SELECT idPedido, nomSucursal
+                FROM pedido p
+                         LEFT JOIN clientes c on c.idCliente = p.idCliente
+                         LEFT JOIN clientes_sucursal cs on c.idCliente = cs.idCliente AND cs.idSucursal=p.idSucursal
+                         LEFT JOIN ciudades c2 on c2.idCiudad = c.ciudadCliente
+                WHERE p.idCliente =$idCliente AND estado ='E'";
+
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    public function getSucursalClientePorPedido($idPedido)
+    {
+        $qry = "SELECT idPedido, nomSucursal
+                FROM pedido p
+                         LEFT JOIN clientes_sucursal cs on cs.idSucursal=p.idSucursal
+                WHERE idPedido =$idPedido";
+
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result['idPedido']. ' - '. $result['nomSucursal'];
+    }
+
+    public function getRemisionPorPedido($idPedido)
+    {
+        $qry = "SELECT idRemision FROM remision WHERE idPedido=$idPedido";
+
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result['idRemision'];
+    }
+
     public function getTablePedidosPendientes()
     {
         $qry = "SELECT idPedido,
@@ -288,14 +326,14 @@ class PedidosOperaciones
                        fechaEntrega,
                        tp.tipoPrecio,
                        nomCliente,
-                       IF(p.estado='A', 'Anulado', IF(p.estado='F', 'Facturado', IF(p.estado='P','Pendiente', 'Por facturar'))) estadoPedido,
+                       IF(p.estado='A', 'Anulado', IF(p.estado='F', 'Facturado', IF(p.estado='P','Pendiente', IF(p.estado='E','Por entregar', 'Por facturar')))) estadoPedido,
                        nomSucursal,
                        dirSucursal
                 FROM pedido p
                          LEFT JOIN clientes c on c.idCliente = p.idCliente
                          LEFT JOIN clientes_sucursal cs on p.idCliente = cs.idCliente AND p.idSucursal = cs.idSucursal
                          LEFT JOIN tip_precio tp ON p.tipoPrecio = tp.idPrecio
-                 WHERE p.estado='P'";
+                 WHERE p.estado='P' ORDER BY idPedido";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -313,7 +351,7 @@ class PedidosOperaciones
                        tp.tipoPrecio,
                        p.estado,
                        IF(p.estado = 'A', 'Anulado',
-                          IF(p.estado = 'F', 'Facturado', IF(p.estado = 'P', 'Pendiente', 'Por facturar'))) estadoPedido,
+                          IF(p.estado = 'F', 'Facturado', IF(p.estado = 'P', 'Pendiente', IF(p.estado='E','Por entregar', 'Por facturar')))) estadoPedido,
                        p.idSucursal,
                        nomSucursal,
                        dirSucursal,

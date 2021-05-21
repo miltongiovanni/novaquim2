@@ -153,10 +153,10 @@ $totales = calcularTotalesFactura($idFactura, $factura['descuento']);
     <div class="form-group row">
         <div class="col-1 text-right"><strong>No. de Factura</strong></div>
         <div class="col-1 bg-blue"><?= $idFactura; ?></div>
-        <div class="col-2 text-right"><strong>No. de Pedido</strong></div>
-        <div class="col-1 bg-blue"><?= $factura['idPedido']; ?></div>
-        <div class="col-1 text-right"><strong>Remision</strong></div>
-        <div class="col-1 bg-blue"><?= $factura['idRemision'] ?></div>
+        <div class="col-1 text-right"><strong>Pedido(s)</strong></div>
+        <div class="col-2 bg-blue"><?= $factura['idPedido']; ?></div>
+        <div class="col-1 text-right"><strong>Remision(es)</strong></div>
+        <div class="col-2 bg-blue"><?= $factura['idRemision'] ?></div>
         <div class="col-1 text-right"><strong>Estado</strong></div>
         <div class="col-1 bg-blue"><?= $factura['estadoFactura'] ?></div>
     </div>
@@ -279,13 +279,6 @@ $totales = calcularTotalesFactura($idFactura, $factura['descuento']);
             <form action="Imp_Factura.php" method="post" target="_blank">
                 <input name="idFactura" type="hidden" value="<?php echo $idFactura; ?>">
                 <button name="Submit" type="submit" class="button"><span>Imprimir Factura</span></button>
-            </form>
-        </div>
-
-        <div class="col-2">
-            <form action="Imp_Remision.php" method="post" target="_blank">
-                <input name="idRemision" type="hidden" value="<?php echo $factura['idRemision']; ?> ">
-                <button name="Submit" type="submit" class="button"><span>Imprimir Remisión</span></button>
             </form>
         </div>
         <?php

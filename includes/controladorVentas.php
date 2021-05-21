@@ -56,6 +56,23 @@ function findClientePedido()
     }
 }
 
+function findClienteParaFacturar()
+{
+    $q = $_POST['q'];
+    $clienteOperador = new ClientesOperaciones();
+    $clientes = $clienteOperador->getClientesByName($q);
+    if (count($clientes) == 0) {
+        echo '<input type="text" class="form-control col-12" value="No hay sugerencias" readOnly>';
+    } else {
+        echo '<select name="idCliente" id="idCliente" class="form-control col-12" onchange="findPedidosPorFacturar(this.value);" required>';
+        echo '<option value="" selected disabled>Escoja un cliente</option>';
+        for ($i = 0; $i < count($clientes); $i++) {
+            echo '<option value=' . $clientes[$i]['idCliente'] . '>' . $clientes[$i]['nomCliente'] . '</option>';
+        }
+        echo '</select>';
+    }
+}
+
 function findClienteCotizacion()
 {
     $q = $_POST['q'];
@@ -80,6 +97,17 @@ function findSucursalesByCliente()
     $sucursales = $sucursalOperador->getSucursalesCliente($idCliente);
     for ($i = 0; $i < count($sucursales); $i++) {
         echo '<option value=' . $sucursales[$i]['idSucursal'] . '>' . $sucursales[$i]['nomSucursal'] . '</option>';
+    }
+}
+
+function findPedidosPorFacturar()
+{
+    $idCliente = $_POST['idCliente'];
+    $pedidosOperador = new PedidosOperaciones();
+    $pedidos = $pedidosOperador->getPedidosPorFacturarCliente($idCliente);
+    foreach ($pedidos as  $pedido){
+
+        echo '<option value=' . $pedido['idPedido'] . '>'. $pedido['idPedido'] .' - ' . $pedido['nomSucursal'] . '</option>';
     }
 }
 
@@ -262,6 +290,12 @@ switch ($action) {
         break;
     case 'findClientePedido':
         findClientePedido();
+        break;
+    case 'findClienteParaFacturar':
+        findClienteParaFacturar();
+        break;
+    case 'findPedidosPorFacturar':
+        findPedidosPorFacturar();
         break;
     case 'findClienteCotizacion':
         findClienteCotizacion();
