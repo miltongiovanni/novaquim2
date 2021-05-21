@@ -24,11 +24,11 @@ include "../includes/valAcc.php";
         }
 
         .width3 {
-            width: 5%;
+            width: 10%;
         }
 
         .width4 {
-            width: 5%;
+            width: 10%;
         }
 
         .width5 {
@@ -36,7 +36,7 @@ include "../includes/valAcc.php";
         }
 
         .width6 {
-            width: 10%;
+            width: 8%;
         }
 
         .width7 {
@@ -44,10 +44,10 @@ include "../includes/valAcc.php";
         }
 
         .width8 {
-            width: 10%;
+            width: 5%;
         }
         .width9 {
-            width: 10%;
+            width: 7%;
         }
     </style>
     <script src="../js/jquery-3.3.1.min.js"></script>
@@ -102,7 +102,7 @@ include "../includes/valAcc.php";
                     },
                     {
                         "data": "idRemision",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-left'
                     },
                     {
                         "data": "nomCliente",
@@ -118,7 +118,7 @@ include "../includes/valAcc.php";
                     },
                     {
                         "data": "totalFactura",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-right'
                     },
                     {
                         "data": "estadoFactura",

@@ -10,9 +10,9 @@ function Longitud(form) {
 //Envia solicitando confirmación
 function Enviar(form) {
     for (i = 0; i < form.elements.length; i++) {
-        if (form.elements[i].type === "text" || form.elements[i].type === "date" || form.elements[i].type === "select-one" || form.elements[i].type === "password") {
+        if (form.elements[i].type === "text" || form.elements[i].type === "date" || form.elements[i].type === "select-one" || form.elements[i].type === "password"|| form.elements[i].type === "textarea") {
             if (form.elements[i].value === "" && form.elements[i].required) {
-                if ((form.elements[i].type === "text" || form.elements[i].type === "date" || form.elements[i].type === "password") && form.elements[i].required) {
+                if ((form.elements[i].type === "text" || form.elements[i].type === "date" || form.elements[i].type === "password"|| form.elements[i].type === "textarea") && form.elements[i].required) {
                     //alert("Este campo es requerido");
                     alerta('Este campo es requerido', 'warning', '', form.elements[i]);
                     //form.elements[i].focus();
@@ -126,9 +126,11 @@ function Enviar1(form) {
 */
 
 function aceptaNum(evt) {
-    var nav4 = !!window.Event;
-    var key = nav4 ? evt.which : evt.keyCode;
-    return (key <= 13 || key === 46 || (key >= 48 && key <= 57));
+    //var nav4 = !!window.Event;
+    //var key = nav4 ? evt.which : evt.keyCode;
+    var key = evt.which || evt.keyCode;
+    //console.log(key);
+    return (key <= 13 || key === 46 || key === 110 || (key >= 48 && key <= 57) || (key >= 96 && key <= 105) );
 }
 
 function valida_texto(texto) {
@@ -157,8 +159,9 @@ function valida_texto(texto) {
 }
 
 function aceptaLetra(evt) {
-    var key = nav4 ? evt.which : evt.keyCode;
-    return (key <= 13 || (key >= 65 && key <= 90) || (key >= 97 && key <= 122) || (key == 32) || (key == 180) || (key == 193) || (key == 201) || (key == 205) || (key == 209) || (key == 211) || (key == 218) || (key == 220) || (key == 225) || (key == 233) || (key == 237) || (key == 241) || (key == 243) || (key == 250) || (key == 252));
+    //var key = nav4 ? evt.which : evt.keyCode;
+    var key = evt.which || evt.keyCode;
+    return (key <= 13 || (key >= 65 && key <= 90) || (key >= 97 && key <= 122) || (key === 32) || (key === 180) || (key === 193) || (key === 201) || (key === 205) || (key === 209) || (key === 211) || (key === 218) || (key === 220) || (key === 225) || (key === 233) || (key === 237) || (key === 241) || (key === 243) || (key === 250) || (key === 252));
 }
 
 function fecha() {

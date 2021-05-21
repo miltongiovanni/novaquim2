@@ -15,14 +15,9 @@ include "../includes/valAcc.php";
     <div id="saludo"><strong>INGRESAR REMISIÓN A ANULAR</strong></div>
     <form id="form1" name="form1" method="post" action="anulaRemision.php">
         <div class="form-group row">
-            <label class="col-form-label col-2 text-right" for="idRemision"><strong>No. de Remisión</strong></label>
-            <input type="text" class="form-control col-3" onkeydown="return aceptaNum(event)" name="idRemision"
+            <label class="col-form-label col-1 text-right" for="idRemision"><strong>Remisión</strong></label>
+            <input type="text" class="form-control col-1" onkeydown="return aceptaNum(event)" name="idRemision"
                    id="idRemision" required>
-        </div>
-        <div class="form-group row">
-            <label class="col-2 text-right col-form-label" for="observaciones"><strong>Razón de
-                    Anulación</strong></label>
-            <textarea class="form-control col-3 " name="observaciones"></textarea>
         </div>
         <div class="row form-group">
             <div class="col-1">

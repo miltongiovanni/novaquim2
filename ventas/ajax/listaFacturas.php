@@ -10,6 +10,8 @@ $facturaOperador = new FacturasOperaciones();
 $facturas = $facturaOperador->getTableFacturas();
 $detFacturaOperador = new DetFacturaOperaciones();
 for($i=0;$i<count($facturas); $i++){
+    $facturas[$i]['idPedido']= str_replace(',', ', ', $facturas[$i]['idPedido']);
+    $facturas[$i]['idRemision']= str_replace(',', ', ', $facturas[$i]['idRemision']);
     $facturas[$i]['detFactura']= $detFacturaOperador->getDetFactura($facturas[$i]['idFactura']);
 }
 $titulo = array(
