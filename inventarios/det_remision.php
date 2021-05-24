@@ -155,7 +155,7 @@ $remision = $remisionOperador->getRemisionById($idRemision);
 </head>
 <body>
 <div id="contenedor">
-    <div id="saludo1"><strong>DETALLE DE LA REMISIÓN</strong></div>
+    <div id="saludo1"><h4>DETALLE DE LA REMISIÓN</h4></div>
     <div class="form-group row">
         <div class="col-2 text-right"><strong>No. de Remisión</strong></div>
         <div class="col-1 bg-blue"><?= $idRemision; ?></div>

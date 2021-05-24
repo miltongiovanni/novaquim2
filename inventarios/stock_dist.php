@@ -4,9 +4,9 @@ include "../includes/valAcc.php";
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<title>Consulta de Stock de Productos de Distribución</title>
-<meta charset="utf-8">
-<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <title>Consulta de Stock de Productos de Distribución</title>
+    <meta charset="utf-8">
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="../css/datatables.css">
     <style>
         table {
@@ -115,7 +115,7 @@ include "../includes/valAcc.php";
 </head>
 <body>
 <div id="contenedor">
-<div id="saludo1"><strong>CONSULTA DE STOCK DE ENVASE</strong></div>
+    <div id="saludo1"><h4>CONSULTA DE STOCK DE ENVASE</h4></div>
     <div class="row flex-end">
         <div class="col-1">
             <button class="button" onclick="window.location='../menu.php'">

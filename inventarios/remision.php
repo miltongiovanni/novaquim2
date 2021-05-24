@@ -12,7 +12,7 @@ include "../includes/valAcc.php";
 </head>
 <body>
 <div id="contenedor">
-    <div id="saludo"><strong>REMISIÓN DE PRODUCTOS</strong></div>
+    <div id="saludo"><h4>REMISIÓN DE PRODUCTOS</h4></div>
     <form method="post" action="makeRemision.php" name="form1">
         <div class="form-group row">
             <label class="col-form-label col-2 text-right" for="cliente"><strong>Cliente</strong></label>
