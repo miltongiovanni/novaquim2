@@ -21,7 +21,7 @@ spl_autoload_register('cargarClases');
 
 <body>
 <div id="contenedor">
-    <div id="saludo"><strong>SELECCIONAR MATERIA PRIMA A CONSULTAR COMPRA</strong></div>
+    <div id="saludo"><h4>SELECCIONAR MATERIA PRIMA A CONSULTAR COMPRA</h4></div>
     <form id="form1" name="form1" method="post" action="listacompraxMP.php">
         <div class="form-group row">
             <label class="col-form-label col-1" for="codMPrima"><strong>Materia prima</strong></label>
