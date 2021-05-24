@@ -202,7 +202,7 @@ include "../includes/valAcc.php";
 </head>
 <body>
 <div id="contenedor">
-    <div id="saludo1"><strong>HISTÓRICO DE COMPROBANTES DE EGRESO</strong></div>
+    <div id="saludo1"><h4>HISTÓRICO DE COMPROBANTES DE EGRESO</h4></div>
     <div class="row flex-end">
         <div class="col-1">
             <button class="button" type="button" onclick="window.location='../menu.php'">

@@ -21,7 +21,7 @@ switch ($tipoCompra) {
     <title>Lista de compras<?= $titulo ?></title>
     <meta charset="utf-8">
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/validar.js"></script>
     <link rel="stylesheet" href="../css/datatables.css">
     <script src="../js/jquery-3.3.1.min.js"></script>
@@ -69,7 +69,7 @@ switch ($tipoCompra) {
                 rep += '<tr>' +
                     '<td align="center">' + d.detCompra[i].codigo + '</td>' +
                     '<td align="center">' + d.detCompra[i].Producto + '</td>';
-                if(tipoCompra==1){
+                if (tipoCompra == 1) {
                     rep += '<td align="center">' + d.detCompra[i].lote + '</td>';
                 }
                 rep += '<td align="center">' + d.detCompra[i].cantidad + '</td>' +
@@ -181,7 +181,7 @@ switch ($tipoCompra) {
 </head>
 <body>
 <div id="contenedor">
-    <div id="saludo1"><strong>LISTADO DE COMPRAS<?= $titulo ?></strong></div>
+    <div id="saludo1"><h4>LISTADO DE COMPRAS<?= $titulo ?></h4></div>
     <div class="row flex-end">
         <div class="col-1">
             <button class="button" type="button" onclick="window.location='../menu.php'">

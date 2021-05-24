@@ -28,7 +28,7 @@ $saldo = intval($egreso['treal']) - $abono;
 </head>
 <body>
 <div id="contenedor">
-    <div id="saludo1"><strong>COMPROBANTE DE EGRESO POR FACTURAS DE COMPRA Y GASTOS</strong></div>
+    <div id="saludo1"><h4>COMPROBANTE DE EGRESO POR FACTURAS DE COMPRA Y GASTOS</h4></div>
 
     <div class="form-group row">
         <div class="col-1 text-right"><strong>Id Egreso</strong></div>

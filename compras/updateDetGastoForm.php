@@ -32,7 +32,7 @@ $detalle = $DetGastoOperador->getDetGasto($idGasto, $producto);
 </head>
 <body>
 <div id="contenedor">
-    <div id="saludo"><strong>ACTUALIZACIÓN DEL DETALLE DEL GASTO</strong></div>
+    <div id="saludo"><h4>ACTUALIZACIÓN DEL DETALLE DEL GASTO</h4></div>
     <form action="updateDetGasto.php" method="post" name="actualiza">
         <input type="hidden" name="idGasto" id="idGasto" value="<?= $idGasto ?>">
         <div class="form-group row">
