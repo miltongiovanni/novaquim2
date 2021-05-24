@@ -29,7 +29,7 @@ foreach ($_POST as $nombre_campo => $valor) {
 
 ?>
 <div id="contenedor">
-    <div id="saludo"><strong>PREPARACIÓN DE SOLUCIÓN DE COLOR</strong></div>
+    <div id="saludo"><h4>PREPARACIÓN DE SOLUCIÓN DE COLOR</h4></div>
     <form method="post" action="makeO_Prod_col.php" name="form1">
         <div class="form-group row">
             <label class="col-form-label col-2" for="idFormulaColor"><strong>Solución de color</strong></label>

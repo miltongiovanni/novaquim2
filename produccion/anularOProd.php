@@ -20,7 +20,7 @@ spl_autoload_register('cargarClases');
 </head>
 <body>
 <div id="contenedor">
-    <div id="saludo"><strong>SELECCIONAR LA ORDEN DE PRODUCCIÓN A ANULAR</strong></div>
+    <div id="saludo"><h4>SELECCIONAR LA ORDEN DE PRODUCCIÓN A ANULAR</h4></div>
     <form id="form1" name="form1" method="post" action="anulaOrdenP.php">
         <div class="form-group row">
             <label class="col-form-label col-2" for="lote"><strong>Orden de producción a anular</strong></label>

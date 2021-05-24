@@ -24,7 +24,7 @@ $detalle = $DetFormulaColorOperador->getDetFormulaColor($idFormulaColor, $codMPr
 </head>
 <body>
 <div id="contenedor">
-    <div id="saludo"><strong>ACTUALIZACIÓN DE FORMULACIÓN DE COLOR</strong></div>
+    <div id="saludo"><h4>ACTUALIZACIÓN DE FORMULACIÓN DE COLOR</h4></div>
     <form action="updateDetFormulaColor.php" method="post" name="actualiza">
         <input name="idFormulaColor" type="hidden" value="<?= $idFormulaColor; ?>">
         <input name="codMPrima" type="hidden" value="<?= $codMPrima; ?>">

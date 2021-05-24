@@ -30,7 +30,7 @@ $detalle = $DetOProdOperador->getDetOProd($lote, $codMPrima);
 </head>
 <body>
 <div id="contenedor">
-    <div id="saludo"><strong>ACTUALIZACIÓN DE GASTO DE MATERIA PRIMA</strong></div>
+    <div id="saludo"><h4>ACTUALIZACIÓN DE GASTO DE MATERIA PRIMA</h4></div>
     <form action="updateDetOProd.php" method="post" name="actualiza">
         <input type="hidden" name="lote" id="lote" value="<?= $lote ?>">
         <input type="hidden" name="codMPrima" id="codMPrima" value="<?= $codMPrima ?>">

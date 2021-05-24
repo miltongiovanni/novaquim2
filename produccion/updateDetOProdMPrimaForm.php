@@ -29,7 +29,7 @@ $detalle = $DetOProdMPrimaOperador->getDetOProdMPrimas($loteMP, $idMPrima);
 </head>
 <body>
 <div id="contenedor">
-    <div id="saludo"><strong>ACTUALIZACIÓN DE GASTO DE MATERIA PRIMA</strong></div>
+    <div id="saludo"><h4>ACTUALIZACIÓN DE GASTO DE MATERIA PRIMA</h4></div>
     <form action="updateDetOProdMPrima.php" method="post" name="actualiza">
         <input type="hidden" name="loteMP" id="loteMP" value="<?= $loteMP ?>">
         <input type="hidden" name="idMPrima" id="idMPrima" value="<?= $idMPrima ?>">

@@ -123,7 +123,7 @@ $DetOProdColorOperador = new DetOProdColorOperaciones();
 </head>
 <body> 
 <div id="contenedor">
-<div id="saludo1"><strong>USO DE MATERIA PRIMA POR PRODUCCIÓN DE COLOR</strong></div>
+<div id="saludo1"><h4>USO DE MATERIA PRIMA POR PRODUCCIÓN DE COLOR</h4></div>
     <div class="form-group row">
         <div class="col-1 text-right"><strong>Lote</strong></div>
         <div class="col-1 bg-blue"><?= $loteColor; ?></div>

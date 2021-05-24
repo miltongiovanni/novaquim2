@@ -152,7 +152,7 @@ include "../includes/valAcc.php";
 </head>
 <body>
 <div id="contenedor">
-    <div id="saludo1"><strong>LISTA DE ÓRDENES DE PRODUCCIÓN DE COLOR</strong></div>
+    <div id="saludo1"><h4>LISTA DE ÓRDENES DE PRODUCCIÓN DE COLOR</h4></div>
     <div class="row flex-end">
         <div class="col-1">
             <button class="button" onclick="window.location='../menu.php'">

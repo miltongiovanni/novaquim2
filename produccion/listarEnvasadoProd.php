@@ -160,7 +160,7 @@ $producto = $ProductoOperador->getNameProducto($codProducto);
 
 <div id="contenedor">
 
-    <div id="saludo1"><strong>LISTADO DE ENVASADO DE <?= strtoupper($producto); ?> POR ORDEN DE PRODUCCIÓN</strong>
+    <div id="saludo1"><h4>LISTADO DE ENVASADO DE <?= strtoupper($producto); ?> POR ORDEN DE PRODUCCIÓN</h4>
     </div>
     <div class="row flex-end">
         <div class="col-1">

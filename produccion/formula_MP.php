@@ -18,7 +18,7 @@ spl_autoload_register('cargarClases');
 </head>
 <body>
 <div id="contenedor">
-    <div id="saludo"><strong>INGRESO DE FÓRMULAS DE MATERIA PRIMA</strong></div>
+    <div id="saludo"><h4>INGRESO DE FÓRMULAS DE MATERIA PRIMA</h4></div>
     <form method="post" action="makeFormulaMPrima.php" name="form1">
         <div class="form-group row">
             <label class="col-form-label col-2" for="codMPrima"><strong>Materia Prima</strong></label>
