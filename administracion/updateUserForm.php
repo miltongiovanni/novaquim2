@@ -24,7 +24,7 @@ $user = $manager->getUser($idUsuario);
 <body>
 <div id="contenedor">
 
-    <div id="saludo1"><strong>ACTUALIZACIÓN DE USUARIOS</strong></div>
+    <div id="saludo1"><h4>ACTUALIZACIÓN DE USUARIOS</h4></div>
 
     <form id="form1" name="form1" method="post" action="updateUser.php">
         <input type="hidden" class="form-control col-2" name="idUsuario" id="idUsuario" required

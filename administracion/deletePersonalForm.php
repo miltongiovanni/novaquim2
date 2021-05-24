@@ -14,7 +14,7 @@ include "../includes/valAcc.php";
 
 <body>
 	<div id="contenedor">
-		<div id="saludo"><strong>BORRADO DE PERSONAL</strong></div>
+		<div id="saludo"><h4>BORRADO DE PERSONAL</h4></div>
 		<?php
         include "../includes/administracion.php";
         $rep = buscarPersonalForm("deletePerson.php", false);

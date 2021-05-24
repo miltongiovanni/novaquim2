@@ -48,7 +48,7 @@ include "../includes/valAcc.php";
                 ],
                 "columnDefs":
                     [{
-                        "targets": [0, 4 ],
+                        "targets": [0 ],
                         "className": 'dt-body-center'
                     }
                     ],
