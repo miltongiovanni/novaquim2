@@ -36,7 +36,7 @@ if (!$remisionOperador->isValidIdRemision($idRemision)) {
     </head>
     <body>
     <div id="contenedor">
-        <div id="saludo"><strong>ACTUALIZACIÓN REMISIÓN</strong></div>
+        <div id="saludo"><h4>ACTUALIZACIÓN REMISIÓN</h4></div>
         <form name="form2" method="POST" action="updateRemision.php">
             <div class="form-group row">
                 <label class="col-form-label col-2 text-right" for="idRemision"><strong>Id remisión</strong></label>

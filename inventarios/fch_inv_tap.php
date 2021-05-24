@@ -12,7 +12,7 @@ include "../includes/valAcc.php";
 </head>
 <body>
 <div id="contenedor">
-    <div id="saludo"><strong>CONSULTA DE INVENTARIO POR FECHA</strong></div>
+    <div id="saludo"><h4>CONSULTA DE INVENTARIO POR FECHA</h4></div>
     <form method="post" action="inv_tap_fch.php" name="form1">
         <div class="form-group row">
             <label class="col-form-label col-1 text-right" for="fecha"><strong>Fecha</strong></label>

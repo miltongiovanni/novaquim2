@@ -131,7 +131,7 @@ $fecha = $_POST['fecha'];
 </head>
 <body>
 <div id="contenedor">
-    <div id="saludo1"><strong>INVENTARIO DE MATERIA PRIMA A <?= $fecha; ?></strong></div>
+    <div id="saludo1"><h4>INVENTARIO DE MATERIA PRIMA A <?= $fecha; ?></h4></div>
     <div class="row flex-end">
         <div class="col-1">
             <button class="button" onclick="window.location='../menu.php'">

@@ -18,7 +18,7 @@ spl_autoload_register('cargarClases');
 </head>
 <body>
 <div id="contenedor">
-    <div id="saludo"><strong>ORGANIZAR UNIDADES EN PACAS</strong></div>
+    <div id="saludo"><h4>ORGANIZAR UNIDADES EN PACAS</h4></div>
     <form id="form1" name="form1" method="post" action="pack.php">
         <div class="form-group row">
             <label class="col-form-label col-3 text-right" for="codUnidad"><strong>Unidades de Producto sin
