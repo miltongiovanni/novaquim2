@@ -73,7 +73,7 @@ spl_autoload_register('cargarClases');
             ?>
             <label class="col-form-label col-1" for="codSiigo"><strong>Código Siigo</strong></label>
             <input type="text" name="codSiigo" id="codSiigo" class="form-control col-3"
-                   onkeydown="return aceptaNum(event)" value="<?= ($row['maxsiigo'] + 1) ?>" readonly/>
+                   onkeydown="return aceptaNum(event)" value="<?= ($row['maxsiigo'] + 1) ?>"/>
         </div>
         <div class="form-group row">
             <label class="col-form-label col-1" for="idDistribucion"><strong>Código</strong></label>

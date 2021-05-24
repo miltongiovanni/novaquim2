@@ -65,7 +65,7 @@ $lastservicio++;
             ?>
             <label class="col-form-label col-2" for="codSiigo"><strong>Código Siigo</strong></label>
             <input type="text" name="codSiigo" id="codSiigo" class="form-control col-2"
-                   onkeydown="return aceptaNum(event)" value="<?= ($row['maxsiigo'] + 1) ?>" readonly/>
+                   onkeydown="return aceptaNum(event)" value="<?= ($row['maxsiigo'] + 1) ?>" />
         </div>
         <div class="form-group row">
                         <div class="col-1 text-center" >

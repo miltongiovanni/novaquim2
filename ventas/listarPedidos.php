@@ -138,7 +138,7 @@ switch ($estadoPedido) {
                         "className": 'dt-body-center'
                     },
                 ],
-                "order": [[1, 'desc']],
+                "order": [[1, estadoPedido==='P'? 'asc':'desc']],
                 "deferRender": true,  //For speed
                 "dom": 'Blfrtip',
                 "buttons": [
