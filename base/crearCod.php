@@ -45,7 +45,7 @@ spl_autoload_register('cargarClases');
 
 <body>
 <div id="contenedor">
-    <div id="saludo"><strong>CREACIÓN DE CÓDIGO GENÉRICO</strong></div>
+    <div id="saludo"><h4>CREACIÓN DE CÓDIGO GENÉRICO</h4></div>
     <form name="form2" method="POST" action="makeCod.php">
         <div class="form-group row">
 

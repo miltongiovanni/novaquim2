@@ -12,7 +12,7 @@ include "../includes/valAcc.php";
 </head>
 <body>
 <div id="contenedor">
-    <div id="saludo"><strong>ELIMINACIÓN DE PRODUCTO DE DISTRIBUCIÓN</strong></div>
+    <div id="saludo"><h4>ELIMINACIÓN DE PRODUCTO DE DISTRIBUCIÓN</h4></div>
     <?php
     include "../includes/base.php";
     $rep = buscarProductoDistribucionForm("deleteDis.php", false);

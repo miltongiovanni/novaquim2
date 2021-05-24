@@ -14,7 +14,7 @@ include "../includes/valAcc.php";
 
 <body>
 	<div id="contenedor">
-		<div id="saludo"><strong>ELIMINACIÓN DE CÓDIGO GENÉRICO</strong></div>
+		<div id="saludo"><h4>ELIMINACIÓN DE CÓDIGO GENÉRICO</h4></div>
 		<?php
         include "../includes/base.php";
         $rep = buscarPrecioForm("deleteCod.php", false);

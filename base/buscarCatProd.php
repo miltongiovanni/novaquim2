@@ -15,7 +15,7 @@ include "../includes/valAcc.php";
 <body>
 <div id="contenedor">
 
-    <div id="saludo"><strong>SELECCIÓN DE CATEGORÍA A ACTUALIZAR</strong></div>
+    <div id="saludo"><h4>SELECCIÓN DE CATEGORÍA A ACTUALIZAR</h4></div>
     <?php
     include "../includes/base.php";
     $rep = buscarCatProdForm("updateCatProdForm.php");

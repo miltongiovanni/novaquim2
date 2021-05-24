@@ -15,7 +15,7 @@ include "../includes/valAcc.php";
 
 <body>
 	<div id="contenedor">
-		<div id="saludo"><strong>ELIMINACIÓN CATEGORÍA PRODUCTO DE DISTRIBUCIÓN</strong></div>
+		<div id="saludo"><h4>ELIMINACIÓN CATEGORÍA PRODUCTO DE DISTRIBUCIÓN</h4></div>
 		<?php
         include "../includes/base.php";
         $rep = buscarCatDisForm("deleteCatDis.php");

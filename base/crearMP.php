@@ -44,7 +44,7 @@ spl_autoload_register('cargarClases');
 
 <body>
 <div id="contenedor">
-    <div id="saludo"><strong>CREACIÓN DE MATERIAS PRIMAS</strong></div>
+    <div id="saludo"><h4>CREACIÓN DE MATERIAS PRIMAS</h4></div>
     <form name="form2" method="POST" action="makeMP.php">
         <div class="form-group row">
 

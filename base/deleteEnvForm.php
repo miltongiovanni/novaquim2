@@ -15,7 +15,7 @@ include "../includes/valAcc.php";
 
 <body>
 	<div id="contenedor">
-		<div id="saludo"><strong>ELIMINACIÓN DE ENVASE</strong></div>
+		<div id="saludo"><h4>ELIMINACIÓN DE ENVASE</h4></div>
 		<?php
         include "../includes/base.php";
         $rep = buscarEnvaseForm("deleteEnv.php");

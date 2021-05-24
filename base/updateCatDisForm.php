@@ -23,7 +23,7 @@ $categoriaDis = $catsDisOperador->getCatDis($idCatDis);
 
 <body>
 <div id="contenedor">
-    <div id="saludo"><strong>ACTUALIZACIÓN CATEGORÍA PRODUCTO DE DISTIRBUCIÓN</strong></div>
+    <div id="saludo"><h4>ACTUALIZACIÓN CATEGORÍA PRODUCTO DE DISTIRBUCIÓN</h4></div>
     <form id="form1" name="form1" method="post" action="updateCatDis.php">
         <div class="form-group row">
             <label class="col-form-label col-1" for="idCatDis"><strong>Código</strong></label>

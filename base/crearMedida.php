@@ -20,7 +20,7 @@ spl_autoload_register('cargarClases');
 
 <body>
 <div id="contenedor">
-    <div id="saludo"><strong>CREACIÓN DE PRESENTACIÓN DE PRODUCTO</strong></div>
+    <div id="saludo"><h4>CREACIÓN DE PRESENTACIÓN DE PRODUCTO</h4></div>
     <form name="form2" method="POST" action="makeMedida.php">
         <div class="form-group row">
             <label class="col-form-label col-1" for="codMedida"><strong>Medida</strong></label>

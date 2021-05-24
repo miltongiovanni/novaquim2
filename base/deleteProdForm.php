@@ -20,7 +20,7 @@ spl_autoload_register('cargarClases');
 
 <body>
 <div id="contenedor">
-    <div id="saludo"><strong>ELIMINACIÓN DE PRODUCTO</strong></div>
+    <div id="saludo"><h4>ELIMINACIÓN DE PRODUCTO</h4></div>
     <form id="form1" name="form1" method="post" action="deleteProd.php">
         <div class="form-group row">
             <label class="col-form-label col-1" for="codProducto"><strong>Producto</strong></label>

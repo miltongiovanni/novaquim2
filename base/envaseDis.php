@@ -18,7 +18,7 @@ spl_autoload_register('cargarClases');
 </head>
 <body>
 <div id="contenedor">
-    <div id="saludo"><strong>RELACIÓN DE ENVASE CON PRODUCTOS DE DISTRIBUCIÓN</strong></div>
+    <div id="saludo"><h4>RELACIÓN DE ENVASE CON PRODUCTOS DE DISTRIBUCIÓN</h4></div>
     <form method="post" action="makeenvaseDis.php" name="form1">
         <div class="form-group row">
             <label class="col-form-label col-2" for="idDis"><strong>Producto de Distribución</strong></label>

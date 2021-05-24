@@ -66,7 +66,7 @@ include "../includes/valAcc.php";
 <body>
 <div id="contenedor">
 
-    <div id="saludo1"><strong>LISTADO DE CATEGORÍAS DE PRODUCTOS</strong></div>
+    <div id="saludo1"><h4>LISTADO DE CATEGORÍAS DE PRODUCTOS</h4></div>
     <div class="row flex-end">
         <div class="col-1">
             <button class="button" onclick="window.location='../menu.php'">

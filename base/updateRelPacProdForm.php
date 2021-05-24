@@ -30,7 +30,7 @@ $relacion = $relDisEmpOperador->getRelDisEmp($idPacUn);
 </head>
 <body>
 <div id="contenedor">
-    <div id="saludo"><strong>ACTUALIZACIÓN RELACIÓN PACA UNIDAD PRODUCTOS DE DISTRIBUCIÓN</strong></div>
+    <div id="saludo"><h4>ACTUALIZACIÓN RELACIÓN PACA UNIDAD PRODUCTOS DE DISTRIBUCIÓN</h4></div>
     <form method="post" action="updateRelPacProd.php" name="form1">
         <input id="idPacUn" name="idPacUn" type="hidden" value="<?= $idPacUn ?>">
         <div class="form-group row">

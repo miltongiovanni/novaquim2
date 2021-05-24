@@ -14,7 +14,7 @@ include "../includes/valAcc.php";
 
 <body>
     <div id="contenedor">
-        <div id="saludo"><strong>SELECCIONAR PRESENTACIÓN DE PRODUCTO A DESACTIVAR</strong></div>
+        <div id="saludo"><h4>SELECCIONAR PRESENTACIÓN DE PRODUCTO A DESACTIVAR</h4></div>
         <?php
         include "../includes/base.php";
         $rep = buscarPresentacionForm("desactiv_prese.php", true);

@@ -14,7 +14,7 @@ include "../includes/valAcc.php";
 
 <body>
     <div id="contenedor">
-        <div id="saludo"><strong>ELIMINACIÓN DE TAPAS O VÁLVULAS</strong></div>
+        <div id="saludo"><h4>ELIMINACIÓN DE TAPAS O VÁLVULAS</h4></div>
         <?php
         include "../includes/base.php";
         $rep = buscarTapaForm("deleteVal.php");

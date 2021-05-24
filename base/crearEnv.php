@@ -33,7 +33,7 @@ include "../includes/valAcc.php";
 
 <body onload="idEnvase();">
     <div id="contenedor">
-        <div id="saludo"><strong>CREACIÓN DE ENVASE</strong></div>
+        <div id="saludo"><h4>CREACIÓN DE ENVASE</h4></div>
         <form name="form2" method="POST" action="makeEnv.php">
             <div class="form-group row">
                 <label class="col-form-label col-1 text-right"  for="codEnvase"><strong>Código</strong></label>

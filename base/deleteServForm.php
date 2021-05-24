@@ -12,7 +12,7 @@ include "../includes/valAcc.php";
 </head>
 <body>
 <div id="contenedor">
-<div id="saludo"><strong>SERVICIO A BORRAR</strong></div>
+<div id="saludo"><h4>SERVICIO A BORRAR</h4></div>
     <?php
     include "../includes/base.php";
     $rep = buscarServicioForm("deleteServ.php", false);

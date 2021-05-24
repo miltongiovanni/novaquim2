@@ -14,7 +14,7 @@ include "../includes/valAcc.php";
 
 <body>
 	<div id="contenedor">
-		<div id="saludo"><strong>SELECCIÓN DE ETIQUETA A ACTUALIZAR</strong></div>
+		<div id="saludo"><h4>SELECCIÓN DE ETIQUETA A ACTUALIZAR</h4></div>
 		<?php
         include "../includes/base.php";
         $rep = buscarEtiquetaForm("updateEtqForm.php");

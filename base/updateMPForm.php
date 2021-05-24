@@ -24,7 +24,7 @@ $mprima = $MPrimaOperador->getMPrima($codMPrima);
 
 <body>
 <div id="contenedor">
-    <div id="saludo"><strong>ACTUALIZACIÓN DE MATERIA PRIMA</strong></div>
+    <div id="saludo"><h4>ACTUALIZACIÓN DE MATERIA PRIMA</h4></div>
     <form id="form1" name="form1" method="post" action="updateMP.php">
         <div class="form-group row">
 

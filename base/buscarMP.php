@@ -14,7 +14,7 @@ include "../includes/valAcc.php";
 
 <body>
 <div id="contenedor">
-    <div id="saludo"><strong>SELECCIÓN DE MATERIA PRIMA A ACTUALIZAR</strong></div>
+    <div id="saludo"><h4>SELECCIÓN DE MATERIA PRIMA A ACTUALIZAR</h4></div>
     <?php
     include "../includes/base.php";
     $rep = buscarMPrimaForm("updateMPForm.php");

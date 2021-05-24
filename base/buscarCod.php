@@ -15,7 +15,7 @@ include "../includes/valAcc.php";
 
 <body>
 	<div id="contenedor">
-		<div id="saludo"><strong>SELECCIONAR CÓDIGO A ACTUALIZAR</strong></div>
+		<div id="saludo"><h4>SELECCIONAR CÓDIGO A ACTUALIZAR</h4></div>
 		<?php
         include "../includes/base.php";
         $rep = buscarPrecioForm("updateCodForm.php", false);

@@ -14,7 +14,7 @@ include "../includes/valAcc.php";
 
 <body>
 	<div id="contenedor">
-		<div id="saludo"><strong>SELECCIONAR CATEGORÍA DE MATERIA PRIMA</strong></div>
+		<div id="saludo"><h4>SELECCIONAR CATEGORÍA DE MATERIA PRIMA</h4></div>
 		<?php
 		include "../includes/base.php";
 		$rep = buscarCatMPForm("updateCatMPForm.php");

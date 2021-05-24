@@ -25,7 +25,7 @@ $precio = $PrecioOperador->getPrecio($codigoGen);
 
 <body>
 <div id="contenedor">
-    <div id="saludo"><strong>ACTUALIZACIÓN DEL CÓDIGO GENÉRICO</strong></div>
+    <div id="saludo"><h4>ACTUALIZACIÓN DEL CÓDIGO GENÉRICO</h4></div>
 
     <form id="form1" name="form1" method="post" action="updateCod.php">
         <div class="form-group row">

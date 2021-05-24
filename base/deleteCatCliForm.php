@@ -12,7 +12,7 @@ include "../includes/valAcc.php";
 </head>
 <body>
 <div id="contenedor">
-    <div id="saludo"><strong>ELIMINACIÓN DE TIPO DE CLIENTE</strong></div>
+    <div id="saludo"><h4>ELIMINACIÓN DE TIPO DE CLIENTE</h4></div>
     <?php
     include "../includes/base.php";
     $rep = buscarCatCliForm("deleteCatCli.php");

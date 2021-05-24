@@ -12,7 +12,7 @@ include "../includes/valAcc.php";
 </head>
 <body>
 <div id="contenedor">
-    <div id="saludo"><strong>SELECCIONAR TIPO DE CLIENTE A ACTUALIZAR</strong></div>
+    <div id="saludo"><h4>SELECCIONAR TIPO DE CLIENTE A ACTUALIZAR</h4></div>
     <?php
     include "../includes/base.php";
     $rep = buscarCatCliForm("updateCatFormCli.php");
