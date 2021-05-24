@@ -98,7 +98,7 @@ $proveedor = $ProveedorOperador->getProveedor($idProv);
 </head>
 <body>
 <div id="contenedor">
-    <div id="saludo1"><h4>PRODUCTOS OFRECIDOS POR <?= $proveedor['nomProv'] ?></h4></div>
+    <div id="saludo1"><strong>PRODUCTOS OFRECIDOS POR <?= $proveedor['nomProv'] ?></strong></div>
     <?php if ($proveedor['idCatProv'] != 4): ?>
         <form method="post" action="detProveedor.php" name="form1">
             <input type="hidden" class="form-control col-2" name="idProv" id="idProv" value="<?= $idProv ?>">

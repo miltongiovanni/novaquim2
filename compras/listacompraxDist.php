@@ -10,9 +10,9 @@ spl_autoload_register('cargarClases');
 
 foreach ($_POST as $nombre_campo => $valor) {
     ${$nombre_campo} = $valor;
-    if (is_array($valor)) {
+    if(is_array($valor)){
         //echo $nombre_campo.print_r($valor).'<br>';
-    } else {
+    }else{
         //echo $nombre_campo. '=' .${$nombre_campo}.'<br>';
     }
 }
@@ -25,7 +25,7 @@ $producto = $ProductoDistribucionOperador->getProductoDistribucion($idDistribuci
     <title>Lista de Compra por Producto de Distribución</title>
     <meta charset="utf-8">
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/validar.js"></script>
     <link rel="stylesheet" href="../css/datatables.css">
     <script src="../js/jquery-3.3.1.min.js"></script>
@@ -95,7 +95,7 @@ $producto = $ProductoDistribucionOperador->getProductoDistribucion($idDistribuci
 </head>
 <body>
 <div id="contenedor">
-    <div id="saludo1"><h4>LISTADO DE COMPRAS DE <?= $producto['producto'] ?></h4></div>
+    <div id="saludo1"><strong>LISTADO DE COMPRAS DE <?= $producto['producto'] ?></strong></div>
 
     <div class="row flex-end">
         <div class="col-1">
@@ -103,8 +103,8 @@ $producto = $ProductoDistribucionOperador->getProductoDistribucion($idDistribuci
                 <span><STRONG>Ir al Menú</STRONG></span></button>
         </div>
     </div>
-    <div class="tabla-60">
-        <table id="example" class="display compact formatoDatos">
+    <div class="tabla-60" >
+        <table id="example" class="display compact formatoDatos" >
             <thead>
             <tr>
                 <th>Fecha Compra</th>

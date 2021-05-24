@@ -50,7 +50,7 @@ switch ($tipoCompra) {
 </head>
 <body>
 <div id="contenedor">
-    <div id="saludo"><h4>INGRESO DE COMPRA DE<?= $titulo ?></h4></div>
+    <div id="saludo"><strong>INGRESO DE COMPRA DE<?= $titulo ?></strong></div>
     <form name="form2" method="POST" action="makeCompra.php">
         <input name="tipoCompra" type="hidden" value="<?= $tipoCompra ?>">
         <div class="form-group row">
