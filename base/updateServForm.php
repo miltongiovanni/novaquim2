@@ -21,7 +21,7 @@ $servicio = $servicioperador->getServicio($idServicio);
 </head>
 <body>
 <div id="contenedor">
-    <div id="saludo"><strong>ACTUALIZACIÓN DE SERVICIO</strong></div>
+    <div id="saludo"><h4>ACTUALIZACIÓN DE SERVICIO</h4></div>
     <form id="form1" name="form1" method="post" action="updateServ.php">
         <div class="form-group row">
             <label class="col-form-label col-2 text-right"

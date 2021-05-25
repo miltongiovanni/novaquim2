@@ -18,7 +18,7 @@ spl_autoload_register('cargarClases');
 </head>
 <body>
 <div id="contenedor">
-    <div id="saludo"><strong>ELIMINACIÓN DE FORMULACIÓN DE SOLUCIÓN DE COLOR</strong></div>
+    <div id="saludo"><h4>ELIMINACIÓN DE FORMULACIÓN DE SOLUCIÓN DE COLOR</h4></div>
     <form method="post" action="deleteFormulaColor.php">
         <div class="form-group row">
             <label class="col-form-label col-2" for="idFormulaColor"><strong>Fórmula de color</strong></label>

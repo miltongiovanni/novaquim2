@@ -21,7 +21,7 @@ $lastservicio++;
 </head>
 <body>
 <div id="contenedor">
-    <div id="saludo"><strong>CREACIÓN DE SERVICIO</strong></div>
+    <div id="saludo"><h4>CREACIÓN DE SERVICIO</h4></div>
     <form name="form2" method="POST" action="makeServ.php">
         <div class="form-group row">
             <label class="col-form-label col-2"
@@ -65,7 +65,7 @@ $lastservicio++;
             ?>
             <label class="col-form-label col-2" for="codSiigo"><strong>Código Siigo</strong></label>
             <input type="text" name="codSiigo" id="codSiigo" class="form-control col-2"
-                   onkeydown="return aceptaNum(event)" value="<?= ($row['maxsiigo'] + 1) ?>" readonly/>
+                   onkeydown="return aceptaNum(event)" value="<?= ($row['maxsiigo'] + 1) ?>" />
         </div>
         <div class="form-group row">
                         <div class="col-1 text-center" >

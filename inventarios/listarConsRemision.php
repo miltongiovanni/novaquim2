@@ -11,7 +11,7 @@ include "../includes/valAcc.php";
 </head>
 <body>
 <div id="contenedor">
-<div id="saludo1"><strong>CONSULTA DE VENTA DE PRODUCTOS POR REMISION</strong></div> 
+<div id="saludo1"><h4>CONSULTA DE VENTA DE PRODUCTOS POR REMISION</h4></div>
 
 <?php
 foreach ($_POST as $nombre_campo => $valor) {

@@ -19,7 +19,7 @@ spl_autoload_register('cargarClases');
 </head>
 <body>
 <div id="contenedor">
-    <div id="saludo"><strong>ARMADO DE KITS DE PRODUCTOS</strong></div>
+    <div id="saludo"><h4>ARMADO DE KITS DE PRODUCTOS</h4></div>
     <form name="form2" method="POST" action="armado_kits.php">
         <div class="form-group row">
             <label class="col-form-label col-1" for="codKit"><strong>Kit</strong></label>

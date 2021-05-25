@@ -1,8 +1,9 @@
-/*@font-face {
-  font-family: "Open Sans";
-  src: url("Open_Sans/OpenSans-Regular.ttf");
-}*/
 
+@import "/node_modules/bootstrap/dist/css/bootstrap.min.css";
+@font-face {
+  font-family: "Open Sans";
+  src: url("Open_Sans/OpenSans-Regular-webfont.ttf");
+}
 *,
 ::after,
 ::before {
@@ -59,7 +60,7 @@ textarea {
 }
 
 .button:hover span {
-    padding-right: 25px;
+    padding-right: 15px;
 }
 
 .button:hover span:after {
@@ -118,26 +119,6 @@ textarea {
     background-clip: border-box;
     border: 1px solid rgba(0, 0, 0, .125);
     border-radius: .25rem;
-}
-
-.col,
-.col-1,
-.col-10,
-.col-11,
-.col-12,
-.col-2,
-.col-3,
-.col-4,
-.col-5,
-.col-6,
-.col-7,
-.col-8,
-.col-9 {
-    position: relative;
-    width: 100%;
-    min-height: 1px;
-    padding-right: 5px;
-    padding-left: 5px;
 }
 
 .col-1 {
@@ -199,6 +180,30 @@ textarea {
     flex: 0 0 100%;
     max-width: 100%;
 }
+/*
+
+.col,
+.col-1,
+.col-10,
+.col-11,
+.col-12,
+.col-2,
+.col-3,
+.col-4,
+.col-5,
+.col-6,
+.col-7,
+.col-8,
+.col-9 {
+    position: relative;
+    width: 100%;
+    min-height: 1px;
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
+
+*/
 
 .col-form-label {
     padding-top: calc(0.175rem + 1px);
@@ -283,7 +288,7 @@ font {
 .form-check-label {
     margin-bottom: 0;
 }
-
+/*
 .form-control {
     display: block;
     width: 100%;
@@ -297,7 +302,7 @@ font {
     border: 1px solid #ced4da;
     border-radius: 0.25rem;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-}
+}*/
 
 .form-control::placeholder {
     color: #6c757d;
@@ -379,7 +384,7 @@ font {
     border-radius: 0.2em;
 }
 
-html {
+html, body {
     font-family: "Open Sans", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     font-size: 1vw;
 }
@@ -426,6 +431,7 @@ legend {
     width: 10%;
 }
 
+/*
 
 .m-0 {
     margin: 0 !important;
@@ -858,6 +864,7 @@ legend {
 .mx-auto {
     margin-left: auto !important;
 }
+*/
 
 .resaltado {
     font-size: 1.2vw;
@@ -898,8 +905,8 @@ legend {
 }
 
 .row {
-    display: flex;
-    flex-wrap: wrap;
+   /* display: flex;
+    flex-wrap: wrap;*/
     justify-content: center;
 }
 
@@ -908,7 +915,7 @@ legend {
     text-align: center;
     font-size: 1.2vw;
     background: url("../images/LogoNova1.jpg") no-repeat center top;
-    padding-top: 15%;
+    padding-top: 16%;
     padding-bottom: 2%;
     margin-top: 0.2%;
     text-transform: uppercase;

@@ -34,7 +34,7 @@ include "../includes/valAcc.php";
 </head>
 <body>
 <div id="contenedor">
-    <div id="saludo"><strong>INGRESO DE COMPRA DE GASTOS</strong></div>
+    <div id="saludo"><h4>INGRESO DE COMPRA DE GASTOS</h4></div>
     <form name="form2" method="POST" action="makeGasto.php">
         <div class="form-group row">
             <label class="col-form-label col-2" for="busProv"><strong>Proveedor</strong></label>

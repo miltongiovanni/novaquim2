@@ -43,7 +43,7 @@ spl_autoload_register('cargarClases');
 </head>
 <body>
 <div id="contenedor">
-    <div id="saludo"><strong>SELECCIÓN DE MATERIA PRIMA A REVISAR TRAZABILIDAD</strong></div>
+    <div id="saludo"><h4>SELECCIÓN DE MATERIA PRIMA A REVISAR TRAZABILIDAD</h4></div>
     <form id="form1" name="form1" method="post" action="traz_mp.php">
         <div class="form-group row">
             <label class="col-form-label col-2" for="codMPrima"><strong>Materia prima</strong></label>

@@ -20,7 +20,7 @@ spl_autoload_register('cargarClases');
 
 <body>
 <div id="contenedor">
-    <div id="saludo"><strong>CREACIÓN DE PRESENTACIÓN DE PRODUCTO</strong></div>
+    <div id="saludo"><h4>CREACIÓN DE PRESENTACIÓN DE PRODUCTO</h4></div>
     <form name="form2" method="POST" action="makeMedida.php">
         <div class="form-group row">
             <label class="col-form-label col-1" for="codMedida"><strong>Medida</strong></label>
@@ -82,7 +82,7 @@ spl_autoload_register('cargarClases');
             ?>
             <label class="col-form-label col-1" for="codSiigo"><strong>Código Siigo</strong></label>
             <input type="text" name="codSiigo" id="codSiigo" class="form-control col-2"
-                   onkeydown="return aceptaNum(event)" value="<?= ($row['maxsiigo'] + 1) ?>" readonly/>
+                   onkeydown="return aceptaNum(event)" value="<?= ($row['maxsiigo'] + 1) ?>" />
             <label class="col-form-label col-2" for="codigoGen"><strong>Código General</strong></label>
             <?php
             $PrecioOperador = new PreciosOperaciones();

@@ -12,14 +12,14 @@ include "../includes/valAcc.php";
 </head>
 <body>
 	<div id="contenedor">
-		<div id="saludo"><strong>SELECCIONAR PERSONAL A ACTUALIZAR</strong></div>
+		<div id="saludo"><h4>SELECCIONAR PERSONAL A ACTUALIZAR</h4></div>
 		<?php
         include "../includes/administracion.php";
         $rep = buscarPersonalForm("updatePersonForm.php", false);
         echo $rep;
         ?>
 		<div class="row form-group">
-            <div class="col-1"><button class="button"  onclick="history.back()">
+            <div class="col-1"><button class="button1"  onclick="history.back()">
                     <span>VOLVER</span></button></div>
         </div>
 	</div>

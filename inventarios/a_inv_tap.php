@@ -39,7 +39,7 @@ spl_autoload_register('cargarClases');
 </head>
 <body>
 <div id="contenedor">
-    <div id="saludo"><strong>SELECCIÓN DE TAPA O VÁLVULA A AJUSTAR INVENTARIO</strong></div>
+    <div id="saludo"><h4>SELECCIÓN DE TAPA O VÁLVULA A AJUSTAR INVENTARIO</h4></div>
     <form id="form1" name="form1" method="post" action="updateInvTap.php">
         <div class="form-group row">
             <label class="col-form-label col-2" for="codTapa"><strong>Tapa</strong></label>

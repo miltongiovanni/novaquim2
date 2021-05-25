@@ -36,7 +36,7 @@ if (!$notaCrOperador->isValidIdNotaC($idNotaC)) {
 }
 ?>
 <div id="contenedor">
-    <div id="saludo"><strong> NOTA CRÉDITO PARA <?= $notaC['nomCliente'] ?></strong></div>
+    <div id="saludo"><h4> NOTA CRÉDITO PARA <?= $notaC['nomCliente'] ?></h4></div>
     <form name="form2" method="POST" action="updateNotaC.php">
         <div class="form-group row">
             <label class="col-form-label col-2" for="idNotaC"><strong>Nota Crédito</strong></label>

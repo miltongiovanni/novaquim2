@@ -105,81 +105,8 @@ $porcentajeTotal = $DetFormulaMPrimaOperador->getPorcentajeTotal($idFormulaMPrim
 </head>
 <body>
 
-
-<?php
-/*include "includes/conect.php";
-foreach ($_POST as $nombre_campo => $valor) {
-    ${$nombre_campo} = $valor;
-    if(is_array($valor)){
-        //echo $nombre_campo.print_r($valor).'<br>';
-    }else{
-        //echo $nombre_campo. '=' .${$nombre_campo}.'<br>';
-    }
-}  
-if($CrearFormula==0)
-{
-   $link=conectarServidor();   
-   $bd="novaquim";   
-   $qryForm="insert into formula_mp (codMPrima) values ($mprima1)";
-   if($resultfact=mysqli_query($link,$qryForm))
-   {
-		$qry="select max(idFormulaMPrima) as Form from formula_mp";
-		$result=mysqli_query($link,$qry);
-		$row=mysqli_fetch_array($result);
-		$Formula=$row['Form'];
-		echo '<form method="post" action="detFormulaMPrima.php" name="form3">';
-		echo'<input name="CrearFormula" type="hidden" value="5">'; 
-		echo'<input name="Formula" type="hidden" value="'.$Formula.'">'; 
-		echo '</form>';
-		echo'<script >
-		document.form3.submit();
-		</script>';	
-		mysqli_free_result($result);
-mysqli_close($link);
-	}
-	else
-	{
-		mover_pag("formula_col.php","Error al ingresar la Formulación");
-		mysqli_close($link);
-	}
-} 
-
-if($CrearFormula==1)
-{
- 	//AGREGANDO LOS COMPONENTES DE LA FORMULACIÓN
-	$percent=$percent/100;
-	$link=conectarServidor();   
-	$qryFact="insert into det_formula_mp (idFormulaMPrima, codMPrima, porcentaje) values ($Formula, $cod_mprima, $percent)";
-	echo $qryFact;
-	$resultfact=mysqli_query($link,$qryFact);
-	$qry="select sum(porcentaje) as Total from det_formula_mp where idFormulaMPrima=$Formula;";
-	$result=mysqli_query($link,$qry);
-	$row=mysqli_fetch_array($result);
-	$Total=$row['Total'];
-	mysqli_free_result($result);
-mysqli_close($link);
-} 
-if($CrearFormula==2)
-{
- 	//AGREGANDO LOS COMPONENTES DE LA FORMULACIÓN
-	$link=conectarServidor();   
-	$qry="select sum(porcentaje) as Total from det_formula_mp where idFormulaMPrima=$Formula;";
-	$result=mysqli_query($link,$qry);
-	$row=mysql_fetch_array($result);
-	$Total=$row['Total'];
-	mysqli_free_result($result);
-mysqli_close($link);
-} 
-
-/*	  	$link=conectarServidor();
-	  	$qry="select codMPrima, Nom_mprima from formula_mp, mprimas where codMPrima=Cod_mprima and idFormulaMPrima=$Formula";
-		$result=mysqli_query($link,$qry);
-		$row=mysqli_fetch_array($result);
-		mysqli_free_result($result);
-mysqli_close($link);*/
-?>
 <div id="contenedor">
-    <div id="saludo1"><strong>DETALLE DE FÓRMULA DE <?= $nomFormula; ?></strong></div>
+    <div id="saludo1"><h4>DETALLE DE FÓRMULA DE <?= $nomFormula; ?></h4></div>
     <form method="post" action="makeDetFormulaMPrima.php" name="form1">
         <input name="idFormulaMPrima" type="hidden" value="<?= $idFormulaMPrima; ?>">
         <div class="row">

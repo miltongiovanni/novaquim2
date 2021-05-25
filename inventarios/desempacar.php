@@ -18,7 +18,7 @@ spl_autoload_register('cargarClases');
 </head>
 <body>
 <div id="contenedor">
-    <div id="saludo"><strong>DESEMPACAR PACAS A UNIDADES</strong></div>
+    <div id="saludo"><h4>DESEMPACAR PACAS A UNIDADES</h4></div>
     <form id="form1" name="form1" method="post" action="unpack.php">
         <div class="form-group row">
             <label class="col-form-label col-3 text-right" for="codPaca"><strong>Producto de Distribución

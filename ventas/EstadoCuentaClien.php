@@ -17,7 +17,7 @@ $cliente = $OperadorCliente->getCliente($idCliente);
     <meta charset="utf-8">
     <title>Estado de Cuenta por Cliente</title>
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/validar.js"></script>
     <link rel="stylesheet" href="../css/datatables.css">
     <style>
@@ -56,12 +56,15 @@ $cliente = $OperadorCliente->getCliente($idCliente);
         .width8 {
             width: 10%;
         }
+
         .width9 {
             width: 10%;
         }
+
         .width10 {
             width: 10%;
         }
+
         .width11 {
             width: 10%;
         }
@@ -86,7 +89,7 @@ $cliente = $OperadorCliente->getCliente($idCliente);
                 '<th align="center">Fecha</th>' +
                 '<th align="center">Forma de pago</th>' +
                 '</thead>';
-            for(i=0; i<d.detEstado.length; i++){
+            for (i = 0; i < d.detEstado.length; i++) {
                 rep += '<tr>' +
                     '<td align="center">' + d.detEstado[i].idRecCaja + '</td>' +
                     '<td align="left">' + d.detEstado[i].pago + '</td>' +
@@ -175,7 +178,7 @@ $cliente = $OperadorCliente->getCliente($idCliente);
                     "infoFiltered": "(Filtrado de _MAX_ en total)"
 
                 },
-                "ajax": "ajax/listaEstadoCuentaCliente.php?idCliente="+ idCliente,
+                "ajax": "ajax/listaEstadoCuentaCliente.php?idCliente=" + idCliente,
             });
             // Add event listener for opening and closing details
             $('#example tbody').on('click', 'td.details-control', function () {
@@ -198,7 +201,7 @@ $cliente = $OperadorCliente->getCliente($idCliente);
 
 <body>
 <div id="contenedor">
-    <div id="saludo1"><strong>ESTADO DE CUENTA <?= strtoupper($cliente['nomCliente']); ?></strong></div>
+    <div id="saludo1"><h4>ESTADO DE CUENTA <?= strtoupper($cliente['nomCliente']); ?></h4></div>
     <div class="row flex-end mb-3">
         <div class="col-1">
             <button class="button" onclick="window.location='../menu.php'">
@@ -235,7 +238,7 @@ $cliente = $OperadorCliente->getCliente($idCliente);
     <!--<form action="EstadoCuenta_Xls.php" method="post" target="_blank">
         <table width="700" border="0" align="center">
             <tr>
-                <td width="473"><input name="cliente" type="hidden" value="<?php /*echo $cliente; */?>"></td>
+                <td width="473"><input name="cliente" type="hidden" value="<?php /*echo $cliente; */ ?>"></td>
                 <td width="127"><input type="submit" name="Submit" value="Exportar a Excel">
                 </td>
                 <td width="86"><input type="button" onClick="window.location='menu.php'" value="Ir al Menú"></td>
@@ -255,66 +258,66 @@ $cliente = $OperadorCliente->getCliente($idCliente);
             <th width="42" align="center" class="formatoEncabezados">Estado</th>
         </tr>
         <?php
-/*        $sql = "	select idFactura, fechaFactura, fechaVenc, Total, (Total-retencionIva-retencionIca-retencionFte) as 'Valor a Cobrar', (Total-retencionIva-retencionIca-retencionFte-(select SUM(cobro) from r_caja where idFactura=idFactura group by idFactura)) as 'Saldo', fechaCancelacion, Estado
-from factura where Nit_cliente='$cliente' ORDER BY idFactura desc;";
-        $result = mysqli_query($link, $sql);
-        $a = 1;
-        while ($row = mysqli_fetch_array($result, MYSQLI_BOTH)) {
-            $factura = $row['Factura'];
-            if ($row['Estado'] == 'C')
-                $estado = 'Cancelada';
-            if ($row['Estado'] == 'P')
-                $estado = 'Pendiente';
-            if ($row['Estado'] == 'A')
-                $estado = 'Anulada';
-            if ($row['Saldo'] == NULL)
-                $saldo = $row['Valor a Cobrar'];
-            else    $saldo = $row['Saldo'];
+    /*        $sql = "	select idFactura, fechaFactura, fechaVenc, Total, (Total-retencionIva-retencionIca-retencionFte) as 'Valor a Cobrar', (Total-retencionIva-retencionIca-retencionFte-(select SUM(cobro) from r_caja where idFactura=idFactura group by idFactura)) as 'Saldo', fechaCancelacion, Estado
+    from factura where Nit_cliente='$cliente' ORDER BY idFactura desc;";
+            $result = mysqli_query($link, $sql);
+            $a = 1;
+            while ($row = mysqli_fetch_array($result, MYSQLI_BOTH)) {
+                $factura = $row['Factura'];
+                if ($row['Estado'] == 'C')
+                    $estado = 'Cancelada';
+                if ($row['Estado'] == 'P')
+                    $estado = 'Pendiente';
+                if ($row['Estado'] == 'A')
+                    $estado = 'Anulada';
+                if ($row['Saldo'] == NULL)
+                    $saldo = $row['Valor a Cobrar'];
+                else    $saldo = $row['Saldo'];
 
-            if ($row['Fech_Canc'] != '0000-00-00')
-                $cancel = $row['Fech_Canc'];
-            else
-                $cancel = NULL;
-            $Tot = number_format($row['Total'], 0, '.', ',');
-            $Valor = number_format($row['Valor a Cobrar'], 0, '.', ',');
-            $Saldo = number_format($row['Saldo'], 0, '.', ',');
-            echo '<tr';
-            if (($a % 2) == 0) echo ' bgcolor="#B4CBEF" ';
-            echo '>
-	<td class="formatoDatos"><div align="center"><a aiotitle="click to expand" href="javascript:togglecomments(' . "'" . 'UniqueName' . $a . "'" . ')">+/-</a></div></td>
-	<td class="formatoDatos"><div align="center">' . $row['Factura'] . '</div></td>
-	<td class="formatoDatos"><div align="center">' . $row['Fech_fact'] . '</div></td>
-	<td class="formatoDatos"><div align="center">' . $row['Fech_venc'] . '</div></td>
-	<td class="formatoDatos"><div align="right">$ <script > document.write(commaSplit(' . $row['Total'] . '))</script></div></td>
-	<td class="formatoDatos"><div align="right">$ <script > document.write(commaSplit(' . $row['Valor a Cobrar'] . '))</script></div></td>
-	<td class="formatoDatos"><div align="right">$ <script > document.write(commaSplit(' . $saldo . '))</script></div></td>
-	<td class="formatoDatos"><div align="center">' . $cancel . '</div></td>
-	<td class="formatoDatos"><div align="center">' . $estado . '</div></td>
-	';
+                if ($row['Fech_Canc'] != '0000-00-00')
+                    $cancel = $row['Fech_Canc'];
+                else
+                    $cancel = NULL;
+                $Tot = number_format($row['Total'], 0, '.', ',');
+                $Valor = number_format($row['Valor a Cobrar'], 0, '.', ',');
+                $Saldo = number_format($row['Saldo'], 0, '.', ',');
+                echo '<tr';
+                if (($a % 2) == 0) echo ' bgcolor="#B4CBEF" ';
+                echo '>
+        <td class="formatoDatos"><div align="center"><a aiotitle="click to expand" href="javascript:togglecomments(' . "'" . 'UniqueName' . $a . "'" . ')">+/-</a></div></td>
+        <td class="formatoDatos"><div align="center">' . $row['Factura'] . '</div></td>
+        <td class="formatoDatos"><div align="center">' . $row['Fech_fact'] . '</div></td>
+        <td class="formatoDatos"><div align="center">' . $row['Fech_venc'] . '</div></td>
+        <td class="formatoDatos"><div align="right">$ <script > document.write(commaSplit(' . $row['Total'] . '))</script></div></td>
+        <td class="formatoDatos"><div align="right">$ <script > document.write(commaSplit(' . $row['Valor a Cobrar'] . '))</script></div></td>
+        <td class="formatoDatos"><div align="right">$ <script > document.write(commaSplit(' . $saldo . '))</script></div></td>
+        <td class="formatoDatos"><div align="center">' . $cancel . '</div></td>
+        <td class="formatoDatos"><div align="center">' . $estado . '</div></td>
+        ';
 
-            echo '</tr>';
-            $sqli = "select idRecCaja, cobro, fechaRecCaja from r_caja where idFactura=$factura";
-            $resulti = mysqli_query($link, $sqli);
-            echo '<tr><td colspan="7"><div class="commenthidden" id="UniqueName' . $a . '"><table border="0" align="center" cellspacing="0" bordercolor="#CCCCCC">
-	<tr>
-      <th width="40" class="formatoEncabezados">Pago</th>
-	  <th width="120" class="formatoEncabezados">Fecha</th>
-      <th width="160" class="formatoEncabezados">Valor</th>
-  	</tr>';
-            while ($rowi = mysqli_fetch_array($resulti, MYSQLI_BOTH)) {
-                echo '<tr>
-	<td class="formatoDatos"><div align="center">' . $rowi['Id_caja'] . '</div></td>
-	<td class="formatoDatos"><div align="center">' . $rowi['Fecha'] . '</div></td>
-	<td class="formatoDatos"><div align="center">$ <script > document.write(commaSplit(' . $rowi['cobro'] . '))</script></div></td>
-	</tr>';
+                echo '</tr>';
+                $sqli = "select idRecCaja, cobro, fechaRecCaja from r_caja where idFactura=$factura";
+                $resulti = mysqli_query($link, $sqli);
+                echo '<tr><td colspan="7"><div class="commenthidden" id="UniqueName' . $a . '"><table border="0" align="center" cellspacing="0" bordercolor="#CCCCCC">
+        <tr>
+          <th width="40" class="formatoEncabezados">Pago</th>
+          <th width="120" class="formatoEncabezados">Fecha</th>
+          <th width="160" class="formatoEncabezados">Valor</th>
+          </tr>';
+                while ($rowi = mysqli_fetch_array($resulti, MYSQLI_BOTH)) {
+                    echo '<tr>
+        <td class="formatoDatos"><div align="center">' . $rowi['Id_caja'] . '</div></td>
+        <td class="formatoDatos"><div align="center">' . $rowi['Fecha'] . '</div></td>
+        <td class="formatoDatos"><div align="center">$ <script > document.write(commaSplit(' . $rowi['cobro'] . '))</script></div></td>
+        </tr>';
+                }
+                echo '</table></div></td></tr>';
+                $a = $a + 1;
             }
-            echo '</table></div></td></tr>';
-            $a = $a + 1;
-        }
-        mysqli_free_result($result);
-        /* cerrar la conexión
-        mysqli_close($link);
-        */?>
+            mysqli_free_result($result);
+            /* cerrar la conexión
+            mysqli_close($link);
+            */ ?>
     </table>
     <div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú">
     </div>-->

@@ -12,7 +12,7 @@ include "../includes/valAcc.php";
 </head>
 <body>
 <div id="contenedor">
-    <div id="saludo"><strong>SERVICIO A ACTUALIZAR</strong></div>
+    <div id="saludo"><h4>SERVICIO A ACTUALIZAR</h4></div>
     <?php
     include "../includes/base.php";
     $rep = buscarServicioForm("updateServForm.php", true);

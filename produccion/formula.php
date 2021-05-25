@@ -18,7 +18,7 @@ spl_autoload_register('cargarClases');
 </head>
 <body>
 <div id="contenedor">
-    <div id="saludo"><strong>INGRESO DE FÓRMULAS DE PRODUCTO</strong></div>
+    <div id="saludo"><h4>INGRESO DE FÓRMULAS DE PRODUCTO</h4></div>
     <form method="post" action="makeFormula.php" name="form1">
         <div class="form-group row">
             <label class="col-form-label col-1" for="codProducto"><strong>Producto</strong></label>

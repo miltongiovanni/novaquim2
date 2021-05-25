@@ -29,7 +29,7 @@ $sucursal = $clienteSucursalOperador->getSucursalCliente($idCliente, $idSucursal
 </head>
 <body>
 <div id="contenedor">
-    <div id="saludo1"><strong>ACTUALIZACIÓN DE SUCURSAL POR CLIENTE</strong></div>
+    <div id="saludo1"><h4>ACTUALIZACIÓN DE SUCURSAL POR CLIENTE</h4></div>
     <form name="form2" method="POST" action="update_sucursal.php">
         <input name="idCliente" id="idCliente" type="hidden" value="<?= $idCliente ?>">
         <input name="idSucursal" id="idSucursal" type="hidden" value="<?= $idSucursal ?>">

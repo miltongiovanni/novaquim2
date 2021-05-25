@@ -21,7 +21,7 @@ spl_autoload_register('cargarClases');
 
 <body>
 <div id="contenedor">
-    <div id="saludo"><strong>ELIMINACIÓN DE MATERIA PRIMA</strong></div>
+    <div id="saludo"><h4>ELIMINACIÓN DE MATERIA PRIMA</h4></div>
     <form id="form1" name="form1" method="post" action="deleteMP.php">
         <div class="form-group row">
             <label class="col-form-label col-1" for="codMPrima"><strong>Materia Prima</strong></label>

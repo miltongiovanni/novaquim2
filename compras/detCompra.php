@@ -196,7 +196,7 @@ $compra = $CompraOperador->getCompra($idCompra, $tipoCompra);
 </head>
 <body>
 <div id="contenedor">
-    <div id="saludo1"><strong>DETALLE DE COMPRA DE<?= $titulo ?></strong></div>
+    <div id="saludo1"><h4>DETALLE DE COMPRA DE<?= $titulo ?></h4></div>
     <div class="form-group row">
         <div class="col-1 text-right"><strong>No. de Compra</strong></div>
         <div class="col-1 bg-blue"><?= $idCompra; ?></div>

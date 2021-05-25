@@ -18,7 +18,7 @@ spl_autoload_register('cargarClases');
 </head>
 <body>
 <div id="contenedor">
-    <div id="saludo"><strong>ELIMINACIÓN DE FORMULACIÓN</strong></div>
+    <div id="saludo"><h4>ELIMINACIÓN DE FORMULACIÓN</h4></div>
     <form method="post" action="deleteFormula.php">
         <div class="form-group row">
             <label class="col-form-label col-1" for="idFormula"><strong>Fórmula</strong></label>

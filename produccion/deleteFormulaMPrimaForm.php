@@ -18,7 +18,7 @@ spl_autoload_register('cargarClases');
 </head>
 <body>
 <div id="contenedor">
-    <div id="saludo"><strong>ELIMINACIÓN DE FORMULACIÓN DE MATERIA PRIMA</strong></div>
+    <div id="saludo"><h4>ELIMINACIÓN DE FORMULACIÓN DE MATERIA PRIMA</h4></div>
     <form method="post" action="deleteFormulaMPrima.php">
         <div class="form-group row">
             <label class="col-form-label col-2" for="idFormulaMPrima"><strong>Fórmula de materia prima</strong></label>

@@ -12,7 +12,7 @@ include "../includes/valAcc.php";
 </head>
 <body>
 <div id="contenedor">
-    <div id="saludo"><strong>RELACIÓN ENVASE PRODUCTO DISTRIBUCIÓN A ACTUALIZAR</strong></div>
+    <div id="saludo"><h4>RELACIÓN ENVASE PRODUCTO DISTRIBUCIÓN A ACTUALIZAR</h4></div>
     <?php
     include "../includes/base.php";
     $rep = buscarRelEnvDisForm("updateRelEnvDisForm.php", true);

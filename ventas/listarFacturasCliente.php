@@ -8,7 +8,7 @@ $idCliente = $_POST['idCliente'];
     <title>Lista de Facturas de Venta</title>
     <meta charset="utf-8">
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/validar.js"></script>
     <link rel="stylesheet" href="../css/datatables.css">
     <style>
@@ -47,6 +47,7 @@ $idCliente = $_POST['idCliente'];
         .width8 {
             width: 10%;
         }
+
         .width9 {
             width: 10%;
         }
@@ -70,7 +71,7 @@ $idCliente = $_POST['idCliente'];
                 '<th align="center">Cantidad</th>' +
                 '<th align="center">Precio Venta</th>' +
                 '</thead>';
-            for(i=0; i<d.detFactura.length; i++){
+            for (i = 0; i < d.detFactura.length; i++) {
                 rep += '<tr>' +
                     '<td align="center">' + d.detFactura[i].codigo + '</td>' +
                     '<td align="left">' + d.detFactura[i].producto + '</td>' +
@@ -151,7 +152,7 @@ $idCliente = $_POST['idCliente'];
                     "infoFiltered": "(Filtrado de _MAX_ en total)"
 
                 },
-                "ajax": "ajax/listaFacturasCliente.php?idCliente="+ idCliente,
+                "ajax": "ajax/listaFacturasCliente.php?idCliente=" + idCliente,
             });
             // Add event listener for opening and closing details
             $('#example tbody').on('click', 'td.details-control', function () {
@@ -173,7 +174,7 @@ $idCliente = $_POST['idCliente'];
 </head>
 <body>
 <div id="contenedor">
-    <div id="saludo1"><strong>LISTA DE FACTURAS DE VENTA</strong></div>
+    <div id="saludo1"><h4>LISTA DE FACTURAS DE VENTA</h4></div>
     <div class="row flex-end mb-3">
         <div class="col-1">
             <button class="button" onclick="window.location='../menu.php'">

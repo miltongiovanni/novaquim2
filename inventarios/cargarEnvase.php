@@ -18,7 +18,7 @@ spl_autoload_register('cargarClases');
 </head>
 <body>
 <div id="contenedor">
-    <div id="saludo"><strong>CARGAR ENVASE AL INVENTARIO DE DISTRIBUCIÓN</strong></div>
+    <div id="saludo"><h4>CARGAR ENVASE AL INVENTARIO DE DISTRIBUCIÓN</h4></div>
     <form method="post" action="charge.php" name="form1">
         <div class="form-group row">
             <label class="col-form-label col-3 text-right" for="idDis"><strong>Envase:</strong></label>

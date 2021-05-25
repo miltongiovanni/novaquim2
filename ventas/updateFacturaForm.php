@@ -26,7 +26,7 @@ $factura = $facturaOperador->getFactura($idFactura);
 </head>
 <body>
 <div id="contenedor">
-    <div id="saludo1"><strong>FACTURA DE VENTA</strong></div>
+    <div id="saludo1"><h4>FACTURA DE VENTA</h4></div>
     <form method="post" action="updateFactura.php" name="form1">
         <input type="hidden" name="idPedido" id="idPedido" value="<?= $factura['idPedido'] ?>">
         <div class="form-group row">

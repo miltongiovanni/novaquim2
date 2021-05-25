@@ -42,7 +42,7 @@ spl_autoload_register('cargarClases');
 </head>
 <body>
 <div id="contenedor">
-    <div id="saludo"><strong>CREACIÓN DE PRODUCTOS DE DISTRIBUCIÓN</strong></div>
+    <div id="saludo"><h4>CREACIÓN DE PRODUCTOS DE DISTRIBUCIÓN</h4></div>
     <form name="form2" method="POST" action="makeDis.php">
         <div class="form-group row">
 
@@ -73,7 +73,7 @@ spl_autoload_register('cargarClases');
             ?>
             <label class="col-form-label col-1" for="codSiigo"><strong>Código Siigo</strong></label>
             <input type="text" name="codSiigo" id="codSiigo" class="form-control col-3"
-                   onkeydown="return aceptaNum(event)" value="<?= ($row['maxsiigo'] + 1) ?>" readonly/>
+                   onkeydown="return aceptaNum(event)" value="<?= ($row['maxsiigo'] + 1) ?>"/>
         </div>
         <div class="form-group row">
             <label class="col-form-label col-1" for="idDistribucion"><strong>Código</strong></label>

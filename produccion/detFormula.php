@@ -111,8 +111,8 @@ $porcentajeTotal = $DetFormulaOperador->getPorcentajeTotal($idFormula);
 <body>
 
 <div id="contenedor">
-    <div id="saludo1"><strong>DETALLE DE FÓRMULA DE <?= strtoupper($nomFormula); ?>
-        </strong></div>
+    <div id="saludo1"><h4>DETALLE DE FÓRMULA DE <?= strtoupper($nomFormula); ?>
+        </h4></div>
     <form method="post" action="makeDetFormula.php" name="form1">
         <input name="idFormula" type="hidden" value="<?= $idFormula; ?>">
         <div class="row">

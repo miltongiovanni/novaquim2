@@ -201,7 +201,7 @@ $distribucionOperador = new ProductosDistribucionOperaciones();
 </head>
 <body>
 <div id="contenedor">
-    <div id="saludo1"><strong>DETALLE DEL PEDIDO</strong></div>
+    <div id="saludo1"><h4>DETALLE DEL PEDIDO</h4></div>
     <div class="form-group row">
         <div class="col-1 text-right"><strong>No. de pedido</strong></div>
         <div class="col-1 bg-blue"><?= $idPedido; ?></div>

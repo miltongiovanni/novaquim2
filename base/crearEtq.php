@@ -33,7 +33,7 @@ include "../includes/valAcc.php";
 
 <body onload="idEtiqueta();">
 <div id="contenedor">
-    <div id="saludo"><strong>CREACIÓN DE ETIQUETAS</strong></div>
+    <div id="saludo"><h4>CREACIÓN DE ETIQUETAS</h4></div>
     <form name="form2" method="POST" action="makeEtq.php">
         <div class="form-group row">
             <label class="col-form-label col-2"

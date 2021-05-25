@@ -15,7 +15,7 @@ include "../includes/valAcc.php";
 
 <body>
 	<div id="contenedor">
-		<div id="saludo"><strong>ELIMINACIÓN DE ETIQUETAS</strong></div>
+		<div id="saludo"><h4>ELIMINACIÓN DE ETIQUETAS</h4></div>
 		<?php
         include "../includes/base.php";
         $rep = buscarEtiquetaForm("deleteEtq.php");

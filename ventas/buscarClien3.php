@@ -15,7 +15,7 @@ include "../includes/valAcc.php";
 </head>
 <body>
 <div id="contenedor">
-    <div id="saludo1"><strong>SELECCIONAR CLIENTE A REVISAR ESTADO DE CUENTA</strong></div>
+    <div id="saludo1"><h4>SELECCIONAR CLIENTE A REVISAR ESTADO DE CUENTA</h4></div>
 
     <?php
     include "../includes/ventas.php";

@@ -18,7 +18,7 @@ spl_autoload_register('cargarClases');
 </head>
 <body>
 <div id="contenedor">
-    <div id="saludo"><strong>CONSULTA DE PRODUCCION ACUMULADA POR 12 MESES SEGÚN FECHA</strong></div>
+    <div id="saludo"><h4>CONSULTA DE PRODUCCION ACUMULADA POR 12 MESES SEGÚN FECHA</h4></div>
     <form method="post" action="listarProdAcumulada.php" name="form1">
         <div class="form-group row">
             <label class="col-form-label col-2 text-right" for="fechRef"><strong>Fecha Referencia</strong></label>

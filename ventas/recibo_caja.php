@@ -127,7 +127,7 @@ $saldo = round($recibo['totalR'] - $recibo['retencionFte'] - $recibo['retencionI
 </head>
 <body>
 <div id="contenedor">
-    <div id="saludo1"><strong>RECIBO DE CAJA POR COBRO DE FACTURAS DE VENTA</strong></div>
+    <div id="saludo1"><h4>RECIBO DE CAJA POR COBRO DE FACTURAS DE VENTA</h4></div>
 
     <div class="form-group row">
         <div class="col-1 text-right"><strong>Recibo de caja:</strong></div>

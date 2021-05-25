@@ -20,7 +20,7 @@ spl_autoload_register('cargarClases');
 </head>
 <body>
 <div id="contenedor">
-    <div id="saludo1"><strong>CREAR COTIZACIÓN</strong></div>
+    <div id="saludo1"><h4>CREAR COTIZACIÓN</h4></div>
     <form method="post" action="makeCotizacion.php" name="form1">
         <div class="form-group row">
             <label class="col-form-label col-2" for="busClien"><strong>Cliente</strong></label>

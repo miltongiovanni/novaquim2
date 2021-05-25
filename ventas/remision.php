@@ -21,7 +21,7 @@ $pedido = $pedidoOperador->getPedido($idPedido);
 </head>
 <body>
 <div id="contenedor">
-    <div id="saludo1"><strong>SALIDA POR REMISIÓN</strong></div>
+    <div id="saludo1"><h4>SALIDA POR REMISIÓN</h4></div>
     <form method="post" action="make_remision.php" name="form1">
         <input type="hidden" name="idCliente" value="<?= $pedido['idCliente']; ?>">
         <input type="hidden" name="idPedido" value="<?= $idPedido; ?>">

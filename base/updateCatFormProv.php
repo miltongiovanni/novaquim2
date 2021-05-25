@@ -21,7 +21,7 @@ $categoriaProv = $catsProvOperador->getCatProv($idCatProv);
 </head>
 <body>
 <div id="contenedor">
-    <div id="saludo"><strong>ACTUALIZACIÓN TIPO DE PROVEEDOR</strong></div>
+    <div id="saludo"><h4>ACTUALIZACIÓN TIPO DE PROVEEDOR</h4></div>
 
     <form id="form1" name="form1" method="post" action="updateCatProv.php">
         <div class="form-group row">

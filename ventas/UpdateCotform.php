@@ -38,7 +38,7 @@ if (!$cotizacion) {
 }
 ?>
 <div id="contenedor">
-    <div id="saludo1"><strong>MODIFICAR COTIZACIÓN</strong></div>
+    <div id="saludo1"><h4>MODIFICAR COTIZACIÓN</h4></div>
 
     <form method="post" action="update_cotiza.php" name="form1">
         <div class="form-group row">

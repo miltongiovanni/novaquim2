@@ -12,7 +12,7 @@ include "../includes/valAcc.php";
 </head>
 <body>
 <div id="contenedor">
-    <div id="saludo"><strong>BUSCAR REMISIÓN A MODIFICAR</strong></div>
+    <div id="saludo"><h4>BUSCAR REMISIÓN A MODIFICAR</h4></div>
 
     <form id="form1" name="form1" method="post" action="updateRemisionForm.php">
         <div class="form-group row">

@@ -192,7 +192,7 @@ $presentacionOperador = new PresentacionesOperaciones();
 $distribucionOperador = new ProductosDistribucionOperaciones();
 ?>
 <div id="contenedor">
-    <div id="saludo1"><strong>DETALLE DE LA COTIZACIÓN PERSONALIZADA</strong></div>
+    <div id="saludo1"><h4>DETALLE DE LA COTIZACIÓN PERSONALIZADA</h4></div>
     <div class="form-group row">
         <div class="col-2 text-right"><strong>No. de Cotización</strong></div>
         <div class="col-1 bg-blue"><?= $idCotPersonalizada; ?></div>

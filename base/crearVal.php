@@ -33,7 +33,7 @@ include "../includes/valAcc.php";
 
 <body onload="idTapa();">
 <div id="contenedor">
-    <div id="saludo"><strong>CREACIÓN DE TAPAS O VÁLVULAS</strong></div>
+    <div id="saludo"><h4>CREACIÓN DE TAPAS O VÁLVULAS</h4></div>
     <form name="form2" method="POST" action="makeVal.php">
         <div class="form-group row">
             <label class="col-form-label col-1 text-right" for="codTapa"><strong>Código</strong></label>

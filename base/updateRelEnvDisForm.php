@@ -31,7 +31,7 @@ $relacion = $relEnvDisOperador->getRelEnvDis($idEnvDis);
 </head>
 <body>
 <div id="contenedor">
-    <div id="saludo"><strong>ACTUALIZACIÓN RELACIÓN DE ENVASE CON PRODUCTOS DE DISTRIBUCIÓN</strong></div>
+    <div id="saludo"><h4>ACTUALIZACIÓN RELACIÓN DE ENVASE CON PRODUCTOS DE DISTRIBUCIÓN</h4></div>
     <form method="post" action="updateRelEnvDis.php" name="form1">
         <input id="idEnvDis" name="idEnvDis" type="hidden" value="<?= $idEnvDis ?>">
         <div class="form-group row">

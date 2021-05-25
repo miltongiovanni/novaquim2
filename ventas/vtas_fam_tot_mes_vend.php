@@ -190,8 +190,8 @@ $personal = $operadorPersonal->getPerson($idPersonal);
 </head>
 <body>
 <div id="contenedor">
-    <div id="saludo1"><strong>CONSULTA DE <?= $type == 1 ? 'UNIDADES' : 'VALOR' ?> POR VENTAS POR FAMILIA DE PRODUCTOS
-            POR MES AÑO <?= $year ?> VENDEDOR <?= $personal['nomPersonal']; ?></strong></div>
+    <div id="saludo1"><h4>CONSULTA DE <?= $type == 1 ? 'UNIDADES' : 'VALOR' ?> POR VENTAS POR FAMILIA DE PRODUCTOS
+            POR MES AÑO <?= $year ?> VENDEDOR <?= $personal['nomPersonal']; ?></h4></div>
     <div class="row">
         <div class="col-6">
             <canvas id="myChart2" class="chart"></canvas>

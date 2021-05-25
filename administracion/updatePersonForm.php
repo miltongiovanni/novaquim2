@@ -21,7 +21,7 @@ spl_autoload_register('cargarClases');
 <body>
 <div id="contenedor">
 
-    <div id="saludo1"><strong>ACTUALIZACIÓN DE PERSONAL</strong></div>
+    <div id="saludo1"><h4>ACTUALIZACIÓN DE PERSONAL</h4></div>
     <?php
     $idPersonal = $_POST['idPersonal'];
     $manager = new PersonalOperaciones();

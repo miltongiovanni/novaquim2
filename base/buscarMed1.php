@@ -14,7 +14,7 @@ include "../includes/valAcc.php";
 
 <body>
     <div id="contenedor">
-        <div id="saludo"><strong>SELECCIONAR PRESENTACIÓN DE PRODUCTO A ACTIVAR</strong></div>
+        <div id="saludo"><h4>SELECCIONAR PRESENTACIÓN DE PRODUCTO A ACTIVAR</h4></div>
         <?php
         include "../includes/base.php";
         $rep = buscarPresentacionForm("activ_prese.php", false);

@@ -13,7 +13,7 @@ include "../includes/valAcc.php";
 </head>
 <body>
 <div id="contenedor">
-<div id="saludo"><strong>CONSULTA DE GASTOS POR PROVEEDOR</strong></div> 
+<div id="saludo"><h4>CONSULTA DE GASTOS POR PROVEEDOR</h4></div>
 <table width="100%" border="0">
   	<tr>
     	<td >&nbsp;</td>

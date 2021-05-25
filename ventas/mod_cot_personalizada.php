@@ -13,7 +13,7 @@ include "../includes/valAcc.php";
 <body>
 <div id="contenedor">
 
-    <div id="saludo"><strong>SELECCIÓN DE COTIZACIÓN PERSONALIZADA</strong></div>
+    <div id="saludo"><h4>SELECCIÓN DE COTIZACIÓN PERSONALIZADA</h4></div>
     <form id="form1" name="form1" method="post" action="det_cot_personalizada.php">
         <div class="form-group row">
             <label class="col-form-label col-1 text-right" for="idCotPersonalizada"><strong>Cotización</strong></label>

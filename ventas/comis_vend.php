@@ -172,8 +172,8 @@ $totales = $personalOperador->getTotalComisionVendedor($idPersonal, $fechaInicia
 <body>
 <div id="contenedor">
 
-    <div id="saludo1"><strong>CONSULTA DE COMISIONES DEL
-            VENDEDOR <?php echo mb_strtoupper($personal['nomPersonal']); ?></strong></div>
+    <div id="saludo1"><h4>CONSULTA DE COMISIONES DEL
+            VENDEDOR <?php echo mb_strtoupper($personal['nomPersonal']); ?></h4></div>
     <div class="tabla-100">
         <table id="example" class="display compact formatoDatos">
             <thead>

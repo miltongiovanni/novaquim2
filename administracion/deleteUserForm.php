@@ -16,7 +16,7 @@ include "../includes/valAcc.php";
 <body>
 	<div id="contenedor">
 
-		<div id="saludo"><strong>BORRADO DE USUARIOS</strong></div>
+		<div id="saludo"><h4>BORRADO DE USUARIOS</h4></div>
 		
 		<?php
         include "../includes/administracion.php";

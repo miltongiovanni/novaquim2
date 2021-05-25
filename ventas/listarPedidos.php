@@ -138,7 +138,7 @@ switch ($estadoPedido) {
                         "className": 'dt-body-center'
                     },
                 ],
-                "order": [[1, 'desc']],
+                "order": [[1, estadoPedido==='P'? 'asc':'desc']],
                 "deferRender": true,  //For speed
                 "dom": 'Blfrtip',
                 "buttons": [
@@ -183,7 +183,7 @@ switch ($estadoPedido) {
 </head>
 <body>
 <div id="contenedor">
-    <div id="saludo1"><strong>LISTA DE ÓRDENES DE PEDIDO<?= $titulo ?></strong></div>
+    <div id="saludo1"><h4>LISTA DE ÓRDENES DE PEDIDO<?= $titulo ?></h4></div>
     <div class="row flex-end mb-3">
         <div class="col-1">
             <button class="button" onclick="window.location='../menu.php'">

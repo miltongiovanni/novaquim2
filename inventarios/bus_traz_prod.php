@@ -10,10 +10,10 @@ spl_autoload_register('cargarClases');
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <meta charset="utf-8">
     <title>Seleccionar Producto a revisar Trazabilidad</title>
-<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/validar.js"></script>
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script>
@@ -43,11 +43,12 @@ spl_autoload_register('cargarClases');
 </head>
 <body>
 <div id="contenedor">
-    <div id="saludo"><strong>SELECCIÓN DE PRODUCTO A REVISAR TRAZABILIDAD</strong></div>
+    <div id="saludo"><h4>SELECCIÓN DE PRODUCTO A REVISAR TRAZABILIDAD</h4></div>
     <form id="form1" name="form1" method="post" action="traz_prod.php">
         <div class="form-group row">
             <label class="col-form-label col-2" for="codPresentacion"><strong>Producto Terminado</strong></label>
-            <select name="codPresentacion" id="codPresentacion" class="form-control col-3" onchange="getLotesPresentacion(this.value)" required>
+            <select name="codPresentacion" id="codPresentacion" class="form-control col-3"
+                    onchange="getLotesPresentacion(this.value)" required>
                 <option selected disabled value="">-----------------------------</option>
                 <?php
                 $presentacionOperador = new PresentacionesOperaciones();

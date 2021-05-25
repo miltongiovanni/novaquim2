@@ -14,7 +14,7 @@ include "../includes/valAcc.php";
 
 <body>
 	<div id="contenedor">
-		<div id="saludo"><strong>CAMBIO DE CONTRASEÑA</strong></div>
+		<div id="saludo"><h4>CAMBIO DE CONTRASEÑA</h4></div>
 		<?php
 			$username= $_SESSION['User'];
 		?>

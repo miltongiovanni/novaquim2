@@ -88,7 +88,7 @@ include "../includes/valAcc.php";
 
 <body>
 <div id="contenedor">
-    <div id="saludo1"><strong>LISTA DE PRECIOS</strong></div>
+    <div id="saludo1"><h4>LISTA DE PRECIOS</h4></div>
     <div class="row flex-end">
         <div class="col-2">
             <form action="XlsListaPrecios.php" method="post" target="_blank">

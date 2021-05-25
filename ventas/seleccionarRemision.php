@@ -12,7 +12,7 @@ include "../includes/valAcc.php";
 </head>
 <body>
 <div id="contenedor">
-    <div id="saludo"><strong>SELECCIONAR REMISIÓN A CONSULTAR</strong></div>
+    <div id="saludo"><h4>SELECCIONAR REMISIÓN A CONSULTAR</h4></div>
     <form id="form1" name="form1" method="post" action="consultaRemision.php">
         <div class="form-group row">
             <label class="col-form-label col-2 text-right" for="idRemision"><strong>No. de remisión</strong></label>

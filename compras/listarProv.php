@@ -118,7 +118,7 @@ include "../includes/valAcc.php";
 </head>
 <body>
 <div id="contenedor">
-    <div id="saludo1"><strong>LISTADO DE PROVEEDORES</strong></div>
+    <div id="saludo1"><h4>LISTADO DE PROVEEDORES</h4></div>
     <div class="row flex-end">
         <div class="col-1">
             <button class="button" onclick="window.location='../menu.php'">

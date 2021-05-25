@@ -32,7 +32,7 @@ $calProd = $calProdOperador->getCalProd($lote);
 </head>
 <body>
 <div id="contenedor">
-    <div id="saludo1"><strong>CONTROL DE CALIDAD POR PRODUCCIÓN</strong></div>
+    <div id="saludo1"><h4>CONTROL DE CALIDAD POR PRODUCCIÓN</h4></div>
     <div class="form-group row">
         <div class="col-1 text-right"><strong>Lote</strong></div>
         <div class="col-1 bg-blue"><?= $lote; ?></div>

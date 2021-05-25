@@ -164,7 +164,7 @@ include "../includes/valAcc.php";
 </head>
 <body>
 <div id="contenedor">
-    <div id="saludo1"><strong>CONSULTA DE STOCK DE INVENTARIO DE MATERIA PRIMA</strong></div>
+    <div id="saludo1"><h4>CONSULTA DE STOCK DE INVENTARIO DE MATERIA PRIMA</h4></div>
     <div class="row flex-end">
         <div class="col-1">
             <button class="button" onclick="window.location='../menu.php'">

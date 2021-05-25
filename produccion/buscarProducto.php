@@ -18,7 +18,7 @@ spl_autoload_register('cargarClases');
 </head>
 <body>
 <div id="contenedor">
-    <div id="saludo"><strong>SELECCIONAR EL PRODUCTO A REVISAR PRODUCCIÓN</strong></div>
+    <div id="saludo"><h4>SELECCIONAR EL PRODUCTO A REVISAR PRODUCCIÓN</h4></div>
     <form id="form1" name="form1" method="post" action="listarEnvasadoProd.php">
         <div class="form-group row">
             <label class="col-form-label col-1" for="codProducto"><strong>Producto</strong></label>

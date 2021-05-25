@@ -22,7 +22,7 @@ $idCategoria = $lastcategorias + 1;
 </head>
 <body>
 <div id="contenedor">
-    <div id="saludo"><strong>CREACIÓN CATEGORÍA DE PROVEEDOR</strong></div>
+    <div id="saludo"><h4>CREACIÓN CATEGORÍA DE PROVEEDOR</h4></div>
     <form name="form2" method="POST" action="makeCategoriaProv.php">
         <div class="form-group row">
             <label class="col-form-label col-1 text-right"

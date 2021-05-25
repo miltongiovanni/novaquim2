@@ -30,7 +30,7 @@ $validar=0;
 </head>
 <body>
 <div id="contenedor">
-    <div id="saludo1"><strong>FALTANTE DE PEDIDO</strong></div>
+    <div id="saludo1"><h4>FALTANTE DE PEDIDO</h4></div>
     <div class="form-group row">
         <div class="col-1 text-right"><strong>No. de pedido</strong></div>
         <div class="col-1 bg-blue"><?= $idPedido; ?></div>

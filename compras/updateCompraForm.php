@@ -51,7 +51,7 @@ if (!$CompraOperador->isValidIdCompra($idCompra)) {
     </head>
     <body>
     <div id="contenedor">
-        <div id="saludo"><strong>ACTUALIZACIÓN COMPRA DE<?= $titulo ?></strong></div>
+        <div id="saludo"><h4>ACTUALIZACIÓN COMPRA DE<?= $titulo ?></h4></div>
         <form name="form2" method="POST" action="updateCompra.php">
             <input name="tipoCompra" type="hidden" value="<?= $tipoCompra ?>">
             <div class="form-group row">

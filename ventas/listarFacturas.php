@@ -7,7 +7,7 @@ include "../includes/valAcc.php";
     <title>Lista de Facturas de Venta</title>
     <meta charset="utf-8">
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/validar.js"></script>
     <link rel="stylesheet" href="../css/datatables.css">
     <style>
@@ -46,6 +46,7 @@ include "../includes/valAcc.php";
         .width8 {
             width: 5%;
         }
+
         .width9 {
             width: 7%;
         }
@@ -69,7 +70,7 @@ include "../includes/valAcc.php";
                 '<th align="center">Cantidad</th>' +
                 '<th align="center">Precio Venta</th>' +
                 '</thead>';
-            for(i=0; i<d.detFactura.length; i++){
+            for (i = 0; i < d.detFactura.length; i++) {
                 rep += '<tr>' +
                     '<td align="center">' + d.detFactura[i].codigo + '</td>' +
                     '<td align="left">' + d.detFactura[i].producto + '</td>' +
@@ -170,7 +171,7 @@ include "../includes/valAcc.php";
 </head>
 <body>
 <div id="contenedor">
-    <div id="saludo1"><strong>LISTA DE FACTURAS DE VENTA</strong></div>
+    <div id="saludo1"><h4>LISTA DE FACTURAS DE VENTA</h4></div>
     <div class="row flex-end mb-3">
         <div class="col-1">
             <button class="button" onclick="window.location='../menu.php'">

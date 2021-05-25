@@ -15,7 +15,7 @@ include "../includes/valAcc.php";
 </head>
 <body>
 <div id="contenedor">
-    <div id="saludo"><strong>SELECCIONAR CLIENTE DE COTIZACIÓN A MODIFICAR</strong></div>
+    <div id="saludo"><h4>SELECCIONAR CLIENTE DE COTIZACIÓN A MODIFICAR</h4></div>
     <form id="form1" name="form1" method="post" action="updateCliCotForm.php">
         <div class="form-group row">
             <label class="col-form-label col-2" for="busClien"><strong>Cliente</strong></label>

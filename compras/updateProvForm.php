@@ -82,7 +82,7 @@ $proveedor = $ProveedorOperador->getProveedor($idProv);
 </head>
 <body>
 <div id="contenedor">
-    <div id="saludo1"><strong>ACTUALIZACIÓN DE PROVEEDORES</strong></div>
+    <div id="saludo1"><h4>ACTUALIZACIÓN DE PROVEEDORES</h4></div>
     <form id="form1" name="form1" method="post" action="updateProv.php">
         <input type="hidden" class="form-control col-2" name="idProv" id="idProv" value="<?= $idProv ?>">
         <div class="form-group row">

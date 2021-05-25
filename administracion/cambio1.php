@@ -22,7 +22,7 @@ spl_autoload_register('cargarClases');
 <body>
 	<div id="contenedor">
 
-		<div id="saludo"><strong>CAMBIO DE CONTRASEÑA</strong></div>
+		<div id="saludo"><h4>CAMBIO DE CONTRASEÑA</h4></div>
 		<?php
 		$idUsuario= $_POST['idUsuario'];
 		$usuarioOperador = new UsuariosOperaciones();
