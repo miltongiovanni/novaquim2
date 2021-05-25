@@ -14,7 +14,7 @@ include "../includes/valAcc.php";
 <body>
 <div id="contenedor">
 
-    <div id="saludo"><strong>SELECCIÓN DE COTIZACIÓN</strong></div>
+    <div id="saludo"><h4>SELECCIÓN DE COTIZACIÓN</h4></div>
     <form id="form1" name="form1" method="post" action="UpdateCotform.php">
         <div class="form-group row">
             <label class="col-form-label col-1 text-right" for="idCotizacion"><strong>Cotización</strong></label>

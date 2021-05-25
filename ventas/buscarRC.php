@@ -12,7 +12,7 @@ include "../includes/valAcc.php";
 </head>
 <body>
 <div id="contenedor">
-    <div id="saludo"><strong>SELECCIONAR RECIBO DE CAJA A CONSULTAR</strong></div>
+    <div id="saludo"><h4>SELECCIONAR RECIBO DE CAJA A CONSULTAR</h4></div>
     <form id="form1" name="form1" method="post" action="consultaRecCaja.php">
         <div class="form-group row">
             <label class="col-form-label col-2 text-right" for="idRecCaja"><strong>No. de Recibo de

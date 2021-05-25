@@ -33,7 +33,7 @@ include "../includes/valAcc.php";
 </head>
 <body>
 <div id="contenedor">
-    <div id="saludo"><strong>CREACIÓN DE ORDEN DE PEDIDO</strong></div>
+    <div id="saludo"><h4>CREACIÓN DE ORDEN DE PEDIDO</h4></div>
     <form method="post" action="makePedido.php" name="form1">
         <div class="form-group row">
             <label class="col-form-label col-2" for="busClien"><strong>Cliente</strong></label>

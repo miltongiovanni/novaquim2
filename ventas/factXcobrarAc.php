@@ -7,7 +7,7 @@ include "../includes/valAcc.php";
     <title>Facturas Vencidas por Cliente</title>
     <meta charset="utf-8">
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/validar.js"></script>
     <link rel="stylesheet" href="../css/datatables.css">
     <style>
@@ -82,7 +82,7 @@ include "../includes/valAcc.php";
                 '<th class="text-center">Saldo</th>' +
                 '</thead>';
 
-            for(i=0; i<d.detCarteraCliente.length; i++){
+            for (i = 0; i < d.detCarteraCliente.length; i++) {
                 rep += '<tr>' +
                     '<td class="text-center">' + d.detCarteraCliente[i].idFactura + '</td>' +
                     '<td class="text-center">' + d.detCarteraCliente[i].fechaFactura + '</td>' +
@@ -191,7 +191,7 @@ include "../includes/valAcc.php";
 </head>
 <body>
 <div id="contenedor">
-    <div id="saludo1"><strong>CARTERA VENCIDA POR CLIENTE</strong></div>
+    <div id="saludo1"><h4>CARTERA VENCIDA POR CLIENTE</h4></div>
     <div class="row flex-end">
         <div class="col-1">
             <button class="button" onclick="window.location='../menu.php'">

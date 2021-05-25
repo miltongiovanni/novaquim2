@@ -19,7 +19,7 @@ spl_autoload_register('cargarClases');
 </head>
 <body>
 <div id="contenedor">
-    <div id="saludo"><strong>SELECCIÓN DE VENDEDOR Y PERÍODO PARA REVISAR COMISIONES</strong></div>
+    <div id="saludo"><h4>SELECCIÓN DE VENDEDOR Y PERÍODO PARA REVISAR COMISIONES</h4></div>
     <form method="post" action="comis_vend.php" name="form1">
         <div class="form-group row">
             <label class="col-form-label col-1" for="combo"><strong>Vendedor</strong></label>

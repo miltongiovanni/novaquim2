@@ -16,7 +16,7 @@ include "../includes/valAcc.php";
 </head>
 <body>
 <div id="contenedor">
-    <div id="saludo"><strong>CONSULTA DE FACTURAS POR CLIENTE</strong></div>
+    <div id="saludo"><h4>CONSULTA DE FACTURAS POR CLIENTE</h4></div>
 
     <?php
     include "../includes/ventas.php";

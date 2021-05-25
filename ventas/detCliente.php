@@ -107,7 +107,7 @@ $nomCliente = $cliente['nomCliente'];
 </head>
 <body>
 <div id="contenedor">
-    <div id="saludo1"><strong>SUCURSALES DE <?= strtoupper($nomCliente) ?></strong></div>
+    <div id="saludo1"><h4>SUCURSALES DE <?= strtoupper($nomCliente) ?></h4></div>
 
     <form name="form2" method="POST" action="makeSucursalCliente.php">
         <input name="idCliente" id="idCliente" type="hidden" value="<?= $idCliente ?>">

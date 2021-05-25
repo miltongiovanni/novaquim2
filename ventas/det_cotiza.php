@@ -42,7 +42,7 @@ $cotizacion['distribucion'] = str_replace("9", " Otros", $cotizacion['distribuci
 </head>
 <body>
 <div id="contenedor">
-    <div id="saludo1"><strong>DETALLE DE LA COTIZACIÓN</strong></div>
+    <div id="saludo1"><h4>DETALLE DE LA COTIZACIÓN</h4></div>
     <?php
     if ($cotizacion['destino'] == 1)
         $dest = "Impresión";

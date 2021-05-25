@@ -47,7 +47,7 @@ spl_autoload_register('cargarClases');
 </head>
 <body>
 <div id="contenedor">
-    <div id="saludo"><strong>CREAR FACTURA A PARTIR DEL PEDIDO</strong></div>
+    <div id="saludo"><h4>CREAR FACTURA A PARTIR DEL PEDIDO</h4></div>
     <form id="form1" name="form1" method="post" action="factura.php">
         <div class="form-group row">
             <label class="col-form-label col-2" for="busClien"><strong>Cliente</strong></label>

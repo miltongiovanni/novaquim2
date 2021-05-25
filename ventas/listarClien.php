@@ -157,9 +157,9 @@ if ($estadoCliente == 1) {
     </script>
 
 </head>
-<body>
+<body>h4
 <div id="contenedor">
-    <div id="saludo1"><strong><?= $encabezado ?></strong></div>
+    <div id="saludo1"><h4><?= $encabezado ?></h4></div>
     <div class="row flex-end">
         <div class="col-1">
             <button class="button" onclick="window.location='../menu.php'">

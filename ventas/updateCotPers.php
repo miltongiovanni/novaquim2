@@ -25,7 +25,7 @@ $detalle = $DetCotizacionOperador->getDetProdCotizacion($idCotPersonalizada, $co
 </head>
 <body>
 <div id="contenedor">
-    <div id="saludo"><strong>ACTUALIZACIÓN DEL PRODUCTO EN LA COTIZACIÓN</strong></div>
+    <div id="saludo"><h4>ACTUALIZACIÓN DEL PRODUCTO EN LA COTIZACIÓN</h4></div>
     <form action="updateCotP.php" method="post" name="actualiza">
         <input name="idCotPersonalizada" type="hidden" value="<?= $idCotPersonalizada; ?>">
         <input name="codProducto" type="hidden" value="<?= $codProducto; ?>">
