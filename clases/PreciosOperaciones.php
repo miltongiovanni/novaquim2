@@ -107,6 +107,13 @@ class PreciosOperaciones
         $stmt->execute($datos);
     }
 
+    public function updateListaPrecio($datos)
+    {
+        $qry = "UPDATE precios SET fabrica=?, distribuidor=?, detal=?, super=?, mayor=? WHERE codigoGen=?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute($datos);
+    }
+
     public function setDb()
     {
 

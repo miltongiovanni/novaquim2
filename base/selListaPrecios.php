@@ -85,7 +85,7 @@ include "../includes/valAcc.php";
     </form>
     <div class="row">
         <div class="col-1">
-            <button class="button1" id="back" onClick="history.back()">
+            <button class="button1" id="back" onClick="window.close()">
                 <span>VOLVER</span></button>
         </div>
     </div>

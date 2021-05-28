@@ -10,14 +10,20 @@ function Longitud(form) {
 //Envia solicitando confirmación
 function Enviar(form) {
     for (i = 0; i < form.elements.length; i++) {
-        if (form.elements[i].type === "text" || form.elements[i].type === "date" || form.elements[i].type === "select-one" || form.elements[i].type === "password"|| form.elements[i].type === "textarea") {
+        if (form.elements[i].type === "text" || form.elements[i].type === "date" || form.elements[i].type === "select-one" || form.elements[i].type === "password" || form.elements[i].type === "textarea" || form.elements[i].type === "file") {
             if (form.elements[i].value === "" && form.elements[i].required) {
-                if ((form.elements[i].type === "text" || form.elements[i].type === "date" || form.elements[i].type === "password"|| form.elements[i].type === "textarea") && form.elements[i].required) {
+                if ((form.elements[i].type === "text" || form.elements[i].type === "date" || form.elements[i].type === "password" || form.elements[i].type === "textarea") && form.elements[i].required) {
                     //alert("Este campo es requerido");
                     alerta('Este campo es requerido', 'warning', '', form.elements[i]);
                     //form.elements[i].focus();
                     return false;
-                } else {
+                }
+                else if (form.elements[i].type === "file"){
+                    alerta('Tiene que seleccionar un archivo', 'warning', '', form.elements[i]);
+                    //form.elements[i].focus();
+                    return false;
+                }
+                else {
                     if (form.elements[i].required) {
                         //alert("Por favor selecione un valor para el campo");
                         alerta('Por favor selecione un valor para el campo', 'warning', '', form.elements[i]);
@@ -130,7 +136,7 @@ function aceptaNum(evt) {
     //var key = nav4 ? evt.which : evt.keyCode;
     var key = evt.which || evt.keyCode;
     //console.log(key);
-    return (key <= 13 || key === 46 || key === 110 || (key >= 48 && key <= 57) || (key >= 96 && key <= 105) );
+    return (key <= 13 || key === 46 || key === 110 || (key >= 48 && key <= 57) || (key >= 96 && key <= 105));
 }
 
 function valida_texto(texto) {
