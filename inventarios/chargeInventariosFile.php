@@ -26,7 +26,7 @@ if (!is_dir($uploads_dir)) {
     //Directory does not exist, so lets create it.
     mkdir($uploads_dir, 0777, true);
 }
-$file_name = basename($_FILES['preciosList']["name"]);
+$file_name = basename($_FILES['inventariosList']["name"]);
 $fileNameNoValide = $file_name;
 $fileNameNoValide = str_replace(" ", "_", $fileNameNoValide);
 $fileNameNoValide = str_replace("'", "-", $fileNameNoValide);
@@ -43,7 +43,7 @@ $tableChars = array(
 );
 
 $fileNameValide = strtr($fileNameNoValide, $tableChars);
-$file_tmp_name = $_FILES['preciosList']["tmp_name"];
+$file_tmp_name = $_FILES['inventariosList']["tmp_name"];
 $upload_file = $uploads_dir . $fileNameValide;
 if (move_uploaded_file($file_tmp_name, $upload_file)) {
 
@@ -68,7 +68,7 @@ if (move_uploaded_file($file_tmp_name, $upload_file)) {
 <html lang="es">
 <head>
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-    <title>Carga de la lista de precios</title>
+    <title>Carga de inventario</title>
     <meta charset="utf-8">
     <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/validar.js"></script>
@@ -78,7 +78,8 @@ if (move_uploaded_file($file_tmp_name, $upload_file)) {
 <div id="contenedor">
 
     <div id="saludo"><h4>SELECCIÓN DE LA PÁGINA A CARGAR</h4></div>
-    <form id="form1" name="form1" method="post" action="updatePreciosList.php">
+    <form id="form1" name="form1" method="post" action="updateInventarioList.php">
+        <input type="hidden" name="tipoInv" value="<?=$tipoInv?>">
         <input type="hidden" name="upload_file" value="<?=$upload_file?>">
         <div class="form-group row">
             <div class="col-3">

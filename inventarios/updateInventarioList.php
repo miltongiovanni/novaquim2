@@ -18,9 +18,18 @@ foreach ($_POST as $nombre_campo => $valor) {
     if (is_array($valor)) {
         //echo $nombre_campo.print_r($valor).'<br>';
     } else {
-        //echo $nombre_campo . '=' . ${$nombre_campo} . '<br>';
+        echo $nombre_campo . '=' . ${$nombre_campo} . '<br>';
     }
 }
+if ($tipoInv == $page){
+    if($page == 0){
+        echo 'distribucion';
+    }
+}
+else{
+    echo 'error';
+}
+die;
 $preciosOperador = new PreciosOperaciones();
 ?>
 <!DOCTYPE html>

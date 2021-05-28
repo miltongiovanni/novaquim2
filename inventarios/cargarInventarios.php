@@ -7,7 +7,7 @@ include "../includes/valAcc.php";
 <head>
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <meta charset="utf-8">
-    <title>Seleccionar archivo para actualizar precios</title>
+    <title>Seleccionar archivo para actualizar inventarios</title>
     <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/validar.js"></script>
 </head>
@@ -15,10 +15,11 @@ include "../includes/valAcc.php";
 <body>
 <div id="contenedor">
 
-    <div id="saludo"><h4>SELECCIÓN DEL ARCHIVO A CARGAR</h4></div>
-    <form id="form1" name="form1" method="post" action="chargePreciosFile.php" enctype="multipart/form-data">
+    <div id="saludo"><h4>SELECCIÓN DEL ARCHIVO A CARGAR INVENTARIO</h4></div>
+    <form id="form1" name="form1" method="post" action="chargeInventariosFile.php" enctype="multipart/form-data">
+        <input type="hidden" name="tipoInv" value="<?=$tipoInv?>">
         <div class="form-group row">
-            <input class="form-control col-3" type="file" id="preciosList" name="preciosList" required>
+            <input class="form-control col-4" type="file" id="inventariosList" name="inventariosList" required>
         </div>
         <div class="row form-group">
             <div class="col-1">
