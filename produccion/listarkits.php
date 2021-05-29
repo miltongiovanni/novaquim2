@@ -136,7 +136,7 @@ include "../includes/valAcc.php";
     </script>
 </head>
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo1"><strong>LISTADO DE KITS</strong></div>
     <div class="row flex-end">
         <div class="col-1">

@@ -218,7 +218,7 @@ $totalesNotaC = $notaCrOperador->getTotalesNotaC($idNotaC);
     </script>
 </head>
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo1"><h4>DETALLE DE LA NOTA CRÉDITO</h4></div>
     <div class="form-group row">
         <div class="col-1 text-right"><strong>Nota crédito</strong></div>
@@ -245,12 +245,14 @@ $totalesNotaC = $notaCrOperador->getTotalesNotaC($idNotaC);
         if ($notaC['motivo'] == 0) : // DEVOLUCIÓN DE PRODUCTOS
 
             ?>
-            <div class="form-group titulo row">
+            <div class="form-group titulo row text-center">
                 <strong>Productos para devolución</strong>
             </div>
             <div class="row">
-                <div class="col-4 text-center" style="margin: 0 5px;"><strong>Producto</strong></div>
-                <div class="col-1 text-center" style="margin: 0 5px;"><strong>Cantidad</strong></div>
+                <label for="codProducto" class="form-label col-4 text-left"><strong>Producto</strong></label>
+                <label for="cantProducto" class="form-label col-1 text-center"><strong>Cantidad</strong></label>
+                <!--<div class="col-4 text-center" style="margin: 0 5px;"><strong>Producto</strong></div>
+                <div class="col-1 text-center" style="margin: 0 5px;"><strong>Cantidad</strong></div>-->
                 <div class="col-2 text-center"></div>
             </div>
             <div class="form-group row">
@@ -297,7 +299,7 @@ $totalesNotaC = $notaCrOperador->getTotalesNotaC($idNotaC);
         endif;
         ?>
     </form>
-    <div class="form-group titulo row">
+    <div class="form-group titulo row text-center">
         <strong>Detalle nota crédito</strong>
     </div>
     <?php

@@ -106,7 +106,7 @@ $nomCliente = $cliente['nomCliente'];
     </script>
 </head>
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo1"><h4>SUCURSALES DE <?= strtoupper($nomCliente) ?></h4></div>
 
     <form name="form2" method="POST" action="makeSucursalCliente.php">

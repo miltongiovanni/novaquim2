@@ -35,7 +35,7 @@ if (!$remisionOperador->isValidIdRemision($idRemision)) {
         <script src="../js/validar.js"></script>
     </head>
     <body>
-    <div id="contenedor">
+    <div id="contenedor" class="container-fluid">
         <div id="saludo"><h4>ACTUALIZACIÓN REMISIÓN</h4></div>
         <form name="form2" method="POST" action="updateRemision.php">
             <div class="form-group row">

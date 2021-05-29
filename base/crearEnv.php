@@ -32,7 +32,7 @@ include "../includes/valAcc.php";
 </head>
 
 <body onload="idEnvase();">
-    <div id="contenedor">
+    <div id="contenedor" class="container-fluid">
         <div id="saludo"><h4>CREACIÓN DE ENVASE</h4></div>
         <form name="form2" method="POST" action="makeEnv.php">
             <div class="form-group row">

@@ -94,7 +94,7 @@ $mprima = $MPrimasOperador->getMPrima($codMPrima);
     </script>
 </head>
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo1"><h4>LISTADO DE COMPRAS DE <?= $mprima['nomMPrima'] ?></h4></div>
     <div class="row flex-end">
         <div class="col-1">

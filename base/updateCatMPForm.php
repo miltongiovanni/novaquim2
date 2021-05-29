@@ -22,7 +22,7 @@ $categoriaMP = $catsMPOperador->getCatMP($idCatMP);
 </head>
 
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo"><h4>ACTUALIZACIÓN CATEGORÍA DE MATERIAS PRIMAS</h4></div>
     <form id="form1" name="form1" method="post" action="updateCatMP.php">
         <div class="form-group row">

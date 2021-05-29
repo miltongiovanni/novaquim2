@@ -38,7 +38,7 @@ spl_autoload_register('cargarClases');
     </script>
 </head>
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo"><h4>SELECCIÓN DE ENVASE A AJUSTAR INVENTARIO</h4></div>
     <form id="form1" name="form1" method="post" action="updateInvEnv.php">
         <div class="form-group row">

@@ -13,7 +13,7 @@ include "../includes/valAcc.php";
 </head>
 
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo" class="form-group"><strong>DETALLE LISTA DE PRECIOS</strong></div>
     <?php
     $Presentaciones = $_POST['Presentaciones'];

@@ -97,7 +97,7 @@ $proveedor = $ProveedorOperador->getProveedor($idProv);
     </script>
 </head>
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo1"><h4>PRODUCTOS OFRECIDOS POR <?= $proveedor['nomProv'] ?></h4></div>
     <?php if ($proveedor['idCatProv'] != 4): ?>
         <form method="post" action="detProveedor.php" name="form1">

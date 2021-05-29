@@ -13,7 +13,7 @@ include "../includes/valAcc.php";
     <script src="../js/findCliente.js"></script>
 </head>
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo"><h4>CREACIÓN DE COTIZACIÓN PERSONALIZADA</h4></div>
     <form method="post" action="makeCotizacionPersonalizada.php" name="form1">
         <div class="form-group row">

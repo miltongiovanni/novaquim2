@@ -11,7 +11,7 @@ include "../includes/valAcc.php";
     <script src="../js/validar.js"></script>
 </head>
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo"><h4>REMISIÓN DE PRODUCTOS</h4></div>
     <form method="post" action="makeRemision.php" name="form1">
         <div class="form-group row">

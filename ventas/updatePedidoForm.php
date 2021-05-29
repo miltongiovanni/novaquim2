@@ -45,7 +45,7 @@ $pedido = $pedidoOperador->getPedido($idPedido);
     </script>
 </head>
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo"><h4>ACTUALIZACIÓN DE ORDEN DE PEDIDO</h4></div>
     <form method="post" action="updatePedido.php" name="form1">
         <div class="form-group row">

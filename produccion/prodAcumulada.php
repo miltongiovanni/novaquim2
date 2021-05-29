@@ -17,7 +17,7 @@ spl_autoload_register('cargarClases');
     <script src="../js/validar.js"></script>
 </head>
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo"><h4>CONSULTA DE PRODUCCION ACUMULADA POR 12 MESES SEGÚN FECHA</h4></div>
     <form method="post" action="listarProdAcumulada.php" name="form1">
         <div class="form-group row">

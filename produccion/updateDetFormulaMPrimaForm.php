@@ -24,7 +24,7 @@ $detalle = $DetFormulaMPrimaOperador->getDetFormulaMPrima($idFormulaMPrima, $cod
 
 </head>
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo"><h4>ACTUALIZACIÓN DE FORMULACIÓN DE MATERIA PRIMA</h4></div>
     <form action="updateDetFormulaMPrima.php" method="post" name="actualiza">
         <input name="idFormulaMPrima" type="hidden" value="<?= $idFormulaMPrima; ?>">

@@ -200,7 +200,7 @@ $distribucionOperador = new ProductosDistribucionOperaciones();
 
 </head>
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo1"><h4>DETALLE DEL PEDIDO</h4></div>
     <div class="form-group row">
         <div class="col-1 text-right"><strong>No. de pedido</strong></div>

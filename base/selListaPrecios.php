@@ -13,7 +13,7 @@ include "../includes/valAcc.php";
 </head>
 
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo1"><h4>SELECCIONAR PRECIO O PRECIOS PARA LA LISTA</h4></div>
     <form name="form1" method="POST" action="detListaPrecios.php">
         <div class="form-group row">

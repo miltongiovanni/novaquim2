@@ -25,7 +25,7 @@ $factura = $facturaOperador->getFactura($idFactura);
     <script src="../js/validar.js"></script>
 </head>
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo1"><h4>FACTURA DE VENTA</h4></div>
     <form method="post" action="updateFactura.php" name="form1">
         <input type="hidden" name="idPedido" id="idPedido" value="<?= $factura['idPedido'] ?>">

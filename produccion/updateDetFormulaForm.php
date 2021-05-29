@@ -23,7 +23,7 @@ $detalle = $DetFormulaOperador->getDetFormula($idFormula, $codMPrima);
 
 </head>
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo"><h4>ACTUALIZACIÓN DE FORMULACIÓN</h4></div>
     <form action="updateDetFormula.php" method="post" name="actualiza">
         <input name="idFormula" type="hidden" value="<?= $idFormula; ?>">

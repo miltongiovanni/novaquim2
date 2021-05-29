@@ -22,7 +22,7 @@ $envase = $EtiquetaOperador->getEtiqueta($codEtiqueta);
 </head>
 
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo"><h4>ACTUALIZACIÓN DE ETIQUETAS</h4></div>
     <form id="form1" name="form1" method="post" action="updateEtq.php">
         <div class="form-group row">

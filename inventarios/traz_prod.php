@@ -123,7 +123,7 @@ $detOProd = $envasadoOperador->getEnvasado($loteProd, $codPresentacion);
     </script>
 </head>
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo1"><h4>TRAZABILIDAD DE <?= $nomPresentacion; ?> CON
             LOTE <?= $loteProd; ?></h4></div>
     <div class="form-group titulo row">

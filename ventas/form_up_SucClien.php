@@ -28,7 +28,7 @@ $sucursal = $clienteSucursalOperador->getSucursalCliente($idCliente, $idSucursal
     <script src="../js/validar.js"></script>
 </head>
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo1"><h4>ACTUALIZACIÓN DE SUCURSAL POR CLIENTE</h4></div>
     <form name="form2" method="POST" action="update_sucursal.php">
         <input name="idCliente" id="idCliente" type="hidden" value="<?= $idCliente ?>">

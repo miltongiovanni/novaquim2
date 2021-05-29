@@ -41,7 +41,7 @@ $cotizacion['distribucion'] = str_replace("9", " Otros", $cotizacion['distribuci
     <script src="../js/validar.js"></script>
 </head>
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo1"><h4>DETALLE DE LA COTIZACIÓN</h4></div>
     <?php
     if ($cotizacion['destino'] == 1)

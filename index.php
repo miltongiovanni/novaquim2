@@ -20,7 +20,7 @@ if(isset($_SESSION['Autorizado']) && $_SESSION['Autorizado']==true){
 </head>
 
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo"><h4>BIENVENIDO AL SISTEMA DE INFORMACIÓN DE INDUSTRIAS NOVAQUIM S.A.S.</h4></div>
     <form method="POST" action="administracion/login.php">
         <div class="form-group row">

@@ -49,7 +49,7 @@ switch ($tipoCompra) {
     </script>
 </head>
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo"><h4>INGRESO DE COMPRA DE<?= $titulo ?></h4></div>
     <form name="form2" method="POST" action="makeCompra.php">
         <input name="tipoCompra" type="hidden" value="<?= $tipoCompra ?>">

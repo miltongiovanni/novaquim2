@@ -103,7 +103,7 @@ $cliente = $clienteOperador->getCliente($idCliente);
 </head>
 
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo1"><h4>ACTUALIZACIÓN DE CLIENTE</h4></div>
     <form name="form2" method="POST" action="updateClien.php">
         <input name="idCliente" id="idCliente" type="hidden" value="<?= $idCliente ?>">

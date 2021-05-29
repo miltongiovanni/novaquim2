@@ -23,7 +23,7 @@ $detalle = $DetPedidoOperador->getDetProdPedido($idPedido, $codProducto);
 
 </head>
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo"><h4>ACTUALIZACIÓN DEL PRODUCTO EN EL PEDIDO</h4></div>
     <form action="updatePed.php" method="post" name="actualiza">
         <input name="idPedido" type="hidden" value="<?= $idPedido; ?>">

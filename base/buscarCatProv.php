@@ -11,7 +11,7 @@ include "../includes/valAcc.php";
     <script  src="../js/validar.js"></script>
 </head>
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo"><h4>SELECCIONAR TIPO DE PROVEEDOR</h4></div>
     <?php
     include "../includes/base.php";

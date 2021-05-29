@@ -17,7 +17,7 @@ spl_autoload_register('cargarClases');
     <script src="../js/validar.js"></script>
 </head>
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo"><h4>DESARMADO DE KITS DE PRODUCTOS</h4></div>
     <form name="form2" method="POST" action="desarmado_kits.php">
         <div class="form-group row">

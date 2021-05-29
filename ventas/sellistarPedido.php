@@ -30,7 +30,7 @@ $pedidos = $pedidoOperador->getTablePedidosPendientes();
     </script>
 </head>
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo1"><h4>LISTA DE ÓRDENES DE PEDIDO PENDIENTES PARA REVISIÓN</h4></div>
     <form name="revision_pedidos" method="post" action="lista_necesidades.php">
         <div class="row justify-content-between mb-3">

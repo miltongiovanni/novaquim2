@@ -162,7 +162,7 @@ include "../includes/valAcc.php";
     </script>
 </head>
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo1"><h4>LISTADO DE ENVASADO POR ORDEN DE PRODUCCIÓN</h4></div>
     <div class="row flex-end">
         <div class="col-1">

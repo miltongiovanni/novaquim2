@@ -38,7 +38,7 @@ for ($i = 0; $i < count($perfiles); $i++) {
 </head>
 
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <?php
 
     $menum = new MenusOperaciones();

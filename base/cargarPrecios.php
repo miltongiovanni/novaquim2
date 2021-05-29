@@ -13,7 +13,7 @@ include "../includes/valAcc.php";
 </head>
 
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
 
     <div id="saludo"><h4>SELECCIÓN DEL ARCHIVO A CARGAR</h4></div>
     <form id="form1" name="form1" method="post" action="chargePreciosFile.php" enctype="multipart/form-data">

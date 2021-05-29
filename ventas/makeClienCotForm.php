@@ -22,7 +22,7 @@ $cliExis = $_POST['cliExis'];
 </head>
 
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo"><h4>CREACIÓN DE CLIENTES PARA COTIZACIÓN</h4></div>
     <form name="form2" method="POST" action="makeClienCot.php">
         <input type="hidden" name="cliExis" value="<?= $cliExis ?>">

@@ -9,7 +9,7 @@ include "../includes/valAcc.php";
 <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
 
 <div id="saludo1"><strong>LISTADO DE EMPLEADOS ACTIVOS</strong></div> 
 <table width="100%" border="0" summary="encabezado">

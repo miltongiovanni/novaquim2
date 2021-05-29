@@ -32,7 +32,7 @@ include "../includes/valAcc.php";
     </script>
 </head>
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo"><h4>CREACIÓN DE ORDEN DE PEDIDO</h4></div>
     <form method="post" action="makePedido.php" name="form1">
         <div class="form-group row">

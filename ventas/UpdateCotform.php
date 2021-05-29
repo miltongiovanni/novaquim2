@@ -37,7 +37,7 @@ if (!$cotizacion) {
     $seleccionDis = explode(",", $cotizacion['distribucion']);
 }
 ?>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo1"><h4>MODIFICAR COTIZACIÓN</h4></div>
 
     <form method="post" action="update_cotiza.php" name="form1">

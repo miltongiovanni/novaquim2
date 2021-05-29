@@ -297,6 +297,9 @@ switch ($action) {
     case 'findPedidosPorFacturar':
         findPedidosPorFacturar();
         break;
+    case 'findFacturasByCliente':
+        findFacturasByCliente();
+        break;
     case 'findClienteCotizacion':
         findClienteCotizacion();
         break;

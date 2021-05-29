@@ -29,7 +29,7 @@ $relacion = $relDisEmpOperador->getRelDisEmp($idPacUn);
     <script src="../js/validar.js"></script>
 </head>
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo"><h4>ACTUALIZACIÓN RELACIÓN PACA UNIDAD PRODUCTOS DE DISTRIBUCIÓN</h4></div>
     <form method="post" action="updateRelPacProd.php" name="form1">
         <input id="idPacUn" name="idPacUn" type="hidden" value="<?= $idPacUn ?>">

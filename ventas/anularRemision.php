@@ -11,7 +11,7 @@ include "../includes/valAcc.php";
     <script src="../js/validar.js"></script>
 </head>
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo"><h4>INGRESAR REMISIÓN A ANULAR</h4></div>
     <form id="form1" name="form1" method="post" action="anulaRemision.php">
         <div class="form-group row">

@@ -35,7 +35,7 @@ if (!$notaCrOperador->isValidIdNotaC($idNotaC)) {
     $facturas = $facturaOperador->getFacturasClienteForNotas($notaC['idCliente']);
 }
 ?>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo"><h4> NOTA CRÉDITO PARA <?= $notaC['nomCliente'] ?></h4></div>
     <form name="form2" method="POST" action="updateNotaC.php">
         <div class="form-group row">

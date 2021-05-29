@@ -124,7 +124,7 @@ $remision = $remisionOperador->getRemision($idRemision);
     </script>
 </head>
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo1"><h4>DETALLE DE SALIDA POR REMISIÓN</h4></div>
     <div class="form-group row">
         <div class="col-1 text-right"><strong>Remisión</strong></div>

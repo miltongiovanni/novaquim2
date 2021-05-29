@@ -27,7 +27,7 @@ $saldo = intval($egreso['treal']) - $abono;
     <script src="../js/validar.js"></script>
 </head>
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo1"><h4>MODIFICACIÓN COMPROBANTE DE EGRESO </h4></div>
 
     <div class="form-group row">

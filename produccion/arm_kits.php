@@ -18,7 +18,7 @@ spl_autoload_register('cargarClases');
 
 </head>
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo"><h4>ARMADO DE KITS DE PRODUCTOS</h4></div>
     <form name="form2" method="POST" action="armado_kits.php">
         <div class="form-group row">

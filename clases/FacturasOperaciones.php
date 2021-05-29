@@ -291,7 +291,7 @@ class FacturasOperaciones
 
     public function getFacturasClienteForNotas($idCliente)
     {
-        $qry = "SELECT idFactura FROM factura f WHERE f.idCliente=? AND (f.estado!='A' AND f.estado!='C') ORDER BY idFactura DESC";
+        $qry = "SELECT idFactura FROM factura f WHERE f.idCliente=? AND (f.estado!='A') ORDER BY idFactura DESC";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute(array($idCliente));
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);

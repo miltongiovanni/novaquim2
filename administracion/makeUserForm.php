@@ -19,7 +19,7 @@ spl_autoload_register('cargarClases');
 </head>
 
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo"><h4>CREACIÓN DE USUARIOS</h4></div>
     <form name="makeUserForm" id="makeUserForm" method="POST" action="makeUser.php">
         <div class="form-group row">

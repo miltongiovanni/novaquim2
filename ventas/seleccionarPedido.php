@@ -11,7 +11,7 @@ include "../includes/valAcc.php";
     <script src="../js/validar.js"></script>
 </head>
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo"><h4>SELECCIONAR PEDIDO A CONSULTAR</h4></div>
     <form id="form1" name="form1" method="post" action="consultaPedido.php">
         <div class="form-group row">

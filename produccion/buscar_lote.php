@@ -17,7 +17,7 @@ spl_autoload_register('cargarClases');
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo"><h4>BUSCAR ORDEN DE PRODUCCIÓN A PARA CONTROL DE CALIDAD</h4></div>
     <form id="form1" name="form1" method="post" action="cal_produccion.php">
         <div class="form-group row">

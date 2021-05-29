@@ -28,7 +28,7 @@ $detalle = $DetOProdMPrimaOperador->getDetOProdMPrimas($loteMP, $idMPrima);
     <script src="../js/validar.js"></script>
 </head>
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo"><h4>ACTUALIZACIÓN DE GASTO DE MATERIA PRIMA</h4></div>
     <form action="updateDetOProdMPrima.php" method="post" name="actualiza">
         <input type="hidden" name="loteMP" id="loteMP" value="<?= $loteMP ?>">

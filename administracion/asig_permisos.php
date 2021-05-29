@@ -19,7 +19,7 @@ spl_autoload_register('cargarClases');
 </head>
 
 <body>
-	<div id="contenedor">
+	<div id="contenedor" class="container-fluid">
 		<div id="saludo1"><strong>DETALLE DE LOS PERMISOS</strong></div>
 		<?php
 		$idPerfil = $_POST['idPerfil'];

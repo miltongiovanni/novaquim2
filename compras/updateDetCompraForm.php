@@ -45,7 +45,7 @@ $detalle = $DetCompraOperador->getDetCompra($idCompra, $tipoCompra, $codigo);
     <script src="../js/validar.js"></script>
 </head>
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo"><h4>ACTUALIZACIÓN DE LA COMPRA DE<?= $titulo ?></h4></div>
     <form action="updateDetCompra.php" method="post" name="actualiza">
         <input type="hidden" name="idCompra" id="idCompra" value="<?= $idCompra ?>">

@@ -193,7 +193,7 @@ include "../includes/valAcc.php";
     </script>
 </head>
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo1"><h4>FACTURAS PENDIENTES DE PAGO POR INDUSTRIAS NOVAQUIM S.A.S.</h4></div>
     <div class="row flex-end">
         <div class="col-2">

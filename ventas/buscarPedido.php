@@ -17,7 +17,7 @@ spl_autoload_register('cargarClases');
     <script src="../js/validar.js"></script>
 </head>
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="h4"><strong>BUSCAR ORDEN DE PEDIDO A MODIFICAR</strong></div>
     <form id="form1" name="form1" method="post" action="updatePedidoForm.php">
         <div class="form-group row">

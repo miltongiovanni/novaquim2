@@ -64,7 +64,7 @@ include "../includes/valAcc.php";
 </head>
 
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo1"><h4>LISTADO CATEGORÍAS DE PRODUCTOS DE DISTRIBUCIÓN</h4></div>
     <div class="row flex-end">
         <div class="col-1">

@@ -50,7 +50,7 @@ if (!$CompraOperador->isValidIdCompra($idCompra)) {
     <script src="../js/validar.js"></script>
     </head>
     <body>
-    <div id="contenedor">
+    <div id="contenedor" class="container-fluid">
         <div id="saludo"><h4>ACTUALIZACIÓN COMPRA DE<?= $titulo ?></h4></div>
         <form name="form2" method="POST" action="updateCompra.php">
             <input name="tipoCompra" type="hidden" value="<?= $tipoCompra ?>">

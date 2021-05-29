@@ -74,7 +74,7 @@ spl_autoload_register('cargarClases');
 </head>
 
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo1">
         <?php
         foreach ($_POST as $nombre_campo => $valor) {

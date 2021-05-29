@@ -20,7 +20,7 @@ $categoriaProv = $catsProvOperador->getCatProv($idCatProv);
     <script src="../js/validar.js"></script>
 </head>
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo"><h4>ACTUALIZACIÓN TIPO DE PROVEEDOR</h4></div>
 
     <form id="form1" name="form1" method="post" action="updateCatProv.php">

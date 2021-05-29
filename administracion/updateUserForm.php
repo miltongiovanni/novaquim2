@@ -22,7 +22,7 @@ $user = $manager->getUser($idUsuario);
 </head>
 
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
 
     <div id="saludo1"><h4>ACTUALIZACIÓN DE USUARIOS</h4></div>
 

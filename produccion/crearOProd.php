@@ -38,7 +38,7 @@ spl_autoload_register('cargarClases');
 
 </head>
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo"><h4>ORDEN DE PRODUCCIÓN</h4></div>
     <form method="post" action="makeO_Prod.php" name="form1">
         <div class="form-group row">

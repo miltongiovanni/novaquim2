@@ -17,7 +17,7 @@ spl_autoload_register('cargarClases');
     <script src="../js/validar.js"></script>
 </head>
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo"><h4>ELIMINACIÓN DE FORMULACIÓN</h4></div>
     <form method="post" action="deleteFormula.php">
         <div class="form-group row">

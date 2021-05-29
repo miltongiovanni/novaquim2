@@ -29,7 +29,7 @@ $validar=0;
     <script src="../js/validar.js"></script>
 </head>
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo1"><h4>FALTANTE DE PEDIDO</h4></div>
     <div class="form-group row">
         <div class="col-1 text-right"><strong>No. de pedido</strong></div>

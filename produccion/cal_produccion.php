@@ -23,7 +23,7 @@ $producto = $ProdOperador->getProducto($ordenProd['codProducto']);
 
 </head>
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo1"><h4>CONTROL DE CALIDAD POR ORDEN DE PRODUCCIÓN</h4></div>
     <div class="form-group row">
         <div class="col-1 text-right"><strong>Lote</strong></div>

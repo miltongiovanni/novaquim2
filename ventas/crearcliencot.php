@@ -10,7 +10,7 @@ include "../includes/valAcc.php";
     <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/validar.js"></script>
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo"><h4>CREAR CLIENTE PARA COTIZACIÓN</h4></div>
     <form method="post" action="makeClienCotForm.php" name="form1">
         <div class="row mb-3">
