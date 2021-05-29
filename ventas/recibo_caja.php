@@ -193,7 +193,7 @@ $saldo = round($recibo['totalR'] - $recibo['retencionFte'] - $recibo['retencionI
         <input name="reten_ica" type="hidden" value="<?= $retencionIca > 0 ? 1 : 0 ?>">
         <div class="row form-group">
             <div class="text-center input-date"><strong>Fecha cobro</strong></div>
-            <div class="input-date text-center ml-1"><strong>Forma de pago</strong></div>
+            <div class="input-date text-center ms-1"><strong>Forma de pago</strong></div>
             <div class="col-1 text-center mx-1"><strong>Banco</strong></div>
             <div class="col-1 text-center mx-1"><strong>No. Cheque</strong></div>
             <div class="col-1 text-center mx-1"><strong>Vlr pagado</strong></div>
@@ -204,7 +204,7 @@ $saldo = round($recibo['totalR'] - $recibo['retencionFte'] - $recibo['retencionI
         <div class="form-group row">
             <input type="date" class="form-control input-date"
                    name="fechaRecCaja" id="fechaRecCaja" value="<?= $recibo['fechaRecCaja'] ?>">
-            <select name="form_pago" id="form_pago" class="form-control input-date ml-1" required>
+            <select name="form_pago" id="form_pago" class="form-control input-date ms-1" required>
                 <?php
                 $manager = new FormaPagoOperaciones();
                 $formas = $manager->getFormasPago();

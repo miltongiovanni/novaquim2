@@ -46,12 +46,12 @@ $cliExis = $_POST['cliExis'];
         else:
             ?>
             <div class=" row ">
-                <label class="col-form-label col-3 text-left mr-2" for="nomCliente"><strong>Cliente</strong></label>
+                <label class="col-form-label col-3 text-left me-2" for="nomCliente"><strong>Cliente</strong></label>
                 <label class="col-form-label col-1 text-left mx-3" for="ciudadCliente"><strong>Ciudad</strong></label>
-                <label class="col-form-label col-3 text-left ml-2" for="dirCliente"><strong>Dirección</strong></label>
+                <label class="col-form-label col-3 text-left ms-2" for="dirCliente"><strong>Dirección</strong></label>
             </div>
             <div class="form-group row">
-                <input type="text" class="form-control col-3 mr-2" name="nomCliente" id="nomCliente" required>
+                <input type="text" class="form-control col-3 me-2" name="nomCliente" id="nomCliente" required>
                 <?php
                 $manager = new CiudadesOperaciones();
                 $ciudades = $manager->getCiudades();
@@ -62,23 +62,23 @@ $cliExis = $_POST['cliExis'];
                 }
                 echo '</select>';
                 ?>
-                <input type="text" class="form-control col-3 ml-2" name="dirCliente" id="dirCliente" required>
+                <input type="text" class="form-control col-3 ms-2" name="dirCliente" id="dirCliente" required>
             </div>
             <div class="row">
-                <label class="col-form-label col-2 text-left mr-2" for="telCliente"><strong>Teléfono</strong></label>
+                <label class="col-form-label col-2 text-left me-2" for="telCliente"><strong>Teléfono</strong></label>
                 <label class="col-form-label col-2 text-left mx-3" for="emailCliente"><strong>Correo
                         electrónico</strong></label>
-                <label class="col-form-label col-3 text-left ml-2" for="idCatCliente"><strong>Actividad</strong></label>
+                <label class="col-form-label col-3 text-left ms-2" for="idCatCliente"><strong>Actividad</strong></label>
             </div>
             <div class="form-group row">
-                <input type="text" class="form-control col-2 mr-2" name="telCliente" id="telCliente" maxlength="10"
+                <input type="text" class="form-control col-2 me-2" name="telCliente" id="telCliente" maxlength="10"
                        onkeydown="return aceptaNum(event)">
                 <input type="email" class="form-control col-2 mx-3" name="emailCliente" id="emailCliente">
                 <?php
                 $manager = new CategoriasCliOperaciones();
                 $categorias = $manager->getCatsCli();
                 $filas = count($categorias);
-                echo '<select name="idCatCliente" id="idCatCliente" class="form-control col-3 ml-2" required>';
+                echo '<select name="idCatCliente" id="idCatCliente" class="form-control col-3 ms-2" required>';
                 echo '<option disabled selected value="">-----------------------------</option>';
                 for ($i = 0; $i < $filas; $i++) {
                     echo '<option value="' . $categorias[$i]["idCatClien"] . '">' . $categorias[$i]['desCatClien'] . '</option>';
@@ -87,22 +87,22 @@ $cliExis = $_POST['cliExis'];
                 ?>
             </div>
             <div class="row">
-                <label class="col-form-label col-2 text-left mr-2" for="contactoCliente"><strong>Nombre
+                <label class="col-form-label col-2 text-left me-2" for="contactoCliente"><strong>Nombre
                         Contacto</strong></label>
                 <label class="col-form-label col-2 text-left mx-2" for="cargoContacto"><strong>Cargo
                         Contacto</strong></label>
                 <label class="col-form-label col-1 text-left mx-2" for="cargoContacto"><strong>Celular</strong></label>
-                <label class="col-form-label col-2 text-left ml-2" for="codVendedor"><strong>Vendedor</strong></label>
+                <label class="col-form-label col-2 text-left ms-2" for="codVendedor"><strong>Vendedor</strong></label>
             </div>
             <div class="form-group row">
-                <input type="text" class="form-control col-2 mr-2" name="contactoCliente" id="contactoCliente" required>
+                <input type="text" class="form-control col-2 me-2" name="contactoCliente" id="contactoCliente" required>
                 <input type="text" class="form-control col-2 mx-2" name="cargoContacto" id="cargoContacto" required>
                 <input type="text" class="form-control col-1 mx-2" name="celCliente" id="celCliente" maxlength="10"
                        onkeydown="return aceptaNum(event)">
                 <?php
                 $PersonalOperador = new PersonalOperaciones();
                 $personal = $PersonalOperador->getPersonal(true);
-                echo '<select name="codVendedor" id="codVendedor" class="form-control col-2 ml-2" required >';
+                echo '<select name="codVendedor" id="codVendedor" class="form-control col-2 ms-2" required >';
                 echo '<option selected disabled value="">-----------------------------</option>';
                 for ($i = 0; $i < count($personal); $i++) {
                     echo '<option value="' . $personal[$i]["idPersonal"] . '">' . $personal[$i]['nomPersonal'] . '</option>';

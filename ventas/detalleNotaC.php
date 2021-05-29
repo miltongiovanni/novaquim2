@@ -225,7 +225,7 @@ $totalesNotaC = $notaCrOperador->getTotalesNotaC($idNotaC);
         <div class="col-1 bg-blue"><?= $idNotaC; ?></div>
         <div class="col-1 text-right"><strong>Fecha nota</strong></div>
         <div class="col-1 bg-blue"><?= $notaC['fechaNotaC'] ?></div>
-        <div class="col-1 text-right"><strong>Factura origen</strong></div>
+        <div class="col-2 text-right"><strong>Factura origen</strong></div>
         <div class="col-1 bg-blue"><?= $notaC['facturaOrigen'] ?></div>
         <div class="col-2 text-right"><strong>Factura destino</strong></div>
         <div class="col-1 bg-blue"><?= $notaC['facturaDestino'] ?></div>
@@ -256,7 +256,7 @@ $totalesNotaC = $notaCrOperador->getTotalesNotaC($idNotaC);
                 <div class="col-2 text-center"></div>
             </div>
             <div class="form-group row">
-                <select name="codProducto" id="codProducto" class="form-control col-4 mr-3"
+                <select name="codProducto" id="codProducto" class="form-control col-4 me-3"
                         onchange="cantDetNotaC(<?= $notaC['facturaOrigen']; ?>, this.value)">
                     <option selected disabled value="">Escoja un producto</option>
                     <?php
@@ -343,12 +343,12 @@ $totalesNotaC = $notaCrOperador->getTotalesNotaC($idNotaC);
     <div class="tabla-70">
         <div class="row formatoDatos">
             <div class="col-9"><strong>SON:</strong></div>
-            <div class="col-1 mr-3 px-0">
+            <div class="col-1 me-3 px-0">
                 <div class=" text-left">
                     <strong>SUBTOTAL</strong>
                 </div>
             </div>
-            <div class="col-1 ml-3 px-0" style=" flex: 0 0 10%; max-width: 10%;">
+            <div class="col-1 ms-3 px-0" style=" flex: 0 0 10%; max-width: 10%;">
                 <div class="text-right">
                     <strong><?= $notaC['subtotalNotaC'] ?></strong>
                 </div>
@@ -356,7 +356,7 @@ $totalesNotaC = $notaCrOperador->getTotalesNotaC($idNotaC);
         </div>
         <div class="row formatoDatos form-group">
             <div class="col-9"><?= numletra($notaC['totalNotaC']) ?></div>
-            <div class="col-1 mr-3 px-0">
+            <div class="col-1 me-3 px-0">
                 <div class=" text-left">
                     <strong>DESCUENTO</strong>
                 </div>
@@ -370,15 +370,15 @@ $totalesNotaC = $notaCrOperador->getTotalesNotaC($idNotaC);
                     <strong>TOTAL</strong>
                 </div>
             </div>
-            <div class="col-1 ml-3 px-0" style=" flex: 0 0 10%; max-width: 10%;">
+            <div class="col-1 ms-3 px-0" style=" flex: 0 0 10%; max-width: 10%;">
                 <div class="text-right">
                     <strong><?= $notaC['descuentoNotaC'] ?></strong>
                 </div>
                 <div class="text-right">
-                    <strong><?= $notaC['motivo'] == 0 ? $totalesNotaC['iva10nota_c'] : '$0' ?></strong>
+                    <strong><?= $notaC['motivo'] == 0 ? isset($totalesNotaC['iva10nota_c'])? $totalesNotaC['iva10nota_c']:'$0' : '$0' ?></strong>
                 </div>
                 <div class="text-right">
-                    <strong><?= $notaC['motivo'] == 0 ? $totalesNotaC['iva19nota_c'] : $notaC['ivaNotaC'] ?></strong>
+                    <strong><?= $notaC['motivo'] == 0 ? isset($totalesNotaC['iva19nota_c'])? $totalesNotaC['iva19nota_c']:'$0' : $notaC['ivaNotaC'] ?></strong>
                 </div>
                 <div class="text-right">
                     <strong><?= $notaC['totalNotaCrFormated'] ?></strong>

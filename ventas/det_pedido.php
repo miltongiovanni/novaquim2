@@ -243,7 +243,7 @@ $distribucionOperador = new ProductosDistribucionOperaciones();
                 <div class="col-2 text-center"></div>
             </div>
             <div class="form-group row">
-                <select name="codProducto" id="codProducto" class="form-control col-4 mr-3">
+                <select name="codProducto" id="codProducto" class="form-control col-4 me-3">
                     <option selected disabled value="">Escoja un producto Novaquim</option>
                     <?php
                     $productos = $pedidoOperador->getProdTerminadosByIdPedido($idPedido);
@@ -271,7 +271,7 @@ $distribucionOperador = new ProductosDistribucionOperaciones();
                 <div class="col-2 text-center"></div>
             </div>
             <div class="form-group row">
-                <select name="codProducto" id="codProducto" class="form-control col-4 mr-3">
+                <select name="codProducto" id="codProducto" class="form-control col-4 me-3">
                     <option selected disabled value="">Escoja un producto de distribución</option>
                     <?php
                     $productos = $pedidoOperador->getProdDistribucionByIdPedido($idPedido);
@@ -300,7 +300,7 @@ $distribucionOperador = new ProductosDistribucionOperaciones();
                 <div class="col-2 text-center"></div>
             </div>
             <div class="form-group row">
-                <select name="codProducto" id="codProducto" class="form-control col-3 mr-3">
+                <select name="codProducto" id="codProducto" class="form-control col-3 me-3">
                     <option selected disabled value="">Escoja un servicio</option>
                     <?php
                     $productos = $pedidoOperador->getServicioByIdPedido($idPedido);
@@ -348,7 +348,7 @@ $distribucionOperador = new ProductosDistribucionOperaciones();
         <table width="100% formatoDatos">
             <tr>
                 <td width="60%" class="text-right text-bold ">Total Pedido</td>
-                <td width="12%" class="text-left text-bold  pl-5"><?= $totalPedido ?></td>
+                <td width="12%" class="text-left text-bold  ps-5"><?= $totalPedido ?></td>
             </tr>
         </table>
     </div>
