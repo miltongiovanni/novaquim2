@@ -21,7 +21,7 @@ spl_autoload_register('cargarClases');
     <div id="saludo"><h4>CONTROL DE CALIDAD PRODUCTO TERMINADO</h4></div>
     <form id="form1" name="form1" method="post" action="consultaCalidad2.php">
         <div class="form-group row">
-            <label class="col-form-label col-2 text-right" for="lote"><strong>Orden de producción</strong></label>
+            <label class="col-form-label col-2 text-end" for="lote"><strong>Orden de producción</strong></label>
             <select name="lote" id="lote" class="form-control col-1" required>
                 <option selected disabled value="">------------</option>
                 <?php

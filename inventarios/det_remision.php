@@ -157,13 +157,13 @@ $remision = $remisionOperador->getRemisionById($idRemision);
 <div id="contenedor" class="container-fluid">
     <div id="saludo1"><h4>DETALLE DE LA REMISIÓN</h4></div>
     <div class="form-group row">
-        <div class="col-2 text-right"><strong>No. de Remisión</strong></div>
+        <div class="col-2 text-end"><strong>No. de Remisión</strong></div>
         <div class="col-1 bg-blue"><?= $idRemision; ?></div>
-        <div class="col-1 text-right"><strong>Cliente</strong></strong></div>
+        <div class="col-1 text-end"><strong>Cliente</strong></strong></div>
         <div class="col-3" style="background-color: #dfe2fd;"><?= $remision['cliente'] ?></div>
-        <div class="col-1 text-right"><strong>Fecha</strong></div>
+        <div class="col-1 text-end"><strong>Fecha</strong></div>
         <div class="col-1 bg-blue"><?= $remision['fechaRemision'] ?></div>
-        <div class="col-1 text-right"><strong>Valor</strong></div>
+        <div class="col-1 text-end"><strong>Valor</strong></div>
         <div class="col-1 bg-blue">$ <?= number_format($remision['valor']) ?></div>
     </div>
     <div class="form-group titulo row">

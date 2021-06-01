@@ -15,7 +15,7 @@ include "../includes/valAcc.php";
     <div id="saludo"><h4> NOTA DE CRÉDITO A MODIFICAR</h4></div>
     <form id="form1" name="form1" method="post" action="updateNotaCrForm.php">
         <div class="form-group row">
-            <label class="col-form-label col-2 text-right" for="idNotaC"><strong>No. de Nota Crédito</strong></label>
+            <label class="col-form-label col-2 text-end" for="idNotaC"><strong>No. de Nota Crédito</strong></label>
             <input type="text" class="form-control col-1" name="idNotaC" id="idNotaC"
                    onkeydown="return aceptaNum(event)" required>
         </div>

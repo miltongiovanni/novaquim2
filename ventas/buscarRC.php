@@ -15,7 +15,7 @@ include "../includes/valAcc.php";
     <div id="saludo"><h4>SELECCIONAR RECIBO DE CAJA A CONSULTAR</h4></div>
     <form id="form1" name="form1" method="post" action="consultaRecCaja.php">
         <div class="form-group row">
-            <label class="col-form-label col-2 text-right" for="idRecCaja"><strong>No. de Recibo de
+            <label class="col-form-label col-2 text-end" for="idRecCaja"><strong>No. de Recibo de
                     Caja</strong></label>
             <input type="text" class="form-control col-1" name="idRecCaja" id="idRecCaja"
                    onkeydown="return aceptaNum(event)" required>

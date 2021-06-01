@@ -38,11 +38,11 @@ spl_autoload_register('cargarClases');
             </select>
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-1 text-right" for="fechaInicial"><strong>Fecha inicial</strong></label>
+            <label class="col-form-label col-1 text-end" for="fechaInicial"><strong>Fecha inicial</strong></label>
             <input type="date" class="form-control col-2" name="fechaInicial" id="fechaInicial" required>
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-1 text-right" for="fechaFinal"><strong>Fecha final</strong></label>
+            <label class="col-form-label col-1 text-end" for="fechaFinal"><strong>Fecha final</strong></label>
             <input type="date" class="form-control col-2" name="fechaFinal" id="fechaFinal" required>
         </div>
         <div class="row form-group">

@@ -61,41 +61,41 @@ spl_autoload_register('cargarClases');
             }
             echo '</select>';
             ?>
-            <label class="col-form-label col-1 text-right" for="codProducto"><strong>Código</strong></label>
+            <label class="col-form-label col-1 text-end" for="codProducto"><strong>Código</strong></label>
             <input type="text" class="form-control col-2" name="codProducto" id="codProducto"
                    onkeydown="return aceptaNum(event)" readOnly>
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-1 text-right" for="nomProducto"><strong>Producto</strong></label>
+            <label class="col-form-label col-1 text-end" for="nomProducto"><strong>Producto</strong></label>
             <input type="text" class="form-control col-2" name="nomProducto" id="nomProducto"
                    onkeydown="return aceptaLetra(event)" maxlength="50" required>
-            <label class="col-form-label col-1 text-right" for="apariencia"><strong>Apariencia</strong></label>
+            <label class="col-form-label col-1 text-end" for="apariencia"><strong>Apariencia</strong></label>
             <input type="text" class="form-control col-2" name="apariencia" id="apariencia"
                    onkeydown="return aceptaLetra(event)" required>
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-1 text-right" for="densMin"><strong>Densidad Min</strong></label>
+            <label class="col-form-label col-1 text-end" for="densMin"><strong>Densidad Min</strong></label>
             <input type="text" class="form-control col-2" name="densMin" id="densMin"
                    onkeydown="return aceptaNum(event)" required>
-            <label class="col-form-label col-1 text-right" for="densMax"><strong>Densidad Max</strong></label>
+            <label class="col-form-label col-1 text-end" for="densMax"><strong>Densidad Max</strong></label>
             <input type="text" class="form-control col-2" name="densMax" id="densMax"
                    onkeydown="return aceptaNum(event)" required>
         </div>
 
         <div class="form-group row">
-            <label class="col-form-label col-1 text-right" for="pHmin"><strong>pH Min</strong></label>
+            <label class="col-form-label col-1 text-end" for="pHmin"><strong>pH Min</strong></label>
             <input type="text" class="form-control col-2" name="pHmin" id="pHmin" onkeydown="return aceptaNum(event)"
                    required>
-            <label class="col-form-label col-1 text-right" for="pHmax"><strong>pH Max</strong></label>
+            <label class="col-form-label col-1 text-end" for="pHmax"><strong>pH Max</strong></label>
             <input type="text" class="form-control col-2" name="pHmax" id="pHmax" onkeydown="return aceptaNum(event)"
                    required>
         </div>
 
         <div class="form-group row">
-            <label class="col-form-label col-1 text-right" for="fragancia"><strong>Fragancia</strong></label>
+            <label class="col-form-label col-1 text-end" for="fragancia"><strong>Fragancia</strong></label>
             <input type="text" class="form-control col-2" name="fragancia" id="fragancia"
                    onkeydown="return aceptaLetra(event)" maxlength="30" required>
-            <label class="col-form-label col-1 text-right" for="color"><strong>Color</strong></label>
+            <label class="col-form-label col-1 text-end" for="color"><strong>Color</strong></label>
             <input type="text" class="form-control col-2" name="color" id="color" onkeydown="return aceptaLetra(event)"
                    maxlength="30" required>
         </div>

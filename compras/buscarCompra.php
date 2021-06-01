@@ -29,7 +29,7 @@ switch ($tipoCompra) {
     <div id="saludo"><h4>SELECCIONAR COMPRA DE<?= $titulo ?></h4></div>
     <form id="form1" name="form1" method="post" action="updateCompraForm.php">
         <div class="form-group row">
-            <label class="col-form-label col-1 text-right" for="idCompra"><strong>No. de compra</strong></label>
+            <label class="col-form-label col-1 text-end" for="idCompra"><strong>No. de compra</strong></label>
             <input type="text" class="form-control col-2" name="idCompra" id="idCompra"
                    onkeydown="return aceptaNum(event)" required>
         </div>

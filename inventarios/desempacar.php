@@ -21,7 +21,7 @@ spl_autoload_register('cargarClases');
     <div id="saludo"><h4>DESEMPACAR PACAS A UNIDADES</h4></div>
     <form id="form1" name="form1" method="post" action="unpack.php">
         <div class="form-group row">
-            <label class="col-form-label col-3 text-right" for="codPaca"><strong>Producto de Distribución
+            <label class="col-form-label col-3 text-end" for="codPaca"><strong>Producto de Distribución
                     Empacado:</strong></label>
             <select class="form-control col-3" name="codPaca" id="codPaca" required>
                 <option selected disabled value="">----------------------------</option>
@@ -37,7 +37,7 @@ spl_autoload_register('cargarClases');
             </select>
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-3 text-right" for="cantidadPacas"><strong>Cantidad:</strong></label>
+            <label class="col-form-label col-3 text-end" for="cantidadPacas"><strong>Cantidad:</strong></label>
             <input type="text" class="form-control col-3" name="cantidadPacas" id="cantidadPacas"
                    onkeydown="return aceptaNum(event)" required>
         </div>

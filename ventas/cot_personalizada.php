@@ -24,7 +24,7 @@ include "../includes/valAcc.php";
             <div class="col-4" id="myDiv"></div>
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-2 text-right" for="fechaCotizacion"><strong>Fecha de
+            <label class="col-form-label col-2 text-end" for="fechaCotizacion"><strong>Fecha de
                     Cotización</strong></label>
             <input type="date" class="form-control col-5" name="fechaCotizacion" id="fechaCotizacion" required>
         </div>

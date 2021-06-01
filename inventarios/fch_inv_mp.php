@@ -15,7 +15,7 @@ include "../includes/valAcc.php";
     <div id="saludo"><h4>CONSULTA DE INVENTARIO POR FECHA</h4></div>
     <form method="post" action="inv_mp_fch.php" name="form1">
         <div class="form-group row">
-            <label class="col-form-label col-1 text-right" for="fecha"><strong>Fecha</strong></label>
+            <label class="col-form-label col-1 text-end" for="fecha"><strong>Fecha</strong></label>
             <input type="date" class="form-control col-2" name="fecha" id="fecha" required>
         </div>
         <div class="form-group row">

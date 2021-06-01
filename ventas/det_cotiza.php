@@ -73,35 +73,35 @@ $cotizacion['distribucion'] = str_replace("9", " Otros", $cotizacion['distribuci
     }
     ?>
     <div class="form-group row">
-        <label class="col-form-label col-2 text-right"><strong>No. Cotización:</strong></label>
+        <label class="col-form-label col-2 text-end"><strong>No. Cotización:</strong></label>
         <div class="form-control col-8"><?php echo $idCotizacion; ?></div>
     </div>
     <div class="form-group row">
-        <label class="col-form-label col-2 text-right"><strong>Cliente:</strong></label>
+        <label class="col-form-label col-2 text-end"><strong>Cliente:</strong></label>
         <div class="form-control col-8"><?php echo $cotizacion['nomCliente']; ?></div>
     </div>
     <div class="form-group row">
-        <label class="col-form-label col-2 text-right"><strong>Fecha de Cotización:</strong></label>
+        <label class="col-form-label col-2 text-end"><strong>Fecha de Cotización:</strong></label>
         <div class="form-control col-8"><?php echo $cotizacion['fechaCotizacion']; ?></div>
     </div>
     <div class="form-group row">
-        <label class="col-form-label col-2 text-right"><strong>Destino:</strong></label>
+        <label class="col-form-label col-2 text-end"><strong>Destino:</strong></label>
         <div class="form-control col-8"><?php echo $dest; ?></div>
     </div>
     <div class="form-group row">
-        <label class="col-form-label col-2 text-right"><strong>Presentación:</strong></label>
+        <label class="col-form-label col-2 text-end"><strong>Presentación:</strong></label>
         <div class="form-control col-8"><?php echo $presen; ?></div>
     </div>
     <div class="form-group row">
-        <label class="col-form-label col-2 text-right"><strong>Precio:</strong></label>
+        <label class="col-form-label col-2 text-end"><strong>Precio:</strong></label>
         <div class="form-control col-8"><?php echo $precio_c; ?></div>
     </div>
     <div class="form-group row">
-        <label class="col-form-label col-2 text-right"><strong>Productos Novaquim:</strong></label>
+        <label class="col-form-label col-2 text-end"><strong>Productos Novaquim:</strong></label>
         <div class="form-control col-8"><?php echo $opciones_prod; ?></div>
     </div>
     <div class="form-group row">
-        <label class="col-form-label col-2 text-right"><strong>Productos de Distribución:</strong></label>
+        <label class="col-form-label col-2 text-end"><strong>Productos de Distribución:</strong></label>
         <div class="form-control col-8"><?php echo $opciones_dist; ?></div>
     </div>
     <div class="form-group row">

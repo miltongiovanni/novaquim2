@@ -194,22 +194,22 @@ $distribucionOperador = new ProductosDistribucionOperaciones();
 <div id="contenedor" class="container-fluid">
     <div id="saludo1"><h4>DETALLE DE LA COTIZACIÓN PERSONALIZADA</h4></div>
     <div class="form-group row">
-        <div class="col-2 text-right"><strong>No. de Cotización</strong></div>
+        <div class="col-2 text-end"><strong>No. de Cotización</strong></div>
         <div class="col-1 bg-blue"><?= $idCotPersonalizada; ?></div>
-        <div class="col-2 text-right"><strong>Fecha Cotización</strong></div>
+        <div class="col-2 text-end"><strong>Fecha Cotización</strong></div>
         <div class="col-1 bg-blue"><?= $cotizacion['fechaCotizacion'] ?></div>
-        <div class="col-1 text-right"><strong>Cliente</strong></strong></div>
+        <div class="col-1 text-end"><strong>Cliente</strong></strong></div>
         <div class="col-4" style="background-color: #dfe2fd;"><?= $cotizacion['nomCliente'] ?></div>
 
     </div>
     <div class="form-group row">
-        <div class="col-1 text-right"><strong>Contacto</strong></div>
+        <div class="col-1 text-end"><strong>Contacto</strong></div>
         <div class="col-2 bg-blue"><?= $cotizacion['contactoCliente'] ?></div>
-        <div class="col-1 text-right"><strong>Cargo</strong></div>
+        <div class="col-1 text-end"><strong>Cargo</strong></div>
         <div class="col-2 bg-blue"><?= $cotizacion['cargoContacto'] ?></div>
-        <div class="col-1 text-right"><strong>Vendedor</strong></div>
+        <div class="col-1 text-end"><strong>Vendedor</strong></div>
         <div class="col-2 bg-blue"><?= $cotizacion['nomPersonal'] ?></div>
-        <div class="col-1 text-right"><strong>Tipo de Precio</strong></div>
+        <div class="col-1 text-end"><strong>Tipo de Precio</strong></div>
         <div class="col-1 bg-blue"><?= $cotizacion['tipPrecio'] ?></div>
     </div>
     <div class="form-group titulo row">

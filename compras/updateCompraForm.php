@@ -55,7 +55,7 @@ if (!$CompraOperador->isValidIdCompra($idCompra)) {
         <form name="form2" method="POST" action="updateCompra.php">
             <input name="tipoCompra" type="hidden" value="<?= $tipoCompra ?>">
             <div class="form-group row">
-                <label class="col-form-label col-2 text-right" for="idCompra"><strong>Id compra</strong></label>
+                <label class="col-form-label col-2 text-end" for="idCompra"><strong>Id compra</strong></label>
                 <input type="text" class="form-control col-2" name="idCompra" id="idCompra"
                        value="<?= $compra['idCompra'] ?>" readonly>
             </div>
@@ -75,17 +75,17 @@ if (!$CompraOperador->isValidIdCompra($idCompra)) {
                 ?>
             </div>
             <div class="form-group row">
-                <label class="col-form-label col-2 text-right" for="numFact"><strong>Número de Factura</strong></label>
+                <label class="col-form-label col-2 text-end" for="numFact"><strong>Número de Factura</strong></label>
                 <input type="text" class="form-control col-2" name="numFact" id="numFact"
                        value="<?= $compra['numFact'] ?>" onkeydown="return aceptaNum(event)">
             </div>
             <div class="form-group row">
-                <label class="col-form-label col-2 text-right" for="fechComp"><strong>Fecha de compra</strong></label>
+                <label class="col-form-label col-2 text-end" for="fechComp"><strong>Fecha de compra</strong></label>
                 <input type="date" class="form-control col-2" name="fechComp" id="fechComp"
                        value="<?= $compra['fechComp'] ?>">
             </div>
             <div class="form-group row">
-                <label class="col-form-label col-2 text-right" for="fechVenc"><strong>Fecha de
+                <label class="col-form-label col-2 text-end" for="fechVenc"><strong>Fecha de
                         vencimiento</strong></label>
                 <input type="date" class="form-control col-2" name="fechVenc" id="fechVenc"
                        value="<?= $compra['fechVenc'] ?>">

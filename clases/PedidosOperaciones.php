@@ -51,7 +51,10 @@ class PedidosOperaciones
 
     public function getPedidosByEstado($estado)
     {
-        $qry = "SELECT idPedido FROM pedido WHERE estado=?";
+        $qry = "SELECT idPedido, c.nomCliente, cs.nomSucursal FROM pedido p
+                LEFT JOIN clientes c on c.idCliente = p.idCliente
+                LEFT JOIN clientes_sucursal cs on c.idCliente = cs.idCliente AND p.idSucursal=cs.idSucursal
+                WHERE estado=?";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute(array($estado));
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -211,7 +214,7 @@ class PedidosOperaciones
                        fechaEntrega,
                        tp.tipoPrecio,
                        nomCliente,
-                       IF(p.estado='A', 'Anulado', IF(p.estado='F', 'Facturado', IF(p.estado='P','Pendiente', 'Por facturar'))) estadoPedido,
+                       IF(p.estado='A', 'Anulado', IF(p.estado='F', 'Facturado', IF(p.estado='P','Pendiente', IF(p.estado='L','Por entregar', 'Por facturar')))) estadoPedido,
                        nomSucursal,
                        dirSucursal
                 FROM pedido p
@@ -226,7 +229,7 @@ class PedidosOperaciones
                        fechaEntrega,
                        tp.tipoPrecio,
                        nomCliente,
-                       IF(p.estado='A', 'Anulado', IF(p.estado='F', 'Facturado', IF(p.estado='P','Pendiente', 'Por facturar'))) estadoPedido,
+                       IF(p.estado='A', 'Anulado', IF(p.estado='F', 'Facturado', IF(p.estado='P','Pendiente', IF(p.estado='L','Por entregar', 'Por facturar')))) estadoPedido,
                        nomSucursal,
                        dirSucursal
                 FROM pedido p
@@ -241,7 +244,7 @@ class PedidosOperaciones
                        fechaEntrega,
                        tp.tipoPrecio,
                        nomCliente,
-                       IF(p.estado='A', 'Anulado', IF(p.estado='F', 'Facturado', IF(p.estado='P','Pendiente', IF(p.estado='E','Entregado', 'Por facturar')))) estadoPedido,
+                       IF(p.estado='A', 'Anulado', IF(p.estado='F', 'Facturado', IF(p.estado='P','Pendiente', IF(p.estado='L','Por entregar', 'Por facturar')))) estadoPedido,
                        nomSucursal,
                        dirSucursal
                 FROM pedido p
@@ -265,7 +268,7 @@ class PedidosOperaciones
                        fechaEntrega,
                        tp.tipoPrecio,
                        nomCliente,
-                       IF(p.estado='A', 'Anulado', IF(p.estado='F', 'Facturado', IF(p.estado='P','Pendiente', IF(p.estado='E','Por entregar', 'Por facturar')))) estadoPedido,
+                       IF(p.estado='A', 'Anulado', IF(p.estado='F', 'Facturado', IF(p.estado='P','Pendiente', IF(p.estado='L','Por entregar', 'Por facturar')))) estadoPedido,
                        nomSucursal,
                        dirSucursal
                 FROM pedido p
@@ -326,7 +329,7 @@ class PedidosOperaciones
                        fechaEntrega,
                        tp.tipoPrecio,
                        nomCliente,
-                       IF(p.estado='A', 'Anulado', IF(p.estado='F', 'Facturado', IF(p.estado='P','Pendiente', IF(p.estado='E','Por entregar', 'Por facturar')))) estadoPedido,
+                       IF(p.estado='A', 'Anulado', IF(p.estado='F', 'Facturado', IF(p.estado='P','Pendiente', IF(p.estado='L','Por entregar', 'Por facturar')))) estadoPedido,
                        nomSucursal,
                        dirSucursal
                 FROM pedido p
@@ -351,7 +354,7 @@ class PedidosOperaciones
                        tp.tipoPrecio,
                        p.estado,
                        IF(p.estado = 'A', 'Anulado',
-                          IF(p.estado = 'F', 'Facturado', IF(p.estado = 'P', 'Pendiente', IF(p.estado='E','Por entregar', 'Por facturar')))) estadoPedido,
+                          IF(p.estado = 'F', 'Facturado', IF(p.estado = 'P', 'Pendiente', IF(p.estado='L','Por entregar', 'Por facturar')))) estadoPedido,
                        p.idSucursal,
                        nomSucursal,
                        dirSucursal,

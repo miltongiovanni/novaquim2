@@ -24,13 +24,13 @@ $servicio = $servicioperador->getServicio($idServicio);
     <div id="saludo"><h4>ACTUALIZACIÓN DE SERVICIO</h4></div>
     <form id="form1" name="form1" method="post" action="updateServ.php">
         <div class="form-group row">
-            <label class="col-form-label col-2 text-right"
+            <label class="col-form-label col-2 text-end"
                    for="idServicio"><strong>Código</strong></label>
             <input type="text" class="form-control col-2" name="idServicio" id="idServicio" size=30 maxlength="30"
                    value="<?= $servicio['idServicio'] ?>" readonly>
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-2 text-right"  for="desServicio"><strong>Descripción
+            <label class="col-form-label col-2 text-end"  for="desServicio"><strong>Descripción
                     Servicio</strong></label>
             <input type="text" class="form-control col-2" name="desServicio" id="desServicio"
                    value="<?= $servicio['desServicio'] ?>" onkeydown="return aceptaLetra(event)">

@@ -62,7 +62,7 @@ include "../includes/valAcc.php";
             </select>
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-2 text-right" for="fechaNotaC"><strong>Fecha Nota Crédito</strong></label>
+            <label class="col-form-label col-2 text-end" for="fechaNotaC"><strong>Fecha Nota Crédito</strong></label>
             <input type="date" class="form-control col-5" name="fechaNotaC" id="fechaNotaC" required>
         </div>
         <div class="row form-group">

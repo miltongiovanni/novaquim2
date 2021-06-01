@@ -84,38 +84,46 @@ $proveedor = $ProveedorOperador->getProveedor($idProv);
 <div id="contenedor" class="container-fluid">
     <div id="saludo1"><h4>ACTUALIZACIÓN DE PROVEEDORES</h4></div>
     <form id="form1" name="form1" method="post" action="updateProv.php">
-        <input type="hidden" class="form-control col-2" name="idProv" id="idProv" value="<?= $idProv ?>">
+        <input type="hidden" name="idProv" id="idProv" value="<?= $idProv ?>">
+        <div class="row">
+            <label class="col-form-label col-2 text-start" for="nitProv"><strong>NIT</strong></label>
+            <label class="col-form-label col-2 text-start"
+                   for="nomProv"><strong>Proveedor</strong></label>
+            <label class="col-form-label col-2 text-start" for="contProv"><strong>Nombre
+                    Contacto</strong></label>
+        </div>
         <div class="form-group row">
-            <label class="col-form-label col-2 text-right" for="nitProv"><strong>NIT</strong></label>
             <input type="text" class="form-control col-2" name="nitProv" id="nitProv"
                    value="<?= $proveedor['nitProv'] ?>" readOnly>
-            <label class="col-form-label col-2 text-right"
-                   for="nomProv"><strong>Proveedor</strong></label>
             <input type="text" class="form-control col-2" name="nomProv" id="nomProv"
                    value="<?= $proveedor['nomProv'] ?>">
-            <label class="col-form-label col-2 text-right" for="contProv"><strong>Nombre
-                    Contacto</strong></label>
             <input type="text" class="form-control col-2" name="contProv" id="contProv"
                    value="<?= $proveedor['contProv'] ?>">
         </div>
-        <div class="form-group row">
-            <label class="col-form-label col-2 text-right"
+        <div class="row">
+            <label class="col-form-label col-2 text-start"
                    for="dirProv"><strong>Dirección</strong></label>
+            <label class="col-form-label col-2 text-start"
+                   for="telProv"><strong>Teléfono</strong></label>
+            <label class="col-form-label col-2 text-start" for="emailProv"><strong>Correo
+                    electrónico</strong></label>
+        </div>
+        <div class="form-group row">
             <input type="text" class="form-control col-2" name="dirProv" id="dirProv"
                    value="<?= $proveedor['dirProv'] ?>">
-            <label class="col-form-label col-2 text-right"
-                   for="telProv"><strong>Teléfono</strong></label>
             <input type="text" class="form-control col-2" name="telProv" id="telProv"
                    value="<?= $proveedor['telProv'] ?>"
                    onkeydown="return aceptaNum(event)">
-            <label class="col-form-label col-2 text-right" for="emailProv"><strong>Correo
-                    electrónico</strong></label>
             <input type="email" class="form-control col-2" name="emailProv" id="emailProv"
                    value="<?= $proveedor['emailProv'] ?>">
         </div>
-        <div class="form-group row">
+        <div class="row">
 
-            <label class="col-form-label col-2" for="idCatProv"><strong>Tipo de Proveedor</strong></label>
+            <label class="col-form-label col-2 text-start" for="idCatProv"><strong>Tipo de Proveedor</strong></label>
+            <label class="col-form-label col-2 text-start" for="autoretProv"><strong>Autorretenedor</strong></label>
+            <label class="col-form-label col-2 text-start" for="regProv"><strong>Régimen Proveedor</strong></label>
+        </div>
+        <div class="form-group row">
             <?php
             $manager = new CategoriasProvOperaciones();
             $categorias = $manager->getCatsProv();
@@ -129,7 +137,6 @@ $proveedor = $ProveedorOperador->getProveedor($idProv);
             }
             echo '</select>';
             ?>
-            <label class="col-form-label col-2" for="autoretProv"><strong>Autorretenedor</strong></label>
             <select name="autoretProv" id="autoretProv" class="form-control col-2" required>
                 <?php
                 if ($proveedor['autoretProv'] == 0) {
@@ -145,7 +152,6 @@ $proveedor = $ProveedorOperador->getProveedor($idProv);
                 }
                 ?>
             </select>
-            <label class="col-form-label col-2" for="regProv"><strong>Régimen Proveedor</strong></label>
             <select name="regProv" id="regProv" class="form-control col-2" required>
                 <?php
                 if ($proveedor['regProv'] == 0) {
@@ -162,8 +168,12 @@ $proveedor = $ProveedorOperador->getProveedor($idProv);
                 ?>
             </select>
         </div>
+        <div class="row">
+            <label class="col-form-label col-2 text-start" for="idTasaIcaProv"><strong>Tasa Reteica</strong></label>
+            <label class="col-form-label col-2 text-start" for="idRetefuente"><strong>Tasa Retefuente</strong></label>
+            <label class="col-form-label col-2 text-start" for="estProv"><strong>Estado Proveedor</strong></label>
+        </div>
         <div class="form-group row">
-            <label class="col-form-label col-2" for="idTasaIcaProv"><strong>Tasa Reteica</strong></label>
             <?php
             $manager = new TasaReteIcaOperaciones();
             $categorias = $manager->getTasasReteIca();
@@ -177,7 +187,6 @@ $proveedor = $ProveedorOperador->getProveedor($idProv);
             }
             echo '</select>';
             ?>
-            <label class="col-form-label col-2" for="idRetefuente"><strong>Tasa Retefuente</strong></label>
             <?php
             $manager = new TasaRetefuenteOperaciones();
             $categorias = $manager->getTasasRetefuente();
@@ -191,7 +200,6 @@ $proveedor = $ProveedorOperador->getProveedor($idProv);
             }
             echo '</select>';
             ?>
-            <label class="col-form-label col-2" for="regProv"><strong>Estado Proveedor</strong></label>
             <select name="estProv" id="estProv" class="form-control col-2" required>
                 <?php
                 if ($proveedor['estProv'] == 0) {

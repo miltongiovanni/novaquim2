@@ -112,10 +112,10 @@ $nomCliente = $cliente['nomCliente'];
     <form name="form2" method="POST" action="makeSucursalCliente.php">
         <input name="idCliente" id="idCliente" type="hidden" value="<?= $idCliente ?>">
         <div class=" row ">
-            <label class="col-form-label col-3 text-left mx-2" for="nomSucursal"><strong>Cliente</strong></label>
-            <label class="col-form-label col-1 text-left mx-2" for="telSucursal"><strong>Teléfono</strong></label>
-            <label class="col-form-label col-3 text-left mx-2" for="dirSucursal"><strong>Dirección</strong></label>
-            <label class="col-form-label col-2 text-left mx-2" for="ciudadSucursal"><strong>Ciudad</strong></label>
+            <label class="col-form-label col-3 text-start mx-2" for="nomSucursal"><strong>Cliente</strong></label>
+            <label class="col-form-label col-1 text-start mx-2" for="telSucursal"><strong>Teléfono</strong></label>
+            <label class="col-form-label col-3 text-start mx-2" for="dirSucursal"><strong>Dirección</strong></label>
+            <label class="col-form-label col-2 text-start mx-2" for="ciudadSucursal"><strong>Ciudad</strong></label>
         </div>
         <div class="form-group row">
             <input type="text" class="form-control col-3 mx-2" name="nomSucursal" id="nomSucursal" required>

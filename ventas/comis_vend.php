@@ -195,36 +195,36 @@ $totales = $personalOperador->getTotalComisionVendedor($idPersonal, $fechaInicia
     <div class="tabla-100">
         <div class="row formatoDatos">
             <div class="col-10">
-                <div class=" text-right">
+                <div class=" text-end">
                     <strong>Comisión Novaquim</strong>
                 </div>
             </div>
             <div class="col-1 ms-3 px-0">
-                <div class="text-right">
+                <div class="text-end">
                     <strong><?= $totales['comEmpresa'] ?></strong>
                 </div>
             </div>
         </div>
         <div class="row formatoDatos">
             <div class="col-10">
-                <div class=" text-right">
+                <div class=" text-end">
                     <strong>Comisión distribución</strong>
                 </div>
             </div>
             <div class="col-1 ms-3 px-0">
-                <div class="text-right">
+                <div class="text-end">
                     <strong><?= $totales['comDistribucion'] ?></strong>
                 </div>
             </div>
         </div>
         <div class="row formatoDatos">
             <div class="col-10">
-                <div class=" text-right">
+                <div class=" text-end">
                     <strong>Comisión Total</strong>
                 </div>
             </div>
             <div class="col-1 ms-3 px-0">
-                <div class="text-right">
+                <div class="text-end">
                     <strong><?= $totales['comTotal'] ?></strong>
                 </div>
             </div>

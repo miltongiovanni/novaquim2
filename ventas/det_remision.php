@@ -127,41 +127,41 @@ $remision = $remisionOperador->getRemision($idRemision);
 <div id="contenedor" class="container-fluid">
     <div id="saludo1"><h4>DETALLE DE SALIDA POR REMISIÓN</h4></div>
     <div class="form-group row">
-        <div class="col-1 text-right"><strong>Remisión</strong></div>
+        <div class="col-1 text-end"><strong>Remisión</strong></div>
         <div class="col-1 bg-blue"><?= $idRemision; ?></div>
-        <div class="col-2 text-right"><strong>Fecha Remisión</strong></div>
+        <div class="col-2 text-end"><strong>Fecha Remisión</strong></div>
         <div class="col-1 bg-blue"><?= $remision['fechaRemision'] ?></div>
-        <div class="col-2 text-right"><strong>No. de Pedido</strong></div>
+        <div class="col-2 text-end"><strong>No. de Pedido</strong></div>
         <div class="col-1 bg-blue"><?= $remision['idPedido']; ?></div>
     </div>
     <div class="form-group row">
-        <div class="col-2 text-right"><strong>Cliente</strong></strong></div>
+        <div class="col-2 text-end"><strong>Cliente</strong></strong></div>
         <div class="col-4 bg-blue"><?= $remision['nomCliente'] ?></div>
-        <div class="col-1 text-right"><strong>Nit</strong></div>
+        <div class="col-1 text-end"><strong>Nit</strong></div>
         <div class="col-1 bg-blue"><?= $remision['nitCliente'] ?></div>
     </div>
     <div class="form-group row">
-        <div class="col-2 text-right"><strong>Lugar de entrega</strong></strong></div>
+        <div class="col-2 text-end"><strong>Lugar de entrega</strong></strong></div>
         <div class="col-4 bg-blue"><?= $remision['nomSucursal'] ?></div>
-        <div class="col-1 text-right"><strong>Teléfono</strong></div>
+        <div class="col-1 text-end"><strong>Teléfono</strong></div>
         <div class="col-1 bg-blue"><?= $remision['telCliente'] ?></div>
     </div>
     <div class="form-group row">
-        <div class="col-2 text-right"><strong>Dirección entrega </strong></div>
+        <div class="col-2 text-end"><strong>Dirección entrega </strong></div>
         <div class="col-4 bg-blue"><?= $remision['dirSucursal'] ?></div>
-        <div class="col-1 text-right"><strong>Ciudad</strong></div>
+        <div class="col-1 text-end"><strong>Ciudad</strong></div>
         <div class="col-1 bg-blue"><?= $remision['ciudad'] ?></div>
     </div>
-    <div class="form-group titulo row">
+    <div class="form-group titulo row text-center">
         <strong>Detalle</strong>
     </div>
     <div class="tabla-50">
         <table id="example" class="display compact formatoDatos">
             <thead>
             <tr>
-                <th class="width1">Código</th>
+                <th class="width1 text-center">Código</th>
                 <th class="width2">Producto</th>
-                <th class="width3">Cantidad</th>
+                <th class="width3 text-center">Cantidad</th>
             </tr>
             </thead>
         </table>

@@ -123,14 +123,14 @@ class DetRemisionesOperaciones
         $qry = "SELECT dr.codProducto, presentacion producto, SUM(cantProducto) cantidadProducto, loteProducto
                 FROM det_remision dr
                          LEFT JOIN prodpre p on dr.codProducto = p.codPresentacion
-                WHERE idRemision IN (20046,20047,20043,20044)
+                WHERE idRemision IN ($idRemision)
                   AND dr.codProducto < 100000 AND dr.codProducto>10000
                 GROUP BY loteProducto, presentacion, dr.codProducto
                 UNION
                 SELECT dr.codProducto, producto, cantProducto cantidadProducto, loteProducto
                 FROM det_remision dr
                          LEFT JOIN distribucion ON dr.codProducto = idDistribucion
-                WHERE idRemision IN (20046,20047,20043,20044)
+                WHERE idRemision IN ($idRemision)
                   AND dr.codProducto > 100000 ";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();
@@ -143,13 +143,13 @@ class DetRemisionesOperaciones
         $qry = "SELECT dr.codProducto, presentacion producto, cantProducto, loteProducto
                 FROM det_remision dr
                          LEFT JOIN prodpre p on dr.codProducto = p.codPresentacion
-                WHERE idRemision = $idRemision
+                WHERE idRemision IN ($idRemision)
                   AND dr.codProducto < 100000 AND dr.codProducto>10000 AND dr.codProducto=$codProducto
                 UNION
                 SELECT dr.codProducto, producto, cantProducto, loteProducto
                 FROM det_remision dr
                          LEFT JOIN distribucion ON dr.codProducto = idDistribucion
-                WHERE idRemision = $idRemision
+                WHERE idRemision IN ($idRemision)
                   AND dr.codProducto > 100000 AND dr.codProducto=$codProducto";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();

@@ -20,19 +20,19 @@ include "../includes/valAcc.php";
 		?>
 		<form action="change.php" method="POST" name="Cambio_clave" id="Cambio_clave">
 			<div class="form-group row">
-				<label class="col-form-label col-2 text-right"  for="username"><b>Nombre de usuario</b></label>
+				<label class="col-form-label col-2 text-end"  for="username"><b>Nombre de usuario</b></label>
 				<input  class="form-control col-2" name="username" id="username" value="<?php echo $username ?>" readonly size="20" required>
 			</div>
 			<div class="form-group row">
-				<label class="col-form-label col-2 text-right"  for="password"><strong>Contraseña actual</strong></label>
+				<label class="col-form-label col-2 text-end"  for="password"><strong>Contraseña actual</strong></label>
 				<input  class="form-control col-2" type="password" name="password" id="password" size="20" required>
 			</div>
 			<div class="form-group row">
-				<label class="col-form-label col-2 text-right"  for="newPass"><strong>Contraseña nueva</strong></label>
+				<label class="col-form-label col-2 text-end"  for="newPass"><strong>Contraseña nueva</strong></label>
 				<input  class="form-control col-2" type="password" name="newPass" id="newPass" size="20" required>
 			</div>
 			<div class="form-group row">
-				<label class="col-form-label col-2 text-right"  for="confPass"><strong>Confirmación contraseña</strong></label>
+				<label class="col-form-label col-2 text-end"  for="confPass"><strong>Confirmación contraseña</strong></label>
 				<input  class="form-control col-2" type="password" name="confPass" id="confPass" size="20" required>
 			</div>
 			<div class="form-group row">

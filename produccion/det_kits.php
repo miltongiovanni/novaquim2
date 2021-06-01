@@ -109,9 +109,9 @@ $kit = $KitOperador->getKit($idKit);
     <div id="saludo1"><h4>DETALLE DE KIT</h4></div>
 
     <div class="form-group row">
-        <div class="col-1 text-right"><strong>Código Kit</strong></div>
+        <div class="col-1 text-end"><strong>Código Kit</strong></div>
         <div class="col-1 bg-blue"><?= $idKit; ?></div>
-        <div class="col-1 text-right"><strong>Kit</strong></div>
+        <div class="col-1 text-end"><strong>Kit</strong></div>
         <div class="col-3 bg-blue"><?= $kit['producto'] ?></div>
     </div>
     <div class="form-group titulo row">

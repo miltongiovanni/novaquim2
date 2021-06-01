@@ -30,28 +30,28 @@ $factura = $facturaOperador->getFactura($idFactura);
     <form method="post" action="updateFactura.php" name="form1">
         <input type="hidden" name="idPedido" id="idPedido" value="<?= $factura['idPedido'] ?>">
         <div class="form-group row">
-            <label class="col-form-label col-2 text-right" for="idFactura"><strong>No. de Factura</strong></label>
+            <label class="col-form-label col-2 text-end" for="idFactura"><strong>No. de Factura</strong></label>
             <input type="text" class="form-control col-5" name="idFactura" value="<?= $factura['idFactura'] ?>"
                    id="idFactura" readonly required>
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-2 text-right" for="nomCliente"><strong>Cliente</strong></label>
+            <label class="col-form-label col-2 text-end" for="nomCliente"><strong>Cliente</strong></label>
             <input type="hidden" name="idCliente" id="idCliente" value="<?= $factura['idCliente'] ?>">
             <input type="text" class="form-control col-5" name="nomCliente" value="<?= $factura['nomCliente'] ?>"
                    id="nomCliente" readonly>
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-2 text-right" for="fechaFactura"><strong>Fecha de Venta</strong></label>
+            <label class="col-form-label col-2 text-end" for="fechaFactura"><strong>Fecha de Venta</strong></label>
             <input type="date" class="form-control col-5" name="fechaFactura" value="<?= $factura['fechaFactura'] ?>"
                    id="fechaFactura" required>
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-2 text-right" for="fechaVenc"><strong>Fecha de Vencimiento</strong></label>
+            <label class="col-form-label col-2 text-end" for="fechaVenc"><strong>Fecha de Vencimiento</strong></label>
             <input type="date" class="form-control col-5" name="fechaVenc" value="<?= $factura['fechaVenc'] ?>"
                    id="fechaVenc" required>
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-2 text-right" for="vendedor"><strong>Vendedor</strong></label>
+            <label class="col-form-label col-2 text-end" for="vendedor"><strong>Vendedor</strong></label>
             <input type="hidden" name="idPersonal" id="idPersonal" value="<?= $factura['idPersonal'] ?>">
             <input type="text" class="form-control col-5" name="vendedor" value="<?= $factura['vendedor'] ?>"
                    id="vendedor" readonly>
@@ -77,17 +77,17 @@ $factura = $facturaOperador->getFactura($idFactura);
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-2 text-right" for="ordenCompra"><strong>Orden de Compra</strong></label>
+            <label class="col-form-label col-2 text-end" for="ordenCompra"><strong>Orden de Compra</strong></label>
             <input type="text" class="form-control col-5" onkeydown="return aceptaNum(event)" name="ordenCompra"
                    value="<?= $factura['ordenCompra'] ?>" id="ordenCompra">
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-2 text-right" for="descuento"><strong>Descuento</strong></label>
+            <label class="col-form-label col-2 text-end" for="descuento"><strong>Descuento</strong></label>
             <input type="text" class="form-control col-5" onkeydown="return aceptaNum(event)" name="descuento"
                    value="<?= $factura['descuento'] * 100 ?>" id="descuento">
         </div>
         <div class="form-group row">
-            <label class="col-2 text-right col-form-label" for="observaciones"><strong>Observaciones</strong></label>
+            <label class="col-2 text-end col-form-label" for="observaciones"><strong>Observaciones</strong></label>
             <textarea class="form-control col-5" name="observaciones"><?= $factura['observaciones'] ?></textarea>
         </div>
         <div class="row form-group">

@@ -125,17 +125,17 @@ $DetOProdColorOperador = new DetOProdColorOperaciones();
 <div id="contenedor" class="container-fluid">
 <div id="saludo1"><h4>USO DE MATERIA PRIMA POR PRODUCCIÓN DE COLOR</h4></div>
     <div class="form-group row">
-        <div class="col-1 text-right"><strong>Lote</strong></div>
+        <div class="col-1 text-end"><strong>Lote</strong></div>
         <div class="col-1 bg-blue"><?= $loteColor; ?></div>
-        <div class="col-1 text-right"><strong>Cantidad</strong></div>
+        <div class="col-1 text-end"><strong>Cantidad</strong></div>
         <div class="col-1 bg-blue"><?= $ordenProd['cantKg'] ?> Kg</div>
-        <div class="col-2 text-right"><strong>Fecha de producción</strong></strong></div>
+        <div class="col-2 text-end"><strong>Fecha de producción</strong></strong></div>
         <div class="col-1 bg-blue"><?= $ordenProd['fechProd'] ?></div>
     </div>
     <div class="form-group row">
-        <div class="col-1 text-right"><strong>Producto</strong></div>
+        <div class="col-1 text-end"><strong>Producto</strong></div>
         <div class="col-2 bg-blue"><?= $ordenProd['nomMPrima'] ?></div>
-        <div class="col-2 text-right"><strong>Responsable</strong></div>
+        <div class="col-2 text-end"><strong>Responsable</strong></div>
         <div class="col-2 bg-blue"><?= $ordenProd['nomPersonal'] ?></div>
     </div>
     <div class="form-group row titulo">Detalle orden de producción :</div>

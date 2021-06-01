@@ -50,8 +50,8 @@ spl_autoload_register('cargarClases');
     <div id="saludo"><h4>CREAR FACTURA A PARTIR DEL PEDIDO</h4></div>
     <form id="form1" name="form1" method="post" action="factura.php">
         <div class="form-group row">
-            <label class="col-form-label col-2" for="busClien"><strong>Cliente</strong></label>
-            <input type="text" class="form-control col-1 ms-2" id="busClien" name="busClien"
+            <label class="col-form-label col-2 pe-0" for="busClien"><strong>Cliente</strong></label>
+            <input type="text" class="form-control col-1 ms-4" id="busClien" name="busClien"
                    onkeyup="findClienteParaFacturar()"
                    required/>
             <div class="col-4" id="myDiv"></div>

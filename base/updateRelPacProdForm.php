@@ -66,7 +66,7 @@ $relacion = $relDisEmpOperador->getRelDisEmp($idPacUn);
             </select>
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-2 text-right" for="cantidad"><strong>Unidades por
+            <label class="col-form-label col-2 text-end" for="cantidad"><strong>Unidades por
                     empaque</strong></label>
             <input type="text" class="form-control col-2" name="cantidad" id="cantidad"
                    onkeydown="return aceptaNum(event)" value="<?= $relacion['cantidad'] ?>">

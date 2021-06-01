@@ -39,23 +39,23 @@ if (!$remisionOperador->isValidIdRemision($idRemision)) {
         <div id="saludo"><h4>ACTUALIZACIÓN REMISIÓN</h4></div>
         <form name="form2" method="POST" action="updateRemision.php">
             <div class="form-group row">
-                <label class="col-form-label col-2 text-right" for="idRemision"><strong>Id remisión</strong></label>
+                <label class="col-form-label col-2 text-end" for="idRemision"><strong>Id remisión</strong></label>
                 <input type="text" class="form-control col-2" name="idRemision" id="idRemision"
                        value="<?= $remision['idRemision'] ?>"
                        readonly>
             </div>
             <div class="form-group row">
-                <label class="col-form-label col-2 text-right" for="cliente"><strong>Cliente</strong></label>
+                <label class="col-form-label col-2 text-end" for="cliente"><strong>Cliente</strong></label>
                 <input type="text" class="form-control col-2" name="cliente" id="cliente"
                        value="<?= $remision['cliente'] ?>">
             </div>
             <div class="form-group row">
-                <label class="col-form-label col-2 text-right" for="fechaRemision"><strong>Fecha</strong></label>
+                <label class="col-form-label col-2 text-end" for="fechaRemision"><strong>Fecha</strong></label>
                 <input type="date" class="form-control col-2" name="fechaRemision" id="fechaRemision"
                        value="<?= $remision['fechaRemision'] ?>">
             </div>
             <div class="form-group row">
-                <label class="col-form-label col-2 text-right" for="valor"><strong>Valor</strong></label>
+                <label class="col-form-label col-2 text-end" for="valor"><strong>Valor</strong></label>
                 <input type="text" class="form-control col-2" name="valor" id="valor" value="<?= $remision['valor'] ?>"
                        onkeydown="return aceptaNum(event)">
             </div>

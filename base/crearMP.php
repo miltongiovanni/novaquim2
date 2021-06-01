@@ -60,18 +60,18 @@ spl_autoload_register('cargarClases');
             }
             echo '</select>';
             ?>
-            <label class="col-form-label col-1 text-right" for="codMPrima"><strong>Código</strong></label>
+            <label class="col-form-label col-1 text-end" for="codMPrima"><strong>Código</strong></label>
             <input type="text" class="form-control col-2" name="codMPrima" id="codMPrima" readOnly>
-            <label class="col-form-label col-1 text-right"
+            <label class="col-form-label col-1 text-end"
                    for="aliasMPrima"><strong>Alias M Prima</strong></label>
             <input type="text" class="form-control col-2" name="aliasMPrima" id="aliasMPrima" readOnly>
 
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-1 text-right"
+            <label class="col-form-label col-1 text-end"
                    for="nomMPrima"><strong>Materia Prima</strong></label>
             <input type="text" class="form-control col-2" name="nomMPrima" id="nomMPrima" required>
-            <label class="col-form-label col-1 text-right" for="aparienciaMPrima"><strong>Apariencia</strong></label>
+            <label class="col-form-label col-1 text-end" for="aparienciaMPrima"><strong>Apariencia</strong></label>
             <input type="text" class="form-control col-2" name="aparienciaMPrima" id="aparienciaMPrima"
                    onkeydown="return aceptaLetra(event)" required>
 
@@ -90,24 +90,24 @@ spl_autoload_register('cargarClases');
             }
             echo '</select>';
             ?>
-            <label class="col-form-label col-1 text-right" for="minStockMprima"><strong>Stock Min</strong></label>
+            <label class="col-form-label col-1 text-end" for="minStockMprima"><strong>Stock Min</strong></label>
             <input type="text" class="form-control col-2" name="minStockMprima" id="minStockMprima"
                    onkeydown="return aceptaNum(event)" required>
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-1 text-right" for="pHmPrima"><strong>pH</strong></label>
+            <label class="col-form-label col-1 text-end" for="pHmPrima"><strong>pH</strong></label>
             <input type="text" class="form-control col-2" name="pHmPrima" id="pHmPrima"
                    placeholder="Si no tiene escribir N.A." required>
-            <label class="col-form-label col-1 text-right" for="densidadMPrima"><strong>Densidad</strong></label>
+            <label class="col-form-label col-1 text-end" for="densidadMPrima"><strong>Densidad</strong></label>
             <input type="text" class="form-control col-2" name="densidadMPrima" id="densidadMPrima"
                    placeholder="Si no tiene escribir N.A." required>
         </div>
 
         <div class="form-group row">
-            <label class="col-form-label col-1 text-right" for="colorMPrima"><strong>Color</strong></label>
+            <label class="col-form-label col-1 text-end" for="colorMPrima"><strong>Color</strong></label>
             <input type="text" class="form-control col-2" name="colorMPrima" id="colorMPrima"
                    onkeydown="return aceptaLetra(event)" maxlength="30" required>
-            <label class="col-form-label col-1 text-right" for="olorMPrima"><strong>Olor</strong></label>
+            <label class="col-form-label col-1 text-end" for="olorMPrima"><strong>Olor</strong></label>
             <input type="text" class="form-control col-2" name="olorMPrima" id="olorMPrima"
                    onkeydown="return aceptaLetra(event)" maxlength="30" required>
         </div>

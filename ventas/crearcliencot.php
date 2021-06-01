@@ -14,7 +14,7 @@ include "../includes/valAcc.php";
     <div id="saludo"><h4>CREAR CLIENTE PARA COTIZACIÓN</h4></div>
     <form method="post" action="makeClienCotForm.php" name="form1">
         <div class="row mb-3">
-            <label class="col-form-label col-2 text-right "><strong>Cliente Existente</strong></label>
+            <label class="col-form-label col-2 text-end "><strong>Cliente Existente</strong></label>
             <div class="col-1">
                 <div class="form-check">
                     <label class="form-check-label">

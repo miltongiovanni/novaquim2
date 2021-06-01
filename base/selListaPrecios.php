@@ -17,7 +17,7 @@ include "../includes/valAcc.php";
     <div id="saludo1"><h4>SELECCIONAR PRECIO O PRECIOS PARA LA LISTA</h4></div>
     <form name="form1" method="POST" action="detListaPrecios.php">
         <div class="form-group row">
-            <label class="col-1 text-right"><br>Presentación</label>
+            <label class="col-1 text-end"><br>Presentación</label>
             <div class="col-2">
                 <div class="form-check">
                     <input name="Presentaciones" class="form-check-input" type="radio" id="Presentaciones_0"
@@ -37,7 +37,7 @@ include "../includes/valAcc.php";
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-1 text-right"
+            <label class="col-form-label col-1 text-end"
                    for="apellido"><strong><br><br>Precio</strong></label>
             <div class="col-2">
                 <div class="form-check">

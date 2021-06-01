@@ -81,7 +81,7 @@ spl_autoload_register('cargarClases');
             ?>
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-1 text-right"
+            <label class="col-form-label col-1 text-end"
                    for="fabrica"><strong>Precio fábrica</strong></label>
             <input type="text" class="form-control col-2" name="fabrica" id="fabrica" maxlength="50"
                    onkeydown="return aceptaNum(event)" required>

@@ -46,7 +46,7 @@ foreach ($_POST as $nombre_campo => $valor) {
             ?>
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-2 text-right" for="fechProd"><strong>Fecha de producción</strong></label>
+            <label class="col-form-label col-2 text-end" for="fechProd"><strong>Fecha de producción</strong></label>
             <input type="date" class="form-control col-2" name="fechProd" id="fechProd" required>
         </div>
         <div class="form-group row">
@@ -63,7 +63,7 @@ foreach ($_POST as $nombre_campo => $valor) {
             ?>
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-2 text-right" for="cantKg"><strong>Cantidad a producir
+            <label class="col-form-label col-2 text-end" for="cantKg"><strong>Cantidad a producir
                     (Kg)</strong></label>
             <input type="text" class="form-control col-2" name="cantKg" id="cantKg"
                    onkeydown="return aceptaNum(event)" required>

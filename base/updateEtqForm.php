@@ -26,17 +26,17 @@ $envase = $EtiquetaOperador->getEtiqueta($codEtiqueta);
     <div id="saludo"><h4>ACTUALIZACIÓN DE ETIQUETAS</h4></div>
     <form id="form1" name="form1" method="post" action="updateEtq.php">
         <div class="form-group row">
-            <label class="col-form-label col-1 text-right" for="codEtiqueta"><strong>Código</strong></label>
+            <label class="col-form-label col-1 text-end" for="codEtiqueta"><strong>Código</strong></label>
             <input type="text" class="form-control col-2" name="codEtiqueta" id="codEtiqueta" maxlength="50"
                    value="<?= $envase['codEtiqueta']; ?>" readonly>
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-1 text-right" for="nomEtiqueta"><strong>Etiqueta</strong></label>
+            <label class="col-form-label col-1 text-end" for="nomEtiqueta"><strong>Etiqueta</strong></label>
             <input type="text" class="form-control col-2" name="nomEtiqueta" id="nomEtiqueta"
                    value="<?= $envase['nomEtiqueta']; ?>" maxlength="50">
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-1 text-right" for="stockEtiqueta"><strong>Stock Etiqueta</strong></label>
+            <label class="col-form-label col-1 text-end" for="stockEtiqueta"><strong>Stock Etiqueta</strong></label>
             <input type="text" class="form-control col-2" name="stockEtiqueta" id="stockEtiqueta"
                    onkeydown="return aceptaNum(event)" value="<?= $envase['stockEtiqueta']; ?>">
             <input type="hidden" class="form-control col-2" name="codIva" id="codIva" value="3">

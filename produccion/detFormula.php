@@ -165,8 +165,8 @@ $porcentajeTotal = $DetFormulaOperador->getPorcentajeTotal($idFormula);
     <div class="tabla-50">
         <table width="100%">
             <tr>
-                <td width="70%" class="text-right text-bold">Total</td>
-                <td width="15%" class="text-right text-bold"><?= $porcentajeTotal ?></td>
+                <td width="70%" class="text-end text-bold">Total</td>
+                <td width="15%" class="text-end text-bold"><?= $porcentajeTotal ?></td>
                 <td width="15%"></td>
             </tr>
         </table>

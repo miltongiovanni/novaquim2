@@ -115,11 +115,11 @@ $cambio = $cambioOperador->getCambio($idCambio);
 <div id="contenedor" class="container-fluid">
     <div id="saludo1"><h4>CAMBIO DE PRESENTACIÓN DE PRODUCTO</h4></div>
     <div class="form-group row">
-        <div class="col-1 text-right"><strong>Cambio</strong></div>
+        <div class="col-1 text-end"><strong>Cambio</strong></div>
         <div class="col-1 bg-blue"><?= $idCambio; ?></div>
-        <div class="col-2 text-right"><strong>Fecha de cambio</strong></div>
+        <div class="col-2 text-end"><strong>Fecha de cambio</strong></div>
         <div class="col-1 bg-blue"><?= $cambio['fechaCambio'] ?></div>
-        <div class="col-1 text-right"><strong>Responsable</strong></div>
+        <div class="col-1 text-end"><strong>Responsable</strong></div>
         <div class="col-2 bg-blue"><?= $cambio['nomPersonal'] ?></div>
     </div>
     <div class="form-group titulo row">
@@ -220,7 +220,7 @@ $cambio = $cambioOperador->getCambio($idCambio);
                 </div>
             </div>
             <div class="form-group row">
-                <div class="col-4 text-right"><strong>Cantidad pendiente por
+                <div class="col-4 text-end"><strong>Cantidad pendiente por
                         reenvasar: <?= $volCambiar ?> ml</strong></div>
             </div>
         </form>

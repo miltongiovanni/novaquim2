@@ -27,9 +27,9 @@ $cliente = $clienteCotizacionOperador->getCliente($idCliente);
     <form id="form1" name="form1" method="post" action="updateClienCot.php">
         <input type="hidden" name="idCliente" value="<?= $cliente['idCliente'] ?>">
         <div class=" row ">
-            <label class="col-form-label col-3 text-left me-2" for="nomCliente"><strong>Cliente</strong></label>
-            <label class="col-form-label col-1 text-left mx-3" for="ciudadCliente"><strong>Ciudad</strong></label>
-            <label class="col-form-label col-3 text-left ms-2" for="dirCliente"><strong>Dirección</strong></label>
+            <label class="col-form-label col-3 text-start me-2" for="nomCliente"><strong>Cliente</strong></label>
+            <label class="col-form-label col-1 text-start mx-3" for="ciudadCliente"><strong>Ciudad</strong></label>
+            <label class="col-form-label col-3 text-start ms-2" for="dirCliente"><strong>Dirección</strong></label>
         </div>
         <div class="form-group row">
             <input type="text" class="form-control col-3 me-2" name="nomCliente" id="nomCliente"
@@ -53,10 +53,10 @@ $cliente = $clienteCotizacionOperador->getCliente($idCliente);
                    value="<?= $cliente['dirCliente'] ?>" required>
         </div>
         <div class="row">
-            <label class="col-form-label col-2 text-left me-2" for="telCliente"><strong>Teléfono</strong></label>
-            <label class="col-form-label col-2 text-left mx-3" for="emailCliente"><strong>Correo
+            <label class="col-form-label col-2 text-start me-2" for="telCliente"><strong>Teléfono</strong></label>
+            <label class="col-form-label col-2 text-start mx-3" for="emailCliente"><strong>Correo
                     electrónico</strong></label>
-            <label class="col-form-label col-3 text-left ms-2" for="idCatCliente"><strong>Actividad</strong></label>
+            <label class="col-form-label col-3 text-start ms-2" for="idCatCliente"><strong>Actividad</strong></label>
         </div>
         <div class="form-group row">
             <input type="text" class="form-control col-2 me-2" name="telCliente" id="telCliente" maxlength="10"
@@ -78,12 +78,12 @@ $cliente = $clienteCotizacionOperador->getCliente($idCliente);
             </select>
         </div>
         <div class="row">
-            <label class="col-form-label col-2 text-left me-2" for="contactoCliente"><strong>Nombre
+            <label class="col-form-label col-2 text-start me-2" for="contactoCliente"><strong>Nombre
                     Contacto</strong></label>
-            <label class="col-form-label col-2 text-left mx-2" for="cargoContacto"><strong>Cargo
+            <label class="col-form-label col-2 text-start mx-2" for="cargoContacto"><strong>Cargo
                     Contacto</strong></label>
-            <label class="col-form-label col-1 text-left mx-2" for="cargoContacto"><strong>Celular</strong></label>
-            <label class="col-form-label col-2 text-left ms-2" for="codVendedor"><strong>Vendedor</strong></label>
+            <label class="col-form-label col-1 text-start mx-2" for="cargoContacto"><strong>Celular</strong></label>
+            <label class="col-form-label col-2 text-start ms-2" for="codVendedor"><strong>Vendedor</strong></label>
         </div>
         <div class="form-group row">
             <input type="text" class="form-control col-2 me-2" name="contactoCliente" id="contactoCliente"

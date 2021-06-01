@@ -15,7 +15,7 @@ include "../includes/valAcc.php";
     <div id="saludo"><h4>SELECCIONAR REMISIÓN A CONSULTAR</h4></div>
     <form id="form1" name="form1" method="post" action="consultaRemision.php">
         <div class="form-group row">
-            <label class="col-form-label col-2 text-right" for="idRemision"><strong>No. de remisión</strong></label>
+            <label class="col-form-label col-2 text-end" for="idRemision"><strong>No. de remisión</strong></label>
             <input type="text" class="form-control col-1" name="idRemision" id="idRemision"
                    onkeydown="return aceptaNum(event)" required>
         </div>

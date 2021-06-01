@@ -31,12 +31,12 @@ spl_autoload_register('cargarClases');
     <form id="form1" name="form1" method="post" action="updatePerson.php">
         <input type="hidden" name="idPersonal" value="<?= $idPersonal ?>">
         <div class="form-group row">
-            <label class="col-form-label col-1 text-right" for="nomPersonal"><strong>Nombre</strong></label>
+            <label class="col-form-label col-1 text-end" for="nomPersonal"><strong>Nombre</strong></label>
             <input type="text" class="form-control col-2" name="nomPersonal" id="nomPersonal" size=30
                    value="<?= $row['nomPersonal']; ?>" onkeydown="return aceptaLetra(event)" maxlength="30">
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-1 text-right"
+            <label class="col-form-label col-1 text-end"
                    for="celPersonal"><strong>Celular</strong></label>
             <input type="text" class="form-control col-2" name="celPersonal" id="celPersonal" size=30
                    value="<?= $row['celPersonal']; ?>" onkeydown="return aceptaNum(event)" maxlength="30">

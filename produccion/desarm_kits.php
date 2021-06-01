@@ -35,12 +35,12 @@ spl_autoload_register('cargarClases');
             ?>
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-1 text-right" for="cantDesarmado"><strong>Cantidad</strong></label>
+            <label class="col-form-label col-1 text-end" for="cantDesarmado"><strong>Cantidad</strong></label>
             <input type="text" class="form-control col-2" name="cantDesarmado" id="cantDesarmado"
                    onkeydown="return aceptaNum(event)" required>
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-1 text-right" for="fechDesarmado"><strong>Fecha</strong></label>
+            <label class="col-form-label col-1 text-end" for="fechDesarmado"><strong>Fecha</strong></label>
             <input type="date" class="form-control col-2" name="fechDesarmado" id="fechDesarmado" required>
         </div>
         <div class="form-group row">

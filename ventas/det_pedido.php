@@ -203,28 +203,28 @@ $distribucionOperador = new ProductosDistribucionOperaciones();
 <div id="contenedor" class="container-fluid">
     <div id="saludo1"><h4>DETALLE DEL PEDIDO</h4></div>
     <div class="form-group row">
-        <div class="col-1 text-right"><strong>No. de pedido</strong></div>
+        <div class="col-1 text-end"><strong>Pedido No.</strong></div>
         <div class="col-1 bg-blue"><?= $idPedido; ?></div>
-        <div class="col-1 text-right"><strong>Cliente</strong></strong></div>
+        <div class="col-1 text-end"><strong>Cliente</strong></strong></div>
         <div class="col-4 bg-blue"><?= $pedido['nomCliente'] ?></div>
-        <div class="col-2 text-right"><strong>Estado</strong></div>
+        <div class="col-2 text-end"><strong>Estado</strong></div>
         <div class="col-1 bg-blue"><?= $pedido['estadoPedido'] ?></div>
 
     </div>
     <div class="form-group row">
-        <div class="col-1 text-right"><strong>Fecha Pedido</strong></div>
+        <div class="col-1 text-end"><strong>Fecha pedido</strong></div>
         <div class="col-1 bg-blue"><?= $pedido['fechaPedido'] ?></div>
-        <div class="col-2 text-right"><strong>Lugar de entrega</strong></div>
+        <div class="col-2 text-end"><strong>Lugar de entrega</strong></div>
         <div class="col-4 bg-blue"><?= $pedido['nomSucursal'] ?></div>
-        <div class="col-1 text-right"><strong>Vendedor</strong></div>
+        <div class="col-1 text-end"><strong>Vendedor</strong></div>
         <div class="col-2 bg-blue"><?= $pedido['nomPersonal'] ?></div>
     </div>
     <div class="form-group row">
-        <div class="col-1 text-right"><strong>Fecha Entrega</strong></div>
+        <div class="col-1 text-end px-2"><strong>Fecha entrega</strong></div>
         <div class="col-1 bg-blue"><?= $pedido['fechaEntrega'] ?></div>
-        <div class="col-2 text-right"><strong>Dirección de entrega</strong></div>
+        <div class="col-2 text-end"><strong>Dirección de entrega</strong></div>
         <div class="col-4 bg-blue"><?= $pedido['dirSucursal'] ?></div>
-        <div class="col-1 text-right"><strong>Tipo de Precio</strong></div>
+        <div class="col-1 text-end"><strong>Precio</strong></div>
         <div class="col-1 bg-blue"><?= $pedido['tipoPrecio'] ?></div>
     </div>
     <div class="form-group titulo row">
@@ -347,8 +347,8 @@ $distribucionOperador = new ProductosDistribucionOperaciones();
     <div class="tabla-70">
         <table width="100% formatoDatos">
             <tr>
-                <td width="60%" class="text-right text-bold ">Total Pedido</td>
-                <td width="12%" class="text-left text-bold  ps-5"><?= $totalPedido ?></td>
+                <td width="60%" class="text-end text-bold ">Total Pedido</td>
+                <td width="12%" class="text-start text-bold  ps-5"><?= $totalPedido ?></td>
             </tr>
         </table>
     </div>

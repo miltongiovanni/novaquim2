@@ -15,7 +15,7 @@ include "../includes/valAcc.php";
     <div id="saludo"><h4>CONSULTA DE CALIDAD PRODUCCIÓN</h4></div>
     <form id="form1" name="form1" method="post" action="consultaCalidad.php">
         <div class="form-group row">
-            <label class="col-form-label col-2 text-right" for="lote"><strong>Orden de producción</strong></label>
+            <label class="col-form-label col-2 text-end" for="lote"><strong>Orden de producción</strong></label>
             <input type="text" class="form-control col-1" name="lote" id="lote"
                    onkeydown="return aceptaNum(event)" required>
         </div>

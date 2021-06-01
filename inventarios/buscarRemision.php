@@ -16,7 +16,7 @@ include "../includes/valAcc.php";
 
     <form id="form1" name="form1" method="post" action="updateRemisionForm.php">
         <div class="form-group row">
-            <label class="col-form-label col-1 text-right" for="idRemision"><strong>Remisión</strong></label>
+            <label class="col-form-label col-1 text-end" for="idRemision"><strong>Remisión</strong></label>
             <input type="text" class="form-control col-1" name="idRemision" id="idRemision"
                    onkeydown="return aceptaNum(event)" required>
         </div>

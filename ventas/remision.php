@@ -27,7 +27,7 @@ $pedido = $pedidoOperador->getPedido($idPedido);
         <input type="hidden" name="idPedido" value="<?= $idPedido; ?>">
         <input type="hidden" name="idSucursal" value="<?= $pedido['idSucursal']; ?>">
         <div class="row">
-            <label class="col-form-label col-4 text-left" for="fechaRemision"><strong>Fecha de
+            <label class="col-form-label col-4 text-start" for="fechaRemision"><strong>Fecha de
                     remisión</strong></label>
         </div>
         <div class="form-group row">
@@ -35,14 +35,14 @@ $pedido = $pedidoOperador->getPedido($idPedido);
                    value="<?= $pedido['fechaEntrega']; ?>" required>
         </div>
         <div class="row">
-            <label class="col-form-label col-4 text-left" for="nomCliente"><strong>Cliente</strong></label>
+            <label class="col-form-label col-4 text-start" for="nomCliente"><strong>Cliente</strong></label>
         </div>
         <div class="form-group row">
             <input type="text" class="form-control col-4" name="nomCliente" id="nomCliente"
                    value="<?= $pedido['nomCliente']; ?>" readonly>
         </div>
         <div class="row">
-            <label class="col-form-label col-4 text-left" for="nomSucursal"><strong>Lugar de
+            <label class="col-form-label col-4 text-start" for="nomSucursal"><strong>Lugar de
                     entrega</strong></label>
         </div>
         <div class="form-group row">
@@ -50,7 +50,7 @@ $pedido = $pedidoOperador->getPedido($idPedido);
                    value="<?= $pedido['nomSucursal']; ?>" readonly>
         </div>
         <div class="row">
-            <label class="col-form-label col-4 text-left" for="dirSucursal"><strong>Dirección de
+            <label class="col-form-label col-4 text-start" for="dirSucursal"><strong>Dirección de
                     entrega</strong></label>
         </div>
         <div class="form-group row">

@@ -31,41 +31,41 @@ $saldo = intval($egreso['treal']) - $abono;
     <div id="saludo1"><h4>COMPROBANTE DE EGRESO POR FACTURAS DE COMPRA Y GASTOS</h4></div>
 
     <div class="form-group row">
-        <div class="col-1 text-right"><strong>Id Egreso</strong></div>
+        <div class="col-1 text-end"><strong>Id Egreso</strong></div>
         <div class="col-1 bg-blue"><?= $idEgreso; ?></div>
-        <div class="col-1 text-right"><strong>Id Compra</strong></strong></div>
+        <div class="col-1 text-end"><strong>Id Compra</strong></strong></div>
         <div class="col-1 bg-blue"><?= $egreso['idCompra'] ?></div>
-        <div class="col-1 text-right"><strong>No. de Factura</strong></div>
+        <div class="col-1 text-end"><strong>No. de Factura</strong></div>
         <div class="col-1 bg-blue"><?= $egreso['numFact'] ?></div>
     </div>
     <div class="form-group row">
-        <div class="col-2 text-right"><strong>Tipo de compra</strong></div>
+        <div class="col-2 text-end"><strong>Tipo de compra</strong></div>
         <div class="col-2 bg-blue"><?= $tiposCompra[$egreso['tipoCompra']] ?></div>
-        <div class="col-1 text-right"><strong>Valor Factura</strong></div>
+        <div class="col-1 text-end"><strong>Valor Factura</strong></div>
         <div class="col-1 bg-blue"><?= $egreso['total'] ?></div>
     </div>
     <div class="form-group row">
-        <div class="col-2 text-right"><strong>Proveedor</strong></strong></div>
+        <div class="col-2 text-end"><strong>Proveedor</strong></strong></div>
         <div class="col-2 bg-blue"><?= $egreso['nomProv'] ?></div>
-        <div class="col-1 text-right"><strong>Retención</strong></div>
+        <div class="col-1 text-end"><strong>Retención</strong></div>
         <div class="col-1 bg-blue"><?= $egreso['retefuente'] ?></div>
     </div>
     <div class="form-group row">
-        <div class="col-2 text-right"><strong>NIT</strong></div>
+        <div class="col-2 text-end"><strong>NIT</strong></div>
         <div class="col-2 bg-blue"><?= $egreso['nitProv'] ?></div>
-        <div class="col-1 text-right"><strong>Rete Ica</strong></strong></div>
+        <div class="col-1 text-end"><strong>Rete Ica</strong></strong></div>
         <div class="col-1 bg-blue"><?= $egreso['reteica'] ?></div>
     </div>
     <div class="form-group row">
-        <div class="col-2 text-right"><strong>Fecha de compra</strong></div>
+        <div class="col-2 text-end"><strong>Fecha de compra</strong></div>
         <div class="col-2 bg-blue"><?= $egreso['fechComp']; ?></div>
-        <div class="col-1 text-right"><strong>Valor a Pagar</strong></div>
+        <div class="col-1 text-end"><strong>Valor a Pagar</strong></div>
         <div class="col-1 bg-blue"><?= $egreso['vreal'] ?></div>
     </div>
     <div class="form-group row">
-        <div class="col-2 text-right"><strong>Fecha Vencimiento </strong></strong></div>
+        <div class="col-2 text-end"><strong>Fecha Vencimiento </strong></strong></div>
         <div class="col-2 bg-blue"><?= $egreso['fechVenc'] ?></div>
-        <div class="col-1 text-right"><strong>Valor pagado</strong></div>
+        <div class="col-1 text-end"><strong>Valor pagado</strong></div>
         <div class="col-1 bg-blue"><?= $egreso['pago'] ?></div>
     </div>
     <div class="form-group row">&nbsp;</div>

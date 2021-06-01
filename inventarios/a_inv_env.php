@@ -57,7 +57,7 @@ spl_autoload_register('cargarClases');
             </select>
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-2 text-right"
+            <label class="col-form-label col-2 text-end"
                    for=invEnvase><strong>Inventario</strong></label>
             <input type="text" class="form-control col-3 formatoDatos" name="invEnvase" id="invEnvase"
                    onkeydown="return aceptaNum(event)">

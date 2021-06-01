@@ -1,21 +1,17 @@
 
-@import "/node_modules/bootstrap/dist/css/bootstrap.min.css";
+@import "/node_modules/bootstrap/dist/css/bootstrap.css";
 @font-face {
   font-family: "Open Sans";
   src: url("Open_Sans/OpenSans-Regular-webfont.ttf");
 }
-*,
+/**,
 ::after,
 ::before {
     box-sizing: border-box;
-}
+}*/
 
 .bg-blue {
     background-color: #dfe2fd;
-}
-
-body {
-    margin: 0px 0px 0px 0px;
 }
 
 button,
@@ -180,7 +176,6 @@ textarea {
     flex: 0 0 100%;
     max-width: 100%;
 }
-/*
 
 .col,
 .col-1,
@@ -195,15 +190,11 @@ textarea {
 .col-7,
 .col-8,
 .col-9 {
-    position: relative;
-    width: 100%;
-    min-height: 1px;
     padding-right: 5px;
     padding-left: 5px;
 }
 
 
-*/
 
 .col-form-label {
     padding-top: calc(0.175rem + 1px);
@@ -213,13 +204,6 @@ textarea {
     line-height: 1.5;
 }
 
-.commenthidden {
-    display: none;
-}
-
-.commentshown {
-    display: inline;
-}
 
 #contenedor {
     font-size: 1vw;
@@ -601,18 +585,6 @@ textarea.form-control {
 }
 .text-bold {
     font-weight: bold;
-}
-
-.text-center {
-    text-align: center !important;
-}
-
-.text-left {
-    text-align: left !important;
-}
-
-.text-right {
-    text-align: right !important;
 }
 
 .titulo {

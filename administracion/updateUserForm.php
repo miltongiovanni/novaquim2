@@ -30,13 +30,13 @@ $user = $manager->getUser($idUsuario);
         <input type="hidden" class="form-control col-2" name="idUsuario" id="idUsuario" required
                value="<?= $user['idUsuario'] ?>">
         <div class="form-group row">
-            <label class="col-form-label col-1 text-right" for="nombre"><strong>Nombre</strong></label>
+            <label class="col-form-label col-1 text-end" for="nombre"><strong>Nombre</strong></label>
             <input type="text" class="form-control col-2" name="nombre" id="nombre" size=30
                    value="<?= $user['nombre'] ?>" required
                    onkeydown="return aceptaLetra(event)" maxlength="30">
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-1 text-right" for="apellido"><strong>Apellidos</strong></label>
+            <label class="col-form-label col-1 text-end" for="apellido"><strong>Apellidos</strong></label>
             <input type="text" class="form-control col-2" name="apellido" id="apellido" size=30 required
                    value="<?= $user['apellido'] ?>" onkeydown="return aceptaLetra(event)" maxlength="30">
         </div>
