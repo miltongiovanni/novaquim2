@@ -13,12 +13,12 @@ spl_autoload_register('cargarClases');
     <meta charset="utf-8">
     <title>Seleccionar Pedido a Modificar</title>
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/validar.js"></script>
 </head>
 <body>
 <div id="contenedor" class="container-fluid">
-    <div id="h4"><strong>BUSCAR ORDEN DE PEDIDO A MODIFICAR</strong></div>
+    <div id="saludo"><div id="h4"><strong>BUSCAR ORDEN DE PEDIDO A MODIFICAR</strong></div></div>
     <form id="form1" name="form1" method="post" action="updatePedidoForm.php">
         <div class="form-group row">
             <label class="col-form-label col-2" for="idPedido"><strong>Orden de pedido</strong></label>

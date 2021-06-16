@@ -210,10 +210,12 @@ $saldo = round($recibo['totalR'] - $recibo['retencionFte'] - $recibo['retencionI
                 $formas = $manager->getFormasPago();
                 $filas = count($formas);
                 for ($i = 0; $i < $filas; $i++) :
+                    if ($formas[$i]["idFormaPago"]!=2):
                     ?>
                     <option <?= $formas[$i]["idFormaPago"] == $recibo['form_pago'] ? 'selected' : '' ?>
                             value="<?= $formas[$i]["idFormaPago"] ?>"><?= $formas[$i]['formaPago'] ?></option>
                 <?php
+                endif;
                 endfor;
                 ?>
             </select>

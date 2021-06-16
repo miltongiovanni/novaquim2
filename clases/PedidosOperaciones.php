@@ -303,7 +303,8 @@ class PedidosOperaciones
     {
         $qry = "SELECT idPedido, nomSucursal
                 FROM pedido p
-                         LEFT JOIN clientes_sucursal cs on cs.idSucursal=p.idSucursal
+                    LEFT JOIN clientes c on c.idCliente = p.idCliente
+                    LEFT JOIN clientes_sucursal cs on c.idCliente = cs.idCliente and cs.idSucursal=p.idSucursal
                 WHERE idPedido =$idPedido";
 
         $stmt = $this->_pdo->prepare($qry);

@@ -34,6 +34,9 @@ $detNotaCrOperador = new DetNotaCrOperaciones();
 $notaC = $notaCrOperador->getNotaC($idNotaC);
 $facturaOperador = new FacturasOperaciones();
 $facturaOrigen = $facturaOperador->getFactura($notaC['facturaOrigen']);
+$retFteFactura = round($facturaOrigen['retencionFte']/$facturaOrigen['subtotal'],3);
+$retIcaFactura = round($facturaOrigen['retencionIca']/$facturaOrigen['subtotal'], 5);
+$retIvaFactura = round($facturaOrigen['retencionIva']/$facturaOrigen['subtotal'], 3);
 $facturaDestino = $facturaOperador->getFactura($notaC['facturaDestino']);
 $detRemisionOperador = new DetRemisionesOperaciones();
 $detRemision = $detRemisionOperador->getDetRemisionProducto($facturaOrigen['idRemision'], $codProducto);
@@ -82,8 +85,11 @@ try {
     $datos = array($cantProducto, $idNotaC, $codProducto);
     $detNotaCrOperador->updateDetNotaCr($datos);
     $totalesNotaC = $notaCrOperador->getTotalesNotaC($idNotaC);
-    $datos = array($totalesNotaC['subtotal'], $totalesNotaC['totalNotaC'], $totalesNotaC['iva'], $idNotaC);
+    $totalesNotaC['totalNotaC'] = $totalesNotaC['subtotal']+$totalesNotaC['iva']-$totalesNotaC['subtotal']*$retFteFactura-$totalesNotaC['subtotal']* $retIcaFactura-$totalesNotaC['subtotal']*$retIvaFactura;
+    $datos = array($totalesNotaC['subtotal'], $totalesNotaC['totalNotaC'], $totalesNotaC['iva'], $totalesNotaC['subtotal']*$retFteFactura, $totalesNotaC['subtotal']* $retIcaFactura, $totalesNotaC['subtotal']*$retIvaFactura, $idNotaC);
     $notaCrOperador->updateTotalesNotaC($datos);
+
+    $notaC = $notaCrOperador->getNotaC($idNotaC);
     if (abs($facturaDestino['totalR'] - $facturaDestino['retencionFte'] - $facturaDestino['retencionIca'] - $facturaDestino['retencionIva'] - $totalesNotaC['totalNotaC']) < 100) {
         $facturaOperador->cancelarFactura($notaC['fechaNotaC'], $notaC['facturaDestino']);
     }

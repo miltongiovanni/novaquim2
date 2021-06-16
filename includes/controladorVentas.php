@@ -149,6 +149,18 @@ function findFacturasByCliente()
     }
 }
 
+function findFacturasPorPagarByNotaC()
+{
+    $idNotaC = $_POST['idNotaC'];
+    $notaCreditoOperador = new NotasCreditoOperaciones();
+    $notaC= $notaCreditoOperador->getNotaC($idNotaC);
+    $facturaOperador = new FacturasOperaciones();
+    $facturas = $facturaOperador->getFacturasClienteForNotas($notaC['idCliente']);
+    for ($i = 0; $i < count($facturas); $i++) {
+        echo '<option value=' . $facturas[$i]['idFactura'] . '>' . $facturas[$i]['idFactura'] .' - ' . $facturas[$i]['totalFactura'] . '</option>';
+    }
+}
+
 function aplicarRetefuente()
 {
     $tasaRetencion = $_POST['tasaRetencion'];
@@ -308,6 +320,9 @@ switch ($action) {
         break;
     case 'findClienteNotaC':
         findClienteNotaC();
+        break;
+    case 'findFacturasPorPagarByNotaC':
+        findFacturasPorPagarByNotaC();
         break;
     case 'cantDetNotaC':
         cantDetNotaC();

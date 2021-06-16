@@ -14,6 +14,9 @@ if (isset($_POST['idNotaC'])) {
 }
 $notaCrOperador = new NotasCreditoOperaciones();
 $detNotaCrOperador = new DetNotaCrOperaciones();
+
+$detNotaCrOperador = new DetNotaCrOperaciones();
+$hasDetalle = $detNotaCrOperador->hasDetalleNC($idNotaC);
 $notaC = $notaCrOperador->getNotaC($idNotaC);
 if ($notaC['motivo'] == 1) {
     $detNotaC = $detNotaCrOperador->getTableDetNotaCrDes($idNotaC);
@@ -138,7 +141,7 @@ $totalesNotaC = $notaCrOperador->getTotalesNotaC($idNotaC);
                             let rep = '';
                             rep = '<form action="updateDetNotaC.php" method="post" name="actualiza">' +
                                 '          <input name="idNotaC" type="hidden" value="' + idNotaC + '">' +
-                                '          <input name="codProducto" type="hidden" value="' + row.codProducto + '">' +
+                                '          <input name="codProducto" type="hidden" value="' + row.codigo + '">' +
                                 '          <input type="button" name="Submit" onclick="return Enviar(this.form)" class="formatoBoton"  value="Cambiar">' +
                                 '      </form>'
                             return rep;
@@ -174,7 +177,7 @@ $totalesNotaC = $notaCrOperador->getTotalesNotaC($idNotaC);
                             let rep = '';
                             rep = '<form action="delDetNotaC.php" method="post" name="elimina">' +
                                 '          <input name="idNotaC" type="hidden" value="' + idNotaC + '">' +
-                                '          <input name="codProducto" type="hidden" value="' + row.codProducto + '">' +
+                                '          <input name="codProducto" type="hidden" value="' + row.codigo + '">' +
                                 '          <input type="button" name="Submit" onclick="return Enviar(this.form)" class="formatoBoton"  value="Eliminar">' +
                                 '      </form>';
                             return rep;
@@ -297,6 +300,25 @@ $totalesNotaC = $notaCrOperador->getTotalesNotaC($idNotaC);
         endif;
         ?>
     </form>
+    <?php
+    if(!$hasDetalle):
+    ?>
+    <form action="makeDetNotaC.php" method="post" name="formulario2">
+
+        <input name="idNotaC" type="hidden" value="<?= $idNotaC; ?>">
+        <input name="motivo" type="hidden" value="<?= $notaC['motivo']; ?>">
+        <input name="allFactura" type="hidden" value="1">
+        <div class="form-group row">
+            <div class="col-2 text-center">
+                <button class="button" type="button" onclick="return Enviar(this.form)"><span>Devolver toda la factura</span>
+                </button>
+            </div>
+        </div>
+
+    </form>
+    <?php
+    endif;
+    ?>
     <div class="form-group titulo row text-center">
         <strong>Detalle nota crédito</strong>
     </div>
@@ -359,6 +381,12 @@ $totalesNotaC = $notaCrOperador->getTotalesNotaC($idNotaC);
                     <strong>DESCUENTO</strong>
                 </div>
                 <div class=" text-start">
+                    <strong>RETEFUENTE</strong>
+                </div>
+                <div class=" text-start">
+                    <strong>RETEICA</strong>
+                </div>
+                <div class=" text-start">
                     <strong>IVA 5%</strong>
                 </div>
                 <div class=" text-start">
@@ -371,6 +399,12 @@ $totalesNotaC = $notaCrOperador->getTotalesNotaC($idNotaC);
             <div class="col-1 ms-3 px-0" style=" flex: 0 0 10%; max-width: 10%;">
                 <div class="text-end">
                     <strong><?= $notaC['descuentoNotaC'] ?></strong>
+                </div>
+                <div class="text-end">
+                    <strong><?= $notaC['retFteNotaCrFormated']  ?></strong>
+                </div>
+                <div class="text-end">
+                    <strong><?= $notaC['retIcaNotaCrFormated'] ?></strong>
                 </div>
                 <div class="text-end">
                     <strong><?= $notaC['motivo'] == 0 ? isset($totalesNotaC['iva10nota_c'])? $totalesNotaC['iva10nota_c']:'$0' : '$0' ?></strong>

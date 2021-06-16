@@ -227,7 +227,7 @@ $distribucionOperador = new ProductosDistribucionOperaciones();
         <div class="col-1 text-end"><strong>Precio</strong></div>
         <div class="col-1 bg-blue"><?= $pedido['tipoPrecio'] ?></div>
     </div>
-    <div class="form-group titulo row">
+    <div class="form-group titulo row text-center">
         <strong>Adicionar Detalle</strong>
     </div>
     <?php
@@ -325,7 +325,7 @@ $distribucionOperador = new ProductosDistribucionOperaciones();
     <?php
     endif;
     ?>
-    <div class="form-group titulo row">
+    <div class="form-group titulo row text-center">
         <strong>Detalle del pedido</strong>
     </div>
     <div class="tabla-80">

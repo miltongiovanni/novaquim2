@@ -33,6 +33,10 @@ $fechaActual = hoy();
 $diasNotaC = Calc_Dias($fechaNotaC, $fechaActual);
 $facturaOperador = new FacturasOperaciones();
 $facturaOr = $facturaOperador->getFactura($facturaOrigen);
+$facturaDest = $facturaOperador->getFactura($facturaDestino);
+if ($facturaDest['Estado']=='C'){
+    $facturaDestino=null;
+}
 if ($diasNotaC >= 0) {
     $notaCreditoOperador = new NotasCreditoOperaciones();
     $datos = array($idCliente, $fechaNotaC, $facturaOrigen, $facturaDestino, $motivo, $facturaOr['descuento']);

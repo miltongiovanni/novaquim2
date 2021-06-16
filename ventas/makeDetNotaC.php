@@ -30,63 +30,120 @@ foreach ($_POST as $nombre_campo => $valor) {
 <?php
 $notaCrOperador = new NotasCreditoOperaciones();
 $detNotaCrOperador = new DetNotaCrOperaciones();
+$detRemisionOperador = new DetRemisionesOperaciones();
+$invPresentacionOperador = new InvProdTerminadosOperaciones();
+$invDistibucionOperador = new InvDistribucionOperaciones();
 $notaC = $notaCrOperador->getNotaC($idNotaC);
 $facturaOperador = new FacturasOperaciones();
 $facturaOrigen = $facturaOperador->getFactura($notaC['facturaOrigen']);
-$facturaDestino = $facturaOperador->getFactura($notaC['facturaDestino']);
+$retFteFactura = round($facturaOrigen['retencionFte']/$facturaOrigen['subtotal'],3);
+$retIcaFactura = round($facturaOrigen['retencionIca']/$facturaOrigen['subtotal'], 5);
+$retIvaFactura = round($facturaOrigen['retencionIva']/$facturaOrigen['subtotal'], 3);
 
+if(isset($notaC['facturaDestino'])) {
+    $facturaDestino = $facturaOperador->getFactura($notaC['facturaDestino']);
+}
 try {
     if ($motivo == 0) {
-        $detRemisionOperador = new DetRemisionesOperaciones();
-        $detRemision = $detRemisionOperador->getDetRemisionProducto($facturaOrigen['idRemision'], $codProducto);
-        if ($codProducto > 100000) {
-            //PRODUCTOS DE DISTRIBUCIÓN
-            $invDistibucionOperador = new InvDistribucionOperaciones();
-            $invProdDistribucion = $invDistibucionOperador->getInvDistribucion($codProducto);
-            $invProdDistribucion = round($invProdDistribucion);
-            if ($invProdDistribucion > 0) { //Update inventario
-                $nvoInvProdDistribucion = $invProdDistribucion + $cantProducto;
-                $datos = array($nvoInvProdDistribucion, $codProducto);
-                $invDistibucionOperador->updateInvDistribucion($datos);
+        if(isset($allFactura) && $allFactura == 1 ){
+            $detalleRemision = $detRemisionOperador->getDetRemisionesFacturaLote($facturaOrigen['idRemision']);
+            $serviciosFactura = $facturaOperador->getServiciosByIdFactura($facturaOrigen['idRemision']);
+            //var_dump($motivo, $facturaOrigen, $idNotaC, $allFactura,$detalleRemision, $serviciosFactura, isset($serviciosFactura), is_array($serviciosFactura), count($serviciosFactura)); die;
+            for ($i = 0; $i < count($detalleRemision); $i++) {
+                $codProducto = $detalleRemision[$i]['codProducto'];
+                $cantProducto = $detalleRemision[$i]['cantidadProducto'];
+                $loteProducto = $detalleRemision[$i]['loteProducto'];
 
-            } else {//Insert inventario
-                if($invDistibucionOperador->existeInvDistribucion($codProducto)){
-                    $datos = array($cantProducto, $codProducto);
-                    $invDistibucionOperador->updateInvDistribucion($datos);
-                }else{
-                    $datos = array($codProducto, $cantProducto);
-                    $invDistibucionOperador->makeInvDistribucion($datos);
-                }
-            }
-
-        } elseif ($codProducto > 10000 && $codProducto < 100000) {
-            //PRODUCTOS DE LA EMPRESA
-            $invPresentacionOperador = new InvProdTerminadosOperaciones();
-            $invProdTerminado = $invPresentacionOperador->getInvProdTerminadoByLote($codProducto, $detRemision['loteProducto']);
-            $invProdTerminado = round($invProdTerminado);
-            if ($invProdTerminado > 0) { //Update inventario
-                $nvoInvProdTerminado = $invProdTerminado + $cantProducto;
-                $datos = array($nvoInvProdTerminado, $codProducto, $detRemision['loteProducto']);
-                $invPresentacionOperador->updateInvProdTerminado($datos);
-            } else {//Insert inventario
-                if ($invPresentacionOperador->existeInvProdTerminadoByLote($codProducto, $detRemision['loteProducto'])) {
-                    $datos = array($cantProducto, $codProducto, $detRemision['loteProducto']);
+                /*DESCARGA DEL INVENTARIO*/
+                $unidades = $cantProducto;
+                if (($codProducto < 100000) && ($codProducto > 1000)) {
+                    $invProdTerminado = $invPresentacionOperador->getInvProdTerminadoByLote($codProducto, $loteProducto);
+                    $nvoInvProdTerminado = $invProdTerminado + $cantProducto;
+                    /*SE ACTUALIZA EL INVENTARIO*/
+                    $datos = array($nvoInvProdTerminado, $codProducto, $loteProducto);
                     $invPresentacionOperador->updateInvProdTerminado($datos);
-                } else {
-                    $datos = array($codProducto, $detRemision['loteProducto'], $cantProducto);
-                    $invPresentacionOperador->makeInvProdTerminado($datos);
+                    $datos = array($idNotaC, $codProducto, $cantProducto);
+                    $detNotaCrOperador->makeDetNotaCr($datos);
+                }
+                if ($codProducto > 100000) {
+                    //PRODUCTOS DE DISTRIBUCIÓN
+                    $invDistribucionOperador = new InvDistribucionOperaciones();
+                    $invDistribucion = $invDistribucionOperador->getInvDistribucion($codProducto);
+                    $nvoInvDistribucion = $invDistribucion + $cantProducto;
+                    /*SE ACTUALIZA EL INVENTARIO*/
+                    $datos = array($nvoInvDistribucion, $codProducto);
+                    $invDistribucionOperador->updateInvDistribucion($datos);
+                    $datos = array($idNotaC, $codProducto, $cantProducto);
+                    $detNotaCrOperador->makeDetNotaCr($datos);
+                }
+            }
+            if(count($serviciosFactura)>0){
+                foreach ($serviciosFactura as $servicio){
+                    $datos = array($idNotaC, $servicio['codProducto'], $servicio['cantProducto']);
+                    $detNotaCrOperador->makeDetNotaCr($datos);
+                }
+            }
+            $datos = array($facturaOrigen['subtotal'], $facturaOrigen['total'], $facturaOrigen['iva'],$facturaOrigen['retencionFte'], $facturaOrigen['retencionIca'], $facturaOrigen['retencionIva'], $idNotaC);
+            $notaCrOperador->updateTotalesNotaC($datos);
+            $totalesNotaC = $notaCrOperador->getTotalesNotaC($idNotaC);
+            if (isset($facturaDestino)){
+                if (abs($facturaDestino['totalR'] - $facturaDestino['retencionFte'] - $facturaDestino['retencionIca'] - $facturaDestino['retencionIva'] - $totalesNotaC['totalNotaC']) < 100) {
+                    $facturaOperador->cancelarFactura($notaC['fechaNotaC'], $notaC['facturaDestino']);
+                }
+            }
+        }else{
+            $detRemision = $detRemisionOperador->getDetRemisionProducto($facturaOrigen['idRemision'], $codProducto);
+            if ($codProducto > 100000) {
+                //PRODUCTOS DE DISTRIBUCIÓN
+                $invProdDistribucion = $invDistibucionOperador->getInvDistribucion($codProducto);
+                $invProdDistribucion = round($invProdDistribucion);
+                if ($invProdDistribucion > 0) { //Update inventario
+                    $nvoInvProdDistribucion = $invProdDistribucion + $cantProducto;
+                    $datos = array($nvoInvProdDistribucion, $codProducto);
+                    $invDistibucionOperador->updateInvDistribucion($datos);
 
+                } else {//Insert inventario
+                    if($invDistibucionOperador->existeInvDistribucion($codProducto)){
+                        $datos = array($cantProducto, $codProducto);
+                        $invDistibucionOperador->updateInvDistribucion($datos);
+                    }else{
+                        $datos = array($codProducto, $cantProducto);
+                        $invDistibucionOperador->makeInvDistribucion($datos);
+                    }
+                }
+
+            } elseif ($codProducto > 10000 && $codProducto < 100000) {
+                //PRODUCTOS DE LA EMPRESA
+                $invProdTerminado = $invPresentacionOperador->getInvProdTerminadoByLote($codProducto, $detRemision['loteProducto']);
+                $invProdTerminado = round($invProdTerminado);
+                if ($invProdTerminado > 0) { //Update inventario
+                    $nvoInvProdTerminado = $invProdTerminado + $cantProducto;
+                    $datos = array($nvoInvProdTerminado, $codProducto, $detRemision['loteProducto']);
+                    $invPresentacionOperador->updateInvProdTerminado($datos);
+                } else {//Insert inventario
+                    if ($invPresentacionOperador->existeInvProdTerminadoByLote($codProducto, $detRemision['loteProducto'])) {
+                        $datos = array($cantProducto, $codProducto, $detRemision['loteProducto']);
+                        $invPresentacionOperador->updateInvProdTerminado($datos);
+                    } else {
+                        $datos = array($codProducto, $detRemision['loteProducto'], $cantProducto);
+                        $invPresentacionOperador->makeInvProdTerminado($datos);
+
+                    }
+                }
+            }
+            $datos = array($idNotaC, $codProducto, $cantProducto);
+            $detNotaCrOperador->makeDetNotaCr($datos);
+            $totalesNotaC = $notaCrOperador->getTotalesNotaC($idNotaC);
+            $totalesNotaC['totalNotaC'] = $totalesNotaC['subtotal']+$totalesNotaC['iva']-$totalesNotaC['subtotal']*$retFteFactura-$totalesNotaC['subtotal']* $retIcaFactura-$totalesNotaC['subtotal']*$retIvaFactura;
+            $datos = array($totalesNotaC['subtotal'], $totalesNotaC['totalNotaC'], $totalesNotaC['iva'], $totalesNotaC['subtotal']*$retFteFactura, $totalesNotaC['subtotal']* $retIcaFactura, $totalesNotaC['subtotal']*$retIvaFactura, $idNotaC);
+            $notaCrOperador->updateTotalesNotaC($datos);
+            if (isset($facturaDestino)){
+                if (abs($facturaDestino['totalR'] - $facturaDestino['retencionFte'] - $facturaDestino['retencionIca'] - $facturaDestino['retencionIva'] - $totalesNotaC['totalNotaC']) < 100) {
+                    $facturaOperador->cancelarFactura($notaC['fechaNotaC'], $notaC['facturaDestino']);
                 }
             }
         }
-        $datos = array($idNotaC, $codProducto, $cantProducto);
-        $detNotaCrOperador->makeDetNotaCr($datos);
-        $totalesNotaC = $notaCrOperador->getTotalesNotaC($idNotaC);
-        $datos = array($totalesNotaC['subtotal'], $totalesNotaC['totalNotaC'], $totalesNotaC['iva'], $idNotaC);
-        $notaCrOperador->updateTotalesNotaC($datos);
-        if (abs($facturaDestino['totalR'] - $facturaDestino['retencionFte'] - $facturaDestino['retencionIca'] - $facturaDestino['retencionIva'] - $totalesNotaC['totalNotaC']) < 100) {
-            $facturaOperador->cancelarFactura($notaC['fechaNotaC'], $notaC['facturaDestino']);
-        }
+
     } else {
         if ($detNotaCrOperador->hasDescNotaCr($idNotaC)) {
             //update
@@ -104,7 +161,11 @@ try {
     }
     $_SESSION['idNotaC'] = $idNotaC;
     $ruta = "detalleNotaC.php";
-    $mensaje = "Detalle de nota crédito adicionado con éxito";
+    if(isset($allFactura) && $allFactura == 1 ){
+        $mensaje = "Detalles de nota crédito adicionados con éxito";
+    }else{
+        $mensaje = "Detalle de nota crédito adicionado con éxito";
+    }
     $icon = "success";
 } catch (Exception $e) {
     $_SESSION['idNotaC'] = $idNotaC;
