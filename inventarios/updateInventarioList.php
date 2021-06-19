@@ -21,16 +21,12 @@ foreach ($_POST as $nombre_campo => $valor) {
         echo $nombre_campo . '=' . ${$nombre_campo} . '<br>';
     }
 }
-if ($tipoInv == $page){
-    if($page == 0){
-        echo 'distribucion';
-    }
-}
-else{
-    echo 'error';
-}
-die;
-$preciosOperador = new PreciosOperaciones();
+$invDistOperador = new InvDistribucionOperaciones();
+$invMPOperador = new InvMPrimasOperaciones();
+$invEnvaseOperador = new InvEnvasesOperaciones();
+$invTapasOperador = new InvTapasOperaciones();
+$invProductoOperador = new InvProdTerminadosOperaciones();
+$invEtiqOperador = new InvEtiquetasOperaciones();
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -45,32 +41,72 @@ $preciosOperador = new PreciosOperaciones();
 <body>
 <?php
 
-try {
-    /**  Identify the type of $inputFileName  **/
-    $inputFileType = IOFactory::identify($upload_file);
-    /**  Create a new Reader of the type defined in $inputFileType  **/
-    $reader = IOFactory::createReader($inputFileType);
-    /**  Advise the Reader that we only want to load cell data  **/
-    $reader->setReadDataOnly(true);
-    /** Load $upload_file to a Spreadsheet Object  **/
-    $spreadsheet = IOFactory::load($upload_file);
-//var_dump($spreadsheet->getSheetNames()); die;
-    $precios = $spreadsheet->getSheet($page)->toArray(null, true, false, false);
-    for($i=1; $i<count($precios);$i++){
-        $datos = array($precios[$i][2], $precios[$i][3], $precios[$i][4],  $precios[$i][5], $precios[$i][6], $precios[$i][0] );
-        $preciosOperador->updateListaPrecio($datos);
+if ($tipoInv == $page){
+    try {
+        /**  Identify the type of $inputFileName  **/
+        $inputFileType = IOFactory::identify($upload_file);
+        /**  Create a new Reader of the type defined in $inputFileType  **/
+        $reader = IOFactory::createReader($inputFileType);
+        /**  Advise the Reader that we only want to load cell data  **/
+        $reader->setReadDataOnly(true);
+        /** Load $upload_file to a Spreadsheet Object  **/
+        $spreadsheet = IOFactory::load($upload_file);
+        $sheetNames = $spreadsheet->getSheetNames();
+        $inventarios = $spreadsheet->getSheet($page)->toArray(null, true, false, false);
+        if (stristr($sheetNames[$tipoInv], 'distribucion')){
+            for($i=1; $i<count($inventarios);$i++){
+                $datos = array($inventarios[$i][2], $inventarios[$i][0] );
+                $invDistOperador->updateInvDistribucion($datos);
+            }
+        }
+        if (stristr($sheetNames[$tipoInv], 'tapas')){
+            for($i=1; $i<count($inventarios);$i++){
+                $datos = array($inventarios[$i][2], $inventarios[$i][0] );
+                $invTapasOperador->updateInvTapas($datos);
+            }
+        }
+        if (stristr($sheetNames[$tipoInv], 'envase')){
+            for($i=1; $i<count($inventarios);$i++){
+                $datos = array($inventarios[$i][2], $inventarios[$i][0] );
+                $invEnvaseOperador->updateInvEnvase($datos);
+            }
+        }
+        if (stristr($sheetNames[$tipoInv], 'mp')){
+            for($i=1; $i<count($inventarios);$i++){
+                $datos = array($inventarios[$i][3], $inventarios[$i][0], $inventarios[$i][2] );
+                $invMPOperador->updateInvMPrima($datos);
+            }
+        }
+        if (stristr($sheetNames[$tipoInv], 'terminado')){
+            for($i=1; $i<count($inventarios);$i++){
+                $datos = array($inventarios[$i][3], $inventarios[$i][0], $inventarios[$i][2] );
+                $invProductoOperador->updateInvProdTerminado($datos);
+            }
+        }
+        if (stristr($sheetNames[$tipoInv], 'etiquetas')){
+            for($i=1; $i<count($inventarios);$i++){
+                $datos = array($inventarios[$i][2], $inventarios[$i][0] );
+                $invDistOperador->updateInvDistribucion($datos);
+            }
+        }
+        $ruta = "../menu.php";
+        $mensaje = "Inventario actualizado correctamente";
+        $icon = "success";
+    } catch (Exception $e) {
+        $ruta = "cargarPrecios.php";
+        $mensaje = "Error al actualizar la lista de precios";
+        $icon = "error";
+    } finally {
+        unset($conexion);
+        unset($stmt);
+        unlink($upload_file);
+        mover_pag($ruta, $mensaje, $icon);
     }
-    $ruta = "listarCod.php";
-    $mensaje = "Lista de precios actualizada correctamente";
-    $icon = "success";
-} catch (Exception $e) {
-    $ruta = "cargarPrecios.php";
-    $mensaje = "Error al actualizar la lista de precios";
+}
+else{
+    $ruta = "../menu.php";
+    $mensaje = "No coinciden los tipos de inventario";
     $icon = "error";
-} finally {
-    unset($conexion);
-    unset($stmt);
-    unlink($upload_file);
     mover_pag($ruta, $mensaje, $icon);
 }
 ?>
