@@ -44,7 +44,7 @@ spl_autoload_register('cargarClases');
 </head>
 
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo"><h4>CREACIÓN DE CÓDIGO GENÉRICO</h4></div>
     <form name="form2" method="POST" action="makeCod.php">
         <div class="form-group row">
@@ -81,7 +81,7 @@ spl_autoload_register('cargarClases');
             ?>
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-1 text-right"
+            <label class="col-form-label col-1 text-end"
                    for="fabrica"><strong>Precio fábrica</strong></label>
             <input type="text" class="form-control col-2" name="fabrica" id="fabrica" maxlength="50"
                    onkeydown="return aceptaNum(event)" required>

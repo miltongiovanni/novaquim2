@@ -105,7 +105,7 @@ $porcentajeTotal = $DetFormulaMPrimaOperador->getPorcentajeTotal($idFormulaMPrim
 </head>
 <body>
 
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo1"><h4>DETALLE DE FÓRMULA DE <?= $nomFormula; ?></h4></div>
     <form method="post" action="makeDetFormulaMPrima.php" name="form1">
         <input name="idFormulaMPrima" type="hidden" value="<?= $idFormulaMPrima; ?>">
@@ -153,8 +153,8 @@ $porcentajeTotal = $DetFormulaMPrimaOperador->getPorcentajeTotal($idFormulaMPrim
     <div class="tabla-50">
         <table width="100%">
             <tr>
-                <td width="60%" class="text-right text-bold">Total</td>
-                <td width="20%" class="text-right text-bold"><?= $porcentajeTotal ?></td>
+                <td width="60%" class="text-end text-bold">Total</td>
+                <td width="20%" class="text-end text-bold"><?= $porcentajeTotal ?></td>
                 <td width="20%"></td>
             </tr>
         </table>

@@ -22,17 +22,17 @@ $cliente = $clienteCotizacionOperador->getCliente($idCliente);
 </head>
 
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo"><h4>ACTUALIZACIÓN DE CLIENTE DE COTIZACIÓN</h4></div>
     <form id="form1" name="form1" method="post" action="updateClienCot.php">
         <input type="hidden" name="idCliente" value="<?= $cliente['idCliente'] ?>">
         <div class=" row ">
-            <label class="col-form-label col-3 text-left mr-2" for="nomCliente"><strong>Cliente</strong></label>
-            <label class="col-form-label col-1 text-left mx-3" for="ciudadCliente"><strong>Ciudad</strong></label>
-            <label class="col-form-label col-3 text-left ml-2" for="dirCliente"><strong>Dirección</strong></label>
+            <label class="col-form-label col-3 text-start me-2" for="nomCliente"><strong>Cliente</strong></label>
+            <label class="col-form-label col-1 text-start mx-3" for="ciudadCliente"><strong>Ciudad</strong></label>
+            <label class="col-form-label col-3 text-start ms-2" for="dirCliente"><strong>Dirección</strong></label>
         </div>
         <div class="form-group row">
-            <input type="text" class="form-control col-3 mr-2" name="nomCliente" id="nomCliente"
+            <input type="text" class="form-control col-3 me-2" name="nomCliente" id="nomCliente"
                    value="<?= $cliente['nomCliente'] ?>" required>
             <select name="idCiudad" id="idCiudad" class="form-control col-1 mx-3" required>
                 <option selected value="<?= $cliente['idCiudad'] ?>"><?= $cliente['ciudad'] ?></option>
@@ -49,21 +49,21 @@ $cliente = $clienteCotizacionOperador->getCliente($idCliente);
                 echo '';
                 ?>
             </select>
-            <input type="text" class="form-control col-3 ml-2" name="dirCliente" id="dirCliente"
+            <input type="text" class="form-control col-3 ms-2" name="dirCliente" id="dirCliente"
                    value="<?= $cliente['dirCliente'] ?>" required>
         </div>
         <div class="row">
-            <label class="col-form-label col-2 text-left mr-2" for="telCliente"><strong>Teléfono</strong></label>
-            <label class="col-form-label col-2 text-left mx-3" for="emailCliente"><strong>Correo
+            <label class="col-form-label col-2 text-start me-2" for="telCliente"><strong>Teléfono</strong></label>
+            <label class="col-form-label col-2 text-start mx-3" for="emailCliente"><strong>Correo
                     electrónico</strong></label>
-            <label class="col-form-label col-3 text-left ml-2" for="idCatCliente"><strong>Actividad</strong></label>
+            <label class="col-form-label col-3 text-start ms-2" for="idCatCliente"><strong>Actividad</strong></label>
         </div>
         <div class="form-group row">
-            <input type="text" class="form-control col-2 mr-2" name="telCliente" id="telCliente" maxlength="10"
+            <input type="text" class="form-control col-2 me-2" name="telCliente" id="telCliente" maxlength="10"
                    onkeydown="return aceptaNum(event)" value="<?= $cliente['telCliente'] ?>">
             <input type="email" class="form-control col-2 mx-3" name="emailCliente" id="emailCliente"
                    value="<?= $cliente['emailCliente'] ?>">
-            <select name="idCatCliente" id="idCatCliente" class="form-control col-3 ml-2" required>
+            <select name="idCatCliente" id="idCatCliente" class="form-control col-3 ms-2" required>
                 <option selected value="<?= $cliente['idCatCliente'] ?>"><?= $cliente['desCatClien'] ?></option>
                 <?php
                 $manager = new CategoriasCliOperaciones();
@@ -78,21 +78,21 @@ $cliente = $clienteCotizacionOperador->getCliente($idCliente);
             </select>
         </div>
         <div class="row">
-            <label class="col-form-label col-2 text-left mr-2" for="contactoCliente"><strong>Nombre
+            <label class="col-form-label col-2 text-start me-2" for="contactoCliente"><strong>Nombre
                     Contacto</strong></label>
-            <label class="col-form-label col-2 text-left mx-2" for="cargoContacto"><strong>Cargo
+            <label class="col-form-label col-2 text-start mx-2" for="cargoContacto"><strong>Cargo
                     Contacto</strong></label>
-            <label class="col-form-label col-1 text-left mx-2" for="cargoContacto"><strong>Celular</strong></label>
-            <label class="col-form-label col-2 text-left ml-2" for="codVendedor"><strong>Vendedor</strong></label>
+            <label class="col-form-label col-1 text-start mx-2" for="cargoContacto"><strong>Celular</strong></label>
+            <label class="col-form-label col-2 text-start ms-2" for="codVendedor"><strong>Vendedor</strong></label>
         </div>
         <div class="form-group row">
-            <input type="text" class="form-control col-2 mr-2" name="contactoCliente" id="contactoCliente"
+            <input type="text" class="form-control col-2 me-2" name="contactoCliente" id="contactoCliente"
                    value="<?= $cliente['dirCliente'] ?>" required>
             <input type="text" class="form-control col-2 mx-2" name="cargoContacto" id="cargoContacto"
                    value="<?= $cliente['dirCliente'] ?>" required>
             <input type="text" class="form-control col-1 mx-2" name="celCliente" id="celCliente" maxlength="10"
                    onkeydown="return aceptaNum(event)" value="<?= $cliente['celCliente'] ?>">
-            <select name="codVendedor" id="codVendedor" class="form-control col-2 ml-2" required>
+            <select name="codVendedor" id="codVendedor" class="form-control col-2 ms-2" required>
                 <option selected value="<?= $cliente['codVendedor'] ?>"><?= $cliente['nomPersonal'] ?></option>
                 <?php
                 $PersonalOperador = new PersonalOperaciones();

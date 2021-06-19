@@ -43,7 +43,7 @@ spl_autoload_register('cargarClases');
     </script>
 </head>
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo"><h4>CREACIÓN DE PROVEDORES</h4></div>
     <form name="form2" method="POST" action="makeProv.php">
         <div class="form-group row">
@@ -58,29 +58,29 @@ spl_autoload_register('cargarClases');
                 </label>
             </div>
 
-            <label class="col-form-label col-2 text-right"
+            <label class="col-form-label col-2 text-end"
                    for="codProducto"><strong>Número</strong></label>
             <input type="text" class="form-control col-2" name="numero" id="numero" onkeydown="return aceptaNum(event)"
                    onkeyup="nitProveedor()" required>
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-2 text-right" for="nitProv"><strong>NIT</strong></label>
+            <label class="col-form-label col-2 text-end" for="nitProv"><strong>NIT</strong></label>
             <input type="text" class="form-control col-2" name="nitProv" id="nitProv"
                    onkeydown="return aceptaNum(event)" readOnly>
-            <label class="col-form-label col-2 text-right" for="nomProv"><strong>Proveedor</strong></label>
+            <label class="col-form-label col-2 text-end" for="nomProv"><strong>Proveedor</strong></label>
             <input type="text" class="form-control col-2" name="nomProv" id="nomProv" required>
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-2 text-right" for="dirProv"><strong>Dirección</strong></label>
+            <label class="col-form-label col-2 text-end" for="dirProv"><strong>Dirección</strong></label>
             <input type="text" class="form-control col-2" name="dirProv" id="dirProv" required>
-            <label class="col-form-label col-2 text-right" for="telProv"><strong>Teléfono</strong></label>
+            <label class="col-form-label col-2 text-end" for="telProv"><strong>Teléfono</strong></label>
             <input type="text" class="form-control col-2" name="telProv" id="telProv"
                    onkeydown="return aceptaNum(event)" required>
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-2 text-right" for="contProv"><strong>Nombre Contacto</strong></label>
+            <label class="col-form-label col-2 text-end" for="contProv"><strong>Nombre Contacto</strong></label>
             <input type="text" class="form-control col-2" name="contProv" id="contProv" required>
-            <label class="col-form-label col-2 text-right" for="emailProv"><strong>Correo electrónico</strong></label>
+            <label class="col-form-label col-2 text-end" for="emailProv"><strong>Correo electrónico</strong></label>
             <input type="email" class="form-control col-2" name="emailProv" id="emailProv" required>
         </div>
         <div class="form-group row">

@@ -38,7 +38,7 @@ spl_autoload_register('cargarClases');
     </script>
 </head>
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo"><h4>SELECCIÓN DE TAPA O VÁLVULA A AJUSTAR INVENTARIO</h4></div>
     <form id="form1" name="form1" method="post" action="updateInvTap.php">
         <div class="form-group row">
@@ -57,7 +57,7 @@ spl_autoload_register('cargarClases');
             </select>
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-2 text-right"
+            <label class="col-form-label col-2 text-end"
                    for=invTapa><strong>Inventario</strong></label>
             <input type="text" class="form-control col-3 formatoDatos" name="invTapa" id="invTapa"
                    onkeydown="return aceptaNum(event)">

@@ -29,7 +29,7 @@ $relacion = $relDisEmpOperador->getRelDisEmp($idPacUn);
     <script src="../js/validar.js"></script>
 </head>
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo"><h4>ACTUALIZACIÓN RELACIÓN PACA UNIDAD PRODUCTOS DE DISTRIBUCIÓN</h4></div>
     <form method="post" action="updateRelPacProd.php" name="form1">
         <input id="idPacUn" name="idPacUn" type="hidden" value="<?= $idPacUn ?>">
@@ -66,7 +66,7 @@ $relacion = $relDisEmpOperador->getRelDisEmp($idPacUn);
             </select>
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-2 text-right" for="cantidad"><strong>Unidades por
+            <label class="col-form-label col-2 text-end" for="cantidad"><strong>Unidades por
                     empaque</strong></label>
             <input type="text" class="form-control col-2" name="cantidad" id="cantidad"
                    onkeydown="return aceptaNum(event)" value="<?= $relacion['cantidad'] ?>">

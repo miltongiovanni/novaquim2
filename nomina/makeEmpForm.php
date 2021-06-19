@@ -11,7 +11,7 @@ include "includes/conect.php";
   <script  src="../js/validar.js"></script>
 </head>
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
 <div id="saludo1"><strong>INGRESO DE EMPLEADOS</strong></div> 
 <form name="form2" method="POST" action="makeEmpleado.php">
 <table border="0" align="center" summary="">

@@ -176,7 +176,7 @@ $type = $_POST['type'];
     </script>
 </head>
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo1"><h4>CONSULTA DE <?= $type == 1 ? 'UNIDADES' : 'VALOR' ?> POR VENTAS POR FAMILIA DE PRODUCTOS
             POR MES AÑO <?= $year ?></h4>
     </div>

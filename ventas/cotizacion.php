@@ -19,7 +19,7 @@ spl_autoload_register('cargarClases');
     <script src="../js/findCliente.js"></script>
 </head>
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo1"><h4>CREAR COTIZACIÓN</h4></div>
     <form method="post" action="makeCotizacion.php" name="form1">
         <div class="form-group row">
@@ -31,7 +31,7 @@ spl_autoload_register('cargarClases');
         </div>
 
         <div class="form-group row">
-            <label class="col-form-label col-2 text-right" for="fechaCotizacion"><strong>Fecha de
+            <label class="col-form-label col-2 text-end" for="fechaCotizacion"><strong>Fecha de
                     Cotización</strong></label>
             <input type="date" class="form-control col-5" name="fechaCotizacion" id="fechaCotizacion" required>
         </div>
@@ -71,7 +71,7 @@ spl_autoload_register('cargarClases');
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-2 text-right" for="fechaCotizacion"><strong>Familia de
+            <label class="col-form-label col-2 text-end" for="fechaCotizacion"><strong>Familia de
                     Productos</strong></label>
             <div class="col-2">
                 <?php
@@ -86,7 +86,7 @@ spl_autoload_register('cargarClases');
                 endfor;
                 ?>
             </div>
-            <label class="col-form-label col-2 text-right" for="fechaCotizacion"><strong>Familia
+            <label class="col-form-label col-2 text-end" for="fechaCotizacion"><strong>Familia
                     Distribución</strong></label>
             <div class="col-2">
                 <?php

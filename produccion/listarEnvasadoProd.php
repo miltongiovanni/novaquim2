@@ -158,7 +158,7 @@ $producto = $ProductoOperador->getNameProducto($codProducto);
 </head>
 <body>
 
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
 
     <div id="saludo1"><h4>LISTADO DE ENVASADO DE <?= strtoupper($producto); ?> POR ORDEN DE PRODUCCIÓN</h4>
     </div>

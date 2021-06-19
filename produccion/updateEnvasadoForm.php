@@ -29,7 +29,7 @@ $presentacion = $EnvasadoOperador->getEnvasado($lote, $codPresentacion);
 
 </head>
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo"><h4>ACTUALIZACIÓN DE ENVASADO POR PRESENTACIÓN</h4></div>
     <form action="updateEnvasado.php" method="post" name="actualiza">
         <input type="hidden" name="lote" id="lote" value="<?= $lote ?>">
@@ -37,13 +37,13 @@ $presentacion = $EnvasadoOperador->getEnvasado($lote, $codPresentacion);
         <input type="hidden" name="codPresentacion" id="codPresentacion" value="<?= $codPresentacion ?>">
         <input type="hidden" name="cantidad_ant" id="cantidad_ant" value="<?= $presentacion['cantPresentacion'] ?>">
         <div class="form-group row">
-            <label class="col-form-label col-2 text-right" for="presentacion"><strong>Presentación de
+            <label class="col-form-label col-2 text-end" for="presentacion"><strong>Presentación de
                     Producto</strong></label>
             <input type="text" class="form-control col-3" name="presentacion" id="presentacion" readonly
                    value="<?= $presentacion['presentacion'] ?>">
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-2 text-right" for="cantPresentacion"><strong>Cantidad</strong></label>
+            <label class="col-form-label col-2 text-end" for="cantPresentacion"><strong>Cantidad</strong></label>
             <input type="text" class="form-control col-3" name="cantPresentacion" id="cantPresentacion"
                    value="<?= $presentacion['cantPresentacion'] ?>"
                    onkeydown="return aceptaNum(event)">

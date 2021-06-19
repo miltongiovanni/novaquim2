@@ -192,7 +192,7 @@ $year = $_POST['year'];
     </script>
 </head>
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo1"><h4>CONSULTA DE VENTAS POR FAMILIA DE PRODUCTOS POR MES AÑO <?= $year ?></h4></div>
     <div class="tabla-100">
         <table id="example" class="display compact formatoDatos5">

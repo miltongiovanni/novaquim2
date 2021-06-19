@@ -137,20 +137,20 @@ $cantidadPendiente = $EnvasadoOperador->getCantidadPorEnvasar($lote);
     </script>
 </head>
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo1"><h4>PRODUCTOS ENVASADOS POR LOTE</h4></div>
     <div class="form-group row">
-        <div class="col-1 text-right"><strong>Lote</strong></div>
+        <div class="col-1 text-end"><strong>Lote</strong></div>
         <div class="col-1 bg-blue"><?= $lote; ?></div>
-        <div class="col-1 text-right"><strong>Cantidad</strong></div>
+        <div class="col-1 text-end"><strong>Cantidad</strong></div>
         <div class="col-1 bg-blue"><?= $ordenProd['cantidadKg'] ?> Kg</div>
-        <div class="col-1 text-right"><strong>Responsable</strong></div>
+        <div class="col-1 text-end"><strong>Responsable</strong></div>
         <div class="col-2 bg-blue"><?= $ordenProd['nomPersonal'] ?></div>
     </div>
     <div class="form-group row">
-        <div class="col-1 text-right"><strong>Producto</strong></div>
+        <div class="col-1 text-end"><strong>Producto</strong></div>
         <div class="col-2 bg-blue"><?= $ordenProd['nomProducto'] ?></div>
-        <div class="col-2 text-right"><strong>Fecha de producción</strong></strong></div>
+        <div class="col-2 text-end"><strong>Fecha de producción</strong></strong></div>
         <div class="col-2 bg-blue"><?= $ordenProd['fechProd'] ?></div>
     </div>
     <div class="form-group titulo row">
@@ -199,7 +199,7 @@ $cantidadPendiente = $EnvasadoOperador->getCantidadPorEnvasar($lote);
     <div class="tabla-50">
         <table width="100% formatoDatos">
             <tr>
-                <td width="85%" class="text-right text-bold formatoDatos">Cantidad pendiente en litros</td>
+                <td width="85%" class="text-end text-bold formatoDatos">Cantidad pendiente en litros</td>
                 <td width="15%" class="text-center text-bold formatoDatos"><?= $cantidadPendiente ?></td>
             </tr>
         </table>

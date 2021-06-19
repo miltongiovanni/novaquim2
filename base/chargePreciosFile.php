@@ -18,7 +18,7 @@ foreach ($_POST as $nombre_campo => $valor) {
     if (is_array($valor)) {
         //echo $nombre_campo.print_r($valor).'<br>';
     } else {
-        echo $nombre_campo . '=' . ${$nombre_campo} . '<br>';
+        //echo $nombre_campo . '=' . ${$nombre_campo} . '<br>';
     }
 }
 $uploads_dir = '../uploads/';
@@ -75,7 +75,7 @@ if (move_uploaded_file($file_tmp_name, $upload_file)) {
 
 </head>
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
 
     <div id="saludo"><h4>SELECCIÓN DE LA PÁGINA A CARGAR</h4></div>
     <form id="form1" name="form1" method="post" action="updatePreciosList.php">

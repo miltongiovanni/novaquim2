@@ -14,7 +14,7 @@ include "../includes/valAcc.php";
 </head>
 
 <body>
-	<div id="contenedor">
+	<div id="contenedor" class="container-fluid">
 		<div id="saludo"><h4>SELECCIONAR CÓDIGO A ACTUALIZAR</h4></div>
 		<?php
         include "../includes/base.php";

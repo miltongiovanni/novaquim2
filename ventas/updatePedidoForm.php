@@ -45,16 +45,16 @@ $pedido = $pedidoOperador->getPedido($idPedido);
     </script>
 </head>
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo"><h4>ACTUALIZACIÓN DE ORDEN DE PEDIDO</h4></div>
     <form method="post" action="updatePedido.php" name="form1">
         <div class="form-group row">
-            <label class="col-form-label col-2 text-right" for="idPedido"><strong>Pedido</strong></label>
+            <label class="col-form-label col-2 text-end" for="idPedido"><strong>Pedido</strong></label>
             <input type="text" class="form-control col-5" name="idPedido" value="<?= $pedido['idPedido'] ?>"
                    id="idPedido" readonly required>
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-2 text-right" for="estadoPedido"><strong>Estado</strong></label>
+            <label class="col-form-label col-2 text-end" for="estadoPedido"><strong>Estado</strong></label>
             <input type="hidden" name="estado" id="estado" value="<?= $pedido['estado'] ?>">
             <input type="text" class="form-control col-5" name="estadoPedido" value="<?= $pedido['estadoPedido'] ?>"
                    id="estadoPedido" readonly>
@@ -77,13 +77,13 @@ $pedido = $pedidoOperador->getPedido($idPedido);
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-2 text-right" for="fechaPedido"><strong>Fecha de
+            <label class="col-form-label col-2 text-end" for="fechaPedido"><strong>Fecha de
                     Pedido</strong></label>
             <input type="date" class="form-control col-5" name="fechaPedido" value="<?= $pedido['fechaPedido'] ?>"
                    id="fechaPedido" required>
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-2 text-right" for="fechaEntrega"><strong>Fecha de
+            <label class="col-form-label col-2 text-end" for="fechaEntrega"><strong>Fecha de
                     entrega</strong></label>
             <input type="date" class="form-control col-5" name="fechaEntrega" value="<?= $pedido['fechaEntrega'] ?>"
                    id="fechaEntrega" required>

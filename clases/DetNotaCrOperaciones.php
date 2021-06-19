@@ -83,7 +83,8 @@ class DetNotaCrOperaciones
 
     public function getTableDetNotaCrDev($idNotaC)
     {
-        $qry = "SELECT CONCAT('003000', dnc.codProducto) codProducto,
+        $qry = "SELECT CONCAT('003000', p.codSiigo) codProducto,
+                        dnc.codProducto     codigo,
                        presentacion                          producto,
                        ROUND(dnc.cantProducto)                      cantidad,
                        CONCAT(ROUND(ti.tasaIva * 100), ' %') iva,
@@ -99,7 +100,8 @@ class DetNotaCrOperaciones
                   AND dnc.codProducto < 100000
                   AND dnc.codProducto > 10000
                 UNION
-                SELECT CONCAT('003000', dnc2.codProducto) codProducto,
+                SELECT CONCAT('003000', d.codSiigo) codProducto,
+                        dnc2.codProducto     codigo,
                        Producto          as                 producto,
                        ROUND(dnc2.cantProducto) as          cantidad,
                        CONCAT(ROUND(t.tasaIva * 100), ' %') iva,
@@ -148,6 +150,19 @@ class DetNotaCrOperaciones
             return $result['totalFactura'];
         } else {
             return 0;
+        }
+
+    }
+    public function hasDetalleNC($idNotaC)
+    {
+        $qry = "SELECT COUNT(*) c FROM  det_nota_c WHERE idNotaC= ?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($idNotaC));
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($result) {
+            return $result['c']>0? true : false;
+        } else {
+            return false;
         }
 
     }

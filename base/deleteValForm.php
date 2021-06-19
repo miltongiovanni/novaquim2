@@ -13,7 +13,7 @@ include "../includes/valAcc.php";
 </head>
 
 <body>
-    <div id="contenedor">
+    <div id="contenedor" class="container-fluid">
         <div id="saludo"><h4>ELIMINACIÓN DE TAPAS O VÁLVULAS</h4></div>
         <?php
         include "../includes/base.php";

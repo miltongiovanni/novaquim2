@@ -48,11 +48,14 @@ class NotasCreditoOperaciones
         return $result['estado'];
     }
 
-    public function getNotasCreditoByEstado($estado)
+    public function getNotasCreditoSinDestino()
     {
-        $qry = "SELECT idNotaC FROM nota_c WHERE estado=?";
+        $qry = "SELECT idNotaC, nomCliente, nc.idCliente, CONCAT('$', FORMAT(nc.totalNotaC, 0)) 'totalNota'
+                FROM nota_c nc
+                LEFT JOIN clientes c on c.idCliente = nc.idCliente
+                WHERE facturaDestino IS NULL";
         $stmt = $this->_pdo->prepare($qry);
-        $stmt->execute(array($estado));
+        $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
@@ -325,6 +328,12 @@ class NotasCreditoOperaciones
                        IF(motivo = 0, 'Devolución', 'Descuento no aplicado') descMotivo,
                        ROUND(totalNotaC)                                     totalNotaC,
                        CONCAT('$', FORMAT(SUM(totalNotaC), 0))               totalNotaCrFormated,
+                       ROUND(retFteNotaC)                                     retFteNotaC,
+                       CONCAT('$', FORMAT(SUM(retFteNotaC), 0))               retFteNotaCrFormated,
+                       ROUND(retIcaNotaC)                                     retIcaNotaC,
+                       CONCAT('$', FORMAT(SUM(retIcaNotaC), 0))               retIcaNotaCrFormated,
+                       ROUND(retIvaNotaC)                                     retIvaNotaC,
+                       CONCAT('$', FORMAT(SUM(retIvaNotaC), 0))               retIvaNotaCrFormated,
                        CONCAT('$', FORMAT(SUM(subtotalNotaC), 0))            subtotalNotaC,
                        CONCAT('$', FORMAT(SUM(ivaNotaC), 0))                 ivaNotaC
                 FROM nota_c nc
@@ -372,7 +381,7 @@ class NotasCreditoOperaciones
 
     public function updateTotalesNotaC($datos)
     {
-        $qry = "UPDATE nota_c SET subtotalNotaC=?, totalNotaC=?, ivaNotaC=?
+        $qry = "UPDATE nota_c SET subtotalNotaC=?, totalNotaC=?, ivaNotaC=?, retFteNotaC=?, retIcaNotaC=?, retIvaNotaC=?
                  WHERE idNotaC=?";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute($datos);
@@ -386,12 +395,12 @@ class NotasCreditoOperaciones
         $stmt->execute($datos);
     }
 
-    public function updateEstadoNotaC($estado, $idNotaC)
+    public function updateFacturaDestNotaC($facturaDestino, $idNotaC)
     {
-        $qry = "UPDATE nota_c SET estado=?
+        $qry = "UPDATE nota_c SET facturaDestino=?
                  WHERE idNotaC=?";
         $stmt = $this->_pdo->prepare($qry);
-        $stmt->execute(array($estado, $idNotaC));
+        $stmt->execute(array($facturaDestino, $idNotaC));
     }
 
     public function anularNotaC($observaciones, $idNotaC)

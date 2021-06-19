@@ -106,7 +106,7 @@ if ($_POST['seleccion1'])
     </script>
 </head>
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo1"><h4>FALTANTE DE LOS PEDIDOS</h4></div>
     <div class="row flex-end mb-3">
         <div class="col-1">

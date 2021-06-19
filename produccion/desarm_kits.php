@@ -17,7 +17,7 @@ spl_autoload_register('cargarClases');
     <script src="../js/validar.js"></script>
 </head>
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo"><h4>DESARMADO DE KITS DE PRODUCTOS</h4></div>
     <form name="form2" method="POST" action="desarmado_kits.php">
         <div class="form-group row">
@@ -35,12 +35,12 @@ spl_autoload_register('cargarClases');
             ?>
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-1 text-right" for="cantDesarmado"><strong>Cantidad</strong></label>
+            <label class="col-form-label col-1 text-end" for="cantDesarmado"><strong>Cantidad</strong></label>
             <input type="text" class="form-control col-2" name="cantDesarmado" id="cantDesarmado"
                    onkeydown="return aceptaNum(event)" required>
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-1 text-right" for="fechDesarmado"><strong>Fecha</strong></label>
+            <label class="col-form-label col-1 text-end" for="fechDesarmado"><strong>Fecha</strong></label>
             <input type="date" class="form-control col-2" name="fechDesarmado" id="fechDesarmado" required>
         </div>
         <div class="form-group row">

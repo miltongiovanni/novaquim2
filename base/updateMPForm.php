@@ -23,7 +23,7 @@ $mprima = $MPrimaOperador->getMPrima($codMPrima);
 </head>
 
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo"><h4>ACTUALIZACIÓN DE MATERIA PRIMA</h4></div>
     <form id="form1" name="form1" method="post" action="updateMP.php">
         <div class="form-group row">
@@ -32,22 +32,22 @@ $mprima = $MPrimaOperador->getMPrima($codMPrima);
             <input type="hidden" name="idCatMPrima" id="idCatMPrima" value="<?= $mprima['idCatMPrima']; ?>" readOnly>
             <input type="text" class="form-control col-2" name="catMP" id="catMP" value="<?= $mprima['catMP']; ?>"
                    readOnly>
-            <label class="col-form-label col-1 text-right"
+            <label class="col-form-label col-1 text-end"
                    for="codMPrima"><strong>Código</strong></label>
             <input type="text" class="form-control col-2" name="codMPrima" id="codMPrima" readOnly
                    value="<?= $mprima['codMPrima']; ?>">
-            <label class="col-form-label col-1 text-right" for="aliasMPrima"><strong>Alias M
+            <label class="col-form-label col-1 text-end" for="aliasMPrima"><strong>Alias M
                     Prima</strong></label>
             <input type="text" class="form-control col-2" name="aliasMPrima" id="aliasMPrima" readOnly
                    value="<?= $mprima['aliasMPrima']; ?>">
 
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-1 text-right" for="nomMPrima"><strong>Materia
+            <label class="col-form-label col-1 text-end" for="nomMPrima"><strong>Materia
                     Prima</strong></label>
             <input type="text" class="form-control col-2" name="nomMPrima" id="nomMPrima"
                    value="<?= $mprima['nomMPrima']; ?>">
-            <label class="col-form-label col-1 text-right"
+            <label class="col-form-label col-1 text-end"
                    for="aparienciaMPrima"><strong>Apariencia</strong></label>
             <input type="text" class="form-control col-2" name="aparienciaMPrima" id="aparienciaMPrima"
                    onkeydown="return aceptaLetra(event)" value="<?= $mprima['aparienciaMPrima']; ?>">
@@ -68,27 +68,27 @@ $mprima = $MPrimaOperador->getMPrima($codMPrima);
             }
             echo '</select>';
             ?>
-            <label class="col-form-label col-1 text-right" for="minStockMprima"><strong>Stock
+            <label class="col-form-label col-1 text-end" for="minStockMprima"><strong>Stock
                     Min</strong></label>
             <input type="text" class="form-control col-2" name="minStockMprima" id="minStockMprima"
                    onkeydown="return aceptaNum(event)" value="<?= $mprima['minStockMprima']; ?>">
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-1 text-right" for="pHmPrima"><strong>pH</strong></label>
+            <label class="col-form-label col-1 text-end" for="pHmPrima"><strong>pH</strong></label>
             <input type="text" class="form-control col-2" name="pHmPrima" id="pHmPrima"
                    placeholder="Si no tiene escribir N.A." value="<?= $mprima['pHmPrima']; ?>">
-            <label class="col-form-label col-1 text-right"
+            <label class="col-form-label col-1 text-end"
                    for="densidadMPrima"><strong>Densidad</strong></label>
             <input type="text" class="form-control col-2" name="densidadMPrima" id="densidadMPrima"
                    placeholder="Si no tiene escribir N.A." value="<?= $mprima['densidadMPrima']; ?>">
         </div>
 
         <div class="form-group row">
-            <label class="col-form-label col-1 text-right"
+            <label class="col-form-label col-1 text-end"
                    for="colorMPrima"><strong>Color</strong></label>
             <input type="text" class="form-control col-2" name="colorMPrima" id="colorMPrima"
                    onkeydown="return aceptaLetra(event)" maxlength="30" value="<?= $mprima['colorMPrima']; ?>">
-            <label class="col-form-label col-1 text-right"
+            <label class="col-form-label col-1 text-end"
                    for="olorMPrima"><strong>Olor</strong></label>
             <input type="text" class="form-control col-2" name="olorMPrima" id="olorMPrima"
                    onkeydown="return aceptaLetra(event)" maxlength="30" value="<?= $mprima['olorMPrima']; ?>">

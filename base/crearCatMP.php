@@ -23,16 +23,16 @@ $idCategoria = $lastcategorias + 1;
 </head>
 
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo"><h4>CREACIÓN DE CATEGORÍA DE MATERIA PRIMA</h4></div>
     <form name="form2" method="POST" action="makeCategoriaMP.php">
         <div class="form-group row">
-            <label class="col-form-label col-1 text-right" for="idCatMP"><strong>Código</strong></label>
+            <label class="col-form-label col-1 text-end" for="idCatMP"><strong>Código</strong></label>
             <input type="text" class="form-control col-2" name="idCatMP" id="idCatMP" size=30 maxlength="30"
                    value="<?= $idCategoria ?>" readonly required>
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-1 text-right" for="catMP"><strong>Categoría</strong></label>
+            <label class="col-form-label col-1 text-end" for="catMP"><strong>Categoría</strong></label>
             <input type="text" class="form-control col-2" name="catMP" id="catMP" size=30
                    onkeydown="return aceptaLetra(event)" maxlength="30" required>
         </div>

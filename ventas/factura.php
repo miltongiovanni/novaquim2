@@ -36,7 +36,7 @@ $pedido = $pedidoOperador->getPedido($pedidosList[0]);
     <script src="../js/validar.js"></script>
 </head>
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo1"><h4>FACTURA DE VENTA</h4></div>
     <form method="post" action="make_factura.php" name="form1">
         <input type="hidden" name="idCliente" value="<?= $idCliente; ?>">
@@ -44,10 +44,10 @@ $pedido = $pedidoOperador->getPedido($pedidosList[0]);
         <input type="hidden" name="idRemision" value="<?= implode(',', $remisiones); ?>">
         <input type="hidden" name="tipPrecio" value="<?= $pedido['idPrecio']; ?>">
         <div class="row">
-            <label class="col-form-label col-2 text-left" for="idFactura"><strong>No. de Factura</strong></label>
-            <label class="col-form-label col-2 text-left mx-2" for="fechaFactura"><strong>Fecha de
+            <label class="col-form-label col-2 text-start" for="idFactura"><strong>No. de Factura</strong></label>
+            <label class="col-form-label col-2 text-start mx-2" for="fechaFactura"><strong>Fecha de
                     factura</strong></label>
-            <label class="col-form-label col-2 text-left" for="fechaVenc"><strong>Fecha de vencimiento</strong></label>
+            <label class="col-form-label col-2 text-start" for="fechaVenc"><strong>Fecha de vencimiento</strong></label>
         </div>
         <div class="form-group row">
             <input type="text" class="form-control col-2" name="idFactura" id="idFactura"
@@ -57,17 +57,17 @@ $pedido = $pedidoOperador->getPedido($pedidosList[0]);
             <input type="date" class="form-control col-2" name="fechaVenc" id="fechaVenc" value="" required>
         </div>
         <div class="row">
-            <label class="col-form-label col-6 text-left" for="nomCliente"><strong>Cliente</strong></label>
+            <label class="col-form-label col-6 text-start" for="nomCliente"><strong>Cliente</strong></label>
         </div>
         <div class="form-group row">
             <input type="text" class="form-control col-6" name="nomCliente" id="nomCliente"
                    value="<?= $cliente['nomCliente']; ?>" readonly>
         </div>
         <div class="row">
-            <label class="col-form-label col-2 text-left" for="tipoPrecio"><strong>Tipo de precio</strong></label>
-            <label class="col-form-label col-2 text-left mx-2" for="ordenCompra"><strong>Orden de
+            <label class="col-form-label col-2 text-start" for="tipoPrecio"><strong>Tipo de precio</strong></label>
+            <label class="col-form-label col-2 text-start mx-2" for="ordenCompra"><strong>Orden de
                     compra</strong></label>
-            <label class="col-form-label col-2 text-left" for="descuento"><strong>Descuento</strong></label>
+            <label class="col-form-label col-2 text-start" for="descuento"><strong>Descuento</strong></label>
         </div>
         <div class="form-group row">
             <input type="text" class="form-control col-2" name="tipoPrecio" id="tipoPrecio"
@@ -78,7 +78,7 @@ $pedido = $pedidoOperador->getPedido($pedidosList[0]);
                    onkeydown="return aceptaNum(event)" value="0" required>
         </div>
         <div class="row">
-            <label class="col-form-label col-6 text-left" for="nomSucursal"><strong>Pedidos</strong></label>
+            <label class="col-form-label col-6 text-start" for="nomSucursal"><strong>Pedidos</strong></label>
         </div>
         <div class="form-group row">
             <textarea name="nomSucursal" class="form-control col-6" id="nomSucursal" rows="5" readonly><?php
@@ -89,7 +89,7 @@ $pedido = $pedidoOperador->getPedido($pedidosList[0]);
             </textarea>
         </div>
         <div class="row">
-            <label class="col-form-label col-6 text-left" for="observaciones"><strong>Observaciones</strong></label>
+            <label class="col-form-label col-6 text-start" for="observaciones"><strong>Observaciones</strong></label>
         </div>
         <div class="form-group row">
             <textarea name="observaciones" class="form-control col-6" id="observaciones" rows="2"></textarea>

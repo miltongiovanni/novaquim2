@@ -12,7 +12,7 @@ include "../includes/valAcc.php";
     <script src="../js/validar.js"></script>
 </head>
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo">
         <h4>SELECCIONAR USUARIO A ASIGNAR CONTRASEÑA</h4>
     </div>

@@ -30,7 +30,7 @@ $pedidos = $pedidoOperador->getTablePedidosPendientes();
     </script>
 </head>
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo1"><h4>LISTA DE ÓRDENES DE PEDIDO PENDIENTES PARA REVISIÓN</h4></div>
     <form name="revision_pedidos" method="post" action="lista_necesidades.php">
         <div class="row justify-content-between mb-3">
@@ -64,11 +64,11 @@ $pedidos = $pedidoOperador->getTablePedidosPendientes();
                 echo '>
                     <td class="text-center"><input type="checkbox" id="seleccion1" class=”check” name="seleccion1[]" value="' . $idPedido . '"></td>
                     <td class="text-center">' . $pedidos[$i]['idPedido'] . '</td>
-                    <td class="text-left">' . $pedidos[$i]['nomCliente'] . '</td>
+                    <td class="text-start">' . $pedidos[$i]['nomCliente'] . '</td>
                     <td class="text-center">' . $pedidos[$i]['fechaPedido'] . '</td>
                     <td class="text-center">' . $pedidos[$i]['fechaEntrega'] . '</td>
-                    <td class="text-left">' . $pedidos[$i]['nomSucursal'] . '</td>
-                    <td class="text-left">' . $pedidos[$i]['dirSucursal'] . '</td>
+                    <td class="text-start">' . $pedidos[$i]['nomSucursal'] . '</td>
+                    <td class="text-start">' . $pedidos[$i]['dirSucursal'] . '</td>
                     <td class="text-center">' . $pedidos[$i]['tipoPrecio'] . '</td>
                     ';
                 echo '</tr>';

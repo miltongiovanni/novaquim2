@@ -12,12 +12,12 @@ include "../includes/valAcc.php";
     <script src="../js/validar.js"></script>
 </head>
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
 
     <div id="saludo"><h4>SELECCIÓN DE COTIZACIÓN</h4></div>
     <form id="form1" name="form1" method="post" action="UpdateCotform.php">
         <div class="form-group row">
-            <label class="col-form-label col-1 text-right" for="idCotizacion"><strong>Cotización</strong></label>
+            <label class="col-form-label col-1 text-end" for="idCotizacion"><strong>Cotización</strong></label>
             <input type="text" class="form-control col-2" name="idCotizacion" id="idCotizacion"
                    onkeydown="return aceptaNum(event)" required>
         </div>

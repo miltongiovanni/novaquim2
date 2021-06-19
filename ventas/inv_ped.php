@@ -29,31 +29,31 @@ $validar=0;
     <script src="../js/validar.js"></script>
 </head>
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo1"><h4>FALTANTE DE PEDIDO</h4></div>
     <div class="form-group row">
-        <div class="col-1 text-right"><strong>No. de pedido</strong></div>
+        <div class="col-1 text-end"><strong>No. de pedido</strong></div>
         <div class="col-1 bg-blue"><?= $idPedido; ?></div>
-        <div class="col-1 text-right"><strong>Cliente</strong></strong></div>
+        <div class="col-1 text-end"><strong>Cliente</strong></strong></div>
         <div class="col-4 bg-blue"><?= $pedido['nomCliente'] ?></div>
-        <div class="col-2 text-right"><strong>Estado</strong></div>
+        <div class="col-2 text-end"><strong>Estado</strong></div>
         <div class="col-1 bg-blue"><?= $pedido['estadoPedido'] ?></div>
 
     </div>
     <div class="form-group row">
-        <div class="col-1 text-right"><strong>Fecha Pedido</strong></div>
+        <div class="col-1 text-end"><strong>Fecha Pedido</strong></div>
         <div class="col-1 bg-blue"><?= $pedido['fechaPedido'] ?></div>
-        <div class="col-2 text-right"><strong>Lugar de entrega</strong></div>
+        <div class="col-2 text-end"><strong>Lugar de entrega</strong></div>
         <div class="col-4 bg-blue"><?= $pedido['nomSucursal'] ?></div>
-        <div class="col-1 text-right"><strong>Vendedor</strong></div>
+        <div class="col-1 text-end"><strong>Vendedor</strong></div>
         <div class="col-2 bg-blue"><?= $pedido['nomPersonal'] ?></div>
     </div>
     <div class="form-group row">
-        <div class="col-1 text-right"><strong>Fecha Entrega</strong></div>
+        <div class="col-1 text-end"><strong>Fecha Entrega</strong></div>
         <div class="col-1 bg-blue"><?= $pedido['fechaEntrega'] ?></div>
-        <div class="col-2 text-right"><strong>Dirección de entrega</strong></div>
+        <div class="col-2 text-end"><strong>Dirección de entrega</strong></div>
         <div class="col-4 bg-blue"><?= $pedido['dirSucursal'] ?></div>
-        <div class="col-1 text-right"><strong>Tipo de Precio</strong></div>
+        <div class="col-1 text-end"><strong>Precio</strong></div>
         <div class="col-1 bg-blue"><?= $pedido['tipoPrecio'] ?></div>
     </div>
     <div class="form-group titulo row">

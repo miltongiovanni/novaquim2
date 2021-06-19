@@ -19,16 +19,16 @@ spl_autoload_register('cargarClases');
 </head>
 
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo"><h4>CREACIÓN DE PERSONAL</h4></div>
     <form name="form2" method="POST" action="makePerson.php">
         <div class="form-group row">
-            <label class="col-form-label col-1 text-right" for="nomPersonal"><strong>Nombre</strong></label>
+            <label class="col-form-label col-1 text-end" for="nomPersonal"><strong>Nombre</strong></label>
             <input type="text" class="form-control col-2" name="nomPersonal" id="nomPersonal" size=30
                    onkeydown="return aceptaLetra(event)" maxlength="30" required>
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-1 text-right"
+            <label class="col-form-label col-1 text-end"
                    for="celPersonal"><strong>Celular</strong></label>
             <input type="text" class="form-control col-2" name="celPersonal" id="celPersonal" size=30
                    onkeydown="return aceptaNum(event)" maxlength="10">

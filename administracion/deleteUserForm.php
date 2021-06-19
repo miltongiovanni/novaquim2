@@ -14,7 +14,7 @@ include "../includes/valAcc.php";
 
 
 <body>
-	<div id="contenedor">
+	<div id="contenedor" class="container-fluid">
 
 		<div id="saludo"><h4>BORRADO DE USUARIOS</h4></div>
 		

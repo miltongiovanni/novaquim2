@@ -13,7 +13,7 @@ include "../includes/valAcc.php";
 </head>
 
 <body>
-	<div id="contenedor">
+	<div id="contenedor" class="container-fluid">
 		<div id="saludo"><h4>BORRADO DE PERSONAL</h4></div>
 		<?php
         include "../includes/administracion.php";

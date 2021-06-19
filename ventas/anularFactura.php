@@ -11,16 +11,16 @@ include "../includes/valAcc.php";
     <script src="../js/validar.js"></script>
 </head>
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo"><h4>INGRESAR FACTURA A ANULAR</h4></div>
     <form id="form1" name="form1" method="post" action="anulaFactura.php">
         <div class="form-group row">
-            <label class="col-form-label col-2 text-right" for="idFactura"><strong>No. de Factura</strong></label>
+            <label class="col-form-label col-2 text-end" for="idFactura"><strong>No. de Factura</strong></label>
             <input type="text" class="form-control col-3" onkeydown="return aceptaNum(event)" name="idFactura"
                    id="idFactura" required>
         </div>
         <div class="form-group row">
-            <label class="col-2 text-right col-form-label" for="observaciones"><strong>Razón de
+            <label class="col-2 text-end col-form-label" for="observaciones"><strong>Razón de
                     Anulación</strong></label>
             <textarea class="form-control col-3" id="observaciones" name="observaciones" required></textarea>
         </div>

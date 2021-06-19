@@ -13,11 +13,11 @@ include "../includes/valAcc.php";
 
 </head>
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo"><h4>SELECCIÓN ORDEN DE PRODUCCIÓN A MODIFICAR</h4></div>
     <form id="form1" name="form1" method="post" action="consultaOProd.php">
         <div class="form-group row">
-            <label class="col-form-label col-1 text-right" for="lote"><strong>No. de lote</strong></label>
+            <label class="col-form-label col-1 text-end" for="lote"><strong>No. de lote</strong></label>
             <input type="text" class="form-control col-2" name="lote" id="lote"
                    onkeydown="return aceptaNum(event)" required>
         </div>

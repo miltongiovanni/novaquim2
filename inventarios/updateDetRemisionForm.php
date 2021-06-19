@@ -31,18 +31,18 @@ $detalle = $detRemisionOperador->getDetTotalRemision($idRemision, $codProducto);
     <script src="../js/validar.js"></script>
 </head>
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo"><h4>ACTUALIZACIÓN DEL DETALLE DEL GASTO</h4></div>
     <form action="updateDetRemision.php" method="post" name="actualiza">
         <input type="hidden" name="idRemision" id="idRemision" value="<?= $idRemision ?>">
         <input type="hidden" name="codProducto" id="codProducto" value="<?= $codProducto ?>">
         <div class="form-group row">
-            <label class="col-form-label col-1 text-right" for="producto"><strong>Producto</strong></label>
+            <label class="col-form-label col-1 text-end" for="producto"><strong>Producto</strong></label>
             <input type="text" class="form-control col-4" name="producto" id="producto" readonly
                    value="<?= $detalle['producto'] ?>">
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-1 text-right" for="cantProducto"><strong>Cantidad</strong></label>
+            <label class="col-form-label col-1 text-end" for="cantProducto"><strong>Cantidad</strong></label>
             <input type="text" class="form-control col-4" name="cantProducto" id="cantProducto"
                    value="<?= $detalle['cantProducto'] ?>" onkeydown="return aceptaNum(event)">
         </div>

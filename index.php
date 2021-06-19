@@ -20,11 +20,11 @@ if(isset($_SESSION['Autorizado']) && $_SESSION['Autorizado']==true){
 </head>
 
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo"><h4>BIENVENIDO AL SISTEMA DE INFORMACIÓN DE INDUSTRIAS NOVAQUIM S.A.S.</h4></div>
     <form method="POST" action="administracion/login.php">
         <div class="form-group row">
-            <div class="col-1 text-right">
+            <div class="col-1 text-end">
                 <label class="col-form-label" for="username">Usuario</label>
             </div>
             <div class="col-1">
@@ -33,7 +33,7 @@ if(isset($_SESSION['Autorizado']) && $_SESSION['Autorizado']==true){
             </div>
         </div>
         <div class="form-group row">
-            <div class="col-1 text-right">
+            <div class="col-1 text-end">
                 <label class="col-form-label" for="password">Contraseña</label>
             </div>
             <div class="col-1"><input type="password" class="form-control" name="password" id="password" maxlength="15"

@@ -32,19 +32,19 @@ include "../includes/valAcc.php";
 </head>
 
 <body onload="idEnvase();">
-    <div id="contenedor">
+    <div id="contenedor" class="container-fluid">
         <div id="saludo"><h4>CREACIÓN DE ENVASE</h4></div>
         <form name="form2" method="POST" action="makeEnv.php">
             <div class="form-group row">
-                <label class="col-form-label col-1 text-right"  for="codEnvase"><strong>Código</strong></label>
+                <label class="col-form-label col-1 text-end"  for="codEnvase"><strong>Código</strong></label>
                 <input type="text" class="form-control col-2" name="codEnvase" id="codEnvase" maxlength="50">
             </div>
             <div class="form-group row">
-                <label class="col-form-label col-1 text-right"  for="nomEnvase"><strong>Envase</strong></label>
+                <label class="col-form-label col-1 text-end"  for="nomEnvase"><strong>Envase</strong></label>
                 <input type="text" class="form-control col-2" name="nomEnvase" id="nomEnvase" maxlength="50" required>
             </div>
             <div class="form-group row">
-                <label class="col-form-label col-1 text-right"  for="stockEnvase"><strong>Stock Envase</strong></label>
+                <label class="col-form-label col-1 text-end"  for="stockEnvase"><strong>Stock Envase</strong></label>
                 <input type="text" class="form-control col-2" name="stockEnvase" id="stockEnvase" onkeydown="return aceptaNum(event)" required>
                 <input type="hidden" class="form-control col-2" name="codIva" id="codIva" value="3">
             </div>

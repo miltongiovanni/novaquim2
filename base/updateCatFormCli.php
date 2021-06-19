@@ -20,17 +20,17 @@ $categoriaCli = $catsCliOperador->getCatCli($idCatClien);
     <script src="../js/validar.js"></script>
 </head>
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo"><h4>ACTUALIZACIÓN TIPO DE CLIENTE</h4></div>
     <form id="form1" name="form1" method="post" action="updateCatCli.php">
         <div class="form-group row">
-            <label class="col-form-label col-1 text-right"
+            <label class="col-form-label col-1 text-end"
                    for="idCatClien"><strong>Código</strong></label>
             <input type="text" class="form-control col-2" name="idCatClien" id="idCatClien" size=30 maxlength="30"
                    value="<?= $categoriaCli['idCatClien']; ?>" readonly>
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-1 text-right" for="desCatClien"><strong>Descripción</strong></label>
+            <label class="col-form-label col-1 text-end" for="desCatClien"><strong>Descripción</strong></label>
             <input type="text" class="form-control col-2" name="desCatClien" id="desCatClien" size=30
                    onkeydown="return aceptaLetra(event)"
                    value="<?= $categoriaCli['desCatClien']; ?>" maxlength="30">

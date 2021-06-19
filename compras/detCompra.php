@@ -195,34 +195,34 @@ $compra = $CompraOperador->getCompra($idCompra, $tipoCompra);
     </script>
 </head>
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo1"><h4>DETALLE DE COMPRA DE<?= $titulo ?></h4></div>
     <div class="form-group row">
-        <div class="col-1 text-right"><strong>No. de Compra</strong></div>
+        <div class="col-1 text-end"><strong>No. de Compra</strong></div>
         <div class="col-1 bg-blue"><?= $idCompra; ?></div>
-        <div class="col-1 text-right"><strong>Proveedor</strong></strong></div>
+        <div class="col-1 text-end"><strong>Proveedor</strong></strong></div>
         <div class="col-3 bg-blue"><?= $compra['nomProv'] ?></div>
-        <div class="col-1 text-right"><strong>NIT</strong></div>
+        <div class="col-1 text-end"><strong>NIT</strong></div>
         <div class="col-1 bg-blue"><?= $compra['nitProv'] ?></div>
     </div>
     <div class="form-group row">
-        <div class="col-1 text-right"><strong>No. de Factura</strong></div>
+        <div class="col-1 text-end"><strong>No. de Factura</strong></div>
         <div class="col-1 bg-blue"><?= $compra['numFact'] ?></div>
-        <div class="col-2 text-right"><strong>Fecha de compra</strong></div>
+        <div class="col-2 text-end"><strong>Fecha de compra</strong></div>
         <div class="col-1 bg-blue"><?= $compra['fechComp']; ?></div>
-        <div class="col-2 text-right"><strong>Fecha Vencimiento </strong></strong></div>
+        <div class="col-2 text-end"><strong>Fecha Vencimiento </strong></strong></div>
         <div class="col-1 bg-blue"><?= $compra['fechVenc'] ?></div>
-        <div class="col-1 text-right"><strong>Estado</strong></div>
+        <div class="col-1 text-end"><strong>Estado</strong></div>
         <div class="col-1 bg-blue"><?= $compra['descEstado'] ?></div>
     </div>
     <div class="form-group row">
-        <div class="col-1 text-right"><strong>Valor Factura</strong></div>
+        <div class="col-1 text-end"><strong>Valor Factura</strong></div>
         <div class="col-1 bg-blue"><?= $compra['totalCompra'] ?></div>
-        <div class="col-1 text-right"><strong>Rete Ica</strong></strong></div>
+        <div class="col-1 text-end"><strong>Rete Ica</strong></strong></div>
         <div class="col-1 bg-blue"><?= $compra['reteicaCompra'] ?></div>
-        <div class="col-1 text-right"><strong>Retención</strong></div>
+        <div class="col-1 text-end"><strong>Retención</strong></div>
         <div class="col-1 bg-blue"><?= $compra['retefuenteCompra'] ?></div>
-        <div class="col-1 text-right"><strong>Valor a Pagar</strong></div>
+        <div class="col-1 text-end"><strong>Valor a Pagar</strong></div>
         <div class="col-1 bg-blue"><?= $compra['vreal'] ?></div>
     </div>
 

@@ -15,7 +15,7 @@ include "../includes/valAcc.php";
 
 
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo"><h4>SELECCIONAR CLIENTE A DESACTIVAR</h4></div>
     <?php
     include "../includes/ventas.php";

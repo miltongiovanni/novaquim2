@@ -126,51 +126,51 @@ $saldo = round($recibo['totalR'] - $recibo['retencionFte'] - $recibo['retencionI
 
 </head>
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo1"><h4>RECIBO DE CAJA POR COBRO DE FACTURAS DE VENTA</h4></div>
 
     <div class="form-group row">
-        <div class="col-1 text-right"><strong>Recibo de caja:</strong></div>
+        <div class="col-1 text-end"><strong>Recibo de caja:</strong></div>
         <div class="col-1 bg-blue"><?= $idRecCaja; ?></div>
-        <div class="col-1 text-right"><strong>Cliente:</strong></strong></div>
+        <div class="col-1 text-end"><strong>Cliente:</strong></strong></div>
         <div class="col-3 bg-blue"><?= $recibo['nomCliente'] ?></div>
-        <div class="col-1 text-right"><strong>NIT:</strong></div>
+        <div class="col-1 text-end"><strong>NIT:</strong></div>
         <div class="col-1 bg-blue"><?= $recibo['nitCliente'] ?></div>
     </div>
     <div class="form-group row">
-        <div class="col-1 text-right"><strong>No. de factura:</strong></div>
+        <div class="col-1 text-end"><strong>No. de factura:</strong></div>
         <div class="col-1 bg-blue"><?= $recibo['idFactura'] ?></div>
-        <div class="col-2 text-right"><strong>Fecha de Factura:</strong></div>
+        <div class="col-2 text-end"><strong>Fecha de Factura:</strong></div>
         <div class="col-1 bg-blue"><?= $recibo['fechaFactura'] ?></div>
-        <div class="col-2 text-right"><strong>Fecha Vencimiento:</strong></strong></div>
+        <div class="col-2 text-end"><strong>Fecha Vencimiento:</strong></strong></div>
         <div class="col-1 bg-blue"><?= $recibo['fechaVenc'] ?></div>
     </div>
     <div class="form-group row">
-        <div class="col-1 text-right"><strong>Valor Factura:</strong></div>
+        <div class="col-1 text-end"><strong>Valor Factura:</strong></div>
         <div class="col-1 bg-blue"><?= '$' . number_format($recibo['total'], 0, '.', ',') ?></div>
-        <div class="col-1 text-right"><strong>Retefuente:</strong></div>
+        <div class="col-1 text-end"><strong>Retefuente:</strong></div>
         <div class="col-1 bg-blue"><?= '$' . number_format($recibo['retencionFte'], 0, '.', ',') ?></div>
-        <div class="col-1 text-right"><strong>ReteIca:</strong></strong></div>
+        <div class="col-1 text-end"><strong>ReteIca:</strong></strong></div>
         <div class="col-1 bg-blue"><?= '$' . number_format($recibo['retencionIca'], 0, '.', ',') ?></div>
-        <div class="col-1 text-right"><strong>ReteIva:</strong></div>
+        <div class="col-1 text-end"><strong>ReteIva:</strong></div>
         <div class="col-1 bg-blue"><?= '$' . number_format($recibo['retencionIva'], 0, '.', ','); ?></div>
     </div>
     <div class="form-group row">
-        <div class="col-1 text-right"><strong>Valor a Cobrar:</strong></div>
+        <div class="col-1 text-end"><strong>Valor a Cobrar:</strong></div>
         <div class="col-1 bg-blue"><?= '$' . number_format($recibo['totalR'] - $recibo['retencionFte'] - $recibo['retencionIca'] - $recibo['retencionIva'], 0, '.', ',') ?></div>
-        <div class="col-2 text-right"><strong>Valor Cancelado: </strong></strong></div>
+        <div class="col-2 text-end"><strong>Valor Cancelado: </strong></strong></div>
         <div class="col-1 bg-blue"><?= '$' . number_format($abono + $recibo['cobro'], 0, '.', ',') ?></div>
-        <div class="col-2 text-right"><strong>Valor Pendiente:</strong></div>
+        <div class="col-2 text-end"><strong>Valor Pendiente:</strong></div>
         <div class="col-1 bg-blue"><?= '$' . number_format($recibo['totalR'] - $recibo['retencionFte'] - $recibo['retencionIca'] - $recibo['retencionIva'] - $abono - $recibo['cobro'], 0, '.', ',') ?></div>
     </div>
 
     <div class="row form-group my-5">
-        <label for="retencion" class="col-form-label col-2 text-right"><strong>Cliente aplicó retención</strong></label>
+        <label for="retencion" class="col-form-label col-2 text-end"><strong>Cliente aplicó retención</strong></label>
         <select name="retencion" id="retencion" class="form-control col-1" onchange="retefuente()">
             <option <?= $retefuente == 0 ? 'selected' : '' ?> value=0>No</option>
             <option <?= $retefuente > 0 ? 'selected' : '' ?> value=1>Si</option>
         </select>
-        <label for="t_reten" class="col-form-label col-2 text-right"><strong>Tasa retención en la
+        <label for="t_reten" class="col-form-label col-2 text-end"><strong>Tasa retención en la
                 fuente</strong></label>
         <select name="t_reten" id="t_reten" class="form-control col-1" onchange="aplicarRetefuente()">
             <option <?= $tasaRetefuente == 0.025 ? 'selected' : '' ?> value=0.025>2.5%</option>
@@ -179,7 +179,7 @@ $saldo = round($recibo['totalR'] - $recibo['retencionFte'] - $recibo['retencionI
             <option <?= $tasaRetefuente == 0.04 ? 'selected' : '' ?> value=0.04>4%</option>
             <option <?= $tasaRetefuente == 0 ? 'selected' : '' ?> value=0>0%</option>
         </select>
-        <label for="retica" class="col-form-label col-2 text-right"><strong>Aplicó retención de ICA</strong></label>
+        <label for="retica" class="col-form-label col-2 text-end"><strong>Aplicó retención de ICA</strong></label>
         <select name="retica" id="retica" class="form-control col-1" onchange="aplicarReteica()">
             <option <?= $retencionIca == 0 ? 'selected' : '' ?> value=0>No</option>
             <option <?= $retencionIca > 0 ? 'selected' : '' ?> value=1>Si</option>
@@ -193,7 +193,7 @@ $saldo = round($recibo['totalR'] - $recibo['retencionFte'] - $recibo['retencionI
         <input name="reten_ica" type="hidden" value="<?= $retencionIca > 0 ? 1 : 0 ?>">
         <div class="row form-group">
             <div class="text-center input-date"><strong>Fecha cobro</strong></div>
-            <div class="input-date text-center ml-1"><strong>Forma de pago</strong></div>
+            <div class="input-date text-center ms-1"><strong>Forma de pago</strong></div>
             <div class="col-1 text-center mx-1"><strong>Banco</strong></div>
             <div class="col-1 text-center mx-1"><strong>No. Cheque</strong></div>
             <div class="col-1 text-center mx-1"><strong>Vlr pagado</strong></div>
@@ -204,16 +204,18 @@ $saldo = round($recibo['totalR'] - $recibo['retencionFte'] - $recibo['retencionI
         <div class="form-group row">
             <input type="date" class="form-control input-date"
                    name="fechaRecCaja" id="fechaRecCaja" value="<?= $recibo['fechaRecCaja'] ?>">
-            <select name="form_pago" id="form_pago" class="form-control input-date ml-1" required>
+            <select name="form_pago" id="form_pago" class="form-control input-date ms-1" required>
                 <?php
                 $manager = new FormaPagoOperaciones();
                 $formas = $manager->getFormasPago();
                 $filas = count($formas);
                 for ($i = 0; $i < $filas; $i++) :
+                    if ($formas[$i]["idFormaPago"]!=2):
                     ?>
                     <option <?= $formas[$i]["idFormaPago"] == $recibo['form_pago'] ? 'selected' : '' ?>
                             value="<?= $formas[$i]["idFormaPago"] ?>"><?= $formas[$i]['formaPago'] ?></option>
                 <?php
+                endif;
                 endfor;
                 ?>
             </select>

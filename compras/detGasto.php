@@ -163,34 +163,34 @@ $gasto = $GastoOperador->getGasto($idGasto);
     </script>
 </head>
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo1"><h4>INGRESO DE DETALLE DE LOS GASTOS</h4></div>
     <div class="form-group row">
-        <div class="col-1 text-right"><strong>No. de Gasto</strong></div>
+        <div class="col-1 text-end"><strong>No. de Gasto</strong></div>
         <div class="col-1 bg-blue"><?= $idGasto; ?></div>
-        <div class="col-1 text-right"><strong>Proveedor</strong></strong></div>
+        <div class="col-1 text-end"><strong>Proveedor</strong></strong></div>
         <div class="col-3" style="background-color: #dfe2fd;"><?= $gasto['nomProv'] ?></div>
-        <div class="col-1 text-right"><strong>NIT</strong></div>
+        <div class="col-1 text-end"><strong>NIT</strong></div>
         <div class="col-1 bg-blue"><?= $gasto['nitProv'] ?></div>
     </div>
     <div class="form-group row">
-        <div class="col-1 text-right"><strong>No. de Factura</strong></div>
+        <div class="col-1 text-end"><strong>No. de Factura</strong></div>
         <div class="col-1 bg-blue"><?= $gasto['numFact'] ?></div>
-        <div class="col-2 text-right"><strong>Fecha de compra</strong></div>
+        <div class="col-2 text-end"><strong>Fecha de compra</strong></div>
         <div class="col-1 bg-blue"><?= $gasto['fechGasto']; ?></div>
-        <div class="col-2 text-right"><strong>Fecha Vencimiento </strong></strong></div>
+        <div class="col-2 text-end"><strong>Fecha Vencimiento </strong></strong></div>
         <div class="col-1 bg-blue"><?= $gasto['fechVenc'] ?></div>
-        <div class="col-1 text-right"><strong>Estado</strong></div>
+        <div class="col-1 text-end"><strong>Estado</strong></div>
         <div class="col-1 bg-blue"><?= $gasto['descEstado'] ?></div>
     </div>
     <div class="form-group row">
-        <div class="col-1 text-right"><strong>Valor Factura</strong></div>
+        <div class="col-1 text-end"><strong>Valor Factura</strong></div>
         <div class="col-1 bg-blue"><?= $gasto['totalGasto'] ?></div>
-        <div class="col-1 text-right"><strong>Rete Ica</strong></strong></div>
+        <div class="col-1 text-end"><strong>Rete Ica</strong></strong></div>
         <div class="col-1 bg-blue"><?= $gasto['reteicaGasto'] ?></div>
-        <div class="col-1 text-right"><strong>Retención</strong></div>
+        <div class="col-1 text-end"><strong>Retención</strong></div>
         <div class="col-1 bg-blue"><?= $gasto['retefuenteGasto'] ?></div>
-        <div class="col-1 text-right"><strong>Valor a Pagar</strong></div>
+        <div class="col-1 text-end"><strong>Valor a Pagar</strong></div>
         <div class="col-1 bg-blue"><?= $gasto['vreal'] ?></div>
     </div>
 

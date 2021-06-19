@@ -13,7 +13,7 @@ include "../includes/valAcc.php";
 </head>
 
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
 
     <div id="saludo"><h4>SELECCIONAR USUARIO A ASIGNAR PERMISOS</h4></div>
     <?php

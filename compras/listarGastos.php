@@ -145,7 +145,7 @@ include "../includes/valAcc.php";
     </script>
 </head>
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo1"><h4>LISTA DE GASTOS</h4></div>
     <div class="row flex-end">
         <div class="col-1">

@@ -18,7 +18,7 @@ spl_autoload_register('cargarClases');
 
 </head>
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo"><h4>ENVASADO DE PRODUCTOS DE DISTRIBUCIÓN</h4></div>
     <form id="form1" name="form1" method="post" action="det_env_dist.php">
         <div class="form-group row">
@@ -36,11 +36,11 @@ spl_autoload_register('cargarClases');
             </select>
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-2 text-right" for="fechaEnvDist"><strong>Fecha</strong></label>
+            <label class="col-form-label col-2 text-end" for="fechaEnvDist"><strong>Fecha</strong></label>
             <input type="date" class="form-control col-2" name="fechaEnvDist" id="fechaEnvDist" required>
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-2 text-right" for="cantidad"><strong>Cantidad</strong></label>
+            <label class="col-form-label col-2 text-end" for="cantidad"><strong>Cantidad</strong></label>
             <input type="text" class="form-control col-2" name="cantidad" id="cantidad"
                    onkeydown="return aceptaNum(event)" required>
         </div>

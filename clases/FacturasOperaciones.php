@@ -238,6 +238,18 @@ class FacturasOperaciones
         return $result;
     }
 
+    public function getServiciosByIdFactura($idFactura)
+    {
+        $qry = "SELECT codProducto, cantProducto, precioProducto, idTasaIvaProducto
+                FROM det_factura df
+                WHERE df.idFactura = ?
+                  AND codProducto < 100";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($idFactura));
+        $result = $stmt->fetchall(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     public function getCotizacionesGastos($q)
     {
         $qry = "SELECT idFactura, nomCotizacion FROM factura WHERE (idCatCotizacion=5 OR idCatCotizacion=6) AND nomCotizacion like '%" . $q . "%' ORDER BY nomCotizacion;";
@@ -291,7 +303,16 @@ class FacturasOperaciones
 
     public function getFacturasClienteForNotas($idCliente)
     {
-        $qry = "SELECT idFactura FROM factura f WHERE f.idCliente=? AND (f.estado!='A' AND f.estado!='C') ORDER BY idFactura DESC";
+        $qry = "SELECT idFactura, CONCAT('$', FORMAT(total, 0)) 'totalFactura' FROM factura f WHERE f.idCliente=? AND (f.estado!='A') ORDER BY idFactura DESC";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($idCliente));
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    public function getFacturasClientePorCancelar($idCliente)
+    {
+        $qry = "SELECT idFactura FROM factura f WHERE f.idCliente=? AND (f.estado='P') ORDER BY idFactura DESC";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute(array($idCliente));
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);

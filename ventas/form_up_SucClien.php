@@ -28,16 +28,16 @@ $sucursal = $clienteSucursalOperador->getSucursalCliente($idCliente, $idSucursal
     <script src="../js/validar.js"></script>
 </head>
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo1"><h4>ACTUALIZACIÓN DE SUCURSAL POR CLIENTE</h4></div>
     <form name="form2" method="POST" action="update_sucursal.php">
         <input name="idCliente" id="idCliente" type="hidden" value="<?= $idCliente ?>">
         <input name="idSucursal" id="idSucursal" type="hidden" value="<?= $idSucursal ?>">
         <div class=" row ">
-            <label class="col-form-label col-3 text-left mx-2" for="nomSucursal"><strong>Cliente</strong></label>
-            <label class="col-form-label col-1 text-left mx-2" for="telSucursal"><strong>Teléfono</strong></label>
-            <label class="col-form-label col-3 text-left mx-2" for="dirSucursal"><strong>Dirección</strong></label>
-            <label class="col-form-label col-2 text-left mx-2" for="ciudadSucursal"><strong>Ciudad</strong></label>
+            <label class="col-form-label col-3 text-start mx-2" for="nomSucursal"><strong>Cliente</strong></label>
+            <label class="col-form-label col-1 text-start mx-2" for="telSucursal"><strong>Teléfono</strong></label>
+            <label class="col-form-label col-3 text-start mx-2" for="dirSucursal"><strong>Dirección</strong></label>
+            <label class="col-form-label col-2 text-start mx-2" for="ciudadSucursal"><strong>Ciudad</strong></label>
         </div>
         <div class="form-group row">
             <input type="text" class="form-control col-3 mx-2" name="nomSucursal" id="nomSucursal"

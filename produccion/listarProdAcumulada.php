@@ -105,7 +105,7 @@ foreach ($_POST as $nombre_campo => $valor) {
     </script>
 </head>
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo1"><h4>CONSULTA DE KG ACUMULADOS POR ÓRDENES DE PRODUCCIÓN POR 12 MESES
             HASTA <?= $fechRef ?></h4></div>
     <div class="row flex-end">

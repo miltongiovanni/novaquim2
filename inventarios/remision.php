@@ -11,19 +11,19 @@ include "../includes/valAcc.php";
     <script src="../js/validar.js"></script>
 </head>
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo"><h4>REMISIÓN DE PRODUCTOS</h4></div>
     <form method="post" action="makeRemision.php" name="form1">
         <div class="form-group row">
-            <label class="col-form-label col-2 text-right" for="cliente"><strong>Cliente</strong></label>
+            <label class="col-form-label col-2 text-end" for="cliente"><strong>Cliente</strong></label>
             <input type="text" class="form-control col-2" name="cliente" id="cliente" required>
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-2 text-right" for="fechaRemision"><strong>Fecha</strong></label>
+            <label class="col-form-label col-2 text-end" for="fechaRemision"><strong>Fecha</strong></label>
             <input type="date" class="form-control col-2" name="fechaRemision" id="fechaRemision" required>
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-2 text-right" for="valor"><strong>Valor</strong></label>
+            <label class="col-form-label col-2 text-end" for="valor"><strong>Valor</strong></label>
             <input type="text" class="form-control col-2" name="valor" id="valor"
                    onkeydown="return aceptaNum(event)" required>
         </div>

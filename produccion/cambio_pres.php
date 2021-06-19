@@ -17,11 +17,11 @@ spl_autoload_register('cargarClases');
     <script src="../js/validar.js"></script>
 </head>
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo"><h4>CAMBIO DE PRESENTACIÓN DE PRODUCTO</h4></div>
     <form method="post" action="makeCambio.php" name="form1">
         <div class="form-group row">
-            <label class="col-form-label col-2 text-right" for="fechaCambio"><strong>Fecha del cambio</strong></label>
+            <label class="col-form-label col-2 text-end" for="fechaCambio"><strong>Fecha del cambio</strong></label>
             <input type="date" class="form-control col-2" name="fechaCambio" id="fechaCambio" required>
         </div>
         <div class="form-group row">

@@ -11,11 +11,11 @@ include "../includes/valAcc.php";
     <script src="../js/validar.js"></script>
 </head>
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo"><h4>SELECCIONAR COMPROBANTE DE EGRESO A CONSULTAR</h4></div>
     <form id="form1" name="form1" method="post" action="consultaEgreso.php">
         <div class="form-group row">
-            <label class="col-form-label col-1 text-right" for="idEgreso"><strong>No. de egreso</strong></label>
+            <label class="col-form-label col-1 text-end" for="idEgreso"><strong>No. de egreso</strong></label>
             <input type="text" class="form-control col-2" name="idEgreso" id="idEgreso"
                    onkeydown="return aceptaNum(event)" required>
         </div>

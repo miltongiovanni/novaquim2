@@ -13,7 +13,7 @@ include "../includes/valAcc.php";
     <script src="../js/findCliente.js"></script>
 </head>
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo"><h4>CREACIÓN DE COTIZACIÓN PERSONALIZADA</h4></div>
     <form method="post" action="makeCotizacionPersonalizada.php" name="form1">
         <div class="form-group row">
@@ -24,7 +24,7 @@ include "../includes/valAcc.php";
             <div class="col-4" id="myDiv"></div>
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-2 text-right" for="fechaCotizacion"><strong>Fecha de
+            <label class="col-form-label col-2 text-end" for="fechaCotizacion"><strong>Fecha de
                     Cotización</strong></label>
             <input type="date" class="form-control col-5" name="fechaCotizacion" id="fechaCotizacion" required>
         </div>

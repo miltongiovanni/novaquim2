@@ -31,29 +31,29 @@ $detalle = $DetGastoOperador->getDetGasto($idGasto, $producto);
     <script src="../js/validar.js"></script>
 </head>
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo"><h4>ACTUALIZACIÓN DEL DETALLE DEL GASTO</h4></div>
     <form action="updateDetGasto.php" method="post" name="actualiza">
         <input type="hidden" name="idGasto" id="idGasto" value="<?= $idGasto ?>">
         <div class="form-group row">
-            <label class="col-form-label col-1 text-right" for="producto"><strong>Producto</strong></label>
+            <label class="col-form-label col-1 text-end" for="producto"><strong>Producto</strong></label>
             <input type="text" class="form-control col-2" name="producto" id="producto" readonly
                    value="<?= $detalle['producto'] ?>">
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-1 text-right" for="cantGasto"><strong>Cantidad</strong></label>
+            <label class="col-form-label col-1 text-end" for="cantGasto"><strong>Cantidad</strong></label>
             <input type="text" class="form-control col-2" name="cantGasto" id="cantGasto"
                    value="<?= $detalle['cantGasto'] ?>" onkeydown="return aceptaNum(event)">
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-1 text-right" for="precGasto"><strong>Precio</strong></label>
+            <label class="col-form-label col-1 text-end" for="precGasto"><strong>Precio</strong></label>
             <input type="text" class="form-control col-2" name="precGasto" id="precGasto"
                    value="<?= $detalle['precGasto'] ?>"
                    onkeydown="return aceptaNum(event)">
 
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-1 text-right" for="codIva"><strong>Iva</strong></label>
+            <label class="col-form-label col-1 text-end" for="codIva"><strong>Iva</strong></label>
             <?php
             $manager = new TasaIvaOperaciones();
             $tasas = $manager->getTasasIva();

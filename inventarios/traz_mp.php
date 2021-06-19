@@ -180,7 +180,7 @@ $detComprasMPrimaOperador = new DetComprasOperaciones();
 
 
 ?>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo1"><h4>TRAZABILIDAD DE <?=$nomMPrima; ?> CON
             LOTE <?= $loteMP; ?></h4></div>
     <div class="form-group titulo row">

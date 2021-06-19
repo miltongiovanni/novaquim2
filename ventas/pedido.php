@@ -32,7 +32,7 @@ include "../includes/valAcc.php";
     </script>
 </head>
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo"><h4>CREACIÓN DE ORDEN DE PEDIDO</h4></div>
     <form method="post" action="makePedido.php" name="form1">
         <div class="form-group row">
@@ -50,12 +50,12 @@ include "../includes/valAcc.php";
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-2 text-right" for="fechaPedido"><strong>Fecha de
+            <label class="col-form-label col-2 text-end" for="fechaPedido"><strong>Fecha de
                     Pedido</strong></label>
             <input type="date" class="form-control col-5" name="fechaPedido" id="fechaPedido" required>
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-2 text-right" for="fechaEntrega"><strong>Fecha de
+            <label class="col-form-label col-2 text-end" for="fechaEntrega"><strong>Fecha de
                     entrega</strong></label>
             <input type="date" class="form-control col-5" name="fechaEntrega" id="fechaEntrega" required>
         </div>

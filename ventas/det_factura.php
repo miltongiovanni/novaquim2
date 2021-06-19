@@ -148,45 +148,45 @@ $totales = calcularTotalesFactura($idFactura, $factura['descuento']);
     </script>
 </head>
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo1"><h4>DETALLE DE FACTURA DE VENTA</h4></div>
     <div class="form-group row">
-        <div class="col-1 text-right"><strong>No. de Factura</strong></div>
+        <div class="col-1 text-end"><strong>No. de Factura</strong></div>
         <div class="col-1 bg-blue"><?= $idFactura; ?></div>
-        <div class="col-1 text-right"><strong>Pedido(s)</strong></div>
+        <div class="col-1 text-end"><strong>Pedido(s)</strong></div>
         <div class="col-2 bg-blue"><?= $factura['idPedido']; ?></div>
-        <div class="col-1 text-right"><strong>Remision(es)</strong></div>
+        <div class="col-1 text-end"><strong>Remision(es)</strong></div>
         <div class="col-2 bg-blue"><?= $factura['idRemision'] ?></div>
-        <div class="col-1 text-right"><strong>Estado</strong></div>
+        <div class="col-1 text-end"><strong>Estado</strong></div>
         <div class="col-1 bg-blue"><?= $factura['estadoFactura'] ?></div>
     </div>
     <div class="form-group row">
-        <div class="col-1 text-right"><strong>Nit</strong></div>
+        <div class="col-1 text-end"><strong>Nit</strong></div>
         <div class="col-1 bg-blue"><?= $factura['nitCliente'] ?></div>
-        <div class="col-1 text-right"><strong>Cliente</strong></strong></div>
+        <div class="col-1 text-end"><strong>Cliente</strong></strong></div>
         <div class="col-4 bg-blue"><?= $factura['nomCliente'] ?></div>
-        <div class="col-1 text-right"><strong>Teléfono</strong></div>
+        <div class="col-1 text-end"><strong>Teléfono</strong></div>
         <div class="col-1 bg-blue"><?= $factura['telCliente'] ?></div>
     </div>
     <div class="form-group row">
-        <div class="col-1 text-right"><strong>Fecha Factura</strong></div>
+        <div class="col-1 text-end"><strong>Fecha Factura</strong></div>
         <div class="col-1 bg-blue"><?= $factura['fechaFactura'] ?></div>
-        <div class="col-1 text-right"><strong>Dirección </strong></div>
+        <div class="col-1 text-end"><strong>Dirección </strong></div>
         <div class="col-4 bg-blue"><?= $factura['dirCliente'] ?></div>
-        <div class="col-1 text-right"><strong>Ciudad</strong></div>
+        <div class="col-1 text-end"><strong>Ciudad</strong></div>
         <div class="col-1 bg-blue"><?= $factura['Ciudad'] ?></div>
     </div>
     <div class="form-group row">
-        <div class="col-1 text-right"><strong>Vencimiento</strong></div>
+        <div class="col-1 text-end"><strong>Vencimiento</strong></div>
         <div class="col-1 bg-blue"><?= $factura['fechaVenc'] ?></div>
-        <div class="col-1 text-right"><strong>Orden compra</strong></div>
+        <div class="col-1 text-end"><strong>Orden compra</strong></div>
         <div class="col-1 bg-blue"><?= $factura['ordenCompra'] != 0 ? $factura['ordenCompra'] : '' ?></div>
-        <div class="col-1 text-right"><strong>Forma de pago</strong></div>
+        <div class="col-1 text-end"><strong>Forma de pago</strong></div>
         <div class="col-1 bg-blue"><?= $factura['fechaFactura'] == $factura['fechaVenc'] ? 'Contado' : 'Crédito' ?></div>
-        <div class="col-1 text-right"><strong>Vendedor</strong></div>
+        <div class="col-1 text-end"><strong>Vendedor</strong></div>
         <div class="col-2 bg-blue"><?= $factura['vendedor'] ?></div>
     </div>
-    <div class="form-group titulo row">
+    <div class="form-group titulo row text-center">
         <strong>Detalle</strong>
     </div>
     <div class="tabla-70">
@@ -207,68 +207,68 @@ $totales = calcularTotalesFactura($idFactura, $factura['descuento']);
     <div class="tabla-70">
         <div class="row formatoDatos">
             <div class="col-9"><strong>SON:</strong></div>
-            <div class="col-1 mr-3 px-0">
-                <div class=" text-left">
+            <div class="col-1 me-3 px-0">
+                <div class=" text-start">
                     <strong>SUBTOTAL</strong>
                 </div>
             </div>
-            <div class="col-1 ml-3 px-0" style=" flex: 0 0 10%; max-width: 10%;">
-                <div class="text-right">
+            <div class="col-1 ms-3 px-0" style=" flex: 0 0 10%; max-width: 10%;">
+                <div class="text-end">
                     <strong>$<?= number_format($factura['subtotal'], 2, '.', ',') ?></strong>
                 </div>
             </div>
         </div>
         <div class="row formatoDatos">
             <div class="col-9"><?= numletra(round($factura['total'])) ?></div>
-            <div class="col-1 mr-3 px-0">
-                <div class=" text-left">
+            <div class="col-1 me-3 px-0">
+                <div class=" text-start">
                     <strong>DESCUENTO</strong>
                 </div>
-                <div class=" text-left">
+                <div class=" text-start">
                     <strong>RETEFUENTE</strong>
                 </div>
-                <div class=" text-left">
+                <div class=" text-start">
                     <strong>RETEICA</strong>
                 </div>
             </div>
-            <div class="col-1 ml-3 px-0" style=" flex: 0 0 10%; max-width: 10%;">
-                <div class="text-right">
+            <div class="col-1 ms-3 px-0" style=" flex: 0 0 10%; max-width: 10%;">
+                <div class="text-end">
                     <strong>$<?= number_format($totales['descuento'], 2, '.', ',') ?></strong>
                 </div>
-                <div class="text-right">
+                <div class="text-end">
                     <strong>$<?= number_format($factura['retencionFte'], 2, '.', ',') ?></strong>
                 </div>
-                <div class="text-right">
+                <div class="text-end">
                     <strong>$<?= number_format($factura['retencionIca'], 2, '.', ',') ?></strong>
                 </div>
             </div>
         </div>
         <div class="row formatoDatos">
             <div class="col-9"><strong>OBSERVACIONES:</strong></div>
-            <div class="col-1 mr-3 px-0">
+            <div class="col-1 me-3 px-0">
                 <strong>IVA 5%</strong>
             </div>
-            <div class="col-1  ml-3 px-0" style=" flex: 0 0 10%; max-width: 10%;">
-                <div class="text-right">
+            <div class="col-1  ms-3 px-0" style=" flex: 0 0 10%; max-width: 10%;">
+                <div class="text-end">
                     <strong>$<?= number_format($totales['iva10Real'], 2, '.', ',') ?></strong>
                 </div>
             </div>
         </div>
         <div class="row formatoDatos">
             <div class="col-9"><?= $factura['observaciones'] ?></div>
-            <div class="col-1 mr-3 px-0">
-                <div class=" text-left">
+            <div class="col-1 me-3 px-0">
+                <div class=" text-start">
                     <strong><?= $factura['fechaFactura'] < FECHA_C ? 'IVA 16%' : 'IVA 19%' ?></strong>
                 </div>
-                <div class=" text-left">
+                <div class=" text-start">
                     <strong>TOTAL</strong>
                 </div>
             </div>
-            <div class="col-1  ml-3 px-0" style=" flex: 0 0 10%; max-width: 10%;">
-                <div class="text-right">
+            <div class="col-1  ms-3 px-0" style=" flex: 0 0 10%; max-width: 10%;">
+                <div class="text-end">
                     <strong>$<?= number_format($totales['iva16Real'], 2, '.', ',') ?></strong>
                 </div>
-                <div class="text-right">
+                <div class="text-end">
                     <strong>$<?= number_format($factura['total'], 2, '.', ',') ?></strong>
                 </div>
             </div>

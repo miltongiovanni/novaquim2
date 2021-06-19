@@ -5,6 +5,7 @@ use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
 use PhpOffice\PhpSpreadsheet\Reader\Xls;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
+
 include "../includes/valAcc.php";
 
 function cargarClases($classname)
@@ -47,8 +48,8 @@ try {
     $spreadsheet = IOFactory::load($upload_file);
 //var_dump($spreadsheet->getSheetNames()); die;
     $precios = $spreadsheet->getSheet($page)->toArray(null, true, false, false);
-    for($i=1; $i<count($precios);$i++){
-        $datos = array($precios[$i][2], $precios[$i][3], $precios[$i][4],  $precios[$i][5], $precios[$i][6], $precios[$i][0] );
+    for ($i = 1; $i < count($precios); $i++) {
+        $datos = array($precios[$i][2], $precios[$i][3], $precios[$i][4], $precios[$i][5], $precios[$i][6], $precios[$i][0]);
         $preciosOperador->updateListaPrecio($datos);
     }
     $ruta = "listarCod.php";
@@ -61,6 +62,7 @@ try {
 } finally {
     unset($conexion);
     unset($stmt);
+    unlink($upload_file);
     mover_pag($ruta, $mensaje, $icon);
 }
 ?>

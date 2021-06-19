@@ -37,7 +37,7 @@ if (!$cotizacion) {
     $seleccionDis = explode(",", $cotizacion['distribucion']);
 }
 ?>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo1"><h4>MODIFICAR COTIZACIÓN</h4></div>
 
     <form method="post" action="update_cotiza.php" name="form1">
@@ -66,7 +66,7 @@ if (!$cotizacion) {
         </div>
 
         <div class="form-group row">
-            <label class="col-form-label col-2 text-right" for="fechaCotizacion"><strong>Fecha de
+            <label class="col-form-label col-2 text-end" for="fechaCotizacion"><strong>Fecha de
                     Cotización</strong></label>
             <input type="date" class="form-control col-4" name="fechaCotizacion" id="fechaCotizacion"
                    value="<?= $cotizacion['fechaCotizacion'] ?>" required>
@@ -117,7 +117,7 @@ if (!$cotizacion) {
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-2 text-right" for="fechaCotizacion"><strong>Familia de
+            <label class="col-form-label col-2 text-end" for="fechaCotizacion"><strong>Familia de
                     Productos</strong></label>
             <div class="col-2">
                 <?php
@@ -140,7 +140,7 @@ if (!$cotizacion) {
                 endfor;
                 ?>
             </div>
-            <label class="col-form-label col-2 text-right" for="fechaCotizacion"><strong>Familia
+            <label class="col-form-label col-2 text-end" for="fechaCotizacion"><strong>Familia
                     Distribución</strong></label>
             <div class="col-2">
                 <?php

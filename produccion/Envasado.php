@@ -17,7 +17,7 @@ spl_autoload_register('cargarClases');
     <script src="../js/validar.js"></script>
 </head>
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo"><h4>ENVASADO POR ORDEN DE PRODUCCIÓN</h4></div>
     <form id="form1" name="form1" method="post" action="det_Envasado.php">
         <div class="form-group row">

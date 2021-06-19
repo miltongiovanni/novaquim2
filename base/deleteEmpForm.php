@@ -12,7 +12,7 @@ include "../includes/valAcc.php";
 
 </head>
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
 <div id="saludo"><h4>ELIMINACIÓN DE EMPLEADO</h4></div>
 <table width="700" border="0" align="center" summary="cuerpo">
 	<tr>

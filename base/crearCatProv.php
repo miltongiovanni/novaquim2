@@ -21,17 +21,17 @@ $idCategoria = $lastcategorias + 1;
 
 </head>
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo"><h4>CREACIÓN CATEGORÍA DE PROVEEDOR</h4></div>
     <form name="form2" method="POST" action="makeCategoriaProv.php">
         <div class="form-group row">
-            <label class="col-form-label col-1 text-right"
+            <label class="col-form-label col-1 text-end"
                    for="idCatProv"><strong>Código</strong></label>
             <input type="text" class="form-control col-2" name="idCatProv" id="idCatProv" size=30 maxlength="30"
                    value="<?= $idCategoria ?>" readonly>
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-1 text-right"
+            <label class="col-form-label col-1 text-end"
                    for="desCatProv"><strong>Descripción</strong></label>
             <input type="text" class="form-control col-2" name="desCatProv" id="desCatProv" size=30
                    onkeydown="return aceptaLetra(event)"

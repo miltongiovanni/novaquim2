@@ -22,17 +22,17 @@ $idCategoria = $lastcategorias + 1;
 </head>
 
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
 
     <div id="saludo"><h4>CREACIÓN DE CATEGORÍA DE PRODUCTO</h4></div>
     <form name="form2" method="POST" action="makeCategoriaProd.php">
         <div class="form-group row">
-            <label class="col-form-label col-1 text-right" for="idCatProd"><strong>Código</strong></label>
+            <label class="col-form-label col-1 text-end" for="idCatProd"><strong>Código</strong></label>
             <input type="text" class="form-control col-2" name="idCatProd" id="idCatProd" size=30 maxlength="30"
                    value="<?= $idCategoria ?>" readonly required>
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-1 text-right" for="catProd"><strong>Categoría</strong></label>
+            <label class="col-form-label col-1 text-end" for="catProd"><strong>Categoría</strong></label>
             <input type="text" class="form-control col-2" name="catProd" id="catProd" size=30
                    onkeydown="return aceptaLetra(event)"
                    maxlength="30" required>

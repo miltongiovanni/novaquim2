@@ -17,11 +17,11 @@ spl_autoload_register('cargarClases');
     <script src="../js/validar.js"></script>
 </head>
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo"><h4>CARGAR ENVASE AL INVENTARIO DE DISTRIBUCIÓN</h4></div>
     <form method="post" action="charge.php" name="form1">
         <div class="form-group row">
-            <label class="col-form-label col-3 text-right" for="idDis"><strong>Envase:</strong></label>
+            <label class="col-form-label col-3 text-end" for="idDis"><strong>Envase:</strong></label>
             <select class="form-control col-3" name="idDis" id="idDis" required>
                 <option selected disabled value="">----------------------------</option>
                 <?php
@@ -36,7 +36,7 @@ spl_autoload_register('cargarClases');
             </select>
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-3 text-right" for="unidades"><strong>Cantidad:</strong></label>
+            <label class="col-form-label col-3 text-end" for="unidades"><strong>Cantidad:</strong></label>
             <input type="text" class="form-control col-3" name="unidades" id="unidades"
                    onkeydown="return aceptaNum(event)" required>
         </div>

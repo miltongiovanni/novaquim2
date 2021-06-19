@@ -173,7 +173,7 @@ $idCliente = $_POST['idCliente'];
     </script>
 </head>
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo1"><h4>LISTA DE FACTURAS DE VENTA</h4></div>
     <div class="row flex-end mb-3">
         <div class="col-1">

@@ -43,15 +43,15 @@ spl_autoload_register('cargarClases');
     </script>
 </head>
 <body>
-<div id="contenedor">
+<div id="contenedor" class="container-fluid">
     <div id="saludo"><h4>CREACIÓN DE CLIENTES</h4></div>
     <form name="form2" method="POST" action="makeClien.php">
         <div class=" row ">
-            <label class="col-form-label col-2 text-left mx-2"><strong>Tipo NIT</strong></label>
-            <label class="col-form-label col-2 text-left mx-2"
+            <label class="col-form-label col-2 text-start mx-2"><strong>Tipo NIT</strong></label>
+            <label class="col-form-label col-2 text-start mx-2"
                    for="numero"><strong>Número</strong></label>
-            <label class="col-form-label col-2 text-left mx-2" for="nitCliente"><strong>NIT</strong></label>
-            <label class="col-form-label col-3 text-left mx-2" for="nomCliente"><strong>Cliente</strong></label>
+            <label class="col-form-label col-2 text-start mx-2" for="nitCliente"><strong>NIT</strong></label>
+            <label class="col-form-label col-3 text-start mx-2" for="nomCliente"><strong>Cliente</strong></label>
         </div>
         <div class="form-group row">
             <div class="col-2 form-check-inline form-control mx-2" style="display: flex">
@@ -70,11 +70,11 @@ spl_autoload_register('cargarClases');
             <input type="text" class="form-control col-3 mx-2" name="nomCliente" id="nomCliente" required>
         </div>
         <div class="row">
-            <label class="col-form-label col-2 text-left mx-2" for="telCliente"><strong>Teléfono</strong></label>
-            <label class="col-form-label col-2 text-left mx-2" for="emailCliente"><strong>Correo
+            <label class="col-form-label col-2 text-start mx-2" for="telCliente"><strong>Teléfono</strong></label>
+            <label class="col-form-label col-2 text-start mx-2" for="emailCliente"><strong>Correo
                     electrónico</strong></label>
-            <label class="col-form-label col-2 text-left mx-2" for="ciudadCliente"><strong>Ciudad</strong></label>
-            <label class="col-form-label col-3 text-left mx-2" for="dirCliente"><strong>Dirección</strong></label>
+            <label class="col-form-label col-2 text-start mx-2" for="ciudadCliente"><strong>Ciudad</strong></label>
+            <label class="col-form-label col-3 text-start mx-2" for="dirCliente"><strong>Dirección</strong></label>
         </div>
         <div class="form-group row">
             <input type="text" class="form-control col-2 mx-2" name="telCliente" id="telCliente" maxlength="10"
@@ -93,13 +93,13 @@ spl_autoload_register('cargarClases');
             <input type="text" class="form-control col-3 mx-2" name="dirCliente" id="dirCliente" required>
         </div>
         <div class="row">
-            <label class="col-form-label col-2 text-left mx-2" for="contactoCliente"><strong>Nombre
+            <label class="col-form-label col-2 text-start mx-2" for="contactoCliente"><strong>Nombre
                     Contacto</strong></label>
-            <label class="col-form-label col-2 text-left mx-2" for="cargoCliente"><strong>Cargo
+            <label class="col-form-label col-2 text-start mx-2" for="cargoCliente"><strong>Cargo
                     Contacto</strong></label>
-            <label class="col-form-label col-2 text-left mx-2" for="celCliente"><strong>Celular
+            <label class="col-form-label col-2 text-start mx-2" for="celCliente"><strong>Celular
                     Contacto</strong></label>
-            <label class="col-form-label col-3 text-left mx-2" for="idCatCliente"><strong>Actividad</strong></label>
+            <label class="col-form-label col-3 text-start mx-2" for="idCatCliente"><strong>Actividad</strong></label>
         </div>
         <div class="form-group row">
             <input type="text" class="form-control col-2 mx-2" name="contactoCliente" id="contactoCliente" required>
@@ -119,10 +119,10 @@ spl_autoload_register('cargarClases');
             ?>
         </div>
         <div class="row">
-            <label class="col-form-label col-2 text-left mx-2" for="retIva"><strong>Autoret Iva</strong></label>
-            <label class="col-form-label col-2 text-left mx-2" for="retFte"><strong>Retefuente</strong></label>
-            <label class="col-form-label col-2 text-left mx-2" for="retIca"><strong>Autoret Ica</strong></label>
-            <label class="col-form-label col-3 text-left mx-2" for="codVendedor"><strong>Vendedor</strong></label>
+            <label class="col-form-label col-2 text-start mx-2" for="retIva"><strong>Autoret Iva</strong></label>
+            <label class="col-form-label col-2 text-start mx-2" for="retFte"><strong>Retefuente</strong></label>
+            <label class="col-form-label col-2 text-start mx-2" for="retIca"><strong>Autoret Ica</strong></label>
+            <label class="col-form-label col-3 text-start mx-2" for="codVendedor"><strong>Vendedor</strong></label>
 
         </div>
         <div class="form-group row">
