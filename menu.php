@@ -1,6 +1,6 @@
 <?php
 include "includes/valAcc.php";
-include "includes/conect.php";
+//include "includes/conect.php";
 $perfil1 = isset($_SESSION['Perfil'])? $_SESSION['Perfil'] : '' ;
 // On enregistre notre autoload.
 

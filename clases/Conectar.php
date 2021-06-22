@@ -1,12 +1,13 @@
 <?php
+include 'config.php';
 
 class Conectar{
     //Creamos un método estático que no necesita ser instanciado
     public static function conexion(){
      //Parámetros de la conexion tipo base de datos: dbname=nombreBaseDeDatos; host=ipServidorBD; charset=utf8; para no tener problemas con acentos
-        $dsn = 'mysql:dbname=novaquim2;host=localhost;charset=utf8';
-        $user = 'root'; //usuario
-        $password = 'novaquim';//contraseña
+        $dsn = 'mysql:dbname=' . DB_NAME . ';host=' . DB_SERVER . ';charset=utf8';
+        $user = DB_USER;
+        $password = DB_PASS;
         $conexion = null;
         
         try {
