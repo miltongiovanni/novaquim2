@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -83,7 +86,6 @@ if (!$usuario) {//si existen datos pero la clave esta errada
             {
                 $datos = array(0, $usuario['idUsuario']);
                 $usuarioOperador->updateIntentos($datos);
-                session_start();
                 $_SESSION['Autorizado'] = true;
                 $_SESSION['User'] = $username;
                 $_SESSION['IdUsuario'] = $usuario['idUsuario'];
@@ -99,7 +101,6 @@ if (!$usuario) {//si existen datos pero la clave esta errada
                 //$mensaje=utf8_encode($mensaje);
                 $datos = array(0, $usuario['idUsuario']);
                 $usuarioOperador->updateIntentos($datos);
-                session_start();
                 $_SESSION['Autorizado'] = true;
                 $_SESSION['User'] = $username;
                 $_SESSION['IdUsuario'] = $usuario['idUsuario'];
@@ -116,7 +117,6 @@ if (!$usuario) {//si existen datos pero la clave esta errada
         $ruta = "cambio.php";
         $mensaje = "Primer Ingreso cambie su contraseña";
         $mensaje = utf8_encode($mensaje);
-        session_start();
         $_SESSION['Autorizado'] = true;
         $_SESSION['User'] = $username;
         $_SESSION['IdUsuario'] = $usuario['idUsuario'];
