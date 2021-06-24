@@ -57,7 +57,7 @@ $personal = $operadorPersonal->getPerson($idPersonal);
     <!--<script src="../js/pdfmake.js"></script>-->  <!--Para exportar PDF-->
     <!--<script src="../js/vfs_fonts.js"></script>--> <!--Para exportar PDF-->
     <script src="../js/buttons.html5.js"></script>
-    <script src="../node_modules/chart.js/dist/Chart.js"></script>
+    <script src="../node_modules/chart.js/dist/chart.js"></script>
     <script>
 
         $(document).ready(function () {
