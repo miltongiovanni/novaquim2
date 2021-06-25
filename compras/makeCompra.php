@@ -32,6 +32,7 @@ foreach ($_POST as $nombre_campo => $valor) {
 $CompraOperador = new ComprasOperaciones();
 $rutaRef = explode("/",$_SERVER['HTTP_REFERER']);
 $rutaError= $rutaRef[4];
+$idUsuario = $_SESSION['IdUsuario'];
 //VALIDA QUE LA FACTURA NO HAYA SIDO INGRESADA ANTES
 $factExiste = $CompraOperador->checkFactura($idProv, $numFact);
 if ($factExiste && count($factExiste) > 0) {
@@ -48,7 +49,7 @@ if ($factExiste && count($factExiste) > 0) {
     $dias_f = Calc_Dias($fechVenc, $fechComp);
     if (($dias_v >= -8) && ($dias_v <= 0) && ($dias_f >= 0)) {
         $estadoCompra = 2;
-        $datos = array($idProv, $numFact, $fechComp, $fechVenc, $estadoCompra, $tipoCompra);
+        $datos = array($idProv, $numFact, $fechComp, $fechVenc, $estadoCompra, $tipoCompra, $idUsuario);
         try {
             $idCompra = $CompraOperador->makeCompra($datos);
             $_SESSION['idCompra'] = $idCompra;

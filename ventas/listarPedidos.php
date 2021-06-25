@@ -115,11 +115,11 @@ switch ($estadoPedido) {
                     },
                     {
                         "data": "fechaPedido",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-left'
                     },
                     {
                         "data": "fechaEntrega",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-left'
                     },
                     {
                         "data": "nomSucursal",
@@ -127,15 +127,15 @@ switch ($estadoPedido) {
                     },
                     {
                         "data": "dirSucursal",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-left'
                     },
                     {
                         "data": "tipoPrecio",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-left'
                     },
                     {
                         "data": "estadoPedido",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-left'
                     },
                 ],
                 "order": [[1, estadoPedido==='P'? 'asc':'desc']],

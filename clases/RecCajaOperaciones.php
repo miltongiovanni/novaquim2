@@ -9,12 +9,12 @@ class RecCajaOperaciones
         $this->setDb();
     }
 
-    public function makeRecCaja($idFactura)
+    public function makeRecCaja($idFactura, $idUsuario)
     {
         /*Preparo la insercion */
-        $qry = "INSERT INTO r_caja (idFactura, cobro, fechaRecCaja, descuento_f, idCheque, codBanco) VALUES(?, 0, NOW(), 0, 0, 0)";
+        $qry = "INSERT INTO r_caja (idFactura, cobro, fechaRecCaja, descuento_f, idCheque, codBanco, idUsuario) VALUES(?, 0, NOW(), 0, 0, 0,?)";
         $stmt = $this->_pdo->prepare($qry);
-        $stmt->execute(array($idFactura));
+        $stmt->execute(array($idFactura, $idUsuario));
         return $this->_pdo->lastInsertId();
     }
     public function isValidIdRecCaja($idRecCaja)

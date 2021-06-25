@@ -12,7 +12,7 @@ class EgresoOperaciones
     public function makeEgreso($datos)
     {
         /*Preparo la insercion */
-        $qry = "INSERT INTO egreso (idCompra, tipoCompra) VALUES(?, ?)";
+        $qry = "INSERT INTO egreso (idCompra, tipoCompra, idUsuario) VALUES(?, ?, ?)";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute($datos);
         return $this->_pdo->lastInsertId();

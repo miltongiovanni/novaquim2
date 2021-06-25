@@ -21,9 +21,10 @@ $idFactura = $_POST['idFactura'];
 </head>
 <body>
 <?php
+$idUsuario = $_SESSION['IdUsuario'];
 $recCajaOperador = new RecCajaOperaciones();
 try {
-    $idRecCaja = $recCajaOperador->makeRecCaja($idFactura);
+    $idRecCaja = $recCajaOperador->makeRecCaja($idFactura, $idUsuario);
     $_SESSION['idRecCaja'] = $idRecCaja;
     $ruta = "recibo_caja.php";
     $mensaje = "Recibo de caja creado correctamente";
