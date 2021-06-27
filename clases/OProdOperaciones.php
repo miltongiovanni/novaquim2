@@ -94,8 +94,9 @@ class OProdOperaciones
 
     public function getOProdSinEnvasar()
     {
-        $qry = "SELECT lote
-                FROM ord_prod
+        $qry = "SELECT lote, nomProducto, cantidadKg
+                FROM ord_prod op
+                LEFT JOIN productos p on p.codProducto = op.codProducto
                 WHERE estado=1 OR estado=3 ORDER BY lote";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();

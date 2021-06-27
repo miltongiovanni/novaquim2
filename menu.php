@@ -110,6 +110,15 @@ for ($i = 0; $i < count($perfiles); $i++) {
         if ($perfil1 == 1):
             ?>
             <div class="col-4 card">
+                <?php include_once("widgets/OProdXEnvasar.php"); ?>
+            </div>
+        <?php
+        endif;
+        ?>
+        <?php
+        if ($perfil1 == 1 || $perfil1 == 11):
+            ?>
+            <div class="col-4 card">
                 <?php include_once("widgets/facXCobrarTotales.php"); ?>
             </div>
         <?php
