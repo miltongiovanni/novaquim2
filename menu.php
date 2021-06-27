@@ -1,7 +1,7 @@
 <?php
 include "includes/valAcc.php";
 //include "includes/conect.php";
-$perfil1 = isset($_SESSION['Perfil'])? $_SESSION['Perfil'] : '' ;
+$perfil1 = isset($_SESSION['Perfil']) ? $_SESSION['Perfil'] : '';
 // On enregistre notre autoload.
 
 function cargarClases($classname)
@@ -88,7 +88,7 @@ for ($i = 0; $i < count($perfiles); $i++) {
         <div class="col-1"><img src="images/LogoNova.jpg"></div>
         <div class="col-11 text-center">
             <?php
-            $idUsuario = isset($_SESSION['IdUsuario'])? $_SESSION['IdUsuario']: '';
+            $idUsuario = isset($_SESSION['IdUsuario']) ? $_SESSION['IdUsuario'] : '';
             $usuarioOperador = new UsuariosOperaciones();
             $row = $usuarioOperador->getUser($idUsuario);
             $nombre = $row['nombre'];
@@ -97,12 +97,33 @@ for ($i = 0; $i < count($perfiles); $i++) {
         </div>
     </div>
     <div class="form-group row" style="justify-content: flex-start">
-        <div class="col-4 card">
-            <?php include_once ("widgets/facXPagarTotales.php") ; ?>
-        </div>
-        <div class="col-4 card">
-            <?php include_once ("widgets/facXCobrarTotales.php") ; ?>
-        </div>
+        <?php
+        if ($perfil1 == 1):
+            ?>
+            <div class="col-4 card">
+                <?php include_once("widgets/facXPagarTotales.php"); ?>
+            </div>
+        <?php
+        endif;
+        ?>
+        <?php
+        if ($perfil1 == 1):
+            ?>
+            <div class="col-4 card">
+                <?php include_once("widgets/OProdXEnvasar.php"); ?>
+            </div>
+        <?php
+        endif;
+        ?>
+        <?php
+        if ($perfil1 == 1 || $perfil1 == 11):
+            ?>
+            <div class="col-4 card">
+                <?php include_once("widgets/facXCobrarTotales.php"); ?>
+            </div>
+        <?php
+        endif;
+        ?>
     </div>
 </div>
 </body>

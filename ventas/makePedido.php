@@ -33,12 +33,12 @@ $fechaActual = hoy();
 $diasPedido = Calc_Dias($fechaPedido, $fechaActual);
 $diasEntrega = Calc_Dias($fechaEntrega, $fechaPedido);
 $diasEntregaPedido = Calc_Dias($fechaEntrega, $fechaActual);
-
+$idUsuario = $_SESSION['IdUsuario'];
 
 if (($diasPedido >= 0) && ($diasEntregaPedido >= 0) && ($diasEntrega >= 0)) {
     $pedidoOperador = new PedidosOperaciones();
     $estado = 'P';
-    $datos = array($idCliente, $fechaPedido, $fechaEntrega, $tipoPrecio, $estado, $idSucursal);
+    $datos = array($idCliente, $fechaPedido, $fechaEntrega, $tipoPrecio, $estado, $idSucursal, $idUsuario);
 
     try {
         $lastIdPedido = $pedidoOperador->makePedido($datos);

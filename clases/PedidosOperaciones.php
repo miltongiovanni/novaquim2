@@ -12,7 +12,7 @@ class PedidosOperaciones
     public function makePedido($datos)
     {
         /*Preparo la insercion */
-        $qry = "INSERT INTO pedido (idCliente, fechaPedido, fechaEntrega, tipoPrecio, estado, idSucursal) VALUES(?, ?, ?, ?, ?, ?)";
+        $qry = "INSERT INTO pedido (idCliente, fechaPedido, fechaEntrega, tipoPrecio, estado, idSucursal, idUsuario) VALUES(?, ?, ?, ?, ?, ?, ?)";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute($datos);
         return $this->_pdo->lastInsertId();
@@ -208,53 +208,25 @@ class PedidosOperaciones
 
     public function getTablePedidos($estado)
     {
+        $qry = "SELECT idPedido,
+                       fechaPedido,
+                       fechaEntrega,
+                       tp.tipoPrecio,
+                       nomCliente,
+                       IF(p.estado='A', 'Anulado', IF(p.estado='F', 'Facturado', IF(p.estado='P','Pendiente', IF(p.estado='L','Por entregar', 'Por facturar')))) estadoPedido,
+                       nomSucursal,
+                       dirSucursal
+                FROM pedido p
+                         LEFT JOIN clientes c on c.idCliente = p.idCliente
+                         LEFT JOIN clientes_sucursal cs on p.idCliente = cs.idCliente AND p.idSucursal = cs.idSucursal
+                         LEFT JOIN tip_precio tp ON p.tipoPrecio = tp.idPrecio";
         if($estado == 'A'){
-            $qry = "SELECT idPedido,
-                       fechaPedido,
-                       fechaEntrega,
-                       tp.tipoPrecio,
-                       nomCliente,
-                       IF(p.estado='A', 'Anulado', IF(p.estado='F', 'Facturado', IF(p.estado='P','Pendiente', IF(p.estado='L','Por entregar', 'Por facturar')))) estadoPedido,
-                       nomSucursal,
-                       dirSucursal
-                FROM pedido p
-                         LEFT JOIN clientes c on c.idCliente = p.idCliente
-                         LEFT JOIN clientes_sucursal cs on p.idCliente = cs.idCliente AND p.idSucursal = cs.idSucursal
-                         LEFT JOIN tip_precio tp ON p.tipoPrecio = tp.idPrecio
-                 WHERE p.estado='A'
-                 ";
+            $qry .= " WHERE p.estado='A'";
         }elseif ($estado == 'P'){
-            $qry = "SELECT idPedido,
-                       fechaPedido,
-                       fechaEntrega,
-                       tp.tipoPrecio,
-                       nomCliente,
-                       IF(p.estado='A', 'Anulado', IF(p.estado='F', 'Facturado', IF(p.estado='P','Pendiente', IF(p.estado='L','Por entregar', 'Por facturar')))) estadoPedido,
-                       nomSucursal,
-                       dirSucursal
-                FROM pedido p
-                         LEFT JOIN clientes c on c.idCliente = p.idCliente
-                         LEFT JOIN clientes_sucursal cs on p.idCliente = cs.idCliente AND p.idSucursal = cs.idSucursal
-                         LEFT JOIN tip_precio tp ON p.tipoPrecio = tp.idPrecio
-                 WHERE p.estado='P' OR p.estado='L'
-                 ";
+            $qry .= " WHERE p.estado='P' OR p.estado='L'";
         }else{
-            $qry = "SELECT idPedido,
-                       fechaPedido,
-                       fechaEntrega,
-                       tp.tipoPrecio,
-                       nomCliente,
-                       IF(p.estado='A', 'Anulado', IF(p.estado='F', 'Facturado', IF(p.estado='P','Pendiente', IF(p.estado='L','Por entregar', 'Por facturar')))) estadoPedido,
-                       nomSucursal,
-                       dirSucursal
-                FROM pedido p
-                         LEFT JOIN clientes c on c.idCliente = p.idCliente
-                         LEFT JOIN clientes_sucursal cs on p.idCliente = cs.idCliente AND p.idSucursal = cs.idSucursal
-                         LEFT JOIN tip_precio tp ON p.tipoPrecio = tp.idPrecio
-                 WHERE( YEAR(now())-YEAR(fechaPedido))<=1
-                 ";
+            $qry .= " WHERE( YEAR(now())-YEAR(fechaPedido))<=1";
         }
-
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);

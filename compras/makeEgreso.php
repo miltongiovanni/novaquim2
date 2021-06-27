@@ -29,7 +29,8 @@ foreach ($_POST as $nombre_campo => $valor) {
 </head>
 <body>
 <?php
-$datos = array($idCompra, $tipoCompra);
+$idUsuario = $_SESSION['IdUsuario'];
+$datos = array($idCompra, $tipoCompra, $idUsuario);
 $EgresoOperador = new EgresoOperaciones();
 
 try {

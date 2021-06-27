@@ -19,7 +19,7 @@ class GastosOperaciones
     public function makeGasto($datos)
     {
         /*Preparo la insercion */
-        $qry = "INSERT INTO gastos (idProv, numFact, fechGasto, fechVenc, estadoGasto) VALUES (?, ?, ?, ?, ?)";
+        $qry = "INSERT INTO gastos (idProv, numFact, fechGasto, fechVenc, estadoGasto, idUsuario) VALUES (?, ?, ?, ?, ?, ?)";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute($datos);
         return $this->_pdo->lastInsertId();

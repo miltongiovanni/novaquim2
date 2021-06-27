@@ -19,7 +19,7 @@ class ComprasOperaciones
     public function makeCompra($datos)
     {
         /*Preparo la insercion */
-        $qry = "INSERT INTO compras (idProv, numFact, fechComp, fechVenc, estadoCompra, tipoCompra) VALUES (?, ?, ?, ?, ?, ?)";
+        $qry = "INSERT INTO compras (idProv, numFact, fechComp, fechVenc, estadoCompra, tipoCompra, idUsuario) VALUES (?, ?, ?, ?, ?, ?, ?)";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute($datos);
         return $this->_pdo->lastInsertId();
