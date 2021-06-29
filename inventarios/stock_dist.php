@@ -126,10 +126,10 @@ include "../includes/valAcc.php";
         <table id="example" class="display compact formatoDatos">
             <thead>
             <tr>
-                <th class="width1">Código</th>
-                <th class="width2">Producto</th>
-                <th class="width3">Cantidad</th>
-                <th class="width4">Stock</th>
+                <th class="width1 text-center">Código</th>
+                <th class="width2 text-center">Producto</th>
+                <th class="width3 text-center">Cantidad</th>
+                <th class="width4 text-center">Stock</th>
             </tr>
             </thead>
         </table>

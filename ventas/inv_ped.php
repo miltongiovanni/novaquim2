@@ -17,7 +17,7 @@ $detPedidoOperador = new DetPedidoOperaciones();
 $detalle = $detPedidoOperador->getTableDetPedido($idPedido);
 $invProdOperador = new InvProdTerminadosOperaciones();
 $invDistOperador = new InvDistribucionOperaciones();
-$validar=0;
+$validar = 0;
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -25,7 +25,20 @@ $validar=0;
     <title>Faltante del Pedido</title>
     <meta charset="utf-8">
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <style>
+        .width1 {
+            width: 15%;
+        }
+
+        .width2 {
+            width: 70%;
+        }
+
+        .width3 {
+            width: 15%;
+        }
+    </style>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/validar.js"></script>
 </head>
 <body>
@@ -56,55 +69,56 @@ $validar=0;
         <div class="col-1 text-end"><strong>Precio</strong></div>
         <div class="col-1 bg-blue"><?= $pedido['tipoPrecio'] ?></div>
     </div>
-    <div class="form-group titulo row">
+    <div class="form-group titulo row text-center">
         <strong>Productos faltantes del Pedido</strong>
     </div>
-
-    <table width="624" border="0" align="center">
-        <tr>
-            <th width="98" align="center">Código</th>
-            <th width="432" align="center">Producto</th>
-            <th width="80" align="center">Cantidad</th>
-        </tr>
-        <?php
-        for($i=0; $i<count($detalle);$i++) {
-            $cod = $detalle[$i]['codProducto'];
-            $cantidad = $detalle[$i]['cantProducto'];
-            $producto = $detalle[$i]['producto'];
-            if ($cod < 100000 && $cod>10000) {
-                $invProducto = $invProdOperador->getInvTotalProdTerminado($cod);
-                $invListo = $invProdOperador->getInvProdTerminadoListo($cod);
-                if($invProducto<$cantidad){
-                    $cantidad = $cantidad - $invProducto + $invListo;
-                    echo '<tr>
-							<td><div align="center">' . $cod . '</div></td>
-							<td><div align="center">' . $producto . '</div></td>
-							<td><div align="center">' . $cantidad . '</div></td>
-							</tr>';
-                    $validar++;
-                }
-            } elseif($cod > 100000) {
+    <div class="tabla-50">
+        <table>
+            <tr>
+                <th class="text-center width1">Código</th>
+                <th class="text-center width2">Producto</th>
+                <th class="text-center width3">Cantidad</th>
+            </tr>
+            <?php
+            for ($i = 0; $i < count($detalle); $i++) {
                 $cod = $detalle[$i]['codProducto'];
                 $cantidad = $detalle[$i]['cantProducto'];
                 $producto = $detalle[$i]['producto'];
-                $invProducto= $invDistOperador->getInvDistribucion($cod);
-                $invListo= $invDistOperador->getInvDistribucionListo($cod);
-                if($invProducto<$cantidad){
-                    $cantidad = $cantidad - $invProducto + $invListo;
-                    echo '<tr>
-							<td><div align="center">' . $cod . '</div></td>
-							<td><div align="center">' . $producto . '</div></td>
-							<td><div align="center">' . $cantidad . '</div></td>
+                if ($cod < 100000 && $cod > 10000) {
+                    $invProducto = $invProdOperador->getInvTotalProdTerminado($cod);
+                    $invListo = $invProdOperador->getInvProdTerminadoListo($cod);
+                    if ($invProducto < $cantidad) {
+                        $cantidad = $cantidad - $invProducto + $invListo;
+                        echo '<tr>
+							<td><div class="text-center">' . $cod . '</div></td>
+							<td><div class="text-start">' . $producto . '</div></td>
+							<td><div class="text-center">' . $cantidad . '</div></td>
 							</tr>';
-                    $validar++;
+                        $validar++;
+                    }
+                } elseif ($cod > 100000) {
+                    $cod = $detalle[$i]['codProducto'];
+                    $cantidad = $detalle[$i]['cantProducto'];
+                    $producto = $detalle[$i]['producto'];
+                    $invProducto = $invDistOperador->getInvDistribucion($cod);
+                    $invListo = $invDistOperador->getInvDistribucionListo($cod);
+                    if ($invProducto < $cantidad) {
+                        $cantidad = $cantidad - $invProducto + $invListo;
+                        echo '<tr>
+							<td><div class="text-center">' . $cod . '</div></td>
+							<td><div class="text-center">' . $producto . '</div></td>
+							<td><div class="text-center">' . $cantidad . '</div></td>
+							</tr>';
+                        $validar++;
+                    }
                 }
             }
-        }
-        if ($validar == 0) {
-            $pedidoOperador->updateEstadoPedido('L', $idPedido);
-        }
-        ?>
-    </table>
+            if ($validar == 0) {
+                $pedidoOperador->updateEstadoPedido('L', $idPedido);
+            }
+            ?>
+        </table>
+    </div>
     <div class="form-group row">
         <div class="col-2">
             <form action="det_pedido.php" method="post">

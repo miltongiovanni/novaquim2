@@ -35,6 +35,24 @@ $proveedor = $ProveedorOperador->getProveedor($idProv);
     <meta charset="utf-8">
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="../css/datatables.css">
+    <style>
+        table {
+            table-layout: fixed;
+        }
+
+        .width1 {
+            width: 15%;
+        }
+
+        .width2 {
+            width: 70%;
+        }
+
+        .width3 {
+            width: 15%;
+        }
+
+    </style>
     <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/validar.js"></script>
     <script src="../js/jquery-3.3.1.min.js"></script>
@@ -130,9 +148,9 @@ $proveedor = $ProveedorOperador->getProveedor($idProv);
     <table id="example" class="display compact" style="width:50%; margin-bottom: 20px;">
         <thead>
         <tr>
-            <th width="15%">Código</th>
-            <th width="70%">Producto</th>
-            <th width="15%"></th>
+            <th class="width1 text-center">Código</th>
+            <th class="width2 text-center">Producto</th>
+            <th class="width3 text-center"></th>
         </tr>
         </thead>
     </table>

@@ -32,45 +32,6 @@ include "../includes/valAcc.php";
                 <span>VOLVER</span></button>
         </div>
     </div>
-    <!--<table border="0" align="center">
-
-            <tr>
-                <td colspan="2">&nbsp;</td>
-            </tr>
-            <tr>
-                <td width="128">
-                    <div align="right"><strong>No. de Factura&nbsp;</strong></div>
-                </td>
-                <td width="257"><input type="text" name="factura" size=10 onkeydown="return aceptaNum(event)"></td>
-                <input type="hidden" name="Crear" value="5">
-            </tr>
-            <tr>
-                <td align="right"><strong>Razón de Anulación</strong></td>
-                <td><textarea name="observa" id="textarea" cols="40" rows="5"></textarea></td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <div align="center">&nbsp;</div>
-                </td>
-            </tr>
-            <tr>
-                <td align="right"></td>
-                <td align="left"><input type="reset" value="Restablecer">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
-                            type="button" value="   Anular   " onclick="return Enviar(this.form);"></td>
-            </tr>
-        </form>
-        <tr>
-            <td colspan="2">
-                <div align="center">&nbsp;</div>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <div align="center"><input type="button" class="resaltado" onClick="history.back()" value="  VOLVER  ">
-                </div>
-            </td>
-        </tr>
-    </table>-->
 </div>
 </body>
 </html>

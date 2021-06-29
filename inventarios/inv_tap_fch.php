@@ -142,12 +142,12 @@ $fecha = $_POST['fecha'];
         <table id="example" class="display compact formatoDatos">
             <thead>
             <tr>
-                <th class="width1">Código</th>
-                <th class="width2">Tapa o válvula</th>
-                <th class="width3">Cantidad</th>
-                <th class="width4">Entrada</th>
-                <th class="width5">Salida</th>
-                <th class="width6">Inventario</th>
+                <th class="width1 text-center">Código</th>
+                <th class="width2 text-center">Tapa o válvula</th>
+                <th class="width3 text-center">Cantidad</th>
+                <th class="width4 text-center">Entrada</th>
+                <th class="width5 text-center">Salida</th>
+                <th class="width6 text-center">Inventario</th>
             </tr>
             </thead>
         </table>

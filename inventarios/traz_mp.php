@@ -190,9 +190,9 @@ $detComprasMPrimaOperador = new DetComprasOperaciones();
         <table id="entradas" class="display compact formatoDatos">
             <thead>
             <tr>
-                <th class="width12">Fecha Compra</th>
-                <th class="width3">Proveedor</th>
-                <th class="width4">Cantidad (Kg)</th>
+                <th class="width12 text-center">Fecha Compra</th>
+                <th class="width3 text-center">Proveedor</th>
+                <th class="width4 text-center">Cantidad (Kg)</th>
             </tr>
             </thead>
         </table>
@@ -205,10 +205,10 @@ $detComprasMPrimaOperador = new DetComprasOperaciones();
         <table id="salidas" class="display compact formatoDatos">
             <thead>
             <tr>
-                <th class="width1">Lote</th>
-                <th class="width2">Fecha de producción</th>
-                <th class="width3">Producto</th>
-                <th class="width4">Cantidad (Kg)</th>
+                <th class="width1 text-center">Lote</th>
+                <th class="width2 text-center">Fecha de producción</th>
+                <th class="width3 text-center">Producto</th>
+                <th class="width4 text-center">Cantidad (Kg)</th>
             </tr>
             </thead>
         </table>

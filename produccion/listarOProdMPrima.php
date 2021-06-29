@@ -51,21 +51,21 @@ include "../includes/valAcc.php";
         /* Formatting function for row details - modify as you need */
         function format(d) {
             // `d` is the original data object for the row
-            rep = '<table cellpadding="5" cellspacing="0" border="0"  class="display compact" style="padding-left:50px;width:80%;margin:inherit;">' +
+            rep = '<table  class="display compact" style="padding-left:50px;width:80%;margin:inherit;">' +
                 '<thead>' +
                 '<tr>' +
-                '<th align="center">Código</th>' +
-                '<th align="center">Materia Prima</th>';
-            rep += '<th align="center">Lote MP</th>' +
-                '<th align="center">Cantidad</th>' +
+                '<th class="text-center">Código</th>' +
+                '<th class="text-center">Materia Prima</th>';
+            rep += '<th class="text-center">Lote MP</th>' +
+                '<th class="text-center">Cantidad</th>' +
                 '</tr>' +
                 '</thead>';
             for (i = 0; i < d.detOProdMPrima.length; i++) {
                 rep += '<tr>' +
-                    '<td align="center">' + d.detOProdMPrima[i].idMPrima + '</td>' +
-                    '<td align="center">' + d.detOProdMPrima[i].aliasMPrima + '</td>';
-                rep += '<td align="center">' + d.detOProdMPrima[i].cantMPrima + '</td>' +
-                    '<td align="center">' + d.detOProdMPrima[i].loteMPrima + '</td>' +
+                    '<td class="text-center">' + d.detOProdMPrima[i].idMPrima + '</td>' +
+                    '<td class="text-center">' + d.detOProdMPrima[i].aliasMPrima + '</td>';
+                rep += '<td class="text-center">' + d.detOProdMPrima[i].cantMPrima + '</td>' +
+                    '<td class="text-center">' + d.detOProdMPrima[i].loteMPrima + '</td>' +
                     '</tr>'
             }
             rep += '</table>';
@@ -164,11 +164,11 @@ include "../includes/valAcc.php";
             <thead>
             <tr>
                 <th class="width1"></th>
-                <th class="width2">Lote</th>
-                <th class="width3">Materia prima</th>
-                <th class="width4">Fecha producción</th>
-                <th class="width5">Responsable</th>
-                <th class="width6">Cantidad (Kg)</th>
+                <th class="width2 text-center">Lote</th>
+                <th class="width3 text-center">Materia prima</th>
+                <th class="width4 text-center">Fecha producción</th>
+                <th class="width5 text-center">Responsable</th>
+                <th class="width6 text-center">Cantidad (Kg)</th>
             </tr>
             </thead>
         </table>

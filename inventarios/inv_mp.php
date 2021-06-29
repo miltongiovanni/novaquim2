@@ -44,19 +44,19 @@ include "../includes/valAcc.php";
         /* Formatting function for row details - modify as you need */
         function format(d) {
             // `d` is the original data object for the row
-            rep = '<table cellpadding="5" cellspacing="0" border="0"  class="display compact" style="padding-left:50px;width:80%;margin:inherit;">' +
+            rep = '<table class="display compact" style="padding-left:50px;width:80%;margin:inherit;">' +
                 '<thead>' +
                 '<tr>' +
-                '<th align="center">Lote</th>' +
-                '<th align="center">Fecha</th>';
-            rep += '<th align="center">Cantidad (Kg)</th>' +
+                '<th class="text-center">Lote</th>' +
+                '<th class="text-center">Fecha</th>';
+            rep += '<th class="text-center">Cantidad (Kg)</th>' +
                 '</tr>' +
                 '</thead>';
             for (i = 0; i < d.detInvMPrima.length; i++) {
                 rep += '<tr>' +
-                    '<td align="center">' + d.detInvMPrima[i].loteMP + '</td>' +
-                    '<td align="center">' + d.detInvMPrima[i].fechLote + '</td>';
-                rep += '<td align="center">' + d.detInvMPrima[i].invMP + '</td>' +
+                    '<td class="text-center">' + d.detInvMPrima[i].loteMP + '</td>' +
+                    '<td class="text-center">' + d.detInvMPrima[i].fechLote + '</td>';
+                rep += '<td class="text-center">' + d.detInvMPrima[i].invMP + '</td>' +
                     '</tr>'
             }
             rep += '</table>';
@@ -168,9 +168,9 @@ include "../includes/valAcc.php";
             <thead>
             <tr>
                 <th class="width1"></th>
-                <th class="width2">Código</th>
-                <th class="width3">Materia Prima</th>
-                <th class="width4">Cantidad (Kg)</th>
+                <th class="width2 text-center">Código</th>
+                <th class="width3 text-center">Materia Prima</th>
+                <th class="width4 text-center">Cantidad (Kg)</th>
             </tr>
             </thead>
         </table>

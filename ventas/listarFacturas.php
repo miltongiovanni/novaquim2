@@ -62,20 +62,20 @@ include "../includes/valAcc.php";
         /* Formatting function for row details - modify as you need */
         function format(d) {
             // `d` is the original data object for the row
-            rep = '<table cellpadding="5" cellspacing="0" border="0"  class="display compact formatoDatos" style="padding-left:50px;width:50%;margin:inherit;">' +
+            rep = '<table class="display compact formatoDatos" style="padding-left:50px;width:50%;margin:inherit;">' +
                 '<thead>' +
                 '<tr>' +
-                '<th align="center">Código</th>' +
-                '<th align="center">Producto</th>' +
-                '<th align="center">Cantidad</th>' +
-                '<th align="center">Precio Venta</th>' +
+                '<th class="text-center">Código</th>' +
+                '<th class="text-center">Producto</th>' +
+                '<th class="text-center">Cantidad</th>' +
+                '<th class="text-center">Precio Venta</th>' +
                 '</thead>';
             for (i = 0; i < d.detFactura.length; i++) {
                 rep += '<tr>' +
-                    '<td align="center">' + d.detFactura[i].codigo + '</td>' +
-                    '<td align="left">' + d.detFactura[i].producto + '</td>' +
-                    '<td align="center">' + d.detFactura[i].cantProducto + '</td>' +
-                    '<td align="center">' + d.detFactura[i].precioProducto + '</td>' +
+                    '<td class="text-center">' + d.detFactura[i].codigo + '</td>' +
+                    '<td class="text-start">' + d.detFactura[i].producto + '</td>' +
+                    '<td class="text-center">' + d.detFactura[i].cantProducto + '</td>' +
+                    '<td class="text-center">' + d.detFactura[i].precioProducto + '</td>' +
                     '</tr>'
             }
 
@@ -183,14 +183,14 @@ include "../includes/valAcc.php";
             <thead>
             <tr>
                 <th class="width1"></th>
-                <th class="width2">Factura</th>
-                <th class="width3">Pedido</th>
-                <th class="width4">Remision</th>
-                <th class="width5">Cliente</th>
-                <th class="width6">Fecha Factura</th>
-                <th class="width7">Fecha Vencimiento</th>
-                <th class="width8">Total</th>
-                <th class="width9">Estado</th>
+                <th class="width2 text-center">Factura</th>
+                <th class="width3 text-center">Pedido</th>
+                <th class="width4 text-center">Remision</th>
+                <th class="width5 text-center">Cliente</th>
+                <th class="width6 text-center">Fecha Factura</th>
+                <th class="width7 text-center">Fecha Vencimiento</th>
+                <th class="width8 text-center">Total</th>
+                <th class="width9 text-center">Estado</th>
             </tr>
             </thead>
         </table>

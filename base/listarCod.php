@@ -33,19 +33,19 @@ include "../includes/valAcc.php";
                         "data": "Descripción",
                     },
                     {
+                        "data": "Precio Super",
+                    },
+                    {
                         "data": "Precio Fábrica",
+                    },
+                    {
+                        "data": "Precio Mayorista",
                     },
                     {
                         "data": "Precio Distribución",
                     },
                     {
                         "data": "Precio Detal",
-                    },
-                    {
-                        "data": "Precio Mayorista",
-                    },
-                    {
-                        "data": "Precio Super",
                     }
                 ],
                 "columnDefs":
@@ -112,12 +112,12 @@ include "../includes/valAcc.php";
             <thead>
             <tr>
                 <th>Código</th>
-                <th>Descripción</th>
-                <th>Precio Fábrica</th>
-                <th>Precio Distribución</th>
-                <th>Precio Detal</th>
-                <th>Precio Mayorista</th>
-                <th>Precio Super</th>
+                <th class="text-center">Descripción</th>
+                <th class="text-end">Precio Super</th>
+                <th class="text-end">Precio Fábrica</th>
+                <th class="text-end">Precio Mayorista</th>
+                <th class="text-end">Precio Distribución</th>
+                <th class="text-end">Precio Detal</th>
             </tr>
             </thead>
         </table>

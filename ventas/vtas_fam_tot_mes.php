@@ -190,33 +190,33 @@ $type = $_POST['type'];
         <table id="example" class="display compact formatoDatos5">
             <thead>
             <tr>
-                <th class="width1" rowspan="2">Producto</th>
-                <th>Enero</th>
-                <th>Febrero</th>
-                <th>Marzo</th>
-                <th>Abril</th>
-                <th>Mayo</th>
-                <th>Junio</th>
-                <th>Julio</th>
-                <th>Agosto</th>
-                <th>Septiembre</th>
-                <th>Octubre</th>
-                <th>Noviembre</th>
-                <th>Diciembre</th>
+                <th class="width1 text-center" rowspan="2">Producto</th>
+                <th class="text-center">Enero</th>
+                <th class="text-center">Febrero</th>
+                <th class="text-center">Marzo</th>
+                <th class="text-center">Abril</th>
+                <th class="text-center">Mayo</th>
+                <th class="text-center">Junio</th>
+                <th class="text-center">Julio</th>
+                <th class="text-center">Agosto</th>
+                <th class="text-center">Septiembre</th>
+                <th class="text-center">Octubre</th>
+                <th class="text-center">Noviembre</th>
+                <th class="text-center">Diciembre</th>
             </tr>
             <tr>
-                <th class="width2"><?= $type == 1 ? 'Un' : 'Valor' ?></th>
-                <th class="width2"><?= $type == 1 ? 'Un' : 'Valor' ?></th>
-                <th class="width2"><?= $type == 1 ? 'Un' : 'Valor' ?></th>
-                <th class="width2"><?= $type == 1 ? 'Un' : 'Valor' ?></th>
-                <th class="width2"><?= $type == 1 ? 'Un' : 'Valor' ?></th>
-                <th class="width2"><?= $type == 1 ? 'Un' : 'Valor' ?></th>
-                <th class="width2"><?= $type == 1 ? 'Un' : 'Valor' ?></th>
-                <th class="width2"><?= $type == 1 ? 'Un' : 'Valor' ?></th>
-                <th class="width2"><?= $type == 1 ? 'Un' : 'Valor' ?></th>
-                <th class="width2"><?= $type == 1 ? 'Un' : 'Valor' ?></th>
-                <th class="width2"><?= $type == 1 ? 'Un' : 'Valor' ?></th>
-                <th class="width2"><?= $type == 1 ? 'Un' : 'Valor' ?></th>
+                <th class="width2 text-center"><?= $type == 1 ? 'Un' : 'Valor' ?></th>
+                <th class="width2 text-center"><?= $type == 1 ? 'Un' : 'Valor' ?></th>
+                <th class="width2 text-center"><?= $type == 1 ? 'Un' : 'Valor' ?></th>
+                <th class="width2 text-center"><?= $type == 1 ? 'Un' : 'Valor' ?></th>
+                <th class="width2 text-center"><?= $type == 1 ? 'Un' : 'Valor' ?></th>
+                <th class="width2 text-center"><?= $type == 1 ? 'Un' : 'Valor' ?></th>
+                <th class="width2 text-center"><?= $type == 1 ? 'Un' : 'Valor' ?></th>
+                <th class="width2 text-center"><?= $type == 1 ? 'Un' : 'Valor' ?></th>
+                <th class="width2 text-center"><?= $type == 1 ? 'Un' : 'Valor' ?></th>
+                <th class="width2 text-center"><?= $type == 1 ? 'Un' : 'Valor' ?></th>
+                <th class="width2 text-center"><?= $type == 1 ? 'Un' : 'Valor' ?></th>
+                <th class="width2 text-center"><?= $type == 1 ? 'Un' : 'Valor' ?></th>
             </tr>
 
             </thead>

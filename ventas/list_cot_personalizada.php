@@ -19,20 +19,20 @@ include "../includes/valAcc.php";
         /* Formatting function for row details - modify as you need */
         function format(d) {
             // `d` is the original data object for the row
-            rep = '<table cellpadding="5" cellspacing="0" border="0"  class="display compact" style="padding-left:50px;width:50%;margin:inherit;">' +
+            rep = '<table class="display compact" style="padding-left:50px;width:70%;margin:inherit;">' +
                 '<thead>' +
                 '<tr>' +
-                '<th align="center">Código</th>' +
-                '<th align="center">Producto</th>' +
-                '<th align="center">Cantidad</th>' +
-                '<th align="center">Precio</th>' +
+                '<th class="text-center">Código</th>' +
+                '<th class="text-center">Producto</th>' +
+                '<th class="text-center">Cantidad</th>' +
+                '<th class="text-center">Precio</th>' +
                 '</thead>';
             for(i=0; i<d.detCotPersonalizada.length; i++){
                 rep += '<tr>' +
-                    '<td align="center">' + d.detCotPersonalizada[i].codProducto + '</td>' +
-                    '<td align="left">' + d.detCotPersonalizada[i].producto + '</td>' +
-                    '<td align="center">' + d.detCotPersonalizada[i].canProducto + '</td>' +
-                    '<td align="right">' + d.detCotPersonalizada[i].precioProducto + '</td>' +
+                    '<td class="text-center">' + d.detCotPersonalizada[i].codProducto + '</td>' +
+                    '<td class="text-start">' + d.detCotPersonalizada[i].producto + '</td>' +
+                    '<td class="text-center">' + d.detCotPersonalizada[i].canProducto + '</td>' +
+                    '<td class="text-end">' + d.detCotPersonalizada[i].precioProducto + '</td>' +
                     '</tr>'
             }
 
@@ -60,11 +60,11 @@ include "../includes/valAcc.php";
                     },
                     {
                         "data": "desCatClien",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-left'
                     },
                     {
                         "data": "nomPersonal",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-left'
                     },
                     {
                         "data": "fechaCotizacion",
@@ -72,7 +72,7 @@ include "../includes/valAcc.php";
                     },
                     {
                         "data": "tipPrecio",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-left'
                     },
                 ],
                 "order": [[1, 'desc']],
@@ -132,12 +132,12 @@ include "../includes/valAcc.php";
             <thead>
             <tr>
                 <th></th>
-                <th>Id</th>
-                <th>Cliente</th>
-                <th>Categoría Cliente</th>
-                <th>Vendedor</th>
-                <th>Fecha Cotización</th>
-                <th>Precio</th>
+                <th class="text-center">Id</th>
+                <th class="text-center">Cliente</th>
+                <th class="text-center">Categoría Cliente</th>
+                <th class="text-center">Vendedor</th>
+                <th class="text-center">Fecha Cotización</th>
+                <th class="text-center">Precio</th>
             </tr>
             </thead>
         </table>

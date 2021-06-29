@@ -114,11 +114,11 @@ if ($idTapOEnv < 100) {
         <table id="example" class="display compact formatoDatos">
             <thead>
             <tr>
-                <th>Fecha Compra</th>
-                <th>Proveedor</th>
-                <th>Precio Compra sin IVA</th>
-                <th>Precio Compra con IVA</th>
-                <th>Cantidad</th>
+                <th class="text-center">Fecha Compra</th>
+                <th class="text-center">Proveedor</th>
+                <th class="text-center">Precio Compra sin IVA</th>
+                <th class="text-center">Precio Compra con IVA</th>
+                <th class="text-center">Cantidad</th>
             </tr>
             </thead>
         </table>

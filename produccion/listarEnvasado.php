@@ -59,19 +59,19 @@ include "../includes/valAcc.php";
         /* Formatting function for row details - modify as you need */
         function format(d) {
             // `d` is the original data object for the row
-            rep = '<table cellpadding="5" cellspacing="0" border="0"  class="display compact" style="padding-left:50px;width:70%;margin:inherit;">' +
+            rep = '<table class="display compact" style="padding-left:50px;width:70%;margin:inherit;">' +
                 '<thead>' +
                 '<tr>' +
-                '<th align="center">Código</th>';
-            rep += '<th align="center">Presentación</th>' +
-                '<th align="center">Cantidad</th>' +
+                '<th class="text-center">Código</th>';
+            rep += '<th class="text-center">Presentación</th>' +
+                '<th class="text-center">Cantidad</th>' +
                 '</tr>' +
                 '</thead>';
             for (i = 0; i < d.envasado.length; i++) {
                 rep += '<tr>' +
-                    '<td align="center">' + d.envasado[i].codPresentacion + '</td>';
-                rep += '<td align="center">' + d.envasado[i].presentacion + '</td>' +
-                    '<td align="center">' + d.envasado[i].cantPresentacion + '</td>' +
+                    '<td class="text-center">' + d.envasado[i].codPresentacion + '</td>';
+                rep += '<td class="text-center">' + d.envasado[i].presentacion + '</td>' +
+                    '<td class="text-center">' + d.envasado[i].cantPresentacion + '</td>' +
                     '</tr>'
             }
             rep += '</table>';
@@ -175,13 +175,13 @@ include "../includes/valAcc.php";
             <thead>
             <tr>
                 <th class="width1"></th>
-                <th class="width2">Lote</th>
-                <th class="width3">Producto</th>
-                <th class="width4">Fórmula</th>
-                <th class="width5">Fecha Producción</th>
-                <th class="width6">Responsable</th>
-                <th class="width7">Cantidad (Kg)</th>
-                <th class="width8">Estado</th>
+                <th class="width2 text-center">Lote</th>
+                <th class="width3 text-center">Producto</th>
+                <th class="width4 text-center">Fórmula</th>
+                <th class="width5 text-center">Fecha Producción</th>
+                <th class="width6 text-center">Responsable</th>
+                <th class="width7 text-center">Cantidad (Kg)</th>
+                <th class="width8 text-center">Estado</th>
             </tr>
             </thead>
         </table>

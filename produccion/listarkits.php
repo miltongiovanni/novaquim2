@@ -48,16 +48,16 @@ include "../includes/valAcc.php";
         /* Formatting function for row details - modify as you need */
         function format(d) {
             // `d` is the original data object for the row
-            rep = '<table cellpadding="5" cellspacing="0" border="0"  class="display compact" style="padding-left:50px;width:80%;margin:inherit;">' +
+            rep = '<table  class="display compact" style="padding-left:50px;width:80%;margin:inherit;">' +
                 '<thead>' +
                 '<tr>' +
-                '<th align="center" width="25%">Código</th>' +
-                '<th align="center" width="75%">Producto</th>';
+                '<th class="text-center w-25">Código</th>' +
+                '<th class="text-center w-75">Producto</th>';
             rep += '</thead>';
             for (i = 0; i < d.detKit.length; i++) {
                 rep += '<tr>' +
-                    '<td align="center">' + d.detKit[i].codProducto + '</td>' +
-                    '<td align="center">' + d.detKit[i].producto + '</td>' +
+                    '<td class="text-center">' + d.detKit[i].codProducto + '</td>' +
+                    '<td class="text-center">' + d.detKit[i].producto + '</td>' +
                     '</tr>';
             }
             rep += '</table>';
@@ -149,10 +149,10 @@ include "../includes/valAcc.php";
             <thead>
             <tr>
                 <th class="width1"></th>
-                <th class="width2">Id</th>
-                <th class="width3">Código</th>
-                <th class="width4">Producto</th>
-                <th class="width5">Envase</th>
+                <th class="width2 text-center">Id</th>
+                <th class="width3 text-center">Código</th>
+                <th class="width4 text-center">Producto</th>
+                <th class="width5 text-center">Envase</th>
             </tr>
             </thead>
         </table>

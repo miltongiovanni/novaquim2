@@ -18,20 +18,41 @@ include "../includes/valAcc.php";
     <script src="../js/buttons.html5.js"></script>
 
     <script>
+        jQuery.extend(jQuery.fn.dataTableExt.oSort, {
+            "chinese-string-asc": function (s1, s2) {
+                if (s1 != null && s1 != undefined && s2 != null && s2 != undefined) {
+                    return s1.localeCompare(s2);
+                } else if (s2 == null || s2 == undefined) {
+                    return s1;
+                } else if (s1 == null || s1 == undefined) {
+                    return s2;
+                }
+            },
+
+            "chinese-string-desc": function (s1, s2) {
+                if (s1 != null && s1 != undefined && s2 != null && s2 != undefined) {
+                    return s2.localeCompare(s1);
+                } else if (s2 == null || s2 == undefined) {
+                    return s1;
+                } else if (s1 == null || s1 == undefined) {
+                    return s2;
+                }
+            }
+        });
         /* Formatting function for row details - modify as you need */
         function format(d) {
             // `d` is the original data object for the row
-            rep = '<table cellpadding="5" cellspacing="0" border="0"  class="display compact" style="padding-left:50px;width:50%;margin:inherit;">' +
+            rep = '<table  class="display compact" style="padding-left:50px;width:50%;margin:inherit;">' +
                 '<thead>' +
                 '<tr>' +
-                '<th align="center">Código</th>' +
-                '<th align="center">Producto</th>' +
+                '<th class="text-center">Código</th>' +
+                '<th class="text-center">Producto</th>' +
                 '</tr>' +
                 '</thead>';
             for (i = 0; i < d.detProveedor.length; i++) {
                 rep += '<tr>' +
-                    '<td align="center">' + d.detProveedor[i].Codigo + '</td>' +
-                    '<td align="center">' + d.detProveedor[i].Producto + '</td>' +
+                    '<td class="text-center">' + d.detProveedor[i].Codigo + '</td>' +
+                    '<td class="text-center">' + d.detProveedor[i].Producto + '</td>' +
                     '</tr>'
             }
             rep += '</table>';
@@ -50,19 +71,19 @@ include "../includes/valAcc.php";
                     },
                     {
                         "data": "nitProv",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-right'
                     },
                     {
                         "data": "nomProv",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-left'
                     },
                     {
                         "data": "dirProv",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-left'
                     },
                     {
                         "data": "contProv",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-left'
                     },
                     {
                         "data": "telProv",
@@ -70,10 +91,14 @@ include "../includes/valAcc.php";
                     },
                     {
                         "data": "emailProv",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-left'
                     },
                 ],
                 "order": [[2, 'asc']],
+                "columnDefs":
+                    [
+                        {type: 'chinese-string', targets: 2}
+                    ],
                 "deferRender": true,  //For speed
                 "dom": 'Blfrtip',
                 "buttons": [
@@ -130,12 +155,12 @@ include "../includes/valAcc.php";
             <thead>
             <tr>
                 <th></th>
-                <th>NIT</th>
-                <th>Proveedor</th>
-                <th>Dirección</th>
-                <th>Contacto</th>
-                <th>Teléfono</th>
-                <th>Correo Electrónico</th>
+                <th class="text-center">NIT</th>
+                <th class="text-center">Proveedor</th>
+                <th class="text-center">Dirección</th>
+                <th class="text-center">Contacto</th>
+                <th class="text-center">Teléfono</th>
+                <th class="text-center">Correo Electrónico</th>
             </tr>
             </thead>
         </table>

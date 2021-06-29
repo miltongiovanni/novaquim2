@@ -68,7 +68,7 @@ class ProductosDistribucionOperaciones
         FROM distribucion
         LEFT JOIN cat_dis cd on distribucion.idCatDis = cd.idCatDis
         LEFT JOIN tasa_iva ti on distribucion.codIva = ti.idTasaIva
-        WHERE activo=1 and cotiza=1
+        WHERE activo=1
         ORDER BY cd.idCatDis , producto";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();
