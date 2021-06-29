@@ -9,7 +9,7 @@ include "../includes/valAcc.php";
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="../css/datatables.css">
     <style>
-        table {
+        #example {
             table-layout: fixed;
         }
 
@@ -59,21 +59,21 @@ include "../includes/valAcc.php";
         /* Formatting function for row details - modify as you need */
         function format(d) {
             // `d` is the original data object for the row
-            rep = '<table cellpadding="5" cellspacing="0" border="0"  class="display compact" style="padding-left:50px;width:50%;margin:inherit;">' +
+            rep = '<table  class="display compact" style="padding-left:50px;width:50%;margin:inherit;">' +
                 '<thead>' +
                 '<tr>' +
-                '<th align="center">Código</th>' +
-                '<th align="center">Materia Prima</th>';
-            rep += '<th align="center">Lote MP</th>' +
-                '<th align="center">Cantidad</th>' +
+                '<th class="text-center">Código</th>' +
+                '<th class="text-center">Materia Prima</th>';
+            rep += '<th class="text-center">Lote MP</th>' +
+                '<th class="text-center">Cantidad</th>' +
                 '</tr>' +
                 '</thead>';
             for (i = 0; i < d.detOProd.length; i++) {
                 rep += '<tr>' +
-                    '<td align="center">' + d.detOProd[i].codMPrima + '</td>' +
-                    '<td align="center">' + d.detOProd[i].aliasMPrima + '</td>';
-                rep += '<td align="center">' + d.detOProd[i].cantidadMPrima + '</td>' +
-                    '<td align="center">' + d.detOProd[i].loteMP + '</td>' +
+                    '<td class="text-center">' + d.detOProd[i].codMPrima + '</td>' +
+                    '<td class="text-center">' + d.detOProd[i].aliasMPrima + '</td>';
+                rep += '<td class="text-center">' + d.detOProd[i].cantidadMPrima + '</td>' +
+                    '<td class="text-center">' + d.detOProd[i].loteMP + '</td>' +
                     '</tr>'
             }
             rep += '</table>';
@@ -177,13 +177,13 @@ include "../includes/valAcc.php";
             <thead>
             <tr>
                 <th class="width1"></th>
-                <th class="width2">Lote</th>
-                <th class="width3">Producto</th>
-                <th class="width4">Fórmula</th>
-                <th class="width5">Fecha Producción</th>
-                <th class="width6">Responsable</th>
-                <th class="width7">Cantidad (Kg)</th>
-                <th class="width8">Estado</th>
+                <th class="width2 text-center">Lote</th>
+                <th class="width3 text-center">Producto</th>
+                <th class="width4 text-center">Fórmula</th>
+                <th class="width5 text-center">Fecha Producción</th>
+                <th class="width6 text-center">Responsable</th>
+                <th class="width7 text-center">Cantidad (Kg)</th>
+                <th class="width8 text-center">Estado</th>
             </tr>
             </thead>
         </table>

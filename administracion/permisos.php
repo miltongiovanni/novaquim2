@@ -139,18 +139,18 @@ spl_autoload_register('cargarClases');
             foreach ($menu_3 as $indice1 => $auxiliar) {
                 //echo "El indice1 es $indice1 <br>";
                 if ($indice1 > 0) {
-                    echo '<table align="center" summary="Tabla" border="0"><tr><td align="center" colspan="2" class="titulo">';
+                    echo '<table class="text-center"><tr><td colspan="2" class="text-center titulo">';
                     echo $menu_1[$indice1];
                     echo "</td></tr><tr>";
                 }
                 $id3 = 0;
                 foreach ($auxiliar as $indice2 => $elemento) {
                     //echo "El indice2 es $indice2 <br>";
-                    echo '<td align="center" width="50%" class="resaltado">';
+                    echo '<td class="text-center resaltado w-50">';
                     $idmenu2 = "menu2" . $id2++;
                     echo $menu_2[$indice1][$indice2];
                     echo "</td>";
-                    echo '<td align="right">';
+                    echo '<td class="text-end">';
                     foreach ($elemento as $clave => $valor) {
                         if ($clave > 0) {
                             $aaaaa = $menu_3_i[$indice1][$indice2][$clave];
@@ -158,9 +158,9 @@ spl_autoload_register('cargarClases');
                             $codUser = $menuItem['codUser'];
                             $usuarios_p = explode(",", $codUser);
                             if (in_array($idPerfil, $usuarios_p)) {
-                                echo $valor . '<input type="checkbox" name="seleccion3[][][]" id="menu3' . $id3++ . '" align="right" value="' . $menu_3_i[$indice1][$indice2][$clave] . '" checked ><br>';
+                                echo $valor . '<input type="checkbox" name="seleccion3[][][]" id="menu3' . $id3++ . '" class="text-end mx-2" value="' . $menu_3_i[$indice1][$indice2][$clave] . '" checked ><br>';
                             } else {
-                                echo $valor . '<input type="checkbox" name="seleccion3[][][]" id="menu3' . $id3++ . '" align="right" value="' . $menu_3_i[$indice1][$indice2][$clave] . '" ><br>';
+                                echo $valor . '<input type="checkbox" name="seleccion3[][][]" id="menu3' . $id3++ . '" class="text-end mx-2" value="' . $menu_3_i[$indice1][$indice2][$clave] . '" ><br>';
                             }
 
                         }
@@ -193,8 +193,6 @@ spl_autoload_register('cargarClases');
                 <span>Terminar</span></button>
         </div>
     </div>
-    <!--<div align="center"><button class="button"  onClick="window.location='menu.php'"><span>Terminar</span></button></div>-->
-</div>
 </div>
 </body>
 

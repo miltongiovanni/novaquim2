@@ -19,15 +19,15 @@ include "../includes/valAcc.php";
         /* Formatting function for row details - modify as you need */
         function format(d) {
             // `d` is the original data object for the row
-            rep = '<table cellpadding="5" cellspacing="0" border="0"  class="display compact" style="padding-left:50px;width:100%;margin:inherit;">' +
+            rep = '<table class="display compact" style="padding-left:50px;width:100%;margin:inherit;">' +
                 '<thead>' +
                 '<tr>' +
-                '<th align="center">Productos Novaquim</th>' +
-                '<th align="center">Productos de Distribución</th>' +
+                '<th class="text-center">Productos Novaquim</th>' +
+                '<th class="text-center">Productos de Distribución</th>' +
                 '</thead>';
             rep += '<tr>' +
-                '<td align="center">' + d.productos + '</td>' +
-                '<td align="center">' + d.distribucion + '</td>' +
+                '<td class="text-center">' + d.productos + '</td>' +
+                '<td class="text-center">' + d.distribucion + '</td>' +
                 '</tr>'
             rep += '</table>';
 
@@ -49,15 +49,15 @@ include "../includes/valAcc.php";
                     },
                     {
                         "data": "nomCliente",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-left'
                     },
                     {
                         "data": "desCatClien",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-left'
                     },
                     {
                         "data": "nomPersonal",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-left'
                     },
                     {
                         "data": "fechaCotizacion",
@@ -129,13 +129,13 @@ include "../includes/valAcc.php";
             <thead>
             <tr>
                 <th></th>
-                <th>Id</th>
-                <th>Cliente</th>
-                <th>Categoría Cliente</th>
-                <th>Vendedor</th>
-                <th>Fecha Cotización</th>
-                <th>Precio</th>
-                <th>Presentaciones</th>
+                <th class="text-center">Id</th>
+                <th class="text-center">Cliente</th>
+                <th class="text-center">Categoría Cliente</th>
+                <th class="text-center">Vendedor</th>
+                <th class="text-center">Fecha Cotización</th>
+                <th class="text-center">Precio</th>
+                <th class="text-center">Presentaciones</th>
             </tr>
             </thead>
         </table>

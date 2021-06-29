@@ -116,7 +116,7 @@ include "../includes/valAcc.php";
                     },
                     {
                         "data": "nomProv",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-left'
                     },
                     {
                         "data": "tipoComp",
@@ -132,28 +132,28 @@ include "../includes/valAcc.php";
                     },
                     {
                         "data": "total",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-right'
                     },
                     {
                         "data": "retefuente",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-right'
                     },
                     {
                         "data": "reteica",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-right'
                     },
                     {
                         "data": "aPagar",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-right'
                     },
                     {
                         "data": "pago",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-right'
                     },
 
                     {
                         "data": "saldo",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-right'
                     },
                 ],
 
@@ -212,18 +212,18 @@ include "../includes/valAcc.php";
             <thead>
             <tr>
                 <th class="width1"></th>
-                <th class="width2">Id</th>
-                <th class="width3">Factura</th>
-                <th class="width4">Proveedor</th>
-                <th class="width5">Tipo Compra</th>
-                <th class="width6">Fecha Factura</th>
-                <th class="width7">Fecha Vto</th>
-                <th class="width8">Valor Factura</th>
-                <th class="width9">Retefuente</th>
-                <th class="width10">Rete Ica</th>
-                <th class="width11">Valor a Pagar</th>
-                <th class="width12">Valor Pagado</th>
-                <th class="width13">Saldo</th>
+                <th class="width2 text-center">Id</th>
+                <th class="width3 text-center">Factura</th>
+                <th class="width4 text-center">Proveedor</th>
+                <th class="width5 text-center">Tipo Compra</th>
+                <th class="width6 text-center">Fecha Factura</th>
+                <th class="width7 text-center">Fecha Vto</th>
+                <th class="width8 text-center">Valor Factura</th>
+                <th class="width9 text-center">Retefuente</th>
+                <th class="width10 text-center">Rete Ica</th>
+                <th class="width11 text-center">Valor a Pagar</th>
+                <th class="width12 text-center">Valor Pagado</th>
+                <th class="width13 text-center">Saldo</th>
             </tr>
             </thead>
         </table>

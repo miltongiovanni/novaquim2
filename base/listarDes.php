@@ -8,7 +8,7 @@ include "../includes/valAcc.php";
     <meta charset="utf-8">
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
-    <script  src="../js/validar.js"></script>
+    <script src="../js/validar.js"></script>
     <link rel="stylesheet" href="../css/datatables.css">
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/datatables.js"></script>
@@ -22,18 +22,18 @@ include "../includes/valAcc.php";
         /* Formatting function for row details - modify as you need */
         function format(d) {
             // `d` is the original data object for the row
-            return '<table cellpadding="5" cellspacing="0" border="0"  class="display compact" style="padding-left:50px;width:80%;margin:inherit;">' +
-                '<thead>'+
+            return '<table class="display compact" style="padding-left:50px;width:80%;margin:inherit;">' +
+                '<thead>' +
                 '<tr>' +
-                '<th align="center">Código</th>' +
-                '<th align="center">Producto</th>' +
-                '<th align="center">Cantidad</th>' +
+                '<th class="text-center">Código</th>' +
+                '<th class="text-center">Producto</th>' +
+                '<th class="text-center">Cantidad</th>' +
                 '</tr>' +
-                '</thead>'+
+                '</thead>' +
                 '<tr>' +
-                '<td align="center">' + d.codUnidad + '</td>' +
-                '<td align="center">' + d.unidad + '</td>' +
-                '<td align="center">' + d.cantidad + '</td>' +
+                '<td class="text-center">' + d.codUnidad + '</td>' +
+                '<td class="text-start">' + d.unidad + '</td>' +
+                '<td class="text-center">' + d.cantidad + '</td>' +
                 '</tr>' +
                 '</table>';
         }
@@ -57,7 +57,7 @@ include "../includes/valAcc.php";
                     },
                     {
                         "data": "paca",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-left'
                     }
                 ],
                 "order": [[1, 'asc']],
@@ -116,9 +116,9 @@ include "../includes/valAcc.php";
             <thead>
             <tr>
                 <th></th>
-                <th>Item</th>
-                <th>Código</th>
-                <th>Paca de Productos</th>
+                <th class="text-center">Item</th>
+                <th class="text-center">Código</th>
+                <th class="text-center">Paca de Productos</th>
             </tr>
             </thead>
         </table>

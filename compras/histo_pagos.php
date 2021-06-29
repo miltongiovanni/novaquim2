@@ -213,19 +213,19 @@ include "../includes/valAcc.php";
         <table id="example" class="display compact formatoDatos">
             <thead>
             <tr>
-                <th class="width1"></th>
-                <th class="width2">Id</th>
-                <th class="width3">Id Compra</th>
-                <th class="width4">Tipo Compra</th>
-                <th class="width5">Nit</th>
-                <th class="width6">Proveedor</th>
-                <th class="width7">Factura</th>
-                <th class="width8">Valor a Pagar</th>
-                <th class="width9">Valor Pagado</th>
-                <th class="width10">Desc</th>
-                <th class="width11">Fecha Pago</th>
-                <th class="width12">Forma de Pago</th>
-                <th class="width13"></th>
+                <th class="width1 text-center"></th>
+                <th class="width2 text-center">Id</th>
+                <th class="width3 text-center">Id Compra</th>
+                <th class="width4 text-center">Tipo Compra</th>
+                <th class="width5 text-center">Nit</th>
+                <th class="width6 text-center">Proveedor</th>
+                <th class="width7 text-center">Factura</th>
+                <th class="width8 text-center">Valor a Pagar</th>
+                <th class="width9 text-center">Valor Pagado</th>
+                <th class="width10 text-center">Desc</th>
+                <th class="width11 text-center">Fecha Pago</th>
+                <th class="width12 text-center">Forma de Pago</th>
+                <th class="width13 text-center"></th>
             </tr>
             </thead>
         </table>

@@ -36,23 +36,23 @@ if ($estadoCliente == 1) {
         /* Formatting function for row details - modify as you need */
         function format(d) {
             // `d` is the original data object for the row
-            rep = '<table cellpadding="5" cellspacing="0" border="0"  class="display compact" style="padding-left:50px;width:80%;margin:inherit;">' +
+            rep = '<table class="display compact" style="padding-left:50px;width:80%;margin:inherit;">' +
                 '<thead>' +
                 '<tr>' +
-                '<th align="center">Contacto</th>' +
-                '<th align="center">Cargo Contacto</th>' +
-                '<th align="center">Teléfono</th>' +
-                '<th align="center">Ciudad</th>' +
-                '<th align="center">Celular</th>' +
-                '<th align="center">Correo Electrónico</th>' +
+                '<th class="text-center">Contacto</th>' +
+                '<th class="text-center">Cargo Contacto</th>' +
+                '<th class="text-center">Teléfono</th>' +
+                '<th class="text-center">Ciudad</th>' +
+                '<th class="text-center">Celular</th>' +
+                '<th class="text-center">Correo Electrónico</th>' +
                 '</thead>';
                 rep += '<tr>' +
-                    '<td align="center">' + d.contactoCliente + '</td>' +
-                    '<td align="center">' + d.cargoCliente + '</td>' +
-                    '<td align="center">' + d.telCliente + '</td>' +
-                    '<td align="center">' + d.ciudad + '</td>' +
-                    '<td align="center">' + d.celCliente + '</td>' +
-                    '<td align="center">' + d.emailCliente + '</td>' +
+                    '<td class="text-start">' + d.contactoCliente + '</td>' +
+                    '<td class="text-start">' + d.cargoCliente + '</td>' +
+                    '<td class="text-center">' + d.telCliente + '</td>' +
+                    '<td class="text-center">' + d.ciudad + '</td>' +
+                    '<td class="text-center">' + d.celCliente + '</td>' +
+                    '<td class="text-center">' + d.emailCliente + '</td>' +
                     '</tr>'
             rep += '</table>';
 
@@ -87,19 +87,19 @@ if ($estadoCliente == 1) {
                     },
                     {
                         "data": "nomCliente",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-left'
                     },
                     {
                         "data": "dirCliente",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-left'
                     },
                     {
                         "data": "desCatClien",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-left'
                     },
                     {
                         "data": "nomPersonal",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-left'
                     },
                     {
                         "data": "ultimaCompra",
@@ -157,7 +157,7 @@ if ($estadoCliente == 1) {
     </script>
 
 </head>
-<body>h4
+<body>
 <div id="contenedor" class="container-fluid">
     <div id="saludo1"><h4><?= $encabezado ?></h4></div>
     <div class="row flex-end">
@@ -170,13 +170,13 @@ if ($estadoCliente == 1) {
         <table id="example" class="display compact formatoDatos">
             <thead>
             <tr>
-                <th></th>
-                <th>NIT</th>
-                <th>Cliente</th>
-                <th>Dirección</th>
-                <th>Tipo de Cliente</th>
-                <th>Vendedor</th>
-                <th>Última compra</th>
+                <th class="text-center"></th>
+                <th class="text-center">NIT</th>
+                <th class="text-center">Cliente</th>
+                <th class="text-center">Dirección</th>
+                <th class="text-center">Tipo de Cliente</th>
+                <th class="text-center">Vendedor</th>
+                <th class="text-center">Última compra</th>
             </tr>
             </thead>
         </table>

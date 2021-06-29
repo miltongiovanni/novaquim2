@@ -35,6 +35,32 @@ $gasto = $GastoOperador->getGasto($idGasto);
         table.dataTable.compact thead th, table.dataTable.compact thead td {
             padding: 4px 4px 4px 4px;
         }
+        table {
+            table-layout: fixed;
+        }
+
+        .width1 {
+            width: 10%;
+        }
+
+        .width2 {
+            width: 45%;
+        }
+
+        .width3 {
+            width: 5%;
+        }
+        .width4 {
+            width: 10%;
+        }
+
+        .width5 {
+            width: 20%;
+        }
+        .width6 {
+            width: 10%;
+        }
+
     </style>
     <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/validar.js"></script>
@@ -243,12 +269,12 @@ $gasto = $GastoOperador->getGasto($idGasto);
     <table id="example" class="display compact formatoDatos" style="width:80%; margin-bottom: 20px;">
         <thead>
         <tr>
-            <th width="10%"></th>
-            <th width="45%">Descripción</th>
-            <th width="5%">Iva</th>
-            <th width="10%">Cantidad</th>
-            <th width="20%">Precio unitario(Sin Iva)</th>
-            <th width="10%"></th>
+            <th class="width1 text-center"></th>
+            <th class="width2 text-center">Descripción</th>
+            <th class="width3 text-center">Iva</th>
+            <th class="width4 text-center">Cantidad</th>
+            <th class="width5 text-center">Precio unitario(Sin Iva)</th>
+            <th class="width6 text-center"></th>
         </tr>
         </thead>
     </table>

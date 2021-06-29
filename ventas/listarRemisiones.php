@@ -54,18 +54,18 @@ include "../includes/valAcc.php";
         /* Formatting function for row details - modify as you need */
         function format(d) {
             // `d` is the original data object for the row
-            rep = '<table cellpadding="5" cellspacing="0" border="0"  class="display compact formatoDatos" style="padding-left:50px;width:60%;margin:inherit;">' +
+            rep = '<table class="display compact formatoDatos" style="padding-left:50px;width:60%;margin:inherit;">' +
                 '<thead>' +
                 '<tr>' +
-                '<th align="center">Código</th>' +
-                '<th align="center">Producto</th>' +
-                '<th align="center">Cantidad</th>' +
+                '<th class="text-center">Código</th>' +
+                '<th class="text-center">Producto</th>' +
+                '<th class="text-center">Cantidad</th>' +
                 '</thead>';
             for (i = 0; i < d.detRemision.length; i++) {
                 rep += '<tr>' +
-                    '<td align="center">' + d.detRemision[i].codigo + '</td>' +
-                    '<td align="left">' + d.detRemision[i].producto + '</td>' +
-                    '<td align="center">' + d.detRemision[i].cantProducto + '</td>' +
+                    '<td class="text-center">' + d.detRemision[i].codigo + '</td>' +
+                    '<td class="text-start">' + d.detRemision[i].producto + '</td>' +
+                    '<td class="text-center">' + d.detRemision[i].cantProducto + '</td>' +
                     '</tr>'
             }
 
@@ -165,12 +165,12 @@ include "../includes/valAcc.php";
             <thead>
             <tr>
                 <th class="width1"></th>
-                <th class="width2">Remisión</th>
-                <th class="width3">Fecha remisión</th>
-                <th class="width4">Cliente</th>
-                <th class="width5">Lugar de entrega</th>
-                <th class="width6">Pedido</th>
-                <th class="width7">Fecha Pedido</th>
+                <th class="width2 text-center">Remisión</th>
+                <th class="width3 text-center">Fecha remisión</th>
+                <th class="width4 text-center">Cliente</th>
+                <th class="width5 text-center">Lugar de entrega</th>
+                <th class="width6 text-center">Pedido</th>
+                <th class="width7 text-center">Fecha Pedido</th>
             </tr>
             </thead>
         </table>

@@ -178,13 +178,13 @@ include "../includes/valAcc.php";
             <thead>
             <tr>
                 <th class="width1"></th>
-                <th class="width2">Id</th>
-                <th class="width3">Factura</th>
-                <th class="width4">Cliente</th>
-                <th class="width5">Pago</th>
-                <th class="width6">Fecha</th>
-                <th class="width7">Forma de Pago</th>
-                <th class="width8"></th>
+                <th class="width2 text-center">Id</th>
+                <th class="width3 text-center">Factura</th>
+                <th class="width4 text-center">Cliente</th>
+                <th class="width5 text-center">Pago</th>
+                <th class="width6 text-center">Fecha</th>
+                <th class="width7 text-center">Forma de Pago</th>
+                <th class="width8 text-center"></th>
             </tr>
             </thead>
         </table>

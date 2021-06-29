@@ -19,21 +19,21 @@ include "../includes/valAcc.php";
         /* Formatting function for row details - modify as you need */
         function format(d) {
             // `d` is the original data object for the row
-            rep = '<table cellpadding="5" cellspacing="0" border="0"  class="display compact" style="padding-left:50px;width:60%;margin:inherit;">' +
+            rep = '<table class="display compact" style="padding-left:50px;width:60%;margin:inherit;">' +
                 '<thead>' +
                 '<tr>' +
-                '<th align="center">Dirección</th>' +
-                '<th align="center">Ciudad</th>' +
-                '<th align="center">Correo Electrónico</th>' +
-                '<th align="center">Celular</th>' +
-                '<th align="center">Vendedor</th>' +
+                '<th class="text-center">Dirección</th>' +
+                '<th class="text-center">Ciudad</th>' +
+                '<th class="text-center">Correo Electrónico</th>' +
+                '<th class="text-center">Celular</th>' +
+                '<th class="text-center">Vendedor</th>' +
                 '</thead>';
             rep += '<tr>' +
-                '<td align="center">' + d.dirCliente + '</td>' +
-                '<td align="center">' + d.ciudad + '</td>' +
-                '<td align="center">' + d.emailCliente + '</td>' +
-                '<td align="center">' + d.celCliente + '</td>' +
-                '<td align="center">' + d.nomPersonal + '</td>' +
+                '<td class="text-center">' + d.dirCliente + '</td>' +
+                '<td class="text-center">' + d.ciudad + '</td>' +
+                '<td class="text-center">' + d.emailCliente + '</td>' +
+                '<td class="text-center">' + d.celCliente + '</td>' +
+                '<td class="text-center">' + d.nomPersonal + '</td>' +
                 '</tr>'
             rep += '</table>';
 
@@ -55,15 +55,15 @@ include "../includes/valAcc.php";
                     },
                     {
                         "data": "nomCliente",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-left'
                     },
                     {
                         "data": "contactoCliente",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-left'
                     },
                     {
                         "data": "cargoContacto",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-left'
                     },
                     {
                         "data": "telCliente",
@@ -71,7 +71,7 @@ include "../includes/valAcc.php";
                     },
                     {
                         "data": "desCatClien",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-left'
                     },
                 ],
                 "order": [[2, 'asc']],
@@ -131,12 +131,12 @@ include "../includes/valAcc.php";
             <thead>
             <tr>
                 <th></th>
-                <th>Id</th>
-                <th>Cliente</th>
-                <th>Contacto</th>
-                <th>Cargo Contacto</th>
-                <th>Teléfono</th>
-                <th>Actividad</th>
+                <th class="text-center">Id</th>
+                <th class="text-center">Cliente</th>
+                <th class="text-center">Contacto</th>
+                <th class="text-center">Cargo Contacto</th>
+                <th class="text-center">Teléfono</th>
+                <th class="text-center">Actividad</th>
             </tr>
             </thead>
         </table>

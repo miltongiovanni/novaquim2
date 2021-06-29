@@ -117,8 +117,8 @@ foreach ($_POST as $nombre_campo => $valor) {
         <table id="example" class="display compact formatoDatos">
             <thead>
             <tr>
-                <th class="width1">Código</th>
-                <th class="width2">Materia Prima</th>
+                <th class="width1 text-center">Código</th>
+                <th class="width2 text-center">Materia Prima</th>
                 <?php
                 $date = date_create($fechRef);
                 $j = 3;

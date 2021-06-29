@@ -205,17 +205,17 @@ include "../includes/valAcc.php";
             <thead>
             <tr>
                 <th class="width1"></th>
-                <th class="width2">Factura</th>
-                <th class="width3">Fecha de Factura</th>
-                <th class="width4">Fecha Venc</th>
-                <th class="width5">Cliente</th>
-                <th class="width6">Contacto</th>
-                <th class="width7">Teléfono</th>
-                <th class="width8">Celular</th>
-                <th class="width9">Valor Factura</th>
-                <th class="width10">Valor a Cobrar</th>
-                <th class="width11">Valor Cobrado</th>
-                <th class="width12">Saldo</th>
+                <th class="width2 text-center">Factura</th>
+                <th class="width3 text-center">Fecha de Factura</th>
+                <th class="width4 text-center">Fecha Venc</th>
+                <th class="width5 text-center">Cliente</th>
+                <th class="width6 text-center">Contacto</th>
+                <th class="width7 text-center">Teléfono</th>
+                <th class="width8 text-center">Celular</th>
+                <th class="width9 text-center">Valor Factura</th>
+                <th class="width10 text-center">Valor a Cobrar</th>
+                <th class="width11 text-center">Valor Cobrado</th>
+                <th class="width12 text-center">Saldo</th>
             </tr>
             </thead>
         </table>

@@ -145,9 +145,9 @@ $detOProd = $envasadoOperador->getEnvasado($loteProd, $codPresentacion);
         <table id="salidas" class="display compact formatoDatos">
             <thead>
             <tr>
-                <th class="width1">Fecha de venta</th>
-                <th class="width2">Cliente</th>
-                <th class="width3">Unidades</th>
+                <th class="width1 text-center">Fecha de venta</th>
+                <th class="width2 text-center">Cliente</th>
+                <th class="width3 text-center">Unidades</th>
             </tr>
             </thead>
         </table>
@@ -159,32 +159,6 @@ $detOProd = $envasadoOperador->getEnvasado($loteProd, $codPresentacion);
             </button>
         </div>
     </div>
-<!--    <table width="700" border="0" align="center">
-        <tr>
-            <td colspan="4" align="left">
-                <div align="left" class="titulo">SALIDA</div>
-            </td>
-        </tr>
-        <tr>
-            <td width="108" align="center"><strong>Fecha Venta</strong></td>
-            <td width="451" align="center"><strong>Cliente</strong></td>
-            <td width="127" align="center"><strong>Unidades</strong></td>
-        </tr>
-        <?php
-/*        $qrys = "select fechaRemision, Nom_clien, cantProducto from remision, det_remision, clientes where det_remision.idRemision=remision.idRemision and Nit_cliente=Nit_clien and loteProducto=$lote_prod and codProducto=$Id_Prod;";
-        $results = mysqli_query($link, $qrys);
-        while ($rows = mysqli_fetch_array($results)) {
-            echo '<tr><td align="center">' . $rows['Fech_remision'] . '</td><td align="center">' . $rows['Nom_clien'] . '</td><td align="center">' . $rows['Can_producto'] . '</td></tr>';
-        }
-        mysqli_free_result($results);
-        mysqli_close($link);
-        */?>
-        <tr>
-            <td>&nbsp;</td>
-        </tr>
-    </table>
-    <div align="center"><input type="button" class="resaltado" onClick="window.location='menu.php'" value="Ir al Menú">
-    </div>-->
 </div>
 </body>
 </html>
