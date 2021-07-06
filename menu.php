@@ -107,10 +107,19 @@ for ($i = 0; $i < count($perfiles); $i++) {
         endif;
         ?>
         <?php
-        if ($perfil1 == 1):
+        if ($perfil1 == 1 || $perfil1 == 3):
             ?>
             <div class="col-4 card">
                 <?php include_once("widgets/OProdXEnvasar.php"); ?>
+            </div>
+        <?php
+        endif;
+        ?>
+        <?php
+        if ($perfil1 == 1 || $perfil1 == 5):
+            ?>
+            <div class="col-4 card">
+                <?php include_once("widgets/pedidosPendientes.php"); ?>
             </div>
         <?php
         endif;

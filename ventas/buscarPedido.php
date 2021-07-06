@@ -28,7 +28,7 @@ spl_autoload_register('cargarClases');
                 $manager = new PedidosOperaciones();
                 $pedidos = $manager->getPedidosByEstado('P');
                 for ($i = 0; $i < count($pedidos); $i++) : ?>
-                    <option value="<?= $pedidos[$i]["idPedido"] ?>"><?= $pedidos[$i]["idPedido"] ?></option>
+                    <option value="<?= $pedidos[$i]["idPedido"] ?>"><?= $pedidos[$i]["idPedido"].' - '.$pedidos[$i]["nomSucursal"] ?></option>
                 <?php
                 endfor;
                 ?>
