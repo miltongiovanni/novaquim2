@@ -1,5 +1,5 @@
 <?php
-include "../includes/valAcc.php";
+session_start();
 require('../includes/fpdf.php');
 $idRemision=$_POST['idRemision'];
 function cargarClases($classname)

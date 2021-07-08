@@ -11,12 +11,16 @@ spl_autoload_register('cargarClases');
 $idPedido = $_POST['idPedido'];
 $pedidoOperador = new PedidosOperaciones();
 if (!$pedidoOperador->isValidIdPedido($idPedido)) {
-    echo ' <script >
-				alert("El número del pedido no es válido, vuelva a intentar de nuevo");
-				history.back();
-			</script>';
+    $ruta = "seleccionarPedido.php";
+    $mensaje = "El número del pedido no es válido, vuelva a intentar de nuevo";
+    $icon = "warning";
+    mover_pag($ruta, $mensaje, $icon);
+    exit;
 } else {
     $_SESSION['idPedido'] = $idPedido;
-    header("Location: det_pedido.php");
+    $ruta = "det_pedido.php";
+    $mensaje = "El número del pedido es válido";
+    $icon = "success";
+    mover_pag($ruta, $mensaje, $icon);
     exit;
 }

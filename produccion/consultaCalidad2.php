@@ -19,13 +19,17 @@ foreach ($_POST as $nombre_campo => $valor) {
 }
 $calProdOperador = new CalProdOperaciones();
 if (!$calProdOperador->isValidLoteCalidad($lote)) {
-    echo ' <script >
-				alert("El número de lote no es válido, vuelva a intentar de nuevo");
-				history.back();
-			</script>';
+    $ruta = "buscar_lote2.php";
+    $mensaje = "El número de lote no es válido, vuelva a intentar de nuevo";
+    $icon = "warning";
+    mover_pag($ruta, $mensaje, $icon);
+    exit;
 } else {
     $_SESSION['lote'] = $lote;
-    header("Location: cal_prod_terminado.php");
+    $ruta = "cal_prod_terminado.php";
+    $mensaje = "El número de lote es válido";
+    $icon = "success";
+    mover_pag($ruta, $mensaje, $icon);
     exit;
 }
 
