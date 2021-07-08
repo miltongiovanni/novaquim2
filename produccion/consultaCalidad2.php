@@ -11,12 +11,24 @@ spl_autoload_register('cargarClases');
 
 foreach ($_POST as $nombre_campo => $valor) {
     ${$nombre_campo} = $valor;
-    if(is_array($valor)){
+    if (is_array($valor)) {
         //echo $nombre_campo.print_r($valor).'<br>';
-    }else{
+    } else {
         //echo $nombre_campo. '=' .${$nombre_campo}.'<br>';
     }
 }
+?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <meta charset="utf-8">
+    <title>Seleccionar orden de producción</title>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../js/validar.js"></script>
+</head>
+<body>
+<?php
 $calProdOperador = new CalProdOperaciones();
 if (!$calProdOperador->isValidLoteCalidad($lote)) {
     $ruta = "buscar_lote2.php";
@@ -32,7 +44,6 @@ if (!$calProdOperador->isValidLoteCalidad($lote)) {
     mover_pag($ruta, $mensaje, $icon);
     exit;
 }
-
-
-
 ?>
+</body>
+</html>

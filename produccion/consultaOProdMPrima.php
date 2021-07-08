@@ -11,13 +11,25 @@ spl_autoload_register('cargarClases');
 
 foreach ($_POST as $nombre_campo => $valor) {
     ${$nombre_campo} = $valor;
-    if(is_array($valor)){
+    if (is_array($valor)) {
         //echo $nombre_campo.print_r($valor).'<br>';
-    }else{
+    } else {
         //echo $nombre_campo. '=' .${$nombre_campo}.'<br>';
     }
 }
-$OProdMPrimaOperador= new OProdMPrimaOperaciones();
+?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <meta charset="utf-8">
+    <title>Seleccionar orden de producción</title>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../js/validar.js"></script>
+</head>
+<body>
+<?php
+$OProdMPrimaOperador = new OProdMPrimaOperaciones();
 if (!$OProdMPrimaOperador->isValidLote($loteMP)) {
     $ruta = "buscarOProdMPrima.php";
     $mensaje = "El número de lote no es válido, vuelva a intentar de nuevo";
@@ -32,7 +44,6 @@ if (!$OProdMPrimaOperador->isValidLote($loteMP)) {
     mover_pag($ruta, $mensaje, $icon);
     exit;
 }
-
-
-
 ?>
+</body>
+</html>

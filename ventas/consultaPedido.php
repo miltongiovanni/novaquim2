@@ -9,6 +9,18 @@ function cargarClases($classname)
 
 spl_autoload_register('cargarClases');
 $idPedido = $_POST['idPedido'];
+?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Seleccionar Factura a Modificar</title>
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../js/validar.js"></script>
+</head>
+<body>
+<?php
 $pedidoOperador = new PedidosOperaciones();
 if (!$pedidoOperador->isValidIdPedido($idPedido)) {
     $ruta = "seleccionarPedido.php";
@@ -24,3 +36,7 @@ if (!$pedidoOperador->isValidIdPedido($idPedido)) {
     mover_pag($ruta, $mensaje, $icon);
     exit;
 }
+?>
+</body>
+</html>
+

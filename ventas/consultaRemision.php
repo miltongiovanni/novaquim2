@@ -9,6 +9,18 @@ function cargarClases($classname)
 
 spl_autoload_register('cargarClases');
 $idRemision = $_POST['idRemision'];
+?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Seleccionar Factura a Modificar</title>
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../js/validar.js"></script>
+</head>
+<body>
+<?php
 $remisionOperador = new RemisionesOperaciones();
 if (!$remisionOperador->isValidRemision($idRemision)) {
     $ruta = "seleccionarRemision.php";
@@ -24,3 +36,6 @@ if (!$remisionOperador->isValidRemision($idRemision)) {
     mover_pag($ruta, $mensaje, $icon);
     exit;
 }
+?>
+</body>
+</html>
