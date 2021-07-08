@@ -37,8 +37,10 @@ if (!$OProdOperador->isValidLote($lote)) {
     mover_pag($ruta, $mensaje, $icon);
 } else {
     $_SESSION['lote'] = $lote;
-    header("Location: detO_Prod.php");
-    exit;
+    $ruta = "detO_Prod.php";
+    $mensaje = "El número de lote es válido";
+    $icon = "success";
+    mover_pag($ruta, $mensaje, $icon);
 }
 ?>
 </body>
