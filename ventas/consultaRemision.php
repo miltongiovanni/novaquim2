@@ -11,12 +11,16 @@ spl_autoload_register('cargarClases');
 $idRemision = $_POST['idRemision'];
 $remisionOperador = new RemisionesOperaciones();
 if (!$remisionOperador->isValidRemision($idRemision)) {
-    echo ' <script >
-				alert("El número de la remisión no es válido, vuelva a intentar de nuevo");
-				history.back();
-			</script>';
+    $ruta = "seleccionarRemision.php";
+    $mensaje = "El número de la remisión no es válido, vuelva a intentar de nuevo";
+    $icon = "warning";
+    mover_pag($ruta, $mensaje, $icon);
+    exit;
 } else {
     $_SESSION['idRemision'] = $idRemision;
-    header("Location: det_remision.php");
+    $ruta = "det_remision.php";
+    $mensaje = "El número de la remisión es válido";
+    $icon = "success";
+    mover_pag($ruta, $mensaje, $icon);
     exit;
 }

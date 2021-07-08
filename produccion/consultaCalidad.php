@@ -38,7 +38,10 @@ if (!$calProdOperador->isValidLoteCalidad($lote)) {
     exit;
 } else {
     $_SESSION['lote'] = $lote;
-    header("Location: det_cal_produccion.php");
+    $ruta = "det_cal_produccion.php";
+    $mensaje = "El número de lote es válido";
+    $icon = "success";
+    mover_pag($ruta, $mensaje, $icon);
     exit;
 }
 ?>

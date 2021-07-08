@@ -19,15 +19,16 @@ foreach ($_POST as $nombre_campo => $valor) {
 }
 $egresoOperador= new EgresoOperaciones();
 if (!$egresoOperador->isValidIdEgreso($idEgreso)) {
-    echo ' <script >
-				alert("El número del egreso no es válido, vuelva a intentar de nuevo");
-				history.back();
-			</script>';
+    $ruta = "buscarEgreso.php";
+    $mensaje = "El número del egreso no es válido, vuelva a intentar de nuevo";
+    $icon = "error";
+    mover_pag($ruta, $mensaje, $icon);
 } else {
-
     $_SESSION['idEgreso'] = $idEgreso;
-    header("Location: egreso.php");
-    exit;
+    $ruta = "egreso.php";
+    $mensaje = "El número del egreso válido";
+    $icon = "success";
+    mover_pag($ruta, $mensaje, $icon);
 }
 
 

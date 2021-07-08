@@ -19,14 +19,17 @@ foreach ($_POST as $nombre_campo => $valor) {
 }
 $OProdColorOperador= new OProdColorOperaciones();
 if (!$OProdColorOperador->isValidLote($loteColor)) {
-    echo ' <script >
-				alert("El número de lote no es válido, vuelva a intentar de nuevo");
-				history.back();
-			</script>';
+    $ruta = "buscarOprodColor.php";
+    $mensaje = "El número de lote no es válido, vuelva a intentar de nuevo";
+    $icon = "error";
+    mover_pag($ruta, $mensaje, $icon);
+    exit;
 } else {
-
     $_SESSION['loteColor'] = $loteColor;
-    header("Location: detO_Prod_col.php");
+    $ruta = "detO_Prod_col.php";
+    $mensaje = "El número de lote es válido";
+    $icon = "success";
+    mover_pag($ruta, $mensaje, $icon);
     exit;
 }
 

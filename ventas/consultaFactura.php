@@ -30,7 +30,10 @@ if (!$facturaOperador->isValidIdFactura($idFactura)) {
     exit;
 } else {
     $_SESSION['idFactura'] = $idFactura;
-    header("Location: det_factura.php");
+    $ruta = "det_factura.php";
+    $mensaje = "El número de factura es válido";
+    $icon = "success";
+    mover_pag($ruta, $mensaje, $icon);
     exit;
 }
 ?>

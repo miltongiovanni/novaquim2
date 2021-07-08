@@ -1,5 +1,5 @@
 <?php
-include "../includes/valAcc.php";
+session_start();
 include "../includes/num_letra.php";
 include "../includes/ventas.php";
 require('../includes/fpdf.php');

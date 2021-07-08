@@ -19,14 +19,17 @@ foreach ($_POST as $nombre_campo => $valor) {
 }
 $OProdMPrimaOperador= new OProdMPrimaOperaciones();
 if (!$OProdMPrimaOperador->isValidLote($loteMP)) {
-    echo ' <script >
-				alert("El número de lote no es válido, vuelva a intentar de nuevo");
-				history.back();
-			</script>';
+    $ruta = "buscarOProdMPrima.php";
+    $mensaje = "El número de lote no es válido, vuelva a intentar de nuevo";
+    $icon = "error";
+    mover_pag($ruta, $mensaje, $icon);
+    exit;
 } else {
-
     $_SESSION['loteMP'] = $loteMP;
-    header("Location: detO_Prod_mp.php");
+    $ruta = "detO_Prod_mp.php";
+    $mensaje = "El número de lote es válido";
+    $icon = "success";
+    mover_pag($ruta, $mensaje, $icon);
     exit;
 }
 
