@@ -25,7 +25,8 @@ $precio = $PrecioOperador->getPrecio($codigoGen);
 
 <body>
 <div id="contenedor" class="container-fluid">
-    <div id="saludo"><h4>ACTUALIZACIÓN DEL CÓDIGO GENÉRICO</h4></div>
+    <div id="saludo">
+        <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2"><h4>ACTUALIZACIÓN DEL CÓDIGO GENÉRICO</h4></div>
 
     <form id="form1" name="form1" method="post" action="updateCod.php">
         <div class="form-group row">

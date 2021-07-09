@@ -46,7 +46,8 @@ $detalle = $DetCompraOperador->getDetCompra($idCompra, $tipoCompra, $codigo);
 </head>
 <body>
 <div id="contenedor" class="container-fluid">
-    <div id="saludo"><h4>ACTUALIZACIÓN DE LA COMPRA DE<?= $titulo ?></h4></div>
+    <div id="saludo">
+        <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2"><h4>ACTUALIZACIÓN DE LA COMPRA DE<?= $titulo ?></h4></div>
     <form action="updateDetCompra.php" method="post" name="actualiza">
         <input type="hidden" name="idCompra" id="idCompra" value="<?= $idCompra ?>">
         <input type="hidden" name="tipoCompra" id="tipoCompra" value="<?= $tipoCompra ?>">

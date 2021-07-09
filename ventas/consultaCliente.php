@@ -16,7 +16,8 @@ include "../includes/valAcc.php";
 </head>
 <body>
 <div id="contenedor" class="container-fluid">
-    <div id="saludo"><h4>CONSULTA DE FACTURAS POR CLIENTE</h4></div>
+    <div id="saludo">
+        <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2"><h4>CONSULTA DE FACTURAS POR CLIENTE</h4></div>
 
     <?php
     include "../includes/ventas.php";

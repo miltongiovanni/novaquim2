@@ -14,7 +14,8 @@ include "../includes/valAcc.php";
 
 <body>
 	<div id="contenedor" class="container-fluid">
-		<div id="saludo"><h4>ELIMINACIÓN DE CÓDIGO GENÉRICO</h4></div>
+		<div id="saludo">
+        <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2"><h4>ELIMINACIÓN DE CÓDIGO GENÉRICO</h4></div>
 		<?php
         include "../includes/base.php";
         $rep = buscarPrecioForm("deleteCod.php", false);

@@ -20,7 +20,8 @@ spl_autoload_register('cargarClases');
 </head>
 <body>
 <div id="contenedor" class="container-fluid">
-    <div id="saludo1"><h4>CREAR COTIZACIÓN</h4></div>
+    <div id="saludo1">
+        <img src="../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>CREAR COTIZACIÓN</h4></div>
     <form method="post" action="makeCotizacion.php" name="form1">
         <div class="form-group row">
             <label class="col-form-label col-2" for="busClien"><strong>Cliente</strong></label>

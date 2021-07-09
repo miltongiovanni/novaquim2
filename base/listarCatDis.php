@@ -65,7 +65,8 @@ include "../includes/valAcc.php";
 
 <body>
 <div id="contenedor" class="container-fluid">
-    <div id="saludo1"><h4>LISTADO CATEGORÍAS DE PRODUCTOS DE DISTRIBUCIÓN</h4></div>
+    <div id="saludo1">
+        <img src="../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>LISTADO CATEGORÍAS DE PRODUCTOS DE DISTRIBUCIÓN</h4></div>
     <div class="row flex-end">
         <div class="col-1">
             <button class="button" onclick="window.location='../menu.php'">

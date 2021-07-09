@@ -51,7 +51,8 @@ if (!$CompraOperador->isValidIdCompra($idCompra)) {
     </head>
     <body>
     <div id="contenedor" class="container-fluid">
-        <div id="saludo"><h4>ACTUALIZACIÓN COMPRA DE<?= $titulo ?></h4></div>
+        <div id="saludo">
+        <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2"><h4>ACTUALIZACIÓN COMPRA DE<?= $titulo ?></h4></div>
         <form name="form2" method="POST" action="updateCompra.php">
             <input name="tipoCompra" type="hidden" value="<?= $tipoCompra ?>">
             <div class="form-group row">

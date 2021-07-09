@@ -29,7 +29,8 @@ $detalle = $DetOProdColorOperador->getDetOProdColor($loteColor, $codMPrima);
 </head>
 <body>
 <div id="contenedor" class="container-fluid">
-    <div id="saludo"><h4>ACTUALIZACIÓN DE GASTO DE MATERIA PRIMA</h4></div>
+    <div id="saludo">
+        <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2"><h4>ACTUALIZACIÓN DE GASTO DE MATERIA PRIMA</h4></div>
     <form action="updateDetOProdColor.php" method="post" name="actualiza">
         <input type="hidden" name="loteColor" id="loteColor" value="<?= $loteColor ?>">
         <input type="hidden" name="codMPrima" id="codMPrima" value="<?= $codMPrima ?>">

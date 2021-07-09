@@ -32,7 +32,8 @@ $detalle = $detRemisionOperador->getDetTotalRemision($idRemision, $codProducto);
 </head>
 <body>
 <div id="contenedor" class="container-fluid">
-    <div id="saludo"><h4>ACTUALIZACIÓN DEL DETALLE DEL GASTO</h4></div>
+    <div id="saludo">
+        <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2"><h4>ACTUALIZACIÓN DEL DETALLE DEL GASTO</h4></div>
     <form action="updateDetRemision.php" method="post" name="actualiza">
         <input type="hidden" name="idRemision" id="idRemision" value="<?= $idRemision ?>">
         <input type="hidden" name="codProducto" id="codProducto" value="<?= $codProducto ?>">

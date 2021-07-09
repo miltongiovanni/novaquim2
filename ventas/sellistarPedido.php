@@ -31,7 +31,8 @@ $pedidos = $pedidoOperador->getTablePedidosPendientes();
 </head>
 <body>
 <div id="contenedor" class="container-fluid">
-    <div id="saludo1"><h4>LISTA DE ÓRDENES DE PEDIDO PENDIENTES PARA REVISIÓN</h4></div>
+    <div id="saludo1">
+        <img src="../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>LISTA DE ÓRDENES DE PEDIDO PENDIENTES PARA REVISIÓN</h4></div>
     <form name="revision_pedidos" method="post" action="lista_necesidades.php">
         <div class="row justify-content-between mb-3">
             <div class="col-3 ">

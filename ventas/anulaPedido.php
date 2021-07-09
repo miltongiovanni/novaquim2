@@ -18,7 +18,8 @@ spl_autoload_register('cargarClases');
 </head>
 <body>
 <div id="contenedor" class="container-fluid">
-    <div id="saludo"><h4>SELECCIONAR ORDEN DE PEDIDO A ANULAR</h4></div>
+    <div id="saludo">
+        <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2"><h4>SELECCIONAR ORDEN DE PEDIDO A ANULAR</h4></div>
     <form id="form1" name="form1" method="post" action="anularPedido.php">
         <div class="form-group row">
             <label class="col-form-label col-2" for="idPedido"><strong>Orden de pedido</strong></label>

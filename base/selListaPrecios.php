@@ -14,7 +14,8 @@ include "../includes/valAcc.php";
 
 <body>
 <div id="contenedor" class="container-fluid">
-    <div id="saludo1"><h4>SELECCIONAR PRECIO O PRECIOS PARA LA LISTA</h4></div>
+    <div id="saludo1">
+        <img src="../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>SELECCIONAR PRECIO O PRECIOS PARA LA LISTA</h4></div>
     <form name="form1" method="POST" action="detListaPrecios.php">
         <div class="form-group row">
             <label class="col-1 text-end"><br>Presentación</label>

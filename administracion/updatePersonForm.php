@@ -21,7 +21,8 @@ spl_autoload_register('cargarClases');
 <body>
 <div id="contenedor" class="container-fluid">
 
-    <div id="saludo1"><h4>ACTUALIZACIÓN DE PERSONAL</h4></div>
+    <div id="saludo1">
+        <img src="../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>ACTUALIZACIÓN DE PERSONAL</h4></div>
     <?php
     $idPersonal = $_POST['idPersonal'];
     $manager = new PersonalOperaciones();

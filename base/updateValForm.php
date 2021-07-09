@@ -23,7 +23,8 @@ $tapa = $TapaOperador->getTapa($codTapa);
 
 <body>
 <div id="contenedor" class="container-fluid">
-    <div id="saludo"><h4>ACTUALIZACIÓN DE TAPA O VÁLVULA</h4></div>
+    <div id="saludo">
+        <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2"><h4>ACTUALIZACIÓN DE TAPA O VÁLVULA</h4></div>
     <form id="form1" name="form1" method="post" action="updateVal.php">
         <div class="form-group row">
             <label class="col-form-label col-1 text-end" for="codTapa"><strong>Código</strong></label>

@@ -18,7 +18,8 @@ spl_autoload_register('cargarClases');
 </head>
 <body>
 <div id="contenedor" class="container-fluid">
-    <div id="saludo"><h4>ELIMINACIÓN DE FORMULACIÓN</h4></div>
+    <div id="saludo">
+        <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2"><h4>ELIMINACIÓN DE FORMULACIÓN</h4></div>
     <form method="post" action="deleteFormula.php">
         <div class="form-group row">
             <label class="col-form-label col-1" for="idFormula"><strong>Fórmula</strong></label>

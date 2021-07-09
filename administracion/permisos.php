@@ -76,6 +76,7 @@ spl_autoload_register('cargarClases');
 <body>
 <div id="contenedor" class="container-fluid">
     <div id="saludo1">
+        <img src="../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2">
         <?php
         foreach ($_POST as $nombre_campo => $valor) {
             ${$nombre_campo} = $valor;

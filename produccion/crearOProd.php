@@ -39,7 +39,8 @@ spl_autoload_register('cargarClases');
 </head>
 <body>
 <div id="contenedor" class="container-fluid">
-    <div id="saludo"><h4>ORDEN DE PRODUCCIÓN</h4></div>
+    <div id="saludo">
+        <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2"><h4>ORDEN DE PRODUCCIÓN</h4></div>
     <form method="post" action="makeO_Prod.php" name="form1">
         <div class="form-group row">
             <label class="col-form-label col-2" for="codProducto"><strong>Producto</strong></label>

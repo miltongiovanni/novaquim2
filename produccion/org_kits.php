@@ -18,7 +18,8 @@ spl_autoload_register('cargarClases');
 </head>
 <body>
 <div id="contenedor" class="container-fluid">
-    <div id="saludo"><strong>ORGANIZACIÓN DE KITS DE PRODUCTOS</strong></div>
+    <div id="saludo">
+        <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2"><strong>ORGANIZACIÓN DE KITS DE PRODUCTOS</strong></div>
     <form name="form2" method="POST" action="det_kits.php">
         <div class="form-group row">
             <label class="col-form-label col-1" for="codEnvase"><strong>Kit</strong></label>

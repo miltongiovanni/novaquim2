@@ -88,7 +88,8 @@ include "../includes/valAcc.php";
 
 <body>
 <div id="contenedor" class="container-fluid">
-    <div id="saludo1"><h4>LISTA DE PRECIOS</h4></div>
+    <div id="saludo1">
+        <img src="../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>LISTA DE PRECIOS</h4></div>
     <div class="row flex-end">
         <div class="col-2">
             <form action="XlsListaPrecios.php" method="post" target="_blank">
