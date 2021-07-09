@@ -16,7 +16,8 @@ include "../includes/valAcc.php";
 <body>
     <div id="contenedor" class="container-fluid">
 
-        <div id="saludo"><h4>SELECCIONAR USUARIO A ACTUALIZAR</h4></div>
+        <div id="saludo">
+        <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2"><h4>SELECCIONAR USUARIO A ACTUALIZAR</h4></div>
         <?php
         include "../includes/administracion.php";
         $rep = buscarUsuarioForm("updateUserForm.php", false);

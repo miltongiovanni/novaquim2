@@ -12,7 +12,8 @@ include "../includes/valAcc.php";
 </head>
 <body>
 <div id="contenedor" class="container-fluid">
-    <div id="saludo"><h4>REMISIÓN DE PRODUCTOS</h4></div>
+    <div id="saludo">
+        <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2"><h4>REMISIÓN DE PRODUCTOS</h4></div>
     <form method="post" action="makeRemision.php" name="form1">
         <div class="form-group row">
             <label class="col-form-label col-2 text-end" for="cliente"><strong>Cliente</strong></label>

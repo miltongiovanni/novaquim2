@@ -18,7 +18,8 @@ spl_autoload_register('cargarClases');
 </head>
 <body>
 <div id="contenedor" class="container-fluid">
-    <div id="saludo"><h4>VENTAS POR FAMILIA PRODUCTOS NOVA POR MES</h4></div>
+    <div id="saludo">
+        <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2"><h4>VENTAS POR FAMILIA PRODUCTOS NOVA POR MES</h4></div>
     <form method="post" action="vtas_fam_tot_mes_vend.php" name="form1">
         <div class="form-group row">
             <label class="col-form-label col-1" for="idPersonal"><strong>Vendedor</strong></label>

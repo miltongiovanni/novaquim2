@@ -107,7 +107,8 @@ if ($_POST['seleccion1'])
 </head>
 <body>
 <div id="contenedor" class="container-fluid">
-    <div id="saludo1"><h4>FALTANTE DE LOS PEDIDOS</h4></div>
+    <div id="saludo1">
+        <img src="../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>FALTANTE DE LOS PEDIDOS</h4></div>
     <div class="row flex-end mb-3">
         <div class="col-1">
             <button class="button" type="button" onclick="window.location='../menu.php'">

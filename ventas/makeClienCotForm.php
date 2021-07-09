@@ -23,7 +23,8 @@ $cliExis = $_POST['cliExis'];
 
 <body>
 <div id="contenedor" class="container-fluid">
-    <div id="saludo"><h4>CREACIÓN DE CLIENTES PARA COTIZACIÓN</h4></div>
+    <div id="saludo">
+        <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2"><h4>CREACIÓN DE CLIENTES PARA COTIZACIÓN</h4></div>
     <form name="form2" method="POST" action="makeClienCot.php">
         <input type="hidden" name="cliExis" value="<?= $cliExis ?>">
         <?php

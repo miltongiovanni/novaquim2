@@ -15,7 +15,8 @@ include "../includes/valAcc.php";
 </head>
 <body>
 <div id="contenedor" class="container-fluid">
-    <div id="saludo"><h4>SELECCIONAR CLIENTE A MODIFICAR</h4></div>
+    <div id="saludo">
+        <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2"><h4>SELECCIONAR CLIENTE A MODIFICAR</h4></div>
     <?php
     include "../includes/ventas.php";
     $rep = buscarClienteForm("updateCliForm.php");

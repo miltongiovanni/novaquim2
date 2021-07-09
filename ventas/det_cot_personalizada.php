@@ -192,7 +192,8 @@ $presentacionOperador = new PresentacionesOperaciones();
 $distribucionOperador = new ProductosDistribucionOperaciones();
 ?>
 <div id="contenedor" class="container-fluid">
-    <div id="saludo1"><h4>DETALLE DE LA COTIZACIÓN PERSONALIZADA</h4></div>
+    <div id="saludo1">
+        <img src="../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>DETALLE DE LA COTIZACIÓN PERSONALIZADA</h4></div>
     <div class="form-group row">
         <div class="col-2 text-end"><strong>No. de Cotización</strong></div>
         <div class="col-1 bg-blue"><?= $idCotPersonalizada; ?></div>

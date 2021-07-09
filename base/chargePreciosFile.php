@@ -77,7 +77,8 @@ if (move_uploaded_file($file_tmp_name, $upload_file)) {
 <body>
 <div id="contenedor" class="container-fluid">
 
-    <div id="saludo"><h4>SELECCIÓN DE LA PÁGINA A CARGAR</h4></div>
+    <div id="saludo">
+        <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2"><h4>SELECCIÓN DE LA PÁGINA A CARGAR</h4></div>
     <form id="form1" name="form1" method="post" action="updatePreciosList.php">
         <input type="hidden" name="upload_file" value="<?=$upload_file?>">
         <div class="form-group row">

@@ -21,7 +21,10 @@ if(isset($_SESSION['Autorizado']) && $_SESSION['Autorizado']==true){
 
 <body>
 <div id="contenedor" class="container-fluid">
-    <div id="saludo"><h4>BIENVENIDO AL SISTEMA DE INFORMACIÓN DE INDUSTRIAS NOVAQUIM S.A.S.</h4></div>
+    <div id="saludo">
+        <img src="images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2">
+        <h4>BIENVENIDO AL SISTEMA DE INFORMACIÓN DE INDUSTRIAS NOVAQUIM S.A.S.</h4>
+    </div>
     <form method="POST" action="administracion/login.php">
         <div class="form-group row">
             <div class="col-1 text-end">

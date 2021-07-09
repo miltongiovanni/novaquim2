@@ -15,7 +15,8 @@ include "../includes/valAcc.php";
 
 <body>
 	<div id="contenedor" class="container-fluid">
-		<div id="saludo"><h4>SELECCIÓN DE CATEGORÍA DE DISTRIBUCIÓN A ACTUALIZAR</h4></div>
+		<div id="saludo">
+        <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2"><h4>SELECCIÓN DE CATEGORÍA DE DISTRIBUCIÓN A ACTUALIZAR</h4></div>
 		<?php
         include "../includes/base.php";
         $rep = buscarCatDisForm("updateCatDisForm.php");

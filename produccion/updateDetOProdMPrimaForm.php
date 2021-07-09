@@ -29,7 +29,8 @@ $detalle = $DetOProdMPrimaOperador->getDetOProdMPrimas($loteMP, $idMPrima);
 </head>
 <body>
 <div id="contenedor" class="container-fluid">
-    <div id="saludo"><h4>ACTUALIZACIÓN DE GASTO DE MATERIA PRIMA</h4></div>
+    <div id="saludo">
+        <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2"><h4>ACTUALIZACIÓN DE GASTO DE MATERIA PRIMA</h4></div>
     <form action="updateDetOProdMPrima.php" method="post" name="actualiza">
         <input type="hidden" name="loteMP" id="loteMP" value="<?= $loteMP ?>">
         <input type="hidden" name="idMPrima" id="idMPrima" value="<?= $idMPrima ?>">

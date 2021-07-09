@@ -43,7 +43,8 @@ $validar = 0;
 </head>
 <body>
 <div id="contenedor" class="container-fluid">
-    <div id="saludo1"><h4>FALTANTE DE PEDIDO</h4></div>
+    <div id="saludo1">
+        <img src="../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>FALTANTE DE PEDIDO</h4></div>
     <div class="form-group row">
         <div class="col-1 text-end"><strong>No. de pedido</strong></div>
         <div class="col-1 bg-blue"><?= $idPedido; ?></div>

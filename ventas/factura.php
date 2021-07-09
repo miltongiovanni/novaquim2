@@ -37,7 +37,8 @@ $pedido = $pedidoOperador->getPedido($pedidosList[0]);
 </head>
 <body>
 <div id="contenedor" class="container-fluid">
-    <div id="saludo1"><h4>FACTURA DE VENTA</h4></div>
+    <div id="saludo1">
+        <img src="../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>FACTURA DE VENTA</h4></div>
     <form method="post" action="make_factura.php" name="form1">
         <input type="hidden" name="idCliente" value="<?= $idCliente; ?>">
         <input type="hidden" name="idPedido" value="<?= implode(',', $pedidosList); ?>">

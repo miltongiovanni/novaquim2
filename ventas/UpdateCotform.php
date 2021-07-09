@@ -38,7 +38,8 @@ if (!$cotizacion) {
 }
 ?>
 <div id="contenedor" class="container-fluid">
-    <div id="saludo1"><h4>MODIFICAR COTIZACIÓN</h4></div>
+    <div id="saludo1">
+        <img src="../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>MODIFICAR COTIZACIÓN</h4></div>
 
     <form method="post" action="update_cotiza.php" name="form1">
         <div class="form-group row">

@@ -18,7 +18,8 @@ spl_autoload_register('cargarClases');
 </head>
 <body>
 <div id="contenedor" class="container-fluid">
-    <div id="saludo"><div id="h4"><strong>BUSCAR ORDEN DE PEDIDO A MODIFICAR</strong></div></div>
+    <div id="saludo">
+        <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2"><div id="h4"><strong>BUSCAR ORDEN DE PEDIDO A MODIFICAR</strong></div></div>
     <form id="form1" name="form1" method="post" action="updatePedidoForm.php">
         <div class="form-group row">
             <label class="col-form-label col-2" for="idPedido"><strong>Orden de pedido</strong></label>

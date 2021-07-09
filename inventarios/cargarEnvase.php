@@ -18,7 +18,8 @@ spl_autoload_register('cargarClases');
 </head>
 <body>
 <div id="contenedor" class="container-fluid">
-    <div id="saludo"><h4>CARGAR ENVASE AL INVENTARIO DE DISTRIBUCIÓN</h4></div>
+    <div id="saludo">
+        <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2"><h4>CARGAR ENVASE AL INVENTARIO DE DISTRIBUCIÓN</h4></div>
     <form method="post" action="charge.php" name="form1">
         <div class="form-group row">
             <label class="col-form-label col-3 text-end" for="idDis"><strong>Envase:</strong></label>

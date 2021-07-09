@@ -201,7 +201,8 @@ $distribucionOperador = new ProductosDistribucionOperaciones();
 </head>
 <body>
 <div id="contenedor" class="container-fluid">
-    <div id="saludo1"><h4>DETALLE DEL PEDIDO</h4></div>
+    <div id="saludo1">
+        <img src="../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>DETALLE DEL PEDIDO</h4></div>
     <div class="form-group row">
         <div class="col-1 text-end"><strong>Pedido No.</strong></div>
         <div class="col-1 bg-blue"><?= $idPedido; ?></div>

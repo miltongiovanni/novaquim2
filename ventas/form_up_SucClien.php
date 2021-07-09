@@ -29,7 +29,8 @@ $sucursal = $clienteSucursalOperador->getSucursalCliente($idCliente, $idSucursal
 </head>
 <body>
 <div id="contenedor" class="container-fluid">
-    <div id="saludo1"><h4>ACTUALIZACIÓN DE SUCURSAL POR CLIENTE</h4></div>
+    <div id="saludo1">
+        <img src="../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>ACTUALIZACIÓN DE SUCURSAL POR CLIENTE</h4></div>
     <form name="form2" method="POST" action="update_sucursal.php">
         <input name="idCliente" id="idCliente" type="hidden" value="<?= $idCliente ?>">
         <input name="idSucursal" id="idSucursal" type="hidden" value="<?= $idSucursal ?>">

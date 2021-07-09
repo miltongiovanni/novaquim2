@@ -15,7 +15,8 @@ include "../includes/valAcc.php";
 <body>
 <div id="contenedor" class="container-fluid">
 
-    <div id="saludo"><h4>SELECCIÓN DEL ARCHIVO A CARGAR INVENTARIO</h4></div>
+    <div id="saludo">
+        <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2"><h4>SELECCIÓN DEL ARCHIVO A CARGAR INVENTARIO</h4></div>
     <form id="form1" name="form1" method="post" action="chargeInventariosFile.php" enctype="multipart/form-data">
         <input type="hidden" name="tipoInv" value="<?=$tipoInv?>">
         <div class="form-group row">

@@ -172,7 +172,8 @@ $totales = $personalOperador->getTotalComisionVendedor($idPersonal, $fechaInicia
 <body>
 <div id="contenedor" class="container-fluid">
 
-    <div id="saludo1"><h4>CONSULTA DE COMISIONES DEL
+    <div id="saludo1">
+        <img src="../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>CONSULTA DE COMISIONES DEL
             VENDEDOR <?php echo mb_strtoupper($personal['nomPersonal']); ?></h4></div>
     <div class="tabla-100">
         <table id="example" class="display compact formatoDatos">

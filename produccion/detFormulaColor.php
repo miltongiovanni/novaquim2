@@ -103,7 +103,8 @@ $porcentajeTotal = $DetFormulaColorOperador->getPorcentajeTotal($idFormulaColor)
 </head>
 <body>
 <div id="contenedor" class="container-fluid">
-    <div id="saludo1"><h4>INGRESO DEL DETALLE DE FÓRMULA DE <?= $nomFormula; ?></h4></div>
+    <div id="saludo1">
+        <img src="../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>INGRESO DEL DETALLE DE FÓRMULA DE <?= $nomFormula; ?></h4></div>
     <form method="post" action="makeDetFormulaColor.php" name="form1">
         <input name="idFormulaColor" type="hidden" value="<?= $idFormulaColor; ?>">
         <div class="row">

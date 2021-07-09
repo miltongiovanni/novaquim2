@@ -36,7 +36,8 @@ if (!$remisionOperador->isValidIdRemision($idRemision)) {
     </head>
     <body>
     <div id="contenedor" class="container-fluid">
-        <div id="saludo"><h4>ACTUALIZACIÓN REMISIÓN</h4></div>
+        <div id="saludo">
+        <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2"><h4>ACTUALIZACIÓN REMISIÓN</h4></div>
         <form name="form2" method="POST" action="updateRemision.php">
             <div class="form-group row">
                 <label class="col-form-label col-2 text-end" for="idRemision"><strong>Id remisión</strong></label>

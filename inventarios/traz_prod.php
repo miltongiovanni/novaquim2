@@ -124,7 +124,8 @@ $detOProd = $envasadoOperador->getEnvasado($loteProd, $codPresentacion);
 </head>
 <body>
 <div id="contenedor" class="container-fluid">
-    <div id="saludo1"><h4>TRAZABILIDAD DE <?= $nomPresentacion; ?> CON
+    <div id="saludo1">
+        <img src="../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>TRAZABILIDAD DE <?= $nomPresentacion; ?> CON
             LOTE <?= $loteProd; ?></h4></div>
     <div class="form-group titulo row">
         <strong>Entrada</strong>

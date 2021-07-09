@@ -20,7 +20,8 @@ spl_autoload_register('cargarClases');
 
 <body>
 	<div id="contenedor" class="container-fluid">
-		<div id="saludo1"><strong>DETALLE DE LOS PERMISOS</strong></div>
+		<div id="saludo1">
+        <img src="../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><strong>DETALLE DE LOS PERMISOS</strong></div>
 		<?php
 		$idPerfil = $_POST['idPerfil'];
 		$idUsuario = $_POST['idUsuario'];

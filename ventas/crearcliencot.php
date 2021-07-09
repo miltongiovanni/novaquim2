@@ -11,7 +11,8 @@ include "../includes/valAcc.php";
     <script src="../js/validar.js"></script>
 <body>
 <div id="contenedor" class="container-fluid">
-    <div id="saludo"><h4>CREAR CLIENTE PARA COTIZACIÓN</h4></div>
+    <div id="saludo">
+        <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2"><h4>CREAR CLIENTE PARA COTIZACIÓN</h4></div>
     <form method="post" action="makeClienCotForm.php" name="form1">
         <div class="row mb-3">
             <label class="col-form-label col-2 text-end "><strong>Cliente Existente</strong></label>
