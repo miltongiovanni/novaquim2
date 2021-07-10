@@ -451,7 +451,9 @@ legend {
     padding-bottom: 1vw;
     text-transform: uppercase;
 }
-
+#saludo1 img {
+    width: 15% !important;
+}
 #saludo2 {
     text-align: left;
     font-size: 1.2vw;

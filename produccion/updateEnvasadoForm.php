@@ -31,7 +31,7 @@ $presentacion = $EnvasadoOperador->getEnvasado($lote, $codPresentacion);
 <body>
 <div id="contenedor" class="container-fluid">
     <div id="saludo">
-        <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2"><h4>ACTUALIZACIÓN DE ENVASADO POR PRESENTACIÓN</h4></div>
+        <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>ACTUALIZACIÓN DE ENVASADO POR PRESENTACIÓN</h4></div>
     <form action="updateEnvasado.php" method="post" name="actualiza">
         <input type="hidden" name="lote" id="lote" value="<?= $lote ?>">
         <input type="hidden" name="cantidadPendiente" id="cantidadPendiente" value="<?= $cantidadPendiente ?>">

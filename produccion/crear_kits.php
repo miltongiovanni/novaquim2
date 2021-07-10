@@ -44,7 +44,7 @@ spl_autoload_register('cargarClases');
 <body>
 <div id="contenedor" class="container-fluid">
     <div id="saludo">
-        <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2"><h4>SELECCIONE EL TIPO DE KIT A CREAR</h4></div>
+        <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>SELECCIONE EL TIPO DE KIT A CREAR</h4></div>
     <form name="form2" method="POST" action="make_kits.php">
         <div class="form-group row">
 

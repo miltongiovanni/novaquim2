@@ -15,7 +15,7 @@ include "../includes/valAcc.php";
 <body>
 <div id="contenedor" class="container-fluid">
     <div id="saludo">
-        <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2"><h4>SELECCIÓN DE MATERIA PRIMA A ACTUALIZAR</h4></div>
+        <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>SELECCIÓN DE MATERIA PRIMA A ACTUALIZAR</h4></div>
     <?php
     include "../includes/base.php";
     $rep = buscarMPrimaForm("updateMPForm.php");

@@ -15,7 +15,7 @@ include "../includes/valAcc.php";
 <body>
 	<div id="contenedor" class="container-fluid">
 		<div id="saludo">
-        <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2"><h4>BORRADO DE PERSONAL</h4></div>
+        <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>BORRADO DE PERSONAL</h4></div>
 		<?php
         include "../includes/administracion.php";
         $rep = buscarPersonalForm("deletePerson.php", false);

@@ -47,7 +47,7 @@ $pedido = $pedidoOperador->getPedido($idPedido);
 <body>
 <div id="contenedor" class="container-fluid">
     <div id="saludo">
-        <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2"><h4>ACTUALIZACIÓN DE ORDEN DE PEDIDO</h4></div>
+        <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>ACTUALIZACIÓN DE ORDEN DE PEDIDO</h4></div>
     <form method="post" action="updatePedido.php" name="form1">
         <div class="form-group row">
             <label class="col-form-label col-2 text-end" for="idPedido"><strong>Pedido</strong></label>

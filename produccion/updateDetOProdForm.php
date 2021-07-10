@@ -31,7 +31,7 @@ $detalle = $DetOProdOperador->getDetOProd($lote, $codMPrima);
 <body>
 <div id="contenedor" class="container-fluid">
     <div id="saludo">
-        <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2"><h4>ACTUALIZACIÓN DE GASTO DE MATERIA PRIMA</h4></div>
+        <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>ACTUALIZACIÓN DE GASTO DE MATERIA PRIMA</h4></div>
     <form action="updateDetOProd.php" method="post" name="actualiza">
         <input type="hidden" name="lote" id="lote" value="<?= $lote ?>">
         <input type="hidden" name="codMPrima" id="codMPrima" value="<?= $codMPrima ?>">

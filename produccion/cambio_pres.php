@@ -19,7 +19,7 @@ spl_autoload_register('cargarClases');
 <body>
 <div id="contenedor" class="container-fluid">
     <div id="saludo">
-        <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2"><h4>CAMBIO DE PRESENTACIÓN DE PRODUCTO</h4></div>
+        <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>CAMBIO DE PRESENTACIÓN DE PRODUCTO</h4></div>
     <form method="post" action="makeCambio.php" name="form1">
         <div class="form-group row">
             <label class="col-form-label col-2 text-end" for="fechaCambio"><strong>Fecha del cambio</strong></label>

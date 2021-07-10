@@ -23,7 +23,7 @@ spl_autoload_register('cargarClases');
 	<div id="contenedor" class="container-fluid">
 
 		<div id="saludo">
-        <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2"><h4>CAMBIO DE CONTRASEÑA</h4></div>
+        <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>CAMBIO DE CONTRASEÑA</h4></div>
 		<?php
 		$idUsuario= $_POST['idUsuario'];
 		$usuarioOperador = new UsuariosOperaciones();
