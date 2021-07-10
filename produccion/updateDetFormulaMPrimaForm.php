@@ -26,7 +26,7 @@ $detalle = $DetFormulaMPrimaOperador->getDetFormulaMPrima($idFormulaMPrima, $cod
 <body>
 <div id="contenedor" class="container-fluid">
     <div id="saludo">
-        <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2"><h4>ACTUALIZACIÓN DE FORMULACIÓN DE MATERIA PRIMA</h4></div>
+        <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>ACTUALIZACIÓN DE FORMULACIÓN DE MATERIA PRIMA</h4></div>
     <form action="updateDetFormulaMPrima.php" method="post" name="actualiza">
         <input name="idFormulaMPrima" type="hidden" value="<?= $idFormulaMPrima; ?>">
         <input name="codMPrima" type="hidden" value="<?= $codMPrima; ?>">

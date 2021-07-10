@@ -24,7 +24,7 @@ $categoriaMP = $catsMPOperador->getCatMP($idCatMP);
 <body>
 <div id="contenedor" class="container-fluid">
     <div id="saludo">
-        <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2"><h4>ACTUALIZACIÓN CATEGORÍA DE MATERIAS PRIMAS</h4></div>
+        <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>ACTUALIZACIÓN CATEGORÍA DE MATERIAS PRIMAS</h4></div>
     <form id="form1" name="form1" method="post" action="updateCatMP.php">
         <div class="form-group row">
             <label class="col-form-label col-1 text-end" for="idCatMP"><strong>Código</strong></label>

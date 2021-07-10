@@ -30,7 +30,7 @@ foreach ($_POST as $nombre_campo => $valor) {
 ?>
 <div id="contenedor" class="container-fluid">
     <div id="saludo">
-        <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2"><h4>PREPARACIÓN DE MATERIA PRIMA</h4></div>
+        <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>PREPARACIÓN DE MATERIA PRIMA</h4></div>
     <form method="post" action="makeO_Prod_MP.php" name="form1">
         <div class="form-group row">
             <label class="col-form-label col-2" for="idFormulaMPrima"><strong>Materia prima</strong></label>

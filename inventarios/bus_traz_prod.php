@@ -44,7 +44,7 @@ spl_autoload_register('cargarClases');
 <body>
 <div id="contenedor" class="container-fluid">
     <div id="saludo">
-        <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2"><h4>SELECCIÓN DE PRODUCTO A REVISAR TRAZABILIDAD</h4></div>
+        <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>SELECCIÓN DE PRODUCTO A REVISAR TRAZABILIDAD</h4></div>
     <form id="form1" name="form1" method="post" action="traz_prod.php">
         <div class="form-group row">
             <label class="col-form-label col-2" for="codPresentacion"><strong>Producto Terminado</strong></label>

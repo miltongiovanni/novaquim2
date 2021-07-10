@@ -32,7 +32,7 @@ $relacion = $relEnvDisOperador->getRelEnvDis($idEnvDis);
 <body>
 <div id="contenedor" class="container-fluid">
     <div id="saludo">
-        <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2"><h4>ACTUALIZACIÓN RELACIÓN DE ENVASE CON PRODUCTOS DE DISTRIBUCIÓN</h4></div>
+        <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>ACTUALIZACIÓN RELACIÓN DE ENVASE CON PRODUCTOS DE DISTRIBUCIÓN</h4></div>
     <form method="post" action="updateRelEnvDis.php" name="form1">
         <input id="idEnvDis" name="idEnvDis" type="hidden" value="<?= $idEnvDis ?>">
         <div class="form-group row">

@@ -39,7 +39,7 @@ spl_autoload_register('cargarClases');
 <body>
 <div id="contenedor" class="container-fluid">
     <div id="saludo">
-        <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2"><div id="h4"><strong>APLICAR NOTA CRÉDITO</strong></div></div>
+        <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><div id="h4"><strong>APLICAR NOTA CRÉDITO</strong></div></div>
     <form id="form1" name="form1" method="post" action="aplicaNotaC.php">
         <div class="form-group row">
             <label class="col-form-label col-1" for="idPedido"><strong>Nota crédito</strong></label>

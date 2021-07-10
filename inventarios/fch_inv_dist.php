@@ -13,7 +13,7 @@ include "../includes/valAcc.php";
 <body>
 <div id="contenedor" class="container-fluid">
     <div id="saludo">
-        <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2"><h4>CONSULTA DE INVENTARIO POR FECHA</h4></div>
+        <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>CONSULTA DE INVENTARIO POR FECHA</h4></div>
     <form method="post" action="inv_dist_fch.php" name="form1">
         <div class="form-group row">
             <label class="col-form-label col-1 text-end" for="fecha"><strong>Fecha</strong></label>

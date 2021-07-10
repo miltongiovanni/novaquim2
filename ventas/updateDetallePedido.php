@@ -25,7 +25,7 @@ $detalle = $DetPedidoOperador->getDetProdPedido($idPedido, $codProducto);
 <body>
 <div id="contenedor" class="container-fluid">
     <div id="saludo">
-        <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2"><h4>ACTUALIZACIÓN DEL PRODUCTO EN EL PEDIDO</h4></div>
+        <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>ACTUALIZACIÓN DEL PRODUCTO EN EL PEDIDO</h4></div>
     <form action="updatePed.php" method="post" name="actualiza">
         <input name="idPedido" type="hidden" value="<?= $idPedido; ?>">
         <input name="codProducto" type="hidden" value="<?= $codProducto; ?>">
