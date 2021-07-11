@@ -43,13 +43,26 @@ class ComprasOperaciones
 
     public function getCompra($idCompra, $tipoCompra)
     {
-        $qry = "SELECT idCompra, compras.idProv, nitProv, nomProv, numFact, fechComp, fechVenc, estadoCompra, descEstado, CONCAT('$', FORMAT(totalCompra, 0)) totalCompra,
-                       CONCAT('$', FORMAT(retefuenteCompra, 0)) retefuenteCompra, CONCAT('$', FORMAT(reteicaCompra, 0)) reteicaCompra,
-                       CONCAT('$', FORMAT(totalCompra-retefuenteCompra-reteicaCompra, 0))  vreal
+        $qry = "SELECT idCompra,
+                       compras.idProv,
+                       nitProv,
+                       nomProv,
+                       numFact,
+                       fechComp,
+                       fechVenc,
+                       estadoCompra,
+                       descEstado,
+                       CONCAT('$', FORMAT(subtotalCompra, 0))                                 subtotalCompra,
+                       CONCAT('$', FORMAT(ivaCompra, 0))                                      ivaCompra,
+                       CONCAT('$', FORMAT(totalCompra, 0))                                    totalCompra,
+                       CONCAT('$', FORMAT(retefuenteCompra, 0))                               retefuenteCompra,
+                       CONCAT('$', FORMAT(reteicaCompra, 0))                                  reteicaCompra,
+                       CONCAT('$', FORMAT(totalCompra - retefuenteCompra - reteicaCompra, 0)) vreal
                 FROM compras
                          LEFT JOIN estados e on compras.estadoCompra = e.idEstado
                          LEFT JOIN proveedores p on compras.idProv = p.idProv
-                WHERE tipoCompra=? AND idCompra=?";
+                WHERE tipoCompra = ?
+                  AND idCompra = ?";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute(array($tipoCompra, $idCompra));
         $result = $stmt->fetch(PDO::FETCH_ASSOC);

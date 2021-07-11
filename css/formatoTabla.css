@@ -229,6 +229,10 @@ font {
     font-size: small;
 }
 
+form {
+    margin: 0;
+}
+
 .form-check {
     position: relative;
     display: block;
