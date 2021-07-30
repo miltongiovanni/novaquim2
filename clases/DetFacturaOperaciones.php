@@ -497,6 +497,51 @@ class DetFacturaOperaciones
         return $result;
     }
 
+    public function getHistoricoVentas()
+    {
+        $qry = "SELECT p.year,
+                       p.mes,
+                       p.prod,
+                       d.dist,
+                       IF(s.serv IS NULL, 0, s.serv)                                                       servicio,
+                       (p.prod + d.dist + IF(s.serv IS NULL, 0, s.serv))                                   total_bruto,
+                       p.prod*100/(p.prod + d.dist + IF(s.serv IS NULL, 0, s.serv))                        p_productos,
+                       d.dist * 100 /(p.prod + d.dist + IF(s.serv IS NULL, 0, s.serv))                     p_distribucion,
+                       IF(s.serv IS NULL, 0, s.serv) *100 /(p.prod + d.dist + IF(s.serv IS NULL, 0, s.serv)) p_servicio,
+                       IF(dev.dev IS NULL, 0, dev.dev)                                                     devolucion,
+                       (p.prod + d.dist + IF(s.serv IS NULL, 0, s.serv) - IF(dev.dev IS NULL, 0, dev.dev)) total_neto
+                FROM (SELECT ROUND(SUM(cantProducto * precioProducto)) prod,
+                             MONTH(fechaFactura)                mes,
+                             YEAR(fechaFactura)                 year
+                      FROM det_factura df
+                               LEFT JOIN factura f on f.idFactura = df.idFactura
+                      WHERE df.codProducto < 100000
+                        AND df.codProducto > 10000
+                      GROUP BY year, mes) p
+                         LEFT JOIN (SELECT ROUND(SUM(cantProducto * precioProducto)) dist,
+                                           MONTH(fechaFactura)                mes,
+                                           YEAR(fechaFactura)                 year
+                                    FROM det_factura df
+                                             LEFT JOIN factura f on f.idFactura = df.idFactura
+                                    WHERE df.codProducto > 100000
+                                    GROUP BY year, mes) d ON p.year = d.year AND p.mes = d.mes
+                         LEFT JOIN (SELECT SUM(cantProducto * precioProducto) serv,
+                                           MONTH(fechaFactura)                mes,
+                                           YEAR(fechaFactura)                 year
+                                    FROM det_factura df
+                                             LEFT JOIN factura f on f.idFactura = df.idFactura
+                                    WHERE df.codProducto < 10000
+                                    GROUP BY year, mes) s ON p.year = s.year AND p.mes = s.mes
+                         LEFT JOIN (SELECT MONTH(fechaNotaC) mes, YEAR(fechaNotaC) year, ROUND(SUM(subtotalNotaC)) dev
+                                    FROM nota_c
+                                    GROUP BY year, mes) dev ON p.year = dev.year AND p.mes = dev.mes
+                ORDER BY p.year ASC, p.mes ASC";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);;
+        return $result;
+    }
+
     public function getTableDetFactura($idFactura)
     {
         $qry = "SELECT dcp.codProducto, p.presentacion producto, cantProducto, CONCAT('$', FORMAT(precioProducto, 0)) precioProducto,

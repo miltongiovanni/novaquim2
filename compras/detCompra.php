@@ -55,6 +55,45 @@ $compra = $CompraOperador->getCompra($idCompra, $tipoCompra);
         table.dataTable.compact thead th, table.dataTable.compact thead td {
             padding: 4px 4px 4px 4px;
         }
+
+        .width1 {
+            width: 8%;
+        }
+
+        .width2 {
+            width: 8%;
+        }
+
+        .width3 {
+            width: 36%;
+        }
+
+        .width4 {
+            width: 5%;
+        }
+
+        .width5 {
+            width: 10%;
+        }
+
+        .width6 {
+            width: 10%;
+        }
+
+        .width7 {
+            width: 15%;
+        }
+
+        .width8 {
+            width: 8%;
+        }
+
+        .width34 {
+            width: 41%;
+        }
+        .width56 {
+            width: 20%;
+        }
     </style>
     <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/validar.js"></script>
@@ -137,7 +176,7 @@ $compra = $CompraOperador->getCompra($idCompra, $tipoCompra);
                     },
                     {
                         "data": "Producto",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-left'
                     },
                     {
                         "data": "iva",
@@ -217,8 +256,10 @@ $compra = $CompraOperador->getCompra($idCompra, $tipoCompra);
         <div class="col-1 bg-blue"><?= $compra['descEstado'] ?></div>
     </div>
     <div class="form-group row">
-        <div class="col-1 text-end"><strong>Valor Factura</strong></div>
-        <div class="col-1 bg-blue"><?= $compra['totalCompra'] ?></div>
+        <div class="col-1 text-end"><strong>Subtotal</strong></div>
+        <div class="col-1 bg-blue"><?= $compra['subtotalCompra'] ?></div>
+        <div class="col-1 text-end"><strong>Iva </strong></div>
+        <div class="col-1 bg-blue"><?= $compra['ivaCompra'] ?></div>
         <div class="col-1 text-end"><strong>Rete Ica</strong></strong></div>
         <div class="col-1 bg-blue"><?= $compra['reteicaCompra'] ?></div>
         <div class="col-1 text-end"><strong>Retención</strong></div>
@@ -231,7 +272,7 @@ $compra = $CompraOperador->getCompra($idCompra, $tipoCompra);
     <?php
     if ($compra['estadoCompra'] != 7) {
         ?>
-        <div class="titulo row">
+        <div class="titulo row text-center">
             <strong>Adicionar Productos</strong>
         </div>
         <?php
@@ -393,32 +434,32 @@ $compra = $CompraOperador->getCompra($idCompra, $tipoCompra);
         <?php
     }
     ?>
-    <div class="titulo row">
+    <div class="titulo row text-center">
         <strong>Detalle de la compra</strong>
     </div>
     <table id="example" class="display compact formatoDatos" style="width:80%; margin-bottom: 20px;">
         <thead>
         <tr>
-            <th width="8%"></th>
-            <th width="8%">Código</th>
+            <th class="width1"></th>
+            <th class="text-center width2">Código</th>
             <?php
             if ($tipoCompra == 1) {
                 ?>
-                <th width="36%">Materia Prima</th>
-                <th width="5%">Iva</th>
-                <th width="10%">Cantidad(Kg)</th>
-                <th width="10%">Precio/Kg</th>
-                <th width="15%">Lote M. Prima</th>
+                <th class="text-center width3">Materia Prima</th>
+                <th class="text-center width4">Iva</th>
+                <th class="text-center width5">Cantidad(Kg)</th>
+                <th class="text-center width6">Precio/Kg</th>
+                <th class="text-center width7">Lote M. Prima</th>
                 <?php
             }
             ?>
             <?php
             if ($tipoCompra == 2) {
                 ?>
-                <th width="41%">Envase o tapa</th>
-                <th width="5%">Iva</th>
-                <th width="10%">Cantidad</th>
-                <th width="20%">Precio unitario(Sin Iva)</th>
+                <th class="text-center width34">Envase o tapa</th>
+                <th class="text-center width4">Iva</th>
+                <th class="text-center width5">Cantidad</th>
+                <th class="text-center width56">Precio unitario(Sin Iva)</th>
                 <th style="display: none">Lote</th>
                 <?php
             }
@@ -426,10 +467,10 @@ $compra = $CompraOperador->getCompra($idCompra, $tipoCompra);
             <?php
             if ($tipoCompra == 3) {
                 ?>
-                <th width="41%">Etiqueta</th>
-                <th width="5%">Iva</th>
-                <th width="10%">Cantidad</th>
-                <th width="20%">Precio unitario(Sin Iva)</th>
+                <th class="text-center width34">Etiqueta</th>
+                <th class="text-center width4">Iva</th>
+                <th class="text-center width5">Cantidad</th>
+                <th class="text-center width56">Precio unitario(Sin Iva)</th>
                 <th style="display: none">Lote</th>
                 <?php
             }
@@ -437,15 +478,15 @@ $compra = $CompraOperador->getCompra($idCompra, $tipoCompra);
             <?php
             if ($tipoCompra == 5) {
                 ?>
-                <th width="41%">Producto</th>
-                <th width="5%">Iva</th>
-                <th width="10%">Cantidad</th>
-                <th width="20%">Precio unitario(Sin Iva)</th>
+                <th class="text-center width34">Producto</th>
+                <th class="text-center width4"">Iva</th>
+                <th class="text-center width5">Cantidad</th>
+                <th class="text-center width56">Precio unitario(Sin Iva)</th>
                 <th style="display: none">Lote</th>
                 <?php
             }
             ?>
-            <th width="8%"></th>
+            <th class="width8"></th>
         </tr>
         </thead>
     </table>

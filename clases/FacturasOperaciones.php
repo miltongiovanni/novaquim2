@@ -111,6 +111,15 @@ class FacturasOperaciones
         return $result;
     }
 
+    public function getMaxFecha()
+    {
+        $qry = "SELECT MAX(fechaFactura) maxFecha FROM factura";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array());
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result['maxFecha'];
+    }
+
     public function getProductosCotizacion($precio, $presentaciones, $productos_c)
     {
         if ($precio == 1) {

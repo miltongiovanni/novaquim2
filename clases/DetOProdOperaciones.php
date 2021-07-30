@@ -27,9 +27,9 @@ class DetOProdOperaciones
 
     public function getTableDetOProd($lote)
     {
-        $qry = "SELECT dop.codMPrima, aliasMPrima, loteMP, cantidadMPrima
+        $qry = "SELECT dop.codMPrima, aliasMPrima, loteMP, round(cantidadMPrima, 3) cantidadMPrima
                 FROM det_ord_prod dop
-                LEFT JOIN mprimas m on dop.codMPrima = m.codMPrima
+                    LEFT JOIN mprimas m on dop.codMPrima = m.codMPrima
                 WHERE lote = ?";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute(array($lote));
