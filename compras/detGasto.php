@@ -224,7 +224,7 @@ $gasto = $GastoOperador->getGasto($idGasto);
     <?php
     if ($gasto['estadoGasto'] != 7) {
         ?>
-        <div class="form-group titulo row">
+        <div class="form-group titulo row text-center">
             <strong>Adicionar Detalle</strong>
         </div>
         <form method="post" action="makeDetGasto.php" name="form1">
@@ -264,7 +264,7 @@ $gasto = $GastoOperador->getGasto($idGasto);
         </form>
         <?php
     } ?>
-    <div class="form-group titulo row">
+    <div class="form-group titulo row text-center">
         <strong>Detalle del gasto</strong>
     </div>
     <table id="example" class="display compact formatoDatos" style="width:80%; margin-bottom: 20px;">

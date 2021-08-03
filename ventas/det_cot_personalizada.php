@@ -213,7 +213,7 @@ $distribucionOperador = new ProductosDistribucionOperaciones();
         <div class="col-1 text-end"><strong>Tipo de Precio</strong></div>
         <div class="col-1 bg-blue"><?= $cotizacion['tipPrecio'] ?></div>
     </div>
-    <div class="form-group titulo row">
+    <div class="form-group titulo row text-center">
         <strong>Adicionar Detalle</strong>
     </div>
     <form method="post" action="makeDetCotPersonalizada.php" name="form1">
@@ -270,7 +270,7 @@ $distribucionOperador = new ProductosDistribucionOperaciones();
             </div>
         </div>
     </form>
-    <div class="form-group titulo row">
+    <div class="form-group titulo row text-center">
         <strong>Detalle de la cotización personalizada</strong>
     </div>
     <div class="tabla-70">

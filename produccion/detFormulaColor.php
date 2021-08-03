@@ -134,7 +134,7 @@ $porcentajeTotal = $DetFormulaColorOperador->getPorcentajeTotal($idFormulaColor)
                 </div>
         </div>
     </form>
-    <div class="form-group titulo row">
+    <div class="form-group titulo row text-center">
         <strong>Detalle de la fórmula</strong>
     </div>
     <div class="tabla-50">

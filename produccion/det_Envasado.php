@@ -154,7 +154,7 @@ $cantidadPendiente = $EnvasadoOperador->getCantidadPorEnvasar($lote);
         <div class="col-2 text-end"><strong>Fecha de producción</strong></strong></div>
         <div class="col-2 bg-blue"><?= $ordenProd['fechProd'] ?></div>
     </div>
-    <div class="form-group titulo row">
+    <div class="form-group titulo row text-center">
         Adicionar Envasado
     </div>
     <form method="post" action="makeEnvasado.php" name="form1">
