@@ -167,7 +167,7 @@ $remision = $remisionOperador->getRemisionById($idRemision);
         <div class="col-1 text-end"><strong>Valor</strong></div>
         <div class="col-1 bg-blue">$ <?= number_format($remision['valor']) ?></div>
     </div>
-    <div class="form-group titulo row">
+    <div class="form-group titulo row text-center">
         <strong>Adicionar Detalle</strong>
     </div>
     <form method="post" action="makeDetRemision.php" name="form1">
@@ -222,7 +222,7 @@ $remision = $remisionOperador->getRemisionById($idRemision);
             </div>
         </div>
     </form>
-    <div class="form-group titulo row">
+    <div class="form-group titulo row text-center">
         <strong>Detalle de la remisión</strong>
     </div>
     <div class="tabla-50">

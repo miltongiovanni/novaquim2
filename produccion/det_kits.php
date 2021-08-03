@@ -115,7 +115,7 @@ $kit = $KitOperador->getKit($idKit);
         <div class="col-1 text-end"><strong>Kit</strong></div>
         <div class="col-3 bg-blue"><?= $kit['producto'] ?></div>
     </div>
-    <div class="form-group titulo row">
+    <div class="form-group titulo row text-center">
         Agregar detalle
     </div>
     <form method="post" action="makeDetKit.php" name="form1">
@@ -166,7 +166,7 @@ $kit = $KitOperador->getKit($idKit);
             </div>
         </div>
     </form>
-    <div class="form-group titulo row">
+    <div class="form-group titulo row text-center">
         Detalle
     </div>
     <div class="tabla-50">

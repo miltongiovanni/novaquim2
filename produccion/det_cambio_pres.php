@@ -123,7 +123,7 @@ $cambio = $cambioOperador->getCambio($idCambio);
         <div class="col-1 text-end"><strong>Responsable</strong></div>
         <div class="col-2 bg-blue"><?= $cambio['nomPersonal'] ?></div>
     </div>
-    <div class="form-group titulo row">
+    <div class="form-group titulo row text-center">
         Origen
     </div>
     <?php
@@ -181,7 +181,7 @@ $cambio = $cambioOperador->getCambio($idCambio);
     <?php
     endif;
     ?>
-    <div class="form-group titulo row">
+    <div class="form-group titulo row text-center">
         Destino
     </div>
     <?php

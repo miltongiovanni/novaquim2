@@ -282,7 +282,7 @@ $totalesNotaC = $notaCrOperador->getTotalesNotaC($idNotaC);
         elseif ($notaC['motivo'] == 1)://  DESCUENTO NO REALIZADO
 
             ?>
-            <div class="form-group titulo row">
+            <div class="form-group titulo row text-center">
                 <strong>Descuento no realizado</strong>
             </div>
             <div class="row">
