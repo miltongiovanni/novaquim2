@@ -28,6 +28,7 @@ spl_autoload_register('cargarClases');
                 dataType: 'json',
                 success: function (response) {
                     $("#invDistribucion").val(response);
+                    $("#inv_ant").val(response);
                 },
                 error: function () {
                     alert("Vous avez un GROS problème");
@@ -41,6 +42,9 @@ spl_autoload_register('cargarClases');
     <div id="saludo">
         <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>SELECCIÓN DE PRODUCTO DE DISTRIBUCIÓN A AJUSTAR INVENTARIO</h4></div>
     <form id="form1" name="form1" method="post" action="updateInvDist.php">
+        <input type="hidden" name="tipo_inv" value="dist">
+        <input type="hidden" name="idResponsable" value="<?= $_SESSION['IdUsuario']?>">
+        <input type="hidden" name="inv_ant" id="inv_ant" value="">
         <div class="form-group row">
             <label class="col-form-label col-2" for="codDistribucion"><strong>Producto</strong></label>
             <select name="codDistribucion" id="codDistribucion" class="form-control col-3 formatoDatos"
@@ -62,6 +66,11 @@ spl_autoload_register('cargarClases');
             <input type="text" class="form-control col-3 formatoDatos" name="invDistribucion" id="invDistribucion"
                    onkeydown="return aceptaNum(event)">
 
+        </div>
+        <div class="form-group row">
+            <label class="col-form-label col-2 text-end"
+                   for=motivo_ajuste><strong>Motivo ajuste</strong></label>
+            <textarea class="form-control col-3" name="motivo_ajuste" id="motivo_ajuste" required></textarea>
         </div>
         <div class="form-group row">
             <div class="col-1 text-center">
