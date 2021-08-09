@@ -31,8 +31,11 @@ foreach ($_POST as $nombre_campo => $valor) {
 $datos = array($invEnvase, $codEnvase);
 $invEnvaseOperador = new InvEnvasesOperaciones();
 
+$datos2 = array($tipo_inv, $idResponsable, $motivo_ajuste, $inv_ant, $invEnvase, $codEnvase, null );
+$invAjustesOperador = new InvAjustesOperaciones();
 try {
     $invEnvaseOperador->updateInvEnvase($datos);
+    $invAjustesOperador->makeInvAjuste($datos2);
     $ruta = "../menu.php";
     $mensaje = "Inventario actualizado correctamente";
     $icon = "success";
