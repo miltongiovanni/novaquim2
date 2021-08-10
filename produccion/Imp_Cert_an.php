@@ -72,7 +72,7 @@ $pdf->Cell(30, 6, $ordenProd['lote'], 0, 1);
 $pdf->SetFont('Arial', 'B', 10);
 $pdf->Cell(42, 6, 'Producto : ', 0, 0, 'R');
 $pdf->SetFont('Arial', '', 10);
-$pdf->Cell(100, 6, $ordenProd['nomProducto'], 0, 1, 'L');
+$pdf->Cell(100, 6, utf8_decode($ordenProd['nomProducto']), 0, 1, 'L');
 $pdf->SetFont('Arial', 'B', 10);
 $pdf->Cell(42, 6, 'Cantidad (Kg): ', 0, 0, 'R');
 $pdf->SetFont('Arial', '', 10);

@@ -18,6 +18,7 @@ for ($i = 0; $i < count($cambios); $i++) {
     $datos[$i]['idCambio'] = $cambios[$i]['idCambio'];
     $datos[$i]['fechaCambio'] = $cambios[$i]['fechaCambio'];
     $datos[$i]['nomPersonal'] = $cambios[$i]['nomPersonal'];
+    $datos[$i]['motivo_cambio'] = $cambios[$i]['motivo_cambio'];
     $datos[$i]['detCambio'] = $detCambio;
     $datos[$i]['detCambio2'] = $detCambio2;
 }

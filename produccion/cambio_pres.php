@@ -39,6 +39,11 @@ spl_autoload_register('cargarClases');
             ?>
         </div>
         <div class="form-group row">
+            <label class="col-form-label col-2 text-end"
+                   for=motivo_cambio><strong>Motivo cambio</strong></label>
+            <textarea class="form-control col-2" name="motivo_cambio" id="motivo_cambio" required></textarea>
+        </div>
+        <div class="form-group row">
             <div class="col-1 text-center">
                 <button class="button" type="button" onclick="return Enviar(this.form)"><span>Continuar</span></button>
             </div>

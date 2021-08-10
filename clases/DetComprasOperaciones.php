@@ -87,7 +87,8 @@ class DetComprasOperaciones
                         LEFT JOIN mprimas mp ON mp.codMPrima=Codigo
                         WHERE idProv=$idProv) dp
                         LEFT JOIN (SELECT codigo from det_compras WHERE idCompra=$idCompra) dc ON dp.Codigo=dc.codigo
-                        WHERE dc.codigo IS NULL";
+                        WHERE dc.codigo IS NULL
+                        ORDER BY dp.Producto";
                 break;
             case 2:
                 $qry = "SELECT dp.Codigo, dp.Producto FROM
@@ -102,7 +103,8 @@ class DetComprasOperaciones
                         LEFT JOIN tapas_val tv ON tv.codTapa=Codigo
                         WHERE idProv=$idProv AND Codigo>100 ORDER BY tapa) dp
                         LEFT JOIN (SELECT codigo from det_compras WHERE idCompra=$idCompra) dc ON dp.Codigo=dc.codigo
-                        WHERE dc.codigo IS NULL";
+                        WHERE dc.codigo IS NULL
+                        ORDER BY Producto";
                 break;
             case 3:
                 $qry = "SELECT dp.Codigo, dp.Producto FROM
