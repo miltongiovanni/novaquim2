@@ -79,33 +79,32 @@ class DetProveedoresOperaciones
         switch (intval($idCatProv)) {
             case 1:
                 $qry = "SELECT codMPrima Codigo, nomMPrima Producto FROM mprimas
-                        LEFT JOIN det_proveedores dp ON dp.Codigo=codMPrima AND dp.idProv=? WHERE dp.Codigo IS NULL ORDER BY Producto";
+                        LEFT JOIN det_proveedores dp ON dp.Codigo=codMPrima AND dp.idProv=$idProv WHERE dp.Codigo IS NULL ORDER BY Producto";
                 break;
             case 2:
                 $qry = "SELECT codEnvase Codigo, nomEnvase Producto  FROM envases
-                        LEFT JOIN det_proveedores ON Codigo=codEnvase AND idProv=? WHERE Codigo IS NULL
+                        LEFT JOIN det_proveedores ON Codigo=codEnvase AND idProv=$idProv WHERE Codigo IS NULL
                         UNION
                         SELECT codTapa Codigo, tapa Producto FROM tapas_val
-                        LEFT JOIN det_proveedores ON Codigo=codTapa AND idProv=? AND codTapa<>114 WHERE Codigo IS NULL ORDER BY Producto;
+                        LEFT JOIN det_proveedores ON Codigo=codTapa AND idProv=$idProv AND codTapa<>114 WHERE Codigo IS NULL ORDER BY Producto;
                         ";
                 break;
             case 3:
                 $qry = "SELECT codEtiqueta Codigo, nomEtiqueta Producto FROM etiquetas
-                        LEFT JOIN det_proveedores ON Codigo=codEtiqueta and idProv=? WHERE Codigo IS NULL ORDER BY Producto;";
+                        LEFT JOIN det_proveedores ON Codigo=codEtiqueta and idProv=$idProv WHERE Codigo IS NULL ORDER BY Producto;";
                 break;
             case 5:
                 $qry = "SELECT idDistribucion Codigo, producto Producto FROM distribucion
-                        LEFT JOIN det_proveedores ON Codigo=idDistribucion AND idProv=? WHERE Codigo IS NULL order by Producto";
+                        LEFT JOIN det_proveedores ON Codigo=idDistribucion AND idProv=$idProv WHERE Codigo IS NULL order by Producto";
                 break;
             case 6:
                 $qry = "SELECT idDistribucion Codigo, producto Producto FROM distribucion
-                        LEFT JOIN det_proveedores ON Codigo=idDistribucion AND idProv=? WHERE Codigo IS NULL order by Producto";
+                        LEFT JOIN det_proveedores ON Codigo=idDistribucion AND idProv=$idProv WHERE Codigo IS NULL order by Producto";
                 break;
         }
-
         $stmt = $this->_pdo->prepare($qry);
 
-        $stmt->execute(array($idProv));
+        $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }

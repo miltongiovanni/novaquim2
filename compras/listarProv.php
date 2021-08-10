@@ -93,6 +93,10 @@ include "../includes/valAcc.php";
                         "data": "emailProv",
                         "className": 'dt-body-left'
                     },
+                    {
+                        "data": "desCatProv",
+                        "className": 'dt-body-left'
+                    },
                 ],
                 "order": [[2, 'asc']],
                 "columnDefs":
@@ -162,6 +166,7 @@ include "../includes/valAcc.php";
                 <th class="text-center">Contacto</th>
                 <th class="text-center">Teléfono</th>
                 <th class="text-center">Correo Electrónico</th>
+                <th class="text-center">Categoría proveedor</th>
             </tr>
             </thead>
         </table>

@@ -29,7 +29,7 @@ foreach ($_POST as $nombre_campo => $valor) {
 </head>
 <body>
 <?php
-$datos = array($codPersonal, $fechaCambio);
+$datos = array($codPersonal, $fechaCambio, $motivo_cambio);
 $cambioOperador = new CambiosOperaciones();
 try {
     $idCambio = $cambioOperador->makeCambio($datos);

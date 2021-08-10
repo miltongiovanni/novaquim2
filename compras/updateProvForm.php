@@ -87,49 +87,22 @@ $proveedor = $ProveedorOperador->getProveedor($idProv);
     <form id="form1" name="form1" method="post" action="updateProv.php">
         <input type="hidden" name="idProv" id="idProv" value="<?= $idProv ?>">
         <div class="row">
-            <label class="col-form-label col-2 text-start" for="nitProv"><strong>NIT</strong></label>
-            <label class="col-form-label col-2 text-start"
+            <label class="col-form-label col-2 text-start mx-3" for="nitProv"><strong>NIT</strong></label>
+            <label class="col-form-label col-4 text-start mx-3"
                    for="nomProv"><strong>Proveedor</strong></label>
-            <label class="col-form-label col-2 text-start" for="contProv"><strong>Nombre
-                    Contacto</strong></label>
+            <label class="col-form-label col-2 text-start mx-3" for="idCatProv"><strong>Tipo de Proveedor</strong></label>
+            <label class="col-form-label col-2 text-start mx-3" for="estProv"><strong>Estado Proveedor</strong></label>
         </div>
         <div class="form-group row">
-            <input type="text" class="form-control col-2" name="nitProv" id="nitProv"
+            <input type="text" class="form-control col-2 mx-3" name="nitProv" id="nitProv"
                    value="<?= $proveedor['nitProv'] ?>" readOnly>
-            <input type="text" class="form-control col-2" name="nomProv" id="nomProv"
+            <input type="text" class="form-control col-4 mx-3" name="nomProv" id="nomProv"
                    value="<?= $proveedor['nomProv'] ?>">
-            <input type="text" class="form-control col-2" name="contProv" id="contProv"
-                   value="<?= $proveedor['contProv'] ?>">
-        </div>
-        <div class="row">
-            <label class="col-form-label col-2 text-start"
-                   for="dirProv"><strong>Dirección</strong></label>
-            <label class="col-form-label col-2 text-start"
-                   for="telProv"><strong>Teléfono</strong></label>
-            <label class="col-form-label col-2 text-start" for="emailProv"><strong>Correo
-                    electrónico</strong></label>
-        </div>
-        <div class="form-group row">
-            <input type="text" class="form-control col-2" name="dirProv" id="dirProv"
-                   value="<?= $proveedor['dirProv'] ?>">
-            <input type="text" class="form-control col-2" name="telProv" id="telProv"
-                   value="<?= $proveedor['telProv'] ?>"
-                   onkeydown="return aceptaNum(event)">
-            <input type="email" class="form-control col-2" name="emailProv" id="emailProv"
-                   value="<?= $proveedor['emailProv'] ?>">
-        </div>
-        <div class="row">
-
-            <label class="col-form-label col-2 text-start" for="idCatProv"><strong>Tipo de Proveedor</strong></label>
-            <label class="col-form-label col-2 text-start" for="autoretProv"><strong>Autorretenedor</strong></label>
-            <label class="col-form-label col-2 text-start" for="regProv"><strong>Régimen Proveedor</strong></label>
-        </div>
-        <div class="form-group row">
             <?php
             $manager = new CategoriasProvOperaciones();
             $categorias = $manager->getCatsProv();
             $filas = count($categorias);
-            echo '<select name="idCatProv" id="idCatProv" class="form-control col-2"  required>';
+            echo '<select name="idCatProv" id="idCatProv" class="form-control col-2 mx-3"  required>';
             echo '<option selected value="' . $proveedor['idCatProv'] . '">' . $proveedor['desCatProv'] . '</option>';
             for ($i = 0; $i < $filas; $i++) {
                 if ($proveedor['idCatProv'] != $categorias[$i]["idCatProv"]) {
@@ -138,70 +111,7 @@ $proveedor = $ProveedorOperador->getProveedor($idProv);
             }
             echo '</select>';
             ?>
-            <select name="autoretProv" id="autoretProv" class="form-control col-2" required>
-                <?php
-                if ($proveedor['autoretProv'] == 0) {
-                    ?>
-                    <option value="0" selected>NO</option>
-                    <option value="1">SI</option>
-                    <?php
-                } else {
-                    ?>
-                    <option value="1" selected>SI</option>
-                    <option value="0">NO</option>
-                    <?php
-                }
-                ?>
-            </select>
-            <select name="regProv" id="regProv" class="form-control col-2" required>
-                <?php
-                if ($proveedor['regProv'] == 0) {
-                    ?>
-                    <option value="0" selected>Simplificado</option>
-                    <option value="1">Común</option>
-                    <?php
-                } else {
-                    ?>
-                    <option value="1" selected>Común</option>
-                    <option value="0">Simplificado</option>
-                    <?php
-                }
-                ?>
-            </select>
-        </div>
-        <div class="row">
-            <label class="col-form-label col-2 text-start" for="idTasaIcaProv"><strong>Tasa Reteica</strong></label>
-            <label class="col-form-label col-2 text-start" for="idRetefuente"><strong>Tasa Retefuente</strong></label>
-            <label class="col-form-label col-2 text-start" for="estProv"><strong>Estado Proveedor</strong></label>
-        </div>
-        <div class="form-group row">
-            <?php
-            $manager = new TasaReteIcaOperaciones();
-            $categorias = $manager->getTasasReteIca();
-            $filas = count($categorias);
-            echo '<select name="idTasaIcaProv" id="idTasaIcaProv" class="form-control col-2"  required>';
-            echo '<option selected value="' . $proveedor['idTasaIcaProv'] . '">' . $proveedor['reteica'] . '</option>';
-            for ($i = 0; $i < $filas; $i++) {
-                if ($proveedor['idTasaIcaProv'] != $categorias[$i]["idTasaRetIca"]) {
-                    echo '<option value="' . $categorias[$i]["idTasaRetIca"] . '">' . $categorias[$i]['reteica'] . '</option>';
-                }
-            }
-            echo '</select>';
-            ?>
-            <?php
-            $manager = new TasaRetefuenteOperaciones();
-            $categorias = $manager->getTasasRetefuente();
-            $filas = count($categorias);
-            echo '<select name="idRetefuente" id="idRetefuente" class="form-control col-2"  required>';
-            echo '<option selected value="' . $proveedor['idRetefuente'] . '">' . $proveedor['retefuente'] . '</option>';
-            for ($i = 0; $i < $filas; $i++) {
-                if ($proveedor['idRetefuente'] != $categorias[$i]["idTasaRetefuente"]) {
-                    echo '<option value="' . $categorias[$i]["idTasaRetefuente"] . '">' . $categorias[$i]['retefuente'] . '</option>';
-                }
-            }
-            echo '</select>';
-            ?>
-            <select name="estProv" id="estProv" class="form-control col-2" required>
+            <select name="estProv" id="estProv" class="form-control col-2 mx-3" required>
                 <?php
                 if ($proveedor['estProv'] == 0) {
                     ?>
@@ -216,6 +126,97 @@ $proveedor = $ProveedorOperador->getProveedor($idProv);
                 }
                 ?>
             </select>
+        </div>
+        <div class="row">
+            <label class="col-form-label col-3 text-start mx-3"
+                   for="dirProv"><strong>Dirección</strong></label>
+            <label class="col-form-label col-3 text-start mx-3" for="contProv"><strong>Nombre
+                    Contacto</strong></label>
+            <label class="col-form-label col-1 text-start mx-3"
+                   for="telProv"><strong>Teléfono</strong></label>
+            <label class="col-form-label col-3 text-start mx-3" for="emailProv"><strong>Correo
+                    electrónico</strong></label>
+        </div>
+        <div class="form-group row">
+            <input type="text" class="form-control col-3 mx-3" name="dirProv" id="dirProv"
+                   value="<?= $proveedor['dirProv'] ?>">
+            <input type="text" class="form-control col-3 mx-3" name="contProv" id="contProv"
+                   value="<?= $proveedor['contProv'] ?>">
+            <input type="text" class="form-control col-1 mx-3" name="telProv" id="telProv"
+                   value="<?= $proveedor['telProv'] ?>"
+                   onkeydown="return aceptaNum(event)">
+            <input type="email" class="form-control col-3 mx-3" name="emailProv" id="emailProv"
+                   value="<?= $proveedor['emailProv'] ?>">
+        </div>
+        <div class="row">
+
+
+            <label class="col-form-label col-1 text-start mx-3" for="autoretProv"><strong>Autorretenedor</strong></label>
+            <label class="col-form-label col-2 text-start mx-3" for="regProv"><strong>Régimen Proveedor</strong></label>
+            <label class="col-form-label col-1 text-start mx-3" for="idTasaIcaProv"><strong>Tasa Reteica</strong></label>
+            <label class="col-form-label col-2 text-start mx-3" for="idRetefuente"><strong>Tasa Retefuente</strong></label>
+        </div>
+        <div class="form-group row">
+            <select name="autoretProv" id="autoretProv" class="form-control col-1 mx-3" required>
+                <?php
+                if ($proveedor['autoretProv'] == 0) {
+                    ?>
+                    <option value="0" selected>NO</option>
+                    <option value="1">SI</option>
+                    <?php
+                } else {
+                    ?>
+                    <option value="1" selected>SI</option>
+                    <option value="0">NO</option>
+                    <?php
+                }
+                ?>
+            </select>
+            <select name="regProv" id="regProv" class="form-control col-2 mx-3" required>
+                <?php
+                if ($proveedor['regProv'] == 0) {
+                    ?>
+                    <option value="0" selected>Simplificado</option>
+                    <option value="1">Común</option>
+                    <?php
+                } else {
+                    ?>
+                    <option value="1" selected>Común</option>
+                    <option value="0">Simplificado</option>
+                    <?php
+                }
+                ?>
+            </select>
+            <?php
+            $manager = new TasaReteIcaOperaciones();
+            $categorias = $manager->getTasasReteIca();
+            $filas = count($categorias);
+            echo '<select name="idTasaIcaProv" id="idTasaIcaProv" class="form-control col-1 mx-3"  required>';
+            echo '<option selected value="' . $proveedor['idTasaIcaProv'] . '">' . $proveedor['reteica'] . '</option>';
+            for ($i = 0; $i < $filas; $i++) {
+                if ($proveedor['idTasaIcaProv'] != $categorias[$i]["idTasaRetIca"]) {
+                    echo '<option value="' . $categorias[$i]["idTasaRetIca"] . '">' . $categorias[$i]['reteica'] . '</option>';
+                }
+            }
+            echo '</select>';
+            ?>
+            <?php
+            $manager = new TasaRetefuenteOperaciones();
+            $categorias = $manager->getTasasRetefuente();
+            $filas = count($categorias);
+            echo '<select name="idRetefuente" id="idRetefuente" class="form-control col-2 mx-3"  required>';
+            echo '<option selected value="' . $proveedor['idRetefuente'] . '">' . $proveedor['retefuente'] . '</option>';
+            for ($i = 0; $i < $filas; $i++) {
+                if ($proveedor['idRetefuente'] != $categorias[$i]["idTasaRetefuente"]) {
+                    echo '<option value="' . $categorias[$i]["idTasaRetefuente"] . '">' . $categorias[$i]['retefuente'] . '</option>';
+                }
+            }
+            echo '</select>';
+            ?>
+        </div>
+        <div class="row">
+        </div>
+        <div class="form-group row">
         </div>
         <div class="form-group row">
             <div class="col-2 text-center">

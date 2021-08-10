@@ -16,19 +16,22 @@ include "../includes/valAcc.php";
         }
 
         .width1 {
-            width: 10%;
+            width: 5%;
         }
 
         .width2 {
-            width: 20%;
+            width: 15%;
         }
 
         .width3 {
-            width: 30%;
+            width: 15%;
         }
 
         .width4 {
-            width: 40%;
+            width: 35%;
+        }
+        .width4 {
+            width: 30%;
         }
 
     </style>
@@ -102,6 +105,10 @@ include "../includes/valAcc.php";
                         "data": "nomPersonal",
                         "className": 'dt-body-center'
                     },
+                    {
+                        "data": "motivo_cambio",
+                        "className": 'dt-body-center'
+                    },
                 ],
                 "order": [[1, 'desc']],
                 "dom": 'Blfrtip',
@@ -165,6 +172,7 @@ include "../includes/valAcc.php";
                 <th class="width2 text-center">Cambio</th>
                 <th class="width3 text-center">Fecha cambio</th>
                 <th class="width4 text-center">Responsable</th>
+                <th class="width5 text-center">Motivo Cambio</th>
             </tr>
             </thead>
         </table>
