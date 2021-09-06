@@ -167,7 +167,7 @@ $cantidadPendiente = $EnvasadoOperador->getCantidadPorEnvasar($lote);
             </div>
         </div>
         <div class="form-group row">
-            <select name="codPresentacion" id="codPresentacion" class="form-control col-3" style="margin: 0 5px 0 0;">
+            <select name="codPresentacion" id="codPresentacion" class="form-control col-3" style="margin: 0 5px 0 0;" required>
                 <option selected disabled value="">------------------------------</option>
                 <?php
                 $presentaciones = $EnvasadoOperador->getPresentacionesPorEnvasar($lote);
@@ -177,7 +177,7 @@ $cantidadPendiente = $EnvasadoOperador->getCantidadPorEnvasar($lote);
                 ?>
             </select>
             <input type="text" style="margin: 0 5px 0 0;" class="form-control col-1" name="cantPresentacion"
-                   id="cantPresentacion" onkeydown="return aceptaNum(event)">
+                   id="cantPresentacion" onkeydown="return aceptaNum(event)" required>
             <div class="col-2 text-center" style="padding: 0 20px;">
                 <button class="button" type="button" onclick="return Enviar(this.form)"><span>Adicionar envasado</span>
                 </button>

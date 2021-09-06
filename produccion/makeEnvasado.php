@@ -38,7 +38,7 @@ try {
     //COMIENZA LA TRANSACCIÓN
     $link->beginTransaction();
     $volumenEnvasado = $EnvasadoOperador->getVolumenEnvasado($codPresentacion, $cantPresentacion);
-    if (($cantidadPendiente - $volumenEnvasado) < -($ordenProd['cantidadKg'] * 0.05 / ($ordenProd['densMin'] + $ordenProd['densMax']))) {
+    if (($cantidadPendiente - $volumenEnvasado) < -($ordenProd['cantidadKg'] *  2 * 0.15 / ($ordenProd['densMin'] + $ordenProd['densMax']))) {
         $link->rollBack();
         $_SESSION['lote'] = $lote;
         $ruta = "det_Envasado.php";
