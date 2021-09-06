@@ -14,18 +14,31 @@ function cargarClases($classname)
 }
 
 spl_autoload_register('cargarClases');
-
+?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <meta charset="utf-8">
+    <title>Actualizar datos de detalle orden de producción</title>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../js/validar.js"></script>
+</head>
+<body>
+<?php
 $EnvasadoOperador = new EnvasadoOperaciones();
 $presentacion = $EnvasadoOperador->getEnvasado($lote, $codPresentacion);
-
+$_SESSION['lote'] = $lote;
+$OProdOperador = new OProdOperaciones();
+$ordenProd = $OProdOperador->getOProd($lote);
 
 try {
     $cambio = $cantPresentacion - $cantidad_ant;
     $volumenEnvasado = $EnvasadoOperador->getVolumenEnvasado($codPresentacion, $cambio);
-    if (($cantidadPendiente - $volumenEnvasado) < -3) {
-        $_SESSION['lote'] = $lote;
+    if (($cantidadPendiente - $volumenEnvasado) < -($ordenProd['cantidadKg'] *  2 * 0.15 / ($ordenProd['densMin'] + $ordenProd['densMax']))) {
         $ruta = "det_Envasado.php";
         $mensaje = "No se puede envasar la presentación del producto, se necesita " . round($volumenEnvasado, 2) . " litros y sólo hay " . round($cantidadPendiente, 2) . " litros";
+        $icon = "warning";
         mover_pag($ruta, $mensaje, $icon);
     } else {
         //SE ACTUALIZA EL INVENTARIO
@@ -60,13 +73,17 @@ try {
         $mensaje = "Envasado actualizado correctamente";
         $_SESSION['lote'] = $lote;
         $ruta = "det_Envasado.php";
+        $icon = "success";
     }
 }catch (Exception $e) {
     $_SESSION['lote'] = $lote;
     $ruta = "det_Envasado.php";
     $mensaje = "Error al actualizar el envasado del producto";
+    $icon = "error";
 } finally {
     mover_pag($ruta, $mensaje, $icon);
 }
 
 ?>
+</body>
+</html>
