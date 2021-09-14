@@ -152,8 +152,7 @@ class PedidosOperaciones
         $qry = "SELECT t.codPresentacion, t.presentacion
                 FROM (SELECT pp.codPresentacion, pp.presentacion
                       FROM prodpre pp
-                      WHERE cotiza = 1
-                        AND presentacionActiva = 1) t
+                      WHERE presentacionActiva = 1) t
                          LEFT JOIN (SELECT codProducto FROM det_pedido WHERE idPedido = ?) dr1
                                    ON dr1.codProducto = t.codPresentacion
                 WHERE dr1.codProducto IS NULL
@@ -170,7 +169,7 @@ class PedidosOperaciones
         $qry = "SELECT idDistribucion, producto
                 FROM (SELECT d.idDistribucion, d.producto
                       FROM distribucion d
-                      WHERE cotiza = 1 AND activo =1) t
+                      WHERE activo =1) t
                          LEFT JOIN (SELECT codProducto FROM det_pedido WHERE idPedido = ?) dr1
                                    ON dr1.codProducto = t.idDistribucion
                 WHERE dr1.codProducto IS NULL
