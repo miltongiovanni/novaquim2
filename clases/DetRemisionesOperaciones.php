@@ -61,19 +61,19 @@ class DetRemisionesOperaciones
     }
     public function getTableDetRemisionFactura($idRemision)
     {
-        $qry = "SELECT CONCAT('003000', dr.codProducto) codigo, presentacion producto, SUM(cantProducto) cantProductoT, 1 orden
-                FROM det_remision dr
-                         LEFT JOIN prodpre p on dr.codProducto = p.codPresentacion
-                WHERE idRemision = $idRemision
-                  AND dr.codProducto < 100000  AND dr.codProducto > 10000
-                GROUP BY dr.codProducto, presentacion
+        $qry = "SELECT CONCAT('003000', p.codSiigo) codigo, presentacion producto, cantidad cantProductoT, 1 orden
+                FROM (SELECT SUM(cantProducto) cantidad, dr.codProducto
+                FROM det_remision dr 
+                WHERE  dr.codProducto < 100000  AND dr.codProducto > 10000 AND dr.idRemision=$idRemision
+                GROUP BY dr.codProducto) t
+                      LEFT JOIN prodpre p on t.codProducto = p.codPresentacion
                 UNION
-                SELECT CONCAT('003000', dr.codProducto) codigo, producto, cantProducto cantProductoT, 2 orden
+                SELECT CONCAT('003000', d.codSiigo) codigo, producto, cantProducto cantProductoT, 2 orden
                 FROM det_remision dr
-                         LEFT JOIN distribucion ON dr.codProducto = idDistribucion
+                      LEFT JOIN distribucion d ON dr.codProducto = idDistribucion
                 WHERE idRemision = $idRemision
-                  AND dr.codProducto > 100000
-                  ORDER BY orden, producto";
+                AND dr.codProducto > 100000
+                ORDER BY orden, producto";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
