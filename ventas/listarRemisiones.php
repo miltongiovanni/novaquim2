@@ -65,7 +65,7 @@ include "../includes/valAcc.php";
                 rep += '<tr>' +
                     '<td class="text-center">' + d.detRemision[i].codigo + '</td>' +
                     '<td class="text-start">' + d.detRemision[i].producto + '</td>' +
-                    '<td class="text-center">' + d.detRemision[i].cantProducto + '</td>' +
+                    '<td class="text-center">' + d.detRemision[i].cantProductoT + '</td>' +
                     '</tr>'
             }
 
