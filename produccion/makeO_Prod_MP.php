@@ -37,8 +37,8 @@ try {
     $OProdMPrimaOperador = new OProdMPrimaOperaciones();
     $loteMP = $OProdMPrimaOperador->getLastLote() + 1;
     $FormulaMPrimaOperador = new FormulasMPrimaOperaciones();
-    $codMPrima = $FormulaMPrimaOperador->getCodFormulaMPrima($idFormulaMPrima);
-    $datos = array($loteMP, $fechProd, $idFormulaMPrima, $cantKg, $codPersonal, $codMPrima);
+    $codMPrimaProd = $FormulaMPrimaOperador->getCodFormulaMPrima($idFormulaMPrima);
+    $datos = array($loteMP, $fechProd, $idFormulaMPrima, $cantKg, $codPersonal, $codMPrimaProd);
     $qry = "INSERT INTO ord_prod_mp (loteMP, fechProd, idFormMP, cantKg, codPersonal, codMPrima) VALUES (?, ?, ?, ?, ?, ?)";
     $stmt = $link->prepare($qry);
     $stmt->execute($datos);
@@ -93,6 +93,9 @@ try {
             }
         }
     }
+    $qryinsol="INSERT INTO inv_mprimas (loteMP, codMP, invMP, fechLote) VALUES ($loteMP, $codMPrimaProd, $cantKg, '$fechProd')";
+    $stmt = $link->prepare($qryinsol);
+    $stmt->execute();
     $link->commit();
     $_SESSION['loteMP'] = $loteMP;
     $ruta = "detO_Prod_mp.php";
