@@ -93,6 +93,9 @@ try {
             }
         }
     }
+    $qryinsol="INSERT INTO inv_mprimas (loteMP, codMP, invMP, fechLote) VALUES ($loteColor, $codColor, $cantKg, '$fechProd')";
+    $stmt = $link->prepare($qryinsol);
+    $stmt->execute();
     $link->commit();
     $_SESSION['loteColor'] = $loteColor;
     $ruta = "detO_Prod_col.php";
