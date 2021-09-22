@@ -53,7 +53,7 @@ class ProductosDistribucionOperaciones
         if ($actif == true) {
             $qry = "SELECT idDistribucion, producto FROM distribucion WHERE activo=1 ORDER BY producto;";
         } else {
-            $qry = "SELECT idDistribucion, producto FROM distribucion ORDER BY producto;";
+            $qry = "SELECT idDistribucion, producto FROM distribucion WHERE activo=0 ORDER BY producto;";
         }
 
         $stmt = $this->_pdo->prepare($qry);
@@ -121,6 +121,18 @@ class ProductosDistribucionOperaciones
         $qry = "UPDATE distribucion SET producto=?, codIva=?, precioVta=?, cotiza=?, activo=?, stockDis=? WHERE idDistribucion=?";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute($datos);
+    }
+    public function desactivarProductoDistribucion($idDistribucion)
+    {
+        $qry = "UPDATE distribucion SET activo=0 WHERE idDistribucion=?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($idDistribucion));
+    }
+    public function activarProductoDistribucion($idDistribucion)
+    {
+        $qry = "UPDATE distribucion SET activo=1 WHERE idDistribucion=?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($idDistribucion));
     }
 
     public function setDb()
