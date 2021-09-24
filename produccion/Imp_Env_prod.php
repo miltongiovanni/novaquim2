@@ -85,8 +85,8 @@ $pdf->Cell(50, 8, 'Cantidad ', 0, 1, 'C');
 $pdf->SetFont('Arial', '', 10);
 for($j=0; $j<count($presentaciones); $j++) {
     $pdf->Cell(25);
-    $pdf->Cell(20, 5, $presentaciones[$i]['codPresentacion'], 0, 0, 'C');
-    $pdf->Cell(100, 5, utf8_decode($presentaciones[$i]['presentacion']), 0, 0, 'R');
+    $pdf->Cell(20, 5, $presentaciones[$j]['codPresentacion'], 0, 0, 'C');
+    $pdf->Cell(100, 5, utf8_decode($presentaciones[$j]['presentacion']), 0, 0, 'R');
     $pdf->Cell(40, 5, '__________', 0, 0, 'C');
     $pdf->Ln(5);
 }
