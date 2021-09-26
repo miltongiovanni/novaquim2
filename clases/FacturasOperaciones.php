@@ -99,6 +99,49 @@ class FacturasOperaciones
         return $result;
     }
 
+    public function getTableFacturasPorFecha($fechaIni, $fechaFin)
+    {
+        $qry = "SELECT idFactura,
+                       nitCliente,
+                       nomCliente,
+                       fechaFactura,
+                       CONCAT('$', FORMAT(subtotal, 0))             subtotal,
+                       CONCAT('$', FORMAT(subtotal * descuento, 0)) descuentoF,
+                       CONCAT('$', FORMAT(iva, 0))                  iva,
+                       CONCAT('$', FORMAT(retencionFte, 0))         retencionFte,
+                       CONCAT('$', FORMAT(retencionIva, 0))         retencionIva,
+                       CONCAT('$', FORMAT(retencionIca, 0))         retencionIca,
+                       CONCAT('$', FORMAT(total, 0))                total,
+                       CONCAT('$', FORMAT(totalR, 0))               totalR
+                FROM factura f
+                         LEFT JOIN clientes c on f.idCliente = c.idCliente
+                WHERE fechaFactura >= ?
+                  AND fechaFactura <= ?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($fechaIni, $fechaFin));
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+
+    public function getTotalesFacturasPorFecha($fechaIni, $fechaFin)
+    {
+        $qry = "SELECT CONCAT('$', FORMAT(SUM(subtotal), 0))             subtotalPeriodo,
+                       CONCAT('$', FORMAT(SUM(subtotal * descuento), 0)) descuentoPeriodo,
+                       CONCAT('$', FORMAT(SUM(iva), 0))                  ivaPeriodo,
+                       CONCAT('$', FORMAT(SUM(total), 0))                totalPeriodo,
+                       CONCAT('$', FORMAT(SUM(retencionFte), 0))         retefuentePeriodo,
+                       CONCAT('$', FORMAT(SUM(retencionIva), 0))         reteivaPeriodo,
+                       CONCAT('$', FORMAT(SUM(retencionIca), 0))         reteicaPeriodo
+                FROM factura
+                WHERE fechaFactura >= ?
+                  AND fechaFactura <= ?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($fechaIni, $fechaFin));
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     public function getDetClienteFactura($idFactura)
     {
         $qry = "SELECT idFactura, idCatCliente, nomCliente,ciudadCliente, retIva, retIca, retFte, codVendedor, retCree, fchCreacionCliente, exenIva

@@ -41,6 +41,50 @@ class ComprasOperaciones
         return $result;
     }
 
+    public function getTableComprasPorFecha($fechaIni, $fechaFin)
+    {
+        $qry = "SELECT idCompra,
+                       nitProv,
+                       nomProv,
+                       numFact,
+                       tc.tipoComp,
+                       fechComp,
+                       CONCAT('$', FORMAT(subtotalCompra, 0))                                 subtotalCompra,
+                       CONCAT('$', FORMAT(ivaCompra, 0))                                      ivaCompra,
+                       CONCAT('$', FORMAT(retefuenteCompra, 0))                               retefuenteCompra,
+                       CONCAT('$', FORMAT(reteicaCompra, 0))                                  reteicaCompra,
+                       CONCAT('$', FORMAT(totalCompra, 0))                                    totalCompra,
+                       CONCAT('$', FORMAT(totalCompra - retefuenteCompra - reteicaCompra, 0)) vreal
+                FROM compras
+                         LEFT JOIN proveedores p on compras.idProv = p.idProv
+                         LEFT JOIN tip_compra tc on compras.tipoCompra = tc.idTipo
+                WHERE fechComp >= ?
+                  AND fechComp <= ?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($fechaIni, $fechaFin));
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+
+    public function getTotalesComprasPorFecha($fechaIni, $fechaFin)
+    {
+        $qry = "SELECT
+                       CONCAT('$', FORMAT(SUM(subtotalCompra), 0))                                 subtotalPeriodo,
+                       CONCAT('$', FORMAT(SUM(ivaCompra), 0))                                      ivaPeriodo,
+                       CONCAT('$', FORMAT(SUM(totalCompra), 0))                                    totalPeriodo,
+                       CONCAT('$', FORMAT(SUM(retefuenteCompra), 0))                               retefuentePeriodo,
+                       CONCAT('$', FORMAT(SUM(reteicaCompra), 0))                                  reteicaPeriodo
+                FROM compras
+                WHERE fechComp >= ?
+                  AND fechComp <= ?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($fechaIni, $fechaFin));
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+
     public function getCompra($idCompra, $tipoCompra)
     {
         $qry = "SELECT idCompra,
@@ -97,10 +141,9 @@ class ComprasOperaciones
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute(array($idCompra));
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        if($result==false){
+        if ($result == false) {
             return false;
-        }
-        else{
+        } else {
             return true;
         }
     }

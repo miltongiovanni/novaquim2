@@ -40,6 +40,49 @@ class GastosOperaciones
         return $result;
     }
 
+
+    public function getTableGastosPorFecha($fechaIni, $fechaFin)
+    {
+        $qry = "SELECT idGasto,
+                       nitProv,
+                       nomProv,
+                       numFact,
+                       fechGasto,
+                       CONCAT('$', FORMAT(subtotalGasto, 0))                                 subtotalGasto,
+                       CONCAT('$', FORMAT(ivaGasto, 0))                                      ivaGasto,
+                       CONCAT('$', FORMAT(retefuenteGasto, 0))                               retefuenteGasto,
+                       CONCAT('$', FORMAT(reteicaGasto, 0))                                  reteicaGasto,
+                       CONCAT('$', FORMAT(totalGasto, 0))                                    totalGasto,
+                       CONCAT('$', FORMAT(totalGasto - retefuenteGasto - reteicaGasto, 0)) vreal
+                FROM gastos
+                         LEFT JOIN proveedores p on gastos.idProv = p.idProv
+                WHERE fechGasto >= ?
+                  AND fechGasto <= ?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($fechaIni, $fechaFin));
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+
+    public function getTotalesGastosPorFecha($fechaIni, $fechaFin)
+    {
+        $qry = "SELECT
+                       CONCAT('$', FORMAT(SUM(subtotalGasto), 0))                                 subtotalPeriodo,
+                       CONCAT('$', FORMAT(SUM(ivaGasto), 0))                                      ivaPeriodo,
+                       CONCAT('$', FORMAT(SUM(totalGasto), 0))                                    totalPeriodo,
+                       CONCAT('$', FORMAT(SUM(retefuenteGasto), 0))                               retefuentePeriodo,
+                       CONCAT('$', FORMAT(SUM(reteicaGasto), 0))                                  reteicaPeriodo
+                FROM gastos
+                WHERE fechGasto >= ?
+                  AND fechGasto <= ?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($fechaIni, $fechaFin));
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+
     public function getGasto($idGasto)
     {
         $qry = "SELECT idGasto, gastos.idProv, nitProv, nomProv, numFact, fechGasto, fechVenc, estadoGasto, descEstado, CONCAT('$', FORMAT(totalGasto, 0)) totalGasto,
