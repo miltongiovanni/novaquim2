@@ -68,7 +68,7 @@ for($i=0; $i<count($detalle); $i++)
 {
 	$codprod=$detalle[$i]['codigo'];
 	$prod=$detalle[$i]['producto'];
-	$cant=$detalle[$i]['cantProducto'];
+	$cant=$detalle[$i]['cantProductoT'];
 	$pdf->Cell(10,3,$i+1,'L',0,'C');
 	$pdf->Cell(25,3,$codprod,'L',0,'C');
 	$pdf->Cell(130,3,utf8_decode($prod),'LR',0,'L');
@@ -147,7 +147,7 @@ for($i=0; $i<count($detalle); $i++)
 {
 	$codprod=$detalle[$i]['codigo'];
 	$prod=$detalle[$i]['producto'];
-	$cant=$detalle[$i]['cantProducto'];
+	$cant=$detalle[$i]['cantProductoT'];
 	$pdf->Cell(10,3,$i+1,'L',0,'C');
 	$pdf->Cell(25,3,$codprod,'L',0,'C');
 	$pdf->Cell(130,3,utf8_decode($prod),'LR',0,'L');
