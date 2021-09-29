@@ -37,8 +37,8 @@ class DetFacturaOperaciones
                        presentacion as                         producto,
                        cantProducto,
                        CONCAT(ROUND( tasaIva*100, 0), ' %')   iva,
-                       CONCAT('$ ', FORMAT(precioProducto, 0)) precioProducto,
-                       CONCAT('$ ', FORMAT(precioProducto*cantProducto, 0)) subtotal,
+                       CONCAT('$ ', FORMAT(precioProducto, 2)) precioProducto,
+                       CONCAT('$ ', FORMAT(precioProducto*cantProducto, 2)) subtotal,
                        1 orden
                 FROM det_factura dp
                          LEFT JOIN prodpre p on dp.codProducto = p.codPresentacion
@@ -51,8 +51,8 @@ class DetFacturaOperaciones
                        producto as                            producto,
                        cantProducto,
                        CONCAT(ROUND( tasaIva*100, 0), ' %')  iva,
-                       CONCAT('$', FORMAT(precioProducto, 0)) precioProducto,
-                       CONCAT('$ ', FORMAT(precioProducto*cantProducto, 0)) subtotal,
+                       CONCAT('$', FORMAT(precioProducto, 2)) precioProducto,
+                       CONCAT('$ ', FORMAT(precioProducto*cantProducto, 2)) subtotal,
                        2 orden
                 FROM det_factura dp
                          LEFT JOIN distribucion d on dp.codProducto = d.idDistribucion
@@ -64,8 +64,8 @@ class DetFacturaOperaciones
                        desServicio as                        producto,
                        cantProducto,
                        CONCAT(ROUND( tasaIva*100, 0), ' %') iva,
-                       CONCAT('$', FORMAT(precioProducto, 0)) precioProducto,
-                       CONCAT('$ ', FORMAT(precioProducto*cantProducto, 0)) subtotal,
+                       CONCAT('$', FORMAT(precioProducto, 2)) precioProducto,
+                       CONCAT('$ ', FORMAT(precioProducto*cantProducto, 2)) subtotal,
                        3 orden
                 FROM det_factura dp
                          LEFT JOIN servicios s on dp.codProducto = s.idServicio
@@ -544,22 +544,22 @@ class DetFacturaOperaciones
 
     public function getTableDetFactura($idFactura)
     {
-        $qry = "SELECT dcp.codProducto, p.presentacion producto, cantProducto, CONCAT('$', FORMAT(precioProducto, 0)) precioProducto,
-                       CONCAT('$', FORMAT(precioProducto*cantProducto, 0)) subtotal, 1 orden
+        $qry = "SELECT dcp.codProducto, p.presentacion producto, cantProducto, CONCAT('$', FORMAT(precioProducto, 2)) precioProducto,
+                       CONCAT('$', FORMAT(precioProducto*cantProducto, 2)) subtotal, 1 orden
                 FROM det_factura dcp
                          LEFT JOIN prodpre p on dcp.codProducto = p.codPresentacion
                 WHERE idFactura = $idFactura
                   AND dcp.codProducto < 100000 AND dcp.codProducto > 10000
                 UNION
-                SELECT dcp.codProducto, producto, cantProducto, CONCAT('$', FORMAT(precioProducto, 0)) precioProducto,
-                       CONCAT('$', FORMAT(precioProducto*cantProducto, 0)) subtotal, 2 orden
+                SELECT dcp.codProducto, producto, cantProducto, CONCAT('$', FORMAT(precioProducto, 2)) precioProducto,
+                       CONCAT('$', FORMAT(precioProducto*cantProducto, 2)) subtotal, 2 orden
                 FROM det_factura dcp
                          LEFT JOIN distribucion d on dcp.codProducto = d.idDistribucion
                 WHERE idFactura = $idFactura
                   AND dcp.codProducto >= 100000
                 UNION
-                SELECT dcp.codProducto, s.desServicio producto, cantProducto, CONCAT('$', FORMAT(precioProducto, 0)) precioProducto,
-                       CONCAT('$', FORMAT(precioProducto*cantProducto, 0)) subtotal, 3 orden
+                SELECT dcp.codProducto, s.desServicio producto, cantProducto, CONCAT('$', FORMAT(precioProducto, 2)) precioProducto,
+                       CONCAT('$', FORMAT(precioProducto*cantProducto, 2)) subtotal, 3 orden
                 FROM det_factura dcp
                          LEFT JOIN servicios s on dcp.codProducto = s.idServicio
                 WHERE idFactura = $idFactura
@@ -573,7 +573,7 @@ class DetFacturaOperaciones
 
  public function getTotalFactura($idFactura)
     {
-        $qry = "SELECT CONCAT('$', FORMAT(SUM(cantProducto*precioProducto), 0)) totalFactura
+        $qry = "SELECT CONCAT('$', FORMAT(SUM(cantProducto*precioProducto), 2)) totalFactura
                 FROM det_factura dp
                 WHERE dp.idFactura= ?";
         $stmt = $this->_pdo->prepare($qry);
