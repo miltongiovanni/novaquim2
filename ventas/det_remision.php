@@ -84,7 +84,7 @@ $remision = $remisionOperador->getRemision($idRemision);
                         "className": 'dt-body-left'
                     },
                     {
-                        "data": "cantProducto",
+                        "data": "cantProductoT",
                         "className": 'dt-body-center'
                     },
                 ],
