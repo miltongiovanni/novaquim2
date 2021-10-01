@@ -37,12 +37,12 @@ try {
     //SE ACTUALIZA EL INVENTARIO
     $InvProdTerminadoOperador = new InvProdTerminadosOperaciones();
     $invProd = $InvProdTerminadoOperador->getInvByLoteAndProd($codPresentacionNvo, $loteProd);
-    if ($invProd > 0) {
+    if ($invProd !== false) {
         $invProdNvo = $invProd + $cantPresentacionNvo;
         $datos = array($invProdNvo, $codPresentacionNvo, $loteProd);
         $InvProdTerminadoOperador->updateInvProdTerminado($datos);
     } else {
-        $datos = array($codPresentacionNvo, $loteProd, $invProdNvo);
+        $datos = array($codPresentacionNvo, $loteProd, $cantPresentacionNvo);
         $InvProdTerminadoOperador->makeInvProdTerminado($datos);
     }
 
