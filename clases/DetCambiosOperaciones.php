@@ -84,7 +84,7 @@ class DetCambiosOperaciones
                 FROM prodpre
                          LEFT JOIN medida m on prodpre.codMedida = m.idMedida
                 WHERE codProducto=(SELECT codProducto FROM prodpre WHERE codPresentacion=$codPresentacion)
-                  AND m.cantMedida<$volCambiar
+                  AND m.cantMedida<=$volCambiar
                   AND presentacionActiva=1) t
                 LEFT JOIN det_cambios2 dc2 ON t.codPresentacion=dc2.codPresentacionNvo AND dc2.idCambio=$idCambio
                 WHERE dc2.codPresentacionNvo IS NULL";
