@@ -16,11 +16,11 @@ include "../includes/valAcc.php";
         }
 
         .width1 {
-            width: 1%;
+            width: 2%;
         }
 
         .width2 {
-            width: 27%;
+            width: 23%;
         }
 
         .width3 {
@@ -28,7 +28,7 @@ include "../includes/valAcc.php";
         }
 
         .width4 {
-            width: 14%;
+            width: 12%;
         }
 
         .width5 {
@@ -36,30 +36,29 @@ include "../includes/valAcc.php";
         }
 
         .width6 {
-            width: 7%;
+            width: 6%;
         }
 
         .width7 {
-            width: 9%;
+            width: 8%;
         }
 
         .width8 {
-            width: 17%;
+            width: 16%;
         }
 
         .width9 {
             width: 6%;
         }
 
+        .width10 {
+            width: 8%;
+        }
+
 
     </style>
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/datatables.js"></script>
-    <script src="../js/dataTables.buttons.js"></script>
-    <script src="../js/jszip.js"></script>
-    <!--<script src="../js/pdfmake.js"></script>-->  <!--Para exportar PDF-->
-    <!--<script src="../js/vfs_fonts.js"></script>--> <!--Para exportar PDF-->
-    <script src="../js/buttons.html5.js"></script>
 
     <script>
         /* Formatting function for row details - modify as you need */
@@ -145,14 +144,21 @@ include "../includes/valAcc.php";
                         "data": "totalSaldoFormat",
                         "className": 'dt-body-right'
                     },
+                    {
+                        "orderable": false,
+                        "data": function (row) {
+                            let rep = '<form action="XlsFactXcobrarAc.php" method="post" name="export">' +
+                                '          <input name="idCliente" type="hidden" value="' + row.idCliente + '">' +
+                                '          <input name="nomCliente" type="hidden" value="' + row.nomCliente + '">' +
+                                '          <input type="button" name="Submit" onclick="return Enviar(this.form)" class="formatoBoton1"  value="Exportar a Excel">' +
+                                '       </form>'
+                            return rep;
+                        },
+                        "className": 'dt-body-center',
+                    },
                 ],
                 "order": [[8, 'desc']],
                 "deferRender": true,  //For speed
-                "dom": 'Blfrtip',
-                "buttons": [
-                    'copyHtml5',
-                    'excelHtml5'
-                ],
                 "lengthMenu": [[20, 50, 100, -1], [20, 50, 100, "All"]],
                 "language": {
                     "lengthMenu": "Mostrando _MENU_ datos por página",
@@ -212,6 +218,7 @@ include "../includes/valAcc.php";
                 <th class="width7 text-center">Celular</th>
                 <th class="width8 text-center">Dirección</th>
                 <th class="width9 text-center">Total adeucado</th>
+                <th class="width10 text-center">Total adeucado</th>
             </tr>
             </thead>
         </table>
