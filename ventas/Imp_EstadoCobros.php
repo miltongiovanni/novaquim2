@@ -1,6 +1,7 @@
 <?php
 session_start();
 require '../includes/fpdf.php';
+
 function cargarClases($classname)
 {
 	require '../clases/' . $classname . '.php';
@@ -8,8 +9,7 @@ function cargarClases($classname)
 
 spl_autoload_register('cargarClases');
 $RecCajaOperador = new RecCajaOperaciones();
-$facturas = $RecCajaOperador->getTableRecCajas();
-//$remision=$_POST['remision'];
+$facturas = $RecCajaOperador->getTableFacturasXcobrar();
 $pdf=new FPDF('L','mm','Letter');
 $pdf->AliasNbPages();
 $pdf->AddPage();
