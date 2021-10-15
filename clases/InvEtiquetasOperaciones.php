@@ -32,7 +32,7 @@ class InvEtiquetasOperaciones
         $stmt->execute(array($codEtiq));
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($result == null) {
-            return 0;
+            return $result;
         } else {
             return $result['invEtiq'];
         }
