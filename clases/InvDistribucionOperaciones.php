@@ -49,7 +49,7 @@ class InvDistribucionOperaciones
         $stmt->execute(array($codDistribucion));
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($result == null) {
-            return 0;
+            return $result;
         } else {
             return $result['invListo'];
         }

@@ -32,7 +32,7 @@ class InvTapasOperaciones
         $stmt->execute(array($codTapa));
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($result == null) {
-            return 0;
+            return $result;
         } else {
             return $result['invTapa'];
         }
