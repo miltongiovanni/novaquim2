@@ -8,7 +8,7 @@ function cargarClases($classname)
 spl_autoload_register('cargarClases');
 $idCliente= $_GET['idCliente'];
 $pedidoOperador = new PedidosOperaciones();
-$pedidos = $pedidoOperador->getTablePedidosPendientes($idCliente);
+$pedidos = $pedidoOperador->getTablePedidosCliente($idCliente);
 $detPedidoOperador = new DetPedidoOperaciones();
 for($i=0;$i<count($pedidos); $i++){
     $pedidos[$i]['detPedido']= $detPedidoOperador->getDetPedido($pedidos[$i]['idPedido']);
