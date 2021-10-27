@@ -246,7 +246,7 @@ class PedidosOperaciones
                          LEFT JOIN clientes c on c.idCliente = p.idCliente
                          LEFT JOIN clientes_sucursal cs on p.idCliente = cs.idCliente AND p.idSucursal = cs.idSucursal
                          LEFT JOIN tip_precio tp ON p.tipoPrecio = tp.idPrecio
-                 WHERE p.estado='A'
+                 WHERE c.idCliente=$idCliente
                  ";
 
         $stmt = $this->_pdo->prepare($qry);
