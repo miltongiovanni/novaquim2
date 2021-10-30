@@ -45,7 +45,7 @@ try {
             $nvoInvDistribucion = $invDistribucion - $cantProducto;
             $datos = array($nvoInvDistribucion, $codProducto);
             $invDistribucionOperador->updateInvDistribucion($datos);
-            $datos = array($idRemision, $codProducto, $cantProducto, 0);
+            $datos = array($idRemision, $codProducto, $cantProducto, 0, $precioProducto);
             $detRemisionOperador->makeDetRemision($datos);
             $_SESSION['idRemision'] = $idRemision;
             $ruta = "det_remision.php";
@@ -69,8 +69,8 @@ try {
                 $lote = $invProdTerminado[$i]['loteProd'];
                 if ($inv >= $unidades) {
                     $nvoInv = $inv - $unidades;
-                    $datos = array($idRemision, $codProducto, $unidades, $lote);
-                    $detRemisionOperador->makeDetRemisionFactura($datos);
+                    $datos = array($idRemision, $codProducto, $unidades, $lote, $precioProducto);
+                    $detRemisionOperador->makeDetRemision($datos);
                     $unidades = 0;
                     $datos = array($nvoInv, $codProducto, $lote);
                     $invProdTerminadoOperador->updateInvProdTerminado($datos);
@@ -79,7 +79,7 @@ try {
                     $unidades = $unidades - $inv;
                     $datos = array(0, $codProducto, $lote);
                     $invProdTerminadoOperador->updateInvProdTerminado($datos);
-                    $datos = array($idRemision, $codProducto, $inv, $lote);
+                    $datos = array($idRemision, $codProducto, $inv, $lote, $precioProducto);
                     $detRemisionOperador->makeDetRemision($datos);
                 }
             }

@@ -20,6 +20,7 @@ function cargarClases($classname)
 spl_autoload_register('cargarClases');
 
 $remisionOperador = new RemisionesOperaciones();
+$remisionOperador->updateTotalRemision($idRemision);
 $remision = $remisionOperador->getRemisionById($idRemision);
 //
 ?>
@@ -110,11 +111,15 @@ $remision = $remisionOperador->getRemisionById($idRemision);
                     },
                     {
                         "data": "producto",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-left'
                     },
                     {
                         "data": "cantProducto",
                         "className": 'dt-body-center'
+                    },
+                    {
+                        "data": "precioProducto",
+                        "className": 'dt-body-left'
                     },
                     {
                         "data": function (row) {
@@ -173,12 +178,13 @@ $remision = $remisionOperador->getRemisionById($idRemision);
     <form method="post" action="makeDetRemision.php" name="form1">
         <input name="idRemision" type="hidden" value="<?= $idRemision; ?>">
         <div class="row">
-            <div class="col-4 text-center" style="margin: 0 5px;"><strong>Productos Novaquim</strong></div>
-            <div class="col-1 text-center" style="margin: 0 5px;"><strong>Unidades</strong></div>
-            <div class="col-2 text-center"></div>
+            <div class="col-4 text-center mx-3" ><strong>Productos Novaquim</strong></div>
+            <div class="col-1 text-center mx-3" ><strong>Unidades</strong></div>
+            <div class="col-1 text-center mx-3" ><strong>Precio</strong></div>
+            <div class="col-2 text-center mx-3"></div>
         </div>
         <div class="form-group row">
-            <select name="codProducto" id="codProducto" class="form-control col-4 me-3">
+            <select name="codProducto" id="codProducto" class="form-control col-4 mx-3">
                 <option selected disabled value="">Escoja un producto Novaquim</option>
                 <?php
                 $productos = $remisionOperador->getProdTerminadosByIdRemision($idRemision);
@@ -188,9 +194,11 @@ $remision = $remisionOperador->getRemisionById($idRemision);
                 }
                 ?>
             </select>
-            <input type="text" style="margin: 0 5px 0 0;" class="form-control col-1" name="cantProducto"
+            <input type="text" class="form-control col-1 mx-3" name="cantProducto"
                    id="cantProducto" onkeydown="return aceptaNum(event)">
-            <div class="col-2 text-center" style="padding: 0 20px;">
+            <input type="text" class="form-control col-1 mx-3" name="precioProducto"
+                   id="precioProducto" onkeydown="return aceptaNum(event)">
+            <div class="col-2 text-center mx-3" >
                 <button class="button" type="button" onclick="return Enviar(this.form)"><span>Adicionar detalle</span>
                 </button>
             </div>
@@ -199,12 +207,13 @@ $remision = $remisionOperador->getRemisionById($idRemision);
     <form method="post" action="makeDetRemision.php" name="form1">
         <input name="idRemision" type="hidden" value="<?= $idRemision; ?>">
         <div class="row">
-            <div class="col-4 text-center" style="margin: 0 5px;"><strong>Productos Distribucion</strong></div>
-            <div class="col-1 text-center" style="margin: 0 5px;"><strong>Unidades</strong></div>
-            <div class="col-2 text-center"></div>
+            <div class="col-4 text-center mx-3" ><strong>Productos Distribucion</strong></div>
+            <div class="col-1 text-center mx-3" ><strong>Unidades</strong></div>
+            <div class="col-1 text-center mx-3" ><strong>Precio</strong></div>
+            <div class="col-2 text-center mx-3"></div>
         </div>
         <div class="form-group row">
-            <select name="codProducto" id="codProducto" class="form-control col-4 me-3">
+            <select name="codProducto" id="codProducto" class="form-control col-4 mx-3">
                 <option selected disabled value="">Escoja un producto de distribución</option>
                 <?php
                 $productos = $remisionOperador->getProdDistribucionByIdRemision($idRemision);
@@ -214,9 +223,11 @@ $remision = $remisionOperador->getRemisionById($idRemision);
                 }
                 ?>
             </select>
-            <input type="text" style="margin: 0 5px 0 0;" class="form-control col-1" name="cantProducto"
+            <input type="text" class="form-control col-1 mx-3" name="cantProducto"
                    id="cantProducto" onkeydown="return aceptaNum(event)">
-            <div class="col-2 text-center" style="padding: 0 20px;">
+            <input type="text" class="form-control col-1 mx-3" name="precioProducto"
+                   id="precioProducto" onkeydown="return aceptaNum(event)">
+            <div class="col-2 text-center mx-3">
                 <button class="button" type="button" onclick="return Enviar(this.form)"><span>Adicionar detalle</span>
                 </button>
             </div>
@@ -233,10 +244,20 @@ $remision = $remisionOperador->getRemisionById($idRemision);
                 <th class="width2">Código</th>
                 <th class="width3">Producto</th>
                 <th class="width4">Cantidad</th>
-                <th class="width5"></th>
+                <th class="width5">Precio</th>
+                <th class="width6"></th>
             </tr>
             </thead>
         </table>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-2">
+            <form action="Imp_Remision1.php" method="post" target="_blank">
+                <input name="idRemision" type="hidden" value="<?php echo $idRemision ?>">
+                <button name="Submit" type="submit" class="button"><span>Imprimir Remisión</span></button>
+            </form>
+        </div>
     </div>
     <div class="row">
         <div class="col-1">
