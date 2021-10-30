@@ -11,7 +11,7 @@ class DetRemisionesOperaciones
 
     public function makeDetRemision($datos)
     {
-        $qry = "INSERT INTO det_remision1 (idRemision, codProducto, cantProducto, loteProducto) VALUES (?, ?, ?, ?)";
+        $qry = "INSERT INTO det_remision1 (idRemision, codProducto, cantProducto, loteProducto, precioProducto) VALUES (?, ?, ?, ?, ?)";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute($datos);
         return $this->_pdo->lastInsertId();
@@ -42,14 +42,14 @@ class DetRemisionesOperaciones
 
     public function getTableDetRemisiones($idRemision)
     {
-        $qry = "SELECT dr1.codProducto, presentacion producto, SUM(cantProducto) cantProducto
+        $qry = "SELECT dr1.codProducto, presentacion producto, SUM(cantProducto) cantProducto, CONCAT('$ ', FORMAT(precioProducto, 0)) precioProducto
                 FROM det_remision1 dr1
                          LEFT JOIN prodpre p on dr1.codProducto = p.codPresentacion
                 WHERE idRemision = $idRemision
                   AND dr1.codProducto < 100000 
-                GROUP BY dr1.codProducto, presentacion
+                GROUP BY dr1.codProducto, presentacion, precioProducto
                 UNION
-                SELECT dr1.codProducto, producto, cantProducto
+                SELECT dr1.codProducto, producto, cantProducto, CONCAT('$ ', FORMAT(precioProducto, 0)) precioProducto
                 FROM det_remision1 dr1
                          LEFT JOIN distribucion ON dr1.codProducto = idDistribucion
                 WHERE idRemision = $idRemision
@@ -159,14 +159,14 @@ class DetRemisionesOperaciones
 
     public function getDetTotalRemision($idRemision, $codProducto)
     {
-        $qry = "SELECT dr1.codProducto, presentacion producto, SUM(cantProducto) cantProducto
+        $qry = "SELECT dr1.codProducto, presentacion producto, SUM(cantProducto) cantProducto, dr1.precioProducto
                 FROM det_remision1 dr1
                          LEFT JOIN prodpre p on dr1.codProducto = p.codPresentacion
                 WHERE idRemision = $idRemision
                   AND dr1.codProducto < 100000 AND dr1.codProducto=$codProducto
-                GROUP BY dr1.codProducto, presentacion
+                GROUP BY dr1.codProducto, presentacion, precioProducto
                 UNION
-                SELECT dr1.codProducto, producto, cantProducto
+                SELECT dr1.codProducto, producto, cantProducto, dr1.precioProducto
                 FROM det_remision1 dr1
                          LEFT JOIN distribucion ON dr1.codProducto = idDistribucion
                 WHERE idRemision = $idRemision
@@ -179,7 +179,7 @@ class DetRemisionesOperaciones
 
     public function updateDetRemision($datos)
     {
-        $qry = "UPDATE det_remision1 SET cantProducto=?  WHERE idRemision=? AND codProducto=? AND loteProducto=?";
+        $qry = "UPDATE det_remision1 SET cantProducto=?, precioProducto=?  WHERE idRemision=? AND codProducto=? AND loteProducto=?";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute($datos);
     }

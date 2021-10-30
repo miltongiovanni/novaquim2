@@ -29,7 +29,7 @@ foreach ($_POST as $nombre_campo => $valor) {
 </head>
 <body>
 <?php
-$datos = array($cliente, $fechaRemision, $valor);
+$datos = array($cliente, $fechaRemision);
 $RemisionOperador = new RemisionesOperaciones();
 
 try {

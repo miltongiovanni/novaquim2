@@ -22,6 +22,7 @@ spl_autoload_register('cargarClases');
 $idRemision = $_POST['idRemision'];
 $codProducto = $_POST['codProducto'];
 $cantProducto = $_POST['cantProducto'];
+$precioProducto = $_POST['precioProducto'];
 $remisionOperador = new RemisionesOperaciones();
 $detRemisionOperador = new DetRemisionesOperaciones();
 $invProdTerminadoOperador = new InvProdTerminadosOperaciones();
@@ -31,10 +32,10 @@ $invDistribucionOperador = new InvDistribucionOperaciones();
 try {
     $detalle = $detRemisionOperador->getDetTotalRemision($idRemision, $codProducto);
     $cantProductoAnt = $detalle['cantProducto'];
+    $diffCantidad = $cantProducto - $cantProductoAnt;
     if ($codProducto < 100000) {
         //PRODUCTOS DE LA EMPRESA
-        $diffCantidad = $cantProducto - $cantProductoAnt;
-        if ($diffCantidad >= 0) {
+        if ($diffCantidad > 0) {
             $invTotalProd = $invProdTerminadoOperador->getInvTotalProdTerminado($codProducto);
             if ($diffCantidad > $invTotalProd) {
                 $_SESSION['idRemision'] = $idRemision;
@@ -49,7 +50,7 @@ try {
                     $lote = $invProdTerminado[$i]['loteProd'];
                     if ($inv >= $unidades) {
                         $nvoInv = $inv - $unidades;
-                        $datos = array($idRemision, $codProducto, $unidades, $lote);
+                        $datos = array($idRemision, $codProducto, $unidades, $lote, $precioProducto);
                         $detRemisionOperador->makeDetRemision($datos);
                         $unidades = 0;
                         $datos = array($nvoInv, $codProducto, $lote);
@@ -59,7 +60,7 @@ try {
                         $unidades -= $inv;
                         $datos = array(0, $codProducto, $lote);
                         $invProdTerminadoOperador->updateInvProdTerminado($datos);
-                        $datos = array($idRemision, $codProducto, $inv, $lote);
+                        $datos = array($idRemision, $codProducto, $inv, $lote, $precioProducto);
                         $detRemisionOperador->makeDetRemision($datos);
                     }
                 }
@@ -76,11 +77,11 @@ try {
             for ($i = (count($productos) - 1); $i > 0; $i--) {
                 $loteProducto = $productos[$i]['loteProducto'];
                 $cantProducto = $productos[$i]['cantProducto'];
-                $codProducto= $productos[$i]['codProducto'];
-                $invActual = $invProdTerminadoOperador->getInvByLoteAndProd($codProducto,$loteProducto);
+                $codProducto = $productos[$i]['codProducto'];
+                $invActual = $invProdTerminadoOperador->getInvByLoteAndProd($codProducto, $loteProducto);
                 if ($cantProducto >= $diff) {
                     $nvaCantidad = $cantProducto - $diff;
-                    $datos = array($nvaCantidad, $idRemision, $codProducto, $loteProducto);
+                    $datos = array($nvaCantidad, $precioProducto, $idRemision, $codProducto, $loteProducto);
                     $detRemisionOperador->updateDetRemision($datos);
                     $nvoInv = $invActual + $diff;
                     $datos = array($nvoInv, $codProducto, $loteProducto);
@@ -95,12 +96,33 @@ try {
                     $invProdTerminadoOperador->updateInvProdTerminado($datos);
 
                 }
-                $_SESSION['idRemision'] = $idRemision;
-                $ruta = "det_remision.php";
-                $mensaje = "Detalle de la remisión actualizado con éxito";
-                $icon = "success";
             }
+            $_SESSION['idRemision'] = $idRemision;
+            $ruta = "det_remision.php";
+            $mensaje = "Detalle de la remisión actualizado con éxito";
+            $icon = "success";
         }
+    } else {
+        //PRODUCTOS DE DISTRIBUCIÓN
+        $invDistribucionOperador = new InvDistribucionOperaciones();
+        $invDistribucion = $invDistribucionOperador->getInvDistribucion($codProducto);
+        if ($diffCantidad > $invDistribucion) {
+            $_SESSION['idRemision'] = $idRemision;
+            $ruta = "det_remision.php";
+            $mensaje = "No hay inventario suficiente";
+            $icon = "warning";
+        } else {
+            $nvoInvDistribucion = $invDistribucion - $diffCantidad;
+            $datos = array($nvoInvDistribucion, $codProducto);
+            $invDistribucionOperador->updateInvDistribucion($datos);
+            $datos = array($cantProducto, $precioProducto, $idRemision, $codProducto,0);
+            $detRemisionOperador->updateDetRemision($datos);
+            $_SESSION['idRemision'] = $idRemision;
+            $ruta = "det_remision.php";
+            $mensaje = "Detalle de la remisión actualizado con éxito";
+            $icon = "success";
+        }
+
     }
 
 } catch (Exception $e) {

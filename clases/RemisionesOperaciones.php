@@ -19,7 +19,7 @@ class RemisionesOperaciones
     public function makeRemision($datos)
     {
         /*Preparo la insercion */
-        $qry = "INSERT INTO remision1 (cliente, fechaRemision, valor) VALUES (?, ?, ?)";
+        $qry = "INSERT INTO remision1 (cliente, fechaRemision) VALUES (?, ?)";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute($datos);
         return $this->_pdo->lastInsertId();
@@ -191,6 +191,13 @@ class RemisionesOperaciones
         $qry = "UPDATE remision1 SET estadoRemision=? WHERE idRemision=?";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute($datos);
+    }
+
+    public function updateTotalRemision($idRemision)
+    {
+        $qry = "UPDATE remision1, (SELECT SUM(cantProducto*precioProducto) total FROM det_remision1 WHERE idRemision=$idRemision) t SET valor = t.total  WHERE idRemision=$idRemision";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute();
     }
 
     public function updateTotalesRemision($base, $idRemision)

@@ -24,11 +24,6 @@ include "../includes/valAcc.php";
             <input type="date" class="form-control col-2" name="fechaRemision" id="fechaRemision" required>
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-2 text-end" for="valor"><strong>Valor</strong></label>
-            <input type="text" class="form-control col-2" name="valor" id="valor"
-                   onkeydown="return aceptaNum(event)" required>
-        </div>
-        <div class="form-group row">
             <div class="col-1 text-center">
                 <button class="button" type="reset"><span>Reiniciar</span></button>
             </div>
