@@ -63,14 +63,14 @@ function calcularTotalesFactura($idFactura, $tasaDescuento)
         $iva = $iva10Real + $iva16Real;
     }
     if ($retIva == 1) {
-        $reteiva = round(($iva10Real + $iva16Real) * 0.15);
+        $reteiva = round(($iva10Real + $iva16Real) * 0.15, 2);
     } else {
         $reteiva = 0;
     }
     if (($subtotal >= BASE_C) /*|| ($retFte == 1)*/) {
-        $retefuente = round(($subtotal - $descuento) * 0.025);
+        $retefuente = round(($subtotal - $descuento) * 0.025,2);
         if (($ciudadCliente == 1) && ($idCatCliente != 1)) {
-            $reteica = round(($subtotal - $descuento) * 0.01104);
+            $reteica = round(($subtotal - $descuento) * 0.01104,2);
         } else {
             $reteica = 0;
         }

@@ -34,7 +34,7 @@ class DetComprasOperaciones
     {
         switch (intval($tipoCompra)) {
             case 1:
-                $qry = "SELECT idCompra, codigo, nomMPrima Producto, lote, cantidad, CONCAT('$', FORMAT(precio, 0)) precio,
+                $qry = "SELECT idCompra, codigo, nomMPrima Producto, lote, cantidad, CONCAT('$', FORMAT(precio, 2)) precio,
                         CONCAT(format((tasaIva*100),0), ' %') iva
                         FROM det_compras
                         LEFT JOIN mprimas ON codigo=codMPrima
@@ -42,14 +42,14 @@ class DetComprasOperaciones
                         WHERE idCompra=$idCompra";
                 break;
             case 2:
-                $qry = "SELECT idCompra, codigo, nomEnvase Producto, lote, cantidad, CONCAT('$', FORMAT(precio, 0)) precio,
+                $qry = "SELECT idCompra, codigo, nomEnvase Producto, lote, cantidad, CONCAT('$', FORMAT(precio, 2)) precio,
                         CONCAT(format((tasaIva*100),0), ' %') iva
                         FROM det_compras
                         LEFT JOIN envases ON codigo=codEnvase
                         LEFT JOIN tasa_iva ti on envases.codIva = ti.idTasaIva
                         WHERE idCompra=$idCompra AND codigo < 100
                         UNION
-                        SELECT idCompra, codigo, tapa Producto, lote, cantidad, CONCAT('$', FORMAT(precio, 0)) precio,
+                        SELECT idCompra, codigo, tapa Producto, lote, cantidad, CONCAT('$', FORMAT(precio, 2)) precio,
                         CONCAT(format((tasaIva*100),0), ' %') iva
                         FROM det_compras
                         LEFT JOIN tapas_val ON codigo=codTapa
@@ -57,7 +57,7 @@ class DetComprasOperaciones
                         WHERE idCompra=$idCompra AND codigo > 100";
                 break;
             case 3:
-                $qry = "SELECT idCompra, codigo, nomEtiqueta Producto, lote, cantidad, CONCAT('$', FORMAT(precio, 0)) precio,
+                $qry = "SELECT idCompra, codigo, nomEtiqueta Producto, lote, cantidad, CONCAT('$', FORMAT(precio, 2)) precio,
                         CONCAT(format((tasaIva*100),0), ' %') iva
                         FROM det_compras
                         LEFT JOIN etiquetas ON codigo=codEtiqueta
@@ -65,7 +65,7 @@ class DetComprasOperaciones
                         WHERE idCompra=$idCompra ;";
                 break;
             case 5:
-                $qry = "SELECT idCompra, codigo, producto Producto, lote, cantidad, CONCAT('$', FORMAT(precio, 0)) precio,
+                $qry = "SELECT idCompra, codigo, producto Producto, lote, cantidad, CONCAT('$', FORMAT(precio, 2)) precio,
                         CONCAT(format((tasaIva*100),0), ' %') iva
                         FROM det_compras
                         LEFT JOIN distribucion ON codigo=idDistribucion
@@ -169,7 +169,7 @@ class DetComprasOperaciones
 
     public function getHistoricoComprasDistribucion($idDistribucion)
     {
-        $qry = "SELECT fechComp, nomProv, CONCAT('$', FORMAT(precio, 0)) precioSinIva, CONCAT('$', FORMAT(precio*(1+tasaIva), 0)) precioConIva,  FORMAT(cantidad, 0) cantidad  FROM det_compras dc
+        $qry = "SELECT fechComp, nomProv, CONCAT('$', FORMAT(precio, 0)) precioSinIva, CONCAT('$', FORMAT(precio*(1+tasaIva), 2)) precioConIva,  FORMAT(cantidad, 0) cantidad  FROM det_compras dc
                 LEFT JOIN compras c on dc.idCompra = c.idCompra
                 LEFT JOIN proveedores pr ON c.idProv = pr.idProv
                 LEFT JOIN distribucion d on dc.codigo = d.idDistribucion
@@ -183,7 +183,7 @@ class DetComprasOperaciones
 
     public function getHistoricoComprasMPrimas($codMPrima)
     {
-        $qry = "SELECT fechComp, nomProv, CONCAT('$', FORMAT(precio, 0)) precioSinIva, CONCAT('$', FORMAT(precio*(1+tasaIva), 0)) precioConIva, FORMAT(cantidad, 0) cantidad  FROM det_compras dc
+        $qry = "SELECT fechComp, nomProv, CONCAT('$', FORMAT(precio, 0)) precioSinIva, CONCAT('$', FORMAT(precio*(1+tasaIva), 2)) precioConIva, FORMAT(cantidad, 0) cantidad  FROM det_compras dc
                 LEFT JOIN compras c on dc.idCompra = c.idCompra
                 LEFT JOIN proveedores pr ON c.idProv = pr.idProv
                 LEFT JOIN mprimas mp on dc.codigo = mp.codMPrima
@@ -197,7 +197,7 @@ class DetComprasOperaciones
 
     public function getHistoricoComprasEnvases($codEnvase)
     {
-        $qry = "SELECT fechComp, nomProv, CONCAT('$', FORMAT(precio, 0)) precioSinIva, CONCAT('$', FORMAT(precio*(1+tasaIva), 0)) precioConIva, FORMAT(cantidad, 0) cantidad  FROM det_compras dc
+        $qry = "SELECT fechComp, nomProv, CONCAT('$', FORMAT(precio, 0)) precioSinIva, CONCAT('$', FORMAT(precio*(1+tasaIva), 2)) precioConIva, FORMAT(cantidad, 0) cantidad  FROM det_compras dc
                 LEFT JOIN compras c on dc.idCompra = c.idCompra
                 LEFT JOIN proveedores pr ON c.idProv = pr.idProv
                 LEFT JOIN envases e on dc.codigo = e.codEnvase
@@ -211,7 +211,7 @@ class DetComprasOperaciones
 
     public function getHistoricoComprasTapas($codTapa)
     {
-        $qry = "SELECT fechComp, nomProv, CONCAT('$', FORMAT(precio, 0)) precioSinIva, CONCAT('$', FORMAT(precio*(1+tasaIva), 0)) precioConIva, FORMAT(cantidad, 0) cantidad  FROM det_compras dc
+        $qry = "SELECT fechComp, nomProv, CONCAT('$', FORMAT(precio, 0)) precioSinIva, CONCAT('$', FORMAT(precio*(1+tasaIva), 2)) precioConIva, FORMAT(cantidad, 0) cantidad  FROM det_compras dc
                 LEFT JOIN compras c on dc.idCompra = c.idCompra
                 LEFT JOIN proveedores pr ON c.idProv = pr.idProv
                 LEFT JOIN tapas_val tv on dc.codigo = tv.codTapa
