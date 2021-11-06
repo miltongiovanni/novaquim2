@@ -164,7 +164,7 @@ class GastosOperaciones
                            ROUND((SUM(precGasto * cantGasto) + SUM(precGasto * cantGasto * tasaIva)),
                                  0)) total,
                         IF(autoretProv = 1, 0,
-                           IF(SUM(precGasto * cantGasto) >= $base, ROUND(SUM(precGasto * cantGasto * tasaRetIca), 0),
+                           IF(SUM(precGasto * cantGasto) >= $base, ROUND(SUM(precGasto * cantGasto * tasaRetIca/1000), 0),
                               0)) AS reteica,
                         IF(autoretProv = 1, 0,
                            IF(SUM(precGasto * cantGasto) >= $base, ROUND(SUM(precGasto * cantGasto * tasaRetefuente), 0),

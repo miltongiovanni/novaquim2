@@ -37,8 +37,8 @@ class DetFacturaOperaciones
                        presentacion as                         producto,
                        cantProducto,
                        CONCAT(ROUND( tasaIva*100, 0), ' %')   iva,
-                       CONCAT('$ ', FORMAT(precioProducto, 2)) precioProducto,
-                       CONCAT('$ ', FORMAT(precioProducto*cantProducto, 2)) subtotal,
+                       CONCAT('$', FORMAT(precioProducto, 2)) precioProducto,
+                       CONCAT('$', FORMAT(precioProducto*cantProducto, 2)) subtotal,
                        1 orden
                 FROM det_factura dp
                          LEFT JOIN prodpre p on dp.codProducto = p.codPresentacion
@@ -52,7 +52,7 @@ class DetFacturaOperaciones
                        cantProducto,
                        CONCAT(ROUND( tasaIva*100, 0), ' %')  iva,
                        CONCAT('$', FORMAT(precioProducto, 2)) precioProducto,
-                       CONCAT('$ ', FORMAT(precioProducto*cantProducto, 2)) subtotal,
+                       CONCAT('$', FORMAT(precioProducto*cantProducto, 2)) subtotal,
                        2 orden
                 FROM det_factura dp
                          LEFT JOIN distribucion d on dp.codProducto = d.idDistribucion
@@ -65,7 +65,7 @@ class DetFacturaOperaciones
                        cantProducto,
                        CONCAT(ROUND( tasaIva*100, 0), ' %') iva,
                        CONCAT('$', FORMAT(precioProducto, 2)) precioProducto,
-                       CONCAT('$ ', FORMAT(precioProducto*cantProducto, 2)) subtotal,
+                       CONCAT('$', FORMAT(precioProducto*cantProducto, 2)) subtotal,
                        3 orden
                 FROM det_factura dp
                          LEFT JOIN servicios s on dp.codProducto = s.idServicio

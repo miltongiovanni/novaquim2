@@ -57,8 +57,8 @@ $pdf->AliasNbPages();
 $pdf->AddPage();
 $pdf->SetXY(10, 10);
 $pdf->SetFont('Arial', '', 8);
-$encabfecha = 'USUARIO: ' . $_SESSION['User'] . '     |   FECHA: ' . date('d-m-Y  h:i:s');
 date_default_timezone_set('America/Bogota');
+$encabfecha = 'USUARIO: ' . $_SESSION['User'] . '     |   FECHA: ' . date('d-m-Y  h:i:s');
 $pdf->Cell(90, 10, $encabfecha, 0, 0, 'L');
 
 

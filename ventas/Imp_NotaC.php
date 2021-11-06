@@ -1,7 +1,7 @@
 <?php
-session_start();
 include "../includes/num_letra.php";
 require('../includes/fpdf.php');
+require('../includes/valAcc.php');
 $idNotaC = $_POST['idNotaC'];
 
 function cargarClases($classname)

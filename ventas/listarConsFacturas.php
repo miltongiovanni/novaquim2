@@ -24,7 +24,7 @@ $facturas = $facturaOperador->getTotalesFacturasPorFecha($fechaIni, $fechaFin);
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <title>Listado de compras por fecha</title>
+    <title>Listado de facturas por fecha</title>
     <meta charset="utf-8">
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
@@ -187,7 +187,7 @@ if ($rangoFechas >= 0) {
     ?>
     <div id="contenedor" class="container-fluid">
         <div id="saludo1">
-            <img src="../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>LISTADO DE COMPRAS POR
+            <img src="../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>LISTADO DE FACTURAS DE VENTA POR
                 FECHA</h4></div>
         <div class="row flex-end">
             <div class="col-1">
