@@ -96,12 +96,12 @@ class ComprasOperaciones
                        fechVenc,
                        estadoCompra,
                        descEstado,
-                       CONCAT('$', FORMAT(subtotalCompra, 0))                                 subtotalCompra,
-                       CONCAT('$', FORMAT(ivaCompra, 0))                                      ivaCompra,
-                       CONCAT('$', FORMAT(totalCompra, 0))                                    totalCompra,
-                       CONCAT('$', FORMAT(retefuenteCompra, 0))                               retefuenteCompra,
-                       CONCAT('$', FORMAT(reteicaCompra, 0))                                  reteicaCompra,
-                       CONCAT('$', FORMAT(totalCompra - retefuenteCompra - reteicaCompra, 0)) vreal
+                       CONCAT('$', FORMAT(subtotalCompra, 2))                                 subtotalCompra,
+                       CONCAT('$', FORMAT(ivaCompra, 2))                                      ivaCompra,
+                       CONCAT('$', FORMAT(totalCompra, 2))                                    totalCompra,
+                       CONCAT('$', FORMAT(retefuenteCompra, 2))                               retefuenteCompra,
+                       CONCAT('$', FORMAT(reteicaCompra, 2))                                  reteicaCompra,
+                       CONCAT('$', FORMAT(totalCompra - retefuenteCompra - reteicaCompra, 2)) vreal
                 FROM compras
                          LEFT JOIN estados e on compras.estadoCompra = e.idEstado
                          LEFT JOIN proveedores p on compras.idProv = p.idProv
@@ -175,9 +175,9 @@ class ComprasOperaciones
             $qry = "UPDATE compras,
                     (SELECT IF(SUM(precio*cantidad) IS NULL, 0, ROUND(SUM(precio*cantidad),2)) subtotal, 
                             IF(SUM(precio*cantidad) IS NULL, 0, ROUND(SUM(precio*cantidad*tasaIva),2)) AS iva, 
-                            IF(SUM(precio*cantidad) IS NULL, 0, ROUND((SUM(precio*cantidad)+SUM(precio*cantidad*tasaIva)),0)) total,
-                            IF(autoretProv=1, 0, IF( SUM(precio*cantidad) >=$base,ROUND(SUM(precio*cantidad*tasaRetIca/1000),0),0)) AS reteica,
-                            IF(autoretProv=1, 0, IF( SUM(precio*cantidad) >=$base,ROUND(SUM(precio*cantidad*tasaRetefuente),0),0)) AS retefuente
+                            IF(SUM(precio*cantidad) IS NULL, 0, ROUND((SUM(precio*cantidad)+SUM(precio*cantidad*tasaIva)),2)) total,
+                            IF(autoretProv=1, 0, IF( SUM(precio*cantidad) >=$base,ROUND(SUM(precio*cantidad*tasaRetIca/1000),2),0)) AS reteica,
+                            IF(autoretProv=1, 0, IF( SUM(precio*cantidad) >=$base,ROUND(SUM(precio*cantidad*tasaRetefuente),2),0)) AS retefuente
                            FROM (SELECT dc.idCompra, codigo, cantidad, precio, lote, tasaIva
                                   FROM det_compras dc
                                            LEFT JOIN envases e ON e.codEnvase = codigo
@@ -200,9 +200,9 @@ class ComprasOperaciones
             $qry = "UPDATE compras,
                     (SELECT IF(SUM(precio*cantidad) IS NULL, 0, ROUND(SUM(precio*cantidad),2)) subtotal, 
                     IF(SUM(precio*cantidad) IS NULL, 0, ROUND(SUM(precio*cantidad*tasaIva),2)) AS iva, 
-                    IF(SUM(precio*cantidad) IS NULL, 0, ROUND((SUM(precio*cantidad)+SUM(precio*cantidad*tasaIva)),0)) total,
-                    IF(autoretProv=1, 0, IF( SUM(precio*cantidad) >=$base,ROUND(SUM(precio*cantidad*tasaRetIca/1000),0),0)) AS reteica,
-                    IF(autoretProv=1, 0, IF( SUM(precio*cantidad) >=$base,ROUND(SUM(precio*cantidad*tasaRetefuente),0),0)) AS retefuente
+                    IF(SUM(precio*cantidad) IS NULL, 0, ROUND((SUM(precio*cantidad)+SUM(precio*cantidad*tasaIva)),2)) total,
+                    IF(autoretProv=1, 0, IF( SUM(precio*cantidad) >=$base,ROUND(SUM(precio*cantidad*tasaRetIca/1000),2),0)) AS reteica,
+                    IF(autoretProv=1, 0, IF( SUM(precio*cantidad) >=$base,ROUND(SUM(precio*cantidad*tasaRetefuente),2),0)) AS retefuente
                            FROM det_compras dc
                     LEFT JOIN compras c ON dc.idCompra = c.idCompra
                     LEFT JOIN proveedores p ON c.idProv = p.idProv ";

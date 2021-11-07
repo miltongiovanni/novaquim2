@@ -132,7 +132,7 @@ class DetPedidoOperaciones
         $qry = "SELECT dp.codProducto,
                        presentacion as                       Producto,
                        SUM(cantProducto) cantidad,
-                       ROUND(precioProducto / (1 + tasaIva)) precio,
+                       ROUND(precioProducto / (1 + tasaIva),2) precio,
                        codIva, 1 orden
                 FROM det_pedido dp
                          LEFT JOIN prodpre p on dp.codProducto = p.codPresentacion
@@ -142,7 +142,7 @@ class DetPedidoOperaciones
                   AND dp.codProducto < 100000
                 GROUP BY dp.codProducto, Producto, precio, codIva, orden
                 UNION
-                SELECT dp.codProducto, producto as Producto, SUM(cantProducto) cantidad, ROUND(precioProducto / (1 + tasaIva)) precio, codIva, 2 orden
+                SELECT dp.codProducto, producto as Producto, SUM(cantProducto) cantidad, ROUND(precioProducto / (1 + tasaIva),2) precio, codIva, 2 orden
                 FROM det_pedido dp
                          LEFT JOIN distribucion d on dp.codProducto = d.idDistribucion
                          LEFT JOIN tasa_iva t on t.idTasaIva = d.codIva
@@ -153,7 +153,7 @@ class DetPedidoOperaciones
                 SELECT dp.codProducto,
                        desServicio as                        Producto,
                        SUM(cantProducto) cantidad,
-                       ROUND(precioProducto / (1 + tasaIva)) precio,
+                       ROUND(precioProducto / (1 + tasaIva),2) precio,
                        s.codIva, 3 orden
                 FROM det_pedido dp
                          LEFT JOIN servicios s on dp.codProducto = s.idServicio
@@ -170,22 +170,22 @@ class DetPedidoOperaciones
 
     public function getTableDetPedido($idPedido)
     {
-        $qry = "SELECT dcp.codProducto, p.presentacion producto, cantProducto, CONCAT('$', FORMAT(precioProducto, 0)) precioProducto,
-                       CONCAT('$', FORMAT(precioProducto*cantProducto, 0)) subtotal, 1 orden
+        $qry = "SELECT dcp.codProducto, p.presentacion producto, cantProducto, CONCAT('$', FORMAT(precioProducto, 2)) precioProducto,
+                       CONCAT('$', FORMAT(precioProducto*cantProducto, 2)) subtotal, 1 orden
                 FROM det_pedido dcp
                          LEFT JOIN prodpre p on dcp.codProducto = p.codPresentacion
                 WHERE idPedido = $idPedido
                   AND dcp.codProducto < 100000 AND dcp.codProducto > 10000
                 UNION
-                SELECT dcp.codProducto, producto, cantProducto, CONCAT('$', FORMAT(precioProducto, 0)) precioProducto,
-                       CONCAT('$', FORMAT(precioProducto*cantProducto, 0)) subtotal, 2 orden
+                SELECT dcp.codProducto, producto, cantProducto, CONCAT('$', FORMAT(precioProducto, 2)) precioProducto,
+                       CONCAT('$', FORMAT(precioProducto*cantProducto, 2)) subtotal, 2 orden
                 FROM det_pedido dcp
                          LEFT JOIN distribucion d on dcp.codProducto = d.idDistribucion
                 WHERE idPedido = $idPedido
                   AND dcp.codProducto >= 100000
                 UNION
-                SELECT dcp.codProducto, s.desServicio producto, cantProducto, CONCAT('$', FORMAT(precioProducto, 0)) precioProducto,
-                       CONCAT('$', FORMAT(precioProducto*cantProducto, 0)) subtotal, 3 orden
+                SELECT dcp.codProducto, s.desServicio producto, cantProducto, CONCAT('$', FORMAT(precioProducto, 2)) precioProducto,
+                       CONCAT('$', FORMAT(precioProducto*cantProducto, 2)) subtotal, 3 orden
                 FROM det_pedido dcp
                          LEFT JOIN servicios s on dcp.codProducto = s.idServicio
                 WHERE idPedido = $idPedido
@@ -199,7 +199,7 @@ class DetPedidoOperaciones
 
  public function getTotalPedido($idPedido)
     {
-        $qry = "SELECT CONCAT('$', FORMAT(SUM(cantProducto*precioProducto), 0)) totalPedido
+        $qry = "SELECT CONCAT('$', FORMAT(SUM(cantProducto*precioProducto), 2)) totalPedido
                 FROM det_pedido dp
                 WHERE dp.idPedido= ?";
         $stmt = $this->_pdo->prepare($qry);
