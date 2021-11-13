@@ -1,4 +1,4 @@
 <?php
-$estadoPedido = 'A';
+$estadoPedido = 6;
 include "listarPedidos.php";
 ?>

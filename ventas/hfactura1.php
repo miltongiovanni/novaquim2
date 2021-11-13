@@ -21,7 +21,7 @@ spl_autoload_register('cargarClases');
 $idPedido = $_POST['idPedido'];
 $pedidoOperador = new PedidosOperaciones();
 try {
-    $pedidoOperador->updateEstadoPedido('L', $idPedido);
+    $pedidoOperador->updateEstadoPedido(2, $idPedido);
     $ruta = "../menu.php";
     $mensaje = "Pedido Habilitado para facturar correctamente";
     $icon = "success";

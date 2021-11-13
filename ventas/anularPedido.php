@@ -22,7 +22,7 @@ $idPedido = $_POST['idPedido'];
 $pedidoOperador = new PedidosOperaciones();
 $detPedidoOperador = new DetPedidoOperaciones();
 try {
-    $pedidoOperador->updateEstadoPedido('A', $idPedido);
+    $pedidoOperador->updateEstadoPedido(6, $idPedido);
     $detPedidoOperador->deleteAllDetPedido($idPedido);
     $ruta = "listarPedidoA.php";
     $mensaje = "Orden de pedido anulada con éxito";

@@ -23,11 +23,11 @@ spl_autoload_register('cargarClases');
     <form id="form1" name="form1" method="post" action="updatePedidoForm.php">
         <div class="form-group row">
             <label class="col-form-label col-2" for="idPedido"><strong>Orden de pedido</strong></label>
-            <select name="idPedido" id="idPedido" class="form-control col-1" required>
+            <select name="idPedido" id="idPedido" class="form-control col-4" required>
                 <option selected disabled value="">------------</option>
                 <?php
                 $manager = new PedidosOperaciones();
-                $pedidos = $manager->getPedidosByEstado('P');
+                $pedidos = $manager->getPedidosByEstado(1);
                 for ($i = 0; $i < count($pedidos); $i++) : ?>
                     <option value="<?= $pedidos[$i]["idPedido"] ?>"><?= $pedidos[$i]["idPedido"].' - '.$pedidos[$i]["nomSucursal"] ?></option>
                 <?php

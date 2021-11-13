@@ -85,7 +85,7 @@ if (($dias_remision >= 0)) {
         }
         //CALCULA LOS TOTALES DE IVA, DESCUENTO
 
-        $pedidoOperador->updateEstadoPedido('E', $idPedido);
+        $pedidoOperador->updateEstadoPedido(3, $idPedido);
         $_SESSION['idRemision'] = $idRemision;
         $ruta = "det_remision.php";
         $mensaje = "Remisión creada con éxito";
