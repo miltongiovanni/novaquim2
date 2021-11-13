@@ -37,7 +37,7 @@ $idUsuario = $_SESSION['IdUsuario'];
 
 if (($diasPedido >= 0) && ($diasEntregaPedido >= 0) && ($diasEntrega >= 0)) {
     $pedidoOperador = new PedidosOperaciones();
-    $estado = 'P';
+    $estado = 1;
     $datos = array($idCliente, $fechaPedido, $fechaEntrega, $tipoPrecio, $estado, $idSucursal, $idUsuario);
 
     try {

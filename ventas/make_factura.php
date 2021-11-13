@@ -71,7 +71,7 @@ if (($dias_v >= 0) && ($dias_f >= 0)) {
         $datos = array($total, $reteiva, $reteica, $retefuente, $subtotal, $iva, $totalR, $idFactura);
         $facturaOperador->updateTotalesFactura($datos);
         foreach ($pedidosList as $pedido){
-            $pedidoOperador->updateEstadoPedido('F', $pedido);
+            $pedidoOperador->updateEstadoPedido(4, $pedido);
         }
         $_SESSION['idFactura'] = $idFactura;
         $ruta = "det_factura.php";

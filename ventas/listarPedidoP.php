@@ -1,5 +1,5 @@
 <?php
-//pedido.Estado='P' or pedido.Estado='L'
-$estadoPedido = 'P';
+//pedido.Estado=1 or pedido.Estado=2
+$estadoPedido = 1;
 include "listarPedidos.php";
 ?>

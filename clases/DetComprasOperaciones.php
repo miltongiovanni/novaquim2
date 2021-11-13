@@ -141,24 +141,24 @@ class DetComprasOperaciones
                 if($codigo < 100){
                     $qry = "SELECT codigo, nomEnvase Producto, lote, cantidad, precio FROM det_compras
                         LEFT JOIN envases ON codigo=codEnvase
-                        WHERE idCompra=$idCompra AND codigo < 100";
+                        WHERE idCompra=$idCompra AND codigo < 100  AND codigo=$codigo";
                 }
                 else{
                     $qry = "SELECT codigo, tapa Producto, lote, cantidad, precio FROM det_compras
                         LEFT JOIN tapas_val ON codigo=codTapa
-                        WHERE idCompra=$idCompra AND codigo > 100";
+                        WHERE idCompra=$idCompra AND codigo > 100  AND codigo=$codigo";
                 }
 
                 break;
             case 3:
                 $qry = "SELECT codigo, nomEtiqueta Producto, lote, cantidad, precio FROM det_compras
                         LEFT JOIN etiquetas ON codigo=codEtiqueta
-                        WHERE idCompra=$idCompra ;";
+                        WHERE idCompra=$idCompra AND codigo=$codigo";
                 break;
             case 5:
                 $qry = "SELECT codigo, producto Producto, lote, cantidad, precio FROM det_compras
                         LEFT JOIN distribucion ON codigo=idDistribucion
-                        WHERE idCompra=$idCompra";
+                        WHERE idCompra=$idCompra  AND codigo=$codigo";
                 break;
         }
         $stmt = $this->_pdo->prepare($qry);

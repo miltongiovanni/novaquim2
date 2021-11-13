@@ -22,7 +22,7 @@ spl_autoload_register('cargarClases');
 $idPedido = $_POST['idPedido'];
 $pedidoOperador = new PedidosOperaciones();
 try {
-    $pedidoOperador->updateEstadoPedido('P', $idPedido);
+    $pedidoOperador->updateEstadoPedido(1, $idPedido);
     $ruta = "../menu.php";
     $mensaje = "Pedido Habilitado para modificar correctamente";
     $icon = "success";

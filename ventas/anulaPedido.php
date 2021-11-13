@@ -27,7 +27,7 @@ spl_autoload_register('cargarClases');
                 <option selected disabled value="">------------</option>
                 <?php
                 $manager = new PedidosOperaciones();
-                $pedidos = $manager->getPedidosByEstado('P');
+                $pedidos = $manager->getPedidosByEstado(1);
                 for ($i = 0; $i < count($pedidos); $i++) : ?>
                     <option value="<?= $pedidos[$i]["idPedido"] ?>"><?= $pedidos[$i]["idPedido"] ?></option>
                 <?php

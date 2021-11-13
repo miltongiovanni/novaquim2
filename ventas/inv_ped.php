@@ -115,7 +115,7 @@ $validar = 0;
                 }
             }
             if ($validar == 0) {
-                $pedidoOperador->updateEstadoPedido('L', $idPedido);
+                $pedidoOperador->updateEstadoPedido(2, $idPedido);
             }
             ?>
         </table>
