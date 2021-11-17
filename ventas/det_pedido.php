@@ -113,7 +113,7 @@ $distribucionOperador = new ProductosDistribucionOperaciones();
                     {
                         "data": function (row) {
                             let rep = '';
-                            if (estado === 'P') {
+                            if (estado == 1) {
                                 rep = '<form action="updateDetallePedido.php" method="post" name="actualiza">' +
                                     '          <input name="idPedido" type="hidden" value="' + idPedido + '">' +
                                     '          <input name="codProducto" type="hidden" value="' + row.codProducto + '">' +
@@ -151,7 +151,7 @@ $distribucionOperador = new ProductosDistribucionOperaciones();
                     {
                         "data": function (row) {
                             let rep = '';
-                            if (estado === 'P') {
+                            if (estado == 1) {
                                 rep = '<form action="delprodPed.php" method="post" name="elimina">' +
                                     '          <input name="idPedido" type="hidden" value="' + idPedido + '">' +
                                     '          <input name="codProducto" type="hidden" value="' + row.codProducto + '">' +
