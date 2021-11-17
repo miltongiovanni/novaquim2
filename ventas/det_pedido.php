@@ -232,7 +232,7 @@ $distribucionOperador = new ProductosDistribucionOperaciones();
         <strong>Adicionar Detalle</strong>
     </div>
     <?php
-    if ($pedido['estado'] == 'P'):
+    if ($pedido['estado'] == 1):
         ?>
 
         <form method="post" action="makeDetPedido.php" name="form1">
@@ -361,7 +361,7 @@ $distribucionOperador = new ProductosDistribucionOperaciones();
             </form>
         </div>
         <?php
-        if ((1 == $_SESSION['Perfil'] || 2 == $_SESSION['Perfil']) && $pedido['estado'] == 'P'):
+        if ((1 == $_SESSION['Perfil'] || 2 == $_SESSION['Perfil']) && $pedido['estado'] == 1):
             ?>
             <div class="col-2">
                 <form action="inv_ped.php" method="post">
