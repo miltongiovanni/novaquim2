@@ -67,7 +67,7 @@ class InvProdTerminadosOperaciones
                          LEFT JOIN (SELECT SUM(cantProducto) invListo, dp.codProducto
                                     FROM pedido p
                                              LEFT JOIN det_pedido dp on p.idPedido = dp.idPedido
-                                    WHERE p.estado = 'L'
+                                    WHERE p.estado = '2'
                                     GROUP BY dp.codProducto) t2 ON t1.codPresentacion = t2.codProducto";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();
@@ -164,7 +164,7 @@ class InvProdTerminadosOperaciones
         $qry = "SELECT SUM(cantProducto) invListo
                 FROM pedido p
                          LEFT JOIN det_pedido dp on p.idPedido = dp.idPedido
-                WHERE p.estado = 'L'
+                WHERE p.estado = '2'
                   AND codProducto = ?";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute(array($codPresentacion));

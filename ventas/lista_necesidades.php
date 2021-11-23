@@ -6,15 +6,6 @@ function cargarClases($classname)
 }
 
 spl_autoload_register('cargarClases');
-if ($_POST['seleccion1'])
-{
-    $selPedidos=$_POST['seleccion1'];
-} else {
-    echo ' <script >
-		alert("Debe escoger algún pedido");
-		history.back();
-		</script>';
-}
 
 ?>
 <!DOCTYPE html>
@@ -106,6 +97,18 @@ if ($_POST['seleccion1'])
     </script>
 </head>
 <body>
+<?php
+if (isset($_POST['seleccion1']))
+{
+    $selPedidos=$_POST['seleccion1'];
+} else {
+    $ruta = "sellistarPedido.php";
+    $mensaje = "Debe escoger algún pedido";
+    $icon = "warning";
+    mover_pag($ruta, $mensaje, $icon);
+}
+
+?>
 <div id="contenedor" class="container-fluid">
     <div id="saludo1">
         <img src="../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>FALTANTE DE LOS PEDIDOS</h4></div>

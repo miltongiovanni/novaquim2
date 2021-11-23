@@ -370,12 +370,6 @@ img {
     justify-content: space-between !important;
 }
 
-label {
-    display: inline-block;
-    /*margin-bottom: 0.5rem;*/
-    text-align: right;
-    font-weight: 400;
-}
 
 legend {
     display: block;
