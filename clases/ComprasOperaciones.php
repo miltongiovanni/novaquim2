@@ -49,12 +49,12 @@ class ComprasOperaciones
                        numFact,
                        tc.tipoComp,
                        fechComp,
-                       CONCAT('$', FORMAT(subtotalCompra, 0))                                 subtotalCompra,
-                       CONCAT('$', FORMAT(ivaCompra, 0))                                      ivaCompra,
-                       CONCAT('$', FORMAT(retefuenteCompra, 0))                               retefuenteCompra,
-                       CONCAT('$', FORMAT(reteicaCompra, 0))                                  reteicaCompra,
-                       CONCAT('$', FORMAT(totalCompra, 0))                                    totalCompra,
-                       CONCAT('$', FORMAT(totalCompra - retefuenteCompra - reteicaCompra, 0)) vreal
+                       CONCAT('$', FORMAT(subtotalCompra, 2))                                 subtotalCompra,
+                       CONCAT('$', FORMAT(ivaCompra, 2))                                      ivaCompra,
+                       CONCAT('$', FORMAT(retefuenteCompra, 2))                               retefuenteCompra,
+                       CONCAT('$', FORMAT(reteicaCompra, 2))                                  reteicaCompra,
+                       CONCAT('$', FORMAT(totalCompra, 2))                                    totalCompra,
+                       CONCAT('$', FORMAT(totalCompra - retefuenteCompra - reteicaCompra, 2)) vreal
                 FROM compras
                          LEFT JOIN proveedores p on compras.idProv = p.idProv
                          LEFT JOIN tip_compra tc on compras.tipoCompra = tc.idTipo
@@ -70,11 +70,11 @@ class ComprasOperaciones
     public function getTotalesComprasPorFecha($fechaIni, $fechaFin)
     {
         $qry = "SELECT
-                       CONCAT('$', FORMAT(SUM(subtotalCompra), 0))                                 subtotalPeriodo,
-                       CONCAT('$', FORMAT(SUM(ivaCompra), 0))                                      ivaPeriodo,
-                       CONCAT('$', FORMAT(SUM(totalCompra), 0))                                    totalPeriodo,
-                       CONCAT('$', FORMAT(SUM(retefuenteCompra), 0))                               retefuentePeriodo,
-                       CONCAT('$', FORMAT(SUM(reteicaCompra), 0))                                  reteicaPeriodo
+                       CONCAT('$', FORMAT(SUM(subtotalCompra), 2))                                 subtotalPeriodo,
+                       CONCAT('$', FORMAT(SUM(ivaCompra), 2))                                      ivaPeriodo,
+                       CONCAT('$', FORMAT(SUM(totalCompra), 2))                                    totalPeriodo,
+                       CONCAT('$', FORMAT(SUM(retefuenteCompra), 2))                               retefuentePeriodo,
+                       CONCAT('$', FORMAT(SUM(reteicaCompra), 2))                                  reteicaPeriodo
                 FROM compras
                 WHERE fechComp >= ?
                   AND fechComp <= ?";
@@ -101,7 +101,7 @@ class ComprasOperaciones
                        CONCAT('$', FORMAT(totalCompra, 2))                                    totalCompra,
                        CONCAT('$', FORMAT(retefuenteCompra, 2))                               retefuenteCompra,
                        CONCAT('$', FORMAT(reteicaCompra, 2))                                  reteicaCompra,
-                       CONCAT('$', FORMAT(totalCompra - retefuenteCompra - reteicaCompra, 2)) vreal
+                       CONCAT('$', FORMAT((totalCompra - retefuenteCompra - reteicaCompra), 2)) vreal
                 FROM compras
                          LEFT JOIN estados e on compras.estadoCompra = e.idEstado
                          LEFT JOIN proveedores p on compras.idProv = p.idProv

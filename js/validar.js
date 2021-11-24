@@ -136,7 +136,7 @@ function aceptaNum(evt) {
     //var key = nav4 ? evt.which : evt.keyCode;
     var key = evt.which || evt.keyCode;
     //console.log(key);
-    return (key <= 13 || key === 46 || key === 110 || key === 109 || key === 222 || (key >= 48 && key <= 57) || (key >= 96 && key <= 105));
+    return (key <= 13 || key === 46 || key === 110 || key === 190 || key === 109 || key === 222 || (key >= 48 && key <= 57) || (key >= 96 && key <= 105));
 }
 
 function valida_texto(texto) {
