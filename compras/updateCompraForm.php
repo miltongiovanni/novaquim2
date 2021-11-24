@@ -61,7 +61,7 @@ if (!$CompraOperador->isValidIdCompra($idCompra)) {
                        value="<?= $compra['idCompra'] ?>" readonly>
             </div>
             <div class="form-group row">
-                <label class="col-form-label col-2" for="busProv"><strong>Proveedor</strong></label>
+                <label class="col-form-label col-2  text-end" for="busProv"><strong>Proveedor</strong></label>
                 <?php
                 $ProveedorOperador = new ProveedoresOperaciones();
                 $proveedores = $ProveedorOperador->getProveedoresByTipo($tipoCompra);
