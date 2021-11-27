@@ -97,18 +97,7 @@ spl_autoload_register('cargarClases');
     </script>
 </head>
 <body>
-<?php
-if (isset($_POST['seleccion1']))
-{
-    $selPedidos=$_POST['seleccion1'];
-} else {
-    $ruta = "sellistarPedido.php";
-    $mensaje = "Debe escoger algún pedido";
-    $icon = "warning";
-    mover_pag($ruta, $mensaje, $icon);
-}
 
-?>
 <div id="contenedor" class="container-fluid">
     <div id="saludo1">
         <img src="../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>FALTANTE DE LOS PEDIDOS</h4></div>
@@ -117,7 +106,18 @@ if (isset($_POST['seleccion1']))
             <button class="button" type="button" onclick="window.location='../menu.php'">
                 <span><STRONG>Ir al Menú</STRONG></span></button>
         </div>
-    </div>
+    </div><?php
+    if (isset($_POST['seleccion1']))
+    {
+        $selPedidos=$_POST['seleccion1'];
+    } else {
+        $ruta = "sellistarPedido.php";
+        $mensaje = "Debe escoger algún pedido";
+        $icon = "warning";
+        mover_pag($ruta, $mensaje, $icon);
+    }
+
+    ?>
 
     <div class="tabla-50">
         <table id="example" class="display compact">
