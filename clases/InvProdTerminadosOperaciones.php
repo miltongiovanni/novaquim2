@@ -161,7 +161,7 @@ class InvProdTerminadosOperaciones
 
     public function getInvProdTerminadoListo($codPresentacion)
     {
-        $qry = "SELECT SUM(cantProducto) invListo
+        $qry = "SELECT IF(SUM(cantProducto) IS NULL , 0, SUM(cantProducto)) invListo
                 FROM pedido p
                          LEFT JOIN det_pedido dp on p.idPedido = dp.idPedido
                 WHERE p.estado = '2'
