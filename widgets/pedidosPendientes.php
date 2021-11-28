@@ -1,6 +1,6 @@
 <?php
 $pedidoOperador = new PedidosOperaciones();
-$pedidos = $pedidoOperador->getTablePedidos('P');
+$pedidos = $pedidoOperador->getTablePedidos('1');
 ?>
 <div class="container-fluid">
     <div class="row titulo text-center"><strong>Pedidos pendientes</strong>

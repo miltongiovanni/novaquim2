@@ -34,67 +34,7 @@ spl_autoload_register('cargarClases');
     </style>
 <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/validar.js"></script>
-    <script src="../js/jquery-3.3.1.min.js"></script>
-    <script src="../js/datatables.js"></script>
-    <script src="../js/dataTables.buttons.js"></script>
-    <script src="../js/jszip.js"></script> <!--Para exportar Excel-->
-    <!--<script src="../js/pdfmake.js"></script>-->  <!--Para exportar PDF-->
-    <!--<script src="../js/vfs_fonts.js"></script>--> <!--Para exportar PDF-->
-    <script src="../js/buttons.html5.js"></script>
-    <script>
 
-        $(document).ready(function () {
-            let selPedido = <?=json_encode($selPedidos)?>;
-            let ruta = "ajax/listaNecesidades.php?selPedido=" + selPedido;
-            $('#example').DataTable({
-                "columns": [
-                    {
-                        "data": "codProducto",
-                        "className": 'dt-body-center'
-                    },
-                    {
-                        "data": "producto",
-                        "className": 'dt-body-left'
-                    },
-                    {
-                        "data": "cantidad",
-                        "className": 'dt-body-center'
-                    }
-                ],
-                "columnDefs": [{
-                    "searchable": false,
-                    "orderable": false,
-                    "targets": 1
-                }],
-                "dom": 'Blfrtip',
-                "buttons": [
-                    'copyHtml5',
-                    'excelHtml5'
-                ],
-                "paging": false,
-                "ordering": false,
-                "info": false,
-                "searching": false,
-                "lengthMenu": [[20, 50, 100, -1], [20, 50, 100, "All"]],
-                "language": {
-                    "lengthMenu": "Mostrando _MENU_ datos por página",
-                    "zeroRecords": "No hacen falta productos",
-                    "info": "Mostrando página _PAGE_ de _PAGES_",
-                    "infoEmpty": "No hay datos disponibles",
-                    "search": "Búsqueda:",
-                    "paginate": {
-                        "first": "Primero",
-                        "last": "Último",
-                        "next": "Siguiente",
-                        "previous": "Anterior"
-                    },
-                    "infoFiltered": "(Filtrado de _MAX_ en total)"
-
-                },
-                "ajax": ruta
-            });
-        });
-    </script>
 </head>
 <body>
 
@@ -139,6 +79,67 @@ spl_autoload_register('cargarClases');
         </div>
     </div>
 </div>
+<script src="../js/jquery-3.3.1.min.js"></script>
+<script src="../js/datatables.js"></script>
+<script src="../js/dataTables.buttons.js"></script>
+<script src="../js/jszip.js"></script> <!--Para exportar Excel-->
+<!--<script src="../js/pdfmake.js"></script>-->  <!--Para exportar PDF-->
+<!--<script src="../js/vfs_fonts.js"></script>--> <!--Para exportar PDF-->
+<script src="../js/buttons.html5.js"></script>
+<script>
+
+    $(document).ready(function () {
+        let selPedido = <?=json_encode($selPedidos)?>;
+        let ruta = "ajax/listaNecesidades.php?selPedido=" + selPedido;
+        $('#example').DataTable({
+            "columns": [
+                {
+                    "data": "codProducto",
+                    "className": 'dt-body-center'
+                },
+                {
+                    "data": "producto",
+                    "className": 'dt-body-left'
+                },
+                {
+                    "data": "cantidad",
+                    "className": 'dt-body-center'
+                }
+            ],
+            "columnDefs": [{
+                "searchable": false,
+                "orderable": false,
+                "targets": 1
+            }],
+            "dom": 'Blfrtip',
+            "buttons": [
+                'copyHtml5',
+                'excelHtml5'
+            ],
+            "paging": false,
+            "ordering": false,
+            "info": false,
+            "searching": false,
+            "lengthMenu": [[20, 50, 100, -1], [20, 50, 100, "All"]],
+            "language": {
+                "lengthMenu": "Mostrando _MENU_ datos por página",
+                "zeroRecords": "No hacen falta productos",
+                "info": "Mostrando página _PAGE_ de _PAGES_",
+                "infoEmpty": "No hay datos disponibles",
+                "search": "Búsqueda:",
+                "paginate": {
+                    "first": "Primero",
+                    "last": "Último",
+                    "next": "Siguiente",
+                    "previous": "Anterior"
+                },
+                "infoFiltered": "(Filtrado de _MAX_ en total)"
+
+            },
+            "ajax": ruta
+        });
+    });
+</script>
 </body>
 </html>
 	   
