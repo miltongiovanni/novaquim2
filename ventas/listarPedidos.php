@@ -1,10 +1,10 @@
 <?php
 include "../includes/valAcc.php";
 switch ($estadoPedido) {
-    case 'A':
+    case '6':
         $titulo = ' anulados';
         break;
-    case 'P':
+    case '1':
         $titulo = ' pendientes';
         break;
     case 'N':
@@ -138,7 +138,7 @@ switch ($estadoPedido) {
                         "className": 'dt-body-left'
                     },
                 ],
-                "order": [[1, estadoPedido==='P'? 'asc':'desc']],
+                "order": [[1, estadoPedido==='1'? 'asc':'desc']],
                 "deferRender": true,  //For speed
                 "dom": 'Blfrtip',
                 "buttons": [
