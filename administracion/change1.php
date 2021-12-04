@@ -57,9 +57,7 @@ else
 	}
 	else
 	{
-		$nombre=$_POST['nombre'];
-		$id=$row['idUsuario'];
-		$ruta = "cambio.php";
+		$ruta = "buscarUsuario2.php";
 		$mensaje = "Error al asignar la clave";
 		mover_pag($ruta, $mensaje, 'error');
 	}

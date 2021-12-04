@@ -41,8 +41,8 @@ $pedidos = $pedidoOperador->getTablePedidosPendientes();
                 <label for="seleccionar"> Seleccionar Todos/Ninguno</label>
             </div>
             <div class="col-1">
-                <button class="button" type="button" onclick="window.location='../menu.php'">
-                    <span><STRONG>Ir al Menú</STRONG></span></button>
+                <button class="button" type="button" onclick="return Enviar(this.form)">
+                    <span>Consultar</span></button>
             </div>
         </div>
 

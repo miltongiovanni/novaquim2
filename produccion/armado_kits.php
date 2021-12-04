@@ -132,6 +132,7 @@ try {
         }
     } else {
         //PRODUCTOS DE DISTRIBUCION
+        $InvDistribucionOperador = new InvDistribucionOperaciones();
         $invDist = $InvDistribucionOperador->getInvDistribucion($codigo);
         if ($invDist) {
             $invDist = $invDist + $cantArmado;
