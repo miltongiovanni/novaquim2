@@ -89,7 +89,7 @@ $saldo = round($recibo['totalR'] - $recibo['retencionFte'] - $recibo['retencionI
                 dataType: 'text',
                 success: function (response) {
                     //document.location.reload();
-                    self.location = 'recibo_caja';
+                    self.location = 'recibo_caja.php';
                 },
                 error: function () {
                     alert("Vous avez un GROS problème");
@@ -115,7 +115,7 @@ $saldo = round($recibo['totalR'] - $recibo['retencionFte'] - $recibo['retencionI
                 },
                 dataType: 'text',
                 success: function (response) {
-                    self.location = 'recibo_caja';
+                    self.location = 'recibo_caja.php';
                 },
                 error: function () {
                     alert("Vous avez un GROS problème");
