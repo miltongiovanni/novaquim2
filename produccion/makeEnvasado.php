@@ -111,6 +111,10 @@ try {
             mover_pag($ruta, $mensaje, $icon);
             exit;
         }
+        /*Carga inventario producto terminado */
+        $qry = "INSERT INTO inv_prod (codPresentacion, loteProd, invProd) VALUES($codPresentacion, $lote, $cantPresentacion)";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute($datos);
 
         ///Se deja el estado en 3 que es parcialmente envasado
         $datos = array(3, $lote);
