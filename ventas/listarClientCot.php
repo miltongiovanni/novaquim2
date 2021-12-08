@@ -74,7 +74,7 @@ include "../includes/valAcc.php";
                         "className": 'dt-body-left'
                     },
                 ],
-                "order": [[2, 'asc']],
+                "order": [[1, 'desc']],
                 "deferRender": true,  //For speed
                 "dom": 'Blfrtip',
                 "buttons": [
