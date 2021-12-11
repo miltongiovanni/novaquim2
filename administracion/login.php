@@ -89,7 +89,7 @@ if (!$usuario) {//si existen datos pero la clave esta errada
                 $_SESSION['Autorizado'] = true;
                 $_SESSION['User'] = $username;
                 $_SESSION['IdUsuario'] = $usuario['idUsuario'];
-                $_SESSION['Perfil'] = $perfil_admin;
+                $_SESSION['perfil'] = $perfil_admin;
                 $perfil = $usuario['idPerfil'];
                 //echo $perfil.'<br>';
                 $ruta = "../menu.php";
@@ -104,7 +104,7 @@ if (!$usuario) {//si existen datos pero la clave esta errada
                 $_SESSION['Autorizado'] = true;
                 $_SESSION['User'] = $username;
                 $_SESSION['IdUsuario'] = $usuario['idUsuario'];
-                $_SESSION['Perfil'] = $perfil_admin;
+                $_SESSION['perfil'] = $perfil_admin;
                 $perfil = $usuario['idPerfil'];
                 mover_pag($ruta, $mensaje, 'warning');
             }
@@ -120,7 +120,7 @@ if (!$usuario) {//si existen datos pero la clave esta errada
         $_SESSION['Autorizado'] = true;
         $_SESSION['User'] = $username;
         $_SESSION['IdUsuario'] = $usuario['idUsuario'];
-        $_SESSION['Perfil'] = $perfil_admin;
+        $_SESSION['perfil'] = $perfil_admin;
         mover_pag($ruta, $mensaje, 'info');
     }
 }

@@ -15,7 +15,7 @@ $pedidos = $pedidoOperador->getPedidosPorEntregar();
     <title>Creación de rutero</title>
     <meta charset="utf-8">
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/validar.js"></script>
     <script>
         function seleccionar1(form, checkbox_name) {
@@ -32,8 +32,10 @@ $pedidos = $pedidoOperador->getPedidosPorEntregar();
 <body>
 <div id="contenedor" class="container-fluid">
     <div id="saludo1">
-        <img src="../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>LISTA DE ÓRDENES DE PEDIDO FACTURADAS LISTAS PARA ENTREGAR</h4></div>
+        <img src="../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>LISTA DE ÓRDENES DE PEDIDO
+            FACTURADAS LISTAS PARA ENTREGAR</h4></div>
     <form name="revision_pedidos" method="post" action="rutero_diario.php">
+        <input type="hidden" name="crearRutero" value="1">
         <div class="form-group row">
             <div class="col-2">
                 <label for="fechaRutero"> Fecha rutero</label>
@@ -47,9 +49,9 @@ $pedidos = $pedidoOperador->getPedidosPorEntregar();
                        onclick='seleccionar1(this.form, "seleccion1[]")'>
                 <label for="seleccionar"> Seleccionar Todos/Ninguno</label>
             </div>
-            <div class="col-1">
-                <button class="button" type="button" onclick="window.location='../menu.php'">
-                    <span><STRONG>Ir al Menú</STRONG></span></button>
+            <div class="col-2">
+                <button class="button" type="button" onclick="return Enviar(this.form)">
+                    <span><STRONG>Generar Rutero</STRONG></span></button>
             </div>
         </div>
 
@@ -86,9 +88,9 @@ $pedidos = $pedidoOperador->getPedidosPorEntregar();
             ?>
         </table>
         <div class="row form-group">
-            <div class="col-1">
+            <div class="col-2">
                 <button class="button" type="button" onclick="return Enviar(this.form)">
-                    <span>Consultar</span></button>
+                    <span>Generar Rutero</span></button>
             </div>
         </div>
     </form>
