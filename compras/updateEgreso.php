@@ -32,12 +32,23 @@ foreach ($_POST as $nombre_campo => $valor) {
 $datos = array($pago, $fechPago, $descuentoE, $formPago, $idEgreso);
 $EgresoOperador = new EgresoOperaciones();
 $egreso = $EgresoOperador->getEgreso($idEgreso);
+$GastoOperador = new GastosOperaciones();
+$CompraOperador = new ComprasOperaciones();
+if ($egreso['tipoCompra'] == 6){
+    $gasto = $GastoOperador->getGasto($egreso['idCompra']);
+}else{
+    $compra = $CompraOperador->getCompra($egreso['idCompra'], $egreso['tipoCompra']);
+    $retefuente= $compra['retefuente'];
+    $reteica= $compra['reteica'];
+}
+
 if (isset($modEgreso) && $modEgreso == 1) {
     $abono = 0;
 } else {
     $abono = $EgresoOperador->getPagoXIdTipoCompra($egreso['idCompra'], $egreso['tipoCompra']);
 }
-if (($abono + $pago + $descuentoE) > $egreso['vreal']) {
+//var_dump( abs(floatval($egreso['vreal']) - $pago - $descuentoE) < 100); die;
+if (($abono + $pago + $descuentoE) > floatval($egreso['vreal'])) {
     $_SESSION['idEgreso'] = $idEgreso;
     $ruta = "egreso.php";
     $mensaje = "El pago sobrepasa el valor de la factura";
@@ -46,12 +57,10 @@ if (($abono + $pago + $descuentoE) > $egreso['vreal']) {
 } else {
     try {
         $EgresoOperador->updateEgreso($datos);
-        if (abs($egreso['vreal'] - $pago - $descuentoE) < 100) {
-            if ($egreso['tipoCompra'] == 6) {
-                $GastoOperador = new GastosOperaciones();
+        if (abs(floatval($egreso['vreal']) - $pago - $descuentoE) < 100) {
+            if (intval($egreso['tipoCompra']) == 6) {
                 $GastoOperador->cancelaGasto(7, $fechPago, $egreso['idCompra']);
             } else {
-                $CompraOperador = new ComprasOperaciones();
                 $CompraOperador->cancelaCompra(7, $fechPago, $egreso['idCompra']);
             }
         }
