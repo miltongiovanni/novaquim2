@@ -56,6 +56,17 @@ class RemisionesOperaciones
         return $result;
     }
 
+    public function getTableSalidasPorFecha($fechaIni, $fechaFin)
+    {
+        $qry = "SELECT idRemision, cliente, fechaRemision, CONCAT('$', FORMAT(valor, 0)) valorFormatted
+                FROM remision1
+                WHERE fechaRemision>=? AND fechaRemision<=?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($fechaIni, $fechaFin));
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     public function getTableSalidaRemisiones()
     {
         $qry = "SELECT idRemision, fechaRemision, nomCliente, nomSucursal, r.idPedido, fechaPedido

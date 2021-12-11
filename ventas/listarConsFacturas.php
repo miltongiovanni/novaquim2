@@ -188,7 +188,7 @@ if ($rangoFechas >= 0) {
     <div id="contenedor" class="container-fluid">
         <div id="saludo1">
             <img src="../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>LISTADO DE FACTURAS DE VENTA POR
-                FECHA</h4></div>
+                FECHA (<?= $fechaIni.' - '.$fechaFin.')' ?></h4></div>
         <div class="row flex-end">
             <div class="col-1">
                 <button class="button" type="button" onclick="window.location='../menu.php'">

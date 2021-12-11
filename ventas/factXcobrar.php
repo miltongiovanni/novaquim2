@@ -100,7 +100,7 @@ include "../includes/valAcc.php";
                             return rep;
                         },
                         "className": 'dt-body-center',
-                        "visible": (perfil === '1' ||perfil === '11') ? false : true,
+                        "visible": (perfil === '1' ||perfil === '11' ) ? false : true,
                     },
                     {
                         "data": "idFactura",
