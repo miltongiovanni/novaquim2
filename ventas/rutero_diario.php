@@ -7,11 +7,16 @@ function cargarClases($classname)
 
 spl_autoload_register('cargarClases');
 
+
+
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <title>Faltante del Pedido</title>
+    <title>Rutero diario</title>
     <meta charset="utf-8">
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="../css/datatables.css">
@@ -21,15 +26,29 @@ spl_autoload_register('cargarClases');
         }
 
         .width1 {
-            width: 20%;
+            width: 7%;
         }
 
         .width2 {
-            width: 60%;
+            width: 10%;
+        }
+        .width3 {
+            width: 7%;
+        }
+        .width4 {
+            width: 7%;
         }
 
-        .width3 {
-            width: 20%;
+        .width5 {
+            width: 23%;
+        }
+
+        .width6 {
+            width: 23%;
+        }
+
+        .width7 {
+            width: 23%;
         }
     </style>
     <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
@@ -38,16 +57,6 @@ spl_autoload_register('cargarClases');
 </head>
 <body>
 <?php
-if (isset($_POST['seleccion1'])) {
-    $selPedidos = $_POST['seleccion1'];
-} else {
-    $ruta = "selPedEntrega.php";
-    $mensaje = "Debe escoger algún pedido";
-    $icon = "warning";
-    mover_pag($ruta, $mensaje, $icon);
-}
-$fechaRutero = $_POST['fechaRutero'];
-$crearRutero = isset($_POST['crearRutero'])? $_POST['crearRutero'] : 0;
 $ruteroOperador = new RuteroOperaciones();
 $pedidoOperador = new PedidosOperaciones();
 
@@ -56,31 +65,55 @@ if (isset($_POST['idRutero'])) {
 } elseif (isset($_SESSION['idRutero'])) {
     $idRutero = $_SESSION['idRutero'];
 }else{
+    if (isset($_POST['seleccion1'])) {
+        $selPedidos = $_POST['seleccion1'];
+    } else {
+        $ruta = "selPedEntrega.php";
+        $mensaje = "Debe escoger algún pedido";
+        $icon = "warning";
+        mover_pag($ruta, $mensaje, $icon);
+    }
+    $fechaRutero = $_POST['fechaRutero'];
     $idRutero = $ruteroOperador->makeRutero($fechaRutero, implode(',', $selPedidos) );
     foreach ($selPedidos as $pedido){
         $pedidoOperador->updateEstadoPedido(7, $pedido);
     }
     $_SESSION['idRutero'] = $idRutero;
 }
-var_dump($selPedidos, $fechaRutero, $idRutero);
+
+if (!isset($fechaRutero)){
+    $rutero = $ruteroOperador->getRutero($idRutero);
+    $fechaRutero = $rutero['fechaRutero'];
+}
 ?>
 <div id="contenedor" class="container-fluid">
     <div id="saludo1">
-        <img src="../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>FALTANTE DE LOS PEDIDOS</h4></div>
+        <img src="../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>RUTERO No. <?=$idRutero ?> DEL <?=$fechaRutero ?> </h4></div>
     <div class="row flex-end mb-3">
+        <div class="col-2">
+            <form action="Imp_Rutero.php" method="post" target="_blank">
+                <input type="hidden" name="idRutero" value="<?=$idRutero?>">
+                <button class="button" type="submit">
+                    <span><STRONG>Imprimir rutero</STRONG></span></button>
+            </form>
+        </div>
         <div class="col-1">
             <button class="button" type="button" onclick="window.location='../menu.php'">
                 <span><STRONG>Ir al Menú</STRONG></span></button>
         </div>
     </div>
 
-    <div class="tabla-50">
+    <div class="tabla-100">
         <table id="example" class="display compact">
             <thead>
             <tr>
-                <th class="width1 text-center">Código</th>
-                <th class="width2 text-center">Producto</th>
-                <th class="width3 text-center">Cantidad</th>
+                <th class="width1 text-center">Pedido</th>
+                <th class="width2 text-center">Fecha pedido</th>
+                <th class="width3 text-center">Factura</th>
+                <th class="width4 text-center">Remisión</th>
+                <th class="width5 text-center">Cliente</th>
+                <th class="width6 text-center">Lugar de entrega</th>
+                <th class="width7 text-center">Dirección de entrega</th>
             </tr>
             </thead>
         </table>
@@ -104,22 +137,37 @@ var_dump($selPedidos, $fechaRutero, $idRutero);
 <script>
 
     $(document).ready(function () {
-        let selPedido = <?=json_encode($selPedidos)?>;
-        let fechaRutero = <?=$fechaRutero?>;
-        let ruta = "ajax/listaRutero.php?selPedido=" + selPedido +'&fechaRutero='+ fechaRutero;
+        let idRutero = <?=$idRutero?>;
+        let ruta = "ajax/listaRutero.php?idRutero=" + idRutero;
         $('#example').DataTable({
             "columns": [
                 {
-                    "data": "codProducto",
+                    "data": "idPedido",
                     "className": 'dt-body-center'
                 },
                 {
-                    "data": "producto",
+                    "data": "fechaPedido",
+                    "className": 'dt-body-center'
+                },
+                {
+                    "data": "idFactura",
+                    "className": 'dt-body-center'
+                },
+                {
+                    "data": "idRemision",
+                    "className": 'dt-body-center'
+                },
+                {
+                    "data": "nomCliente",
                     "className": 'dt-body-left'
                 },
                 {
-                    "data": "cantidad",
-                    "className": 'dt-body-center'
+                    "data": "nomSucursal",
+                    "className": 'dt-body-left'
+                },
+                {
+                    "data": "dirSucursal",
+                    "className": 'dt-body-left'
                 }
             ],
             "columnDefs": [{

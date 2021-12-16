@@ -6,50 +6,24 @@ function cargarClases($classname)
 }
 
 spl_autoload_register('cargarClases');
-$selPedido=$_GET['selPedido'];
-$fechaRutero=$_GET['fechaRutero'];
-
-var_dump($selPedido, $fechaRutero );
-$detPedidoOperador = new DetPedidoOperaciones();
-$invProdOperador = new InvProdTerminadosOperaciones();
-$invDistOperador = new InvDistribucionOperaciones();
-$productos = $detPedidoOperador->getTotalSelPedido($_GET['selPedido']);
-$response = [];
-for ($i = 0; $i < count($productos); $i++) {
-    if ($productos[$i]['codProducto'] < 100000 && $productos[$i]['codProducto'] > 10000) {
-        $invProducto = $invProdOperador->getInvTotalProdTerminado($productos[$i]['codProducto']);
-        $invListo = $invProdOperador->getInvProdTerminadoListo($productos[$i]['codProducto']);
-        if ($invProducto < $productos[$i]['cantidad']) {
-            $cantidad = $productos[$i]['cantidad'] - $invProducto + $invListo;
-            $response[] = [
-                "codProducto" => $productos[$i]['codProducto'],
-                "producto" => $productos[$i]['producto'],
-                "cantidad" => $cantidad,
-            ];
-        }
-    }
-    if ($productos[$i]['codProducto'] > 100000) {
-        $invProducto = $invDistOperador->getInvDistribucion($productos[$i]['codProducto']);
-        $invListo = $invDistOperador->getInvDistribucionListo($productos[$i]['codProducto']);
-        if ($invProducto < $productos[$i]['cantidad']) {
-            $cantidad = $productos[$i]['cantidad'] - $invProducto + $invListo;
-            $response[] = [
-                "codProducto" => $productos[$i]['codProducto'],
-                "producto" => $productos[$i]['producto'],
-                "cantidad" => $cantidad,
-            ];
-        }
-    }
+$idRutero=$_GET['idRutero'];
+$ruteroOperador = new RuteroOperaciones();
+$pedidoOperador = new PedidosOperaciones();
+$rutero = $ruteroOperador->getRutero($idRutero);
+$pedidos = explode(',', $rutero['listaPedidos']);
+$pedidosRutero =[];
+foreach ($pedidos as $pedido){
+    $pedidosRutero[] = $pedidoOperador->getPedidoRutero($pedido);
 }
 
 $titulo = array(
     'draw' => 0,
-    'recordsTotal' => count($response),
-    'recordsFiltered' => count($response)
+    'recordsTotal' => count($pedidosRutero),
+    'recordsFiltered' => count($pedidosRutero)
 );
 $datosRetorno = array(
     $titulo,
-    'data' => $response
+    'data' => $pedidosRutero
 );
 
 

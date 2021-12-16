@@ -303,8 +303,8 @@ form {
     line-height: normal;
     font-weight: bolder;
     text-align: center;
-    -webkit-border-radius: 0.2em;
-    border-radius: 0.2em;
+    -webkit-border-radius: 0.4em;
+    border-radius: 0.4em;
 }
 
 .formatoBoton:hover {
@@ -315,8 +315,8 @@ form {
     line-height: normal;
     font-weight: bolder;
     text-align: center;
-    -webkit-border-radius: 0.2em;
-    border-radius: 0.2em;
+    -webkit-border-radius: 0.4em;
+    border-radius: 0.4em;
 }
 
 .formatoBoton1 {
@@ -329,8 +329,8 @@ form {
     line-height: normal;
     font-weight: bolder;
     text-align: center;
-    -webkit-border-radius: 0.2em;
-    border-radius: 0.2em;
+    -webkit-border-radius: 0.4em;
+    border-radius: 0.4em;
 }
 
 .formatoBoton1:hover {
@@ -343,8 +343,8 @@ form {
     line-height: normal;
     font-weight: bolder;
     text-align: center;
-    -webkit-border-radius: 0.2em;
-    border-radius: 0.2em;
+    -webkit-border-radius: 0.4em;
+    border-radius: 0.4em;
 }
 
 html, body {
