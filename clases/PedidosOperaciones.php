@@ -269,6 +269,29 @@ class PedidosOperaciones
         return $result;
     }
 
+    public function getPedidoRutero($idPedido)
+    {
+        $qry = "SELECT p.idPedido,
+                       nomCliente,
+                       fechaPedido,
+                       p.idSucursal,
+                       nomSucursal,
+                       dirSucursal,
+                       codVendedor,
+                       f.idFactura,
+                       r.idRemision
+                FROM pedido p
+                         LEFT JOIN clientes c on c.idCliente = p.idCliente
+                         LEFT JOIN clientes_sucursal cs on p.idCliente = cs.idCliente AND p.idSucursal = cs.idSucursal
+                         LEFT JOIN factura f on f.idPedido LIKE CONCAT('%', p.idPedido, '%')
+                         LEFT JOIN remision r on p.idPedido = r.idPedido
+                WHERE p.idPedido = $idPedido";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
 
     public function updatePedido($datos)
     {
@@ -284,6 +307,14 @@ class PedidosOperaciones
                  WHERE idPedido=?";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute(array($estado, $idPedido));
+    }
+
+    public function updateEntregaPedido($fechaEntrega, $idPedido)
+    {
+        $qry = "UPDATE pedido SET estado=5, fechaEntrega =?
+                 WHERE idPedido=?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($fechaEntrega, $idPedido));
     }
 
     public function setDb()

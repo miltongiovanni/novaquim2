@@ -35,7 +35,6 @@ $pedidos = $pedidoOperador->getPedidosPorEntregar();
         <img src="../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>LISTA DE ÓRDENES DE PEDIDO
             FACTURADAS LISTAS PARA ENTREGAR</h4></div>
     <form name="revision_pedidos" method="post" action="rutero_diario.php">
-        <input type="hidden" name="crearRutero" value="1">
         <div class="form-group row">
             <div class="col-2">
                 <label for="fechaRutero"> Fecha rutero</label>

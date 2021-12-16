@@ -22,9 +22,23 @@ class RuteroOperaciones
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute(array($idRutero));
     }
-    public function getListaRutero()
+    public function getListaPedidosRutero()
     {
-        $qry = "SELECT idRutero, ciudad FROM rutero";
+        $qry = "SELECT p.idPedido,
+                       f.idFactura,
+                       r.idRemision,
+                       fechaPedido,
+                       nomCliente,
+                       nomSucursal,
+                       idRutero,
+                       fechaRutero
+                FROM pedido p
+                         LEFT JOIN clientes c on c.idCliente = p.idCliente
+                         LEFT JOIN clientes_sucursal cs on p.idCliente = cs.idCliente AND p.idSucursal = cs.idSucursal
+                         LEFT JOIN factura f on f.idPedido LIKE CONCAT('%', p.idPedido, '%')
+                         LEFT JOIN remision r on p.idPedido = r.idPedido
+                         LEFT JOIN rutero ru on ru.listaPedidos LIKE CONCAT('%', p.idPedido, '%')
+                WHERE p.estado = 7";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -33,11 +47,25 @@ class RuteroOperaciones
 
     public function getRutero($idRutero)
     {
-        $qry = "SELECT ciudad from rutero where idRutero=?";
+        $qry = "SELECT idRutero, fechaRutero, listaPedidos FROM rutero WHERE idRutero = ?";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute(array($idRutero));
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $result['ciudad'];
+        return $result;
+    }
+
+    public function isValidIdRutero($idRutero)
+    {
+        $qry = "SELECT * FROM rutero WHERE idRutero=?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($idRutero));
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        if($result==false){
+            return false;
+        }
+        else{
+            return true;
+        }
     }
 
     public function updateRutero($datos)
