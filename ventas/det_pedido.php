@@ -361,7 +361,7 @@ $distribucionOperador = new ProductosDistribucionOperaciones();
             </form>
         </div>
         <?php
-        if ((1 == $_SESSION['perfil'] || 2 == $_SESSION['perfil']) && $pedido['estado'] == 1):
+        if ((1 == $_SESSION['perfilUsuario'] || 2 == $_SESSION['perfilUsuario']) && $pedido['estado'] == 1):
             ?>
             <div class="col-2">
                 <form action="inv_ped.php" method="post">

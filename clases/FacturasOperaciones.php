@@ -320,7 +320,7 @@ class FacturasOperaciones
                        fechaFactura,
                        fechaVenc,
                        tp.tipoPrecio,
-                       IF(f.estado='A', 'Anulada', IF(f.estado='C', 'Cancelada', 'Pendiente')) estadoFactura,
+                       IF(f.estado='A', 'Anulada', IF(f.estado='C', 'Cancelada', IF(f.estado='E', 'En proceso','Pendiente'))) estadoFactura,
                        CONCAT('$', FORMAT(total, 0)) totalFactura
                 FROM factura f
                          LEFT JOIN clientes c on c.idCliente = f.idCliente
