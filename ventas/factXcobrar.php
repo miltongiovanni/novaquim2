@@ -87,7 +87,7 @@ include "../includes/valAcc.php";
         }
 
         $(document).ready(function () {
-            var perfil = <?=$_SESSION['perfil']?>;
+            var perfil = <?=$_SESSION['perfilUsuario']?>;
             var table = $('#example').DataTable({
                 "columns": [
                     {

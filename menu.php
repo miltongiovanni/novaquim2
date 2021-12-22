@@ -1,7 +1,7 @@
 <?php
 include "includes/valAcc.php";
 //include "includes/conect.php";
-$perfil1 = isset($_SESSION['perfil']) ? $_SESSION['perfil'] : '';
+$perfil1 = isset($_SESSION['perfilUsuario']) ? $_SESSION['perfilUsuario'] : '';
 // On enregistre notre autoload.
 
 function cargarClases($classname)
