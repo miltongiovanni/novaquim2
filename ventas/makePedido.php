@@ -33,7 +33,7 @@ $fechaActual = hoy();
 $diasPedido = Calc_Dias($fechaPedido, $fechaActual);
 $diasEntrega = Calc_Dias($fechaEntrega, $fechaPedido);
 $diasEntregaPedido = Calc_Dias($fechaEntrega, $fechaActual);
-$idUsuario = $_SESSION['IdUsuario'];
+$idUsuario = $_SESSION['userId'];
 
 if (($diasPedido >= 0) && ($diasEntregaPedido >= 0) && ($diasEntrega >= 0)) {
     $pedidoOperador = new PedidosOperaciones();

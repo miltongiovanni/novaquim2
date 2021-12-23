@@ -18,7 +18,7 @@ $detNotaCrOperador = new DetNotaCrOperaciones();
 $detNotaCrOperador = new DetNotaCrOperaciones();
 $hasDetalle = $detNotaCrOperador->hasDetalleNC($idNotaC);
 $notaC = $notaCrOperador->getNotaC($idNotaC);
-if ($notaC['motivo'] == 1) {
+if ($notaC['motivo'] == 1 && $detNotaCrOperador->hasDescNotaCr($idNotaC)) {
     $detNotaC = $detNotaCrOperador->getTableDetNotaCrDes($idNotaC);
 }
 $totalesNotaC = $notaCrOperador->getTotalesNotaC($idNotaC);
@@ -276,7 +276,25 @@ $totalesNotaC = $notaCrOperador->getTotalesNotaC($idNotaC);
                     </button>
                 </div>
             </div>
+            <?php
+            if(!$hasDetalle):
+                ?>
+                <form action="makeDetNotaC.php" method="post" name="formulario2">
 
+                    <input name="idNotaC" type="hidden" value="<?= $idNotaC; ?>">
+                    <input name="motivo" type="hidden" value="<?= $notaC['motivo']; ?>">
+                    <input name="allFactura" type="hidden" value="1">
+                    <div class="form-group row">
+                        <div class="col-2 text-center">
+                            <button class="button" type="button" onclick="return Enviar(this.form)"><span>Devolver toda la factura</span>
+                            </button>
+                        </div>
+                    </div>
+
+                </form>
+            <?php
+            endif;
+            ?>
         <?php
 
         elseif ($notaC['motivo'] == 1)://  DESCUENTO NO REALIZADO
@@ -301,25 +319,7 @@ $totalesNotaC = $notaCrOperador->getTotalesNotaC($idNotaC);
         endif;
         ?>
     </form>
-    <?php
-    if(!$hasDetalle):
-    ?>
-    <form action="makeDetNotaC.php" method="post" name="formulario2">
 
-        <input name="idNotaC" type="hidden" value="<?= $idNotaC; ?>">
-        <input name="motivo" type="hidden" value="<?= $notaC['motivo']; ?>">
-        <input name="allFactura" type="hidden" value="1">
-        <div class="form-group row">
-            <div class="col-2 text-center">
-                <button class="button" type="button" onclick="return Enviar(this.form)"><span>Devolver toda la factura</span>
-                </button>
-            </div>
-        </div>
-
-    </form>
-    <?php
-    endif;
-    ?>
     <div class="form-group titulo row text-center">
         <strong>Detalle nota crédito</strong>
     </div>
@@ -344,6 +344,7 @@ $totalesNotaC = $notaCrOperador->getTotalesNotaC($idNotaC);
         </div>
     <?php
     else:
+    if ( $detNotaCrOperador->hasDescNotaCr($idNotaC)) {
         ?>
         <div class="tabla-70">
             <table class="display compact">
@@ -359,6 +360,7 @@ $totalesNotaC = $notaCrOperador->getTotalesNotaC($idNotaC);
             </table>
         </div>
     <?php
+    }
     endif;
     ?>
     <div class="tabla-70">

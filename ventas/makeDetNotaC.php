@@ -149,13 +149,13 @@ try {
             //update
             $datos = array($cantProducto, $idNotaC, 0);
             $detNotaCrOperador->updateDetNotaCr($datos);
-            $datos = array($facturaOrigen['subtotal']*($cantProducto/100), $facturaOrigen['total']*($cantProducto/100), $facturaOrigen['iva']*($cantProducto/100), $idNotaC);
+            $datos = array($facturaOrigen['subtotal']*($cantProducto/100), $facturaOrigen['total']*($cantProducto/100), $facturaOrigen['iva']*($cantProducto/100),$facturaOrigen['retencionFte']*($cantProducto/100), $facturaOrigen['retencionIca']*($cantProducto/100), $facturaOrigen['retencionIva']*($cantProducto/100), $idNotaC);
             $notaCrOperador->updateTotalesNotaC($datos);
         } else {
             //insert
             $datos = array($idNotaC, 0, $cantProducto);
             $detNotaCrOperador->makeDetNotaCr($datos);
-            $datos = array($facturaOrigen['subtotal']*($cantProducto/100), $facturaOrigen['total']*($cantProducto/100), $facturaOrigen['iva']*($cantProducto/100), $idNotaC);
+            $datos = array($facturaOrigen['subtotal']*($cantProducto/100), $facturaOrigen['total']*($cantProducto/100), $facturaOrigen['iva']*($cantProducto/100),$facturaOrigen['retencionFte']*($cantProducto/100), $facturaOrigen['retencionIca']*($cantProducto/100), $facturaOrigen['retencionIva']*($cantProducto/100), $idNotaC);
             $notaCrOperador->updateTotalesNotaC($datos);
         }
     }

@@ -30,7 +30,7 @@ foreach ($_POST as $nombre_campo => $valor) {
 <body>
 <?php
 $GastoOperador = new GastosOperaciones();
-$idUsuario = $_SESSION['IdUsuario'];
+$idUsuario = $_SESSION['userId'];
 //VALIDA QUE LA FACTURA NO HAYA SIDO INGRESADA ANTES
 $factExiste = $GastoOperador->checkFactura($idProv, $numFact);
 $rutaError = "crearGasto.php";

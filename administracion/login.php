@@ -86,9 +86,9 @@ if (!$usuario) {//si existen datos pero la clave esta errada
             {
                 $datos = array(0, $usuario['idUsuario']);
                 $usuarioOperador->updateIntentos($datos);
-                $_SESSION['Autorizado'] = true;
-                $_SESSION['User'] = $username;
-                $_SESSION['IdUsuario'] = $usuario['idUsuario'];
+                $_SESSION['UsuarioAutorizado'] = true;
+                $_SESSION['Username'] = $username;
+                $_SESSION['userId'] = $usuario['idUsuario'];
                 $_SESSION['perfilUsuario'] = $perfil_admin;
                 $perfil = $usuario['idPerfil'];
                 //echo $perfil.'<br>';
@@ -101,9 +101,9 @@ if (!$usuario) {//si existen datos pero la clave esta errada
                 //$mensaje=utf8_encode($mensaje);
                 $datos = array(0, $usuario['idUsuario']);
                 $usuarioOperador->updateIntentos($datos);
-                $_SESSION['Autorizado'] = true;
-                $_SESSION['User'] = $username;
-                $_SESSION['IdUsuario'] = $usuario['idUsuario'];
+                $_SESSION['UsuarioAutorizado'] = true;
+                $_SESSION['Username'] = $username;
+                $_SESSION['userId'] = $usuario['idUsuario'];
                 $_SESSION['perfilUsuario'] = $perfil_admin;
                 $perfil = $usuario['idPerfil'];
                 mover_pag($ruta, $mensaje, 'warning');
@@ -117,9 +117,9 @@ if (!$usuario) {//si existen datos pero la clave esta errada
         $ruta = "cambio.php";
         $mensaje = "Primer Ingreso cambie su contraseña";
         $mensaje = utf8_encode($mensaje);
-        $_SESSION['Autorizado'] = true;
-        $_SESSION['User'] = $username;
-        $_SESSION['IdUsuario'] = $usuario['idUsuario'];
+        $_SESSION['UsuarioAutorizado'] = true;
+        $_SESSION['Username'] = $username;
+        $_SESSION['userId'] = $usuario['idUsuario'];
         $_SESSION['perfilUsuario'] = $perfil_admin;
         mover_pag($ruta, $mensaje, 'info');
     }

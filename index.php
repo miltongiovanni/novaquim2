@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(isset($_SESSION['Autorizado']) && $_SESSION['Autorizado']==true){
+if(isset($_SESSION['UsuarioAutorizado']) && $_SESSION['UsuarioAutorizado']==true){
     header('Location: ../menu.php');
 }
 ?>
