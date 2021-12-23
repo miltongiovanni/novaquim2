@@ -116,7 +116,7 @@ for ($i = 0; $i < count($perfiles); $i++) {
         endif;
         ?>
         <?php
-        if ($perfil1 == 1 || $perfil1 == 5):
+        if ($perfil1 == 1 || $perfil1 == 2 || $perfil1 == 5):
             ?>
             <div class="col-4 card">
                 <?php include_once("widgets/pedidosPendientes.php"); ?>
