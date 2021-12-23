@@ -88,7 +88,7 @@ for ($i = 0; $i < count($perfiles); $i++) {
         <div class="col-1"><img src="images/LogoNova.jpg"></div>
         <div class="col-11 text-center">
             <?php
-            $idUsuario = isset($_SESSION['IdUsuario']) ? $_SESSION['IdUsuario'] : '';
+            $idUsuario = isset($_SESSION['userId']) ? $_SESSION['userId'] : '';
             $usuarioOperador = new UsuariosOperaciones();
             $row = $usuarioOperador->getUser($idUsuario);
             $nombre = $row['nombre'];

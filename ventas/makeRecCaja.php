@@ -21,7 +21,7 @@ $idFactura = $_POST['idFactura'];
 </head>
 <body>
 <?php
-$idUsuario = $_SESSION['IdUsuario'];
+$idUsuario = $_SESSION['userId'];
 $recCajaOperador = new RecCajaOperaciones();
 try {
     $idRecCaja = $recCajaOperador->makeRecCaja($idFactura, $idUsuario);

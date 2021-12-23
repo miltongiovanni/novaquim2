@@ -2,13 +2,14 @@
 //$err=error_reporting(16);
 session_start();
 define("BASE_C", "980000");
+define("BASE_C2", "145000");
 define("FECHA_C", "2017-01-01");
 date_default_timezone_set('AMERICA/Bogota');
-if (!isset($_SESSION['Autorizado'])) {
+if (!isset($_SESSION['UsuarioAutorizado'])) {
     header('Location: ../index.php');
     exit();
 } else {
-    if ($_SESSION['Autorizado'] != 1) {
+    if ($_SESSION['UsuarioAutorizado'] != 1) {
         $ruta = "../novaquim/index.php";
         $mensaje = "Acceso no autorizado, verifique sus datos de acceso";
         mover_pag($ruta, $mensaje, 'error');

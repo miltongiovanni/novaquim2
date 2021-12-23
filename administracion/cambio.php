@@ -17,7 +17,7 @@ include "../includes/valAcc.php";
 		<div id="saludo">
         <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>CAMBIO DE CONTRASEÑA</h4></div>
 		<?php
-			$username= $_SESSION['User'];
+			$username= $_SESSION['Username'];
 		?>
 		<form action="change.php" method="POST" name="Cambio_clave" id="Cambio_clave">
 			<div class="form-group row">

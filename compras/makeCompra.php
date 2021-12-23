@@ -32,7 +32,7 @@ foreach ($_POST as $nombre_campo => $valor) {
 $CompraOperador = new ComprasOperaciones();
 $rutaRef = explode("/",$_SERVER['HTTP_REFERER']);
 $rutaError= $rutaRef[4];
-$idUsuario = $_SESSION['IdUsuario'];
+$idUsuario = $_SESSION['userId'];
 //VALIDA QUE LA FACTURA NO HAYA SIDO INGRESADA ANTES
 $factExiste = $CompraOperador->checkFactura($idProv, $numFact);
 if ($factExiste && count($factExiste) > 0) {

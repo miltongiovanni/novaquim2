@@ -68,7 +68,7 @@ spl_autoload_register('cargarClases');
         <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>SELECCIÓN DE MATERIA PRIMA A AJUSTAR INVENTARIO</h4></div>
     <form id="form1" name="form1" method="post" action="updateInvMP.php">
         <input type="hidden" name="tipo_inv" value="mp">
-        <input type="hidden" name="idResponsable" value="<?= $_SESSION['IdUsuario']?>">
+        <input type="hidden" name="idResponsable" value="<?= $_SESSION['userId']?>">
         <input type="hidden" name="inv_ant" id="inv_ant" value="">
         <div class="form-group row">
             <label class="col-form-label col-2" for="codMPrima"><strong>Materia prima</strong></label>

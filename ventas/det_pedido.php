@@ -23,7 +23,7 @@ if (!$pedido) {
     exit;
 }
 date_default_timezone_set('America/Bogota');
-$encabfecha = 'USUARIO: ' . $_SESSION['User'] . ' |   FECHA: ' . date('d-m-Y  h:i:s');
+$encabfecha = 'USUARIO: ' . $_SESSION['Username'] . ' |   FECHA: ' . date('d-m-Y  h:i:s');
 $presentacionOperador = new PresentacionesOperaciones();
 $distribucionOperador = new ProductosDistribucionOperaciones();
 ?>
