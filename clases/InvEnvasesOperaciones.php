@@ -50,6 +50,18 @@ class InvEnvasesOperaciones
         return $result;
     }
 
+    public function getTableDetalleInvEnvase()
+    {
+        $qry = "SELECT ie.codEnvase, nomEnvase, ROUND(invEnvase) invEnvase, precEnvase
+                FROM inv_envase ie
+                         LEFT JOIN envases e on ie.codEnvase = e.codEnvase
+                WHERE ie.codEnvase>0";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     public function getTableStockInvEnvase()
     {
         $qry = "SELECT ie.codEnvase, nomEnvase, ROUND(invEnvase) invEnvase, stockEnvase

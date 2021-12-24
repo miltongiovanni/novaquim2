@@ -89,6 +89,17 @@ class InvDistribucionOperaciones
         return $result;
     }
 
+    public function getTableDetalleInvDistribucion()
+    {
+        $qry = "SELECT codDistribucion, producto, invDistribucion, precioCom
+                FROM inv_distribucion id
+                         LEFT JOIN distribucion d on id.codDistribucion = d.idDistribucion";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     public function getProdPorDesempacar()
     {
         $qry = "SELECT d.idDistribucion, d.producto
