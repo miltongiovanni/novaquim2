@@ -50,6 +50,18 @@ class InvTapasOperaciones
         return $result;
     }
 
+    public function getTableDetalleInvTapas()
+    {
+        $qry = "SELECT itv.codTapa, tapa, invTapa, preTapa
+                FROM inv_tapas_val itv
+                         LEFT JOIN tapas_val tv on itv.codTapa = tv.codTapa
+                WHERE itv.codTapa !=114";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     public function getTableStockInvTapas()
     {
         $qry = "SELECT itv.codTapa, tapa, invTapa, stockTapa

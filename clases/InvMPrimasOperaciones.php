@@ -111,6 +111,17 @@ class InvMPrimasOperaciones
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
+    public function getTableDetalleInvMPrima()
+    {
+        $qry = "SELECT codMP, nomMPrima, invMP,loteMP, precioMPrima
+                FROM inv_mprimas
+                         LEFT JOIN mprimas m on inv_mprimas.codMP = m.codMPrima
+                WHERE codMP != 10401 AND codMP != 10402";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
 
     public function getTableStockInvMPrima()
     {

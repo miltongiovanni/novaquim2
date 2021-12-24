@@ -28,12 +28,6 @@ include "../includes/valAcc.php";
     </style>
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/datatables.js"></script>
-    <script src="../js/dataTables.buttons.js"></script>
-    <script src="../js/jszip.js"></script> <!--Para exportar Excel-->
-    <!--<script src="../js/pdfmake.js"></script>-->  <!--Para exportar PDF-->
-    <!--<script src="../js/vfs_fonts.js"></script>--> <!--Para exportar PDF-->
-    <script src="../js/buttons.html5.js"></script>
-
     <script>
 
 
@@ -78,12 +72,7 @@ include "../includes/valAcc.php";
                     {type: 'chinese-string', targets: 1}
                 ],
                 "order": [[1, 'asc']],
-                "dom": 'Blfrtip',
                 "paging": true,
-                "buttons": [
-                    'copyHtml5',
-                    'excelHtml5'
-                ],
                 "lengthMenu": [[20, 50, 100, -1], [20, 50, 100, "All"]],
                 "language": {
                     "lengthMenu": "Mostrando _MENU_ datos por página",
@@ -111,6 +100,12 @@ include "../includes/valAcc.php";
     <div id="saludo1">
         <img src="../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>INVENTARIO DE TAPAS Y/O VÁLVULAS</h4></div>
     <div class="row flex-end">
+        <div class="col-2">
+            <form action="XlsInvTapas.php" method="post" target="_blank">
+                <button class="button" type="submit">
+                    <span><STRONG>Exportar a Excel</STRONG></span></button>
+            </form>
+        </div>
         <div class="col-1">
             <button class="button" onclick="window.location='../menu.php'">
                 <span><STRONG>Ir al Menú</STRONG></span></button>
