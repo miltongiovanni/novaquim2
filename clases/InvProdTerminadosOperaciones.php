@@ -111,10 +111,12 @@ class InvProdTerminadosOperaciones
                        sv.salidaVentas,
                        sc.salidaCambios,
                        sk.salidaKits,
-                       sr.salidaRemision
-                FROM (SELECT inv_prod.codPresentacion, presentacion, ROUND(SUM(invProd), 0) invtotal
+                       sr.salidaRemision, 
+                       ROUND(fabrica / (1.19 * 1.55), 2) Costo
+                FROM (SELECT inv_prod.codPresentacion, presentacion, ROUND(SUM(invProd), 0) invtotal, fabrica
                       FROM inv_prod
                                LEFT JOIN prodpre p on inv_prod.codPresentacion = p.codPresentacion
+                               LEFT JOIN precios p2 on p.codigoGen = p2.codigoGen
                       GROUP BY inv_prod.codPresentacion) i
                          LEFT JOIN (SELECT codPresentacion, ROUND(SUM(cantPresentacion)) entradaOProduccion
                                     FROM ord_prod op

@@ -155,8 +155,9 @@ class InvDistribucionOperaciones
                        sv.salidaVentas,
                        sr.salidaRemision,
                        sdk.salidaDesarmadoKits,
-                       sak.salidaArmadoKits
-                FROM (SELECT codDistribucion, producto, round(invDistribucion, 0) invDistribucion
+                       sak.salidaArmadoKits,
+                       i.precioCom
+                FROM (SELECT codDistribucion, producto, round(invDistribucion, 0) invDistribucion, precioCom
                       FROM inv_distribucion id
                                LEFT JOIN distribucion d on id.codDistribucion = d.idDistribucion
                       WHERE invDistribucion > 0) i

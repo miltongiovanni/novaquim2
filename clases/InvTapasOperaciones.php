@@ -86,8 +86,9 @@ class InvTapasOperaciones
                        sp.salidaProduccion,
                        sed.salidaEnvasadoDist,
                        sj.salidaJabones,
-                       sc.salidaCambios
-                FROM (SELECT itv.codTapa, tapa, invTapa
+                       sc.salidaCambios,
+                       i.preTapa
+                FROM (SELECT itv.codTapa, tapa, invTapa, preTapa
                       FROM inv_tapas_val itv
                                LEFT JOIN tapas_val tv on itv.codTapa = tv.codTapa
                       WHERE invTapa > 0
