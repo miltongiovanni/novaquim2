@@ -33,9 +33,8 @@ spl_autoload_register('cargarClases');
 
 		<form action="change1.php" method="POST" name="Cambio_clave" id="Cambio_clave">
 			<div class="form-group row">
-				<label class="col-form-label col-2 text-end"  for="nombre"><b>Nombre de
-						usuario</b></label>
-				<input class="form-control col-2" name="nombre" id="nombre" value="<?php echo $nombre ?>" readonly
+				<label class="col-form-label col-2 text-end"  for="nombre"><b>Usuario</b></label>
+				<input class="form-control col-2" name="nombre" id="nombre" value="<?= $usuario['usuario'] ?>" readonly
 					size="20">
 			</div>
 			<div class="form-group row">

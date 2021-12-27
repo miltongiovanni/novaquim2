@@ -88,8 +88,9 @@ class InvEnvasesOperaciones
        sed.salidaEnvasadoDist,
        sak.salidaArmadoKits,
        sj.salidaJabones,
-       sc.salidaCambios
-FROM (SELECT ie.codEnvase, nomEnvase, ROUND(invEnvase) invEnvase
+       sc.salidaCambios,
+       i.precEnvase
+FROM (SELECT ie.codEnvase, nomEnvase, ROUND(invEnvase) invEnvase, e.precEnvase
       FROM inv_envase ie
                LEFT JOIN envases e on ie.codEnvase = e.codEnvase
       WHERE invEnvase > 0

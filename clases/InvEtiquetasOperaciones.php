@@ -86,8 +86,9 @@ class InvEtiquetasOperaciones
                        ec2.entradaCambio,
                        sp.salidaProduccion,
                        sj.salidaJabones,
-                       sc.salidaCambios
-                FROM (SELECT codEtiq, nomEtiqueta, invEtiq
+                       sc.salidaCambios,
+                       i.precEtiqueta
+                FROM (SELECT codEtiq, nomEtiqueta, invEtiq, precEtiqueta
                       FROM inv_etiquetas ie
                                LEFT JOIN etiquetas e on ie.codEtiq = e.codEtiqueta
                       WHERE invEtiq > 0

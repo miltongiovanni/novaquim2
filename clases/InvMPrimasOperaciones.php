@@ -142,10 +142,51 @@ class InvMPrimasOperaciones
         $qry = "SELECT i.codMP,
                        i.nomMPrima,
                        i.invtotal,
-                       ec.entrada,
-                       salidaProduccion,
-                       salidaEnvDist
-                FROM (SELECT codMP, nomMPrima, ROUND(SUM(invMP), 3) invtotal
+                       IF(ec.entrada IS NULL , 0, ec.entrada ) entrada,
+                       IF(salidaProduccion IS NULL , 0, salidaProduccion ) salidaProduccion,
+                       IF(salidaEnvDist IS NULL , 0, salidaEnvDist ) salidaEnvDist,
+                       i.precioMPrima
+                FROM (SELECT codMP, nomMPrima, ROUND(SUM(invMP), 3) invtotal, m.precioMPrima
+                      FROM inv_mprimas
+                               LEFT JOIN mprimas m on inv_mprimas.codMP = m.codMPrima
+                      WHERE codMP != 10401
+                        AND codMP != 10402
+                        AND invMP > 0
+                      GROUP BY codMP) i
+                         LEFT JOIN (SELECT codigo, ROUND(SUM(cantidad), 3) entrada
+                                    FROM compras c
+                                             LEFT JOIN det_compras dc on c.idCompra = dc.idCompra
+                                    WHERE tipoCompra = 1
+                                      AND fechComp >= '$fecha'
+                                    GROUP BY codigo) ec ON i.codMP = ec.codigo
+                         LEFT JOIN (SELECT dop.codMPrima, ROUND(SUM(cantidadMPrima), 3) salidaProduccion
+                                    FROM ord_prod op
+                                             LEFT JOIN det_ord_prod dop on op.lote = dop.lote
+                                    WHERE fechProd > '$fecha'
+                                    GROUP BY dop.codMPrima) sp ON sp.codMPrima = i.codMP
+                         LEFT JOIN (SELECT codMPrima, ROUND(SUM(cantMedida * cantidad * densidad / 1000), 3) salidaEnvDist
+                                    FROM rel_dist_mp rdm
+                                             LEFT JOIN mprimadist m on rdm.codMPrimaDist = m.codMPrimaDist
+                                             LEFT JOIN medida m2 on rdm.codMedida = m2.idMedida
+                                             LEFT JOIN envasado_dist ed on rdm.codDist = ed.codDist
+                                    WHERE fechaEnvDist > '$fecha'
+                                    GROUP BY codMPrima) ek ON ek.codMPrima = i.codMP";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    public function getTableDetalleInvMPrimaFecha($fecha)
+    {
+        $qry = "SELECT i.codMP,
+                       i.nomMPrima,
+                       i.invtotal,
+                       IF(ec.entrada IS NULL , 0, ec.entrada ) entrada,
+                       IF(salidaProduccion IS NULL , 0, salidaProduccion ) salidaProduccion,
+                       IF(salidaEnvDist IS NULL , 0, salidaEnvDist ) salidaEnvDist,
+                       i.precioMPrima
+                FROM (SELECT codMP, nomMPrima, ROUND(SUM(invMP), 3) invtotal, m.precioMPrima
                       FROM inv_mprimas
                                LEFT JOIN mprimas m on inv_mprimas.codMP = m.codMPrima
                       WHERE codMP != 10401

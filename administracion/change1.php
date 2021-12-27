@@ -48,7 +48,7 @@ else
 {
 	//Creamos la sentencia SQL y la ejecutamos
 	$fec=Fecha::Hoy();
-	$result1=$usuarioOperador->changeClave($newPass, $fec, $nombre);
+	$result1=$usuarioOperador->changeClave($newPass, $fec, $usuario1);
 	if($result1)
 	{
 		$ruta = "listarUsuarios.php";
