@@ -158,12 +158,14 @@ class PedidosOperaciones
 
     public function getPedidosPorFacturarCliente($idCliente)
     {
-        $qry = "SELECT idPedido, nomSucursal
+        $qry = "SELECT p.idPedido, nomSucursal
                 FROM pedido p
                          LEFT JOIN clientes c on c.idCliente = p.idCliente
-                         LEFT JOIN clientes_sucursal cs on c.idCliente = cs.idCliente AND cs.idSucursal=p.idSucursal
+                         LEFT JOIN clientes_sucursal cs on c.idCliente = cs.idCliente AND cs.idSucursal = p.idSucursal
                          LEFT JOIN ciudades c2 on c2.idCiudad = c.ciudadCliente
-                WHERE p.idCliente =$idCliente AND estado =3";
+                         LEFT JOIN factura f on p.idPedido IN (f.idPedido)
+                WHERE p.idCliente = $idCliente
+                  AND (p.estado = 3 OR (p.estado = 5 AND f.idFactura IS NULL))";
 
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();
