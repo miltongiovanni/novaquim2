@@ -204,7 +204,7 @@ $cliente = $clienteOperador->getCliente($idCliente);
 
             <select name="retIva" id="retIva" class="form-control col-1 mx-2">
                 <?php
-                if ($cliente['retIva'] = 1):
+                if ($cliente['retIva'] == 1):
                     ?>
                     <option value="0">No</option>
                     <option value="1" selected>Si</option>
