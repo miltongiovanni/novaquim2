@@ -73,7 +73,7 @@ $cantidadPendiente = $EnvasadoOperador->getCantidadPorEnvasar($lote);
                 },
                 dataType: 'text',
                 success: function (message) {
-                    alerta('Envasado finalizado correctamente','../menu.php', 'success');
+                    alerta('Envasado finalizado correctamente','success', '../menu.php', '');
                 },
                 error: function () {
                     alert("Vous avez un GROS problème");
