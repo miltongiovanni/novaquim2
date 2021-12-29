@@ -267,6 +267,31 @@ class NotasCreditoOperaciones
         return $result;
     }
 
+    public function getTableNotasCreditoPorFecha($fechaIni, $fechaFin)
+    {
+        $qry = "SELECT idNotaC,
+                       c.nitCliente,
+                       c.nomCliente,
+                       fechaNotaC,
+                       CONCAT('$', FORMAT(subtotalNotaC, 0)) subtotalNotaC,
+                       CONCAT('$', FORMAT(totalNotaC, 0)) totalNotaC,
+                       CONCAT('$', FORMAT(ivaNotaC, 0)) ivaNotaC,
+                       CONCAT('$', FORMAT(retFteNotaC, 0)) retFteNotaC,
+                       CONCAT('$', FORMAT(retIcaNotaC, 0)) retIcaNotaC,
+                       CONCAT('$', FORMAT(retIvaNotaC, 0)) retIvaNotaC,
+                       facturaOrigen,
+                       facturaDestino,
+                       IF(motivo = 0, 'Devolución', 'Descuento no aplicado') razon
+                FROM nota_c nc
+                LEFT JOIN clientes c on c.idCliente = nc.idCliente
+                WHERE fechaNotaC >= ?
+                  AND fechaNotaC <= ?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($fechaIni, $fechaFin));
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     public function getTableNotasCreditoCliente($idCliente)
     {
         $qry = "SELECT idNotaC,
