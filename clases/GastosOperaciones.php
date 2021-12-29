@@ -126,13 +126,13 @@ class GastosOperaciones
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute(array($idGasto));
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        if($result==false){
+        if ($result == false) {
             return false;
-        }
-        else{
+        } else {
             return true;
         }
     }
+
     public function updateGasto($datos)
     {
         $qry = "UPDATE gastos SET idProv=?, numFact=?, fechGasto=?, fechVenc=? WHERE idGasto=?";
@@ -154,34 +154,37 @@ class GastosOperaciones
         $stmt->execute($datos);
     }
 
-    public function updateTotalesGasto($base, $idGasto)
+    public function updateTotalesGasto($base, $base2, $idGasto)
     {
         $qry = "UPDATE gastos,
-                (SELECT IF(SUM(precGasto * cantGasto) IS NULL, 0, ROUND(SUM(precGasto * cantGasto), 2)) subtotal,
-                        IF(SUM(precGasto * cantGasto) IS NULL, 0,
-                           ROUND(SUM(precGasto * cantGasto * tasaIva), 2)) AS iva,
-                        IF(SUM(precGasto * cantGasto) IS NULL, 0,
-                           ROUND((SUM(precGasto * cantGasto) + SUM(precGasto * cantGasto * tasaIva)),
-                                 0)) total,
-                        IF(autoretProv = 1, 0,
-                           IF(SUM(precGasto * cantGasto) >= $base, ROUND(SUM(precGasto * cantGasto * tasaRetIca/1000), 0),
-                              0)) AS reteica,
-                        IF(autoretProv = 1, 0,
-                           IF(SUM(precGasto * cantGasto) >= $base, ROUND(SUM(precGasto * cantGasto * tasaRetefuente), 0),
-                              0)) AS retefuente
-                 FROM det_gastos dg
-                          LEFT JOIN gastos g ON dg.idGasto = g.idGasto
-                          LEFT JOIN tasa_iva ti ON dg.codIva = ti.idTasaIva
-                          LEFT JOIN proveedores p ON g.idProv = p.idProv
-                          LEFT JOIN tasa_reteica tr on p.idTasaIcaProv = tr.idTasaRetIca
-                          LEFT JOIN tasa_retefuente t on p.idRetefuente = t.idTasaRetefuente
-                      WHERE dg.idGasto = $idGasto) tabla
-            SET totalGasto=total,
-                subtotalGasto=subtotal,
-                ivaGasto=iva,
-                retefuenteGasto=retefuente,
-                reteicaGasto=reteica
-            WHERE idGasto = $idGasto";
+                    (SELECT IF(SUM(precGasto * cantGasto) IS NULL, 0, ROUND(SUM(precGasto * cantGasto), 2)) subtotal,
+                            IF(SUM(precGasto * cantGasto) IS NULL, 0,
+                               ROUND(SUM(precGasto * cantGasto * tasaIva), 2)) AS                           iva,
+                            IF(SUM(precGasto * cantGasto) IS NULL, 0,
+                               ROUND((SUM(precGasto * cantGasto) + SUM(precGasto * cantGasto * tasaIva)),
+                                     0))                                                                    total,
+                            IF(autoretProv = 1, 0, IF(regProv = 1, IF(SUM(precGasto * cantGasto) >= $base,
+                                                                      ROUND(SUM(precGasto * cantGasto * tasaRetIca / 1000), 0),
+                                                                      0), IF(SUM(precGasto * cantGasto) >= $base2,
+                                                                             ROUND(SUM(precGasto * cantGasto * tasaRetIca / 1000), 0),
+                                                                             0))
+                                )                                              AS                           reteica,
+                            IF(autoretProv = 1, 0,
+                               IF(SUM(precGasto * cantGasto) >= $base, ROUND(SUM(precGasto * cantGasto * tasaRetefuente), 0),
+                                  0))                                          AS                           retefuente
+                     FROM det_gastos dg
+                              LEFT JOIN gastos g ON dg.idGasto = g.idGasto
+                              LEFT JOIN tasa_iva ti ON dg.codIva = ti.idTasaIva
+                              LEFT JOIN proveedores p ON g.idProv = p.idProv
+                              LEFT JOIN tasa_reteica tr on p.idTasaIcaProv = tr.idTasaRetIca
+                              LEFT JOIN tasa_retefuente t on p.idRetefuente = t.idTasaRetefuente
+                     WHERE dg.idGasto = $idGasto) tabla
+                SET totalGasto=total,
+                    subtotalGasto=subtotal,
+                    ivaGasto=iva,
+                    retefuenteGasto=retefuente,
+                    reteicaGasto=reteica
+                WHERE idGasto = $idGasto";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();
     }
