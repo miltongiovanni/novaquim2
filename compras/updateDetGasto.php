@@ -34,7 +34,7 @@ $detalle = $DetGastoOperador->getDetGasto($idGasto, $producto);
 try {
     $datos = array($cantGasto, $precGasto, $codIva, $idGasto, $producto);
     $DetGastoOperador->updateDetGasto($datos);
-    $GastoOperador->updateTotalesGasto(BASE_C, $idGasto);
+    $GastoOperador->updateTotalesGasto(BASE_C, BASE_C2, $idGasto);
     $_SESSION['idGasto'] = $idGasto;
     $ruta = "detGasto.php";
     $mensaje = "Detalle de gasto actualizado con éxito";
