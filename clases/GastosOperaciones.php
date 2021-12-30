@@ -167,11 +167,9 @@ class GastosOperaciones
                                                                       ROUND(SUM(precGasto * cantGasto * tasaRetIca / 1000), 0),
                                                                       0), IF(SUM(precGasto * cantGasto) >= $base2,
                                                                              ROUND(SUM(precGasto * cantGasto * tasaRetIca / 1000), 0),
-                                                                             0))
-                                )                                              AS                           reteica,
-                            IF(autoretProv = 1, 0,
-                               IF(SUM(precGasto * cantGasto) >= $base, ROUND(SUM(precGasto * cantGasto * tasaRetefuente), 0),
-                                  0))                                          AS                           retefuente
+                                                                             0)))  reteica,
+                            IF(autoretProv = 1, 0, IF(t.idTasaRetefuente = 6, ROUND(SUM(precGasto * cantGasto * tasaRetefuente), 0),
+                                IF(SUM(precGasto * cantGasto) >= $base, ROUND(SUM(precGasto * cantGasto * tasaRetefuente), 0),0))) retefuente
                      FROM det_gastos dg
                               LEFT JOIN gastos g ON dg.idGasto = g.idGasto
                               LEFT JOIN tasa_iva ti ON dg.codIva = ti.idTasaIva
