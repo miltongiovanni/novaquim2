@@ -38,7 +38,7 @@ class RuteroOperaciones
                          LEFT JOIN factura f on f.idPedido LIKE CONCAT('%', p.idPedido, '%')
                          LEFT JOIN remision r on p.idPedido = r.idPedido
                          LEFT JOIN rutero ru on ru.listaPedidos LIKE CONCAT('%', p.idPedido, '%')
-                WHERE p.estado = 7";
+                WHERE p.estado = 7 AND ru.idRutero IS NOT NULL";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
