@@ -98,7 +98,7 @@ if (!isset($fechaRutero)){
             </form>
         </div>
         <div class="col-1">
-            <button class="button" type="button" onclick="window.location='../menu.php'">
+            <button class="button" type="button" onClick="eliminarSession()">
                 <span><STRONG>Ir al Menú</STRONG></span></button>
         </div>
     </div>
@@ -121,7 +121,7 @@ if (!isset($fechaRutero)){
 
     <div class="row">
         <div class="col-1">
-            <button class="button" type="button" onclick="window.location='../menu.php'">
+            <button class="button" type="button" onClick="eliminarSession()">
                 <span><STRONG>Ir al Menú</STRONG></span>
             </button>
         </div>
@@ -135,6 +135,28 @@ if (!isset($fechaRutero)){
 <!--<script src="../js/vfs_fonts.js"></script>--> <!--Para exportar PDF-->
 <script src="../js/buttons.html5.js"></script>
 <script>
+    function redireccion() {
+        window.location.href = "../menu.php";
+    }
+
+    function eliminarSession() {
+        let variable = 'idRutero';
+        $.ajax({
+            url: '../includes/controladorVentas.php',
+            type: 'POST',
+            data: {
+                "action": 'eliminarSession',
+                "variable": variable,
+            },
+            dataType: 'text',
+            success: function (res) {
+                redireccion();
+            },
+            error: function () {
+                alert("Vous avez un GROS problème");
+            }
+        });
+    }
 
     $(document).ready(function () {
         let idRutero = <?=$idRutero?>;
