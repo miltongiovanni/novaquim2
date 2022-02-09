@@ -97,7 +97,7 @@ class PersonalOperaciones
                                      LEFT JOIN det_factura df on f.idFactura = df.idFactura
                                      LEFT JOIN clientes c on c.idCliente = f.idCliente
                                      LEFT JOIN personal p on p.idPersonal = c.codVendedor
-                            WHERE codVendedor = 3
+                            WHERE codVendedor = $idVendedor
                               AND fechaCancelacion >= '$fechaInicio'
                               AND fechaCancelacion <= '$fechaFin'
                               AND codProducto < 100000
@@ -110,7 +110,7 @@ class PersonalOperaciones
                                      LEFT JOIN det_factura df on f.idFactura = df.idFactura
                                      LEFT JOIN clientes c on c.idCliente = f.idCliente
                                      LEFT JOIN personal p on p.idPersonal = c.codVendedor
-                            WHERE codVendedor = 3
+                            WHERE codVendedor = $idVendedor
                               AND fechaCancelacion >= '$fechaInicio'
                               AND fechaCancelacion <= '$fechaFin'
                               AND codProducto > 100000
@@ -139,7 +139,7 @@ class PersonalOperaciones
                                              LEFT JOIN det_factura df on f.idFactura = df.idFactura
                                              LEFT JOIN clientes c on c.idCliente = f.idCliente
                                              LEFT JOIN personal p on p.idPersonal = c.codVendedor
-                                    WHERE codVendedor = 3
+                                    WHERE codVendedor = $idVendedor
                                       AND fechaCancelacion >= '$fechaInicio'
                                       AND fechaCancelacion <= '$fechaFin'
                                       AND codProducto < 100000
@@ -157,7 +157,7 @@ class PersonalOperaciones
                                       AND fechaCancelacion <= '$fechaFin'
                                       AND codProducto > 100000
                                     GROUP BY f.idFactura) t2 ON t2.idFactura = f.idFactura
-                WHERE codVendedor = 3
+                WHERE codVendedor = $idVendedor
                   AND fechaCancelacion >= '$fechaInicio'
                   AND fechaCancelacion <= '$fechaFin'";
         $stmt = $this->_pdo->prepare($qry);
