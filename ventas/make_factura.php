@@ -46,6 +46,13 @@ if (($dias_v >= 0) && ($dias_f >= 0)) {
         $facturaOperador->makeFactura($datos);
         //CON BASE EN EL PEDIDO SE LLENA LA FACTURA
         $detPedido = $detPedidoOperador->getTotalPedidosPorFacturar($idPedido);
+        if (count($detPedido) > 40 ) {
+            $ruta = "CrearFactura.php";
+            $mensaje = "La factura debe tener máximo 40 productos";
+            $icon = "warning";
+            mover_pag($ruta, $mensaje, $icon);
+            exit;
+        }
         for ($i = 0; $i < count($detPedido); $i++) {
             $codProducto = $detPedido[$i]['codProducto'];
             $cantidad = $detPedido[$i]['cantidad'];
