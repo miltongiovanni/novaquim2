@@ -63,8 +63,8 @@ class FacturasOperaciones
         $qry = "SELECT idFactura, SUM(subtotal) subtotalfactura, ROUND(SUM(iva10),2) iva10factura, ROUND(SUM(iva19),2) iva19factura
                 FROM
                     (SELECT dp.idFactura, dp.codProducto, cantProducto, precioProducto,
-                            cantProducto*precioProducto subtotal, IF(idTasaIvaProducto=5 OR idTasaIvaProducto=2, cantProducto*precioProducto*tasaIva,0  ) iva10,
-                            IF(idTasaIvaProducto=3 OR idTasaIvaProducto=7, cantProducto*precioProducto*tasaIva,0 ) iva19
+                            cantProducto*precioProducto subtotal, IF(idTasaIvaProducto=5 OR idTasaIvaProducto=2, ROUND(cantProducto*precioProducto*tasaIva,2),0  ) iva10,
+                            IF(idTasaIvaProducto=3 OR idTasaIvaProducto=7, ROUND(cantProducto*precioProducto*tasaIva,0),0 ) iva19
                      FROM det_factura dp
                               LEFT JOIN factura f on f.idFactura = dp.idFactura
                               LEFT JOIN prodpre p on dp.codProducto = p.codPresentacion
@@ -74,7 +74,7 @@ class FacturasOperaciones
                        AND dp.codProducto < 100000
                      UNION
                      SELECT dp.idFactura, dp.codProducto, cantProducto, precioProducto,
-                            cantProducto*precioProducto subtotal, IF(idTasaIvaProducto=5 OR idTasaIvaProducto=2, cantProducto*precioProducto*tasaIva,0  ) iva10,
+                            cantProducto*precioProducto subtotal, IF(idTasaIvaProducto=5 OR idTasaIvaProducto=0, cantProducto*precioProducto*tasaIva,0  ) iva10,
                             IF(idTasaIvaProducto=3 OR idTasaIvaProducto=7, cantProducto*precioProducto*tasaIva,0 ) iva19
                      FROM det_factura dp
                               LEFT JOIN factura f on f.idFactura = dp.idFactura
@@ -84,7 +84,7 @@ class FacturasOperaciones
                        AND dp.codProducto > 100000
                      UNION
                      SELECT dp.idFactura, dp.codProducto, cantProducto, precioProducto,
-                            cantProducto*precioProducto subtotal, IF(idTasaIvaProducto=5 OR idTasaIvaProducto=2, cantProducto*precioProducto*tasaIva,0  ) iva10,
+                            cantProducto*precioProducto subtotal, IF(idTasaIvaProducto=5 OR idTasaIvaProducto=0, cantProducto*precioProducto*tasaIva,0  ) iva10,
                             IF(idTasaIvaProducto=3 OR idTasaIvaProducto=7, cantProducto*precioProducto*tasaIva,0 ) iva19
                      FROM det_factura dp
                               LEFT JOIN factura f on f.idFactura = dp.idFactura
