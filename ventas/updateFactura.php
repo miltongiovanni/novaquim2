@@ -44,7 +44,7 @@ if (($dias_v >= 0) && ($dias_f >= 0)) {
         $retefuente = $totales['retefuente'];
         $reteica = $totales['reteica'];
         $total = $subtotal - $descuento + $iva - $reteiva - $retefuente - $reteica;
-        $totalR = round($subtotal - $descuento + $iva);
+        $totalR = round($subtotal - $descuento + $iva, 2);
         $datos = array($total, $reteiva, $reteica, $retefuente, $subtotal, $iva, $totalR, $idFactura);
         $facturaOperador->updateTotalesFactura($datos);
         $_SESSION['idFactura'] = $idFactura;
