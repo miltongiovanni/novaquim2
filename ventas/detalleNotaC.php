@@ -276,25 +276,6 @@ $totalesNotaC = $notaCrOperador->getTotalesNotaC($idNotaC);
                     </button>
                 </div>
             </div>
-            <?php
-            if(!$hasDetalle):
-                ?>
-                <form action="makeDetNotaC.php" method="post" name="formulario2">
-
-                    <input name="idNotaC" type="hidden" value="<?= $idNotaC; ?>">
-                    <input name="motivo" type="hidden" value="<?= $notaC['motivo']; ?>">
-                    <input name="allFactura" type="hidden" value="1">
-                    <div class="form-group row">
-                        <div class="col-2 text-center">
-                            <button class="button" type="button" onclick="return Enviar(this.form)"><span>Devolver toda la factura</span>
-                            </button>
-                        </div>
-                    </div>
-
-                </form>
-            <?php
-            endif;
-            ?>
         <?php
 
         elseif ($notaC['motivo'] == 1)://  DESCUENTO NO REALIZADO
@@ -320,6 +301,25 @@ $totalesNotaC = $notaCrOperador->getTotalesNotaC($idNotaC);
         ?>
     </form>
 
+    <?php
+    if(!$hasDetalle):
+        ?>
+        <form action="makeDetNotaC.php" method="post" name="formulario2">
+
+            <input name="idNotaC" type="hidden" value="<?= $idNotaC; ?>">
+            <input name="motivo" type="hidden" value="<?= $notaC['motivo']; ?>">
+            <input name="allFactura" type="hidden" value="1">
+            <div class="form-group row">
+                <div class="col-2 text-center">
+                    <button class="button" type="button" onclick="return Enviar(this.form)"><span>Devolver toda la factura</span>
+                    </button>
+                </div>
+            </div>
+
+        </form>
+    <?php
+    endif;
+    ?>
     <div class="form-group titulo row text-center">
         <strong>Detalle nota crédito</strong>
     </div>

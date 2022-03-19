@@ -48,7 +48,6 @@ try {
         if(isset($allFactura) && $allFactura == 1 ){
             $detalleRemision = $detRemisionOperador->getDetRemisionesFacturaLote($facturaOrigen['idRemision']);
             $serviciosFactura = $facturaOperador->getServiciosByIdFactura($facturaOrigen['idRemision']);
-            //var_dump($motivo, $facturaOrigen, $idNotaC, $allFactura,$detalleRemision, $serviciosFactura, isset($serviciosFactura), is_array($serviciosFactura), count($serviciosFactura)); die;
             for ($i = 0; $i < count($detalleRemision); $i++) {
                 $codProducto = $detalleRemision[$i]['codProducto'];
                 $cantProducto = $detalleRemision[$i]['cantidadProducto'];
@@ -60,8 +59,14 @@ try {
                     $invProdTerminado = $invPresentacionOperador->getInvProdTerminadoByLote($codProducto, $loteProducto);
                     $nvoInvProdTerminado = $invProdTerminado + $cantProducto;
                     /*SE ACTUALIZA EL INVENTARIO*/
-                    $datos = array($nvoInvProdTerminado, $codProducto, $loteProducto);
-                    $invPresentacionOperador->updateInvProdTerminado($datos);
+                    if ($invProdTerminado === false){
+                        $datos = array( $codProducto, $loteProducto, $nvoInvProdTerminado);
+                        $invPresentacionOperador->makeInvProdTerminado($datos);
+                    }else{
+                        $datos = array($nvoInvProdTerminado, $codProducto, $loteProducto);
+                        $invPresentacionOperador->updateInvProdTerminado($datos);
+
+                    }
                     $datos = array($idNotaC, $codProducto, $cantProducto);
                     $detNotaCrOperador->makeDetNotaCr($datos);
                 }
