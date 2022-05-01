@@ -35,10 +35,10 @@ try {
 
     //ESTA PARTE ES PARA EL CONSECUTIVO DEL LOTE
     $OProdMPrimaOperador = new OProdMPrimaOperaciones();
-    $loteMP = $OProdMPrimaOperador->getLastLote() + 1;
+    $loteMPrima = $OProdMPrimaOperador->getLastLote() + 1;
     $FormulaMPrimaOperador = new FormulasMPrimaOperaciones();
     $codMPrimaProd = $FormulaMPrimaOperador->getCodFormulaMPrima($idFormulaMPrima);
-    $datos = array($loteMP, $fechProd, $idFormulaMPrima, $cantKg, $codPersonal, $codMPrimaProd);
+    $datos = array($loteMPrima, $fechProd, $idFormulaMPrima, $cantKg, $codPersonal, $codMPrimaProd);
     $qry = "INSERT INTO ord_prod_mp (loteMP, fechProd, idFormMP, cantKg, codPersonal, codMPrima) VALUES (?, ?, ?, ?, ?, ?)";
     $stmt = $link->prepare($qry);
     $stmt->execute($datos);
@@ -68,14 +68,14 @@ try {
             $invMPrima = $InvMPrimaOperador->getInvMPrima($codMPrima);
             for ($j = 0; $j < count($invMPrima); $j++) {
                 $invMP = $invMPrima[$j]['invMP'];
-                $loteMPrima = $invMPrima[$j]['loteMP'];
+                $loteMP = $invMPrima[$j]['loteMP'];
                 $fechLote = $invMPrima[$j]['fechLote'];
                 if ($invMP >= $uso1) {
                     $invMP = $invMP - $uso1;
                     $qryupt = "UPDATE inv_mprimas SET invMP=$invMP WHERE loteMP='$loteMP' and codMP=$codMPrima";
                     $stmt = $link->prepare($qryupt);
                     $stmt->execute();
-                    $qryDOP = "INSERT INTO det_ord_prod_mp (loteMP, idMPrima, cantMPrima, loteMPrima) VALUES ($loteMP, $codMPrima, $uso1, '$loteMPrima')";
+                    $qryDOP = "INSERT INTO det_ord_prod_mp (loteMP, idMPrima, cantMPrima, loteMPrima) VALUES ($loteMPrima, $codMPrima, $uso1, '$loteMP')";
                     $stmt = $link->prepare($qryDOP);
                     $stmt->execute();
                     break;
@@ -85,7 +85,7 @@ try {
                     $stmt = $link->prepare($qryupt);
                     $stmt->execute();
                     if ($invMP > 0) {
-                        $qryDOP = "INSERT INTO det_ord_prod_mp (loteMP, idMPrima, cantMPrima, loteMPrima) VALUES ($loteMP, $codMPrima, $invMP, '$loteMPrima')";
+                        $qryDOP = "INSERT INTO det_ord_prod_mp (loteMP, idMPrima, cantMPrima, loteMPrima) VALUES ($loteMPrima, $codMPrima, $invMP, '$loteMP')";
                         $stmt = $link->prepare($qryDOP);
                         $stmt->execute();
                     }
@@ -93,11 +93,11 @@ try {
             }
         }
     }
-    $qryinsol="INSERT INTO inv_mprimas (loteMP, codMP, invMP, fechLote) VALUES ($loteMP, $codMPrimaProd, $cantKg, '$fechProd')";
+    $qryinsol="INSERT INTO inv_mprimas (loteMP, codMP, invMP, fechLote) VALUES ($loteMPrima, $codMPrimaProd, $cantKg, '$fechProd')";
     $stmt = $link->prepare($qryinsol);
     $stmt->execute();
     $link->commit();
-    $_SESSION['loteMP'] = $loteMP;
+    $_SESSION['loteMP'] = $loteMPrima;
     $ruta = "detO_Prod_mp.php";
     $mensaje = "Orden de producción de materia prima creada correctamente";
     $icon = "success";

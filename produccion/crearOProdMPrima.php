@@ -33,7 +33,7 @@ foreach ($_POST as $nombre_campo => $valor) {
         <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>PREPARACIÓN DE MATERIA PRIMA</h4></div>
     <form method="post" action="makeO_Prod_MP.php" name="form1">
         <div class="form-group row">
-            <label class="col-form-label col-2" for="idFormulaMPrima"><strong>Materia prima</strong></label>
+            <label class="col-form-label col-2 text-end" for="idFormulaMPrima"><strong>Materia prima</strong></label>
             <?php
             $FormulaMPrimaOperador = new FormulasMPrimaOperaciones();
             $formulas = $FormulaMPrimaOperador->getFormulasMPrima();
@@ -51,7 +51,7 @@ foreach ($_POST as $nombre_campo => $valor) {
             <input type="date" class="form-control col-2" name="fechProd" id="fechProd" required>
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-2" for="codPersonal"><strong>Responsable</strong></label>
+            <label class="col-form-label col-2 text-end" for="codPersonal"><strong>Responsable</strong></label>
             <?php
             $PersonalOperador = new PersonalOperaciones();
             $personal = $PersonalOperador->getPersonalProd();
