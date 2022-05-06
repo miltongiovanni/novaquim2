@@ -119,7 +119,7 @@ class DetComprasOperaciones
                         (SELECT idDistribucion Codigo, producto Producto FROM det_proveedores
                         LEFT JOIN distribucion d ON d.idDistribucion=Codigo
                         WHERE idProv=$idProv) dp
-                        LEFT JOIN (SELECT codigo from det_compras WHERE idCompra=8286) dc ON dp.Codigo=dc.codigo
+                        LEFT JOIN (SELECT codigo from det_compras WHERE idCompra=$idCompra) dc ON dp.Codigo=dc.codigo
                         WHERE dc.codigo IS NULL ORDER BY Producto";
                 break;
         }
