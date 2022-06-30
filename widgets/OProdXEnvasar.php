@@ -7,8 +7,8 @@ $ordenes = $manager->getOProdSinEnvasar();
     </div>
     <div class="form-group row titulo3">
         <div class="col-2 text-center "><strong>Lote</strong></div>
-        <div class="col-8 text-center "><strong>Producto</strong></div>
-        <div class="col-2 text-center "><strong>Cantidad</strong></div>
+        <div class="col-7 text-center "><strong>Producto</strong></div>
+        <div class="col-3 text-center "><strong>Cantidad</strong></div>
     </div>
     <div style="height: 7.2vw; overflow-y: scroll;overflow-x: hidden;">
         <?php
@@ -16,8 +16,8 @@ $ordenes = $manager->getOProdSinEnvasar();
         ?>
     <div class="row formatoDatos">
         <div class="col-2 text-center "><?= $orden['lote'] ?></div>
-        <div class="col-8 text-start "><?= $orden['nomProducto'] ?></div>
-        <div class="col-2 text-center "><?= round($orden['cantidadKg']).' Kg' ?></div>
+        <div class="col-7 text-start "><?= $orden['nomProducto'] ?></div>
+        <div class="col-3 text-center "><?= round($orden['cantidadKg']).' Kg' ?></div>
     </div>
     <?php
     endforeach;
