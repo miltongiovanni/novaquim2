@@ -26,13 +26,10 @@ foreach ($detalle as &$valor){
 }
 $retData = array();
 
-$titulo = array(
+$datosRetorno = array(
     'draw' => 0,
     'recordsTotal' => count($detalle),
-    'recordsFiltered' => count($detalle)
-);
-$datosRetorno = array(
-    $titulo,
+    'recordsFiltered' => count($detalle),
     'data' => $detalle
 );
 

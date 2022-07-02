@@ -28,13 +28,11 @@ for ($i = 0; $i < count($compras); $i++) {
     $datos[$i]['pago'] = "$".number_format($pago,0,".",",");
     $datos[$i]['saldo'] = "$".number_format(($compras[$i]['total'] - $pago),0,".",",");
 }
-$titulo = array(
+
+$datosRetorno = array(
     'draw' => 0,
     'recordsTotal' => count($datos),
-    'recordsFiltered' => count($datos)
-);
-$datosRetorno = array(
-    $titulo,
+    'recordsFiltered' => count($datos),
     'data' => $datos
 );
 print json_encode($datosRetorno);

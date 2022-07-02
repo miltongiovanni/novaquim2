@@ -8,13 +8,11 @@ function cargarClases($classname)
     spl_autoload_register('cargarClases');
     $EtiquetasOperador = new EtiquetasOperaciones();
     $etiquetas=$EtiquetasOperador->getTableEtiquetas();
-    $titulo  = array(
+
+    $datosRetorno  = array(
         'draw' => 0,
         'recordsTotal'    => count($etiquetas),
-        'recordsFiltered' => count($etiquetas)
-        );
-    $datosRetorno  = array(
-        $titulo,  
+        'recordsFiltered' => count($etiquetas),
         'data'    => $etiquetas
        ); 
 

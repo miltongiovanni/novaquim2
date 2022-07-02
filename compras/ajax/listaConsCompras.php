@@ -11,13 +11,10 @@ $fechaFin = $_GET['fechaFin'];
 $CompraOperador = new ComprasOperaciones();
 $compras = $CompraOperador->getTableComprasPorFecha($fechaIni, $fechaFin);
 
-$titulo = array(
+$datosRetorno = array(
     'draw' => 0,
     'recordsTotal' => count($compras),
-    'recordsFiltered' => count($compras)
-);
-$datosRetorno = array(
-    $titulo,
+    'recordsFiltered' => count($compras),
     'data' => $compras
 );
 print json_encode($datosRetorno);

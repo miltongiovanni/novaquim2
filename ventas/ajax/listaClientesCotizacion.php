@@ -8,13 +8,11 @@ function cargarClases($classname)
 spl_autoload_register('cargarClases');
 $clienteOperador = new ClientesCotizacionOperaciones();
 $clientes = $clienteOperador->getTableClientes();
-$titulo = array(
+
+$datosRetorno = array(
     'draw' => 0,
     'recordsTotal' => count($clientes),
-    'recordsFiltered' => count($clientes)
-);
-$datosRetorno = array(
-    $titulo,
+    'recordsFiltered' => count($clientes),
     'data' => $clientes
 );
 print json_encode($datosRetorno);

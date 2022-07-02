@@ -10,13 +10,10 @@ spl_autoload_register('cargarClases');
 $InvEnvaseOperador = new InvEnvasesOperaciones();
 $envases = $InvEnvaseOperador->getTableStockInvEnvase();
 
-$titulo = array(
+$datosRetorno = array(
     'draw' => 0,
     'recordsTotal' => count($envases),
-    'recordsFiltered' => count($envases)
-);
-$datosRetorno = array(
-    $titulo,
+    'recordsFiltered' => count($envases),
     'data' => $envases
 );
 print json_encode($datosRetorno);

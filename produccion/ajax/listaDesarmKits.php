@@ -9,13 +9,11 @@ spl_autoload_register('cargarClases');
 
 $DesarmKitOperador = new DesarmKitsOperaciones();
 $kitsDesarm = $DesarmKitOperador->getTableDesarmKits();
-$titulo = array(
+
+$datosRetorno = array(
     'draw' => 0,
     'recordsTotal' => count($kitsDesarm),
-    'recordsFiltered' => count($kitsDesarm)
-);
-$datosRetorno = array(
-    $titulo,
+    'recordsFiltered' => count($kitsDesarm),
     'data' => $kitsDesarm
 );
 print json_encode($datosRetorno);

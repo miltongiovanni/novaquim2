@@ -9,13 +9,11 @@ $tipoCompra=$_GET['tipoCompra'];
 spl_autoload_register('cargarClases');
 $DetCompraOperador = new DetComprasOperaciones();
 $detalle = $DetCompraOperador->getTableDetCompras($idCompra, $tipoCompra);
-$titulo = array(
+
+$datosRetorno = array(
     'draw' => 0,
     'recordsTotal' => count($detalle),
-    'recordsFiltered' => count($detalle)
-);
-$datosRetorno = array(
-    $titulo,
+    'recordsFiltered' => count($detalle),
     'data' => $detalle
 );
 

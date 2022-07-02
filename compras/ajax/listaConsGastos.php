@@ -11,13 +11,10 @@ $fechaFin = $_GET['fechaFin'];
 $GastoOperador = new GastosOperaciones();
 $gastos = $GastoOperador->getTableGastosPorFecha($fechaIni, $fechaFin);
 
-$titulo = array(
+$datosRetorno = array(
     'draw' => 0,
     'recordsTotal' => count($gastos),
-    'recordsFiltered' => count($gastos)
-);
-$datosRetorno = array(
-    $titulo,
+    'recordsFiltered' => count($gastos),
     'data' => $gastos
 );
 print json_encode($datosRetorno);

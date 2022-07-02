@@ -8,13 +8,11 @@ $idKit=$_GET['idKit'];
 spl_autoload_register('cargarClases');
 $detKitOperador = new DetKitsOperaciones();
 $detalle = $detKitOperador->getTableDetKits($idKit);
-$titulo = array(
+
+$datosRetorno = array(
     'draw' => 0,
     'recordsTotal' => count($detalle),
-    'recordsFiltered' => count($detalle)
-);
-$datosRetorno = array(
-    $titulo,
+    'recordsFiltered' => count($detalle),
     'data' => $detalle
 );
 

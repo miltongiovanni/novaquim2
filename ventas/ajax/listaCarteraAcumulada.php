@@ -11,13 +11,11 @@ $facturas = $RecCajaOperador->getTableFacturasAccClienteXcobrar();
 for ($i = 0; $i < count($facturas); $i++) {
     $facturas[$i]['detCarteraCliente'] = $RecCajaOperador->getDetalleFacturasAccClienteXcobrar($facturas[$i]['idCliente']);
 }
-$titulo = array(
+
+$datosRetorno = array(
     'draw' => 0,
     'recordsTotal' => count($facturas),
-    'recordsFiltered' => count($facturas)
-);
-$datosRetorno = array(
-    $titulo,
+    'recordsFiltered' => count($facturas),
     'data' => $facturas
 );
 print json_encode($datosRetorno);

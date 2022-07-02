@@ -10,13 +10,10 @@ $loteMP=$_GET['loteMP'];
 $DetOProdMPrimaOperador = new DetOProdMPrimaOperaciones();
 $datos = $DetOProdMPrimaOperador->getTableDetOProdMPrimas($loteMP);
 
-$titulo = array(
+$datosRetorno = array(
     'draw' => 0,
     'recordsTotal' => count($datos),
-    'recordsFiltered' => count($datos)
-);
-$datosRetorno = array(
-    $titulo,
+    'recordsFiltered' => count($datos),
     'data' => $datos
 );
 print json_encode($datosRetorno);

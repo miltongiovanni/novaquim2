@@ -8,13 +8,11 @@ function cargarClases($classname)
     spl_autoload_register('cargarClases');
     $RelEnvDisOperador = new RelEnvDisOperaciones();
     $relaciones=$RelEnvDisOperador->getTableRelsEnvDis();
-    $titulo  = array(
+
+    $datosRetorno  = array(
         'draw' => 0,
         'recordsTotal'    => count($relaciones),
-        'recordsFiltered' => count($relaciones)
-        );
-    $datosRetorno  = array(
-        $titulo,  
+        'recordsFiltered' => count($relaciones),
         'data'    => $relaciones
        ); 
 print json_encode($datosRetorno);

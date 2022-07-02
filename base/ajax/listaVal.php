@@ -8,13 +8,11 @@ function cargarClases($classname)
     spl_autoload_register('cargarClases');
     $TapasOperador = new TapasOperaciones();
     $tapas=$TapasOperador->getTableTapas();
-    $titulo  = array(
+
+    $datosRetorno  = array(
         'draw' => 0,
         'recordsTotal'    => count($tapas),
-        'recordsFiltered' => count($tapas)
-        ); 
-    $datosRetorno  = array(
-        $titulo,  
+        'recordsFiltered' => count($tapas),
         'data'    => $tapas
        ); 
 

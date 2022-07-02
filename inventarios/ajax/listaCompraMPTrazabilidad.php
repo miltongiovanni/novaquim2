@@ -11,13 +11,10 @@ $loteMP = $_GET['loteMP'];
 $detCompraOperador = new DetComprasOperaciones();
 $mprimas = $detCompraOperador->getDetComprasMPTrazabilidad($codMPrima, $loteMP );
 
-$titulo = array(
+$datosRetorno = array(
     'draw' => 0,
     'recordsTotal' => count($mprimas),
-    'recordsFiltered' => count($mprimas)
-);
-$datosRetorno = array(
-    $titulo,
+    'recordsFiltered' => count($mprimas),
     'data' => $mprimas
 );
 print json_encode($datosRetorno);

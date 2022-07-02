@@ -8,13 +8,11 @@ function cargarClases($classname)
 spl_autoload_register('cargarClases');
 $servicioOperador = new ServiciosOperaciones();
 $servicios = $servicioOperador->getTableServicios();
-$titulo = array(
+
+$datosRetorno = array(
     'draw' => 0,
     'recordsTotal' => count($servicios),
-    'recordsFiltered' => count($servicios)
-);
-$datosRetorno = array(
-    $titulo,
+    'recordsFiltered' => count($servicios),
     'data' => $servicios
 );
 

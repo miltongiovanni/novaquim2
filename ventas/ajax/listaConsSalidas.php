@@ -10,13 +10,11 @@ $fechaFin = $_GET['fechaFin'];
 
 $salidasOperador = new RemisionesOperaciones();
 $salidas = $salidasOperador->getTableSalidasPorFecha($fechaIni, $fechaFin);
-$titulo = array(
+
+$datosRetorno = array(
     'draw' => 0,
     'recordsTotal' => count($salidas),
-    'recordsFiltered' => count($salidas)
-);
-$datosRetorno = array(
-    $titulo,
+    'recordsFiltered' => count($salidas),
     'data' => $salidas
 );
 print json_encode($datosRetorno);

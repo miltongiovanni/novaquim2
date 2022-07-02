@@ -16,16 +16,12 @@ foreach ($pedidos as $pedido){
     $pedidosRutero[] = $pedidoOperador->getPedidoRutero($pedido);
 }
 
-$titulo = array(
+$datosRetorno = array(
     'draw' => 0,
     'recordsTotal' => count($pedidosRutero),
-    'recordsFiltered' => count($pedidosRutero)
-);
-$datosRetorno = array(
-    $titulo,
+    'recordsFiltered' => count($pedidosRutero),
     'data' => $pedidosRutero
 );
-
 
 print json_encode($datosRetorno);
 

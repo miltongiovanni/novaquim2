@@ -8,13 +8,11 @@ function cargarClases($classname)
     spl_autoload_register('cargarClases');
     $PreciosOperador = new PreciosOperaciones();
     $precios=$PreciosOperador->getTablePreciosHTML();
-    $titulo  = array(
+
+    $datosRetorno  = array(
         'draw' => 0,
         'recordsTotal'    => count($precios),
-        'recordsFiltered' => count($precios)
-        );
-    $datosRetorno  = array(
-        $titulo,  
+        'recordsFiltered' => count($precios),
         'data'    => $precios
        ); 
 

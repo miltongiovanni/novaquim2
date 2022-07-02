@@ -9,13 +9,11 @@ spl_autoload_register('cargarClases');
 
 $ArmKitOperador = new ArmKitsOperaciones();
 $kitsArm = $ArmKitOperador->getTableArmKits();
-$titulo = array(
+
+$datosRetorno = array(
     'draw' => 0,
     'recordsTotal' => count($kitsArm),
-    'recordsFiltered' => count($kitsArm)
-);
-$datosRetorno = array(
-    $titulo,
+    'recordsFiltered' => count($kitsArm),
     'data' => $kitsArm
 );
 print json_encode($datosRetorno);

@@ -8,13 +8,11 @@ $idGasto=$_GET['idGasto'];
 spl_autoload_register('cargarClases');
 $DetGastoOperador = new DetGastosOperaciones();
 $detalle = $DetGastoOperador->getTableDetGastos($idGasto);
-$titulo = array(
+
+$datosRetorno = array(
     'draw' => 0,
     'recordsTotal' => count($detalle),
-    'recordsFiltered' => count($detalle)
-);
-$datosRetorno = array(
-    $titulo,
+    'recordsFiltered' => count($detalle),
     'data' => $detalle
 );
 

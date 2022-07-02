@@ -8,13 +8,11 @@ function cargarClases($classname)
     spl_autoload_register('cargarClases');
     $CategoriaMPOperador = new CategoriasMPOperaciones();
     $categoriasMP=$CategoriaMPOperador->getCatsMPTable();
-    $titulo  = array(
+
+    $datosRetorno  = array(
         'draw' => 0,
         'recordsTotal'    => count($categoriasMP),
-        'recordsFiltered' => count($categoriasMP)
-        );
-    $datosRetorno  = array(
-        $titulo,  
+        'recordsFiltered' => count($categoriasMP),
         'data'    => $categoriasMP
        ); 
        print json_encode($datosRetorno);

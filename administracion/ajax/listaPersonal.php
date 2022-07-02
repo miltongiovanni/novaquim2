@@ -8,13 +8,11 @@ function cargarClases($classname)
     spl_autoload_register('cargarClases');
     $PersonalOperador = new PersonalOperaciones();
 	$personal=$PersonalOperador->getTablePersonal();
-    $titulo  = array(
+
+    $datosRetorno  = array(
         'draw' => 0,
         'recordsTotal'    => count($personal),
-        'recordsFiltered' => count($personal)
-        ); 
-    $datosRetorno  = array(
-        $titulo,  
+        'recordsFiltered' => count($personal),
         'data'    => $personal
        ); 
 

@@ -21,13 +21,11 @@ for ($i = 0; $i < count($oProdColors); $i++) {
     $datos[$i]['nomPersonal'] = $oProdColors[$i]['nomPersonal'];
     $datos[$i]['detOProdColor'] = $detOProdColor;
 }
-$titulo = array(
+
+$datosRetorno = array(
     'draw' => 0,
     'recordsTotal' => count($datos),
-    'recordsFiltered' => count($datos)
-);
-$datosRetorno = array(
-    $titulo,
+    'recordsFiltered' => count($datos),
     'data' => $datos
 );
 print json_encode($datosRetorno);

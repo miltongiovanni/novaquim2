@@ -38,13 +38,10 @@ for ($i = 0; $i < count($productos); $i++) {
     }
 }
 
-$titulo = array(
+$datosRetorno = array(
     'draw' => 0,
     'recordsTotal' => count($response),
-    'recordsFiltered' => count($response)
-);
-$datosRetorno = array(
-    $titulo,
+    'recordsFiltered' => count($response),
     'data' => $response
 );
 

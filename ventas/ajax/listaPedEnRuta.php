@@ -8,13 +8,11 @@ function cargarClases($classname)
 spl_autoload_register('cargarClases');
 $ruteroOperador = new RuteroOperaciones();
 $pedidos = $ruteroOperador->getListaPedidosRutero();
-$titulo = array(
+
+$datosRetorno = array(
     'draw' => 0,
     'recordsTotal' => count($pedidos),
-    'recordsFiltered' => count($pedidos)
-);
-$datosRetorno = array(
-    $titulo,
+    'recordsFiltered' => count($pedidos),
     'data' => $pedidos
 );
 

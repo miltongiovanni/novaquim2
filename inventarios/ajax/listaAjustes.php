@@ -8,13 +8,11 @@ function cargarClases($classname)
     spl_autoload_register('cargarClases');
     $InvAjustesOperador = new InvAjustesOperaciones();
     $ajustes=$InvAjustesOperador->getTableInvAjuste();
-    $titulo  = array(
+
+    $datosRetorno  = array(
         'draw' => 0,
         'recordsTotal'    => count($ajustes),
-        'recordsFiltered' => count($ajustes)
-        );
-    $datosRetorno  = array(
-        $titulo,  
+        'recordsFiltered' => count($ajustes),
         'data'    => $ajustes
        ); 
 

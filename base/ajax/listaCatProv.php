@@ -8,13 +8,11 @@ function cargarClases($classname)
     spl_autoload_register('cargarClases');
     $CategoriaProvOperador = new CategoriasProvOperaciones();
     $categoriasProv=$CategoriaProvOperador->getCatsProv();
-    $titulo  = array(
+
+    $datosRetorno  = array(
         'draw' => 0,
         'recordsTotal'    => count($categoriasProv),
-        'recordsFiltered' => count($categoriasProv)
-        );
-    $datosRetorno  = array(
-        $titulo,  
+        'recordsFiltered' => count($categoriasProv),
         'data'    => $categoriasProv
        ); 
 
