@@ -311,25 +311,71 @@ class FacturasOperaciones
         return $result;
     }
 
-    public function getTableFacturas()
+    public function getTableFacturas($limit, $order, $where, $bindings)
     {
-        $qry = "SELECT idFactura,
-                       idPedido,
-                       idRemision,
-                       nomCliente,
-                       fechaFactura,
-                       fechaVenc,
+        $qry = "select * from (SELECT f.idFactura,
+                       f.idPedido,
+                       f.idRemision,
+                       c.nomCliente,
+                       f.fechaFactura,
+                       f.fechaVenc,
                        tp.tipoPrecio,
                        IF(f.estado='A', 'Anulada', IF(f.estado='C', 'Cancelada', IF(f.estado='E', 'En proceso','Pendiente'))) estadoFactura,
-                       CONCAT('$', FORMAT(total, 0)) totalFactura
+                       CONCAT('$', FORMAT(f.total, 0)) totalFactura
                 FROM factura f
                          LEFT JOIN clientes c on c.idCliente = f.idCliente
-                         LEFT JOIN tip_precio tp ON f.tipPrecio = tp.idPrecio
-                WHERE( YEAR(now())-YEAR(fechaFactura))<=1";
+                         LEFT JOIN tip_precio tp ON f.tipPrecio = tp.idPrecio) fct
+                $where
+                $order
+                $limit
+                ";
         $stmt = $this->_pdo->prepare($qry);
+            // Bind parameters
+
+		if ( is_array( $bindings ) ) {
+            for ( $i=0, $ien=count($bindings) ; $i<$ien ; $i++ ) {
+                $binding = $bindings[$i];
+                $stmt->bindValue( $binding['key'], $binding['val'], $binding['type'] );
+            }
+        }
+		// Execute
         $stmt->execute();
-        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $result = $stmt->fetchAll(PDO::FETCH_BOTH);
         return $result;
+    }
+
+
+    public function getTotalNumeroFacturas($where, $bindings)
+    {
+        $qry = "select COUNT(idFactura) c FROM (SELECT f.idFactura,
+                       f.idPedido,
+                       f.idRemision,
+                       c.nomCliente,
+                       f.fechaFactura,
+                       f.fechaVenc,
+                       tp.tipoPrecio,
+                       IF(f.estado='A', 'Anulada', IF(f.estado='C', 'Cancelada', IF(f.estado='E', 'En proceso','Pendiente'))) estadoFactura,
+                       CONCAT('$', FORMAT(f.total, 0)) totalFactura
+                FROM factura f
+                         LEFT JOIN clientes c on c.idCliente = f.idCliente
+                         LEFT JOIN tip_precio tp ON f.tipPrecio = tp.idPrecio) fctc
+                 $where
+                ";
+        $stmt = $this->_pdo->prepare($qry);
+
+        // Bind parameters
+
+        if ( is_array( $bindings ) ) {
+            for ( $i=0, $ien=count($bindings) ; $i<$ien ; $i++ ) {
+                $binding = $bindings[$i];
+                $stmt->bindValue( $binding['key'], $binding['val'], $binding['type'] );
+            }
+        }
+
+		// Execute
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_BOTH);
+        return $result['c'];
     }
 
     public function getTableFacturasCliente($idCliente)

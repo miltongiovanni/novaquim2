@@ -20,12 +20,11 @@ for ($i = 0; $i < count($invMPrima); $i++) {
     $datos[$i]['detInvMPrima'] = $detInvMPrima;
 }
 $titulo = array(
-    'draw' => 0,
-    'recordsTotal' => count($datos),
-    'recordsFiltered' => count($datos)
 );
 $datosRetorno = array(
-    $titulo,
+    'draw' => 0,
+    'recordsTotal' => count($datos),
+    'recordsFiltered' => count($datos),
     'data' => $datos
 );
 print json_encode($datosRetorno);

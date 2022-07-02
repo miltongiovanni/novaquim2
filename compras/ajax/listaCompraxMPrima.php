@@ -9,13 +9,11 @@ spl_autoload_register('cargarClases');
 $codMPrima = $_GET['codMPrima'];
 $DetCompraOperador = new DetComprasOperaciones();
 $productos = $DetCompraOperador->getHistoricoComprasMPrimas($codMPrima);
-$titulo = array(
+
+$datosRetorno = array(
     'draw' => 0,
     'recordsTotal' => count($productos),
-    'recordsFiltered' => count($productos)
-);
-$datosRetorno = array(
-    $titulo,
+    'recordsFiltered' => count($productos),
     'data' => $productos
 );
 

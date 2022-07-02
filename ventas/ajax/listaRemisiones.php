@@ -12,13 +12,11 @@ $detRemisionOperador = new DetRemisionesOperaciones();
 for($i=0;$i<count($remisiones); $i++){
     $remisiones[$i]['detRemision']= $detRemisionOperador->getTableDetRemisionFactura($remisiones[$i]['idRemision']);
 }
-$titulo = array(
+
+$datosRetorno = array(
     'draw' => 0,
     'recordsTotal' => count($remisiones),
-    'recordsFiltered' => count($remisiones)
-);
-$datosRetorno = array(
-    $titulo,
+    'recordsFiltered' => count($remisiones),
     'data' => $remisiones
 );
 print json_encode($datosRetorno);

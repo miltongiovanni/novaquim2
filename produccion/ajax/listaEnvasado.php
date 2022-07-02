@@ -23,13 +23,11 @@ for ($i = 0; $i < count($oProds); $i++) {
     $datos[$i]['descEstado'] = $oProds[$i]['descEstado'];
     $datos[$i]['envasado'] = $envasado;
 }
-$titulo = array(
+
+$datosRetorno = array(
     'draw' => 0,
     'recordsTotal' => count($datos),
-    'recordsFiltered' => count($datos)
-);
-$datosRetorno = array(
-    $titulo,
+    'recordsFiltered' => count($datos),
     'data' => $datos
 );
 print json_encode($datosRetorno);

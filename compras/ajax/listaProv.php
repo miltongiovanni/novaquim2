@@ -21,13 +21,11 @@ for ($i = 0; $i < count($proveedores); $i++) {
     $datos[$i]['desCatProv'] = $proveedores[$i]['desCatProv'];
     $datos[$i]['detProveedor'] = $detProveedor;
 }
-$titulo = array(
+
+$datosRetorno = array(
     'draw' => 0,
     'recordsTotal' => count($datos),
-    'recordsFiltered' => count($datos)
-);
-$datosRetorno = array(
-    $titulo,
+    'recordsFiltered' => count($datos),
     'data' => $datos
 );
 print json_encode($datosRetorno);

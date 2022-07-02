@@ -20,13 +20,11 @@ for ($i = 0; $i < count($kits); $i++) {
     $datos[$i]['nomEnvase'] = $kits[$i]['nomEnvase'];
     $datos[$i]['detKit'] = $detKit;
 }
-$titulo = array(
+
+$datosRetorno = array(
     'draw' => 0,
     'recordsTotal' => count($datos),
-    'recordsFiltered' => count($datos)
-);
-$datosRetorno = array(
-    $titulo,
+    'recordsFiltered' => count($datos),
     'data' => $datos
 );
 print json_encode($datosRetorno);

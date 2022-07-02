@@ -11,13 +11,10 @@ $fechaFin = $_GET['fechaFin'];
 $NotaCrOperador = new NotasCreditoOperaciones();
 $notas = $NotaCrOperador->getTableNotasCreditoPorFecha($fechaIni, $fechaFin);
 
-$titulo = array(
+$datosRetorno = array(
     'draw' => 0,
     'recordsTotal' => count($notas),
-    'recordsFiltered' => count($notas)
-);
-$datosRetorno = array(
-    $titulo,
+    'recordsFiltered' => count($notas),
     'data' => $notas
 );
 print json_encode($datosRetorno);

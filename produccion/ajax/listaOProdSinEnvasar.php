@@ -9,13 +9,11 @@ spl_autoload_register('cargarClases');
 
 $OProdOperador = new OProdOperaciones();
 $OProdSinEnvasar = $OProdOperador->getTableOProdSinEnvasar();
-$titulo = array(
+
+$datosRetorno = array(
     'draw' => 0,
     'recordsTotal' => count($OProdSinEnvasar),
-    'recordsFiltered' => count($OProdSinEnvasar)
-);
-$datosRetorno = array(
-    $titulo,
+    'recordsFiltered' => count($OProdSinEnvasar),
     'data' => $OProdSinEnvasar
 );
 print json_encode($datosRetorno);

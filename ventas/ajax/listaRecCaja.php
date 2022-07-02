@@ -8,13 +8,11 @@ function cargarClases($classname)
 spl_autoload_register('cargarClases');
 $recCajaOperador = new RecCajaOperaciones();
 $recibos = $recCajaOperador->getTableRecCaja();
-$titulo = array(
+
+$datosRetorno = array(
     'draw' => 0,
     'recordsTotal' => count($recibos),
-    'recordsFiltered' => count($recibos)
-);
-$datosRetorno = array(
-    $titulo,
+    'recordsFiltered' => count($recibos),
     'data' => $recibos
 );
 

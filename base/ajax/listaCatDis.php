@@ -8,13 +8,11 @@ function cargarClases($classname)
     spl_autoload_register('cargarClases');
     $CategoriaDisOperador = new CategoriasDisOperaciones();
     $categoriasDis=$CategoriaDisOperador->getCatsDisTable();
-    $titulo  = array(
+
+    $datosRetorno  = array(
         'draw' => 0,
         'recordsTotal'    => count($categoriasDis),
-        'recordsFiltered' => count($categoriasDis)
-        ); 
-    $datosRetorno  = array(
-        $titulo,  
+        'recordsFiltered' => count($categoriasDis),
         'data'    => $categoriasDis
        ); 
 

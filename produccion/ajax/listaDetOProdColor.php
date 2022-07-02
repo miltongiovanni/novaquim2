@@ -10,13 +10,10 @@ $loteColor=$_GET['loteColor'];
 $DetOProdColorOperador = new DetOProdColorOperaciones();
 $datos = $DetOProdColorOperador->getTableDetOProdColor($loteColor);
 
-$titulo = array(
+$datosRetorno = array(
     'draw' => 0,
     'recordsTotal' => count($datos),
-    'recordsFiltered' => count($datos)
-);
-$datosRetorno = array(
-    $titulo,
+    'recordsFiltered' => count($datos),
     'data' => $datos
 );
 print json_encode($datosRetorno);

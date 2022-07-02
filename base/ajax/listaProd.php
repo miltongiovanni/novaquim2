@@ -8,13 +8,11 @@ function cargarClases($classname)
     spl_autoload_register('cargarClases');
     $ProductosOperador = new ProductosOperaciones();
     $productos=$ProductosOperador->getTableProductos();
-    $titulo  = array(
+
+    $datosRetorno  = array(
         'draw' => 0,
         'recordsTotal'    => count($productos),
-        'recordsFiltered' => count($productos)
-        );
-    $datosRetorno  = array(
-        $titulo,  
+        'recordsFiltered' => count($productos),
         'data'    => $productos
        ); 
 

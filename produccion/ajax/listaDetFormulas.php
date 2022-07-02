@@ -10,13 +10,10 @@ $idFormula=$_GET['idFormula'];
 $DetFormulaOperador = new DetFormulaOperaciones();
 $datos = $DetFormulaOperador->getTableDetFormulas($idFormula);
 
-$titulo = array(
+$datosRetorno = array(
     'draw' => 0,
     'recordsTotal' => count($datos),
-    'recordsFiltered' => count($datos)
-);
-$datosRetorno = array(
-    $titulo,
+    'recordsFiltered' => count($datos),
     'data' => $datos
 );
 print json_encode($datosRetorno);

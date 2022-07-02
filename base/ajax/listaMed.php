@@ -8,13 +8,11 @@ function cargarClases($classname)
     spl_autoload_register('cargarClases');
     $PresentacionOperador = new PresentacionesOperaciones();
 	$presentaciones=$PresentacionOperador->getTablePresentaciones();
-    $titulo  = array(
+
+    $datosRetorno  = array(
         'draw' => 0,
         'recordsTotal'    => count($presentaciones),
-        'recordsFiltered' => count($presentaciones)
-        );
-    $datosRetorno  = array(
-        $titulo,  
+        'recordsFiltered' => count($presentaciones),
         'data'    => $presentaciones
        ); 
 

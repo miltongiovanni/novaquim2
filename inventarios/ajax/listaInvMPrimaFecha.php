@@ -20,12 +20,11 @@ for ($i = 0; $i < count($invMPrima); $i++) {
     $datos[$i]['inventario'] = round($datos[$i]['invtotal'] - $datos[$i]['entrada'] + $datos[$i]['salida'], 3);
 }
 $titulo = array(
-    'draw' => 0,
-    'recordsTotal' => count($datos),
-    'recordsFiltered' => count($datos)
 );
 $datosRetorno = array(
-    $titulo,
+    'draw' => 0,
+    'recordsTotal' => count($datos),
+    'recordsFiltered' => count($datos),
     'data' => $datos
 );
 print json_encode($datosRetorno);

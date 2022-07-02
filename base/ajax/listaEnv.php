@@ -8,20 +8,11 @@ function cargarClases($classname)
     spl_autoload_register('cargarClases');
     $EnvasesOperador = new EnvasesOperaciones();
     $envases=$EnvasesOperador->getTableEnvases();
-    $titulo  = array(
+
+    $datosRetorno  = array(
         'draw' => 0,
         'recordsTotal'    => count($envases),
-        'recordsFiltered' => count($envases)
-        ); 
-    for($i = 0; $i < count($envases); $i++){
-        $datos[]  = array(
-            $envases[$i]["codEnvase"],
-            $envases[$i]["nomEnvase"],
-            $envases[$i]["stockEnvase"]
-        ); 
-    }
-    $datosRetorno  = array(
-        $titulo,  
+        'recordsFiltered' => count($envases),
         'data'    => $envases
        ); 
 

@@ -9,13 +9,11 @@ spl_autoload_register('cargarClases');
 
 $EnvasadoDistOperador = new EnvasadoDistOperaciones();
 $envasadoDist = $EnvasadoDistOperador->getTableEnvasadoDist();
-$titulo = array(
+
+$datosRetorno = array(
     'draw' => 0,
     'recordsTotal' => count($envasadoDist),
-    'recordsFiltered' => count($envasadoDist)
-);
-$datosRetorno = array(
-    $titulo,
+    'recordsFiltered' => count($envasadoDist),
     'data' => $envasadoDist
 );
 print json_encode($datosRetorno);

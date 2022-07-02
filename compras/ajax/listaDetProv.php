@@ -8,13 +8,11 @@ $idProv=$_GET['idProv'];
 spl_autoload_register('cargarClases');
 $detProveedorOperador = new DetProveedoresOperaciones();
 $detalle = $detProveedorOperador->getTableDetProveedores($idProv);
-$titulo = array(
+
+$datosRetorno = array(
     'draw' => 0,
     'recordsTotal' => count($detalle),
-    'recordsFiltered' => count($detalle)
-);
-$datosRetorno = array(
-    $titulo,
+    'recordsFiltered' => count($detalle),
     'data' => $detalle
 );
 

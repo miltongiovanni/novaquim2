@@ -9,13 +9,11 @@ spl_autoload_register('cargarClases');
 
 $OProdOperador = new OProdOperaciones();
 $oProdsA = $OProdOperador->getTableOProdAnuladas();
-$titulo = array(
+
+$datosRetorno = array(
     'draw' => 0,
     'recordsTotal' => count($oProdsA),
-    'recordsFiltered' => count($oProdsA)
-);
-$datosRetorno = array(
-    $titulo,
+    'recordsFiltered' => count($oProdsA),
     'data' => $oProdsA
 );
 print json_encode($datosRetorno);

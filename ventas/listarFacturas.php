@@ -90,6 +90,7 @@ include "../includes/valAcc.php";
                     {
                         "className": 'details-control',
                         "orderable": false,
+                        "searchable": false,
                         "data": null,
                         "defaultContent": ''
                     },
@@ -133,7 +134,7 @@ include "../includes/valAcc.php";
                     'copyHtml5',
                     'excelHtml5'
                 ],
-                "lengthMenu": [[20, 50, 100, -1], [20, 50, 100, "All"]],
+                "lengthMenu": [[20, 50, 100], [20, 50, 100]],
                 "language": {
                     "lengthMenu": "Mostrando _MENU_ datos por página",
                     "zeroRecords": "Lo siento no encontró nada",
@@ -149,6 +150,8 @@ include "../includes/valAcc.php";
                     "infoFiltered": "(Filtrado de _MAX_ en total)"
 
                 },
+                processing: true,
+                serverSide: true,
                 "ajax": "ajax/listaFacturas.php",
             });
             // Add event listener for opening and closing details

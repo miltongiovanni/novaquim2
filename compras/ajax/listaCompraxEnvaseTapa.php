@@ -15,13 +15,10 @@ else{
     $productos = $DetCompraOperador->getHistoricoComprasTapas($idTapOEnv);
 }
 
-$titulo = array(
+$datosRetorno = array(
     'draw' => 0,
     'recordsTotal' => count($productos),
-    'recordsFiltered' => count($productos)
-);
-$datosRetorno = array(
-    $titulo,
+    'recordsFiltered' => count($productos),
     'data' => $productos
 );
 

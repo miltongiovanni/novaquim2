@@ -9,13 +9,11 @@ spl_autoload_register('cargarClases');
 $idCliente= $_GET['idCliente'];
 $clienteSucursalOperador = new ClientesSucursalOperaciones();
 $sucursales = $clienteSucursalOperador->getTableClienteSucursales($idCliente);
-$titulo = array(
+
+$datosRetorno = array(
     'draw' => 0,
     'recordsTotal' => count($sucursales),
-    'recordsFiltered' => count($sucursales)
-);
-$datosRetorno = array(
-    $titulo,
+    'recordsFiltered' => count($sucursales),
     'data' => $sucursales
 );
 print json_encode($datosRetorno);

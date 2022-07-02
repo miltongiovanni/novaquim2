@@ -9,12 +9,11 @@ function cargarClases($classname)
     $UsuarioOperador = new UsuariosOperaciones();
 	$usuarios=$UsuarioOperador->getTableUsers();
     $titulo  = array(
-        'draw' => 0,
-        'recordsTotal'    => count($usuarios),
-        'recordsFiltered' => count($usuarios)
         ); 
     $datosRetorno  = array(
-        $titulo,  
+        'draw' => 0,
+        'recordsTotal'    => count($usuarios),
+        'recordsFiltered' => count($usuarios),
         'data'    => $usuarios
        ); 
 

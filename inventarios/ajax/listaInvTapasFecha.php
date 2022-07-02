@@ -22,13 +22,10 @@ for ($i = 0; $i < count($invTapa); $i++) {
     $datos[$i]['inventario'] = round($datos[$i]['invTapa'] - $datos[$i]['entrada'] + $datos[$i]['salida'], 0);
 }
 
-$titulo = array(
+$datosRetorno = array(
     'draw' => 0,
     'recordsTotal' => count($datos),
-    'recordsFiltered' => count($datos)
-);
-$datosRetorno = array(
-    $titulo,
+    'recordsFiltered' => count($datos),
     'data' => $datos
 );
 print json_encode($datosRetorno);

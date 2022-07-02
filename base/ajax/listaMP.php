@@ -8,13 +8,11 @@ function cargarClases($classname)
     spl_autoload_register('cargarClases');
     $MPrimasOperador = new MPrimasOperaciones();
     $mPrimas=$MPrimasOperador->getTableMPrimas();
-    $titulo  = array(
+
+    $datosRetorno  = array(
         'draw' => 0,
         'recordsTotal'    => count($mPrimas),
-        'recordsFiltered' => count($mPrimas)
-        );
-    $datosRetorno  = array(
-        $titulo,  
+        'recordsFiltered' => count($mPrimas),
         'data'    => $mPrimas
        ); 
 
