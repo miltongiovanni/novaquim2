@@ -313,23 +313,22 @@ class FacturasOperaciones
 
     public function getTableFacturas($limit, $order, $where, $bindings)
     {
-        $qry = "SELECT idFactura,
-                       idPedido,
-                       idRemision,
-                       nomCliente,
-                       fechaFactura,
-                       fechaVenc,
+        $qry = "select * from (SELECT f.idFactura,
+                       f.idPedido,
+                       f.idRemision,
+                       c.nomCliente,
+                       f.fechaFactura,
+                       f.fechaVenc,
                        tp.tipoPrecio,
                        IF(f.estado='A', 'Anulada', IF(f.estado='C', 'Cancelada', IF(f.estado='E', 'En proceso','Pendiente'))) estadoFactura,
-                       CONCAT('$', FORMAT(total, 0)) totalFactura
+                       CONCAT('$', FORMAT(f.total, 0)) totalFactura
                 FROM factura f
                          LEFT JOIN clientes c on c.idCliente = f.idCliente
-                         LEFT JOIN tip_precio tp ON f.tipPrecio = tp.idPrecio
+                         LEFT JOIN tip_precio tp ON f.tipPrecio = tp.idPrecio) fct
                 $where
                 $order
                 $limit
                 ";
-        print_r($qry);
         $stmt = $this->_pdo->prepare($qry);
             // Bind parameters
 
@@ -346,25 +345,33 @@ class FacturasOperaciones
     }
 
 
-    public function getTotalNumeroFacturas($limit, $order, $where, $bindings)
+    public function getTotalNumeroFacturas($where, $bindings)
     {
-        $qry = "SELECT count(idFactura) c
+        $qry = "select COUNT(idFactura) c FROM (SELECT f.idFactura,
+                       f.idPedido,
+                       f.idRemision,
+                       c.nomCliente,
+                       f.fechaFactura,
+                       f.fechaVenc,
+                       tp.tipoPrecio,
+                       IF(f.estado='A', 'Anulada', IF(f.estado='C', 'Cancelada', IF(f.estado='E', 'En proceso','Pendiente'))) estadoFactura,
+                       CONCAT('$', FORMAT(f.total, 0)) totalFactura
                 FROM factura f
                          LEFT JOIN clientes c on c.idCliente = f.idCliente
-                         LEFT JOIN tip_precio tp ON f.tipPrecio = tp.idPrecio
-                $where
-                $order
-                $limit
+                         LEFT JOIN tip_precio tp ON f.tipPrecio = tp.idPrecio) fctc
+                 $where
                 ";
         $stmt = $this->_pdo->prepare($qry);
-            // Bind parameters
 
-		if ( is_array( $bindings ) ) {
+        // Bind parameters
+
+        if ( is_array( $bindings ) ) {
             for ( $i=0, $ien=count($bindings) ; $i<$ien ; $i++ ) {
                 $binding = $bindings[$i];
                 $stmt->bindValue( $binding['key'], $binding['val'], $binding['type'] );
             }
         }
+
 		// Execute
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_BOTH);

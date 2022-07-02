@@ -8,14 +8,14 @@ function cargarClases($classname)
 spl_autoload_register('cargarClases');
 
 $columns = array(
-    array('db' => 'idFactura', 'dt' => 1),
-    array('db' => 'idPedido', 'dt' => 2),
-    array('db' => 'idRemision', 'dt' => 3),
-    array('db' => 'nomCliente', 'dt' => 4),
-    array('db' => 'fechaFactura', 'dt' => 5),
-    array('db' => 'fechaVenc', 'dt' => 6),
-    array('db' => 'totalFactura', 'dt' => 7),
-    array('db' => 'estadoFactura', 'dt' => 8),
+    array('db' => 'idFactura', 'dt' => 'idFactura'),
+    array('db' => 'idPedido', 'dt' => 'idPedido'),
+    array('db' => 'idRemision', 'dt' => 'idRemision'),
+    array('db' => 'nomCliente', 'dt' => 'nomCliente'),
+    array('db' => 'fechaFactura', 'dt' => 'fechaFactura'),
+    array('db' => 'fechaVenc', 'dt' => 'fechaVenc'),
+    array('db' => 'totalFactura', 'dt' => 'totalFactura'),
+    array('db' => 'estadoFactura', 'dt' => 'estadoFactura'),
 );
 
 $bindings = array();
@@ -23,7 +23,7 @@ $limit = SSP::limit($_GET, $columns);
 $order = SSP::order($_GET, $columns);
 $where = SSP::filter($_GET, $columns, $bindings);
 $facturaOperador = new FacturasOperaciones();
-$total_facturas = $facturaOperador->getTotalNumeroFacturas($limit, $order, $where, $bindings);
+$total_facturas = $facturaOperador->getTotalNumeroFacturas($where, $bindings);
 $facturas = $facturaOperador->getTableFacturas($limit, $order, $where, $bindings);
 $detFacturaOperador = new DetFacturaOperaciones();
 for ($i = 0; $i < count($facturas); $i++) {

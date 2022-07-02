@@ -90,6 +90,7 @@ include "../includes/valAcc.php";
                     {
                         "className": 'details-control',
                         "orderable": false,
+                        "searchable": false,
                         "data": null,
                         "defaultContent": ''
                     },
