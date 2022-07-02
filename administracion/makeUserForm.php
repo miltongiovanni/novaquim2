@@ -24,23 +24,23 @@ spl_autoload_register('cargarClases');
         <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>CREACIÓN DE USUARIOS</h4></div>
     <form name="makeUserForm" id="makeUserForm" method="POST" action="makeUser.php">
         <div class="form-group row">
-            <label class="col-form-label col-1 text-end" for="nombre"><strong>Nombre</strong></label>
+            <label class="col-form-label col-1 text-end" for="nombre"><strong>Nombre: </strong></label>
             <input type="text" class="form-control col-2" name="nombre" id="nombre" size=30
                    onkeydown="return aceptaLetra(event)"
                    maxlength="30" required>
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-1 text-end" for="apellido"><strong>Apellidos</strong></label>
+            <label class="col-form-label col-1 text-end" for="apellido"><strong>Apellidos: </strong></label>
             <input type="text" class="form-control col-2" name="apellido" id="apellido" size=30
                    onkeydown="return aceptaLetra(event)"
                    maxlength="30" required>
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-1" for="usuario"><b>Usuario</b></label>
+            <label class="col-form-label col-1 text-end" for="usuario"><b>Usuario: </b></label>
             <input type="text" class="form-control col-2" id="usuario" maxlength="10" name="usuario" size=30 required>
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-1" for="idPerfil"><strong>Perfil</strong></label>
+            <label class="col-form-label col-1 text-end" for="idPerfil"><strong>Perfil: </strong></label>
             <select class="form-control col-2" name="idPerfil" id="idPerfil" required>
                 <?php
                 $perfilOperador = new PerfilesOperaciones();
