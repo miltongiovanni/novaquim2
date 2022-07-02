@@ -57,7 +57,7 @@ $pdf->AliasNbPages();
 $pdf->SetMargins(10, 10, 10);
 $pdf->AddPage();
 $pdf->SetFont('Arial', 'B', 10);
-$pdf->Cell(15, 4, "LISTA DE PRECIOS INDUSTRIAS NOVAQUIM S.A.S. VIGENCIA HASTA ENERO 31 DE " . $year, 0, 0, 'L');
+$pdf->Cell(15, 4, "LISTA DE PRECIOS INDUSTRIAS NOVAQUIM S.A.S. VIGENCIA DESDE JULIO 1 DE " . $year, 0, 0, 'L');
 $pdf->Ln(4);
 $pdf->Cell(15, 4, iconv('UTF-8', 'windows-1252', "Código"), 1, 0, 'C');
 $pdf->Cell(80, 4, "Producto", 1, 0, 'C');
