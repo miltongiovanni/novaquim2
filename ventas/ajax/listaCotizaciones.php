@@ -26,13 +26,11 @@ for($i=0;$i<count($cotizaciones); $i++){
     $cotizaciones[$i]['distribucion']= str_replace("8"," Papelería",$cotizaciones[$i]['distribucion']);
     $cotizaciones[$i]['distribucion']= str_replace("9"," Otros",$cotizaciones[$i]['distribucion']);
 }
-$titulo = array(
+
+$datosRetorno = array(
     'draw' => 0,
     'recordsTotal' => count($cotizaciones),
-    'recordsFiltered' => count($cotizaciones)
-);
-$datosRetorno = array(
-    $titulo,
+    'recordsFiltered' => count($cotizaciones),
     'data' => $cotizaciones
 );
 print json_encode($datosRetorno);

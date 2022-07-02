@@ -13,13 +13,11 @@ $detPedidoOperador = new DetPedidoOperaciones();
 for($i=0;$i<count($pedidos); $i++){
     $pedidos[$i]['detPedido']= $detPedidoOperador->getDetPedido($pedidos[$i]['idPedido']);
 }
-$titulo = array(
+
+$datosRetorno = array(
     'draw' => 0,
     'recordsTotal' => count($pedidos),
-    'recordsFiltered' => count($pedidos)
-);
-$datosRetorno = array(
-    $titulo,
+    'recordsFiltered' => count($pedidos),
     'data' => $pedidos
 );
 print json_encode($datosRetorno);

@@ -12,13 +12,11 @@ $detNotasCreditoOperador = new DetNotaCrOperaciones();
 for($i=0;$i<count($notasCredito); $i++){
     $notasCredito[$i]['detNotaCr']= $detNotasCreditoOperador->getDetNotaCr($notasCredito[$i]['idNotaC']);
 }
-$titulo = array(
+
+$datosRetorno = array(
     'draw' => 0,
     'recordsTotal' => count($notasCredito),
-    'recordsFiltered' => count($notasCredito)
-);
-$datosRetorno = array(
-    $titulo,
+    'recordsFiltered' => count($notasCredito),
     'data' => $notasCredito
 );
 print json_encode($datosRetorno);

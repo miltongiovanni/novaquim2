@@ -12,13 +12,11 @@ $recibos = $reciboOperador->getEstadoCuentaCliente($idCliente);
 for($i=0;$i<count($recibos); $i++){
     $recibos[$i]['detEstado']= $reciboOperador->getRecCajaFactura($recibos[$i]['idFactura']);
 }
-$titulo = array(
+
+$datosRetorno = array(
     'draw' => 0,
     'recordsTotal' => count($recibos),
-    'recordsFiltered' => count($recibos)
-);
-$datosRetorno = array(
-    $titulo,
+    'recordsFiltered' => count($recibos),
     'data' => $recibos
 );
 print json_encode($datosRetorno);

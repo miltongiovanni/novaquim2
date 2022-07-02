@@ -8,13 +8,11 @@ $idFactura=$_GET['idFactura'];
 spl_autoload_register('cargarClases');
 $detFacturaOperador = new DetFacturaOperaciones();
 $detalle = $detFacturaOperador->getDetFactura($idFactura);
-$titulo = array(
+
+$datosRetorno = array(
     'draw' => 0,
     'recordsTotal' => count($detalle),
-    'recordsFiltered' => count($detalle)
-);
-$datosRetorno = array(
-    $titulo,
+    'recordsFiltered' => count($detalle),
     'data' => $detalle
 );
 

@@ -13,13 +13,11 @@ $detFacturaOperador = new DetFacturaOperaciones();
 for($i=0;$i<count($facturas); $i++){
     $facturas[$i]['detFactura']= $detFacturaOperador->getDetFactura($facturas[$i]['idFactura']);
 }
-$titulo = array(
+
+$datosRetorno = array(
     'draw' => 0,
     'recordsTotal' => count($facturas),
-    'recordsFiltered' => count($facturas)
-);
-$datosRetorno = array(
-    $titulo,
+    'recordsFiltered' => count($facturas),
     'data' => $facturas
 );
 print json_encode($datosRetorno);

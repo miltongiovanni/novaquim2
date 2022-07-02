@@ -11,13 +11,10 @@ $fechaFin = $_GET['fechaFin'];
 $FacturaOperador = new FacturasOperaciones();
 $facturas = $FacturaOperador->getTableFacturasPorFecha($fechaIni, $fechaFin);
 
-$titulo = array(
+$datosRetorno = array(
     'draw' => 0,
     'recordsTotal' => count($facturas),
-    'recordsFiltered' => count($facturas)
-);
-$datosRetorno = array(
-    $titulo,
+    'recordsFiltered' => count($facturas),
     'data' => $facturas
 );
 print json_encode($datosRetorno);

@@ -12,13 +12,11 @@ $detCotizacionOperador = new DetCotizacionPersonalizadaOperaciones();
 for($i=0;$i<count($cotizaciones); $i++){
     $cotizaciones[$i]['detCotPersonalizada']= $detCotizacionOperador->getDetCotPersonalizada($cotizaciones[$i]['idCotPersonalizada']);
 }
-$titulo = array(
+
+$datosRetorno = array(
     'draw' => 0,
     'recordsTotal' => count($cotizaciones),
-    'recordsFiltered' => count($cotizaciones)
-);
-$datosRetorno = array(
-    $titulo,
+    'recordsFiltered' => count($cotizaciones),
     'data' => $cotizaciones
 );
 print json_encode($datosRetorno);

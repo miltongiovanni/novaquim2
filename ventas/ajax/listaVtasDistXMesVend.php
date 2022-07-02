@@ -9,13 +9,11 @@ $idPersonal=$_GET['idPersonal'];
 spl_autoload_register('cargarClases');
 $detFacOperador = new DetFacturaOperaciones();
 $detalle = $detFacOperador->getAcumuladoProductosDistribucionPorMesProductoVend($year, $idPersonal);
-$titulo = array(
+
+$datosRetorno = array(
     'draw' => 0,
     'recordsTotal' => count($detalle),
-    'recordsFiltered' => count($detalle)
-);
-$datosRetorno = array(
-    $titulo,
+    'recordsFiltered' => count($detalle),
     'data' => $detalle
 );
 
