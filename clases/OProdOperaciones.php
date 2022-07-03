@@ -25,18 +25,52 @@ class OProdOperaciones
         return $this->_pdo->lastInsertId();
     }
 
-    public function getTableOProd()
+    public function getTableOProd($limit, $order, $where, $bindings)
     {
-        $qry = "SELECT lote, fechProd, p.nomProducto, f.nomFormula, ROUND(cantidadKg, 0) cantidadKg, p2.nomPersonal, eop.descEstado
+        $qry = "select * from (SELECT lote, fechProd, p.nomProducto, f.nomFormula, ROUND(cantidadKg, 0) cantidadKg, p2.nomPersonal, eop.descEstado
                 FROM ord_prod
                 LEFT JOIN formula f on ord_prod.idFormula = f.idFormula
                 LEFT JOIN productos p on ord_prod.codProducto = p.codProducto
                 LEFT JOIN personal p2 on ord_prod.codResponsable = p2.idPersonal
-                LEFT JOIN estados_o_prod eop on ord_prod.estado = eop.idEstado;";
+                LEFT JOIN estados_o_prod eop on ord_prod.estado = eop.idEstado) opfpp2e
+                $where
+                $order
+                $limit
+                ";
         $stmt = $this->_pdo->prepare($qry);
+        // Bind parameters
+        if (is_array($bindings)) {
+            for ($i = 0, $ien = count($bindings); $i < $ien; $i++) {
+                $binding = $bindings[$i];
+                $stmt->bindValue($binding['key'], $binding['val'], $binding['type']);
+            }
+        }
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
+    }
+
+    public function getTotalTableOProd( $where, $bindings)
+    {
+        $qry = "select COUNT(lote) c from (SELECT lote, fechProd, p.nomProducto, f.nomFormula, ROUND(cantidadKg, 0) cantidadKg, p2.nomPersonal, eop.descEstado
+                FROM ord_prod
+                LEFT JOIN formula f on ord_prod.idFormula = f.idFormula
+                LEFT JOIN productos p on ord_prod.codProducto = p.codProducto
+                LEFT JOIN personal p2 on ord_prod.codResponsable = p2.idPersonal
+                LEFT JOIN estados_o_prod eop on ord_prod.estado = eop.idEstado) opfpp2e
+                $where
+                ";
+        $stmt = $this->_pdo->prepare($qry);
+        // Bind parameters
+        if (is_array($bindings)) {
+            for ($i = 0, $ien = count($bindings); $i < $ien; $i++) {
+                $binding = $bindings[$i];
+                $stmt->bindValue($binding['key'], $binding['val'], $binding['type']);
+            }
+        }
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result['c'];
     }
 
     public function getOrdenesProdXProd($codProducto)
@@ -166,9 +200,9 @@ class OProdOperaciones
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        if($result == null){
+        if ($result == null) {
             return 0;
-        } else{
+        } else {
             return $result['cantidadProduccion'];
         }
 
@@ -184,9 +218,9 @@ class OProdOperaciones
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        if($result['cantidadProduccion'] == null){
+        if ($result['cantidadProduccion'] == null) {
             return 0;
-        } else{
+        } else {
             return $result['cantidadProduccion'];
         }
 
