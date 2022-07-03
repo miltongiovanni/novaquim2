@@ -32,10 +32,9 @@ class FacturasOperaciones
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute(array($idFactura));
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        if($result==false){
+        if ($result == false) {
             return false;
-        }
-        else{
+        } else {
             return true;
         }
     }
@@ -330,15 +329,14 @@ class FacturasOperaciones
                 $limit
                 ";
         $stmt = $this->_pdo->prepare($qry);
-            // Bind parameters
-
-		if ( is_array( $bindings ) ) {
-            for ( $i=0, $ien=count($bindings) ; $i<$ien ; $i++ ) {
+        // Bind parameters
+        if (is_array($bindings)) {
+            for ($i = 0, $ien = count($bindings); $i < $ien; $i++) {
                 $binding = $bindings[$i];
-                $stmt->bindValue( $binding['key'], $binding['val'], $binding['type'] );
+                $stmt->bindValue($binding['key'], $binding['val'], $binding['type']);
             }
         }
-		// Execute
+        // Execute
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_BOTH);
         return $result;
@@ -365,14 +363,14 @@ class FacturasOperaciones
 
         // Bind parameters
 
-        if ( is_array( $bindings ) ) {
-            for ( $i=0, $ien=count($bindings) ; $i<$ien ; $i++ ) {
+        if (is_array($bindings)) {
+            for ($i = 0, $ien = count($bindings); $i < $ien; $i++) {
                 $binding = $bindings[$i];
-                $stmt->bindValue( $binding['key'], $binding['val'], $binding['type'] );
+                $stmt->bindValue($binding['key'], $binding['val'], $binding['type']);
             }
         }
 
-		// Execute
+        // Execute
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_BOTH);
         return $result['c'];
@@ -436,6 +434,7 @@ class FacturasOperaciones
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
+
     public function getFactura($idFactura)
     {
         $qry = "SELECT idFactura,

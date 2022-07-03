@@ -87,6 +87,7 @@ include "../includes/valAcc.php";
                     {
                         "className": 'details-control',
                         "orderable": false,
+                        "searchable": false,
                         "data": null,
                         "defaultContent": ''
                     },
@@ -142,6 +143,8 @@ include "../includes/valAcc.php";
                     "infoFiltered": "(Filtrado de _MAX_ en total)"
 
                 },
+                processing: true,
+                serverSide: true,
                 "ajax": "ajax/listaOProd.php",
                 "deferRender": true,  //For speed
             });
