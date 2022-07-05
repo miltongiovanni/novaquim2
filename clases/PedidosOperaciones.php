@@ -104,13 +104,20 @@ class PedidosOperaciones
     }
 
 
-    public function getTablePedidos($estado)
+    public function getTablePedidos($estado, $limit, $order, $where, $bindings)
     {
-        $qry = "SELECT idPedido,
+        $andWhere = '';
+        if($estado == 6){
+            $andWhere = $where=='' ? " WHERE estado=6 " : " AND estado=6 ";
+        }elseif ($estado == 1){
+            $andWhere = $where=='' ? " WHERE estado=1 OR estado=2 " : " AND estado=1 OR estado=2 ";
+        }
+        $qry = "select * from (SELECT idPedido,
                        fechaPedido,
                        fechaEntrega,
                        tp.tipoPrecio,
                        nomCliente,
+                       estado,
                        ep.descEstado estadoPedido,
                        nomSucursal,
                        dirSucursal
@@ -118,18 +125,65 @@ class PedidosOperaciones
                          LEFT JOIN clientes c on c.idCliente = p.idCliente
                          LEFT JOIN clientes_sucursal cs on p.idCliente = cs.idCliente AND p.idSucursal = cs.idSucursal
                          LEFT JOIN tip_precio tp ON p.tipoPrecio = tp.idPrecio
-                         LEFT JOIN estados_pedidos ep on p.estado = ep.idEstado";
-        if($estado == 6){
-            $qry .= " WHERE p.estado=6";
-        }elseif ($estado == 1){
-            $qry .= " WHERE p.estado=1 OR p.estado=2";
-        }else{
-            $qry .= " WHERE( YEAR(now())-YEAR(fechaPedido))<=1";
-        }
+                         LEFT JOIN estados_pedidos ep on p.estado = ep.idEstado) pccte
+                $where
+                $andWhere
+                $order
+                $limit
+                         ";
+
         $stmt = $this->_pdo->prepare($qry);
+        // Bind parameters
+        if (is_array($bindings)) {
+            for ($i = 0, $ien = count($bindings); $i < $ien; $i++) {
+                $binding = $bindings[$i];
+                $stmt->bindValue($binding['key'], $binding['val'], $binding['type']);
+            }
+        }
+        // Execute
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
+    }
+
+    public function getTotalTablePedidos($estado, $where, $bindings)
+    {
+        $andWhere = '';
+        if($estado == 6){
+            $andWhere = $where=='' ? " WHERE estado=6 " : " AND estado=6 ";
+        }elseif ($estado == 1){
+            $andWhere = $where=='' ? " WHERE estado=1 OR estado=2 " : " AND estado=1 OR estado=2 ";
+        }
+        $qry = "select COUNT(idPedido) c from (SELECT idPedido,
+                       fechaPedido,
+                       fechaEntrega,
+                       tp.tipoPrecio,
+                       nomCliente,
+                       estado,
+                       ep.descEstado estadoPedido,
+                       nomSucursal,
+                       dirSucursal
+                FROM pedido p
+                         LEFT JOIN clientes c on c.idCliente = p.idCliente
+                         LEFT JOIN clientes_sucursal cs on p.idCliente = cs.idCliente AND p.idSucursal = cs.idSucursal
+                         LEFT JOIN tip_precio tp ON p.tipoPrecio = tp.idPrecio
+                         LEFT JOIN estados_pedidos ep on p.estado = ep.idEstado) pccte
+                $where
+                $andWhere
+                         ";
+
+        $stmt = $this->_pdo->prepare($qry);
+        // Bind parameters
+        if (is_array($bindings)) {
+            for ($i = 0, $ien = count($bindings); $i < $ien; $i++) {
+                $binding = $bindings[$i];
+                $stmt->bindValue($binding['key'], $binding['val'], $binding['type']);
+            }
+        }
+        // Execute
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result['c'];
     }
 
     public function getTablePedidosCliente($idCliente)
