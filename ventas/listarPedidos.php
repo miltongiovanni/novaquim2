@@ -102,6 +102,7 @@ switch ($estadoPedido) {
                     {
                         "className": 'details-control',
                         "orderable": false,
+                        "searchable": false,
                         "data": null,
                         "defaultContent": ''
                     },
@@ -161,6 +162,8 @@ switch ($estadoPedido) {
                     "infoFiltered": "(Filtrado de _MAX_ en total)"
 
                 },
+                processing: true,
+                serverSide: true,
                 "ajax": "ajax/listaPedidos.php?estadoPedido=" + estadoPedido,
             });
             // Add event listener for opening and closing details

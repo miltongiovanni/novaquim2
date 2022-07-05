@@ -67,17 +67,52 @@ class RemisionesOperaciones
         return $result;
     }
 
-    public function getTableSalidaRemisiones()
+    public function getTableSalidaRemisiones($limit, $order, $where, $bindings)
     {
         $qry = "SELECT idRemision, fechaRemision, nomCliente, nomSucursal, r.idPedido, fechaPedido
                 FROM remision r
                          LEFT JOIN clientes c on c.idCliente = r.idCliente
                          LEFT JOIN clientes_sucursal cs on cs.idCliente = r.idCliente AND r.idSucursal=cs.idSucursal
-                         LEFT JOIN pedido p on r.idPedido = p.idPedido WHERE( YEAR(now())-YEAR(fechaRemision))<=1";
+                         LEFT JOIN pedido p on r.idPedido = p.idPedido 
+                $where
+                $order
+                $limit
+                ";
         $stmt = $this->_pdo->prepare($qry);
+        // Bind parameters
+        if (is_array($bindings)) {
+            for ($i = 0, $ien = count($bindings); $i < $ien; $i++) {
+                $binding = $bindings[$i];
+                $stmt->bindValue($binding['key'], $binding['val'], $binding['type']);
+            }
+        }
+        // Execute
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
+    }
+
+    public function getTotalTableSalidaRemisiones($where, $bindings)
+    {
+        $qry = "select COUNT(idRemision) c from (SELECT idRemision, fechaRemision, nomCliente, nomSucursal, r.idPedido, fechaPedido
+                FROM remision r
+                         LEFT JOIN clientes c on c.idCliente = r.idCliente
+                         LEFT JOIN clientes_sucursal cs on cs.idCliente = r.idCliente AND r.idSucursal=cs.idSucursal
+                         LEFT JOIN pedido p on r.idPedido = p.idPedido) rccp 
+                $where
+                ";
+        $stmt = $this->_pdo->prepare($qry);
+        // Bind parameters
+        if (is_array($bindings)) {
+            for ($i = 0, $ien = count($bindings); $i < $ien; $i++) {
+                $binding = $bindings[$i];
+                $stmt->bindValue($binding['key'], $binding['val'], $binding['type']);
+            }
+        }
+        // Execute
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result['c'];
     }
 
     public function getRemision($idRemision)
