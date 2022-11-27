@@ -168,7 +168,7 @@ class EgresoOperaciones
 
     public function getTotalesxPagarxVen8dias()
     {
-        $qry = "SELECT SUM(subtotal) total
+        $qry = "SELECT IF(SUM(subtotal) IS NULL, 0, SUM(subtotal)) total
                 FROM
                 (SELECT (SUM(totalCompra) - SUM(retefuenteCompra) - SUM(reteicaCompra) - IF(SUM(pago) IS NULL, 0, SUM(pago)) - IF(SUM(descuentoE) IS NULL, 0 , SUM(descuentoE))) subtotal
                 FROM compras c
@@ -206,7 +206,7 @@ class EgresoOperaciones
 
     public function getTotalesxPagarxVenc1sem()
     {
-        $qry = "SELECT subtotal total
+        $qry = "SELECT IF(SUM(subtotal) IS NULL, 0, SUM(subtotal)) total
                 FROM
                 (SELECT (SUM(totalCompra) - SUM(retefuenteCompra) - SUM(reteicaCompra) - IF(SUM(pago) IS NULL, 0, SUM(pago)) - IF(SUM(descuentoE) IS NULL, 0 , SUM(descuentoE))) subtotal
                 FROM compras c
