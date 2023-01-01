@@ -113,10 +113,17 @@ class InvMPrimasOperaciones
     }
     public function getTableDetalleInvMPrima()
     {
-        $qry = "SELECT codMP, nomMPrima, invMP,loteMP, precioMPrima
-                FROM inv_mprimas
-                         LEFT JOIN mprimas m on inv_mprimas.codMP = m.codMPrima
-                WHERE codMP != 10401 AND codMP != 10402";
+        $qry = "SELECT codMP, nomMPrima, invMP, loteMP, IF(precio IS NOT NULL, precio, m.precioMPrima ) precioMPrima
+                FROM inv_mprimas imp
+                         LEFT JOIN mprimas m on imp.codMP = m.codMPrima
+                         LEFT JOIN (SELECT codigo, precio, lote
+                                    FROM compras c
+                                             LEFT JOIN det_compras dc on c.idCompra = dc.idCompra
+                                    WHERE c.tipoCompra = 1
+                                      AND codigo IS NOT NULL
+                                      AND lote IS NOT NULL) p ON p.codigo = imp.codMP AND p.lote=imp.loteMP
+                WHERE codMP != 10401
+                  AND codMP != 10402";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
