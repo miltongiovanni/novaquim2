@@ -1,8 +1,8 @@
 <?php
 //$err=error_reporting(16);
 session_start();
-define("BASE_C", "1026000");//1026000
-define("BASE_C2", "152000");//152000
+define("BASE_C", "1145000");//1026000 Base retencion compra 2023
+define("BASE_C2", "170000");//152000 Base retencion servicios 2023
 define("FECHA_C", "2017-01-01");
 date_default_timezone_set('AMERICA/Bogota');
 if (!isset($_SESSION['UsuarioAutorizado'])) {
