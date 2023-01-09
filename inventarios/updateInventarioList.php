@@ -18,7 +18,7 @@ foreach ($_POST as $nombre_campo => $valor) {
     if (is_array($valor)) {
         //echo $nombre_campo.print_r($valor).'<br>';
     } else {
-        echo $nombre_campo . '=' . ${$nombre_campo} . '<br>';
+        //echo $nombre_campo . '=' . ${$nombre_campo} . '<br>';
     }
 }
 $invDistOperador = new InvDistribucionOperaciones();
@@ -27,6 +27,7 @@ $invEnvaseOperador = new InvEnvasesOperaciones();
 $invTapasOperador = new InvTapasOperaciones();
 $invProductoOperador = new InvProdTerminadosOperaciones();
 $invEtiqOperador = new InvEtiquetasOperaciones();
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -41,7 +42,7 @@ $invEtiqOperador = new InvEtiquetasOperaciones();
 <body>
 <?php
 
-if ($tipoInv == $page){
+
     try {
         /**  Identify the type of $inputFileName  **/
         $inputFileType = IOFactory::identify($upload_file);
@@ -53,40 +54,40 @@ if ($tipoInv == $page){
         $spreadsheet = IOFactory::load($upload_file);
         $sheetNames = $spreadsheet->getSheetNames();
         $inventarios = $spreadsheet->getSheet($page)->toArray(null, true, false, false);
-        if (stristr($sheetNames[$tipoInv], 'distribucion')){
+        if (stristr($sheetNames[$page], 'distribucion')){
             for($i=1; $i<count($inventarios);$i++){
-                $datos = array($inventarios[$i][2], $inventarios[$i][0] );
+                $datos = array($inventarios[$i][5], $inventarios[$i][0] );
                 $invDistOperador->updateInvDistribucion($datos);
             }
         }
-        if (stristr($sheetNames[$tipoInv], 'tapas')){
+        if (stristr($sheetNames[$page], 'tapas')){
             for($i=1; $i<count($inventarios);$i++){
                 $datos = array($inventarios[$i][2], $inventarios[$i][0] );
                 $invTapasOperador->updateInvTapas($datos);
             }
         }
-        if (stristr($sheetNames[$tipoInv], 'envase')){
+        if (stristr($sheetNames[$page], 'envase')){
             for($i=1; $i<count($inventarios);$i++){
                 $datos = array($inventarios[$i][2], $inventarios[$i][0] );
                 $invEnvaseOperador->updateInvEnvase($datos);
             }
         }
-        if (stristr($sheetNames[$tipoInv], 'mp')){
+        if (stristr($sheetNames[$page], 'mp')){
             for($i=1; $i<count($inventarios);$i++){
                 $datos = array($inventarios[$i][3], $inventarios[$i][0], $inventarios[$i][2] );
                 $invMPOperador->updateInvMPrima($datos);
             }
         }
-        if (stristr($sheetNames[$tipoInv], 'terminado')){
+        if (stristr($sheetNames[$page], 'terminado')){
             for($i=1; $i<count($inventarios);$i++){
                 $datos = array($inventarios[$i][3], $inventarios[$i][0], $inventarios[$i][2] );
                 $invProductoOperador->updateInvProdTerminado($datos);
             }
         }
-        if (stristr($sheetNames[$tipoInv], 'etiquetas')){
+        if (stristr($sheetNames[$page], 'etiquetas')){
             for($i=1; $i<count($inventarios);$i++){
                 $datos = array($inventarios[$i][2], $inventarios[$i][0] );
-                $invDistOperador->updateInvDistribucion($datos);
+                $invEtiqOperador->updateInvEtiqueta($datos);
             }
         }
         $ruta = "../menu.php";
@@ -102,13 +103,8 @@ if ($tipoInv == $page){
         unlink($upload_file);
         mover_pag($ruta, $mensaje, $icon);
     }
-}
-else{
-    $ruta = "../menu.php";
-    $mensaje = "No coinciden los tipos de inventario";
-    $icon = "error";
-    mover_pag($ruta, $mensaje, $icon);
-}
+
+
 ?>
 </body>
 </html>

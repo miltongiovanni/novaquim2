@@ -1,4 +1,4 @@
 <?php
-$tipoInv = 5;
+$inventario = 'ETIQUETAS';
 include "cargarInventarios.php";
 ?>
