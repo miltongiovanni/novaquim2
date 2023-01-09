@@ -78,9 +78,9 @@ if (move_uploaded_file($file_tmp_name, $upload_file)) {
 <div id="contenedor" class="container-fluid">
 
     <div id="saludo">
-        <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>SELECCIÓN DE LA PÁGINA A CARGAR</h4></div>
+        <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>SELECCIÓN DE LA PÁGINA A CARGAR EL INVENTARIO DE <?=$inventario?></h4></div>
     <form id="form1" name="form1" method="post" action="updateInventarioList.php">
-        <input type="hidden" name="tipoInv" value="<?=$tipoInv?>">
+        <!--<input type="hidden" name="tipoInv" value="<?php /*=$tipoInv*/?>">-->
         <input type="hidden" name="upload_file" value="<?=$upload_file?>">
         <div class="form-group row">
             <div class="col-3">

@@ -16,9 +16,9 @@ include "../includes/valAcc.php";
 <div id="contenedor" class="container-fluid">
 
     <div id="saludo">
-        <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>SELECCIÓN DEL ARCHIVO A CARGAR INVENTARIO</h4></div>
+        <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>SELECCIÓN DEL ARCHIVO A CARGAR INVENTARIO DE <?=$inventario?></h4></div>
     <form id="form1" name="form1" method="post" action="chargeInventariosFile.php" enctype="multipart/form-data">
-        <input type="hidden" name="tipoInv" value="<?=$tipoInv?>">
+        <input type="hidden" name="inventario" value="<?=$inventario?>">
         <div class="form-group row">
             <input class="form-control col-4" type="file" id="inventariosList" name="inventariosList" required>
         </div>

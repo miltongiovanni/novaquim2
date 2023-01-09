@@ -1,4 +1,4 @@
 <?php
-$tipoInv = 1;
+$inventario = 'TAPAS Y VÁLVULAS';
 include "cargarInventarios.php";
 ?>
