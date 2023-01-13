@@ -33,7 +33,7 @@ $invEtiqOperador = new InvEtiquetasOperaciones();
 <html lang="es">
 <head>
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-    <title>Actualización lista de precios</title>
+    <title>Actualización inventario</title>
     <meta charset="utf-8">
     <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/validar.js"></script>
@@ -54,39 +54,54 @@ $invEtiqOperador = new InvEtiquetasOperaciones();
         $spreadsheet = IOFactory::load($upload_file);
         $sheetNames = $spreadsheet->getSheetNames();
         $inventarios = $spreadsheet->getSheet($page)->toArray(null, true, false, false);
-        if (stristr($sheetNames[$page], 'distribucion')){
+        if ($inventario === 'PRODUCTOS DE DISTRIBUCIÓN'){
+
             for($i=1; $i<count($inventarios);$i++){
-                $datos = array($inventarios[$i][5], $inventarios[$i][0] );
+                $codigoDistribucion = $inventarios[$i][$codigo];
+                $invDistribucion = $inventarios[$i][$cant_inventario] ?? 0;
+                $datos = array($invDistribucion, $codigoDistribucion );
                 $invDistOperador->updateInvDistribucion($datos);
             }
         }
-        if (stristr($sheetNames[$page], 'tapas')){
+        if ($inventario === 'TAPAS Y VÁLVULAS'){
             for($i=1; $i<count($inventarios);$i++){
-                $datos = array($inventarios[$i][2], $inventarios[$i][0] );
+                $codigoTapa = $inventarios[$i][$codigo];
+                $invTapa = $inventarios[$i][$cant_inventario] ?? 0;
+                $datos = array($invTapa, $codigoTapa );
                 $invTapasOperador->updateInvTapas($datos);
             }
         }
-        if (stristr($sheetNames[$page], 'envase')){
+        if ($inventario === 'ENVASE'){
             for($i=1; $i<count($inventarios);$i++){
-                $datos = array($inventarios[$i][2], $inventarios[$i][0] );
+                $codigoEnvase = $inventarios[$i][$codigo];
+                $invEnvase = $inventarios[$i][$cant_inventario] ?? 0;
+                $datos = array($invEnvase, $codigoEnvase );
                 $invEnvaseOperador->updateInvEnvase($datos);
             }
         }
-        if (stristr($sheetNames[$page], 'mp')){
+        if ($inventario === 'MATERIA PRIMA'){
             for($i=1; $i<count($inventarios);$i++){
-                $datos = array($inventarios[$i][3], $inventarios[$i][0], $inventarios[$i][2] );
+                $codigoMPrima = $inventarios[$i][$codigo];
+                $loteMPrima = $inventarios[$i][$lote];
+                $invMPrima = $inventarios[$i][$cant_inventario] ?? 0;
+                $datos = array($invMPrima, $codigoMPrima, $loteMPrima );
                 $invMPOperador->updateInvMPrima($datos);
             }
         }
-        if (stristr($sheetNames[$page], 'terminado')){
+        if ($inventario === 'PRODUCTO TERMINADO'){
             for($i=1; $i<count($inventarios);$i++){
-                $datos = array($inventarios[$i][3], $inventarios[$i][0], $inventarios[$i][2] );
+                $codigoPTerminado = $inventarios[$i][$codigo];
+                $lotePTerminado = $inventarios[$i][$lote];
+                $invPTerminado = $inventarios[$i][$cant_inventario] ?? 0;
+                $datos = array($invPTerminado, $codigoPTerminado, $lotePTerminado );
                 $invProductoOperador->updateInvProdTerminado($datos);
             }
         }
-        if (stristr($sheetNames[$page], 'etiquetas')){
+        if ($inventario === 'ETIQUETAS'){
             for($i=1; $i<count($inventarios);$i++){
-                $datos = array($inventarios[$i][2], $inventarios[$i][0] );
+                $codigoEtiqueta = $inventarios[$i][$codigo];
+                $invEtiqueta = $inventarios[$i][$cant_inventario] ?? 0;
+                $datos = array($invEtiqueta, $codigoEtiqueta );
                 $invEtiqOperador->updateInvEtiqueta($datos);
             }
         }
@@ -103,7 +118,6 @@ $invEtiqOperador = new InvEtiquetasOperaciones();
         unlink($upload_file);
         mover_pag($ruta, $mensaje, $icon);
     }
-
 
 ?>
 </body>
