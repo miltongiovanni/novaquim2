@@ -48,10 +48,33 @@ class PreciosOperaciones
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
+    public function getTablePreciosHTMLSinIva()
+    {
+        $qry = "SELECT codigoGen 'Código', producto 'Descripción', CONCAT('$', FORMAT(fabrica/1.19, 0)) 'Precio Fábrica', CONCAT('$', FORMAT(distribuidor/1.19, 0)) 'Precio Distribución', 
+        CONCAT('$', FORMAT(detal/1.19, 0)) 'Precio Detal', CONCAT('$', FORMAT(mayor/1.19, 0)) 'Precio Mayorista', CONCAT('$', FORMAT(super/1.19, 0)) 'Precio Super'
+        FROM precios
+        WHERE presActiva=1";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
     public function getTablePrecios()
     {
         $qry = "SELECT codigoGen 'Código', producto 'Descripción', fabrica 'Precio Fábrica', distribuidor 'Precio Distribución', 
         detal 'Precio Detal', mayor 'Precio Mayorista', super 'Precio Super'
+        FROM precios 
+        WHERE presActiva=1";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute();
+        //$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $result = $stmt->fetchAll();
+        return $result;
+    }
+    public function getTablePreciosSinIva()
+    {
+        $qry = "SELECT codigoGen 'Código', producto 'Descripción', ROUND(fabrica/1.19) 'Precio Fábrica', ROUND(distribuidor/1.19) 'Precio Distribución', 
+        ROUND(detal/1.19) 'Precio Detal', ROUND(mayor/1.19) 'Precio Mayorista', ROUND(super/1.19) 'Precio Super'
         FROM precios 
         WHERE presActiva=1";
         $stmt = $this->_pdo->prepare($qry);

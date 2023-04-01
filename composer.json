@@ -1,6 +1,6 @@
 {
     "require": {
-        "phpoffice/phpspreadsheet": "1.16.0",
+        "phpoffice/phpspreadsheet": "1.28.0",
       "ext-pdo": "*",
       "ext-json": "*",
       "ext-mbstring": "*"

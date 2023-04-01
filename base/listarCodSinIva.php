@@ -21,7 +21,7 @@ include "../includes/valAcc.php";
 
     <script>
         $(document).ready(function () {
-            var precioSinIva=0;
+            var precioSinIva=1;
             $('#example').DataTable({
                 "columns": [
                     {
@@ -90,18 +90,18 @@ include "../includes/valAcc.php";
 <body>
 <div id="contenedor" class="container-fluid">
     <div id="saludo1">
-        <img src="../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>LISTA DE PRECIOS</h4></div>
+        <img src="../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>LISTA DE PRECIOS SIN IVA</h4></div>
     <div class="row flex-end">
         <div class="col-2">
             <form action="XlsListaPrecios.php" method="post" target="_blank">
-                <input type="hidden" name="precioSinIva" value="0">
+                <input type="hidden" name="precioSinIva" value="1">
                 <button class="button" type="submit">
                     <span><STRONG>Exportar a Excel</STRONG></span></button>
             </form>
         </div>
         <div class="col-2">
             <form action="selListaPrecios.php" method="post" target="_blank">
-                <input type="hidden" name="precioSinIva" value="0">
+                <input type="hidden" name="precioSinIva" value="1">
                 <button class="button" type="submit">
                     <span><STRONG>Imprimir Lista de Precios</STRONG></span></button>
             </form>

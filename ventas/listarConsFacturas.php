@@ -36,7 +36,7 @@ $facturas = $facturaOperador->getTotalesFacturasPorFecha($fechaIni, $fechaFin);
         }
 
         .width1 {
-            width: 6%;
+            width: 5%;
         }
 
         .width2 {
@@ -44,43 +44,51 @@ $facturas = $facturaOperador->getTotalesFacturasPorFecha($fechaIni, $fechaFin);
         }
 
         .width3 {
-            width: 24%;
+            width: 23%;
         }
 
         .width4 {
-            width: 7%;
+            width: 6%;
         }
 
         .width5 {
-            width: 7%;
+            width: 6%;
         }
 
         .width6 {
-            width: 7%;
+            width: 6%;
         }
 
         .width7 {
-            width: 7%;
+            width: 6%;
         }
 
         .width8 {
-            width: 7%;
+            width: 6%;
         }
 
         .width9 {
-            width: 7%;
+            width: 6%;
         }
 
         .width10 {
-            width: 7%;
+            width: 6%;
         }
 
         .width11 {
-            width: 7%;
+            width: 6%;
         }
 
         .width12 {
-            width: 7%;
+            width: 6%;
+        }
+
+        .width13 {
+            width: 6%;
+        }
+
+        .width14 {
+            width: 6%;
         }
     </style>
     <script src="../js/jquery-3.3.1.min.js"></script>
@@ -114,7 +122,11 @@ $facturas = $facturaOperador->getTotalesFacturasPorFecha($fechaIni, $fechaFin);
                     },
                     {
                         "data": "fechaFactura",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-left'
+                    },
+                    {
+                        "data": "tipoPrecio",
+                        "className": 'dt-body-left'
                     },
                     {
                         "data": "subtotal",
@@ -147,6 +159,10 @@ $facturas = $facturaOperador->getTotalesFacturasPorFecha($fechaIni, $fechaFin);
                     {
                         "data": "totalR",
                         "className": 'dt-body-right'
+                    },
+                    {
+                        "data": "ultimaCompra",
+                        "className": 'dt-body-left'
                     },
                 ],
                 "order": [[5, 'asc']],
@@ -203,14 +219,16 @@ if ($rangoFechas >= 0) {
                     <th class="width2 text-center">NIT</th>
                     <th class="width3 text-center">Cliente</th>
                     <th class="width4 text-center">Fecha factura</th>
-                    <th class="width5 text-center">Subtotal</th>
-                    <th class="width6 text-center">Descuento</th>
-                    <th class="width7 text-center">Iva</th>
-                    <th class="width8 text-center">Retefuente</th>
-                    <th class="width9 text-center">Reteiva</th>
-                    <th class="width10 text-center">Reteica</th>
-                    <th class="width11 text-center">Total</th>
-                    <th class="width12 text-center">Total Real</th>
+                    <th class="width5 text-center">Precio</th>
+                    <th class="width6 text-center">Subtotal</th>
+                    <th class="width7 text-center">Descuento</th>
+                    <th class="width8 text-center">Iva</th>
+                    <th class="width9 text-center">Retefuente</th>
+                    <th class="width10 text-center">Reteiva</th>
+                    <th class="width11 text-center">Reteica</th>
+                    <th class="width12 text-center">Total</th>
+                    <th class="width13 text-center">Total Real</th>
+                    <th class="width14 text-center">Última compra</th>
                 </tr>
                 </thead>
             </table>
