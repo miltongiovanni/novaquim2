@@ -51,13 +51,13 @@ class PDF extends FPDF
 //Creaci�n del objeto de la clase heredada
 //include "includes/conect.php";
 //$link=conectarServidor();
-$year = date("Y") + 1;
+$year = date("Y");
 $pdf = new PDF('P', 'mm', 'Letter');
 $pdf->AliasNbPages();
 $pdf->SetMargins(10, 10, 10);
 $pdf->AddPage();
 $pdf->SetFont('Arial', 'B', 10);
-$pdf->Cell(15, 4, "LISTA DE PRECIOS INDUSTRIAS NOVAQUIM S.A.S. VIGENCIA DESDE JULIO 1 DE " . $year, 0, 0, 'L');
+$pdf->Cell(15, 4, "LISTA DE PRECIOS INDUSTRIAS NOVAQUIM S.A.S. VIGENCIA DESDE FEBRERO 1 DE " . $year, 0, 0, 'L');
 $pdf->Ln(4);
 $pdf->Cell(15, 4, iconv('UTF-8', 'windows-1252', "Código"), 1, 0, 'C');
 $pdf->Cell(80, 4, "Producto", 1, 0, 'C');
@@ -80,7 +80,11 @@ for($i=0; $i<$filas; $i++)
 
 	for ($j = 2; $j < $campos; $j++)
 	{
-		$pdf->Cell(20,3.5,'$ '.number_format($precios[$i][$j]),1,0,'R');
+        if ($precioSinIva == 0){
+            $pdf->Cell(20,3.5,'$ '.number_format($precios[$i][$j]),1,0,'R');
+        }else{
+            $pdf->Cell(20,3.5,'$ '.number_format($precios[$i][$j]/1.19),1,0,'R');
+        }
 	}
 	$pdf->Ln(3.5);
 }

@@ -17,6 +17,7 @@ include "../includes/valAcc.php";
     <div id="saludo1">
         <img src="../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>SELECCIONAR PRECIO O PRECIOS PARA LA LISTA</h4></div>
     <form name="form1" method="POST" action="detListaPrecios.php">
+        <input type="hidden" name="precioSinIva" value="<?= $_POST['precioSinIva'];?>">
         <div class="form-group row">
             <label class="col-1 text-end"><br>Presentación</label>
             <div class="col-2">

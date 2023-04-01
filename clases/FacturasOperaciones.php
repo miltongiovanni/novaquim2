@@ -104,6 +104,8 @@ class FacturasOperaciones
                        nitCliente,
                        nomCliente,
                        fechaFactura,
+                       ultimaCompra,
+                       tipoPrecio,
                        CONCAT('$', FORMAT(subtotal, 0))             subtotal,
                        CONCAT('$', FORMAT(subtotal * descuento, 0)) descuentoF,
                        CONCAT('$', FORMAT(iva, 0))                  iva,
@@ -114,6 +116,8 @@ class FacturasOperaciones
                        CONCAT('$', FORMAT(totalR, 0))               totalR
                 FROM factura f
                          LEFT JOIN clientes c on f.idCliente = c.idCliente
+                    LEFT JOIN tip_precio tp ON tp.idPrecio = f.tipPrecio
+                LEFT JOIN (SELECT idCliente, MAX(fechaFactura) ultimaCompra FROM factura GROUP BY idCliente) u ON u.idCliente = c.idCliente
                 WHERE fechaFactura >= ?
                   AND fechaFactura <= ?";
         $stmt = $this->_pdo->prepare($qry);

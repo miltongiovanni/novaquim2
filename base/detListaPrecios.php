@@ -94,6 +94,7 @@ include "../includes/valAcc.php";
     <div class="row form-group">
         <div class="col-2">
             <form action="ImpPrecios.php" method="post" target="_blank">
+                <input type="hidden" name="precioSinIva" value="<?= $_POST['precioSinIva'];?>">
                 <input name="query" type="hidden" value="<?php echo $qry; ?>">
                 <input name="opciones_prec1" type="hidden" value="<?php echo $opciones_prec1; ?>">
 
