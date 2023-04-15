@@ -293,7 +293,15 @@ $distribucionOperador = new ProductosDistribucionOperaciones();
         <div class="col-2">
             <form method="post" action="Imp_Cot_Per.php" name="form3" target="_blank">
                 <input name="idCotPersonalizada" type="hidden" value="<?= $idCotPersonalizada; ?>">
-                <button class="button" type="submit"><span>Imprimir cotización</span></button>
+                <input name="iva" type="hidden" value="1">
+                <button class="button" type="submit"><span>Imprimir cotización con iva</span></button>
+            </form>
+        </div>
+        <div class="col-2">
+            <form method="post" action="Imp_Cot_Per.php" name="form3" target="_blank">
+                <input name="idCotPersonalizada" type="hidden" value="<?= $idCotPersonalizada; ?>">
+                <input name="iva" type="hidden" value="0">
+                <button class="button" type="submit"><span>Imprimir cotización sin iva</span></button>
             </form>
         </div>
     </div>

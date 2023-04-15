@@ -45,6 +45,7 @@ if (!isset($seleccionProd)) {
     try {
         $cotizacionOperador->updateCotizacion($datos);
         $_SESSION['idCotizacion'] = $idCotizacion;
+        $_SESSION['iva'] = $iva;
         $ruta = "det_cotiza.php";
         $mensaje = "Cotización actualizada con éxito";
         $icon = "success";

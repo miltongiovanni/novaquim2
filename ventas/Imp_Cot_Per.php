@@ -8,6 +8,7 @@ function cargarClases($classname)
 
 spl_autoload_register('cargarClases');
 $idCotPersonalizada = $_POST['idCotPersonalizada'];
+$iva = $_POST['iva'];
 $cotizacionOperador = new CotizacionesPersonalizadasOperaciones();
 $cotizacion = $cotizacionOperador->getCotizacionPForPrint($idCotPersonalizada);
 
@@ -90,21 +91,28 @@ $pdf->Cell(19, 3, 'Precio', 1, 0, 'C');
 $pdf->Cell(19, 3, 'Subtotal', 1, 0, 'C');
 $pdf->Ln(3);
 $pdf->SetFont('helvetica', '', 8);
+$totalIva=0;
+$totalSinIva=0;
 for ($i = 0; $i < count($detalle); $i++) {
+    $totalIva += $detalle[$i]['subtotal'];
+    $totalSinIva += $detalle[$i]['subtotalSinIva'];
+    $precioProducto = $iva == 1 ? $detalle[$i]['precioProducto'] : $detalle[$i]['precioProductoSinIva'];
+    $subTotal = $iva == 1 ? $detalle[$i]['subtotal'] : $detalle[$i]['subtotalSinIva'];
     $pdf->Cell(8, 3.5, ($i + 1), 1, 0, 'C');
     $pdf->Cell(110, 3.5, utf8_decode($detalle[$i]['producto']), 1, 0, 'L');
     $pdf->Cell(15, 3.5, $detalle[$i]['canProducto'], 1, 0, 'C');
-    $pdf->Cell(19, 3.5, $detalle[$i]['precioProducto'], 1, 0, 'R');
-    $pdf->Cell(19, 3.5, $detalle[$i]['subtotal'], 1, 0, 'R');
+    $pdf->Cell(19, 3.5, '$'.number_format($precioProducto), 1, 0, 'R');
+    $pdf->Cell(19, 3.5, '$'.number_format($subTotal), 1, 0, 'R');
     $pdf->Ln(3.5);
 }
 $pdf->SetFont('helvetica', 'B', 8);
-$total = $detCotPersonalizadaOperador->getTotalCotPersonalizada($idCotPersonalizada);
+$total = $iva == 1 ? $totalIva : $totalSinIva;
 $pdf->Cell(152, 3, utf8_decode('TOTAL COTIZACIÓN'), 0, 0, 'R');
-$pdf->Cell(19, 3,  $total, 0, 1, 'R');
+$pdf->Cell(19, 3,  '$'.number_format($total), 0, 1, 'R');
 $pdf->SetFont('Baker', '', 11);
-$f = fopen('../textos/cotiza2.txt', 'r');
-$txt = fread($f, filesize('../textos/cotiza2.txt'));
+$fileName = $iva == 1 ? 'cotiza_iva.txt' : 'cotiza_sin_iva.txt';
+$f = fopen('../textos/'.$fileName, 'r');
+$txt = fread($f, filesize('../textos/'.$fileName));
 fclose($f);
 $pdf->MultiCell(0, 5, $txt);
 $pdf->Ln(2);
