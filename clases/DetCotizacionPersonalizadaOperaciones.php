@@ -66,17 +66,18 @@ class DetCotizacionPersonalizadaOperaciones
 
     public function getTableDetCotPersonalizada($idCotPersonalizada)
     {
-        $qry = "SELECT dcp.codProducto, p.presentacion producto, canProducto, CONCAT('$', FORMAT(precioProducto, 0)) precioProducto,
-                    CONCAT('$', FORMAT(precioProducto*canProducto, 0)) subtotal
+        $qry = "SELECT dcp.codProducto, p.presentacion producto, canProducto, precioProducto, ROUND(precioProducto/1.19) precioProductoSinIva, ROUND(precioProducto*canProducto) subtotal,
+                    ROUND(precioProducto*canProducto/1.19) subtotalSinIva
                 FROM det_cot_personalizada dcp
                          LEFT JOIN prodpre p on dcp.codProducto = p.codPresentacion
                 WHERE idCotPersonalizada = $idCotPersonalizada
                   AND dcp.codProducto < 100000
                 UNION
-                SELECT dcp.codProducto, producto, canProducto, CONCAT('$', FORMAT(precioProducto, 0)) precioProducto,
-                    CONCAT('$', FORMAT(precioProducto*canProducto, 0)) subtotal
+                SELECT dcp.codProducto, producto, canProducto, precioProducto, ROUND(precioProducto/(1+tasaIva)) precioProductoSinIva, ROUND(precioProducto*canProducto) subtotal,
+                    ROUND(precioProducto*canProducto/(1+tasaIva)) subtotalSinIva
                 FROM det_cot_personalizada dcp
                          LEFT JOIN distribucion d on dcp.codProducto = d.idDistribucion
+                         LEFT JOIN tasa_iva t ON t.idTasaIva=d.codIva
                 WHERE idCotPersonalizada = $idCotPersonalizada
                   AND dcp.codProducto >= 100000";
         $stmt = $this->_pdo->prepare($qry);

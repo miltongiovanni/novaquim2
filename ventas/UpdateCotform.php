@@ -43,12 +43,12 @@ if (!$cotizacion) {
 
     <form method="post" action="update_cotiza.php" name="form1">
         <div class="form-group row">
-            <label class="col-form-label col-2" for="idCotizacion"><strong>Id Cotización</strong></label>
+            <label class="col-form-label col-2 text-end" for="idCotizacion"><strong>Id Cotización</strong></label>
             <input type="text" class="form-control col-4" id="idCotizacion" name="idCotizacion" readonly
                    value="<?= $idCotizacion ?>" required/>
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-2" for="idCliente"><strong>Cliente Cotización</strong></label>
+            <label class="col-form-label col-2 text-end" for="idCliente"><strong>Cliente Cotización</strong></label>
             <select name="idCliente" id="idCliente" class="form-control col-4 " required>
                 <option selected value="<?= $cotizacion['idCliente'] ?>"><?= $cotizacion['nomCliente'] ?></option>
                 <?php
@@ -73,7 +73,7 @@ if (!$cotizacion) {
                    value="<?= $cotizacion['fechaCotizacion'] ?>" required>
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-2"><strong>Destino</strong></label>
+            <label class="col-form-label col-2 text-end"><strong>Destino</strong></label>
             <div class="col-form-label col-4 ">
                 <input name="destino" type="radio" id="Destino_0"
                        value="1" <?php if ($cotizacion['destino'] == 1) echo 'checked'; ?>>
@@ -84,7 +84,7 @@ if (!$cotizacion) {
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-2"><strong>Presentación</strong></label>
+            <label class="col-form-label col-2 text-end"><strong>Presentación</strong></label>
             <div class="col-form-label col-4 ">
                 <input name="presentaciones" type="radio" id="Presentaciones_0"
                        value="1" <?php if ($cotizacion['presentaciones'] == 1) echo 'checked'; ?>>
@@ -98,7 +98,7 @@ if (!$cotizacion) {
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-2"><strong>Precio</strong></label>
+            <label class="col-form-label col-2 text-end"><strong>Precio</strong></label>
             <div class="col-form-label col-4 ">
                 <input name="precio" type="radio" id="precio_0"
                        value="1" <?php if ($cotizacion['precioCotizacion'] == 1) echo 'checked'; ?>>
@@ -115,6 +115,15 @@ if (!$cotizacion) {
                 <input type="radio" name="precio" value="5"
                        id="precio_4" <?php if ($cotizacion['precioCotizacion'] == 5) echo 'checked'; ?>>
                 <label for="precio_4">Superetes</label>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-form-label col-2 text-end"><strong>Iva</strong></label>
+            <div class="col-form-label col-4 ">
+                <input name="iva" type="radio" id="iva_0" value="1" checked >
+                <label for="iva_0">Precios con iva</label>
+                <input type="radio" name="iva" value="0" id="iva_1">
+                <label for="iva_1">Precios sin iva</label>
             </div>
         </div>
         <div class="form-group row">

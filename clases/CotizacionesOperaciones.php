@@ -66,7 +66,7 @@ class CotizacionesOperaciones
         return $result;
     }
 
-    public function getProductosCotizacion($precio, $presentaciones, $productos_c)
+    public function getProductosCotizacion($precio, $presentaciones, $productos_c, $iva)
     {
         if ($precio == 1) {
             $lista = 'fabrica';
@@ -100,9 +100,9 @@ class CotizacionesOperaciones
         }
         $qryp = $qryp . ")";
         $qry = "SELECT DISTINCT pr.codigoGen,
-                                producto,
-                                FORMAT($lista, 0)      $lista
-                FROM precios pr
+                                producto,";
+               $qry .= $iva == 1 ? " FORMAT($lista, 0) " : " FORMAT($lista/1.19, 0) "." ".$lista;
+        $qry .=" FROM precios pr
                          LEFT JOIN prodpre p on pr.codigoGen = p.codigoGen
                          LEFT JOIN medida m on p.codMedida = m.idMedida
                          LEFT JOIN productos p2 on p.codProducto = p2.codProducto
@@ -132,8 +132,9 @@ class CotizacionesOperaciones
             }
             $qryd = $qryd . ")";
         }
-        $qry = "SELECT idDistribucion, producto, precioVta
-                FROM distribucion
+        $qry = "SELECT idDistribucion, producto, precioVta, ROUND(precioVta/(1+tasaIva)) precioVtaSinIva
+                FROM distribucion d 
+                LEFT JOIN tasa_iva t ON t.idTasaIva=d.codIva
                 WHERE cotiza=1 AND activo=1
                 $qryd
                 ORDER BY producto";

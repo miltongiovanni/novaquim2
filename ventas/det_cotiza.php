@@ -9,6 +9,7 @@ function cargarClases($classname)
 spl_autoload_register('cargarClases');
 
 $idCotizacion = $_SESSION['idCotizacion'];
+$iva = $_SESSION['iva'];
 $cotizacionOperador = new CotizacionesOperaciones();
 $cotizacion = $cotizacionOperador->getCotizacion($idCotizacion);
 $seleccionProd = explode(",", $cotizacion['productos']);
@@ -20,6 +21,8 @@ $cotizacion['productos'] = str_replace("4", " Productos para Lavandería", $coti
 $cotizacion['productos'] = str_replace("5", " Aseo Doméstico y Oficina", $cotizacion['productos']);
 $cotizacion['productos'] = str_replace("6", " Higiene Cocina", $cotizacion['productos']);
 $cotizacion['productos'] = str_replace("7", " Línea Automotriz", $cotizacion['productos']);
+$cotizacion['productos'] = str_replace("8", " Herramientas", $cotizacion['productos']);
+$cotizacion['productos'] = str_replace("9", " Kits", $cotizacion['productos']);
 $cotizacion['distribucion'] = str_replace("1", " Implementos de Aseo", $cotizacion['distribucion']);
 $cotizacion['distribucion'] = str_replace("2", " Desechables", $cotizacion['distribucion']);
 $cotizacion['distribucion'] = str_replace("3", " Cafetería", $cotizacion['distribucion']);
@@ -117,6 +120,7 @@ $cotizacion['distribucion'] = str_replace("9", " Otros", $cotizacion['distribuci
         <div class="col-2">
             <form method="post" action="Imp_Cotizacion.php" name="form3" target="_blank">
                 <input name="idCotizacion" type="hidden" value="<?php echo $idCotizacion; ?>">
+                <input name="iva" type="hidden" value="<?= $iva; ?>">
                 <button class="button" type="submit"><span>Imprimir cotización</span></button>
             </form>
         </div>

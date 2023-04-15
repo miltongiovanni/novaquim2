@@ -7,6 +7,7 @@ function cargarClases($classname)
 }
 spl_autoload_register('cargarClases');
 $idCotizacion = $_POST['idCotizacion'];
+$iva = $_POST['iva'];
 $cotizacionOperador = new CotizacionesOperaciones();
 $cotizacion = $cotizacionOperador->getCotizacionForPrint($idCotizacion);
 class PDF extends FPDF
@@ -102,7 +103,7 @@ $pdf->Ln(5);
 $pdf->Cell(0, 5, utf8_decode('Cotización No. ') . $idCotizacion . ' - ' . date("y"), 0, 1, 'C');
 $pdf->Ln(5);
 $pdf->MultiCell(0, 5, utf8_decode('Tenemos el gusto de poner a su consideración nuestra propuesta comercial para el servicio de su organización.'));
-$productos= $cotizacionOperador->getProductosCotizacion($precio, $presentaciones, $productos_c);
+$productos= $cotizacionOperador->getProductosCotizacion($precio, $presentaciones, $productos_c, $iva);
 $pdf->Ln(5);
 $pdf->SetFont('Arial', '', 8);
 for ($i=0; $i<count($productos); $i++) {
@@ -126,7 +127,7 @@ if (count($prodDistr) > 0){
     for($i=0; $i<count($prodDistr); $i++) {
         $cod = $prodDistr[$i][0];
         $prod = utf8_decode($prodDistr[$i][1]);
-        $cant = $prodDistr[$i][2];
+        $cant = $iva == 1 ? $prodDistr[$i][2] : $prodDistr[$i][3] ;
         $pdf->Cell(15, 3.5, $cod, 1, 0, 'C');
         $pdf->Cell(135, 3.5, $prod, 1, 0, 'L');
         $pdf->Cell(4, 3.5, '$', 'LTB', 0, 'R');
@@ -140,8 +141,9 @@ if (count($prodDistr) > 0){
 }
 
 $pdf->SetFont('Baker', '', 11);
-$f = fopen('../textos/cotiza2.txt', 'r');
-$txt = fread($f, filesize('../textos/cotiza2.txt'));
+$fileName = $iva == 1 ? 'cotiza_iva.txt' : 'cotiza_sin_iva.txt';
+$f = fopen('../textos/'.$fileName, 'r');
+$txt = fread($f, filesize('../textos/'.$fileName));
 fclose($f);
 $pdf->MultiCell(0, 5, ($txt));
 $pdf->Ln(5);
