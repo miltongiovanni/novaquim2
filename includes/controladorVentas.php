@@ -290,6 +290,46 @@ function ultimoProdDisxCat()
     echo $ultimoCodProdDisxCat + 1;
 }
 
+function crearCliente()
+{
+    foreach ($_POST as $nombre_campo => $valor) {
+        ${$nombre_campo} = $valor;
+        if (is_array($valor)) {
+            //echo $nombre_campo.print_r($valor).'<br>';
+        } else {
+            //echo $nombre_campo. '=' .${$nombre_campo}.'<br>';
+        }
+    }
+    $lastIdCliente = null;
+    $estadoCliente = 1;
+    $fchCreacionCliente = date("Y-m-d");
+    $datos = array($nitCliente, $nomCliente, $contactoCliente, $cargoCliente, $telCliente, $celCliente, $dirCliente, $emailCliente, $estadoCliente, $idCatCliente, $ciudadCliente, $retIva, $retIca, $retFte, $codVendedor, $fchCreacionCliente, 0);
+    $clienteOperador = new ClientesOperaciones();
+    try {
+        $nitExist = $clienteOperador->checkNit($nitCliente);
+        if (isset($nitExist['idCliente']) && $nitExist['idCliente'] != null) {
+            $mensaje = "Cliente con ese NIT ya existe";
+            $icon = "warning";
+            $response = [ 'success' => false,  'lastIdCliente' => $lastIdCliente, 'mensaje' => $mensaje, 'icon' => $icon];
+        } else {
+            $lastIdCliente = $clienteOperador->makeCliente($datos);
+            $datosSucursal = array($lastIdCliente, 1, $dirCliente, $ciudadCliente, $telCliente, $nomCliente);
+            $clienteSucursalOperador = new ClientesSucursalOperaciones();
+            $lastIdSucursal = $clienteSucursalOperador->makeClienteSucursal($datosSucursal);
+            $mensaje = "Cliente creado con éxito";
+            $icon = "success";
+            $response = [ 'success' => true,   'lastIdCliente' => $lastIdCliente,   'lastIdSucursal' => $lastIdSucursal,  'mensaje' => $mensaje, 'icon' => $icon];
+        }
+    } catch (Exception $e) {
+        $mensaje = "Error al crear el Cliente";
+        $icon = "error";
+        $response = [ 'success' => false,   'lastIdCliente' => $lastIdCliente,  'mensaje' => $mensaje, 'icon' => $icon];
+    } finally {
+        unset($conexion);
+        unset($stmt);
+    }
+    echo json_encode($response);
+}
 
 //controleur membres
 $action = $_POST['action'];
@@ -347,5 +387,8 @@ switch ($action) {
         break;
     case 'eliminarSession':
         eliminarSession();
+        break;
+    case 'crearCliente':
+        crearCliente();
         break;
 }

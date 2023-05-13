@@ -65,6 +65,14 @@ class ClientesOperaciones
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
+    public function getClienteByName($nomCliente)
+    {
+        $qry = "SELECT idCliente, nomCliente FROM clientes WHERE nomCliente = '$nomCliente'";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result;
+    }
     public function getClienteesByNameAndTipoCompra($q, $tipoCompra)
     {
         $qry = "SELECT idCliente, nomCliente FROM clientes WHERE idCatCliente=? AND nomCliente like '%" . $q . "%' ORDER BY nomCliente;";

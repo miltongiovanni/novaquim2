@@ -128,6 +128,33 @@ class ClientesCotizacionOperaciones
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result;
     }
+    public function getClienteFromCotizacionPersonalizada($idCotizacionPersonalizada)
+    {
+        $qry = "SELECT c.idCliente,
+                 nomCliente,
+                 contactoCliente,
+                 cargoContacto,
+                 telCliente,
+                 dirCliente,
+                 emailCliente,
+                 celCliente,
+                 idCatCliente,
+                 desCatClien,
+                 codVendedor,
+                 nomPersonal,
+                 c.idCiudad,
+                 ciudad
+                FROM clientes_cotiz c
+                LEFT JOIN cat_clien cc ON c.idCatCliente = cc.idCatClien
+                LEFT JOIN personal p ON c.codVendedor = p.idPersonal
+                LEFT JOIN ciudades c1 ON c.idCiudad = c1.idCiudad
+                LEFT JOIN cot_personalizada cp ON c.idCliente=cp.idCliente
+                WHERE cp.idCotPersonalizada =?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($idCotizacionPersonalizada));
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result;
+    }
 
     public function checkNit($nitCliente)
     {

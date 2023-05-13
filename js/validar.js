@@ -8,7 +8,8 @@ function Longitud(form) {
 }
 
 //Envia solicitando confirmación
-function Enviar(form) {
+
+function Validar(form){
     for (i = 0; i < form.elements.length; i++) {
         if (form.elements[i].type === "text" || form.elements[i].type === "date" || form.elements[i].type === "select-one" || form.elements[i].type === "password" || form.elements[i].type === "textarea" || form.elements[i].type === "file") {
             if (form.elements[i].value === "" && form.elements[i].required) {
@@ -35,6 +36,10 @@ function Enviar(form) {
             } // form
         }
     }
+    return true;
+}
+function Enviar(form) {
+    Validar(form);
     //var pregunta = confirm("\u00BFEst\u00E1 Seguro?");
     var pregunta = confirmation(form);
     console.log(pregunta);
