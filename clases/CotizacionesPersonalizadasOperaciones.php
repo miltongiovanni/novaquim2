@@ -212,7 +212,8 @@ class CotizacionesPersonalizadasOperaciones
                tipPrecio tipoPrecio,
                IF(tipPrecio = 1, 'Fábrica', IF(tipPrecio = 2, 'Distribuidor',
                                                IF(tipPrecio = 3, 'Detal', IF(tipPrecio = 4, 'Mayorista', 'Super')))) tipPrecio,
-               destino
+               destino,
+               idPedido
         FROM cot_personalizada c
                  LEFT JOIN clientes_cotiz cc on cc.idCliente = c.idCliente
                  LEFT JOIN personal p on p.idPersonal = cc.codVendedor
@@ -258,6 +259,13 @@ class CotizacionesPersonalizadasOperaciones
     public function updateCotizacionP($datos)
     {
         $qry = "UPDATE cot_personalizada SET idCliente=?, fechaCotizacion=?, tipPrecio=?, destino=?
+                 WHERE idCotPersonalizada=?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute($datos);
+    }
+    public function updatePedidoCotizacionP($datos)
+    {
+        $qry = "UPDATE cot_personalizada SET idPedido=?
                  WHERE idCotPersonalizada=?";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute($datos);

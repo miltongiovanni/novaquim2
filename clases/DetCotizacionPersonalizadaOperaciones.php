@@ -47,13 +47,13 @@ class DetCotizacionPersonalizadaOperaciones
 
     public function getDetCotPersonalizada($idCotPersonalizada)
     {
-        $qry = "SELECT dcp.codProducto, p.presentacion producto, canProducto, CONCAT('$', FORMAT(precioProducto, 0)) precioProducto
+        $qry = "SELECT dcp.codProducto, p.presentacion producto, canProducto, CONCAT('$', FORMAT(precioProducto, 0)) precioProducto, precioProducto precio
                 FROM det_cot_personalizada dcp
                          LEFT JOIN prodpre p on dcp.codProducto = p.codPresentacion
                 WHERE idCotPersonalizada = $idCotPersonalizada
                   AND dcp.codProducto < 100000
                 UNION
-                SELECT dcp.codProducto, producto, canProducto, CONCAT('$', FORMAT(precioProducto, 0)) precioProducto
+                SELECT dcp.codProducto, producto, canProducto, CONCAT('$', FORMAT(precioProducto, 0)) precioProducto, precioProducto precio
                 FROM det_cot_personalizada dcp
                          LEFT JOIN distribucion d on dcp.codProducto = d.idDistribucion
                 WHERE idCotPersonalizada = $idCotPersonalizada
