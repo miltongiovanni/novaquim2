@@ -83,11 +83,19 @@ spl_autoload_register('cargarClases');
 $operadorClienteCotizacion = new ClientesCotizacionOperaciones();
 $operadorCotizacionPersonalizada = new CotizacionesPersonalizadasOperaciones();
 $cotizacion = $operadorCotizacionPersonalizada->getCotizacionP($idCotPersonalizada);
+if (!$cotizacion) {
+    $ruta = "pedidoDeCotizacion.php";
+    $mensaje = "No existe una cotización personalizada con ese número.  Intente de nuevo.";
+    $icon = "warning";
+    mover_pag($ruta, $mensaje, $icon);
+    exit;
+}
 if($cotizacion['idPedido'] != 0){
     $ruta = "pedidoDeCotizacion.php";
     $mensaje = "Ya existe un pedido basado en ésta cotización";
     $icon = "error";
     mover_pag($ruta, $mensaje, $icon);
+    exit;
 }
 $cliente_cotizacion_personalizada = $operadorClienteCotizacion->getClienteFromCotizacionPersonalizada($idCotPersonalizada);
 
