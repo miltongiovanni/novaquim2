@@ -74,7 +74,7 @@ class DetComprasOperaciones
                 break;
         }
         $stmt = $this->_pdo->prepare($qry);
-        $stmt->execute(array($idCompra));
+        $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
@@ -162,7 +162,7 @@ class DetComprasOperaciones
                 break;
         }
         $stmt = $this->_pdo->prepare($qry);
-        $stmt->execute(array($idCompra));
+        $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);;
         return $result;
     }

@@ -100,12 +100,14 @@ class ComprasOperaciones
                        ivaCompra iva,
                        retefuenteCompra retefuente,
                        reteicaCompra reteica,
+                       reteivaCompra reteiva,
                        CONCAT('$', FORMAT(subtotalCompra, 2))                                 subtotalCompra,
                        CONCAT('$', FORMAT(ivaCompra, 2))                                      ivaCompra,
                        CONCAT('$', FORMAT(totalCompra, 2))                                    totalCompra,
                        CONCAT('$', FORMAT(retefuenteCompra, 2))                               retefuenteCompra,
                        CONCAT('$', FORMAT(reteicaCompra, 2))                                  reteicaCompra,
-                       CONCAT('$', FORMAT((totalCompra - retefuenteCompra - reteicaCompra), 2)) vreal
+                       CONCAT('$', FORMAT(reteivaCompra, 2))                                  reteivaCompra,
+                       CONCAT('$', FORMAT((totalCompra - retefuenteCompra - reteicaCompra - reteivaCompra), 2)) vreal
                 FROM compras
                          LEFT JOIN estados e on compras.estadoCompra = e.idEstado
                          LEFT JOIN proveedores p on compras.idProv = p.idProv
@@ -181,7 +183,8 @@ class ComprasOperaciones
                             IF(SUM(precio*cantidad) IS NULL, 0, ROUND(SUM(precio*cantidad*tasaIva),2)) AS iva, 
                             IF(SUM(precio*cantidad) IS NULL, 0, ROUND((SUM(precio*cantidad)+SUM(precio*cantidad*tasaIva)),2)) total,
                             IF(autoretProv=1, 0, IF( SUM(precio*cantidad) >=$base,ROUND(SUM(precio*cantidad*tasaRetIca/1000),2),0)) AS reteica,
-                            IF(autoretProv=1, 0, IF( SUM(precio*cantidad) >=$base,ROUND(SUM(precio*cantidad*tasaRetefuente),2),0)) AS retefuente
+                            IF(autoretProv=1, 0, IF( SUM(precio*cantidad) >=$base,ROUND(SUM(precio*cantidad*tasaRetefuente),2),0)) AS retefuente,
+                            IF(regProv=1, 0, ROUND(SUM(precio*cantidad*tasaIva)*0.15,2))  AS reteiva
                            FROM (SELECT dc.idCompra, codigo, cantidad, precio, lote, tasaIva
                                   FROM det_compras dc
                                            LEFT JOIN envases e ON e.codEnvase = codigo
@@ -198,7 +201,7 @@ class ComprasOperaciones
                     LEFT JOIN tasa_reteica tr on p.idTasaIcaProv = tr.idTasaRetIca
                     LEFT JOIN tasa_retefuente t on p.idRetefuente = t.idTasaRetefuente
                     WHERE tb.idCompra = $idCompra ) tabla
-                    SET totalCompra=total, subtotalCompra=subtotal, ivaCompra=iva, retefuenteCompra=retefuente, reteicaCompra=reteica
+                    SET totalCompra=total, subtotalCompra=subtotal, ivaCompra=iva, retefuenteCompra=retefuente, reteicaCompra=reteica, reteivaCompra=reteiva
                     WHERE idCompra=$idCompra";
         } else {
             $qry = "UPDATE compras,
@@ -206,7 +209,8 @@ class ComprasOperaciones
                     IF(SUM(precio*cantidad) IS NULL, 0, ROUND(SUM(precio*cantidad*tasaIva),2)) AS iva, 
                     IF(SUM(precio*cantidad) IS NULL, 0, ROUND((SUM(precio*cantidad)+SUM(precio*cantidad*tasaIva)),2)) total,
                     IF(autoretProv=1, 0, IF( SUM(precio*cantidad) >=$base,ROUND(SUM(precio*cantidad*tasaRetIca/1000),2),0)) AS reteica,
-                    IF(autoretProv=1, 0, IF( SUM(precio*cantidad) >=$base,ROUND(SUM(precio*cantidad*tasaRetefuente),2),0)) AS retefuente
+                    IF(autoretProv=1, 0, IF( SUM(precio*cantidad) >=$base,ROUND(SUM(precio*cantidad*tasaRetefuente),2),0)) AS retefuente,
+                    IF(regProv=1, 0, ROUND(SUM(precio*cantidad*tasaIva)*0.15,2))  AS reteiva
                            FROM det_compras dc
                     LEFT JOIN compras c ON dc.idCompra = c.idCompra
                     LEFT JOIN proveedores p ON c.idProv = p.idProv ";
@@ -227,7 +231,7 @@ class ComprasOperaciones
             $qry .= "LEFT JOIN tasa_reteica tr on p.idTasaIcaProv = tr.idTasaRetIca
                     LEFT JOIN tasa_retefuente t on p.idRetefuente = t.idTasaRetefuente
                     WHERE dc.idCompra = $idCompra) tabla
-                    SET totalCompra=total, subtotalCompra=subtotal, ivaCompra=iva, retefuenteCompra=retefuente, reteicaCompra=reteica
+                    SET totalCompra=total, subtotalCompra=subtotal, ivaCompra=iva, retefuenteCompra=retefuente, reteicaCompra=reteica, reteivaCompra=reteiva
                     WHERE idCompra=$idCompra";
         }
 

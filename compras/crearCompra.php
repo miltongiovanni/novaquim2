@@ -55,7 +55,7 @@ switch ($tipoCompra) {
     <form name="form2" method="POST" action="makeCompra.php">
         <input name="tipoCompra" type="hidden" value="<?= $tipoCompra ?>">
         <div class="form-group row">
-            <label class="col-form-label col-2" for="busProv"><strong>Proveedor</strong></label>
+            <label class="col-form-label col-2 text-end" for="busProv"><strong>Proveedor</strong></label>
             <input type="text" class="form-control col-2" id="busProv" name="busProv" onkeyup="findProveedor()"
                    required/>
         </div>
