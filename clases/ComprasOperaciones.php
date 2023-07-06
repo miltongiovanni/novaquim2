@@ -28,8 +28,8 @@ class ComprasOperaciones
     public function getTableCompras($tipoCompra)
     {
         $qry = "SELECT idCompra, nitProv, nomProv, numFact, fechComp, fechVenc, descEstado, CONCAT('$', FORMAT(totalCompra, 2)) totalCompra,
-                CONCAT('$', FORMAT(retefuenteCompra, 2)) retefuenteCompra, CONCAT('$', FORMAT(reteicaCompra, 2)) reteicaCompra,
-                CONCAT('$', FORMAT(totalCompra-retefuenteCompra-reteicaCompra, 2))  vreal
+                CONCAT('$', FORMAT(retefuenteCompra, 2)) retefuenteCompra, CONCAT('$', FORMAT(reteicaCompra, 2)) reteicaCompra, CONCAT('$', FORMAT(reteivaCompra, 2)) reteivaCompra,
+                CONCAT('$', FORMAT(totalCompra-retefuenteCompra-reteicaCompra-reteivaCompra, 2))  vreal
                 FROM compras
                    LEFT JOIN estados e on compras.estadoCompra = e.idEstado
                    LEFT JOIN proveedores p on compras.idProv = p.idProv
@@ -181,7 +181,7 @@ class ComprasOperaciones
             $qry = "UPDATE compras,
                     (SELECT IF(SUM(precio*cantidad) IS NULL, 0, ROUND(SUM(precio*cantidad),2)) subtotal, 
                             IF(SUM(precio*cantidad) IS NULL, 0, ROUND(SUM(precio*cantidad*tasaIva),2)) AS iva, 
-                            IF(SUM(precio*cantidad) IS NULL, 0, ROUND((SUM(precio*cantidad)+SUM(precio*cantidad*tasaIva)),2)) total,
+                            IF(regProv=1, IF(SUM(precio*cantidad) IS NULL, 0, ROUND((SUM(precio*cantidad)+SUM(precio*cantidad*tasaIva)),2)), IF(SUM(precio*cantidad) IS NULL, 0, ROUND((SUM(precio*cantidad)+SUM(precio*cantidad*tasaIva*0.85)),2))) total,
                             IF(autoretProv=1, 0, IF( SUM(precio*cantidad) >=$base,ROUND(SUM(precio*cantidad*tasaRetIca/1000),2),0)) AS reteica,
                             IF(autoretProv=1, 0, IF( SUM(precio*cantidad) >=$base,ROUND(SUM(precio*cantidad*tasaRetefuente),2),0)) AS retefuente,
                             IF(regProv=1, 0, ROUND(SUM(precio*cantidad*tasaIva)*0.15,2))  AS reteiva

@@ -143,6 +143,10 @@ include "../includes/valAcc.php";
                         "className": 'dt-body-right'
                     },
                     {
+                        "data": "reteiva",
+                        "className": 'dt-body-right'
+                    },
+                    {
                         "data": "aPagar",
                         "className": 'dt-body-right'
                     },
@@ -222,6 +226,7 @@ include "../includes/valAcc.php";
                 <th class="width8 text-center">Valor Factura</th>
                 <th class="width9 text-center">Retefuente</th>
                 <th class="width10 text-center">Rete Ica</th>
+                <th class="width10 text-center">Rete Iva</th>
                 <th class="width11 text-center">Valor a Pagar</th>
                 <th class="width12 text-center">Valor Pagado</th>
                 <th class="width13 text-center">Saldo</th>

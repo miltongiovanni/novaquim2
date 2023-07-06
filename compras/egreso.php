@@ -41,33 +41,37 @@ $saldo = intval($egreso['treal']) - $abono;
     </div>
     <div class="form-group row">
         <div class="col-2 text-end"><strong>Tipo de compra</strong></div>
-        <div class="col-2 bg-blue"><?= $tiposCompra[$egreso['tipoCompra']] ?></div>
+        <div class="col-1 bg-blue"><?= $tiposCompra[$egreso['tipoCompra']] ?></div>
+        <div class="col-1 text-end"><strong>NIT</strong></div>
+        <div class="col-1 bg-blue"><?= $egreso['nitProv'] ?></div>
+        <div class="col-1 text-end"><strong>Proveedor</strong></strong></div>
+        <div class="col-2 bg-blue"><?= $egreso['nomProv'] ?></div>
+    </div>
+    <div class="form-group row">
         <div class="col-1 text-end"><strong>Valor Factura</strong></div>
         <div class="col-1 bg-blue"><?= $egreso['total'] ?></div>
+        <div class="col-2 text-end"><strong>Fecha de compra</strong></div>
+        <div class="col-1 bg-blue"><?= $egreso['fechComp']; ?></div>
+        <div class="col-2 text-end"><strong>Fecha Vencimiento </strong></strong></div>
+        <div class="col-1 bg-blue"><?= $egreso['fechVenc'] ?></div>
     </div>
     <div class="form-group row">
-        <div class="col-2 text-end"><strong>Proveedor</strong></strong></div>
-        <div class="col-2 bg-blue"><?= $egreso['nomProv'] ?></div>
         <div class="col-1 text-end"><strong>Retención</strong></div>
         <div class="col-1 bg-blue"><?= $egreso['retefuente'] ?></div>
-    </div>
-    <div class="form-group row">
-        <div class="col-2 text-end"><strong>NIT</strong></div>
-        <div class="col-2 bg-blue"><?= $egreso['nitProv'] ?></div>
         <div class="col-1 text-end"><strong>Rete Ica</strong></strong></div>
         <div class="col-1 bg-blue"><?= $egreso['reteica'] ?></div>
+        <div class="col-1 text-end"><strong>Rete Iva</strong></strong></div>
+        <div class="col-1 bg-blue"><?= $egreso['reteiva'] ?></div>
     </div>
     <div class="form-group row">
-        <div class="col-2 text-end"><strong>Fecha de compra</strong></div>
-        <div class="col-2 bg-blue"><?= $egreso['fechComp']; ?></div>
         <div class="col-1 text-end"><strong>Valor a Pagar</strong></div>
         <div class="col-1 bg-blue"><?= $egreso['vreal'] ?></div>
-    </div>
-    <div class="form-group row">
-        <div class="col-2 text-end"><strong>Fecha Vencimiento </strong></strong></div>
-        <div class="col-2 bg-blue"><?= $egreso['fechVenc'] ?></div>
         <div class="col-1 text-end"><strong>Valor pagado</strong></div>
         <div class="col-1 bg-blue"><?= $egreso['pago'] ?></div>
+        <div class="col-1 text-end"><strong>Saldo</strong></div>
+        <div class="col-1 bg-blue"><?= "$".number_format($saldo,0,".",",")  ?></div>
+    </div>
+    <div class="form-group row">
     </div>
     <div class="form-group row">&nbsp;</div>
     <?php if ($egreso['vlr_pago'] == 0): ?>

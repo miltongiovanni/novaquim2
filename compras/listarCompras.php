@@ -182,6 +182,10 @@ switch ($tipoCompra) {
                         "className": 'dt-body-right'
                     },
                     {
+                        "data": "reteivaCompra",
+                        "className": 'dt-body-right'
+                    },
+                    {
                         "data": "vreal",
                         "className": 'dt-body-right'
                     },
@@ -254,6 +258,7 @@ switch ($tipoCompra) {
                 <th class="width9 text-center">Valor Factura</th>
                 <th class="width10 text-center">Retefuente</th>
                 <th class="width11 text-center">Rete Ica</th>
+                <th class="width11 text-center">Rete Iva</th>
                 <th class="width12 text-center">Valor Real</th>
             </tr>
             </thead>

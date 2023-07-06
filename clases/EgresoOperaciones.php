@@ -123,16 +123,16 @@ class EgresoOperaciones
     public function getFormEgreso($idEgreso)
     {
         $qry = "SELECT idEgreso, e.idCompra, e.tipoCompra, CONCAT('$', FORMAT(pago, 0)) pago, pago pagon, fechPago, descuentoE, formPago, formaPago, estadoCompra,
-                       numFact, fechComp, fechVenc, CONCAT('$', FORMAT(total, 0)) total, nitProv, nomProv, CONCAT('$', FORMAT(retefuente, 0)) retefuente, CONCAT('$', FORMAT(reteica, 0)) reteica, pago vlr_pago,
-                       CONCAT('$', FORMAT(total-retefuente-reteica, 0))  vreal, (total-retefuente-reteica) treal 
+                       numFact, fechComp, fechVenc, CONCAT('$', FORMAT(total, 0)) total, nitProv, nomProv, CONCAT('$', FORMAT(retefuente, 0)) retefuente, CONCAT('$', FORMAT(reteica, 0)) reteica, CONCAT('$', FORMAT(reteiva, 0)) reteiva, pago vlr_pago,
+                       CONCAT('$', FORMAT(total-retefuente-reteica-reteiva, 0))  vreal, (total-retefuente-reteica-reteiva) treal 
                 FROM egreso e
                 LEFT JOIN ( SELECT idCompra id, tipoCompra, numFact, fechComp, fechVenc, totalCompra total, estadoCompra,
-                              nitProv, nomProv, retefuenteCompra retefuente, reteicaCompra reteica
+                              nitProv, nomProv, retefuenteCompra retefuente, reteicaCompra reteica, reteivaCompra reteiva
                        FROM compras c
                                 LEFT JOIN proveedores p on c.idProv = p.idProv
                        UNION
                        SELECT idGasto id, tipoCompra, numFact, fechGasto fechComp, fechVenc, totalGasto total, estadoGasto estadoCompra,
-                              nitProv, nomProv, retefuenteGasto retefuente, reteicaGasto reteica
+                              nitProv, nomProv, retefuenteGasto retefuente, reteicaGasto reteica, reteivaGasto reteiva
                        FROM gastos g
                                 LEFT JOIN proveedores p on g.idProv = p.idProv
                 ) t ON e.idCompra=t.id AND e.tipoCompra=t.tipoCompra
@@ -148,14 +148,14 @@ class EgresoOperaciones
     {
         $qry = "SELECT idEgreso, e.idCompra, e.tipoCompra, pago, fechPago, descuentoE,
                        numFact, fechComp, fechVenc, total, nitProv, nomProv, retefuente, reteica,
-                       (total-retefuente-reteica)  vreal FROM egreso e
+                       (total-retefuente-reteica-reteiva)  vreal FROM egreso e
                 LEFT JOIN ( SELECT idCompra id, tipoCompra, numFact, fechComp, fechVenc, totalCompra total,
-                            nitProv, nomProv, retefuenteCompra retefuente, reteicaCompra reteica
+                            nitProv, nomProv, retefuenteCompra retefuente, reteicaCompra reteica, reteivaCompra reteiva
                             FROM compras c
                             LEFT JOIN proveedores p on c.idProv = p.idProv
                             UNION
                             SELECT idGasto id, tipoCompra, numFact, fechGasto fechComp, fechVenc, totalGasto total,
-                            nitProv, nomProv, retefuenteGasto retefuente, reteicaGasto reteica
+                            nitProv, nomProv, retefuenteGasto retefuente, reteicaGasto reteica, reteivaGasto reteiva
                             FROM gastos g
                             LEFT JOIN proveedores p on g.idProv = p.idProv
                           ) t ON e.idCompra=t.id AND e.tipoCompra=t.tipoCompra
@@ -251,14 +251,14 @@ class EgresoOperaciones
     public function getTableComprasXPagar()
     {
         $qry = "SELECT idCompra id, tipoCompra, tipoComp, numFact, fechComp, fechVenc, totalCompra total, subtotalCompra subtotal,
-                       nomProv, retefuenteCompra retefuente, reteicaCompra reteica
+                       nomProv, retefuenteCompra retefuente, reteicaCompra reteica, reteivaCompra reteiva
                 FROM compras c
                 LEFT JOIN proveedores p on c.idProv = p.idProv
                 LEFT JOIN tip_compra tc on c.tipoCompra = tc.idTipo
                 WHERE estadoCompra=3
                 UNION
                 SELECT idGasto id, tipoCompra, tipoComp, numFact, fechGasto fechComp, fechVenc, totalGasto total, subtotalGasto subtotal,
-                       nomProv, retefuenteGasto retefuente, reteicaGasto reteica
+                       nomProv, retefuenteGasto retefuente, reteicaGasto reteica, reteivaGasto reteiva
                 FROM gastos g
                 LEFT JOIN proveedores p on g.idProv = p.idProv
                 LEFT JOIN tip_compra t on g.tipoCompra = t.idTipo
