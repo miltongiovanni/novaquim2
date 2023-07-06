@@ -24,9 +24,10 @@ for ($i = 0; $i < count($compras); $i++) {
     $datos[$i]['nomProv'] = $compras[$i]['nomProv'];
     $datos[$i]['retefuente'] = "$".number_format($compras[$i]['retefuente'],0,".",",");
     $datos[$i]['reteica'] = "$".number_format($compras[$i]['reteica'],0,".",",");
-    $datos[$i]['aPagar'] = "$".number_format(($compras[$i]['total'] - $compras[$i]['retefuente'] - $compras[$i]['reteica']),0,".",",");
-    $datos[$i]['pago'] = "$".number_format($pago,0,".",",");
-    $datos[$i]['saldo'] = "$".number_format(($compras[$i]['total'] - $pago),0,".",",");
+    $datos[$i]['reteiva'] = "$".number_format($compras[$i]['reteiva'],0,".",",");
+    $datos[$i]['aPagar'] = "$".number_format(($compras[$i]['total'] - $compras[$i]['retefuente'] - $compras[$i]['reteica'] - $compras[$i]['reteiva']),0,".",",");
+    $datos[$i]['pago'] = $pago != null ? "$".number_format($pago,0,".",","): '';
+    $datos[$i]['saldo'] = "$".number_format(($compras[$i]['total'] - $compras[$i]['retefuente'] - $compras[$i]['reteica'] - $compras[$i]['reteiva'] - $pago),0,".",",");
 }
 
 $datosRetorno = array(

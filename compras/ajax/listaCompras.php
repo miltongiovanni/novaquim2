@@ -23,6 +23,7 @@ for ($i = 0; $i < count($compras); $i++) {
     $datos[$i]['totalCompra'] = $compras[$i]['totalCompra'];
     $datos[$i]['retefuenteCompra'] = $compras[$i]['retefuenteCompra'];
     $datos[$i]['reteicaCompra'] = $compras[$i]['reteicaCompra'];
+    $datos[$i]['reteivaCompra'] = $compras[$i]['reteivaCompra'];
     $datos[$i]['vreal'] = $compras[$i]['vreal'];
     $datos[$i]['detCompra'] = $detCompra;
 }
