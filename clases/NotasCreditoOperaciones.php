@@ -71,6 +71,7 @@ class NotasCreditoOperaciones
                        ROUND(SUM(iva19) + SUM(iva10), 0)                               iva,
                        ROUND(SUM(subtotal) + SUM(iva19) + SUM(iva10), 0)               totalNotaC
                 FROM (SELECT dnc.idNotaC,
+                             dnc.codProducto,
                              dnc.cantProducto,
                              precioProducto,
                              dnc.cantProducto * precioProducto * (1 - descuentoFactOrigen)                  subtotal,
@@ -89,6 +90,7 @@ class NotasCreditoOperaciones
                         AND dnc.codProducto < 100000
                       UNION
                       SELECT dnc2.idNotaC,
+                             dnc2.codProducto,
                              dnc2.cantProducto,
                              precioProducto,
                              dnc2.cantProducto * precioProducto * (1 - descuentoFactOrigen)                  subtotal,
