@@ -15,7 +15,7 @@ $rep= '<form id="form1" name="form1" method="post" action="'.$action.'">
 $manager = new UsuariosOperaciones();
 $users=$manager->getUsers($actif);
 $filas=count($users);
-$rep .= '<select name="idUsuario" class="form-control col-2" required>';
+$rep .= '<select name="idUsuario" class="form-select col-2" required>';
 $rep .= '<option selected value="">-----------------------------</option>';
 for($i=0; $i<$filas; $i++)
     {                            
@@ -39,7 +39,7 @@ function buscarPersonalForm($action, $actif){
     $manager = new PersonalOperaciones();
     $personal=$manager->getPersonal($actif);
     $filas=count($personal);
-    $rep .= '<select name="idPersonal" class="form-control col-2" required>';
+    $rep .= '<select name="idPersonal" class="form-select col-2" required>';
     $rep .= '<option selected value="">-----------------------------</option>';
     for($i=0; $i<$filas; $i++)
         {                            

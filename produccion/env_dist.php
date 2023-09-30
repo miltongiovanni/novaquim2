@@ -24,7 +24,7 @@ spl_autoload_register('cargarClases');
     <form id="form1" name="form1" method="post" action="det_env_dist.php">
         <div class="form-group row">
             <label class="col-form-label col-2" for="codDist"><strong>Producto de Distribución</strong></label>
-            <select name="codDist" id="codDist" class="form-control col-2" required>
+            <select name="codDist" id="codDist" class="form-select col-2" required>
                 <option selected value="">-----------------------------</option>
                 <?php
                 $RelDisMPrimaOperador = new RelDisMPrimaOperaciones();

@@ -139,7 +139,7 @@ $cambio = $cambioOperador->getCambio($idCambio);
                 </div>
             </div>
             <div class="form-group row">
-                <select name="codPresentacionAnt" id="codPresentacionAnt" class="form-control col-4"
+                <select name="codPresentacionAnt" id="codPresentacionAnt" class="form-select col-4"
                         style="margin: 0 5px 0 0;" onchange="findLotePresentacion(this.value);" required>
                     <option selected disabled value="">------------------------------</option>
                     <?php
@@ -151,10 +151,10 @@ $cambio = $cambioOperador->getCambio($idCambio);
                     ?>
                 </select>
 
-                <select name="loteProd" id="loteProd" class="form-control col-1" style="margin: 0 5px 0 0;"
+                <select name="loteProd" id="loteProd" class="form-select col-1" style="margin: 0 5px 0 0;"
                         onchange="findInvLotePresentacion(this.value);" required>
                 </select>
-                <select name="cantPresentacionAnt" id="cantPresentacionAnt" class="form-control col-1"
+                <select name="cantPresentacionAnt" id="cantPresentacionAnt" class="form-select col-1"
                         style="margin: 0 5px 0 0;">
                 </select>
                 <div class="col-2 text-center" style="padding: 0 20px;">
@@ -198,7 +198,7 @@ $cambio = $cambioOperador->getCambio($idCambio);
                 </div>
             </div>
             <div class="form-group row">
-                <select name="codPresentacionNvo" id="codPresentacionNvo" class="form-control col-4"
+                <select name="codPresentacionNvo" id="codPresentacionNvo" class="form-select col-4"
                         style="margin: 0 5px 0 0;" required>
                     <option selected disabled value="">------------------------------</option>
                     <?php

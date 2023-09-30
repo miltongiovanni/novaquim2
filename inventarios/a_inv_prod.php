@@ -71,7 +71,7 @@ spl_autoload_register('cargarClases');
         <input type="hidden" name="inv_ant" id="inv_ant" value="">
         <div class="form-group row">
             <label class="col-form-label col-2" for="codPresentacion"><strong>Producto</strong></label>
-            <select name="codPresentacion" id="codPresentacion" class="form-control col-3 formatoDatos"
+            <select name="codPresentacion" id="codPresentacion" class="form-select col-3 formatoDatos"
                     onchange="getLotesPresentacion(this.value)" required>
                 <option selected disabled value="">-----------------------------</option>
                 <?php
@@ -86,7 +86,7 @@ spl_autoload_register('cargarClases');
         </div>
         <div class="form-group row">
             <label class="col-form-label col-2" for="loteProd"><strong>Lote</strong></label>
-            <select name="loteProd" id="loteProd" class="form-control col-3 formatoDatos"
+            <select name="loteProd" id="loteProd" class="form-select col-3 formatoDatos"
                     onchange="getInvPresentacionXLote(document.getElementById('codPresentacion').value, this.value)"
                     required>
             </select>

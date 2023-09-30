@@ -127,7 +127,7 @@ $porcentajeTotal = $DetFormulaOperador->getPorcentajeTotal($idFormula);
             </div>
         </div>
         <div class="form-group row">
-            <select name="codMPrima" id="codMPrima" class="form-control col-3" style="margin: 0 5px 0 0;" required>
+            <select name="codMPrima" id="codMPrima" class="form-select col-3" style="margin: 0 5px 0 0;" required>
                 <option disabled selected value="">-----------------------------</option>
                 <?php
                 $mprimas = $DetFormulaOperador->getMPrimasFormula($idFormula);

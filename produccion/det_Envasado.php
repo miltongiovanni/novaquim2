@@ -167,7 +167,7 @@ $cantidadPendiente = $EnvasadoOperador->getCantidadPorEnvasar($lote);
             </div>
         </div>
         <div class="form-group row">
-            <select name="codPresentacion" id="codPresentacion" class="form-control col-3" style="margin: 0 5px 0 0;" required>
+            <select name="codPresentacion" id="codPresentacion" class="form-select col-3" style="margin: 0 5px 0 0;" required>
                 <option selected disabled value="">------------------------------</option>
                 <?php
                 $presentaciones = $EnvasadoOperador->getPresentacionesPorEnvasar($lote);

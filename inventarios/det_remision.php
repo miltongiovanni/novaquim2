@@ -184,7 +184,7 @@ $remision = $remisionOperador->getRemisionById($idRemision);
             <div class="col-2 text-center mx-3"></div>
         </div>
         <div class="form-group row">
-            <select name="codProducto" id="codProducto" class="form-control col-4 mx-3">
+            <select name="codProducto" id="codProducto" class="form-select col-4 mx-3">
                 <option selected disabled value="">Escoja un producto Novaquim</option>
                 <?php
                 $productos = $remisionOperador->getProdTerminadosByIdRemision($idRemision);
@@ -213,7 +213,7 @@ $remision = $remisionOperador->getRemisionById($idRemision);
             <div class="col-2 text-center mx-3"></div>
         </div>
         <div class="form-group row">
-            <select name="codProducto" id="codProducto" class="form-control col-4 mx-3">
+            <select name="codProducto" id="codProducto" class="form-select col-4 mx-3">
                 <option selected disabled value="">Escoja un producto de distribución</option>
                 <?php
                 $productos = $remisionOperador->getProdDistribucionByIdRemision($idRemision);

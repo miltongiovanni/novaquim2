@@ -48,7 +48,7 @@ spl_autoload_register('cargarClases');
     <form id="form1" name="form1" method="post" action="traz_mp.php">
         <div class="form-group row">
             <label class="col-form-label col-2" for="codMPrima"><strong>Materia prima</strong></label>
-            <select name="codMPrima" id="codMPrima" class="form-control col-2" onchange="getLotesMPrima(this.value)"
+            <select name="codMPrima" id="codMPrima" class="form-select col-2" onchange="getLotesMPrima(this.value)"
                     required>
                 <option selected disabled value="">-----------------------------</option>
                 <?php
@@ -63,7 +63,7 @@ spl_autoload_register('cargarClases');
         </div>
         <div class="form-group row">
             <label class="col-form-label col-2" for="loteMP"><strong>Lote</strong></label>
-            <select name="loteMP" id="loteMP" class="form-control col-2" required>
+            <select name="loteMP" id="loteMP" class="form-select col-2" required>
             </select>
         </div>
         <div class="form-group row">

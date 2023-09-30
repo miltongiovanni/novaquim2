@@ -25,7 +25,7 @@ spl_autoload_register('cargarClases');
 
         <div class="form-group row">
             <label class="col-form-label col-2" for="codMPrimaDist"><strong>Materia Prima</strong></label>
-            <select name="codMPrimaDist" id="codMPrimaDist" class="form-control col-2" style="margin: 0 5px 0 0;"
+            <select name="codMPrimaDist" id="codMPrimaDist" class="form-select col-2" style="margin: 0 5px 0 0;"
                     required>
                 <option disabled selected value="">-----------------------------</option>
                 <?php
@@ -43,7 +43,7 @@ spl_autoload_register('cargarClases');
             $MedidasOperador = new MedidasOperaciones();
             $medidas = $MedidasOperador->getMedidas();
             $filas = count($medidas);
-            echo '<select name="codMedida" id="codMedida" class="form-control col-2" required>';
+            echo '<select name="codMedida" id="codMedida" class="form-select col-2" required>';
             echo '<option selected disabled value="">-----------------------------</option>';
             for ($i = 0; $i < $filas; $i++) {
                 echo '<option value="' . $medidas[$i]["idMedida"] . '">' . $medidas[$i]['desMedida'] . '</option>';
@@ -57,7 +57,7 @@ spl_autoload_register('cargarClases');
             $EnvasesOperador = new EnvasesOperaciones();
             $envases = $EnvasesOperador->getEnvases();
             $filas = count($envases);
-            echo '<select name="codEnvase" id="codEnvase" class="form-control col-2" required>';
+            echo '<select name="codEnvase" id="codEnvase" class="form-select col-2" required>';
             echo '<option selected value="">-----------------------------</option>';
             for ($i = 0; $i < $filas; $i++) {
                 echo '<option value="' . $envases[$i]["codEnvase"] . '">' . $envases[$i]['nomEnvase'] . '</option>';
@@ -71,7 +71,7 @@ spl_autoload_register('cargarClases');
             $TapasOperador = new TapasOperaciones();
             $tapas = $TapasOperador->getTapas();
             $filas = count($tapas);
-            echo '<select name="codTapa" id="codTapa" class="form-control col-2" required>';
+            echo '<select name="codTapa" id="codTapa" class="form-select col-2" required>';
             echo '<option selected value="">-----------------------------</option>';
             for ($i = 0; $i < $filas; $i++) {
                 echo '<option value="' . $tapas[$i]["codTapa"] . '">' . $tapas[$i]['tapa'] . '</option>';
@@ -83,7 +83,7 @@ spl_autoload_register('cargarClases');
         </div>
         <div class="form-group row">
             <label class="col-form-label col-2" for="codDist"><strong>Producto de Distribución</strong></label>
-            <select name="codDist" id="codDist" class="form-control col-2" required>
+            <select name="codDist" id="codDist" class="form-select col-2" required>
                 <option selected value="">-----------------------------</option>
                 <?php
                 $EnvasadoDistOperador = new EnvasadoDistOperaciones();

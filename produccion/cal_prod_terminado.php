@@ -56,14 +56,14 @@ $producto = $ProdOperador->getProducto($ordenProd['codProducto']);
         </div>
         <div class="form-group row">
             <div class="col-1 text-center col-form-label"><strong>Etiquetado</strong></div>
-            <select name="etiquetado" id="etiquetado" class="form-control col-2 mx-2">
+            <select name="etiquetado" id="etiquetado" class="form-select col-2 mx-2">
                 <option value="1" selected>Si</option>
                 <option value="0">No</option>
             </select>
         </div>
         <div class="form-group row">
             <div class="col-1 text-center col-form-label"><strong>Envasado</strong></div>
-            <select name="envasado" id="envasado" class="form-control col-2 mx-2">
+            <select name="envasado" id="envasado" class="form-select col-2 mx-2">
                 <option value="1" selected>Si</option>
                 <option value="0">No</option>
             </select>

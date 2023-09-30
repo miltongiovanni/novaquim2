@@ -41,6 +41,13 @@ class ComprasOperaciones
         return $result;
     }
 
+    public function getFechaCompra($id){
+        $qry = "SELECT fechComp FROM compras WHERE idCompra = $id";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result['fechComp'];
+    }
     public function getTableComprasPorFecha($fechaIni, $fechaFin)
     {
         $qry = "SELECT idCompra,
@@ -184,7 +191,7 @@ class ComprasOperaciones
                             IF(regProv=1, IF(SUM(precio*cantidad) IS NULL, 0, ROUND((SUM(precio*cantidad)+SUM(precio*cantidad*tasaIva)),2)), IF(SUM(precio*cantidad) IS NULL, 0, ROUND((SUM(precio*cantidad)+SUM(precio*cantidad*tasaIva*0.85)),2))) total,
                             IF(autoretProv=1, 0, IF( SUM(precio*cantidad) >=$base,ROUND(SUM(precio*cantidad*tasaRetIca/1000),2),0)) AS reteica,
                             IF(autoretProv=1, 0, IF( SUM(precio*cantidad) >=$base,ROUND(SUM(precio*cantidad*tasaRetefuente),2),0)) AS retefuente,
-                            IF(regProv=1, 0, ROUND(SUM(precio*cantidad*tasaIva)*0.15,2))  AS reteiva
+                            IF(regProv=2, ROUND(SUM(precio*cantidad*tasaIva)*0.15,2), 0)  AS reteiva
                            FROM (SELECT dc.idCompra, codigo, cantidad, precio, lote, tasaIva
                                   FROM det_compras dc
                                            LEFT JOIN envases e ON e.codEnvase = codigo
@@ -210,7 +217,7 @@ class ComprasOperaciones
                     IF(SUM(precio*cantidad) IS NULL, 0, ROUND((SUM(precio*cantidad)+SUM(precio*cantidad*tasaIva)),2)) total,
                     IF(autoretProv=1, 0, IF( SUM(precio*cantidad) >=$base,ROUND(SUM(precio*cantidad*tasaRetIca/1000),2),0)) AS reteica,
                     IF(autoretProv=1, 0, IF( SUM(precio*cantidad) >=$base,ROUND(SUM(precio*cantidad*tasaRetefuente),2),0)) AS retefuente,
-                    IF(regProv=1, 0, ROUND(SUM(precio*cantidad*tasaIva)*0.15,2))  AS reteiva
+                    IF(regProv=2, ROUND(SUM(precio*cantidad*tasaIva)*0.15,2), 0)  AS reteiva
                            FROM det_compras dc
                     LEFT JOIN compras c ON dc.idCompra = c.idCompra
                     LEFT JOIN proveedores p ON c.idProv = p.idProv ";

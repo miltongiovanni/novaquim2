@@ -173,19 +173,9 @@ $proveedor = $ProveedorOperador->getProveedor($idProv);
                 ?>
             </select>
             <select name="regProv" id="regProv" class="form-control col-2 mx-3" required>
-                <?php
-                if ($proveedor['regProv'] == 0) {
-                    ?>
-                    <option value="0" selected>Simplificado</option>
-                    <option value="1">Común</option>
-                    <?php
-                } else {
-                    ?>
-                    <option value="1" selected>Común</option>
-                    <option value="0">Simplificado</option>
-                    <?php
-                }
-                ?>
+                <option value="0" <?= $proveedor['regProv'] == 0 ? 'selected' : '' ?>>Simplificado</option>
+                <option value="1" <?= $proveedor['regProv'] == 1 ? 'selected' : '' ?>>Común</option>
+                <option value="2" <?= $proveedor['regProv'] == 2 ? 'selected' : '' ?>>Simple</option>
             </select>
             <?php
             $manager = new TasaReteIcaOperaciones();

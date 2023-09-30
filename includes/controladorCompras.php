@@ -31,7 +31,7 @@ function findProveedor()
         echo '<input type="text" class="form-control col-2" value="No hay sugerencias" readOnly>';
     } else {
         echo '<br>';
-        echo '<select name="idProv" id="idProv" class="form-control col-3">';
+        echo '<select name="idProv" id="idProv" class="form-select col-3">';
         for ($i = 0; $i < count($proveedores); $i++) {
             echo '<option value=' . $proveedores[$i]['idProv'] . '>' . $proveedores[$i]['nomProv'] . '</option>';
         }

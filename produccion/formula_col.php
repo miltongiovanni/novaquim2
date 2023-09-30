@@ -23,7 +23,7 @@ spl_autoload_register('cargarClases');
     <form method="post" action="makeFormulaColor.php" name="form1">
         <div class="form-group row">
             <label class="col-form-label col-2" for="codSolucionColor"><strong>Solución de Color</strong></label>
-            <select name="codSolucionColor" id="codSolucionColor" class="form-control col-2" required>
+            <select name="codSolucionColor" id="codSolucionColor" class="form-select col-2" required>
                 <option selected disabled value="">-----------------------------</option>
                 <?php
                 $FormulaColorOperador = new FormulasColorOperaciones();

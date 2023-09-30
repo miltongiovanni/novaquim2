@@ -30,7 +30,7 @@ spl_autoload_register('cargarClases');
             <?php
             $PersonalOperador = new PersonalOperaciones();
             $personal = $PersonalOperador->getPersonalProd();
-            echo '<select name="codPersonal" id="codPersonal" class="form-control col-2"  required>';
+            echo '<select name="codPersonal" id="codPersonal" class="form-select col-2"  required>';
             echo '<option selected disabled value="">-----------------------------</option>';
             for ($i = 0; $i < count($personal); $i++) {
                 echo '<option value="' . $personal[$i]["idPersonal"] . '">' . $personal[$i]['nomPersonal'] . '</option>';

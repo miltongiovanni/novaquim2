@@ -23,7 +23,7 @@ spl_autoload_register('cargarClases');
     <form method="post" action="deleteFormulaMPrima.php">
         <div class="form-group row">
             <label class="col-form-label col-2" for="idFormulaMPrima"><strong>Fórmula de materia prima</strong></label>
-            <select name="idFormulaMPrima" id="idFormulaMPrima" class="form-control col-2" required>
+            <select name="idFormulaMPrima" id="idFormulaMPrima" class="form-select col-2" required>
                 <option selected disabled value="">-----------------------------</option>
                 <?php
                 $FormulaMPrimaOperador = new FormulasMPrimaOperaciones();
