@@ -49,7 +49,7 @@ function findProveedorBytipoCompra()
         echo '<input type="text" class="form-control col-4" value="No hay sugerencias" readOnly>';
     } else {
         echo '<br>';
-        echo '<select name="idProv" id="idProv" class="form-control col-4">';
+        echo '<select name="idProv" id="idProv" class="form-select col-4">';
         for ($i = 0; $i < count($proveedores); $i++) {
             echo '<option value=' . $proveedores[$i]['idProv'] . '>' . $proveedores[$i]['nomProv'] . '</option>';
         }

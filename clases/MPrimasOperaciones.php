@@ -33,7 +33,14 @@ class MPrimasOperaciones
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
-
+    public function getMPrimasByName($q)
+    {
+        $qry = "SELECT codMPrima, nomMPrima FROM mprimas WHERE nomMPrima like '%" . $q . "%' ORDER BY nomMPrima;";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array());
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
     public function getMPrimasEliminar()
     {
         $qry = "SELECT mprimas.codMPrima, nomMPrima

@@ -130,6 +130,31 @@ function ultimoProdDisxCat()
     echo $ultimoCodProdDisxCat + 1;
 }
 
+function findMateriaPrimaCalidad()
+{
+    $q = $_POST['q'];
+    $mPrimasOperador = new MPrimasOperaciones();
+    $mPrimas = $mPrimasOperador->getMPrimasByName($q);
+    if (count($mPrimas) == 0) {
+        echo '<input type="text" class="form-control" value="No hay sugerencias" readOnly>';
+    } else {
+        echo '<select name="codMPrima" id="codMPrima" class="form-select" onchange="findLoteMPrima(this.value);" required>';
+        echo '<option value="" selected disabled>Escoja una Materia Prima</option>';
+        for ($i = 0; $i < count($mPrimas); $i++) {
+            echo '<option value=' . $mPrimas[$i]['codMPrima'] . '>' . $mPrimas[$i]['nomMPrima'] . '</option>';
+        }
+        echo '</select>';
+    }
+}
+function findLoteByMPrima()
+{
+    $codMPrima = $_POST['codMPrima'];
+    $calMatPrimaOperador = new CalMatPrimaOperaciones();
+    $lotes = $calMatPrimaOperador->getLotesByMPrima($codMPrima);
+    for ($i = 0; $i < count($lotes); $i++) {
+        echo '<option value=' . $lotes[$i]['id'] . '>' . $lotes[$i]['lote'] . '</option>';
+    }
+}
 
 //controleur membres
 $action = $_POST['action'];
@@ -154,5 +179,11 @@ switch ($action) {
         break;
     case 'updateEstadoOProd':
         updateEstadoOProd();
+        break;
+    case 'findMateriaPrimaCalidad':
+        findMateriaPrimaCalidad();
+        break;
+    case 'findLoteByMPrima':
+        findLoteByMPrima();
         break;
 }

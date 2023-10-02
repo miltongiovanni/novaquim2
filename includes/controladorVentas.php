@@ -81,7 +81,7 @@ function findClienteCotizacion()
     if (count($clientes) == 0) {
         echo '<input type="text" class="form-control col-12" value="No hay sugerencias" readOnly>';
     } else {
-        echo '<select name="idCliente" id="idCliente" class="form-control col-12" required>';
+        echo '<select name="idCliente" id="idCliente" class="form-select col-12" required>';
         for ($i = 0; $i < count($clientes); $i++) {
             echo '<option value=' . $clientes[$i]['idCliente'] . '>' . $clientes[$i]['nomCliente'] . '</option>';
         }
@@ -130,7 +130,7 @@ function findClienteNotaC()
     if (count($clientes) == 0) {
         echo '<input type="text" class="form-control col-12" value="No hay sugerencias" readOnly>';
     } else {
-        echo '<select name="idCliente" id="idCliente" class="form-control col-12" onchange="findFacturasCliente(this.value);" required>';
+        echo '<select name="idCliente" id="idCliente" class="form-select col-12" onchange="findFacturasCliente(this.value);" required>';
         echo '<option value="" selected disabled>Escoja un cliente</option>';
         for ($i = 0; $i < count($clientes); $i++) {
             echo '<option value=' . $clientes[$i]['idCliente'] . '>' . $clientes[$i]['nomCliente'] . '</option>';

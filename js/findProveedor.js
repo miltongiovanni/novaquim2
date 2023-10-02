@@ -1,4 +1,3 @@
-
 function findProveedor(idCatProd) {
     let q = document.getElementById("busProv").value;
     $.ajax({
@@ -13,7 +12,7 @@ function findProveedor(idCatProd) {
             $("#myDiv").html(provList);
         },
         fail: function () {
-            alert("Vous avez un GROS problème");
+            alert("Vous avez un GROS problï¿½me");
         }
     });
 }
