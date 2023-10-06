@@ -31,7 +31,7 @@ function findCliente()
         echo '<input type="text" class="form-control col-2" value="No hay sugerencias" readOnly>';
     } else {
         echo '<br>';
-        echo '<select name="idCliente" id="idCliente" class="form-control col-3">';
+        echo '<select name="idCliente" id="idCliente" class="form-select col-3">';
         for ($i = 0; $i < count($clientes); $i++) {
             echo '<option value=' . $clientes[$i]['idCliente'] . '>' . $clientes[$i]['nomCliente'] . '</option>';
         }
@@ -47,7 +47,7 @@ function findClientePedido()
     if (count($clientes) == 0) {
         echo '<input type="text" class="form-control col-12" value="No hay sugerencias" readOnly>';
     } else {
-        echo '<select name="idCliente" id="idCliente" class="form-control col-12" onchange="findSucursal(this.value);" required>';
+        echo '<select name="idCliente" id="idCliente" class="form-select col-12" onchange="findSucursal(this.value);" required>';
         echo '<option value="" selected disabled>Escoja un cliente</option>';
         for ($i = 0; $i < count($clientes); $i++) {
             echo '<option value=' . $clientes[$i]['idCliente'] . '>' . $clientes[$i]['nomCliente'] . '</option>';
@@ -64,7 +64,7 @@ function findClienteParaFacturar()
     if (count($clientes) == 0) {
         echo '<input type="text" class="form-control col-12" value="No hay sugerencias" readOnly>';
     } else {
-        echo '<select name="idCliente" id="idCliente" class="form-control col-12" onchange="findPedidosPorFacturar(this.value);" required>';
+        echo '<select name="idCliente" id="idCliente" class="form-select col-12" onchange="findPedidosPorFacturar(this.value);" required>';
         echo '<option value="" selected disabled>Escoja un cliente</option>';
         for ($i = 0; $i < count($clientes); $i++) {
             echo '<option value=' . $clientes[$i]['idCliente'] . '>' . $clientes[$i]['nomCliente'] . '</option>';
@@ -81,7 +81,7 @@ function findClienteCotizacion()
     if (count($clientes) == 0) {
         echo '<input type="text" class="form-control col-12" value="No hay sugerencias" readOnly>';
     } else {
-        echo '<select name="idCliente" id="idCliente" class="form-control col-12" required>';
+        echo '<select name="idCliente" id="idCliente" class="form-select col-12" required>';
         for ($i = 0; $i < count($clientes); $i++) {
             echo '<option value=' . $clientes[$i]['idCliente'] . '>' . $clientes[$i]['nomCliente'] . '</option>';
         }
@@ -130,7 +130,7 @@ function findClienteNotaC()
     if (count($clientes) == 0) {
         echo '<input type="text" class="form-control col-12" value="No hay sugerencias" readOnly>';
     } else {
-        echo '<select name="idCliente" id="idCliente" class="form-control col-12" onchange="findFacturasCliente(this.value);" required>';
+        echo '<select name="idCliente" id="idCliente" class="form-select col-12" onchange="findFacturasCliente(this.value);" required>';
         echo '<option value="" selected disabled>Escoja un cliente</option>';
         for ($i = 0; $i < count($clientes); $i++) {
             echo '<option value=' . $clientes[$i]['idCliente'] . '>' . $clientes[$i]['nomCliente'] . '</option>';

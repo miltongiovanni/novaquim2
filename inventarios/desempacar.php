@@ -24,7 +24,7 @@ spl_autoload_register('cargarClases');
         <div class="form-group row">
             <label class="col-form-label col-3 text-end" for="codPaca"><strong>Producto de Distribución
                     Empacado:</strong></label>
-            <select class="form-control col-3" name="codPaca" id="codPaca" required>
+            <select class="form-select col-3" name="codPaca" id="codPaca" required>
                 <option selected disabled value="">----------------------------</option>
                 <?php
                 $invDistribucionOperador = new InvDistribucionOperaciones();

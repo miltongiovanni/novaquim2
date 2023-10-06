@@ -18,15 +18,15 @@ class PDF extends FPDF
     function Header()
     {
         //Logo
-        $this->Image('../images/LogoNova1.jpg',70,8,63);
+        $this->Image('../images/LogoNova1.jpg',15, 12, 38, 19);
         //Arial bold 15
-        $this->SetFont('Arial','B',16);
-        //Movernos a la derecha
-        $this->SetXY(70,45);
-        //Título
-        $this->Cell(70,10,utf8_decode('ORDEN DE PRODUCCIÓN'),0,0,'C');
-        //Salto de línea
-        $this->Ln(15);
+//        $this->SetFont('Arial','B',16);
+//        //Movernos a la derecha
+//        $this->SetXY(70,45);
+//        //Título
+//        $this->Cell(70,10,utf8_decode('ORDEN DE PRODUCCIÓN'),0,0,'C');
+//        //Salto de línea
+//        $this->Ln(15);
     }
 
 //Pie de página
@@ -45,12 +45,30 @@ class PDF extends FPDF
 $pdf=new PDF('P','mm','Letter');
 $pdf->AliasNbPages();
 $pdf->AddPage();
-$pdf->SetFont('Arial','',12);
-$pdf->SetXY(10,55);
+$pdf->SetFont('Arial', '', 11);
+$pdf->SetXY(10, 10);
+$pdf->SetFont('Arial', 'B', 11);
+$pdf->Cell(50, 24, '', 1, 0, 'C');
+$pdf->Cell(80, 8, utf8_decode('DEPARTAMENTO DE PRODUCCIÓN'), 1, 0, 'C');
+$pdf->SetFont('Arial', 'B', 11);
+$pdf->Cell(65, 8, utf8_decode('CÓDIGO: DP-OPC-01'), 1, 0, 'C');
+$pdf->SetXY(60, 18);
+$pdf->SetFont('Arial', 'B', 11);
+$pdf->Cell(80, 16, utf8_decode('ORDEN DE PRODUCCIÓN Y CONTROL'), 1, 0, 'C');
+$pdf->SetFont('Arial', 'B', 11);
+$pdf->Cell(65, 8, utf8_decode('Fecha Expedición: ') . $OProd['fechProd'], 1, 0, 'C');
+$encabfecha = date('Y-m-d');
+date_default_timezone_set('America/Bogota');
+$pdf->SetXY(140, 26);
+$pdf->Cell(65, 8, utf8_decode('Fecha Impresión: ') . $encabfecha, 1, 0, 'C');
+$pdf->SetFont('Arial','',11);
+$pdf->SetXY(10,36);
 $pdf->Cell(45,6,utf8_decode('Fecha de Producción : '));
-$pdf->Cell(75,6,$OProd['fechProd']);
+$pdf->Cell(25,6,$OProd['fechProd']);
+$pdf->Cell(35,6,utf8_decode('Tanque utilizado : '));
+$pdf->Cell(45,6,'____________________');
 $pdf->Cell(25,6,'No. de Lote: ');
-$pdf->Cell(30,6,$OProd['lote'],0,1);
+$pdf->Cell(20,6,$OProd['lote'],0,1);
 $pdf->Cell(20,6,'Producto : ');
 $pdf->Cell(100,6,utf8_decode($OProd['nomProducto']));
 $pdf->Cell(30,6,'Responsable : ');
@@ -59,7 +77,7 @@ $pdf->Cell(20,6,utf8_decode('Fórmula : '));
 $pdf->Cell(100,6,utf8_decode($OProd['nomFormula']));
 $pdf->Cell(30,6,'Cantidad (Kg): ');
 $pdf->Cell(30,6,$OProd['cantidadKg'],0,1);
-$pdf->SetXY(15,75);
+$pdf->SetXY(15,57);
 $pdf->SetFont('Arial','B',10);
 $pdf->Cell(10,5,'Orden', 0,0,'C');
 $pdf->Cell(20,5,utf8_decode('Código'), 0,0,'C');
@@ -68,7 +86,7 @@ $pdf->Cell(20,5,'Lote M Prima ', 0,0,'C');
 $pdf->Cell(40,5,'Cantidad (Kg)',0,0,'C');
 $pdf->Cell(40,5,'Cantidad Usada(Kg)',0,1,'C');
 $pdf->SetFont('Arial','',10);
-$pdf->SetXY(10,80);
+$pdf->SetXY(10,62);
 for($i=0; $i<count($detOProd); $i++)
 {
     $codmp=$detOProd[$i]['codMPrima'];
@@ -85,12 +103,73 @@ for($i=0; $i<count($detOProd); $i++)
     $pdf->Ln(5);
 }
 
-$pdf->SetXY(10,165);
+$pdf->SetXY(10,127);
 $pdf->Cell(0,10,utf8_decode('Elaboró: ______________________________________'),0,0,'L');
-$pdf->SetFont('Arial','B',16);
-$pdf->SetXY(70,180);
-$pdf->Cell(70,10,'CONTROL DE CALIDAD',0,0,'C');
-$pdf->SetXY(10,190);
+$pdf->SetFont('Arial','B',12);
+$pdf->SetXY(70,137);
+$pdf->Cell(70,10,'CONTROL DE CALIDAD DURANTE EL PROCESO',0,0,'C');
+$pdf->SetFont('Arial','',10);
+$pdf->SetXY(10,146);
+$pdf->Cell(20,5,utf8_decode(''),0,0,'C');
+$pdf->Cell(95,5,utf8_decode('Se evidenció cambios de viscosidad?'),0,0,'L');
+$pdf->Cell(10,5,utf8_decode('SI'),0,0,'C');
+$pdf->Cell(5,5,'',1,0,'C');
+$pdf->Cell(10,5,utf8_decode('NO'),0,0,'C');
+$pdf->Cell(5,5,'',1,0,'C');
+$pdf->Cell(30,5,utf8_decode('NO APLICA'),0,0,'C');
+$pdf->Cell(5,5,'',1,1);
+$pdf->Cell(20,5,utf8_decode(''),0,0,'C');
+$pdf->Cell(95,5,utf8_decode('Se realizó la purga respectiva?'),0,0,'L');
+$pdf->Cell(10,5,utf8_decode('SI'),0,0,'C');
+$pdf->Cell(5,5,'',1,0,'C');
+$pdf->Cell(10,5,utf8_decode('NO'),0,0,'C');
+$pdf->Cell(5,5,'',1,0,'C');
+$pdf->Cell(30,5,utf8_decode('NO APLICA'),0,0,'C');
+$pdf->Cell(5,5,'',1,1);
+$pdf->Cell(20,5,utf8_decode(''),0,0,'C');
+$pdf->Cell(95,5,utf8_decode('Se hizo la prueba de brillo?'),0,0,'L');
+$pdf->Cell(10,5,utf8_decode('SI'),0,0,'C');
+$pdf->Cell(5,5,'',1,0,'C');
+$pdf->Cell(10,5,utf8_decode('NO'),0,0,'C');
+$pdf->Cell(5,5,'',1,0,'C');
+$pdf->Cell(30,5,utf8_decode('NO APLICA'),0,0,'C');
+$pdf->Cell(5,5,'',1,1);
+$pdf->Cell(20,5,utf8_decode(''),0,0,'C');
+$pdf->Cell(95,5,utf8_decode('El tiempo de agitación fue el correcto?'),0,0,'L');
+$pdf->Cell(10,5,utf8_decode('SI'),0,0,'C');
+$pdf->Cell(5,5,'',1,0,'C');
+$pdf->Cell(10,5,utf8_decode('NO'),0,0,'C');
+$pdf->Cell(5,5,'',1,0,'C');
+$pdf->Cell(30,5,utf8_decode('NO APLICA'),0,0,'C');
+$pdf->Cell(5,5,'',1,1);
+$pdf->Cell(20,5,utf8_decode(''),0,0,'C');
+$pdf->Cell(95,5,utf8_decode('Se efectuó la prueba de limpieza correspondiente?'),0,0,'L');
+$pdf->Cell(10,5,utf8_decode('SI'),0,0,'C');
+$pdf->Cell(5,5,'',1,0,'C');
+$pdf->Cell(10,5,utf8_decode('NO'),0,0,'C');
+$pdf->Cell(5,5,'',1,0,'C');
+$pdf->Cell(30,5,utf8_decode('NO APLICA'),0,0,'C');
+$pdf->Cell(5,5,'',1,1);
+$pdf->Cell(20,5,utf8_decode(''),0,0,'C');
+$pdf->Cell(95,5,utf8_decode('Se hizo la prueba de desempeño?'),0,0,'L');
+$pdf->Cell(10,5,utf8_decode('SI'),0,0,'C');
+$pdf->Cell(5,5,'',1,0,'C');
+$pdf->Cell(10,5,utf8_decode('NO'),0,0,'C');
+$pdf->Cell(5,5,'',1,0,'C');
+$pdf->Cell(30,5,utf8_decode('NO APLICA'),0,0,'C');
+$pdf->Cell(5,5,'',1,1);
+$pdf->Cell(20,5,utf8_decode(''),0,0,'C');
+$pdf->Cell(95,5,utf8_decode('Se verificó color y fragancia?'),0,0,'L');
+$pdf->Cell(10,5,utf8_decode('SI'),0,0,'C');
+$pdf->Cell(5,5,'',1,0,'C');
+$pdf->Cell(10,5,utf8_decode('NO'),0,0,'C');
+$pdf->Cell(5,5,'',1,0,'C');
+$pdf->Cell(30,5,utf8_decode('NO APLICA'),0,0,'C');
+$pdf->Cell(5,5,'',1,1);
+$pdf->SetFont('Arial','B',12);
+$pdf->SetXY(70,186);
+$pdf->Cell(70,10,'CONTROL DE CALIDAD ANTES DEL ENVASADO',0,0,'C');
+$pdf->SetXY(10,195);
 $pdf->SetFont('Arial','B',10);
 $pdf->Cell(80,8,'Propiedad', 0,0,'C');
 $pdf->Cell(60,8,utf8_decode('Especificación'), 0,0,'C');

@@ -110,6 +110,7 @@ spl_autoload_register('cargarClases');
             <select name="regProv" id="regProv" class="form-control col-2" required>
                 <option value="0">Simplificado</option>
                 <option value="1" selected>Común</option>
+                <option value="2" selected>Simple</option>
             </select>
             <label class="col-form-label col-2" for="idTasaIcaProv"><strong>Tasa Reteica</strong></label>
             <?php

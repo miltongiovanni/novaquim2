@@ -27,7 +27,7 @@ spl_autoload_register('cargarClases');
             $ProductoOperador = new ProductosOperaciones();
             $productos = $ProductoOperador->getProductos(true);
             $filas = count($productos);
-            echo '<select name="codProducto" id="codProducto" class="form-control col-3" required>';
+            echo '<select name="codProducto" id="codProducto" class="form-select col-3" required>';
             echo '<option selected disabled value="">-----------------------------</option>';
             for ($i = 0; $i < $filas; $i++) {
                 echo '<option value="' . $productos[$i]["codProducto"] . '">' . $productos[$i]['nomProducto'] . '</option>';

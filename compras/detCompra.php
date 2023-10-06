@@ -309,7 +309,7 @@ $compra = $CompraOperador->getCompra($idCompra, $tipoCompra);
                            onkeydown="return aceptaNum(event)">
                     <input type="text" style="margin: 0 5px;" class="form-control col-1" name="precio" id="precio"
                            onkeydown="return aceptaNum(event)">
-                    <input type="text" style="margin: 0 5px;" class="form-control col-1" name="lote" id="lote">
+                    <input type="text" style="margin: 0 5px;" class="form-control col-1" maxlength="15" name="lote" id="lote">
                     <input type="date" style="margin: 0 0 0 5px; flex: 0 0 10%; max-width: 10%;" class="form-control"
                            name="fechLote" id="fechLote">
                     <div class="col-2 text-center" style="padding: 0 20px;">

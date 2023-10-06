@@ -42,16 +42,30 @@ try {
     $CompraOperador->updateTotalesCompra($tipoCompra, BASE_C, $idCompra);
     if ($tipoCompra == 1) {
         $loteAnterior = $detalle['lote'];
-        $InvMPrimasOperador = new InvMPrimasOperaciones();
+        $calMatPrimaOperador = new CalMatPrimaOperaciones();
+        $calMatPrimaId = $calMatPrimaOperador->getIdCalMatPrimaToUpdateCompra($codigo, $lote, $idCompra);
         if ($lote == $loteAnterior) {
-            $invActual = $InvMPrimasOperador->getInvMPrimaByLote($codigo, $lote);
-            $nvoInv = $invActual + $cantidad - $detalle['cantidad'];
-            $datos = array($nvoInv, $codigo, $lote);
-            $InvMPrimasOperador->updateInvMPrima($datos);
+            $datos = array($lote, $fechLote, $cantidad, $calMatPrimaId );
+            $calMatPrimaOperador->updateEncabezadoCalMatPrima($datos);
         } else {
-            $InvMPrimasOperador->deleteInvMPrima(array($codigo, $loteAnterior));
-            $InvMPrimasOperador->makeInvMPrima(array($codigo, $lote, $cantidad, $fechLote));
+            $calMatPrimaOperador->deleteCalMatPrima($calMatPrimaId);
+            $datos_calidad = array($codigo, $lote, $cantidad, $fechLote, $idCompra);
+            $calMatPrimaOperador->makeCalMatPrima($datos_calidad);
         }
+
+        //CONTROL DE CALIDAD AQUI
+//        $InvMPrimasOperador = new InvMPrimasOperaciones();
+//        if ($lote == $loteAnterior) {
+//            $invActual = $InvMPrimasOperador->getInvMPrimaByLote($codigo, $lote);
+//            $nvoInv = $invActual + $cantidad - $detalle['cantidad'];
+//            $datos = array($nvoInv, $codigo, $lote);
+//            $InvMPrimasOperador->updateInvMPrima($datos);
+//        } else {
+//            $InvMPrimasOperador->deleteInvMPrima(array($codigo, $loteAnterior));
+//            $InvMPrimasOperador->makeInvMPrima(array($codigo, $lote, $cantidad, $fechLote));
+//        }
+
+
         $MPrimasOperador = new MPrimasOperaciones();
         $precioActual = $MPrimasOperador->getPrecioMPrima($codigo);
         if ($precio > $precioActual) {

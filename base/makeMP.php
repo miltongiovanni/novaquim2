@@ -31,7 +31,12 @@ foreach ($_POST as $nombre_campo => $valor) {
 
 <body>
 <?php
-
+if ($pHmPrima == ''){
+    $pHmPrima = null;
+}
+if ($densidadMPrima == ''){
+    $densidadMPrima = null;
+}
 $datos = array($codMPrima, $nomMPrima, $aliasMPrima, $idCatMPrima, $minStockMprima, $aparienciaMPrima, $olorMPrima, $colorMPrima, $pHmPrima, $densidadMPrima, $codIva );
 $MPrimaOperador = new MPrimasOperaciones();
 

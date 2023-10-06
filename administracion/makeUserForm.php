@@ -41,7 +41,7 @@ spl_autoload_register('cargarClases');
         </div>
         <div class="form-group row">
             <label class="col-form-label col-1 text-end" for="idPerfil"><strong>Perfil: </strong></label>
-            <select class="form-control col-2" name="idPerfil" id="idPerfil" required>
+            <select class="form-select col-2" name="idPerfil" id="idPerfil" required>
                 <?php
                 $perfilOperador = new PerfilesOperaciones();
                 $perfiles = $perfilOperador->getPerfiles();

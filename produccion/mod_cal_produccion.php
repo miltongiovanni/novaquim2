@@ -74,7 +74,7 @@ $calProd = $calProdOperador->getCalProd($lote);
         <div class="form-group row">
             <div class="col-1 text-center col-form-label"><strong>Olor</strong></div>
             <div class="col-2 bg-blue text-center col-form-label"><?= $producto['fragancia'] ?></div>
-            <select name="olorProd" id="olorProd" class="form-control col-1 mx-2">
+            <select name="olorProd" id="olorProd" class="form-select col-1 mx-2">
                 <?php
                 if ($calProd['olorProd'] == 1):
                     ?>
@@ -93,7 +93,7 @@ $calProd = $calProdOperador->getCalProd($lote);
         <div class="form-group row">
             <div class="col-1 text-center col-form-label"><strong>Color</strong></div>
             <div class="col-2 bg-blue text-center col-form-label"><?= $producto['color'] ?></div>
-            <select name="colorProd" id="colorProd" class="form-control col-1 mx-2">
+            <select name="colorProd" id="colorProd" class="form-select col-1 mx-2">
                 <?php
                 if ($calProd['colorProd'] == 1):
                     ?>
@@ -112,7 +112,7 @@ $calProd = $calProdOperador->getCalProd($lote);
         <div class="form-group row">
             <div class="col-1 text-center col-form-label"><strong>Apariencia</strong></div>
             <div class="col-2 bg-blue text-center col-form-label"><?= $producto['apariencia'] ?></div>
-            <select name="aparienciaProd" id="aparienciaProd" class="form-control col-1 mx-2">
+            <select name="aparienciaProd" id="aparienciaProd" class="form-select col-1 mx-2">
                 <?php
                 if ($calProd['aparienciaProd'] == 1):
                     ?>

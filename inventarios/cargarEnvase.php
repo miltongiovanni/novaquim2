@@ -23,7 +23,7 @@ spl_autoload_register('cargarClases');
     <form method="post" action="charge.php" name="form1">
         <div class="form-group row">
             <label class="col-form-label col-3 text-end" for="idDis"><strong>Envase:</strong></label>
-            <select class="form-control col-3" name="idDis" id="idDis" required>
+            <select class="form-select col-3" name="idDis" id="idDis" required>
                 <option selected disabled value="">----------------------------</option>
                 <?php
                 $relEnvDisOperador = new RelEnvDisOperaciones();

@@ -56,7 +56,7 @@ $mprima = $MPrimaOperador->getMPrima($codMPrima);
         </div>
         <div class="form-group row">
 
-            <label class="col-form-label col-1" for="codIva"><strong>Iva</strong></label>
+            <label class="col-form-label col-1 text-end" for="codIva"><strong>Iva</strong></label>
             <?php
             $manager = new TasaIvaOperaciones();
             $tasas = $manager->getTasasIva();
@@ -77,7 +77,7 @@ $mprima = $MPrimaOperador->getMPrima($codMPrima);
         <div class="form-group row">
             <label class="col-form-label col-1 text-end" for="pHmPrima"><strong>pH</strong></label>
             <input type="text" class="form-control col-2" name="pHmPrima" id="pHmPrima"
-                   placeholder="Si no tiene escribir N.A." value="<?= $mprima['pHmPrima']; ?>">
+                    value="<?= $mprima['pHmPrima']; ?>">
             <label class="col-form-label col-1 text-end"
                    for="densidadMPrima"><strong>Densidad</strong></label>
             <input type="text" class="form-control col-2" name="densidadMPrima" id="densidadMPrima"

@@ -27,7 +27,7 @@ spl_autoload_register('cargarClases');
             $KitOperador = new KitsOperaciones();
             $kits = $KitOperador->getKitsXDesarmar();
             $filas = count($kits);
-            echo '<select name="codKit" id="codKit" class="form-control col-2" required>';
+            echo '<select name="codKit" id="codKit" class="form-select col-2" required>';
             echo '<option selected disabled value="">-----------------------------</option>';
             for ($i = 0; $i < $filas; $i++) {
                 echo '<option value="' . $kits[$i]["idKit"] . '">' . $kits[$i]['producto'] . '</option>';

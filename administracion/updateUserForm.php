@@ -48,7 +48,7 @@ $user = $manager->getUser($idUsuario);
         </div>
         <div class="form-group row">
             <label class="col-form-label col-1" for="idPerfil"><strong>Perfil</strong></label>
-            <select class="form-control col-2" name="idPerfil" id="idPerfil" required>
+            <select class="form-select col-2" name="idPerfil" id="idPerfil" required>
                 <?php
                 //include "../includes/conect.php";
                 $managerPerfiles = new PerfilesOperaciones();
@@ -66,7 +66,7 @@ $user = $manager->getUser($idUsuario);
         </div>
         <div class="form-group row">
             <label class="col-form-label col-1" for="estadoUsuario"><strong>Estado</strong></label>
-            <select class="form-control col-2" name="estadoUsuario" id="estadoUsuario" required>
+            <select class="form-select col-2" name="estadoUsuario" id="estadoUsuario" required>
                 <option value="<?= $user['estadoUsuario'] ?>" selected><?=$user['estado'] ?></option>
                 <?php
                 //include "../includes/conect.php";

@@ -41,16 +41,22 @@ try {
     $DetCompraOperador->makeDetCompra($tipoCompra, $datos);
     $CompraOperador->updateTotalesCompra($tipoCompra, BASE_C, $idCompra);
     if ($tipoCompra == 1) {
-        $InvMPrimasOperador = new InvMPrimasOperaciones();
-        $invActual = $InvMPrimasOperador->getInvMPrimaByLote($codigo, $lote);
-        if ($invActual == null) {
-            $datos = array($codigo, $lote, $cantidad, $fechLote);
-            $InvMPrimasOperador->makeInvMPrima($datos);
-        } else {
-            $nvoInv = $invActual + $cantidad;
-            $datos = array($nvoInv, $codigo, $lote);
-            $InvMPrimasOperador->updateInvMPrima($datos);
-        }
+        $calMatPrimaOperador = new CalMatPrimaOperaciones();
+        $datos_calidad = array($codigo, $lote, $cantidad, $fechLote, $idCompra);
+        $calMatPrimaOperador->makeCalMatPrima($datos_calidad);
+
+//        $InvMPrimasOperador = new InvMPrimasOperaciones();
+//        $invActual = $InvMPrimasOperador->getInvMPrimaByLote($codigo, $lote);
+//        if ($invActual == null) {
+//            $datos = array($codigo, $lote, $cantidad, $fechLote);
+//            $InvMPrimasOperador->makeInvMPrima($datos);
+//        } else {
+//            $nvoInv = $invActual + $cantidad;
+//            $datos = array($nvoInv, $codigo, $lote);
+//            $InvMPrimasOperador->updateInvMPrima($datos);
+//        }
+
+
         $MPrimasOperador = new MPrimasOperaciones();
         $precioActual = $MPrimasOperador->getPrecioMPrima($codigo);
         if ($precio > $precioActual) {

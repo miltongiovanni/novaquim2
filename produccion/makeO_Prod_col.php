@@ -93,7 +93,8 @@ try {
             }
         }
     }
-    $qryinsol="INSERT INTO inv_mprimas (loteMP, codMP, invMP, fechLote) VALUES ($loteColor, $codColor, $cantKg, '$fechProd')";
+    //calidad aqui
+    $qryinsol="INSERT INTO cal_mprimas (cod_mprima, lote_mp, cantidad, fecha_lote) VALUES ($codColor, $loteColor, $cantKg, '$fechProd')";
     $stmt = $link->prepare($qryinsol);
     $stmt->execute();
     $link->commit();

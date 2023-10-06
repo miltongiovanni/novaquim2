@@ -59,7 +59,7 @@ $detalle = $DetGastoOperador->getDetGasto($idGasto, $producto);
             $manager = new TasaIvaOperaciones();
             $tasas = $manager->getTasasIva();
             $filas = count($tasas);
-            echo '<select name="codIva" id="codIva" class="form-control col-2">';
+            echo '<select name="codIva" id="codIva" class="form-select col-2">';
             echo '<option selected value="' . $detalle['codIva'] . '">' . $detalle['iva'] . '</option>';
             for ($i = 0; $i < $filas; $i++) {
                 if ($detalle['codIva'] != $tasas[$i]["idTasaIva"]) {

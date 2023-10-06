@@ -17,7 +17,7 @@ spl_autoload_register('cargarClases');
     if (count($formulas) == 0) {
         echo '<input type="text" class="form-control col-2" value="No hay sugerencias" readOnly>';
     } else {
-        echo '<select name="idFormula" id="idFormula" class="form-control col-12">';
+        echo '<select name="idFormula" id="idFormula" class="form-select col-12">';
         for ($i = 0; $i < count($formulas); $i++) {
             echo '<option value=' . $formulas[$i]['idFormula'] . '>' . $formulas[$i]['nomFormula'] . '</option>';
         }

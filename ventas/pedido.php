@@ -46,7 +46,7 @@ include "../includes/valAcc.php";
         <div class="form-group row">
             <label class="col-form-label col-2 text-end" for="idSucursal"><strong>Sucursal: </strong></label>
             <div id="sucursales" class="col-5">
-                <select name="idSucursal" id="idSucursal" class="form-control col-12" required>
+                <select name="idSucursal" id="idSucursal" class="form-select col-12" required>
                 </select>
             </div>
         </div>

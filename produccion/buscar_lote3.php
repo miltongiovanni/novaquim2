@@ -6,32 +6,30 @@ function cargarClases($classname)
 }
 
 spl_autoload_register('cargarClases');
+$calMatPrimaOperador = new CalMatPrimaOperaciones();
+$mprimas = $calMatPrimaOperador->getMPrimaXCalidad();
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="utf-8">
-    <title>Seleccionar Fórmula a Actualizar</title>
-<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <title>Control de Calidad Materia Prima</title>
+    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/validar.js"></script>
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-
-
 </head>
 <body>
 <div id="contenedor" class="container-fluid">
     <div id="saludo">
-        <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>SELECCIÓN DE FÓRMULA DE COLOR A ACTUALIZAR</h4></div>
-    <form id="form1" name="form1" method="post" action="detFormulaColor.php">
+        <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>BUSCAR MATERIA PRIMA PARA CONTROL DE CALIDAD</h4></div>
+    <form id="form1" name="form1" method="post" action="cal_materia_prima.php">
         <div class="form-group row">
-            <label class="col-form-label col-2" for="idFormulaColor"><strong>Fórmula de color</strong></label>
-            <select name="idFormulaColor" id="idFormulaColor" class="form-select col-2" required>
-                <option selected value="">-----------------------------</option>
+            <label class="col-form-label col-1 text-end" for="id"><strong>Materia Prima</strong></label>
+            <select name="id" id="id" class="form-control col-4" required>
+                <option selected disabled value="">-------------------------------------------------------------------------------------</option>
                 <?php
-                $manager = new FormulasColorOperaciones();
-                $formulas = $manager->getFormulasColor();
-                for ($i = 0; $i < count($formulas); $i++) : ?>
-                    <option value="<?= $formulas[$i]["idFormulaColor"] ?>"><?= $formulas[$i]["nomMPrima"] ?></option>
+                for ($i = 0; $i < count($mprimas); $i++) : ?>
+                    <option value="<?= $mprimas[$i]["id"] ?>"><?= $mprimas[$i]["nomMPrima"].' - Lote:'.$mprimas[$i]["lote_mp"].' - Cantidad: '.$mprimas[$i]["cantidad"].' Kg' ?></option>
                 <?php
                 endfor;
                 ?>
