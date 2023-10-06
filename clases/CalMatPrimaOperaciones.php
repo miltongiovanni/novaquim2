@@ -106,12 +106,15 @@ class CalMatPrimaOperaciones
 
     public function getControlCalidadById($id)
     {
-        $qry = "SELECT cmp.id, cod_mprima, lote_mp, id_compra, fecha_lote, cantidad, fecha_vencimiento, fecha_analisis, apariencia_mp, olor_mp, color_mp, pH_mp,
-                densidad_mp, est_mprima, observaciones, nomMPrima, aliasMPrima, aparienciaMPrima, olorMPrima, colorMPrima, pHmPrima, densidadMPrima, emp.descripcion
-                FROM cal_mprimas cmp
-                LEFT JOIN mprimas m on m.codMPrima = cmp.cod_mprima
-                LEFT JOIN estados_m_primas emp on emp.id = cmp.est_mprima
-                WHERE cmp.id = ?";
+        $qry = "SELECT cmp.id, cod_mprima, lote_mp, id_compra, fecha_lote, cantidad, fecha_vencimiento, fecha_analisis, apariencia_mp, olor_mp, color_mp, 
+                IF(id_compra IS NOT NULL, c.fechComp, cmp.fecha_lote) f_recepcion, IF(id_compra IS NOT NULL, p.nomProv, 'Industrias Novaquim S.A.S.') nomProveedor,
+                pH_mp, densidad_mp, est_mprima, observaciones, nomMPrima, aliasMPrima, aparienciaMPrima, olorMPrima, colorMPrima, pHmPrima, densidadMPrima, emp.descripcion
+            FROM cal_mprimas cmp
+            LEFT JOIN mprimas m on m.codMPrima = cmp.cod_mprima
+            LEFT JOIN estados_m_primas emp on emp.id = cmp.est_mprima
+            LEFT JOIN compras c ON cmp.id_compra = c.idCompra
+            LEFT JOIN novaquim2.proveedores p on c.idProv = p.idProv
+            WHERE cmp.id = ?";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute(array($id));
         $result = $stmt->fetch(PDO::FETCH_ASSOC);

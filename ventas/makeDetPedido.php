@@ -32,7 +32,7 @@ $pedidoOperador = new PedidosOperaciones();
 $detPedidoOperador = new DetPedidoOperaciones();
 
 $totalItems = $detPedidoOperador->getTotalItemsPedido($idPedido);
-if ($totalItems < 40) {
+if ($totalItems < 50) {
     try {
         if ($codProducto > 100000) {
             //PRODUCTOS DE DISTRIBUCIÓN
@@ -65,7 +65,7 @@ if ($totalItems < 40) {
 } else {
     $_SESSION['idPedido'] = $idPedido;
     $ruta = "det_pedido.php";
-    $mensaje = "Máximo 40 productos por pedido";
+    $mensaje = "Máximo 50 productos por pedido";
     $icon = "warning";
     mover_pag($ruta, $mensaje, $icon);
 }

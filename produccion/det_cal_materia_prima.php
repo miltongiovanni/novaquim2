@@ -94,10 +94,10 @@ $estadosMPrima = $calMatPrimaOperador->getEstadosMPrimaCalidad();
             <div class="form-group row justify-content-around">
                 <?php if ($calidadMPrima['est_mprima'] != 2) : ?>
                     <div class="col-3">
-                        <form action="Imp_Cert_an.php" method="post" target="_blank">
+                        <form action="Imp_etiqueta_cal_mp.php" method="post" target="_blank">
                             <input name="id" type="hidden" value="<?= $calidadMPrima['id']; ?>">
                             <button class="button" type="submit">
-                                <span>Imprimir certificado</span>
+                                <span>Imprimir etiqueta</span>
                             </button>
                         </form>
                     </div>

@@ -36,6 +36,7 @@ $estadosMPrima = $calMatPrimaOperador->getEstadosMPrimaCalidad();
     <form id="cal_m_prima_form" method="POST" action="makeCalMatPrima.php">
         <input type="hidden" name="id" value="<?= $calidadMPrima['id'] ?>">
         <input type="hidden" name="cod_mprima" value="<?= $calidadMPrima['cod_mprima'] ?>">
+        <input type="hidden" name="fecha_lote" value="<?= $calidadMPrima['fecha_lote'] ?>">
         <div class="form-group row">
             <div class="col-2 text-center "><strong>Propiedad</strong></div>
             <div class="col-2 text-center"><strong>Especificación</strong></div>
