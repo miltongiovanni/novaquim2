@@ -127,7 +127,7 @@ $pdf->SetXY(10, 183);
 $pdf->SetFont('Arial', 'B', 10);
 $pdf->Cell(20, 5, 'Muestra', 1, 0, 'C');
 $pdf->Cell(45, 5, utf8_decode('Presentación'), 1, 0, 'C');
-$pdf->Cell(30, 5, 'Perso (Kg)', 1, 0, 'C');
+$pdf->Cell(30, 5, 'Peso (Kg)', 1, 0, 'C');
 $pdf->Cell(50, 5, 'Etiquetado', 1, 0, 'C');
 $pdf->Cell(50, 5, 'Envasado', 1, 1, 'C');
 $pdf->SetFont('Arial', '', 10);
