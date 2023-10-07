@@ -38,8 +38,8 @@ class PDF extends FPDF
         //Arial italic 8
         $this->SetFont('Arial', '', 9);
         //Número de página
-        $this->Cell(190, 6, utf8_decode('Responsable alistamiento producción: ______________________________________ No. de Envases: __________ No. Bolsas: _______'), 0, 1, 'L');
-        $this->Cell(190, 6, utf8_decode('Responsable alistamiento distribución: ______________________________________ Aprobó: __________________________________'), 0, 1, 'L');
+        $this->Cell(190, 6, utf8_decode('No. de Envases: _____________________ No. Bolsas: _____________________ Otros: ______________________________________'), 0, 1, 'L');
+        $this->Cell(190, 6, utf8_decode('Resp. alistamiento prod: _____________________ Resp. alistamiento dist: _____________________ Aprobó: _____________________'), 0, 1, 'L');
     }
 }
 $pdf = new PDF('P', 'mm', 'Letter');
@@ -67,20 +67,17 @@ $encabfecha = date('Y-m-d');
 date_default_timezone_set('America/Bogota');
 $pdf->SetXY(140, 26);
 $pdf->Cell(65, 8, utf8_decode('Fecha Emisión: ') . $encabfecha, 1, 0, 'C');
+$pdf->SetFont('Arial', 'B', 14);
+$pdf->SetXY(160, 34);
+$pdf->Cell(30, 8, utf8_decode('Pedido : ') . $idPedido);
+
 $pdf->SetFont('Arial', '', 10);
 $pdf->SetXY(10, 35);
-$pdf->Cell(35, 5, 'Cliente: ');
-$pdf->Cell(110, 5, utf8_decode($pedido['nomCliente']));
-$pdf->Cell(30, 5, utf8_decode('Teléfono: '));
-$pdf->Cell(30, 5, $pedido['telCliente'], 0, 1);
-$pdf->Cell(35, 5, 'Lugar de Entrega: ');
-$pdf->Cell(110, 5, utf8_decode($pedido['nomSucursal']));
-$pdf->Cell(30, 5, 'Fecha de Pedido: ');
-$pdf->Cell(30, 5, $pedido['fechaPedido'], 0, 1);
-$pdf->Cell(35, 5, utf8_decode('Dirección de Entrega: '));
-$pdf->Cell(110, 5, utf8_decode($pedido['dirSucursal']));
-$pdf->Cell(30, 5, 'Fecha de Entrega:');
-$pdf->Cell(30, 5, $pedido['fechaEntrega'], 0, 1);
+$pdf->Cell(150, 5, 'Cliente: '.utf8_decode($pedido['nomCliente']),0 ,1);
+$pdf->Cell(150, 5, 'Lugar entrega: '.utf8_decode($pedido['nomSucursal']));
+$pdf->Cell(30, 5, utf8_decode('Teléfono: '.$pedido['telCliente']), 0, 1);
+$pdf->Cell(110, 5, utf8_decode('Dir.:').utf8_decode($pedido['dirSucursal']));
+$pdf->Cell(60, 5, 'Fch pedido: '.$pedido['fechaPedido']. '    Fch entrega: '.$pedido['fechaEntrega']);
 $pdf->SetXY(10, 52);
 $pdf->SetFont('Arial', 'B', 10);
 $pdf->Cell(10, 4, 'Item', 0, 0, 'C');
