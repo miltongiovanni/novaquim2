@@ -77,7 +77,7 @@ class InvProdTerminadosOperaciones
 
     public function getTableDetalleInvProdTerminado()
     {
-        $qry = "SELECT inv_prod.codPresentacion, presentacion, loteProd, invProd, ROUND(fabrica / (1.19 * 1.55), 2) Costo
+        $qry = "SELECT inv_prod.codPresentacion, presentacion, loteProd, invProd, ROUND(fabrica / (1.19), 2) Costo
                 FROM inv_prod
                          LEFT JOIN prodpre p on inv_prod.codPresentacion = p.codPresentacion
                          LEFT JOIN precios p2 on p2.codigoGen = p.codigoGen";
