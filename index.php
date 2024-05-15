@@ -25,7 +25,7 @@ if(isset($_SESSION['UsuarioAutorizado']) && $_SESSION['UsuarioAutorizado']==true
         <img src="images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25">
         <h4>BIENVENIDO AL SISTEMA DE INFORMACIÓN DE INDUSTRIAS NOVAQUIM S.A.S.</h4>
     </div>
-    <form method="POST" action="administracion/login.php">
+    <form method="POST" action="login/index.php">
         <div class="form-group row">
             <div class="col-1 text-end">
                 <label class="col-form-label" for="username">Usuario</label>

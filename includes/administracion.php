@@ -1,7 +1,7 @@
 <?php
     // Función para cargar las clases
 function cargarClases($classname){
-    require '../clases/'.$classname.'.php';
+    require '../../../clases/'.$classname.'.php';
 }
 
 spl_autoload_register('cargarClases');

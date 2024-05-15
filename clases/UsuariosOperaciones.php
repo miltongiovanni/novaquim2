@@ -11,7 +11,7 @@ class UsuariosOperaciones
     public function makeUser($datos)
     {
         /*Preparo la insercion */
-        $qry = "INSERT INTO usuarios VALUES(0, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $qry = "INSERT INTO usuarios (idUsuario, nombre, apellido, usuario, clave, estadoUsuario, idPerfil, fecCrea, fecCambio, intentos, email) VALUES(0, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute($datos);
         return $this->_pdo->lastInsertId();
@@ -97,6 +97,7 @@ class UsuariosOperaciones
                        eu.descripcion estado,
                        fecCrea,
                        intentos,
+                       email,
                        fecCambio
                 FROM usuarios u
                          LEFT JOIN perfiles p on u.idPerfil = p.idPerfil
@@ -185,7 +186,7 @@ class UsuariosOperaciones
 
     public function updateUser($datos)
     {
-        $qry = "UPDATE usuarios SET nombre=?, apellido=?, usuario=?, estadousuario=?, idPerfil=?, fecCambio=?,  intentos=? WHERE idUsuario=?";
+        $qry = "UPDATE usuarios SET nombre=?, apellido=?, usuario=?, estadousuario=?, idPerfil=?, fecCambio=?,  intentos=?, email =? WHERE idUsuario=?";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute($datos);
     }
