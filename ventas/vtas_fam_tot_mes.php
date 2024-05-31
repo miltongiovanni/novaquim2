@@ -1,5 +1,5 @@
 <?php
-include "../includes/valAcc.php";
+include "../../../includes/valAcc.php";
 $year = $_POST['year'];
 $type = $_POST['type'];
 ?>
@@ -60,7 +60,7 @@ $type = $_POST['type'];
                     },
                     {
                         "data": type == 1 ? "cant_enero" : "sub_enero",
-                        "className": type == 1 ? "dt-body-center" : "dt-body-right"
+                        "className": type == 1 ? "text-center" : "dt-body-right"
                     },
                     {
                         "data": type == 1 ? "cant_febrero" : "sub_febrero",

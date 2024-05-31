@@ -1,9 +1,9 @@
 <?php
-include "../includes/valAcc.php";
+include "../../../includes/valAcc.php";
 include "../includes/num_letra.php";
 function cargarClases($classname)
 {
-    require '../clases/' . $classname . '.php';
+    require '../../../clases/' . $classname . '.php';
 }
 
 spl_autoload_register('cargarClases');
@@ -146,11 +146,11 @@ $totalesNotaC = $notaCrOperador->getTotalesNotaC($idNotaC);
                                 '      </form>'
                             return rep;
                         },
-                        "className": 'dt-body-center'
+                        "className": 'text-center'
                     },
                     {
                         "data": "codProducto",
-                        "className": 'dt-body-center'
+                        "className": 'text-center'
                     },
                     {
                         "data": "producto",
@@ -158,11 +158,11 @@ $totalesNotaC = $notaCrOperador->getTotalesNotaC($idNotaC);
                     },
                     {
                         "data": "cantidad",
-                        "className": 'dt-body-center'
+                        "className": 'text-center'
                     },
                     {
                         "data": "iva",
-                        "className": 'dt-body-center'
+                        "className": 'text-center'
                     },
                     {
                         "data": "precioProducto",
@@ -182,7 +182,7 @@ $totalesNotaC = $notaCrOperador->getTotalesNotaC($idNotaC);
                                 '      </form>';
                             return rep;
                         },
-                        "className": 'dt-body-center'
+                        "className": 'text-center'
                     }
                 ],
                 "columnDefs": [{

@@ -2,7 +2,7 @@
 
 function cargarClases($classname)
 {
-    require '../../clases/' . $classname . '.php';
+    require '../../../clases/' . $classname . '.php';
 }
 $year=$_GET['year'];
 spl_autoload_register('cargarClases');

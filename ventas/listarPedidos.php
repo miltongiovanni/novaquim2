@@ -1,5 +1,5 @@
 <?php
-include "../includes/valAcc.php";
+include "../../../includes/valAcc.php";
 switch ($estadoPedido) {
     case '6':
         $titulo = ' anulados';
@@ -64,11 +64,7 @@ switch ($estadoPedido) {
     </style>
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/datatables.js"></script>
-    <script src="../js/dataTables.buttons.js"></script>
-    <script src="../js/jszip.js"></script>
-    <script src="../js/pdfmake.js"></script>
-    <script src="../js/vfs_fonts.js"></script>
-    <script src="../js/buttons.html5.js"></script>
+    
     <script>
         /* Formatting function for row details - modify as you need */
         function format(d) {
@@ -108,7 +104,7 @@ switch ($estadoPedido) {
                     },
                     {
                         "data": "idPedido",
-                        "className": 'dt-body-center'
+                        "className": 'text-center'
                     },
                     {
                         "data": "nomCliente",

@@ -1,5 +1,5 @@
 <?php
-include "../includes/valAcc.php";
+include "../../../includes/valAcc.php";
 $fecha = $_POST['fecha'];
 ?>
 <!DOCTYPE html>

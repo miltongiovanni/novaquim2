@@ -2,7 +2,7 @@
 
 function cargarClases($classname)
 {
-    require '../../clases/' . $classname . '.php';
+    require '../../../clases/' . $classname . '.php';
 }
 $idNotaC=$_GET['idNotaC'];
 spl_autoload_register('cargarClases');

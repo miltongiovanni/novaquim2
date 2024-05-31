@@ -1,5 +1,5 @@
 <?php
-include "../includes/valAcc.php";
+include "../../../includes/valAcc.php";
 if (isset($_SESSION['idCliente'])) {
     $idCliente = $_SESSION['idCliente'];
 } elseif (isset($_GET['idCliente'])) {
@@ -9,7 +9,7 @@ if (isset($_SESSION['idCliente'])) {
 }
 function cargarClases($classname)
 {
-    require '../clases/' . $classname . '.php';
+    require '../../../clases/' . $classname . '.php';
 }
 
 spl_autoload_register('cargarClases');

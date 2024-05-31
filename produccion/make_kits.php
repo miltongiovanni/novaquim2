@@ -1,8 +1,8 @@
 <?php
-include "../includes/valAcc.php";
+include "../../../includes/valAcc.php";
 function cargarClases($classname)
 {
-    require '../clases/' . $classname . '.php';
+    require '../../../clases/' . $classname . '.php';
 }
 
 spl_autoload_register('cargarClases');
@@ -20,7 +20,7 @@ foreach ($_POST as $nombre_campo => $valor) {
 <html lang="es">
 <head>
     <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-    <title>Creación de Kits de Productos de Distribución</title>
+    <title>Creaciï¿½n de Kits de Productos de Distribuciï¿½n</title>
     <meta charset="utf-8">
     <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/validar.js"></script>

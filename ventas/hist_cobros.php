@@ -1,5 +1,5 @@
 <?php
-include "../includes/valAcc.php";
+include "../../../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -55,11 +55,7 @@ include "../includes/valAcc.php";
     <script src="../js/validar.js"></script>
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/datatables.js"></script>
-    <script src="../js/dataTables.buttons.js"></script>
-    <script src="../js/jszip.js"></script>
-    <script src="../js/pdfmake.js"></script>
-    <script src="../js/vfs_fonts.js"></script>
-    <script src="../js/buttons.html5.js"></script>
+    
 
     <script>
         /* Formatting function for row details - modify as you need */
@@ -89,15 +85,15 @@ include "../includes/valAcc.php";
                                 '       </form>'
                             return rep;
                         },
-                        "className": 'dt-body-center'
+                        "className": 'text-center'
                     },
                     {
                         "data": "idRecCaja",
-                        "className": 'dt-body-center'
+                        "className": 'text-center'
                     },
                     {
                         "data": "idFactura",
-                        "className": 'dt-body-center'
+                        "className": 'text-center'
                     },
                     {
                         "data": "nomCliente",
@@ -105,15 +101,15 @@ include "../includes/valAcc.php";
                     },
                     {
                         "data": "pago",
-                        "className": 'dt-body-center'
+                        "className": 'text-center'
                     },
                     {
                         "data": "fechaRecCaja",
-                        "className": 'dt-body-center'
+                        "className": 'text-center'
                     },
                     {
                         "data": "formaPago",
-                        "className": 'dt-body-center'
+                        "className": 'text-center'
                     },
 
                     {
@@ -125,7 +121,7 @@ include "../includes/valAcc.php";
                                 '       </form>'
                             return rep;
                         },
-                        "className": 'dt-body-center'
+                        "className": 'text-center'
                     },
                 ],
 

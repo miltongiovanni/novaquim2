@@ -1,5 +1,5 @@
 <?php
-include "../includes/valAcc.php";
+include "../../../includes/valAcc.php";
 $year = $_POST['year'];
 ?>
 <!DOCTYPE html>
@@ -52,46 +52,46 @@ $year = $_POST['year'];
                 "columns": [
                     {
                         "data": "producto",
-                        "className": 'dt-body-center'
+                        "className": 'text-center'
                     },
                     {
                         "data": "cant_enero",
-                        "className": 'dt-body-center'
+                        "className": 'text-center'
                     },
                     {
                         "data": function (row) {
                             let rep = '$ ' + commaSplit(Math.round(row.sub_enero));
                             return rep;
                         },
-                        "className": 'dt-body-center'
+                        "className": 'text-center'
                     },
                     {
                         "data": "cant_febrero",
-                        "className": 'dt-body-center'
+                        "className": 'text-center'
                     },
                     {
                         "data": "sub_febrero",
-                        "className": 'dt-body-center'
+                        "className": 'text-center'
                     },
                     {
                         "data": "cant_marzo",
-                        "className": 'dt-body-center'
+                        "className": 'text-center'
                     },
                     {
                         "data": "sub_marzo",
-                        "className": 'dt-body-center'
+                        "className": 'text-center'
                     },
                     {
                         "data": "cant_abril",
-                        "className": 'dt-body-center'
+                        "className": 'text-center'
                     },
                     {
                         "data": "sub_abril",
-                        "className": 'dt-body-center'
+                        "className": 'text-center'
                     },
                     {
                         "data": "cant_mayo",
-                        "className": 'dt-body-center'
+                        "className": 'text-center'
                     },
                     {
                         "data": "sub_mayo",

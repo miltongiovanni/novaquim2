@@ -1,12 +1,12 @@
 <?php
-include "../includes/valAcc.php";
+include "../../../includes/valAcc.php";
 $idFormula = $_POST['idFormula'];
 $codMPrima = $_POST['codMPrima'];
 $porcentaje = $_POST['porcentaje'];
 $orden = $_POST['orden'];
 function cargarClases($classname)
 {
-    require '../clases/' . $classname . '.php';
+    require '../../../clases/' . $classname . '.php';
 }
 
 spl_autoload_register('cargarClases');

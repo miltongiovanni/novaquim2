@@ -1,8 +1,8 @@
 <?php
-include "../includes/valAcc.php";
+include "../../../includes/valAcc.php";
 function cargarClases($classname)
 {
-    require '../clases/' . $classname . '.php';
+    require '../../../clases/' . $classname . '.php';
 }
 
 spl_autoload_register('cargarClases');
@@ -57,11 +57,7 @@ $cliente = $clienteOperaciones->getCliente($idCliente);
     </style>
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/datatables.js"></script>
-    <script src="../js/dataTables.buttons.js"></script>
-    <script src="../js/jszip.js"></script>
-    <script src="../js/pdfmake.js"></script>
-    <script src="../js/vfs_fonts.js"></script>
-    <script src="../js/buttons.html5.js"></script>
+    
     <script>
         /* Formatting function for row details - modify as you need */
         function format(d) {
@@ -100,15 +96,15 @@ $cliente = $clienteOperaciones->getCliente($idCliente);
                     },
                     {
                         "data": "idPedido",
-                        "className": 'dt-body-center'
+                        "className": 'text-center'
                     },
                     {
                         "data": "fechaPedido",
-                        "className": 'dt-body-center'
+                        "className": 'text-center'
                     },
                     {
                         "data": "fechaEntrega",
-                        "className": 'dt-body-center'
+                        "className": 'text-center'
                     },
                     {
                         "data": "nomSucursal",
@@ -116,15 +112,15 @@ $cliente = $clienteOperaciones->getCliente($idCliente);
                     },
                     {
                         "data": "dirSucursal",
-                        "className": 'dt-body-center'
+                        "className": 'text-center'
                     },
                     {
                         "data": "tipoPrecio",
-                        "className": 'dt-body-center'
+                        "className": 'text-center'
                     },
                     {
                         "data": "estadoPedido",
-                        "className": 'dt-body-center'
+                        "className": 'text-center'
                     },
                 ],
                 "order": [[1, 'desc']],

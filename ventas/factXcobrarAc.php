@@ -1,5 +1,5 @@
 <?php
-include "../includes/valAcc.php";
+include "../../../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -118,7 +118,7 @@ include "../includes/valAcc.php";
                     },
                     {
                         "data": "nitCliente",
-                        "className": 'dt-body-center'
+                        "className": 'text-center'
                     },
                     {
                         "data": "contactoCliente",
@@ -130,11 +130,11 @@ include "../includes/valAcc.php";
                     },
                     {
                         "data": "telCliente",
-                        "className": 'dt-body-center'
+                        "className": 'text-center'
                     },
                     {
                         "data": "celCliente",
-                        "className": 'dt-body-center'
+                        "className": 'text-center'
                     },
                     {
                         "data": "dirCliente",
@@ -154,7 +154,7 @@ include "../includes/valAcc.php";
                                 '       </form>'
                             return rep;
                         },
-                        "className": 'dt-body-center',
+                        "className": 'text-center',
                     },
                 ],
                 "order": [[8, 'desc']],

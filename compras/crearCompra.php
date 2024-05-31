@@ -1,5 +1,5 @@
 <?php
-include "../includes/valAcc.php";
+include "../../../includes/valAcc.php";
 switch ($tipoCompra) {
     case 1:
         $titulo = ' materias primas';

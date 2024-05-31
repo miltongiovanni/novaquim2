@@ -1,5 +1,5 @@
 <?php
-include "../includes/valAcc.php";
+include "../../../includes/valAcc.php";
 $idPedido=$_POST['idPedido'];
 $fechaRutero=$_POST['fechaRutero'];
 

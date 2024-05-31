@@ -24,38 +24,57 @@ spl_autoload_register('cargarClases');
         <img src="../../../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>CREACIÓN DE USUARIOS</h4></div>
     <form name="makeUserForm" id="makeUserForm" method="POST" action="makeUser.php">
         <div class="form-group row">
-            <label class="col-form-label col-2 text-end" for="nombre"><strong>Nombre: </strong></label>
-            <input type="text" class="form-control col-2" name="nombre" id="nombre" size=30
-                   onkeydown="return aceptaLetra(event)"
-                   maxlength="30" required>
+            <div class="col-2 text-end">
+                <label class="col-form-label" for="nombre"><strong>Nombre: </strong></label>
+            </div>
+            <div class="col-2 px-0">
+                <input type="text" class="form-control" name="nombre" id="nombre" size=30 onkeydown="return aceptaLetra(event)" maxlength="30" required>
+            </div>
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-2 text-end" for="apellido"><strong>Apellidos: </strong></label>
-            <input type="text" class="form-control col-2" name="apellido" id="apellido" size=30
-                   onkeydown="return aceptaLetra(event)"
-                   maxlength="30" required>
+            <div class="col-2 text-end">
+                <label class="col-form-label" for="apellido"><strong>Apellidos: </strong></label>
+            </div>
+            <div class="col-2 px-0">
+                <input type="text" class="form-control " name="apellido" id="apellido" size=30 onkeydown="return aceptaLetra(event)" maxlength="30" required>
+            </div>
+
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-2 text-end" for="usuario"><b>Usuario: </b></label>
-            <input type="text" class="form-control col-2" id="usuario" maxlength="10" name="usuario" size=30 required>
+            <div class="col-2 text-end">
+                <label class="col-form-label " for="usuario"><b>Usuario: </b></label>
+            </div>
+            <div class="col-2 px-0">
+                <input type="text" class="form-control " id="usuario" maxlength="10" name="usuario" size=30 required>
+            </div>
+
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-2 text-end" for="email"><b>Correo electrónico: </b></label>
-            <input type="email" class="form-control col-2" id="email" name="email" required>
+            <div class="col-2 text-end">
+                <label class="col-form-label " for="email"><b>Correo electrónico: </b></label>
+            </div>
+            <div class="col-2 px-0">
+                <input type="email" class="form-control " id="email" name="email" required>
+            </div>
+
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-2 text-end" for="idPerfil"><strong>Perfil: </strong></label>
-            <select class="form-select col-2" name="idPerfil" id="idPerfil" required>
-                <?php
-                $perfilOperador = new PerfilesOperaciones();
-                $perfiles = $perfilOperador->getPerfiles();
-                echo '<option value="6" selected>USUARIO</option>';
-                for ($i = 0; $i < count($perfiles); $i++) {
-                    if ($perfiles[$i]['idPerfil'] != 6)
-                        echo '<option value="' . $perfiles[$i]['idPerfil'] . '">' . $perfiles[$i]['perfil'] . '</option>';
-                }
-                ?>
-            </select>
+            <div class="col-2 text-end">
+                <label class="col-form-label " for="idPerfil"><strong>Perfil: </strong></label>
+            </div>
+            <div class="col-2 px-0">
+                <select class="form-select " name="idPerfil" id="idPerfil" required>
+                    <?php
+                    $perfilOperador = new PerfilesOperaciones();
+                    $perfiles = $perfilOperador->getPerfiles();
+                    echo '<option value="6" selected>USUARIO</option>';
+                    for ($i = 0; $i < count($perfiles); $i++) {
+                        if ($perfiles[$i]['idPerfil'] != 6)
+                            echo '<option value="' . $perfiles[$i]['idPerfil'] . '">' . $perfiles[$i]['perfil'] . '</option>';
+                    }
+                    ?>
+                </select>
+            </div>
         </div>
         <div class="form-group row">
             <div class="col-1 text-center">

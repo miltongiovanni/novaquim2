@@ -1,5 +1,5 @@
 <?php
-include "../includes/valAcc.php";
+include "../../../includes/valAcc.php";
 if (isset($_POST['id_cal_mp'])) {
     $id_cal_mp = $_POST['id_cal_mp'];
 } else {
@@ -9,7 +9,7 @@ if (isset($_POST['id_cal_mp'])) {
 }
 function cargarClases($classname)
 {
-    require '../clases/' . $classname . '.php';
+    require '../../../clases/' . $classname . '.php';
 }
 
 spl_autoload_register('cargarClases');

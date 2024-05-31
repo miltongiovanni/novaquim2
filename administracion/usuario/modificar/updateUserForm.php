@@ -31,59 +31,83 @@ $user = $manager->getUser($idUsuario);
         <input type="hidden" class="form-control col-2" name="idUsuario" id="idUsuario" required
                value="<?= $user['idUsuario'] ?>">
         <div class="form-group row">
-            <label class="col-form-label col-2 text-end" for="nombre"><strong>Nombre</strong></label>
-            <input type="text" class="form-control col-2" name="nombre" id="nombre" size=30
-                   value="<?= $user['nombre'] ?>" required
-                   onkeydown="return aceptaLetra(event)" maxlength="30">
-        </div>
-        <div class="form-group row">
-            <label class="col-form-label col-2 text-end" for="apellido"><strong>Apellidos</strong></label>
-            <input type="text" class="form-control col-2" name="apellido" id="apellido" size=30 required
-                   value="<?= $user['apellido'] ?>" onkeydown="return aceptaLetra(event)" maxlength="30">
-        </div>
-        <div class="form-group row">
-            <label class="col-form-label col-2 text-end" for="usuario"><b>Usuario</b></label>
-            <input type="text" class="form-control col-2" id="usuario" maxlength="10" name="usuario" required
-                   value="<?= $user['usuario'] ?>" size=30>
-        </div>
-        <div class="form-group row">
-            <label class="col-form-label col-2 text-end" for="email"><b>Correo electrónico: </b></label>
-            <input type="email" class="form-control col-2" id="email" name="email" value="<?= $user['email'] ?>" required>
-        </div>
-        <div class="form-group row">
-            <label class="col-form-label col-2 text-end" for="idPerfil"><strong>Perfil</strong></label>
-            <select class="form-select col-2" name="idPerfil" id="idPerfil" required>
-                <?php
-                //include "../includes/conect.php";
-                $managerPerfiles = new PerfilesOperaciones();
-                $perfiles = $managerPerfiles->getPerfiles();
-                echo '<option value="' . $user['idPerfil'] . '" selected>' . $user['perfil'] . '</option>';
-                for ($i = 0; $i < count($perfiles); $i++) {
+            <div class="col-2 text-end">
+                <label class="col-form-label " for="nombre"><strong>Nombre</strong></label>
+            </div>
+            <div class="col-2 px-0">
+                <input type="text" class="form-control " name="nombre" id="nombre" size=30
+                       value="<?= $user['nombre'] ?>" required
+                       onkeydown="return aceptaLetra(event)" maxlength="30">
+            </div>
 
-                    if ($user['idPerfil'] != $perfiles[$i]['idPerfil']) {
-                        echo '<option value="' . $perfiles[$i]['idPerfil'] . '">' . $perfiles[$i]['perfil'] . '</option>';
+        </div>
+        <div class="form-group row">
+            <div class="col-2 text-end">
+                <label class="col-form-label " for="apellido"><strong>Apellidos</strong></label>
+            </div>
+            <div class="col-2 px-0">
+                <input type="text" class="form-control " name="apellido" id="apellido" size=30 required
+                       value="<?= $user['apellido'] ?>" onkeydown="return aceptaLetra(event)" maxlength="30">
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-2 text-end">
+                <label class="col-form-label " for="usuario"><b>Usuario</b></label>
+            </div>
+            <div class="col-2 px-0">
+                <input type="text" class="form-control " id="usuario" maxlength="10" name="usuario" required
+                       value="<?= $user['usuario'] ?>" size=30>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-2 text-end">
+                <label class="col-form-label " for="email"><b>Correo electrónico: </b></label>
+            </div>
+            <div class="col-2 px-0">
+                <input type="email" class="form-control " id="email" name="email" value="<?= $user['email'] ?>" required>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-2 text-end">
+                <label class="col-form-label " for="idPerfil"><strong>Perfil</strong></label>
+            </div>
+            <div class="col-2 px-0">
+                <select class="form-select " name="idPerfil" id="idPerfil" required>
+                    <?php
+                    //include "../includes/conect.php";
+                    $managerPerfiles = new PerfilesOperaciones();
+                    $perfiles = $managerPerfiles->getPerfiles();
+                    echo '<option value="' . $user['idPerfil'] . '" selected>' . $user['perfil'] . '</option>';
+                    for ($i = 0; $i < count($perfiles); $i++) {
+
+                        if ($user['idPerfil'] != $perfiles[$i]['idPerfil']) {
+                            echo '<option value="' . $perfiles[$i]['idPerfil'] . '">' . $perfiles[$i]['perfil'] . '</option>';
+                        }
+
                     }
-
-                }
-                ?>
-            </select>
+                    ?>
+                </select>
+            </div>
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-2 text-end" for="estadoUsuario"><strong>Estado</strong></label>
-            <select class="form-select col-2" name="estadoUsuario" id="estadoUsuario" required>
-                <option value="<?= $user['estadoUsuario'] ?>" selected><?=$user['estado'] ?></option>
-                <?php
-                //include "../includes/conect.php";
-                $managerEstados = new EstadosUsuariosOperaciones();
-                $estados = $managerEstados->getEstados();
-                for ($i = 0; $i < count($estados); $i++) {
-                    if ($user['estadoUsuario'] != $estados[$i]['idEstado']) {
-                        echo '<option value="' . $estados[$i]['idEstado'] . '">' . $estados[$i]['estado'] . '</option>';
-                    }
+            <div class="col-2 text-end">
+                <label class="col-form-label " for="estadoUsuario"><strong>Estado</strong></label>
+            </div>
+            <div class="col-2 px-0">
+                <select class="form-select " name="estadoUsuario" id="estadoUsuario" required>
+                    <option value="<?= $user['estadoUsuario'] ?>" selected><?= $user['estado'] ?></option>
+                    <?php
+                    $managerEstados = new EstadosUsuariosOperaciones();
+                    $estados = $managerEstados->getEstados();
+                    for ($i = 0; $i < count($estados); $i++) {
+                        if ($user['estadoUsuario'] != $estados[$i]['idEstado']) {
+                            echo '<option value="' . $estados[$i]['idEstado'] . '">' . $estados[$i]['estado'] . '</option>';
+                        }
 
-                }
-                ?>
-            </select>
+                    }
+                    ?>
+                </select>
+            </div>
         </div>
         <div class="form-group row">
             <div class="col-1 text-center">

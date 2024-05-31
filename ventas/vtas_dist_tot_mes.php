@@ -1,5 +1,5 @@
 <?php
-include "../includes/valAcc.php";
+include "../../../includes/valAcc.php";
 $year = $_POST['year'];
 $type = $_POST['type'];
 ?>

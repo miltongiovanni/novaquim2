@@ -1,5 +1,5 @@
 <?php
-include "../includes/valAcc.php";
+include "../../../includes/valAcc.php";
 if (isset($_SESSION['idRemision'])) {//Si idRemision existe
     $idRemision = $_SESSION['idRemision'];
 }
@@ -14,7 +14,7 @@ foreach ($_POST as $nombre_campo => $valor) {
 
 function cargarClases($classname)
 {
-    require '../clases/' . $classname . '.php';
+    require '../../../clases/' . $classname . '.php';
 }
 
 spl_autoload_register('cargarClases');

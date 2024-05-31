@@ -11,11 +11,7 @@ include "../../../includes/valAcc.php";
     <link rel="stylesheet" href="../../../css/datatables.css">
     <script src="../../../js/jquery-3.3.1.min.js"></script>
     <script src="../../../js/datatables.js"></script>
-    <script src="../../../js/dataTables.buttons.js"></script>
-    <script src="../../../js/jszip.js"></script>
-    <script src="../../../js/pdfmake.js"></script>
-    <script src="../../../js/vfs_fonts.js"></script>
-    <script src="../../../js/buttons.html5.js"></script>
+
 
     <script>
         $(document).ready(function () {
@@ -96,13 +92,13 @@ include "../../../includes/valAcc.php";
         <table id="example" class="display compact formatoDatos">
             <thead>
             <tr>
-                <th>Id Usuario</th>
-                <th>Nombre Usuario</th>
-                <th>Apellidos Usuario</th>
-                <th>Usuario</th>
-                <th>Fecha de creación</th>
-                <th>Estado</th>
-                <th>Perfil</th>
+                <th class="text-center">Id Usuario</th>
+                <th class="text-center">Nombre Usuario</th>
+                <th class="text-center">Apellidos Usuario</th>
+                <th class="text-center">Usuario</th>
+                <th class="text-center">Fecha de creación</th>
+                <th class="text-center">Estado</th>
+                <th class="text-center">Perfil</th>
             </tr>
             </thead>
         </table>
@@ -115,7 +111,7 @@ include "../../../includes/valAcc.php";
         //include "../includes/conect.php" ;
         function cargarClases($classname)
         {
-          require '../clases/'.$classname.'.php';
+          require '../../../clases/'.$classname.'.php';
         }
 
         spl_autoload_register('cargarClases');

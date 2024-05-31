@@ -25,7 +25,7 @@ class PresentacionesOperaciones
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute(array($codPresentacion));
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        if ($result['codPresentacion'] > 0) {
+        if ($result && $result['codPresentacion'] > 0) {
             $valida = 1;
         }
         return $valida;

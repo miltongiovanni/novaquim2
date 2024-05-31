@@ -2,7 +2,7 @@
 
 function cargarClases($classname)
 {
-    require '../../clases/' . $classname . '.php';
+    require '../../../clases/' . $classname . '.php';
 }
 $idCompra=$_GET['idCompra'];
 $tipoCompra=$_GET['tipoCompra'];

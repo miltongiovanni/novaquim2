@@ -1,10 +1,10 @@
 <?php
-include "../includes/valAcc.php";
+include "../../../includes/valAcc.php";
 include "../includes/calcularDias.php";
 // On enregistre notre autoload.
 function cargarClases($classname)
 {
-    require '../clases/' . $classname . '.php';
+    require '../../../clases/' . $classname . '.php';
 }
 
 spl_autoload_register('cargarClases');
@@ -93,11 +93,7 @@ $facturas = $facturaOperador->getTotalesFacturasPorFecha($fechaIni, $fechaFin);
     </style>
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/datatables.js"></script>
-    <script src="../js/dataTables.buttons.js"></script>
-    <script src="../js/jszip.js"></script>
-    <script src="../js/pdfmake.js"></script>
-    <script src="../js/vfs_fonts.js"></script>
-    <script src="../js/buttons.html5.js"></script>
+    
 
     <script>
 

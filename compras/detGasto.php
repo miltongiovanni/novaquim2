@@ -1,5 +1,5 @@
 <?php
-include "../includes/valAcc.php";
+include "../../../includes/valAcc.php";
 
 if (isset($_SESSION['idGasto'])) {//Si la factura existe
     $idGasto = $_SESSION['idGasto'];
@@ -15,7 +15,7 @@ foreach ($_POST as $nombre_campo => $valor) {
 
 function cargarClases($classname)
 {
-    require '../clases/' . $classname . '.php';
+    require '../../../clases/' . $classname . '.php';
 }
 
 spl_autoload_register('cargarClases');

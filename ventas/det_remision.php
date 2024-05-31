@@ -1,5 +1,5 @@
 <?php
-include "../includes/valAcc.php";
+include "../../../includes/valAcc.php";
 include "../includes/ventas.php";
 include "../includes/num_letra.php";
 
@@ -77,7 +77,7 @@ $remision = $remisionOperador->getRemision($idRemision);
                 "columns": [
                     {
                         "data": "codigo",
-                        "className": 'dt-body-center'
+                        "className": 'text-center'
                     },
                     {
                         "data": "producto",
@@ -85,7 +85,7 @@ $remision = $remisionOperador->getRemision($idRemision);
                     },
                     {
                         "data": "cantProductoT",
-                        "className": 'dt-body-center'
+                        "className": 'text-center'
                     },
                 ],
                 "columnDefs": [{

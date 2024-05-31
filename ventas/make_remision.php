@@ -1,5 +1,5 @@
 <?php
-include "../includes/valAcc.php";
+include "../../../includes/valAcc.php";
 include "../includes/calcularDias.php";
 include "../includes/ventas.php";
 foreach ($_POST as $nombre_campo => $valor) {

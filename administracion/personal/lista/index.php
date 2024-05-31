@@ -11,11 +11,7 @@ include "../../../includes/valAcc.php";
     <link rel="stylesheet" href="../../../css/datatables.css">
     <script src="../../../js/jquery-3.3.1.min.js"></script>
     <script src="../../../js/datatables.js"></script>
-    <script src="../../../js/dataTables.buttons.js"></script>
-    <script src="../../../js/jszip.js"></script>
-    <script src="../../../js/pdfmake.js"></script>
-    <script src="../../../js/vfs_fonts.js"></script>
-    <script src="../../../js/buttons.html5.js"></script>
+
 
     <script>
         $(document).ready(function () {
@@ -91,12 +87,12 @@ include "../../../includes/valAcc.php";
         <table id="example" class="display compact formatoDatos">
             <thead>
             <tr>
-                <th>Id</th>
-                <th>Nombre</th>
-                <th>Celular</th>
-                <th>Correo electrónico</th>
-                <th>Área</th>
-                <th>Cargo</th>
+                <th class="text-center">Id</th>
+                <th class="text-center">Nombre</th>
+                <th class="text-center">Celular</th>
+                <th class="text-center">Correo electrónico</th>
+                <th class="text-center">Área</th>
+                <th class="text-center">Cargo</th>
             </tr>
             </thead>
         </table>

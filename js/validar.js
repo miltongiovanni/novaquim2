@@ -24,9 +24,8 @@ function Enviar(form) {
                     return false;
                 }  else {
                     if (form.elements[i].required) {
-                        //alert("Por favor selecione un valor para el campo");
-                        alerta('Por favor selecione un valor para el campo', 'warning', '', form.elements[i]);
-                        //form.elements[i].autofocus();
+                        let mensaje_error = form.elements[i].dataset.error ?? 'Por favor selecione un valor para el campo';
+                        alerta(mensaje_error, 'warning', '', form.elements[i]);
                         return false;
                     }
 

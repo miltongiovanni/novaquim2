@@ -1,8 +1,8 @@
 <?php
-include "../includes/valAcc.php";
+include "../../../includes/valAcc.php";
 function cargarClases($classname)
 {
-    require '../clases/' . $classname . '.php';
+    require '../../../clases/' . $classname . '.php';
 }
 
 spl_autoload_register('cargarClases');
@@ -122,15 +122,15 @@ $distribucionOperador = new ProductosDistribucionOperaciones();
                             }
                             return rep;
                         },
-                        "className": 'dt-body-center'
+                        "className": 'text-center'
                     },
                     {
                         "data": "id",
-                        "className": 'dt-body-center'
+                        "className": 'text-center'
                     },
                     {
                         "data": "codProducto",
-                        "className": 'dt-body-center'
+                        "className": 'text-center'
                     },
                     {
                         "data": "producto",
@@ -138,15 +138,15 @@ $distribucionOperador = new ProductosDistribucionOperaciones();
                     },
                     {
                         "data": "cantProducto",
-                        "className": 'dt-body-center'
+                        "className": 'text-center'
                     },
                     {
                         "data": "precioProducto",
-                        "className": 'dt-body-center'
+                        "className": 'text-center'
                     },
                     {
                         "data": "subtotal",
-                        "className": 'dt-body-center'
+                        "className": 'text-center'
                     },
                     {
                         "data": function (row) {
@@ -160,7 +160,7 @@ $distribucionOperador = new ProductosDistribucionOperaciones();
                             }
                             return rep;
                         },
-                        "className": 'dt-body-center'
+                        "className": 'text-center'
                     }
                 ],
                 "columnDefs": [{

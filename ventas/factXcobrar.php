@@ -1,5 +1,5 @@
 <?php
-include "../includes/valAcc.php";
+include "../../../includes/valAcc.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -99,20 +99,20 @@ include "../includes/valAcc.php";
                                 '       </form>'
                             return rep;
                         },
-                        "className": 'dt-body-center',
+                        "className": 'text-center',
                         "visible": (perfil == 1 || perfil == 11 ) ? true :  false,
                     },
                     {
                         "data": "idFactura",
-                        "className": 'dt-body-center'
+                        "className": 'text-center'
                     },
                     {
                         "data": "fechaFactura",
-                        "className": 'dt-body-center'
+                        "className": 'text-center'
                     },
                     {
                         "data": "fechaVenc",
-                        "className": 'dt-body-center'
+                        "className": 'text-center'
                     },
                     {
                         "data": "nomCliente",
@@ -124,28 +124,28 @@ include "../includes/valAcc.php";
                     },
                     {
                         "data": "telCliente",
-                        "className": 'dt-body-center'
+                        "className": 'text-center'
                     },
                     {
                         "data": "celCliente",
-                        "className": 'dt-body-center'
+                        "className": 'text-center'
                     },
                     {
                         "data": "totalRFormat",
-                        "className": 'dt-body-center'
+                        "className": 'text-center'
                     },
                     {
                         "data": "TotalFormat",
-                        "className": 'dt-body-center'
+                        "className": 'text-center'
                     },
                     {
                         "data": "cobradoFormat",
-                        "className": 'dt-body-center'
+                        "className": 'text-center'
                     },
 
                     {
                         "data": "saldo",
-                        "className": 'dt-body-center'
+                        "className": 'text-center'
                     },
                 ],
 

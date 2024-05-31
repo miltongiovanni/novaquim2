@@ -6,7 +6,7 @@ use PhpOffice\PhpSpreadsheet\Spreadsheet;
 
 function cargarClases($classname)
 {
-require '../clases/'.$classname.'.php';
+require '../../../clases/'.$classname.'.php';
 }
 spl_autoload_register('cargarClases');
 $idCliente = $_POST['idCliente'];

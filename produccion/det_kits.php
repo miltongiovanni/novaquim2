@@ -1,5 +1,5 @@
 <?php
-include "../includes/valAcc.php";
+include "../../../includes/valAcc.php";
 if (isset($_POST['idKit'])) {
     $idKit = $_POST['idKit'];
 } else {
@@ -9,7 +9,7 @@ if (isset($_POST['idKit'])) {
 }
 function cargarClases($classname)
 {
-    require '../clases/' . $classname . '.php';
+    require '../../../clases/' . $classname . '.php';
 }
 
 spl_autoload_register('cargarClases');

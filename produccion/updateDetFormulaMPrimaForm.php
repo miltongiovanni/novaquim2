@@ -1,11 +1,11 @@
 <?php
-include "../includes/valAcc.php";
+include "../../../includes/valAcc.php";
 $idFormulaMPrima = $_POST['idFormulaMPrima'];
 $codMPrima = $_POST['codMPrima'];
 
 function cargarClases($classname)
 {
-    require '../clases/' . $classname . '.php';
+    require '../../../clases/' . $classname . '.php';
 }
 
 spl_autoload_register('cargarClases');
