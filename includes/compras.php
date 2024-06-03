@@ -14,8 +14,6 @@ function buscarProveedorForm($action)
         <div class="mb-3 row">
             <div class="col-2">
                 <label class="form-label " for="busProv"><strong>Proveedor</strong></label>
-            </div>
-            <div class="col-2">
                 <input type="text" class="form-control " id="busProv" name="busProv" onkeyup="findProveedor()"
                    required/>
             </div>

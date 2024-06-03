@@ -30,11 +30,11 @@ $DetProveedorOperador = new DetProveedoresOperaciones();
 try {
     $DetProveedorOperador->deleteAllDetProveedor($idProv);
     $ProveedorOperador->deleteProveedor($idProv);
-    $ruta = "listarProv.php";
+    $ruta = "/compras/proveedor/lista";
     $mensaje = "Proveedor borrado correctamente";
     $icon = "success";
 } catch (Exception $e) {
-    $ruta = "deleteProvForm.php";
+    $ruta = "/compras/proveedor/suprimir";
     $mensaje = "Error al eliminar el proveedor";
     $icon = "success";
 } finally {
