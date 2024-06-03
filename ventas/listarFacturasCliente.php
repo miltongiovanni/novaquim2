@@ -148,7 +148,7 @@ $idCliente = $_POST['idCliente'];
                     "infoFiltered": "(Filtrado de _MAX_ en total)"
 
                 },
-                "ajax": "ajax/listaFacturasCliente.php?idCliente=" + idCliente,
+                "ajax": "../ajax/listaFacturasCliente.php?idCliente=" + idCliente,
             });
             // Add event listener for opening and closing details
             $('#example tbody').on('click', 'td.details-control', function () {

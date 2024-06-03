@@ -34,11 +34,9 @@ $relacion = $relDisEmpOperador->getRelDisEmp($idPacUn);
         <img src="../../../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>ACTUALIZACIÓN RELACIÓN PACA UNIDAD PRODUCTOS DE DISTRIBUCIÓN</h4></div>
     <form method="post" action="updateRelPacProd.php" name="form1">
         <input id="idPacUn" name="idPacUn" type="hidden" value="<?= $idPacUn ?>">
-        <div class="form-group row">
-            <div class="col-2 text-end">
-                <label class="col-form-label " for="codPaca"><strong>Producto empacado</strong></label>
-            </div>
-            <div class="col-2 px-0">
+        <div class="mb-3 row">
+            <div class="col-3">
+                <label class="form-label " for="codPaca"><strong>Producto empacado</strong></label>
                 <select name="codPaca" id="codPaca" class="form-control " required>
                     <option selected value="<?= $relacion['codPaca'] ?>"><?= $relacion['paca'] ?></option>
                     <?php
@@ -53,12 +51,8 @@ $relacion = $relDisEmpOperador->getRelDisEmp($idPacUn);
                     ?>
                 </select>
             </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-2 text-end">
-                <label class="col-form-label " for="codUnidad"><strong>Producto por unidad</strong></label>
-            </div>
-            <div class="col-2 px-0">
+            <div class="col-3">
+                <label class="form-label " for="codUnidad"><strong>Producto por unidad</strong></label>
                 <select name="codUnidad" id="codUnidad" class="form-control " required>
                     <option selected value="<?= $relacion['codUnidad'] ?>"><?= $relacion['unidad'] ?></option>
                     <?php
@@ -73,17 +67,13 @@ $relacion = $relDisEmpOperador->getRelDisEmp($idPacUn);
                     ?>
                 </select>
             </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-2 text-end">
-                <label class="col-form-label " for="cantidad"><strong>Unidades por empaque</strong></label>
-            </div>
-            <div class="col-2 px-0">
+            <div class="col-2">
+                <label class="form-label " for="cantidad"><strong>Unidades por empaque</strong></label>
                 <input type="text" class="form-control " name="cantidad" id="cantidad"
                        onkeydown="return aceptaNum(event)" value="<?= $relacion['cantidad'] ?>">
             </div>
         </div>
-        <div class="row form-group">
+        <div class="row mb-3">
             <div class="col-1">
                 <button class="button" type="button" onclick="return Enviar(this.form)"><span>Continuar</span></button>
             </div>

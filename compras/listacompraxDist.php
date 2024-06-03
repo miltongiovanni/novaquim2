@@ -84,7 +84,7 @@ $producto = $ProductoDistribucionOperador->getProductoDistribucion($idDistribuci
                     "infoFiltered": "(Filtrado de _MAX_ en total)"
 
                 },
-                "ajax": "ajax/listaCompraxDis.php?idDistribucion=" + idDistribucion
+                "ajax": "../ajax/listaCompraxDis.php?idDistribucion=" + idDistribucion
             });
         });
     </script>

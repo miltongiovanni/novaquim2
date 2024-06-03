@@ -20,41 +20,27 @@ include "../../../includes/valAcc.php";
     $username = $_SESSION['Username'];
     ?>
     <form action="change.php" method="POST" name="Cambio_clave" id="Cambio_clave">
-        <div class="form-group row">
-            <div class="col-2 text-end">
-                <label class="col-form-label " for="username"><b>Nombre de usuario</b></label>
-            </div>
-            <div class="col-2 px-0">
+        <div class="mb-3 row">
+            <div class="col-2">
+                <label class="form-label " for="username"><b>Nombre de usuario</b></label>
                 <input class="form-control " name="username" id="username" value="<?php echo $username ?>" readonly size="20" required>
             </div>
-
-        </div>
-        <div class="form-group row">
-            <div class="col-2 text-end">
-                <label class="col-form-label " for="password"><strong>Contraseña actual</strong></label>
-            </div>
-            <div class="col-2 px-0">
+            <div class="col-2">
+                <label class="form-label " for="password"><strong>Contraseña actual</strong></label>
                 <input class="form-control " type="password" name="password" id="password" size="20" required>
             </div>
-
         </div>
-        <div class="form-group row">
-            <div class="col-2 text-end">
-                <label class="col-form-label " for="newPass"><strong>Contraseña nueva</strong></label>
-            </div>
-            <div class="col-2 px-0">
+        <div class="mb-3 row">
+            <div class="col-2">
+                <label class="form-label " for="newPass"><strong>Contraseña nueva</strong></label>
                 <input class="form-control " type="password" name="newPass" id="newPass" size="20" required>
             </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-2 text-end">
-                <label class="col-form-label " for="confPass"><strong>Confirmación contraseña</strong></label>
-            </div>
-            <div class="col-2 px-0">
+            <div class="col-2">
+                <label class="form-label " for="confPass"><strong>Confirmación contraseña</strong></label>
                 <input class="form-control " type="password" name="confPass" id="confPass" size="20" required>
             </div>
         </div>
-        <div class="form-group row">
+        <div class="mb-3 row">
             <div class="col-1 text-center">
                 <button class="button" type="reset"><span>Reiniciar</span></button>
             </div>

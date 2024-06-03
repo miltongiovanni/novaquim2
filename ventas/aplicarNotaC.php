@@ -41,8 +41,8 @@ spl_autoload_register('cargarClases');
     <div id="saludo">
         <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><div id="h4"><strong>APLICAR NOTA CRÉDITO</strong></div></div>
     <form id="form1" name="form1" method="post" action="aplicaNotaC.php">
-        <div class="form-group row">
-            <label class="col-form-label col-1" for="idPedido"><strong>Nota crédito</strong></label>
+        <div class="mb-3 row">
+            <label class="form-label col-1" for="idPedido"><strong>Nota crédito</strong></label>
             <select name="idNotaC" id="idNotaC" class="form-control col-4" onchange="findFacturasClienteNC(this.value);"  required>
                 <option selected disabled value="">------------------------------------------------------------------------------------------------------</option>
                 <?php
@@ -55,19 +55,19 @@ spl_autoload_register('cargarClases');
                 ?>
             </select>
         </div>
-        <div class="form-group row">
-            <label class="col-form-label col-1" for="idFacturaDestino"><strong>Factura Destino</strong></label>
+        <div class="mb-3 row">
+            <label class="form-label col-1" for="idFacturaDestino"><strong>Factura Destino</strong></label>
             <select name="idFacturaDestino" id="idFacturaDestino" class="form-control col-4" required>
             </select>
         </div>
-        <div class="row form-group">
+        <div class="row mb-3">
             <div class="col-1">
                 <button class="button" type="button" onclick="return Enviar(this.form)">
                     <span>Continuar</span></button>
             </div>
         </div>
     </form>
-    <div class="row form-group">
+    <div class="row mb-3">
         <div class="col-1">
             <button class="button1" onclick="history.back()"><span>VOLVER</span></button>
         </div>

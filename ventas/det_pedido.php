@@ -107,7 +107,7 @@ $distribucionOperador = new ProductosDistribucionOperaciones();
         $(document).ready(function () {
             let idPedido = <?=$idPedido?>;
             let estado = '<?= $pedido['estado'] ?>';
-            let ruta = "ajax/listaDetPedido.php?idPedido=" + idPedido;
+            let ruta = "../ajax/listaDetPedido.php?idPedido=" + idPedido;
             $('#example').DataTable({
                 "columns": [
                     {
@@ -203,32 +203,32 @@ $distribucionOperador = new ProductosDistribucionOperaciones();
 <div id="contenedor" class="container-fluid">
     <div id="saludo1">
         <img src="../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>DETALLE DEL PEDIDO</h4></div>
-    <div class="form-group row">
-        <div class="col-1 text-end"><strong>Pedido No.</strong></div>
+    <div class="mb-3 row">
+        <div class="col-1"><strong>Pedido No.</strong></div>
         <div class="col-1 bg-blue"><?= $idPedido; ?></div>
-        <div class="col-1 text-end"><strong>Cliente</strong></strong></div>
+        <div class="col-1"><strong>Cliente</strong></strong></div>
         <div class="col-4 bg-blue"><?= $pedido['nomCliente'] ?></div>
-        <div class="col-2 text-end"><strong>Estado</strong></div>
+        <div class="col-2"><strong>Estado</strong></div>
         <div class="col-1 bg-blue"><?= $pedido['estadoPedido'] ?></div>
 
     </div>
-    <div class="form-group row">
-        <div class="col-1 text-end"><strong>Fecha pedido</strong></div>
+    <div class="mb-3 row">
+        <div class="col-1"><strong>Fecha pedido</strong></div>
         <div class="col-1 bg-blue"><?= $pedido['fechaPedido'] ?></div>
-        <div class="col-2 text-end"><strong>Lugar de entrega</strong></div>
+        <div class="col-2"><strong>Lugar de entrega</strong></div>
         <div class="col-4 bg-blue"><?= $pedido['nomSucursal'] ?></div>
-        <div class="col-1 text-end"><strong>Vendedor</strong></div>
+        <div class="col-1"><strong>Vendedor</strong></div>
         <div class="col-2 bg-blue"><?= $pedido['nomPersonal'] ?></div>
     </div>
-    <div class="form-group row">
+    <div class="mb-3 row">
         <div class="col-1 text-end px-2"><strong>Fecha entrega</strong></div>
         <div class="col-1 bg-blue"><?= $pedido['fechaEntrega'] ?></div>
-        <div class="col-2 text-end"><strong>Dirección de entrega</strong></div>
+        <div class="col-2"><strong>Dirección de entrega</strong></div>
         <div class="col-4 bg-blue"><?= $pedido['dirSucursal'] ?></div>
-        <div class="col-1 text-end"><strong>Precio</strong></div>
+        <div class="col-1"><strong>Precio</strong></div>
         <div class="col-1 bg-blue"><?= $pedido['tipoPrecio'] ?></div>
     </div>
-    <div class="form-group titulo row text-center">
+    <div class="mb-3 titulo row text-center">
         <strong>Adicionar Detalle</strong>
     </div>
     <?php
@@ -243,7 +243,7 @@ $distribucionOperador = new ProductosDistribucionOperaciones();
                 <div class="col-1 text-center" style="margin: 0 5px;"><strong>Unidades</strong></div>
                 <div class="col-2 text-center"></div>
             </div>
-            <div class="form-group row">
+            <div class="mb-3 row">
                 <select name="codProducto" id="codProducto" class="form-control col-4 me-3">
                     <option selected disabled value="">Escoja un producto Novaquim</option>
                     <?php
@@ -271,7 +271,7 @@ $distribucionOperador = new ProductosDistribucionOperaciones();
                 <div class="col-1 text-center" style="margin: 0 5px;"><strong>Unidades</strong></div>
                 <div class="col-2 text-center"></div>
             </div>
-            <div class="form-group row">
+            <div class="mb-3 row">
                 <select name="codProducto" id="codProducto" class="form-control col-4 me-3">
                     <option selected disabled value="">Escoja un producto de distribución</option>
                     <?php
@@ -300,7 +300,7 @@ $distribucionOperador = new ProductosDistribucionOperaciones();
                 <div class="col-1 text-center mx-2"><strong>Precio</strong></div>
                 <div class="col-2 text-center"></div>
             </div>
-            <div class="form-group row">
+            <div class="mb-3 row">
                 <select name="codProducto" id="codProducto" class="form-control col-3 me-3">
                     <option selected disabled value="">Escoja un servicio</option>
                     <?php
@@ -326,7 +326,7 @@ $distribucionOperador = new ProductosDistribucionOperaciones();
     <?php
     endif;
     ?>
-    <div class="form-group titulo row text-center">
+    <div class="mb-3 titulo row text-center">
         <strong>Detalle del pedido</strong>
     </div>
     <div class="tabla-80">
@@ -353,7 +353,7 @@ $distribucionOperador = new ProductosDistribucionOperaciones();
             </tr>
         </table>
     </div>
-    <div class="form-group row">
+    <div class="mb-3 row">
         <div class="col-2">
             <form method="post" action="Imp_Ord_ped.php" name="form3" target="_blank">
                 <input name="idPedido" type="hidden" value="<?= $idPedido; ?>">

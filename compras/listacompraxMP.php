@@ -84,7 +84,7 @@ $mprima = $MPrimasOperador->getMPrima($codMPrima);
                     "infoFiltered": "(Filtrado de _MAX_ en total)"
 
                 },
-                "ajax": "ajax/listaCompraxMPrima.php?codMPrima=" + codMPrima
+                "ajax": "../ajax/listaCompraxMPrima.php?codMPrima=" + codMPrima
             });
         });
     </script>

@@ -26,35 +26,25 @@ $envase = $EnvaseOperador->getEnvase($codEnvase);
     <div id="saludo">
         <img src="../../../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>ACTUALIZACIÓN DE ENVASE</h4></div>
     <form id="form1" name="form1" method="post" action="updateEnv.php">
-        <div class="form-group row">
-            <div class="col-1 text-end">
-                <label class="col-form-label " for="codEnvase"><strong>Código</strong></label>
-            </div>
-            <div class="col-2 px-0">
+        <div class="mb-3 row">
+            <div class="col-1">
+                <label class="form-label " for="codEnvase"><strong>Código</strong></label>
                 <input type="text" class="form-control " name="codEnvase" id="codEnvase" maxlength="50"
                        value="<?= $envase['codEnvase']; ?>" readonly>
             </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-1 text-end">
-                <label class="col-form-label " for="nomEnvase"><strong>Envase</strong></label>
-            </div>
-            <div class="col-2 px-0">
+            <div class="col-3">
+                <label class="form-label " for="nomEnvase"><strong>Envase</strong></label>
                 <input type="text" class="form-control " name="nomEnvase" id="nomEnvase"
                        value="<?= $envase['nomEnvase']; ?>" maxlength="50">
             </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-1 text-end">
-                <label class="col-form-label " for="stockEnvase"><strong>Stock Envase</strong></label>
-            </div>
-            <div class="col-2 px-0">
+            <div class="col-1">
+                <label class="form-label " for="stockEnvase"><strong>Stock Envase</strong></label>
                 <input type="text" class="form-control " name="stockEnvase" id="stockEnvase"
                        onkeydown="return aceptaNum(event)" value="<?= $envase['stockEnvase']; ?>">
                 <input type="hidden" name="codIva" id="codIva" value="3">
             </div>
         </div>
-        <div class="form-group row">
+        <div class="mb-3 row">
             <div class="col-1 text-center">
                 <button class="button" type="reset"><span>Reiniciar</span></button>
             </div>

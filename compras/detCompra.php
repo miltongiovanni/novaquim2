@@ -155,7 +155,7 @@ $compra = $CompraOperador->getCompra($idCompra, $tipoCompra);
         $(document).ready(function () {
             let tipoCompra = <?=$tipoCompra?>;
             let idCompra = <?=$idCompra?>;
-            let ruta = "ajax/listaDetCompra.php?idCompra=" + idCompra + "&tipoCompra=" + tipoCompra;
+            let ruta = "../ajax/listaDetCompra.php?idCompra=" + idCompra + "&tipoCompra=" + tipoCompra;
             $('#example').DataTable({
                 "columns": [
                     {
@@ -237,36 +237,36 @@ $compra = $CompraOperador->getCompra($idCompra, $tipoCompra);
 <div id="contenedor" class="container-fluid">
     <div id="saludo1">
         <img src="../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>DETALLE DE COMPRA DE<?= $titulo ?></h4></div>
-    <div class="form-group row">
-        <div class="col-1 text-end"><strong>No. de Compra</strong></div>
+    <div class="mb-3 row">
+        <div class="col-1"><strong>No. de Compra</strong></div>
         <div class="col-1 bg-blue"><?= $idCompra; ?></div>
-        <div class="col-1 text-end"><strong>Proveedor</strong></strong></div>
+        <div class="col-1"><strong>Proveedor</strong></strong></div>
         <div class="col-3 bg-blue"><?= $compra['nomProv'] ?></div>
-        <div class="col-1 text-end"><strong>NIT</strong></div>
+        <div class="col-1"><strong>NIT</strong></div>
         <div class="col-1 bg-blue"><?= $compra['nitProv'] ?></div>
-        <div class="col-1 text-end"><strong>No. de Factura</strong></div>
+        <div class="col-1"><strong>No. de Factura</strong></div>
         <div class="col-1 bg-blue"><?= $compra['numFact'] ?></div>
     </div>
-    <div class="form-group row">
-        <div class="col-2 text-end"><strong>Fecha de compra</strong></div>
+    <div class="mb-3 row">
+        <div class="col-2"><strong>Fecha de compra</strong></div>
         <div class="col-1 bg-blue"><?= $compra['fechComp']; ?></div>
-        <div class="col-2 text-end"><strong>Fecha Vencimiento </strong></strong></div>
+        <div class="col-2"><strong>Fecha Vencimiento </strong></strong></div>
         <div class="col-1 bg-blue"><?= $compra['fechVenc'] ?></div>
-        <div class="col-1 text-end"><strong>Estado</strong></div>
+        <div class="col-1"><strong>Estado</strong></div>
         <div class="col-1 bg-blue"><?= $compra['descEstado'] ?></div>
-        <div class="col-1 text-end"><strong>Subtotal</strong></div>
+        <div class="col-1"><strong>Subtotal</strong></div>
         <div class="col-1 bg-blue"><?= $compra['subtotalCompra'] ?></div>
     </div>
-    <div class="form-group row">
-        <div class="col-1 text-end"><strong>Iva </strong></div>
+    <div class="mb-3 row">
+        <div class="col-1"><strong>Iva </strong></div>
         <div class="col-1 bg-blue"><?= $compra['ivaCompra'] ?></div>
-        <div class="col-1 text-end"><strong>Reteiva </strong></div>
+        <div class="col-1"><strong>Reteiva </strong></div>
         <div class="col-1 bg-blue"><?= $compra['reteivaCompra'] ?></div>
-        <div class="col-1 text-end"><strong>Rete Ica</strong></strong></div>
+        <div class="col-1"><strong>Rete Ica</strong></strong></div>
         <div class="col-1 bg-blue"><?= $compra['reteicaCompra'] ?></div>
-        <div class="col-1 text-end"><strong>Retención</strong></div>
+        <div class="col-1"><strong>Retención</strong></div>
         <div class="col-1 bg-blue"><?= $compra['retefuenteCompra'] ?></div>
-        <div class="col-1 text-end"><strong>Valor a Pagar</strong></div>
+        <div class="col-1"><strong>Valor a Pagar</strong></div>
         <div class="col-1 bg-blue"><?= $compra['vreal'] ?></div>
     </div>
 
@@ -293,7 +293,7 @@ $compra = $CompraOperador->getCompra($idCompra, $tipoCompra);
                     <div class="col-2 text-center">
                     </div>
                 </div>
-                <div class="form-group row">
+                <div class="mb-3 row">
                     <?php
                     $productos = $DetComprasOperador->getProdPorProveedorCompra($compra['idProv'], $tipoCompra, $idCompra);
                     $filas = count($productos);
@@ -332,7 +332,7 @@ $compra = $CompraOperador->getCompra($idCompra, $tipoCompra);
                     <div class="col-1 text-center" style="margin: 0 5px;"><strong>Precio por Un (Sin IVA)</strong></div>
                     <div class="col-2 text-center"></div>
                 </div>
-                <div class="form-group row">
+                <div class="mb-3 row">
                     <?php
                     $manager = new DetProveedoresOperaciones();
                     $productos = $DetComprasOperador->getProdPorProveedorCompra($compra['idProv'], $tipoCompra, $idCompra);
@@ -369,7 +369,7 @@ $compra = $CompraOperador->getCompra($idCompra, $tipoCompra);
                     <div class="col-2 text-center">
                     </div>
                 </div>
-                <div class="form-group row">
+                <div class="mb-3 row">
                     <?php
                     $manager = new DetProveedoresOperaciones();
                     $productos = $DetComprasOperador->getProdPorProveedorCompra($compra['idProv'], $tipoCompra, $idCompra);
@@ -407,7 +407,7 @@ $compra = $CompraOperador->getCompra($idCompra, $tipoCompra);
                     <div class="col-2 text-center">
                     </div>
                 </div>
-                <div class="form-group row">
+                <div class="mb-3 row">
                     <?php
                     $manager = new DetProveedoresOperaciones();
                     $productos = $DetComprasOperador->getProdPorProveedorCompra($compra['idProv'], $tipoCompra, $idCompra);

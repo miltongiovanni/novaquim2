@@ -22,7 +22,7 @@ include "../../../includes/valAcc.php";
         $rep = buscarEnvaseForm("deleteEnv.php");
         echo $rep;
         ?>
-		<div class="row form-group">
+		<div class="row mb-3">
 			<div class="col-1"><button class="button1" type="button"
 					onclick="history.back()"><span>VOLVER</span></button></div>
 		</div>

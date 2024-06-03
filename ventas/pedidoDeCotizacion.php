@@ -17,11 +17,11 @@ include "../../../includes/valAcc.php";
         <h4>SELECCIÓN DE COTIZACIÓN PERSONALIZADA</h4>
     </div>
     <form id="form1" name="form1" method="post" action="crearPedidoDeCotizacion.php">
-        <div class="form-group row">
-            <label class="col-form-label col-1 text-end" for="idCotPersonalizada"><strong>Cotización</strong></label>
+        <div class="mb-3 row">
+            <label class="form-label col-1 text-end" for="idCotPersonalizada"><strong>Cotización</strong></label>
             <input type="text" class="form-control col-2" name="idCotPersonalizada" id="idCotPersonalizada" onkeydown="return aceptaNum(event)" required>
         </div>
-        <div class="form-group row">
+        <div class="mb-3 row">
             <div class="col-1 text-center">
                 <button class="button" type="reset"><span>Reiniciar</span></button>
             </div>

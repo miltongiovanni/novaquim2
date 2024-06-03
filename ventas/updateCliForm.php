@@ -96,7 +96,7 @@ $cliente = $clienteOperador->getCliente($idCliente);
                     "infoFiltered": "(Filtrado de _MAX_ en total)"
 
                 },
-                "ajax": "ajax/listaSucursalesCliente.php?idCliente=" + idCliente
+                "ajax": "../ajax/listaSucursalesCliente.php?idCliente=" + idCliente
             });
         });
     </script>
@@ -109,13 +109,13 @@ $cliente = $clienteOperador->getCliente($idCliente);
     <form name="form2" method="POST" action="updateClien.php">
         <input name="idCliente" id="idCliente" type="hidden" value="<?= $idCliente ?>">
         <div class=" row ">
-            <label class="col-form-label col-2 text-start mx-2"><strong>Tipo</strong></label>
-            <label class="col-form-label col-2 text-start mx-2"
+            <label class="form-label col-2 text-start mx-2"><strong>Tipo</strong></label>
+            <label class="form-label col-2 text-start mx-2"
                    for="numero"><strong>Número</strong></label>
-            <label class="col-form-label col-2 text-start mx-2" for="nitCliente"><strong>NIT</strong></label>
-            <label class="col-form-label col-3 text-start mx-2" for="nomCliente"><strong>Cliente</strong></label>
+            <label class="form-label col-2 text-start mx-2" for="nitCliente"><strong>NIT</strong></label>
+            <label class="form-label col-3 text-start mx-2" for="nomCliente"><strong>Cliente</strong></label>
         </div>
-        <div class="form-group row">
+        <div class="mb-3 row">
             <div class="col-2 form-check-inline form-control mx-2" style="display: flex">
                 <label for="tipo_0" class="col-6 form-check-label" style="text-align: center">
                     <input type="radio" id="tipo_0" name="tipo" value="1" checked onchange="nitClientes()">&nbsp;&nbsp;Nit
@@ -133,13 +133,13 @@ $cliente = $clienteOperador->getCliente($idCliente);
                    value="<?= $cliente['nomCliente'] ?>" required>
         </div>
         <div class="row">
-            <label class="col-form-label col-2 text-start mx-2" for="telCliente"><strong>Teléfono</strong></label>
-            <label class="col-form-label col-2 text-start mx-2" for="emailCliente"><strong>Correo
+            <label class="form-label col-2 text-start mx-2" for="telCliente"><strong>Teléfono</strong></label>
+            <label class="form-label col-2 text-start mx-2" for="emailCliente"><strong>Correo
                     electrónico</strong></label>
-            <label class="col-form-label col-2 text-start mx-2" for="ciudadCliente"><strong>Ciudad</strong></label>
-            <label class="col-form-label col-3 text-start mx-2" for="dirCliente"><strong>Dirección</strong></label>
+            <label class="form-label col-2 text-start mx-2" for="ciudadCliente"><strong>Ciudad</strong></label>
+            <label class="form-label col-3 text-start mx-2" for="dirCliente"><strong>Dirección</strong></label>
         </div>
-        <div class="form-group row">
+        <div class="mb-3 row">
             <input type="text" class="form-control col-2 mx-2" name="telCliente" id="telCliente" maxlength="10"
                    onkeydown="return aceptaNum(event)" value="<?= $cliente['telCliente'] ?>">
             <input type="email" class="form-control col-2 mx-2" name="emailCliente" id="emailCliente"
@@ -161,15 +161,15 @@ $cliente = $clienteOperador->getCliente($idCliente);
                    value="<?= $cliente['dirCliente'] ?>" required>
         </div>
         <div class="row">
-            <label class="col-form-label col-2 text-start mx-2" for="contactoCliente"><strong>Nombre
+            <label class="form-label col-2 text-start mx-2" for="contactoCliente"><strong>Nombre
                     Contacto</strong></label>
-            <label class="col-form-label col-2 text-start mx-2" for="cargoCliente"><strong>Cargo
+            <label class="form-label col-2 text-start mx-2" for="cargoCliente"><strong>Cargo
                     Contacto</strong></label>
-            <label class="col-form-label col-2 text-start mx-2" for="celCliente"><strong>Celular
+            <label class="form-label col-2 text-start mx-2" for="celCliente"><strong>Celular
                     Contacto</strong></label>
-            <label class="col-form-label col-3 text-start mx-2" for="idCatCliente"><strong>Actividad</strong></label>
+            <label class="form-label col-3 text-start mx-2" for="idCatCliente"><strong>Actividad</strong></label>
         </div>
-        <div class="form-group row">
+        <div class="mb-3 row">
             <input type="text" class="form-control col-2 mx-2" name="contactoCliente" id="contactoCliente"
                    value="<?= $cliente['contactoCliente'] ?>" required>
             <input type="text" class="form-control col-2 mx-2" name="cargoCliente" id="cargoCliente"
@@ -192,15 +192,15 @@ $cliente = $clienteOperador->getCliente($idCliente);
             </select>
         </div>
         <div class="row">
-            <label class="col-form-label col-1 text-start mx-2" for="retIva"><strong>Autoret Iva</strong></label>
-            <label class="col-form-label col-1 text-start mx-2" for="retFte"><strong>Retefuente</strong></label>
-            <label class="col-form-label col-1 text-start mx-2" for="retIca"><strong>Autoret Ica</strong></label>
-            <label class="col-form-label col-1 text-start mx-2" for="exenIva"><strong>Exen Iva</strong></label>
-            <label class="col-form-label col-1 text-start mx-2" for="estadoCliente"><strong>Estado</strong></label>
-            <label class="col-form-label col-2 text-start mx-2" for="codVendedor"><strong>Vendedor</strong></label>
+            <label class="form-label col-1 text-start mx-2" for="retIva"><strong>Autoret Iva</strong></label>
+            <label class="form-label col-1 text-start mx-2" for="retFte"><strong>Retefuente</strong></label>
+            <label class="form-label col-1 text-start mx-2" for="retIca"><strong>Autoret Ica</strong></label>
+            <label class="form-label col-1 text-start mx-2" for="exenIva"><strong>Exen Iva</strong></label>
+            <label class="form-label col-1 text-start mx-2" for="estadoCliente"><strong>Estado</strong></label>
+            <label class="form-label col-2 text-start mx-2" for="codVendedor"><strong>Vendedor</strong></label>
 
         </div>
-        <div class="form-group row">
+        <div class="mb-3 row">
 
             <select name="retIva" id="retIva" class="form-control col-1 mx-2">
                 <?php
@@ -291,13 +291,13 @@ $cliente = $clienteOperador->getCliente($idCliente);
                 ?>
             </select>
         </div>
-        <div class="form-group row">
+        <div class="mb-3 row">
             <div class="col-2 text-center">
                 <button class="button" type="button" onclick="return Enviar(this.form)"><span>Actualizar cliente</span></button>
             </div>
         </div>
     </form>
-    <div class="form-group row">
+    <div class="mb-3 row">
         <div class="col-3 text-center">
             <button class="button" onclick="self.location='detCliente.php?idCliente=<?= $idCliente ?>'"><span>Adicionar o Cambiar Sucursales</span>
             </button>

@@ -133,7 +133,7 @@ $totalesNotaC = $notaCrOperador->getTotalesNotaC($idNotaC);
 
         $(document).ready(function () {
             let idNotaC = <?=$idNotaC?>;
-            let ruta = "ajax/listaDetNotaC.php?idNotaC=" + idNotaC;
+            let ruta = "../ajax/listaDetNotaC.php?idNotaC=" + idNotaC;
             $('#example').DataTable({
                 "columns": [
                     {
@@ -224,21 +224,21 @@ $totalesNotaC = $notaCrOperador->getTotalesNotaC($idNotaC);
 <div id="contenedor" class="container-fluid">
     <div id="saludo1">
         <img src="../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>DETALLE DE LA NOTA CRÉDITO</h4></div>
-    <div class="form-group row">
-        <div class="col-1 text-end"><strong>Nota crédito</strong></div>
+    <div class="mb-3 row">
+        <div class="col-1"><strong>Nota crédito</strong></div>
         <div class="col-1 bg-blue"><?= $idNotaC; ?></div>
-        <div class="col-1 text-end"><strong>Fecha nota</strong></div>
+        <div class="col-1"><strong>Fecha nota</strong></div>
         <div class="col-1 bg-blue"><?= $notaC['fechaNotaC'] ?></div>
-        <div class="col-2 text-end"><strong>Factura origen</strong></div>
+        <div class="col-2"><strong>Factura origen</strong></div>
         <div class="col-1 bg-blue"><?= $notaC['facturaOrigen'] ?></div>
-        <div class="col-2 text-end"><strong>Factura destino</strong></div>
+        <div class="col-2"><strong>Factura destino</strong></div>
         <div class="col-1 bg-blue"><?= $notaC['facturaDestino'] ?></div>
 
     </div>
-    <div class="form-group row">
-        <div class="col-1 text-end"><strong>Cliente</strong></strong></div>
+    <div class="mb-3 row">
+        <div class="col-1"><strong>Cliente</strong></strong></div>
         <div class="col-5 bg-blue"><?= $notaC['nomCliente'] ?></div>
-        <div class="col-1 text-end"><strong>Motivo</strong></div>
+        <div class="col-1"><strong>Motivo</strong></div>
         <div class="col-2 bg-blue"><?= $notaC['descMotivo'] ?></div>
     </div>
 
@@ -249,7 +249,7 @@ $totalesNotaC = $notaCrOperador->getTotalesNotaC($idNotaC);
         if ($notaC['motivo'] == 0) : // DEVOLUCIÓN DE PRODUCTOS
 
             ?>
-            <div class="form-group titulo row text-center">
+            <div class="mb-3 titulo row text-center">
                 <strong>Productos para devolución</strong>
             </div>
             <div class="row">
@@ -257,7 +257,7 @@ $totalesNotaC = $notaCrOperador->getTotalesNotaC($idNotaC);
                 <label for="cantProducto" class="form-label col-1 text-center"><strong>Cantidad</strong></label>
                 <div class="col-2 text-center"></div>
             </div>
-            <div class="form-group row">
+            <div class="mb-3 row">
                 <select name="codProducto" id="codProducto" class="form-control col-4"
                         onchange="cantDetNotaC(<?= $notaC['facturaOrigen']; ?>, this.value)">
                     <option selected disabled value="">Escoja un producto</option>
@@ -281,14 +281,14 @@ $totalesNotaC = $notaCrOperador->getTotalesNotaC($idNotaC);
         elseif ($notaC['motivo'] == 1)://  DESCUENTO NO REALIZADO
 
             ?>
-            <div class="form-group titulo row text-center">
+            <div class="mb-3 titulo row text-center">
                 <strong>Descuento no realizado</strong>
             </div>
             <div class="row">
                 <div class="col-1 text-center" style="margin: 0 5px;"><strong>Descuento</strong></div>
                 <div class="col-2 text-center"></div>
             </div>
-            <div class="form-group row">
+            <div class="mb-3 row">
                 <input type="text" style="margin: 0 5px 0 0;" class="form-control col-1" name="cantProducto"
                        id="cantProducto" onkeydown="return aceptaNum(event)">%
                 <div class="col-2 text-center" style="padding: 0 20px;">
@@ -309,7 +309,7 @@ $totalesNotaC = $notaCrOperador->getTotalesNotaC($idNotaC);
             <input name="idNotaC" type="hidden" value="<?= $idNotaC; ?>">
             <input name="motivo" type="hidden" value="<?= $notaC['motivo']; ?>">
             <input name="allFactura" type="hidden" value="1">
-            <div class="form-group row">
+            <div class="mb-3 row">
                 <div class="col-2 text-center">
                     <button class="button" type="button" onclick="return Enviar(this.form)"><span>Devolver toda la factura</span>
                     </button>
@@ -320,7 +320,7 @@ $totalesNotaC = $notaCrOperador->getTotalesNotaC($idNotaC);
     <?php
     endif;
     ?>
-    <div class="form-group titulo row text-center">
+    <div class="mb-3 titulo row text-center">
         <strong>Detalle nota crédito</strong>
     </div>
     <?php
@@ -377,7 +377,7 @@ $totalesNotaC = $notaCrOperador->getTotalesNotaC($idNotaC);
                 </div>
             </div>
         </div>
-        <div class="row formatoDatos form-group">
+        <div class="row formatoDatos mb-3">
             <div class="col-9"><?= numletra($notaC['totalNotaC']) ?></div>
             <div class="col-1 me-3 px-0">
                 <div class=" text-start">
@@ -421,7 +421,7 @@ $totalesNotaC = $notaCrOperador->getTotalesNotaC($idNotaC);
             </div>
         </div>
     </div>
-    <div class="form-group row">
+    <div class="mb-3 row">
         <div class="col-2">
             <form action="Imp_NotaC.php" method="post" target="_blank">
                 <input name="idNotaC" type="hidden" value="<?php echo $idNotaC; ?>">

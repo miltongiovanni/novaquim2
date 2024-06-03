@@ -46,8 +46,8 @@ spl_autoload_register('cargarClases');
     <div id="saludo">
         <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>SELECCIÓN DE MATERIA PRIMA A REVISAR TRAZABILIDAD</h4></div>
     <form id="form1" name="form1" method="post" action="traz_mp.php">
-        <div class="form-group row">
-            <label class="col-form-label col-2" for="codMPrima"><strong>Materia prima</strong></label>
+        <div class="mb-3 row">
+            <label class="form-label col-2" for="codMPrima"><strong>Materia prima</strong></label>
             <select name="codMPrima" id="codMPrima" class="form-select col-2" onchange="getLotesMPrima(this.value)"
                     required>
                 <option selected disabled value="">-----------------------------</option>
@@ -61,12 +61,12 @@ spl_autoload_register('cargarClases');
                 ?>
             </select>
         </div>
-        <div class="form-group row">
-            <label class="col-form-label col-2" for="loteMP"><strong>Lote</strong></label>
+        <div class="mb-3 row">
+            <label class="form-label col-2" for="loteMP"><strong>Lote</strong></label>
             <select name="loteMP" id="loteMP" class="form-select col-2" required>
             </select>
         </div>
-        <div class="form-group row">
+        <div class="mb-3 row">
             <div class="col-1 text-center">
                 <button class="button" type="reset"><span>Reiniciar</span></button>
             </div>

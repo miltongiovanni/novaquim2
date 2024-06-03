@@ -48,98 +48,76 @@ spl_autoload_register('cargarClases');
     <div id="saludo">
         <img src="../../../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>CREACIÓN DE PRODUCTOS</h4></div>
     <form name="form2" method="POST" action="makeProd.php">
-        <div class="form-group row">
-            <div class="col-1 text-end">
-                <label class="col-form-label " for="idCatProd"><strong>Categoría</strong></label>
+        <div class="mb-3 row">
+            <div class="col-3">
+                <label class="form-label " for="idCatProd"><strong>Categoría</strong></label>
+                <?php
+                $manager = new CategoriasProdOperaciones();
+                $categorias = $manager->getCatsProd();
+                $filas = count($categorias);
+                echo '<select name="idCatProd" id="idCatProd" class="form-control " onchange="idProducto(this.value);" required>';
+                echo '<option disabled selected value="">-----------------------------</option>';
+                for ($i = 0; $i < $filas; $i++) {
+                    echo '<option value="' . $categorias[$i]["idCatProd"] . '">' . $categorias[$i]['catProd'] . '</option>';
+                }
+                echo '</select>';
+                ?>
             </div>
-
-            <?php
-            $manager = new CategoriasProdOperaciones();
-            $categorias = $manager->getCatsProd();
-            $filas = count($categorias);
-            echo '<div class="col-2 px-0"><select name="idCatProd" id="idCatProd" class="form-control " onchange="idProducto(this.value);" required>';
-            echo '<option disabled selected value="">-----------------------------</option>';
-            for ($i = 0; $i < $filas; $i++) {
-                echo '<option value="' . $categorias[$i]["idCatProd"] . '">' . $categorias[$i]['catProd'] . '</option>';
-            }
-            echo '</select></div>';
-            ?>
-            <div class="col-1 text-end">
-                <label class="col-form-label " for="codProducto"><strong>Código</strong></label>
-            </div>
-            <div class="col-2 px-0">
+            <div class="col-1">
+                <label class="form-label " for="codProducto"><strong>Código</strong></label>
                 <input type="text" class="form-control " name="codProducto" id="codProducto"
                        onkeydown="return aceptaNum(event)" readOnly>
             </div>
-
         </div>
-        <div class="form-group row">
-            <div class="col-1 text-end">
-                <label class="col-form-label " for="nomProducto"><strong>Producto</strong></label>
-            </div>
-            <div class="col-2 px-0">
+        <div class="mb-3 row">
+            <div class="col-2">
+                <label class="form-label " for="nomProducto"><strong>Producto</strong></label>
                 <input type="text" class="form-control " name="nomProducto" id="nomProducto"
                        onkeydown="return aceptaLetra(event)" maxlength="50" required>
             </div>
-            <div class="col-1 text-end">
-                <label class="col-form-label " for="apariencia"><strong>Apariencia</strong></label>
-            </div>
-            <div class="col-2 px-0">
+            <div class="col-2">
+                <label class="form-label " for="apariencia"><strong>Apariencia</strong></label>
                 <input type="text" class="form-control " name="apariencia" id="apariencia"
                        onkeydown="return aceptaLetra(event)" required>
             </div>
         </div>
-        <div class="form-group row">
-            <div class="col-1 text-end">
-                <label class="col-form-label " for="densMin"><strong>Densidad Min</strong></label>
-            </div>
-            <div class="col-2 px-0">
+        <div class="mb-3 row">
+            <div class="col-1">
+                <label class="form-label " for="densMin"><strong>Densidad min</strong></label>
                 <input type="text" class="form-control " name="densMin" id="densMin"
                        onkeydown="return aceptaNum(event)" required>
             </div>
-            <div class="col-1 text-end">
-                <label class="col-form-label " for="densMax"><strong>Densidad Max</strong></label>
-            </div>
-            <div class="col-2 px-0">
+            <div class="col-1">
+                <label class="form-label " for="densMax"><strong>Densidad max</strong></label>
                 <input type="text" class="form-control " name="densMax" id="densMax"
                        onkeydown="return aceptaNum(event)" required>
             </div>
-        </div>
-
-        <div class="form-group row">
-            <div class="col-1 text-end">
-                <label class="col-form-label " for="pHmin"><strong>pH Min</strong></label>
-            </div>
-            <div class="col-2 px-0">
+            <div class="col-1">
+                <label class="form-label " for="pHmin"><strong>pH min</strong></label>
                 <input type="text" class="form-control " name="pHmin" id="pHmin" onkeydown="return aceptaNum(event)"
                        required>
             </div>
-            <div class="col-1 text-end">
-                <label class="col-form-label " for="pHmax"><strong>pH Max</strong></label>
-            </div>
-            <div class="col-2 px-0">
+            <div class="col-1">
+                <label class="form-label " for="pHmax"><strong>pH max</strong></label>
                 <input type="text" class="form-control " name="pHmax" id="pHmax" onkeydown="return aceptaNum(event)"
                        required>
             </div>
         </div>
 
-        <div class="form-group row">
-            <div class="col-1 text-end">
-                <label class="col-form-label " for="fragancia"><strong>Fragancia</strong></label>
-            </div>
-            <div class="col-2 px-0">
+
+        <div class="mb-3 row">
+            <div class="col-2">
+                <label class="form-label " for="fragancia"><strong>Fragancia</strong></label>
                 <input type="text" class="form-control " name="fragancia" id="fragancia"
                        onkeydown="return aceptaLetra(event)" maxlength="30" required>
             </div>
-            <div class="col-1 text-end">
-                <label class="col-form-label " for="color"><strong>Color</strong></label>
-            </div>
-            <div class="col-2 px-0">
+            <div class="col-2">
+                <label class="form-label " for="color"><strong>Color</strong></label>
                 <input type="text" class="form-control " name="color" id="color" onkeydown="return aceptaLetra(event)"
                        maxlength="30" required>
             </div>
         </div>
-        <div class="form-group row">
+        <div class="mb-3 row">
             <div class="col-1 text-center">
                 <button class="button" type="reset"><span>Reiniciar</span></button>
             </div>

@@ -66,7 +66,7 @@ $ordenProd = $OProdOperador->getOProd($lote);
     <script>
         $(document).ready(function () {
             let lote = <?=$lote?>;
-            let ruta = "ajax/listaDetOProd.php?lote=" + lote;
+            let ruta = "../ajax/listaDetOProd.php?lote=" + lote;
             $('#example').DataTable({
                 "columns": [
                     {
@@ -125,27 +125,27 @@ $ordenProd = $OProdOperador->getOProd($lote);
 <div id="contenedor" class="container-fluid">
     <div id="saludo1">
         <img src="../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>USO DE MATERIA PRIMA POR PRODUCCIÓN</h4></div>
-    <div class="form-group row">
-        <div class="col-1 text-end"><strong>Lote</strong></div>
+    <div class="mb-3 row">
+        <div class="col-1"><strong>Lote</strong></div>
         <div class="col-1 bg-blue"><?= $lote; ?></div>
-        <div class="col-2 text-end"><strong>Cantidad</strong></div>
+        <div class="col-2"><strong>Cantidad</strong></div>
         <div class="col-1 bg-blue"><?= $ordenProd['cantidadKg'] ?> Kg</div>
-        <div class="col-1 text-end"><strong>Estado</strong></div>
+        <div class="col-1"><strong>Estado</strong></div>
         <div class="col-2 bg-blue"><?= $ordenProd['descEstado'] ?></div>
     </div>
-    <div class="form-group row">
-        <div class="col-1 text-end"><strong>Producto</strong></div>
+    <div class="mb-3 row">
+        <div class="col-1"><strong>Producto</strong></div>
         <div class="col-3 bg-blue"><?= $ordenProd['nomProducto'] ?></div>
-        <div class="col-2 text-end"><strong>Fecha de producción</strong></strong></div>
+        <div class="col-2"><strong>Fecha de producción</strong></strong></div>
         <div class="col-2 bg-blue"><?= $ordenProd['fechProd'] ?></div>
     </div>
-    <div class="form-group row">
-        <div class="col-1 text-end"><strong>Fórmula</strong></div>
+    <div class="mb-3 row">
+        <div class="col-1"><strong>Fórmula</strong></div>
         <div class="col-3 bg-blue"><?= $ordenProd['nomFormula'] ?></div>
-        <div class="col-2 text-end"><strong>Responsable</strong></div>
+        <div class="col-2"><strong>Responsable</strong></div>
         <div class="col-2 bg-blue"><?= $ordenProd['nomPersonal'] ?></div>
     </div>
-    <div class="form-group row">
+    <div class="mb-3 row">
         <div class="col-2">
             <form action="Imp_Ord_prod.php" method="post" target="_blank">
                 <input name="lote" type="hidden" value="<?= $lote; ?>">
@@ -154,7 +154,7 @@ $ordenProd = $OProdOperador->getOProd($lote);
             </form>
         </div>
     </div>
-    <div class="form-group row titulo">Detalle orden de producción :</div>
+    <div class="mb-3 row titulo">Detalle orden de producción :</div>
     <div class="tabla-50">
         <table id="example" class="display compact formatoDatos">
             <thead>

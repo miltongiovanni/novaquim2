@@ -89,7 +89,7 @@ include "../../../includes/valAcc.php";
                     "infoFiltered": "(Filtrado de _MAX_ en total)"
 
                 },
-                "ajax": "ajax/listaEnvasadoDist.php"
+                "ajax": "../ajax/listaEnvasadoDist.php"
             });
         });
     </script>

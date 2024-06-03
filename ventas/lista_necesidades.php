@@ -90,7 +90,7 @@ spl_autoload_register('cargarClases');
 
     $(document).ready(function () {
         let selPedido = <?=json_encode($selPedidos)?>;
-        let ruta = "ajax/listaNecesidades.php?selPedido=" + selPedido;
+        let ruta = "../ajax/listaNecesidades.php?selPedido=" + selPedido;
         $('#example').DataTable({
             "columns": [
                 {

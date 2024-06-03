@@ -133,7 +133,7 @@ include "../../../includes/valAcc.php";
                     "infoFiltered": "(Filtrado de _MAX_ en total)"
 
                 },
-                "ajax": "ajax/listaNotasCredito.php",
+                "ajax": "../ajax/listaNotasCredito.php",
             });
             // Add event listener for opening and closing details
             $('#example tbody').on('click', 'td.details-control', function () {

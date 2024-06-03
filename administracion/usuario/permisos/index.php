@@ -22,7 +22,7 @@ include "../../../includes/valAcc.php";
     $rep = buscarUsuarioForm("permisos.php", false);
     echo $rep;
     ?>
-    <div class="row form-group">
+    <div class="row mb-3">
         <div class="col-1">
             <button class="button" onclick="history.back()">
                 <span>VOLVER</span></button>

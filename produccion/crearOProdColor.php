@@ -32,8 +32,8 @@ foreach ($_POST as $nombre_campo => $valor) {
     <div id="saludo">
         <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>PREPARACIÓN DE SOLUCIÓN DE COLOR</h4></div>
     <form method="post" action="makeO_Prod_col.php" name="form1">
-        <div class="form-group row">
-            <label class="col-form-label col-2" for="idFormulaColor"><strong>Solución de color</strong></label>
+        <div class="mb-3 row">
+            <label class="form-label col-2" for="idFormulaColor"><strong>Solución de color</strong></label>
             <?php
             $FormulaColorOperador = new FormulasColorOperaciones();
             $formulas = $FormulaColorOperador->getFormulasColor();
@@ -46,12 +46,12 @@ foreach ($_POST as $nombre_campo => $valor) {
             echo '</select>';
             ?>
         </div>
-        <div class="form-group row">
-            <label class="col-form-label col-2 text-end" for="fechProd"><strong>Fecha de producción</strong></label>
+        <div class="mb-3 row">
+            <label class="form-label col-2 text-end" for="fechProd"><strong>Fecha de producción</strong></label>
             <input type="date" class="form-control col-2" name="fechProd" id="fechProd" required>
         </div>
-        <div class="form-group row">
-            <label class="col-form-label col-2" for="codPersonal"><strong>Responsable</strong></label>
+        <div class="mb-3 row">
+            <label class="form-label col-2" for="codPersonal"><strong>Responsable</strong></label>
             <?php
             $PersonalOperador = new PersonalOperaciones();
             $personal = $PersonalOperador->getPersonalProd();
@@ -63,13 +63,13 @@ foreach ($_POST as $nombre_campo => $valor) {
             echo '</select>';
             ?>
         </div>
-        <div class="form-group row">
-            <label class="col-form-label col-2 text-end" for="cantKg"><strong>Cantidad a producir
+        <div class="mb-3 row">
+            <label class="form-label col-2 text-end" for="cantKg"><strong>Cantidad a producir
                     (Kg)</strong></label>
             <input type="text" class="form-control col-2" name="cantKg" id="cantKg"
                    onkeydown="return aceptaNum(event)" required>
         </div>
-        <div class="form-group row">
+        <div class="mb-3 row">
             <div class="col-1 text-center">
                 <button class="button" type="reset"><span>Reiniciar</span></button>
             </div>

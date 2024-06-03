@@ -21,8 +21,8 @@ spl_autoload_register('cargarClases');
     <div id="saludo">
         <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>ELIMINACIÓN DE FORMULACIÓN</h4></div>
     <form method="post" action="deleteFormula.php">
-        <div class="form-group row">
-            <label class="col-form-label col-1" for="idFormula"><strong>Fórmula</strong></label>
+        <div class="mb-3 row">
+            <label class="form-label col-1" for="idFormula"><strong>Fórmula</strong></label>
             <?php
             $FormulaOperador = new FormulasOperaciones();
             $formulas = $FormulaOperador->getFormulasEliminar();
@@ -34,7 +34,7 @@ spl_autoload_register('cargarClases');
             echo '</select>';
             ?>
         </div>
-        <div class="form-group row">
+        <div class="mb-3 row">
             <div class="col-1 text-center">
                 <button class="button" type="reset"><span>Reiniciar</span></button>
             </div>

@@ -31,49 +31,49 @@ $saldo = intval($egreso['treal']) - $abono;
     <div id="saludo1">
         <img src="../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>MODIFICACIÓN COMPROBANTE DE EGRESO </h4></div>
 
-    <div class="form-group row">
-        <div class="col-1 text-end"><strong>Id Egreso</strong></div>
+    <div class="mb-3 row">
+        <div class="col-1"><strong>Id Egreso</strong></div>
         <div class="col-1 bg-blue"><?= $idEgreso; ?></div>
-        <div class="col-1 text-end"><strong>Id Compra</strong></strong></div>
+        <div class="col-1"><strong>Id Compra</strong></strong></div>
         <div class="col-1 bg-blue"><?= $egreso['idCompra'] ?></div>
-        <div class="col-1 text-end"><strong>No. de Factura</strong></div>
+        <div class="col-1"><strong>No. de Factura</strong></div>
         <div class="col-1 bg-blue"><?= $egreso['numFact'] ?></div>
     </div>
-    <div class="form-group row">
-        <div class="col-2 text-end"><strong>Tipo de compra</strong></div>
+    <div class="mb-3 row">
+        <div class="col-2"><strong>Tipo de compra</strong></div>
         <div class="col-2 bg-blue"><?= $tiposCompra[$egreso['tipoCompra']] ?></div>
-        <div class="col-1 text-end"><strong>Valor Factura</strong></div>
+        <div class="col-1"><strong>Valor Factura</strong></div>
         <div class="col-1 bg-blue"><?= $egreso['total'] ?></div>
     </div>
-    <div class="form-group row">
-        <div class="col-2 text-end"><strong>Proveedor</strong></strong></div>
+    <div class="mb-3 row">
+        <div class="col-2"><strong>Proveedor</strong></strong></div>
         <div class="col-2 bg-blue"><?= $egreso['nomProv'] ?></div>
-        <div class="col-1 text-end"><strong>Retención</strong></div>
+        <div class="col-1"><strong>Retención</strong></div>
         <div class="col-1 bg-blue"><?= $egreso['retefuente'] ?></div>
     </div>
-    <div class="form-group row">
-        <div class="col-2 text-end"><strong>NIT</strong></div>
+    <div class="mb-3 row">
+        <div class="col-2"><strong>NIT</strong></div>
         <div class="col-2 bg-blue"><?= $egreso['nitProv'] ?></div>
-        <div class="col-1 text-end"><strong>Rete Ica</strong></strong></div>
+        <div class="col-1"><strong>Rete Ica</strong></strong></div>
         <div class="col-1 bg-blue"><?= $egreso['reteica'] ?></div>
     </div>
-    <div class="form-group row">
-        <div class="col-2 text-end"><strong>Fecha de compra</strong></div>
+    <div class="mb-3 row">
+        <div class="col-2"><strong>Fecha de compra</strong></div>
         <div class="col-2 bg-blue"><?= $egreso['fechComp']; ?></div>
-        <div class="col-1 text-end"><strong>Valor a Pagar</strong></div>
+        <div class="col-1"><strong>Valor a Pagar</strong></div>
         <div class="col-1 bg-blue"><?= $egreso['vreal'] ?></div>
     </div>
-    <div class="form-group row">
-        <div class="col-2 text-end"><strong>Fecha Vencimiento </strong></strong></div>
+    <div class="mb-3 row">
+        <div class="col-2"><strong>Fecha Vencimiento </strong></strong></div>
         <div class="col-2 bg-blue"><?= $egreso['fechVenc'] ?></div>
-        <div class="col-1 text-end"><strong>Valor pagado</strong></div>
+        <div class="col-1"><strong>Valor pagado</strong></div>
         <div class="col-1 bg-blue"><?= $egreso['pago'] ?></div>
     </div>
-    <div class="form-group row">&nbsp;</div>
+    <div class="mb-3 row">&nbsp;</div>
     <form method="post" action="updateEgreso.php" name="form1">
         <input name="idEgreso" type="hidden" value="<?= $idEgreso; ?>">
         <input name="modEgreso" type="hidden" value="1">
-        <div class="row form-group">
+        <div class="row mb-3">
             <div class=" text-center" style="margin: 0 5px 0 0 ; flex: 0 0 10%; max-width: 10%;"><strong>Fecha del
                     Pago</strong></div>
             <div class="col-1 text-center" style="margin: 0 5px;"><strong>Forma de Pago</strong></div>
@@ -82,7 +82,7 @@ $saldo = intval($egreso['treal']) - $abono;
             <div class="col-2 text-center">
             </div>
         </div>
-        <div class="form-group row">
+        <div class="mb-3 row">
             <input type="date" style="margin: 0 5px 0 0 ; flex: 0 0 10%; max-width: 10%;" class="form-control"
                    value="<?= $egreso['fechPago']; ?>"
                    name="fechPago" id="fechPago">

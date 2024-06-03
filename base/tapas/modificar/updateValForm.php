@@ -26,35 +26,25 @@ $tapa = $TapaOperador->getTapa($codTapa);
     <div id="saludo">
         <img src="../../../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>ACTUALIZACIÓN DE TAPA O VÁLVULA</h4></div>
     <form id="form1" name="form1" method="post" action="updateVal.php">
-        <div class="form-group row">
-            <div class="col-1 text-end">
-                <label class="col-form-label " for="codTapa"><strong>Código</strong></label>
-            </div>
-            <div class="col-2 px-0">
+        <div class="mb-3 row">
+            <div class="col-1">
+                <label class="form-label " for="codTapa"><strong>Código</strong></label>
                 <input type="text" class="form-control " name="codTapa" id="codTapa" maxlength="50"
                        value="<?= $tapa['codTapa']; ?>" readonly>
             </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-1 text-end">
-                <label class="col-form-label " for="tapa"><strong>Tapa</strong></label>
-            </div>
-            <div class="col-2 px-0">
+            <div class="col-3">
+                <label class="form-label " for="tapa"><strong>Tapa</strong></label>
                 <input type="text" class="form-control " name="tapa" id="tapa" value="<?= $tapa['tapa']; ?>"
                        maxlength="50">
             </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-1 text-end">
-                <label class="col-form-label " for="stockTapa"><strong>Stock Tapa</strong></label>
-            </div>
-            <div class="col-2 px-0">
+            <div class="col-1">
+                <label class="form-label " for="stockTapa"><strong>Stock Tapa</strong></label>
                 <input type="text" class="form-control " name="stockTapa" id="stockTapa"
                        onkeydown="return aceptaNum(event)" value="<?= $tapa['stockTapa']; ?>">
                 <input type="hidden" name="codIva" id="codIva" value="3">
             </div>
         </div>
-        <div class="form-group row">
+        <div class="mb-3 row">
             <div class="col-1 text-center">
                 <button class="button" type="reset"><span>Reiniciar</span></button>
             </div>

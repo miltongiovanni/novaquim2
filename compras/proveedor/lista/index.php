@@ -6,11 +6,11 @@ include "../../../includes/valAcc.php";
 <head>
     <title>Lista de Proveedores</title>
     <meta charset="utf-8">
-    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-    <script  src="../js/validar.js"></script>
-    <link rel="stylesheet" href="../css/datatables.css">
-    <script src="../js/jquery-3.3.1.min.js"></script>
-    <script src="../js/datatables.js"></script>
+    <link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script  src="../../../js/validar.js"></script>
+    <link rel="stylesheet" href="../../../css/datatables.css">
+    <script src="../../../js/jquery-3.3.1.min.js"></script>
+    <script src="../../../js/datatables.js"></script>
     
 
     <script>
@@ -60,7 +60,7 @@ include "../../../includes/valAcc.php";
             var table = $('#example').DataTable({
                 "columns": [
                     {
-                        "className": 'details-control',
+                        "className": 'dt-control',
                         "orderable": false,
                         "data": null,
                         "defaultContent": ''
@@ -121,21 +121,19 @@ include "../../../includes/valAcc.php";
                     "infoFiltered": "(Filtrado de _MAX_ en total)"
 
                 },
-                "ajax": "ajax/listaProv.php"
+                "ajax": "../ajax/listaProv.php"
             });
             // Add event listener for opening and closing details
-            $('#example tbody').on('click', 'td.details-control', function () {
-                var tr = $(this).closest('tr');
+            table.on('click', 'td.dt-control', function (e) {
+                var tr = e.target.closest('tr');
                 var row = table.row(tr);
 
                 if (row.child.isShown()) {
                     // This row is already open - close it
                     row.child.hide();
-                    tr.removeClass('shown');
                 } else {
                     // Open this row
                     row.child(format(row.data())).show();
-                    tr.addClass('shown');
                 }
             });
         });
@@ -144,10 +142,10 @@ include "../../../includes/valAcc.php";
 <body>
 <div id="contenedor" class="container-fluid">
     <div id="saludo1">
-        <img src="../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>LISTADO DE PROVEEDORES</h4></div>
+        <img src="../../../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>LISTADO DE PROVEEDORES</h4></div>
     <div class="row flex-end">
         <div class="col-1">
-            <button class="button" onclick="window.location='../menu.php'">
+            <button class="button" onclick="window.location='../../../menu.php'">
                 <span><STRONG>Ir al Menú</STRONG></span></button>
         </div>
     </div>
@@ -170,7 +168,7 @@ include "../../../includes/valAcc.php";
 
     <div class="row">
         <div class="col-1">
-            <button class="button" onclick="window.location='../menu.php'">
+            <button class="button" onclick="window.location='../../../menu.php'">
                 <span><STRONG>Ir al Menú</STRONG></span>
             </button>
         </div>

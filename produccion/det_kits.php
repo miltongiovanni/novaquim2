@@ -99,7 +99,7 @@ $kit = $KitOperador->getKit($idKit);
                     "infoFiltered": "(Filtrado de _MAX_ en total)"
 
                 },
-                "ajax": "ajax/listaDetKit.php?idKit=" + idKit
+                "ajax": "../ajax/listaDetKit.php?idKit=" + idKit
             });
         });
     </script>
@@ -109,13 +109,13 @@ $kit = $KitOperador->getKit($idKit);
     <div id="saludo1">
         <img src="../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>DETALLE DE KIT</h4></div>
 
-    <div class="form-group row">
-        <div class="col-1 text-end"><strong>Código Kit</strong></div>
+    <div class="mb-3 row">
+        <div class="col-1"><strong>Código Kit</strong></div>
         <div class="col-1 bg-blue"><?= $idKit; ?></div>
-        <div class="col-1 text-end"><strong>Kit</strong></div>
+        <div class="col-1"><strong>Kit</strong></div>
         <div class="col-3 bg-blue"><?= $kit['producto'] ?></div>
     </div>
-    <div class="form-group titulo row text-center">
+    <div class="mb-3 titulo row text-center">
         Agregar detalle
     </div>
     <form method="post" action="makeDetKit.php" name="form1">
@@ -125,7 +125,7 @@ $kit = $KitOperador->getKit($idKit);
             <div class="col-2 text-center">
             </div>
         </div>
-        <div class="form-group row">
+        <div class="mb-3 row">
             <select name="codProducto" id="codProducto" class="form-select col-4"
                     style="margin: 0 5px 0 0;" onchange="findLotePresentacion(this.value);" required>
                 <option selected disabled value="">------------------------------</option>
@@ -149,7 +149,7 @@ $kit = $KitOperador->getKit($idKit);
             <div class="col-2 text-center">
             </div>
         </div>
-        <div class="form-group row">
+        <div class="mb-3 row">
             <select name="codProducto" id="codProducto" class="form-select col-4"
                     style="margin: 0 5px 0 0;" onchange="findLotePresentacion(this.value);" required>
                 <option selected disabled value="">------------------------------</option>
@@ -166,7 +166,7 @@ $kit = $KitOperador->getKit($idKit);
             </div>
         </div>
     </form>
-    <div class="form-group titulo row text-center">
+    <div class="mb-3 titulo row text-center">
         Detalle
     </div>
     <div class="tabla-50">

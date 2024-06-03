@@ -46,19 +46,19 @@ spl_autoload_register('cargarClases');
     <div id="saludo">
         <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>SELECCIONE EL TIPO DE KIT A CREAR</h4></div>
     <form name="form2" method="POST" action="make_kits.php">
-        <div class="form-group row">
+        <div class="mb-3 row">
 
-            <label class="col-form-label col-2" for="tipo"><strong>Tipo de kit</strong></label>
+            <label class="form-label col-2" for="tipo"><strong>Tipo de kit</strong></label>
             <select name="tipo" id="tipo" class="form-select col-2" onchange="seleccionarTipo(this.value);" required>
                 <option disabled selected value="">---------------</option>
                 <option value=1>Kit Novaquim</option>
                 <option value=2>Kit Distribución</option>
             </select>
         </div>
-        <div class="form-group row" id="tipoKit">
+        <div class="mb-3 row" id="tipoKit">
         </div>
-        <div class="form-group row">
-            <label class="col-form-label col-2" for="codEnvase"><strong>Envase</strong></label>
+        <div class="mb-3 row">
+            <label class="form-label col-2" for="codEnvase"><strong>Envase</strong></label>
             <?php
             $EnvasesOperador = new EnvasesOperaciones();
             $envases = $EnvasesOperador->getEnvases();
@@ -71,7 +71,7 @@ spl_autoload_register('cargarClases');
             echo '</select>';
             ?>
         </div>
-        <div class="form-group row">
+        <div class="mb-3 row">
             <div class="col-1 text-center">
                 <button class="button" type="reset"><span>Reiniciar</span></button>
             </div>

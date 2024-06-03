@@ -54,27 +54,27 @@ switch ($tipoCompra) {
         <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>INGRESO DE COMPRA DE<?= $titulo ?></h4></div>
     <form name="form2" method="POST" action="makeCompra.php">
         <input name="tipoCompra" type="hidden" value="<?= $tipoCompra ?>">
-        <div class="form-group row">
-            <label class="col-form-label col-2 text-end" for="busProv"><strong>Proveedor</strong></label>
+        <div class="mb-3 row">
+            <label class="form-label col-2 text-end" for="busProv"><strong>Proveedor</strong></label>
             <input type="text" class="form-control col-2" id="busProv" name="busProv" onkeyup="findProveedor()"
                    required/>
         </div>
-        <div class="form-group row" id="myDiv">
+        <div class="mb-3 row" id="myDiv">
         </div>
-        <div class="form-group row">
-            <label class="col-form-label col-2 text-end" for="numFact"><strong>Número de Factura</strong></label>
+        <div class="mb-3 row">
+            <label class="form-label col-2 text-end" for="numFact"><strong>Número de Factura</strong></label>
             <input type="text" class="form-control col-2" name="numFact" id="numFact"
                    onkeydown="return aceptaNum(event)" required>
         </div>
-        <div class="form-group row">
-            <label class="col-form-label col-2 text-end" for="fechComp"><strong>Fecha de compra</strong></label>
+        <div class="mb-3 row">
+            <label class="form-label col-2 text-end" for="fechComp"><strong>Fecha de compra</strong></label>
             <input type="date" class="form-control col-2" name="fechComp" id="fechComp" required>
         </div>
-        <div class="form-group row">
-            <label class="col-form-label col-2 text-end" for="fechVenc"><strong>Fecha de vencimiento</strong></label>
+        <div class="mb-3 row">
+            <label class="form-label col-2 text-end" for="fechVenc"><strong>Fecha de vencimiento</strong></label>
             <input type="date" class="form-control col-2" name="fechVenc" id="fechVenc" required>
         </div>
-        <div class="form-group row">
+        <div class="mb-3 row">
             <div class="col-1 text-center">
                 <button class="button" type="reset"><span>Reiniciar</span></button>
             </div>

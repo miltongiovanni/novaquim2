@@ -84,7 +84,7 @@ $totales = calcularTotalesFactura($idFactura, $factura['descuento']);
 
         $(document).ready(function () {
             let idFactura = <?=$idFactura?>;
-            let ruta = "ajax/listaDetFactura.php?idFactura=" + idFactura;
+            let ruta = "../ajax/listaDetFactura.php?idFactura=" + idFactura;
             $('#example').DataTable({
                 "columns": [
                     {
@@ -151,43 +151,43 @@ $totales = calcularTotalesFactura($idFactura, $factura['descuento']);
 <div id="contenedor" class="container-fluid">
     <div id="saludo1">
         <img src="../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>DETALLE DE FACTURA DE VENTA</h4></div>
-    <div class="form-group row">
-        <div class="col-1 text-end"><strong>No. de Factura</strong></div>
+    <div class="mb-3 row">
+        <div class="col-1"><strong>No. de Factura</strong></div>
         <div class="col-1 bg-blue"><?= $idFactura; ?></div>
-        <div class="col-1 text-end"><strong>Pedido(s)</strong></div>
+        <div class="col-1"><strong>Pedido(s)</strong></div>
         <div class="col-2 bg-blue"><?= $factura['idPedido']; ?></div>
-        <div class="col-1 text-end"><strong>Remision(es)</strong></div>
+        <div class="col-1"><strong>Remision(es)</strong></div>
         <div class="col-2 bg-blue"><?= $factura['idRemision'] ?></div>
-        <div class="col-1 text-end"><strong>Estado</strong></div>
+        <div class="col-1"><strong>Estado</strong></div>
         <div class="col-1 bg-blue"><?= $factura['estadoFactura'] ?></div>
     </div>
-    <div class="form-group row">
-        <div class="col-1 text-end"><strong>Nit</strong></div>
+    <div class="mb-3 row">
+        <div class="col-1"><strong>Nit</strong></div>
         <div class="col-1 bg-blue"><?= $factura['nitCliente'] ?></div>
-        <div class="col-1 text-end"><strong>Cliente</strong></strong></div>
+        <div class="col-1"><strong>Cliente</strong></strong></div>
         <div class="col-4 bg-blue"><?= $factura['nomCliente'] ?></div>
-        <div class="col-1 text-end"><strong>Teléfono</strong></div>
+        <div class="col-1"><strong>Teléfono</strong></div>
         <div class="col-1 bg-blue"><?= $factura['telCliente'] ?></div>
     </div>
-    <div class="form-group row">
-        <div class="col-1 text-end"><strong>Fecha Factura</strong></div>
+    <div class="mb-3 row">
+        <div class="col-1"><strong>Fecha Factura</strong></div>
         <div class="col-1 bg-blue"><?= $factura['fechaFactura'] ?></div>
-        <div class="col-1 text-end"><strong>Dirección </strong></div>
+        <div class="col-1"><strong>Dirección </strong></div>
         <div class="col-4 bg-blue"><?= $factura['dirCliente'] ?></div>
-        <div class="col-1 text-end"><strong>Ciudad</strong></div>
+        <div class="col-1"><strong>Ciudad</strong></div>
         <div class="col-1 bg-blue"><?= $factura['Ciudad'] ?></div>
     </div>
-    <div class="form-group row">
-        <div class="col-1 text-end"><strong>Vencimiento</strong></div>
+    <div class="mb-3 row">
+        <div class="col-1"><strong>Vencimiento</strong></div>
         <div class="col-1 bg-blue"><?= $factura['fechaVenc'] ?></div>
-        <div class="col-1 text-end"><strong>Orden compra</strong></div>
+        <div class="col-1"><strong>Orden compra</strong></div>
         <div class="col-1 bg-blue"><?= $factura['ordenCompra'] != 0 ? $factura['ordenCompra'] : '' ?></div>
-        <div class="col-1 text-end"><strong>Forma de pago</strong></div>
+        <div class="col-1"><strong>Forma de pago</strong></div>
         <div class="col-1 bg-blue"><?= $factura['fechaFactura'] == $factura['fechaVenc'] ? 'Contado' : 'Crédito' ?></div>
-        <div class="col-1 text-end"><strong>Vendedor</strong></div>
+        <div class="col-1"><strong>Vendedor</strong></div>
         <div class="col-2 bg-blue"><?= $factura['vendedor'] ?></div>
     </div>
-    <div class="form-group titulo row text-center">
+    <div class="mb-3 titulo row text-center">
         <strong>Detalle</strong>
     </div>
     <div class="tabla-70">
@@ -278,7 +278,7 @@ $totales = calcularTotalesFactura($idFactura, $factura['descuento']);
             </div>
         </div>
     </div>
-    <div class="form-group row">
+    <div class="mb-3 row">
         <div class="col-2">
             <form action="Imp_Factura.php" method="post" target="_blank">
                 <input name="idFactura" type="hidden" value="<?php echo $idFactura; ?>">

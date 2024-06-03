@@ -72,7 +72,7 @@ $remision = $remisionOperador->getRemision($idRemision);
 
         $(document).ready(function () {
             let idRemision = <?=$idRemision?>;
-            let ruta = "ajax/listaDetRemision.php?idRemision=" + idRemision;
+            let ruta = "../ajax/listaDetRemision.php?idRemision=" + idRemision;
             $('#example').DataTable({
                 "columns": [
                     {
@@ -127,33 +127,33 @@ $remision = $remisionOperador->getRemision($idRemision);
 <div id="contenedor" class="container-fluid">
     <div id="saludo1">
         <img src="../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>DETALLE DE SALIDA POR REMISIÓN</h4></div>
-    <div class="form-group row">
-        <div class="col-1 text-end"><strong>Remisión</strong></div>
+    <div class="mb-3 row">
+        <div class="col-1"><strong>Remisión</strong></div>
         <div class="col-1 bg-blue"><?= $idRemision; ?></div>
-        <div class="col-2 text-end"><strong>Fecha Remisión</strong></div>
+        <div class="col-2"><strong>Fecha Remisión</strong></div>
         <div class="col-1 bg-blue"><?= $remision['fechaRemision'] ?></div>
-        <div class="col-2 text-end"><strong>No. de Pedido</strong></div>
+        <div class="col-2"><strong>No. de Pedido</strong></div>
         <div class="col-1 bg-blue"><?= $remision['idPedido']; ?></div>
     </div>
-    <div class="form-group row">
-        <div class="col-2 text-end"><strong>Cliente</strong></strong></div>
+    <div class="mb-3 row">
+        <div class="col-2"><strong>Cliente</strong></strong></div>
         <div class="col-4 bg-blue"><?= $remision['nomCliente'] ?></div>
-        <div class="col-1 text-end"><strong>Nit</strong></div>
+        <div class="col-1"><strong>Nit</strong></div>
         <div class="col-1 bg-blue"><?= $remision['nitCliente'] ?></div>
     </div>
-    <div class="form-group row">
-        <div class="col-2 text-end"><strong>Lugar de entrega</strong></strong></div>
+    <div class="mb-3 row">
+        <div class="col-2"><strong>Lugar de entrega</strong></strong></div>
         <div class="col-4 bg-blue"><?= $remision['nomSucursal'] ?></div>
-        <div class="col-1 text-end"><strong>Teléfono</strong></div>
+        <div class="col-1"><strong>Teléfono</strong></div>
         <div class="col-1 bg-blue"><?= $remision['telCliente'] ?></div>
     </div>
-    <div class="form-group row">
-        <div class="col-2 text-end"><strong>Dirección entrega </strong></div>
+    <div class="mb-3 row">
+        <div class="col-2"><strong>Dirección entrega </strong></div>
         <div class="col-4 bg-blue"><?= $remision['dirSucursal'] ?></div>
-        <div class="col-1 text-end"><strong>Ciudad</strong></div>
+        <div class="col-1"><strong>Ciudad</strong></div>
         <div class="col-1 bg-blue"><?= $remision['ciudad'] ?></div>
     </div>
-    <div class="form-group titulo row text-center">
+    <div class="mb-3 titulo row text-center">
         <strong>Detalle</strong>
     </div>
     <div class="tabla-50">
@@ -168,7 +168,7 @@ $remision = $remisionOperador->getRemision($idRemision);
         </table>
 
     </div>
-    <div class="form-group row">
+    <div class="mb-3 row">
         <div class="col-2">
             <form action="Imp_Remision.php" method="post" target="_blank">
                 <input name="idRemision" type="hidden" value="<?php echo $idRemision ?>">

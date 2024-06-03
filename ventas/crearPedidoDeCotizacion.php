@@ -118,13 +118,13 @@ if ($cliente) {
             <form id="creaction_cliente_form" method="POST">
                 <div class=" row ">
                     <h5 class="text-center text-bold mb-4">Agregar cliente que no existe</h5>
-                    <label class="col-form-label col-2 text-start mx-2"><strong>Tipo</strong></label>
-                    <label class="col-form-label col-2 text-start mx-2"
+                    <label class="form-label col-2 text-start mx-2"><strong>Tipo</strong></label>
+                    <label class="form-label col-2 text-start mx-2"
                            for="numero"><strong>Número</strong></label>
-                    <label class="col-form-label col-2 text-start mx-2" for="nitCliente"><strong>NIT</strong></label>
-                    <label class="col-form-label col-3 text-start mx-2" for="nomCliente"><strong>Cliente</strong></label>
+                    <label class="form-label col-2 text-start mx-2" for="nitCliente"><strong>NIT</strong></label>
+                    <label class="form-label col-3 text-start mx-2" for="nomCliente"><strong>Cliente</strong></label>
                 </div>
-                <div class="form-group row">
+                <div class="mb-3 row">
                     <div class="col-2 form-check-inline form-control mx-2" style="display: flex">
                         <label for="tipo_0" class="col-6 form-check-label" style="text-align: center">
                             <input type="radio" id="tipo_0" name="tipo" value="1" checked onchange="nitClientes()">&nbsp;&nbsp;Nit
@@ -142,12 +142,12 @@ if ($cliente) {
                            value="<?= $cliente_cotizacion_personalizada['nomCliente'] ?>" required>
                 </div>
                 <div class="row">
-                    <label class="col-form-label col-2 text-start mx-2" for="telCliente"><strong>Teléfono</strong></label>
-                    <label class="col-form-label col-2 text-start mx-2" for="emailCliente"><strong>Correo electrónico</strong></label>
-                    <label class="col-form-label col-2 text-start mx-2" for="ciudadCliente"><strong>Ciudad</strong></label>
-                    <label class="col-form-label col-3 text-start mx-2" for="dirCliente"><strong>Dirección</strong></label>
+                    <label class="form-label col-2 text-start mx-2" for="telCliente"><strong>Teléfono</strong></label>
+                    <label class="form-label col-2 text-start mx-2" for="emailCliente"><strong>Correo electrónico</strong></label>
+                    <label class="form-label col-2 text-start mx-2" for="ciudadCliente"><strong>Ciudad</strong></label>
+                    <label class="form-label col-3 text-start mx-2" for="dirCliente"><strong>Dirección</strong></label>
                 </div>
-                <div class="form-group row">
+                <div class="mb-3 row">
                     <input type="text" class="form-control col-2 mx-2" name="telCliente" id="telCliente" maxlength="10"
                            onkeydown="return aceptaNum(event)" value="<?= $cliente_cotizacion_personalizada['telCliente'] ?>">
                     <input type="email" class="form-control col-2 mx-2" name="emailCliente" id="emailCliente"
@@ -169,15 +169,15 @@ if ($cliente) {
                            value="<?= $cliente_cotizacion_personalizada['dirCliente'] ?>" required>
                 </div>
                 <div class="row">
-                    <label class="col-form-label col-2 text-start mx-2" for="contactoCliente"><strong>Nombre
+                    <label class="form-label col-2 text-start mx-2" for="contactoCliente"><strong>Nombre
                             Contacto</strong></label>
-                    <label class="col-form-label col-2 text-start mx-2" for="cargoCliente"><strong>Cargo
+                    <label class="form-label col-2 text-start mx-2" for="cargoCliente"><strong>Cargo
                             Contacto</strong></label>
-                    <label class="col-form-label col-2 text-start mx-2" for="celCliente"><strong>Celular
+                    <label class="form-label col-2 text-start mx-2" for="celCliente"><strong>Celular
                             Contacto</strong></label>
-                    <label class="col-form-label col-3 text-start mx-2" for="idCatCliente"><strong>Actividad</strong></label>
+                    <label class="form-label col-3 text-start mx-2" for="idCatCliente"><strong>Actividad</strong></label>
                 </div>
-                <div class="form-group row">
+                <div class="mb-3 row">
                     <input type="text" class="form-control col-2 mx-2" name="contactoCliente" id="contactoCliente"
                            value="<?= $cliente_cotizacion_personalizada['contactoCliente'] ?>" required>
                     <input type="text" class="form-control col-2 mx-2" name="cargoCliente" id="cargoCliente"
@@ -200,15 +200,15 @@ if ($cliente) {
                     </select>
                 </div>
                 <div class="row">
-                    <label class="col-form-label col-1 text-start mx-2" for="retIva"><strong>Autoret Iva</strong></label>
-                    <label class="col-form-label col-1 text-start mx-2" for="retFte"><strong>Retefuente</strong></label>
-                    <label class="col-form-label col-1 text-start mx-2" for="retIca"><strong>Autoret Ica</strong></label>
-                    <label class="col-form-label col-1 text-start mx-2" for="exenIva"><strong>Exen Iva</strong></label>
-                    <label class="col-form-label col-1 text-start mx-2" for="estadoCliente"><strong>Estado</strong></label>
-                    <label class="col-form-label col-2 text-start mx-2" for="codVendedor"><strong>Vendedor</strong></label>
+                    <label class="form-label col-1 text-start mx-2" for="retIva"><strong>Autoret Iva</strong></label>
+                    <label class="form-label col-1 text-start mx-2" for="retFte"><strong>Retefuente</strong></label>
+                    <label class="form-label col-1 text-start mx-2" for="retIca"><strong>Autoret Ica</strong></label>
+                    <label class="form-label col-1 text-start mx-2" for="exenIva"><strong>Exen Iva</strong></label>
+                    <label class="form-label col-1 text-start mx-2" for="estadoCliente"><strong>Estado</strong></label>
+                    <label class="form-label col-2 text-start mx-2" for="codVendedor"><strong>Vendedor</strong></label>
 
                 </div>
-                <div class="form-group row">
+                <div class="mb-3 row">
 
                     <select name="retIva" id="retIva" class="form-control col-1 mx-2">
                         <?php
@@ -299,7 +299,7 @@ if ($cliente) {
                         ?>
                     </select>
                 </div>
-                <div class="form-group row my-5">
+                <div class="mb-3 row my-5">
                     <div class="col-2 text-center">
                         <button class="button" type="button" onclick="agregarCliente();"><span>Agregar cliente</span></button>
                     </div>
@@ -322,25 +322,25 @@ if ($cliente) {
             <input type="hidden" name="idCliente" id="idCliente" value="<?=$cliente_id ?? ''?>">
             <input type="hidden" name="idSucursal" id="idSucursal" value="<?=$sucursal_id ?? ''?>">
             <input type="hidden" name="idCotPersonalizada" id="idCotPersonalizada" value="<?=$idCotPersonalizada?>">
-            <div class="form-group row">
-                <label class="col-form-label col-2 text-end" for="nom_cliente"><strong>Cliente: </strong></label>
+            <div class="mb-3 row">
+                <label class="form-label col-2 text-end" for="nom_cliente"><strong>Cliente: </strong></label>
                 <input type="text" class="form-control col-5" name="nom_cliente" id="nom_cliente" value="<?= $cliente_cotizacion_personalizada['nomCliente'] ?? '' ?>" readonly>
             </div>
-            <div class="form-group row">
-                <label class="col-form-label col-2 text-end" for="nomSucursal"><strong>Sucursal: </strong></label>
+            <div class="mb-3 row">
+                <label class="form-label col-2 text-end" for="nomSucursal"><strong>Sucursal: </strong></label>
                 <input type="text" class="form-control col-5" name="nomSucursal" id="nomSucursal" value="<?= $cliente_cotizacion_personalizada['nomCliente'] ?? '' ?>" readonly>
             </div>
-            <div class="form-group row">
-                <label class="col-form-label col-2 text-end" for="fechaPedido"><strong>Fecha de Pedido: </strong></label>
+            <div class="mb-3 row">
+                <label class="form-label col-2 text-end" for="fechaPedido"><strong>Fecha de Pedido: </strong></label>
                 <input type="date" class="form-control col-5" name="fechaPedido" id="fechaPedido" required>
             </div>
-            <div class="form-group row">
-                <label class="col-form-label col-2 text-end" for="fechaEntrega"><strong>Fecha de entrega: </strong></label>
+            <div class="mb-3 row">
+                <label class="form-label col-2 text-end" for="fechaEntrega"><strong>Fecha de entrega: </strong></label>
                 <input type="date" class="form-control col-5" name="fechaEntrega" id="fechaEntrega" required>
             </div>
-            <div class="form-group row">
-                <label class="col-form-label col-2 text-end"><strong>Precio: </strong></label>
-                <div class="col-form-label col-5 ">
+            <div class="mb-3 row">
+                <label class="form-label col-2 text-end"><strong>Precio: </strong></label>
+                <div class="form-label col-5 ">
                     <input name="tipoPrecio" type="radio" id="precio_0" value="1" <?= $cotizacion['tipoPrecio'] == 1 ? 'checked': '' ?>>
                     <label for="precio_0">Fábrica</label>
                     <input type="radio" name="tipoPrecio" value="2" id="precio_1" <?= $cotizacion['tipoPrecio'] == 2 ? 'checked': '' ?> >
@@ -353,7 +353,7 @@ if ($cliente) {
                     <label for="precio_4">Superetes</label>
                 </div>
             </div>
-            <div class="row form-group my-4">
+            <div class="row mb-3 my-4">
                 <div class="col-1">
                     <button class="button" type="button" onclick="return Enviar(this.form)">
                         <span>Continuar</span>

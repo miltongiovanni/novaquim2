@@ -37,19 +37,19 @@ $presentacion = $EnvasadoOperador->getEnvasado($lote, $codPresentacion);
         <input type="hidden" name="cantidadPendiente" id="cantidadPendiente" value="<?= $cantidadPendiente ?>">
         <input type="hidden" name="codPresentacion" id="codPresentacion" value="<?= $codPresentacion ?>">
         <input type="hidden" name="cantidad_ant" id="cantidad_ant" value="<?= $presentacion['cantPresentacion'] ?>">
-        <div class="form-group row">
-            <label class="col-form-label col-2 text-end" for="presentacion"><strong>Presentación de
+        <div class="mb-3 row">
+            <label class="form-label col-2 text-end" for="presentacion"><strong>Presentación de
                     Producto</strong></label>
             <input type="text" class="form-control col-3" name="presentacion" id="presentacion" readonly
                    value="<?= $presentacion['presentacion'] ?>">
         </div>
-        <div class="form-group row">
-            <label class="col-form-label col-2 text-end" for="cantPresentacion"><strong>Cantidad</strong></label>
+        <div class="mb-3 row">
+            <label class="form-label col-2 text-end" for="cantPresentacion"><strong>Cantidad</strong></label>
             <input type="text" class="form-control col-3" name="cantPresentacion" id="cantPresentacion"
                    value="<?= $presentacion['cantPresentacion'] ?>"
                    onkeydown="return aceptaNum(event)">
         </div>
-        <div class="form-group row">
+        <div class="mb-3 row">
     <div class="col-1 text-center">
                 <button class="button" type="reset"><span>Reiniciar</span></button>
             </div>

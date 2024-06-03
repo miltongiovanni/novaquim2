@@ -105,7 +105,7 @@ include "../../../includes/valAcc.php";
                     "infoFiltered": "(Filtrado de _MAX_ en total)"
 
                 },
-                "ajax": "ajax/listaOProdA.php",
+                "ajax": "../ajax/listaOProdA.php",
                 "deferRender": true,  //For speed
             });
         });

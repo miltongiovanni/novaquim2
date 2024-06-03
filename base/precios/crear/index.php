@@ -48,11 +48,9 @@ spl_autoload_register('cargarClases');
     <div id="saludo">
         <img src="../../../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>CREACIÓN DE CÓDIGO GENÉRICO</h4></div>
     <form name="form2" method="POST" action="makeCod.php">
-        <div class="form-group row">
-            <div class="col-1 text-end">
-                <label class="col-form-label " for="idCatProd"><strong>Producto</strong></label>
-            </div>
-            <div class="col-2 px-0">
+        <div class="mb-3 row">
+            <div class="col-3">
+                <label class="form-label " for="idCatProd"><strong>Producto</strong></label>
                 <?php
                 $ProductoOperador = new ProductosOperaciones();
                 $productos = $ProductoOperador->getProductos(true);
@@ -67,13 +65,8 @@ spl_autoload_register('cargarClases');
                 <input name="producto" id="producto" type="hidden" readonly="readonly" value="" size="34"/>
                 <input name="idCodCat" id="idCodCat" type="hidden" readonly="readonly" value="" size="34"/>
             </div>
-        </div>
-
-        <div class="form-group row">
-            <div class="col-1 text-end">
-                <label class="col-form-label " for="idCatProd"><strong>Medida</strong></label>
-            </div>
-            <div class="col-2 px-0">
+            <div class="col-2">
+                <label class="form-label " for="idCatProd"><strong>Medida</strong></label>
                 <?php
                 $MedidaOperador = new MedidasOperaciones();
                 $medidas = $MedidaOperador->getMedidas();
@@ -86,17 +79,13 @@ spl_autoload_register('cargarClases');
                 echo '</select>';
                 ?>
             </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-1 text-end">
-                <label class="col-form-label " for="fabrica"><strong>Precio fábrica</strong></label>
-            </div>
-            <div class="col-2 px-0">
+            <div class="col-1">
+                <label class="form-label " for="fabrica"><strong>Precio fábrica</strong></label>
                 <input type="text" class="form-control " name="fabrica" id="fabrica" maxlength="50"
                        onkeydown="return aceptaNum(event)" required>
             </div>
         </div>
-        <div class="form-group row">
+        <div class="mb-3 row">
             <div class="col-1 text-center">
                 <button class="button" type="reset"><span>Reiniciar</span></button>
             </div>

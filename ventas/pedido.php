@@ -36,31 +36,31 @@ include "../../../includes/valAcc.php";
     <div id="saludo">
         <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>CREACIÓN DE ORDEN DE PEDIDO</h4></div>
     <form method="post" action="makePedido.php" name="form1">
-        <div class="form-group row">
-            <label class="col-form-label col-2 text-end" for="busClien"><strong>Cliente: </strong></label>
+        <div class="mb-3 row">
+            <label class="form-label col-2 text-end" for="busClien"><strong>Cliente: </strong></label>
             <input type="text" class="form-control col-1" id="busClien" name="busClien"
                    onkeyup="findClientePedido()"
                    required/>
             <div class="col-4" id="myDiv"></div>
         </div>
-        <div class="form-group row">
-            <label class="col-form-label col-2 text-end" for="idSucursal"><strong>Sucursal: </strong></label>
+        <div class="mb-3 row">
+            <label class="form-label col-2 text-end" for="idSucursal"><strong>Sucursal: </strong></label>
             <div id="sucursales" class="col-5">
                 <select name="idSucursal" id="idSucursal" class="form-select col-12" required>
                 </select>
             </div>
         </div>
-        <div class="form-group row">
-            <label class="col-form-label col-2 text-end" for="fechaPedido"><strong>Fecha de Pedido: </strong></label>
+        <div class="mb-3 row">
+            <label class="form-label col-2 text-end" for="fechaPedido"><strong>Fecha de Pedido: </strong></label>
             <input type="date" class="form-control col-5" name="fechaPedido" id="fechaPedido" required>
         </div>
-        <div class="form-group row">
-            <label class="col-form-label col-2 text-end" for="fechaEntrega"><strong>Fecha de entrega: </strong></label>
+        <div class="mb-3 row">
+            <label class="form-label col-2 text-end" for="fechaEntrega"><strong>Fecha de entrega: </strong></label>
             <input type="date" class="form-control col-5" name="fechaEntrega" id="fechaEntrega" required>
         </div>
-        <div class="form-group row">
-            <label class="col-form-label col-2 text-end"><strong>Precio: </strong></label>
-            <div class="col-form-label col-5 ">
+        <div class="mb-3 row">
+            <label class="form-label col-2 text-end"><strong>Precio: </strong></label>
+            <div class="form-label col-5 ">
                 <input name="tipoPrecio" type="radio" id="precio_0" value="1">
                 <label for="precio_0">Fábrica</label>
                 <input type="radio" name="tipoPrecio" value="2" id="precio_1" checked>
@@ -73,7 +73,7 @@ include "../../../includes/valAcc.php";
                 <label for="precio_4">Superetes</label>
             </div>
         </div>
-        <div class="row form-group">
+        <div class="row mb-3">
             <div class="col-1">
                 <button class="button" type="button" onclick="return Enviar(this.form)">
                     <span>Continuar</span>
@@ -81,7 +81,7 @@ include "../../../includes/valAcc.php";
             </div>
         </div>
     </form>
-    <div class="row form-group">
+    <div class="row mb-3">
         <div class="col-1">
             <button class="button1" onclick="history.back()">
                 <span>VOLVER</span></button>

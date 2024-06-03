@@ -50,7 +50,7 @@ $type = $_POST['type'];
         $(document).ready(function () {
             let year = <?=$year?>;
             let type = <?=$type?>;
-            let ruta = "ajax/listaVtasDistrXMes.php?year=" + year;
+            let ruta = "../ajax/listaVtasDistrXMes.php?year=" + year;
             $('#example').DataTable({
                 "columns": [
                     {

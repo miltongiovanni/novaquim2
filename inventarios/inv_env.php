@@ -89,7 +89,7 @@ include "../../../includes/valAcc.php";
                     "infoFiltered": "(Filtrado de _MAX_ en total)"
 
                 },
-                "ajax": "ajax/listaInvEnvase.php",
+                "ajax": "../ajax/listaInvEnvase.php",
                 "deferRender": true,  //For speed
             });
         });

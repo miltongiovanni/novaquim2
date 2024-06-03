@@ -35,9 +35,9 @@ spl_autoload_register('cargarClases');
     <div id="saludo">
         <img src="../../../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>ELIMINACIÓN DE PRODUCTO</h4></div>
     <form id="form1" name="form1" method="post" action="deleteProd.php">
-        <div class="form-group row">
-            <label class="col-form-label col-1" for="codProducto"><strong>Producto</strong></label>
+        <div class="mb-3 row">
             <div class="col-2">
+                <label class="form-label" for="codProducto"><strong>Producto</strong></label>
                 <select name="codProducto" id="codProducto" class="form-control" required>
                     <option></option>
                     <?php
@@ -51,14 +51,14 @@ spl_autoload_register('cargarClases');
             </div>
 
         </div>
-        <div class="row form-group">
+        <div class="row mb-3">
             <div class="col-1">
                 <button class="button" type="button" onclick="return Enviar(this.form)">
                     <span>Continuar</span></button>
             </div>
         </div>
     </form>
-    <div class="row form-group">
+    <div class="row mb-3">
         <div class="col-1">
             <button class="button1" onclick="history.back()">
                 <span>VOLVER</span></button>

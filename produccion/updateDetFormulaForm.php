@@ -30,14 +30,14 @@ $detalle = $DetFormulaOperador->getDetFormula($idFormula, $codMPrima);
         <input name="idFormula" type="hidden" value="<?= $idFormula; ?>">
         <input name="codMPrima" type="hidden" value="<?= $codMPrima; ?>">
         <div class="row">
-            <label class="col-form-label col-3 text-center" for="codMPrima" style="margin: 0 5px 0 0;"><strong>Materia
+            <label class="form-label col-3 text-center" for="codMPrima" style="margin: 0 5px 0 0;"><strong>Materia
                     Prima</strong></label>
-            <label class="col-form-label col-1 text-center" for="porcentaje" style="margin: 0 5px;"><strong>% en
+            <label class="form-label col-1 text-center" for="porcentaje" style="margin: 0 5px;"><strong>% en
                     fórmula</strong></label>
-            <label class="col-form-label col-1 text-center" for="orden"
+            <label class="form-label col-1 text-center" for="orden"
                    style="margin: 0 5px;"><strong>Orden</strong></label>
         </div>
-        <div class="form-group row">
+        <div class="mb-3 row">
             <input type="text" style="margin: 0 5px;" class="form-control col-3" name="nomMPrima" readonly
                    id="nomMPrima" value="<?= $detalle['nomMPrima'] ?>">
             <input type="text" style="margin: 0 5px;" class="form-control col-1" name="porcentaje"
@@ -45,7 +45,7 @@ $detalle = $DetFormulaOperador->getDetFormula($idFormula, $codMPrima);
             <input type="text" style="margin: 0 5px;" class="form-control col-1" name="orden" id="orden"
                    onkeydown="return aceptaNum(event)" value="<?= $detalle['orden'] ?>">
         </div>
-        <div class="form-group row">
+        <div class="mb-3 row">
             <div class="col-2 text-center" style="padding: 0 20px;">
                 <button class="button" type="button" onclick="return Enviar(this.form)"><span>Actualizar detalle</span>
                 </button>

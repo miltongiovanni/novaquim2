@@ -32,22 +32,27 @@ spl_autoload_register('cargarClases');
 		?>
 
 		<form action="change1.php" method="POST" name="Cambio_clave" id="Cambio_clave">
-			<div class="form-group row">
-				<label class="col-form-label col-2 text-end"  for="nombre"><b>Usuario</b></label>
-				<input class="form-control col-2" name="nombre" id="nombre" value="<?= $usuario['usuario'] ?>" readonly
-					size="20">
+			<div class="mb-3 row">
+                <div class="col-2">
+                    <label class="form-label"  for="nombre"><b>Usuario</b></label>
+                    <input class="form-control" name="nombre" id="nombre" value="<?= $usuario['usuario'] ?>" readonly
+                           size="20">
+                </div>
 			</div>
-			<div class="form-group row">
-				<label class="col-form-label col-2 text-end"  for="newPass"><strong>Contraseña
-						nueva</strong></label>
-				<input class="form-control col-2" type="password" name="newPass" id="newPass" size="20">
+			<div class="mb-3 row">
+                <div class="col-2">
+                    <label class="form-label"  for="newPass"><strong>Contraseña
+                            nueva</strong></label>
+                    <input class="form-control" type="password" name="newPass" id="newPass" size="20">
+                </div>
 			</div>
-			<div class="form-group row">
-				<label class="col-form-label col-2 text-end"  for="confPass"><strong>Confirmación
-						constraseña</strong></label>
-				<input class="form-control col-2" type="password" name="confPass" id="confPass" size="20">
+			<div class="mb-3 row">
+                <div class="col-2">
+                    <label class="form-label"  for="confPass"><strong>Confirmación constraseña</strong></label>
+                    <input class="form-control" type="password" name="confPass" id="confPass" size="20">
+                </div>
 			</div>
-			<div class="form-group row">
+			<div class="mb-3 row">
                 <div class="col-1 text-center">
                     <button class="button"  type="reset"><span>Reiniciar</span></button>
                 </div>

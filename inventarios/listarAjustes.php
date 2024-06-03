@@ -138,7 +138,7 @@ include "../../../includes/valAcc.php";
                     "infoFiltered": "(Filtrado de _MAX_ en total)"
 
                 },
-                "ajax": "ajax/listaAjustes.php"
+                "ajax": "../ajax/listaAjustes.php"
             });
         });
     </script>

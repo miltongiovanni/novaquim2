@@ -67,7 +67,7 @@ function selectionarTipoKit()
     if($tipo==1){
         $PresentacionOperador = new PresentacionesOperaciones();
         $kitsXCrear = $PresentacionOperador->getKitsXCrear();
-        $rep .='<label class="col-form-label col-2" for="codigo"><strong>Kit Novaquim</strong></label>';
+        $rep .='<label class="form-label col-2" for="codigo"><strong>Kit Novaquim</strong></label>';
         $rep .= '<select name="codigo" id="codigo" class="form-select col-2" required>';
         for ($i = 0; $i < count($kitsXCrear); $i++) {
             $rep .= '<option value=' . $kitsXCrear[$i]['codPresentacion'] . '>' . $kitsXCrear[$i]['presentacion'] . '</option>';
@@ -77,7 +77,7 @@ function selectionarTipoKit()
     else {
         $DistribucionOperador = new ProductosDistribucionOperaciones();
         $productos = $DistribucionOperador->getProductosDistribucion(true);
-        $rep .='<label class="col-form-label col-2" for="codigo"><strong>Kit Distribución</strong></label>';
+        $rep .='<label class="form-label col-2" for="codigo"><strong>Kit Distribución</strong></label>';
         $rep .= '<select name="codigo" id="codigo" class="form-select col-2" required>';
         for ($i = 0; $i < count($productos); $i++) {
             $rep .= '<option value=' . $productos[$i]['idDistribucion'] . '>' . $productos[$i]['producto'] . '</option>';

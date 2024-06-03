@@ -30,48 +30,33 @@ $user = $manager->getUser($idUsuario);
     <form id="form1" name="form1" method="post" action="updateUser.php">
         <input type="hidden" class="form-control col-2" name="idUsuario" id="idUsuario" required
                value="<?= $user['idUsuario'] ?>">
-        <div class="form-group row">
-            <div class="col-2 text-end">
-                <label class="col-form-label " for="nombre"><strong>Nombre</strong></label>
-            </div>
-            <div class="col-2 px-0">
+        <div class="mb-3 row">
+            <div class="col-2">
+                <label class="form-label " for="nombre"><strong>Nombre</strong></label>
                 <input type="text" class="form-control " name="nombre" id="nombre" size=30
                        value="<?= $user['nombre'] ?>" required
                        onkeydown="return aceptaLetra(event)" maxlength="30">
             </div>
-
-        </div>
-        <div class="form-group row">
-            <div class="col-2 text-end">
-                <label class="col-form-label " for="apellido"><strong>Apellidos</strong></label>
-            </div>
-            <div class="col-2 px-0">
+            <div class="col-2">
+                <label class="form-label " for="apellido"><strong>Apellidos</strong></label>
                 <input type="text" class="form-control " name="apellido" id="apellido" size=30 required
                        value="<?= $user['apellido'] ?>" onkeydown="return aceptaLetra(event)" maxlength="30">
             </div>
         </div>
-        <div class="form-group row">
-            <div class="col-2 text-end">
-                <label class="col-form-label " for="usuario"><b>Usuario</b></label>
-            </div>
-            <div class="col-2 px-0">
+        <div class="mb-3 row">
+            <div class="col-2">
+                <label class="form-label " for="usuario"><b>Usuario</b></label>
                 <input type="text" class="form-control " id="usuario" maxlength="10" name="usuario" required
                        value="<?= $user['usuario'] ?>" size=30>
             </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-2 text-end">
-                <label class="col-form-label " for="email"><b>Correo electrónico: </b></label>
-            </div>
-            <div class="col-2 px-0">
+            <div class="col-2">
+                <label class="form-label " for="email"><b>Correo electrónico: </b></label>
                 <input type="email" class="form-control " id="email" name="email" value="<?= $user['email'] ?>" required>
             </div>
         </div>
-        <div class="form-group row">
-            <div class="col-2 text-end">
-                <label class="col-form-label " for="idPerfil"><strong>Perfil</strong></label>
-            </div>
-            <div class="col-2 px-0">
+        <div class="mb-3 row">
+            <div class="col-2">
+                <label class="form-label " for="idPerfil"><strong>Perfil</strong></label>
                 <select class="form-select " name="idPerfil" id="idPerfil" required>
                     <?php
                     //include "../includes/conect.php";
@@ -88,12 +73,8 @@ $user = $manager->getUser($idUsuario);
                     ?>
                 </select>
             </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-2 text-end">
-                <label class="col-form-label " for="estadoUsuario"><strong>Estado</strong></label>
-            </div>
-            <div class="col-2 px-0">
+            <div class="col-2">
+                <label class="form-label " for="estadoUsuario"><strong>Estado</strong></label>
                 <select class="form-select " name="estadoUsuario" id="estadoUsuario" required>
                     <option value="<?= $user['estadoUsuario'] ?>" selected><?= $user['estado'] ?></option>
                     <?php
@@ -109,7 +90,7 @@ $user = $manager->getUser($idUsuario);
                 </select>
             </div>
         </div>
-        <div class="form-group row">
+        <div class="mb-3 row">
             <div class="col-1 text-center">
                 <button class="button" type="reset"><span>Reiniciar</span></button>
             </div>

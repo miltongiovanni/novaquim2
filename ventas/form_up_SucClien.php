@@ -35,12 +35,12 @@ $sucursal = $clienteSucursalOperador->getSucursalCliente($idCliente, $idSucursal
         <input name="idCliente" id="idCliente" type="hidden" value="<?= $idCliente ?>">
         <input name="idSucursal" id="idSucursal" type="hidden" value="<?= $idSucursal ?>">
         <div class=" row ">
-            <label class="col-form-label col-3 text-start mx-2" for="nomSucursal"><strong>Cliente</strong></label>
-            <label class="col-form-label col-1 text-start mx-2" for="telSucursal"><strong>Teléfono</strong></label>
-            <label class="col-form-label col-3 text-start mx-2" for="dirSucursal"><strong>Dirección</strong></label>
-            <label class="col-form-label col-2 text-start mx-2" for="ciudadSucursal"><strong>Ciudad</strong></label>
+            <label class="form-label col-3 text-start mx-2" for="nomSucursal"><strong>Cliente</strong></label>
+            <label class="form-label col-1 text-start mx-2" for="telSucursal"><strong>Teléfono</strong></label>
+            <label class="form-label col-3 text-start mx-2" for="dirSucursal"><strong>Dirección</strong></label>
+            <label class="form-label col-2 text-start mx-2" for="ciudadSucursal"><strong>Ciudad</strong></label>
         </div>
-        <div class="form-group row">
+        <div class="mb-3 row">
             <input type="text" class="form-control col-3 mx-2" name="nomSucursal" id="nomSucursal"
                    value="<?= $sucursal['nomSucursal'] ?>" required>
             <input type="text" class="form-control col-1 mx-2" name="telSucursal" id="telSucursal" maxlength="10"
@@ -61,7 +61,7 @@ $sucursal = $clienteSucursalOperador->getSucursalCliente($idCliente, $idSucursal
                 ?>
             </select>
         </div>
-        <div class="form-group row mt-3">
+        <div class="mb-3 row mt-3">
             <div class="col-2 text-center">
                 <button class="button" type="button" onclick="return Enviar(this.form)"><span>Actualizar sucursal</span>
                 </button>

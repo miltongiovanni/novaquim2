@@ -104,7 +104,7 @@ array_pop($months);
     <script>
 
         $(document).ready(function () {
-            let ruta = "ajax/listaAcumuladoVentas.php";
+            let ruta = "../ajax/listaAcumuladoVentas.php";
             $('#example').DataTable({
                     "columns": [
                         {

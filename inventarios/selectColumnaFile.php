@@ -69,8 +69,8 @@ try {
         <input type="hidden" name="inventario" value="<?= $inventario ?>">
         <input type="hidden" name="upload_file" value="<?= $upload_file ?>">
         <input type="hidden" name="page" value="<?= $page ?>">
-        <div class="form-group row">
-            <label class="col-form-label col-2 text-end" for="codigo"><strong>Código</strong></label>
+        <div class="mb-3 row">
+            <label class="form-label col-2 text-end" for="codigo"><strong>Código</strong></label>
             <div class="col-2">
                 <select class="form-select" name="codigo" id="codigo" aria-label="Default select example" required>
                     <option selected disabled value="">Seleccione una columna</option>
@@ -86,8 +86,8 @@ try {
                 </select>
             </div>
         </div>
-        <div class="form-group row">
-            <label class="col-form-label col-2 text-end" for="codigo"><strong>Cantidad Inventario</strong></label>
+        <div class="mb-3 row">
+            <label class="form-label col-2 text-end" for="codigo"><strong>Cantidad Inventario</strong></label>
             <div class="col-2">
                 <select class="form-select" name="cant_inventario" id="cant_inventario"
                         aria-label="Default select example" required>
@@ -107,8 +107,8 @@ try {
         <?php
         if ($inventario === 'MATERIA PRIMA' || $inventario === 'PRODUCTO TERMINADO'):
             ?>
-            <div class="form-group row">
-                <label class="col-form-label col-2 text-end" for="lote"><strong>Lote</strong></label>
+            <div class="mb-3 row">
+                <label class="form-label col-2 text-end" for="lote"><strong>Lote</strong></label>
                 <div class="col-2">
                     <select class="form-select" name="lote" id="lote" aria-label="Default select example" required>
                         <option selected disabled value="">Seleccione una columna</option>
@@ -127,7 +127,7 @@ try {
         <?php
         endif;
         ?>
-        <div class="row form-group">
+        <div class="row mb-3">
             <div class="col-1">
                 <button class="button" type="button" onclick="return Enviar(this.form)">
                     <span>Continuar</span></button>
@@ -135,7 +135,7 @@ try {
         </div>
     </form>
 
-    <div class="row form-group">
+    <div class="row mb-3">
         <div class="col-1">
             <button class="button1" onclick="history.back()">
                 <span>VOLVER</span></button>

@@ -26,25 +26,19 @@ $categoriaMP = $catsMPOperador->getCatMP($idCatMP);
     <div id="saludo">
         <img src="../../../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>ACTUALIZACIÓN CATEGORÍA DE MATERIAS PRIMAS</h4></div>
     <form id="form1" name="form1" method="post" action="updateCatMP.php">
-        <div class="form-group row">
-            <div class="col-1 text-end">
-                <label class="col-form-label " for="idCatMP"><strong>Código</strong></label>
-            </div>
-            <div class="col-2 px-0">
+        <div class="mb-3 row">
+            <div class="col-1">
+                <label class="form-label " for="idCatMP"><strong>Código</strong></label>
                 <input type="text" class="form-control " name="idCatMP" id="idCatMP" size=30 maxlength="30"
                        value="<?= $categoriaMP['idCatMP']; ?>" readonly>
             </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-1 text-end">
-                <label class="col-form-label " for="catMP"><strong>Categoría</strong></label>
-            </div>
-            <div class="col-2 px-0">
+            <div class="col-3">
+                <label class="form-label " for="catMP"><strong>Categoría</strong></label>
                 <input type="text" class="form-control " name="catMP" id="catMP" size=30
                        onkeydown="return aceptaLetra(event)" value="<?= $categoriaMP['catMP']; ?>" maxlength="30">
             </div>
         </div>
-        <div class="form-group row">
+        <div class="mb-3 row">
             <div class="col-1 text-center">
                 <button class="button" type="reset"><span>Reiniciar</span></button>
             </div>

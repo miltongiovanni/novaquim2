@@ -155,7 +155,7 @@ include "../../../includes/valAcc.php";
                         $('td', row).addClass('formatoDataTable2');
                     }
                 },
-                "ajax": "ajax/listaRecCaja.php"
+                "ajax": "../ajax/listaRecCaja.php"
             });
         });
     </script>

@@ -24,29 +24,19 @@ $servicio = $servicioperador->getServicio($idServicio);
     <div id="saludo">
         <img src="../../../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>ACTUALIZACIÓN DE SERVICIO</h4></div>
     <form id="form1" name="form1" method="post" action="updateServ.php">
-        <div class="form-group row">
-            <div class="col-2 text-end">
-                <label class="col-form-label " for="idServicio"><strong>Código</strong></label>
-            </div>
-            <div class="col-2 px-0">
+        <div class="mb-3 row">
+            <div class="col-1">
+                <label class="form-label " for="idServicio"><strong>Código</strong></label>
                 <input type="text" class="form-control " name="idServicio" id="idServicio" size=30 maxlength="30"
                        value="<?= $servicio['idServicio'] ?>" readonly>
             </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-2 text-end">
-                <label class="col-form-label " for="desServicio"><strong>Descripción Servicio</strong></label>
-            </div>
-            <div class="col-2 px-0">
+            <div class="col-2">
+                <label class="form-label " for="desServicio"><strong>Descripción Servicio</strong></label>
                 <input type="text" class="form-control " name="desServicio" id="desServicio"
                        value="<?= $servicio['desServicio'] ?>" onkeydown="return aceptaLetra(event)">
             </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-2 text-end">
-                <label class="col-form-label " for="codIva"><strong>Iva</strong></label>
-            </div>
-            <div class="col-2 px-0">
+            <div class="col-1">
+                <label class="form-label " for="codIva"><strong>Iva</strong></label>
                 <?php
                 $manager = new TasaIvaOperaciones();
                 $tasas = $manager->getTasasIva();
@@ -61,13 +51,8 @@ $servicio = $servicioperador->getServicio($idServicio);
                 echo '</select>';
                 ?>
             </div>
-
-        </div>
-        <div class="form-group row">
-            <div class="col-2 text-end">
-                <label class="col-form-label " for="cotiza"><strong>Activo</strong></label>
-            </div>
-            <div class="col-2 px-0">
+            <div class="col-1">
+                <label class="form-label " for="cotiza"><strong>Activo</strong></label>
                 <?php
                 if ($servicio['activo'] == 0) {
                     echo '<select name="activo" id="activo" class="form-control ">
@@ -83,7 +68,7 @@ $servicio = $servicioperador->getServicio($idServicio);
                 ?>
             </div>
         </div>
-        <div class="form-group row">
+        <div class="mb-3 row">
             <div class="col-1 text-center">
                 <button class="button" type="reset"><span>Reiniciar</span></button>
             </div>

@@ -22,10 +22,10 @@ spl_autoload_register('cargarClases');
     <div id="saludo">
         <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>ENVASADO DE PRODUCTOS DE DISTRIBUCIÓN</h4></div>
     <form id="form1" name="form1" method="post" action="det_env_dist.php">
-        <div class="form-group row">
-            <label class="col-form-label col-2" for="codDist"><strong>Producto de Distribución</strong></label>
+        <div class="mb-3 row">
+            <label class="form-label col-2" for="codDist"><strong>Producto de Distribución</strong></label>
             <select name="codDist" id="codDist" class="form-select col-2" required>
-                <option selected value="">-----------------------------</option>
+                <option selected disabled value="">-----------------------------</option>
                 <?php
                 $RelDisMPrimaOperador = new RelDisMPrimaOperaciones();
                 $productos = $RelDisMPrimaOperador->getRelsDisMPrima();
@@ -36,16 +36,16 @@ spl_autoload_register('cargarClases');
                 ?>
             </select>
         </div>
-        <div class="form-group row">
-            <label class="col-form-label col-2 text-end" for="fechaEnvDist"><strong>Fecha</strong></label>
+        <div class="mb-3 row">
+            <label class="form-label col-2 text-end" for="fechaEnvDist"><strong>Fecha</strong></label>
             <input type="date" class="form-control col-2" name="fechaEnvDist" id="fechaEnvDist" required>
         </div>
-        <div class="form-group row">
-            <label class="col-form-label col-2 text-end" for="cantidad"><strong>Cantidad</strong></label>
+        <div class="mb-3 row">
+            <label class="form-label col-2 text-end" for="cantidad"><strong>Cantidad</strong></label>
             <input type="text" class="form-control col-2" name="cantidad" id="cantidad"
                    onkeydown="return aceptaNum(event)" required>
         </div>
-        <div class="form-group row">
+        <div class="mb-3 row">
             <div class="col-1 text-center">
                 <button class="button" type="reset"><span>Reiniciar</span></button>
             </div>

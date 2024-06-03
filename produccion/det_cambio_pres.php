@@ -115,15 +115,15 @@ $cambio = $cambioOperador->getCambio($idCambio);
 <div id="contenedor" class="container-fluid">
     <div id="saludo1">
         <img src="../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>CAMBIO DE PRESENTACIÓN DE PRODUCTO</h4></div>
-    <div class="form-group row">
-        <div class="col-1 text-end"><strong>Cambio</strong></div>
+    <div class="mb-3 row">
+        <div class="col-1"><strong>Cambio</strong></div>
         <div class="col-1 bg-blue"><?= $idCambio; ?></div>
-        <div class="col-2 text-end"><strong>Fecha de cambio</strong></div>
+        <div class="col-2"><strong>Fecha de cambio</strong></div>
         <div class="col-1 bg-blue"><?= $cambio['fechaCambio'] ?></div>
-        <div class="col-1 text-end"><strong>Responsable</strong></div>
+        <div class="col-1"><strong>Responsable</strong></div>
         <div class="col-2 bg-blue"><?= $cambio['nomPersonal'] ?></div>
     </div>
-    <div class="form-group titulo row text-center">
+    <div class="mb-3 titulo row text-center">
         Origen
     </div>
     <?php
@@ -138,7 +138,7 @@ $cambio = $cambioOperador->getCambio($idCambio);
                 <div class="col-2 text-center">
                 </div>
             </div>
-            <div class="form-group row">
+            <div class="mb-3 row">
                 <select name="codPresentacionAnt" id="codPresentacionAnt" class="form-select col-4"
                         style="margin: 0 5px 0 0;" onchange="findLotePresentacion(this.value);" required>
                     <option selected disabled value="">------------------------------</option>
@@ -168,12 +168,12 @@ $cambio = $cambioOperador->getCambio($idCambio);
         $DetCambioOperador = new DetCambiosOperaciones();
         $detCambio = $DetCambioOperador->getDetCambio($idCambio);
         ?>
-        <div class="row form-group">
+        <div class="row mb-3">
             <div class="col-4 text-center" style="margin: 0 5px 0 0;"><strong>Presentación</strong></div>
             <div class="col-1 text-center" style="margin: 0 5px;"><strong>Lote</strong></div>
             <div class="col-1 text-center" style="margin: 0 5px;"><strong>Unidades</strong></div>
         </div>
-        <div class="row form-group">
+        <div class="row mb-3">
             <div class="col-4 text-center" style="margin: 0 5px 0 0;"><?= $detCambio['presentacion'] ?></div>
             <div class="col-1 text-center" style="margin: 0 5px;"><?= $detCambio['loteProd'] ?></div>
             <div class="col-1 text-center" style="margin: 0 5px;"><?= $detCambio['cantPresentacionAnt'] ?></div>
@@ -181,7 +181,7 @@ $cambio = $cambioOperador->getCambio($idCambio);
     <?php
     endif;
     ?>
-    <div class="form-group titulo row text-center">
+    <div class="mb-3 titulo row text-center">
         Destino
     </div>
     <?php
@@ -197,7 +197,7 @@ $cambio = $cambioOperador->getCambio($idCambio);
                 <div class="col-2 text-center">
                 </div>
             </div>
-            <div class="form-group row">
+            <div class="mb-3 row">
                 <select name="codPresentacionNvo" id="codPresentacionNvo" class="form-select col-4"
                         style="margin: 0 5px 0 0;" required>
                     <option selected disabled value="">------------------------------</option>
@@ -220,7 +220,7 @@ $cambio = $cambioOperador->getCambio($idCambio);
                     </button>
                 </div>
             </div>
-            <div class="form-group row">
+            <div class="mb-3 row">
                 <div class="col-4 text-end"><strong>Cantidad pendiente por
                         reenvasar: <?= $volCambiar ?> ml</strong></div>
             </div>
@@ -231,7 +231,7 @@ $cambio = $cambioOperador->getCambio($idCambio);
         $DetCambioOperador = new DetCambiosOperaciones();
         $detCambio2 = $DetCambioOperador->getDetCambio2($idCambio);
         ?>
-        <div class="row form-group">
+        <div class="row mb-3">
             <div class="col-4 text-center" style="margin: 0 5px 0 0;"><strong>Presentación</strong></div>
             <div class="col-1 text-center" style="margin: 0 5px;"><strong>Lote</strong></div>
             <div class="col-1 text-center" style="margin: 0 5px;"><strong>Unidades</strong></div>
@@ -239,7 +239,7 @@ $cambio = $cambioOperador->getCambio($idCambio);
         <?php
         for ($i = 0; $i < count($detCambio2); $i++):
             ?>
-            <div class="row form-group">
+            <div class="row mb-3">
                 <div class="col-4 text-center" style="margin: 0 5px 0 0;"><?= $detCambio2[$i]['presentacion'] ?></div>
                 <div class="col-1 text-center" style="margin: 0 5px;"><?= $detCambio2[$i]['loteProd'] ?></div>
                 <div class="col-1 text-center"

@@ -129,7 +129,7 @@ include "../../../includes/valAcc.php";
                     "infoFiltered": "(Filtrado de _MAX_ en total)"
 
                 },
-                "ajax": "ajax/listaOProdMPrima.php",
+                "ajax": "../ajax/listaOProdMPrima.php",
                 "deferRender": true,  //For speed
             });
             // Add event listener for opening and closing details

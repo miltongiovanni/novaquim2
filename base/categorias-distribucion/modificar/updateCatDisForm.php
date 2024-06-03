@@ -26,25 +26,19 @@ $categoriaDis = $catsDisOperador->getCatDis($idCatDis);
     <div id="saludo">
         <img src="../../../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>ACTUALIZACIÓN CATEGORÍA PRODUCTO DE DISTIRBUCIÓN</h4></div>
     <form id="form1" name="form1" method="post" action="updateCatDis.php">
-        <div class="form-group row">
-            <div class="col-1 text-end">
-                <label class="col-form-label " for="idCatDis"><strong>Código</strong></label>
-            </div>
-            <div class="col-2 px-0">
+        <div class="mb-3 row">
+            <div class="col-1">
+                <label class="form-label " for="idCatDis"><strong>Código</strong></label>
                 <input type="text" class="form-control " name="idCatDis" id="idCatDis" size=30 maxlength="30"
                        value="<?= $categoriaDis['idCatDis']; ?>" readonly>
             </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-1 text-end">
-                <label class="col-form-label " for="catDis"><strong>Categoría</strong></label>
-            </div>
-            <div class="col-2 px-0">
+            <div class="col-3">
+                <label class="form-label " for="catDis"><strong>Categoría</strong></label>
                 <input type="text" class="form-control " name="catDis" id="catDis" size=30
                        onkeydown="return aceptaLetra(event)" value="<?= $categoriaDis['catDis']; ?>" maxlength="30">
             </div>
         </div>
-        <div class="form-group row">
+        <div class="mb-3 row">
             <div class="col-1 text-center">
                 <button class="button" type="reset"><span>Reiniciar</span></button>
             </div>

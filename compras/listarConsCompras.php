@@ -168,7 +168,7 @@ $compras = $CompraOperador->getTotalesComprasPorFecha($fechaIni, $fechaFin);
                     "infoFiltered": "(Filtrado de _MAX_ en total)"
 
                 },
-                "ajax": "ajax/listaConsCompras.php?fechaIni=" + fechaIni+ '&fechaFin=' + fechaFin
+                "ajax": "../ajax/listaConsCompras.php?fechaIni=" + fechaIni+ '&fechaFin=' + fechaFin
             });
 
         });

@@ -23,8 +23,8 @@ $mprimas = $calMatPrimaOperador->getMPrimaXCalidad();
     <div id="saludo">
         <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>BUSCAR MATERIA PRIMA PARA CONTROL DE CALIDAD</h4></div>
     <form id="form1" name="form1" method="post" action="cal_materia_prima.php">
-        <div class="form-group row">
-            <label class="col-form-label col-1 text-end" for="id"><strong>Materia Prima</strong></label>
+        <div class="mb-3 row">
+            <label class="form-label col-1 text-end" for="id"><strong>Materia Prima</strong></label>
             <select name="id" id="id" class="form-control col-4" required>
                 <option selected disabled value="">-------------------------------------------------------------------------------------</option>
                 <?php
@@ -35,14 +35,14 @@ $mprimas = $calMatPrimaOperador->getMPrimaXCalidad();
                 ?>
             </select>
         </div>
-        <div class="row form-group">
+        <div class="row mb-3">
             <div class="col-1">
                 <button class="button" type="button" onclick="return Enviar(this.form)">
                     <span>Continuar</span></button>
             </div>
         </div>
     </form>
-    <div class="row form-group">
+    <div class="row mb-3">
         <div class="col-1">
             <button class="button1" onclick="history.back()"><span>VOLVER</span></button>
         </div>

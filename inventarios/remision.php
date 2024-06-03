@@ -15,15 +15,15 @@ include "../../../includes/valAcc.php";
     <div id="saludo">
         <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>REMISIÓN DE PRODUCTOS</h4></div>
     <form method="post" action="makeRemision.php" name="form1">
-        <div class="form-group row">
-            <label class="col-form-label col-2 text-end" for="cliente"><strong>Cliente</strong></label>
+        <div class="mb-3 row">
+            <label class="form-label col-2 text-end" for="cliente"><strong>Cliente</strong></label>
             <input type="text" class="form-control col-2" name="cliente" id="cliente" required>
         </div>
-        <div class="form-group row">
-            <label class="col-form-label col-2 text-end" for="fechaRemision"><strong>Fecha</strong></label>
+        <div class="mb-3 row">
+            <label class="form-label col-2 text-end" for="fechaRemision"><strong>Fecha</strong></label>
             <input type="date" class="form-control col-2" name="fechaRemision" id="fechaRemision" required>
         </div>
-        <div class="form-group row">
+        <div class="mb-3 row">
             <div class="col-1 text-center">
                 <button class="button" type="reset"><span>Reiniciar</span></button>
             </div>

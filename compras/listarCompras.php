@@ -209,7 +209,7 @@ switch ($tipoCompra) {
                     "infoFiltered": "(Filtrado de _MAX_ en total)"
 
                 },
-                "ajax": "ajax/listaCompras.php?tipoCompra=" + tipoCompra
+                "ajax": "../ajax/listaCompras.php?tipoCompra=" + tipoCompra
             });
             // Add event listener for opening and closing details
             $('#example tbody').on('click', 'td.details-control', function () {

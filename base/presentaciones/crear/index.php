@@ -55,12 +55,9 @@ spl_autoload_register('cargarClases');
     <div id="saludo">
         <img src="../../../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>CREACIÓN DE PRESENTACIÓN DE PRODUCTO</h4></div>
     <form name="form2" method="POST" action="makeMedida.php">
-        <div class="form-group row">
-            <div class="col-1 text-end">
-                <label class="col-form-label " for="codMedida"><strong>Medida</strong></label>
-            </div>
-
-            <div class="col-2 px-0">
+        <div class="mb-3 row">
+            <div class="col-3">
+                <label class="form-label " for="codMedida"><strong>Medida</strong></label>
                 <select name="codMedida" id="codMedida" data-error="Por favor seleccione la medida" style="width: 100%" required>
                     <option></option>
 
@@ -76,10 +73,8 @@ spl_autoload_register('cargarClases');
                     ?>
                 </select>
             </div>
-            <div class="col-2 text-end">
-                <label class="col-form-label " for="codProducto"><strong>Producto</strong></label>
-            </div>
-            <div class="col-4 px-0">
+            <div class="col-3">
+                <label class="form-label " for="codProducto"><strong>Producto</strong></label>
                 <select name="codProducto" id="codProducto" data-error="Por favor seleccione el producto" class="" onchange="document.getElementById('presentacion').value = this.options[this.selectedIndex].text; " style="width: 100%" required>
                     <option></option>
                     <?php
@@ -95,12 +90,27 @@ spl_autoload_register('cargarClases');
 
                 </select>
             </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-1 text-end">
-                <label class="col-form-label " for="codEnvase"><strong>Envase</strong></label>
+            <?php
+            $link = Conectar::conexion();
+            $qry = "SELECT MAX(siigo) maxsiigo FROM (SELECT MAX(codSiigo) siigo FROM distribucion  WHERE CodIva=3
+                    union
+                    SELECT MAX(codSiigo) siigo FROM prodpre  WHERE CodIva=3
+                    union
+                    SELECT MAX(codSiigo) siigo FROM servicios  WHERE CodIva=3
+                    ) AS a";
+            $stmt = $link->prepare($qry);
+            $stmt->execute();
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            ?>
+            <div class="col-1">
+                <label class="form-label " for="codSiigo"><strong>Código Siigo</strong></label>
+                <input type="text" name="codSiigo" id="codSiigo" class="form-control "
+                       onkeydown="return aceptaNum(event)" value="<?= ($row['maxsiigo'] + 1) ?>"/>
             </div>
-            <div class="col-2 px-0">
+        </div>
+        <div class="mb-3 row">
+            <div class="col-3">
+                <label class="form-label " for="codEnvase"><strong>Envase</strong></label>
                 <select name="codEnvase" id="codEnvase" data-error="Por favor seleccione el envase" style="width: 100%" required>
                     <option></option>
                     <?php
@@ -115,37 +125,26 @@ spl_autoload_register('cargarClases');
                     ?>
                 </select>
             </div>
-            <div class="col-2 text-end">
-                <label class="col-form-label " for="presentacion"><strong>Presentación</strong></label>
-            </div>
-            <div class="col-4 px-0">
+            <div class="col-4">
+                <label class="form-label " for="presentacion"><strong>Presentación</strong></label>
                 <input name="presentacion" id="presentacion" class="form-control " type="text" value="" required/>
             </div>
         </div>
-        <div class="form-group row">
-            <?php
-            $link = Conectar::conexion();
-            $qry = "SELECT MAX(siigo) maxsiigo FROM (SELECT MAX(codSiigo) siigo FROM distribucion  WHERE CodIva=3
-                    union
-                    SELECT MAX(codSiigo) siigo FROM prodpre  WHERE CodIva=3
-                    union
-                    SELECT MAX(codSiigo) siigo FROM servicios  WHERE CodIva=3
-                    ) AS a";
-            $stmt = $link->prepare($qry);
-            $stmt->execute();
-            $row = $stmt->fetch(PDO::FETCH_ASSOC);
-            ?>
-            <div class="col-1 text-end">
-                <label class="col-form-label " for="codSiigo"><strong>Código Siigo</strong></label>
+        <div class="mb-3 row">
+            <div class="col-1">
+                <label class="form-label " for="stockPresentacion"><strong>Stock Mínimo</strong></label>
+                <input name="stockPresentacion" id="stockPresentacion" type="text" value="" class="form-control "
+                       onkeydown="return aceptaNum(event)" required/>
             </div>
-            <div class="col-2 px-0">
-                <input type="text" name="codSiigo" id="codSiigo" class="form-control "
-                       onkeydown="return aceptaNum(event)" value="<?= ($row['maxsiigo'] + 1) ?>"/>
+            <div class="col-2">
+                <label class="form-label " for="cotiza"><strong>Cotizar</strong></label>
+                <select name="cotiza" id="cotiza" class="form-control ">
+                    <option value="0" selected>No</option>
+                    <option value="1">Si</option>
+                </select>
             </div>
-            <div class="col-2 text-end">
-                <label class="col-form-label " for="codigoGen"><strong>Código General</strong></label>
-            </div>
-            <div class="col-4 px-0">
+            <div class="col-4">
+                <label class="form-label " for="codigoGen"><strong>Código General</strong></label>
                 <select name="codigoGen" id="codigoGen" data-error="Por favor seleccione el código general" style="width: 100%" required>
                     <option></option>
                     <?php
@@ -161,18 +160,9 @@ spl_autoload_register('cargarClases');
                 </select>
             </div>
         </div>
-        <div class="form-group row">
-            <div class="col-1 text-end">
-                <label class="col-form-label " for="stockPresentacion"><strong>Stock Mínimo</strong></label>
-            </div>
-            <div class="col-2 px-0">
-                <input name="stockPresentacion" id="stockPresentacion" type="text" value="" class="form-control "
-                       onkeydown="return aceptaNum(event)" required/>
-            </div>
-            <div class="col-2 text-end">
-                <label class="col-form-label " for="codTapa"><strong>Tapa</strong></label>
-            </div>
-            <div class="col-4 px-0">
+        <div class="mb-3 row">
+            <div class="col-3">
+                <label class="form-label " for="codTapa"><strong>Tapa</strong></label>
                 <select name="codTapa" id="codTapa" data-error="Por favor seleccione la tapa" style="width: 100%" required>
                     <option></option>
                     <?php
@@ -190,21 +180,8 @@ spl_autoload_register('cargarClases');
 
                 </select>
             </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-1 text-end">
-                <label class="col-form-label " for="cotiza"><strong>Cotizar</strong></label>
-            </div>
-            <div class="col-2 px-0">
-                <select name="cotiza" id="cotiza" class="form-control ">
-                    <option value="0" selected>No</option>
-                    <option value="1">Si</option>
-                </select>
-            </div>
-            <div class="col-2 text-end">
-                <label class="col-form-label " for="codEtiq"><strong>Etiqueta</strong></label>
-            </div>
-            <div class="col-4 px-0">
+            <div class="col-4">
+                <label class="form-label " for="codEtiq"><strong>Etiqueta</strong></label>
                 <select name="codEtiq" id="codEtiq" data-error="Por favor seleccione la etiqueta" style="width: 100%" required>
                     <option></option>
                     <?php
@@ -220,7 +197,7 @@ spl_autoload_register('cargarClases');
                 </select>
             </div>
         </div>
-        <div class="form-group row">
+        <div class="mb-3 row">
             <div class="col-1 text-center">
                 <button class="button" onclick="$('#codProducto').val(null).trigger('change');$('#codigoGen').val(null).trigger('change');$('#codMedida').val(null).trigger('change');$('#codEnvase').val(null).trigger('change');$('#codTapa').val(null).trigger('change');$('#codEtiq').val(null).trigger('change');" type="reset"><span>Reiniciar</span></button>
             </div>

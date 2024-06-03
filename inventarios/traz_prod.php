@@ -116,7 +116,7 @@ $detOProd = $envasadoOperador->getEnvasado($loteProd, $codPresentacion);
                     "infoFiltered": "(Filtrado de _MAX_ en total)"
 
                 },
-                "ajax": "ajax/listaVentaPresentacionTrazabilidad.php?codPresentacion=" + codPresentacion +'&loteProd='+loteProd ,
+                "ajax": "../ajax/listaVentaPresentacionTrazabilidad.php?codPresentacion=" + codPresentacion +'&loteProd='+loteProd ,
                 "deferRender": true,  //For speed
             });
         });
@@ -127,18 +127,18 @@ $detOProd = $envasadoOperador->getEnvasado($loteProd, $codPresentacion);
     <div id="saludo1">
         <img src="../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>TRAZABILIDAD DE <?= $nomPresentacion; ?> CON
             LOTE <?= $loteProd; ?></h4></div>
-    <div class="form-group titulo row text-center">
+    <div class="mb-3 titulo row text-center">
         <strong>Entrada</strong>
     </div>
-    <div class="form-group row">
+    <div class="mb-3 row">
         <div class="col-2 text-center"><strong>Fecha Producción</strong></div>
         <div class="col-1 text-center"><strong>Unidades</strong></strong></div>
     </div>
-    <div class="form-group row">
+    <div class="mb-3 row">
         <div class="col-2 text-center"><?= $detOProd['fechProd'] ?></div>
         <div class="col-1 text-center"><?= $detOProd['cantPresentacion']; ?></div>
     </div>
-    <div class="form-group titulo row text-center">
+    <div class="mb-3 titulo row text-center">
         <strong>Salidas
         </strong>
     </div>

@@ -28,11 +28,11 @@ $cliente = $clienteCotizacionOperador->getCliente($idCliente);
     <form id="form1" name="form1" method="post" action="updateClienCot.php">
         <input type="hidden" name="idCliente" value="<?= $cliente['idCliente'] ?>">
         <div class=" row ">
-            <label class="col-form-label col-3 text-start me-2" for="nomCliente"><strong>Cliente</strong></label>
-            <label class="col-form-label col-1 text-start mx-3" for="ciudadCliente"><strong>Ciudad</strong></label>
-            <label class="col-form-label col-3 text-start ms-2" for="dirCliente"><strong>Dirección</strong></label>
+            <label class="form-label col-3 text-start me-2" for="nomCliente"><strong>Cliente</strong></label>
+            <label class="form-label col-1 text-start mx-3" for="ciudadCliente"><strong>Ciudad</strong></label>
+            <label class="form-label col-3 text-start ms-2" for="dirCliente"><strong>Dirección</strong></label>
         </div>
-        <div class="form-group row">
+        <div class="mb-3 row">
             <input type="text" class="form-control col-3 me-2" name="nomCliente" id="nomCliente"
                    value="<?= $cliente['nomCliente'] ?>" required>
             <select name="idCiudad" id="idCiudad" class="form-control col-1 mx-3" required>
@@ -54,12 +54,12 @@ $cliente = $clienteCotizacionOperador->getCliente($idCliente);
                    value="<?= $cliente['dirCliente'] ?>" required>
         </div>
         <div class="row">
-            <label class="col-form-label col-2 text-start me-2" for="telCliente"><strong>Teléfono</strong></label>
-            <label class="col-form-label col-2 text-start mx-3" for="emailCliente"><strong>Correo
+            <label class="form-label col-2 text-start me-2" for="telCliente"><strong>Teléfono</strong></label>
+            <label class="form-label col-2 text-start mx-3" for="emailCliente"><strong>Correo
                     electrónico</strong></label>
-            <label class="col-form-label col-3 text-start ms-2" for="idCatCliente"><strong>Actividad</strong></label>
+            <label class="form-label col-3 text-start ms-2" for="idCatCliente"><strong>Actividad</strong></label>
         </div>
-        <div class="form-group row">
+        <div class="mb-3 row">
             <input type="text" class="form-control col-2 me-2" name="telCliente" id="telCliente" maxlength="10"
                    onkeydown="return aceptaNum(event)" value="<?= $cliente['telCliente'] ?>">
             <input type="email" class="form-control col-2 mx-3" name="emailCliente" id="emailCliente"
@@ -79,14 +79,14 @@ $cliente = $clienteCotizacionOperador->getCliente($idCliente);
             </select>
         </div>
         <div class="row">
-            <label class="col-form-label col-2 text-start me-2" for="contactoCliente"><strong>Nombre
+            <label class="form-label col-2 text-start me-2" for="contactoCliente"><strong>Nombre
                     Contacto</strong></label>
-            <label class="col-form-label col-2 text-start mx-2" for="cargoContacto"><strong>Cargo
+            <label class="form-label col-2 text-start mx-2" for="cargoContacto"><strong>Cargo
                     Contacto</strong></label>
-            <label class="col-form-label col-1 text-start mx-2" for="cargoContacto"><strong>Celular</strong></label>
-            <label class="col-form-label col-2 text-start ms-2" for="codVendedor"><strong>Vendedor</strong></label>
+            <label class="form-label col-1 text-start mx-2" for="cargoContacto"><strong>Celular</strong></label>
+            <label class="form-label col-2 text-start ms-2" for="codVendedor"><strong>Vendedor</strong></label>
         </div>
-        <div class="form-group row">
+        <div class="mb-3 row">
             <input type="text" class="form-control col-2 me-2" name="contactoCliente" id="contactoCliente"
                    value="<?= $cliente['dirCliente'] ?>" required>
             <input type="text" class="form-control col-2 mx-2" name="cargoContacto" id="cargoContacto"
@@ -106,7 +106,7 @@ $cliente = $clienteCotizacionOperador->getCliente($idCliente);
                 ?>
             </select>
         </div>
-        <div class="form-group row">
+        <div class="mb-3 row">
             <div class="col-1 text-center">
                 <button class="button" type="reset"><span>Reiniciar</span></button>
             </div>

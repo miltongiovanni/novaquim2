@@ -84,7 +84,7 @@ $cantidadPendiente = $EnvasadoOperador->getCantidadPorEnvasar($lote);
         $(document).ready(function () {
             let lote = <?=$lote?>;
             let cantidadPendiente = <?=$cantidadPendiente?>;
-            let ruta = "ajax/listaDetEnvasado.php?lote=" + lote;
+            let ruta = "../ajax/listaDetEnvasado.php?lote=" + lote;
             $('#example').DataTable({
                 "columns": [
                     {
@@ -140,21 +140,21 @@ $cantidadPendiente = $EnvasadoOperador->getCantidadPorEnvasar($lote);
 <div id="contenedor" class="container-fluid">
     <div id="saludo1">
         <img src="../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>PRODUCTOS ENVASADOS POR LOTE</h4></div>
-    <div class="form-group row">
-        <div class="col-1 text-end"><strong>Lote</strong></div>
+    <div class="mb-3 row">
+        <div class="col-1"><strong>Lote</strong></div>
         <div class="col-1 bg-blue"><?= $lote; ?></div>
-        <div class="col-1 text-end"><strong>Cantidad</strong></div>
+        <div class="col-1"><strong>Cantidad</strong></div>
         <div class="col-1 bg-blue"><?= $ordenProd['cantidadKg'] ?> Kg</div>
-        <div class="col-1 text-end"><strong>Responsable</strong></div>
+        <div class="col-1"><strong>Responsable</strong></div>
         <div class="col-2 bg-blue"><?= $ordenProd['nomPersonal'] ?></div>
     </div>
-    <div class="form-group row">
-        <div class="col-1 text-end"><strong>Producto</strong></div>
+    <div class="mb-3 row">
+        <div class="col-1"><strong>Producto</strong></div>
         <div class="col-2 bg-blue"><?= $ordenProd['nomProducto'] ?></div>
-        <div class="col-2 text-end"><strong>Fecha de producción</strong></strong></div>
+        <div class="col-2"><strong>Fecha de producción</strong></strong></div>
         <div class="col-2 bg-blue"><?= $ordenProd['fechProd'] ?></div>
     </div>
-    <div class="form-group titulo row text-center">
+    <div class="mb-3 titulo row text-center">
         Adicionar Envasado
     </div>
     <form method="post" action="makeEnvasado.php" name="form1">
@@ -166,7 +166,7 @@ $cantidadPendiente = $EnvasadoOperador->getCantidadPorEnvasar($lote);
             <div class="col-2 text-center">
             </div>
         </div>
-        <div class="form-group row">
+        <div class="mb-3 row">
             <select name="codPresentacion" id="codPresentacion" class="form-select col-3" style="margin: 0 5px 0 0;" required>
                 <option selected disabled value="">------------------------------</option>
                 <?php
@@ -184,7 +184,7 @@ $cantidadPendiente = $EnvasadoOperador->getCantidadPorEnvasar($lote);
             </div>
         </div>
     </form>
-    <div class="form-group row titulo">Detalle envasado :</div>
+    <div class="mb-3 row titulo">Detalle envasado :</div>
     <div class="tabla-50">
         <table id="example" class="display compact formatoDatos">
             <thead>
@@ -205,7 +205,7 @@ $cantidadPendiente = $EnvasadoOperador->getCantidadPorEnvasar($lote);
             </tr>
         </table>
     </div>
-    <div class="row form-group">
+    <div class="row mb-3">
         <div class="col-2">
             <button class="button" onclick="terminarEnvasado(<?= $lote; ?>)">
                 <span><STRONG>Terminar envasado</STRONG></span>

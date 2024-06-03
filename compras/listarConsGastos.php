@@ -164,7 +164,7 @@ $gastos = $GastoOperador->getTotalesGastosPorFecha($fechaIni, $fechaFin);
                     "infoFiltered": "(Filtrado de _MAX_ en total)"
 
                 },
-                "ajax": "ajax/listaConsGastos.php?fechaIni=" + fechaIni+ '&fechaFin=' + fechaFin
+                "ajax": "../ajax/listaConsGastos.php?fechaIni=" + fechaIni+ '&fechaFin=' + fechaFin
             });
 
         });

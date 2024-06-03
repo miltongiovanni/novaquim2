@@ -35,11 +35,9 @@ $relacion = $relEnvDisOperador->getRelEnvDis($idEnvDis);
         <img src="../../../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>ACTUALIZACIÓN RELACIÓN DE ENVASE CON PRODUCTOS DE DISTRIBUCIÓN</h4></div>
     <form method="post" action="updateRelEnvDis.php" name="form1">
         <input id="idEnvDis" name="idEnvDis" type="hidden" value="<?= $idEnvDis ?>">
-        <div class="form-group row">
-            <div class="col-2 text-end">
-                <label class="col-form-label " for="idDis"><strong>Producto de Distribución</strong></label>
-            </div>
-            <div class="col-3 px-0">
+        <div class="mb-3 row">
+            <div class="col-3">
+                <label class="form-label " for="idDis"><strong>Producto de Distribución</strong></label>
                 <select name="idDis" id="idDis" class="form-control " required>
                     <option selected value="<?= $relacion['idDistribucion'] ?>"><?= $relacion['producto'] ?></option>
                     <?php
@@ -54,12 +52,8 @@ $relacion = $relEnvDisOperador->getRelEnvDis($idEnvDis);
                     ?>
                 </select>
             </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-2 text-end">
-                <label class="col-form-label " for="idEnv"><strong>Envase</strong></label>
-            </div>
-            <div class="col-3 px-0">
+            <div class="col-3">
+                <label class="form-label " for="idEnv"><strong>Envase</strong></label>
                 <select name="idEnv" id="idEnv" class="form-control " required>
                     <option selected value="<?= $relacion['codEnvase'] ?>"><?= $relacion['nomEnvase'] ?></option>
                     <?php
@@ -74,12 +68,8 @@ $relacion = $relEnvDisOperador->getRelEnvDis($idEnvDis);
                     ?>
                 </select>
             </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-2 text-end">
-                <label class="col-form-label " for="idTapa"><strong>Tapa</strong></label>
-            </div>
-            <div class="col-3 px-0">
+            <div class="col-3">
+                <label class="form-label " for="idTapa"><strong>Tapa</strong></label>
                 <select name="idTapa" id="idTapa" class="form-control " required>
                     <option selected value="<?= $relacion['codTapa'] ?>"><?= $relacion['tapa'] ?></option>
                     <?php
@@ -95,7 +85,7 @@ $relacion = $relEnvDisOperador->getRelEnvDis($idEnvDis);
                 </select>
             </div>
         </div>
-        <div class="row form-group">
+        <div class="row mb-3">
             <div class="col-1">
                 <button class="button" type="button" onclick="return Enviar(this.form)"><span>Continuar</span></button>
             </div>

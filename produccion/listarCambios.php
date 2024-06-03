@@ -133,7 +133,7 @@ include "../../../includes/valAcc.php";
                     "infoFiltered": "(Filtrado de _MAX_ en total)"
 
                 },
-                "ajax": "ajax/listaCambios.php",
+                "ajax": "../ajax/listaCambios.php",
                 "deferRender": true,  //For speed
             });
             // Add event listener for opening and closing details

@@ -187,7 +187,7 @@ include "../../../includes/valAcc.php";
                         $('td', row).addClass('formatoDataTable2');
                     }
                 },
-                "ajax": "ajax/listaFactXPagar.php"
+                "ajax": "../ajax/listaFactXPagar.php"
             });
         });
     </script>

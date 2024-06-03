@@ -16,12 +16,12 @@ include "../../../includes/valAcc.php";
     <div id="saludo">
         <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>SELECCIONAR GASTO A MODIFICAR</h4></div>
     <form id="form1" name="form1" method="post" action="updateGastoForm.php">
-        <div class="form-group row">
-            <label class="col-form-label col-1 text-end" for="idGasto"><strong>No. de gasto</strong></label>
+        <div class="mb-3 row">
+            <label class="form-label col-1 text-end" for="idGasto"><strong>No. de gasto</strong></label>
             <input type="text" class="form-control col-1" name="idGasto" id="idGasto"
                    onkeydown="return aceptaNum(event)" required>
         </div>
-        <div class="form-group row">
+        <div class="mb-3 row">
                         <div class="col-1 text-center" >
                 <button class="button" type="reset"><span>Reiniciar</span></button>
             </div><div class="col-1 text-center" >

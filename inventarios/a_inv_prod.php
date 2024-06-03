@@ -69,8 +69,8 @@ spl_autoload_register('cargarClases');
         <input type="hidden" name="tipo_inv" value="prod">
         <input type="hidden" name="idResponsable" value="<?= $_SESSION['userId']?>">
         <input type="hidden" name="inv_ant" id="inv_ant" value="">
-        <div class="form-group row">
-            <label class="col-form-label col-2" for="codPresentacion"><strong>Producto</strong></label>
+        <div class="mb-3 row">
+            <label class="form-label col-2" for="codPresentacion"><strong>Producto</strong></label>
             <select name="codPresentacion" id="codPresentacion" class="form-select col-3 formatoDatos"
                     onchange="getLotesPresentacion(this.value)" required>
                 <option selected disabled value="">-----------------------------</option>
@@ -84,26 +84,26 @@ spl_autoload_register('cargarClases');
                 ?>
             </select>
         </div>
-        <div class="form-group row">
-            <label class="col-form-label col-2" for="loteProd"><strong>Lote</strong></label>
+        <div class="mb-3 row">
+            <label class="form-label col-2" for="loteProd"><strong>Lote</strong></label>
             <select name="loteProd" id="loteProd" class="form-select col-3 formatoDatos"
                     onchange="getInvPresentacionXLote(document.getElementById('codPresentacion').value, this.value)"
                     required>
             </select>
         </div>
-        <div class="form-group row">
-            <label class="col-form-label col-2 text-end"
+        <div class="mb-3 row">
+            <label class="form-label col-2 text-end"
                    for=invProd><strong>Inventario</strong></label>
             <input type="text" class="form-control col-3 formatoDatos" name="invProd" id="invProd"
                    onkeydown="return aceptaNum(event)">
 
         </div>
-        <div class="form-group row">
-            <label class="col-form-label col-2 text-end"
+        <div class="mb-3 row">
+            <label class="form-label col-2 text-end"
                    for=motivo_ajuste><strong>Motivo ajuste</strong></label>
             <textarea class="form-control col-3" name="motivo_ajuste" id="motivo_ajuste" required></textarea>
         </div>
-        <div class="form-group row">
+        <div class="mb-3 row">
             <div class="col-1 text-center">
                 <button class="button" type="reset"><span>Reiniciar</span></button>
             </div>

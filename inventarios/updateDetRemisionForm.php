@@ -37,22 +37,22 @@ $detalle = $detRemisionOperador->getDetTotalRemision($idRemision, $codProducto);
     <form action="updateDetRemision.php" method="post" name="actualiza">
         <input type="hidden" name="idRemision" id="idRemision" value="<?= $idRemision ?>">
         <input type="hidden" name="codProducto" id="codProducto" value="<?= $codProducto ?>">
-        <div class="form-group row">
-            <label class="col-form-label col-1 text-end" for="producto"><strong>Producto</strong></label>
+        <div class="mb-3 row">
+            <label class="form-label col-1 text-end" for="producto"><strong>Producto</strong></label>
             <input type="text" class="form-control col-4" name="producto" id="producto" readonly
                    value="<?= $detalle['producto'] ?>">
         </div>
-        <div class="form-group row">
-            <label class="col-form-label col-1 text-end" for="cantProducto"><strong>Cantidad</strong></label>
+        <div class="mb-3 row">
+            <label class="form-label col-1 text-end" for="cantProducto"><strong>Cantidad</strong></label>
             <input type="text" class="form-control col-4" name="cantProducto" id="cantProducto"
                    value="<?= $detalle['cantProducto'] ?>" onkeydown="return aceptaNum(event)">
         </div>
-        <div class="form-group row">
-            <label class="col-form-label col-1 text-end" for="precioProducto"><strong>Precio</strong></label>
+        <div class="mb-3 row">
+            <label class="form-label col-1 text-end" for="precioProducto"><strong>Precio</strong></label>
             <input type="text" class="form-control col-4" name="precioProducto" id="precioProducto"
                    value="<?= $detalle['precioProducto'] ?>" onkeydown="return aceptaNum(event)">
         </div>
-        <div class="form-group row">
+        <div class="mb-3 row">
             <div class="col-1 text-center">
                 <button class="button" type="reset"><span>Reiniciar</span></button>
             </div>

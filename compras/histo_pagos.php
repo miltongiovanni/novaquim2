@@ -191,7 +191,7 @@ include "../../../includes/valAcc.php";
                         $('td', row).addClass('formatoDataTable2');
                     }
                 },
-                "ajax": "ajax/listaEgresos.php"
+                "ajax": "../ajax/listaEgresos.php"
             });
         });
     </script>

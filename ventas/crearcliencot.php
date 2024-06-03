@@ -15,7 +15,7 @@ include "../../../includes/valAcc.php";
         <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>CREAR CLIENTE PARA COTIZACIÓN</h4></div>
     <form method="post" action="makeClienCotForm.php" name="form1">
         <div class="row mb-3">
-            <label class="col-form-label col-2 text-end "><strong>Cliente Existente</strong></label>
+            <label class="form-label col-2 text-end "><strong>Cliente Existente</strong></label>
             <div class="col-1">
                 <div class="form-check">
                     <label class="form-check-label">
@@ -29,7 +29,7 @@ include "../../../includes/valAcc.php";
                 </div>
             </div>
         </div>
-        <div class="form-group row">
+        <div class="mb-3 row">
             <div class="col-1 text-center">
                 <button class="button" type="button" onclick="return Enviar(this.form)"><span>Continuar</span></button>
             </div>

@@ -30,11 +30,11 @@ $detalle = $DetPedidoOperador->getDetProdPedido($idPedido, $codProducto);
         <input name="idPedido" type="hidden" value="<?= $idPedido; ?>">
         <input name="codProducto" type="hidden" value="<?= $codProducto; ?>">
         <div class="row">
-            <label class="col-form-label col-4 text-center mx-2" for="producto"><strong>Producto</strong></label>
-            <label class="col-form-label col-1 text-center mx-2" for="cantProducto"><strong>Cantidad</strong></label>
-            <label class="col-form-label col-1 text-center mx-2" for="precioProducto"><strong>Precio</strong></label>
+            <label class="form-label col-4 text-center mx-2" for="producto"><strong>Producto</strong></label>
+            <label class="form-label col-1 text-center mx-2" for="cantProducto"><strong>Cantidad</strong></label>
+            <label class="form-label col-1 text-center mx-2" for="precioProducto"><strong>Precio</strong></label>
         </div>
-        <div class="form-group row">
+        <div class="mb-3 row">
             <input type="text" class="form-control col-4 mx-2" name="producto" readonly
                    id="producto" value="<?= $detalle['producto'] ?>">
             <input type="text" class="form-control col-1 mx-2" name="cantProducto"
@@ -42,7 +42,7 @@ $detalle = $DetPedidoOperador->getDetProdPedido($idPedido, $codProducto);
             <input type="text" class="form-control col-1 mx-2" name="precioProducto" id="precioProducto"
                    onkeydown="return aceptaNum(event)" value="<?= $detalle['precioProducto'] ?>">
         </div>
-        <div class="form-group row">
+        <div class="mb-3 row">
             <div class="col-2 text-center" style="padding: 0 20px;">
                 <button class="button" type="button" onclick="return Enviar(this.form)"><span>Actualizar detalle</span>
                 </button>

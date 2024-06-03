@@ -91,7 +91,7 @@ include "../../../includes/valAcc.php";
                     "infoFiltered": "(Filtrado de _MAX_ en total)"
 
                 },
-                "ajax": "ajax/listaCotizaciones.php"
+                "ajax": "../ajax/listaCotizaciones.php"
             });
             // Add event listener for opening and closing details
             $('#example tbody').on('click', 'td.details-control', function () {

@@ -173,7 +173,7 @@ spl_autoload_register('cargarClases');
             }
             //echo "el valor del indice1 final es $indice";
             ?>
-            <div class="form-group row">
+            <div class="mb-3 row">
                 <div class="col-2 text-center">
                     <button class="button" type="reset"><span>Reiniciar</span></button>
                 </div>

@@ -31,67 +31,67 @@ $estadosMPrima = $calMatPrimaOperador->getEstadosMPrimaCalidad();
 <div id="contenedor" class="container-fluid">
     <div id="saludo1">
         <img src="../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>CONTROL DE CALIDAD MATERIA PRIMA</h4></div>
-    <div class="form-group row">
-        <div class="col-1 text-end"><strong>Materia Prima</strong></div>
+    <div class="mb-3 row">
+        <div class="col-1"><strong>Materia Prima</strong></div>
         <div class="col-3 bg-blue"><?= $calidadMPrima['nomMPrima'] ?></div>
-        <div class="col-2 text-end"><strong>Alias Materia Prima</strong></strong></div>
+        <div class="col-2"><strong>Alias Materia Prima</strong></strong></div>
         <div class="col-1 bg-blue"><?= $calidadMPrima['aliasMPrima'] ?></div>
-        <div class="col-1 text-end"><strong>Estado</strong></div>
+        <div class="col-1"><strong>Estado</strong></div>
         <div class="col-1 bg-blue"><?= $calidadMPrima['descripcion'] ?></div>
     </div>
-    <div class="form-group row">
-        <div class="col-1 text-end"><strong>Lote </strong></div>
+    <div class="mb-3 row">
+        <div class="col-1"><strong>Lote </strong></div>
         <div class="col-1 bg-blue"><?= $calidadMPrima['lote_mp'] ?></div>
-        <div class="col-1 text-end"><strong>Fecha de lote</strong></strong></div>
+        <div class="col-1"><strong>Fecha de lote</strong></strong></div>
         <div class="col-1 bg-blue"><?= $calidadMPrima['fecha_lote'] ?></div>
-        <div class="col-1 text-end"><strong>Fecha análisis</strong></strong></div>
+        <div class="col-1"><strong>Fecha análisis</strong></strong></div>
         <div class="col-1 bg-blue"><?= $calidadMPrima['fecha_analisis'] ?></div>
-        <div class="col-2 text-end"><strong>Fecha vencimiento</strong></strong></div>
+        <div class="col-2"><strong>Fecha vencimiento</strong></strong></div>
         <div class="col-1 bg-blue"><?= $calidadMPrima['fecha_vencimiento'] ?></div>
-        <div class="col-1 text-end"><strong>Cantidad</strong></strong></div>
+        <div class="col-1"><strong>Cantidad</strong></strong></div>
         <div class="col-1 bg-blue"><?= $calidadMPrima['cantidad'] ?></div>
     </div>
-    <div class="form-group row titulo">Detalle control de calidad :</div>
+    <div class="mb-3 row titulo">Detalle control de calidad :</div>
 
     <input type="hidden" name="id" size=55 value="<?= $calidadMPrima['id'] ?>">
-    <div class="form-group row">
+    <div class="mb-3 row">
         <div class="col-1 text-center"><strong>Propiedad</strong></div>
         <div class="col-2 text-center"><strong>Especificación</strong></div>
         <div class="col-1 text-center"><strong>Valor / Cumple</strong></div>
     </div>
-    <div class="form-group row <?= empty($calidadMPrima['pHmPrima']) ? 'd-none' : '' ?>">
-        <div class="col-1 text-center col-form-label"><strong>pH</strong></div>
-        <div class="col-2 bg-blue text-center col-form-label pe-2"><?= $calidadMPrima['pHmPrima'] . ' ( &plusmn; 0.2 )' ?></div>
+    <div class="mb-3 row <?= empty($calidadMPrima['pHmPrima']) ? 'd-none' : '' ?>">
+        <div class="col-1 text-center form-label"><strong>pH</strong></div>
+        <div class="col-2 bg-blue text-center form-label pe-2"><?= $calidadMPrima['pHmPrima'] . ' ( &plusmn; 0.2 )' ?></div>
         <div class="form-control col-1 mx-2"><?= $calidadMPrima['pH_mp'] ?></div>
     </div>
-    <div class="form-group row <?= empty($calidadMPrima['densidadMPrima']) ? 'd-none' : '' ?>">
-        <div class="col-1 text-center col-form-label"><strong>Densidad</strong></div>
-        <div class="col-2 bg-blue text-center col-form-label pe-2"><?= $calidadMPrima['densidadMPrima'] . ' ( &plusmn; 0.1 )' ?></div>
+    <div class="mb-3 row <?= empty($calidadMPrima['densidadMPrima']) ? 'd-none' : '' ?>">
+        <div class="col-1 text-center form-label"><strong>Densidad</strong></div>
+        <div class="col-2 bg-blue text-center form-label pe-2"><?= $calidadMPrima['densidadMPrima'] . ' ( &plusmn; 0.1 )' ?></div>
         <div class="form-control col-1 mx-2"><?= $calidadMPrima['densidad_mp'] ?></div>
     </div>
-    <div class="form-group row <?= empty($calidadMPrima['olorMPrima']) ? 'd-none' : '' ?>">
-        <div class="col-1 text-center col-form-label"><strong>Olor</strong></div>
-        <div class="col-2 bg-blue text-center col-form-label"><?= $calidadMPrima['olorMPrima'] ?></div>
+    <div class="mb-3 row <?= empty($calidadMPrima['olorMPrima']) ? 'd-none' : '' ?>">
+        <div class="col-1 text-center form-label"><strong>Olor</strong></div>
+        <div class="col-2 bg-blue text-center form-label"><?= $calidadMPrima['olorMPrima'] ?></div>
         <div class="form-control col-1 mx-2"><?= $calidadMPrima['olor_mp'] == 1 ? "CUMPLE" : "NO CUMPLE" ?></div>
     </div>
-    <div class="form-group row <?= empty($calidadMPrima['colorMPrima']) ? 'd-none' : '' ?>">
-        <div class="col-1 text-center col-form-label"><strong>Color</strong></div>
-        <div class="col-2 bg-blue text-center col-form-label"><?= $calidadMPrima['colorMPrima'] ?></div>
+    <div class="mb-3 row <?= empty($calidadMPrima['colorMPrima']) ? 'd-none' : '' ?>">
+        <div class="col-1 text-center form-label"><strong>Color</strong></div>
+        <div class="col-2 bg-blue text-center form-label"><?= $calidadMPrima['colorMPrima'] ?></div>
         <div class="form-control col-1 mx-2"><?= $calidadMPrima['color_mp'] == 1 ? "CUMPLE" : "NO CUMPLE" ?></div>
     </div>
-    <div class="form-group row <?= empty($calidadMPrima['aparienciaMPrima']) ? 'd-none' : '' ?>">
-        <div class="col-1 text-center col-form-label"><strong>Apariencia</strong></div>
-        <div class="col-2 bg-blue text-center col-form-label"><?= $calidadMPrima['aparienciaMPrima'] ?></div>
+    <div class="mb-3 row <?= empty($calidadMPrima['aparienciaMPrima']) ? 'd-none' : '' ?>">
+        <div class="col-1 text-center form-label"><strong>Apariencia</strong></div>
+        <div class="col-2 bg-blue text-center form-label"><?= $calidadMPrima['aparienciaMPrima'] ?></div>
         <div class="form-control col-1 mx-2"><?= $calidadMPrima['apariencia_mp'] == 1 ? "CUMPLE" : "NO CUMPLE" ?></div>
     </div>
-    <div class="form-group row mb-3">
-        <div class="col-1 text-center col-form-label"><strong>Observaciones</strong></div>
+    <div class="mb-3 row mb-3">
+        <div class="col-1 text-center form-label"><strong>Observaciones</strong></div>
         <textarea class="form-control col-3 mx-2"
                   name="observaciones"><?= $calidadMPrima['observaciones'] ?></textarea>
     </div>
-    <div class="form-group row">
+    <div class="mb-3 row">
         <div class="col-8">
-            <div class="form-group row justify-content-around">
+            <div class="mb-3 row justify-content-around">
                 <?php if ($calidadMPrima['est_mprima'] != 2) : ?>
                     <div class="col-3">
                         <form action="Imp_etiqueta_cal_mp.php" method="post" target="_blank">

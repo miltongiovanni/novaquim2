@@ -42,13 +42,13 @@ if (!$cotizacion) {
         <img src="../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>MODIFICAR COTIZACIÓN</h4></div>
 
     <form method="post" action="update_cotiza.php" name="form1">
-        <div class="form-group row">
-            <label class="col-form-label col-2 text-end" for="idCotizacion"><strong>Id Cotización</strong></label>
+        <div class="mb-3 row">
+            <label class="form-label col-2 text-end" for="idCotizacion"><strong>Id Cotización</strong></label>
             <input type="text" class="form-control col-4" id="idCotizacion" name="idCotizacion" readonly
                    value="<?= $idCotizacion ?>" required/>
         </div>
-        <div class="form-group row">
-            <label class="col-form-label col-2 text-end" for="idCliente"><strong>Cliente Cotización</strong></label>
+        <div class="mb-3 row">
+            <label class="form-label col-2 text-end" for="idCliente"><strong>Cliente Cotización</strong></label>
             <select name="idCliente" id="idCliente" class="form-control col-4 " required>
                 <option selected value="<?= $cotizacion['idCliente'] ?>"><?= $cotizacion['nomCliente'] ?></option>
                 <?php
@@ -66,15 +66,15 @@ if (!$cotizacion) {
             </select>
         </div>
 
-        <div class="form-group row">
-            <label class="col-form-label col-2 text-end" for="fechaCotizacion"><strong>Fecha de
+        <div class="mb-3 row">
+            <label class="form-label col-2 text-end" for="fechaCotizacion"><strong>Fecha de
                     Cotización</strong></label>
             <input type="date" class="form-control col-4" name="fechaCotizacion" id="fechaCotizacion"
                    value="<?= $cotizacion['fechaCotizacion'] ?>" required>
         </div>
-        <div class="form-group row">
-            <label class="col-form-label col-2 text-end"><strong>Destino</strong></label>
-            <div class="col-form-label col-4 ">
+        <div class="mb-3 row">
+            <label class="form-label col-2 text-end"><strong>Destino</strong></label>
+            <div class="form-label col-4 ">
                 <input name="destino" type="radio" id="Destino_0"
                        value="1" <?php if ($cotizacion['destino'] == 1) echo 'checked'; ?>>
                 <label for="Destino_0">Impresión</label>
@@ -83,9 +83,9 @@ if (!$cotizacion) {
                 <label for="Destino_1">Correo electrónico</label>
             </div>
         </div>
-        <div class="form-group row">
-            <label class="col-form-label col-2 text-end"><strong>Presentación</strong></label>
-            <div class="col-form-label col-4 ">
+        <div class="mb-3 row">
+            <label class="form-label col-2 text-end"><strong>Presentación</strong></label>
+            <div class="form-label col-4 ">
                 <input name="presentaciones" type="radio" id="Presentaciones_0"
                        value="1" <?php if ($cotizacion['presentaciones'] == 1) echo 'checked'; ?>>
                 <label for="Presentaciones_0">Todas</label>
@@ -97,9 +97,9 @@ if (!$cotizacion) {
                 <label for="Presentaciones_2">Grandes</label>
             </div>
         </div>
-        <div class="form-group row">
-            <label class="col-form-label col-2 text-end"><strong>Precio</strong></label>
-            <div class="col-form-label col-4 ">
+        <div class="mb-3 row">
+            <label class="form-label col-2 text-end"><strong>Precio</strong></label>
+            <div class="form-label col-4 ">
                 <input name="precio" type="radio" id="precio_0"
                        value="1" <?php if ($cotizacion['precioCotizacion'] == 1) echo 'checked'; ?>>
                 <label for="precio_0">Fábrica</label>
@@ -117,17 +117,17 @@ if (!$cotizacion) {
                 <label for="precio_4">Superetes</label>
             </div>
         </div>
-        <div class="form-group row">
-            <label class="col-form-label col-2 text-end"><strong>Iva</strong></label>
-            <div class="col-form-label col-4 ">
+        <div class="mb-3 row">
+            <label class="form-label col-2 text-end"><strong>Iva</strong></label>
+            <div class="form-label col-4 ">
                 <input name="iva" type="radio" id="iva_0" value="1" checked >
                 <label for="iva_0">Precios con iva</label>
                 <input type="radio" name="iva" value="0" id="iva_1">
                 <label for="iva_1">Precios sin iva</label>
             </div>
         </div>
-        <div class="form-group row">
-            <label class="col-form-label col-2 text-end" for="fechaCotizacion"><strong>Familia de
+        <div class="mb-3 row">
+            <label class="form-label col-2 text-end" for="fechaCotizacion"><strong>Familia de
                     Productos</strong></label>
             <div class="col-2">
                 <?php
@@ -150,7 +150,7 @@ if (!$cotizacion) {
                 endfor;
                 ?>
             </div>
-            <label class="col-form-label col-2 text-end" for="fechaCotizacion"><strong>Familia
+            <label class="form-label col-2 text-end" for="fechaCotizacion"><strong>Familia
                     Distribución</strong></label>
             <div class="col-2">
                 <?php
@@ -174,14 +174,14 @@ if (!$cotizacion) {
                 ?>
             </div>
         </div>
-        <div class="row form-group">
+        <div class="row mb-3">
             <div class="col-1">
                 <button class="button" type="button" onclick="return Enviar(this.form)">
                     <span>Continuar</span></button>
             </div>
         </div>
     </form>
-    <div class="row form-group">
+    <div class="row mb-3">
         <div class="col-1">
             <button class="button1" onclick="history.back()">
                 <span>VOLVER</span></button>

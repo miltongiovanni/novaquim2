@@ -146,7 +146,7 @@ $cliente = $clienteOperaciones->getCliente($idCliente);
                     "infoFiltered": "(Filtrado de _MAX_ en total)"
 
                 },
-                "ajax": "ajax/listaPedidosCliente.php?idCliente=" + idCliente,
+                "ajax": "../ajax/listaPedidosCliente.php?idCliente=" + idCliente,
             });
             // Add event listener for opening and closing details
             $('#example tbody').on('click', 'td.details-control', function () {

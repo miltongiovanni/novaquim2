@@ -35,7 +35,7 @@ $pedidos = $pedidoOperador->getPedidosPorEntregar();
         <img src="../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>LISTA DE ÓRDENES DE PEDIDO
             FACTURADAS LISTAS PARA ENTREGAR</h4></div>
     <form name="revision_pedidos" method="post" action="rutero_diario.php">
-        <div class="form-group row">
+        <div class="mb-3 row">
             <div class="col-2">
                 <label for="fechaRutero"> Fecha rutero</label>
                 <input type="date" class="form-control" required
@@ -86,14 +86,14 @@ $pedidos = $pedidoOperador->getPedidosPorEntregar();
             }
             ?>
         </table>
-        <div class="row form-group">
+        <div class="row mb-3">
             <div class="col-2">
                 <button class="button" type="button" onclick="return Enviar(this.form)">
                     <span>Generar Rutero</span></button>
             </div>
         </div>
     </form>
-    <div class="row form-group">
+    <div class="row mb-3">
         <div class="col-1">
             <button class="button1" onclick="history.back()"><span>VOLVER</span></button>
         </div>

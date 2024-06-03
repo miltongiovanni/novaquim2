@@ -145,7 +145,7 @@ include "../../../includes/valAcc.php";
                 },
                 processing: true,
                 serverSide: true,
-                "ajax": "ajax/listaOProd.php",
+                "ajax": "../ajax/listaOProd.php",
                 "deferRender": true,  //For speed
             });
             // Add event listener for opening and closing details

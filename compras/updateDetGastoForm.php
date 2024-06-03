@@ -36,25 +36,25 @@ $detalle = $DetGastoOperador->getDetGasto($idGasto, $producto);
         <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>ACTUALIZACIÓN DEL DETALLE DEL GASTO</h4></div>
     <form action="updateDetGasto.php" method="post" name="actualiza">
         <input type="hidden" name="idGasto" id="idGasto" value="<?= $idGasto ?>">
-        <div class="form-group row">
-            <label class="col-form-label col-1 text-end" for="producto"><strong>Producto</strong></label>
+        <div class="mb-3 row">
+            <label class="form-label col-1 text-end" for="producto"><strong>Producto</strong></label>
             <input type="text" class="form-control col-2" name="producto" id="producto" readonly
                    value="<?= $detalle['producto'] ?>">
         </div>
-        <div class="form-group row">
-            <label class="col-form-label col-1 text-end" for="cantGasto"><strong>Cantidad</strong></label>
+        <div class="mb-3 row">
+            <label class="form-label col-1 text-end" for="cantGasto"><strong>Cantidad</strong></label>
             <input type="text" class="form-control col-2" name="cantGasto" id="cantGasto"
                    value="<?= $detalle['cantGasto'] ?>" onkeydown="return aceptaNum(event)">
         </div>
-        <div class="form-group row">
-            <label class="col-form-label col-1 text-end" for="precGasto"><strong>Precio</strong></label>
+        <div class="mb-3 row">
+            <label class="form-label col-1 text-end" for="precGasto"><strong>Precio</strong></label>
             <input type="text" class="form-control col-2" name="precGasto" id="precGasto"
                    value="<?= $detalle['precGasto'] ?>"
                    onkeydown="return aceptaNum(event)">
 
         </div>
-        <div class="form-group row">
-            <label class="col-form-label col-1 text-end" for="codIva"><strong>Iva</strong></label>
+        <div class="mb-3 row">
+            <label class="form-label col-1 text-end" for="codIva"><strong>Iva</strong></label>
             <?php
             $manager = new TasaIvaOperaciones();
             $tasas = $manager->getTasasIva();
@@ -70,7 +70,7 @@ $detalle = $DetGastoOperador->getDetGasto($idGasto, $producto);
             ?>
 
         </div>
-        <div class="form-group row">
+        <div class="mb-3 row">
             <div class="col-1 text-center">
                 <button class="button" type="reset"><span>Reiniciar</span></button>
             </div>

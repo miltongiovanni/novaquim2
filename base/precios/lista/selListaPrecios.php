@@ -18,8 +18,8 @@ include "../../../includes/valAcc.php";
         <img src="../../../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>SELECCIONAR PRECIO O PRECIOS PARA LA LISTA</h4></div>
     <form name="form1" method="POST" action="detListaPrecios.php">
         <input type="hidden" name="precioSinIva" value="<?= $_POST['precioSinIva'];?>">
-        <div class="form-group row">
-            <label class="col-1 text-end"><strong><br>Presentación</strong></label>
+        <div class="mb-3 row">
+            <label class="col-1"><strong><br>Presentación</strong></label>
             <div class="col-2">
                 <div class="form-check">
                     <input name="Presentaciones" class="form-check-input" type="radio" id="Presentaciones_0"
@@ -38,8 +38,8 @@ include "../../../includes/valAcc.php";
                 </div>
             </div>
         </div>
-        <div class="form-group row">
-            <label class="col-form-label col-1 text-end"
+        <div class="mb-3 row">
+            <label class="form-label col-1 text-end"
                    for="apellido"><strong><br><br>Precio</strong></label>
             <div class="col-2">
                 <div class="form-check">
@@ -74,7 +74,7 @@ include "../../../includes/valAcc.php";
                 </div>
             </div>
         </div>
-        <div class="form-group row">
+        <div class="mb-3 row">
             <div class="col-1 text-center">
                 <button class="button"
                         type="reset"><span>Reiniciar</span></button>

@@ -24,49 +24,35 @@ $productoDistribucion = $ProductoDistribucionOperador->getProductoDistribucion($
     <div id="saludo">
         <img src="../../../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>ACTUALIZACIÓN DE PRODUCTOS DE DISTRIBUCIÓN</h4></div>
     <form id="form1" name="form1" method="post" action="updateDis.php">
-        <div class="form-group row">
-            <div class="col-2 text-end">
-                <label class="col-form-label " for="catDis"><strong>Categoría</strong></label>
-            </div>
-            <div class="col-2 px-0">
-                <input type="hidden" name="idCatDis" id="idCatDis" value="<?= ($productoDistribucion['idCatDis']) ?>">
-                <input type="text" class="form-control col-2" name="catDis" id="catDis" value="<?= ($productoDistribucion['catDis']) ?>" readOnly>
-            </div>
-            <div class="col-1 text-end">
-                <label class="col-form-label " for="codSiigo"><strong>Código Siigo</strong></label>
-            </div>
-            <div class="col-3 px-0">
-                <input type="text" name="codSiigo" id="codSiigo" class="form-control "
-                       value="<?= ($productoDistribucion['codSiigo']) ?>" readonly/>
-            </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-2 text-end">
-                <label class="col-form-label " for="idDistribucion"><strong>Código</strong></label>
-            </div>
-            <div class="col-2 px-0">
+        <div class="mb-3 row">
+            <div class="col-1">
+                <label class="form-label " for="idDistribucion"><strong>Código</strong></label>
                 <input type="text" class="form-control " name="idDistribucion" id="idDistribucion"
                        value="<?= ($productoDistribucion['idDistribucion']) ?>" readOnly>
             </div>
-            <div class="col-1 text-end">
-                <label class="col-form-label " for="producto"><strong>Producto</strong></label>
-            </div>
-            <div class=" col-3 px-0">
+            <div class="col-3">
+                <label class="form-label " for="producto"><strong>Producto</strong></label>
                 <input type="text" class="form-control" name="producto" id="producto" value="<?= ($productoDistribucion['producto']) ?>" onkeydown="return aceptaLetra(event)" maxlength="50">
             </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-2 text-end">
-                <label class="col-form-label " for="precioVta"><strong>Precio de Venta</strong></label>
+            <div class="col-2">
+                <label class="form-label " for="catDis"><strong>Categoría</strong></label>
+                <input type="hidden" name="idCatDis" id="idCatDis" value="<?= ($productoDistribucion['idCatDis']) ?>">
+                <input type="text" class="form-control col-2" name="catDis" id="catDis" value="<?= ($productoDistribucion['catDis']) ?>" readOnly>
             </div>
-            <div class="col-2 px-0">
+        </div>
+        <div class="mb-3 row">
+            <div class="col-1">
+                <label class="form-label " for="codSiigo"><strong>Código Siigo</strong></label>
+                <input type="text" name="codSiigo" id="codSiigo" class="form-control "
+                       value="<?= ($productoDistribucion['codSiigo']) ?>" readonly/>
+            </div>
+            <div class="col-1">
+                <label class="form-label " for="precioVta"><strong>Precio venta</strong></label>
                 <input type="text" class="form-control " name="precioVta" id="precioVta"
                        value="<?= ($productoDistribucion['precioVta']) ?>" onkeydown="return aceptaNum(event)">
             </div>
-            <div class="col-1 text-end">
-                <label class="col-form-label " for="codIva"><strong>Iva</strong></label>
-            </div>
-            <div class="col-3 px-0">
+            <div class="col-1">
+                <label class="form-label " for="codIva"><strong>Iva</strong></label>
                 <?php
                 $manager = new TasaIvaOperaciones();
                 $tasas = $manager->getTasasIva();
@@ -81,19 +67,13 @@ $productoDistribucion = $ProductoDistribucionOperador->getProductoDistribucion($
                 echo '</select>';
                 ?>
             </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-2 text-end">
-                <label class="col-form-label " for="stockDis"><strong>Stock Min</strong></label>
-            </div>
-            <div class="col-2 px-0">
+            <div class="col-1">
+                <label class="form-label " for="stockDis"><strong>Stock Min</strong></label>
                 <input type="number" class="form-control " min="0" name="stockDis" id="stockDis" pattern="[0-9]"
                        value="<?= ($productoDistribucion['stockDis']) ?>" onkeydown="return aceptaNum(event)">
             </div>
-            <div class="col-1 text-end">
-                <label class="col-form-label " for="cotiza"><strong>Cotizar</strong></label>
-            </div>
-            <div class="col-3 px-0">
+            <div class="col-1">
+                <label class="form-label " for="cotiza"><strong>Cotizar</strong></label>
                 <?php
                 if ($productoDistribucion['cotiza'] == 0) {
                     echo '<select name="cotiza" id="cotiza" class="form-control " required>
@@ -108,13 +88,8 @@ $productoDistribucion = $ProductoDistribucionOperador->getProductoDistribucion($
                 }
                 ?>
             </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-1 text-end">
-                <label class="col-form-label " for="cotiza"><strong>Activo</strong></label>
-            </div>
-            <div class="col-1 px-0">
-
+            <div class="col-1">
+                <label class="form-label " for="cotiza"><strong>Activo</strong></label>
                 <?php
                 if ($productoDistribucion['activo'] == 0) {
                     echo '<select name="activo" id="activo" class="form-control ">
@@ -130,7 +105,13 @@ $productoDistribucion = $ProductoDistribucionOperador->getProductoDistribucion($
                 ?>
             </div>
         </div>
-        <div class="form-group row">
+        <div class="mb-3 row">
+        </div>
+        <div class="mb-3 row">
+        </div>
+        <div class="mb-3 row">
+        </div>
+        <div class="mb-3 row">
             <div class="col-1 text-center">
                 <button class="button" type="button" onclick="return Enviar(this.form)"><span>Continuar</span></button>
             </div>

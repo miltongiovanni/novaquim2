@@ -89,7 +89,7 @@ $totales = $personalOperador->getTotalComisionVendedor($idPersonal, $fechaInicia
             let idPersonal = <?=$idPersonal?>;
             let fechaInicial = '<?=$fechaInicial?>';
             let fechaFinal = '<?=$fechaFinal?>';
-            let ruta = "ajax/listaComisionVendedor.php?idPersonal=" + idPersonal + "&fechaInicial=" + fechaInicial + "&fechaFinal=" + fechaFinal;
+            let ruta = "../ajax/listaComisionVendedor.php?idPersonal=" + idPersonal + "&fechaInicial=" + fechaInicial + "&fechaFinal=" + fechaFinal;
             $('#example').DataTable({
                 "columns": [
                     {

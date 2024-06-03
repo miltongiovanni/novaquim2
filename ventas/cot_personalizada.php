@@ -17,30 +17,30 @@ include "../../../includes/valAcc.php";
     <div id="saludo">
         <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>CREACIÓN DE COTIZACIÓN PERSONALIZADA</h4></div>
     <form method="post" action="makeCotizacionPersonalizada.php" name="form1">
-        <div class="form-group row">
-            <label class="col-form-label col-2" for="busClien"><strong>Cliente</strong></label>
+        <div class="mb-3 row">
+            <label class="form-label col-2" for="busClien"><strong>Cliente</strong></label>
             <input type="text" class="form-control col-1" id="busClien" name="busClien"
                    onkeyup="findClienteCotizacion()"
                    required/>
             <div class="col-4" id="myDiv"></div>
         </div>
-        <div class="form-group row">
-            <label class="col-form-label col-2 text-end" for="fechaCotizacion"><strong>Fecha de
+        <div class="mb-3 row">
+            <label class="form-label col-2 text-end" for="fechaCotizacion"><strong>Fecha de
                     Cotización</strong></label>
             <input type="date" class="form-control col-5" name="fechaCotizacion" id="fechaCotizacion" required>
         </div>
-        <div class="form-group row">
-            <label class="col-form-label col-2"><strong>Destino</strong></label>
-            <div class="col-form-label col-5 ">
+        <div class="mb-3 row">
+            <label class="form-label col-2"><strong>Destino</strong></label>
+            <div class="form-label col-5 ">
                 <input name="destino" type="radio" id="Destino_0" value="1" checked>
                 <label for="Destino_0">Impresión</label>
                 <input type="radio" name="destino" value="2" id="Destino_1">
                 <label for="Destino_1">Correo electrónico</label>
             </div>
         </div>
-        <div class="form-group row">
-            <label class="col-form-label col-2"><strong>Precio</strong></label>
-            <div class="col-form-label col-5 ">
+        <div class="mb-3 row">
+            <label class="form-label col-2"><strong>Precio</strong></label>
+            <div class="form-label col-5 ">
                 <input name="tipPrecio" type="radio" id="precio_0" value="1" checked>
                 <label for="precio_0">Fábrica</label>
                 <input type="radio" name="tipPrecio" value="2" id="precio_1">
@@ -53,14 +53,14 @@ include "../../../includes/valAcc.php";
                 <label for="precio_4">Superetes</label>
             </div>
         </div>
-        <div class="row form-group">
+        <div class="row mb-3">
             <div class="col-1">
                 <button class="button" type="button" onclick="return Enviar(this.form)">
                     <span>Continuar</span></button>
             </div>
         </div>
     </form>
-    <div class="row form-group">
+    <div class="row mb-3">
         <div class="col-1">
             <button class="button1" onclick="window.location='../menu.php">
                 <span>VOLVER</span></button>

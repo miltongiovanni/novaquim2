@@ -84,7 +84,7 @@ spl_autoload_register('cargarClases');
 
     getMenuSons(0, $menuItems);
     ?>
-    <div id="saludo2" class="form-group row" style="align-items: center;">
+    <div id="saludo2" class="mb-3 row" style="align-items: center;">
         <div class="col-1"><img src="images/LogoNova.jpg" alt="logo Nova"></div>
         <div class="col-11 text-center">
             <?php
@@ -96,7 +96,7 @@ spl_autoload_register('cargarClases');
             ?> está usando el Sistema de Información de Industrias Novaquim S.A.S.
         </div>
     </div>
-    <div class="form-group row" style="justify-content: flex-start">
+    <div class="mb-3 row" style="justify-content: flex-start">
         <?php
         if ($perfil1 == 1):
             ?>

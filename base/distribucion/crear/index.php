@@ -45,11 +45,9 @@ spl_autoload_register('cargarClases');
     <div id="saludo">
         <img src="../../../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>CREACIÓN DE PRODUCTOS DE DISTRIBUCIÓN</h4></div>
     <form name="form2" method="POST" action="makeDis.php">
-        <div class="form-group row">
-            <div class="col-1 text-end">
-                <label class="col-form-label " for="idCatDis"><strong>Categoría</strong></label>
-            </div>
-            <div class="col-2 px-0">
+        <div class="mb-3 row">
+            <div class="col-2">
+                <label class="form-label " for="idCatDis"><strong>Categoría</strong></label>
                 <?php
                 $manager = new CategoriasDisOperaciones();
                 $categorias = $manager->getCatsDis();
@@ -62,95 +60,80 @@ spl_autoload_register('cargarClases');
                 echo '</select>';
                 ?>
             </div>
-            <?php
-            $link = Conectar::conexion();
+            <div class="col-1">
+                <label class="form-label " for="idDistribucion"><strong>Código</strong></label>
+                <input type="text" class="form-control " name="idDistribucion" id="idDistribucion"
+                       onkeydown="return aceptaNum(event)" readOnly>
+            </div>
+            <div class="col-3">
+                <label class="form-label " for="producto"><strong>Producto</strong></label>
+                <input type="text" class="form-control " name="producto" id="producto"
+                       onkeydown="return aceptaLetra(event)" maxlength="50" required>
+            </div>
+        </div>
+</div>
+<div class="mb-3 row">
+    <?php
+    $link = Conectar::conexion();
 
-            $qry = "SELECT MAX(siigo) maxsiigo FROM (SELECT MAX(codSiigo) siigo FROM distribucion  WHERE CodIva=3
+    $qry = "SELECT MAX(siigo) maxsiigo FROM (SELECT MAX(codSiigo) siigo FROM distribucion  WHERE CodIva=3
                     union
                     SELECT MAX(codSiigo) siigo FROM prodpre  WHERE CodIva=3
                     union
                     SELECT MAX(codSiigo) siigo FROM servicios  WHERE CodIva=3
                     ) AS a";
-            $stmt = $link->prepare($qry);
-            $stmt->execute();
-            $row = $stmt->fetch(PDO::FETCH_ASSOC);
-            ?>
-            <div class="col-1 text-end">
-                <label class="col-form-label " for="codSiigo"><strong>Código Siigo</strong></label>
-            </div>
-            <div class="col-3 px-0">
-                <input type="text" name="codSiigo" id="codSiigo" class="form-control "
-                       onkeydown="return aceptaNum(event)" value="<?= ($row['maxsiigo'] + 1) ?>"/>
-            </div>
+    $stmt = $link->prepare($qry);
+    $stmt->execute();
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    ?>
+    <div class="col-2">
+        <label class="form-label " for="codSiigo"><strong>Código Siigo</strong></label>
+        <input type="text" name="codSiigo" id="codSiigo" class="form-control "
+               onkeydown="return aceptaNum(event)" value="<?= ($row['maxsiigo'] + 1) ?>"/>
+    </div>
+    <div class="col-1">
+        <label class="form-label " for="precioVta"><strong>Precio Venta</strong></label>
+        <input type="text" class="form-control " name="precioVta" id="precioVta"
+               onkeydown="return aceptaNum(event)" required>
+    </div>
+    <div class="col-1">
+        <label class="form-label " for="codIva"><strong>Iva</strong></label>
+        <?php
+        $manager = new TasaIvaOperaciones();
+        $tasas = $manager->getTasasIva();
+        $filas = count($tasas);
+        echo '<select name="codIva" id="codIva" class="form-control " required>';
+        echo '<option selected disabled value="">---------</option>';
+        for ($i = 0; $i < $filas; $i++) {
+            echo '<option value="' . $tasas[$i]["idTasaIva"] . '">' . $tasas[$i]['iva'] . '</option>';
+        }
+        echo '</select>';
+        ?>
+    </div>
+    <div class="col-1">
+        <label class="form-label " for="stockDis"><strong>Stock Min</strong></label>
+        <input type="text" class="form-control " min="0" name="stockDis" id="stockDis" pattern="[0-9]"
+               onkeydown="return aceptaNum(event)" required>
+    </div>
+    <div class="col-1">
+        <label class="form-label " for="cotiza"><strong>Cotizar</strong></label>
+        <select name="cotiza" id="cotiza" class="form-control ">
+            <option value="1">Si</option>
+            <option value="0" selected>No</option>
+        </select>
+    </div>
+    <div class="mb-3 row">
+    </div>
+    <div class="mb-3 row">
+    </div>
+    <div class="mb-3 row">
+        <div class="col-1 text-center">
+            <button class="button" type="reset"><span>Reiniciar</span></button>
         </div>
-        <div class="form-group row">
-            <div class="col-1 text-end">
-                <label class="col-form-label " for="idDistribucion"><strong>Código</strong></label>
-            </div>
-            <div class="col-2 px-0">
-                <input type="text" class="form-control " name="idDistribucion" id="idDistribucion"
-                       onkeydown="return aceptaNum(event)" readOnly>
-            </div>
-            <div class="col-1 text-end">
-                <label class="col-form-label " for="producto"><strong>Producto</strong></label>
-            </div>
-            <div class="col-3 px-0">
-                <input type="text" class="form-control " name="producto" id="producto"
-                       onkeydown="return aceptaLetra(event)" maxlength="50" required>
-            </div>
+        <div class="col-1 text-center">
+            <button class="button" type="button" onclick="return Enviar(this.form)"><span>Continuar</span></button>
         </div>
-        <div class="form-group row">
-            <div class="col-1 text-end">
-                <label class="col-form-label " for="precioVta"><strong>Precio Venta</strong></label>
-            </div>
-            <div class="col-2 px-0">
-                <input type="text" class="form-control " name="precioVta" id="precioVta"
-                       onkeydown="return aceptaNum(event)" required>
-            </div>
-            <div class="col-1 text-end">
-                <label class="col-form-label " for="codIva"><strong>Iva</strong></label>
-            </div>
-            <div class="col-3 px-0">
-                <?php
-                $manager = new TasaIvaOperaciones();
-                $tasas = $manager->getTasasIva();
-                $filas = count($tasas);
-                echo '<select name="codIva" id="codIva" class="form-control " required>';
-                echo '<option selected disabled value="">-----------------------------</option>';
-                for ($i = 0; $i < $filas; $i++) {
-                    echo '<option value="' . $tasas[$i]["idTasaIva"] . '">' . $tasas[$i]['iva'] . '</option>';
-                }
-                echo '</select>';
-                ?>
-            </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-1 text-end">
-                <label class="col-form-label " for="stockDis"><strong>Stock Min</strong></label>
-            </div>
-            <div class="col-2 px-0">
-                <input type="text" class="form-control " min="0" name="stockDis" id="stockDis" pattern="[0-9]"
-                       onkeydown="return aceptaNum(event)" required>
-            </div>
-            <div class="col-1 text-end">
-                <label class="col-form-label " for="cotiza"><strong>Cotizar</strong></label>
-            </div>
-            <div class="col-3 px-0">
-                <select name="cotiza" id="cotiza" class="form-control ">
-                    <option value="1">Si</option>
-                    <option value="0" selected>No</option>
-                </select>
-            </div>
-
-        </div>
-        <div class="form-group row">
-            <div class="col-1 text-center">
-                <button class="button" type="reset"><span>Reiniciar</span></button>
-            </div>
-            <div class="col-1 text-center">
-                <button class="button" type="button" onclick="return Enviar(this.form)"><span>Continuar</span></button>
-            </div>
-        </div>
+    </div>
     </form>
     <div class="row">
         <div class="col-1">

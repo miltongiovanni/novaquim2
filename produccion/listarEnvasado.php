@@ -143,7 +143,7 @@ include "../../../includes/valAcc.php";
                 },
                 processing: true,
                 serverSide: true,
-                "ajax": "ajax/listaEnvasado.php",
+                "ajax": "../ajax/listaEnvasado.php",
                 "deferRender": true,  //For speed
             });
             // Add event listener for opening and closing details

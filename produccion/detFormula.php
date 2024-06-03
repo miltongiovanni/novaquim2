@@ -44,7 +44,7 @@ $porcentajeTotal = $DetFormulaOperador->getPorcentajeTotal($idFormula);
     <script>
         $(document).ready(function () {
             let idFormula = <?=$idFormula?>;
-            let ruta = "ajax/listaDetFormulas.php?idFormula=" + idFormula;
+            let ruta = "../ajax/listaDetFormulas.php?idFormula=" + idFormula;
             $('#example').DataTable({
                 "columns": [
                     {
@@ -117,16 +117,16 @@ $porcentajeTotal = $DetFormulaOperador->getPorcentajeTotal($idFormula);
     <form method="post" action="makeDetFormula.php" name="form1">
         <input name="idFormula" type="hidden" value="<?= $idFormula; ?>">
         <div class="row">
-            <label class="col-form-label col-3 text-center" for="codMPrima" style="margin: 0 5px 0 0;"><strong>Materia
+            <label class="form-label col-3 text-center" for="codMPrima" style="margin: 0 5px 0 0;"><strong>Materia
                     Prima</strong></label>
-            <label class="col-form-label col-1 text-center" for="porcentaje" style="margin: 0 5px;"><strong>% en
+            <label class="form-label col-1 text-center" for="porcentaje" style="margin: 0 5px;"><strong>% en
                     fórmula</strong></label>
-            <label class="col-form-label col-1 text-center" for="orden"
+            <label class="form-label col-1 text-center" for="orden"
                    style="margin: 0 5px;"><strong>Orden</strong></label>
             <div class="col-2 text-center">
             </div>
         </div>
-        <div class="form-group row">
+        <div class="mb-3 row">
             <select name="codMPrima" id="codMPrima" class="form-select col-3" style="margin: 0 5px 0 0;" required>
                 <option disabled selected value="">-----------------------------</option>
                 <?php
@@ -147,7 +147,7 @@ $porcentajeTotal = $DetFormulaOperador->getPorcentajeTotal($idFormula);
                 </div>
         </div>
     </form>
-    <div class="form-group titulo row text-center">
+    <div class="mb-3 titulo row text-center">
         <strong>Detalle de la fórmula</strong>
     </div>
     <div class="tabla-50">

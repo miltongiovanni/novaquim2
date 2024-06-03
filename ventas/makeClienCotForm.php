@@ -30,14 +30,14 @@ $cliExis = $_POST['cliExis'];
         <?php
         if ($cliExis == 1) :
             ?>
-            <div class="form-group row">
-                <label class="col-form-label col-2" for="busClien"><strong>Cliente</strong></label>
+            <div class="mb-3 row">
+                <label class="form-label col-2" for="busClien"><strong>Cliente</strong></label>
                 <input type="text" class="form-control col-2" id="busClien" name="busClien" onkeyup="findCliente()"
                        required/>
             </div>
-            <div class="form-group row" id="myDiv">
+            <div class="mb-3 row" id="myDiv">
             </div>
-            <div class="row form-group">
+            <div class="row mb-3">
                 <div class="col-1">
                     <button class="button" type="button" onclick="return Enviar(this.form)">
                         <span>Continuar</span></button>
@@ -47,11 +47,11 @@ $cliExis = $_POST['cliExis'];
         else:
             ?>
             <div class=" row ">
-                <label class="col-form-label col-3 text-start me-2" for="nomCliente"><strong>Cliente</strong></label>
-                <label class="col-form-label col-1 text-start mx-3" for="ciudadCliente"><strong>Ciudad</strong></label>
-                <label class="col-form-label col-3 text-start ms-2" for="dirCliente"><strong>Dirección</strong></label>
+                <label class="form-label col-3 text-start me-2" for="nomCliente"><strong>Cliente</strong></label>
+                <label class="form-label col-1 text-start mx-3" for="ciudadCliente"><strong>Ciudad</strong></label>
+                <label class="form-label col-3 text-start ms-2" for="dirCliente"><strong>Dirección</strong></label>
             </div>
-            <div class="form-group row">
+            <div class="mb-3 row">
                 <input type="text" class="form-control col-3 me-2" name="nomCliente" id="nomCliente" required>
                 <?php
                 $manager = new CiudadesOperaciones();
@@ -66,12 +66,12 @@ $cliExis = $_POST['cliExis'];
                 <input type="text" class="form-control col-3 ms-2" name="dirCliente" id="dirCliente" required>
             </div>
             <div class="row">
-                <label class="col-form-label col-2 text-start me-2" for="telCliente"><strong>Teléfono</strong></label>
-                <label class="col-form-label col-2 text-start mx-3" for="emailCliente"><strong>Correo
+                <label class="form-label col-2 text-start me-2" for="telCliente"><strong>Teléfono</strong></label>
+                <label class="form-label col-2 text-start mx-3" for="emailCliente"><strong>Correo
                         electrónico</strong></label>
-                <label class="col-form-label col-3 text-start ms-2" for="idCatCliente"><strong>Actividad</strong></label>
+                <label class="form-label col-3 text-start ms-2" for="idCatCliente"><strong>Actividad</strong></label>
             </div>
-            <div class="form-group row">
+            <div class="mb-3 row">
                 <input type="text" class="form-control col-2 me-2" name="telCliente" id="telCliente" maxlength="10"
                        onkeydown="return aceptaNum(event)">
                 <input type="email" class="form-control col-2 mx-3" name="emailCliente" id="emailCliente">
@@ -88,14 +88,14 @@ $cliExis = $_POST['cliExis'];
                 ?>
             </div>
             <div class="row">
-                <label class="col-form-label col-2 text-start me-2" for="contactoCliente"><strong>Nombre
+                <label class="form-label col-2 text-start me-2" for="contactoCliente"><strong>Nombre
                         Contacto</strong></label>
-                <label class="col-form-label col-2 text-start mx-2" for="cargoContacto"><strong>Cargo
+                <label class="form-label col-2 text-start mx-2" for="cargoContacto"><strong>Cargo
                         Contacto</strong></label>
-                <label class="col-form-label col-1 text-start mx-2" for="cargoContacto"><strong>Celular</strong></label>
-                <label class="col-form-label col-2 text-start ms-2" for="codVendedor"><strong>Vendedor</strong></label>
+                <label class="form-label col-1 text-start mx-2" for="cargoContacto"><strong>Celular</strong></label>
+                <label class="form-label col-2 text-start ms-2" for="codVendedor"><strong>Vendedor</strong></label>
             </div>
-            <div class="form-group row">
+            <div class="mb-3 row">
                 <input type="text" class="form-control col-2 me-2" name="contactoCliente" id="contactoCliente" required>
                 <input type="text" class="form-control col-2 mx-2" name="cargoContacto" id="cargoContacto" required>
                 <input type="text" class="form-control col-1 mx-2" name="celCliente" id="celCliente" maxlength="10"
@@ -111,7 +111,7 @@ $cliExis = $_POST['cliExis'];
                 echo '</select>';
                 ?>
             </div>
-            <div class="form-group row">
+            <div class="mb-3 row">
                 <div class="col-1 text-center">
                     <button class="button" type="reset"><span>Reiniciar</span></button>
                 </div>

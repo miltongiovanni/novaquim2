@@ -116,7 +116,7 @@ $detComprasMPrimaOperador = new DetComprasOperaciones();
                     "infoFiltered": "(Filtrado de _MAX_ en total)"
 
                 },
-                "ajax": "ajax/listaCompraMPTrazabilidad.php?codMPrima=" + codMPrima +'&loteMP='+loteMP ,
+                "ajax": "../ajax/listaCompraMPTrazabilidad.php?codMPrima=" + codMPrima +'&loteMP='+loteMP ,
                 "deferRender": true,  //For speed
             });
             var table2 = $('#salidas').DataTable({
@@ -167,7 +167,7 @@ $detComprasMPrimaOperador = new DetComprasOperaciones();
                     "infoFiltered": "(Filtrado de _MAX_ en total)"
 
                 },
-                "ajax": "ajax/listaDetOProdMPTrazabilidad.php?codMPrima=" + codMPrima +'&loteMP='+loteMP ,
+                "ajax": "../ajax/listaDetOProdMPTrazabilidad.php?codMPrima=" + codMPrima +'&loteMP='+loteMP ,
                 "deferRender": true,  //For speed
             });
         });
@@ -184,7 +184,7 @@ $detComprasMPrimaOperador = new DetComprasOperaciones();
     <div id="saludo1">
         <img src="../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>TRAZABILIDAD DE <?=$nomMPrima; ?> CON
             LOTE <?= $loteMP; ?></h4></div>
-    <div class="form-group titulo row text-center">
+    <div class="mb-3 titulo row text-center">
         <strong>Entrada</strong>
     </div>
     <div class="tabla-50">
@@ -198,7 +198,7 @@ $detComprasMPrimaOperador = new DetComprasOperaciones();
             </thead>
         </table>
     </div>
-    <div class="form-group titulo row text-center">
+    <div class="mb-3 titulo row text-center">
         <strong>Salidas
         </strong>
     </div>

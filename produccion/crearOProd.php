@@ -42,8 +42,8 @@ spl_autoload_register('cargarClases');
     <div id="saludo">
         <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>ORDEN DE PRODUCCIÓN</h4></div>
     <form method="post" action="makeO_Prod.php" name="form1">
-        <div class="form-group row">
-            <label class="col-form-label col-2" for="codProducto"><strong>Producto</strong></label>
+        <div class="mb-3 row">
+            <label class="form-label col-2" for="codProducto"><strong>Producto</strong></label>
             <?php
             $ProductoOperador = new ProductosOperaciones();
             $productos = $ProductoOperador->getProductos(true);
@@ -56,17 +56,17 @@ spl_autoload_register('cargarClases');
             echo '</select>';
             ?>
         </div>
-        <div class="form-group row">
-            <label class="col-form-label col-2" for="codProducto"><strong>Fórmula</strong></label>
+        <div class="mb-3 row">
+            <label class="form-label col-2" for="codProducto"><strong>Fórmula</strong></label>
             <div id="myDiv" class="col-2 px-0">
             </div>
         </div>
-        <div class="form-group row">
-            <label class="col-form-label col-2 text-end" for="fechProd"><strong>Fecha de Producción</strong></label>
+        <div class="mb-3 row">
+            <label class="form-label col-2 text-end" for="fechProd"><strong>Fecha de Producción</strong></label>
             <input type="date" class="form-control col-2" name="fechProd" id="fechProd" required>
         </div>
-        <div class="form-group row">
-            <label class="col-form-label col-2" for="codResponsable"><strong>Responsable</strong></label>
+        <div class="mb-3 row">
+            <label class="form-label col-2" for="codResponsable"><strong>Responsable</strong></label>
             <?php
             $PersonalOperador = new PersonalOperaciones();
             $personal = $PersonalOperador->getPersonalProd();
@@ -78,13 +78,13 @@ spl_autoload_register('cargarClases');
             echo '</select>';
             ?>
         </div>
-        <div class="form-group row">
-            <label class="col-form-label col-2 text-end" for="cantidadKg"><strong>Cantidad a Producir
+        <div class="mb-3 row">
+            <label class="form-label col-2 text-end" for="cantidadKg"><strong>Cantidad a Producir
                     (Kg)</strong></label>
             <input type="text" class="form-control col-2" name="cantidadKg" id="cantidadKg"
                    onkeydown="return aceptaNum(event)" required>
         </div>
-        <div class="form-group row">
+        <div class="mb-3 row">
             <div class="col-1 text-center">
                 <button class="button" type="reset"><span>Reiniciar</span></button>
             </div>

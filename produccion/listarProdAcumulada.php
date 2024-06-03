@@ -98,7 +98,7 @@ foreach ($_POST as $nombre_campo => $valor) {
                     "infoFiltered": "(Filtrado de _MAX_ en total)"
 
                 },
-                "ajax": "ajax/listaProdAcumulada.php?fechRef=<?=$fechRef?>",
+                "ajax": "../ajax/listaProdAcumulada.php?fechRef=<?=$fechRef?>",
                 "deferRender": true,  //For speed
             });
         });

@@ -45,12 +45,12 @@ $pedido = $pedidoOperador->getPedido($pedidosList[0]);
         <input type="hidden" name="idRemision" value="<?= implode(',', $remisiones); ?>">
         <input type="hidden" name="tipPrecio" value="<?= $pedido['idPrecio']; ?>">
         <div class="row">
-            <label class="col-form-label col-2 text-start" for="idFactura"><strong>No. de Factura</strong></label>
-            <label class="col-form-label col-2 text-start mx-2" for="fechaFactura"><strong>Fecha de
+            <label class="form-label col-2 text-start" for="idFactura"><strong>No. de Factura</strong></label>
+            <label class="form-label col-2 text-start mx-2" for="fechaFactura"><strong>Fecha de
                     factura</strong></label>
-            <label class="col-form-label col-2 text-start" for="fechaVenc"><strong>Fecha de vencimiento</strong></label>
+            <label class="form-label col-2 text-start" for="fechaVenc"><strong>Fecha de vencimiento</strong></label>
         </div>
-        <div class="form-group row">
+        <div class="mb-3 row">
             <input type="text" class="form-control col-2" name="idFactura" id="idFactura"
                    onkeydown="return aceptaNum(event)" required>
             <input type="date" class="form-control col-2 mx-2" name="fechaFactura" id="fechaFactura"
@@ -58,19 +58,19 @@ $pedido = $pedidoOperador->getPedido($pedidosList[0]);
             <input type="date" class="form-control col-2" name="fechaVenc" id="fechaVenc" value="" required>
         </div>
         <div class="row">
-            <label class="col-form-label col-6 text-start" for="nomCliente"><strong>Cliente</strong></label>
+            <label class="form-label col-6 text-start" for="nomCliente"><strong>Cliente</strong></label>
         </div>
-        <div class="form-group row">
+        <div class="mb-3 row">
             <input type="text" class="form-control col-6" name="nomCliente" id="nomCliente"
                    value="<?= $cliente['nomCliente']; ?>" readonly>
         </div>
         <div class="row">
-            <label class="col-form-label col-2 text-start" for="tipoPrecio"><strong>Tipo de precio</strong></label>
-            <label class="col-form-label col-2 text-start mx-2" for="ordenCompra"><strong>Orden de
+            <label class="form-label col-2 text-start" for="tipoPrecio"><strong>Tipo de precio</strong></label>
+            <label class="form-label col-2 text-start mx-2" for="ordenCompra"><strong>Orden de
                     compra</strong></label>
-            <label class="col-form-label col-2 text-start" for="descuento"><strong>Descuento</strong></label>
+            <label class="form-label col-2 text-start" for="descuento"><strong>Descuento</strong></label>
         </div>
-        <div class="form-group row">
+        <div class="mb-3 row">
             <input type="text" class="form-control col-2" name="tipoPrecio" id="tipoPrecio"
                    value="<?= $pedido['tipoPrecio']; ?>" readonly>
             <input type="text" class="form-control col-2 mx-2" name="ordenCompra" id="ordenCompra"
@@ -79,9 +79,9 @@ $pedido = $pedidoOperador->getPedido($pedidosList[0]);
                    onkeydown="return aceptaNum(event)" value="0" required>
         </div>
         <div class="row">
-            <label class="col-form-label col-6 text-start" for="nomSucursal"><strong>Pedidos</strong></label>
+            <label class="form-label col-6 text-start" for="nomSucursal"><strong>Pedidos</strong></label>
         </div>
-        <div class="form-group row">
+        <div class="mb-3 row">
             <textarea name="nomSucursal" class="form-control col-6" id="nomSucursal" rows="5" readonly><?php
                 foreach ($pedidosSucursal as $pedido) {
                     echo $pedido . "\n";
@@ -90,19 +90,19 @@ $pedido = $pedidoOperador->getPedido($pedidosList[0]);
             </textarea>
         </div>
         <div class="row">
-            <label class="col-form-label col-6 text-start" for="observaciones"><strong>Observaciones</strong></label>
+            <label class="form-label col-6 text-start" for="observaciones"><strong>Observaciones</strong></label>
         </div>
-        <div class="form-group row">
+        <div class="mb-3 row">
             <textarea name="observaciones" class="form-control col-6" id="observaciones" rows="2"></textarea>
         </div>
-        <div class="row form-group">
+        <div class="row mb-3">
             <div class="col-1">
                 <button class="button" type="button" onclick="return Enviar(this.form)">
                     <span>Continuar</span></button>
             </div>
         </div>
     </form>
-    <div class="row form-group">
+    <div class="row mb-3">
         <div class="col-1">
             <button class="button1" onclick="history.back()">
                 <span>VOLVER</span></button>

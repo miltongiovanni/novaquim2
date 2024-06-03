@@ -53,8 +53,8 @@ $detalle = $DetCompraOperador->getDetCompra($idCompra, $tipoCompra, $codigo);
         <input type="hidden" name="tipoCompra" id="tipoCompra" value="<?= $tipoCompra ?>">
         <input type="hidden" name="codigo" id="codigo" value="<?= $codigo ?>">
 
-        <div class="form-group row">
-            <label class="col-form-label col-1 text-end" for="Producto"><strong>Producto</strong></label>
+        <div class="mb-3 row">
+            <label class="form-label col-1 text-end" for="Producto"><strong>Producto</strong></label>
             <input type="text" class="form-control col-2" name="Producto" id="Producto" readonly
                    value="<?= $detalle['Producto'] ?>">
         </div>
@@ -63,31 +63,31 @@ $detalle = $DetCompraOperador->getDetCompra($idCompra, $tipoCompra, $codigo);
             $InvMPrimasOperador = new InvMPrimasOperaciones();
             $fechLote = $InvMPrimasOperador->getFechaLoteInvMPrima($codigo, $detalle['lote']);
             ?>
-            <div class="form-group row">
-                <label class="col-form-label col-1 text-end" for="lote"><strong>Lote</strong></label>
+            <div class="mb-3 row">
+                <label class="form-label col-1 text-end" for="lote"><strong>Lote</strong></label>
                 <input type="text" class="form-control col-2" name="lote" id="lote"
                        value="<?= $detalle['lote'] ?>">
             </div>
-            <div class="form-group row">
-                <label class="col-form-label col-1 text-end" for="fechLote"><strong>Fecha lote</strong></label>
+            <div class="mb-3 row">
+                <label class="form-label col-1 text-end" for="fechLote"><strong>Fecha lote</strong></label>
                 <input type="text" class="form-control col-2" name="fechLote" id="fechLote"
                        value="<?= $fechLote ?>">
             </div>
             <?php
         }
         ?>
-        <div class="form-group row">
-            <label class="col-form-label col-1 text-end" for="cantidad"><strong>Cantidad</strong></label>
+        <div class="mb-3 row">
+            <label class="form-label col-1 text-end" for="cantidad"><strong>Cantidad</strong></label>
             <input type="text" class="form-control col-2" name="cantidad" id="cantidad"
                    value="<?= $detalle['cantidad'] ?>" onkeydown="return aceptaNum(event)">
         </div>
-        <div class="form-group row">
-            <label class="col-form-label col-1 text-end" for="precio"><strong>Precio</strong></label>
+        <div class="mb-3 row">
+            <label class="form-label col-1 text-end" for="precio"><strong>Precio</strong></label>
             <input type="text" class="form-control col-2" name="precio" id="precio" value="<?= $detalle['precio'] ?>"
                    onkeydown="return aceptaNum(event)">
 
         </div>
-        <div class="form-group row">
+        <div class="mb-3 row">
             <div class="col-1 text-center">
                 <button class="button" type="reset"><span>Reiniciar</span></button>
             </div>

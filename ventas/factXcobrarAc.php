@@ -175,7 +175,7 @@ include "../../../includes/valAcc.php";
                     "infoFiltered": "(Filtrado de _MAX_ en total)"
 
                 },
-                "ajax": "ajax/listaCarteraAcumulada.php"
+                "ajax": "../ajax/listaCarteraAcumulada.php"
             });
             // Add event listener for opening and closing details
             $('#example tbody').on('click', 'td.details-control', function () {

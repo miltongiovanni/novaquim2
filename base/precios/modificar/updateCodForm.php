@@ -29,37 +29,23 @@ $precio = $PrecioOperador->getPrecio($codigoGen);
         <img src="../../../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>ACTUALIZACIÓN DEL CÓDIGO GENÉRICO</h4></div>
 
     <form id="form1" name="form1" method="post" action="updateCod.php">
-        <div class="form-group row">
-            <div class="col-1 text-end">
-                <label class="col-form-label " for="codigoGen"><strong>Código</strong></label>
-            </div>
-            <div class="col-3 px-0">
+        <div class="mb-3 row">
+            <div class="col-1">
+                <label class="form-label " for="codigoGen"><strong>Código</strong></label>
                 <input type="text" class="form-control " name="codigoGen" id="codigoGen" maxlength="50"
                        value="<?= $precio['codigoGen']; ?>" readonly>
             </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-1 text-end">
-                <label class="col-form-label " for="producto"><strong>Descripción</strong></label>
-            </div>
-            <div class="col-3 px-0">
+            <div class="col-4">
+                <label class="form-label " for="producto"><strong>Descripción</strong></label>
                 <input type="text" class="form-control " name="producto" id="producto" maxlength="50" value="<?= $precio['producto']; ?>" readonly>
             </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-1 text-end">
-                <label class="col-form-label " for="fabrica"><strong>Precio fábrica</strong></label>
-            </div>
-            <div class="col-3 px-0">
+            <div class="col-1">
+                <label class="form-label " for="fabrica"><strong>Precio fábrica</strong></label>
                 <input type="text" class="form-control " name="fabrica" id="fabrica" maxlength="50"
                        value="<?= $precio['fabrica']; ?>" onkeydown="return aceptaNum(event)">
             </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-1 text-end">
-                <label class="col-form-label " for="presActiva"><strong>Activo</strong></label>
-            </div>
-            <div class="col-3 px-0">
+            <div class="col-1">
+                <label class="form-label " for="presActiva"><strong>Activo</strong></label>
                 <?php
                 if ($precio['presActiva'] == 1) {
                     echo '<select name="presActiva" class="form-control " id="presActiva">';
@@ -74,28 +60,24 @@ $precio = $PrecioOperador->getPrecio($codigoGen);
                 }
                 ?>
             </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-1 text-end">
-                <label class="col-form-label " for="presLista"><strong>En lista</strong></label>
-            </div>
-            <div class="col-3 px-0">
-            <?php
-            if ($precio['presLista'] == 1) {
-                echo '<select name="presLista" class="form-control " id="presLista">';
-                echo '<option selected value=1>Si</option>';
-                echo '<option value=0>No </option>';
-                echo '</select>';
-            } else {
-                echo '<select name="presLista" class="form-control "  id="presLista">';
-                echo '<option selected value=0>No</option>';
-                echo '<option value=1>Si</option>';
-                echo '</select>';
-            }
-            ?>
+            <div class="col-1">
+                <label class="form-label " for="presLista"><strong>En lista</strong></label>
+                <?php
+                if ($precio['presLista'] == 1) {
+                    echo '<select name="presLista" class="form-control " id="presLista">';
+                    echo '<option selected value=1>Si</option>';
+                    echo '<option value=0>No </option>';
+                    echo '</select>';
+                } else {
+                    echo '<select name="presLista" class="form-control "  id="presLista">';
+                    echo '<option selected value=0>No</option>';
+                    echo '<option value=1>Si</option>';
+                    echo '</select>';
+                }
+                ?>
             </div>
         </div>
-        <div class="form-group row">
+        <div class="mb-3 row">
             <div class="col-1 text-center">
                 <button class="button" type="reset"><span>Reiniciar</span></button>
             </div>

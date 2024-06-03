@@ -21,11 +21,11 @@ foreach ($_POST as $nombre_campo => $valor) {
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <title>Creación de Proveedores</title>
     <meta charset="utf-8">
-    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="../js/validar.js"></script>
+    <script src="../../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../../../js/validar.js"></script>
 </head>
 <body>
 <?php
@@ -37,19 +37,19 @@ try {
     $nitExist = $ProveedorOperador->checkNit($nitProv);
     if (isset($nitExist['idProv']) && $nitExist['idProv'] != null) {
         $_SESSION['idProv'] = $nitExist['idProv'];
-        $ruta = "updateProvForm.php";
+        $ruta = "/compras/proveedor/modificar";
         $mensaje = "Proveedor existente";
         $icon = "warning";
         mover_pag($ruta, $mensaje, $icon);
     } else {
         $lastIdProv = $ProveedorOperador->makeProveedor($datos);
         $_SESSION['idProv'] = $lastIdProv;
-        $ruta = "detProveedor.php";
+        $ruta = "/compras/proveedor/detalle";
         $mensaje = "Proveedor creado con éxito";
         $icon = "success";
     }
 } catch (Exception $e) {
-    $ruta = "makeProvForm.php";
+    $ruta = "/compras/proveedor/crear";
     $mensaje = "Error al crear el Proveedor";
     $icon = "error";
 } finally {

@@ -36,23 +36,23 @@ $detalle = $DetOProdOperador->getDetOProd($lote, $codMPrima);
         <input type="hidden" name="lote" id="lote" value="<?= $lote ?>">
         <input type="hidden" name="codMPrima" id="codMPrima" value="<?= $codMPrima ?>">
         <input type="hidden" name="cantidad_ant" id="cantidad_ant" value="<?= $detalle['cantidadMPrima'] ?>">
-        <div class="form-group row">
-            <label class="col-form-label col-1 text-end" for="aliasMPrima"><strong>Materia Prima</strong></label>
+        <div class="mb-3 row">
+            <label class="form-label col-1 text-end" for="aliasMPrima"><strong>Materia Prima</strong></label>
             <input type="text" class="form-control col-2" name="aliasMPrima" id="aliasMPrima" readonly
                    value="<?= $detalle['aliasMPrima'] ?>">
         </div>
-        <div class="form-group row">
-            <label class="col-form-label col-1 text-end" for="loteMP"><strong>Lote MPrima</strong></label>
+        <div class="mb-3 row">
+            <label class="form-label col-1 text-end" for="loteMP"><strong>Lote MPrima</strong></label>
             <input type="text" class="form-control col-2" name="loteMP" id="loteMP"
                    value="<?= $detalle['loteMP'] ?>" readonly>
         </div>
-        <div class="form-group row">
-            <label class="col-form-label col-1 text-end" for="cantidadMPrima"><strong>Cantidad MP</strong></label>
+        <div class="mb-3 row">
+            <label class="form-label col-1 text-end" for="cantidadMPrima"><strong>Cantidad MP</strong></label>
             <input type="text" class="form-control col-2" name="cantidadMPrima" id="cantidadMPrima"
                    value="<?= $detalle['cantidadMPrima'] ?>"
                    onkeydown="return aceptaNum(event)">
         </div>
-        <div class="form-group row">
+        <div class="mb-3 row">
             <div class="col-1 text-center">
                 <button class="button" type="reset"><span>Reiniciar</span></button>
             </div>

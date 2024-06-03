@@ -15,24 +15,24 @@ include "../../../includes/valAcc.php";
     <div id="saludo">
         <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>INGRESAR FACTURA A ANULAR</h4></div>
     <form id="form1" name="form1" method="post" action="anulaFactura.php">
-        <div class="form-group row">
-            <label class="col-form-label col-2 text-end" for="idFactura"><strong>No. de Factura</strong></label>
+        <div class="mb-3 row">
+            <label class="form-label col-2 text-end" for="idFactura"><strong>No. de Factura</strong></label>
             <input type="text" class="form-control col-3" onkeydown="return aceptaNum(event)" name="idFactura"
                    id="idFactura" required>
         </div>
-        <div class="form-group row">
-            <label class="col-2 text-end col-form-label" for="observaciones"><strong>Razón de
+        <div class="mb-3 row">
+            <label class="col-2 text-end form-label" for="observaciones"><strong>Razón de
                     Anulación</strong></label>
             <textarea class="form-control col-3" id="observaciones" name="observaciones" required></textarea>
         </div>
-        <div class="row form-group">
+        <div class="row mb-3">
             <div class="col-1">
                 <button class="button" type="button" onclick="return Enviar(this.form)">
                     <span>Continuar</span></button>
             </div>
         </div>
     </form>
-    <div class="row form-group">
+    <div class="row mb-3">
         <div class="col-1">
             <button class="button1" onclick="history.back()">
                 <span>VOLVER</span></button>

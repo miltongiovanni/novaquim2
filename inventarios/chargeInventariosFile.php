@@ -82,7 +82,7 @@ if (move_uploaded_file($file_tmp_name, $upload_file)) {
     <form id="form1" name="form1" method="post" action="selectColumnaFile.php">
         <input type="hidden" name="inventario" value="<?=$inventario?>">
         <input type="hidden" name="upload_file" value="<?=$upload_file?>">
-        <div class="form-group row">
+        <div class="mb-3 row">
             <div class="col-3">
                 <select class="form-select" name="page" id="page" aria-label="Default select example" required>
                     <option selected disabled value="">Seleccione una página</option>
@@ -96,7 +96,7 @@ if (move_uploaded_file($file_tmp_name, $upload_file)) {
                 </select>
             </div>
         </div>
-        <div class="row form-group">
+        <div class="row mb-3">
             <div class="col-1">
                 <button class="button" type="button" onclick="return Enviar(this.form)">
                     <span>Continuar</span></button>
@@ -104,7 +104,7 @@ if (move_uploaded_file($file_tmp_name, $upload_file)) {
         </div>
     </form>
 
-    <div class="row form-group">
+    <div class="row mb-3">
         <div class="col-1">
             <button class="button1" onclick="history.back()">
                 <span>VOLVER</span></button>

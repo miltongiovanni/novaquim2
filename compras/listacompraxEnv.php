@@ -92,7 +92,7 @@ if ($idTapOEnv < 100) {
                     "infoFiltered": "(Filtrado de _MAX_ en total)"
 
                 },
-                "ajax": "ajax/listaCompraxEnvaseTapa.php?idTapOEnv=" + idTapOEnv
+                "ajax": "../ajax/listaCompraxEnvaseTapa.php?idTapOEnv=" + idTapOEnv
             });
         });
     </script>

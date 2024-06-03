@@ -91,7 +91,7 @@ if (isset($_POST['idCotPersonalizada'])) {
 
         $(document).ready(function () {
             let idCotPersonalizada = <?=$idCotPersonalizada?>;
-            let ruta = "ajax/listaDetCotPersonalizada.php?idCotPersonalizada=" + idCotPersonalizada;
+            let ruta = "../ajax/listaDetCotPersonalizada.php?idCotPersonalizada=" + idCotPersonalizada;
             $('#example').DataTable({
                 "columns": [
                     {
@@ -194,26 +194,26 @@ $distribucionOperador = new ProductosDistribucionOperaciones();
 <div id="contenedor" class="container-fluid">
     <div id="saludo1">
         <img src="../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>DETALLE DE LA COTIZACIÓN PERSONALIZADA</h4></div>
-    <div class="form-group row">
-        <div class="col-2 text-end"><strong>No. de Cotización</strong></div>
+    <div class="mb-3 row">
+        <div class="col-2"><strong>No. de Cotización</strong></div>
         <div class="col-1 bg-blue"><?= $idCotPersonalizada; ?></div>
-        <div class="col-2 text-end"><strong>Fecha Cotización</strong></div>
+        <div class="col-2"><strong>Fecha Cotización</strong></div>
         <div class="col-1 bg-blue"><?= $cotizacion['fechaCotizacion'] ?></div>
-        <div class="col-1 text-end"><strong>Cliente</strong></strong></div>
+        <div class="col-1"><strong>Cliente</strong></strong></div>
         <div class="col-4" style="background-color: #dfe2fd;"><?= $cotizacion['nomCliente'] ?></div>
 
     </div>
-    <div class="form-group row">
-        <div class="col-1 text-end"><strong>Contacto</strong></div>
+    <div class="mb-3 row">
+        <div class="col-1"><strong>Contacto</strong></div>
         <div class="col-2 bg-blue"><?= $cotizacion['contactoCliente'] ?></div>
-        <div class="col-1 text-end"><strong>Cargo</strong></div>
+        <div class="col-1"><strong>Cargo</strong></div>
         <div class="col-2 bg-blue"><?= $cotizacion['cargoContacto'] ?></div>
-        <div class="col-1 text-end"><strong>Vendedor</strong></div>
+        <div class="col-1"><strong>Vendedor</strong></div>
         <div class="col-2 bg-blue"><?= $cotizacion['nomPersonal'] ?></div>
-        <div class="col-1 text-end"><strong>Tipo de Precio</strong></div>
+        <div class="col-1"><strong>Tipo de Precio</strong></div>
         <div class="col-1 bg-blue"><?= $cotizacion['tipPrecio'] ?></div>
     </div>
-    <div class="form-group titulo row text-center">
+    <div class="mb-3 titulo row text-center">
         <strong>Adicionar Detalle</strong>
     </div>
     <form method="post" action="makeDetCotPersonalizada.php" name="form1">
@@ -224,7 +224,7 @@ $distribucionOperador = new ProductosDistribucionOperaciones();
             <div class="col-1 text-center" style="margin: 0 5px;"><strong>Unidades</strong></div>
             <div class="col-2 text-center"></div>
         </div>
-        <div class="form-group row">
+        <div class="mb-3 row">
             <select name="codProducto" id="codProducto" class="form-control col-4 me-3">
                 <option selected disabled value="">Escoja un producto Novaquim</option>
                 <?php
@@ -251,7 +251,7 @@ $distribucionOperador = new ProductosDistribucionOperaciones();
             <div class="col-1 text-center" style="margin: 0 5px;"><strong>Unidades</strong></div>
             <div class="col-2 text-center"></div>
         </div>
-        <div class="form-group row">
+        <div class="mb-3 row">
             <select name="codProducto" id="codProducto" class="form-control col-4 me-3">
                 <option selected disabled value="">Escoja un producto de distribución</option>
                 <?php
@@ -270,7 +270,7 @@ $distribucionOperador = new ProductosDistribucionOperaciones();
             </div>
         </div>
     </form>
-    <div class="form-group titulo row text-center">
+    <div class="mb-3 titulo row text-center">
         <strong>Detalle de la cotización personalizada</strong>
     </div>
     <div class="tabla-70">
@@ -289,7 +289,7 @@ $distribucionOperador = new ProductosDistribucionOperaciones();
             </thead>
         </table>
     </div>
-    <div class="form-group row">
+    <div class="mb-3 row">
         <div class="col-2">
             <form method="post" action="Imp_Cot_Per.php" name="form3" target="_blank">
                 <input name="idCotPersonalizada" type="hidden" value="<?= $idCotPersonalizada; ?>">

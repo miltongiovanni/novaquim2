@@ -43,7 +43,7 @@ $porcentajeTotal = $DetFormulaColorOperador->getPorcentajeTotal($idFormulaColor)
     <script>
         $(document).ready(function () {
             let idFormulaColor = <?=$idFormulaColor?>;
-            let ruta = "ajax/listaDetFormulasColor.php?idFormulaColor=" + idFormulaColor;
+            let ruta = "../ajax/listaDetFormulasColor.php?idFormulaColor=" + idFormulaColor;
             $('#example').DataTable({
                 "columns": [
                     {
@@ -108,14 +108,14 @@ $porcentajeTotal = $DetFormulaColorOperador->getPorcentajeTotal($idFormulaColor)
     <form method="post" action="makeDetFormulaColor.php" name="form1">
         <input name="idFormulaColor" type="hidden" value="<?= $idFormulaColor; ?>">
         <div class="row">
-            <label class="col-form-label col-3 text-center" for="codMPrima" style="margin: 0 5px 0 0;"><strong>Materia
+            <label class="form-label col-3 text-center" for="codMPrima" style="margin: 0 5px 0 0;"><strong>Materia
                     Prima</strong></label>
-            <label class="col-form-label col-1 text-center" for="porcentaje" style="margin: 0 5px;"><strong>% en
+            <label class="form-label col-1 text-center" for="porcentaje" style="margin: 0 5px;"><strong>% en
                     fórmula</strong></label>
             <div class="col-2 text-center">
             </div>
         </div>
-        <div class="form-group row">
+        <div class="mb-3 row">
             <select name="codMPrima" id="codMPrima" class="form-select col-3" style="margin: 0 5px 0 0;">
                 <option disabled selected value="">-----------------------------</option>
                 <?php
@@ -134,7 +134,7 @@ $porcentajeTotal = $DetFormulaColorOperador->getPorcentajeTotal($idFormulaColor)
                 </div>
         </div>
     </form>
-    <div class="form-group titulo row text-center">
+    <div class="mb-3 titulo row text-center">
         <strong>Detalle de la fórmula</strong>
     </div>
     <div class="tabla-50">

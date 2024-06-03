@@ -33,7 +33,7 @@ include "../../../includes/valAcc.php";
     $rep = buscarMPrimaForm("updateMPForm.php");
     echo $rep;
     ?>
-    <div class="row form-group">
+    <div class="row mb-3">
         <div class="col-1">
             <button class="button1" onclick="history.back()">
                 <span>VOLVER</span></button>

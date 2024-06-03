@@ -21,8 +21,8 @@ spl_autoload_register('cargarClases');
     <div id="saludo">
         <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>INGRESO DE FÓRMULAS DE MATERIA PRIMA</h4></div>
     <form method="post" action="makeFormulaMPrima.php" name="form1">
-        <div class="form-group row">
-            <label class="col-form-label col-2" for="codMPrima"><strong>Materia Prima</strong></label>
+        <div class="mb-3 row">
+            <label class="form-label col-2" for="codMPrima"><strong>Materia Prima</strong></label>
             <select name="codMPrima" id="codMPrima" class="form-select col-2" required>
                 <option selected disabled value="">-----------------------------</option>
                 <?php
@@ -34,7 +34,7 @@ spl_autoload_register('cargarClases');
                 ?>
             </select>
         </div>
-        <div class="form-group row">
+        <div class="mb-3 row">
             <div class="col-1 text-center">
                 <button class="button" type="reset"><span>Reiniciar</span></button>
             </div>

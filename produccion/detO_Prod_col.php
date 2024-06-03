@@ -66,7 +66,7 @@ $DetOProdColorOperador = new DetOProdColorOperaciones();
     <script>
         $(document).ready(function () {
             let loteColor = <?=$loteColor?>;
-            let ruta = "ajax/listaDetOProdColor.php?loteColor=" + loteColor;
+            let ruta = "../ajax/listaDetOProdColor.php?loteColor=" + loteColor;
             $('#example').DataTable({
                 "columns": [
                     {
@@ -125,21 +125,21 @@ $DetOProdColorOperador = new DetOProdColorOperaciones();
 <div id="contenedor" class="container-fluid">
 <div id="saludo1">
         <img src="../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>USO DE MATERIA PRIMA POR PRODUCCIÓN DE COLOR</h4></div>
-    <div class="form-group row">
-        <div class="col-1 text-end"><strong>Lote</strong></div>
+    <div class="mb-3 row">
+        <div class="col-1"><strong>Lote</strong></div>
         <div class="col-1 bg-blue"><?= $loteColor; ?></div>
-        <div class="col-1 text-end"><strong>Cantidad</strong></div>
+        <div class="col-1"><strong>Cantidad</strong></div>
         <div class="col-1 bg-blue"><?= $ordenProd['cantKg'] ?> Kg</div>
-        <div class="col-2 text-end"><strong>Fecha de producción</strong></strong></div>
+        <div class="col-2"><strong>Fecha de producción</strong></strong></div>
         <div class="col-1 bg-blue"><?= $ordenProd['fechProd'] ?></div>
     </div>
-    <div class="form-group row">
-        <div class="col-1 text-end"><strong>Producto</strong></div>
+    <div class="mb-3 row">
+        <div class="col-1"><strong>Producto</strong></div>
         <div class="col-2 bg-blue"><?= $ordenProd['nomMPrima'] ?></div>
-        <div class="col-2 text-end"><strong>Responsable</strong></div>
+        <div class="col-2"><strong>Responsable</strong></div>
         <div class="col-2 bg-blue"><?= $ordenProd['nomPersonal'] ?></div>
     </div>
-    <div class="form-group row titulo">Detalle orden de producción :</div>
+    <div class="mb-3 row titulo">Detalle orden de producción :</div>
     <div class="tabla-50">
         <table id="example" class="display compact formatoDatos">
             <thead>

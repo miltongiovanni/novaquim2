@@ -31,39 +31,26 @@ spl_autoload_register('cargarClases');
 
     <form id="form1" name="form1" method="post" action="updatePerson.php">
         <input type="hidden" name="idPersonal" value="<?= $idPersonal ?>">
-        <div class="form-group row">
-            <div class="col-2 text-end">
-                <label class="col-form-label " for="nomPersonal"><strong>Nombre</strong></label>
-            </div>
-            <div class="col-2 px-0">
+        <div class="mb-3 row">
+            <div class="col-2">
+                <label class="form-label " for="nomPersonal"><strong>Nombre</strong></label>
                 <input type="text" class="form-control" name="nomPersonal" id="nomPersonal" size=30
                        value="<?= $row['nomPersonal']; ?>" onkeydown="return aceptaLetra(event)" maxlength="30">
             </div>
-
-        </div>
-        <div class="form-group row">
-            <div class="col-2 text-end">
-                <label class="col-form-label " for="celPersonal"><strong>Celular</strong></label>
-            </div>
-            <div class="col-2 px-0">
+            <div class="col-2">
+                <label class="form-label " for="celPersonal"><strong>Celular</strong></label>
                 <input type="text" class="form-control " name="celPersonal" id="celPersonal" size=30
                        value="<?= $row['celPersonal']; ?>" onkeydown="return aceptaNum(event)" maxlength="30">
             </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-2 text-end">
-                <label class="col-form-label " for="emlPersonal"><b>Correo electrónico</b></label>
-            </div>
-            <div class="col-2 px-0">
+            <div class="col-3">
+                <label class="form-label " for="emlPersonal"><b>Correo electrónico</b></label>
                 <input type="email" class="form-control " id="emlPersonal" name="emlPersonal" size=30
                        value="<?= $row['emlPersonal']; ?>">
             </div>
         </div>
-        <div class="form-group row">
-            <div class="col-2 text-end">
-                <label class="col-form-label " for="activoPersonal"><strong>Estado</strong></label>
-            </div>
-            <div class="col-2 px-0">
+        <div class="mb-3 row">
+            <div class="col-2">
+                <label class="form-label " for="activoPersonal"><strong>Estado</strong></label>
                 <select class="form-select " name="activoPersonal" id="activoPersonal">
                     <?php
                     $estadoPersonasOperador = new EstadosPersonasOperaciones();
@@ -76,12 +63,8 @@ spl_autoload_register('cargarClases');
                     ?>
                 </select>
             </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-2 text-end">
-                <label class="col-form-label " for="areaPersonal"><strong>Área</strong></label>
-            </div>
-            <div class="col-2 px-0">
+            <div class="col-2">
+                <label class="form-label " for="areaPersonal"><strong>Área</strong></label>
                 <select class="form-select " name="areaPersonal" id="areaPersonal">
                     <?php
                     $areaPersonalOperador = new AreasPersonalOperaciones();
@@ -94,12 +77,8 @@ spl_autoload_register('cargarClases');
                     ?>
                 </select>
             </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-2 text-end">
-                <label class="col-form-label " for="cargoPersonal"><strong>Cargo</strong></label>
-            </div>
-            <div class="col-2 px-0">
+            <div class="col-3">
+                <label class="form-label " for="cargoPersonal"><strong>Cargo</strong></label>
                 <select class="form-select " name="cargoPersonal" id="cargoPersonal">
                     <?php
                     $cargoPersonalOperador = new cargosPersonalOperaciones();
@@ -113,7 +92,7 @@ spl_autoload_register('cargarClases');
                 </select>
             </div>
         </div>
-        <div class="form-group row">
+        <div class="mb-3 row">
             <div class="col-1 text-center">
                 <button class="button" type="reset"><span>Reiniciar</span></button>
             </div>

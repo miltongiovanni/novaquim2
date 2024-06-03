@@ -121,7 +121,7 @@ $gasto = $GastoOperador->getGasto($idGasto);
 
         $(document).ready(function () {
             let idGasto = <?=$idGasto?>;
-            let ruta = "ajax/listaDetGasto.php?idGasto=" + idGasto;
+            let ruta = "../ajax/listaDetGasto.php?idGasto=" + idGasto;
             $('#example').DataTable({
                 "columns": [
                     {
@@ -192,39 +192,39 @@ $gasto = $GastoOperador->getGasto($idGasto);
 <div id="contenedor" class="container-fluid">
     <div id="saludo1">
         <img src="../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>INGRESO DE DETALLE DE LOS GASTOS</h4></div>
-    <div class="form-group row">
-        <div class="col-1 text-end"><strong>No. de Gasto</strong></div>
+    <div class="mb-3 row">
+        <div class="col-1"><strong>No. de Gasto</strong></div>
         <div class="col-1 bg-blue"><?= $idGasto; ?></div>
-        <div class="col-1 text-end"><strong>Proveedor</strong></strong></div>
+        <div class="col-1"><strong>Proveedor</strong></strong></div>
         <div class="col-3" style="background-color: #dfe2fd;"><?= $gasto['nomProv'] ?></div>
-        <div class="col-1 text-end"><strong>NIT</strong></div>
+        <div class="col-1"><strong>NIT</strong></div>
         <div class="col-1 bg-blue"><?= $gasto['nitProv'] ?></div>
     </div>
-    <div class="form-group row">
-        <div class="col-1 text-end"><strong>No. de Factura</strong></div>
+    <div class="mb-3 row">
+        <div class="col-1"><strong>No. de Factura</strong></div>
         <div class="col-1 bg-blue"><?= $gasto['numFact'] ?></div>
-        <div class="col-2 text-end"><strong>Fecha de compra</strong></div>
+        <div class="col-2"><strong>Fecha de compra</strong></div>
         <div class="col-1 bg-blue"><?= $gasto['fechGasto']; ?></div>
-        <div class="col-2 text-end"><strong>Fecha Vencimiento </strong></strong></div>
+        <div class="col-2"><strong>Fecha Vencimiento </strong></strong></div>
         <div class="col-1 bg-blue"><?= $gasto['fechVenc'] ?></div>
-        <div class="col-1 text-end"><strong>Estado</strong></div>
+        <div class="col-1"><strong>Estado</strong></div>
         <div class="col-1 bg-blue"><?= $gasto['descEstado'] ?></div>
     </div>
-    <div class="form-group row">
-        <div class="col-1 text-end"><strong>Valor Factura</strong></div>
+    <div class="mb-3 row">
+        <div class="col-1"><strong>Valor Factura</strong></div>
         <div class="col-1 bg-blue"><?= $gasto['totalGasto'] ?></div>
-        <div class="col-1 text-end"><strong>Rete Ica</strong></strong></div>
+        <div class="col-1"><strong>Rete Ica</strong></strong></div>
         <div class="col-1 bg-blue"><?= $gasto['reteicaGasto'] ?></div>
-        <div class="col-1 text-end"><strong>Retención</strong></div>
+        <div class="col-1"><strong>Retención</strong></div>
         <div class="col-1 bg-blue"><?= $gasto['retefuenteGasto'] ?></div>
-        <div class="col-1 text-end"><strong>Valor a Pagar</strong></div>
+        <div class="col-1"><strong>Valor a Pagar</strong></div>
         <div class="col-1 bg-blue"><?= $gasto['vreal'] ?></div>
     </div>
 
     <?php
     if ($gasto['estadoGasto'] != 7) {
         ?>
-        <div class="form-group titulo row text-center">
+        <div class="mb-3 titulo row text-center">
             <strong>Adicionar Detalle</strong>
         </div>
         <form method="post" action="makeDetGasto.php" name="form1">
@@ -237,7 +237,7 @@ $gasto = $GastoOperador->getGasto($idGasto);
                 <div class="col-2 text-center">
                 </div>
             </div>
-            <div class="form-group row">
+            <div class="mb-3 row">
                 <input type="text" style="margin: 0 5px 0 0;" class="form-control col-3" name="producto"
                        id="producto">
                 <input type="text" style="margin: 0 5px 0 0;" class="form-control col-1" name="cantGasto"
@@ -264,7 +264,7 @@ $gasto = $GastoOperador->getGasto($idGasto);
         </form>
         <?php
     } ?>
-    <div class="form-group titulo row text-center">
+    <div class="mb-3 titulo row text-center">
         <strong>Detalle del gasto</strong>
     </div>
     <table id="example" class="display compact formatoDatos" style="width:80%; margin-bottom: 20px;">

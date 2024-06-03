@@ -89,7 +89,7 @@ include "../../../includes/valAcc.php";
                     "infoFiltered": "(Filtrado de _MAX_ en total)"
 
                 },
-                "ajax": "ajax/listaDesarmKits.php"
+                "ajax": "../ajax/listaDesarmKits.php"
             });
         });
     </script>

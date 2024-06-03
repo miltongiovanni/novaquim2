@@ -103,7 +103,7 @@ include "../../../includes/valAcc.php";
                     "infoFiltered": "(Filtrado de _MAX_ en total)"
 
                 },
-                "ajax": "ajax/listaInvProdDistribucion.php",
+                "ajax": "../ajax/listaInvProdDistribucion.php",
                 "deferRender": true,  //For speed
             });
         });

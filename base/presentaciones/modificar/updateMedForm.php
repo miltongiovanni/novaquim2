@@ -50,27 +50,39 @@ $presentacion = $PresentacionOperador->getPresentacion($codPresentacion);
     <div id="saludo">
         <img src="../../../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>ACTUALIZACIÓN DE PRESENTACIONES DE PRODUCTO</h4></div>
     <form id="form1" name="form1" method="post" action="updateMed.php">
-        <div class="form-group row">
-            <div class="col-1 text-end">
-                <label class="col-form-label " for="codPresentacion"><strong>Código</strong></label>
-            </div>
-            <div class="col-2 px-0">
+        <div class="mb-3 row">
+            <div class="col-1">
+                <label class="form-label " for="codPresentacion"><strong>Código</strong></label>
                 <input type="text" name="codPresentacion" id="codPresentacion" class="form-control "
                        onkeydown="return aceptaNum(event)" value="<?= $codPresentacion ?>" readonly/>
             </div>
-            <div class="col-2 text-end">
-                <label class="col-form-label " for="presentacion"><strong>Presentación</strong></label>
-            </div>
-            <div class="col-4 px-0">
+            <div class="col-4">
+                <label class="form-label " for="presentacion"><strong>Presentación</strong></label>
                 <input name="presentacion" id="presentacion" class="form-control " type="text"
                        value="<?= $presentacion['presentacion'] ?>"/>
             </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-1 text-end">
-                <label class="col-form-label " for="codEnvase"><strong>Envase</strong></label>
+            <div class="col-1">
+                <label class="form-label " for="stockPresentacion"><strong>Stock Mínimo</strong></label>
+                <input name="stockPresentacion" id="stockPresentacion" type="text"
+                       value="<?= $presentacion['stockPresentacion'] ?>" class="form-control "
+                       onkeydown="return aceptaNum(event)"/>
             </div>
-            <div class="col-2 px-0">
+            <div class="col-1">
+                <label class="form-label " for="cotiza"><strong>Cotizar</strong></label>
+                <select name="cotiza" id="cotiza" class="form-control ">
+                    <?php if ($presentacion['cotiza'] == 0) { ?>
+                        <option value="0" selected>No</option>
+                        <option value="1">Si</option>
+                    <?php } else { ?>
+                        <option value="1" selected>Si</option>
+                        <option value="0">No</option>
+                    <?php } ?>
+                </select>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <div class="col-3">
+                <label class="form-label " for="codEnvase"><strong>Envase</strong></label>
                 <select name="codEnvase" id="codEnvase" style="width: 100%">
                     <option selected value="<?= $presentacion['codEnvase'] ?>"><?= $presentacion['nomEnvase'] ?></option>
                     <?php
@@ -87,10 +99,8 @@ $presentacion = $PresentacionOperador->getPresentacion($codPresentacion);
                     ?>
                 </select>
             </div>
-            <div class="col-2 text-end">
-                <label class="col-form-label " for="codigoGen"><strong>Código General</strong></label>
-            </div>
-            <div class="col-4 px-0">
+            <div class="col-4">
+                <label class="form-label " for="codigoGen"><strong>Código General</strong></label>
                 <select name="codigoGen" id="codigoGen" style="width: 100%">
                     <option selected value="<?= $presentacion['codigoGen'] ?>"><?= $presentacion['producto'] ?></option>
                     <?php
@@ -108,19 +118,9 @@ $presentacion = $PresentacionOperador->getPresentacion($codPresentacion);
                 </select>
             </div>
         </div>
-        <div class="form-group row">
-            <div class="col-1 text-end">
-                <label class="col-form-label " for="stockPresentacion"><strong>Stock Mínimo</strong></label>
-            </div>
-            <div class="col-2 px-0">
-                <input name="stockPresentacion" id="stockPresentacion" type="text"
-                       value="<?= $presentacion['stockPresentacion'] ?>" class="form-control "
-                       onkeydown="return aceptaNum(event)"/>
-            </div>
-            <div class="col-2 text-end">
-                <label class="col-form-label " for="codTapa"><strong>Tapa</strong></label>
-            </div>
-            <div class="col-4 px-0">
+        <div class="mb-3 row">
+            <div class="col-3">
+                <label class="form-label " for="codTapa"><strong>Tapa</strong></label>
                 <select name="codTapa" id="codTapa" style="width: 100%">
                     <option selected value="<?= $presentacion['codTapa'] ?>"><?= $presentacion['tapa'] ?>'</option>
                     <?php
@@ -137,26 +137,8 @@ $presentacion = $PresentacionOperador->getPresentacion($codPresentacion);
                     ?>
                 </select>
             </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-1 text-end">
-                <label class="col-form-label " for="cotiza"><strong>Cotizar</strong></label>
-            </div>
-            <div class="col-2 px-0">
-                <select name="cotiza" id="cotiza" class="form-control ">
-                    <?php if ($presentacion['cotiza'] == 0) { ?>
-                        <option value="0" selected>No</option>
-                        <option value="1">Si</option>
-                    <?php } else { ?>
-                        <option value="1" selected>Si</option>
-                        <option value="0">No</option>
-                    <?php } ?>
-                </select>
-            </div>
-            <div class="col-2 text-end">
-                <label class="col-form-label " for="codEtiq"><strong>Etiqueta</strong></label>
-            </div>
-            <div class="col-4 px-0">
+            <div class="col-4">
+                <label class="form-label " for="codEtiq"><strong>Etiqueta</strong></label>
                 <select name="codEtiq" id="codEtiq" style="width: 100%">
                     <option selected value="<?= $presentacion['codEtiq'] ?>"><?= $presentacion['nomEtiqueta'] ?></option>
                     <?php
@@ -174,7 +156,7 @@ $presentacion = $PresentacionOperador->getPresentacion($codPresentacion);
                 </select>
             </div>
         </div>
-        <div class="form-group row">
+        <div class="mb-3 row">
             <div class="col-1 text-center">
                 <button class="button" type="reset"><span>Reiniciar</span></button>
             </div>

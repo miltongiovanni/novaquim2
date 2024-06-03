@@ -19,10 +19,10 @@ include "../../../includes/valAcc.php";
         <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>SELECCIÓN DEL ARCHIVO A CARGAR INVENTARIO DE <?=$inventario?></h4></div>
     <form id="form1" name="form1" method="post" action="chargeInventariosFile.php" enctype="multipart/form-data">
         <input type="hidden" name="inventario" value="<?=$inventario?>">
-        <div class="form-group row">
+        <div class="mb-3 row">
             <input class="form-control col-4" type="file" id="inventariosList" name="inventariosList" required>
         </div>
-        <div class="row form-group">
+        <div class="row mb-3">
             <div class="col-1">
                 <button class="button" type="button" onclick="return Enviar(this.form)">
                     <span>Continuar</span></button>
@@ -30,7 +30,7 @@ include "../../../includes/valAcc.php";
         </div>
     </form>
 
-    <div class="row form-group">
+    <div class="row mb-3">
         <div class="col-1">
             <button class="button1" onclick="history.back()">
                 <span>VOLVER</span></button>

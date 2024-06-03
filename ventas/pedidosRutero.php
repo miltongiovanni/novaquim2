@@ -156,7 +156,7 @@ include "../../../includes/valAcc.php";
                         $('td', row).addClass('formatoDataTable2');
                     }
                 },
-                "ajax": "ajax/listaPedEnRuta.php"
+                "ajax": "../ajax/listaPedEnRuta.php"
             });
         });
     </script>

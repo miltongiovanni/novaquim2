@@ -39,14 +39,14 @@ if (!$GastoOperador->isValidIdGasto($idGasto)) {
         <div id="saludo">
         <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>ACTUALIZACIÓN GASTOS</h4></div>
         <form name="form2" method="POST" action="updateGasto.php">
-            <div class="form-group row">
-                <label class="col-form-label col-2 text-end" for="idGasto"><strong>Id gasto</strong></label>
+            <div class="mb-3 row">
+                <label class="form-label col-2 text-end" for="idGasto"><strong>Id gasto</strong></label>
                 <input type="text" class="form-control col-2" name="idGasto" id="idGasto"
                        value="<?= $gasto['idGasto'] ?>"
                        readonly>
             </div>
-            <div class="form-group row">
-                <label class="col-form-label col-2" for="busProv"><strong>Proveedor</strong></label>
+            <div class="mb-3 row">
+                <label class="form-label col-2" for="busProv"><strong>Proveedor</strong></label>
                 <?php
                 $ProveedorOperador = new ProveedoresOperaciones();
                 $proveedores = $ProveedorOperador->getAllProveedoresGastos();
@@ -60,24 +60,24 @@ if (!$GastoOperador->isValidIdGasto($idGasto)) {
                 echo '</select>';
                 ?>
             </div>
-            <div class="form-group row">
-                <label class="col-form-label col-2 text-end" for="numFact"><strong>Número de Factura</strong></label>
+            <div class="mb-3 row">
+                <label class="form-label col-2 text-end" for="numFact"><strong>Número de Factura</strong></label>
                 <input type="text" class="form-control col-2" name="numFact" id="numFact"
                        value="<?= $gasto['numFact'] ?>"
                        onkeydown="return aceptaNum(event)">
             </div>
-            <div class="form-group row">
-                <label class="col-form-label col-2 text-end" for="fechGasto"><strong>Fecha de compra</strong></label>
+            <div class="mb-3 row">
+                <label class="form-label col-2 text-end" for="fechGasto"><strong>Fecha de compra</strong></label>
                 <input type="date" class="form-control col-2" name="fechGasto" id="fechGasto"
                        value="<?= $gasto['fechGasto'] ?>">
             </div>
-            <div class="form-group row">
-                <label class="col-form-label col-2 text-end" for="fechVenc"><strong>Fecha de
+            <div class="mb-3 row">
+                <label class="form-label col-2 text-end" for="fechVenc"><strong>Fecha de
                         vencimiento</strong></label>
                 <input type="date" class="form-control col-2" name="fechVenc" id="fechVenc"
                        value="<?= $gasto['fechVenc'] ?>">
             </div>
-            <div class="form-group row">
+            <div class="mb-3 row">
                 <div class="col-1 text-center">
                     <button class="button" type="reset"><span>Reiniciar</span></button>
                 </div>

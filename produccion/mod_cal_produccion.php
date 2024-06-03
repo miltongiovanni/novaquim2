@@ -28,52 +28,52 @@ $calProd = $calProdOperador->getCalProd($lote);
 <div id="contenedor" class="container-fluid">
     <div id="saludo1">
         <img src="../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>EDICIÓN DEL CONTROL DE CALIDAD POR PRODUCCIÓN</h4></div>
-    <div class="form-group row">
-        <div class="col-1 text-end"><strong>Lote</strong></div>
+    <div class="mb-3 row">
+        <div class="col-1"><strong>Lote</strong></div>
         <div class="col-1 bg-blue"><?= $lote; ?></div>
         <div class="col-3 text-end"><strong>Cantidad</strong></div>
         <div class="col-1 bg-blue"><?= $ordenProd['cantidadKg'] ?> Kg</div>
-        <div class="col-1 text-end"><strong>Estado</strong></div>
+        <div class="col-1"><strong>Estado</strong></div>
         <div class="col-1 bg-blue"><?= $ordenProd['descEstado'] ?></div>
     </div>
-    <div class="form-group row">
-        <div class="col-1 text-end"><strong>Producto</strong></div>
+    <div class="mb-3 row">
+        <div class="col-1"><strong>Producto</strong></div>
         <div class="col-3 bg-blue"><?= $ordenProd['nomProducto'] ?></div>
-        <div class="col-2 text-end"><strong>Fecha de producción</strong></strong></div>
+        <div class="col-2"><strong>Fecha de producción</strong></strong></div>
         <div class="col-2 bg-blue"><?= $ordenProd['fechProd'] ?></div>
     </div>
-    <div class="form-group row">
-        <div class="col-1 text-end"><strong>Fórmula</strong></div>
+    <div class="mb-3 row">
+        <div class="col-1"><strong>Fórmula</strong></div>
         <div class="col-3 bg-blue"><?= $ordenProd['nomFormula'] ?></div>
-        <div class="col-2 text-end"><strong>Responsable</strong></div>
+        <div class="col-2"><strong>Responsable</strong></div>
         <div class="col-2 bg-blue"><?= $ordenProd['nomPersonal'] ?></div>
     </div>
-    <div class="form-group row titulo">Control de calidad :</div>
+    <div class="mb-3 row titulo">Control de calidad :</div>
 
     <form name="form2" method="POST" action="updateCalProd.php">
         <input type="hidden" name="lote" size=55 value="<?= $lote ?>">
-        <div class="form-group row">
+        <div class="mb-3 row">
             <div class="col-1 text-center"><strong>Propiedad</strong></div>
             <div class="col-2 text-center"><strong>Especificación</strong></div>
             <div class="col-1 text-center"><strong>Valor / Cumple</strong></div>
         </div>
-        <div class="form-group row">
-            <div class="col-1 text-center col-form-label"><strong>pH</strong></div>
-            <div class="col-1 bg-blue text-center col-form-label">Min: <?= $producto['pHmin'] ?></div>
-            <div class="col-1 bg-blue text-center col-form-label">Max: <?= $producto['pHmax'] ?></div>
+        <div class="mb-3 row">
+            <div class="col-1 text-center form-label"><strong>pH</strong></div>
+            <div class="col-1 bg-blue text-center form-label">Min: <?= $producto['pHmin'] ?></div>
+            <div class="col-1 bg-blue text-center form-label">Max: <?= $producto['pHmax'] ?></div>
             <input type="text" class="form-control col-1 mx-2" name="pHProd" onkeydown="return aceptaNum(event)"
                    value="<?= $calProd['pHProd'] ?>">
         </div>
-        <div class="form-group row">
-            <div class="col-1 text-center col-form-label"><strong>Densidad</strong></div>
-            <div class="col-1 bg-blue text-center col-form-label">Min: <?= $producto['densMin'] ?></div>
-            <div class="col-1 bg-blue text-center col-form-label">Max: <?= $producto['densMax'] ?></div>
+        <div class="mb-3 row">
+            <div class="col-1 text-center form-label"><strong>Densidad</strong></div>
+            <div class="col-1 bg-blue text-center form-label">Min: <?= $producto['densMin'] ?></div>
+            <div class="col-1 bg-blue text-center form-label">Max: <?= $producto['densMax'] ?></div>
             <input type="text" class="form-control col-1 mx-2" name="densidadProd"
                    onkeydown="return aceptaNum(event)" value="<?= $calProd['densidadProd'] ?>">
         </div>
-        <div class="form-group row">
-            <div class="col-1 text-center col-form-label"><strong>Olor</strong></div>
-            <div class="col-2 bg-blue text-center col-form-label"><?= $producto['fragancia'] ?></div>
+        <div class="mb-3 row">
+            <div class="col-1 text-center form-label"><strong>Olor</strong></div>
+            <div class="col-2 bg-blue text-center form-label"><?= $producto['fragancia'] ?></div>
             <select name="olorProd" id="olorProd" class="form-select col-1 mx-2">
                 <?php
                 if ($calProd['olorProd'] == 1):
@@ -90,9 +90,9 @@ $calProd = $calProdOperador->getCalProd($lote);
                 ?>
             </select>
         </div>
-        <div class="form-group row">
-            <div class="col-1 text-center col-form-label"><strong>Color</strong></div>
-            <div class="col-2 bg-blue text-center col-form-label"><?= $producto['color'] ?></div>
+        <div class="mb-3 row">
+            <div class="col-1 text-center form-label"><strong>Color</strong></div>
+            <div class="col-2 bg-blue text-center form-label"><?= $producto['color'] ?></div>
             <select name="colorProd" id="colorProd" class="form-select col-1 mx-2">
                 <?php
                 if ($calProd['colorProd'] == 1):
@@ -109,9 +109,9 @@ $calProd = $calProdOperador->getCalProd($lote);
                 ?>
             </select>
         </div>
-        <div class="form-group row">
-            <div class="col-1 text-center col-form-label"><strong>Apariencia</strong></div>
-            <div class="col-2 bg-blue text-center col-form-label"><?= $producto['apariencia'] ?></div>
+        <div class="mb-3 row">
+            <div class="col-1 text-center form-label"><strong>Apariencia</strong></div>
+            <div class="col-2 bg-blue text-center form-label"><?= $producto['apariencia'] ?></div>
             <select name="aparienciaProd" id="aparienciaProd" class="form-select col-1 mx-2">
                 <?php
                 if ($calProd['aparienciaProd'] == 1):
@@ -128,12 +128,12 @@ $calProd = $calProdOperador->getCalProd($lote);
                 ?>
             </select>
         </div>
-        <div class="form-group row">
-            <div class="col-1 text-center col-form-label"><strong>Observaciones</strong></div>
+        <div class="mb-3 row">
+            <div class="col-1 text-center form-label"><strong>Observaciones</strong></div>
             <textarea class="form-control col-3 mx-2"
                       name="observacionesProd"><?= $calProd['observacionesProd'] ?></textarea>
         </div>
-        <div class="form-group row">
+        <div class="mb-3 row">
             <div class="col-1 text-center">
                 <button class="button" type="reset"><span>Reiniciar</span></button>
             </div>

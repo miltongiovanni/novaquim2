@@ -76,14 +76,14 @@ $pedidos = $pedidoOperador->getTablePedidosPendientes();
             }
             ?>
         </table>
-        <div class="row form-group">
+        <div class="row mb-3">
             <div class="col-1">
                 <button class="button" type="button" onclick="return Enviar(this.form)">
                     <span>Consultar</span></button>
             </div>
         </div>
     </form>
-    <div class="row form-group">
+    <div class="row mb-3">
         <div class="col-1">
             <button class="button1" onclick="history.back()"><span>VOLVER</span></button>
         </div>

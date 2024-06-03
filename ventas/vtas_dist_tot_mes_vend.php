@@ -64,7 +64,7 @@ $personal = $operadorPersonal->getPerson($idPersonal);
             let year = <?=$year?>;
             let type = <?=$type?>;
             let idPersonal = <?=$idPersonal?>;
-            let ruta = "ajax/listaVtasDistXMesVend.php?year=" + year + "&idPersonal=" + idPersonal;
+            let ruta = "../ajax/listaVtasDistXMesVend.php?year=" + year + "&idPersonal=" + idPersonal;
             $('#example').DataTable({
                 "columns": [
                     {

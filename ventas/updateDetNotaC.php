@@ -36,7 +36,7 @@ $detalle = $detNotaCrOperador->getDetProdNotaCr($idNotaC, $codProducto);
             <label class="col-1 text-center" style="margin: 0 5px;" for="cantProducto"><strong>Cantidad</strong></label>
             <div class="col-2 text-center"></div>
         </div>
-        <div class="form-group row">
+        <div class="mb-3 row">
             <input type="text" id="producto" class="form-control col-4 me-3" readonly
                    value="<?= $detalle['producto']; ?>">
             <select name="cantProducto" id="cantProducto" class="form-control col-1" required>

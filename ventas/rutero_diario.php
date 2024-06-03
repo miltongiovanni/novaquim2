@@ -160,7 +160,7 @@ if (!isset($fechaRutero)){
 
     $(document).ready(function () {
         let idRutero = <?=$idRutero?>;
-        let ruta = "ajax/listaRutero.php?idRutero=" + idRutero;
+        let ruta = "../ajax/listaRutero.php?idRutero=" + idRutero;
         $('#example').DataTable({
             "columns": [
                 {

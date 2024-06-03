@@ -21,8 +21,8 @@ spl_autoload_register('cargarClases');
     <div id="saludo">
         <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>DESARMADO DE KITS DE PRODUCTOS</h4></div>
     <form name="form2" method="POST" action="desarmado_kits.php">
-        <div class="form-group row">
-            <label class="col-form-label col-1" for="codKit"><strong>Kit</strong></label>
+        <div class="mb-3 row">
+            <label class="form-label col-1" for="codKit"><strong>Kit</strong></label>
             <?php
             $KitOperador = new KitsOperaciones();
             $kits = $KitOperador->getKitsXDesarmar();
@@ -35,16 +35,16 @@ spl_autoload_register('cargarClases');
             echo '</select>';
             ?>
         </div>
-        <div class="form-group row">
-            <label class="col-form-label col-1 text-end" for="cantDesarmado"><strong>Cantidad</strong></label>
+        <div class="mb-3 row">
+            <label class="form-label col-1 text-end" for="cantDesarmado"><strong>Cantidad</strong></label>
             <input type="text" class="form-control col-2" name="cantDesarmado" id="cantDesarmado"
                    onkeydown="return aceptaNum(event)" required>
         </div>
-        <div class="form-group row">
-            <label class="col-form-label col-1 text-end" for="fechDesarmado"><strong>Fecha</strong></label>
+        <div class="mb-3 row">
+            <label class="form-label col-1 text-end" for="fechDesarmado"><strong>Fecha</strong></label>
             <input type="date" class="form-control col-2" name="fechDesarmado" id="fechDesarmado" required>
         </div>
-        <div class="form-group row">
+        <div class="mb-3 row">
             <div class="col-1 text-center">
                 <button class="button" type="reset"><span>Reiniciar</span></button>
             </div>

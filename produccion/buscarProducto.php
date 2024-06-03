@@ -21,8 +21,8 @@ spl_autoload_register('cargarClases');
     <div id="saludo">
         <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>SELECCIONAR EL PRODUCTO A REVISAR PRODUCCIÓN</h4></div>
     <form id="form1" name="form1" method="post" action="listarEnvasadoProd.php">
-        <div class="form-group row">
-            <label class="col-form-label col-1" for="codProducto"><strong>Producto</strong></label>
+        <div class="mb-3 row">
+            <label class="form-label col-1" for="codProducto"><strong>Producto</strong></label>
             <?php
             $ProductoOperador = new ProductosOperaciones();
             $productos = $ProductoOperador->getProductos(true);
@@ -35,7 +35,7 @@ spl_autoload_register('cargarClases');
             echo '</select>';
             ?>
         </div>
-        <div class="form-group row">
+        <div class="mb-3 row">
     <div class="col-1 text-center">
                 <button class="button" type="reset"><span>Reiniciar</span></button>
             </div>

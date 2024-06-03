@@ -113,7 +113,7 @@ $fecha = $_POST['fecha'];
                     "infoFiltered": "(Filtrado de _MAX_ en total)"
 
                 },
-                "ajax": "ajax/listaInvProdTerminadoFecha.php?fecha=<?= $fecha; ?>",
+                "ajax": "../ajax/listaInvProdTerminadoFecha.php?fecha=<?= $fecha; ?>",
                 "deferRender": true,  //For speed
             });
         });

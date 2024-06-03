@@ -18,11 +18,11 @@ foreach ($_POST as $nombre_campo => $valor) {
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <meta charset="utf-8">
     <title>Actualizar datos del Proveedor</title>
-    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="../js/validar.js"></script>
+    <script src="../../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../../../js/validar.js"></script>
 </head>
 <body>
 <?php
@@ -30,11 +30,11 @@ $DetProveedorOperador = new DetProveedoresOperaciones();
 $datos = array($idProv, $Codigo);
 try {
     $DetProveedorOperador->deleteDetProveedor($datos);
-    $ruta = "detProveedor.php";
+    $ruta = "/compras/proveedor/detalle";
     $mensaje = "Detalle proveedor eliminado correctamente";
     $icon = "success";
 } catch (Exception $e) {
-    $ruta = "detProveedor.php";
+    $ruta = "/compras/proveedor/detalle";
     $mensaje = "Error al eliminar el detalle del proveedor";
     $icon = "error";
 } finally {

@@ -14,7 +14,7 @@ include "../../../includes/valAcc.php";
 
 <body>
 <div id="contenedor" class="container-fluid">
-    <div id="saludo" class="form-group"><strong>DETALLE LISTA DE PRECIOS</strong></div>
+    <div id="saludo" class="mb-3"><strong>DETALLE LISTA DE PRECIOS</strong></div>
     <?php
     $Presentaciones = $_POST['Presentaciones'];
     if ($_POST['seleccion1']) {
@@ -75,7 +75,7 @@ include "../../../includes/valAcc.php";
 	</script>';
     }
     ?>
-    <div class="row form-group">
+    <div class="row mb-3">
         <div class="col-1">
             <strong>Presentación</strong>
         </div>
@@ -83,7 +83,7 @@ include "../../../includes/valAcc.php";
             <?= $presen; ?>
         </div>
     </div>
-    <div class="row form-group">
+    <div class="row mb-3">
         <div class="col-1">
             <strong>Precio</strong>
         </div>
@@ -91,7 +91,7 @@ include "../../../includes/valAcc.php";
             <?= $opciones_prec1; ?>
         </div>
     </div>
-    <div class="row form-group">
+    <div class="row mb-3">
         <div class="col-2">
             <form action="ImpPrecios.php" method="post" target="_blank">
                 <input type="hidden" name="precioSinIva" value="<?= $_POST['precioSinIva'];?>">
@@ -105,7 +105,7 @@ include "../../../includes/valAcc.php";
         </div>
 
     </div>
-    <div class="row form-group">
+    <div class="row mb-3">
         <div class="col-1">
             <button class="button" type="button"
                     onclick="window.location='../../../menu.php'">

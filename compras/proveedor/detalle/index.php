@@ -19,7 +19,7 @@ if (isset($_POST['idProv'])) {
     $datos = array($idProv, $Codigo);
     $DetProveedorOperador->makeDetProveedor($datos);
     unset($_POST['idProv']);
-    header('Location: detProveedor.php');
+    header('Location: /compras/proveedor/detalle/');
 }
 if (isset($_SESSION['idProv'])) {
     $idProv = $_SESSION['idProv'];
@@ -33,8 +33,8 @@ $proveedor = $ProveedorOperador->getProveedor($idProv);
 <head>
     <title>Productos por Proveedor</title>
     <meta charset="utf-8">
-    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="../css/datatables.css">
+    <link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../../../css/datatables.css">
     <style>
         table {
             table-layout: fixed;
@@ -53,13 +53,13 @@ $proveedor = $ProveedorOperador->getProveedor($idProv);
         }
 
     </style>
-    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="../js/validar.js"></script>
-    <script src="../js/jquery-3.3.1.min.js"></script>
-    <script src="../js/datatables.js"></script>
-    <script src="../js/jszip.js"></script>
-    <script src="../js/pdfmake.js"></script>
-    <script src="../js/vfs_fonts.js"></script>
+    <script src="../../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../../../js/validar.js"></script>
+    <script src="../../../js/jquery-3.3.1.min.js"></script>
+    <script src="../../../js/datatables.js"></script>
+    <script src="../../../js/jszip.js"></script>
+    <script src="../../../js/pdfmake.js"></script>
+    <script src="../../../js/vfs_fonts.js"></script>
     <script>
 
         $(document).ready(function () {
@@ -95,6 +95,7 @@ $proveedor = $ProveedorOperador->getProveedor($idProv);
                 "searching": false,
                 "lengthMenu": [[20, 50, 100, -1], [20, 50, 100, "All"]],
                 "language": {
+                    "emptyTable": "No hay datos disponibles",
                     "lengthMenu": "Mostrando _MENU_ datos por página",
                     "zeroRecords": "Lo siento no encontró nada",
                     "info": "Mostrando página _PAGE_ de _PAGES_",
@@ -109,7 +110,7 @@ $proveedor = $ProveedorOperador->getProveedor($idProv);
                     "infoFiltered": "(Filtrado de _MAX_ en total)"
 
                 },
-                "ajax": "ajax/listaDetProv.php?idProv=" + idProv
+                "ajax": "../ajax/listaDetProv.php?idProv=" + idProv
             });
         });
     </script>
@@ -117,25 +118,29 @@ $proveedor = $ProveedorOperador->getProveedor($idProv);
 <body>
 <div id="contenedor" class="container-fluid">
     <div id="saludo1">
-        <img src="../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>PRODUCTOS OFRECIDOS POR <?= $proveedor['nomProv'] ?></h4></div>
+        <img src="../../../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>PRODUCTOS OFRECIDOS POR <?= $proveedor['nomProv'] ?></h4></div>
     <?php if ($proveedor['idCatProv'] != 4): ?>
-        <form method="post" action="detProveedor.php" name="form1">
+        <form method="post" action="index.php" name="form1">
             <input type="hidden" class="form-control col-2" name="idProv" id="idProv" value="<?= $idProv ?>">
-            <div class="form-group row" style="margin-top: 20px;">
-                <label class="col-form-label col-1" for="Codigo"><strong>Producto</strong></label>
-                <?php
-                $DetProveedorOperador = new DetProveedoresOperaciones();
-                $productos = $DetProveedorOperador->getProdPorCategoria($idProv, $proveedor['idCatProv']);
-                if ($productos) {
-                    $filas = count($productos);
-                    echo '<select name="Codigo" id="Codigo" class="form-control col-3"  required>';
-                    echo '<option disabled selected value="">----------------------------------</option>';
-                    for ($i = 0; $i < $filas; $i++) {
-                        echo '<option value="' . $productos[$i]["Codigo"] . '">' . $productos[$i]['Producto'] . '</option>';
-                    }
-                    echo '</select>';
-                }
-                ?>
+            <div class="mb-3 row mt-3">
+                <div class="col-1">
+                    <label class="form-label " for="Codigo"><strong>Producto</strong></label>
+                </div>
+               <div class="col-3">
+                   <?php
+                   $DetProveedorOperador = new DetProveedoresOperaciones();
+                   $productos = $DetProveedorOperador->getProdPorCategoria($idProv, $proveedor['idCatProv']);
+                   if ($productos) {
+                       $filas = count($productos);
+                       echo '<select name="Codigo" id="Codigo" class="form-control "  required>';
+                       echo '<option disabled selected value="">----------------------------------</option>';
+                       for ($i = 0; $i < $filas; $i++) {
+                           echo '<option value="' . $productos[$i]["Codigo"] . '">' . $productos[$i]['Producto'] . '</option>';
+                       }
+                       echo '</select>';
+                   }
+                   ?>
+               </div>
                 <div class="col-2" style="padding: 4px 25px">
                     <button class="button" type="button" onclick="return Enviar(this.form)">
                         <span>Adicionar producto</span>
@@ -167,7 +172,7 @@ $proveedor = $ProveedorOperador->getProveedor($idProv);
     function eliminarSession() {
         let variable = 'idProv';
         $.ajax({
-            url: '../includes/controladorCompras.php',
+            url: '../../../includes/controladorCompras.php',
             type: 'POST',
             data: {
                 "action": 'eliminarSession',
@@ -175,7 +180,7 @@ $proveedor = $ProveedorOperador->getProveedor($idProv);
             },
             dataType: 'text',
             success: function (res) {
-                window.location = '../menu.php';
+                window.location = '../../../menu.php';
             },
             error: function () {
                 alert("Vous avez un GROS problème");

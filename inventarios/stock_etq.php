@@ -107,7 +107,7 @@ include "../../../includes/valAcc.php";
                     "infoFiltered": "(Filtrado de _MAX_ en total)"
 
                 },
-                "ajax": "ajax/listaStockInvEtiqueta.php",
+                "ajax": "../ajax/listaStockInvEtiqueta.php",
                 "deferRender": true,  //For speed
             });
         });

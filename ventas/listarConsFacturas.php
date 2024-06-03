@@ -184,7 +184,7 @@ $facturas = $facturaOperador->getTotalesFacturasPorFecha($fechaIni, $fechaFin);
                     "infoFiltered": "(Filtrado de _MAX_ en total)"
 
                 },
-                "ajax": "ajax/listaConsFacturas.php?fechaIni=" + fechaIni+ '&fechaFin=' + fechaFin
+                "ajax": "../ajax/listaConsFacturas.php?fechaIni=" + fechaIni+ '&fechaFin=' + fechaFin
             });
 
         });

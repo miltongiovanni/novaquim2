@@ -130,7 +130,7 @@ include "../../../includes/valAcc.php";
                 },
                 processing: true,
                 serverSide: true,
-                "ajax": "ajax/listaRemisiones.php",
+                "ajax": "../ajax/listaRemisiones.php",
             });
             // Add event listener for opening and closing details
             $('#example tbody').on('click', 'td.details-control', function () {

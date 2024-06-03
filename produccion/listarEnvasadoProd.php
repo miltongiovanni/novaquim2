@@ -135,7 +135,7 @@ $producto = $ProductoOperador->getNameProducto($codProducto);
                     "infoFiltered": "(Filtrado de _MAX_ en total)"
 
                 },
-                "ajax": "ajax/listaEnvasadoProd.php?codProducto=<?=$codProducto?>",
+                "ajax": "../ajax/listaEnvasadoProd.php?codProducto=<?=$codProducto?>",
                 "deferRender": true,  //For speed
             });
             // Add event listener for opening and closing details

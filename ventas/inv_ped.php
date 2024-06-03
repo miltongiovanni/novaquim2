@@ -45,32 +45,32 @@ $validar = 0;
 <div id="contenedor" class="container-fluid">
     <div id="saludo1">
         <img src="../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>FALTANTE DE PEDIDO</h4></div>
-    <div class="form-group row">
-        <div class="col-1 text-end"><strong>No. de pedido</strong></div>
+    <div class="mb-3 row">
+        <div class="col-1"><strong>No. de pedido</strong></div>
         <div class="col-1 bg-blue"><?= $idPedido; ?></div>
-        <div class="col-1 text-end"><strong>Cliente</strong></strong></div>
+        <div class="col-1"><strong>Cliente</strong></strong></div>
         <div class="col-4 bg-blue"><?= $pedido['nomCliente'] ?></div>
-        <div class="col-2 text-end"><strong>Estado</strong></div>
+        <div class="col-2"><strong>Estado</strong></div>
         <div class="col-1 bg-blue"><?= $pedido['estadoPedido'] ?></div>
 
     </div>
-    <div class="form-group row">
-        <div class="col-1 text-end"><strong>Fecha Pedido</strong></div>
+    <div class="mb-3 row">
+        <div class="col-1"><strong>Fecha Pedido</strong></div>
         <div class="col-1 bg-blue"><?= $pedido['fechaPedido'] ?></div>
-        <div class="col-2 text-end"><strong>Lugar de entrega</strong></div>
+        <div class="col-2"><strong>Lugar de entrega</strong></div>
         <div class="col-4 bg-blue"><?= $pedido['nomSucursal'] ?></div>
-        <div class="col-1 text-end"><strong>Vendedor</strong></div>
+        <div class="col-1"><strong>Vendedor</strong></div>
         <div class="col-2 bg-blue"><?= $pedido['nomPersonal'] ?></div>
     </div>
-    <div class="form-group row">
-        <div class="col-1 text-end"><strong>Fecha Entrega</strong></div>
+    <div class="mb-3 row">
+        <div class="col-1"><strong>Fecha Entrega</strong></div>
         <div class="col-1 bg-blue"><?= $pedido['fechaEntrega'] ?></div>
-        <div class="col-2 text-end"><strong>Dirección de entrega</strong></div>
+        <div class="col-2"><strong>Dirección de entrega</strong></div>
         <div class="col-4 bg-blue"><?= $pedido['dirSucursal'] ?></div>
-        <div class="col-1 text-end"><strong>Precio</strong></div>
+        <div class="col-1"><strong>Precio</strong></div>
         <div class="col-1 bg-blue"><?= $pedido['tipoPrecio'] ?></div>
     </div>
-    <div class="form-group titulo row text-center">
+    <div class="mb-3 titulo row text-center">
         <strong>Productos faltantes del Pedido</strong>
     </div>
     <div class="tabla-50">
@@ -120,7 +120,7 @@ $validar = 0;
             ?>
         </table>
     </div>
-    <div class="form-group row">
+    <div class="mb-3 row">
         <div class="col-2">
             <form action="det_pedido.php" method="post">
                 <input name="idPedido" type="hidden" value="<?= $idPedido; ?>"/>

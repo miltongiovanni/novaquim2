@@ -132,7 +132,7 @@ if ($estadoCliente == 1) {
                     $('td', row).addClass('formatoDataTable2');
                 }
             },
-                "ajax": "ajax/listaClientes.php?estadoCliente=" + estadoCliente
+                "ajax": "../ajax/listaClientes.php?estadoCliente=" + estadoCliente
             });
             // Add event listener for opening and closing details
             $('#example tbody').on('click', 'td.details-control', function () {

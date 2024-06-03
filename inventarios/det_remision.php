@@ -91,7 +91,7 @@ $remision = $remisionOperador->getRemisionById($idRemision);
 
         $(document).ready(function () {
             let idRemision = <?=$idRemision?>;
-            let ruta = "ajax/listaDetRemision.php?idRemision=" + idRemision;
+            let ruta = "../ajax/listaDetRemision.php?idRemision=" + idRemision;
             $('#example').DataTable({
                 "columns": [
                     {
@@ -162,17 +162,17 @@ $remision = $remisionOperador->getRemisionById($idRemision);
 <div id="contenedor" class="container-fluid">
     <div id="saludo1">
         <img src="../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>DETALLE DE LA REMISIÓN</h4></div>
-    <div class="form-group row">
-        <div class="col-2 text-end"><strong>No. de Remisión</strong></div>
+    <div class="mb-3 row">
+        <div class="col-2"><strong>No. de Remisión</strong></div>
         <div class="col-1 bg-blue"><?= $idRemision; ?></div>
-        <div class="col-1 text-end"><strong>Cliente</strong></strong></div>
+        <div class="col-1"><strong>Cliente</strong></strong></div>
         <div class="col-3" style="background-color: #dfe2fd;"><?= $remision['cliente'] ?></div>
-        <div class="col-1 text-end"><strong>Fecha</strong></div>
+        <div class="col-1"><strong>Fecha</strong></div>
         <div class="col-1 bg-blue"><?= $remision['fechaRemision'] ?></div>
-        <div class="col-1 text-end"><strong>Valor</strong></div>
+        <div class="col-1"><strong>Valor</strong></div>
         <div class="col-1 bg-blue">$ <?= number_format($remision['valor']) ?></div>
     </div>
-    <div class="form-group titulo row text-center">
+    <div class="mb-3 titulo row text-center">
         <strong>Adicionar Detalle</strong>
     </div>
     <form method="post" action="makeDetRemision.php" name="form1">
@@ -183,7 +183,7 @@ $remision = $remisionOperador->getRemisionById($idRemision);
             <div class="col-1 text-center mx-3" ><strong>Precio</strong></div>
             <div class="col-2 text-center mx-3"></div>
         </div>
-        <div class="form-group row">
+        <div class="mb-3 row">
             <select name="codProducto" id="codProducto" class="form-select col-4 mx-3">
                 <option selected disabled value="">Escoja un producto Novaquim</option>
                 <?php
@@ -212,7 +212,7 @@ $remision = $remisionOperador->getRemisionById($idRemision);
             <div class="col-1 text-center mx-3" ><strong>Precio</strong></div>
             <div class="col-2 text-center mx-3"></div>
         </div>
-        <div class="form-group row">
+        <div class="mb-3 row">
             <select name="codProducto" id="codProducto" class="form-select col-4 mx-3">
                 <option selected disabled value="">Escoja un producto de distribución</option>
                 <?php
@@ -233,7 +233,7 @@ $remision = $remisionOperador->getRemisionById($idRemision);
             </div>
         </div>
     </form>
-    <div class="form-group titulo row text-center">
+    <div class="mb-3 titulo row text-center">
         <strong>Detalle de la remisión</strong>
     </div>
     <div class="tabla-50">
@@ -251,7 +251,7 @@ $remision = $remisionOperador->getRemisionById($idRemision);
         </table>
     </div>
 
-    <div class="form-group row">
+    <div class="mb-3 row">
         <div class="col-2">
             <form action="Imp_Remision1.php" method="post" target="_blank">
                 <input name="idRemision" type="hidden" value="<?php echo $idRemision ?>">

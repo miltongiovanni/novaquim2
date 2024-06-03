@@ -104,7 +104,7 @@ foreach ($_POST as $nombre_campo => $valor) {
                     "infoFiltered": "(Filtrado de _MAX_ en total)"
 
                 },
-                "ajax": "ajax/listaConsSalidas.php?fechaIni=" + fechaIni+ '&fechaFin=' + fechaFin
+                "ajax": "../ajax/listaConsSalidas.php?fechaIni=" + fechaIni+ '&fechaFin=' + fechaFin
             });
 
         });

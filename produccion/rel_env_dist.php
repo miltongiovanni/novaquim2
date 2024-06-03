@@ -23,8 +23,8 @@ spl_autoload_register('cargarClases');
         <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>RELACIÓN MATERIA PRIMA CON PRODUCTO DE DISTRIBUCIÓN</h4></div>
     <form name="form2" method="POST" action="make_env_dist.php">
 
-        <div class="form-group row">
-            <label class="col-form-label col-2" for="codMPrimaDist"><strong>Materia Prima</strong></label>
+        <div class="mb-3 row">
+            <label class="form-label col-2" for="codMPrimaDist"><strong>Materia Prima</strong></label>
             <select name="codMPrimaDist" id="codMPrimaDist" class="form-select col-2" style="margin: 0 5px 0 0;"
                     required>
                 <option disabled selected value="">-----------------------------</option>
@@ -37,8 +37,8 @@ spl_autoload_register('cargarClases');
                 echo '</select>';
                 ?>
         </div>
-        <div class="form-group row">
-            <label class="col-form-label col-2" for="codMedida"><strong>Medida</strong></label>
+        <div class="mb-3 row">
+            <label class="form-label col-2" for="codMedida"><strong>Medida</strong></label>
             <?php
             $MedidasOperador = new MedidasOperaciones();
             $medidas = $MedidasOperador->getMedidas();
@@ -51,8 +51,8 @@ spl_autoload_register('cargarClases');
             echo '</select>';
             ?>
         </div>
-        <div class="form-group row">
-            <label class="col-form-label col-2" for="codEnvase"><strong>Envase</strong></label>
+        <div class="mb-3 row">
+            <label class="form-label col-2" for="codEnvase"><strong>Envase</strong></label>
             <?php
             $EnvasesOperador = new EnvasesOperaciones();
             $envases = $EnvasesOperador->getEnvases();
@@ -65,8 +65,8 @@ spl_autoload_register('cargarClases');
             echo '</select>';
             ?>
         </div>
-        <div class="form-group row">
-            <label class="col-form-label col-2" for="codTapa"><strong>Tapa</strong></label>
+        <div class="mb-3 row">
+            <label class="form-label col-2" for="codTapa"><strong>Tapa</strong></label>
             <?php
             $TapasOperador = new TapasOperaciones();
             $tapas = $TapasOperador->getTapas();
@@ -81,8 +81,8 @@ spl_autoload_register('cargarClases');
             ?>
 
         </div>
-        <div class="form-group row">
-            <label class="col-form-label col-2" for="codDist"><strong>Producto de Distribución</strong></label>
+        <div class="mb-3 row">
+            <label class="form-label col-2" for="codDist"><strong>Producto de Distribución</strong></label>
             <select name="codDist" id="codDist" class="form-select col-2" required>
                 <option selected value="">-----------------------------</option>
                 <?php
@@ -95,7 +95,7 @@ spl_autoload_register('cargarClases');
                 ?>
             </select>
         </div>
-        <div class="form-group row">
+        <div class="mb-3 row">
             <div class="col-1 text-center">
                 <button class="button" type="reset"><span>Reiniciar</span></button>
             </div>

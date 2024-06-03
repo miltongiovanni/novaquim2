@@ -4,7 +4,7 @@ include "nit_verif.php";
 include "valAcc.php";
 function cargarClases($classname)
 {
-    require '../../../clases/' . $classname . '.php';
+    require '../clases/' . $classname . '.php';
 }
 
 spl_autoload_register('cargarClases');
@@ -31,11 +31,11 @@ function findProveedor()
         echo '<input type="text" class="form-control col-2" value="No hay sugerencias" readOnly>';
     } else {
         echo '<br>';
-        echo '<select name="idProv" id="idProv" class="form-select col-3">';
+        echo '<div class="col-3"><select name="idProv" id="idProv" class="form-select ">';
         for ($i = 0; $i < count($proveedores); $i++) {
             echo '<option value=' . $proveedores[$i]['idProv'] . '>' . $proveedores[$i]['nomProv'] . '</option>';
         }
-        echo '</select>';
+        echo '</select></div>';
     }
 }
 

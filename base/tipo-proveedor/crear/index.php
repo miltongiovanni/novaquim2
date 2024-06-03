@@ -25,24 +25,18 @@ $idCategoria = $lastcategorias + 1;
     <div id="saludo">
         <img src="../../../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>CREACIÓN CATEGORÍA DE PROVEEDOR</h4></div>
     <form name="form2" method="POST" action="makeCategoriaProv.php">
-        <div class="form-group row">
-            <div class="col-1 text-end">
-                <label class="col-form-label " for="idCatProv"><strong>Código</strong></label>
-            </div>
-            <div class="col-2 px-0">
+        <div class="mb-3 row">
+            <div class="col-1">
+                <label class="form-label " for="idCatProv"><strong>Código</strong></label>
                 <input type="text" class="form-control " name="idCatProv" id="idCatProv" size=30 maxlength="30"
                        value="<?= $idCategoria ?>" readonly>
             </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-1 text-end">
-                <label class="col-form-label " for="desCatProv"><strong>Descripción</strong></label>
-            </div>
-            <div class="col-2 px-0">
+            <div class="col-2">
+                <label class="form-label " for="desCatProv"><strong>Descripción</strong></label>
                 <input type="text" class="form-control " name="desCatProv" id="desCatProv" size=30 onkeydown="return aceptaLetra(event)" maxlength="30" required>
             </div>
         </div>
-        <div class="form-group row">
+        <div class="mb-3 row">
             <div class="col-1 text-center">
                 <button class="button" type="reset"><span>Reiniciar</span></button>
             </div>

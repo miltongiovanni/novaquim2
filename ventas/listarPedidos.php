@@ -160,7 +160,7 @@ switch ($estadoPedido) {
                 },
                 processing: true,
                 serverSide: true,
-                "ajax": "ajax/listaPedidos.php?estadoPedido=" + estadoPedido,
+                "ajax": "../ajax/listaPedidos.php?estadoPedido=" + estadoPedido,
             });
             // Add event listener for opening and closing details
             $('#example tbody').on('click', 'td.details-control', function () {
