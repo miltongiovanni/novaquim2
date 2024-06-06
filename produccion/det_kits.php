@@ -170,7 +170,7 @@ $kit = $KitOperador->getKit($idKit);
         Detalle
     </div>
     <div class="tabla-50">
-        <table id="example" class="display compact formatoDatos">
+        <table id="example" class="formatoDatos table table-sm table-striped formatoDatos">
             <thead>
             <tr>
                 <th width="15%">Código</th>

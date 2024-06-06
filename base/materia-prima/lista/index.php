@@ -123,7 +123,7 @@ include "../../../includes/valAcc.php";
         </div>
     </div>
     <div class="tabla-100">
-        <table id="example" class="display compact formatoDatos">
+        <table id="example" class="formatoDatos5 table table-sm table-striped">
             <thead>
             <tr>
                 <th>Código</th>

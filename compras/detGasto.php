@@ -267,7 +267,7 @@ $gasto = $GastoOperador->getGasto($idGasto);
     <div class="mb-3 titulo row text-center">
         <strong>Detalle del gasto</strong>
     </div>
-    <table id="example" class="display compact formatoDatos" style="width:80%; margin-bottom: 20px;">
+    <table id="example" class="formatoDatos table table-sm table-striped formatoDatos" style="width:80%; margin-bottom: 20px;">
         <thead>
         <tr>
             <th class="width1 text-center"></th>

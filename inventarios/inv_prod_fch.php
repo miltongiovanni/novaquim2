@@ -137,7 +137,7 @@ $fecha = $_POST['fecha'];
         </div>
     </div>
     <div class="tabla-60">
-        <table id="example" class="display compact formatoDatos">
+        <table id="example" class="formatoDatos table table-sm table-striped formatoDatos">
             <thead>
             <tr>
                 <th class="width1 text-center">Código</th>

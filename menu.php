@@ -96,7 +96,7 @@ spl_autoload_register('cargarClases');
             ?> está usando el Sistema de Información de Industrias Novaquim S.A.S.
         </div>
     </div>
-    <div class="mb-3 row" style="justify-content: flex-start">
+    <div class="mb-3 row justify-content-start">
         <?php
         if ($perfil1 == 1):
             ?>

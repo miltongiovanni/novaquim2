@@ -192,7 +192,7 @@ if ($rangoFechas >= 0) {
             </div>
         </div>
         <div class="tabla-100">
-            <table id="example" class="display compact formatoDatos">
+            <table id="example" class="formatoDatos table table-sm table-striped formatoDatos">
                 <thead>
                 <tr>
                     <th class="width1">Id Compra</th>

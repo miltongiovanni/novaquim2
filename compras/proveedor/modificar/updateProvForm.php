@@ -51,7 +51,7 @@ $proveedor = $ProveedorOperador->getProveedor($idProv);
                 ],
                 "columnDefs":
                     [{
-                        "targets": [0, 1],
+                        "targets": [0],
                         "className": 'dt-body-center'
                     }
                     ],
@@ -232,15 +232,17 @@ $proveedor = $ProveedorOperador->getProveedor($idProv);
                 <span>Adicionar o cambiar productos</span></button>
         </div>
     </div>
-
-    <table id="example" class="display compact" style="width:50%; margin: 20px auto;">
+<div class="tabla-50">
+    <table id="example" class="formatoDatos5 table table-sm table-striped">
         <thead>
         <tr>
-            <th>Código</th>
-            <th>Producto</th>
+            <th class="text-center">Código</th>
+            <th class="text-center">Producto</th>
         </tr>
         </thead>
     </table>
+</div>
+
     <div class="row">
         <div class="col-1">
             <button class="button1" id="back" onClick="history.back()"><span>VOLVER</span></button>

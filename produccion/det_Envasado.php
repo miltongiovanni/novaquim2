@@ -186,7 +186,7 @@ $cantidadPendiente = $EnvasadoOperador->getCantidadPorEnvasar($lote);
     </form>
     <div class="mb-3 row titulo">Detalle envasado :</div>
     <div class="tabla-50">
-        <table id="example" class="display compact formatoDatos">
+        <table id="example" class="formatoDatos table table-sm table-striped formatoDatos">
             <thead>
             <tr>
                 <th class="width1"></th>

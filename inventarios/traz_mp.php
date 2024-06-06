@@ -188,7 +188,7 @@ $detComprasMPrimaOperador = new DetComprasOperaciones();
         <strong>Entrada</strong>
     </div>
     <div class="tabla-50">
-        <table id="entradas" class="display compact formatoDatos">
+        <table id="entradas" class="formatoDatos table table-sm table-striped formatoDatos">
             <thead>
             <tr>
                 <th class="width12 text-center">Fecha Compra</th>
@@ -203,7 +203,7 @@ $detComprasMPrimaOperador = new DetComprasOperaciones();
         </strong>
     </div>
     <div class="tabla-50">
-        <table id="salidas" class="display compact formatoDatos">
+        <table id="salidas" class="formatoDatos table table-sm table-striped formatoDatos">
             <thead>
             <tr>
                 <th class="width1 text-center">Lote</th>

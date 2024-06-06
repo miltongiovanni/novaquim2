@@ -327,7 +327,7 @@ $totalesNotaC = $notaCrOperador->getTotalesNotaC($idNotaC);
     if ($notaC['motivo'] == 0) :
         ?>
         <div class="tabla-70">
-            <table id="example" class="display compact">
+            <table id="example" class="formatoDatos table table-sm table-striped">
                 <thead>
                 <tr>
                     <th class="width1"></th>
@@ -347,7 +347,7 @@ $totalesNotaC = $notaCrOperador->getTotalesNotaC($idNotaC);
     if ( $detNotaCrOperador->hasDescNotaCr($idNotaC)) {
         ?>
         <div class="tabla-70">
-            <table class="display compact">
+            <table class="formatoDatos table table-sm table-striped">
                 <tr>
                     <th class="width9"><strong>Descripción</strong></th>
                     <th class="width10"><strong>Valor</strong></th>

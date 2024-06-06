@@ -126,21 +126,21 @@ $proveedor = $ProveedorOperador->getProveedor($idProv);
                 <div class="col-1">
                     <label class="form-label " for="Codigo"><strong>Producto</strong></label>
                 </div>
-               <div class="col-3">
-                   <?php
-                   $DetProveedorOperador = new DetProveedoresOperaciones();
-                   $productos = $DetProveedorOperador->getProdPorCategoria($idProv, $proveedor['idCatProv']);
-                   if ($productos) {
-                       $filas = count($productos);
-                       echo '<select name="Codigo" id="Codigo" class="form-control "  required>';
-                       echo '<option disabled selected value="">----------------------------------</option>';
-                       for ($i = 0; $i < $filas; $i++) {
-                           echo '<option value="' . $productos[$i]["Codigo"] . '">' . $productos[$i]['Producto'] . '</option>';
-                       }
-                       echo '</select>';
-                   }
-                   ?>
-               </div>
+                <div class="col-3">
+                    <?php
+                    $DetProveedorOperador = new DetProveedoresOperaciones();
+                    $productos = $DetProveedorOperador->getProdPorCategoria($idProv, $proveedor['idCatProv']);
+                    if ($productos) {
+                        $filas = count($productos);
+                        echo '<select name="Codigo" id="Codigo" class="form-control "  required>';
+                        echo '<option disabled selected value="">----------------------------------</option>';
+                        for ($i = 0; $i < $filas; $i++) {
+                            echo '<option value="' . $productos[$i]["Codigo"] . '">' . $productos[$i]['Producto'] . '</option>';
+                        }
+                        echo '</select>';
+                    }
+                    ?>
+                </div>
                 <div class="col-2" style="padding: 4px 25px">
                     <button class="button" type="button" onclick="return Enviar(this.form)">
                         <span>Adicionar producto</span>
@@ -151,15 +151,17 @@ $proveedor = $ProveedorOperador->getProveedor($idProv);
     <?php
     endif;
     ?>
-    <table id="example" class="display compact" style="width:50%; margin-bottom: 20px;">
-        <thead>
-        <tr>
-            <th class="width1 text-center">Código</th>
-            <th class="width2 text-center">Producto</th>
-            <th class="width3 text-center"></th>
-        </tr>
-        </thead>
-    </table>
+    <div class="tabla-50 mb-5">
+        <table id="example" class="formatoDatos table table-sm table-striped">
+            <thead>
+            <tr>
+                <th class="width1 text-center">Código</th>
+                <th class="width2 text-center">Producto</th>
+                <th class="width3 text-center"></th>
+            </tr>
+            </thead>
+        </table>
+    </div>
     <div class="row">
         <div class="col-1">
             <button class="button" type="button" onclick="eliminarSession(); ">

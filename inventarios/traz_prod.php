@@ -143,7 +143,7 @@ $detOProd = $envasadoOperador->getEnvasado($loteProd, $codPresentacion);
         </strong>
     </div>
     <div class="tabla-50">
-        <table id="salidas" class="display compact formatoDatos">
+        <table id="salidas" class="formatoDatos table table-sm table-striped formatoDatos">
             <thead>
             <tr>
                 <th class="width1 text-center">Fecha de venta</th>

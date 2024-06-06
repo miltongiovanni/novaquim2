@@ -104,7 +104,7 @@ if (!isset($fechaRutero)){
     </div>
 
     <div class="tabla-100">
-        <table id="example" class="display compact">
+        <table id="example" class="formatoDatos table table-sm table-striped">
             <thead>
             <tr>
                 <th class="width1 text-center">Pedido</th>

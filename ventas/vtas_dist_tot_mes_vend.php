@@ -201,7 +201,7 @@ $personal = $operadorPersonal->getPerson($idPersonal);
     </div>
 
     <div class="tabla-90">
-        <table id="example" class="display compact formatoDatos5">
+        <table id="example" class="formatoDatos table table-sm table-striped formatoDatos5">
             <thead>
             <tr>
                 <th class="width1 text-center" rowspan="2">Producto</th>

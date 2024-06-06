@@ -191,7 +191,7 @@ $totales = calcularTotalesFactura($idFactura, $factura['descuento']);
         <strong>Detalle</strong>
     </div>
     <div class="tabla-70">
-        <table id="example" class="display compact formatoDatos">
+        <table id="example" class="formatoDatos table table-sm table-striped formatoDatos">
             <thead>
             <tr>
                 <th class="width1">Código</th>

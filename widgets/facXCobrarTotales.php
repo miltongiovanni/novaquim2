@@ -25,7 +25,7 @@ $total = $totalVencido['totalSaldo'] + $totalXVencer1Semana['totalSaldo'] + $tot
         <div class="col-7 text-end "><strong>TOTAL :</strong></div>
         <div class="col-5 bg-blue"><?= '$ ' . number_format($total, 0, '.', ','); ?></div>
     </div>
-    <div class="mb-3 row">
+    <div class="my-4 row">
         <div class="col-5">
             <button class="button" onClick="window.location='ventas/factXcobrar.php'"><span>Ir a cobrar facturas</span>
             </button>

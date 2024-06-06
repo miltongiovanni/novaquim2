@@ -24,7 +24,7 @@ $pedidos = $pedidoOperador->getTablePedidos('1','', '', '', '');
     ?>
 </div>
 
-<div class="mb-3 row">
+<div class="my-4 row">
     <div class="col-5">
         <button class="button" type="button" onClick="window.location='ventas/buscarPedido.php'">
             <span>Ir a modificar pedido</span>

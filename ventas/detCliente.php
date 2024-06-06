@@ -146,7 +146,7 @@ $nomCliente = $cliente['nomCliente'];
     </form>
 
     <div class="tabla-70 mt-5">
-        <table id="example" class="display compact">
+        <table id="example" class="formatoDatos table table-sm table-striped">
             <thead>
             <tr class="text-center">
                 <th></th>

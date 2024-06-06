@@ -305,7 +305,7 @@ $cliente = $clienteOperador->getCliente($idCliente);
     </div>
 
     <div class="tabla-70">
-        <table id="example" class="display compact">
+        <table id="example" class="formatoDatos table table-sm table-striped">
             <thead>
             <tr class="text-center">
                 <th>Id</th>

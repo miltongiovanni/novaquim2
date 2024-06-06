@@ -71,7 +71,7 @@ include "../../../includes/valAcc.php";
         /* Formatting function for row details - modify as you need */
         function format(d) {
             // `d` is the original data object for the row
-            rep = '<table  class="display compact" style="padding-left:50px;width:50%;margin:inherit;">' +
+            rep = '<table  class="formatoDatos table table-sm table-striped" style="padding-left:50px;width:50%;margin:inherit;">' +
                 '<thead>' +
                 '<tr>' +
                 '<th class="text-center">Descripción</th>' +
@@ -201,7 +201,7 @@ include "../../../includes/valAcc.php";
         </div>
     </div>
     <div class="tabla-100">
-        <table id="example" class="display compact formatoDatos">
+        <table id="example" class="formatoDatos table table-sm table-striped formatoDatos">
             <thead>
             <tr>
                 <th class="width1"></th>

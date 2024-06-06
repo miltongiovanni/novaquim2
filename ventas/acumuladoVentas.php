@@ -239,7 +239,7 @@ array_pop($months);
     </div>
 
     <div class="tabla-90">
-        <table id="example" class="display compact formatoDatos5">
+        <table id="example" class="formatoDatos table table-sm table-striped formatoDatos5">
             <thead>
             <tr>
                 <th class="text-center">Mes</th>

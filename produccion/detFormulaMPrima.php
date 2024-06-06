@@ -140,7 +140,7 @@ $porcentajeTotal = $DetFormulaMPrimaOperador->getPorcentajeTotal($idFormulaMPrim
         <strong>Detalle de la fórmula</strong>
     </div>
     <div class="tabla-50">
-        <table id="example" class="display compact">
+        <table id="example" class="formatoDatos table table-sm table-striped">
             <thead>
             <tr>
                 <th width="20%"></th>

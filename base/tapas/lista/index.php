@@ -75,7 +75,7 @@ include "../../../includes/valAcc.php";
         </div>
     </div>
     <div class="tabla-40">
-        <table id="example" class="display compact formatoDatos">
+        <table id="example" class="formatoDatos table table-sm table-striped formatoDatos">
             <thead>
             <tr>
                 <th class="text-center">Código</th>

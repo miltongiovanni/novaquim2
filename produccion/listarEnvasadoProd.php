@@ -62,7 +62,7 @@ $producto = $ProductoOperador->getNameProducto($codProducto);
         /* Formatting function for row details - modify as you need */
         function format(d) {
             // `d` is the original data object for the row
-            rep = '<table class="display compact" style="padding-left:50px;width:70%;margin:inherit;">' +
+            rep = '<table class="formatoDatos table table-sm table-striped" style="padding-left:50px;width:70%;margin:inherit;">' +
                 '<thead>' +
                 '<tr>' +
                 '<th class="text-center">Código</th>';
@@ -170,7 +170,7 @@ $producto = $ProductoOperador->getNameProducto($codProducto);
         </div>
     </div>
     <div class="tabla-50">
-        <table id="example" class="display compact formatoDatos">
+        <table id="example" class="formatoDatos table table-sm table-striped formatoDatos">
             <thead>
             <tr>
                 <th class="width1"></th>

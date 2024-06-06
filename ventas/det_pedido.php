@@ -330,7 +330,7 @@ $distribucionOperador = new ProductosDistribucionOperaciones();
         <strong>Detalle del pedido</strong>
     </div>
     <div class="tabla-80">
-        <table id="example" class="display compact">
+        <table id="example" class="formatoDatos table table-sm table-striped">
             <thead>
             <tr>
                 <th class="width1"></th>
