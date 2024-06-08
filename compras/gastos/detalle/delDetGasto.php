@@ -20,11 +20,11 @@ foreach ($_POST as $nombre_campo => $valor) {
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <meta charset="utf-8">
     <title>Eliminar detalle del gasto</title>
-    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="../js/validar.js"></script>
+    <script src="../../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../../../js/validar.js"></script>
 </head>
 <body>
 <?php
@@ -36,12 +36,12 @@ try {
     $DetGastoOperador->deleteDetGasto( $datos);
     $GastoOperador->updateTotalesGasto(BASE_C, BASE_C2, $idGasto);
     $_SESSION['idGasto'] = $idGasto;
-    $ruta = "detGasto.php";
+    $ruta = "../detalle/";
     $mensaje = "Detalle de gasto eliminado con éxito";
     $icon = "success";
 } catch (Exception $e) {
     $_SESSION['idGasto'] = $idGasto;
-    $ruta = "detGasto.php";
+    $ruta = "../detalle/";
     $mensaje = "Error al eliminar el detalle del gasto";
     $icon = "error";
 } finally {

@@ -7,10 +7,10 @@ include "../../../includes/valAcc.php";
 <head>
     <title>Lista de gastos</title>
     <meta charset="utf-8">
-    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="../js/validar.js"></script>
-    <link rel="stylesheet" href="../css/datatables.css">
+    <link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script src="../../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../../../js/validar.js"></script>
+    <link rel="stylesheet" href="../../../css/datatables.css">
     <style>
         #example {
             table-layout: fixed;
@@ -61,8 +61,8 @@ include "../../../includes/valAcc.php";
             width: 8%;
         }
     </style>
-    <script src="../js/jquery-3.3.1.min.js"></script>
-    <script src="../js/datatables.js"></script>
+    <script src="../../../js/jquery-3.3.1.min.js"></script>
+    <script src="../../../js/datatables.js"></script>
     
 
     <script>
@@ -97,7 +97,7 @@ include "../../../includes/valAcc.php";
             var table = $('#example').DataTable({
                 "columns": [
                     {
-                        "className": 'details-control',
+                        "className": 'dt-control',
                         "orderable": false,
                         "data": null,
                         "defaultContent": ''
@@ -108,7 +108,7 @@ include "../../../includes/valAcc.php";
                     },
                     {
                         "data": "nitProv",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-right pe-3'
                     },
                     {
                         "data": "nomProv",
@@ -116,7 +116,7 @@ include "../../../includes/valAcc.php";
                     },
                     {
                         "data": "numFact",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-right pe-3'
                     },
                     {
                         "data": "fechGasto",
@@ -132,22 +132,22 @@ include "../../../includes/valAcc.php";
                     },
                     {
                         "data": "totalGasto",
-                        "className": 'dt-body-right'
+                        "className": 'dt-body-right pe-3'
                     },
                     {
                         "data": "retefuenteGasto",
-                        "className": 'dt-body-right'
+                        "className": 'dt-body-right pe-3'
                     },
                     {
                         "data": "reteicaGasto",
-                        "className": 'dt-body-right'
+                        "className": 'dt-body-right pe-3'
                     },
                     {
                         "data": "vreal",
-                        "className": 'dt-body-right'
+                        "className": 'dt-body-right pe-3'
                     },
                 ],
-                "order": [[0, 'desc']],
+                "order": [[1, 'desc']],
                 "deferRender": true,  //For speed
                 "dom": 'Blfrtip',
                 "buttons": [
@@ -173,7 +173,7 @@ include "../../../includes/valAcc.php";
                 "ajax": "../ajax/listaGastos.php"
             });
             // Add event listener for opening and closing details
-            $('#example tbody').on('click', 'td.details-control', function () {
+            $('#example tbody').on('click', 'td.dt-control', function () {
                 var tr = $(this).closest('tr');
                 var row = table.row(tr);
 
@@ -193,15 +193,15 @@ include "../../../includes/valAcc.php";
 <body>
 <div id="contenedor" class="container-fluid">
     <div id="saludo1">
-        <img src="../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>LISTA DE GASTOS</h4></div>
+        <img src="../../../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>LISTA DE GASTOS</h4></div>
     <div class="row flex-end">
         <div class="col-1">
-            <button class="button" onclick="window.location='../menu.php'">
+            <button class="button" onclick="window.location='../../../menu.php'">
                 <span><STRONG>Ir al Menú</STRONG></span></button>
         </div>
     </div>
     <div class="tabla-100">
-        <table id="example" class="formatoDatos table table-sm table-striped formatoDatos">
+        <table id="example" class="formatoDatos5 table table-sm table-striped">
             <thead>
             <tr>
                 <th class="width1"></th>
@@ -223,7 +223,7 @@ include "../../../includes/valAcc.php";
 
     <div class="row">
         <div class="col-1">
-            <button class="button" onclick="window.location='../menu.php'">
+            <button class="button" onclick="window.location='../../../menu.php'">
                 <span><STRONG>Ir al Menú</STRONG></span>
             </button>
         </div>

@@ -75,13 +75,13 @@ try {
     }
     $_SESSION['idCompra'] = $idCompra;
     $_SESSION['tipoCompra'] = $tipoCompra;
-    $ruta = "detCompra.php";
+    $ruta = "../detalle/";
     $mensaje = "Detalle de compra eliminado con éxito";
     $icon = "success";
 } catch (Exception $e) {
     $_SESSION['idCompra'] = $idCompra;
     $_SESSION['tipoCompra'] = $tipoCompra;
-    $ruta = "detCompra.php";
+    $ruta = "../detalle/";
     $mensaje = "Error al eliminar el detalle de la factura de compra";
     $icon = "error";
 } finally {

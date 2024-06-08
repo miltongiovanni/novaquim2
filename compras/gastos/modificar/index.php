@@ -7,19 +7,21 @@ include "../../../includes/valAcc.php";
 <head>
     <meta charset="utf-8">
     <title>Seleccionar Gasto a Modificar</title>
-    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="../js/validar.js"></script>
+    <link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
+<script src="../../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../../../js/validar.js"></script>
 </head>
 <body>
 <div id="contenedor" class="container-fluid">
     <div id="saludo">
-        <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>SELECCIONAR GASTO A MODIFICAR</h4></div>
+        <img src="../../../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>SELECCIONAR GASTO A MODIFICAR</h4></div>
     <form id="form1" name="form1" method="post" action="updateGastoForm.php">
         <div class="mb-3 row">
-            <label class="form-label col-1 text-end" for="idGasto"><strong>No. de gasto</strong></label>
-            <input type="text" class="form-control col-1" name="idGasto" id="idGasto"
-                   onkeydown="return aceptaNum(event)" required>
+            <div class="col-2">
+                <label class="form-label" for="idGasto"><strong>No. de gasto</strong></label>
+                <input type="text" class="form-control" name="idGasto" id="idGasto"
+                       onkeydown="return aceptaNum(event)" required>
+            </div>
         </div>
         <div class="mb-3 row">
                         <div class="col-1 text-center" >

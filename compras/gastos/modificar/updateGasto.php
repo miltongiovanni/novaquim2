@@ -21,11 +21,11 @@ foreach ($_POST as $nombre_campo => $valor) {
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <title>Actualización de gastos</title>
     <meta charset="utf-8">
-    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="../js/validar.js"></script>
+    <script src="../../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../../../js/validar.js"></script>
 </head>
 <body>
 <?php
@@ -35,11 +35,11 @@ $datos = array($idProv, $numFact, $fechGasto, $fechVenc, $idGasto);
 try {
     $GastoOperador->updateGasto($datos);
     $_SESSION['idGasto'] = $idGasto;
-    $ruta = "detGasto.php";
+    $ruta = "../detalle/";
     $mensaje = "Gasto actualizado con éxito";
     $icon = "success";
 } catch (Exception $e) {
-    $ruta = "buscarGasto.php";
+    $ruta = "../modificar/";
     $mensaje = "Error al actualizar el gasto";
     $icon = "error";
 } finally {

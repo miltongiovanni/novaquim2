@@ -1,6 +1,6 @@
 <?php
 include "../../../includes/valAcc.php";
-include "../includes/calcularDias.php";
+include "../../../includes/calcularDias.php";
 // On enregistre notre autoload.
 function cargarClases($classname)
 {
@@ -23,9 +23,9 @@ foreach ($_POST as $nombre_campo => $valor) {
 <head>
     <title>Ingreso del Detalle de los Gastos de Industrias Novaquim</title>
     <meta charset="utf-8">
-    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="../js/validar.js"></script>
+    <link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script src="../../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../../../js/validar.js"></script>
 </head>
 <body>
 <?php
@@ -33,7 +33,7 @@ $GastoOperador = new GastosOperaciones();
 $DetGastoOperador = new DetGastosOperaciones();
 if ($DetGastoOperador->productoExiste($idGasto, $producto)) {
     $_SESSION['idGasto'] = $idGasto;
-    $ruta = "detGasto.php";
+    $ruta = "../detalle/";
     $mensaje = "Producto incluido anteriormente";
     $icon = "error";
     mover_pag($ruta, $mensaje, $icon);
@@ -43,12 +43,12 @@ if ($DetGastoOperador->productoExiste($idGasto, $producto)) {
         $DetGastoOperador->makeDetGasto($datos);
         $GastoOperador->updateTotalesGasto(BASE_C, BASE_C2, $idGasto);
         $_SESSION['idGasto'] = $idGasto;
-        $ruta = "detGasto.php";
+        $ruta = "../detalle/";
         $mensaje = "Detalle de gasto adicionado con éxito";
         $icon = "success";
     } catch (Exception $e) {
         $_SESSION['idGasto'] = $idGasto;
-        $ruta = "detGasto.php";
+        $ruta = "../detalle/";
         $mensaje = "Error al ingresar el detalle de la factura de compra";
         $icon = "error";
     } finally {

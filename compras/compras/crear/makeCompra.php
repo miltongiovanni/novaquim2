@@ -39,7 +39,7 @@ if ($factExiste && count($factExiste) > 0) {
     $idCompra = $factExiste['idCompra'];
     $_SESSION['idCompra'] = $factExiste['idCompra'];
     $_SESSION['tipoCompra'] = $tipoCompra;
-    $ruta = "detCompra.php";
+    $ruta = "../detalle/";
     $mensaje = "Factura ingresada anteriormente";
     $icon = "error";
     mover_pag($ruta, $mensaje, $icon);

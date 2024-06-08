@@ -25,19 +25,19 @@ spl_autoload_register('cargarClases');
 switch ($tipoCompra) {
     case 1:
         $titulo = ' materias primas';
-        $rutaError = 'compramp.php';
+        $rutaError = '../../materia-prima/crear';
         break;
     case 2:
         $titulo = ' envases y/o tapas';
-        $rutaError = 'compraenv.php';
+        $rutaError = '../../envase/crear';
         break;
     case 3:
         $titulo = ' etiquetas';
-        $rutaError = 'compraetq.php';
+        $rutaError = '../../etiqueta/crear';
         break;
     case 5:
         $titulo = ' productos de distribución';
-        $rutaError = 'compradist.php';
+        $rutaError = '../../distribucion/crear';
         break;
 }
 $CompraOperador = new ComprasOperaciones();
@@ -255,6 +255,10 @@ $compra = $CompraOperador->getCompra($idCompra, $tipoCompra);
             <strong>No. de Factura</strong>
             <div class="bg-blue"><?= $compra['numFact'] ?></div>
         </div>
+        <div class="col-1">
+            <strong>Estado</strong>
+            <div class="bg-blue"><?= $compra['descEstado'] ?></div>
+        </div>
     </div>
     <div class="mb-3 row formatoDatos5">
         <div class="col-2">
@@ -266,15 +270,9 @@ $compra = $CompraOperador->getCompra($idCompra, $tipoCompra);
             <div class="bg-blue"><?= $compra['fechVenc'] ?></div>
         </div>
         <div class="col-1">
-            <strong>Estado</strong>
-            <div class="bg-blue"><?= $compra['descEstado'] ?></div>
-        </div>
-        <div class="col-1">
             <strong>Subtotal</strong>
             <div class="bg-blue"><?= $compra['subtotalCompra'] ?></div>
         </div>
-    </div>
-    <div class="mb-3 row formatoDatos5">
         <div class="col-1">
             <strong>Iva </strong>
             <div class="bg-blue"><?= $compra['ivaCompra'] ?></div>

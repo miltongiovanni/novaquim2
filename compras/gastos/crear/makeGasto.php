@@ -1,6 +1,6 @@
 <?php
 include "../../../includes/valAcc.php";
-include "../includes/calcularDias.php";
+include "../../../includes/calcularDias.php";
 // On enregistre notre autoload.
 function cargarClases($classname)
 {
@@ -21,11 +21,11 @@ foreach ($_POST as $nombre_campo => $valor) {
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <title>Ingreso de gastos</title>
     <meta charset="utf-8">
-    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="../js/validar.js"></script>
+    <script src="../../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../../../js/validar.js"></script>
 </head>
 <body>
 <?php
@@ -37,7 +37,7 @@ $rutaError = "crearGasto.php";
 if ($factExiste && count($factExiste) > 0) {
     $idGasto = $factExiste['idGasto'];
     $_SESSION['idGasto'] = $factExiste['idGasto'];
-    $ruta = "detGasto.php";
+    $ruta = "../detalle/";
     $mensaje = "Factura ingresada anteriormente";
     $icon = "error";
     mover_pag($ruta, $mensaje, $icon);
@@ -51,7 +51,7 @@ if ($factExiste && count($factExiste) > 0) {
         try {
             $idGasto = $GastoOperador->makeGasto($datos);
             $_SESSION['idGasto'] = $idGasto;
-            $ruta = "detGasto.php";
+            $ruta = "../detalle/";
             $mensaje = "Gasto creado con éxito";
             $icon = "success";
         } catch (Exception $e) {

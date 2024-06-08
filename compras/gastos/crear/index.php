@@ -5,17 +5,17 @@ include "../../../includes/valAcc.php";
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <title>Ingreso de gastos</title>
     <meta charset="utf-8">
-    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="../js/validar.js"></script>
-    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../../../js/validar.js"></script>
+    <script src="../../../js/jquery-3.3.1.min.js"></script>
     <script>
         function findProveedor(idCatProd) {
             let q = document.getElementById("busProv").value;
             $.ajax({
-                url: '../includes/controladorCompras.php',
+                url: '../../../includes/controladorCompras.php',
                 type: 'POST',
                 data: {
                     "action": 'findProveedorGasto',
@@ -35,27 +35,32 @@ include "../../../includes/valAcc.php";
 <body>
 <div id="contenedor" class="container-fluid">
     <div id="saludo">
-        <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>INGRESO DE COMPRA DE GASTOS</h4></div>
+        <img src="../../../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>INGRESO DE COMPRA DE GASTOS</h4></div>
     <form name="form2" method="POST" action="makeGasto.php">
         <div class="mb-3 row">
-            <label class="form-label col-2" for="busProv"><strong>Proveedor</strong></label>
-            <input type="text" class="form-control col-2" id="busProv" name="busProv" onkeyup="findProveedor()"
-                   required/>
-        </div>
-        <div class="mb-3 row" id="myDiv">
-        </div>
-        <div class="mb-3 row">
-            <label class="form-label col-2 text-end" for="numFact"><strong>Número de Factura</strong></label>
-            <input type="text" class="form-control col-2" name="numFact" id="numFact"
-                   onkeydown="return aceptaNum(event)" required>
+            <div class="col-2">
+                <label class="form-label " for="busProv"><strong>Proveedor</strong></label>
+                <input type="text" class="form-control" id="busProv" name="busProv" onkeyup="findProveedor()" />
+            </div>
+
         </div>
         <div class="mb-3 row">
-            <label class="form-label col-2 text-end" for="fechGasto"><strong>Fecha de compra</strong></label>
-            <input type="date" class="form-control col-2" name="fechGasto" id="fechGasto" required>
+            <div class="col-6" id="myDiv"></div>
         </div>
         <div class="mb-3 row">
-            <label class="form-label col-2 text-end" for="fechVenc"><strong>Fecha de vencimiento</strong></label>
-            <input type="date" class="form-control col-2" name="fechVenc" id="fechVenc" required>
+            <div class="col-2">
+                <label class="form-label" for="numFact"><strong>Número de Factura</strong></label>
+                <input type="text" class="form-control " name="numFact" id="numFact"
+                       onkeydown="return aceptaNum(event)" required>
+            </div>
+            <div class="col-2">
+                <label class="form-label" for="fechGasto"><strong>Fecha de compra</strong></label>
+                <input type="date" class="form-control " name="fechGasto" id="fechGasto" required>
+            </div>
+            <div class="col-2">
+                <label class="form-label" for="fechVenc"><strong>Fecha de vencimiento</strong></label>
+                <input type="date" class="form-control " name="fechVenc" id="fechVenc" required>
+            </div>
         </div>
         <div class="mb-3 row">
             <div class="col-1 text-center">

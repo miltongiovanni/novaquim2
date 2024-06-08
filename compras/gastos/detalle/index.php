@@ -29,8 +29,8 @@ $gasto = $GastoOperador->getGasto($idGasto);
 <head>
     <title>Ingreso del Detalle de los Gastos de Industrias Novaquim</title>
     <meta charset="utf-8">
-    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="../css/datatables.css">
+    <link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../../../css/datatables.css">
     <style>
         table.dataTable.compact thead th, table.dataTable.compact thead td {
             padding: 4px 4px 4px 4px;
@@ -62,22 +62,22 @@ $gasto = $GastoOperador->getGasto($idGasto);
         }
 
     </style>
-    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="../js/validar.js"></script>
-    <script src="../js/jquery-3.3.1.min.js"></script>
-    <script src="../js/datatables.js"></script>
-    <script src="../js/jszip.js"></script>
+    <script src="../../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../../../js/validar.js"></script>
+    <script src="../../../js/jquery-3.3.1.min.js"></script>
+    <script src="../../../js/datatables.js"></script>
+    <script src="../../../js/jszip.js"></script>
     <!--<script src="../js/pdfmake.js"></script>-->  <!--Para exportar PDF-->
     <!--<script src="../js/vfs_fonts.js"></script>--> <!--Para exportar PDF-->
     <script>
         function redireccion() {
-            window.location.href = "../menu.php";
+            window.location.href = "../../../menu.php";
         }
 
         function eliminarSession() {
             let variable = 'idGasto';
             $.ajax({
-                url: '../includes/controladorCompras.php',
+                url: '../../../includes/controladorCompras.php',
                 type: 'POST',
                 data: {
                     "action": 'eliminarSession',
@@ -99,7 +99,7 @@ $gasto = $GastoOperador->getGasto($idGasto);
                 eliminarSession();
             } else {
                 $.ajax({
-                    url: '../includes/controladorCompras.php',
+                    url: '../../../includes/controladorCompras.php',
                     type: 'POST',
                     data: {
                         "action": 'updateEstadoGasto',
@@ -191,34 +191,55 @@ $gasto = $GastoOperador->getGasto($idGasto);
 <body>
 <div id="contenedor" class="container-fluid">
     <div id="saludo1">
-        <img src="../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>INGRESO DE DETALLE DE LOS GASTOS</h4></div>
-    <div class="mb-3 row">
-        <div class="col-1"><strong>No. de Gasto</strong></div>
-        <div class="col-1 bg-blue"><?= $idGasto; ?></div>
-        <div class="col-1"><strong>Proveedor</strong></strong></div>
-        <div class="col-3" style="background-color: #dfe2fd;"><?= $gasto['nomProv'] ?></div>
-        <div class="col-1"><strong>NIT</strong></div>
-        <div class="col-1 bg-blue"><?= $gasto['nitProv'] ?></div>
+        <img src="../../../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>INGRESO DE DETALLE DE LOS GASTOS</h4>
     </div>
-    <div class="mb-3 row">
-        <div class="col-1"><strong>No. de Factura</strong></div>
-        <div class="col-1 bg-blue"><?= $gasto['numFact'] ?></div>
-        <div class="col-2"><strong>Fecha de compra</strong></div>
-        <div class="col-1 bg-blue"><?= $gasto['fechGasto']; ?></div>
-        <div class="col-2"><strong>Fecha Vencimiento </strong></strong></div>
-        <div class="col-1 bg-blue"><?= $gasto['fechVenc'] ?></div>
-        <div class="col-1"><strong>Estado</strong></div>
-        <div class="col-1 bg-blue"><?= $gasto['descEstado'] ?></div>
+    <div class="mb-3 row formatoDatos5">
+        <div class="col-1">
+            <strong>No. de Gasto</strong>
+            <div class="bg-blue"><?= $idGasto; ?></div>
+        </div>
+        <div class="col-3">
+            <strong>Proveedor</strong>
+            <div class="bg-blue" ><?= $gasto['nomProv'] ?></div>
+        </div>
+        <div class="col-2">
+            <strong>NIT</strong>
+            <div class="bg-blue"><?= $gasto['nitProv'] ?></div>
+        </div>
+        <div class="col-1">
+            <strong>No. de Factura</strong>
+            <div class="bg-blue"><?= $gasto['numFact'] ?></div>
+        </div>
+        <div class="col-1">
+            <strong>Estado</strong>
+            <div class="bg-blue"><?= $gasto['descEstado'] ?></div>
+        </div>
     </div>
-    <div class="mb-3 row">
-        <div class="col-1"><strong>Valor Factura</strong></div>
-        <div class="col-1 bg-blue"><?= $gasto['totalGasto'] ?></div>
-        <div class="col-1"><strong>Rete Ica</strong></strong></div>
-        <div class="col-1 bg-blue"><?= $gasto['reteicaGasto'] ?></div>
-        <div class="col-1"><strong>Retención</strong></div>
-        <div class="col-1 bg-blue"><?= $gasto['retefuenteGasto'] ?></div>
-        <div class="col-1"><strong>Valor a Pagar</strong></div>
-        <div class="col-1 bg-blue"><?= $gasto['vreal'] ?></div>
+    <div class="mb-3 row formatoDatos5">
+        <div class="col-2">
+            <strong>Fecha de compra</strong>
+            <div class="bg-blue"><?= $gasto['fechGasto']; ?></div>
+        </div>
+        <div class="col-2">
+            <strong>Fecha Vencimiento </strong>
+            <div class="bg-blue"><?= $gasto['fechVenc'] ?></div>
+        </div>
+        <div class="col-1">
+            <strong>Valor Factura</strong>
+            <div class="bg-blue"><?= $gasto['totalGasto'] ?></div>
+        </div>
+        <div class="col-1">
+            <strong>Rete Ica</strong>
+            <div class="bg-blue"><?= $gasto['reteicaGasto'] ?></div>
+        </div>
+        <div class="col-1">
+            <strong>Retención</strong>
+            <div class="bg-blue"><?= $gasto['retefuenteGasto'] ?></div>
+        </div>
+        <div class="col-1">
+            <strong>Valor a Pagar</strong>
+            <div class="bg-blue"><?= $gasto['vreal'] ?></div>
+        </div>
     </div>
 
     <?php
@@ -229,34 +250,35 @@ $gasto = $GastoOperador->getGasto($idGasto);
         </div>
         <form method="post" action="makeDetGasto.php" name="form1">
             <input name="idGasto" type="hidden" value="<?= $idGasto; ?>">
-            <div class="row">
-                <div class="col-3 text-center" style="margin: 0 5px 0 0;"><strong>Descripción</strong></div>
-                <div class="col-1 text-center" style="margin: 0 5px;"><strong>Cantidad</strong></div>
-                <div class="col-1 text-center" style="margin: 0 5px;"><strong>Precio Unitario (Sin IVA)</strong></div>
-                <div class="col-1 text-center" style="margin: 0 5px;"><strong>Tasa Iva</strong></div>
-                <div class="col-2 text-center">
+            <div class="row mb-3 formatoDatos5">
+                <div class="col-3">
+                    <label class="form-label" for="producto"><strong>Descripción</strong></label>
+                    <input type="text" class="form-control" name="producto" id="producto">
                 </div>
-            </div>
-            <div class="mb-3 row">
-                <input type="text" style="margin: 0 5px 0 0;" class="form-control col-3" name="producto"
-                       id="producto">
-                <input type="text" style="margin: 0 5px 0 0;" class="form-control col-1" name="cantGasto"
-                       id="cantGasto" onkeydown="return aceptaNum(event)">
-                <input type="text" style="margin: 0 5px;" class="form-control col-1" name="precGasto" id="precGasto"
-                       onkeydown="return aceptaNum(event)">
-                <?php
-                $manager = new TasaIvaOperaciones();
-                $tasas = $manager->getTasasIva();
-                $filas = count($tasas);
-                echo '<select name="codIva" id="codIva" class="form-control col-1" required>';
-                echo '<option selected disabled value="">-------------</option>';
-                for ($i = 0; $i < $filas; $i++) {
-                    echo '<option value="' . $tasas[$i]["idTasaIva"] . '">' . $tasas[$i]['iva'] . '</option>';
-                }
-                echo '</select>';
-                ?>
-                <div class="col-2 text-center" style="padding: 0 20px;">
-                    <button class="button" type="button" onclick="return Enviar(this.form)">
+                <div class="col-1" >
+                    <label class="form-label" for="cantGasto"><strong>Cantidad</strong></label>
+                    <input type="text" class="form-control" name="cantGasto" id="cantGasto" onkeydown="return aceptaNum(event)">
+                </div>
+                <div class="col-2" >
+                    <label class="form-label" for="precGasto"><strong>Precio Unitario (Sin IVA)</strong></label>
+                    <input type="text" class="form-control col-1" name="precGasto" id="precGasto" onkeydown="return aceptaNum(event)">
+                </div>
+                <div class="col-1" >
+                    <label class="form-label" for="codIva"><strong>Tasa Iva</strong></label>
+                    <?php
+                    $manager = new TasaIvaOperaciones();
+                    $tasas = $manager->getTasasIva();
+                    $filas = count($tasas);
+                    echo '<select name="codIva" id="codIva" class="form-control" required>';
+                    echo '<option selected disabled value="">-------------</option>';
+                    for ($i = 0; $i < $filas; $i++) {
+                        echo '<option value="' . $tasas[$i]["idTasaIva"] . '">' . $tasas[$i]['iva'] . '</option>';
+                    }
+                    echo '</select>';
+                    ?>
+                </div>
+                <div class="col-2 pt-3">
+                    <button class="button mt-3" type="button" onclick="return Enviar(this.form)">
                         <span>Adicionar detalle</span>
                     </button>
                 </div>
@@ -267,7 +289,8 @@ $gasto = $GastoOperador->getGasto($idGasto);
     <div class="mb-3 titulo row text-center">
         <strong>Detalle del gasto</strong>
     </div>
-    <table id="example" class="formatoDatos table table-sm table-striped formatoDatos" style="width:80%; margin-bottom: 20px;">
+    <div class="tabla-80">
+        <table id="example" class="formatoDatos5 table table-sm table-striped" >
         <thead>
         <tr>
             <th class="width1 text-center"></th>
@@ -279,6 +302,7 @@ $gasto = $GastoOperador->getGasto($idGasto);
         </tr>
         </thead>
     </table>
+    </div>
     <div class="row">
         <div class="col-1">
             <button class="button" type="button" id="back" onClick="updateEstadoGasto(<?= $idGasto ?>)">
