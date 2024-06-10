@@ -1,6 +1,6 @@
 <?php
 include "../../../includes/valAcc.php";
-include "../includes/calcularDias.php";
+include "../../../includes/calcularDias.php";
 
 if(isset($_GET['estadocliente'])){
     $estadoCliente = $_GET['estadocliente'];

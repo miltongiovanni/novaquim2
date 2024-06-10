@@ -16,33 +16,25 @@ foreach ($_POST as $nombre_campo => $valor) {
         //echo $nombre_campo. '=' .${$nombre_campo}.'<br>';
     }
 }
-if ($idTapOEnv < 100) {
-    $EnvasesOperador = new EnvasesOperaciones();
-    $envase = $EnvasesOperador->getEnvase($idTapOEnv);
-    $producto = $envase['nomEnvase'];
-} else {
-    $TapasOperador = new TapasOperaciones();
-    $tapa = $TapasOperador->getTapa($idTapOEnv);
-    $producto = $tapa['tapa'];
-}
-
+$ProductoDistribucionOperador = new ProductosDistribucionOperaciones();
+$producto = $ProductoDistribucionOperador->getProductoDistribucion($idDistribucion);
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <title>Lista de Compra por Envase o Tapa</title>
+    <title>Lista de Compra por Producto de Distribución</title>
     <meta charset="utf-8">
-    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="../js/validar.js"></script>
-    <link rel="stylesheet" href="../css/datatables.css">
-    <script src="../js/jquery-3.3.1.min.js"></script>
-    <script src="../js/datatables.js"></script>
+    <link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script src="../../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../../../js/validar.js"></script>
+    <link rel="stylesheet" href="../../../css/datatables.css">
+    <script src="../../../js/jquery-3.3.1.min.js"></script>
+    <script src="../../../js/datatables.js"></script>
     
 
     <script>
         $(document).ready(function () {
-            var idTapOEnv = <?= $idTapOEnv ?>;
+            var idDistribucion = <?= $idDistribucion ?>;
             $('#example').DataTable({
                 "columns": [
                     {
@@ -92,7 +84,7 @@ if ($idTapOEnv < 100) {
                     "infoFiltered": "(Filtrado de _MAX_ en total)"
 
                 },
-                "ajax": "../ajax/listaCompraxEnvaseTapa.php?idTapOEnv=" + idTapOEnv
+                "ajax": "../ajax/listaCompraxDis.php?idDistribucion=" + idDistribucion
             });
         });
     </script>
@@ -100,15 +92,16 @@ if ($idTapOEnv < 100) {
 <body>
 <div id="contenedor" class="container-fluid">
     <div id="saludo1">
-        <img src="../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>LISTADO DE COMPRAS DE <?= $producto ?></h4></div>
+        <img src="../../../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>LISTADO DE COMPRAS DE <?= $producto['producto'] ?></h4></div>
+
     <div class="row flex-end">
         <div class="col-1">
-            <button class="button" type="button" onclick="window.location='../menu.php'">
+            <button class="button" onclick="window.location='../../../menu.php'">
                 <span><STRONG>Ir al Menú</STRONG></span></button>
         </div>
     </div>
     <div class="tabla-60">
-        <table id="example" class="formatoDatos table table-sm table-striped formatoDatos">
+        <table id="example" class="formatoDatos5 table table-sm table-striped">
             <thead>
             <tr>
                 <th class="text-center">Fecha Compra</th>
@@ -123,12 +116,11 @@ if ($idTapOEnv < 100) {
 
     <div class="row">
         <div class="col-1">
-            <button class="button" type="button"
-                    onclick="window.location='../menu.php'">
+            <button class="button"
+                    onclick="window.location='../../../menu.php'">
                 <span><STRONG>Ir al Menú</STRONG></span></button>
         </div>
     </div>
-
 
 </div>
 </body>

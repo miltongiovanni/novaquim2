@@ -1,6 +1,6 @@
 <?php
 include "../../../includes/valAcc.php";
-include "../includes/calcularDias.php";
+include "../../../includes/calcularDias.php";
 // On enregistre notre autoload.
 function cargarClases($classname)
 {

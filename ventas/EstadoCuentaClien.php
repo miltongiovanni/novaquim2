@@ -1,6 +1,6 @@
 <?php
 include "../../../includes/valAcc.php";
-include "../includes/calcularDias.php";
+include "../../../includes/calcularDias.php";
 $idCliente = $_POST['idCliente'];
 function cargarClases($classname)
 {

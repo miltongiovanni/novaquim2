@@ -1,6 +1,6 @@
 <?php
 include "../../../includes/valAcc.php";
-include "../includes/calcularDias.php";
+include "../../../includes/calcularDias.php";
 // On enregistre notre autoload.
 function cargarClases($classname)
 {
@@ -17,19 +17,19 @@ foreach ($_POST as $nombre_campo => $valor) {
         //echo $nombre_campo . '=' . ${$nombre_campo} . '<br>';
     }
 }
-$CompraOperador = new ComprasOperaciones();
-$compras = $CompraOperador->getTotalesComprasPorFecha($fechaIni, $fechaFin);
+$GastoOperador = new GastosOperaciones();
+$gastos = $GastoOperador->getTotalesGastosPorFecha($fechaIni, $fechaFin);
 ?>
 
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <title>Listado de compras por fecha</title>
+    <title>Listado de Gastos por fecha</title>
     <meta charset="utf-8">
-    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="../js/validar.js"></script>
-    <link rel="stylesheet" href="../css/datatables.css">
+    <link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script src="../../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../../../js/validar.js"></script>
+    <link rel="stylesheet" href="../../../css/datatables.css">
     <style>
         #example {
             table-layout: fixed;
@@ -83,8 +83,8 @@ $compras = $CompraOperador->getTotalesComprasPorFecha($fechaIni, $fechaFin);
             width: 7%;
         }
     </style>
-    <script src="../js/jquery-3.3.1.min.js"></script>
-    <script src="../js/datatables.js"></script>
+    <script src="../../../js/jquery-3.3.1.min.js"></script>
+    <script src="../../../js/datatables.js"></script>
     
 
     <script>
@@ -97,12 +97,12 @@ $compras = $CompraOperador->getTotalesComprasPorFecha($fechaIni, $fechaFin);
             var table = $('#example').DataTable({
                 "columns": [
                     {
-                        "data": "idCompra",
+                        "data": "idGasto",
                         "className": 'dt-body-center'
                     },
                     {
                         "data": "nitProv",
-                        "className": 'dt-body-center'
+                        "className": 'pe-4'
                     },
                     {
                         "data": "nomProv",
@@ -110,42 +110,38 @@ $compras = $CompraOperador->getTotalesComprasPorFecha($fechaIni, $fechaFin);
                     },
                     {
                         "data": "numFact",
+                        "className": 'pe-4'
+                    },
+                    {
+                        "data": "fechGasto",
                         "className": 'dt-body-center'
                     },
                     {
-                        "data": "tipoComp",
-                        "className": 'dt-body-center'
+                        "data": "subtotalGasto",
+                        "className": 'pe-3'
                     },
                     {
-                        "data": "fechComp",
-                        "className": 'dt-body-center'
+                        "data": "ivaGasto",
+                        "className": 'pe-3'
                     },
                     {
-                        "data": "subtotalCompra",
-                        "className": 'dt-body-right'
+                        "data": "retefuenteGasto",
+                        "className": 'pe-3'
                     },
                     {
-                        "data": "ivaCompra",
-                        "className": 'dt-body-right'
+                        "data": "reteicaGasto",
+                        "className": 'pe-3'
                     },
                     {
-                        "data": "retefuenteCompra",
-                        "className": 'dt-body-right'
-                    },
-                    {
-                        "data": "reteicaCompra",
-                        "className": 'dt-body-right'
-                    },
-                    {
-                        "data": "totalCompra",
-                        "className": 'dt-body-right'
+                        "data": "totalGasto",
+                        "className": 'pe-3'
                     },
                     {
                         "data": "vreal",
-                        "className": 'dt-body-right'
+                        "className": 'pe-3'
                     },
                 ],
-                "order": [[5, 'asc']],
+                "order": [[4, 'asc']],
                 "deferRender": true,  //For speed
                 "dom": 'Blfrtip',
                 "buttons": [
@@ -168,7 +164,7 @@ $compras = $CompraOperador->getTotalesComprasPorFecha($fechaIni, $fechaFin);
                     "infoFiltered": "(Filtrado de _MAX_ en total)"
 
                 },
-                "ajax": "../ajax/listaConsCompras.php?fechaIni=" + fechaIni+ '&fechaFin=' + fechaFin
+                "ajax": "../ajax/listaConsGastos.php?fechaIni=" + fechaIni+ '&fechaFin=' + fechaFin
             });
 
         });
@@ -183,61 +179,79 @@ if ($rangoFechas >= 0) {
     ?>
     <div id="contenedor" class="container-fluid">
         <div id="saludo1">
-            <img src="../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>LISTADO DE COMPRAS POR
+            <img src="../../../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>LISTADO DE GastoS POR
                 FECHA</h4></div>
         <div class="row flex-end">
             <div class="col-1">
-                <button class="button" type="button" onclick="window.location='../menu.php'">
+                <button class="button" type="button" onclick="window.location='../../../menu.php'">
                     <span><STRONG>Ir al Menú</STRONG></span></button>
             </div>
         </div>
         <div class="tabla-100">
-            <table id="example" class="formatoDatos table table-sm table-striped formatoDatos">
+            <table id="example" class="formatoDatos5 table table-sm table-striped">
                 <thead>
                 <tr>
-                    <th class="width1">Id Compra</th>
+                    <th class="width1">Id gasto</th>
                     <th class="width2 text-center">NIT</th>
                     <th class="width3 text-center">Proveedor</th>
                     <th class="width4 text-center">Factura</th>
-                    <th class="width5 text-center">Tipo compra</th>
-                    <th class="width6 text-center">Fech Compra</th>
-                    <th class="width7 text-center">Subtotal Factura</th>
-                    <th class="width8 text-center">Iva Factura</th>
-                    <th class="width9 text-center">Retefuente</th>
-                    <th class="width10 text-center">Rete Ica</th>
-                    <th class="width11 text-center">Valor Factura</th>
-                    <th class="width12 text-center">Valor Real</th>
+                    <th class="width5 text-center">Fecha</th>
+                    <th class="width6 text-center">Subtotal</th>
+                    <th class="width7 text-center">IVA</th>
+                    <th class="width8 text-center">Retefuente</th>
+                    <th class="width9 text-center">Reteica</th>
+                    <th class="width10 text-center">Valor Factura</th>
+                    <th class="width11 text-center">Valor Real</th>
                 </tr>
                 </thead>
             </table>
         </div>
         <div class="row">
-            <div class="col-2 offset-10">
-                <div class="tabla-100">
-                    <table >
-                        <tr>
-                            <td class="text-end text-bold formatoDatos">Subtotal período</td>
-                            <td class="text-end text-bold formatoDatos"><?=$compras['subtotalPeriodo']?></td>
-                        </tr>
-                        <tr>
-                            <td class="text-end text-bold formatoDatos">Iva período</td>
-                            <td class="text-end text-bold formatoDatos"><?=$compras['ivaPeriodo']?></td>
-                        </tr>
-                        <tr>
-                            <td class="text-end text-bold formatoDatos">Retefuente período</td>
-                            <td class="text-end text-bold formatoDatos"><?=$compras['retefuentePeriodo']?></td>
-                        </tr>
-                        <tr>
-                            <td class="text-end text-bold formatoDatos">Reteica período</td>
-                            <td class="text-end text-bold formatoDatos"><?=$compras['reteicaPeriodo']?></td>
-                        </tr>
-                    </table>
+            <div class="col-2 offset-10 px-0 formatoDatos5">
+                <div class="container-fluid">
+                    <div class="row mb-2 text-bold">
+                        <div class="col-12 text-uppercase text-center">
+                            Totales período
+                        </div>
+                    </div>
+                    <div class="row text-bold text-end">
+                        <div class="col-5">
+                            Subtotal
+                        </div>
+                        <div class="col-7">
+                            <?=$gastos['subtotalPeriodo']?>
+                        </div>
+                    </div>
+                    <div class="row text-bold text-end">
+                        <div class="col-5">
+                            IVA
+                        </div>
+                        <div class="col-7">
+                            <?=$gastos['ivaPeriodo']?>
+                        </div>
+                    </div>
+                    <div class="row text-bold text-end">
+                        <div class="col-5">
+                            Retefuente
+                        </div>
+                        <div class="col-7">
+                            <?=$gastos['retefuentePeriodo']?>
+                        </div>
+                    </div>
+                    <div class="row text-bold text-end">
+                        <div class="col-5">
+                            Reteica
+                        </div>
+                        <div class="col-7">
+                            <?=$gastos['reteicaPeriodo']?>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-1">
-                <button class="button" type="button" onclick="window.location='../menu.php'">
+                <button class="button" type="button" onclick="window.location='../../../menu.php'">
                     <span><STRONG>Ir al Menú</STRONG></span>
                 </button>
             </div>
@@ -245,7 +259,7 @@ if ($rangoFechas >= 0) {
     </div>
     <?php
 } else {
-    $ruta = "consultaCompras.php";
+    $ruta = "consultaGastos.php";
     $mensaje = "La fecha final no puede ser menor que la inicial";
     $icon = "error";
     mover_pag($ruta, $mensaje, $icon);

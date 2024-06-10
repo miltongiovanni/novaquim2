@@ -96,7 +96,7 @@ if (!$usuario) {//si existen datos pero la clave esta errada
                 mover_pag($ruta, $usuario['nombre'] . " bienvenid@ al Sistema de Información de Industrias Novaquim S.A.S.", 'success');
             } else {
 
-                $ruta = "cambio.php";
+                $ruta = "../administracion/usuario/cambiar-clave";
                 $mensaje = "Su último cambio fue hace mas de 90 días, por favor cambie su contraseña";
                 //$mensaje=utf8_encode($mensaje);
                 $datos = array(0, $usuario['idUsuario']);

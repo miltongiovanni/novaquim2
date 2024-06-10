@@ -24,12 +24,12 @@ $mprima = $MPrimasOperador->getMPrima($codMPrima);
 <head>
     <title>Lista de Compra por Materia Prima</title>
     <meta charset="utf-8">
-    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="../js/validar.js"></script>
-    <link rel="stylesheet" href="../css/datatables.css">
-    <script src="../js/jquery-3.3.1.min.js"></script>
-    <script src="../js/datatables.js"></script>
+    <link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script src="../../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../../../js/validar.js"></script>
+    <link rel="stylesheet" href="../../../css/datatables.css">
+    <script src="../../../js/jquery-3.3.1.min.js"></script>
+    <script src="../../../js/datatables.js"></script>
     
 
     <script>
@@ -92,15 +92,15 @@ $mprima = $MPrimasOperador->getMPrima($codMPrima);
 <body>
 <div id="contenedor" class="container-fluid">
     <div id="saludo1">
-        <img src="../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>LISTADO DE COMPRAS DE <?= $mprima['nomMPrima'] ?></h4></div>
+        <img src="../../../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>LISTADO DE COMPRAS DE <?= $mprima['nomMPrima'] ?></h4></div>
     <div class="row flex-end">
         <div class="col-1">
-            <button class="button" type="button" onclick="window.location='../menu.php'">
+            <button class="button" type="button" onclick="window.location='../../../menu.php'">
                 <span><STRONG>Ir al Menú</STRONG></span></button>
         </div>
     </div>
     <div class="tabla-60">
-        <table id="example" class="formatoDatos table table-sm table-striped formatoDatos">
+        <table id="example" class="formatoDatos5 table table-sm table-striped">
             <thead>
             <tr>
                 <th class="text-center">Fecha Compra</th>
@@ -115,7 +115,7 @@ $mprima = $MPrimasOperador->getMPrima($codMPrima);
     <div class="row">
         <div class="col-1">
             <button class="button" type="button"
-                    onclick="window.location='../menu.php'">
+                    onclick="window.location='../../../menu.php'">
                 <span><STRONG>Ir al Menú</STRONG></span></button>
         </div>
     </div>
