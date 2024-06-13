@@ -6,19 +6,21 @@ include "../../../includes/valAcc.php";
 <head>
     <meta charset="utf-8">
     <title>Seleccionar Comprobante de Egreso a consultar</title>
-    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="../js/validar.js"></script>
+    <link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
+<script src="../../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../../../js/validar.js"></script>
 </head>
 <body>
 <div id="contenedor" class="container-fluid">
     <div id="saludo">
-        <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>SELECCIONAR COMPROBANTE DE EGRESO A CONSULTAR</h4></div>
+        <img src="../../../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>SELECCIONAR COMPROBANTE DE EGRESO A CONSULTAR</h4></div>
     <form id="form1" name="form1" method="post" action="consultaEgreso.php">
         <div class="mb-3 row">
-            <label class="form-label col-1 text-end" for="idEgreso"><strong>No. de egreso</strong></label>
-            <input type="text" class="form-control col-2" name="idEgreso" id="idEgreso"
-                   onkeydown="return aceptaNum(event)" required>
+            <div class="col-2">
+                <label class="form-label" for="idEgreso"><strong>No. de egreso</strong></label>
+                <input type="text" class="form-control" name="idEgreso" id="idEgreso"
+                       onkeydown="return aceptaNum(event)" required>
+            </div>
         </div>
         <div class="mb-3 row"><div class="col-1 text-center">
                 <button class="button" type="reset"><span>Reiniciar</span></button>

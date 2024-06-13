@@ -23,9 +23,9 @@ foreach ($_POST as $nombre_campo => $valor) {
 <head>
     <meta charset="utf-8">
     <title>Seleccionar Comprobante de egreso a Modificar</title>
-    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="../js/validar.js"></script>
+    <link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script src="../../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../../../js/validar.js"></script>
 </head>
 <body>
 <?php

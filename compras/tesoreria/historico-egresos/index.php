@@ -6,8 +6,8 @@ include "../../../includes/valAcc.php";
 <head>
     <title>Histórico de Comprobantes de Egreso</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="../css/datatables.css">
-    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../../../css/datatables.css">
+    <link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <style>
         table {
             table-layout: fixed;
@@ -67,10 +67,10 @@ include "../../../includes/valAcc.php";
             padding: 4px 4px 4px 4px;
         }
     </style>
-<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="../js/validar.js"></script>
-    <script src="../js/jquery-3.3.1.min.js"></script>
-    <script src="../js/datatables.js"></script>
+<script src="../../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../../../js/validar.js"></script>
+    <script src="../../../js/jquery-3.3.1.min.js"></script>
+    <script src="../../../js/datatables.js"></script>
     
 
     <script>
@@ -95,7 +95,7 @@ include "../../../includes/valAcc.php";
                     {
                         "orderable": false,
                         "data": function (row) {
-                            let rep = '<form action="consultaEgreso.php" method="post" name="elimina">' +
+                            let rep = '<form action="../egreso/consultaEgreso.php" method="post" name="elimina">' +
                                 '          <input name="idEgreso" type="hidden" value="' + row.idEgreso + '">' +
                                 '          <input type="button" name="Submit" onclick="return Enviar(this.form)" class="formatoBoton1"  value="Consultar">' +
                                 '       </form>'
@@ -151,7 +151,7 @@ include "../../../includes/valAcc.php";
                     {
                         "orderable": false,
                         "data": function (row) {
-                            let rep = '<form action="Imp_Egreso.php" method="post" target="_blank" name="impEgreso">' +
+                            let rep = '<form action="../egreso/Imp_Egreso.php" method="post" target="_blank" name="impEgreso">' +
                                 '          <input name="idEgreso" type="hidden" value="' + row.idEgreso + '">' +
                                 '          <input type="button" name="Submit" onclick="return Enviar(this.form)" class="formatoBoton1"  value="Imprimir">' +
                                 '       </form>'
@@ -199,15 +199,15 @@ include "../../../includes/valAcc.php";
 <body>
 <div id="contenedor" class="container-fluid">
     <div id="saludo1">
-        <img src="../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>HISTÓRICO DE COMPROBANTES DE EGRESO</h4></div>
+        <img src="../../../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>HISTÓRICO DE COMPROBANTES DE EGRESO</h4></div>
     <div class="row flex-end">
         <div class="col-1">
-            <button class="button" type="button" onclick="window.location='../menu.php'">
+            <button class="button" type="button" onclick="window.location='../../../menu.php'">
                 <span><STRONG>Ir al Menú</STRONG></span></button>
         </div>
     </div>
     <div class="tabla-100">
-        <table id="example" class="formatoDatos table table-sm table-striped formatoDatos">
+        <table id="example" class="formatoDatos5 table table-sm table-striped">
             <thead>
             <tr>
                 <th class="width1 text-center"></th>
@@ -229,7 +229,7 @@ include "../../../includes/valAcc.php";
     </div>
     <div class="row">
         <div class="col-1">
-            <button class="button" type="button" onclick="window.location='../menu.php'">
+            <button class="button" type="button" onclick="window.location='../../../menu.php'">
                 <span><STRONG>Ir al Menú</STRONG></span>
             </button>
         </div>

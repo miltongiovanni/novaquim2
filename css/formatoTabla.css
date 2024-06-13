@@ -250,12 +250,6 @@ img {
     height: auto;
 }
 
-.input-date {
-    margin: 0 5px 0 0;
-    flex: 0 0 10%;
-    max-width: 10%;
-}
-
 legend {
     display: block;
     width: 100%;

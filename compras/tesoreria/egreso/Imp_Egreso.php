@@ -1,13 +1,13 @@
 <?php
 session_start();
-require '../includes/fpdf.php';
+require '../../../includes/fpdf.php';
 function cargarClases($classname)
 {
     require '../../../clases/' . $classname . '.php';
 }
 
 spl_autoload_register('cargarClases');
-include "../includes/num_letra.php";
+include "../../../includes/num_letra.php";
 $idEgreso=$_POST['idEgreso'];
 $EgresoOperador = new EgresoOperaciones();
 $egreso = $EgresoOperador->getFormEgreso($idEgreso);
@@ -15,7 +15,7 @@ $pdf=new FPDF('P','mm','Letter');
 $pdf->AliasNbPages();
 $pdf->AddPage();
 $pdf->SetMargins(10, 10, 10);
-$pdf->Image('../images/LogoNova1.jpg',20,14, 44, 22);
+$pdf->Image('../../../images/LogoNova1.jpg',20,14, 44, 22);
 $pdf->SetFont('Arial','B',12);
 $pdf->SetXY(70,20);
 $pdf->Cell(65,4,'INDUSTRIAS NOVAQUIM S.A.S.',0,0, 'C');
@@ -42,7 +42,7 @@ $pdf->SetFont('Arial','B',9);
 $pdf->Cell(140,5,'Pagado a:','LTR', 0, 'L');
 $pdf->SetXY(20,45);
 $pdf->SetFont('Arial','',9);
-$pdf->Cell(140,5,utf8_decode($egreso['nomProv']),'LBR',0,'L');
+$pdf->Cell(140,5,iconv('UTF-8', 'windows-1252', $egreso['nomProv']),'LBR',0,'L');
 $pdf->SetXY(160,40);
 $pdf->SetFont('Arial','B',9);
 $pdf->Cell(40,5,'N.I.T. / C.C.','TR', 0, 'L');
@@ -73,7 +73,7 @@ $DESC=number_format($descuentoE, 0, '.', ',');
 if ($treal < $egreso['pagon'])
 $concepto="Abono a Factura ";
 else
-$concepto=utf8_decode("Cancelación de Factura ");
+$concepto=iconv('UTF-8', 'windows-1252', "Cancelación de Factura ");
 $concepto.= $Factura;
 $pdf->SetXY(20,65);
 $pdf->SetFont('Arial','',9);
@@ -101,12 +101,12 @@ if ($formPago==1)
 $pdf->Cell(5,5,'X', 'BTR',0, 'C');
 else
 $pdf->Cell(5,5,'', 'BTR',0, 'C');
-$pdf->Cell(20,5, utf8_decode('Nota Crédito'), 'LBT',0, 'L');
+$pdf->Cell(20,5, iconv('UTF-8', 'windows-1252', "Nota Crédito "), 'LBT',0, 'L');
 if ($formPago==2)
 $pdf->Cell(5,5,'X', 'BTR',0, 'C');
 else
 $pdf->Cell(5,5,'', 'BTR',0, 'C');
-$pdf->Cell(23,5, utf8_decode('Consignación'), 'LBT',0, 'L');
+$pdf->Cell(23,5, iconv('UTF-8', 'windows-1252', "Consignación "), 'LBT',0, 'L');
 if ($formPago==3)
 $pdf->Cell(5,5,'X', 'BTR',0, 'C');
 else
@@ -147,7 +147,7 @@ $pdf->SetFont('Arial','B',10);
 $pdf->Cell(80,5,'_________________________________',0,0, 'C');
 $pdf->SetXY(120,115);
 $pdf->Cell(80,5,'C.C. / N.I.T. _______________________',0,0, 'C');
-$pdf->Image('../images/Proveedor.jpg',201,70, 3);
+$pdf->Image('../../../images/Proveedor.jpg',201,70, 3);
 
 
 

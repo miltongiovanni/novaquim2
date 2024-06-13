@@ -6,10 +6,10 @@ include "../../../includes/valAcc.php";
 <head>
     <meta charset="utf-8">
     <title>Facturas por pagar</title>
-    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="../js/validar.js"></script>
-    <link rel="stylesheet" href="../css/datatables.css">
+    <link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script src="../../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../../../js/validar.js"></script>
+    <link rel="stylesheet" href="../../../css/datatables.css">
     <style>
         #example {
             table-layout: fixed;
@@ -67,8 +67,8 @@ include "../../../includes/valAcc.php";
             width: 7%;
         }
     </style>
-    <script src="../js/jquery-3.3.1.min.js"></script>
-    <script src="../js/datatables.js"></script>
+    <script src="../../../js/jquery-3.3.1.min.js"></script>
+    <script src="../../../js/datatables.js"></script>
     
 
     <script>
@@ -93,7 +93,7 @@ include "../../../includes/valAcc.php";
                     {
                         "orderable": false,
                         "data": function (row) {
-                            let rep = '<form action="makeEgreso.php" method="post" name="elimina">' +
+                            let rep = '<form action="../egreso/makeEgreso.php" method="post" name="elimina">' +
                                 '          <input name="tipoCompra" type="hidden" value="' + row.tipoCompra + '">' +
                                 '          <input name="idCompra" type="hidden" value="' + row.id + '">' +
                                 '          <input type="button" name="Submit" onclick="return Enviar(this.form)" class="formatoBoton1"  value="Pagar">' +
@@ -108,7 +108,7 @@ include "../../../includes/valAcc.php";
                     },
                     {
                         "data": "numFact",
-                        "className": 'dt-body-center'
+                        "className": 'pe-4'
                     },
                     {
                         "data": "nomProv",
@@ -128,32 +128,32 @@ include "../../../includes/valAcc.php";
                     },
                     {
                         "data": "total",
-                        "className": 'dt-body-right'
+                        "className": 'pe-3'
                     },
                     {
                         "data": "retefuente",
-                        "className": 'dt-body-right'
+                        "className": 'pe-3'
                     },
                     {
                         "data": "reteica",
-                        "className": 'dt-body-right'
+                        "className": 'pe-3'
                     },
                     {
                         "data": "reteiva",
-                        "className": 'dt-body-right'
+                        "className": 'pe-3'
                     },
                     {
                         "data": "aPagar",
-                        "className": 'dt-body-right'
+                        "className": 'pe-3'
                     },
                     {
                         "data": "pago",
-                        "className": 'dt-body-right'
+                        "className": 'pe-3'
                     },
 
                     {
                         "data": "saldo",
-                        "className": 'dt-body-right'
+                        "className": 'pe-3'
                     },
                 ],
 
@@ -195,7 +195,7 @@ include "../../../includes/valAcc.php";
 <body>
 <div id="contenedor" class="container-fluid">
     <div id="saludo1">
-        <img src="../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>FACTURAS PENDIENTES DE PAGO POR INDUSTRIAS NOVAQUIM S.A.S.</h4></div>
+        <img src="../../../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>FACTURAS PENDIENTES DE PAGO POR INDUSTRIAS NOVAQUIM S.A.S.</h4></div>
     <div class="row flex-end">
         <div class="col-2">
             <form action="Imp_EstadoPagos.php" method="post" target="_blank">
@@ -204,12 +204,12 @@ include "../../../includes/valAcc.php";
             </form>
         </div>
         <div class="col-1">
-            <button class="button" onclick="window.location='../menu.php'">
+            <button class="button" onclick="window.location='../../../menu.php'">
                 <span><STRONG>Ir al Menú</STRONG></span></button>
         </div>
     </div>
     <div class="tabla-100">
-        <table id="example" class="formatoDatos table table-sm table-striped formatoDatos">
+        <table id="example" class="formatoDatos5 table table-sm table-striped">
             <thead>
             <tr>
                 <th class="width1"></th>
@@ -232,7 +232,7 @@ include "../../../includes/valAcc.php";
     </div>
     <div class="row">
         <div class="col-1">
-            <button class="button" onclick="window.location='../menu.php'">
+            <button class="button" onclick="window.location='../../../menu.php'">
                 <span><STRONG>Ir al Menú</STRONG></span>
             </button>
         </div>

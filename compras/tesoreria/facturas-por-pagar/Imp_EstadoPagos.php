@@ -1,6 +1,6 @@
 <?php
 session_start();
-require '../includes/fpdf.php';
+require '../../../includes/fpdf.php';
 function cargarClases($classname)
 {
     require '../../../clases/' . $classname . '.php';
@@ -25,7 +25,7 @@ for ($i = 0; $i < count($compras); $i++) {
     $datos[$i]['retefuente'] = "$ " . number_format($compras[$i]['retefuente'], 0, ".", ",");
     $datos[$i]['reteica'] = "$ " . number_format($compras[$i]['reteica'], 0, ".", ",");
     $datos[$i]['aPagar'] = "$ " . number_format(($compras[$i]['total'] - $compras[$i]['retefuente'] - $compras[$i]['reteica']), 0, ".", ",");
-    $datos[$i]['pago'] = "$ " . number_format($pago, 0, ".", ",");
+    //$datos[$i]['pago'] = "$ " . number_format($pago, 0, ".", ",");
     $datos[$i]['saldo'] = "$ " . number_format(($compras[$i]['total'] - $pago), 0, ".", ",");
 }
 $pdf = new FPDF('P', 'mm', 'Letter');
@@ -45,7 +45,7 @@ for ($i = 0; $i < count($datos); $i++) {
     $pdf->Ln(4);
     $pdf->Cell(15, 4, $datos[$i]['numFact'], 1, 0, 'C');
     $pdf->Cell(23, 4, $datos[$i]['fechVenc'], 1, 0, 'C');
-    $pdf->Cell(70, 4, utf8_decode($datos[$i]['nomProv']), 1, 0, 'L');
+    $pdf->Cell(70, 4, iconv('UTF-8', 'windows-1252', $datos[$i]['nomProv']), 1, 0, 'L');
     $pdf->Cell(25, 4, $datos[$i]['aPagar'], 1, 0, 'R');
     $pdf->Cell(25, 4, '', 1, 0, 'R');
     $pdf->Cell(20, 4, '', 1, 0, 'R');
