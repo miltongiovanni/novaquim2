@@ -14,7 +14,7 @@ $pedidos = $pedidoOperador->getTablePedidos('1','', '', '', '');
         <?php
         foreach ($pedidos as $pedido):
         ?>
-    <div class="row formatoDatos">
+    <div class="row formatoDatos5">
         <div class="col-2 text-center "><?= $pedido['idPedido'] ?></div>
         <div class="col-7 text-start "><?= $pedido['nomSucursal'] ?></div>
         <div class="col-3 text-center "><?= $pedido['fechaEntrega'] ?></div>
