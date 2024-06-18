@@ -22,20 +22,22 @@ spl_autoload_register('cargarClases');
 <div id="contenedor" class="container-fluid">
     <div id="saludo">
         <img src="../../../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>SELECCIÓN DE FÓRMULA DE COLOR A ACTUALIZAR</h4></div>
-    <form id="form1" name="form1" method="post" action="../../detFormulaColor.php">
+    <form id="form1" name="form1" method="post" action="../detalle/">
         <div class="mb-3 row">
-            <label class="form-label col-2" for="idFormulaColor"><strong>Fórmula de color</strong></label>
-            <select name="idFormulaColor" id="idFormulaColor" class="form-select col-2" required>
-                <option selected value="">-----------------------------</option>
-                <?php
-                $manager = new FormulasColorOperaciones();
-                $formulas = $manager->getFormulasColor();
-                for ($i = 0; $i < count($formulas); $i++) : ?>
-                    <option value="<?= $formulas[$i]["idFormulaColor"] ?>"><?= $formulas[$i]["nomMPrima"] ?></option>
-                <?php
-                endfor;
-                ?>
-            </select>
+            <div class="col-2">
+                <label class="form-label" for="idFormulaColor"><strong>Fórmula de color</strong></label>
+                <select name="idFormulaColor" id="idFormulaColor" class="form-select" required>
+                    <option selected value="">-----------------------------</option>
+                    <?php
+                    $manager = new FormulasColorOperaciones();
+                    $formulas = $manager->getFormulasColor();
+                    for ($i = 0; $i < count($formulas); $i++) : ?>
+                        <option value="<?= $formulas[$i]["idFormulaColor"] ?>"><?= $formulas[$i]["nomMPrima"] ?></option>
+                    <?php
+                    endfor;
+                    ?>
+                </select>
+            </div>
         </div>
         <div class="row mb-3">
             <div class="col-1">

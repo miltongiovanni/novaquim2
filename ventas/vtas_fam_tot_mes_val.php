@@ -172,6 +172,7 @@ $year = $_POST['year'];
                 "deferRender": true,  //For speed
                 "lengthMenu": [[20, 50, 100, -1], [20, 50, 100, "All"]],
                 "language": {
+                    "emptyTable": "No hay datos disponibles",
                     "lengthMenu": "Mostrando _MENU_ datos por página",
                     "zeroRecords": "Lo siento no encontró nada",
                     "info": "Mostrando página _PAGE_ de _PAGES_",

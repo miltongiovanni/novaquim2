@@ -20,19 +20,22 @@ spl_autoload_register('cargarClases');
 <div id="contenedor" class="container-fluid">
     <div id="saludo">
         <img src="../../../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>ELIMINACIÓN DE FORMULACIÓN DE SOLUCIÓN DE COLOR</h4></div>
-    <form method="post" action="../../deleteFormulaColor.php">
+    <form method="post" action="deleteFormulaColor.php">
         <div class="mb-3 row">
-            <label class="form-label col-2" for="idFormulaColor"><strong>Fórmula de color</strong></label>
-            <select name="idFormulaColor" id="idFormulaColor" class="form-select col-2" required>
-                <option selected disabled value="">-----------------------------</option>
-                <?php
-                $FormulaColorOperador = new FormulasColorOperaciones();
-                $formulas = $FormulaColorOperador->getFormulasColorEliminar();
-                for ($i = 0; $i < count($formulas); $i++) {
-                    echo '<option value="' . $formulas[$i]["idFormulaColor"] . '">' . $formulas[$i]['nomMPrima'] . '</option>';
-                }
-                ?>
-            </select>
+            <div class="col-3">
+                <label class="form-label" for="idFormulaColor"><strong>Fórmula de color</strong></label>
+                <select name="idFormulaColor" id="idFormulaColor" class="form-select" required>
+                    <option selected disabled value="">-----------------------------</option>
+                    <?php
+                    $FormulaColorOperador = new FormulasColorOperaciones();
+                    $formulas = $FormulaColorOperador->getFormulasColorEliminar();
+                    for ($i = 0; $i < count($formulas); $i++) {
+                        echo '<option value="' . $formulas[$i]["idFormulaColor"] . '">' . $formulas[$i]['nomMPrima'] . '</option>';
+                    }
+                    ?>
+                </select>
+            </div>
+
         </div>
         <div class="mb-3 row">
             <div class="col-1 text-center">

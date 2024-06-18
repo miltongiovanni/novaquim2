@@ -22,9 +22,9 @@ foreach ($_POST as $nombre_campo => $valor) {
     <head>
         <title>Porcentaje de Materias Primas en la Fórmula</title>
         <meta charset="utf-8">
-        <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-        <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
-        <script src="../js/validar.js"></script>
+        <link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
+        <script src="../../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+        <script src="../../../js/validar.js"></script>
     </head>
 <body>
 <?php
@@ -33,12 +33,12 @@ $datos = array($idFormulaColor, $codMPrima, $porcentaje/100);
 try {
     $DetFormulaColorOperador->makeDetFormulaColor($datos);
     $_SESSION['idFormulaColor'] = $idFormulaColor;
-    $ruta = "detFormulaColor.php";
+    $ruta = "../detalle/";
     $mensaje = "Detalle de fórmula de color adicionado con éxito";
     $icon = "success";
 } catch (Exception $e) {
     $_SESSION['idFormulaColor'] = $idFormulaColor;
-    $ruta = "detFormulaColor.php";
+    $ruta = "../detalle/";
     $mensaje = "Error al ingresar el detalle de la fórmula de color";
     $icon = "error";
 } finally {

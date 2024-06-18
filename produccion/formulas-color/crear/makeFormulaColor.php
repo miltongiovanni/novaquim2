@@ -22,9 +22,9 @@ foreach ($_POST as $nombre_campo => $valor) {
 <head>
     <title>Ingreso de Fórmulas de Color</title>
     <meta charset="utf-8">
-    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="../js/validar.js"></script>
+    <link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script src="../../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../../../js/validar.js"></script>
 </head>
 <body>
 <?php
@@ -33,7 +33,7 @@ $datos = array($codSolucionColor);
 try {
     $idFormulaColor = $FormulaColorOperador->makeFormulaColor($datos);
     $_SESSION['idFormulaColor'] = $idFormulaColor;
-    $ruta = "detFormulaColor.php";
+    $ruta = "../detalle/";
     $mensaje = "Fórmula de color creada con éxito";
     $icon = "success";
 } catch (Exception $e) {

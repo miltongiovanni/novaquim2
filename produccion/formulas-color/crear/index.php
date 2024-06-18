@@ -20,19 +20,21 @@ spl_autoload_register('cargarClases');
 <div id="contenedor" class="container-fluid">
     <div id="saludo">
         <img src="../../../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>INGRESO DE FÓRMULAS DE COLOR</h4></div>
-    <form method="post" action="../../makeFormulaColor.php" name="form1">
+    <form method="post" action="makeFormulaColor.php" name="form1">
         <div class="mb-3 row">
-            <label class="form-label col-2" for="codSolucionColor"><strong>Solución de Color</strong></label>
-            <select name="codSolucionColor" id="codSolucionColor" class="form-select col-2" required>
-                <option selected disabled value="">-----------------------------</option>
-                <?php
-                $FormulaColorOperador = new FormulasColorOperaciones();
-                $soluciones = $FormulaColorOperador->getSoluciones();
-                for ($i = 0; $i < count($soluciones); $i++) {
-                    echo '<option value="' . $soluciones[$i]["codMPrima"] . '">' . $soluciones[$i]['nomMPrima'] . '</option>';
-                }
-                ?>
-            </select>
+            <div class="col-3">
+                <label class="form-label" for="codSolucionColor"><strong>Solución de Color</strong></label>
+                <select name="codSolucionColor" id="codSolucionColor" class="form-select" required>
+                    <option selected disabled value="">-----------------------------</option>
+                    <?php
+                    $FormulaColorOperador = new FormulasColorOperaciones();
+                    $soluciones = $FormulaColorOperador->getSoluciones();
+                    for ($i = 0; $i < count($soluciones); $i++) {
+                        echo '<option value="' . $soluciones[$i]["codMPrima"] . '">' . $soluciones[$i]['nomMPrima'] . '</option>';
+                    }
+                    ?>
+                </select>
+            </div>
         </div>
         <div class="mb-3 row">
             <div class="col-1 text-center">
