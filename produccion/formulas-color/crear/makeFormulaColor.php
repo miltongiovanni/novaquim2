@@ -37,7 +37,7 @@ try {
     $mensaje = "Fórmula de color creada con éxito";
     $icon = "success";
 } catch (Exception $e) {
-    $ruta = "formula_col.php";
+    $ruta = "../detalle/";
     $mensaje = "Error al crear la fórmula de color";
     $icon = "error";
 } finally {

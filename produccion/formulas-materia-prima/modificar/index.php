@@ -20,20 +20,22 @@ spl_autoload_register('cargarClases');
 <div id="contenedor" class="container-fluid">
     <div id="saludo">
         <img src="../../../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>SELECCIÓN DE FÓRMULA DE MATERIA PRIMA A ACTUALIZAR</h4></div>
-    <form id="form1" name="form1" method="post" action="../../detFormulaMPrima.php">
+    <form id="form1" name="form1" method="post" action="../detalle/">
         <div class="mb-3 row">
-            <label class="form-label col-2" for="idFormulaMPrima"><strong>Fórmula de Materia Prima</strong></label>
-            <select name="idFormulaMPrima" id="idFormulaMPrima" class="form-select col-2" required>
-                <option selected value="">-----------------------------</option>
-                <?php
-                $manager = new FormulasMPrimaOperaciones();
-                $formulas = $manager->getFormulasMPrima();
-                for ($i = 0; $i < count($formulas); $i++) : ?>
-                    <option value="<?= $formulas[$i]["idFormulaMPrima"] ?>"><?= $formulas[$i]["nomMPrima"] ?></option>
-                <?php
-                endfor;
-                ?>
-            </select>
+            <div class="col-3">
+                <label class="form-label" for="idFormulaMPrima"><strong>Fórmula de Materia Prima</strong></label>
+                <select name="idFormulaMPrima" id="idFormulaMPrima" class="form-select" required>
+                    <option selected value="">-----------------------------</option>
+                    <?php
+                    $manager = new FormulasMPrimaOperaciones();
+                    $formulas = $manager->getFormulasMPrima();
+                    for ($i = 0; $i < count($formulas); $i++) : ?>
+                        <option value="<?= $formulas[$i]["idFormulaMPrima"] ?>"><?= $formulas[$i]["nomMPrima"] ?></option>
+                    <?php
+                    endfor;
+                    ?>
+                </select>
+            </div>
         </div>
         <div class="row mb-3">
             <div class="col-1">

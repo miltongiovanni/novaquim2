@@ -22,9 +22,9 @@ foreach ($_POST as $nombre_campo => $valor) {
 <head>
     <title>Ingreso de Fórmulas de Materia Prima</title>
     <meta charset="utf-8">
-    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="../js/validar.js"></script>
+    <link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script src="../../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../../../js/validar.js"></script>
 </head>
 <body>
 <?php
@@ -33,11 +33,11 @@ $datos = array($codMPrima);
 try {
     $idFormulaMPrima = $FormulaMPrimaOperador->makeFormulaMPrima($datos);
     $_SESSION['idFormulaMPrima'] = $idFormulaMPrima;
-    $ruta = "detFormulaMPrima.php";
+    $ruta = "../detalle/";
     $mensaje = "Fórmula de materia prima creada con éxito";
     $icon = "success";
 } catch (Exception $e) {
-    $ruta = "formula_MP.php";
+    $ruta = "../detalle/";
     $mensaje = "Error al crear la fórmula de materia prima";
     $icon = "error";
 } finally {

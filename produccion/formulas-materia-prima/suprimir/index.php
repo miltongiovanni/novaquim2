@@ -20,19 +20,21 @@ spl_autoload_register('cargarClases');
 <div id="contenedor" class="container-fluid">
     <div id="saludo">
         <img src="../../../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>ELIMINACIÓN DE FORMULACIÓN DE MATERIA PRIMA</h4></div>
-    <form method="post" action="../../deleteFormulaMPrima.php">
+    <form method="post" action="deleteFormulaMPrima.php">
         <div class="mb-3 row">
-            <label class="form-label col-2" for="idFormulaMPrima"><strong>Fórmula de materia prima</strong></label>
-            <select name="idFormulaMPrima" id="idFormulaMPrima" class="form-select col-2" required>
-                <option selected disabled value="">-----------------------------</option>
-                <?php
-                $FormulaMPrimaOperador = new FormulasMPrimaOperaciones();
-                $formulas = $FormulaMPrimaOperador->getFormulasMPrimaEliminar();
-                for ($i = 0; $i < count($formulas); $i++) {
-                    echo '<option value="' . $formulas[$i]["idFormulaMPrima"] . '">' . $formulas[$i]['nomMPrima'] . '</option>';
-                }
-                ?>
-            </select>
+            <div class="col-3">
+                <label class="form-label" for="idFormulaMPrima"><strong>Fórmula de materia prima</strong></label>
+                <select name="idFormulaMPrima" id="idFormulaMPrima" class="form-select" required>
+                    <option selected disabled value="">-----------------------------</option>
+                    <?php
+                    $FormulaMPrimaOperador = new FormulasMPrimaOperaciones();
+                    $formulas = $FormulaMPrimaOperador->getFormulasMPrimaEliminar();
+                    for ($i = 0; $i < count($formulas); $i++) {
+                        echo '<option value="' . $formulas[$i]["idFormulaMPrima"] . '">' . $formulas[$i]['nomMPrima'] . '</option>';
+                    }
+                    ?>
+                </select>
+            </div>
         </div>
         <div class="mb-3 row">
             <div class="col-1 text-center">
