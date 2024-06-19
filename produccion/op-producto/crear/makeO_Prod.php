@@ -23,9 +23,9 @@ foreach ($_POST as $nombre_campo => $valor) {
 <head>
     <title>Orden de Producción</title>
     <meta charset="utf-8">
-    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="../js/validar.js"></script>
+    <link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script src="../../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../../../js/validar.js"></script>
 </head>
 <body>
 <?php
@@ -59,7 +59,7 @@ try {
             //SI NO HAY EXISTENCIAS DE MATERIA PRIMA SE CANCELA LA TRANSACCIÓN
             /* Rollback */
             $link->rollBack();
-            $ruta = "crearOProd.php";
+            $ruta = "../crear/";
             $materiaPrima = $MPrimaOperador->getNomMPrima($codMPrima);
             $mensaje = "No hay inventario suficiente de " . $materiaPrima . " hay " . round($invTotalMPrima, 2) . " Kg";
             $icon = "warning";
@@ -97,14 +97,14 @@ try {
     }
     $link->commit();
     $_SESSION['lote'] = $lote;
-    $ruta = "detO_Prod.php";
+    $ruta = "../detalle/";
     $mensaje = "Orden de Producción Creada correctamente";
     $icon = "success";
 } catch (Exception $e) {
     //echo $e->getMessage();
     //Rollback the transaction.
     $link->rollBack();
-    $ruta = "crearOProd.php";
+    $ruta = "../crear/";
     $mensaje = "Error al crear la Orden de Producción";
     $icon = "error";
 } finally {

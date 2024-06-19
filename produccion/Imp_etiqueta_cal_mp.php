@@ -35,7 +35,7 @@ class PDF extends FPDF
         //Arial italic 8
         $this->SetFont('Arial', '', 10);
         //Número de página
-        $this->Cell(0, 10, utf8_decode('Aprobó: __________________________________'), 0, 0, 'C');
+        $this->Cell(0, 10, iconv('UTF-8', 'windows-1252', 'Aprobó: __________________________________'), 0, 0, 'C');
     }
 }
 
@@ -46,30 +46,30 @@ $pdf->SetFont('Arial', '', 8);
 $pdf->SetXY(10, 10);
 $pdf->SetFont('Arial', 'B', 8);
 $pdf->Cell(28, 15, '', 1, 0, 'C');
-$pdf->Cell(54, 5, utf8_decode('DEPARTAMENTO DE PRODUCCIÓN'), 1, 0, 'C');
+$pdf->Cell(54, 5, iconv('UTF-8', 'windows-1252', 'DEPARTAMENTO DE PRODUCCIÓN'), 1, 0, 'C');
 $pdf->SetFont('Arial', 'B', 8);
-$pdf->Cell(38, 5, utf8_decode('CÓDIGO: DP-OEE-01'), 1, 0, 'C');
+$pdf->Cell(38, 5, iconv('UTF-8', 'windows-1252', 'CÓDIGO: DP-OEE-01'), 1, 0, 'C');
 $pdf->SetXY(38, 15);
 $pdf->SetFont('Arial', 'B', 8);
-$pdf->Cell(54, 10, utf8_decode('IDENTIFICACIÓN DE MATERIA PRIMA'), 1, 0, 'C');
+$pdf->Cell(54, 10, iconv('UTF-8', 'windows-1252', 'IDENTIFICACIÓN DE MATERIA PRIMA'), 1, 0, 'C');
 $pdf->SetFont('Arial', 'B', 8);
-$pdf->Cell(38, 5, utf8_decode('VERSIÓN: 1.00'), 1, 0, 'C');
+$pdf->Cell(38, 5, iconv('UTF-8', 'windows-1252', 'VERSIÓN: 1.00'), 1, 0, 'C');
 $encabfecha = date('Y-m-d');
 date_default_timezone_set('America/Bogota');
 $pdf->SetXY(92, 20);
-$pdf->Cell(38, 5, utf8_decode('Fecha Emisión: ') . $encabfecha, 1, 0, 'C');
+$pdf->Cell(38, 5, iconv('UTF-8', 'windows-1252', 'Fecha Emisión: ') . $encabfecha, 1, 0, 'C');
 $pdf->SetFont('Arial', '', 8);
 $pdf->SetXY(10, 25);
-$pdf->Cell(120, 5, utf8_decode('Nombre: '. $calidadMPrima['nomMPrima']) , 1, 1, 'L');
-$pdf->Cell(80, 5, utf8_decode('Nombre interno: '. $calidadMPrima['aliasMPrima']) , 1, 0, 'L');
-$pdf->Cell(40, 5, utf8_decode('No. lote: '. $calidadMPrima['lote_mp']) , 1, 1, 'L');
-$pdf->Cell(120, 5, utf8_decode('Proveedor: '. $calidadMPrima['nomProveedor']) , 1, 1, 'L');
-$pdf->Cell(60, 5, utf8_decode('Fecha de recepción: '. $calidadMPrima['f_recepcion']) , 1, 0, 'L');
-$pdf->Cell(60, 5, utf8_decode('Cantidad Total: '. $calidadMPrima['cantidad'].' Kg') , 1, 1, 'L');
-$pdf->Cell(60, 5, utf8_decode('Fecha de vencimiento: '. $calidadMPrima['fecha_vencimiento']) , 1, 0, 'L');
-$pdf->Cell(60, 5, utf8_decode('Fecha de análisis: '. $calidadMPrima['fecha_analisis']) , 1, 1, 'L');
-$pdf->Cell(12, 5, utf8_decode('Estado: ') , 0, 0, 'L');
+$pdf->Cell(120, 5, iconv('UTF-8', 'windows-1252', 'Nombre: '. $calidadMPrima['nomMPrima']) , 1, 1, 'L');
+$pdf->Cell(80, 5, iconv('UTF-8', 'windows-1252', 'Nombre interno: '. $calidadMPrima['aliasMPrima']) , 1, 0, 'L');
+$pdf->Cell(40, 5, iconv('UTF-8', 'windows-1252', 'No. lote: '. $calidadMPrima['lote_mp']) , 1, 1, 'L');
+$pdf->Cell(120, 5, iconv('UTF-8', 'windows-1252', 'Proveedor: '. $calidadMPrima['nomProveedor']) , 1, 1, 'L');
+$pdf->Cell(60, 5, iconv('UTF-8', 'windows-1252', 'Fecha de recepción: '. $calidadMPrima['f_recepcion']) , 1, 0, 'L');
+$pdf->Cell(60, 5, iconv('UTF-8', 'windows-1252', 'Cantidad Total: '. $calidadMPrima['cantidad'].' Kg') , 1, 1, 'L');
+$pdf->Cell(60, 5, iconv('UTF-8', 'windows-1252', 'Fecha de vencimiento: '. $calidadMPrima['fecha_vencimiento']) , 1, 0, 'L');
+$pdf->Cell(60, 5, iconv('UTF-8', 'windows-1252', 'Fecha de análisis: '. $calidadMPrima['fecha_analisis']) , 1, 1, 'L');
+$pdf->Cell(12, 5, iconv('UTF-8', 'windows-1252', 'Estado: ') , 0, 0, 'L');
 $pdf->SetFont('Arial', '', 16);
-$pdf->Cell(100, 10, utf8_decode( strtoupper($calidadMPrima['descripcion'])) , 0, 1, 'L');
+$pdf->Cell(100, 10, iconv('UTF-8', 'windows-1252',  strtoupper($calidadMPrima['descripcion'])) , 0, 1, 'L');
 $pdf->Output();
 ?>

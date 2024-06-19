@@ -43,7 +43,7 @@ class PDF extends FPDF
         //Movernos a la derecha
         //Título
         $this->SetXY(135, 14);
-        $this->Cell(70, 10, utf8_decode('NOTA CRÉDITO No. ' . $idNotaC . '-' . $yearIni), 0, 0, 'C');
+        $this->Cell(70, 10, iconv('UTF-8', 'windows-1252', 'NOTA CRÉDITO No. ' . $idNotaC . '-' . $yearIni), 0, 0, 'C');
     }
 
     //Pie de página
@@ -54,7 +54,7 @@ class PDF extends FPDF
         //Arial italic 8
         $this->SetFont('Arial', '', 8);
         //Número de página
-        $this->Cell(0, 10, utf8_decode('Dirección: Calle 35 C Sur No. 26F - 40  PBX: 2039484 - 2022912  Website:www.novaquim.com   E-mail: info@novaquim.com'), 0, 0, 'C');
+        $this->Cell(0, 10, iconv('UTF-8', 'windows-1252', 'Dirección: Calle 35 C Sur No. 26F - 40  PBX: 2039484 - 2022912  Website:www.novaquim.com   E-mail: info@novaquim.com'), 0, 0, 'C');
     }
 }
 
@@ -66,7 +66,7 @@ $pdf->SetXY(10, 30);
 $pdf->SetFont('Arial', 'B', 10);
 $pdf->Cell(25, 3.5, 'CLIENTE:', 0, 0, 'R');
 $pdf->SetFont('Arial', '', 10);
-$pdf->Cell(110, 3.5, utf8_decode($notaC['nomCliente']));
+$pdf->Cell(110, 3.5, iconv('UTF-8', 'windows-1252', $notaC['nomCliente']));
 $pdf->SetFont('Arial', 'B', 10);
 $pdf->Cell(35, 3.5, 'FECHA:', 0, 0, 'R');
 $pdf->SetFont('Arial', '', 10);
@@ -80,32 +80,32 @@ $pdf->Cell(35, 3.5, 'FACT ORIGEN NOTA:', 0, 0, 'R');
 $pdf->SetFont('Arial', '', 10);
 $pdf->Cell(35, 3.5, $notaC['facturaOrigen'], 0, 1);
 $pdf->SetFont('Arial', 'B', 10);
-$pdf->Cell(25, 3.5, utf8_decode('DIRECCIÓN:'), 0, 0, 'R');
+$pdf->Cell(25, 3.5, iconv('UTF-8', 'windows-1252', 'DIRECCIÓN:'), 0, 0, 'R');
 $pdf->SetFont('Arial', '', 10);
-$pdf->Cell(110, 3.5, utf8_decode($notaC['dirCliente']));
+$pdf->Cell(110, 3.5, iconv('UTF-8', 'windows-1252', $notaC['dirCliente']));
 $pdf->SetFont('Arial', 'B', 10);
 $pdf->Cell(35, 3.5, 'FACT AFECTA NOTA:', 0, 0, 'R');
 $pdf->SetFont('Arial', '', 10);
 $pdf->Cell(35, 3.5, $notaC['facturaDestino'], 0, 1);
 $pdf->SetFont('Arial', 'B', 10);
-$pdf->Cell(25, 3.5, utf8_decode('TELÉFONO:'), 0, 0, 'R');
+$pdf->Cell(25, 3.5, iconv('UTF-8', 'windows-1252', 'TELÉFONO:'), 0, 0, 'R');
 $pdf->SetFont('Arial', '', 10);
 $pdf->Cell(110, 3.5, $notaC['telCliente']);
 $pdf->SetFont('Arial', 'B', 10);
 $pdf->Cell(35, 3.5, 'CIUDAD:', 0, 0, 'R');
 $pdf->SetFont('Arial', '', 10);
-$pdf->Cell(35, 3.5, utf8_decode($notaC['ciudad']), 0, 1);
+$pdf->Cell(35, 3.5, iconv('UTF-8', 'windows-1252', $notaC['ciudad']), 0, 1);
 $pdf->SetFont('Arial', 'B', 10);
 $motivo = $notaC['motivo'];
 $facturaOrigen = $notaC['facturaOrigen'];
 $facturaDestino = $notaC['facturaDestino'];
 $pdf->Cell(25, 3.5, 'MOTIVO:', 0, 0, 'R');
 $pdf->SetFont('Arial', '', 10);
-$pdf->Cell(110, 3.5, utf8_decode($notaC['descMotivo']));
+$pdf->Cell(110, 3.5, iconv('UTF-8', 'windows-1252', $notaC['descMotivo']));
 $pdf->SetFont('Arial', 'B', 10);
 $pdf->SetXY(10, 51);
 $pdf->SetFont('Arial', 'B', 10);
-$pdf->Cell(25, 4, utf8_decode('CÓDIGO'), 1, 0, 'C');
+$pdf->Cell(25, 4, iconv('UTF-8', 'windows-1252', 'CÓDIGO'), 1, 0, 'C');
 $pdf->Cell(100, 4, 'PRODUCTO ', 1, 0, 'C');
 $pdf->Cell(10, 4, 'CAN ', 1, 0, 'C');
 $pdf->Cell(10, 4, 'IVA ', 1, 0, 'C');
@@ -116,7 +116,7 @@ $pdf->SetXY(10, 55);
 if ($notaC['motivo'] == 0) {
     for ($i = 0; $i < count($detNotaC); $i++) {
         $pdf->Cell(25, 4, $detNotaC[$i]['codProducto'], 0, 0, 'C');
-        $pdf->Cell(100, 4, utf8_decode($detNotaC[$i]['producto']), 0, 0, 'L');
+        $pdf->Cell(100, 4, iconv('UTF-8', 'windows-1252', $detNotaC[$i]['producto']), 0, 0, 'L');
         $pdf->Cell(10, 4, $detNotaC[$i]['cantidad'], 0, 0, 'C');
         $pdf->Cell(10, 4, $detNotaC[$i]['iva'], 0, 0, 'C');
         $pdf->Cell(22, 4, $detNotaC[$i]['precioProducto'], 0, 0, 'R');
@@ -125,7 +125,7 @@ if ($notaC['motivo'] == 0) {
     }
 } else {
     $pdf->Cell(25, 4, '', 0, 0, 'C');
-    $pdf->Cell(100, 4, utf8_decode($detNotaC['producto']), 0, 0, 'L');
+    $pdf->Cell(100, 4, iconv('UTF-8', 'windows-1252', $detNotaC['producto']), 0, 0, 'L');
     $pdf->Cell(10, 4, '', 0, 0, 'C');
     $pdf->Cell(10, 4, '19 %', 0, 0, 'C');
     $pdf->Cell(22, 4, $detNotaC['valor'], 0, 0, 'R');

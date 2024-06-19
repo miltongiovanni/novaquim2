@@ -22,20 +22,22 @@ spl_autoload_register('cargarClases');
 <div id="contenedor" class="container-fluid">
     <div id="saludo">
         <img src="../../../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>SELECCIONAR LA ORDEN DE PRODUCCIÓN A ANULAR</h4></div>
-    <form id="form1" name="form1" method="post" action="../../anulaOrdenP.php">
+    <form id="form1" name="form1" method="post" action="anulaOrdenP.php">
         <div class="mb-3 row">
-            <label class="form-label col-2" for="lote"><strong>Orden de producción a anular</strong></label>
-            <select name="lote" id="lote" class="form-select col-1" required>
-                <option selected disabled value="">-----------</option>
-                <?php
-                $manager = new OProdOperaciones();
-                $ordenes = $manager->getOProdPorAnular();
-                for ($i = 0; $i < count($ordenes); $i++) : ?>
-                    <option value="<?= $ordenes[$i]["lote"] ?>"><?= $ordenes[$i]["lote"] ?></option>
-                <?php
-                endfor;
-                ?>
-            </select>
+            <div class="col-2">
+                <label class="form-label" for="lote"><strong>Orden de producción a anular</strong></label>
+                <select name="lote" id="lote" class="form-select" required>
+                    <option selected disabled value="">-----------</option>
+                    <?php
+                    $manager = new OProdOperaciones();
+                    $ordenes = $manager->getOProdPorAnular();
+                    for ($i = 0; $i < count($ordenes); $i++) : ?>
+                        <option value="<?= $ordenes[$i]["lote"] ?>"><?= $ordenes[$i]["lote"] ?></option>
+                    <?php
+                    endfor;
+                    ?>
+                </select>
+            </div>
         </div>
         <div class="row mb-3">
             <div class="col-1">

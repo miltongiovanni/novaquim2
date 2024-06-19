@@ -41,22 +41,22 @@ class PDF extends FPDF
         //Arial italic 8
         $this->SetFont('Arial', '', 8);
         //Número de página
-        $this->Cell(182, 10, utf8_decode('Dirección: Bogotá D.C. Calle 35 C Sur No. 26 F - 40  PBX: 2039484 - 2022912  Website:www.novaquim.com   E-mail: info@novaquim.com'), 0, 0, 'C');
+        $this->Cell(182, 10, iconv('UTF-8', 'windows-1252', 'Dirección: Bogotá D.C. Calle 35 C Sur No. 26 F - 40  PBX: 2039484 - 2022912  Website:www.novaquim.com   E-mail: info@novaquim.com'), 0, 0, 'C');
     }
 }
 
 //Creación del objeto de la clase heredada
 
-$Nom_clien = utf8_decode($cotizacion['nomCliente']);
-$Contacto = utf8_decode($cotizacion['contactoCliente']);
-$Cargo = utf8_decode($cotizacion['cargoContacto']);
+$Nom_clien = iconv('UTF-8', 'windows-1252', $cotizacion['nomCliente']);
+$Contacto = iconv('UTF-8', 'windows-1252', $cotizacion['contactoCliente']);
+$Cargo = iconv('UTF-8', 'windows-1252', $cotizacion['cargoContacto']);
 $Fech_Cotizacion = $cotizacion['fechaCotizacion'];
 $precio = $cotizacion['tipoPrecio'];
-$Ciudad = utf8_decode($cotizacion['ciudad']);
-$nom_personal = utf8_decode($cotizacion['nomPersonal']);
+$Ciudad = iconv('UTF-8', 'windows-1252', $cotizacion['ciudad']);
+$nom_personal = iconv('UTF-8', 'windows-1252', $cotizacion['nomPersonal']);
 $cel_personal = $cotizacion['celPersonal'];
 $Eml_personal = $cotizacion['emlPersonal'];
-$cargo_personal = utf8_decode($cotizacion['cargo']);
+$cargo_personal = iconv('UTF-8', 'windows-1252', $cotizacion['cargo']);
 $destino = $cotizacion['destino'];
 $pdf = new PDF('P', 'mm', 'Letter');
 $pdf->AliasNbPages();
@@ -71,15 +71,15 @@ $pdf->Write(4, $Ciudad);
 $fecha = time();
 $pdf->Cell(30, 4, FechaFormateada($fecha), 0, 1);
 $pdf->Ln(4);
-$pdf->Cell(60, 4, utf8_decode('Señores:'), 0, 1);
+$pdf->Cell(60, 4, iconv('UTF-8', 'windows-1252', 'Señores:'), 0, 1);
 $pdf->Cell(60, 4, $Nom_clien, 0, 1);
 $pdf->Cell(60, 4, 'Atn. ' . $Contacto, 0, 1);
 $pdf->Cell(60, 4, $Cargo, 0, 1);
 $pdf->Cell(60, 4, 'E.    S.    D.', 0, 1);
 $pdf->Ln(1);
-$pdf->Cell(0, 5, utf8_decode('Cotización No. ') . $idCotPersonalizada . ' - ' . date("y"), 0, 1, 'C');
+$pdf->Cell(0, 5, iconv('UTF-8', 'windows-1252', 'Cotización No. ') . $idCotPersonalizada . ' - ' . date("y"), 0, 1, 'C');
 $pdf->Ln(2);
-$pdf->MultiCell(0, 5, utf8_decode('Tenemos el gusto de poner a su consideración nuestra propuesta comercial para su servicio.'));
+$pdf->MultiCell(0, 5, iconv('UTF-8', 'windows-1252', 'Tenemos el gusto de poner a su consideración nuestra propuesta comercial para su servicio.'));
 //PRODUCTOS
 $detCotPersonalizadaOperador = new DetCotizacionPersonalizadaOperaciones();
 $detalle = $detCotPersonalizadaOperador->getTableDetCotPersonalizada($idCotPersonalizada);
@@ -99,7 +99,7 @@ for ($i = 0; $i < count($detalle); $i++) {
     $precioProducto = $iva == 1 ? $detalle[$i]['precioProducto'] : $detalle[$i]['precioProductoSinIva'];
     $subTotal = $iva == 1 ? $detalle[$i]['subtotal'] : $detalle[$i]['subtotalSinIva'];
     $pdf->Cell(8, 3.5, ($i + 1), 1, 0, 'C');
-    $pdf->Cell(110, 3.5, utf8_decode($detalle[$i]['producto']), 1, 0, 'L');
+    $pdf->Cell(110, 3.5, iconv('UTF-8', 'windows-1252', $detalle[$i]['producto']), 1, 0, 'L');
     $pdf->Cell(15, 3.5, $detalle[$i]['canProducto'], 1, 0, 'C');
     $pdf->Cell(19, 3.5, '$'.number_format($precioProducto), 1, 0, 'R');
     $pdf->Cell(19, 3.5, '$'.number_format($subTotal), 1, 0, 'R');
@@ -107,7 +107,7 @@ for ($i = 0; $i < count($detalle); $i++) {
 }
 $pdf->SetFont('helvetica', 'B', 8);
 $total = $iva == 1 ? $totalIva : $totalSinIva;
-$pdf->Cell(152, 3, utf8_decode('TOTAL COTIZACIÓN'), 0, 0, 'R');
+$pdf->Cell(152, 3, iconv('UTF-8', 'windows-1252', 'TOTAL COTIZACIÓN'), 0, 0, 'R');
 $pdf->Cell(19, 3,  '$'.number_format($total), 0, 1, 'R');
 $pdf->SetFont('Baker', '', 11);
 $fileName = $iva == 1 ? 'cotiza_iva.txt' : 'cotiza_sin_iva.txt';

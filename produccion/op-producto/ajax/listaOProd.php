@@ -38,7 +38,7 @@ for ($i = 0; $i < count($oProds); $i++) {
 }
 
 $datosRetorno = array(
-    'draw' => 0,
+    'draw' => isset ( $_GET['draw'] ) ?intval( $_GET['draw'] ) : 0,
     'recordsTotal' => intval($totalOProd),
     'recordsFiltered' => intval($totalOProd),
     'data' => $datos

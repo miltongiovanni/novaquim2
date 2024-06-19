@@ -11,11 +11,11 @@ spl_autoload_register('cargarClases');
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <meta charset="utf-8">
     <title>Seleccionar Orden de Producción a Anular</title>
-    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="../js/validar.js"></script>
+    <script src="../../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../../../js/validar.js"></script>
 </head>
 <body>
 <?php
@@ -33,11 +33,11 @@ try {
     }
     $DetOProdOperador->deleteDetOProd($lote);
     $OProdOperador->anulaOProd($lote);
-    $ruta = "listarOrProdA.php";
+    $ruta = "../lista-op-anuladas/";
     $mensaje = "Orden de Producción Anulada con Éxito";
     $icon = "success";
 } catch (Exception $e) {
-    $ruta = "../menu.php";
+    $ruta = "../../../menu.php";
     $mensaje = "Error al anular Orden de Producción";
     $icon = "error";
 } finally {

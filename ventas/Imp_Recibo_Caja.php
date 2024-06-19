@@ -42,10 +42,10 @@ $pdf->Cell(47, 4, $recibo['fechaRecCaja'], 0, 0, 'C');
 
 $pdf->SetXY(20, 40);
 $pdf->SetFont('Arial', 'B', 9);
-$pdf->Cell(140, 5, utf8_decode('Recibí de:'), 'LTR', 0, 'L');
+$pdf->Cell(140, 5, iconv('UTF-8', 'windows-1252', 'Recibí de:'), 'LTR', 0, 'L');
 $pdf->SetXY(20, 45);
 $pdf->SetFont('Arial', '', 9);
-$pdf->Cell(140, 5, utf8_decode($recibo['nomCliente']), 'LBR', 0, 'L');
+$pdf->Cell(140, 5, iconv('UTF-8', 'windows-1252', $recibo['nomCliente']), 'LBR', 0, 'L');
 $pdf->SetXY(160, 40);
 $pdf->SetFont('Arial', 'B', 9);
 $pdf->Cell(40, 5, 'N.I.T. / C.C.', 'TR', 0, 'L');
@@ -93,7 +93,7 @@ $DESC = number_format($descuento_f, 0, '.', ',');
 if (($Total - $Reten_fte - $Reten_ica - $Reten_iva) < $cobro)
     $concepto = "Abono a Factura ";
 else
-    $concepto = utf8_decode("Cancelación de Factura ");
+    $concepto = iconv('UTF-8', 'windows-1252', "Cancelación de Factura ");
 $concepto .= $Factura;
 $pdf->SetXY(20, 65);
 $pdf->SetFont('Arial', '', 9);
@@ -125,7 +125,7 @@ $Cod_banco = $recibo['codBanco'];
 $Banco = $recibo['banco'];
 $pdf->SetFont('Arial', '', 9);
 if ($Cod_banco > 0)
-    $pdf->Cell(45, 5, utf8_decode($Banco), 1, 0, 'L');
+    $pdf->Cell(45, 5, iconv('UTF-8', 'windows-1252', $Banco), 1, 0, 'L');
 else
     $pdf->Cell(45, 5, '', 1, 0, 'L');
 $pdf->SetXY(20, 80);
@@ -141,12 +141,12 @@ if ($form_pago == 1)
     $pdf->Cell(5, 5, 'X', 'BTR', 0, 'C');
 else
     $pdf->Cell(5, 5, '', 'BTR', 0, 'C');
-$pdf->Cell(20, 5, utf8_decode('Nota Crédito'), 'LBT', 0, 'L');
+$pdf->Cell(20, 5, iconv('UTF-8', 'windows-1252', 'Nota Crédito'), 'LBT', 0, 'L');
 if ($form_pago == 2)
     $pdf->Cell(5, 5, 'X', 'BTR', 0, 'C');
 else
     $pdf->Cell(5, 5, '', 'BTR', 0, 'C');
-$pdf->Cell(23, 5, utf8_decode('Consignación'), 'LBT', 0, 'L');
+$pdf->Cell(23, 5, iconv('UTF-8', 'windows-1252', 'Consignación'), 'LBT', 0, 'L');
 if ($form_pago == 3)
     $pdf->Cell(5, 5, 'X', 'BTR', 0, 'C');
 else

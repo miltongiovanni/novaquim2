@@ -37,9 +37,7 @@ $porcentajeTotal = $DetFormulaColorOperador->getPorcentajeTotal($idFormulaColor)
     <script src="../../../js/validar.js"></script>
     <script src="../../../js/jquery-3.3.1.min.js"></script>
     <script src="../../../js/datatables.js"></script>
-    <script src="../../../js/jszip.js"></script>
-    <script src="../../../js/pdfmake.js"></script>
-    <script src="../../../js/vfs_fonts.js"></script>
+    
     <script>
         $(document).ready(function () {
             let idFormulaColor = <?=$idFormulaColor?>;

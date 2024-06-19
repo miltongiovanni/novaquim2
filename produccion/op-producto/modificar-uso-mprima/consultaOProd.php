@@ -23,9 +23,9 @@ foreach ($_POST as $nombre_campo => $valor) {
 <head>
     <meta charset="utf-8">
     <title>Modificar consumo de Materia Prima por Orden de Producción</title>
-    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="../js/validar.js"></script>
-    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script src="../../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../../../js/validar.js"></script>
+    <link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <?php
@@ -37,7 +37,7 @@ if (!$OProdOperador->isValidLote($lote)) {
     mover_pag($ruta, $mensaje, $icon);
 } else {
     $_SESSION['lote'] = $lote;
-    $ruta = "detO_Prod.php";
+    $ruta = "../detalle/";
     $mensaje = "El número de lote es válido";
     $icon = "success";
     mover_pag($ruta, $mensaje, $icon);

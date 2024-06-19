@@ -39,27 +39,27 @@ class PDF extends FPDF
         //Arial italic 8
         $this->SetFont('Arial', '', 8);
         //Número de página
-        $this->Cell(185, 10, utf8_decode('Dirección: Bogotá D.C. Calle 35 C Sur No. 26 F - 40  PBX: 2039484 - 2022912  Website:www.novaquim.com   E-mail: info@novaquim.com'), 0, 0, 'C');
+        $this->Cell(185, 10, iconv('UTF-8', 'windows-1252', 'Dirección: Bogotá D.C. Calle 35 C Sur No. 26 F - 40  PBX: 2039484 - 2022912  Website:www.novaquim.com   E-mail: info@novaquim.com'), 0, 0, 'C');
     }
 }
 
 //Creación del objeto de la clase heredada
-$Nom_clien = utf8_decode($cotizacion['nomCliente']);
-$contactoCliente = utf8_decode($cotizacion['contactoCliente']);
-$Cargo = utf8_decode($cotizacion['cargoContacto']);
-$Dir_clien = utf8_decode($cotizacion['dirCliente']);
+$Nom_clien = iconv('UTF-8', 'windows-1252', $cotizacion['nomCliente']);
+$contactoCliente = iconv('UTF-8', 'windows-1252', $cotizacion['contactoCliente']);
+$Cargo = iconv('UTF-8', 'windows-1252', $cotizacion['cargoContacto']);
+$Dir_clien = iconv('UTF-8', 'windows-1252', $cotizacion['dirCliente']);
 $Fech_Cotizacion = $cotizacion['fechaCotizacion'];
 $precio = $cotizacion['precioCotizacion'];
 $presentaciones = $cotizacion['presentaciones'];
 $distribucion = $cotizacion['distribucion'];
 $productos_c = $cotizacion['productos'];
 $destino = $cotizacion['destino'];
-$Ciudad = utf8_decode($cotizacion['ciudad']);
-$nom_personal = utf8_decode($cotizacion['nomPersonal']);
+$Ciudad = iconv('UTF-8', 'windows-1252', $cotizacion['ciudad']);
+$nom_personal = iconv('UTF-8', 'windows-1252', $cotizacion['nomPersonal']);
 $cel_personal = $cotizacion['celPersonal'];
 $Eml_personal = $cotizacion['emlPersonal'];
-$cargo_personal = utf8_decode($cotizacion['cargo']);
-$Des_cat_cli = utf8_decode($cotizacion['desCatClien']);
+$cargo_personal = iconv('UTF-8', 'windows-1252', $cotizacion['cargo']);
+$Des_cat_cli = iconv('UTF-8', 'windows-1252', $cotizacion['desCatClien']);
 $pdf = new PDF('P', 'mm', 'Letter');
 $pdf->AliasNbPages();
 $pdf->SetMargins(25, 55, 20);
@@ -69,17 +69,17 @@ $pdf->SetFont('Baker', '', 11);
 if ($destino == 2)
     $pdf->Image('../images/borde.jpg', 10, 10, 195, 255);
 
-$pdf->Write(5, utf8_decode($cotizacion['ciudad']));
+$pdf->Write(5, iconv('UTF-8', 'windows-1252', $cotizacion['ciudad']));
 $fecha = time();
 $pdf->Cell(30, 5, FechaFormateada($fecha), 0, 1);
 $pdf->Ln(12);
-$pdf->Cell(60, 5, utf8_decode('Señores:'), 0, 1);
+$pdf->Cell(60, 5, iconv('UTF-8', 'windows-1252', 'Señores:'), 0, 1);
 $pdf->Cell(60, 5, $Nom_clien, 0, 1);
 $pdf->Cell(60, 5, 'Atn. ' . $contactoCliente, 0, 1);
 $pdf->Cell(60, 5, $Cargo, 0, 1);
 $pdf->Cell(100, 5, $Dir_clien, 0, 1);
 $pdf->Ln(12);
-$pdf->Cell(60, 5, utf8_decode('Apreciado(a) Señor(a): '), 0, 1);
+$pdf->Cell(60, 5, iconv('UTF-8', 'windows-1252', 'Apreciado(a) Señor(a): '), 0, 1);
 $pdf->Ln(12);
 //Abrir fichero de texto
 $f = fopen('../textos/cotiza1.txt', 'r');
@@ -97,17 +97,17 @@ $pdf->AddPage();
 $pdf->Write(5, $Ciudad);
 $pdf->Cell(30, 5, FechaFormateada($fecha), 0, 1);
 $pdf->Ln(5);
-$pdf->Cell(60, 5, utf8_decode('Señores:'), 0, 1);
+$pdf->Cell(60, 5, iconv('UTF-8', 'windows-1252', 'Señores:'), 0, 1);
 $pdf->Cell(60, 5, $Nom_clien, 0, 1);
 $pdf->Ln(5);
-$pdf->Cell(0, 5, utf8_decode('Cotización No. ') . $idCotizacion . ' - ' . date("y"), 0, 1, 'C');
+$pdf->Cell(0, 5, iconv('UTF-8', 'windows-1252', 'Cotización No. ') . $idCotizacion . ' - ' . date("y"), 0, 1, 'C');
 $pdf->Ln(5);
-$pdf->MultiCell(0, 5, utf8_decode('Tenemos el gusto de poner a su consideración nuestra propuesta comercial para el servicio de su organización.'));
+$pdf->MultiCell(0, 5, iconv('UTF-8', 'windows-1252', 'Tenemos el gusto de poner a su consideración nuestra propuesta comercial para el servicio de su organización.'));
 $productos= $cotizacionOperador->getProductosCotizacion($precio, $presentaciones, $productos_c, $iva);
 $pdf->Ln(5);
 $pdf->SetFont('Arial', '', 8);
 for ($i=0; $i<count($productos); $i++) {
-    $prod = utf8_decode($productos[$i][1]);
+    $prod = iconv('UTF-8', 'windows-1252', $productos[$i][1]);
     $cant = $productos[$i][2];
     $pdf->Cell(8, 3.5, ($i+1), 1, 0, 'C');
     $pdf->Cell(135, 3.5, $prod, 1, 0, 'L');
@@ -122,11 +122,11 @@ if (count($prodDistr) > 0){
     $pdf->Ln(5);
     $pdf->SetFont('Baker', '', 11);
     //if ($No_dist==0)
-    $pdf->Cell(0, 5, utf8_decode('PRODUCTOS DE DISTRIBUCIÓN *'), 0, 1, 'C');
+    $pdf->Cell(0, 5, iconv('UTF-8', 'windows-1252', 'PRODUCTOS DE DISTRIBUCIÓN *'), 0, 1, 'C');
     $pdf->SetFont('Arial', '', 8);
     for($i=0; $i<count($prodDistr); $i++) {
         $cod = $prodDistr[$i][0];
-        $prod = utf8_decode($prodDistr[$i][1]);
+        $prod = iconv('UTF-8', 'windows-1252', $prodDistr[$i][1]);
         $cant = $iva == 1 ? $prodDistr[$i][2] : $prodDistr[$i][3] ;
         $pdf->Cell(15, 3.5, $cod, 1, 0, 'C');
         $pdf->Cell(135, 3.5, $prod, 1, 0, 'L');

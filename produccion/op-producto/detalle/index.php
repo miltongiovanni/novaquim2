@@ -24,45 +24,13 @@ $ordenProd = $OProdOperador->getOProd($lote);
 <head>
     <title>Detalle Orden de Producción</title>
     <meta charset="utf-8">
-    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="../css/datatables.css">
-    <style>
-        table.dataTable.compact thead th {
-            padding: 4px;
-        }
+    <link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../../../css/datatables.css">
+    <script src="../../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../../../js/validar.js"></script>
+    <script src="../../../js/jquery-3.3.1.min.js"></script>
+    <script src="../../../js/datatables.js"></script>
 
-        table.dataTable.compact tbody td {
-            padding: 2px 4px;
-        }
-
-        .width1 {
-            width: 15%;
-        }
-
-        .width2 {
-            width: 10%;
-        }
-
-        .width3 {
-            width: 40%;
-        }
-
-        .width4 {
-            width: 15%;
-        }
-
-        .width5 {
-            width: 20%;
-        }
-    </style>
-
-    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="../js/validar.js"></script>
-    <script src="../js/jquery-3.3.1.min.js"></script>
-    <script src="../js/datatables.js"></script>
-    <script src="../js/jszip.js"></script>
-    <script src="../js/pdfmake.js"></script>
-    <script src="../js/vfs_fonts.js"></script>
     <script>
         $(document).ready(function () {
             let lote = <?=$lote?>;
@@ -78,23 +46,28 @@ $ordenProd = $OProdOperador->getOProd($lote);
                                 '      </form>'
                             return rep;
                         },
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-center',
+                        width: '15%'
                     },
                     {
                         "data": "codMPrima",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-center',
+                        width: '10%'
                     },
                     {
                         "data": "aliasMPrima",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-center',
+                        width: '40%'
                     },
                     {
                         "data": "loteMP",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-center',
+                        width: '15%'
                     },
                     {
                         "data": "cantidadMPrima",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-center',
+                        width: '20%'
                     }
                 ],
                 "paging": false,
@@ -125,26 +98,38 @@ $ordenProd = $OProdOperador->getOProd($lote);
 <body>
 <div id="contenedor" class="container-fluid">
     <div id="saludo1">
-        <img src="../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>USO DE MATERIA PRIMA POR PRODUCCIÓN</h4></div>
+        <img src="../../../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>USO DE MATERIA PRIMA POR PRODUCCIÓN</h4></div>
     <div class="mb-3 row">
-        <div class="col-1"><strong>Lote</strong></div>
-        <div class="col-1 bg-blue"><?= $lote; ?></div>
-        <div class="col-2"><strong>Cantidad</strong></div>
-        <div class="col-1 bg-blue"><?= $ordenProd['cantidadKg'] ?> Kg</div>
-        <div class="col-1"><strong>Estado</strong></div>
-        <div class="col-2 bg-blue"><?= $ordenProd['descEstado'] ?></div>
+        <div class="col-1">
+            <strong>Lote</strong>
+            <div class="bg-blue"><?= $lote; ?></div>
+        </div>
+        <div class="col-1">
+            <strong>Cantidad</strong>
+            <div class="bg-blue"><?= $ordenProd['cantidadKg'] ?> Kg</div>
+        </div>
+        <div class="col-2">
+            <strong>Fecha de producción</strong>
+            <div class="bg-blue"><?= $ordenProd['fechProd'] ?></div>
+        </div>
+        <div class="col-2">
+            <strong>Responsable</strong>
+            <div class="bg-blue"><?= $ordenProd['nomPersonal'] ?></div>
+        </div>
+        <div class="col-2">
+            <strong>Estado</strong>
+            <div class="bg-blue"><?= $ordenProd['descEstado'] ?></div>
+        </div>
     </div>
     <div class="mb-3 row">
-        <div class="col-1"><strong>Producto</strong></div>
-        <div class="col-3 bg-blue"><?= $ordenProd['nomProducto'] ?></div>
-        <div class="col-2"><strong>Fecha de producción</strong></strong></div>
-        <div class="col-2 bg-blue"><?= $ordenProd['fechProd'] ?></div>
-    </div>
-    <div class="mb-3 row">
-        <div class="col-1"><strong>Fórmula</strong></div>
-        <div class="col-3 bg-blue"><?= $ordenProd['nomFormula'] ?></div>
-        <div class="col-2"><strong>Responsable</strong></div>
-        <div class="col-2 bg-blue"><?= $ordenProd['nomPersonal'] ?></div>
+        <div class="col-4">
+            <strong>Producto</strong>
+            <div class="bg-blue"><?= $ordenProd['nomProducto'] ?></div>
+        </div>
+        <div class="col-4">
+            <strong>Fórmula</strong>
+            <div class="bg-blue"><?= $ordenProd['nomFormula'] ?></div>
+        </div>
     </div>
     <div class="mb-3 row">
         <div class="col-2">
@@ -157,7 +142,7 @@ $ordenProd = $OProdOperador->getOProd($lote);
     </div>
     <div class="mb-3 row titulo">Detalle orden de producción :</div>
     <div class="tabla-50">
-        <table id="example" class="formatoDatos table table-sm table-striped formatoDatos">
+        <table id="example" class="formatoDatos5 table table-sm table-striped">
             <thead>
             <tr>
                 <th class="width1"></th>
@@ -171,7 +156,7 @@ $ordenProd = $OProdOperador->getOProd($lote);
     </div>
     <div class="row">
         <div class="col-1">
-            <button class="button" onclick="window.location='../menu.php'">
+            <button class="button" onclick="window.location='../../../menu.php'">
                 <span><STRONG>Terminar</STRONG></span>
             </button>
         </div>

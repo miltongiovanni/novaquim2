@@ -76,7 +76,7 @@ for($i=0; $i<$filas; $i++)
 	$cod=$precios[$i][0];
 	$producto=$precios[$i][1];
 	$pdf->Cell(15,3.5,$cod,1,0,'C');
-	$pdf->Cell(80,3.5,utf8_decode($producto),1,0,'L');
+	$pdf->Cell(80,3.5,iconv('UTF-8', 'windows-1252', $producto),1,0,'L');
 
 	for ($j = 2; $j < $campos; $j++)
 	{

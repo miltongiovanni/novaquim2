@@ -47,11 +47,7 @@ include "../../../includes/valAcc.php";
     </style>
     <script src="../../../js/jquery-3.3.1.min.js"></script>
     <script src="../../../js/datatables.js"></script>
-    <script src="../../../js/dataTables.buttons.js"></script>
-    <script src="../../../js/jszip.js"></script> <!--Para exportar Excel-->
-    <!--<script src="../js/pdfmake.js"></script>-->  <!--Para exportar PDF-->
-    <!--<script src="../js/vfs_fonts.js"></script>--> <!--Para exportar PDF-->
-    <script src="../../../js/buttons.html5.js"></script>
+
 
     <script>
         $(document).ready(function () {
@@ -59,27 +55,33 @@ include "../../../includes/valAcc.php";
                 "columns": [
                     {
                         "data": "lote",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-center',
+                        width: '9%'
                     },
                     {
                         "data": "nomProducto",
-                        "className": 'dt-body-left'
+                        "className": 'dt-body-left',
+                        width: '27%'
                     },
                     {
                         "data": "nomFormula",
-                        "className": 'dt-body-left'
+                        "className": 'dt-body-left',
+                        width: '27%'
                     },
                     {
                         "data": "fechProd",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-center',
+                        width: '12%'
                     },
                     {
                         "data": "nomPersonal",
-                        "className": 'dt-body-left'
+                        "className": 'dt-body-left',
+                        width: '15%'
                     },
                     {
                         "data": "cantidadKg",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-center',
+                        width: '10%'
                     },
                 ],
                 "order": [[0, 'desc']],
@@ -123,15 +125,15 @@ include "../../../includes/valAcc.php";
         </div>
     </div>
     <div class="tabla-80">
-        <table id="example" class="formatoDatos table table-sm table-striped formatoDatos">
+        <table id="example" class="formatoDatos5 table table-sm table-striped">
             <thead>
             <tr>
-                <th class="width2 text-center">Lote</th>
-                <th class="width3 text-center">Producto</th>
-                <th class="width4 text-center">Fórmula</th>
-                <th class="width5 text-center">Fecha Producción</th>
-                <th class="width6 text-center">Responsable</th>
-                <th class="width7 text-center">Cantidad (Kg)</th>
+                <th class="text-center">Lote</th>
+                <th class="text-center">Producto</th>
+                <th class="text-center">Fórmula</th>
+                <th class="text-center">Fecha Producción</th>
+                <th class="text-center">Responsable</th>
+                <th class="text-center">Cantidad (Kg)</th>
             </tr>
             </thead>
         </table>
