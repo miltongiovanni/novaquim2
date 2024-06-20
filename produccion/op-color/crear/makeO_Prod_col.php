@@ -21,9 +21,9 @@ foreach ($_POST as $nombre_campo => $valor) {
 <head>
     <title>Preparación de Solución de Color</title>
     <meta charset="utf-8">
-    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="../js/validar.js"></script>
+    <link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script src="../../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../../../js/validar.js"></script>
 </head>
 <body>
 <?php
@@ -99,14 +99,14 @@ try {
     $stmt->execute();
     $link->commit();
     $_SESSION['loteColor'] = $loteColor;
-    $ruta = "detO_Prod_col.php";
+    $ruta = "../detalle/";
     $mensaje = "Orden de Producción de Color Creada correctamente";
     $icon = "success";
 } catch (Exception $e) {
     //echo $e->getMessage();
     //Rollback the transaction.
     $link->rollBack();
-    $ruta = "crearOProdColor.php";
+    $ruta = "../crear/";
     $mensaje = "Error al crear la Orden de Producción de Color";
     $icon = "error";
 } finally {

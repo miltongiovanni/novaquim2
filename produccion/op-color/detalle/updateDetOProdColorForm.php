@@ -21,35 +21,37 @@ $detalle = $DetOProdColorOperador->getDetOProdColor($loteColor, $codMPrima);
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <meta charset="utf-8">
     <title>Actualizar detalle orden de producción color</title>
-    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="../js/validar.js"></script>
+    <script src="../../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../../../js/validar.js"></script>
 </head>
 <body>
 <div id="contenedor" class="container-fluid">
     <div id="saludo">
-        <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>ACTUALIZACIÓN DE GASTO DE MATERIA PRIMA</h4></div>
+        <img src="../../../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>ACTUALIZACIÓN DE GASTO DE MATERIA PRIMA</h4></div>
     <form action="updateDetOProdColor.php" method="post" name="actualiza">
         <input type="hidden" name="loteColor" id="loteColor" value="<?= $loteColor ?>">
         <input type="hidden" name="codMPrima" id="codMPrima" value="<?= $codMPrima ?>">
         <input type="hidden" name="cantidad_ant" id="cantidad_ant" value="<?= $detalle['cantMPrima'] ?>">
-        <div class="mb-3 row">
-            <label class="form-label col-1 text-end" for="aliasMPrima"><strong>Materia Prima</strong></label>
-            <input type="text" class="form-control col-2" name="aliasMPrima" id="aliasMPrima" readonly
-                   value="<?= $detalle['aliasMPrima'] ?>">
-        </div>
-        <div class="mb-3 row">
-            <label class="form-label col-1 text-end" for="loteMPrima"><strong>Lote MPrima</strong></label>
-            <input type="text" class="form-control col-2" name="loteMPrima" id="loteMP"
-                   value="<?= $detalle['loteMPrima'] ?>" readonly>
-        </div>
-        <div class="mb-3 row">
-            <label class="form-label col-1 text-end" for="cantMPrima"><strong>Cantidad MP</strong></label>
-            <input type="text" class="form-control col-2" name="cantMPrima" id="cantMPrima"
-                   value="<?= $detalle['cantMPrima'] ?>"
-                   onkeydown="return aceptaNum(event)">
+        <div class="mb-3 row formatoDatos5">
+            <div class="col-2">
+                <label class="form-label" for="aliasMPrima"><strong>Materia Prima</strong></label>
+                <input type="text" class="form-control" name="aliasMPrima" id="aliasMPrima" readonly
+                       value="<?= $detalle['aliasMPrima'] ?>">
+            </div>
+            <div class="col-2">
+                <label class="form-label" for="loteMP"><strong>Lote MPrima</strong></label>
+                <input type="text" class="form-control" name="loteMPrima" id="loteMP"
+                       value="<?= $detalle['loteMPrima'] ?>" readonly>
+            </div>
+            <div class="col-2">
+                <label class="form-label" for="cantMPrima"><strong>Cantidad MP</strong></label>
+                <input type="text" class="form-control" name="cantMPrima" id="cantMPrima"
+                       value="<?= $detalle['cantMPrima'] ?>" onkeydown="return aceptaNum(event)">
+            </div>
+
         </div>
         <div class="mb-3 row">
             <div class="col-1 text-center">

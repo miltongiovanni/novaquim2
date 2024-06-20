@@ -2,7 +2,7 @@
 include "../../../includes/valAcc.php";
 if (isset($_POST['loteColor'])) {
     $loteColor = $_POST['loteColor'];
-}else{
+} else {
     if (isset($_SESSION['loteColor'])) {
         $loteColor = $_SESSION['loteColor'];
     }
@@ -24,45 +24,16 @@ $DetOProdColorOperador = new DetOProdColorOperaciones();
 <head>
     <title>Detalle Orden de Producción de Color</title>
     <meta charset="utf-8">
-    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="../css/datatables.css">
-    <style>
-        table.dataTable.compact thead th {
-            padding: 4px;
-        }
+    <link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../../../css/datatables.css">
 
-        table.dataTable.compact tbody td {
-            padding: 2px 4px;
-        }
-
-        .width1 {
-            width: 15%;
-        }
-
-        .width2 {
-            width: 10%;
-        }
-
-        .width3 {
-            width: 40%;
-        }
-
-        .width4 {
-            width: 15%;
-        }
-
-        .width5 {
-            width: 20%;
-        }
-    </style>
-
-<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="../js/validar.js"></script>
-    <script src="../js/jquery-3.3.1.min.js"></script>
-    <script src="../js/datatables.js"></script>
-    <script src="../js/jszip.js"></script>
-    <script src="../js/pdfmake.js"></script>
-    <script src="../js/vfs_fonts.js"></script>
+    <script src="../../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../../../js/validar.js"></script>
+    <script src="../../../js/jquery-3.3.1.min.js"></script>
+    <script src="../../../js/datatables.js"></script>
+    <script src="../../../js/jszip.js"></script>
+    <script src="../../../js/pdfmake.js"></script>
+    <script src="../../../js/vfs_fonts.js"></script>
     <script>
         $(document).ready(function () {
             let loteColor = <?=$loteColor?>;
@@ -78,23 +49,28 @@ $DetOProdColorOperador = new DetOProdColorOperaciones();
                                 '      </form>'
                             return rep;
                         },
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-center',
+                        width: '15%'
                     },
                     {
                         "data": "codMPrima",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-center',
+                        width: '10%'
                     },
                     {
                         "data": "aliasMPrima",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-center',
+                        width: '40%'
                     },
                     {
                         "data": "loteMPrima",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-center',
+                        width: '15%'
                     },
                     {
                         "data": "cantMPrima",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-center',
+                        width: '20%'
                     }
                 ],
                 "paging": false,
@@ -122,41 +98,51 @@ $DetOProdColorOperador = new DetOProdColorOperaciones();
         });
     </script>
 </head>
-<body> 
+<body>
 <div id="contenedor" class="container-fluid">
-<div id="saludo1">
-        <img src="../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>USO DE MATERIA PRIMA POR PRODUCCIÓN DE COLOR</h4></div>
-    <div class="mb-3 row">
-        <div class="col-1"><strong>Lote</strong></div>
-        <div class="col-1 bg-blue"><?= $loteColor; ?></div>
-        <div class="col-1"><strong>Cantidad</strong></div>
-        <div class="col-1 bg-blue"><?= $ordenProd['cantKg'] ?> Kg</div>
-        <div class="col-2"><strong>Fecha de producción</strong></strong></div>
-        <div class="col-1 bg-blue"><?= $ordenProd['fechProd'] ?></div>
+    <div id="saludo1">
+        <img src="../../../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>USO DE MATERIA PRIMA POR PRODUCCIÓN DE COLOR</h4></div>
+    <div class="mb-3 row formatoDatos5">
+        <div class="col-1">
+            <strong>Lote</strong>
+            <div class="bg-blue"><?= $loteColor; ?></div>
+        </div>
+        <div class="col-2">
+            <strong>Producto</strong>
+            <div class="bg-blue"><?= $ordenProd['nomMPrima'] ?></div>
+        </div>
+        <div class="col-1">
+            <strong>Cantidad</strong>
+            <div class="bg-blue"><?= $ordenProd['cantKg'] ?> Kg</div>
+        </div>
+        <div class="col-2">
+            <strong>Fecha de producción</strong>
+            <div class="bg-blue"><?= $ordenProd['fechProd'] ?></div>
+        </div>
+        <div class="col-2">
+            <strong>Responsable</strong>
+            <div class="bg-blue"><?= $ordenProd['nomPersonal'] ?></div>
+        </div>
     </div>
     <div class="mb-3 row">
-        <div class="col-1"><strong>Producto</strong></div>
-        <div class="col-2 bg-blue"><?= $ordenProd['nomMPrima'] ?></div>
-        <div class="col-2"><strong>Responsable</strong></div>
-        <div class="col-2 bg-blue"><?= $ordenProd['nomPersonal'] ?></div>
     </div>
     <div class="mb-3 row titulo">Detalle orden de producción :</div>
     <div class="tabla-50">
-        <table id="example" class="formatoDatos table table-sm table-striped formatoDatos">
+        <table id="example" class="formatoDatos5 table table-sm table-striped">
             <thead>
             <tr>
-                <th class="width1"></th>
-                <th class="width2">Código MP</th>
-                <th class="width3">Materia Prima</th>
-                <th class="width4">Lote MP</th>
-                <th class="width5">MP Utilizada (Kg)</th>
+                <th></th>
+                <th class="text-center">Código MP</th>
+                <th class="text-center">Materia Prima</th>
+                <th class="text-center">Lote MP</th>
+                <th class="text-center">MP Utilizada (Kg)</th>
             </tr>
             </thead>
         </table>
     </div>
     <div class="row">
         <div class="col-1">
-            <button class="button" onclick="window.location='../menu.php'">
+            <button class="button" onclick="window.location='../../../menu.php'">
                 <span><STRONG>Terminar</STRONG></span>
             </button>
         </div>

@@ -45,7 +45,7 @@ include "../../../includes/valAcc.php";
         /* Formatting function for row details - modify as you need */
         function format(d) {
             // `d` is the original data object for the row
-            rep = '<table class="formatoDatos table table-sm table-striped" style="padding-left:50px;width:70%;margin:inherit;">' +
+            rep = '<table class="formatoDatos table table-sm table-striped" style="padding-left:50px;width:70%;margin:inherit; background-color: white">' +
                 '<thead>' +
                 '<tr>' +
                 '<th class="text-center">Origen</th>';
@@ -60,7 +60,7 @@ include "../../../includes/valAcc.php";
                     '<td class="text-center">' + d.detCambio[i].cantPresentacionAnt + '</td>' +
                     '</tr>'
             }
-            rep += '<table class="formatoDatos table table-sm table-striped" style="padding-left:50px;width:70%;margin:inherit;">' +
+            rep += '<table class="formatoDatos table table-sm table-striped" style="padding-left:50px;width:70%;margin:inherit; background-color: white">' +
                 '<thead>' +
                 '<tr>' +
                 '<th class="text-center">Destino</th>';

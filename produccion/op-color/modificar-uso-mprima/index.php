@@ -15,11 +15,13 @@ include "../../../includes/valAcc.php";
 <div id="contenedor" class="container-fluid">
     <div id="saludo">
         <img src="../../../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>SELECCIÓN ORDEN DE PRODUCCIÓN DE COLOR A MODIFICAR</h4></div>
-    <form id="form1" name="form1" method="post" action="../../consultaOProdColor.php">
+    <form id="form1" name="form1" method="post" action="consultaOProdColor.php">
         <div class="mb-3 row">
-            <label class="form-label col-1 text-end" for="loteColor"><strong>No. de lote</strong></label>
-            <input type="text" class="form-control col-2" name="loteColor" id="loteColor"
-                   onkeydown="return aceptaNum(event)" required>
+            <div class="col-2">
+                <label class="form-label" for="loteColor"><strong>No. de lote</strong></label>
+                <input type="text" class="form-control " name="loteColor" id="loteColor" onkeydown="return aceptaNum(event)" required>
+            </div>
+
         </div>
         <div class="mb-3 row">
             <div class="col-1 text-center">

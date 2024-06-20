@@ -99,7 +99,7 @@ switch ($tipoCompra) {
                     break;
             }
             // `d` is the original data object for the row
-            rep = '<table class="table-sm formatoDatos5 table table-striped " style="padding-left:50px;width:50%;margin:inherit; ">' +
+            rep = '<table class="table-sm formatoDatos5 table table-striped " style="padding-left:50px;width:50%;margin:inherit; background-color: white ">' +
                 '<thead>' +
                 '<tr>' +
                 '<th class="text-center">Código</th>' +
