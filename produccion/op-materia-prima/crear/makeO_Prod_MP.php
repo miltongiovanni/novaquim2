@@ -21,9 +21,9 @@ foreach ($_POST as $nombre_campo => $valor) {
 <head>
     <title>Preparación de Materia Prima</title>
     <meta charset="utf-8">
-    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="../js/validar.js"></script>
+    <link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script src="../../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../../../js/validar.js"></script>
 </head>
 <body>
 <?php
@@ -57,9 +57,9 @@ try {
             //SI NO HAY EXISTENCIAS DE MATERIA PRIMA SE CANCELA LA TRANSACCIÓN
             /* Rollback */
             $link->rollBack();
-            $ruta = "crearOProdMPrima.php";
+            $ruta = "../crear/";
             $materiaPrima = $MPrimaOperador->getNomMPrima($codMPrima);
-            $mensaje = "No hay inventario suficiente de " . $materiaPrima . " hay " . round($invTotalMPrima, 2) . " Kg";
+            $mensaje = "No hay inventario suficiente de " . $materiaPrima . " hay " . ($invTotalMPrima != null ? round($invTotalMPrima, 2): 0) . " Kg";
             $icon = "warning";
             mover_pag($ruta, $mensaje, $icon);
             exit;
@@ -98,14 +98,14 @@ try {
     $stmt->execute();
     $link->commit();
     $_SESSION['loteMP'] = $loteMPrima;
-    $ruta = "detO_Prod_mp.php";
+    $ruta = "../detalle/";
     $mensaje = "Orden de producción de materia prima creada correctamente";
     $icon = "success";
 } catch (Exception $e) {
     //echo $e->getMessage();
     //Rollback the transaction.
     $link->rollBack();
-    $ruta = "crearOProdMPrima.php";
+    $ruta = "../crear/";
     $mensaje = "Error al crear la orden de producción de materia prima";
     $icon = "error";
 } finally {

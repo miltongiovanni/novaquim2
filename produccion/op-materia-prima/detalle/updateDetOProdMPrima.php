@@ -18,11 +18,11 @@ spl_autoload_register('cargarClases');
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <meta charset="utf-8">
     <title>Actualizar detalle orden de producción materia prima</title>
-    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="../js/validar.js"></script>
+    <script src="../../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../../../js/validar.js"></script>
 </head>
 <body>
 <?php
@@ -36,12 +36,12 @@ try {
     $datos = array($nvoInvMPrima, $idMPrima, $loteMPrima);
     $InvMPrimaOperador->updateInvMPrima($datos);
     $_SESSION['loteMP'] = $loteMP;
-    $ruta = "detO_Prod_MP.php";
+    $ruta = "../detalle/";
     $mensaje = "Detalle orden de producción de materia prima actualizado correctamente";
     $icon = "success";
 } catch (Exception $e) {
     $_SESSION['loteMP'] = $loteMP;
-    $ruta = "detO_Prod_MP.php";
+    $ruta = "../detalle/";
     $mensaje = "Error al actualizar el detalle orden de producción de materia prima";
     $icon = "error";
 } finally {

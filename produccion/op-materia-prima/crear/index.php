@@ -31,43 +31,45 @@ foreach ($_POST as $nombre_campo => $valor) {
 <div id="contenedor" class="container-fluid">
     <div id="saludo">
         <img src="../../../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>PREPARACIÓN DE MATERIA PRIMA</h4></div>
-    <form method="post" action="../../makeO_Prod_MP.php" name="form1">
+    <form method="post" action="makeO_Prod_MP.php" name="form1">
         <div class="mb-3 row">
-            <label class="form-label col-2 text-end" for="idFormulaMPrima"><strong>Materia prima</strong></label>
-            <?php
-            $FormulaMPrimaOperador = new FormulasMPrimaOperaciones();
-            $formulas = $FormulaMPrimaOperador->getFormulasMPrima();
-            $filas = count($formulas);
-            echo '<select name="idFormulaMPrima" id="idFormulaMPrima" class="form-select col-2" required>';
-            echo '<option selected disabled value="">-----------------------------</option>';
-            for ($i = 0; $i < $filas; $i++) {
-                echo '<option value="' . $formulas[$i]["idFormulaMPrima"] . '">' . $formulas[$i]['nomMPrima'] . '</option>';
-            }
-            echo '</select>';
-            ?>
-        </div>
-        <div class="mb-3 row">
-            <label class="form-label col-2 text-end" for="fechProd"><strong>Fecha de Producción</strong></label>
-            <input type="date" class="form-control col-2" name="fechProd" id="fechProd" required>
-        </div>
-        <div class="mb-3 row">
-            <label class="form-label col-2 text-end" for="codPersonal"><strong>Responsable</strong></label>
-            <?php
-            $PersonalOperador = new PersonalOperaciones();
-            $personal = $PersonalOperador->getPersonalProd();
-            echo '<select name="codPersonal" id="codPersonal" class="form-select col-2"  required>';
-            echo '<option selected disabled value="">-----------------------------</option>';
-            for ($i = 0; $i < count($personal); $i++) {
-                echo '<option value="' . $personal[$i]["idPersonal"] . '">' . $personal[$i]['nomPersonal'] . '</option>';
-            }
-            echo '</select>';
-            ?>
-        </div>
-        <div class="mb-3 row">
-            <label class="form-label col-2 text-end" for="cantKg"><strong>Cantidad a Producir
-                    (Kg)</strong></label>
-            <input type="text" class="form-control col-2" name="cantKg" id="cantKg"
-                   onkeydown="return aceptaNum(event)" required>
+            <div class="col-2">
+                <label class="form-label" for="idFormulaMPrima"><strong>Materia prima</strong></label>
+                <?php
+                $FormulaMPrimaOperador = new FormulasMPrimaOperaciones();
+                $formulas = $FormulaMPrimaOperador->getFormulasMPrima();
+                $filas = count($formulas);
+                echo '<select name="idFormulaMPrima" id="idFormulaMPrima" class="form-select" required>';
+                echo '<option selected disabled value="">-----------------------------</option>';
+                for ($i = 0; $i < $filas; $i++) {
+                    echo '<option value="' . $formulas[$i]["idFormulaMPrima"] . '">' . $formulas[$i]['nomMPrima'] . '</option>';
+                }
+                echo '</select>';
+                ?>
+            </div>
+            <div class="col-2">
+                <label class="form-label" for="fechProd"><strong>Fecha de Producción</strong></label>
+                <input type="date" class="form-control" name="fechProd" id="fechProd" required>
+            </div>
+            <div class="col-2">
+                <label class="form-label" for="codPersonal"><strong>Responsable</strong></label>
+                <?php
+                $PersonalOperador = new PersonalOperaciones();
+                $personal = $PersonalOperador->getPersonalProd();
+                echo '<select name="codPersonal" id="codPersonal" class="form-select"  required>';
+                echo '<option selected disabled value="">-----------------------------</option>';
+                for ($i = 0; $i < count($personal); $i++) {
+                    echo '<option value="' . $personal[$i]["idPersonal"] . '">' . $personal[$i]['nomPersonal'] . '</option>';
+                }
+                echo '</select>';
+                ?>
+            </div>
+            <div class="col-2">
+                <label class="form-label" for="cantKg"><strong>Cantidad a Producir
+                        (Kg)</strong></label>
+                <input type="text" class="form-control" name="cantKg" id="cantKg"
+                       onkeydown="return aceptaNum(event)" required>
+            </div>
         </div>
         <div class="mb-3 row">
             <div class="col-1 text-center">

@@ -59,7 +59,7 @@ try {
             $link->rollBack();
             $ruta = "crearOProdColor.php";
             $materiaPrima = $MPrimaOperador->getNomMPrima($codMPrima);
-            $mensaje = "No hay inventario suficiente de " . $materiaPrima . " hay " . round($invTotalMPrima, 2) . " Kg";
+            $mensaje = "No hay inventario suficiente de " . $materiaPrima . " hay " . ($invTotalMPrima != null ? round($invTotalMPrima, 2): 0) . " Kg";
             $icon = "warning";
             mover_pag($ruta, $mensaje, $icon);
             exit;

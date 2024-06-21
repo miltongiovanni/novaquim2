@@ -4,10 +4,10 @@ include "../../../includes/valAcc.php";
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <meta charset="utf-8">
     <title>Modificar consumo de Materia Prima por Orden de Producción de Materia Prima</title>
-<script src="../../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../../../js/validar.js"></script>
 
 </head>
@@ -15,14 +15,17 @@ include "../../../includes/valAcc.php";
 <div id="contenedor" class="container-fluid">
     <div id="saludo">
         <img src="../../../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>SELECCIÓN ORDEN DE PRODUCCIÓN DE MATERIA PRIMA A MODIFICAR</h4></div>
-    <form id="form1" name="form1" method="post" action="../../consultaOProdMPrima.php">
+    <form id="form1" name="form1" method="post" action="consultaOProdMPrima.php">
         <div class="mb-3 row">
-            <label class="form-label col-1 text-end" for="loteMP"><strong>No. de lote</strong></label>
-            <input type="text" class="form-control col-2" name="loteMP" id="loteMP"
-                   onkeydown="return aceptaNum(event)" required>
+            <div class="col-2">
+                <label class="form-label" for="loteMP"><strong>No. de lote</strong></label>
+                <input type="text" class="form-control" name="loteMP" id="loteMP"
+                       onkeydown="return aceptaNum(event)" required>
+            </div>
+
         </div>
         <div class="mb-3 row">
-    <div class="col-1 text-center">
+            <div class="col-1 text-center">
                 <button class="button" type="reset"><span>Reiniciar</span></button>
             </div>
             <div class="col-1 text-center">
