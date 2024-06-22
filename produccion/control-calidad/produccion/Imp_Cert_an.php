@@ -1,6 +1,6 @@
 <?php
 session_start();
-require '../includes/fpdf.php';
+require '../../../includes/fpdf.php';
 function cargarClases($classname)
 {
     require '../../../clases/' . $classname . '.php';
@@ -21,7 +21,7 @@ class PDF extends FPDF
     function Header()
     {
         //Logo
-        $this->Image('../images/LogoNova.jpg', 22, 12, 46, 23);
+        $this->Image('../../../images/LogoNova.jpg', 22, 12, 46, 23);
         //Arial bold 15
         $this->SetFont('Arial', 'B', 16);
         //Movernos a la derecha
@@ -121,7 +121,7 @@ $pdf->SetXY(20, 175);
 $pdf->SetFont('Arial', 'B', 10);
 $pdf->Cell(10, 5, 'Observaciones:', 0, 1);
 $pdf->Cell(180, 5, iconv('UTF-8', 'windows-1252', $calProd['observacionesProd']), 0, 1);
-$pdf->Image('../images/calidad.gif', 22, 200, 46, 23);
+$pdf->Image('../../../images/calidad.gif', 22, 200, 46, 23);
 $pdf->SetXY(20, 220);
 $pdf->SetFont('Arial', 'B', 10);
 $pdf->Cell(60, 5, iconv('UTF-8', 'windows-1252', $nom), 'T', 1);

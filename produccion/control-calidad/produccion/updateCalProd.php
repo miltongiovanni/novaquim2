@@ -20,9 +20,9 @@ foreach ($_POST as $nombre_campo => $valor) {
 <head>
 	<title>Detalle Orden de Producción</title>
 	<meta charset="utf-8">
-	<link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-	<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
-	<script src="../js/validar.js"></script>
+	<link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
+	<script src="../../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+	<script src="../../../js/validar.js"></script>
 </head>
 <body>
 <?php
@@ -35,7 +35,7 @@ try {
 	$mensaje = "Control de calidad modificado correctamente";
 	$icon = "success";
 } catch (Exception $e) {
-	$ruta = "buscar_lote1.php";
+	$ruta = "../produccion/";
 	$mensaje = "Error al modificar el control de calidad";
 	$icon = "error";
 } finally {
