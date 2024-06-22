@@ -23,7 +23,7 @@ spl_autoload_register('cargarClases');
     <form method="post" action="vtas_dist_tot_mes_vend.php" name="form1">
         <div class="mb-3 row">
             <label class="form-label col-1" for="idPersonal"><strong>Vendedor</strong></label>
-            <select id="idPersonal" name="idPersonal" class="form-control col-2" required>
+            <select id="idPersonal" name="idPersonal" class="form-select col-2" required>
                 <option selected disabled value="">-----------------------------</option>
                 <?php
                 $manager = new PersonalOperaciones();
@@ -39,7 +39,7 @@ spl_autoload_register('cargarClases');
         </div>
         <div class="mb-3 row">
             <label class="form-label col-1" for="year"><strong>Año</strong></label>
-            <select name="year" id="year" class="form-control col-2" required>
+            <select name="year" id="year" class="form-select col-2" required>
                 <?php
                 $year = intval(date("Y"));
                 for ($i = $year; $i >= 2011; $i--) : ?>
@@ -51,7 +51,7 @@ spl_autoload_register('cargarClases');
         </div>
         <div class="mb-3 row">
             <label class="form-label col-1" for="year"><strong>Tipo</strong></label>
-            <select name="type" id="type" class="form-control col-2" required>
+            <select name="type" id="type" class="form-select col-2" required>
                 <option value="1">Unidades</option>
                 <option value="2">Valores</option>
             </select>

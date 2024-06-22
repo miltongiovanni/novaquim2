@@ -41,7 +41,7 @@ $servicio = $servicioperador->getServicio($idServicio);
                 $manager = new TasaIvaOperaciones();
                 $tasas = $manager->getTasasIva();
                 $filas = count($tasas);
-                echo '<select name="codIva" id="codIva" class="form-control " required>';
+                echo '<select name="codIva" id="codIva" class="form-select" required>';
                 echo '<option selected value="' . $servicio['codIva'] . '">' . $servicio['iva'] . '</option>';
                 for ($i = 0; $i < $filas; $i++) {
                     if ($servicio['codIva'] != $tasas[$i]["idTasaIva"]) {
@@ -55,12 +55,12 @@ $servicio = $servicioperador->getServicio($idServicio);
                 <label class="form-label " for="cotiza"><strong>Activo</strong></label>
                 <?php
                 if ($servicio['activo'] == 0) {
-                    echo '<select name="activo" id="activo" class="form-control ">
+                    echo '<select name="activo" id="activo" class="form-select">
                     <option value="0" selected>No</option>
                     <option value="1">Si</option>
                 </select>';
                 } else {
-                    echo '<select name="activo" id="activo" class="form-control ">
+                    echo '<select name="activo" id="activo" class="form-select">
                     <option value="1" selected>Si</option>
                     <option value="0">No</option>
                 </select>';

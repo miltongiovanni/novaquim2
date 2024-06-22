@@ -47,19 +47,19 @@ include "../../../includes/valAcc.php";
         </div>
         <div class="mb-3 row">
             <label class="form-label col-2" for="motivo"><strong>Razón de la Nota</strong></label>
-            <select name="motivo" size="1" id="motivo" class="form-control col-5">
+            <select name="motivo" size="1" id="motivo" class="form-select col-5">
                 <option value="0" selected="">Devolución de Productos</option>
                 <option value="1">Descuento no aplicado</option>
             </select>
         </div>
         <div class="mb-3 row">
             <label class="form-label col-2" for="facturaOrigen"><strong>Factura origen de la Nota</strong></label>
-            <select name="facturaOrigen" id="facturaOrigen" class="form-control col-5" required>
+            <select name="facturaOrigen" id="facturaOrigen" class="form-select col-5" required>
             </select>
         </div>
         <div class="mb-3 row">
             <label class="form-label col-2" for="facturaDestino"><strong>Factura destino de la Nota</strong></label>
-            <select name="facturaDestino" id="facturaDestino" class="form-control col-5" required>
+            <select name="facturaDestino" id="facturaDestino" class="form-select col-5" required>
             </select>
         </div>
         <div class="mb-3 row">

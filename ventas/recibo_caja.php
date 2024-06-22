@@ -167,7 +167,7 @@ $saldo = round($recibo['totalR'] - $recibo['retencionFte'] - $recibo['retencionI
 
     <div class="row mb-3 my-5">
         <label for="retencion" class="form-label col-2 text-end"><strong>Cliente aplicó retención</strong></label>
-        <select name="retencion" id="retencion" class="form-control col-1" onchange="retefuente()">
+        <select name="retencion" id="retencion" class="form-select col-1" onchange="retefuente()">
             <option <?= $retefuente == 0 ? 'selected' : '' ?> value=0>No</option>
             <option <?= $retefuente > 0 ? 'selected' : '' ?> value=1>Si</option>
         </select>

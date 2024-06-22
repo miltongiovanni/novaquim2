@@ -48,12 +48,12 @@ $precio = $PrecioOperador->getPrecio($codigoGen);
                 <label class="form-label " for="presActiva"><strong>Activo</strong></label>
                 <?php
                 if ($precio['presActiva'] == 1) {
-                    echo '<select name="presActiva" class="form-control " id="presActiva">';
+                    echo '<select name="presActiva" class="form-select" id="presActiva">';
                     echo '<option selected value=1>Si</option>';
                     echo '<option value=0>No </option>';
                     echo '</select>';
                 } else {
-                    echo '<select name="presActiva" class="form-control "  id="presActiva">';
+                    echo '<select name="presActiva" class="form-select"  id="presActiva">';
                     echo '<option selected value=0>No</option>';
                     echo '<option value=1>Si</option>';
                     echo '</select>';
@@ -64,12 +64,12 @@ $precio = $PrecioOperador->getPrecio($codigoGen);
                 <label class="form-label " for="presLista"><strong>En lista</strong></label>
                 <?php
                 if ($precio['presLista'] == 1) {
-                    echo '<select name="presLista" class="form-control " id="presLista">';
+                    echo '<select name="presLista" class="form-select" id="presLista">';
                     echo '<option selected value=1>Si</option>';
                     echo '<option value=0>No </option>';
                     echo '</select>';
                 } else {
-                    echo '<select name="presLista" class="form-control "  id="presLista">';
+                    echo '<select name="presLista" class="form-select"  id="presLista">';
                     echo '<option selected value=0>No</option>';
                     echo '<option value=1>Si</option>';
                     echo '</select>';

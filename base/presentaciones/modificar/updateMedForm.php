@@ -69,7 +69,7 @@ $presentacion = $PresentacionOperador->getPresentacion($codPresentacion);
             </div>
             <div class="col-1">
                 <label class="form-label " for="cotiza"><strong>Cotizar</strong></label>
-                <select name="cotiza" id="cotiza" class="form-control ">
+                <select name="cotiza" id="cotiza" class="form-select">
                     <?php if ($presentacion['cotiza'] == 0) { ?>
                         <option value="0" selected>No</option>
                         <option value="1">Si</option>

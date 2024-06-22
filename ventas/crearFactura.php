@@ -60,7 +60,7 @@ spl_autoload_register('cargarClases');
         <div class="mb-3 row">
             <label class="form-label col-2 text-end" for="pedidosList"><strong>Pedidos</strong></label>
             <div id="pedidos" class="col-5">
-                <select name="pedidosList[]" multiple="multiple" id="pedidosList" class="form-control col-12 js-multiple" required>
+                <select name="pedidosList[]" multiple="multiple" id="pedidosList" class="form-select col-12 js-multiple" required>
                 </select>
             </div>
         </div>

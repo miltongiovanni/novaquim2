@@ -24,7 +24,7 @@ spl_autoload_register('cargarClases');
     <form method="post" action="comis_vend.php" name="form1">
         <div class="mb-3 row">
             <label class="form-label col-1" for="combo"><strong>Vendedor</strong></label>
-            <select name="idPersonal" class="form-control col-2" required>
+            <select name="idPersonal" class="form-select col-2" required>
                 <option selected disabled value="">-----------------------------</option>
                 <?php
                 $manager = new PersonalOperaciones();

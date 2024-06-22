@@ -44,12 +44,12 @@ $producto = $ProductoOperador->getProducto($codProducto);
                 <label class="form-label " for="prodActivo"><strong>Activo</strong></label>
                 <?php
                 if ($producto['prodActivo'] == 1) {
-                    echo '<select name="prodActivo" class="form-control " id="prodActivo">';
+                    echo '<select name="prodActivo" class="form-select" id="prodActivo">';
                     echo '<option selected value=1>Si</option>';
                     echo '<option value=0>No </option>';
                     echo '</select>';
                 } else {
-                    echo '<select name="prodActivo" class="form-control col-2"  id="prodActivo">';
+                    echo '<select name="prodActivo" class="form-select col-2"  id="prodActivo">';
                     echo '<option selected value=0>No</option>';
                     echo '<option value=1>Si</option>';
                     echo '</select>';

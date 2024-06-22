@@ -57,7 +57,7 @@ $cliExis = $_POST['cliExis'];
                 $manager = new CiudadesOperaciones();
                 $ciudades = $manager->getCiudades();
                 $filas = count($ciudades);
-                echo '<select name="idCiudad" id="idCiudad" class="form-control col-1 mx-3"  required>';
+                echo '<select name="idCiudad" id="idCiudad" class="form-select col-1 mx-3"  required>';
                 for ($i = 0; $i < $filas; $i++) {
                     echo '<option value="' . $ciudades[$i]["idCiudad"] . '">' . $ciudades[$i]['ciudad'] . '</option>';
                 }
@@ -79,7 +79,7 @@ $cliExis = $_POST['cliExis'];
                 $manager = new CategoriasCliOperaciones();
                 $categorias = $manager->getCatsCli();
                 $filas = count($categorias);
-                echo '<select name="idCatCliente" id="idCatCliente" class="form-control col-3 ms-2" required>';
+                echo '<select name="idCatCliente" id="idCatCliente" class="form-select col-3 ms-2" required>';
                 echo '<option disabled selected value="">-----------------------------</option>';
                 for ($i = 0; $i < $filas; $i++) {
                     echo '<option value="' . $categorias[$i]["idCatClien"] . '">' . $categorias[$i]['desCatClien'] . '</option>';
@@ -103,7 +103,7 @@ $cliExis = $_POST['cliExis'];
                 <?php
                 $PersonalOperador = new PersonalOperaciones();
                 $personal = $PersonalOperador->getPersonal(true);
-                echo '<select name="codVendedor" id="codVendedor" class="form-control col-2 ms-2" required >';
+                echo '<select name="codVendedor" id="codVendedor" class="form-select col-2 ms-2" required >';
                 echo '<option selected disabled value="">-----------------------------</option>';
                 for ($i = 0; $i < count($personal); $i++) {
                     echo '<option value="' . $personal[$i]["idPersonal"] . '">' . $personal[$i]['nomPersonal'] . '</option>';

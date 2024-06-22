@@ -226,7 +226,7 @@ $distribucionOperador = new ProductosDistribucionOperaciones();
             <div class="col-2 text-center"></div>
         </div>
         <div class="mb-3 row">
-            <select name="codProducto" id="codProducto" class="form-control col-4 me-3">
+            <select name="codProducto" id="codProducto" class="form-select col-4 me-3">
                 <option selected disabled value="">Escoja un producto Novaquim</option>
                 <?php
                 $productos = $cotizacionOperador->getProdTerminadosByIdCotizacion($idCotPersonalizada);

@@ -138,7 +138,7 @@ spl_autoload_register('cargarClases');
             </div>
             <div class="col-2">
                 <label class="form-label " for="cotiza"><strong>Cotizar</strong></label>
-                <select name="cotiza" id="cotiza" class="form-control ">
+                <select name="cotiza" id="cotiza" class="form-select">
                     <option value="0" selected>No</option>
                     <option value="1">Si</option>
                 </select>

@@ -57,7 +57,7 @@ $productoDistribucion = $ProductoDistribucionOperador->getProductoDistribucion($
                 $manager = new TasaIvaOperaciones();
                 $tasas = $manager->getTasasIva();
                 $filas = count($tasas);
-                echo '<select name="codIva" id="codIva" class="form-control " required>';
+                echo '<select name="codIva" id="codIva" class="form-select" required>';
                 echo '<option selected value="' . $productoDistribucion['codIva'] . '">' . $productoDistribucion['iva'] . '</option>';
                 for ($i = 0; $i < $filas; $i++) {
                     if ($tasas[$i]["idTasaIva"] != $productoDistribucion['codIva']) {
@@ -76,7 +76,7 @@ $productoDistribucion = $ProductoDistribucionOperador->getProductoDistribucion($
                 <label class="form-label " for="cotiza"><strong>Cotizar</strong></label>
                 <?php
                 if ($productoDistribucion['cotiza'] == 0) {
-                    echo '<select name="cotiza" id="cotiza" class="form-control " required>
+                    echo '<select name="cotiza" id="cotiza" class="form-select" required>
                     <option value="0" selected>No</option>
                     <option value="1">Si</option>
                 </select>';
@@ -92,12 +92,12 @@ $productoDistribucion = $ProductoDistribucionOperador->getProductoDistribucion($
                 <label class="form-label " for="cotiza"><strong>Activo</strong></label>
                 <?php
                 if ($productoDistribucion['activo'] == 0) {
-                    echo '<select name="activo" id="activo" class="form-control ">
+                    echo '<select name="activo" id="activo" class="form-select">
                     <option value="0" selected>No</option>
                     <option value="1">Si</option>
                 </select>';
                 } else {
-                    echo '<select name="activo" id="activo" class="form-control ">
+                    echo '<select name="activo" id="activo" class="form-select">
                     <option value="1" selected>Si</option>
                     <option value="0">No</option>
                 </select>';

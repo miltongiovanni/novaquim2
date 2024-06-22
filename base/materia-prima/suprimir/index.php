@@ -27,7 +27,7 @@ spl_autoload_register('cargarClases');
         <div class="mb-3 row">
             <div class="col-3">
                 <label class="form-label " for="codMPrima"><strong>Materia Prima</strong></label>
-                <select name="codMPrima" id="codMPrima" class="form-control " required>
+                <select name="codMPrima" id="codMPrima" class="form-select" required>
                     <option selected disabled value="">-----------------------------</option>
                     <?php
                     $MPrimasOperador = new MPrimasOperaciones();

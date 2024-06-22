@@ -23,7 +23,7 @@ spl_autoload_register('cargarClases');
     <form id="form1" name="form1" method="post" action="updatePedidoForm.php">
         <div class="mb-3 row">
             <label class="form-label col-2" for="idPedido"><strong>Orden de pedido</strong></label>
-            <select name="idPedido" id="idPedido" class="form-control col-4" required>
+            <select name="idPedido" id="idPedido" class="form-select col-4" required>
                 <option selected disabled value="">------------</option>
                 <?php
                 $manager = new PedidosOperaciones();

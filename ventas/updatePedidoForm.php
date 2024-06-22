@@ -72,7 +72,7 @@ $pedido = $pedidoOperador->getPedido($idPedido);
         <div class="mb-3 row">
             <label class="form-label col-2" for="idSucursal"><strong>Sucursal</strong></label>
             <div id="sucursales" class="col-5 px-0">
-                <select name="idSucursal" id="idSucursal" class="form-control" required>
+                <select name="idSucursal" id="idSucursal" class="form-select" required>
                     <option value='<?= $pedido['idSucursal'] ?>'><?= $pedido['nomSucursal'] ?></option>
                 </select>
             </div>

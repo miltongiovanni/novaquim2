@@ -124,7 +124,7 @@ $nomCliente = $cliente['nomCliente'];
             <input type="text" class="form-control col-1 mx-2" name="telSucursal" id="telSucursal" maxlength="10"
                    onkeydown="return aceptaNum(event)">
             <input type="text" class="form-control col-3 mx-2" name="dirSucursal" id="dirSucursal" required>
-            <select name="ciudadSucursal" id="ciudadSucursal" class="form-control col-2 mx-2" required>
+            <select name="ciudadSucursal" id="ciudadSucursal" class="form-select col-2 mx-2" required>
                 <option selected value="1">Bogotá D.C.</option>
                 <?php
                 $manager = new CiudadesOperaciones();

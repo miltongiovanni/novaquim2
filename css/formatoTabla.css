@@ -182,8 +182,15 @@ form {
     color: #000066 !important;
 }
 
+.formatoDatos5 .form-select {
+    font-size: 0.8em !important;
+}
+.formatoDatos5 .form-control {
+    font-size: 0.8em !important;
+}
+
 .formatoDatos5 {
-    font-size: 0.8em;
+    font-size: 0.8em !important;
     color: #000066 !important;
 }
 

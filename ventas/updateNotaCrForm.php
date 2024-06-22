@@ -45,7 +45,7 @@ if (!$notaCrOperador->isValidIdNotaC($idNotaC)) {
         </div>
         <div class="mb-3 row">
             <label class="form-label col-2" for="motivo"><strong>Razón de la Nota</strong></label>
-            <select name="motivo" size="1" id="motivo" class="form-control col-2">
+            <select name="motivo" size="1" id="motivo" class="form-select col-2">
                 <option value="0" <?= $notaC['motivo'] == 0 ? 'selected' : '' ?>>Devolución de Productos</option>
                 <option value="1"<?= $notaC['motivo'] == 1 ? 'selected' : '' ?>>Descuento no aplicado</option>
             </select>
@@ -53,7 +53,7 @@ if (!$notaCrOperador->isValidIdNotaC($idNotaC)) {
         <div class="mb-3 row">
             <label class="form-label col-2" for="facturaOrigen"><strong>Factura origen de la
                     Nota</strong></label>
-            <select name="facturaOrigen" id="facturaOrigen" class="form-control col-2" required>
+            <select name="facturaOrigen" id="facturaOrigen" class="form-select col-2" required>
                 <option value="<?= $notaC['facturaOrigen'] ?>" selected><?= $notaC['facturaOrigen'] ?></option>
                 <?php
                 for ($i = 0; $i < count($facturas); $i++):
@@ -69,7 +69,7 @@ if (!$notaCrOperador->isValidIdNotaC($idNotaC)) {
         <div class="mb-3 row">
             <label class="form-label col-2" for="facturaDestino"><strong>Factura destino de la
                     Nota</strong></label>
-            <select name="facturaDestino" id="facturaDestino" class="form-control col-2" required>
+            <select name="facturaDestino" id="facturaDestino" class="form-select col-2" required>
                 <option value="<?= $notaC['facturaDestino'] ?>" selected><?= $notaC['facturaDestino'] ?></option>
                 <?php
                 for ($i = 0; $i < count($facturas); $i++):

@@ -17,7 +17,7 @@ include "../../../includes/valAcc.php";
     <form method="post" action="vtas_dist_tot_mes.php" name="form1">
         <div class="mb-3 row">
             <label class="form-label col-1" for="year"><strong>Año</strong></label>
-            <select name="year" id="year" class="form-control col-1" required>
+            <select name="year" id="year" class="form-select col-1" required>
                 <?php
                 $year = intval(date("Y"));
                 for ($i = $year; $i >= 2011; $i--) : ?>
@@ -29,7 +29,7 @@ include "../../../includes/valAcc.php";
         </div>
         <div class="mb-3 row">
             <label class="form-label col-1" for="year"><strong>Tipo</strong></label>
-            <select name="type" id="type" class="form-control col-1" required>
+            <select name="type" id="type" class="form-select col-1" required>
                 <option value="1">Unidades</option>
                 <option value="2">Valores</option>
             </select>

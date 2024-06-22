@@ -85,7 +85,7 @@ spl_autoload_register('cargarClases');
             $manager = new CiudadesOperaciones();
             $ciudades = $manager->getCiudades();
             $filas = count($ciudades);
-            echo '<select name="ciudadCliente" id="ciudadCliente" class="form-control col-2 mx-2"  required>';
+            echo '<select name="ciudadCliente" id="ciudadCliente" class="form-select col-2 mx-2"  required>';
             for ($i = 0; $i < $filas; $i++) {
                 echo '<option value="' . $ciudades[$i]["idCiudad"] . '">' . $ciudades[$i]['ciudad'] . '</option>';
             }
@@ -111,7 +111,7 @@ spl_autoload_register('cargarClases');
             $manager = new CategoriasCliOperaciones();
             $categorias = $manager->getCatsCli();
             $filas = count($categorias);
-            echo '<select name="idCatCliente" id="idCatCliente" class="form-control col-3 mx-2" required>';
+            echo '<select name="idCatCliente" id="idCatCliente" class="form-select col-3 mx-2" required>';
             echo '<option disabled selected value="">-----------------------------</option>';
             for ($i = 0; $i < $filas; $i++) {
                 echo '<option value="' . $categorias[$i]["idCatClien"] . '">' . $categorias[$i]['desCatClien'] . '</option>';
@@ -128,16 +128,16 @@ spl_autoload_register('cargarClases');
         </div>
         <div class="mb-3 row">
 
-            <select name="retIva" id="retIva" class="form-control col-2 mx-2">
+            <select name="retIva" id="retIva" class="form-select col-2 mx-2">
                 <option value="0" selected>No</option>
                 <option value="1">Si</option>
             </select>
 
-            <select name="retFte" id="retFte" class="form-control col-2 mx-2">
+            <select name="retFte" id="retFte" class="form-select col-2 mx-2">
                 <option value="0">No</option>
                 <option value="1" selected>Si</option>
             </select>
-            <select name="retIca" id="retIca" class="form-control col-2 mx-2">
+            <select name="retIca" id="retIca" class="form-select col-2 mx-2">
                 <option value="0" selected>No</option>
                 <option value="1">Si</option>
             </select>
@@ -145,7 +145,7 @@ spl_autoload_register('cargarClases');
             <?php
             $PersonalOperador = new PersonalOperaciones();
             $personal = $PersonalOperador->getPersonal(true);
-            echo '<select name="codVendedor" id="codVendedor" class="form-control col-3 mx-2" required >';
+            echo '<select name="codVendedor" id="codVendedor" class="form-select col-3 mx-2" required >';
             echo '<option selected disabled value="">-----------------------------</option>';
             for ($i = 0; $i < count($personal); $i++) {
                 echo '<option value="' . $personal[$i]["idPersonal"] . '">' . $personal[$i]['nomPersonal'] . '</option>';

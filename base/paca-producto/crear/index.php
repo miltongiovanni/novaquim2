@@ -24,7 +24,7 @@ spl_autoload_register('cargarClases');
         <div class="mb-3 row">
             <div class="col-3">
                 <label class="form-label " for="codPaca"><strong>Producto empacado</strong></label>
-                <select name="codPaca" id="codPaca" class="form-control " required>
+                <select name="codPaca" id="codPaca" class="form-select" required>
                     <option selected disabled value="">-----------------------------</option>
                     <?php
                     $ProductoDistribucionOperador = new ProductosDistribucionOperaciones();
@@ -38,7 +38,7 @@ spl_autoload_register('cargarClases');
             </div>
             <div class="col-3">
                 <label class="form-label " for="codUnidad"><strong>Producto por unidad</strong></label>
-                <select name="codUnidad" id="codUnidad" class="form-control " required>
+                <select name="codUnidad" id="codUnidad" class="form-select" required>
                     <option selected disabled value="">-----------------------------</option>
                     <?php
                     $ProductoDistribucionOperador = new ProductosDistribucionOperaciones();

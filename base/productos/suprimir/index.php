@@ -38,7 +38,7 @@ spl_autoload_register('cargarClases');
         <div class="mb-3 row">
             <div class="col-2">
                 <label class="form-label" for="codProducto"><strong>Producto</strong></label>
-                <select name="codProducto" id="codProducto" class="form-control" required>
+                <select name="codProducto" id="codProducto" class="form-select" required>
                     <option></option>
                     <?php
                     $ProductoOperador = new ProductosOperaciones();

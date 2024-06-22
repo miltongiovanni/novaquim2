@@ -17,7 +17,7 @@ include "../../../includes/valAcc.php";
 <div id="contenedor" class="container-fluid">
     <div id="saludo">
         <img src="../../../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>SELECCIONAR MATERIA PRIMA POR EL CONTROL DE CALIDAD</h4></div>
-    <form id="form1" name="form1" method="post" action="../../det_cal_materia_prima.php">
+    <form id="form1" name="form1" method="post" action="../../control-calidad/materia-prima/det_cal_materia_prima.php">
         <div class="mb-3 row">
             <label  class="form-label col-1 text-end" for="busMPrima"><strong>Materia Prima</strong></label>
             <input type="text" class="form-control col-3" id="busMPrima" name="busMPrima" onkeyup="findMateriaPrima()" required/>

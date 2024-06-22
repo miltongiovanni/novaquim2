@@ -56,7 +56,7 @@ spl_autoload_register('cargarClases');
                 $manager = new CategoriasMPOperaciones();
                 $categorias = $manager->getCatsMP();
                 $filas = count($categorias);
-                echo '<select name="idCatMPrima" id="idCatMPrima" class="form-control " onchange="codigoMP(this.value)"  required>';
+                echo '<select name="idCatMPrima" id="idCatMPrima" class="form-select" onchange="codigoMP(this.value)"  required>';
                 echo '<option selected disabled value="">-----------------------------</option>';
                 for ($i = 0; $i < $filas; $i++) {
                     echo '<option value="' . $categorias[$i]["idCatMP"] . '">' . $categorias[$i]['catMP'] . '</option>';
@@ -90,7 +90,7 @@ spl_autoload_register('cargarClases');
                     $manager = new TasaIvaOperaciones();
                     $tasas = $manager->getTasasIva();
                     $filas = count($tasas);
-                    echo '<select name="codIva" id="codIva" class="form-control "  required>';
+                    echo '<select name="codIva" id="codIva" class="form-select"  required>';
                     echo '<option selected disabled value="">---------</option>';
                     for ($i = 0; $i < $filas; $i++) {
                         echo '<option value="' . $tasas[$i]["idTasaIva"] . '">' . $tasas[$i]['iva'] . '</option>';

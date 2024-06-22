@@ -52,7 +52,7 @@ spl_autoload_register('cargarClases');
                 $manager = new CategoriasDisOperaciones();
                 $categorias = $manager->getCatsDis();
                 $filas = count($categorias);
-                echo '<select name="idCatDis" id="idCatDis" class="form-control " onchange="idProducto(this.value);" required>';
+                echo '<select name="idCatDis" id="idCatDis" class="form-select" onchange="idProducto(this.value);" required>';
                 echo '<option disabled selected value="">-----------------------------</option>';
                 for ($i = 0; $i < $filas; $i++) {
                     echo '<option value="' . $categorias[$i]["idCatDis"] . '">' . $categorias[$i]['catDis'] . '</option>';
@@ -102,7 +102,7 @@ spl_autoload_register('cargarClases');
         $manager = new TasaIvaOperaciones();
         $tasas = $manager->getTasasIva();
         $filas = count($tasas);
-        echo '<select name="codIva" id="codIva" class="form-control " required>';
+        echo '<select name="codIva" id="codIva" class="form-select" required>';
         echo '<option selected disabled value="">---------</option>';
         for ($i = 0; $i < $filas; $i++) {
             echo '<option value="' . $tasas[$i]["idTasaIva"] . '">' . $tasas[$i]['iva'] . '</option>';
@@ -117,7 +117,7 @@ spl_autoload_register('cargarClases');
     </div>
     <div class="col-1">
         <label class="form-label " for="cotiza"><strong>Cotizar</strong></label>
-        <select name="cotiza" id="cotiza" class="form-control ">
+        <select name="cotiza" id="cotiza" class="form-select">
             <option value="1">Si</option>
             <option value="0" selected>No</option>
         </select>

@@ -1,6 +1,6 @@
 <?php
 session_start();
-require '../includes/fpdf.php';
+require '../../../includes/fpdf.php';
 function cargarClases($classname)
 {
     require '../../../clases/' . $classname . '.php';
@@ -16,7 +16,7 @@ class PDF extends FPDF
     function Header()
     {
         //Logo
-        $this->Image('../images/LogoNova1.jpg', 12, 10, 24, 12);
+        $this->Image('../../../images/LogoNova1.jpg', 12, 10, 24, 12);
         //Arial bold 15
 //        $this->SetFont('Arial', 'B', 16);
 //        //Movernos a la derecha

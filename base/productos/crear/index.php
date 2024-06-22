@@ -55,7 +55,7 @@ spl_autoload_register('cargarClases');
                 $manager = new CategoriasProdOperaciones();
                 $categorias = $manager->getCatsProd();
                 $filas = count($categorias);
-                echo '<select name="idCatProd" id="idCatProd" class="form-control " onchange="idProducto(this.value);" required>';
+                echo '<select name="idCatProd" id="idCatProd" class="form-select" onchange="idProducto(this.value);" required>';
                 echo '<option disabled selected value="">-----------------------------</option>';
                 for ($i = 0; $i < $filas; $i++) {
                     echo '<option value="' . $categorias[$i]["idCatProd"] . '">' . $categorias[$i]['catProd'] . '</option>';

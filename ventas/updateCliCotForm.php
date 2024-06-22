@@ -35,7 +35,7 @@ $cliente = $clienteCotizacionOperador->getCliente($idCliente);
         <div class="mb-3 row">
             <input type="text" class="form-control col-3 me-2" name="nomCliente" id="nomCliente"
                    value="<?= $cliente['nomCliente'] ?>" required>
-            <select name="idCiudad" id="idCiudad" class="form-control col-1 mx-3" required>
+            <select name="idCiudad" id="idCiudad" class="form-select col-1 mx-3" required>
                 <option selected value="<?= $cliente['idCiudad'] ?>"><?= $cliente['ciudad'] ?></option>
                 <?php
                 $manager = new CiudadesOperaciones();
@@ -64,7 +64,7 @@ $cliente = $clienteCotizacionOperador->getCliente($idCliente);
                    onkeydown="return aceptaNum(event)" value="<?= $cliente['telCliente'] ?>">
             <input type="email" class="form-control col-2 mx-3" name="emailCliente" id="emailCliente"
                    value="<?= $cliente['emailCliente'] ?>">
-            <select name="idCatCliente" id="idCatCliente" class="form-control col-3 ms-2" required>
+            <select name="idCatCliente" id="idCatCliente" class="form-select col-3 ms-2" required>
                 <option selected value="<?= $cliente['idCatCliente'] ?>"><?= $cliente['desCatClien'] ?></option>
                 <?php
                 $manager = new CategoriasCliOperaciones();
@@ -93,7 +93,7 @@ $cliente = $clienteCotizacionOperador->getCliente($idCliente);
                    value="<?= $cliente['dirCliente'] ?>" required>
             <input type="text" class="form-control col-1 mx-2" name="celCliente" id="celCliente" maxlength="10"
                    onkeydown="return aceptaNum(event)" value="<?= $cliente['celCliente'] ?>">
-            <select name="codVendedor" id="codVendedor" class="form-control col-2 ms-2" required>
+            <select name="codVendedor" id="codVendedor" class="form-select col-2 ms-2" required>
                 <option selected value="<?= $cliente['codVendedor'] ?>"><?= $cliente['nomPersonal'] ?></option>
                 <?php
                 $PersonalOperador = new PersonalOperaciones();

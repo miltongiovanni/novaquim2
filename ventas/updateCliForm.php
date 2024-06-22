@@ -145,7 +145,7 @@ $cliente = $clienteOperador->getCliente($idCliente);
                    onkeydown="return aceptaNum(event)" value="<?= $cliente['telCliente'] ?>">
             <input type="email" class="form-control col-2 mx-2" name="emailCliente" id="emailCliente"
                    value="<?= $cliente['emailCliente'] ?>">
-            <select name="ciudadCliente" id="ciudadCliente" class="form-control col-2 mx-2" required>
+            <select name="ciudadCliente" id="ciudadCliente" class="form-select col-2 mx-2" required>
                 <option selected value="<?= $cliente['ciudadCliente'] ?>"><?= $cliente['ciudad'] ?></option>
                 <?php
                 $manager = new CiudadesOperaciones();
@@ -177,7 +177,7 @@ $cliente = $clienteOperador->getCliente($idCliente);
                    value="<?= $cliente['cargoCliente'] ?>" required>
             <input type="text" class="form-control col-2 mx-2" name="celCliente" id="celCliente"
                    onkeydown="return aceptaNum(event)" maxlength="10" value="<?= $cliente['celCliente'] ?>" required>
-            <select name="idCatCliente" id="idCatCliente" class="form-control col-3 mx-2" required>
+            <select name="idCatCliente" id="idCatCliente" class="form-select col-3 mx-2" required>
                 <option selected
                         value="<?= $cliente['idCatCliente'] ?>"><?= $cliente['desCatClien'] ?></option>
                 <?php
@@ -203,7 +203,7 @@ $cliente = $clienteOperador->getCliente($idCliente);
         </div>
         <div class="mb-3 row">
 
-            <select name="retIva" id="retIva" class="form-control col-1 mx-2">
+            <select name="retIva" id="retIva" class="form-select col-1 mx-2">
                 <?php
                 if ($cliente['retIva'] == 1):
                     ?>
@@ -218,7 +218,7 @@ $cliente = $clienteOperador->getCliente($idCliente);
                 endif;
                 ?>
             </select>
-            <select name="retFte" id="retFte" class="form-control col-1 mx-2">
+            <select name="retFte" id="retFte" class="form-select col-1 mx-2">
                 <?php
                 if ($cliente['retFte'] == 1):
                     ?>
@@ -233,7 +233,7 @@ $cliente = $clienteOperador->getCliente($idCliente);
                 endif;
                 ?>
             </select>
-            <select name="retIca" id="retIca" class="form-control col-1 mx-2">
+            <select name="retIca" id="retIca" class="form-select col-1 mx-2">
                 <?php
                 if ($cliente['retIca'] == 1):
                     ?>
@@ -248,7 +248,7 @@ $cliente = $clienteOperador->getCliente($idCliente);
                 endif;
                 ?>
             </select>
-            <select name="exenIva" id="exenIva" class="form-control col-1 mx-2">
+            <select name="exenIva" id="exenIva" class="form-select col-1 mx-2">
                 <?php
                 if ($cliente['exenIva'] == 1):
                     ?>
@@ -263,7 +263,7 @@ $cliente = $clienteOperador->getCliente($idCliente);
                 endif;
                 ?>
             </select>
-            <select name="estadoCliente" id="estadoCliente" class="form-control col-1 mx-2">
+            <select name="estadoCliente" id="estadoCliente" class="form-select col-1 mx-2">
                 <?php
                 if ($cliente['estadoCliente'] == 1):
                     ?>

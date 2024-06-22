@@ -259,7 +259,7 @@ $totalesNotaC = $notaCrOperador->getTotalesNotaC($idNotaC);
                 <div class="col-2 text-center"></div>
             </div>
             <div class="mb-3 row">
-                <select name="codProducto" id="codProducto" class="form-control col-4"
+                <select name="codProducto" id="codProducto" class="form-select col-4"
                         onchange="cantDetNotaC(<?= $notaC['facturaOrigen']; ?>, this.value)">
                     <option selected disabled value="">Escoja un producto</option>
                     <?php
@@ -269,7 +269,7 @@ $totalesNotaC = $notaCrOperador->getTotalesNotaC($idNotaC);
                     }
                     ?>
                 </select>
-                <select name="cantProducto" id="cantProducto" class="form-control col-1 ms-2" required>
+                <select name="cantProducto" id="cantProducto" class="form-select col-1 ms-2" required>
                 </select>
                 <div class="col-2 text-center" style="padding: 0 20px;">
                     <button class="button" type="button" onclick="return Enviar(this.form)">

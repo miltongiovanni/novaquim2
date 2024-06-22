@@ -22,18 +22,21 @@ $mprimas = $calMatPrimaOperador->getMPrimaXCalidad();
 <div id="contenedor" class="container-fluid">
     <div id="saludo">
         <img src="../../../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>BUSCAR MATERIA PRIMA PARA CONTROL DE CALIDAD</h4></div>
-    <form id="form1" name="form1" method="post" action="../../cal_materia_prima.php">
+    <form id="form1" name="form1" method="post" action="cal_materia_prima.php">
         <div class="mb-3 row">
-            <label class="form-label col-1 text-end" for="id"><strong>Materia Prima</strong></label>
-            <select name="id" id="id" class="form-control col-4" required>
-                <option selected disabled value="">-------------------------------------------------------------------------------------</option>
-                <?php
-                for ($i = 0; $i < count($mprimas); $i++) : ?>
-                    <option value="<?= $mprimas[$i]["id"] ?>"><?= $mprimas[$i]["nomMPrima"].' - Lote:'.$mprimas[$i]["lote_mp"].' - Cantidad: '.$mprimas[$i]["cantidad"].' Kg' ?></option>
-                <?php
-                endfor;
-                ?>
-            </select>
+            <div class="col-4">
+                <label class="form-label" for="id"><strong>Materia Prima</strong></label>
+                <select name="id" id="id" class="form-select" required>
+                    <option selected disabled value="">-------------------------------------------------------------------------------------</option>
+                    <?php
+                    for ($i = 0; $i < count($mprimas); $i++) : ?>
+                        <option value="<?= $mprimas[$i]["id"] ?>"><?= $mprimas[$i]["nomMPrima"].' - Lote:'.$mprimas[$i]["lote_mp"].' - Cantidad: '.$mprimas[$i]["cantidad"].' Kg' ?></option>
+                    <?php
+                    endfor;
+                    ?>
+                </select>
+            </div>
+
         </div>
         <div class="row mb-3">
             <div class="col-1">
