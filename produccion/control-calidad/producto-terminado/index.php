@@ -20,20 +20,23 @@ spl_autoload_register('cargarClases');
 <div id="contenedor" class="container-fluid">
     <div id="saludo">
         <img src="../../../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>CONTROL DE CALIDAD PRODUCTO TERMINADO</h4></div>
-    <form id="form1" name="form1" method="post" action="../../consultaCalidad2.php">
+    <form id="form1" name="form1" method="post" action="consultaCalidad2.php">
         <div class="mb-3 row">
-            <label class="form-label col-2 text-end" for="lote"><strong>Orden de producción</strong></label>
-            <select name="lote" id="lote" class="form-select col-1" required>
-                <option selected disabled value="">------------</option>
-                <?php
-                $manager = new OProdOperaciones();
-                $ordenes = $manager->getOProdXCalProdTerminado();
-                for ($i = 0; $i < count($ordenes); $i++) : ?>
-                    <option value="<?= $ordenes[$i]["lote"] ?>"><?= $ordenes[$i]["lote"] ?></option>
-                <?php
-                endfor;
-                ?>
-            </select>
+            <div class="col-2">
+                <label class="form-label" for="lote"><strong>Orden de producción</strong></label>
+                <select name="lote" id="lote" class="form-select" required>
+                    <option selected disabled value="">------------</option>
+                    <?php
+                    $manager = new OProdOperaciones();
+                    $ordenes = $manager->getOProdXCalProdTerminado();
+                    for ($i = 0; $i < count($ordenes); $i++) : ?>
+                        <option value="<?= $ordenes[$i]["lote"] ?>"><?= $ordenes[$i]["lote"] ?></option>
+                    <?php
+                    endfor;
+                    ?>
+                </select>
+            </div>
+
         </div>
         <div class="mb-3 row">
             <div class="col-1 text-center">

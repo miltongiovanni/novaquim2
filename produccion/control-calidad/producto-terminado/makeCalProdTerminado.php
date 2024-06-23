@@ -20,9 +20,9 @@ foreach ($_POST as $nombre_campo => $valor) {
 <head>
     <title>Control de calidad orden de producción</title>
     <meta charset="utf-8">
-    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="../js/validar.js"></script>
+    <link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script src="../../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../../../js/validar.js"></script>
 
 </head>
 <body>
@@ -43,11 +43,11 @@ try {
     $datos = array(6, $lote);
     $OProdOperador->updateEstadoOProd($datos);
     unset($_SESSION['lote']);
-    $ruta = "../menu.php";
+    $ruta = "../../../menu.php";
     $mensaje = "Control de Calidad producto terminado cargado correctamente";
     $icon = "success";
 } catch (Exception $e) {
-    $ruta = "buscar_lote2.php";
+    $ruta = "../producto-terminado/";
     $mensaje = "Error al ingresar el control de calidad producto terminado";
     $icon = "error";
 } finally {

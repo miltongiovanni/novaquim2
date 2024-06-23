@@ -21,17 +21,17 @@ foreach ($_POST as $nombre_campo => $valor) {
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <meta charset="utf-8">
     <title>Seleccionar orden de producción</title>
-    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="../js/validar.js"></script>
+    <script src="../../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../../../js/validar.js"></script>
 </head>
 <body>
 <?php
 $calProdOperador = new CalProdOperaciones();
 if (!$calProdOperador->isValidLoteCalidad($lote)) {
-    $ruta = "buscar_lote2.php";
+    $ruta = "../producto-terminado/";
     $mensaje = "El número de lote no es válido, vuelva a intentar de nuevo";
     $icon = "warning";
     mover_pag($ruta, $mensaje, $icon);
