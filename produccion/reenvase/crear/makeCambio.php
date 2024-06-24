@@ -23,9 +23,9 @@ foreach ($_POST as $nombre_campo => $valor) {
 <head>
     <title>Creación cambio de presentación de producto</title>
     <meta charset="utf-8">
-    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="../js/validar.js"></script>
+    <link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script src="../../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../../../js/validar.js"></script>
 </head>
 <body>
 <?php
@@ -34,7 +34,7 @@ $cambioOperador = new CambiosOperaciones();
 try {
     $idCambio = $cambioOperador->makeCambio($datos);
     $_SESSION['idCambio'] = $idCambio;
-    $ruta = "det_cambio_pres.php";
+    $ruta = "../detalle/";
     $mensaje = "Cambio de presentación creado correctamente";
     $icon = "success";
 } catch (Exception $e) {

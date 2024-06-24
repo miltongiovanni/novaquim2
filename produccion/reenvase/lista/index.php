@@ -7,41 +7,14 @@ include "../../../includes/valAcc.php";
     <title>Lista de Cambios de Producto</title>
     <meta charset="utf-8">
     <link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
-<script src="../../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../../../js/validar.js"></script>
     <link rel="stylesheet" href="../../../css/datatables.css">
-    <style>
-        #example {
-            table-layout: fixed;
-        }
-
-        .width1 {
-            width: 5%;
-        }
-
-        .width2 {
-            width: 15%;
-        }
-
-        .width3 {
-            width: 15%;
-        }
-
-        .width4 {
-            width: 35%;
-        }
-        .width4 {
-            width: 30%;
-        }
-
-    </style>
     <script src="../../../js/jquery-3.3.1.min.js"></script>
     <script src="../../../js/datatables.js"></script>
 
 
     <script>
-
-
         /* Formatting function for row details - modify as you need */
         function format(d) {
             // `d` is the original data object for the row
@@ -76,7 +49,6 @@ include "../../../includes/valAcc.php";
                     '</tr>'
             }
             rep += '</table>';
-
             return rep;
         }
 
@@ -84,26 +56,31 @@ include "../../../includes/valAcc.php";
             var table = $('#example').DataTable({
                 "columns": [
                     {
-                        "className": 'details-control',
+                        "className": 'dt-control',
                         "orderable": false,
                         "data": null,
-                        "defaultContent": ''
+                        "defaultContent": '',
+                        width: '5%'
                     },
                     {
                         "data": "idCambio",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-center',
+                        width: '15%'
                     },
                     {
                         "data": "fechaCambio",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-center',
+                        width: '20%'
                     },
                     {
                         "data": "nomPersonal",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-left',
+                        width: '30%'
                     },
                     {
                         "data": "motivo_cambio",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-left',
+                        width: '30%'
                     },
                 ],
                 "order": [[1, 'desc']],
@@ -134,18 +111,15 @@ include "../../../includes/valAcc.php";
                 "deferRender": true,  //For speed
             });
             // Add event listener for opening and closing details
-            $('#example tbody').on('click', 'td.details-control', function () {
-                var tr = $(this).closest('tr');
+            table.on('click', 'td.dt-control', function (e) {
+                var tr = e.target.closest('tr');
                 var row = table.row(tr);
-
                 if (row.child.isShown()) {
                     // This row is already open - close it
                     row.child.hide();
-                    tr.removeClass('shown');
                 } else {
                     // Open this row
                     row.child(format(row.data())).show();
-                    tr.addClass('shown');
                 }
             });
         });
@@ -162,14 +136,14 @@ include "../../../includes/valAcc.php";
         </div>
     </div>
     <div class="tabla-50">
-        <table id="example" class="formatoDatos table table-sm table-striped formatoDatos">
+        <table id="example" class="formatoDatos5 table table-sm table-striped">
             <thead>
             <tr>
-                <th class="width1 text-center"></th>
-                <th class="width2 text-center">Cambio</th>
-                <th class="width3 text-center">Fecha cambio</th>
-                <th class="width4 text-center">Responsable</th>
-                <th class="width5 text-center">Motivo Cambio</th>
+                <th class="text-center"></th>
+                <th class="text-center">Cambio</th>
+                <th class="text-center">Fecha cambio</th>
+                <th class="text-center">Responsable</th>
+                <th class="text-center">Motivo Cambio</th>
             </tr>
             </thead>
         </table>

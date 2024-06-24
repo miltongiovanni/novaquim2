@@ -20,28 +20,32 @@ spl_autoload_register('cargarClases');
 <div id="contenedor" class="container-fluid">
     <div id="saludo">
         <img src="../../../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>CAMBIO DE PRESENTACIÓN DE PRODUCTO</h4></div>
-    <form method="post" action="../../makeCambio.php" name="form1">
+    <form method="post" action="makeCambio.php" name="form1">
         <div class="mb-3 row">
-            <label class="form-label col-2 text-end" for="fechaCambio"><strong>Fecha del cambio</strong></label>
-            <input type="date" class="form-control col-2" name="fechaCambio" id="fechaCambio" required>
+            <div class="col-2">
+                <label class="form-label" for="fechaCambio"><strong>Fecha del cambio</strong></label>
+                <input type="date" class="form-control" name="fechaCambio" id="fechaCambio" required>
+            </div>
+            <div class="col-2">
+                <label class="form-label " for="codPersonal"><strong>Responsable</strong></label>
+                <?php
+                $PersonalOperador = new PersonalOperaciones();
+                $personal = $PersonalOperador->getPersonalProd();
+                echo '<select name="codPersonal" id="codPersonal" class="form-select"  required>';
+                echo '<option selected disabled value="">-----------------------------</option>';
+                for ($i = 0; $i < count($personal); $i++) {
+                    echo '<option value="' . $personal[$i]["idPersonal"] . '">' . $personal[$i]['nomPersonal'] . '</option>';
+                }
+                echo '</select>';
+                ?>
+            </div>
+
         </div>
         <div class="mb-3 row">
-            <label class="form-label col-2" for="codPersonal"><strong>Responsable</strong></label>
-            <?php
-            $PersonalOperador = new PersonalOperaciones();
-            $personal = $PersonalOperador->getPersonalProd();
-            echo '<select name="codPersonal" id="codPersonal" class="form-select col-2"  required>';
-            echo '<option selected disabled value="">-----------------------------</option>';
-            for ($i = 0; $i < count($personal); $i++) {
-                echo '<option value="' . $personal[$i]["idPersonal"] . '">' . $personal[$i]['nomPersonal'] . '</option>';
-            }
-            echo '</select>';
-            ?>
-        </div>
-        <div class="mb-3 row">
-            <label class="form-label col-2 text-end"
-                   for=motivo_cambio><strong>Motivo cambio</strong></label>
-            <textarea class="form-control col-2" name="motivo_cambio" id="motivo_cambio" required></textarea>
+            <div class="col-4">
+                <label class="form-label" for=motivo_cambio><strong>Motivo cambio</strong></label>
+                <textarea class="form-control" name="motivo_cambio" id="motivo_cambio" required></textarea>
+            </div>
         </div>
         <div class="mb-3 row">
             <div class="col-1 text-center">

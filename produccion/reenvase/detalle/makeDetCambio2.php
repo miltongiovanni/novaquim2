@@ -23,63 +23,69 @@ foreach ($_POST as $nombre_campo => $valor) {
 <head>
     <title>Cambio de presentación de Producto</title>
     <meta charset="utf-8">
-    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="../js/validar.js"></script>
+    <link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script src="../../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../../../js/validar.js"></script>
 </head>
 <body>
 <?php
 $CambioOperador = new CambiosOperaciones();
 $DetCambioOperador = new DetCambiosOperaciones();
 $PresentacionOperador = new PresentacionesOperaciones();
-$presentacion = $PresentacionOperador->getPresentacion($codPresentacionAnt);
+$presentacion = $PresentacionOperador->getPresentacion($codPresentacionNvo);
 try {
     //SE ACTUALIZA EL INVENTARIO
     $InvProdTerminadoOperador = new InvProdTerminadosOperaciones();
-    $invProd = $InvProdTerminadoOperador->getInvByLoteAndProd($codPresentacionAnt, $loteProd);
-    $invProdNvo = $invProd - $cantPresentacionAnt;
-    $datos = array($invProdNvo, $codPresentacionAnt, $loteProd);
-    $InvProdTerminadoOperador->updateInvProdTerminado($datos);
+    $invProd = $InvProdTerminadoOperador->getInvByLoteAndProd($codPresentacionNvo, $loteProd);
+    if ($invProd !== false) {
+        $invProdNvo = $invProd + $cantPresentacionNvo;
+        $datos = array($invProdNvo, $codPresentacionNvo, $loteProd);
+        $InvProdTerminadoOperador->updateInvProdTerminado($datos);
+    } else {
+        $datos = array($codPresentacionNvo, $loteProd, $cantPresentacionNvo);
+        $InvProdTerminadoOperador->makeInvProdTerminado($datos);
+    }
+
+
     //SE GUARDA EL DETALLE DEL CAMBIO
-    $datos = array($idCambio, $codPresentacionAnt, $cantPresentacionAnt, $loteProd);
-    $DetCambioOperador->makeDetCambio($datos);
+    $datos = array($idCambio, $codPresentacionNvo, $cantPresentacionNvo, $loteProd);
+    $DetCambioOperador->makeDetCambio2($datos);
     //Envase
     $InvEnvaseOperador = new InvEnvasesOperaciones();
     $codEnvase = $presentacion['codEnvase'];
     $invEnvase = $InvEnvaseOperador->getInvEnvase($codEnvase);
-    $nvoInvEnvase = $invEnvase + $cantPresentacionAnt;
+    $nvoInvEnvase = $invEnvase - $cantPresentacionNvo;
     $datos = array($nvoInvEnvase, $codEnvase);
     $InvEnvaseOperador->updateInvEnvase($datos);
     //Tapa
     $InvTapaOperador = new InvTapasOperaciones();
     $codTapa = $presentacion['codTapa'];
     $invTapa = $InvTapaOperador->getInvTapas($codTapa);
-    $nvoInvTapa = $invTapa + $cantPresentacionAnt;
+    $nvoInvTapa = $invTapa - $cantPresentacionNvo;
     $datos = array($nvoInvTapa, $codTapa);
     $InvEnvaseOperador->updateInvEnvase($datos);
     //Etiqueta
     $InvEtiquetaOperador = new InvEtiquetasOperaciones();
     $codEtiq = $presentacion['codEtiq'];
     $invEtiq = $InvEtiquetaOperador->getInvEtiqueta($codEtiq);
-    $nvoInvEtiq = $invEtiq + $cantPresentacionAnt;
+    $nvoInvEtiq = $invEtiq - $cantPresentacionNvo;
     $datos = array($nvoInvEtiq, $codEtiq);
     $InvEtiquetaOperador->updateInvEtiqueta($datos);
     $_SESSION['idCambio'] = $idCambio;
-    $_SESSION['presOrigen'] = true;
-    $ruta = "det_cambio_pres.php";
-    $mensaje = "Presentación de origen seleccionada correctamente";
+    $_SESSION['presDestino'] = true;
+    $ruta = "../detalle/";
+    $mensaje = "Presentación de destino cambiada correctamente";
     $icon = "success";
 } catch (Exception $e) {
     //echo $e->getMessage();
     //Rollback the transaction.
     $_SESSION['idCambio'] = $idCambio;
-    $ruta = "det_cambio_pres.php";
-    $mensaje = "Error al seleccionar la presentación de origen";
+    $ruta = "../detalle/";
+    $mensaje = "Error al cambiar la presentación";
     $icon = "error";
 } finally {
     mover_pag($ruta, $mensaje, $icon);
 }
-
 ?>
 </body>
 </html>
