@@ -8,47 +8,8 @@ include "../../../includes/valAcc.php";
     <meta charset="utf-8">
     <link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="../../../css/datatables.css">
-    <style>
-        #example {
-            table-layout: fixed;
-        }
-
-        .width1 {
-            width: 2%;
-        }
-
-        .width2 {
-            width: 4%;
-        }
-
-        .width3 {
-            width: 25%;
-        }
-
-        .width4 {
-            width: 24%;
-        }
-
-        .width5 {
-            width: 12%;
-        }
-
-        .width6 {
-            width: 16%;
-        }
-
-        .width7 {
-            width: 9%;
-        }
-
-        .width8 {
-            width: 8%;
-        }
-    </style>
     <script src="../../../js/jquery-3.3.1.min.js"></script>
     <script src="../../../js/datatables.js"></script>
-
-
     <script>
 
 
@@ -79,39 +40,47 @@ include "../../../includes/valAcc.php";
             var table = $('#example').DataTable({
                 "columns": [
                     {
-                        "className": 'details-control',
+                        "className": 'dt-control',
                         "orderable": false,
                         "searchable": false,
                         "data": null,
-                        "defaultContent": ''
+                        "defaultContent": '',
+                        width: '2%'
                     },
                     {
                         "data": "lote",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-center',
+                        width: '4%'
                     },
                     {
                         "data": "nomProducto",
-                        "className": 'dt-body-left'
+                        "className": 'dt-body-left',
+                        width: '25%'
                     },
                     {
                         "data": "nomFormula",
-                        "className": 'dt-body-left'
+                        "className": 'dt-body-left',
+                        width: '24%'
                     },
                     {
                         "data": "fechProd",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-center',
+                        width: '12%'
                     },
                     {
                         "data": "nomPersonal",
-                        "className": 'dt-body-left'
+                        "className": 'dt-body-left',
+                        width: '16%'
                     },
                     {
                         "data": "cantidadKg",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-right pe-4',
+                        width: '9%'
                     },
                     {
                         "data": "descEstado",
-                        "className": 'dt-body-left'
+                        "className": 'dt-body-left',
+                        width: '8%'
                     },
                 ],
                 "order": [[1, 'desc']],
@@ -141,21 +110,18 @@ include "../../../includes/valAcc.php";
                 processing: true,
                 serverSide: true,
                 "ajax": "../ajax/listaEnvasado.php",
-                "deferRender": true,  //For speed
             });
             // Add event listener for opening and closing details
-            $('#example tbody').on('click', 'td.details-control', function () {
-                var tr = $(this).closest('tr');
+            table.on('click', 'td.dt-control', function (e) {
+                var tr = e.target.closest('tr');
                 var row = table.row(tr);
 
                 if (row.child.isShown()) {
                     // This row is already open - close it
                     row.child.hide();
-                    tr.removeClass('shown');
                 } else {
                     // Open this row
                     row.child(format(row.data())).show();
-                    tr.addClass('shown');
                 }
             });
         });
@@ -172,17 +138,17 @@ include "../../../includes/valAcc.php";
         </div>
     </div>
     <div class="tabla-90">
-        <table id="example" class="formatoDatos table table-sm table-striped formatoDatos">
+        <table id="example" class="formatoDatos5 table table-sm table-striped">
             <thead>
             <tr>
-                <th class="width1"></th>
-                <th class="width2 text-center">Lote</th>
-                <th class="width3 text-center">Producto</th>
-                <th class="width4 text-center">Fórmula</th>
-                <th class="width5 text-center">Fecha Producción</th>
-                <th class="width6 text-center">Responsable</th>
-                <th class="width7 text-center">Cantidad (Kg)</th>
-                <th class="width8 text-center">Estado</th>
+                <th ></th>
+                <th class="text-center">Lote</th>
+                <th class="text-center">Producto</th>
+                <th class="text-center">Fórmula</th>
+                <th class="text-center">Fecha Producción</th>
+                <th class="text-center">Responsable</th>
+                <th class="text-center">Cantidad (Kg)</th>
+                <th class="text-center">Estado</th>
             </tr>
             </thead>
         </table>

@@ -23,9 +23,9 @@ foreach ($_POST as $nombre_campo => $valor) {
 <head>
     <title>Envasado de productos por lote</title>
     <meta charset="utf-8">
-    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="../js/validar.js"></script>
+    <link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script src="../../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../../../js/validar.js"></script>
 </head>
 <body>
 <?php
@@ -41,7 +41,7 @@ try {
     if (($cantidadPendiente - $volumenEnvasado) < -($ordenProd['cantidadKg'] *  2 * 0.15 / ($ordenProd['densMin'] + $ordenProd['densMax']))) {
         $link->rollBack();
         $_SESSION['lote'] = $lote;
-        $ruta = "det_Envasado.php";
+        $ruta = "../detalle/";
         $mensaje = "No se puede envasar la presentación del producto, se necesita " . round($volumenEnvasado, 2) . " litros y sólo hay " . round($cantidadPendiente, 2) . " litros";
         $icon = "warning";
         mover_pag($ruta, $mensaje, $icon);
@@ -68,8 +68,8 @@ try {
         } else {
             $link->rollBack();
             $_SESSION['lote'] = $lote;
-            $ruta = "det_Envasado.php";
-            $mensaje = "No hay envase suficiente solo hay '.$invEnvase.' unidades";
+            $ruta = "../detalle/";
+            $mensaje = "No hay envase suficiente solo hay ".$invEnvase." unidades";
             $icon = "warning";
             mover_pag($ruta, $mensaje, $icon);
             exit;
@@ -87,8 +87,8 @@ try {
         } else {
             $link->rollBack();
             $_SESSION['lote'] = $lote;
-            $ruta = "det_Envasado.php";
-            $mensaje = "No hay tapas o válvulas suficientes, sólo hay '.$invTapa.' unidades";
+            $ruta = "../detalle/";
+            $mensaje = "No hay tapas o válvulas suficientes, sólo hay ".$invTapa." unidades";
             $icon = "warning";
             mover_pag($ruta, $mensaje, $icon);
             exit;
@@ -105,8 +105,8 @@ try {
         } else {
             $link->rollBack();
             $_SESSION['lote'] = $lote;
-            $ruta = "det_Envasado.php";
-            $mensaje = "No hay etiquetas suficientes, sólo hay '.$invEtiq.' unidades";
+            $ruta = "../detalle/";
+            $mensaje = "No hay etiquetas suficientes, sólo hay ".$invEtiq." unidades";
             $icon = "warning";
             mover_pag($ruta, $mensaje, $icon);
             exit;
@@ -114,7 +114,7 @@ try {
         /*Carga inventario producto terminado */
         $qry = "INSERT INTO inv_prod (codPresentacion, loteProd, invProd) VALUES($codPresentacion, $lote, $cantPresentacion)";
         $stmt = $link->prepare($qry);
-        $stmt->execute($datos);
+        $stmt->execute();
 
         ///Se deja el estado en 3 que es parcialmente envasado
         $datos = array(3, $lote);
@@ -123,7 +123,7 @@ try {
         $stmt->execute($datos);
         $link->commit();
         $_SESSION['lote'] = $lote;
-        $ruta = "det_Envasado.php";
+        $ruta = "../detalle/";
         $mensaje = "Envasado creado correctamente";
         $icon = "success";
     }
@@ -133,7 +133,7 @@ try {
     //Rollback the transaction.
     $link->rollBack();
     $_SESSION['lote'] = $lote;
-    $ruta = "det_Envasado.php";
+    $ruta = "../detalle/";
     $mensaje = "Error al envasar el producto";
     $icon = "error";
 } finally {

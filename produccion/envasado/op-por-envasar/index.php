@@ -77,7 +77,7 @@ include "../../../includes/valAcc.php";
                     },
                     {
                         "data": "cantidadKg",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-right pe-4'
                     },
                 ],
                 "order": [[0, 'desc']],
@@ -121,7 +121,7 @@ include "../../../includes/valAcc.php";
         </div>
     </div>
     <div class="tabla-80">
-        <table id="example" class="formatoDatos table table-sm table-striped formatoDatos">
+        <table id="example" class="formatoDatos5 table table-sm table-striped">
             <thead>
             <tr>
                 <th class="width2 text-center">Lote</th>
