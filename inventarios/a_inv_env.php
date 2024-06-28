@@ -50,7 +50,7 @@ spl_autoload_register('cargarClases');
             <label class="form-label col-2" for="codEnvase"><strong>Envase</strong></label>
             <select name="codEnvase" id="codEnvase" class="form-select col-3 formatoDatos"
                     onchange="getInvEnvase(this.value)" required>
-                <option selected disabled value="">-----------------------------</option>
+                <option selected disabled value="">Seleccione una opción--------------</option>
                 <?php
                 $envaseOperador = new EnvasesOperaciones();
                 $envases = $envaseOperador->getEnvases();

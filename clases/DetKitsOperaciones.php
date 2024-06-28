@@ -111,7 +111,7 @@ class DetKitsOperaciones
     {
         $qry = "SELECT idDistribucion codigo, producto
                 FROM distribucion d
-                LEFT JOIN det_kit dk on d.idDistribucion = dk.codProducto AND idKit=1
+                LEFT JOIN det_kit dk on d.idDistribucion = dk.codProducto AND idKit=?
                 WHERE d.activo = 1 AND dk.codProducto IS NULL ORDER BY producto";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute(array($idKit));

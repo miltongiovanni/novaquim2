@@ -168,7 +168,18 @@ $distribucionOperador = new ProductosDistribucionOperaciones();
                     "orderable": false,
                     "targets": 1
                 }],
-                "dom": 'Blfrtip',
+                pagingType: 'simple_numbers',
+                layout: {
+                    topStart: 'buttons',
+                    topStart1: 'search',
+                    topEnd: 'pageLength',
+                    bottomStart: 'info',
+                    bottomEnd: {
+                        paging: {
+                            numbers: 6
+                        }
+                    }
+                },
                 "buttons": [
                     'copyHtml5',
                     'excelHtml5'

@@ -24,7 +24,7 @@ spl_autoload_register('cargarClases');
         <div class="mb-3 row">
             <label class="form-label col-3 text-end" for="idDis"><strong>Envase:</strong></label>
             <select class="form-select col-3" name="idDis" id="idDis" required>
-                <option selected disabled value="">----------------------------</option>
+                <option selected disabled value="">Seleccione una opción-------------</option>
                 <?php
                 $relEnvDisOperador = new RelEnvDisOperaciones();
                 $productos = $relEnvDisOperador->getRelsEnvDis();

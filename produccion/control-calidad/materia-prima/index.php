@@ -27,7 +27,7 @@ $mprimas = $calMatPrimaOperador->getMPrimaXCalidad();
             <div class="col-4">
                 <label class="form-label" for="id"><strong>Materia Prima</strong></label>
                 <select name="id" id="id" class="form-select" required>
-                    <option selected disabled value="">-------------------------------------------------------------------------------------</option>
+                    <option selected disabled value="">Seleccione una opción----------------------------</option>
                     <?php
                     for ($i = 0; $i < count($mprimas); $i++) : ?>
                         <option value="<?= $mprimas[$i]["id"] ?>"><?= $mprimas[$i]["nomMPrima"].' - Lote:'.$mprimas[$i]["lote_mp"].' - Cantidad: '.$mprimas[$i]["cantidad"].' Kg' ?></option>

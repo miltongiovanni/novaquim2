@@ -27,7 +27,7 @@ spl_autoload_register('cargarClases');
             <div class="col-3">
                 <label class="form-label" for="idFormula"><strong>Fórmula</strong></label>
                 <select name="idFormula" id="idFormula" class="form-select" required>
-                    <option selected value="">-----------------------------</option>
+                    <option selected value="">Seleccione una opción--------------</option>
                     <?php
                     $manager = new FormulasOperaciones();
                     $formulas = $manager->getFormulas();

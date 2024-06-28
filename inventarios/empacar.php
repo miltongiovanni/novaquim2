@@ -25,7 +25,7 @@ spl_autoload_register('cargarClases');
             <label class="form-label col-3 text-end" for="codUnidad"><strong>Unidades de Producto sin
                     empacar:</strong></label>
             <select class="form-select col-3" name="codUnidad" id="codUnidad" required>
-                <option selected disabled value="">----------------------------</option>
+                <option selected disabled value="">Seleccione una opción-------------</option>
                 <?php
                 $invDistribucionOperador = new InvDistribucionOperaciones();
                 $unidades = $invDistribucionOperador->getProdPorEmpacar();

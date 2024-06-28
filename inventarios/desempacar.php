@@ -25,7 +25,7 @@ spl_autoload_register('cargarClases');
             <label class="form-label col-3 text-end" for="codPaca"><strong>Producto de Distribución
                     Empacado:</strong></label>
             <select class="form-select col-3" name="codPaca" id="codPaca" required>
-                <option selected disabled value="">----------------------------</option>
+                <option selected disabled value="">Seleccione una opción-------------</option>
                 <?php
                 $invDistribucionOperador = new InvDistribucionOperaciones();
                 $pacas = $invDistribucionOperador->getProdPorDesempacar();

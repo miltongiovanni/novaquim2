@@ -143,7 +143,18 @@ $gastos = $GastoOperador->getTotalesGastosPorFecha($fechaIni, $fechaFin);
                 ],
                 "order": [[4, 'asc']],
                 "deferRender": true,  //For speed
-                "dom": 'Blfrtip',
+                pagingType: 'simple_numbers',
+                layout: {
+                    topStart: 'buttons',
+                    topStart1: 'search',
+                    topEnd: 'pageLength',
+                    bottomStart: 'info',
+                    bottomEnd: {
+                        paging: {
+                            numbers: 6
+                        }
+                    }
+                },
                 "buttons": [
                     'copyHtml5',
                     'excelHtml5'

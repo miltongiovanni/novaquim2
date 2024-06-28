@@ -114,7 +114,7 @@ $porcentajeTotal = $DetFormulaColorOperador->getPorcentajeTotal($idFormulaColor)
             <div class="col-3">
                 <label class="form-label  text-center" for="codMPrima" ><strong>Materia Prima</strong></label>
                 <select name="codMPrima" id="codMPrima" class="form-select">
-                    <option disabled selected value="">-----------------------------</option>
+                    <option disabled selected value="">Seleccione una opción</option>
                     <?php
                     $mprimas = $DetFormulaColorOperador->getMPrimasFormula($idFormulaColor);
                     for ($i = 0; $i < count($mprimas); $i++) {

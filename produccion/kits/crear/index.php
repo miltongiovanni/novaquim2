@@ -23,7 +23,7 @@ spl_autoload_register('cargarClases');
         function seleccionarTipo(tipo) {
             //alert(idCatProd);
             $.ajax({
-                url: '../includes/controladorProduccion.php',
+                url: '../../../includes/controladorProduccion.php',
                 type: 'POST',
                 data: {
                     "action": 'selectionarTipoKit',
@@ -44,32 +44,37 @@ spl_autoload_register('cargarClases');
 <body>
 <div id="contenedor" class="container-fluid">
     <div id="saludo">
-        <img src="../../../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>SELECCIONE EL TIPO DE KIT A CREAR</h4></div>
-    <form name="form2" method="POST" action="../../make_kits.php">
+        <img src="../../../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25">
+        <h4>SELECCIONE EL TIPO DE KIT A CREAR</h4>
+    </div>
+    <form name="form2" method="POST" action="make_kits.php">
         <div class="mb-3 row">
-
-            <label class="form-label col-2" for="tipo"><strong>Tipo de kit</strong></label>
-            <select name="tipo" id="tipo" class="form-select col-2" onchange="seleccionarTipo(this.value);" required>
-                <option disabled selected value="">---------------</option>
-                <option value=1>Kit Novaquim</option>
-                <option value=2>Kit Distribución</option>
-            </select>
+            <div class="col-2">
+                <label class="form-label" for="tipo"><strong>Tipo de kit</strong></label>
+                <select name="tipo" id="tipo" class="form-select" onchange="seleccionarTipo(this.value);" required>
+                    <option disabled selected value="">Seleccione una opción</option>
+                    <option value=1>Kit Novaquim</option>
+                    <option value=2>Kit Distribución</option>
+                </select>
+            </div>
         </div>
         <div class="mb-3 row" id="tipoKit">
         </div>
         <div class="mb-3 row">
-            <label class="form-label col-2" for="codEnvase"><strong>Envase</strong></label>
-            <?php
-            $EnvasesOperador = new EnvasesOperaciones();
-            $envases = $EnvasesOperador->getEnvases();
-            $filas = count($envases);
-            echo '<select name="codEnvase" id="codEnvase" class="form-select col-2" required>';
-            echo '<option disabled selected value="">-----------------------------</option>';
-            for ($i = 0; $i < $filas; $i++) {
-                echo '<option value="' . $envases[$i]["codEnvase"] . '">' . $envases[$i]['nomEnvase'] . '</option>';
-            }
-            echo '</select>';
-            ?>
+            <div class="col-2">
+                <label class="form-label" for="codEnvase"><strong>Envase</strong></label>
+                <?php
+                $EnvasesOperador = new EnvasesOperaciones();
+                $envases = $EnvasesOperador->getEnvases();
+                $filas = count($envases);
+                echo '<select name="codEnvase" id="codEnvase" class="form-select" required>';
+                echo '<option disabled selected value="">Seleccione una opción</option>';
+                for ($i = 0; $i < $filas; $i++) {
+                    echo '<option value="' . $envases[$i]["codEnvase"] . '">' . $envases[$i]['nomEnvase'] . '</option>';
+                }
+                echo '</select>';
+                ?>
+            </div>
         </div>
         <div class="mb-3 row">
             <div class="col-1 text-center">

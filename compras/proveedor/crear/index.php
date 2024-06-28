@@ -103,7 +103,7 @@ spl_autoload_register('cargarClases');
                 $categorias = $manager->getCatsProv();
                 $filas = count($categorias);
                 echo '<select name="idCatProv" id="idCatProv" class="form-control "  required>';
-                echo '<option disabled selected value="">-----------------------------</option>';
+                echo '<option disabled selected value="">Seleccione una opción</option>';
                 for ($i = 0; $i < $filas; $i++) {
                     echo '<option value="' . $categorias[$i]["idCatProv"] . '">' . $categorias[$i]['desCatProv'] . '</option>';
                 }
@@ -113,7 +113,7 @@ spl_autoload_register('cargarClases');
             <div class="col-2">
                 <label class="form-label " for="regProv"><strong>Régimen Proveedor</strong></label>
                 <select name="regProv" id="regProv" class="form-control " required>
-                    <option disabled selected value="">------------------</option>
+                    <option disabled selected value="">Seleccione una opción---</option>
                     <option value="0">Simplificado</option>
                     <option value="1" selected>Común</option>
                     <option value="2" selected>Simple</option>
@@ -138,7 +138,7 @@ spl_autoload_register('cargarClases');
                 $categorias = $manager->getTasasReteIca();
                 $filas = count($categorias);
                 echo '<select name="idTasaIcaProv" id="idTasaIcaProv" class="form-control " required >';
-                echo '<option disabled selected value="">-----------------------------</option>';
+                echo '<option disabled selected value="">Seleccione una opción</option>';
                 for ($i = 0; $i < $filas; $i++) {
                     echo '<option value="' . $categorias[$i]["idTasaRetIca"] . '">' . $categorias[$i]['reteica'] . '</option>';
                 }
@@ -153,7 +153,7 @@ spl_autoload_register('cargarClases');
                 $categorias = $manager->getTasasRetefuente();
                 $filas = count($categorias);
                 echo '<select name="idRetefuente" id="idRetefuente" class="form-control "  required>';
-                echo '<option disabled selected value="">-----------------------------</option>';
+                echo '<option disabled selected value="">Seleccione una opción</option>';
                 for ($i = 0; $i < $filas; $i++) {
                     echo '<option value="' . $categorias[$i]["idTasaRetefuente"] . '">' . $categorias[$i]['retefuente'] . '</option>';
                 }

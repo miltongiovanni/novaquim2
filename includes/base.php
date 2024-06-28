@@ -16,7 +16,7 @@ function buscarCatProdForm($action)
     $categorias = $manager->getCatsProd();
     $filas = count($categorias);
     $rep .= '<select name="idCatProd" id="idCatProd" class="form-select " required>';
-    $rep .= '<option selected disabled value="">-----------------------------</option>';
+    $rep .= '<option selected disabled value="">Seleccione una opción</option>';
     for ($i = 0; $i < $filas; $i++) {
         $rep .= '<option value="' . $categorias[$i]["idCatProd"] . '">' . $categorias[$i]['catProd'] . '</option>';
     }
@@ -40,7 +40,7 @@ function buscarCatMPForm($action)
     $categorias = $manager->getCatsMP();
     $filas = count($categorias);
     $rep .= '<select name="idCatMP" id="idCatMP" class="form-select " required>';
-    $rep .= '<option selected disabled value="">-----------------------------</option>';
+    $rep .= '<option selected disabled value="">Seleccione una opción</option>';
     for ($i = 0; $i < $filas; $i++) {
         $rep .= '<option value="' . $categorias[$i]["idCatMP"] . '">' . $categorias[$i]['catMP'] . '</option>';
     }
@@ -64,7 +64,7 @@ function buscarCatDisForm($action)
     $categorias = $manager->getCatsDis();
     $filas = count($categorias);
     $rep .= '<select name="idCatDis" id="idCatDis" class="form-select " required>';
-    $rep .= '<option selected disabled value="">-----------------------------</option>';
+    $rep .= '<option selected disabled value="">Seleccione una opción</option>';
     for ($i = 0; $i < $filas; $i++) {
         $rep .= '<option value="' . $categorias[$i]["idCatDis"] . '">' . $categorias[$i]['catDis'] . '</option>';
     }
@@ -136,7 +136,7 @@ function buscarEtiquetaForm($action)
     $etiquetas = $EtiquetasOperador->getEtiquetas();
     $filas = count($etiquetas);
     $rep .= '<select name="codEtiqueta" id="codEtiqueta" class="form-control " required>';
-    $rep .= '<option selected disabled value="">-----------------------------</option>';
+    $rep .= '<option selected disabled value="">Seleccione una opción</option>';
     for ($i = 0; $i < $filas; $i++) {
         $rep .= '<option value="' . $etiquetas[$i]["codEtiqueta"] . '">' . $etiquetas[$i]['nomEtiqueta'] . '</option>';
     }
@@ -160,7 +160,7 @@ function buscarTapaForm($action)
     $tapas = $TapasOperador->getTapas();
     $filas = count($tapas);
     $rep .= '<select name="codTapa" id="codTapa" class="form-control " required>';
-    $rep .= '<option selected disabled value="">-----------------------------</option>';
+    $rep .= '<option selected disabled value="">Seleccione una opción</option>';
     for ($i = 0; $i < $filas; $i++) {
         $rep .= '<option value="' . $tapas[$i]["codTapa"] . '">' . $tapas[$i]['tapa'] . '</option>';
     }
@@ -184,7 +184,7 @@ function buscarEnvaseForm($action)
     $envases = $EnvasesOperador->getEnvases();
     $filas = count($envases);
     $rep .= '<select name="codEnvase" id="codEnvase" class="form-control " required>';
-    $rep .= '<option selected disabled value="">-----------------------------</option>';
+    $rep .= '<option selected disabled value="">Seleccione una opción</option>';
     for ($i = 0; $i < $filas; $i++) {
         $rep .= '<option value="' . $envases[$i]["codEnvase"] . '">' . $envases[$i]['nomEnvase'] . '</option>';
     }
@@ -208,7 +208,7 @@ function buscarPrecioForm($action, $actif)
     $precios = $PrecioOperador->getPrecios($actif);
     $filas = count($precios);
     $rep .= '<select name="codigoGen" id="codigoGen" class="form-control " required>';
-    $rep .= '<option selected disabled value="">-----------------------------</option>';
+    $rep .= '<option selected disabled value="">Seleccione una opción</option>';
     for ($i = 0; $i < $filas; $i++) {
         $rep .= '<option value="' . $precios[$i]["codigoGen"] . '">' . $precios[$i]['producto'] . '</option>';
     }
@@ -280,7 +280,7 @@ function buscarServicioForm($action, $actif)
     $servicios = $servicioperador->getServicios($actif);
     $filas = count($servicios);
     $rep .= '<select name="idServicio" id="idServicio" class="form-control " required>';
-    $rep .= '<option selected disabled value="">-----------------------------</option>';
+    $rep .= '<option selected disabled value="">Seleccione una opción</option>';
     for ($i = 0; $i < $filas; $i++) {
         $rep .= '<option value="' . $servicios[$i]["idServicio"] . '">' . $servicios[$i]['desServicio'] . '</option>';
     }
@@ -304,7 +304,7 @@ function buscarRelEnvDisForm($action)
     $relaciones = $relEnvDisOperador->getRelsEnvDis();
     $filas = count($relaciones);
     $rep .= '<select name="idEnvDis" id="idEnvDis" class="form-control " required>';
-    $rep .= '<option selected disabled value="">-----------------------------</option>';
+    $rep .= '<option selected disabled value="">Seleccione una opción</option>';
     for ($i = 0; $i < $filas; $i++) {
         $rep .= '<option value="' . $relaciones[$i]["idEnvDis"] . '">' . $relaciones[$i]['producto'] . '</option>';
     }
@@ -328,7 +328,7 @@ function buscarRelPacProdForm($action)
     $relaciones = $relDisEmpOperador->getRelsDisEmp();
     $filas = count($relaciones);
     $rep .= '<select name="idPacUn" id="idPacUn" class="form-control " required>';
-    $rep .= '<option selected disabled value="">-----------------------------</option>';
+    $rep .= '<option selected disabled value="">Seleccione una opción</option>';
     for ($i = 0; $i < $filas; $i++) {
         $rep .= '<option value="' . $relaciones[$i]["idPacUn"] . '">' . $relaciones[$i]['producto'] . '</option>';
     }
@@ -352,7 +352,7 @@ function buscarCatProvForm($action)
     $categorias = $manager->getCatsProv();
     $filas = count($categorias);
     $rep .= '<select name="idCatProv" id="idCatProv" class="form-control " required>';
-    $rep .= '<option selected disabled value="">-----------------------------</option>';
+    $rep .= '<option selected disabled value="">Seleccione una opción</option>';
     for ($i = 0; $i < $filas; $i++) {
         $rep .= '<option value="' . $categorias[$i]["idCatProv"] . '">' . $categorias[$i]['desCatProv'] . '</option>';
     }
@@ -375,7 +375,7 @@ function buscarCatCliForm($action)
     $categorias = $manager->getCatsCli();
     $filas = count($categorias);
     $rep .= '<select name="idCatClien" id="idCatClien" class="form-control " required>';
-    $rep .= '<option selected disabled value="">-----------------------------</option>';
+    $rep .= '<option selected disabled value="">Seleccione una opción</option>';
     for ($i = 0; $i < $filas; $i++) {
         $rep .= '<option value="' . $categorias[$i]["idCatClien"] . '">' . $categorias[$i]['desCatClien'] . '</option>';
     }

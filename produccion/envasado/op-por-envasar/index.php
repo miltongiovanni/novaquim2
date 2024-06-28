@@ -81,7 +81,18 @@ include "../../../includes/valAcc.php";
                     },
                 ],
                 "order": [[0, 'desc']],
-                "dom": 'Blfrtip',
+                pagingType: 'simple_numbers',
+                layout: {
+                    topStart: 'buttons',
+                    topStart1: 'search',
+                    topEnd: 'pageLength',
+                    bottomStart: 'info',
+                    bottomEnd: {
+                        paging: {
+                            numbers: 6
+                        }
+                    }
+                },
                 "paging": true,
                 "buttons": [
                     'copyHtml5',

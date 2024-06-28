@@ -24,7 +24,7 @@ spl_autoload_register('cargarClases');
         <div class="mb-3 row">
             <label class="form-label col-2" for="lote"><strong>Orden de pedido</strong></label>
             <select name="idPedido" id="idPedido" class="form-control col-6" required>
-                <option selected disabled value="">------------------------------------------------------------------------------------------------------------------------------------------------</option>
+                <option selected disabled value="">Seleccione una opción---</option>
                 <?php
                 $manager = new PedidosOperaciones();
                 $pedidos = $manager->getPedidosByEstado(2);

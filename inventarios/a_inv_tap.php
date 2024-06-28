@@ -50,7 +50,7 @@ spl_autoload_register('cargarClases');
             <label class="form-label col-2" for="codTapa"><strong>Tapa</strong></label>
             <select name="codTapa" id="codTapa" class="form-select col-3 formatoDatos"
                     onchange="getInvTapa(this.value)" required>
-                <option selected disabled value="">-----------------------------</option>
+                <option selected disabled value="">Seleccione una opción--------------</option>
                 <?php
                 $tapaOperador = new TapasOperaciones();
                 $tapas = $tapaOperador->getTapas();

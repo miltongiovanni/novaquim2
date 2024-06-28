@@ -27,7 +27,7 @@ spl_autoload_register('cargarClases');
             <div class="col-2">
                 <label class="form-label" for="idFormulaColor"><strong>Fórmula de color</strong></label>
                 <select name="idFormulaColor" id="idFormulaColor" class="form-select" required>
-                    <option selected value="">-----------------------------</option>
+                    <option selected value="">Seleccione una opción</option>
                     <?php
                     $manager = new FormulasColorOperaciones();
                     $formulas = $manager->getFormulasColor();

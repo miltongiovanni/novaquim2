@@ -8,39 +8,9 @@ include "../../../includes/valAcc.php";
     <meta charset="utf-8">
     <link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="../../../css/datatables.css">
-    <style>
-        table {
-            table-layout: fixed;
-        }
-
-        .width1 {
-            width: 5%;
-        }
-
-        .width2 {
-            width: 5%;
-        }
-
-        .width3 {
-            width: 20%;
-        }
-
-        .width4 {
-            width: 50%;
-        }
-
-        .width5 {
-            width: 20%;
-        }
-
-    </style>
     <script src="../../../js/jquery-3.3.1.min.js"></script>
     <script src="../../../js/datatables.js"></script>
-
-
     <script>
-
-
         /* Formatting function for row details - modify as you need */
         function format(d) {
             // `d` is the original data object for the row
@@ -65,30 +35,46 @@ include "../../../includes/valAcc.php";
             var table = $('#example').DataTable({
                 "columns": [
                     {
-                        "className": 'details-control',
+                        "className": 'dt-control',
                         "orderable": false,
                         "data": null,
-                        "defaultContent": ''
+                        "defaultContent": '',
+                        width: '5%'
                     },
                     {
                         "data": "idKit",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-center',
+                        width: '5%'
                     },
                     {
                         "data": "codigo",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-center',
+                        width: '20%'
                     },
                     {
                         "data": "producto",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-center',
+                        width: '50%'
                     },
                     {
                         "data": "nomEnvase",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-center',
+                        width: '20%'
                     },
                 ],
                 "order": [[1, 'asc']],
-                "dom": 'Blfrtip',
+                pagingType: 'simple_numbers',
+                layout: {
+                    topStart: 'buttons',
+                    topStart1: 'search',
+                    topEnd: 'pageLength',
+                    bottomStart: 'info',
+                    bottomEnd: {
+                        paging: {
+                            numbers: 6
+                        }
+                    }
+                },
                 "paging": true,
                 "buttons": [
                     'copyHtml5',
@@ -115,18 +101,16 @@ include "../../../includes/valAcc.php";
                 "deferRender": true,  //For speed
             });
             // Add event listener for opening and closing details
-            $('#example tbody').on('click', 'td.details-control', function () {
-                var tr = $(this).closest('tr');
+            table.on('click', 'td.dt-control', function (e) {
+                var tr = e.target.closest('tr');
                 var row = table.row(tr);
 
                 if (row.child.isShown()) {
                     // This row is already open - close it
                     row.child.hide();
-                    tr.removeClass('shown');
                 } else {
                     // Open this row
                     row.child(format(row.data())).show();
-                    tr.addClass('shown');
                 }
             });
         });
@@ -143,14 +127,14 @@ include "../../../includes/valAcc.php";
         </div>
     </div>
     <div class="tabla-50">
-        <table id="example" class="formatoDatos table table-sm table-striped formatoDatos">
+        <table id="example" class="formatoDatos5 table table-sm table-striped">
             <thead>
             <tr>
-                <th class="width1"></th>
-                <th class="width2 text-center">Id</th>
-                <th class="width3 text-center">Código</th>
-                <th class="width4 text-center">Producto</th>
-                <th class="width5 text-center">Envase</th>
+                <th class=""></th>
+                <th class="text-center">Id</th>
+                <th class="text-center">Código</th>
+                <th class="text-center">Producto</th>
+                <th class="text-center">Envase</th>
             </tr>
             </thead>
         </table>

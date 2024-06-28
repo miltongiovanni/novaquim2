@@ -149,7 +149,7 @@ $cantidadPendiente = $EnvasadoOperador->getCantidadPorEnvasar($lote);
             <div class="col-3">
                 <label class="form-label" for="codPresentacion"><strong>Presentación de Productos</strong></label>
                 <select name="codPresentacion" id="codPresentacion" class="form-select" required>
-                    <option selected disabled value="">------------------------------</option>
+                    <option selected disabled value="">Seleccione una opción-</option>
                     <?php
                     $presentaciones = $EnvasadoOperador->getPresentacionesPorEnvasar($lote);
                     for ($i = 0; $i < count($presentaciones); $i++) {

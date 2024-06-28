@@ -86,7 +86,18 @@ include "../../../includes/valAcc.php";
                     {type: 'chinese-string', targets: 1}
                 ],
                 "order": [[1, 'asc']],
-                "dom": 'Blfrtip',
+                pagingType: 'simple_numbers',
+                layout: {
+                    topStart: 'buttons',
+                    topStart1: 'search',
+                    topEnd: 'pageLength',
+                    bottomStart: 'info',
+                    bottomEnd: {
+                        paging: {
+                            numbers: 6
+                        }
+                    }
+                },
                 "paging": true,
                 "buttons": [
                     'copyHtml5',

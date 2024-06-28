@@ -24,7 +24,7 @@ spl_autoload_register('cargarClases');
         <div class="mb-3 row">
             <label class="form-label col-1" for="idPersonal"><strong>Vendedor</strong></label>
             <select id="idPersonal" name="idPersonal" class="form-select col-2" required>
-                <option selected disabled value="">-----------------------------</option>
+                <option selected disabled value="">Seleccione una opción</option>
                 <?php
                 $manager = new PersonalOperaciones();
                 $personal = $manager->getVendedores();

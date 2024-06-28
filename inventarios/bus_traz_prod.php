@@ -50,7 +50,7 @@ spl_autoload_register('cargarClases');
             <label class="form-label col-2" for="codPresentacion"><strong>Producto Terminado</strong></label>
             <select name="codPresentacion" id="codPresentacion" class="form-select col-3"
                     onchange="getLotesPresentacion(this.value)" required>
-                <option selected disabled value="">-----------------------------</option>
+                <option selected disabled value="">Seleccione una opción--------------</option>
                 <?php
                 $presentacionOperador = new PresentacionesOperaciones();
                 $presentaciones = $presentacionOperador->getPresentaciones(true);

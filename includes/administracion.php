@@ -16,7 +16,7 @@ $manager = new UsuariosOperaciones();
 $users=$manager->getUsers($actif);
 $filas=count($users);
 $rep .= '<select name="idUsuario" class="form-select " required>';
-$rep .= '<option selected disabled value="">-----------------------------</option>';
+$rep .= '<option selected disabled value="">Seleccione una opción</option>';
 for($i=0; $i<$filas; $i++)
     {                            
         $rep .= '<option value="'.$users[$i]["idUsuario"].'">'.$users[$i]['nombre'].'</option>';
@@ -40,7 +40,7 @@ function buscarPersonalForm($action, $actif){
     $personal=$manager->getPersonal($actif);
     $filas=count($personal);
     $rep .= '<select name="idPersonal" class="form-select " required>';
-    $rep .= '<option selected disabled value="">-----------------------------</option>';
+    $rep .= '<option selected disabled value="">Seleccione una opción</option>';
     for($i=0; $i<$filas; $i++)
         {                            
             $rep .= '<option value="'.$personal[$i]["idPersonal"].'">'.$personal[$i]['nomPersonal'].'</option>';

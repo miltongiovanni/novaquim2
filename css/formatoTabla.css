@@ -123,7 +123,7 @@ font {
     color: #000066;
     font-style: normal;
     font-weight: normal;
-    font-size: small;
+    font-size: 0.8vw;
 }
 
 form {
@@ -172,25 +172,25 @@ form {
 .formatoEncabezados {
     font-weight: 600;
     text-align: center;
-    font-size: 0.9em;
+    font-size: 0.9vw;
     background-color: #FFFFFF;
     color: #000066;
 }
 
 .formatoDatos {
-    font-size: 1em;
+    font-size: 1vw;
     color: #000066 !important;
 }
 
 .formatoDatos5 .form-select {
-    font-size: 0.8em !important;
+    font-size: 0.8vw !important;
 }
 .formatoDatos5 .form-control {
-    font-size: 0.8em !important;
+    font-size: 0.8vw !important;
 }
 
 .formatoDatos5 {
-    font-size: 0.8em !important;
+    font-size: 0.8vw !important;
     color: #000066 !important;
 }
 
@@ -220,7 +220,7 @@ form {
 }
 
 .formatoBoton1 {
-    font-size: 0.8em;
+    font-size: 0.8vw;
     background-color: #000066;
     border-width: thin;
     border-style: none;
@@ -234,7 +234,7 @@ form {
 }
 
 .formatoBoton1:hover {
-    font-size: 0.8em;
+    font-size: 0.8vw;
     background-color: #000066;
     border-width: thin;
     border-style: none;
@@ -257,22 +257,6 @@ img {
     height: auto;
 }
 
-legend {
-    display: block;
-    width: 100%;
-    max-width: 100%;
-    padding: 0;
-    margin-bottom: .5rem;
-    font-size: 1.5rem;
-    line-height: inherit;
-    color: inherit;
-    white-space: normal;
-}
-
-
-.label {
-    width: 10%;
-}
 
 .resaltado {
     font-size: 1.2vw;
@@ -497,7 +481,6 @@ textarea.form-control {
 }
 
 .titulo {
-    font-size: large;
     font-style: normal;
     line-height: normal;
     font-weight: bold;
@@ -508,7 +491,6 @@ textarea.form-control {
 }
 
 .titulo1 {
-    font-size: medium;
     font-style: normal;
     line-height: normal;
     font-variant: normal;
@@ -516,7 +498,6 @@ textarea.form-control {
 }
 
 .titulo2 {
-    font-size: medium;
     font-style: normal;
     line-height: normal;
     font-variant: normal;
@@ -524,7 +505,6 @@ textarea.form-control {
 }
 
 .titulo3 {
-    font-size: medium;
     font-style: normal;
     line-height: normal;
     font-variant: normal;
@@ -586,8 +566,8 @@ table.dataTable th.dt-type-date, table.dataTable td.dt-type-date {
     text-align: center !important;
 }
 
-div.dt-buttons {
-    margin-bottom: 12px;
+div.dt-buttons button {
+    font-size: 0.8vw !important;
 }
 
 .page-link.active, .active > .page-link {
@@ -599,4 +579,22 @@ div.dt-buttons {
 
 .page-link {
     color: #000066;
+}
+
+div.dt-container div.dt-length label {
+    font-size: 0.8vw;
+}
+
+div.dt-container div.dt-length select {
+    font-size: 0.8vw;
+}
+
+div.dt-container div.dt-info {
+    font-size: 0.8vw;
+}
+div.dt-container div.dt-paging ul.pagination li a {
+    font-size: 0.8vw;
+}
+div.dt-container div.dt-search {
+    font-size: 0.8vw;
 }

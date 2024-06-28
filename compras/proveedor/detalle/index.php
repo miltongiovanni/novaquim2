@@ -131,7 +131,7 @@ $proveedor = $ProveedorOperador->getProveedor($idProv);
                     if ($productos) {
                         $filas = count($productos);
                         echo '<select name="Codigo" id="Codigo" class="form-control "  required>';
-                        echo '<option disabled selected value="">----------------------------------</option>';
+                        echo '<option disabled selected value="">Seleccione una opción-----</option>';
                         for ($i = 0; $i < $filas; $i++) {
                             echo '<option value="' . $productos[$i]["Codigo"] . '">' . $productos[$i]['Producto'] . '</option>';
                         }

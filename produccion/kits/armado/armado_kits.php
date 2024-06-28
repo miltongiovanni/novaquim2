@@ -22,9 +22,9 @@ foreach ($_POST as $nombre_campo => $valor) {
 <head>
     <title>Armado de Kits</title>
     <meta charset="utf-8">
-    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="../js/validar.js"></script>
+    <link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script src="../../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../../../js/validar.js"></script>
 </head>
 <body>
 <?php
@@ -47,7 +47,7 @@ try {
         $stmt->execute();
     } else {
         $link->rollBack();
-        $ruta = "arm_kits.php";
+        $ruta = "../armado/";
         $nomEnvase = $EnvaseOperador->getNomEnvase($codEnvase);
         $mensaje = "No hay inventario suficiente de " . $nomEnvase . " solo hay " . round($invEnvase, 0) . " unidades";
         $icon = "warning";
@@ -87,7 +87,7 @@ try {
                 }
             } else {
                 $link->rollBack();
-                $ruta = "arm_kits.php";
+                $ruta = "../armado/";
                 $nomProductoTerminado = $PresentacionOperador->getNamePresentacion($codProducto);
                 $mensaje = "No hay inventario suficiente de " . $nomProductoTerminado . " solo hay " . round($invProdTerminado, 0) . " unidades";
                 $icon = "warning";
@@ -107,7 +107,7 @@ try {
                 $stmt->execute();
             } else {
                 $link->rollBack();
-                $ruta = "arm_kits.php";
+                $ruta = "../armado/";
                 $nomProdDistribucion = $ProdDistribucionOperador->getNomProductoDistribucion($codProducto);
                 $mensaje = "No hay inventario suficiente de " . $nomProdDistribucion . " solo hay " . round($invDist, 0) . " unidades";
                 $icon = "warning";
@@ -134,7 +134,7 @@ try {
         //PRODUCTOS DE DISTRIBUCION
         $InvDistribucionOperador = new InvDistribucionOperaciones();
         $invDist = $InvDistribucionOperador->getInvDistribucion($codigo);
-        if ($invDist) {
+        if ($invDist >= 0) {
             $invDist = $invDist + $cantArmado;
             $qryupt = "UPDATE inv_distribucion SET invDistribucion=$invDist WHERE codDistribucion=$codigo";
             $stmt = $link->prepare($qryupt);
@@ -151,14 +151,14 @@ try {
     $stmt->execute();
     //SE REALIZA EL COMMIT
     $link->commit();
-    $ruta = "listar_arm_kits.php";
+    $ruta = "../lista-armados/";
     $mensaje = "Kit Creados y Cargados con Éxito";
     $icon = "success";
 } catch (Exception $e) {
     //echo $e->getMessage();
     //Rollback the transaction.
     $link->rollBack();
-    $ruta = "arm_kits.php";
+    $ruta = "../armado/";
     $mensaje = "Error al armar los kits";
     $icon = "error";
 } finally {

@@ -57,7 +57,18 @@ include "../../../includes/valAcc.php";
                     }
                 ],
                 "order": [[1, 'asc']],
-                "dom": 'Blfrtip',
+                pagingType: 'simple_numbers',
+                layout: {
+                    topStart: 'buttons',
+                    topStart1: 'search',
+                    topEnd: 'pageLength',
+                    bottomStart: 'info',
+                    bottomEnd: {
+                        paging: {
+                            numbers: 6
+                        }
+                    }
+                },
                 "buttons": [
                     'copyHtml5',
                     'excelHtml5'

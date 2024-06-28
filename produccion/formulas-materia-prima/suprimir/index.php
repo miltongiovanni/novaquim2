@@ -25,7 +25,7 @@ spl_autoload_register('cargarClases');
             <div class="col-3">
                 <label class="form-label" for="idFormulaMPrima"><strong>Fórmula de materia prima</strong></label>
                 <select name="idFormulaMPrima" id="idFormulaMPrima" class="form-select" required>
-                    <option selected disabled value="">-----------------------------</option>
+                    <option selected disabled value="">Seleccione una opción--------------</option>
                     <?php
                     $FormulaMPrimaOperador = new FormulasMPrimaOperaciones();
                     $formulas = $FormulaMPrimaOperador->getFormulasMPrimaEliminar();

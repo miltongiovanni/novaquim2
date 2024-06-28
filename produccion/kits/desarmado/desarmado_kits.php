@@ -21,9 +21,9 @@ foreach ($_POST as $nombre_campo => $valor) {
 <head>
     <title>Desarmado de Kits</title>
     <meta charset="utf-8">
-    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="../js/validar.js"></script>
+    <link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script src="../../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../../../js/validar.js"></script>
 </head>
 <body>
 <?php
@@ -52,7 +52,7 @@ try {
     }
     if ($inv_bus < $cantDesarmado) {
         $link->rollBack();
-        $ruta = "desarm_kits.php";
+        $ruta = "../desarmado/";
         $mensaje = "No hay inventario suficiente de " . $nomProd . " solo hay " . round($inv_bus, 0) . " unidades";
         $icon = "warning";
         mover_pag($ruta, $mensaje, $icon);
@@ -83,7 +83,7 @@ try {
             }
         } else {
             //SI EL KIT ES PRODUCTO DE DISTRIBUCION
-            $invDist = $InvDistribucionOperador->getInvDistribucion($codProducto);
+            $invDist = $InvDistribucionOperador->getInvDistribucion($codigo);
             $invDist = $invDist - $cantDesarmado;
             $qryupt = "UPDATE inv_distribucion SET invDistribucion=$invDist WHERE codDistribucion=$codigo";
             $stmt = $link->prepare($qryupt);
@@ -130,14 +130,14 @@ try {
     $stmt->execute();
 //SE REALIZA EL COMMIT
     $link->commit();
-    $ruta = "listar_desarm_kits.php";
+    $ruta = "../lista-desarmados/";
     $mensaje = "Kit desarmados con éxito";
     $icon = "success";
 } catch (Exception $e) {
     //echo $e->getMessage();
     //Rollback the transaction.
     $link->rollBack();
-    $ruta = "desarm_kits.php";
+    $ruta = "../desarmado/";
     $mensaje = "Error al desarmar los kits";
     $icon = "error";
 } finally {

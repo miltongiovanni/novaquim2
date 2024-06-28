@@ -40,7 +40,7 @@ foreach ($_POST as $nombre_campo => $valor) {
                 $formulas = $FormulaMPrimaOperador->getFormulasMPrima();
                 $filas = count($formulas);
                 echo '<select name="idFormulaMPrima" id="idFormulaMPrima" class="form-select" required>';
-                echo '<option selected disabled value="">-----------------------------</option>';
+                echo '<option selected disabled value="">Seleccione una opción</option>';
                 for ($i = 0; $i < $filas; $i++) {
                     echo '<option value="' . $formulas[$i]["idFormulaMPrima"] . '">' . $formulas[$i]['nomMPrima'] . '</option>';
                 }
@@ -57,7 +57,7 @@ foreach ($_POST as $nombre_campo => $valor) {
                 $PersonalOperador = new PersonalOperaciones();
                 $personal = $PersonalOperador->getPersonalProd();
                 echo '<select name="codPersonal" id="codPersonal" class="form-select"  required>';
-                echo '<option selected disabled value="">-----------------------------</option>';
+                echo '<option selected disabled value="">Seleccione una opción--------------</option>';
                 for ($i = 0; $i < count($personal); $i++) {
                     echo '<option value="' . $personal[$i]["idPersonal"] . '">' . $personal[$i]['nomPersonal'] . '</option>';
                 }

@@ -50,7 +50,7 @@ spl_autoload_register('cargarClases');
                 $productos = $ProductoOperador->getProductos(true);
                 $filas = count($productos);
                 echo '<select name="codProducto" id="codProducto" class="form-select" onchange="findFormula(this.value);" required>';
-                echo '<option selected disabled value="">-----------------------------</option>';
+                echo '<option selected disabled value="">Seleccione una opción</option>';
                 for ($i = 0; $i < $filas; $i++) {
                     echo '<option value="' . $productos[$i]["codProducto"] . '">' . $productos[$i]['nomProducto'] . '</option>';
                 }
@@ -74,7 +74,7 @@ spl_autoload_register('cargarClases');
                 $PersonalOperador = new PersonalOperaciones();
                 $personal = $PersonalOperador->getPersonalProd();
                 echo '<select name="codResponsable" id="codResponsable" class="form-select col-2" required>';
-                echo '<option selected disabled value="">-----------------------------</option>';
+                echo '<option selected disabled value="">Seleccione una opción</option>';
                 for ($i = 0; $i < count($personal); $i++) {
                     echo '<option value="' . $personal[$i]["idPersonal"] . '">' . $personal[$i]['nomPersonal'] . '</option>';
                 }

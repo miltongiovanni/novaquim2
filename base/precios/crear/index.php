@@ -56,7 +56,7 @@ spl_autoload_register('cargarClases');
                 $productos = $ProductoOperador->getProductos(true);
                 $filas = count($productos);
                 echo '<select name="codProducto" class="form-select" onchange="idProducto(this.value);" required>';
-                echo '<option selected disabled value="">-----------------------------</option>';
+                echo '<option selected disabled value="">Seleccione una opción</option>';
                 for ($i = 0; $i < $filas; $i++) {
                     echo '<option value="' . $productos[$i]["codProducto"] . '">' . $productos[$i]['nomProducto'] . '</option>';
                 }
@@ -72,7 +72,7 @@ spl_autoload_register('cargarClases');
                 $medidas = $MedidaOperador->getMedidas();
                 $filas = count($medidas);
                 echo '<select name="medida" class="form-select" required>';
-                echo '<option selected disabled value="">-----------------------------</option>';
+                echo '<option selected disabled value="">Seleccione una opción</option>';
                 for ($i = 0; $i < $filas; $i++) {
                     echo '<option value="' . $medidas[$i]["idMedida"] . ',' . $medidas[$i]["desMedida"] . '">' . $medidas[$i]['desMedida'] . '</option>';
                 }

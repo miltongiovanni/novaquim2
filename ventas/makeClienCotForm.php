@@ -80,7 +80,7 @@ $cliExis = $_POST['cliExis'];
                 $categorias = $manager->getCatsCli();
                 $filas = count($categorias);
                 echo '<select name="idCatCliente" id="idCatCliente" class="form-select col-3 ms-2" required>';
-                echo '<option disabled selected value="">-----------------------------</option>';
+                echo '<option disabled selected value="">Seleccione una opción</option>';
                 for ($i = 0; $i < $filas; $i++) {
                     echo '<option value="' . $categorias[$i]["idCatClien"] . '">' . $categorias[$i]['desCatClien'] . '</option>';
                 }
@@ -104,7 +104,7 @@ $cliExis = $_POST['cliExis'];
                 $PersonalOperador = new PersonalOperaciones();
                 $personal = $PersonalOperador->getPersonal(true);
                 echo '<select name="codVendedor" id="codVendedor" class="form-select col-2 ms-2" required >';
-                echo '<option selected disabled value="">-----------------------------</option>';
+                echo '<option selected disabled value="">Seleccione una opción</option>';
                 for ($i = 0; $i < count($personal); $i++) {
                     echo '<option value="' . $personal[$i]["idPersonal"] . '">' . $personal[$i]['nomPersonal'] . '</option>';
                 }

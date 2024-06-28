@@ -21,9 +21,9 @@ foreach ($_POST as $nombre_campo => $valor) {
 <head>
     <title>Detalle de Kit</title>
     <meta charset="utf-8">
-    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="../js/validar.js"></script>
+    <link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script src="../../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../../../js/validar.js"></script>
 </head>
 <body>
 <?php
@@ -32,7 +32,7 @@ $DetKitOperador = new DetKitsOperaciones();
 try {
     $DetKitOperador->makeDetKit($datos);
     $_SESSION['idKit'] = $idKit;
-    $ruta = "det_kits.php";
+    $ruta = "../detalle/";
     $mensaje = "Detalle de Kit agregado correctamente";
     $icon = "success";
 } catch (Exception $e) {

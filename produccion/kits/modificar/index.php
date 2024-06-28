@@ -19,20 +19,24 @@ spl_autoload_register('cargarClases');
 <body>
 <div id="contenedor" class="container-fluid">
     <div id="saludo">
-        <img src="../../../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><strong>ORGANIZACIÓN DE KITS DE PRODUCTOS</strong></div>
-    <form name="form2" method="POST" action="../../det_kits.php">
+        <img src="../../../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>ORGANIZACIÓN DE KITS DE PRODUCTOS</h4>
+    </div>
+    <form name="form2" method="POST" action="../detalle/">
         <div class="mb-3 row">
-            <label class="form-label col-1" for="codEnvase"><strong>Kit</strong></label>
-            <?php
-            $KitOperador = new KitsOperaciones();
-            $kits = $KitOperador->getTableKits();
-            echo '<select name="idKit" id="idKit" class="form-select col-2" required>';
-            echo '<option disabled selected value="">-----------------------------</option>';
-            for ($i = 0; $i < count($kits); $i++) {
-                echo '<option value="' . $kits[$i]["idKit"] . '">' . $kits[$i]['producto'] . '</option>';
-            }
-            echo '</select>';
-            ?>
+            <div class="col-4">
+                <label class="form-label" for="codEnvase"><strong>Kit</strong></label>
+                <?php
+                $KitOperador = new KitsOperaciones();
+                $kits = $KitOperador->getTableKits();
+                echo '<select name="idKit" id="idKit" class="form-select" required>';
+                echo '<option disabled selected value="">Seleccione una opción</option>';
+                for ($i = 0; $i < count($kits); $i++) {
+                    echo '<option value="' . $kits[$i]["idKit"] . '">' . $kits[$i]['producto'] . '</option>';
+                }
+                echo '</select>';
+                ?>
+            </div>
+
         </div>
         <div class="mb-3 row">
             <div class="col-1 text-center">

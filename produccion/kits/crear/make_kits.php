@@ -19,11 +19,11 @@ foreach ($_POST as $nombre_campo => $valor) {
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-    <title>Creaci�n de Kits de Productos de Distribuci�n</title>
+    <link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <title>Creación de Kits de Productos de Distribución</title>
     <meta charset="utf-8">
-    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="../js/validar.js"></script>
+    <script src="../../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../../../js/validar.js"></script>
 </head>
 <body>
 <?php
@@ -32,7 +32,7 @@ $KitOperador = new KitsOperaciones();
 try {
     $idKit = $KitOperador->makeKit($datos);
     $_SESSION['idKit'] = $idKit;
-    $ruta = "det_kits.php";
+    $ruta = "../detalle/";
     $mensaje = "Kit creado correctamente";
     $icon = "success";
 } catch (Exception $e) {

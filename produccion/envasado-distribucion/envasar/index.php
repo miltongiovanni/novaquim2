@@ -25,7 +25,7 @@ spl_autoload_register('cargarClases');
         <div class="mb-3 row">
             <label class="form-label col-2" for="codDist"><strong>Producto de Distribución</strong></label>
             <select name="codDist" id="codDist" class="form-select col-2" required>
-                <option selected disabled value="">-----------------------------</option>
+                <option selected disabled value="">Seleccione una opción--------------</option>
                 <?php
                 $RelDisMPrimaOperador = new RelDisMPrimaOperaciones();
                 $productos = $RelDisMPrimaOperador->getRelsDisMPrima();

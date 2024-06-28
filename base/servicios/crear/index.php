@@ -42,7 +42,7 @@ $lastservicio++;
                 $tasas = $manager->getTasasIva();
                 $filas = count($tasas);
                 echo '<select name="codIva" id="codIva" class="form-select " required>';
-                echo '<option selected disabled value="">--------------</option>';
+                echo '<option selected disabled value=""></option>';
                 for ($i = 0; $i < $filas; $i++) {
                     echo '<option value="' . $tasas[$i]["idTasaIva"] . '">' . $tasas[$i]['iva'] . '</option>';
                 }

@@ -143,7 +143,7 @@ $cambio = $cambioOperador->getCambio($idCambio);
                 <div class="col-4">
                     <label class="form-label" for="codPresentacionAnt"><strong>Presentación</strong></label>
                     <select name="codPresentacionAnt" id="codPresentacionAnt" class="form-select" onchange="findLotePresentacion(this.value);" required>
-                        <option selected disabled value="">------------------------------</option>
+                        <option selected disabled value="">Seleccione una opción-</option>
                         <?php
                         $InvProdTerminadoOperador = new InvProdTerminadosOperaciones();
                         $presentaciones = $InvProdTerminadoOperador->getProdInv();
@@ -209,7 +209,7 @@ $cambio = $cambioOperador->getCambio($idCambio);
                 <div class="col-3">
                     <label class="form-label" for="codPresentacionNvo"><strong>Presentación</strong></label>
                     <select name="codPresentacionNvo" id="codPresentacionNvo" class="form-select" required>
-                        <option selected disabled value="">------------------------------</option>
+                        <option selected disabled value="">Seleccione una opción-</option>
                         <?php
                         $presentaciones = $DetCambioOperador->getPresentacionesByCod($detCambio['codPresentacionAnt'], $idCambio, $volCambiar);
                         for ($i = 0; $i < count($presentaciones); $i++) {

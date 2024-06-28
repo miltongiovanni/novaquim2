@@ -21,29 +21,35 @@ spl_autoload_register('cargarClases');
 <div id="contenedor" class="container-fluid">
     <div id="saludo">
         <img src="../../../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>ARMADO DE KITS DE PRODUCTOS</h4></div>
-    <form name="form2" method="POST" action="../../armado_kits.php">
+    <form name="form2" method="POST" action="armado_kits.php">
         <div class="mb-3 row">
-            <label class="form-label col-1" for="codKit"><strong>Kit</strong></label>
-            <?php
-            $KitOperador = new KitsOperaciones();
-            $kits = $KitOperador->getKits();
-            $filas = count($kits);
-            echo '<select name="codKit" id="codKit" class="form-select col-2" required>';
-            echo '<option selected disabled value="">-----------------------------</option>';
-            for ($i = 0; $i < $filas; $i++) {
-                echo '<option value="' . $kits[$i]["idKit"] . '">' . $kits[$i]['producto'] . '</option>';
-            }
-            echo '</select>';
-            ?>
+            <div class="col-3">
+                <label class="form-label" for="codKit"><strong>Kit</strong></label>
+                <?php
+                $KitOperador = new KitsOperaciones();
+                $kits = $KitOperador->getKits();
+                $filas = count($kits);
+                echo '<select name="codKit" id="codKit" class="form-select" required>';
+                echo '<option selected disabled value="">Seleccione una opción</option>';
+                for ($i = 0; $i < $filas; $i++) {
+                    echo '<option value="' . $kits[$i]["idKit"] . '">' . $kits[$i]['producto'] . '</option>';
+                }
+                echo '</select>';
+                ?>
+            </div>
         </div>
         <div class="mb-3 row">
-            <label class="form-label col-1 text-end" for="cantArmado"><strong>Cantidad</strong></label>
-            <input type="text" class="form-control col-2" name="cantArmado" id="cantArmado"
-                   onkeydown="return aceptaNum(event)" required>
+            <div class="col-3">
+                <label class="form-label" for="cantArmado"><strong>Cantidad</strong></label>
+                <input type="text" class="form-control" name="cantArmado" id="cantArmado"
+                       onkeydown="return aceptaNum(event)" required>
+            </div>
         </div>
-        <div class="mb-3 row">
-            <label class="form-label col-1 text-end" for="fechArmado"><strong>Fecha</strong></label>
-            <input type="date" class="form-control col-2" name="fechArmado" id="fechArmado" required>
+        <div class="mb-4 row">
+            <div class="col-3">
+                <label class="form-label" for="fechArmado"><strong>Fecha</strong></label>
+                <input type="date" class="form-control" name="fechArmado" id="fechArmado" required>
+            </div>
         </div>
         <div class="mb-3 row">
             <div class="col-1 text-center">

@@ -40,7 +40,7 @@ function buscarMPrimaForm($action)
     $mprimas = $MPrimasOperador->getMPrimas();
     $filas = count($mprimas);
     $rep .= '<select name="codMPrima" id="codMPrima" class="form-select col-2">';
-    $rep .= '<option selected disabled value="">-----------------------------</option>';
+    $rep .= '<option selected disabled value="">Seleccione una opción</option>';
     for ($i = 0; $i < $filas; $i++) {
         $rep .= '<option value="' . $mprimas[$i]["codMPrima"] . '">' . $mprimas[$i]['nomMPrima'] . '</option>';
     }
@@ -64,7 +64,7 @@ function buscarProorForm($action, $actif)
     $proveedores = $ProveedorOperador->getProveedores($actif);
     $filas = count($proveedores);
     $rep .= '<select name="idProv"  id="idProv" class="form-select col-2">';
-    $rep .= '<option selected disabled value="">-----------------------------</option>';
+    $rep .= '<option selected disabled value="">Seleccione una opción</option>';
     for ($i = 0; $i < $filas; $i++) {
         $rep .= '<option value="' . $proveedores[$i]["idProv"] . '">' . $proveedores[$i]['nomProv'] . '</option>';
     }

@@ -55,7 +55,18 @@ include "../../../includes/valAcc.php";
                     },
                         {type: 'chinese-string', targets: 1}
                     ],
-                "dom": 'Blfrtip',
+                pagingType: 'simple_numbers',
+                layout: {
+                    topStart: 'buttons',
+                    topStart1: 'search',
+                    topEnd: 'pageLength',
+                    bottomStart: 'info',
+                    bottomEnd: {
+                        paging: {
+                            numbers: 6
+                        }
+                    }
+                },
                 "buttons": [
                     'excelHtml5',
                 ],
