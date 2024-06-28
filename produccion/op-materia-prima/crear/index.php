@@ -57,7 +57,7 @@ foreach ($_POST as $nombre_campo => $valor) {
                 $PersonalOperador = new PersonalOperaciones();
                 $personal = $PersonalOperador->getPersonalProd();
                 echo '<select name="codPersonal" id="codPersonal" class="form-select"  required>';
-                echo '<option selected disabled value="">Seleccione una opción--------------</option>';
+                echo '<option selected disabled value="">Seleccione una opción</option>';
                 for ($i = 0; $i < count($personal); $i++) {
                     echo '<option value="' . $personal[$i]["idPersonal"] . '">' . $personal[$i]['nomPersonal'] . '</option>';
                 }

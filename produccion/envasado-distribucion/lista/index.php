@@ -8,32 +8,6 @@ include "../../../includes/valAcc.php";
     <meta charset="utf-8">
     <link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="../../../css/datatables.css">
-    <style>
-        table {
-            table-layout: fixed;
-        }
-
-        .width1 {
-            width: 8%;
-        }
-
-        .width2 {
-            width: 8%;
-        }
-
-        .width3 {
-            width: 49%;
-        }
-
-        .width4 {
-            width: 15%;
-        }
-
-        .width5 {
-            width: 20%;
-        }
-
-    </style>
     <script src="../../../js/jquery-3.3.1.min.js"></script>
     <script src="../../../js/datatables.js"></script>
     
@@ -46,24 +20,28 @@ include "../../../includes/valAcc.php";
                         /*"className": 'details-control',*/
                         /*"orderable": false,*/
                         "data": "idEnvDist",
-                        /*"defaultContent": ''*/
+                        width: '10%'
                     },
                     {
                         "data": "codDist",
+                        width: '15%'
                     },
                     {
                         "data": "producto",
+                        width: '45%'
                     },
                     {
                         "data": "cantidad",
+                        width: '15%'
                     },
                     {
                         "data": "fechaEnvDist",
+                        width: '15%'
                     },
                 ],
                 "columnDefs":
                     [{
-                        "targets": [0, 1, 2, 3, 4],
+                        "targets": [0, 1, 3, 4],
                         "className": 'dt-body-center'
                     }
                     ],
@@ -118,14 +96,14 @@ include "../../../includes/valAcc.php";
         </div>
     </div>
     <div class="tabla-50">
-        <table id="example" class="formatoDatos table table-sm table-striped formatoDatos">
+        <table id="example" class="formatoDatos5 table table-sm table-striped">
             <thead>
             <tr>
-                <th class="width1">Id</th>
-                <th class="width2">Código</th>
-                <th class="width3">Producto</th>
-                <th class="width4">Cantidad</th>
-                <th class="width5">Fecha</th>
+                <th class="text-center">Id</th>
+                <th class="text-center">Código</th>
+                <th class="text-center">Producto</th>
+                <th class="text-center">Cantidad</th>
+                <th class="text-center">Fecha</th>
             </tr>
             </thead>
         </table>

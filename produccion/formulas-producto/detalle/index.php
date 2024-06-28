@@ -124,7 +124,7 @@ $porcentajeTotal = $DetFormulaOperador->getPorcentajeTotal($idFormula);
             <div class="col-3">
                 <label class="form-label" for="codMPrima"><strong>MateriaPrima</strong></label>
                 <select name="codMPrima" id="codMPrima" class="form-select col-3" style="margin: 0 5px 0 0;" required>
-                    <option disabled selected value="">Seleccione una opción--------------</option>
+                    <option disabled selected value="">Seleccione una opción</option>
                     <?php
                     $mprimas = $DetFormulaOperador->getMPrimasFormula($idFormula);
                     for ($i = 0; $i < count($mprimas); $i++) {

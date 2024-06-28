@@ -18,11 +18,11 @@ foreach ($_POST as $nombre_campo => $valor) {
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <meta charset="utf-8">
     <title>Seleccionar Producto a Envasar</title>
-    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="../js/validar.js"></script>
+    <script src="../../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../../../js/validar.js"></script>
 
 </head>
 <body>
@@ -66,7 +66,7 @@ try {
         $stmt->execute();
     } else {
         $link->rollBack();
-        $ruta = "env_dist.php";
+        $ruta = "../envasar/";
         $mensaje = "No hay envase suficiente solo hay '.$invEnvase.' unidades";
         $icon = "warning";
         mover_pag($ruta, $mensaje, $icon);
@@ -83,7 +83,7 @@ try {
         $stmt->execute();
     } else {
         $link->rollBack();
-        $ruta = "env_dist.php";
+        $ruta = "../envasar/";
         $mensaje = "No hay tapas o válvulas suficientes, sólo hay '.$invTapa.' unidades";
         $icon = "warning";
         mover_pag($ruta, $mensaje, $icon);
@@ -104,7 +104,7 @@ try {
         //SI NO HAY EXISTENCIAS DE MATERIA PRIMA SE CANCELA LA TRANSACCIÓN
         /* Rollback */
         $link->rollBack();
-        $ruta = "env_dist.php";
+        $ruta = "../envasar/";
         $materiaPrima = $MPrimaOperador->getNomMPrima($codMPrima);
         $mensaje = "No hay inventario suficiente de " . $materiaPrima . " hay " . round($invTotalMPrima, 2) . " Kg";
         $icon = "warning";
@@ -131,14 +131,14 @@ try {
         }
     }
     $link->commit();
-    $ruta = "../menu.php";
+    $ruta = "../../../menu.php";
     $mensaje = "Productos Cargados correctamente";
     $icon = "success";
 } catch (Exception $e) {
     //echo $e->getMessage();
     //Rollback the transaction.
     $link->rollBack();
-    $ruta = "env_dist.php";
+    $ruta = "../envasar/";
     $mensaje = "Error al empacar los productos de distribución";
     $icon = "error";
 } finally {

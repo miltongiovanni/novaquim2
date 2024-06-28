@@ -21,29 +21,31 @@ spl_autoload_register('cargarClases');
 <div id="contenedor" class="container-fluid">
     <div id="saludo">
         <img src="../../../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>ENVASADO DE PRODUCTOS DE DISTRIBUCIÓN</h4></div>
-    <form id="form1" name="form1" method="post" action="../../det_env_dist.php">
-        <div class="mb-3 row">
-            <label class="form-label col-2" for="codDist"><strong>Producto de Distribución</strong></label>
-            <select name="codDist" id="codDist" class="form-select col-2" required>
-                <option selected disabled value="">Seleccione una opción--------------</option>
-                <?php
-                $RelDisMPrimaOperador = new RelDisMPrimaOperaciones();
-                $productos = $RelDisMPrimaOperador->getRelsDisMPrima();
-                $filas = count($productos);
-                for ($i = 0; $i < $filas; $i++) {
-                    echo '<option value="' . $productos[$i]["codDist"] . '">' . $productos[$i]['producto'] . '</option>';
-                }
-                ?>
-            </select>
-        </div>
-        <div class="mb-3 row">
-            <label class="form-label col-2 text-end" for="fechaEnvDist"><strong>Fecha</strong></label>
-            <input type="date" class="form-control col-2" name="fechaEnvDist" id="fechaEnvDist" required>
-        </div>
-        <div class="mb-3 row">
-            <label class="form-label col-2 text-end" for="cantidad"><strong>Cantidad</strong></label>
-            <input type="text" class="form-control col-2" name="cantidad" id="cantidad"
-                   onkeydown="return aceptaNum(event)" required>
+    <form id="form1" name="form1" method="post" action="det_env_dist.php">
+        <div class="mb-4 row">
+            <div class="col-3">
+                <label class="form-label" for="codDist"><strong>Producto de Distribución</strong></label>
+                <select name="codDist" id="codDist" class="form-select" required>
+                    <option selected disabled value="">Seleccione una opción</option>
+                    <?php
+                    $RelDisMPrimaOperador = new RelDisMPrimaOperaciones();
+                    $productos = $RelDisMPrimaOperador->getRelsDisMPrima();
+                    $filas = count($productos);
+                    for ($i = 0; $i < $filas; $i++) {
+                        echo '<option value="' . $productos[$i]["codDist"] . '">' . $productos[$i]['producto'] . '</option>';
+                    }
+                    ?>
+                </select>
+            </div>
+            <div class="col-2">
+                <label class="form-label text-end" for="fechaEnvDist"><strong>Fecha</strong></label>
+                <input type="date" class="form-control" name="fechaEnvDist" id="fechaEnvDist" required>
+            </div>
+            <div class="col-2">
+                <label class="form-label text-end" for="cantidad"><strong>Cantidad</strong></label>
+                <input type="text" class="form-control" name="cantidad" id="cantidad"
+                       onkeydown="return aceptaNum(event)" required>
+            </div>
         </div>
         <div class="mb-3 row">
             <div class="col-1 text-center">

@@ -74,7 +74,7 @@ spl_autoload_register('cargarClases');
             <label class="form-label col-2" for="codMPrima"><strong>Materia prima</strong></label>
             <select name="codMPrima" id="codMPrima" class="form-select col-2" onchange="getLotesMPrima(this.value)"
                     required>
-                <option selected disabled value="">Seleccione una opción--------------</option>
+                <option selected disabled value="">Seleccione una opción</option>
                 <?php
                 $MPrimaOperador = new MPrimasOperaciones();
                 $mPrimas = $MPrimaOperador->getMPrimas();

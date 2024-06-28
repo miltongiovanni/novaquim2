@@ -18,11 +18,11 @@ foreach ($_POST as $nombre_campo => $valor) {
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <title>Creación de Relación de Materia Prima con Producto de Distribución</title>
     <meta charset="utf-8">
-    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="../js/validar.js"></script>
+    <script src="../../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../../../js/validar.js"></script>
 
 </head>
 <body>
@@ -31,11 +31,11 @@ $datos = array($codMPrimaDist, $codDist, $codMedida, $codEnvase, $codTapa);
 $RelDisMPrimaOperador = new RelDisMPrimaOperaciones();
 try {
     $RelDisMPrimaOperador->makeRelEnvDis($datos);
-    $ruta = "../menu.php";
+    $ruta = "../../../menu.php";
     $mensaje = "Relación creada correctamente";
     $icon = "success";
 } catch (Exception $e) {
-    $ruta = "rel_env_dist.php";
+    $ruta = "../relacion/";
     $mensaje = "Error al crear la relación Distribución - Materia prima";
     $icon = "error";
 } finally {

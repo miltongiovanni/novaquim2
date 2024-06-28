@@ -73,7 +73,7 @@ spl_autoload_register('cargarClases');
             <label class="form-label col-2" for="codPresentacion"><strong>Producto</strong></label>
             <select name="codPresentacion" id="codPresentacion" class="form-select col-3 formatoDatos"
                     onchange="getLotesPresentacion(this.value)" required>
-                <option selected disabled value="">Seleccione una opción--------------</option>
+                <option selected disabled value="">Seleccione una opción</option>
                 <?php
                 $PresentacionOperador = new PresentacionesOperaciones();
                 $presentaciones = $PresentacionOperador->getPresentaciones(true);

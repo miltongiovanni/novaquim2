@@ -28,7 +28,7 @@ spl_autoload_register('cargarClases');
                 $FormulaOperador = new FormulasOperaciones();
                 $formulas = $FormulaOperador->getFormulasEliminar();
                 echo '<select name="idFormula" id="idFormula" class="form-select" required>';
-                echo '<option selected disabled value="">Seleccione una opción--------------</option>';
+                echo '<option selected disabled value="">Seleccione una opción</option>';
                 for ($i = 0; $i < count($formulas); $i++) {
                     echo '<option value="' . $formulas[$i]["idFormula"] . '">' . $formulas[$i]['nomFormula'] . '</option>';
                 }
