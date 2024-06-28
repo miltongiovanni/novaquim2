@@ -13,20 +13,22 @@ spl_autoload_register('cargarClases');
     <title>Consulta de Uso de Materia Prima por Fecha</title>
     <meta charset="utf-8">
     <link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
-<script src="../../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../../../js/validar.js"></script>
 </head>
 <body>
 <div id="contenedor" class="container-fluid">
     <div id="saludo">
         <img src="../../../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>CONSULTA DE USO DE MATERIA PRIMA POR 12 MESES SEGÚN FECHA</h4></div>
-    <form method="post" action="../../listarMpAcumulada.php" name="form1">
+    <form method="post" action="listarMpAcumulada.php" name="form1">
         <div class="mb-3 row">
-            <label class="form-label col-2 text-end" for="fechRef"><strong>Fecha Referencia</strong></label>
-            <input type="date" class="form-control col-2" name="fechRef" id="fechRef" required>
+            <div class="col-2">
+                <label class="form-label" for="fechRef"><strong>Fecha Referencia</strong></label>
+                <input type="date" class="form-control" name="fechRef" id="fechRef" required>
+            </div>
         </div>
         <div class="mb-3 row">
-    <div class="col-1 text-center">
+            <div class="col-1 text-center">
                 <button class="button" type="reset"><span>Reiniciar</span></button>
             </div>
             <div class="col-1 text-center">
