@@ -243,7 +243,7 @@ switch ($tipoCompra) {
 <div id="contenedor" class="container-fluid">
     <div id="saludo1">
         <img src="../../../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>LISTADO DE COMPRAS<?= $titulo ?></h4></div>
-    <div class="row flex-end">
+    <div class="row justify-content-end">
         <div class="col-1">
             <button class="button" type="button" onclick="window.location='../../../menu.php'">
                 <span><STRONG>Ir al Menú</STRONG></span></button>

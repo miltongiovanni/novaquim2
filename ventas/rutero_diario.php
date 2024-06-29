@@ -89,7 +89,7 @@ if (!isset($fechaRutero)){
 <div id="contenedor" class="container-fluid">
     <div id="saludo1">
         <img src="../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>RUTERO No. <?=$idRutero ?> DEL <?=$fechaRutero ?> </h4></div>
-    <div class="row flex-end mb-3">
+    <div class="row justify-content-end mb-3">
         <div class="col-2">
             <form action="Imp_Rutero.php" method="post" target="_blank">
                 <input type="hidden" name="idRutero" value="<?=$idRutero?>">

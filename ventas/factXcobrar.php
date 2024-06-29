@@ -201,7 +201,7 @@ include "../../../includes/valAcc.php";
 <div id="contenedor" class="container-fluid">
     <div id="saludo1">
         <img src="../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>FACTURAS PENDIENTES DE COBRO POR INDUSTRIAS NOVAQUIM S.A.S.</h4></div>
-    <div class="row flex-end">
+    <div class="row justify-content-end">
         <div class="col-2">
             <form action="Imp_EstadoCobros.php" method="post" target="_blank">
                 <button class="button" type="submit">

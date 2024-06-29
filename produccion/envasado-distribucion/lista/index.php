@@ -89,7 +89,7 @@ include "../../../includes/valAcc.php";
 
     <div id="saludo1">
         <img src="../../../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>LISTA DE ENVASADO DE PRODUCTOS DE DISTRIBUCIÓN</h4></div>
-    <div class="row flex-end">
+    <div class="row justify-content-end">
         <div class="col-1">
             <button class="button" onclick="window.location='../../../menu.php'">
                 <span><STRONG>Ir al Menú</STRONG></span></button>

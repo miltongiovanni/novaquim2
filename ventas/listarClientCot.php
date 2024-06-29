@@ -129,7 +129,7 @@ include "../../../includes/valAcc.php";
 <div id="contenedor" class="container-fluid">
     <div id="saludo1">
         <img src="../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>LISTA DE CLIENTES DE COTIZACIÓN</h4></div>
-    <div class="row flex-end mb-3">
+    <div class="row justify-content-end mb-3">
         <div class="col-1">
             <button class="button" onclick="window.location='../menu.php'">
                 <span><STRONG>Ir al Menú</STRONG></span></button>

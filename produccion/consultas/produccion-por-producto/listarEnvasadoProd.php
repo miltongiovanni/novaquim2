@@ -20,7 +20,7 @@ $producto = $ProductoOperador->getNameProducto($codProducto);
     <link rel="stylesheet" href="../../../css/datatables.css">
     <script src="../../../js/jquery-3.3.1.min.js"></script>
     <script src="../../../js/datatables.js"></script>
-    <script src="../../../js/dataTables.buttons.js"></script>
+    
     <script>
 
         /* Formatting function for row details - modify as you need */
@@ -143,7 +143,7 @@ $producto = $ProductoOperador->getNameProducto($codProducto);
     <div id="saludo1">
         <img src="../../../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>LISTADO DE ENVASADO DE <?= strtoupper($producto); ?> POR ORDEN DE PRODUCCIÓN</h4>
     </div>
-    <div class="row flex-end">
+    <div class="row justify-content-end">
         <div class="col-1">
             <button class="button" onclick="window.location='../../../menu.php'">
                 <span><STRONG>Ir al Menú</STRONG></span></button>
