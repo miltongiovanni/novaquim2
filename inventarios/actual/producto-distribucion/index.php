@@ -85,6 +85,9 @@ include "../../../includes/valAcc.php";
                 },
                 "ajax": "../ajax/listaInvProdDistribucion.php",
                 "deferRender": true,  //For speed
+                initComplete: function (settings, json) {
+                    $('#example thead th').removeClass('pe-5');
+                }
             });
         });
     </script>

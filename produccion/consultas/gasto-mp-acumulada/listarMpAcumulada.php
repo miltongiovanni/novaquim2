@@ -92,6 +92,9 @@ foreach ($_POST as $nombre_campo => $valor) {
                 },
                 "ajax": "../ajax/listaMPrimaAcumulada.php?fechRef=<?=$fechRef?>",
                 "deferRender": true,  //For speed
+                initComplete: function (settings, json) {
+                    $('#example thead th').removeClass('pe-5');
+                }
             });
         });
     </script>

@@ -79,7 +79,7 @@ include "../../../includes/valAcc.php";
                     },
                     {
                         "data": "descEstado",
-                        "className": 'dt-body-center',
+                        "className": '',
                         width: '8%'
                     },
                 ],
@@ -121,6 +121,9 @@ include "../../../includes/valAcc.php";
                 processing: true,
                 serverSide: true,
                 "ajax": "../ajax/listaOProd.php",
+                initComplete: function (settings, json) {
+                    $('#example thead th').removeClass('pe-5');
+                },
             });
             // Add event listener for opening and closing details
             table.on('click', 'td.dt-control', function (e) {

@@ -113,6 +113,9 @@ include "../../../includes/valAcc.php";
                 },
                 "ajax": "../ajax/listaOProdColor.php",
                 "deferRender": true,  //For speed
+                initComplete: function (settings, json) {
+                    $('#example thead th').removeClass('pe-5');
+                }
             });
             // Add event listener for opening and closing details
             table.on('click', 'td.dt-control', function (e) {

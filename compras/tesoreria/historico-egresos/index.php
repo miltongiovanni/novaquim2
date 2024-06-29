@@ -8,71 +8,10 @@ include "../../../includes/valAcc.php";
     <meta charset="utf-8">
     <link rel="stylesheet" href="../../../css/datatables.css">
     <link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
-    <style>
-        table {
-            table-layout: fixed;
-        }
-
-        .width1 {
-            width: 5%;
-        }
-
-        .width2 {
-            width: 4%;
-        }
-
-        .width3 {
-            width: 5%;
-        }
-
-        .width4 {
-            width: 7%;
-        }
-
-        .width5 {
-            width: 7%;
-        }
-
-        .width6 {
-            width: 20%;
-        }
-
-        .width7 {
-            width: 7%;
-        }
-
-        .width8 {
-            width: 7%;
-        }
-
-        .width9 {
-            width: 7%;
-        }
-
-        .width10 {
-            width: 2%;
-        }
-        .width11 {
-            width: 7%;
-        }
-        .width12 {
-            width: 7%;
-        }
-        .width13 {
-            width: 5%;
-        }
-
-        table.dataTable.compact thead th,
-        table.dataTable.compact thead td {
-            padding: 4px 4px 4px 4px;
-        }
-    </style>
-<script src="../../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../../../js/validar.js"></script>
     <script src="../../../js/jquery-3.3.1.min.js"></script>
     <script src="../../../js/datatables.js"></script>
-    
-
     <script>
         /* Formatting function for row details - modify as you need */
         function diffDate(fecha) {
@@ -101,51 +40,63 @@ include "../../../includes/valAcc.php";
                                 '       </form>'
                             return rep;
                         },
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-center',
+                        width: '5%'
                     },
                     {
                         "data": "idEgreso",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-center',
+                        width: '4%'
                     },
                     {
                         "data": "idCompra",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-center',
+                        width: '5%'
                     },
                     {
                         "data": "tipoComp",
-                        "className": 'dt-body-center'
+                        "className": '',
+                        width: '7%'
                     },
                     {
                         "data": "nitProv",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-right pe-4',
+                        width: '7%'
                     },
                     {
                         "data": "nomProv",
-                        "className": 'dt-body-left'
+                        "className": 'dt-body-left',
+                        width: '20%'
                     },
                     {
                         "data": "numFact",
-                        "className": 'dt-body-center'
+                        "className": 'pe-4',
+                        width: '7%'
                     },
                     {
                         "data": "vreal",
-                        "className": 'dt-body-right'
+                        "className": 'pe-4',
+                        width: '7%'
                     },
                     {
                         "data": "pago",
-                        "className": 'dt-body-right'
+                        "className": 'pe-4',
+                        width: '7%'
                     },
                     {
                         "data": "descuento",
-                        "className": 'dt-body-right'
+                        "className": 'pe-4',
+                        width: '2%'
                     },
                     {
                         "data": "fechPago",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-center',
+                        width: '7%'
                     },
                     {
                         "data": "formaPago",
-                        "className": 'dt-body-center'
+                        "className": '',
+                        width: '7%'
                     },
 
                     {
@@ -157,12 +108,16 @@ include "../../../includes/valAcc.php";
                                 '       </form>'
                             return rep;
                         },
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-center',
+                        width: '5%'
                     },
                 ],
 
                 "order": [[1, 'desc']],
                 "deferRender": true,  //For speed
+                initComplete: function (settings, json) {
+                    $('#example thead th').removeClass('pe-4');
+                },
                 pagingType: 'simple_numbers',
                 layout: {
                     topStart: 'buttons',

@@ -130,6 +130,9 @@ $detOProd = $envasadoOperador->getEnvasado($loteProd, $codPresentacion);
                 },
                 "ajax": "../ajax/listaVentaPresentacionTrazabilidad.php?codPresentacion=" + codPresentacion +'&loteProd='+loteProd ,
                 "deferRender": true,  //For speed
+                initComplete: function (settings, json) {
+                    $('#example thead th').removeClass('pe-5');
+                }
             });
         });
     </script>

@@ -167,27 +167,30 @@ switch ($tipoCompra) {
                     },
                     {
                         "data": "totalCompra",
-                        "className": 'dt-body-right pe-3'
+                        "className": 'dt-body-right pe-4'
                     },
                     {
                         "data": "retefuenteCompra",
-                        "className": 'dt-body-right pe-3'
+                        "className": 'dt-body-right pe-4'
                     },
                     {
                         "data": "reteicaCompra",
-                        "className": 'dt-body-right pe-3'
+                        "className": 'dt-body-right pe-4'
                     },
                     {
                         "data": "reteivaCompra",
-                        "className": 'dt-body-right pe-3'
+                        "className": 'dt-body-right pe-4'
                     },
                     {
                         "data": "vreal",
-                        "className": 'dt-body-right pe-3'
+                        "className": 'dt-body-right pe-4'
                     },
                 ],
                 "order": [[1, 'desc']],
                 "deferRender": true,  //For speed
+                initComplete: function (settings, json) {
+                    $('#example thead th').removeClass('pe-4');
+                },
                 pagingType: 'simple_numbers',
                 layout: {
                     topStart: 'buttons',

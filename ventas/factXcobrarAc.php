@@ -159,6 +159,9 @@ include "../../../includes/valAcc.php";
                 ],
                 "order": [[8, 'desc']],
                 "deferRender": true,  //For speed
+                initComplete: function (settings, json) {
+                    $('#example thead th').removeClass('pe-5');
+                },
                 "lengthMenu": [[20, 50, 100, -1], [20, 50, 100, "All"]],
                 "language": {
                     "emptyTable": "No hay datos disponibles",

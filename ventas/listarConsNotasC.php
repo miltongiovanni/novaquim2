@@ -153,6 +153,9 @@ foreach ($_POST as $nombre_campo => $valor) {
                 ],
                 "order": [[0, 'desc']],
                 "deferRender": true,  //For speed
+                initComplete: function (settings, json) {
+                    $('#example thead th').removeClass('pe-5');
+                },
                 pagingType: 'simple_numbers',
                 layout: {
                     topStart: 'buttons',

@@ -104,6 +104,9 @@ if ($estadoCliente == 1) {
                 ],
                 "order": [[2, 'asc']],
                 "deferRender": true,  //For speed
+                initComplete: function (settings, json) {
+                    $('#example thead th').removeClass('pe-5');
+                },
                 pagingType: 'simple_numbers',
                 layout: {
                     topStart: 'buttons',

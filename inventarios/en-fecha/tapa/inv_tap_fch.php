@@ -115,6 +115,9 @@ $fecha = $_POST['fecha'];
                 },
                 "ajax": "../ajax/listaInvTapasFecha.php?fecha=<?= $fecha; ?>",
                 "deferRender": true,  //For speed
+                initComplete: function (settings, json) {
+                    $('#example thead th').removeClass('pe-5');
+                }
             });
         });
     </script>

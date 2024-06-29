@@ -137,6 +137,9 @@ switch ($estadoPedido) {
                 ],
                 "order": [[1, estadoPedido==='1'? 'asc':'desc']],
                 "deferRender": true,  //For speed
+                initComplete: function (settings, json) {
+                    $('#example thead th').removeClass('pe-5');
+                },
                 pagingType: 'simple_numbers',
                 layout: {
                     topStart: 'buttons',

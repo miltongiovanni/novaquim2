@@ -121,6 +121,9 @@ include "../../../includes/valAcc.php";
                 },
                 "ajax": "../ajax/listaStockInvTapas.php",
                 "deferRender": true,  //For speed
+                initComplete: function (settings, json) {
+                    $('#example thead th').removeClass('pe-5');
+                }
             });
         });
     </script>

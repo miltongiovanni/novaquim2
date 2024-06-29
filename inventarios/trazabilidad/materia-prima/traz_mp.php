@@ -119,6 +119,9 @@ $detComprasMPrimaOperador = new DetComprasOperaciones();
                 },
                 "ajax": "../ajax/listaCompraMPTrazabilidad.php?codMPrima=" + codMPrima +'&loteMP='+loteMP ,
                 "deferRender": true,  //For speed
+                initComplete: function (settings, json) {
+                    $('#example thead th').removeClass('pe-5');
+                }
             });
             var table2 = $('#salidas').DataTable({
                 "columns": [
@@ -182,6 +185,9 @@ $detComprasMPrimaOperador = new DetComprasOperaciones();
                 },
                 "ajax": "../ajax/listaDetOProdMPTrazabilidad.php?codMPrima=" + codMPrima +'&loteMP='+loteMP ,
                 "deferRender": true,  //For speed
+                initComplete: function (settings, json) {
+                    $('#example thead th').removeClass('pe-5');
+                }
             });
         });
     </script>

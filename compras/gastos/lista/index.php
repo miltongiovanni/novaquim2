@@ -108,7 +108,7 @@ include "../../../includes/valAcc.php";
                     },
                     {
                         "data": "nitProv",
-                        "className": 'dt-body-right pe-3'
+                        "className": 'dt-body-right pe-4'
                     },
                     {
                         "data": "nomProv",
@@ -116,7 +116,7 @@ include "../../../includes/valAcc.php";
                     },
                     {
                         "data": "numFact",
-                        "className": 'dt-body-right pe-3'
+                        "className": 'dt-body-right pe-4'
                     },
                     {
                         "data": "fechGasto",
@@ -128,27 +128,30 @@ include "../../../includes/valAcc.php";
                     },
                     {
                         "data": "descEstado",
-                        "className": 'dt-body-center'
+                        "className": ''
                     },
                     {
                         "data": "totalGasto",
-                        "className": 'dt-body-right pe-3'
+                        "className": 'dt-body-right pe-4'
                     },
                     {
                         "data": "retefuenteGasto",
-                        "className": 'dt-body-right pe-3'
+                        "className": 'dt-body-right pe-4'
                     },
                     {
                         "data": "reteicaGasto",
-                        "className": 'dt-body-right pe-3'
+                        "className": 'dt-body-right pe-4'
                     },
                     {
                         "data": "vreal",
-                        "className": 'dt-body-right pe-3'
+                        "className": 'dt-body-right pe-4'
                     },
                 ],
                 "order": [[1, 'desc']],
                 "deferRender": true,  //For speed
+                initComplete: function (settings, json) {
+                    $('#example thead th').removeClass('pe-4');
+                },
                 pagingType: 'simple_numbers',
                 layout: {
                     topStart: 'buttons',

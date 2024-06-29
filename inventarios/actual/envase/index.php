@@ -8,29 +8,9 @@ include "../../../includes/valAcc.php";
     <meta charset="utf-8">
     <link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="../../../css/datatables.css">
-    <style>
-        table {
-            table-layout: fixed;
-        }
-
-        .width1 {
-            width: 20%;
-        }
-
-        .width2 {
-            width: 60%;
-        }
-
-        .width3 {
-            width: 20%;
-        }
-
-    </style>
     <script src="../../../js/jquery-3.3.1.min.js"></script>
     <script src="../../../js/datatables.js"></script>
     <script>
-
-
         jQuery.extend(jQuery.fn.dataTableExt.oSort, {
             "chinese-string-asc": function (s1, s2) {
                 if (s1 != null && s1 != undefined && s2 != null && s2 != undefined) {
@@ -57,15 +37,18 @@ include "../../../includes/valAcc.php";
                 "columns": [
                     {
                         "data": "codEnvase",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-center',
+                        width: '20%'
                     },
                     {
                         "data": "nomEnvase",
-                        "className": 'dt-body-left'
+                        "className": 'dt-body-left',
+                        width: '60%'
                     },
                     {
                         "data": "invEnvase",
-                        "className": 'dt-body-center'
+                        "className": 'pe-5',
+                        width: '20%'
                     },
                 ],
                 "columnDefs": [
@@ -92,6 +75,9 @@ include "../../../includes/valAcc.php";
                 },
                 "ajax": "../ajax/listaInvEnvase.php",
                 "deferRender": true,  //For speed
+                initComplete: function (settings, json) {
+                    $('#example thead th').removeClass('pe-5');
+                }
             });
         });
     </script>
@@ -102,7 +88,7 @@ include "../../../includes/valAcc.php";
         <img src="../../../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>INVENTARIO DE ENVASE</h4></div>
     <div class="row justify-content-end">
         <div class="col-2">
-            <form action="../../XlsInvEnvase.php" method="post" target="_blank">
+            <form action="XlsInvEnvase.php" method="post" target="_blank">
                 <button class="button" type="submit">
                     <span><STRONG>Exportar a Excel</STRONG></span></button>
             </form>
@@ -113,7 +99,7 @@ include "../../../includes/valAcc.php";
         </div>
     </div>
     <div class="tabla-50">
-        <table id="example" class="formatoDatos table table-sm table-striped formatoDatos">
+        <table id="example" class="formatoDatos5 table table-sm table-striped">
             <thead>
             <tr>
                 <th class="width1 text-center">Código</th>

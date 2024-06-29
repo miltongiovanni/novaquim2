@@ -128,37 +128,40 @@ include "../../../includes/valAcc.php";
                     },
                     {
                         "data": "total",
-                        "className": 'pe-3'
+                        "className": 'pe-4'
                     },
                     {
                         "data": "retefuente",
-                        "className": 'pe-3'
+                        "className": 'pe-4'
                     },
                     {
                         "data": "reteica",
-                        "className": 'pe-3'
+                        "className": 'pe-4'
                     },
                     {
                         "data": "reteiva",
-                        "className": 'pe-3'
+                        "className": 'pe-4'
                     },
                     {
                         "data": "aPagar",
-                        "className": 'pe-3'
+                        "className": 'pe-4'
                     },
                     {
                         "data": "pago",
-                        "className": 'pe-3'
+                        "className": 'pe-4'
                     },
 
                     {
                         "data": "saldo",
-                        "className": 'pe-3'
+                        "className": 'pe-4'
                     },
                 ],
 
                 "order": [[6, 'asc']],
                 "deferRender": true,  //For speed
+                initComplete: function (settings, json) {
+                    $('#example thead th').removeClass('pe-4');
+                },
                 pagingType: 'simple_numbers',
                 layout: {
                     topStart: 'buttons',

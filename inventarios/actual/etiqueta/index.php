@@ -92,6 +92,9 @@ include "../../../includes/valAcc.php";
                 },
                 "ajax": "../ajax/listaInvEtiqueta.php",
                 "deferRender": true,  //For speed
+                initComplete: function (settings, json) {
+                    $('#example thead th').removeClass('pe-5');
+                }
             });
         });
     </script>
@@ -102,7 +105,7 @@ include "../../../includes/valAcc.php";
         <img src="../../../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>INVENTARIO DE ETIQUETAS</h4></div>
     <div class="row justify-content-end">
         <div class="col-2">
-            <form action="../../XlsInvEtiquetas.php" method="post" target="_blank">
+            <form action="XlsInvEtiquetas.php" method="post" target="_blank">
                 <button class="button" type="submit">
                     <span><STRONG>Exportar a Excel</STRONG></span></button>
             </form>

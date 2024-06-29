@@ -119,6 +119,9 @@ $producto = $ProductoOperador->getNameProducto($codProducto);
                 },
                 "ajax": "../ajax/listaEnvasadoProd.php?codProducto=<?=$codProducto?>",
                 "deferRender": true,  //For speed
+                initComplete: function (settings, json) {
+                    $('#example thead th').removeClass('pe-4');
+                }
             });
             // Add event listener for opening and closing details
             table.on('click', 'td.dt-control', function (e) {

@@ -72,6 +72,9 @@ include "../../../includes/valAcc.php";
                 ],
                 "order": [[1, 'desc']],
                 "deferRender": true,  //For speed
+                initComplete: function (settings, json) {
+                    $('#example thead th').removeClass('pe-5');
+                },
                 pagingType: 'simple_numbers',
                 layout: {
                     topStart: 'buttons',
