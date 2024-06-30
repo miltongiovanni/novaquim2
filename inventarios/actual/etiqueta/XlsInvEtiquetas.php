@@ -1,5 +1,5 @@
 <?php
-require '../vendor/autoload.php';
+require '../../../vendor/autoload.php';
 
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
@@ -44,10 +44,10 @@ $invEtiquetas = $invEtiquetasOperador->getTableDetalleInvEtiqueta();
 $j=2;
 foreach ($invEtiquetas as $invEtiqueta)
 {
-	$spreadsheet->getActiveSheet()->setCellValueByColumnAndRow(1, $j, $invEtiqueta['codEtiq']);
-	$spreadsheet->getActiveSheet()->setCellValueByColumnAndRow(2, $j, $invEtiqueta['nomEtiqueta']);
-	$spreadsheet->getActiveSheet()->setCellValueByColumnAndRow(3, $j, $invEtiqueta['invEtiq']);
-	$spreadsheet->getActiveSheet()->setCellValueByColumnAndRow(4, $j++, $invEtiqueta['precEtiqueta']);
+	$spreadsheet->getActiveSheet()->setCellValue([1, $j], $invEtiqueta['codEtiq']);
+	$spreadsheet->getActiveSheet()->setCellValue([2, $j], $invEtiqueta['nomEtiqueta']);
+	$spreadsheet->getActiveSheet()->setCellValue([3, $j], $invEtiqueta['invEtiq']);
+	$spreadsheet->getActiveSheet()->setCellValue([4, $j++], $invEtiqueta['precEtiqueta']);
 }
 // Set active sheet index to the first sheet, so Excel opens this as the first sheet
 $spreadsheet->setActiveSheetIndex(0);

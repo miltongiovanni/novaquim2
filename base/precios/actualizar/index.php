@@ -16,10 +16,15 @@ include "../../../includes/valAcc.php";
 <div id="contenedor" class="container-fluid">
 
     <div id="saludo">
-        <img src="../../../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>SELECCIÓN DEL ARCHIVO A CARGAR</h4></div>
+        <img src="../../../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25">
+        <h4>SELECCIÓN DEL ARCHIVO A CARGAR</h4>
+    </div>
     <form id="form1" name="form1" method="post" action="chargePreciosFile.php" enctype="multipart/form-data">
         <div class="mb-3 row">
-            <input class="form-control col-3" type="file" id="preciosList" name="preciosList" required>
+            <div class="col-3">
+                <input class="form-control" type="file" id="preciosList" name="preciosList" required>
+            </div>
+
         </div>
         <div class="row mb-3">
             <div class="col-1">

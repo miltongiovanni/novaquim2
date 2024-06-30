@@ -1,5 +1,5 @@
 <?php
-require '../vendor/autoload.php';
+require '../../../vendor/autoload.php';
 
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
@@ -44,10 +44,10 @@ $invTapas = $invTapasOperador->getTableDetalleInvTapas();
 $j=2;
 foreach ($invTapas as $invTapa)
 {
-	$spreadsheet->getActiveSheet()->setCellValueByColumnAndRow(1, $j, $invTapa['codTapa']);
-	$spreadsheet->getActiveSheet()->setCellValueByColumnAndRow(2, $j, $invTapa['tapa']);
-	$spreadsheet->getActiveSheet()->setCellValueByColumnAndRow(3, $j, $invTapa['invTapa']);
-	$spreadsheet->getActiveSheet()->setCellValueByColumnAndRow(4, $j++, $invTapa['preTapa']);
+	$spreadsheet->getActiveSheet()->setCellValue([1, $j], $invTapa['codTapa']);
+	$spreadsheet->getActiveSheet()->setCellValue([2, $j], $invTapa['tapa']);
+	$spreadsheet->getActiveSheet()->setCellValue([3, $j], $invTapa['invTapa']);
+	$spreadsheet->getActiveSheet()->setCellValue([4, $j++], $invTapa['preTapa']);
 }
 // Set active sheet index to the first sheet, so Excel opens this as the first sheet
 $spreadsheet->setActiveSheetIndex(0);
