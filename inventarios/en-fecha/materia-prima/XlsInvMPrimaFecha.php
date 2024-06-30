@@ -1,5 +1,5 @@
 <?php
-require '../vendor/autoload.php';
+require '../../../vendor/autoload.php';
 
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
@@ -46,13 +46,13 @@ $invMPrimas = $InvMPrimaOperador->getTableInvMPrimaFecha($fecha);
 $j=2;
 foreach ($invMPrimas as $invMPrima)
 {
-	$spreadsheet->getActiveSheet()->setCellValueByColumnAndRow(1, $j, $invMPrima['codMP']);
-	$spreadsheet->getActiveSheet()->setCellValueByColumnAndRow(2, $j, $invMPrima['nomMPrima']);
-	$spreadsheet->getActiveSheet()->setCellValueByColumnAndRow(3, $j, $invMPrima['invtotal']);
-	$spreadsheet->getActiveSheet()->setCellValueByColumnAndRow(4, $j, $invMPrima['entrada']);
-	$spreadsheet->getActiveSheet()->setCellValueByColumnAndRow(5, $j, $invMPrima['salidaProduccion'] + $invMPrima['salidaEnvDist']);
-	$spreadsheet->getActiveSheet()->setCellValueByColumnAndRow(6, $j, $invMPrima['invtotal'] - $invMPrima['entrada'] + $invMPrima['salidaProduccion'] + $invMPrima['salidaEnvDist']);
-	$spreadsheet->getActiveSheet()->setCellValueByColumnAndRow(7, $j++, $invMPrima['precioMPrima']);
+	$spreadsheet->getActiveSheet()->setCellValue([1, $j], $invMPrima['codMP']);
+	$spreadsheet->getActiveSheet()->setCellValue([2, $j], $invMPrima['nomMPrima']);
+	$spreadsheet->getActiveSheet()->setCellValue([3, $j], $invMPrima['invtotal']);
+	$spreadsheet->getActiveSheet()->setCellValue([4, $j], $invMPrima['entrada']);
+	$spreadsheet->getActiveSheet()->setCellValue([5, $j], $invMPrima['salidaProduccion'] + $invMPrima['salidaEnvDist']);
+	$spreadsheet->getActiveSheet()->setCellValue([6, $j], $invMPrima['invtotal'] - $invMPrima['entrada'] + $invMPrima['salidaProduccion'] + $invMPrima['salidaEnvDist']);
+	$spreadsheet->getActiveSheet()->setCellValue([7, $j++], $invMPrima['precioMPrima']);
 }
 // Set active sheet index to the first sheet, so Excel opens this as the first sheet
 $spreadsheet->setActiveSheetIndex(0);

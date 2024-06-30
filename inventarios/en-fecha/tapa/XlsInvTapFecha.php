@@ -1,5 +1,5 @@
 <?php
-require '../vendor/autoload.php';
+require '../../../vendor/autoload.php';
 
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
@@ -41,18 +41,18 @@ $spreadsheet->setActiveSheetIndex(0)
 // Rename sheet
 $spreadsheet->getActiveSheet()->setTitle('Inventario Prod Fecha');
 
-$InvEtiquetaOperador = new InvEtiquetasOperaciones();
-$invEtiquetas = $InvEtiquetaOperador->getTableInvEtiquetaFecha($fecha);
+$InvTapaOperador = new InvTapasOperaciones();
+$invTapas = $InvTapaOperador->getTableInvTapasFecha($fecha);
 $j=2;
-foreach ($invEtiquetas as $invEtiqueta)
+foreach ($invTapas as $invTapa)
 {
-	$spreadsheet->getActiveSheet()->setCellValueByColumnAndRow(1, $j, $invEtiqueta['codEtiq']);
-	$spreadsheet->getActiveSheet()->setCellValueByColumnAndRow(2, $j, $invEtiqueta['nomEtiqueta']);
-	$spreadsheet->getActiveSheet()->setCellValueByColumnAndRow(3, $j, $invEtiqueta['invEtiq']);
-	$spreadsheet->getActiveSheet()->setCellValueByColumnAndRow(4, $j, $invEtiqueta['entradaCompra'] + $invEtiqueta['entradaCambio'] );
-	$spreadsheet->getActiveSheet()->setCellValueByColumnAndRow(5, $j, $invEtiqueta['salidaProduccion'] + $invEtiqueta['salidaJabones'] + $invEtiqueta['salidaCambios']);
-	$spreadsheet->getActiveSheet()->setCellValueByColumnAndRow(6, $j, $invEtiqueta['invEtiq'] - $invEtiqueta['entradaCompra'] - $invEtiqueta['entradaCambio'] + $invEtiqueta['salidaProduccion'] + $invEtiqueta['salidaJabones'] + $invEtiqueta['salidaCambios']);
-	$spreadsheet->getActiveSheet()->setCellValueByColumnAndRow(7, $j++, $invEtiqueta['precEtiqueta']);
+	$spreadsheet->getActiveSheet()->setCellValue([1, $j], $invTapa['codTapa']);
+	$spreadsheet->getActiveSheet()->setCellValue([2, $j], $invTapa['tapa']);
+	$spreadsheet->getActiveSheet()->setCellValue([3, $j], $invTapa['invTapa']);
+	$spreadsheet->getActiveSheet()->setCellValue([4, $j], $invTapa['entradaCompra'] + $invTapa['entradaCambio'] );
+	$spreadsheet->getActiveSheet()->setCellValue([5, $j], $invTapa['salidaProduccion'] + $invTapa['salidaEnvasadoDist'] +  $invTapa['salidaJabones'] + $invTapa['salidaCambios']);
+	$spreadsheet->getActiveSheet()->setCellValue([6, $j], $invTapa['invTapa'] - $invTapa['entradaCompra'] - $invTapa['entradaCambio'] + $invTapa['salidaProduccion'] + $invTapa['salidaEnvasadoDist'] + $invTapa['salidaJabones'] + $invTapa['salidaCambios']);
+	$spreadsheet->getActiveSheet()->setCellValue([7, $j++], $invTapa['preTapa']);
 }
 // Set active sheet index to the first sheet, so Excel opens this as the first sheet
 $spreadsheet->setActiveSheetIndex(0);

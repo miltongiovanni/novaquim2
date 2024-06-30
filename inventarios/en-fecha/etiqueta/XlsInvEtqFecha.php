@@ -1,5 +1,5 @@
 <?php
-require '../vendor/autoload.php';
+require '../../../vendor/autoload.php';
 
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
@@ -30,7 +30,7 @@ $spreadsheet->getProperties()->setCreator('Milton Giovanni Espitia')
 // Add some data
 $spreadsheet->setActiveSheetIndex(0)
 	->setCellValue('A1', 'Código')
-	->setCellValue('B1', 'Producto')
+	->setCellValue('B1', 'Tapa')
 	->setCellValue('C1', 'Cantidad')
 	->setCellValue('D1', 'Entrada')
 	->setCellValue('E1', 'Salida')
@@ -41,24 +41,24 @@ $spreadsheet->setActiveSheetIndex(0)
 // Rename sheet
 $spreadsheet->getActiveSheet()->setTitle('Inventario Prod Fecha');
 
-$InvProdTerminadoOperador = new InvProdTerminadosOperaciones();
-$invProdTerminados = $InvProdTerminadoOperador->getTableInvProdTerminadoFecha($fecha);
+$InvEtiquetaOperador = new InvEtiquetasOperaciones();
+$invEtiquetas = $InvEtiquetaOperador->getTableInvEtiquetaFecha($fecha);
 $j=2;
-foreach ($invProdTerminados as $invProdTerminado)
+foreach ($invEtiquetas as $invEtiqueta)
 {
-	$spreadsheet->getActiveSheet()->setCellValueByColumnAndRow(1, $j, $invProdTerminado['codPresentacion']);
-	$spreadsheet->getActiveSheet()->setCellValueByColumnAndRow(2, $j, $invProdTerminado['presentacion']);
-	$spreadsheet->getActiveSheet()->setCellValueByColumnAndRow(3, $j, $invProdTerminado['invtotal']);
-	$spreadsheet->getActiveSheet()->setCellValueByColumnAndRow(4, $j, $invProdTerminado['entradaOProduccion'] + $invProdTerminado['entradaCambio'] + $invProdTerminado['entradaKit']);
-	$spreadsheet->getActiveSheet()->setCellValueByColumnAndRow(5, $j, $invProdTerminado['salidaVentas'] + $invProdTerminado['salidaCambios'] + $invProdTerminado['salidaKits'] + $invProdTerminado['salidaRemision']);
-	$spreadsheet->getActiveSheet()->setCellValueByColumnAndRow(6, $j, $invProdTerminado['invtotal'] - $invProdTerminado['entradaOProduccion'] - $invProdTerminado['entradaCambio'] - $invProdTerminado['entradaKit'] + $invProdTerminado['salidaVentas'] + $invProdTerminado['salidaCambios'] + $invProdTerminado['salidaKits'] + $invProdTerminado['salidaRemision']);
-	$spreadsheet->getActiveSheet()->setCellValueByColumnAndRow(7, $j++, $invProdTerminado['Costo']);
+	$spreadsheet->getActiveSheet()->setCellValue([1, $j], $invEtiqueta['codEtiq']);
+	$spreadsheet->getActiveSheet()->setCellValue([2, $j], $invEtiqueta['nomEtiqueta']);
+	$spreadsheet->getActiveSheet()->setCellValue([3, $j], $invEtiqueta['invEtiq']);
+	$spreadsheet->getActiveSheet()->setCellValue([4, $j], $invEtiqueta['entradaCompra'] + $invEtiqueta['entradaCambio'] );
+	$spreadsheet->getActiveSheet()->setCellValue([5, $j], $invEtiqueta['salidaProduccion'] + $invEtiqueta['salidaJabones'] + $invEtiqueta['salidaCambios']);
+	$spreadsheet->getActiveSheet()->setCellValue([6, $j], $invEtiqueta['invEtiq'] - $invEtiqueta['entradaCompra'] - $invEtiqueta['entradaCambio'] + $invEtiqueta['salidaProduccion'] + $invEtiqueta['salidaJabones'] + $invEtiqueta['salidaCambios']);
+	$spreadsheet->getActiveSheet()->setCellValue([7, $j++], $invEtiqueta['precEtiqueta']);
 }
 // Set active sheet index to the first sheet, so Excel opens this as the first sheet
 $spreadsheet->setActiveSheetIndex(0);
 // Redirect output to a client’s web browser (Xlsx)
 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-header('Content-Disposition: attachment;filename="Inv_Prod_Fecha.xlsx"');
+header('Content-Disposition: attachment;filename="Inv_Tap_Fecha.xlsx"');
 header('Cache-Control: max-age=0');
 // If you're serving to IE 9, then the following may be needed
 header('Cache-Control: max-age=1');

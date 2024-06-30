@@ -1,5 +1,5 @@
 <?php
-require '../vendor/autoload.php';
+require '../../../vendor/autoload.php';
 
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
@@ -30,7 +30,7 @@ $spreadsheet->getProperties()->setCreator('Milton Giovanni Espitia')
 // Add some data
 $spreadsheet->setActiveSheetIndex(0)
 	->setCellValue('A1', 'Código')
-	->setCellValue('B1', 'Producto')
+	->setCellValue('B1', 'Envase')
 	->setCellValue('C1', 'Cantidad')
 	->setCellValue('D1', 'Entrada')
 	->setCellValue('E1', 'Salida')
@@ -41,24 +41,24 @@ $spreadsheet->setActiveSheetIndex(0)
 // Rename sheet
 $spreadsheet->getActiveSheet()->setTitle('Inventario Prod Fecha');
 
-$InvDistribucionOperador = new InvDistribucionOperaciones();
-$invdistribucions = $InvDistribucionOperador->getTableInvDistribucionFecha($fecha);
+$InvEnvaseOperador = new InvEnvasesOperaciones();
+$invEnvases = $InvEnvaseOperador->getTableInvEnvaseFecha($fecha);
 $j=2;
-foreach ($invdistribucions as $invdistribucion)
+foreach ($invEnvases as $invEnvase)
 {
-	$spreadsheet->getActiveSheet()->setCellValueByColumnAndRow(1, $j, $invdistribucion['codDistribucion']);
-	$spreadsheet->getActiveSheet()->setCellValueByColumnAndRow(2, $j, $invdistribucion['producto']);
-	$spreadsheet->getActiveSheet()->setCellValueByColumnAndRow(3, $j, $invdistribucion['invDistribucion']);
-	$spreadsheet->getActiveSheet()->setCellValueByColumnAndRow(4, $j, $invdistribucion['entradaCompras'] + $invdistribucion['entradaArmKits'] + $invdistribucion['entradaDesarmKits'] + $invdistribucion['entradaEnvDistribucion']);
-	$spreadsheet->getActiveSheet()->setCellValueByColumnAndRow(5, $j, $invdistribucion['salidaVentas'] + $invdistribucion['salidaRemision'] + $invdistribucion['salidaDesarmadoKits'] + $invdistribucion['salidaArmadoKits']);
-	$spreadsheet->getActiveSheet()->setCellValueByColumnAndRow(6, $j, $invdistribucion['invDistribucion'] - $invdistribucion['entradaCompras'] - $invdistribucion['entradaArmKits'] - $invdistribucion['entradaDesarmKits'] - $invdistribucion['entradaEnvDistribucion'] + $invdistribucion['salidaVentas'] + $invdistribucion['salidaRemision'] + $invdistribucion['salidaDesarmadoKits'] + $invdistribucion['salidaArmadoKits']);
-	$spreadsheet->getActiveSheet()->setCellValueByColumnAndRow(7, $j++, $invdistribucion['precioCom']);
+	$spreadsheet->getActiveSheet()->setCellValue([1, $j], $invEnvase['codEnvase']);
+	$spreadsheet->getActiveSheet()->setCellValue([2, $j], $invEnvase['nomEnvase']);
+	$spreadsheet->getActiveSheet()->setCellValue([3, $j], $invEnvase['invEnvase']);
+	$spreadsheet->getActiveSheet()->setCellValue([4, $j], $invEnvase['entradaCompra'] + $invEnvase['entradaCambio'] + $invEnvase['entradaDesarmadoKits'] );
+	$spreadsheet->getActiveSheet()->setCellValue([5, $j], $invEnvase['salidaProduccion'] + $invEnvase['salidaEnvasadoDist'] + $invEnvase['salidaArmadoKits'] + $invEnvase['salidaJabones'] + $invEnvase['salidaCambios']);
+	$spreadsheet->getActiveSheet()->setCellValue([6, $j], $invEnvase['invEnvase'] - $invEnvase['entradaCompra'] - $invEnvase['entradaCambio'] - $invEnvase['entradaDesarmadoKits'] + $invEnvase['salidaProduccion'] + $invEnvase['salidaEnvasadoDist'] + $invEnvase['salidaArmadoKits'] + $invEnvase['salidaJabones'] + $invEnvase['salidaCambios']);
+	$spreadsheet->getActiveSheet()->setCellValue([7, $j++], $invEnvase['precEnvase']);
 }
 // Set active sheet index to the first sheet, so Excel opens this as the first sheet
 $spreadsheet->setActiveSheetIndex(0);
 // Redirect output to a client’s web browser (Xlsx)
 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-header('Content-Disposition: attachment;filename="Inv_Dist_Fecha.xlsx"');
+header('Content-Disposition: attachment;filename="Inv_Env_Fecha.xlsx"');
 header('Cache-Control: max-age=0');
 // If you're serving to IE 9, then the following may be needed
 header('Cache-Control: max-age=1');

@@ -8,23 +8,28 @@ include "../../../includes/valAcc.php";
     <meta charset="utf-8">
     <link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <script src="../../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
-    <script  src="../../../js/validar.js"></script>
+    <script src="../../../js/validar.js"></script>
 </head>
-<body> 
+<body>
 <div id="contenedor" class="container-fluid">
-<div id="saludo">
-        <img src="../../../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>CONSULTA DE INVENTARIO POR FECHA</h4></div>
-<form method="post" action="inv_prod_fch.php" name="form1">
-    <div class="mb-3 row">
-        <label class="form-label col-1 text-end" for="fecha"><strong>Fecha</strong></label>
-        <input type="date" class="form-control col-2" name="fecha" id="fecha" required>
+    <div id="saludo">
+        <img src="../../../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25">
+        <h4>CONSULTA DE INVENTARIO PRODUCTO TERMINADO POR FECHA</h4>
     </div>
-    <div class="mb-3 row">
-        <div class="col-1 text-center">
-            <button class="button" type="button" onclick="return Enviar(this.form)"><span>Continuar</span></button>
+    <form method="post" action="inv_prod_fch.php" name="form1">
+        <div class="mb-3 row">
+            <div class="col-2">
+                <label class="form-label" for="fecha"><strong>Fecha</strong></label>
+                <input type="date" class="form-control" name="fecha" id="fecha" required>
+            </div>
+
         </div>
-    </div>
-</form>
+        <div class="mb-3 row">
+            <div class="col-1 text-center">
+                <button class="button" type="button" onclick="return Enviar(this.form)"><span>Continuar</span></button>
+            </div>
+        </div>
+    </form>
     <div class="row">
         <div class="col-1">
             <button class="button1" id="back" onClick="history.back()"><span>VOLVER</span></button>

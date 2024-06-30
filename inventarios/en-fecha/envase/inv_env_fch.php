@@ -68,27 +68,33 @@ $fecha = $_POST['fecha'];
                 "columns": [
                     {
                         "data": "codEnvase",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-center',
+                        width: '10%'
                     },
                     {
                         "data": "nomEnvase",
-                        "className": 'dt-body-left'
+                        "className": 'dt-body-left',
+                        width: '50%'
                     },
                     {
                         "data": "invEnvase",
-                        "className": 'dt-body-center'
+                        "className": 'pe-5',
+                        width: '10%'
                     },
                     {
                         "data": "entrada",
-                        "className": 'dt-body-center'
+                        "className": 'pe-5',
+                        width: '10%'
                     },
                     {
                         "data": "salida",
-                        "className": 'dt-body-center'
+                        "className": 'pe-5',
+                        width: '10%'
                     },
                     {
                         "data": "inventario",
-                        "className": 'dt-body-center'
+                        "className": 'pe-5',
+                        width: '10%'
                     },
                 ],
                 "columnDefs": [
@@ -128,7 +134,7 @@ $fecha = $_POST['fecha'];
         <img src="../../../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>INVENTARIO DE ENVASE A <?= $fecha; ?></h4></div>
     <div class="row justify-content-end">
         <div class="col-2">
-            <form action="../../XlsInvEnvFecha.php" method="post" target="_blank">
+            <form action="XlsInvEnvFecha.php" method="post" target="_blank">
                 <input type="hidden" name="fecha" value="<?= $fecha; ?>">
                 <button class="button" type="submit">
                     <span><STRONG>Exportar a Excel</STRONG></span></button>
@@ -140,15 +146,15 @@ $fecha = $_POST['fecha'];
         </div>
     </div>
     <div class="tabla-60">
-        <table id="example" class="formatoDatos table table-sm table-striped formatoDatos">
+        <table id="example" class="formatoDatos5 table table-sm table-striped">
             <thead>
             <tr>
-                <th class="width1 text-center">Código</th>
-                <th class="width2 text-center">Envase</th>
-                <th class="width3 text-center">Cantidad</th>
-                <th class="width4 text-center">Entrada</th>
-                <th class="width5 text-center">Salida</th>
-                <th class="width6 text-center">Inventario</th>
+                <th class="text-center">Código</th>
+                <th class="text-center">Envase</th>
+                <th class="text-center">Cantidad</th>
+                <th class="text-center">Entrada</th>
+                <th class="text-center">Salida</th>
+                <th class="text-center">Inventario</th>
             </tr>
             </thead>
         </table>

@@ -1,5 +1,5 @@
 <?php
-require '../vendor/autoload.php';
+require '../../../vendor/autoload.php';
 
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
@@ -30,7 +30,7 @@ $spreadsheet->getProperties()->setCreator('Milton Giovanni Espitia')
 // Add some data
 $spreadsheet->setActiveSheetIndex(0)
 	->setCellValue('A1', 'Código')
-	->setCellValue('B1', 'Tapa')
+	->setCellValue('B1', 'Producto')
 	->setCellValue('C1', 'Cantidad')
 	->setCellValue('D1', 'Entrada')
 	->setCellValue('E1', 'Salida')
@@ -41,24 +41,24 @@ $spreadsheet->setActiveSheetIndex(0)
 // Rename sheet
 $spreadsheet->getActiveSheet()->setTitle('Inventario Prod Fecha');
 
-$InvTapaOperador = new InvTapasOperaciones();
-$invTapas = $InvTapaOperador->getTableInvTapasFecha($fecha);
+$InvProdTerminadoOperador = new InvProdTerminadosOperaciones();
+$invProdTerminados = $InvProdTerminadoOperador->getTableInvProdTerminadoFecha($fecha);
 $j=2;
-foreach ($invTapas as $invTapa)
+foreach ($invProdTerminados as $invProdTerminado)
 {
-	$spreadsheet->getActiveSheet()->setCellValueByColumnAndRow(1, $j, $invTapa['codTapa']);
-	$spreadsheet->getActiveSheet()->setCellValueByColumnAndRow(2, $j, $invTapa['tapa']);
-	$spreadsheet->getActiveSheet()->setCellValueByColumnAndRow(3, $j, $invTapa['invTapa']);
-	$spreadsheet->getActiveSheet()->setCellValueByColumnAndRow(4, $j, $invTapa['entradaCompra'] + $invTapa['entradaCambio'] );
-	$spreadsheet->getActiveSheet()->setCellValueByColumnAndRow(5, $j, $invTapa['salidaProduccion'] + $invTapa['salidaEnvasadoDist'] +  $invTapa['salidaJabones'] + $invTapa['salidaCambios']);
-	$spreadsheet->getActiveSheet()->setCellValueByColumnAndRow(6, $j, $invTapa['invTapa'] - $invTapa['entradaCompra'] - $invTapa['entradaCambio'] + $invTapa['salidaProduccion'] + $invTapa['salidaEnvasadoDist'] + $invTapa['salidaJabones'] + $invTapa['salidaCambios']);
-	$spreadsheet->getActiveSheet()->setCellValueByColumnAndRow(7, $j++, $invTapa['preTapa']);
+	$spreadsheet->getActiveSheet()->setCellValue([1, $j], $invProdTerminado['codPresentacion']);
+	$spreadsheet->getActiveSheet()->setCellValue([2, $j], $invProdTerminado['presentacion']);
+	$spreadsheet->getActiveSheet()->setCellValue([3, $j], $invProdTerminado['invtotal']);
+	$spreadsheet->getActiveSheet()->setCellValue([4, $j], $invProdTerminado['entradaOProduccion'] + $invProdTerminado['entradaCambio'] + $invProdTerminado['entradaKit']);
+	$spreadsheet->getActiveSheet()->setCellValue([5, $j], $invProdTerminado['salidaVentas'] + $invProdTerminado['salidaCambios'] + $invProdTerminado['salidaKits'] + $invProdTerminado['salidaRemision']);
+	$spreadsheet->getActiveSheet()->setCellValue([6, $j], $invProdTerminado['invtotal'] - $invProdTerminado['entradaOProduccion'] - $invProdTerminado['entradaCambio'] - $invProdTerminado['entradaKit'] + $invProdTerminado['salidaVentas'] + $invProdTerminado['salidaCambios'] + $invProdTerminado['salidaKits'] + $invProdTerminado['salidaRemision']);
+	$spreadsheet->getActiveSheet()->setCellValue([7, $j++], $invProdTerminado['Costo']);
 }
 // Set active sheet index to the first sheet, so Excel opens this as the first sheet
 $spreadsheet->setActiveSheetIndex(0);
 // Redirect output to a client’s web browser (Xlsx)
 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-header('Content-Disposition: attachment;filename="Inv_Tap_Fecha.xlsx"');
+header('Content-Disposition: attachment;filename="Inv_Prod_Fecha.xlsx"');
 header('Cache-Control: max-age=0');
 // If you're serving to IE 9, then the following may be needed
 header('Cache-Control: max-age=1');

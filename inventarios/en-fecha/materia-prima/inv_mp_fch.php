@@ -9,36 +9,6 @@ $fecha = $_POST['fecha'];
     <meta charset="utf-8">
     <link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="../../../css/datatables.css">
-    <style>
-        table {
-            table-layout: fixed;
-        }
-
-        .width1 {
-            width: 12%;
-        }
-
-        .width2 {
-            width: 40%;
-        }
-
-        .width3 {
-            width: 12%;
-        }
-
-        .width4 {
-            width: 12%;
-        }
-
-        .width5 {
-            width: 12%;
-        }
-
-        .width6 {
-            width: 12%;
-        }
-
-    </style>
     <script src="../../../js/jquery-3.3.1.min.js"></script>
     <script src="../../../js/datatables.js"></script>
     <script>
@@ -68,27 +38,37 @@ $fecha = $_POST['fecha'];
                 "columns": [
                     {
                         "data": "codMP",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-center',
+                        width: '12%'
                     },
                     {
                         "data": "nomMPrima",
-                        "className": 'dt-body-left'
+                        "className": 'dt-body-left',
+                        width: '40%'
                     },
                     {
                         "data": "invtotal",
-                        "className": 'dt-body-center'
+                        render: DataTable.render.number(',', '.', 3, ''),
+                        "className": 'pe-4',
+                        width: '12%'
                     },
                     {
                         "data": "entrada",
-                        "className": 'dt-body-center'
+                        render: DataTable.render.number(',', '.', 3, ''),
+                        "className": 'pe-4',
+                        width: '12%'
                     },
                     {
                         "data": "salida",
-                        "className": 'dt-body-center'
+                        render: DataTable.render.number(',', '.', 3, ''),
+                        "className": 'pe-4',
+                        width: '12%'
                     },
                     {
                         "data": "inventario",
-                        "className": 'dt-body-center'
+                        render: DataTable.render.number(',', '.', 3, ''),
+                        "className": 'pe-4',
+                        width: '12%'
                     },
                 ],
                 "columnDefs": [
@@ -116,7 +96,7 @@ $fecha = $_POST['fecha'];
                 "ajax": "../ajax/listaInvMPrimaFecha.php?fecha=<?= $fecha; ?>",
                 "deferRender": true,  //For speed
                 initComplete: function (settings, json) {
-                    $('#example thead th').removeClass('pe-5');
+                    $('#example thead th').removeClass('pe-4');
                 }
             });
         });
@@ -128,7 +108,7 @@ $fecha = $_POST['fecha'];
         <img src="../../../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>INVENTARIO DE MATERIA PRIMA A <?= $fecha; ?></h4></div>
     <div class="row justify-content-end">
         <div class="col-2">
-            <form action="../../XlsInvMPrimaFecha.php" method="post" target="_blank">
+            <form action="XlsInvMPrimaFecha.php" method="post" target="_blank">
                 <input type="hidden" name="fecha" value="<?= $fecha; ?>">
                 <button class="button" type="submit">
                     <span><STRONG>Exportar a Excel</STRONG></span></button>
@@ -140,15 +120,15 @@ $fecha = $_POST['fecha'];
         </div>
     </div>
     <div class="tabla-50">
-        <table id="example" class="formatoDatos table table-sm table-striped formatoDatos">
+        <table id="example" class="formatoDatos5 table table-sm table-striped">
             <thead>
             <tr>
-                <th class="width1 text-center">Código</th>
-                <th class="width2 text-center">Materia Prima</th>
-                <th class="width3 text-center">Cantidad (Kg)</th>
-                <th class="width4 text-center">Entrada</th>
-                <th class="width5 text-center">Salida</th>
-                <th class="width6 text-center">Inventario</th>
+                <th class="text-center">Código</th>
+                <th class="text-center">Materia Prima</th>
+                <th class="text-center">Cantidad (Kg)</th>
+                <th class="text-center">Entrada</th>
+                <th class="text-center">Salida</th>
+                <th class="text-center">Inventario</th>
             </tr>
             </thead>
         </table>
