@@ -9,48 +9,8 @@ include "../../../includes/valAcc.php";
     <meta charset="utf-8">
     <link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="../../../css/datatables.css">
-    <style>
-        #example {
-            table-layout: fixed;
-        }
-
-        .width1 {
-            width: 3%;
-        }
-
-        .width2 {
-            width: 8%;
-        }
-
-        .width3 {
-            width: 8%;
-        }
-        .width4 {
-            width: 15%;
-        }
-        .width5 {
-            width: 20%;
-        }
-        .width6 {
-            width: 8%;
-        }
-
-        .width7 {
-            width: 8%;
-        }
-
-        .width8 {
-            width: 8%;
-        }
-        .width9 {
-            width: 22%;
-        }
-
-    </style>
     <script src="../../../js/jquery-3.3.1.min.js"></script>
     <script src="../../../js/datatables.js"></script>
-    
-
     <script>
         jQuery.extend(jQuery.fn.dataTableExt.oSort, {
             "chinese-string-asc": function (s1, s2) {
@@ -77,39 +37,47 @@ include "../../../includes/valAcc.php";
             $('#example').DataTable({
                 "columns": [
                     {
-                        /*"className": 'details-control',*/
-                        /*"orderable": false,*/
                         "data": "idAjustes",
-                        /*"defaultContent": ''*/
+                        width: '5%'
                     },
                     {
                         "data": "tipo",
+                        width: '8%'
                     },
                     {
                         "data": "fecha_ajuste",
+                        width: '8%'
                     },
                     {
                         "data": "nomPersonal",
+                        width: '12%'
                     },
                     {
                         "data": "item",
+                        width: '20%'
                     },
                     {
                         "data": "lote",
+                        width: '10%'
                     },
                     {
                         "data": "inv_ant",
+                        className: 'pe-5',
+                        width: '7%'
                     },
                     {
                         "data": "inv_nvo",
+                        className: 'pe-5',
+                        width: '7%'
                     },
                     {
                         "data": "motivo_ajuste",
+                        width: '23%'
                     },
                 ],
                 "columnDefs":
                     [{
-                        "targets": [0, 2, 5, 6, 7],
+                        "targets": [0, 2],
                         "className": 'dt-body-center'
                     },
                         {
@@ -150,7 +118,11 @@ include "../../../includes/valAcc.php";
                     "infoFiltered": "(Filtrado de _MAX_ en total)"
 
                 },
-                "ajax": "../ajax/listaAjustes.php"
+                "ajax": "../ajax/listaAjustes.php",
+                "order": [[0, 'desc']],
+                initComplete: function (settings, json) {
+                    $('#example thead th').removeClass('pe-5');
+                }
             });
         });
     </script>
@@ -167,18 +139,18 @@ include "../../../includes/valAcc.php";
         </div>
     </div>
     <div class="tabla-100">
-        <table id="example" class="formatoDatos table table-sm table-striped formatoDatos">
+        <table id="example" class="formatoDatos5 table table-sm table-striped">
             <thead>
             <tr>
-                <th class="width1 text-center">Id</th>
-                <th class="width2 text-center">Tipo</th>
-                <th class="width3 text-center">Fecha</th>
-                <th class="width4 text-center">Responsable</th>
-                <th class="width5 text-center">Item</th>
-                <th class="width6 text-center">Lote</th>
-                <th class="width7 text-center">Inv anterior</th>
-                <th class="width8 text-center">Inv nuevo</th>
-                <th class="width9 text-center">Motivo</th>
+                <th class="text-center">Id</th>
+                <th class="text-center">Tipo</th>
+                <th class="text-center">Fecha</th>
+                <th class="text-center">Responsable</th>
+                <th class="text-center">Item</th>
+                <th class="text-center">Lote</th>
+                <th class="text-center">Inv anterior</th>
+                <th class="text-center">Inv nuevo</th>
+                <th class="text-center">Motivo</th>
             </tr>
             </thead>
         </table>

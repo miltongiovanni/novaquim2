@@ -36,11 +36,11 @@ $invAjustesOperador = new InvAjustesOperaciones();
 try {
     $invMPrimasOperador->updateInvMPrima($datos);
     $invAjustesOperador->makeInvAjuste($datos2);
-    $ruta = "../menu.php";
+    $ruta = "../../../menu.php";
     $mensaje = "Inventario actualizado correctamente";
     $icon = "success";
 } catch (Exception $e) {
-    $ruta = "a_inv_mp.php";
+    $ruta = "../materia-prima/";
     $mensaje = "Error al actualizar el inventario";
     $icon = "error";
 } finally {

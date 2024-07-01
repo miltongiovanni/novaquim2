@@ -20,7 +20,7 @@ spl_autoload_register('cargarClases');
     <script>
         function getInvTapa(codEtiqueta) {
             $.ajax({
-                url: '../includes/controladorInventarios.php',
+                url: '../../../../includes/controladorInventarios.php',
                 type: 'POST',
                 data: {
                     "action": 'findInvEtiqueta',
@@ -42,35 +42,35 @@ spl_autoload_register('cargarClases');
 <div id="contenedor" class="container-fluid">
     <div id="saludo">
         <img src="../../../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>SELECCIÓN DE ETIQUETA A AJUSTAR INVENTARIO</h4></div>
-    <form id="form1" name="form1" method="post" action="updateInvEtq.php">
+    <form id="form1" name="form1" method="post" class="formatoDatos5" action="updateInvEtq.php">
         <input type="hidden" name="tipo_inv" value="etq">
         <input type="hidden" name="idResponsable" value="<?= $_SESSION['userId']?>">
         <input type="hidden" name="inv_ant" id="inv_ant" value="">
         <div class="mb-3 row">
-            <label class="form-label col-2" for="codEtiqueta"><strong>Etiqueta</strong></label>
-            <select name="codEtiqueta" id="codEtiqueta" class="form-select col-3 formatoDatos"
-                    onchange="getInvTapa(this.value)" required>
-                <option selected disabled value="">Seleccione una opción</option>
-                <?php
-                $etiquetaOperador = new EtiquetasOperaciones();
-                $etiquetas = $etiquetaOperador->getEtiquetas();
-                $filas = count($etiquetas);
-                for ($i = 0; $i < $filas; $i++) {
-                    echo '<option value="' . $etiquetas[$i]["codEtiqueta"] . '">' . $etiquetas[$i]['nomEtiqueta'] . '</option>';
-                }
-                ?>
-            </select>
+            <div class="col-3">
+                <label class="form-label" for="codEtiqueta"><strong>Etiqueta</strong></label>
+                <select name="codEtiqueta" id="codEtiqueta" class="form-select" onchange="getInvTapa(this.value)" required>
+                    <option selected disabled value="">Seleccione una opción</option>
+                    <?php
+                    $etiquetaOperador = new EtiquetasOperaciones();
+                    $etiquetas = $etiquetaOperador->getEtiquetas();
+                    $filas = count($etiquetas);
+                    for ($i = 0; $i < $filas; $i++) {
+                        echo '<option value="' . $etiquetas[$i]["codEtiqueta"] . '">' . $etiquetas[$i]['nomEtiqueta'] . '</option>';
+                    }
+                    ?>
+                </select>
+            </div>
+            <div class="col-1">
+                <label class="form-label" for=invEtiq><strong>Inventario</strong></label>
+                <input type="text" class="form-control" name="invEtiq" id="invEtiq" onkeydown="return aceptaNum(event)">
+            </div>
         </div>
         <div class="mb-3 row">
-            <label class="form-label col-2 text-end"
-                   for=invEtiq><strong>Inventario</strong></label>
-            <input type="text" class="form-control col-3 formatoDatos" name="invEtiq" id="invEtiq"
-                   onkeydown="return aceptaNum(event)">
-        </div>
-        <div class="mb-3 row">
-            <label class="form-label col-2 text-end"
-                   for=motivo_ajuste><strong>Motivo ajuste</strong></label>
-            <textarea class="form-control col-3" name="motivo_ajuste" id="motivo_ajuste" required></textarea>
+            <div class="col-4">
+                <label class="form-label" for=motivo_ajuste><strong>Motivo ajuste</strong></label>
+                <textarea class="form-control" name="motivo_ajuste" id="motivo_ajuste" required></textarea>
+            </div>
         </div>
         <div class="mb-3 row">
             <div class="col-1 text-center">

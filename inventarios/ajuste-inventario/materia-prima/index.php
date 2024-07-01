@@ -21,7 +21,7 @@ spl_autoload_register('cargarClases');
 
         function getLotesMPrima(codMPrima) {
             $.ajax({
-                url: '../includes/controladorInventarios.php',
+                url: '../../../../includes/controladorInventarios.php',
                 type: 'POST',
                 data: {
                     "action": 'findLotesMPrima',
@@ -43,7 +43,7 @@ spl_autoload_register('cargarClases');
 
         function getInvMPrimaXLote(codMPrima, loteMP) {
             $.ajax({
-                url: '../includes/controladorInventarios.php',
+                url: '../../../../includes/controladorInventarios.php',
                 type: 'POST',
                 data: {
                     "action": 'findInvMPrimaXLote',
@@ -66,41 +66,40 @@ spl_autoload_register('cargarClases');
 <div id="contenedor" class="container-fluid">
     <div id="saludo">
         <img src="../../../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>SELECCIÓN DE MATERIA PRIMA A AJUSTAR INVENTARIO</h4></div>
-    <form id="form1" name="form1" method="post" action="updateInvMP.php">
+    <form id="form1" class="formatoDatos5" name="form1" method="post" action="updateInvMP.php">
         <input type="hidden" name="tipo_inv" value="mp">
         <input type="hidden" name="idResponsable" value="<?= $_SESSION['userId']?>">
         <input type="hidden" name="inv_ant" id="inv_ant" value="">
         <div class="mb-3 row">
-            <label class="form-label col-2" for="codMPrima"><strong>Materia prima</strong></label>
-            <select name="codMPrima" id="codMPrima" class="form-select col-2" onchange="getLotesMPrima(this.value)"
-                    required>
-                <option selected disabled value="">Seleccione una opción</option>
-                <?php
-                $MPrimaOperador = new MPrimasOperaciones();
-                $mPrimas = $MPrimaOperador->getMPrimas();
-                $filas = count($mPrimas);
-                for ($i = 0; $i < $filas; $i++) {
-                    echo '<option value="' . $mPrimas[$i]["codMPrima"] . '">' . $mPrimas[$i]['nomMPrima'] . '</option>';
-                }
-                ?>
-            </select>
+            <div class="col-3">
+                <label class="form-label" for="codMPrima"><strong>Materia prima</strong></label>
+                <select name="codMPrima" id="codMPrima" class="form-select" onchange="getLotesMPrima(this.value)" required>
+                    <option selected disabled value="">Seleccione una opción</option>
+                    <?php
+                    $MPrimaOperador = new MPrimasOperaciones();
+                    $mPrimas = $MPrimaOperador->getMPrimas();
+                    $filas = count($mPrimas);
+                    for ($i = 0; $i < $filas; $i++) {
+                        echo '<option value="' . $mPrimas[$i]["codMPrima"] . '">' . $mPrimas[$i]['nomMPrima'] . '</option>';
+                    }
+                    ?>
+                </select>
+            </div>
+            <div class="col-1 px-0">
+                <label class="form-label" for="loteMP"><strong>Lote</strong></label>
+                <select name="loteMP" id="loteMP" class="form-select" onchange="getInvMPrimaXLote(document.getElementById('codMPrima').value, this.value)" required>
+                </select>
+            </div>
+            <div class="col-1">
+                <label class="form-label  text-end" for=invMP><strong>Inventario</strong></label>
+                <input type="text" class="form-control" name="invMP" id="invMP" onkeydown="return aceptaNum(event)">
+            </div>
         </div>
         <div class="mb-3 row">
-            <label class="form-label col-2" for="loteMP"><strong>Lote</strong></label>
-            <select name="loteMP" id="loteMP" class="form-select col-2"
-                    onchange="getInvMPrimaXLote(document.getElementById('codMPrima').value, this.value)" required>
-            </select>
-        </div>
-        <div class="mb-3 row">
-            <label class="form-label col-2 text-end"
-                   for=invMP><strong>Inventario</strong></label>
-            <input type="text" class="form-control col-2" name="invMP" id="invMP" onkeydown="return aceptaNum(event)">
-
-        </div>
-        <div class="mb-3 row">
-            <label class="form-label col-2 text-end"
-                   for=motivo_ajuste><strong>Motivo ajuste</strong></label>
-            <textarea class="form-control col-2" name="motivo_ajuste" id="motivo_ajuste" required></textarea>
+            <div class="col-5">
+                <label class="form-label" for=motivo_ajuste><strong>Motivo ajuste</strong></label>
+                <textarea class="form-control " name="motivo_ajuste" id="motivo_ajuste" required></textarea>
+            </div>
         </div>
         <div class="mb-3 row">
             <div class="col-1 text-center">
