@@ -8,47 +8,13 @@ include "../../../includes/valAcc.php";
     <meta charset="utf-8">
     <link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="../../../css/datatables.css">
-    <style>
-        table {
-            table-layout: fixed;
-        }
-
-        .width1 {
-            width: 5%;
-        }
-
-        .width2 {
-            width: 15%;
-        }
-
-        .width3 {
-            width: 50%;
-        }
-
-        .width4 {
-            width: 15%;
-        }
-
-        .width5 {
-            width: 15%;
-        }
-
-    </style>
     <script src="../../../js/jquery-3.3.1.min.js"></script>
     <script src="../../../js/datatables.js"></script>
-    
-    <script src="../../../js/jszip.js"></script> <!--Para exportar Excel-->
-    <!--<script src="../js/pdfmake.js"></script>-->  <!--Para exportar PDF-->
-    <!--<script src="../js/vfs_fonts.js"></script>--> <!--Para exportar PDF-->
-    <script src="../../../js/buttons.html5.js"></script>
-
     <script>
-
-
         /* Formatting function for row details - modify as you need */
         function format(d) {
             // `d` is the original data object for the row
-            rep = '<table class="formatoDatos table table-sm table-striped" style="padding-left:50px;width:80%;margin:inherit; background-color: white">' +
+            rep = '<table class="formatoDatos5 table table-sm table-striped" style="padding-left:50px;width:80%;margin:inherit; background-color: white">' +
                 '<thead>' +
                 '<tr>' +
                 '<th class="text-center">Lote</th>' +
@@ -93,26 +59,32 @@ include "../../../includes/valAcc.php";
             var table = $('#example').DataTable({
                 "columns": [
                     {
-                        "className": 'details-control',
+                        "className": 'dt-control',
                         "orderable": false,
                         "data": null,
-                        "defaultContent": ''
+                        "defaultContent": '',
+                        width: '5%'
                     },
                     {
                         "data": "codMP",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-center',
+                        width: '15%'
                     },
                     {
                         "data": "nomMPrima",
-                        "className": 'dt-body-left'
+                        "className": 'dt-body-left',
+                        width: '50%'
                     },
                     {
                         "data": "invTotal",
-                        "className": 'dt-body-center'
+                        render: DataTable.render.number(',', '.', 3, ''),
+                        "className": 'pe-5',
+                        width: '15%'
                     },
                     {
                         "data": "minStockMPrima",
-                        "className": 'dt-body-center'
+                        "className": 'pe-5',
+                        width: '15%'
                     },
                 ],
                 "columnDefs": [
@@ -160,18 +132,15 @@ include "../../../includes/valAcc.php";
                 }
             });
             // Add event listener for opening and closing details
-            $('#example tbody').on('click', 'td.details-control', function () {
-                var tr = $(this).closest('tr');
+            table.on('click', 'td.dt-control', function (e) {
+                var tr = e.target.closest('tr');
                 var row = table.row(tr);
-
                 if (row.child.isShown()) {
                     // This row is already open - close it
                     row.child.hide();
-                    tr.removeClass('shown');
                 } else {
                     // Open this row
                     row.child(format(row.data())).show();
-                    tr.addClass('shown');
                 }
             });
         });
@@ -180,7 +149,9 @@ include "../../../includes/valAcc.php";
 <body>
 <div id="contenedor" class="container-fluid">
     <div id="saludo1">
-        <img src="../../../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>CONSULTA DE STOCK DE INVENTARIO DE MATERIA PRIMA</h4></div>
+        <img src="../../../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2">
+        <h4>CONSULTA DE STOCK DE INVENTARIO DE MATERIA PRIMA</h4>
+    </div>
     <div class="row justify-content-end">
         <div class="col-1">
             <button class="button" onclick="window.location='../../../menu.php'">
@@ -188,14 +159,14 @@ include "../../../includes/valAcc.php";
         </div>
     </div>
     <div class="tabla-50">
-        <table id="example" class="formatoDatos table table-sm table-striped formatoDatos">
+        <table id="example" class="formatoDatos5 table table-sm table-striped">
             <thead>
             <tr>
-                <th class="width1"></th>
-                <th class="width2 text-center">Código</th>
-                <th class="width3 text-center">Materia Prima</th>
-                <th class="width4 text-center">Cantidad (Kg)</th>
-                <th class="width5 text-center">Stock (Kg)</th>
+                <th class=""></th>
+                <th class="text-center">Código</th>
+                <th class="text-center">Materia Prima</th>
+                <th class="text-center">Cantidad (Kg)</th>
+                <th class="text-center">Stock (Kg)</th>
             </tr>
             </thead>
         </table>

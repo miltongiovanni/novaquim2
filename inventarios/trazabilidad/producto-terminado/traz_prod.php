@@ -43,10 +43,7 @@ $detOProd = $envasadoOperador->getEnvasado($loteProd, $codPresentacion);
     <script src="../../../js/jquery-3.3.1.min.js"></script>
     <script src="../../../js/datatables.js"></script>
     
-    <script src="../../../js/jszip.js"></script> <!--Para exportar Excel-->
-    <!--<script src="../js/pdfmake.js"></script>-->  <!--Para exportar PDF-->
-    <!--<script src="../js/vfs_fonts.js"></script>--> <!--Para exportar PDF-->
-    <script src="../../../js/buttons.html5.js"></script>
+    
     <script>
         jQuery.extend(jQuery.fn.dataTableExt.oSort, {
             "chinese-string-asc": function (s1, s2) {
