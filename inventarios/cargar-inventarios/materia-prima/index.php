@@ -1,4 +1,4 @@
 <?php
 $inventario = 'MATERIA PRIMA';
-include "cargarInventarios.php";
+include "../carga/cargarInventarios.php";
 ?>

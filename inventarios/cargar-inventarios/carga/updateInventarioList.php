@@ -1,5 +1,5 @@
 <?php
-require '../vendor/autoload.php';
+require '../../../vendor/autoload.php';
 
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
@@ -32,11 +32,11 @@ $invEtiqOperador = new InvEtiquetasOperaciones();
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <link href="../../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <title>Actualización inventario</title>
     <meta charset="utf-8">
-    <script src="../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="../../js/validar.js"></script>
+    <script src="../../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../../../js/validar.js"></script>
 
 </head>
 <body>
@@ -62,6 +62,7 @@ $invEtiqOperador = new InvEtiquetasOperaciones();
                 $datos = array($invDistribucion, $codigoDistribucion );
                 $invDistOperador->updateInvDistribucion($datos);
             }
+            $ruta_error = '../producto-distribucion/';
         }
         if ($inventario === 'TAPAS Y VÁLVULAS'){
             for($i=1; $i<count($inventarios);$i++){
@@ -70,6 +71,7 @@ $invEtiqOperador = new InvEtiquetasOperaciones();
                 $datos = array($invTapa, $codigoTapa );
                 $invTapasOperador->updateInvTapas($datos);
             }
+            $ruta_error = '../tapa/';
         }
         if ($inventario === 'ENVASE'){
             for($i=1; $i<count($inventarios);$i++){
@@ -78,6 +80,7 @@ $invEtiqOperador = new InvEtiquetasOperaciones();
                 $datos = array($invEnvase, $codigoEnvase );
                 $invEnvaseOperador->updateInvEnvase($datos);
             }
+            $ruta_error = '../envase/';
         }
         if ($inventario === 'MATERIA PRIMA'){
             for($i=1; $i<count($inventarios);$i++){
@@ -87,6 +90,7 @@ $invEtiqOperador = new InvEtiquetasOperaciones();
                 $datos = array($invMPrima, $codigoMPrima, $loteMPrima );
                 $invMPOperador->updateInvMPrima($datos);
             }
+            $ruta_error = '../materia-prima/';
         }
         if ($inventario === 'PRODUCTO TERMINADO'){
             for($i=1; $i<count($inventarios);$i++){
@@ -96,6 +100,7 @@ $invEtiqOperador = new InvEtiquetasOperaciones();
                 $datos = array($invPTerminado, $codigoPTerminado, $lotePTerminado );
                 $invProductoOperador->updateInvProdTerminado($datos);
             }
+            $ruta_error = '../producto-terminado/';
         }
         if ($inventario === 'ETIQUETAS'){
             for($i=1; $i<count($inventarios);$i++){
@@ -104,12 +109,13 @@ $invEtiqOperador = new InvEtiquetasOperaciones();
                 $datos = array($invEtiqueta, $codigoEtiqueta );
                 $invEtiqOperador->updateInvEtiqueta($datos);
             }
+            $ruta_error = '../etiqueta/';
         }
         $ruta = "../../../menu.php";
         $mensaje = "Inventario actualizado correctamente";
         $icon = "success";
     } catch (Exception $e) {
-        $ruta = "cargarPrecios.php";
+        $ruta = $ruta_error;
         $mensaje = "Error al actualizar la lista de precios";
         $icon = "error";
     } finally {

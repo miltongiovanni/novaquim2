@@ -1,5 +1,5 @@
 <?php
-require '../vendor/autoload.php';
+require '../../../vendor/autoload.php';
 
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
@@ -67,19 +67,19 @@ if (move_uploaded_file($file_tmp_name, $upload_file)) {
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <link href="../../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <title>Carga archivo de inventario</title>
     <meta charset="utf-8">
-    <script src="../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="../../js/validar.js"></script>
+    <script src="../../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../../../js/validar.js"></script>
 
 </head>
 <body>
 <div id="contenedor" class="container-fluid">
 
     <div id="saludo">
-        <img src="../../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>SELECCIÓN DE LA PÁGINA A CARGAR EL INVENTARIO DE <?=$inventario?></h4></div>
-    <form id="form1" name="form1" method="post" action="selectColumnaFile.php">
+        <img src="../../../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>SELECCIÓN DE LA PÁGINA A CARGAR EL INVENTARIO DE <?=$inventario?></h4></div>
+    <form id="form1" name="form1" method="post" action="../carga/selectColumnaFile.php">
         <input type="hidden" name="inventario" value="<?=$inventario?>">
         <input type="hidden" name="upload_file" value="<?=$upload_file?>">
         <div class="mb-3 row">
