@@ -16,12 +16,14 @@ include "../../../includes/valAcc.php";
         <img src="../../../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>REMISIÓN DE PRODUCTOS</h4></div>
     <form method="post" action="makeRemision.php" name="form1">
         <div class="mb-3 row">
-            <label class="form-label col-2 text-end" for="cliente"><strong>Cliente</strong></label>
-            <input type="text" class="form-control col-2" name="cliente" id="cliente" required>
-        </div>
-        <div class="mb-3 row">
-            <label class="form-label col-2 text-end" for="fechaRemision"><strong>Fecha</strong></label>
-            <input type="date" class="form-control col-2" name="fechaRemision" id="fechaRemision" required>
+            <div class="col-3">
+                <label class="form-label" for="cliente"><strong>Cliente</strong></label>
+                <input type="text" class="form-control" name="cliente" id="cliente" required>
+            </div>
+            <div class="col-2">
+                <label class="form-label" for="fechaRemision"><strong>Fecha</strong></label>
+                <input type="date" class="form-control" name="fechaRemision" id="fechaRemision" required>
+            </div>
         </div>
         <div class="mb-3 row">
             <div class="col-1 text-center">

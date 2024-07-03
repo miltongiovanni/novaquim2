@@ -40,25 +40,26 @@ if (!$remisionOperador->isValidIdRemision($idRemision)) {
         <img src="../../../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>ACTUALIZACIÓN REMISIÓN</h4></div>
         <form name="form2" method="POST" action="updateRemision.php">
             <div class="mb-3 row">
-                <label class="form-label col-2 text-end" for="idRemision"><strong>Id remisión</strong></label>
-                <input type="text" class="form-control col-2" name="idRemision" id="idRemision"
-                       value="<?= $remision['idRemision'] ?>"
-                       readonly>
-            </div>
-            <div class="mb-3 row">
-                <label class="form-label col-2 text-end" for="cliente"><strong>Cliente</strong></label>
-                <input type="text" class="form-control col-2" name="cliente" id="cliente"
-                       value="<?= $remision['cliente'] ?>">
-            </div>
-            <div class="mb-3 row">
-                <label class="form-label col-2 text-end" for="fechaRemision"><strong>Fecha</strong></label>
-                <input type="date" class="form-control col-2" name="fechaRemision" id="fechaRemision"
-                       value="<?= $remision['fechaRemision'] ?>">
-            </div>
-            <div class="mb-3 row">
-                <label class="form-label col-2 text-end" for="valor"><strong>Valor</strong></label>
-                <input type="text" class="form-control col-2" name="valor" id="valor" value="<?= $remision['valor'] ?>"
-                       onkeydown="return aceptaNum(event)">
+                <div class="col-1">
+                    <label class="form-label" for="idRemision"><strong>Id remisión</strong></label>
+                    <input type="text" class="form-control" name="idRemision" id="idRemision"
+                           value="<?= $remision['idRemision'] ?>" readonly>
+                </div>
+                <div class="col-3">
+                    <label class="form-label" for="cliente"><strong>Cliente</strong></label>
+                    <input type="text" class="form-control" name="cliente" id="cliente"
+                           value="<?= $remision['cliente'] ?>">
+                </div>
+                <div class="col-2">
+                    <label class="form-label" for="fechaRemision"><strong>Fecha</strong></label>
+                    <input type="date" class="form-control" name="fechaRemision" id="fechaRemision"
+                           value="<?= $remision['fechaRemision'] ?>">
+                </div>
+                <div class="col-2">
+                    <label class="form-label" for="valor"><strong>Valor</strong></label>
+                    <input type="text" class="form-control" name="valor" id="valor" value="<?= $remision['valor'] ?>"
+                           onkeydown="return aceptaNum(event)">
+                </div>
             </div>
             <div class="mb-3 row">
                 <div class="col-1 text-center">

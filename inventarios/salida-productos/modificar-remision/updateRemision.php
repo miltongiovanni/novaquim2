@@ -35,7 +35,7 @@ $datos = array($cliente, $fechaRemision, $valor, $idRemision);
 try {
     $remisionOperador->updateRemision($datos);
     $_SESSION['idRemision'] = $idRemision;
-    $ruta = "det_remision.php";
+    $ruta = "../detalle-remision/";
     $mensaje = "Remisión actualizada con éxito";
     $icon = "success";
 } catch (Exception $e) {

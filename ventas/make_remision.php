@@ -87,7 +87,7 @@ if (($dias_remision >= 0)) {
 
         $pedidoOperador->updateEstadoPedido(3, $idPedido);
         $_SESSION['idRemision'] = $idRemision;
-        $ruta = "det_remision.php";
+        $ruta = "../detalle-remision/";
         $mensaje = "Remisión creada con éxito";
         $icon = "success";
     } catch (Exception $e) {

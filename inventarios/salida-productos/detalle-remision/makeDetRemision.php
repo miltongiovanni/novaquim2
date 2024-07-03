@@ -38,7 +38,7 @@ try {
         $invDistribucion = $invDistribucionOperador->getInvDistribucion($codProducto);
         if ($cantProducto > $invDistribucion) {
             $_SESSION['idRemision'] = $idRemision;
-            $ruta = "det_remision.php";
+            $ruta = "../detalle-remision/";
             $mensaje = "No hay inventario suficiente";
             $icon = "warning";
         } else {
@@ -48,7 +48,7 @@ try {
             $datos = array($idRemision, $codProducto, $cantProducto, 0, $precioProducto);
             $detRemisionOperador->makeDetRemision($datos);
             $_SESSION['idRemision'] = $idRemision;
-            $ruta = "det_remision.php";
+            $ruta = "../detalle-remision/";
             $mensaje = "Detalle de la remisión adicionado con éxito";
             $icon = "success";
         }
@@ -59,7 +59,7 @@ try {
         $invTotalProdTerminado = $invProdTerminadoOperador->getInvTotalProdTerminado($codProducto);
         if ($cantProducto > $invTotalProdTerminado) {
             $_SESSION['idRemision'] = $idRemision;
-            $ruta = "det_remision.php";
+            $ruta = "../detalle-remision/";
             $mensaje = "No hay inventario suficiente";
             $icon = "warning";
         } else {
@@ -84,7 +84,7 @@ try {
                 }
             }
             $_SESSION['idRemision'] = $idRemision;
-            $ruta = "det_remision.php";
+            $ruta = "../detalle-remision/";
             $mensaje = "Detalle de la remisión adicionado con éxito";
             $icon = "success";
         }
@@ -92,7 +92,7 @@ try {
 
 } catch (Exception $e) {
     $_SESSION['idRemision'] = $idRemision;
-    $ruta = "det_remision.php";
+    $ruta = "../detalle-remision/";
     $mensaje = "Error al ingresar el detalle de la remisión";
     $icon = "error";
 } finally {

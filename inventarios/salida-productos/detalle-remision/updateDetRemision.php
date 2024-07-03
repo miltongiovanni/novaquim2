@@ -39,7 +39,7 @@ try {
             $invTotalProd = $invProdTerminadoOperador->getInvTotalProdTerminado($codProducto);
             if ($diffCantidad > $invTotalProd) {
                 $_SESSION['idRemision'] = $idRemision;
-                $ruta = "det_remision.php";
+                $ruta = "../detalle-remision/";
                 $mensaje = "No hay inventario suficiente";
                 $icon = "warning";
             } else {
@@ -65,7 +65,7 @@ try {
                     }
                 }
                 $_SESSION['idRemision'] = $idRemision;
-                $ruta = "det_remision.php";
+                $ruta = "../detalle-remision/";
                 $mensaje = "Detalle de la remisión actualizado con éxito";
                 $icon = "success";
             }
@@ -98,7 +98,7 @@ try {
                 }
             }
             $_SESSION['idRemision'] = $idRemision;
-            $ruta = "det_remision.php";
+            $ruta = "../detalle-remision/";
             $mensaje = "Detalle de la remisión actualizado con éxito";
             $icon = "success";
         }
@@ -108,7 +108,7 @@ try {
         $invDistribucion = $invDistribucionOperador->getInvDistribucion($codProducto);
         if ($diffCantidad > $invDistribucion) {
             $_SESSION['idRemision'] = $idRemision;
-            $ruta = "det_remision.php";
+            $ruta = "../detalle-remision/";
             $mensaje = "No hay inventario suficiente";
             $icon = "warning";
         } else {
@@ -118,7 +118,7 @@ try {
             $datos = array($cantProducto, $precioProducto, $idRemision, $codProducto,0);
             $detRemisionOperador->updateDetRemision($datos);
             $_SESSION['idRemision'] = $idRemision;
-            $ruta = "det_remision.php";
+            $ruta = "../detalle-remision/";
             $mensaje = "Detalle de la remisión actualizado con éxito";
             $icon = "success";
         }
@@ -127,7 +127,7 @@ try {
 
 } catch (Exception $e) {
     $_SESSION['idRemision'] = $idRemision;
-    $ruta = "det_remision.php";
+    $ruta = "../detalle-remision/";
     $mensaje = "Error al actualizar el detalle de la remisión";
     $icon = "error";
 } finally {

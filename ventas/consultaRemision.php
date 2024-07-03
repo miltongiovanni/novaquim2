@@ -30,7 +30,7 @@ if (!$remisionOperador->isValidRemision($idRemision)) {
     exit;
 } else {
     $_SESSION['idRemision'] = $idRemision;
-    $ruta = "det_remision.php";
+    $ruta = "../detalle-remision/";
     $mensaje = "El número de la remisión es válido";
     $icon = "success";
     mover_pag($ruta, $mensaje, $icon);

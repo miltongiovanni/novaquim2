@@ -52,12 +52,12 @@ try {
     }
 //ELIMINA EL PRODUCTO DE LA REMISION
     $_SESSION['idRemision'] = $idRemision;
-    $ruta = "det_remision.php";
+    $ruta = "../detalle-remision/";
     $mensaje = "Detalle de remisión eliminado correctamente";
     $icon = "success";
 } catch (Exception $e) {
     $_SESSION['idRemision'] = $idRemision;
-    $ruta = "det_remision.php";
+    $ruta = "../detalle-remision/";
     $mensaje = "Error al eliminar el detalle de la remisión";
     $icon = "error";
 } finally {

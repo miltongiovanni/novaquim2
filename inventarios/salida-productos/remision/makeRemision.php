@@ -35,7 +35,7 @@ $RemisionOperador = new RemisionesOperaciones();
 try {
     $lastIdRemision = $RemisionOperador->makeRemision($datos);
     $_SESSION['idRemision'] = $lastIdRemision;
-    $ruta = "det_remision.php";
+    $ruta = "../detalle-remision/";
     $mensaje = "Remisión creada con éxito";
     $icon = "success";
 } catch (Exception $e) {
