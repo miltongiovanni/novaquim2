@@ -21,29 +21,8 @@ $detOProd = $envasadoOperador->getEnvasado($loteProd, $codPresentacion);
     <meta charset="utf-8">
     <link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="../../../css/datatables.css">
-    <style>
-        table {
-            table-layout: fixed;
-        }
-
-        .width1 {
-            width: 20%;
-        }
-
-        .width2 {
-            width: 60%;
-        }
-
-        .width3 {
-            width: 20%;
-        }
-
-
-    </style>
     <script src="../../../js/jquery-3.3.1.min.js"></script>
     <script src="../../../js/datatables.js"></script>
-    
-    
     <script>
         jQuery.extend(jQuery.fn.dataTableExt.oSort, {
             "chinese-string-asc": function (s1, s2) {
@@ -73,15 +52,18 @@ $detOProd = $envasadoOperador->getEnvasado($loteProd, $codPresentacion);
                 "columns": [
                     {
                         "data": "fechaRemision",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-center',
+                        width: '20%'
                     },
                     {
                         "data": "nomCliente",
-                        "className": 'dt-body-left'
+                        "className": 'dt-body-left',
+                        width: '60%'
                     },
                     {
                         "data": "cantProducto",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-center',
+                        width: '20%'
                     },
                 ],
                 "columnDefs": [
@@ -143,24 +125,28 @@ $detOProd = $envasadoOperador->getEnvasado($loteProd, $codPresentacion);
         <strong>Entrada</strong>
     </div>
     <div class="mb-3 row">
-        <div class="col-2 text-center"><strong>Fecha Producción</strong></div>
-        <div class="col-1 text-center"><strong>Unidades</strong></strong></div>
+        <div class="col-2">
+            <strong>Fecha Producción</strong>
+            <div class=""><?= $detOProd['fechProd'] ?></div>
+        </div>
+        <div class="col-2">
+            <strong>Unidades</strong>
+            <div><?= $detOProd['cantPresentacion']; ?></div>
+        </div>
     </div>
     <div class="mb-3 row">
-        <div class="col-2 text-center"><?= $detOProd['fechProd'] ?></div>
-        <div class="col-1 text-center"><?= $detOProd['cantPresentacion']; ?></div>
     </div>
     <div class="mb-3 titulo row text-center">
         <strong>Salidas
         </strong>
     </div>
     <div class="tabla-50">
-        <table id="salidas" class="formatoDatos table table-sm table-striped formatoDatos">
+        <table id="salidas" class="formatoDatos5 table table-sm table-striped">
             <thead>
             <tr>
-                <th class="width1 text-center">Fecha de venta</th>
-                <th class="width2 text-center">Cliente</th>
-                <th class="width3 text-center">Unidades</th>
+                <th class="text-center">Fecha de venta</th>
+                <th class="text-center">Cliente</th>
+                <th class="text-center">Unidades</th>
             </tr>
             </thead>
         </table>

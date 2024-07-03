@@ -20,7 +20,7 @@ spl_autoload_register('cargarClases');
 
         function getLotesPresentacion(codPresentacion) {
             $.ajax({
-                url: '../includes/controladorInventarios.php',
+                url: '../../../../includes/controladorInventarios.php',
                 type: 'POST',
                 data: {
                     "action": 'findAllLotesPresentacion',
@@ -44,27 +44,30 @@ spl_autoload_register('cargarClases');
 <body>
 <div id="contenedor" class="container-fluid">
     <div id="saludo">
-        <img src="../../../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>SELECCIÓN DE PRODUCTO A REVISAR TRAZABILIDAD</h4></div>
+        <img src="../../../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25">
+        <h4>SELECCIÓN DE PRODUCTO A REVISAR TRAZABILIDAD</h4>
+    </div>
     <form id="form1" name="form1" method="post" action="traz_prod.php">
         <div class="mb-3 row">
-            <label class="form-label col-2" for="codPresentacion"><strong>Producto Terminado</strong></label>
-            <select name="codPresentacion" id="codPresentacion" class="form-select col-3"
-                    onchange="getLotesPresentacion(this.value)" required>
-                <option selected disabled value="">Seleccione una opción</option>
-                <?php
-                $presentacionOperador = new PresentacionesOperaciones();
-                $presentaciones = $presentacionOperador->getPresentaciones(true);
-                $filas = count($presentaciones);
-                for ($i = 0; $i < $filas; $i++) {
-                    echo '<option value="' . $presentaciones[$i]["codPresentacion"] . '">' . $presentaciones[$i]['presentacion'] . '</option>';
-                }
-                ?>
-            </select>
-        </div>
-        <div class="mb-3 row">
-            <label class="form-label col-2" for="loteProd"><strong>Lote</strong></label>
-            <select name="loteProd" id="loteProd" class="form-select col-3" required>
-            </select>
+            <div class="col-4">
+                <label class="form-label" for="codPresentacion"><strong>Producto Terminado</strong></label>
+                <select name="codPresentacion" id="codPresentacion" class="form-select" onchange="getLotesPresentacion(this.value)" required>
+                    <option selected disabled value="">Seleccione una opción</option>
+                    <?php
+                    $presentacionOperador = new PresentacionesOperaciones();
+                    $presentaciones = $presentacionOperador->getPresentaciones(true);
+                    $filas = count($presentaciones);
+                    for ($i = 0; $i < $filas; $i++) {
+                        echo '<option value="' . $presentaciones[$i]["codPresentacion"] . '">' . $presentaciones[$i]['presentacion'] . '</option>';
+                    }
+                    ?>
+                </select>
+            </div>
+            <div class="col-1">
+                <label class="form-label" for="loteProd"><strong>Lote</strong></label>
+                <select name="loteProd" id="loteProd" class="form-select" required>
+                </select>
+            </div>
         </div>
         <div class="mb-3 row">
             <div class="col-1 text-center">

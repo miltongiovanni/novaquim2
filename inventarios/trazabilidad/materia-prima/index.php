@@ -20,7 +20,7 @@ spl_autoload_register('cargarClases');
 
         function getLotesMPrima(codMPrima) {
             $.ajax({
-                url: '../includes/controladorInventarios.php',
+                url: '../../../../includes/controladorInventarios.php',
                 type: 'POST',
                 data: {
                     "action": 'findAllLotesMPrima',
@@ -47,24 +47,25 @@ spl_autoload_register('cargarClases');
         <img src="../../../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>SELECCIÓN DE MATERIA PRIMA A REVISAR TRAZABILIDAD</h4></div>
     <form id="form1" name="form1" method="post" action="traz_mp.php">
         <div class="mb-3 row">
-            <label class="form-label col-2" for="codMPrima"><strong>Materia prima</strong></label>
-            <select name="codMPrima" id="codMPrima" class="form-select col-2" onchange="getLotesMPrima(this.value)"
-                    required>
-                <option selected disabled value="">Seleccione una opción</option>
-                <?php
-                $MPrimaOperador = new MPrimasOperaciones();
-                $mPrimas = $MPrimaOperador->getMPrimas();
-                $filas = count($mPrimas);
-                for ($i = 0; $i < $filas; $i++) {
-                    echo '<option value="' . $mPrimas[$i]["codMPrima"] . '">' . $mPrimas[$i]['nomMPrima'] . '</option>';
-                }
-                ?>
-            </select>
-        </div>
-        <div class="mb-3 row">
-            <label class="form-label col-2" for="loteMP"><strong>Lote</strong></label>
-            <select name="loteMP" id="loteMP" class="form-select col-2" required>
-            </select>
+            <div class="col-4">
+                <label class="form-label" for="codMPrima"><strong>Materia prima</strong></label>
+                <select name="codMPrima" id="codMPrima" class="form-select" onchange="getLotesMPrima(this.value)" required>
+                    <option selected disabled value="">Seleccione una opción</option>
+                    <?php
+                    $MPrimaOperador = new MPrimasOperaciones();
+                    $mPrimas = $MPrimaOperador->getMPrimas();
+                    $filas = count($mPrimas);
+                    for ($i = 0; $i < $filas; $i++) {
+                        echo '<option value="' . $mPrimas[$i]["codMPrima"] . '">' . $mPrimas[$i]['nomMPrima'] . '</option>';
+                    }
+                    ?>
+                </select>
+            </div>
+            <div class="col-2">
+                <label class="form-label" for="loteMP"><strong>Lote</strong></label>
+                <select name="loteMP" id="loteMP" class="form-select" required>
+                </select>
+            </div>
         </div>
         <div class="mb-3 row">
             <div class="col-1 text-center">

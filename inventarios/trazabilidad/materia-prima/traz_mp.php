@@ -14,41 +14,13 @@ $detComprasMPrimaOperador = new DetComprasOperaciones();
 ?>
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="utf-8">
     <title>Trazabilidad Materia Prima</title>
     <link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="../../../css/datatables.css">
-    <style>
-        table {
-            table-layout: fixed;
-        }
-
-        .width1 {
-            width: 10%;
-        }
-
-        .width2 {
-            width: 20%;
-        }
-
-        .width12 {
-            width: 30%;
-        }
-        .width3 {
-            width: 50%;
-        }
-        .width4 {
-            width: 20%;
-        }
-
-    </style>
     <script src="../../../js/jquery-3.3.1.min.js"></script>
     <script src="../../../js/datatables.js"></script>
-    
-    
-
     <script>
         jQuery.extend(jQuery.fn.dataTableExt.oSort, {
             "chinese-string-asc": function (s1, s2) {
@@ -78,15 +50,18 @@ $detComprasMPrimaOperador = new DetComprasOperaciones();
                 "columns": [
                     {
                         "data": "fechComp",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-center',
+                        width: '30%'
                     },
                     {
                         "data": "nomProv",
-                        "className": 'dt-body-left'
+                        "className": 'dt-body-left',
+                        width: '50%'
                     },
                     {
                         "data": "cantidad",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-center',
+                        width: '20%'
                     },
                 ],
                 "columnDefs": [
@@ -124,19 +99,23 @@ $detComprasMPrimaOperador = new DetComprasOperaciones();
                 "columns": [
                     {
                         "data": "lote",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-center',
+                        width: '10%'
                     },
                     {
                         "data": "fechProd",
-                        "className": 'dt-body-left'
+                        "className": 'dt-body-center',
+                        width: '20%'
                     },
                     {
                         "data": "nomProducto",
-                        "className": 'dt-body-left'
+                        "className": 'dt-body-left',
+                        width: '50%'
                     },
                     {
                         "data": "cantidadMPrima",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-right pe-5',
+                        width: '20%'
                     },
                 ],
                 "columnDefs": [
@@ -204,12 +183,12 @@ $detComprasMPrimaOperador = new DetComprasOperaciones();
         <strong>Entrada</strong>
     </div>
     <div class="tabla-50">
-        <table id="entradas" class="formatoDatos table table-sm table-striped formatoDatos">
+        <table id="entradas" class="formatoDatos5 table table-sm table-striped">
             <thead>
             <tr>
-                <th class="width12 text-center">Fecha Compra</th>
-                <th class="width3 text-center">Proveedor</th>
-                <th class="width4 text-center">Cantidad (Kg)</th>
+                <th class="text-center">Fecha Compra</th>
+                <th class="text-center">Proveedor</th>
+                <th class="text-center">Cantidad (Kg)</th>
             </tr>
             </thead>
         </table>
@@ -219,13 +198,13 @@ $detComprasMPrimaOperador = new DetComprasOperaciones();
         </strong>
     </div>
     <div class="tabla-50">
-        <table id="salidas" class="formatoDatos table table-sm table-striped formatoDatos">
+        <table id="salidas" class="formatoDatos5 table table-sm table-striped">
             <thead>
             <tr>
-                <th class="width1 text-center">Lote</th>
-                <th class="width2 text-center">Fecha de producción</th>
-                <th class="width3 text-center">Producto</th>
-                <th class="width4 text-center">Cantidad (Kg)</th>
+                <th class="text-center">Lote</th>
+                <th class="text-center">Fecha de producción</th>
+                <th class="text-center">Producto</th>
+                <th class="text-center">Cantidad (Kg)</th>
             </tr>
             </thead>
         </table>
