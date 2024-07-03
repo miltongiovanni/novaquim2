@@ -52,18 +52,18 @@ try {
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <link href="../../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <title>Actualización inventario</title>
     <meta charset="utf-8">
-    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="../js/validar.js"></script>
+    <script src="../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../../js/validar.js"></script>
 
 </head>
 <body>
 <div id="contenedor" class="container-fluid">
 
     <div id="saludo">
-        <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>SELECCIÓN DE LAS COLUMNAS PARA
+        <img src="../../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>SELECCIÓN DE LAS COLUMNAS PARA
             A CARGAR EL INVENTARIO DE <?= $inventario ?></h4></div>
     <form id="form1" name="form1" method="post" action="updateInventarioList.php">
         <input type="hidden" name="inventario" value="<?= $inventario ?>">

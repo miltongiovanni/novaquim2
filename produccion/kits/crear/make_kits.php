@@ -36,7 +36,7 @@ try {
     $mensaje = "Kit creado correctamente";
     $icon = "success";
 } catch (Exception $e) {
-    $ruta = "../menu.php";
+    $ruta = "../../../menu.php";
     $mensaje = "Error al crear el kit";
     $icon = "error";
 } finally {

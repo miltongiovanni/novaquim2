@@ -13,9 +13,9 @@ spl_autoload_register('cargarClases');
 <head>
     <title>Cargar Envase como Producto de Distribución</title>
     <meta charset="utf-8">
-    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="../js/validar.js"></script>
+    <link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script src="../../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../../../js/validar.js"></script>
 </head>
 <body>
 <?php
@@ -45,7 +45,7 @@ try {
         $datos = array($nvoInvTapas, $relacionEnvDis['codTapa']);
         $invTapaOperador->updateInvTapas($datos);
 
-        $ruta = "../menu.php";
+        $ruta = "../../../menu.php";
         $mensaje = "Carga de envase como producto de distribución realizado con éxito";
         $icon = "success";
     } else {

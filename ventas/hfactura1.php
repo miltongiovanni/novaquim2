@@ -22,11 +22,11 @@ $idPedido = $_POST['idPedido'];
 $pedidoOperador = new PedidosOperaciones();
 try {
     $pedidoOperador->updateEstadoPedido(2, $idPedido);
-    $ruta = "../menu.php";
+    $ruta = "../../../menu.php";
     $mensaje = "Pedido Habilitado para facturar correctamente";
     $icon = "success";
 } catch (Exception $e) {
-    $ruta = "../menu.php";
+    $ruta = "../../../menu.php";
     $mensaje = "Error al habilitar el Pedido";
     $icon = "error";
 } finally {

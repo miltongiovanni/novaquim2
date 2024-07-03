@@ -41,7 +41,7 @@ $saldo = round($recibo['totalR'] - $recibo['retencionFte'] - $recibo['retencionI
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script>
         function redireccion() {
-            window.location.href = "../menu.php";
+            window.location.href = "../../../menu.php";
         }
 
         function eliminarSession() {

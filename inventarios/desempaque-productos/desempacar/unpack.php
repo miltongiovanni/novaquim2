@@ -35,16 +35,16 @@ try {
         $nvoInvPacas = $invPaca - $cantidadPacas;
         $datos = array($nvoInvPacas, $codPaca);
         $invDistribucionOperador->updateInvDistribucion($datos);
-        $ruta = "../menu.php";
+        $ruta = "../../../menu.php";
         $mensaje = "Desempaque de Producto realizado con Éxito";
         $icon = "success";
     } else {
-        $ruta = "desempacar.php";
+        $ruta = "../desempacar/";
         $mensaje = "No hay inventario suficiente de Pacas del producto";
         $icon = "warning";
     }
 } catch (Exception $e) {
-    $ruta = "desempacar.php";
+    $ruta = "../desempacar/";
     $mensaje = "Error al desempacar el producto";
     $icon = "error";
 } finally {

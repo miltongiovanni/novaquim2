@@ -23,11 +23,11 @@ $idPedido = $_POST['idPedido'];
 $pedidoOperador = new PedidosOperaciones();
 try {
     $pedidoOperador->updateEstadoPedido(1, $idPedido);
-    $ruta = "../menu.php";
+    $ruta = "../../../menu.php";
     $mensaje = "Pedido Habilitado para modificar correctamente";
     $icon = "success";
 } catch (Exception $e) {
-    $ruta = "../menu.php";
+    $ruta = "../../../menu.php";
     $mensaje = "Error al habilitar el Pedido";
     $icon = "error";
 } finally {

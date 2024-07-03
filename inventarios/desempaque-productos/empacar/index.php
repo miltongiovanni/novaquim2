@@ -22,25 +22,25 @@ spl_autoload_register('cargarClases');
         <img src="../../../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>ORGANIZAR UNIDADES EN PACAS</h4></div>
     <form id="form1" name="form1" method="post" action="pack.php">
         <div class="mb-3 row">
-            <label class="form-label col-3 text-end" for="codUnidad"><strong>Unidades de Producto sin
-                    empacar:</strong></label>
-            <select class="form-select col-3" name="codUnidad" id="codUnidad" required>
-                <option selected disabled value="">Seleccione una opción-------------</option>
-                <?php
-                $invDistribucionOperador = new InvDistribucionOperaciones();
-                $unidades = $invDistribucionOperador->getProdPorEmpacar();
-                for ($i = 0; $i < count($unidades); $i++):
+            <div class="col-4">
+                <label class="form-label" for="codUnidad"><strong>Unidades de Producto sin empacar:</strong></label>
+                <select class="form-select" name="codUnidad" id="codUnidad" required>
+                    <option selected disabled value="">Seleccione una opción</option>
+                    <?php
+                    $invDistribucionOperador = new InvDistribucionOperaciones();
+                    $unidades = $invDistribucionOperador->getProdPorEmpacar();
+                    for ($i = 0; $i < count($unidades); $i++):
+                        ?>
+                        <option value="<?= $unidades[$i]['idDistribucion'] ?>"><?= $unidades[$i]['producto'] ?></option>
+                    <?php
+                    endfor;
                     ?>
-                    <option value="<?= $unidades[$i]['idDistribucion'] ?>"><?= $unidades[$i]['producto'] ?></option>
-                <?php
-                endfor;
-                ?>
-            </select>
-        </div>
-        <div class="mb-3 row">
-            <label class="form-label col-3 text-end" for="unidades"><strong>Cantidad:</strong></label>
-            <input type="text" class="form-control col-3" name="unidades" id="unidades"
-                   onkeydown="return aceptaNum(event)" required>
+                </select>
+            </div>
+            <div class="col-1">
+                <label class="form-label" for="unidades"><strong>Cantidad:</strong></label>
+                <input type="text" class="form-control" name="unidades" id="unidades" onkeydown="return aceptaNum(event)" required>
+            </div>
         </div>
         <div class="mb-3 row">
             <div class="col-1 text-center">
@@ -56,7 +56,6 @@ spl_autoload_register('cargarClases');
             <button class="button1" onClick="window.location='../../../menu.php'"><span>VOLVER</span></button>
         </div>
     </div>
-
 </div>
 </body>
 </html>

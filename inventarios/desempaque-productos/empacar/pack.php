@@ -40,7 +40,7 @@ try {
             $nvoInvPacas = $invPaca + $noPacas;
             $datos = array($nvoInvPacas, $paca['codPaca']);
             $invDistribucionOperador->updateInvDistribucion($datos);
-            $ruta = "../menu.php";
+            $ruta = "../../../menu.php";
             $mensaje = "Empaque de Producto realizado con Éxito";
             $icon = "success";
         } else {

@@ -19,28 +19,31 @@ spl_autoload_register('cargarClases');
 <body>
 <div id="contenedor" class="container-fluid">
     <div id="saludo">
-        <img src="../../../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>DESEMPACAR PACAS A UNIDADES</h4></div>
+        <img src="../../../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25">
+        <h4>DESEMPACAR PACAS A UNIDADES</h4>
+    </div>
     <form id="form1" name="form1" method="post" action="unpack.php">
         <div class="mb-3 row">
-            <label class="form-label col-3 text-end" for="codPaca"><strong>Producto de Distribución
-                    Empacado:</strong></label>
-            <select class="form-select col-3" name="codPaca" id="codPaca" required>
-                <option selected disabled value="">Seleccione una opción-------------</option>
-                <?php
-                $invDistribucionOperador = new InvDistribucionOperaciones();
-                $pacas = $invDistribucionOperador->getProdPorDesempacar();
-                for ($i = 0; $i < count($pacas); $i++):
+            <div class="col-4">
+                <label class="form-label" for="codPaca"><strong>Producto de Distribución Empacado:</strong></label>
+                <select class="form-select" name="codPaca" id="codPaca" required>
+                    <option selected disabled value="">Seleccione una opción</option>
+                    <?php
+                    $invDistribucionOperador = new InvDistribucionOperaciones();
+                    $pacas = $invDistribucionOperador->getProdPorDesempacar();
+                    for ($i = 0; $i < count($pacas); $i++):
+                        ?>
+                        <option value="<?= $pacas[$i]['idDistribucion'] ?>"><?= $pacas[$i]['producto'] ?></option>
+                    <?php
+                    endfor;
                     ?>
-                    <option value="<?= $pacas[$i]['idDistribucion'] ?>"><?= $pacas[$i]['producto'] ?></option>
-                <?php
-                endfor;
-                ?>
-            </select>
-        </div>
-        <div class="mb-3 row">
-            <label class="form-label col-3 text-end" for="cantidadPacas"><strong>Cantidad:</strong></label>
-            <input type="text" class="form-control col-3" name="cantidadPacas" id="cantidadPacas"
-                   onkeydown="return aceptaNum(event)" required>
+                </select>
+            </div>
+            <div class="col-1">
+                <label class="form-label" for="cantidadPacas"><strong>Cantidad:</strong></label>
+                <input type="text" class="form-control" name="cantidadPacas" id="cantidadPacas"
+                       onkeydown="return aceptaNum(event)" required>
+            </div>
         </div>
         <div class="mb-3 row">
             <div class="col-1 text-center">

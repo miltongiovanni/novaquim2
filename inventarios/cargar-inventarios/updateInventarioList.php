@@ -32,11 +32,11 @@ $invEtiqOperador = new InvEtiquetasOperaciones();
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <link href="../../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <title>Actualización inventario</title>
     <meta charset="utf-8">
-    <script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="../js/validar.js"></script>
+    <script src="../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../../js/validar.js"></script>
 
 </head>
 <body>
@@ -105,7 +105,7 @@ $invEtiqOperador = new InvEtiquetasOperaciones();
                 $invEtiqOperador->updateInvEtiqueta($datos);
             }
         }
-        $ruta = "../menu.php";
+        $ruta = "../../../menu.php";
         $mensaje = "Inventario actualizado correctamente";
         $icon = "success";
     } catch (Exception $e) {

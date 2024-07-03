@@ -92,7 +92,7 @@ if (!$usuario) {//si existen datos pero la clave esta errada
                 $_SESSION['perfilUsuario'] = $perfil_admin;
                 $perfil = $usuario['idPerfil'];
                 //echo $perfil.'<br>';
-                $ruta = "../menu.php";
+                $ruta = "../../../menu.php";
                 mover_pag($ruta, $usuario['nombre'] . " bienvenid@ al Sistema de Información de Industrias Novaquim S.A.S.", 'success');
             } else {
 

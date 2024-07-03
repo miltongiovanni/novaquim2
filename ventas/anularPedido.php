@@ -28,7 +28,7 @@ try {
     $mensaje = "Orden de pedido anulada con éxito";
     $icon = "success";
 } catch (Exception $e) {
-    $ruta = "../menu.php";
+    $ruta = "../../../menu.php";
     $mensaje = "Error al anular la orden de pedido";
     $icon = "error";
 } finally {

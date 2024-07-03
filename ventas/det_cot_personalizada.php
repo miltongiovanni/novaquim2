@@ -67,7 +67,7 @@ if (isset($_POST['idCotPersonalizada'])) {
     <script src="../js/buttons.html5.js"></script>
     <script>
         function redireccion() {
-            window.location.href = "../menu.php";
+            window.location.href = "../../../menu.php";
         }
 
         function eliminarSession() {

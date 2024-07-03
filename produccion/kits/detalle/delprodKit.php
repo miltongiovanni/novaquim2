@@ -35,7 +35,7 @@ try {
     $mensaje = "Detalle de Kit eliminado correctamente";
     $icon = "success";
 } catch (Exception $e) {
-    $ruta = "../menu.php";
+    $ruta = "../../../menu.php";
     $mensaje = "Error al eliminar el detalle de kit";
     $icon = "error";
 } finally {

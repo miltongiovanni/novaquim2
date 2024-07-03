@@ -20,11 +20,11 @@ spl_autoload_register('cargarClases');
 <div id="contenedor" class="container-fluid">
     <div id="saludo">
         <img src="../../../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>CARGAR ENVASE AL INVENTARIO DE DISTRIBUCIÓN</h4></div>
-    <form method="post" action="../../charge.php" name="form1">
+    <form method="post" action="charge.php" name="form1">
         <div class="mb-3 row">
             <label class="form-label col-3 text-end" for="idDis"><strong>Envase:</strong></label>
             <select class="form-select col-3" name="idDis" id="idDis" required>
-                <option selected disabled value="">Seleccione una opción-------------</option>
+                <option selected disabled value="">Seleccione una opción</option>
                 <?php
                 $relEnvDisOperador = new RelEnvDisOperaciones();
                 $productos = $relEnvDisOperador->getRelsEnvDis();

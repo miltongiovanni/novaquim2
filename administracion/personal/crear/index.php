@@ -60,7 +60,7 @@ spl_autoload_register('cargarClases');
                     <?php
                     $areaPersonalOperador = new AreasPersonalOperaciones();
                     $areas = $areaPersonalOperador->getAreasPersonal();
-                    echo '<option value="" disabled selected>Seleccione una opción-------------</option>';
+                    echo '<option value="" disabled selected>Seleccione una opción</option>';
                     for ($i = 0; $i < count($areas); $i++) {
                         echo '<option value="' . $areas[$i]['idArea'] . '">' . $areas[$i]['area'] . '</option>';
                     }
@@ -73,7 +73,7 @@ spl_autoload_register('cargarClases');
                     <?php
                     $cargoPersonalOperador = new cargosPersonalOperaciones();
                     $cargos = $cargoPersonalOperador->getCargosPersonal();
-                    echo '<option value="" disabled selected>Seleccione una opción-------------</option>';
+                    echo '<option value="" disabled selected>Seleccione una opción</option>';
                     for ($i = 0; $i < count($areas); $i++) {
                         echo '<option value="' . $cargos[$i]['idCargo'] . '">' . $cargos[$i]['cargo'] . '</option>';
                     }
