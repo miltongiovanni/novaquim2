@@ -22,24 +22,25 @@ spl_autoload_register('cargarClases');
         <img src="../../../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>CARGAR ENVASE AL INVENTARIO DE DISTRIBUCIÓN</h4></div>
     <form method="post" action="charge.php" name="form1">
         <div class="mb-3 row">
-            <label class="form-label col-3 text-end" for="idDis"><strong>Envase:</strong></label>
-            <select class="form-select col-3" name="idDis" id="idDis" required>
-                <option selected disabled value="">Seleccione una opción</option>
-                <?php
-                $relEnvDisOperador = new RelEnvDisOperaciones();
-                $productos = $relEnvDisOperador->getRelsEnvDis();
-                for ($i = 0; $i < count($productos); $i++):
+            <div class="col-3">
+                <label class="form-label" for="idDis"><strong>Envase:</strong></label>
+                <select class="form-select" name="idDis" id="idDis" required>
+                    <option selected disabled value="">Seleccione una opción</option>
+                    <?php
+                    $relEnvDisOperador = new RelEnvDisOperaciones();
+                    $productos = $relEnvDisOperador->getRelsEnvDis();
+                    for ($i = 0; $i < count($productos); $i++):
+                        ?>
+                        <option value="<?= $productos[$i]['idDis'] ?>"><?= $productos[$i]['producto'] ?></option>
+                    <?php
+                    endfor;
                     ?>
-                    <option value="<?= $productos[$i]['idDis'] ?>"><?= $productos[$i]['producto'] ?></option>
-                <?php
-                endfor;
-                ?>
-            </select>
-        </div>
-        <div class="mb-3 row">
-            <label class="form-label col-3 text-end" for="unidades"><strong>Cantidad:</strong></label>
-            <input type="text" class="form-control col-3" name="unidades" id="unidades"
-                   onkeydown="return aceptaNum(event)" required>
+                </select>
+            </div>
+            <div class="col-1">
+                <label class="form-label" for="unidades"><strong>Cantidad:</strong></label>
+                <input type="text" class="form-control" name="unidades" id="unidades" onkeydown="return aceptaNum(event)" required>
+            </div>
         </div>
         <div class="mb-3 row">
             <div class="col-1 text-center">

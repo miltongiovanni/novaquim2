@@ -49,13 +49,13 @@ try {
         $mensaje = "Carga de envase como producto de distribución realizado con éxito";
         $icon = "success";
     } else {
-        $ruta = "cargarEnvase.php";
+        $ruta = "../cargar-envase/";
         $mensaje = "No hay inventario suficiente de Envases o Tapa";
         $icon = "warning";
     }
 
 } catch (Exception $e) {
-    $ruta = "cargarEnvase.php";
+    $ruta = "../cargar-envase/";
     $mensaje = "Error al cargar el envase como producto de distribución";
     $icon = "error";
 } finally {
