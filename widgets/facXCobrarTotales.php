@@ -27,7 +27,7 @@ $total = $totalVencido['totalSaldo'] + $totalXVencer1Semana['totalSaldo'] + $tot
     </div>
     <div class="my-4 row">
         <div class="col-5">
-            <button class="button" onClick="window.location='ventas/factXcobrar.php'"><span>Ir a cobrar facturas</span>
+            <button class="button" onClick="window.location='../ventas/cartera/general/index.php'"><span>Ir a cobrar facturas</span>
             </button>
         </div>
     </div>
