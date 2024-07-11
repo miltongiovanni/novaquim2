@@ -1,4 +1,4 @@
 <?php
 $estadoCliente = 1;
-include "listarClien.php";
+include "../../../ventas/cliente/lista/index.php";
 ?>

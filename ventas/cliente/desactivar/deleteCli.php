@@ -30,7 +30,7 @@ $clienteOperador = new ClientesOperaciones();
 
 try {
     $clienteOperador->disableCliente($idCliente);
-    $ruta = "listarClien.php?estadocliente=0";
+    $ruta = "../lista/?estadocliente=0";
     $mensaje = "Cliente desactivado correctamente";
     $icon = "success";
 } catch (Exception $e) {

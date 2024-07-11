@@ -35,7 +35,7 @@ $datos = array($idCliente, $idSucursal, $dirSucursal, $ciudadSucursal, $telSucur
 try {
     $lastIdCliente = $clienteSucursalOperador->makeClienteSucursal($datos);
     $_SESSION['idCliente'] = $idCliente;
-    $ruta = "detCliente.php";
+    $ruta = "../detalle/";
     $mensaje = "Sucursal del cliente creada con éxito";
     $icon = "success";
 } catch (Exception $e) {

@@ -7,18 +7,18 @@ include "../../../includes/valAcc.php";
 <head>
     <meta charset="utf-8">
     <title>Seleccionar Cliente a Modificar</title>
-    <link href="../css/formatoTabla.css" rel="stylesheet" type="text/css">
-<script src="../node_modules/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="../js/validar.js"></script>
-    <script src="../js/jquery-3.3.1.min.js"></script>
-    <script src="../js/findCliente.js"></script>
+    <link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script src="../../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../../../js/validar.js"></script>
+    <script src="../../../js/jquery-3.3.1.min.js"></script>
+    <script src="../../../js/findCliente.js"></script>
 </head>
 <body>
 <div id="contenedor" class="container-fluid">
     <div id="saludo">
-        <img src="../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>SELECCIONAR CLIENTE A MODIFICAR</h4></div>
+        <img src="../../../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>SELECCIONAR CLIENTE A MODIFICAR</h4></div>
     <?php
-    include "../includes/ventas.php";
+    include "../../../includes/ventas.php";
     $rep = buscarClienteForm("updateCliForm.php");
     echo $rep;
     ?>

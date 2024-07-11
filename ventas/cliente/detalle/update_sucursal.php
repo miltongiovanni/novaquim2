@@ -34,12 +34,12 @@ $datos = array($dirSucursal, $ciudadSucursal, $telSucursal, $nomSucursal, $idCli
 try {
     $clienteSucursalOperador->updateClienteSucursal($datos);
     $_SESSION['idCliente'] = $idCliente;
-    $ruta = "detCliente.php";
+    $ruta = "../detalle/";
     $mensaje = "Sucursal actualizada correctamente";
     $icon = "success";
 } catch (Exception $e) {
     $_SESSION['idCliente'] = $idCliente;
-    $ruta = "detCliente.php";
+    $ruta = "../detalle/";
     $mensaje = "Error al actualizar la sucursal";
     $icon = "error";
 } finally {

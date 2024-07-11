@@ -12,9 +12,10 @@ function buscarClienteForm($action)
 
     $rep = '<form id="form1" name="form1" method="post" action="' . $action . '">
         <div class="mb-3 row">
-            <label class="form-label col-2" for="busClien"><strong>Cliente</strong></label>
-            <input type="text" class="form-control col-2" id="busClien" name="busClien" onkeyup="findCliente()"
-                   required/>
+            <div class="col-4">
+                <label class="form-label" for="busClien"><strong>Cliente</strong></label>
+                <input type="text" class="form-control col-2" id="busClien" name="busClien" onkeyup="findCliente()" required/>
+            </div>
         </div>
         <div class="mb-3 row" id="myDiv">
         

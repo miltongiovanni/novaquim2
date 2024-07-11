@@ -28,9 +28,7 @@ $nomCliente = $cliente['nomCliente'];
     <script src="../../../js/validar.js"></script>
     <script src="../../../js/jquery-3.3.1.min.js"></script>
     <script src="../../../js/datatables.js"></script>
-    <script src="../../../js/jszip.js"></script>
-    <script src="../../../js/pdfmake.js"></script>
-    <script src="../../../js/vfs_fonts.js"></script>
+
     <script>
 
         $(document).ready(function () {
@@ -59,6 +57,7 @@ $nomCliente = $cliente['nomCliente'];
                     },
                     {
                         "data": "telSucursal",
+                        className: 'pe-5'
                     },
                     {
                         "data": "dirSucursal",
@@ -79,10 +78,16 @@ $nomCliente = $cliente['nomCliente'];
                     }
                 ],
                 "columnDefs":
-                    [{
-                        "targets": [0, 1, 2, 3, 4],
-                        "className": 'dt-body-center'
-                    }
+                    [
+                        {
+                            "targets": [0, 1, 6],
+                            "className": 'dt-body-center'
+                        },
+                        {
+                            "targets": [0, 6],
+                            "orderable": false,
+                            searchable: false
+                        }
                     ],
                 "lengthMenu": [[20, 50, 100, -1], [20, 50, 100, "All"]],
                 "language": {
@@ -101,6 +106,10 @@ $nomCliente = $cliente['nomCliente'];
                     "infoFiltered": "(Filtrado de _MAX_ en total)"
 
                 },
+                "order": [[1, 'asc']],
+                initComplete: function (settings, json) {
+                    $('#example thead th').removeClass('pe-5');
+                },
                 "ajax": "../ajax/listaSucursalesCliente.php?idCliente=" + idCliente
             });
         });
@@ -109,34 +118,41 @@ $nomCliente = $cliente['nomCliente'];
 <body>
 <div id="contenedor" class="container-fluid">
     <div id="saludo1">
-        <img src="../../../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>SUCURSALES DE <?= strtoupper($nomCliente) ?></h4></div>
+        <img src="../../../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2">
+        <h4>SUCURSALES DE <?= strtoupper($nomCliente) ?></h4>
+    </div>
 
-    <form name="form2" method="POST" action="makeSucursalCliente.php">
+    <form name="form2" class="formatoDatos5" method="POST" action="makeSucursalCliente.php">
         <input name="idCliente" id="idCliente" type="hidden" value="<?= $idCliente ?>">
         <div class=" row ">
-            <label class="form-label col-3 text-start mx-2" for="nomSucursal"><strong>Cliente</strong></label>
-            <label class="form-label col-1 text-start mx-2" for="telSucursal"><strong>Teléfono</strong></label>
-            <label class="form-label col-3 text-start mx-2" for="dirSucursal"><strong>Dirección</strong></label>
-            <label class="form-label col-2 text-start mx-2" for="ciudadSucursal"><strong>Ciudad</strong></label>
-        </div>
-        <div class="mb-3 row">
-            <input type="text" class="form-control col-3 mx-2" name="nomSucursal" id="nomSucursal" required>
-            <input type="text" class="form-control col-1 mx-2" name="telSucursal" id="telSucursal" maxlength="10"
-                   onkeydown="return aceptaNum(event)">
-            <input type="text" class="form-control col-3 mx-2" name="dirSucursal" id="dirSucursal" required>
-            <select name="ciudadSucursal" id="ciudadSucursal" class="form-select col-2 mx-2" required>
-                <option selected value="1">Bogotá D.C.</option>
-                <?php
-                $manager = new CiudadesOperaciones();
-                $ciudades = $manager->getCiudades();
-                $filas = count($ciudades);
-                for ($i = 0; $i < $filas; $i++) {
-                    if ($ciudades[$i]["idCiudad"] != 1) {
-                        echo '<option value="' . $ciudades[$i]["idCiudad"] . '">' . $ciudades[$i]['ciudad'] . '</option>';
+            <div class="col-3">
+                <label class="form-label" for="nomSucursal"><strong>Sucursal</strong></label>
+                <input type="text" class="form-control" name="nomSucursal" id="nomSucursal" required>
+            </div>
+            <div class="col-1">
+                <label class="form-label" for="telSucursal"><strong>Teléfono</strong></label>
+                <input type="text" class="form-control" name="telSucursal" id="telSucursal" maxlength="10" onkeydown="return aceptaNum(event)">
+            </div>
+            <div class="col-3">
+                <label class="form-label" for="dirSucursal"><strong>Dirección</strong></label>
+                <input type="text" class="form-control" name="dirSucursal" id="dirSucursal" required>
+            </div>
+            <div class="col-2">
+                <label class="form-label" for="ciudadSucursal"><strong>Ciudad</strong></label>
+                <select name="ciudadSucursal" id="ciudadSucursal" class="form-select" required>
+                    <option selected value="1">Bogotá D.C.</option>
+                    <?php
+                    $manager = new CiudadesOperaciones();
+                    $ciudades = $manager->getCiudades();
+                    $filas = count($ciudades);
+                    for ($i = 0; $i < $filas; $i++) {
+                        if ($ciudades[$i]["idCiudad"] != 1) {
+                            echo '<option value="' . $ciudades[$i]["idCiudad"] . '">' . $ciudades[$i]['ciudad'] . '</option>';
+                        }
                     }
-                }
-                ?>
-            </select>
+                    ?>
+                </select>
+            </div>
         </div>
         <div class="mb-3 row mt-3">
             <div class="col-2 text-center">
@@ -145,18 +161,17 @@ $nomCliente = $cliente['nomCliente'];
             </div>
         </div>
     </form>
-
     <div class="tabla-70 mt-5">
-        <table id="example" class="formatoDatos table table-sm table-striped">
+        <table id="example" class="formatoDatos5 table table-sm table-striped">
             <thead>
-            <tr class="text-center">
+            <tr>
                 <th></th>
-                <th>Id</th>
-                <th>Nombre Sucursal</th>
-                <th>Teléfono</th>
-                <th>Direccción Sucursal</th>
-                <th>Ciudad Sucursal</th>
-                <th></th>
+                <th class="text-center">Id</th>
+                <th class="text-center">Nombre Sucursal</th>
+                <th class="text-center">Teléfono</th>
+                <th class="text-center">Direccción Sucursal</th>
+                <th class="text-center">Ciudad Sucursal</th>
+                <th class="text-center"></th>
             </tr>
             </thead>
         </table>

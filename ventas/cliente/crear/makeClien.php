@@ -36,7 +36,7 @@ try {
     $nitExist = $clienteOperador->checkNit($nitCliente);
     if (isset($nitExist['idCliente']) && $nitExist['idCliente'] != null) {
         $_SESSION['idCliente'] = $nitExist['idCliente'];
-        $ruta = "detCliente.php";
+        $ruta = "../detalle/";
         $mensaje = "Cliente ya existe";
         $icon = "warning";
         mover_pag($ruta, $mensaje, $icon);
@@ -47,7 +47,7 @@ try {
         $clienteSucursalOperador = new ClientesSucursalOperaciones();
         $clienteSucursalOperador->makeClienteSucursal($datosSucursal);
         $_SESSION['idCliente'] = $lastIdCliente;
-        $ruta = "detCliente.php";
+        $ruta = "../detalle/";
         $mensaje = "Cliente creado con éxito";
         $icon = "success";
     }

@@ -2,7 +2,7 @@
 include "../../../includes/valAcc.php";
 include "../../../includes/calcularDias.php";
 
-if(isset($_GET['estadocliente'])){
+if (isset($_GET['estadocliente'])) {
     $estadoCliente = $_GET['estadocliente'];
 }
 if ($estadoCliente == 1) {
@@ -27,12 +27,12 @@ if ($estadoCliente == 1) {
     <link rel="stylesheet" href="../../../css/datatables.css">
     <script src="../../../js/jquery-3.3.1.min.js"></script>
     <script src="../../../js/datatables.js"></script>
-    
+
     <script>
         /* Formatting function for row details - modify as you need */
         function format(d) {
             // `d` is the original data object for the row
-            rep = '<table class="formatoDatos table table-sm table-striped" style="padding-left:50px;width:80%;margin:inherit; background-color: white">' +
+            rep = '<table class="formatoDatos5 table table-sm table-striped" style="padding-left:50px;width:80%;margin:inherit; background-color: white">' +
                 '<thead>' +
                 '<tr>' +
                 '<th class="text-center">Contacto</th>' +
@@ -42,18 +42,19 @@ if ($estadoCliente == 1) {
                 '<th class="text-center">Celular</th>' +
                 '<th class="text-center">Correo Electrónico</th>' +
                 '</thead>';
-                rep += '<tr>' +
-                    '<td class="text-start">' + d.contactoCliente + '</td>' +
-                    '<td class="text-start">' + d.cargoCliente + '</td>' +
-                    '<td class="text-center">' + d.telCliente + '</td>' +
-                    '<td class="text-center">' + d.ciudad + '</td>' +
-                    '<td class="text-center">' + d.celCliente + '</td>' +
-                    '<td class="text-center">' + d.emailCliente + '</td>' +
-                    '</tr>'
+            rep += '<tr>' +
+                '<td class="text-start">' + d.contactoCliente + '</td>' +
+                '<td class="text-start">' + d.cargoCliente + '</td>' +
+                '<td class="text-center">' + d.telCliente + '</td>' +
+                '<td class="text-center">' + d.ciudad + '</td>' +
+                '<td class="text-center">' + d.celCliente + '</td>' +
+                '<td class="text-center">' + d.emailCliente + '</td>' +
+                '</tr>'
             rep += '</table>';
 
             return rep;
         }
+
         /* Formatting function for row details - modify as you need */
         function diffDate(fecha) {
             let fechUltCompra = new Date(fecha);
@@ -67,12 +68,13 @@ if ($estadoCliente == 1) {
             // Convert back to days and return
             return Math.round(differenceMs / ONE_DAY);
         }
+
         $(document).ready(function () {
             let estadoCliente = <?=$estadoCliente?>;
             var table = $('#example').DataTable({
                 "columns": [
                     {
-                        "className": 'details-control',
+                        "className": 'dt-control',
                         "orderable": false,
                         "data": null,
                         "defaultContent": ''
@@ -141,27 +143,24 @@ if ($estadoCliente == 1) {
 
                 },
                 "createdRow": function (row, data, dataIndex) {
-                if (diffDate(data.ultimaCompra) > 120) {
-                    $('td', row).addClass('formatoDataTable1');
-                } else if (diffDate(data.ultimaCompra) <= 120 && diffDate(data.ultimaCompra) > 60) {
-                    $('td', row).addClass('formatoDataTable2');
-                }
-            },
+                    if (diffDate(data.ultimaCompra) > 120) {
+                        $('td', row).addClass('formatoDataTable1');
+                    } else if (diffDate(data.ultimaCompra) <= 120 && diffDate(data.ultimaCompra) > 60) {
+                        $('td', row).addClass('formatoDataTable2');
+                    }
+                },
                 "ajax": "../ajax/listaClientes.php?estadoCliente=" + estadoCliente
             });
             // Add event listener for opening and closing details
-            $('#example tbody').on('click', 'td.details-control', function () {
-                var tr = $(this).closest('tr');
+            table.on('click', 'td.dt-control', function (e) {
+                var tr = e.target.closest('tr');
                 var row = table.row(tr);
-
                 if (row.child.isShown()) {
                     // This row is already open - close it
                     row.child.hide();
-                    tr.removeClass('shown');
                 } else {
                     // Open this row
                     row.child(format(row.data())).show();
-                    tr.addClass('shown');
                 }
             });
         });
@@ -179,7 +178,7 @@ if ($estadoCliente == 1) {
         </div>
     </div>
     <div class="tabla-100">
-        <table id="example" class="formatoDatos table table-sm table-striped formatoDatos">
+        <table id="example" class="formatoDatos5 table table-sm table-striped">
             <thead>
             <tr>
                 <th class="text-center"></th>

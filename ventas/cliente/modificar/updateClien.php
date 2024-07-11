@@ -33,11 +33,11 @@ $clienteOperador = new ClientesOperaciones();
 
 try {
     $clienteOperador->updateCliente($datos);
-    $ruta = "listarClien.php?estadocliente=" . $estadoCliente;
+    $ruta = "../lista/?estadocliente=" . $estadoCliente;
     $mensaje = "Cliente actualizado correctamente";
     $icon = "success";
 } catch (Exception $e) {
-    $ruta = "buscarClien.php";
+    $ruta = "../modificar/";
     $mensaje = "Error al actualizar el cliente";
     $icon = "error";
 } finally {

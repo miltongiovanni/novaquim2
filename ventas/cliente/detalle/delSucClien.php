@@ -34,12 +34,12 @@ $datos = array($idCliente, $idSucursal);
 try {
     $clienteSucursalOperador->deleteClienteSucursal($datos);
     $_SESSION['idCliente'] = $idCliente;
-    $ruta = "detCliente.php";
+    $ruta = "../detalle/";
     $mensaje = "Sucursal eliminada correctamente";
     $icon = "success";
 } catch (Exception $e) {
     $_SESSION['idCliente'] = $idCliente;
-    $ruta = "detCliente.php";
+    $ruta = "../detalle/";
     $mensaje = "Error al eliminar la sucursal";
     $icon = "error";
 } finally {

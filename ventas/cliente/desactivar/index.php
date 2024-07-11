@@ -19,7 +19,7 @@ include "../../../includes/valAcc.php";
     <div id="saludo">
         <img src="../../../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>SELECCIONAR CLIENTE A DESACTIVAR</h4></div>
     <?php
-    include "../includes/ventas.php";
+    include "../../../includes/ventas.php";
     $rep = buscarClienteForm("deleteCli.php");
     echo $rep;
     ?>
