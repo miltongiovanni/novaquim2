@@ -46,11 +46,11 @@ if (!isset($seleccionProd)) {
         $cotizacionOperador->updateCotizacion($datos);
         $_SESSION['idCotizacion'] = $idCotizacion;
         $_SESSION['iva'] = $iva;
-        $ruta = "det_cotiza.php";
+        $ruta = "../detalle/";
         $mensaje = "Cotización actualizada con éxito";
         $icon = "success";
     } catch (Exception $e) {
-        $ruta = "cotizacion.php";
+        $ruta = "../modificar/";
         $mensaje = "Error al actualizar la Cotización";
         $icon = "error";
     } finally {

@@ -15,7 +15,7 @@ include "../../../includes/valAcc.php";
         /* Formatting function for row details - modify as you need */
         function format(d) {
             // `d` is the original data object for the row
-            rep = '<table class="formatoDatos table table-sm table-striped" style="padding-left:50px;width:100%;margin:inherit; background-color: white">' +
+            rep = '<table class="formatoDatos5 table table-sm table-striped" style="padding-left:50px;width:100%;margin:inherit; background-color: white">' +
                 '<thead>' +
                 '<tr>' +
                 '<th class="text-center">Productos Novaquim</th>' +
@@ -135,7 +135,7 @@ include "../../../includes/valAcc.php";
         </div>
     </div>
     <div class="tabla-90">
-        <table id="example" class="formatoDatos table table-sm table-striped formatoDatos">
+        <table id="example" class="formatoDatos5 table table-sm table-striped">
             <thead>
             <tr>
                 <th></th>

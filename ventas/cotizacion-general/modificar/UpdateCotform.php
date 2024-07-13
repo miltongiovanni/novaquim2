@@ -43,34 +43,39 @@ if (!$cotizacion) {
 
     <form method="post" action="update_cotiza.php" name="form1">
         <div class="mb-3 row">
-            <label class="form-label col-2 text-end" for="idCotizacion"><strong>Id Cotización</strong></label>
-            <input type="text" class="form-control col-4" id="idCotizacion" name="idCotizacion" readonly
-                   value="<?= $idCotizacion ?>" required/>
+            <label class="col-form-label col-2 text-end" for="idCotizacion"><strong>Id Cotización</strong></label>
+            <div class="col-4">
+                <input type="text" class="form-control" id="idCotizacion" name="idCotizacion" readonly value="<?= $idCotizacion ?>" required/>
+            </div>
+
         </div>
         <div class="mb-3 row">
-            <label class="form-label col-2 text-end" for="idCliente"><strong>Cliente Cotización</strong></label>
-            <select name="idCliente" id="idCliente" class="form-control col-4 " required>
-                <option selected value="<?= $cotizacion['idCliente'] ?>"><?= $cotizacion['nomCliente'] ?></option>
-                <?php
-                $manager = new ClientesCotizacionOperaciones();
-                $clientes = $manager->getClientes();
-                $filas = count($clientes);
-                echo '';
-                for ($i = 0; $i < $filas; $i++) {
-                    if ($cotizacion['idCliente'] != $clientes[$i]["idCliente"]) {
-                        echo '<option value="' . $clientes[$i]["idCliente"] . '">' . $clientes[$i]['nomCliente'] . '</option>';
+            <label class="col-form-label col-2 text-end" for="idCliente"><strong>Cliente Cotización</strong></label>
+            <div class="col-4">
+                <select name="idCliente" id="idCliente" class="form-control col-4 " required>
+                    <option selected value="<?= $cotizacion['idCliente'] ?>"><?= $cotizacion['nomCliente'] ?></option>
+                    <?php
+                    $manager = new ClientesCotizacionOperaciones();
+                    $clientes = $manager->getClientes();
+                    $filas = count($clientes);
+                    echo '';
+                    for ($i = 0; $i < $filas; $i++) {
+                        if ($cotizacion['idCliente'] != $clientes[$i]["idCliente"]) {
+                            echo '<option value="' . $clientes[$i]["idCliente"] . '">' . $clientes[$i]['nomCliente'] . '</option>';
+                        }
                     }
-                }
-                echo '';
-                ?>
-            </select>
+                    echo '';
+                    ?>
+                </select>
+            </div>
         </div>
 
         <div class="mb-3 row">
-            <label class="form-label col-2 text-end" for="fechaCotizacion"><strong>Fecha de
-                    Cotización</strong></label>
-            <input type="date" class="form-control col-4" name="fechaCotizacion" id="fechaCotizacion"
-                   value="<?= $cotizacion['fechaCotizacion'] ?>" required>
+            <label class="col-form-label col-2 text-end" for="fechaCotizacion"><strong>Fecha de Cotización</strong></label>
+            <div class="col-4">
+                <input type="date" class="form-control col-4" name="fechaCotizacion" id="fechaCotizacion"
+                       value="<?= $cotizacion['fechaCotizacion'] ?>" required>
+            </div>
         </div>
         <div class="mb-3 row">
             <label class="form-label col-2 text-end"><strong>Destino</strong></label>
@@ -120,16 +125,15 @@ if (!$cotizacion) {
         <div class="mb-3 row">
             <label class="form-label col-2 text-end"><strong>Iva</strong></label>
             <div class="form-label col-4 ">
-                <input name="iva" type="radio" id="iva_0" value="1" checked >
+                <input name="iva" type="radio" id="iva_0" value="1" checked>
                 <label for="iva_0">Precios con iva</label>
                 <input type="radio" name="iva" value="0" id="iva_1">
                 <label for="iva_1">Precios sin iva</label>
             </div>
         </div>
         <div class="mb-3 row">
-            <label class="form-label col-2 text-end" for="fechaCotizacion"><strong>Familia de
-                    Productos</strong></label>
             <div class="col-2">
+                <label class="form-label w-100" for="fechaCotizacion"><strong>Familia de Productos</strong></label>
                 <?php
                 $catProdOperador = new CategoriasProdOperaciones();
                 $categorias = $catProdOperador->getCatsProd();
@@ -150,9 +154,8 @@ if (!$cotizacion) {
                 endfor;
                 ?>
             </div>
-            <label class="form-label col-2 text-end" for="fechaCotizacion"><strong>Familia
-                    Distribución</strong></label>
             <div class="col-2">
+                <label class="form-label w-100" for="fechaCotizacion"><strong>Familia Distribución</strong></label>
                 <?php
                 $catDisOperador = new CategoriasDisOperaciones();
                 $categorias = $catDisOperador->getCatsDis();

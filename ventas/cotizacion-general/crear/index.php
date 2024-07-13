@@ -24,21 +24,25 @@ spl_autoload_register('cargarClases');
         <img src="../../../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>CREAR COTIZACIÓN</h4></div>
     <form method="post" action="makeCotizacion.php" name="form1">
         <div class="mb-3 row">
-            <label class="form-label col-2" for="busClien"><strong>Cliente</strong></label>
-            <input type="text" class="form-control col-1" id="busClien" name="busClien"
-                   onkeyup="findClienteCotizacion()"
-                   required/>
-            <div class="col-4" id="myDiv"></div>
+
+            <label class="form-label col-2 text-end" for="busClien"><strong>Cliente</strong></label>
+            <div class="col-4">
+                <input type="text" class="form-control" id="busClien" name="busClien" onkeyup="findClienteCotizacion()" required/>
+                <div class="mt-2" id="myDiv"></div>
+            </div>
+
         </div>
 
         <div class="mb-3 row">
-            <label class="form-label col-2 text-end" for="fechaCotizacion"><strong>Fecha de
-                    Cotización</strong></label>
-            <input type="date" class="form-control col-5" name="fechaCotizacion" id="fechaCotizacion" required>
+            <label class="form-label col-2 text-end" for="fechaCotizacion"><strong>Fecha de Cotización</strong></label>
+            <div class="col-4">
+                <input type="date" class="form-control" name="fechaCotizacion" id="fechaCotizacion" required>
+            </div>
+
         </div>
         <div class="mb-3 row">
-            <label class="form-label col-2"><strong>Destino</strong></label>
-            <div class="form-label col-5 ">
+            <label class="form-label col-2 text-end"><strong>Destino</strong></label>
+            <div class="form-label col-4 ">
                 <input name="destino" type="radio" id="Destino_0" value="1" checked>
                 <label for="Destino_0">Impresión</label>
                 <input type="radio" name="destino" value="2" id="Destino_1">
@@ -46,8 +50,8 @@ spl_autoload_register('cargarClases');
             </div>
         </div>
         <div class="mb-3 row">
-            <label class="form-label col-2"><strong>Presentación</strong></label>
-            <div class="form-label col-5 ">
+            <label class="form-label col-2 text-end"><strong>Presentación</strong></label>
+            <div class="form-label col-4 ">
                 <input name="presentaciones" type="radio" id="Presentaciones_0" value="1" checked>
                 <label for="Presentaciones_0">Todas</label>
                 <input type="radio" name="presentaciones" value="2" id="Presentaciones_1">
@@ -57,8 +61,8 @@ spl_autoload_register('cargarClases');
             </div>
         </div>
         <div class="mb-3 row">
-            <label class="form-label col-2"><strong>Precio</strong></label>
-            <div class="form-label col-5 ">
+            <label class="form-label col-2 text-end"><strong>Precio</strong></label>
+            <div class="form-label col-4 ">
                 <input name="precio" type="radio" id="precio_0" value="1" checked>
                 <label for="precio_0">Fábrica</label>
                 <input type="radio" name="precio" value="2" id="precio_1">
@@ -72,9 +76,8 @@ spl_autoload_register('cargarClases');
             </div>
         </div>
         <div class="mb-3 row">
-            <label class="form-label col-2 text-end" for="fechaCotizacion"><strong>Familia de
-                    Productos</strong></label>
             <div class="col-2">
+                <label class="form-label w-100" for="fechaCotizacion"><strong>Familia de Productos</strong></label>
                 <?php
                 $catProdOperador = new CategoriasProdOperaciones();
                 $categorias = $catProdOperador->getCatsProd();
@@ -87,9 +90,8 @@ spl_autoload_register('cargarClases');
                 endfor;
                 ?>
             </div>
-            <label class="form-label col-2 text-end" for="fechaCotizacion"><strong>Familia
-                    Distribución</strong></label>
             <div class="col-2">
+                <label class="form-label w-100" for="fechaCotizacion"><strong>Familia Distribución</strong></label>
                 <?php
                 $catDisOperador = new CategoriasDisOperaciones();
                 $categorias = $catDisOperador->getCatsDis();

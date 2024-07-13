@@ -77,40 +77,56 @@ $cotizacion['distribucion'] = str_replace("9", " Otros", $cotizacion['distribuci
     }
     ?>
     <div class="mb-3 row">
-        <label class="form-label col-2 text-end"><strong>No. Cotización:</strong></label>
-        <div class="form-control col-8"><?php echo $idCotizacion; ?></div>
+        <div class="col-4">
+            <label class="form-label"><strong>No. Cotización:</strong></label>
+            <div class="form-control"><?php echo $idCotizacion; ?></div>
+        </div>
     </div>
     <div class="mb-3 row">
-        <label class="form-label col-2 text-end"><strong>Cliente:</strong></label>
-        <div class="form-control col-8"><?php echo $cotizacion['nomCliente']; ?></div>
+        <div class="col-4">
+            <label class="form-label"><strong>Cliente:</strong></label>
+            <div class="form-control"><?php echo $cotizacion['nomCliente']; ?></div>
+        </div>
     </div>
     <div class="mb-3 row">
-        <label class="form-label col-2 text-end"><strong>Fecha de Cotización:</strong></label>
-        <div class="form-control col-8"><?php echo $cotizacion['fechaCotizacion']; ?></div>
+        <div class="col-4">
+            <label class="form-label"><strong>Fecha de Cotización:</strong></label>
+            <div class="form-control"><?php echo $cotizacion['fechaCotizacion']; ?></div>
+        </div>
     </div>
     <div class="mb-3 row">
-        <label class="form-label col-2 text-end"><strong>Destino:</strong></label>
-        <div class="form-control col-8"><?php echo $dest; ?></div>
+        <div class="col-4">
+            <label class="form-label"><strong>Destino:</strong></label>
+            <div class="form-control"><?php echo $dest; ?></div>
+        </div>
     </div>
     <div class="mb-3 row">
-        <label class="form-label col-2 text-end"><strong>Presentación:</strong></label>
-        <div class="form-control col-8"><?php echo $presen; ?></div>
+        <div class="col-4">
+            <label class="form-label"><strong>Presentación:</strong></label>
+            <div class="form-control"><?php echo $presen; ?></div>
+        </div>
     </div>
     <div class="mb-3 row">
-        <label class="form-label col-2 text-end"><strong>Precio:</strong></label>
-        <div class="form-control col-8"><?php echo $precio_c; ?></div>
+        <div class="col-4">
+            <label class="form-label"><strong>Precio:</strong></label>
+            <div class="form-control"><?php echo $precio_c; ?></div>
+        </div>
     </div>
     <div class="mb-3 row">
-        <label class="form-label col-2 text-end"><strong>Productos Novaquim:</strong></label>
-        <div class="form-control col-8"><?php echo $opciones_prod; ?></div>
+        <div class="col-4">
+            <label class="form-label"><strong>Productos Novaquim:</strong></label>
+            <div class="form-control"><?php echo $opciones_prod; ?></div>
+        </div>
     </div>
     <div class="mb-3 row">
-        <label class="form-label col-2 text-end"><strong>Productos de Distribución:</strong></label>
-        <div class="form-control col-8"><?php echo $opciones_dist; ?></div>
+        <div class="col-4">
+            <label class="form-label"><strong>Productos de Distribución:</strong></label>
+            <div class="form-control"><?php echo $opciones_dist; ?></div>
+        </div>
     </div>
     <div class="mb-3 row">
         <div class="col-2">
-            <form id="form1" name="form1" method="post" action="UpdateCotform.php">
+            <form id="form1" name="form1" method="post" action="../modificar/UpdateCotform.php">
                 <input name="idCotizacion" type="hidden" value="<?php echo $idCotizacion; ?>">
                 <button class="button" type="button" onClick="return Enviar(this.form);">
                     <span>Modificar cotización</span>

@@ -378,15 +378,6 @@ th {
     padding-right: 5px;
 }*/
 
-td.dt-control {
-    background: url('../images/details_open.png') no-repeat center center;
-    cursor: pointer;
-}
-
-tr.shown td.dt-control {
-    background: url('../images/details_close.png') no-repeat center center;
-}
-
 /*tr:nth-child(even) {
     background-color: #dfe2fd;
 }*/

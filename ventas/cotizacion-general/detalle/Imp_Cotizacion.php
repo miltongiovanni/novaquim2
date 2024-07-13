@@ -1,6 +1,6 @@
 <?php
 session_start();
-require '../includes/fpdf.php';
+require '../../../includes/fpdf.php';
 function cargarClases($classname)
 {
     require '../../../clases/' . $classname . '.php';
@@ -67,7 +67,7 @@ $pdf->AddFont('Baker', '', 'Baker.php');
 $pdf->AddPage();
 $pdf->SetFont('Baker', '', 11);
 if ($destino == 2)
-    $pdf->Image('../images/borde.jpg', 10, 10, 195, 255);
+    $pdf->Image('../../../images/borde.jpg', 10, 10, 195, 255);
 
 $pdf->Write(5, iconv('UTF-8', 'windows-1252', $cotizacion['ciudad']));
 $fecha = time();
@@ -82,8 +82,8 @@ $pdf->Ln(12);
 $pdf->Cell(60, 5, iconv('UTF-8', 'windows-1252', 'Apreciado(a) Señor(a): '), 0, 1);
 $pdf->Ln(12);
 //Abrir fichero de texto
-$f = fopen('../textos/cotiza1.txt', 'r');
-$txt = fread($f, filesize('../textos/cotiza1.txt'));
+$f = fopen('../../../textos/cotiza1.txt', 'r');
+$txt = fread($f, filesize('../../../textos/cotiza1.txt'));
 fclose($f);
 $pdf->MultiCell(0, 5, 'Teniendo en cuenta la importancia que su ' . $Des_cat_cli . ' ' . ($txt));
 $pdf->Ln(16);
@@ -100,7 +100,7 @@ $pdf->Ln(5);
 $pdf->Cell(60, 5, iconv('UTF-8', 'windows-1252', 'Señores:'), 0, 1);
 $pdf->Cell(60, 5, $Nom_clien, 0, 1);
 $pdf->Ln(5);
-$pdf->Cell(0, 5, Imp_Cotizacion . phpiconv('UTF-8', 'windows-1252', 'Cotización No. ') . $idCotizacion . ' - ' . date("y"), 0, 1, 'C');
+$pdf->Cell(0, 5, iconv('UTF-8', 'windows-1252', 'Cotización No. ') . $idCotizacion . ' - ' . date("y"), 0, 1, 'C');
 $pdf->Ln(5);
 $pdf->MultiCell(0, 5, iconv('UTF-8', 'windows-1252', 'Tenemos el gusto de poner a su consideración nuestra propuesta comercial para el servicio de su organización.'));
 $productos= $cotizacionOperador->getProductosCotizacion($precio, $presentaciones, $productos_c, $iva);
@@ -142,8 +142,8 @@ if (count($prodDistr) > 0){
 
 $pdf->SetFont('Baker', '', 11);
 $fileName = $iva == 1 ? 'cotiza_iva.txt' : 'cotiza_sin_iva.txt';
-$f = fopen('../textos/'.$fileName, 'r');
-$txt = fread($f, filesize('../textos/'.$fileName));
+$f = fopen('../../../textos/'.$fileName, 'r');
+$txt = fread($f, filesize('../../../textos/'.$fileName));
 fclose($f);
 $pdf->MultiCell(0, 5, ($txt));
 $pdf->Ln(5);

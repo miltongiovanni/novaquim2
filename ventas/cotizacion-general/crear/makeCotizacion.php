@@ -28,7 +28,7 @@ foreach ($_POST as $nombre_campo => $valor) {
 <?php
 $opcionesDis = '';
 if (!isset($seleccionProd)) {
-    $ruta = "cotizacion.php";
+    $ruta = "../crear/";
     $mensaje = "Debe escoger alguna familia de los productos Novaquim";
     $icon = "warning";
     mover_pag($ruta, $mensaje, $icon);
@@ -44,11 +44,11 @@ if (!isset($seleccionProd)) {
     try {
         $lastIdCotizacion = $cotizacionOperador->makeCotizacion($datos);
         $_SESSION['idCotizacion'] = $lastIdCotizacion;
-        $ruta = "det_cotiza.php";
+        $ruta = "../detalle/";
         $mensaje = "Cotización creada con éxito";
         $icon = "success";
     } catch (Exception $e) {
-        $ruta = "cotizacion.php";
+        $ruta = "../crear/";
         $mensaje = "Error al crear la Cotización";
         $icon = "error";
     } finally {
