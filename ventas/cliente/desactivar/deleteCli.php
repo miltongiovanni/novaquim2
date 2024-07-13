@@ -34,7 +34,7 @@ try {
     $mensaje = "Cliente desactivado correctamente";
     $icon = "success";
 } catch (Exception $e) {
-    $ruta = "buscarClien.php";
+    $ruta = "../desactivar/";
     $mensaje = "Error al desactivar el cliente";
     $icon = "error";
 } finally {

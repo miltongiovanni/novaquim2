@@ -15,17 +15,15 @@ include "../../../includes/valAcc.php";
         <img src="../../../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>CREAR CLIENTE PARA COTIZACIÓN</h4></div>
     <form method="post" action="makeClienCotForm.php" name="form1">
         <div class="row mb-3">
-            <label class="form-label col-2 text-end "><strong>Cliente Existente</strong></label>
-            <div class="col-1">
-                <div class="form-check">
-                    <label class="form-check-label">
-                        <input type="radio" class="form-check-input" name="cliExis" id="cliExis_0" value="1">Si
-                    </label>
+            <div class="col-2">
+                <label class="form-label d-block"><strong>Cliente Existente</strong></label>
+                <div class="form-check form-check-inline">
+                    <input type="radio" class="form-check-input" name="cliExis" id="cliExis_0" value="1">
+                    <label class="form-check-label" for="cliExis_0">Si</label>
                 </div>
-                <div class="form-check">
-                    <label class="form-check-label">
-                        <input type="radio" class="form-check-input" name="cliExis" id="cliExis_1" value="0">No
-                    </label>
+                <div class="form-check form-check-inline">
+                    <input type="radio" class="form-check-input" name="cliExis" id="cliExis_1" value="0">
+                    <label class="form-check-label" for="cliExis_1">No</label>
                 </div>
             </div>
         </div>

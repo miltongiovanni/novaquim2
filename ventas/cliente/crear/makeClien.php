@@ -52,7 +52,7 @@ try {
         $icon = "success";
     }
 } catch (Exception $e) {
-    $ruta = "makeClienForm.php";
+    $ruta = "../crear/";
     $mensaje = "Error al crear el Cliente";
     $icon = "error";
 } finally {

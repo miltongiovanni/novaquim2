@@ -38,7 +38,7 @@ $mprima = $MPrimasOperador->getMPrima($codMPrima);
             $('#example').DataTable({
                 "columns": [
                     {
-                        /*"className": 'details-control',*/
+                        /*"className": 'dt-control',*/
                         /*"orderable": false,*/
                         "data": "fechComp",
                         /*"defaultContent": ''*/

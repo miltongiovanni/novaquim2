@@ -37,11 +37,11 @@ if ($cliExis == 1) {
 }
 try {
     $lastIdCliente = $clienteCotizacionOperador->makeCliente($datos);
-    $ruta = "listarClientCot.php";
+    $ruta = "../lista/";
     $mensaje = "Cliente creado con éxito";
     $icon = "success";
 } catch (Exception $e) {
-    $ruta = "makeClienCotForm.php";
+    $ruta = "../crear/";
     $mensaje = "Error al crear el Cliente";
     $icon = "error";
 } finally {

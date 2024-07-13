@@ -38,7 +38,7 @@ $proveedor = $ProveedorOperador->getProveedor($idProv);
             $('#example').DataTable({
                 "columns": [
                     {
-                        /*"className": 'details-control',*/
+                        /*"className": 'dt-control',*/
                         /*"orderable": false,*/
                         "data": "Codigo",
                         /*"defaultContent": ''*/

@@ -19,10 +19,11 @@ include "../../../includes/valAcc.php";
         <img src="../../../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>SELECCIONAR CLIENTE DE COTIZACIÓN A MODIFICAR</h4></div>
     <form id="form1" name="form1" method="post" action="updateCliCotForm.php">
         <div class="mb-3 row">
-            <label class="form-label col-2" for="busClien"><strong>Cliente</strong></label>
-            <input type="text" class="form-control col-2" id="busClien" name="busClien"
-                   onkeyup="findClienteCotizacion()"
-                   required/>
+            <div class="col-4">
+                <label class="form-label" for="busClien"><strong>Cliente</strong></label>
+                <input type="text" class="form-control" id="busClien" name="busClien" onkeyup="findClienteCotizacion()" required/>
+            </div>
+
         </div>
         <div class="mb-3 row">
             <div class="col-4" id="myDiv">

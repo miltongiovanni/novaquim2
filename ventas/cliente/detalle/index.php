@@ -47,7 +47,7 @@ $nomCliente = $cliente['nomCliente'];
                         "className": 'dt-body-center'
                     },
                     {
-                        /*"className": 'details-control',*/
+                        /*"className": 'dt-control',*/
                         /*"orderable": false,*/
                         "data": "idSucursal",
                         /*"defaultContent": ''*/

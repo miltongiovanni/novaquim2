@@ -39,7 +39,7 @@ try {
     $mensaje = "Sucursal del cliente creada con éxito";
     $icon = "success";
 } catch (Exception $e) {
-    $ruta = "makeClienForm.php";
+    $ruta = "../detalle/";
     $mensaje = "Error al crear la sucursal del Cliente";
     $icon = "error";
 } finally {

@@ -46,7 +46,7 @@ if ($idTapOEnv < 100) {
             $('#example').DataTable({
                 "columns": [
                     {
-                        /*"className": 'details-control',*/
+                        /*"className": 'dt-control',*/
                         /*"orderable": false,*/
                         "data": "fechComp",
                         /*"defaultContent": ''*/

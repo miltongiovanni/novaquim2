@@ -39,7 +39,7 @@ include "../../../includes/valAcc.php";
             $('#example').DataTable({
                 "columns": [
                     {
-                        /*"className": 'details-control',*/
+                        /*"className": 'dt-control',*/
                         /*"orderable": false,*/
                         "data": "idDistribucion",
                         className: 'text-center'

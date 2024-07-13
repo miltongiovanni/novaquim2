@@ -36,7 +36,7 @@ $clienteCotizacionOperador = new ClientesCotizacionOperaciones();
 $datos = array($nomCliente, $contactoCliente, $cargoContacto, $telCliente, $celCliente, $dirCliente, $emailCliente, $idCatCliente, $idCiudad, $codVendedor, $idCliente);
 try {
     $clienteCotizacionOperador->updateCliente($datos);
-    $ruta = "listarClientCot.php";
+    $ruta = "../lista/";
     $mensaje = "Cliente de cotización actualizado con éxito";
     $icon = "success";
 } catch (Exception $e) {

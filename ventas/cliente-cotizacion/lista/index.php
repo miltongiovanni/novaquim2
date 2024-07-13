@@ -15,7 +15,7 @@ include "../../../includes/valAcc.php";
         /* Formatting function for row details - modify as you need */
         function format(d) {
             // `d` is the original data object for the row
-            rep = '<table class="formatoDatos table table-sm table-striped" style="padding-left:50px;width:60%;margin:inherit; background-color: white">' +
+            rep = '<table class="formatoDatos5 table table-sm table-striped" style="padding-left:50px;width:60%;margin:inherit; background-color: white">' +
                 '<thead>' +
                 '<tr>' +
                 '<th class="text-center">Dirección</th>' +
@@ -25,11 +25,11 @@ include "../../../includes/valAcc.php";
                 '<th class="text-center">Vendedor</th>' +
                 '</thead>';
             rep += '<tr>' +
-                '<td class="text-center">' + d.dirCliente + '</td>' +
-                '<td class="text-center">' + d.ciudad + '</td>' +
-                '<td class="text-center">' + d.emailCliente + '</td>' +
-                '<td class="text-center">' + d.celCliente + '</td>' +
-                '<td class="text-center">' + d.nomPersonal + '</td>' +
+                '<td>' + d.dirCliente + '</td>' +
+                '<td>' + d.ciudad + '</td>' +
+                '<td>' + d.emailCliente + '</td>' +
+                '<td>' + d.celCliente + '</td>' +
+                '<td>' + d.nomPersonal + '</td>' +
                 '</tr>'
             rep += '</table>';
 
@@ -40,7 +40,7 @@ include "../../../includes/valAcc.php";
             var table = $('#example').DataTable({
                 "columns": [
                     {
-                        "className": 'details-control',
+                        "className": 'dt-control',
                         "orderable": false,
                         "data": null,
                         "defaultContent": ''
@@ -63,7 +63,7 @@ include "../../../includes/valAcc.php";
                     },
                     {
                         "data": "telCliente",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-right pe-5'
                     },
                     {
                         "data": "desCatClien",
@@ -111,18 +111,16 @@ include "../../../includes/valAcc.php";
                 "ajax": "../ajax/listaClientesCotizacion.php"
             });
             // Add event listener for opening and closing details
-            $('#example tbody').on('click', 'td.details-control', function () {
-                var tr = $(this).closest('tr');
+            table.on('click', 'td.dt-control', function (e) {
+                var tr = e.target.closest('tr');
                 var row = table.row(tr);
 
                 if (row.child.isShown()) {
                     // This row is already open - close it
                     row.child.hide();
-                    tr.removeClass('shown');
                 } else {
                     // Open this row
                     row.child(format(row.data())).show();
-                    tr.addClass('shown');
                 }
             });
         });
@@ -139,7 +137,7 @@ include "../../../includes/valAcc.php";
         </div>
     </div>
     <div class="tabla-90">
-        <table id="example" class="formatoDatos table table-sm table-striped formatoDatos">
+        <table id="example" class="formatoDatos5 table table-sm table-striped">
             <thead>
             <tr>
                 <th></th>

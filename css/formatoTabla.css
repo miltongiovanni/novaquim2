@@ -378,12 +378,12 @@ th {
     padding-right: 5px;
 }*/
 
-td.details-control {
+td.dt-control {
     background: url('../images/details_open.png') no-repeat center center;
     cursor: pointer;
 }
 
-tr.shown td.details-control {
+tr.shown td.dt-control {
     background: url('../images/details_close.png') no-repeat center center;
 }
 
