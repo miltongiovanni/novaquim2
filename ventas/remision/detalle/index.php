@@ -41,11 +41,7 @@ $remision = $remisionOperador->getRemision($idRemision);
     <script src="../../../js/validar.js"></script>
     <script src="../../../js/jquery-3.3.1.min.js"></script>
     <script src="../../../js/datatables.js"></script>
-    <script src="../../../js/dataTables.buttons.js"></script>
-    <script src="../../../js/jszip.js"></script> <!--Para exportar Excel-->
-    <!--<script src="../js/pdfmake.js"></script>-->  <!--Para exportar PDF-->
-    <!--<script src="../js/vfs_fonts.js"></script>--> <!--Para exportar PDF-->
-    <script src="../../../js/buttons.html5.js"></script>
+    
     <script>
         function redireccion() {
             window.location.href = "../../../menu.php";

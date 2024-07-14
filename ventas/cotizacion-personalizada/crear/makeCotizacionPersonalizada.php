@@ -33,7 +33,7 @@ $datos = array($idCliente, $fechaCotizacion, $tipPrecio, $destino);
 try {
     $lastIdCotizacion = $cotizacionOperador->makeCotizacionP($datos);
     $_SESSION['idCotPersonalizada'] = $lastIdCotizacion;
-    $ruta = "det_cot_personalizada.php";
+    $ruta = "../detalle/";
     $mensaje = "Cotización personalizada creada con éxito";
     $icon = "success";
 } catch (Exception $e) {

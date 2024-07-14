@@ -35,12 +35,12 @@ $datos = array($canProducto, $precioProducto, $idCotPersonalizada, $codProducto)
 try {
     $detCotizacionOperador->updateDetCotPersonalizada($datos);
     $_SESSION['idCotPersonalizada'] = $idCotPersonalizada;
-    $ruta = "det_cot_personalizada.php";
+    $ruta = "../detalle/";
     $mensaje = "Detalle de la cotización personalizada actualizado con éxito";
     $icon = "success";
 } catch (Exception $e) {
     $_SESSION['idCotPersonalizada'] = $idCotPersonalizada;
-    $ruta = "det_cot_personalizada.php";
+    $ruta = "../detalle/";
     $mensaje = "Error al actualizar el detalle de la cotización personalizada";
     $icon = "error";
 } finally {

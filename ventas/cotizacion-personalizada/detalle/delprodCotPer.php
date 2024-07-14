@@ -35,12 +35,12 @@ $datos = array($idCotPersonalizada, $codProducto);
 try {
     $detCotizacionOperador->deleteDetCotPersonalizada($datos);
     $_SESSION['idCotPersonalizada'] = $idCotPersonalizada;
-    $ruta = "det_cot_personalizada.php";
+    $ruta = "../detalle/";
     $mensaje = "Detalle de la cotización personalizada eliminado con éxito";
     $icon = "success";
 } catch (Exception $e) {
     $_SESSION['idCotPersonalizada'] = $idCotPersonalizada;
-    $ruta = "det_cot_personalizada.php";
+    $ruta = "../detalle/";
     $mensaje = "Error al eliminar el detalle de la cotización personalizada";
     $icon = "error";
 } finally {

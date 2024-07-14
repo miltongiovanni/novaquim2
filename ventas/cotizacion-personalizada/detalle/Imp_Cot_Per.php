@@ -1,6 +1,6 @@
 <?php
 session_start();
-require('../includes/fpdf.php');
+require('../../../includes/fpdf.php');
 function cargarClases($classname)
 {
     require '../../../clases/' . $classname . '.php';
@@ -65,7 +65,7 @@ $pdf->AddFont('Baker', '', 'Baker.php');
 $pdf->AddPage();
 $pdf->SetFont('Baker', '', 11);
 if ($destino == 2)
-    $pdf->Image('../images/borde.jpg', 10, 10, 195, 255);
+    $pdf->Image('../../../images/borde.jpg', 10, 10, 195, 255);
 
 $pdf->Write(4, $Ciudad);
 $fecha = time();
@@ -77,7 +77,7 @@ $pdf->Cell(60, 4, 'Atn. ' . $Contacto, 0, 1);
 $pdf->Cell(60, 4, $Cargo, 0, 1);
 $pdf->Cell(60, 4, 'E.    S.    D.', 0, 1);
 $pdf->Ln(1);
-$pdf->Cell(0, 5, Imp_Cot_Per . phpiconv('UTF-8', 'windows-1252', 'Cotización No. ') . $idCotPersonalizada . ' - ' . date("y"), 0, 1, 'C');
+$pdf->Cell(0, 5, iconv('UTF-8', 'windows-1252', 'Cotización No. ') . $idCotPersonalizada . ' - ' . date("y"), 0, 1, 'C');
 $pdf->Ln(2);
 $pdf->MultiCell(0, 5, iconv('UTF-8', 'windows-1252', 'Tenemos el gusto de poner a su consideración nuestra propuesta comercial para su servicio.'));
 //PRODUCTOS
@@ -111,8 +111,8 @@ $pdf->Cell(152, 3, iconv('UTF-8', 'windows-1252', 'TOTAL COTIZACIÓN'), 0, 0, 'R
 $pdf->Cell(19, 3,  '$'.number_format($total), 0, 1, 'R');
 $pdf->SetFont('Baker', '', 11);
 $fileName = $iva == 1 ? 'cotiza_iva.txt' : 'cotiza_sin_iva.txt';
-$f = fopen('../textos/'.$fileName, 'r');
-$txt = fread($f, filesize('../textos/'.$fileName));
+$f = fopen('../../../textos/'.$fileName, 'r');
+$txt = fread($f, filesize('../../../textos/'.$fileName));
 fclose($f);
 $pdf->MultiCell(0, 5, $txt);
 $pdf->Ln(2);

@@ -45,12 +45,12 @@ try {
     $datos = array($idCotPersonalizada, $codProducto, $cantProducto, $precioProducto);
     $detCotizacionOperador->makeDetCotPersonalizada($datos);
     $_SESSION['idCotPersonalizada'] = $idCotPersonalizada;
-    $ruta = "det_cot_personalizada.php";
+    $ruta = "../detalle/";
     $mensaje = "Detalle de la cotización personalizada adicionado con éxito";
     $icon = "success";
 } catch (Exception $e) {
     $_SESSION['idCotPersonalizada'] = $idCotPersonalizada;
-    $ruta = "det_cot_personalizada.php";
+    $ruta = "../detalle/";
     $mensaje = "Error al ingresar el detalle de la cotización personalizada";
     $icon = "error";
 } finally {

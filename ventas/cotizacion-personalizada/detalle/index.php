@@ -21,50 +21,8 @@ if (isset($_POST['idCotPersonalizada'])) {
     <script src="../../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../../../js/validar.js"></script>
     <link rel="stylesheet" href="../../../css/datatables.css">
-    <style>
-        table {
-            table-layout: fixed;
-        }
-
-        .width1 {
-            width: 8%;
-        }
-
-        .width2 {
-            width: 5%;
-        }
-
-        .width3 {
-            width: 5%;
-        }
-
-        .width4 {
-            width: 38%;
-        }
-
-        .width5 {
-            width: 5%;
-        }
-
-        .width6 {
-            width: 8%;
-        }
-
-        .width7 {
-            width: 8%;
-        }
-
-        .width8 {
-            width: 8%;
-        }
-    </style>
     <script src="../../../js/jquery-3.3.1.min.js"></script>
     <script src="../../../js/datatables.js"></script>
-    <script src="../../../js/dataTables.buttons.js"></script>
-    <script src="../../../js/jszip.js"></script> <!--Para exportar Excel-->
-    <!--<script src="../js/pdfmake.js"></script>-->  <!--Para exportar PDF-->
-    <!--<script src="../js/vfs_fonts.js"></script>--> <!--Para exportar PDF-->
-    <script src="../../../js/buttons.html5.js"></script>
     <script>
         function redireccion() {
             window.location.href = "../../../menu.php";
@@ -73,7 +31,7 @@ if (isset($_POST['idCotPersonalizada'])) {
         function eliminarSession() {
             let variable = 'idCotPersonalizada';
             $.ajax({
-                url: '../includes/controladorVentas.php',
+                url: '../../../includes/controladorVentas.php',
                 type: 'POST',
                 data: {
                     "action": 'eliminarSession',
@@ -103,31 +61,38 @@ if (isset($_POST['idCotPersonalizada'])) {
                                 '      </form>'
                             return rep;
                         },
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-center',
+                        width: '8%'
                     },
                     {
                         "data": "id",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-center',
+                        width: '5%'
                     },
                     {
                         "data": "codProducto",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-center',
+                        width: '5%'
                     },
                     {
                         "data": "producto",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-center',
+                        width: '38%'
                     },
                     {
                         "data": "canProducto",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-center',
+                        width: '5%'
                     },
                     {
                         "data": "precioProducto",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-center',
+                        width: '8%'
                     },
                     {
                         "data": "subtotal",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-center',
+                        width: '8%'
                     },
                     {
                         "data": function (row) {
@@ -138,7 +103,8 @@ if (isset($_POST['idCotPersonalizada'])) {
                                 '      </form>'
                             return rep;
                         },
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-center',
+                        width: '8%'
                     }
                 ],
                 "columnDefs": [{
@@ -206,97 +172,112 @@ $distribucionOperador = new ProductosDistribucionOperaciones();
 <div id="contenedor" class="container-fluid">
     <div id="saludo1">
         <img src="../../../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>DETALLE DE LA COTIZACIÓN PERSONALIZADA</h4></div>
-    <div class="mb-3 row">
-        <div class="col-2"><strong>No. de Cotización</strong></div>
-        <div class="col-1 bg-blue"><?= $idCotPersonalizada; ?></div>
-        <div class="col-2"><strong>Fecha Cotización</strong></div>
-        <div class="col-1 bg-blue"><?= $cotizacion['fechaCotizacion'] ?></div>
-        <div class="col-1"><strong>Cliente</strong></strong></div>
-        <div class="col-4" style="background-color: #dfe2fd;"><?= $cotizacion['nomCliente'] ?></div>
+    <div class="mb-3 formatoDatos5 row">
+        <div class="col-2">
+            <strong>No. de Cotización</strong>
+            <div class="bg-blue"><?= $idCotPersonalizada; ?></div>
+        </div>
+        <div class="col-2">
+            <strong>Fecha Cotización</strong>
+            <div class="bg-blue"><?= $cotizacion['fechaCotizacion'] ?></div>
+        </div>
+        <div class="col-4">
+            <strong>Cliente</strong>
+            <div class="bg-blue"><?= $cotizacion['nomCliente'] ?></div>
+        </div>
 
     </div>
-    <div class="mb-3 row">
-        <div class="col-1"><strong>Contacto</strong></div>
-        <div class="col-2 bg-blue"><?= $cotizacion['contactoCliente'] ?></div>
-        <div class="col-1"><strong>Cargo</strong></div>
-        <div class="col-2 bg-blue"><?= $cotizacion['cargoContacto'] ?></div>
-        <div class="col-1"><strong>Vendedor</strong></div>
-        <div class="col-2 bg-blue"><?= $cotizacion['nomPersonal'] ?></div>
-        <div class="col-1"><strong>Tipo de Precio</strong></div>
-        <div class="col-1 bg-blue"><?= $cotizacion['tipPrecio'] ?></div>
+    <div class="mb-3 formatoDatos5 row">
+        <div class="col-2">
+            <strong>Contacto</strong>
+            <div class="bg-blue"><?= $cotizacion['contactoCliente'] ?></div>
+        </div>
+        <div class="col-2">
+            <strong>Cargo</strong>
+            <div class="bg-blue"><?= $cotizacion['cargoContacto'] ?></div>
+        </div>
+        <div class="col-2">
+            <strong>Vendedor</strong>
+            <div class="bg-blue"><?= $cotizacion['nomPersonal'] ?></div>
+        </div>
+        <div class="col-2">
+            <strong>Tipo de Precio</strong>
+            <div class="bg-blue"><?= $cotizacion['tipPrecio'] ?></div>
+        </div>
     </div>
     <div class="mb-3 titulo row text-center">
         <strong>Adicionar Detalle</strong>
     </div>
-    <form method="post" action="makeDetCotPersonalizada.php" name="form1">
+    <form method="post" class="formatoDatos5 mb-4" action="makeDetCotPersonalizada.php" name="form1">
         <input name="idCotPersonalizada" type="hidden" value="<?= $idCotPersonalizada; ?>">
         <input name="tipoPrecio" type="hidden" value="<?= $cotizacion['tipoPrecio']; ?>">
         <div class="row">
-            <div class="col-4 text-center" style="margin: 0 5px;"><strong>Productos Novaquim</strong></div>
-            <div class="col-1 text-center" style="margin: 0 5px;"><strong>Unidades</strong></div>
-            <div class="col-2 text-center"></div>
-        </div>
-        <div class="mb-3 row">
-            <select name="codProducto" id="codProducto" class="form-select col-4 me-3">
-                <option selected disabled value="">Escoja un producto Novaquim</option>
-                <?php
-                $productos = $cotizacionOperador->getProdTerminadosByIdCotizacion($idCotPersonalizada);
-                $filas = count($productos);
-                for ($i = 0; $i < $filas; $i++) {
-                    echo '<option value="' . $productos[$i]["codPresentacion"] . '">' . $productos[$i]['presentacion'] . '</option>';
-                }
-                ?>
-            </select>
-            <input type="text" style="margin: 0 5px 0 0;" class="form-control col-1" name="cantProducto"
-                   id="cantProducto" onkeydown="return aceptaNum(event)">
-            <div class="col-2 text-center" style="padding: 0 20px;">
-                <button class="button" type="button" onclick="return Enviar(this.form)"><span>Adicionar detalle</span>
+            <div class="col-4">
+                <label class="form-label" for="codProducto"><strong>Productos Novaquim</strong></label>
+                <select name="codProducto" id="codProducto" class="form-select">
+                    <option selected disabled value="">Escoja un producto Novaquim</option>
+                    <?php
+                    $productos = $cotizacionOperador->getProdTerminadosByIdCotizacion($idCotPersonalizada);
+                    $filas = count($productos);
+                    for ($i = 0; $i < $filas; $i++) {
+                        echo '<option value="' . $productos[$i]["codPresentacion"] . '">' . $productos[$i]['presentacion'] . '</option>';
+                    }
+                    ?>
+                </select>
+            </div>
+            <div class="col-1">
+                <label class="form-label" for="codProducto"><strong>Unidades</strong></label>
+                <input type="text" class="form-control" name="cantProducto"
+                       id="cantProducto" onkeydown="return aceptaNum(event)">
+            </div>
+            <div class="col-2 pt-2">
+                <button class="button mt-3" type="button" onclick="return Enviar(this.form)"><span>Adicionar detalle</span>
                 </button>
             </div>
         </div>
     </form>
-    <form method="post" action="makeDetCotPersonalizada.php" name="form1">
+    <form method="post" class="formatoDatos5" action="makeDetCotPersonalizada.php" name="form1">
         <input name="idCotPersonalizada" type="hidden" value="<?= $idCotPersonalizada; ?>">
         <input name="tipoPrecio" type="hidden" value="<?= $cotizacion['tipoPrecio']; ?>">
         <div class="row">
-            <div class="col-4 text-center" style="margin: 0 5px;"><strong>Productos Distribucion</strong></div>
-            <div class="col-1 text-center" style="margin: 0 5px;"><strong>Unidades</strong></div>
-            <div class="col-2 text-center"></div>
-        </div>
-        <div class="mb-3 row">
-            <select name="codProducto" id="codProducto" class="form-control col-4 me-3">
-                <option selected disabled value="">Escoja un producto de distribución</option>
-                <?php
-                $productos = $cotizacionOperador->getProdDistribucionByIdCotizacion($idCotPersonalizada);
-                $filas = count($productos);
-                for ($i = 0; $i < $filas; $i++) {
-                    echo '<option value="' . $productos[$i]["idDistribucion"] . '">' . $productos[$i]['producto'] . '</option>';
-                }
-                ?>
-            </select>
-            <input type="text" style="margin: 0 5px 0 0;" class="form-control col-1" name="cantProducto"
-                   id="cantProducto" onkeydown="return aceptaNum(event)">
-            <div class="col-2 text-center" style="padding: 0 20px;">
-                <button class="button" type="button" onclick="return Enviar(this.form)"><span>Adicionar detalle</span>
+            <div class="col-4">
+                <label class="form-label" for="codProducto"><strong>Productos Distribucion</strong></label>
+                <select name="codProducto" id="codProducto" class="form-control">
+                    <option selected disabled value="">Escoja un producto de distribución</option>
+                    <?php
+                    $productos = $cotizacionOperador->getProdDistribucionByIdCotizacion($idCotPersonalizada);
+                    $filas = count($productos);
+                    for ($i = 0; $i < $filas; $i++) {
+                        echo '<option value="' . $productos[$i]["idDistribucion"] . '">' . $productos[$i]['producto'] . '</option>';
+                    }
+                    ?>
+                </select>
+            </div>
+            <div class="col-1">
+                <label class="form-label" for="cantProducto"><strong>Unidades</strong></label>
+                <input type="text" class="form-control" name="cantProducto" id="cantProducto" onkeydown="return aceptaNum(event)">
+            </div>
+            <div class="col-2 pt-2">
+                <button class="button mt-3" type="button" onclick="return Enviar(this.form)"><span>Adicionar detalle</span>
                 </button>
             </div>
         </div>
     </form>
-    <div class="mb-3 titulo row text-center">
+    <div class="mb-3 mt-4 titulo row text-center">
         <strong>Detalle de la cotización personalizada</strong>
     </div>
     <div class="tabla-70">
-        <table id="example" class="formatoDatos table table-sm table-striped">
+        <table id="example" class="formatoDatos5 table table-sm table-striped">
             <thead>
             <tr>
-                <th class="width1"></th>
-                <th class="width2">Item</th>
-                <th class="width3">Código</th>
-                <th class="width4">Producto</th>
-                <th class="width5">Cantidad</th>
-                <th class="width6">Precio</th>
-                <th class="width7">Subtotal</th>
-                <th class="width8"></th>
+                <th></th>
+                <th class="text-center">Item</th>
+                <th class="text-center">Código</th>
+                <th class="text-center">Producto</th>
+                <th class="text-center">Cantidad</th>
+                <th class="text-center">Precio</th>
+                <th class="text-center">Subtotal</th>
+                <th class="text-center"></th>
             </tr>
             </thead>
         </table>
