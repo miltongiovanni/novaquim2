@@ -113,7 +113,7 @@ spl_autoload_register('cargarClases');
             <div class="col-2">
                 <label class="form-label " for="regProv"><strong>Régimen Proveedor</strong></label>
                 <select name="regProv" id="regProv" class="form-control " required>
-                    <option disabled selected value="">Seleccione una opción---</option>
+                    <option disabled selected value="">Seleccione una opción</option>
                     <option value="0">Simplificado</option>
                     <option value="1" selected>Común</option>
                     <option value="2" selected>Simple</option>

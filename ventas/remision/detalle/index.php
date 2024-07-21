@@ -1,7 +1,7 @@
 <?php
 include "../../../includes/valAcc.php";
-include "../includes/ventas.php";
-include "../includes/num_letra.php";
+include "../../../includes/ventas.php";
+include "../../../includes/num_letra.php";
 
 if (isset($_POST['idRemision'])) {
     $idRemision = $_POST['idRemision'];
@@ -16,27 +16,8 @@ $remision = $remisionOperador->getRemision($idRemision);
 <head>
     <title>Detalle de Remisión</title>
     <meta charset="utf-8">
-    <link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="../../../css/datatables.css">
-    <style>
-        table {
-            table-layout: fixed;
-        }
-
-        .width1 {
-            width: 20%;
-        }
-
-        .width2 {
-            width: 60%;
-        }
-
-        .width3 {
-            width: 20%;
-        }
-
-
-    </style>
+    <link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <script src="../../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../../../js/validar.js"></script>
     <script src="../../../js/jquery-3.3.1.min.js"></script>
@@ -50,7 +31,7 @@ $remision = $remisionOperador->getRemision($idRemision);
         function eliminarSession() {
             let variable = 'idRemision';
             $.ajax({
-                url: '../includes/controladorVentas.php',
+                url: '../../../includes/controladorVentas.php',
                 type: 'POST',
                 data: {
                     "action": 'eliminarSession',
@@ -73,15 +54,18 @@ $remision = $remisionOperador->getRemision($idRemision);
                 "columns": [
                     {
                         "data": "codigo",
-                        "className": 'text-center'
+                        "className": 'text-center',
+                        width: '20%'
                     },
                     {
                         "data": "producto",
-                        "className": 'dt-body-left'
+                        "className": 'dt-body-left',
+                        width: '60%'
                     },
                     {
                         "data": "cantProductoT",
-                        "className": 'text-center'
+                        "className": 'text-center',
+                        width: '20%'
                     },
                 ],
                 "columnDefs": [{
@@ -135,42 +119,56 @@ $remision = $remisionOperador->getRemision($idRemision);
 <div id="contenedor" class="container-fluid">
     <div id="saludo1">
         <img src="../../../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>DETALLE DE SALIDA POR REMISIÓN</h4></div>
-    <div class="mb-3 row">
-        <div class="col-1"><strong>Remisión</strong></div>
-        <div class="col-1 bg-blue"><?= $idRemision; ?></div>
-        <div class="col-2"><strong>Fecha Remisión</strong></div>
-        <div class="col-1 bg-blue"><?= $remision['fechaRemision'] ?></div>
-        <div class="col-2"><strong>No. de Pedido</strong></div>
-        <div class="col-1 bg-blue"><?= $remision['idPedido']; ?></div>
+    <div class="mb-3 row formatoDatos5">
+        <div class="col-1">
+            <strong>Remisión</strong>
+            <div class="bg-blue"><?= $idRemision; ?></div>
+        </div>
+        <div class="col-1">
+            <strong>Fecha Remisión</strong>
+            <div class="bg-blue"><?= $remision['fechaRemision'] ?></div>
+        </div>
+        <div class="col-1">
+            <strong>No. de Pedido</strong>
+            <div class="bg-blue"><?= $remision['idPedido']; ?></div>
+        </div>
+        <div class="col-1">
+            <strong>Nit</strong>
+            <div class="bg-blue"><?= $remision['nitCliente'] ?></div>
+        </div>
+        <div class="col-4">
+            <strong>Cliente</strong>
+            <div class="bg-blue"><?= $remision['nomCliente'] ?></div>
+        </div>
     </div>
-    <div class="mb-3 row">
-        <div class="col-2"><strong>Cliente</strong></strong></div>
-        <div class="col-4 bg-blue"><?= $remision['nomCliente'] ?></div>
-        <div class="col-1"><strong>Nit</strong></div>
-        <div class="col-1 bg-blue"><?= $remision['nitCliente'] ?></div>
-    </div>
-    <div class="mb-3 row">
-        <div class="col-2"><strong>Lugar de entrega</strong></strong></div>
-        <div class="col-4 bg-blue"><?= $remision['nomSucursal'] ?></div>
-        <div class="col-1"><strong>Teléfono</strong></div>
-        <div class="col-1 bg-blue"><?= $remision['telCliente'] ?></div>
-    </div>
-    <div class="mb-3 row">
-        <div class="col-2"><strong>Dirección entrega </strong></div>
-        <div class="col-4 bg-blue"><?= $remision['dirSucursal'] ?></div>
-        <div class="col-1"><strong>Ciudad</strong></div>
-        <div class="col-1 bg-blue"><?= $remision['ciudad'] ?></div>
+    <div class="mb-3 row formatoDatos5">
+        <div class="col-3">
+            <strong>Lugar de entrega</strong>
+            <div class="bg-blue"><?= $remision['nomSucursal'] ?></div>
+        </div>
+        <div class="col-3">
+            <strong>Dirección entrega </strong>
+            <div class="bg-blue"><?= $remision['dirSucursal'] ?></div>
+        </div>
+        <div class="col-1">
+            <strong>Teléfono</strong>
+            <div class="bg-blue"><?= $remision['telCliente'] ?></div>
+        </div>
+        <div class="col-1">
+            <strong>Ciudad</strong>
+            <div class="bg-blue"><?= $remision['ciudad'] ?></div>
+        </div>
     </div>
     <div class="mb-3 titulo row text-center">
         <strong>Detalle</strong>
     </div>
     <div class="tabla-50">
-        <table id="example" class="formatoDatos table table-sm table-striped formatoDatos">
+        <table id="example" class="formatoDatos5 table table-sm table-striped">
             <thead>
             <tr>
-                <th class="width1 text-center">Código</th>
-                <th class="width2">Producto</th>
-                <th class="width3 text-center">Cantidad</th>
+                <th class="text-center">Código</th>
+                <th class="text-center">Producto</th>
+                <th class="text-center">Cantidad</th>
             </tr>
             </thead>
         </table>

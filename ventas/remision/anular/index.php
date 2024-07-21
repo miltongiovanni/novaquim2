@@ -16,9 +16,12 @@ include "../../../includes/valAcc.php";
         <img src="../../../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>INGRESAR REMISIÓN A ANULAR</h4></div>
     <form id="form1" name="form1" method="post" action="anulaRemision.php">
         <div class="mb-3 row">
-            <label class="form-label col-1 text-end" for="idRemision"><strong>Remisión</strong></label>
-            <input type="text" class="form-control col-1" onkeydown="return aceptaNum(event)" name="idRemision"
-                   id="idRemision" required>
+            <div class="col-2">
+                <label class="form-label" for="idRemision"><strong>Remisión</strong></label>
+                <input type="text" class="form-control" onkeydown="return aceptaNum(event)" name="idRemision"
+                       id="idRemision" required>
+            </div>
+
         </div>
         <div class="row mb-3">
             <div class="col-1">

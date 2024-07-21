@@ -7,7 +7,7 @@ include "../../../includes/valAcc.php";
     <meta charset="utf-8">
     <title>Seleccionar Remisión a consultar</title>
     <link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
-<script src="../../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../../../js/validar.js"></script>
 </head>
 <body>
@@ -16,11 +16,14 @@ include "../../../includes/valAcc.php";
         <img src="../../../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>SELECCIONAR REMISIÓN A CONSULTAR</h4></div>
     <form id="form1" name="form1" method="post" action="consultaRemision.php">
         <div class="mb-3 row">
-            <label class="form-label col-2 text-end" for="idRemision"><strong>No. de remisión</strong></label>
-            <input type="text" class="form-control col-1" name="idRemision" id="idRemision"
-                   onkeydown="return aceptaNum(event)" required>
+            <div class="col-2">
+                <label class="form-label" for="idRemision"><strong>No. de remisión</strong></label>
+                <input type="text" class="form-control" name="idRemision" id="idRemision"
+                       onkeydown="return aceptaNum(event)" required>
+            </div>
         </div>
-        <div class="mb-3 row"><div class="col-1 text-center">
+        <div class="mb-3 row">
+            <div class="col-1 text-center">
                 <button class="button" type="reset"><span>Reiniciar</span></button>
             </div>
             <div class="col-1 text-center">

@@ -57,11 +57,11 @@ try {
     $detRemisionOperador->deleteDetRemisionFactura($idRemision);
     //SE BORRA LA REMISION
     $remisionOperador->deleteSalidaRemision($idRemision);
-    $ruta = "listarRemisiones.php";
+    $ruta = "../lista/";
     $mensaje = "Remisión anulada con éxito";
     $icon = "success";
 } catch (Exception $e) {
-    $ruta = "anularRemision.php";
+    $ruta = "../anular/";
     $mensaje = "Error al anular la remisión";
     $icon = "error";
 } finally {

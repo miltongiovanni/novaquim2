@@ -1,7 +1,7 @@
 <?php
 include "../../../includes/valAcc.php";
 include "../../../includes/calcularDias.php";
-include "../includes/ventas.php";
+include "../../../includes/ventas.php";
 foreach ($_POST as $nombre_campo => $valor) {
     ${$nombre_campo} = $valor;
     if (is_array($valor)) {
@@ -91,7 +91,7 @@ if (($dias_remision >= 0)) {
         $mensaje = "Remisión creada con éxito";
         $icon = "success";
     } catch (Exception $e) {
-        $ruta = "crearRemision.php";
+        $ruta = "../crear/";
         $mensaje = "Error al crear la Remisión";
         $icon = "error";
     } finally {
@@ -101,7 +101,7 @@ if (($dias_remision >= 0)) {
     }
 } else {
     if ($dias_remision < 0) {
-        $ruta = "crearRemision.php";
+        $ruta = "../crear/";
         $mensaje = "La fecha de la remisión no puede ser menor que la fecha actual";
         $icon = "error";
         mover_pag($ruta, $mensaje, $icon);

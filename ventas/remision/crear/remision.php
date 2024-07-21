@@ -27,36 +27,33 @@ $pedido = $pedidoOperador->getPedido($idPedido);
         <input type="hidden" name="idCliente" value="<?= $pedido['idCliente']; ?>">
         <input type="hidden" name="idPedido" value="<?= $idPedido; ?>">
         <input type="hidden" name="idSucursal" value="<?= $pedido['idSucursal']; ?>">
-        <div class="row">
-            <label class="form-label col-4 text-start" for="fechaRemision"><strong>Fecha de
-                    remisión</strong></label>
-        </div>
         <div class="mb-3 row">
-            <input type="date" class="form-control col-4" name="fechaRemision" id="fechaRemision"
-                   value="<?= $pedido['fechaEntrega']; ?>" required>
+            <div class="col-4">
+                <label class="form-label" for="fechaRemision"><strong>Fecha de remisión</strong></label>
+                <input type="date" class="form-control" name="fechaRemision" id="fechaRemision"
+                       value="<?= $pedido['fechaEntrega']; ?>" required>
+            </div>
         </div>
-        <div class="row">
-            <label class="form-label col-4 text-start" for="nomCliente"><strong>Cliente</strong></label>
+        <div class="row mb-3">
+            <div class="col-4">
+                <label class="form-label" for="nomCliente"><strong>Cliente</strong></label>
+                <input type="text" class="form-control" name="nomCliente" id="nomCliente"
+                       value="<?= $pedido['nomCliente']; ?>" readonly>
+            </div>
         </div>
-        <div class="mb-3 row">
-            <input type="text" class="form-control col-4" name="nomCliente" id="nomCliente"
-                   value="<?= $pedido['nomCliente']; ?>" readonly>
+        <div class="row mb-3">
+            <div class="col-4">
+                <label class="form-label" for="nomSucursal"><strong>Lugar de entrega</strong></label>
+                <input type="text" class="form-control" name="nomSucursal" id="nomSucursal"
+                       value="<?= $pedido['nomSucursal']; ?>" readonly>
+            </div>
         </div>
-        <div class="row">
-            <label class="form-label col-4 text-start" for="nomSucursal"><strong>Lugar de
-                    entrega</strong></label>
-        </div>
-        <div class="mb-3 row">
-            <input type="text" class="form-control col-4" name="nomSucursal" id="nomSucursal"
-                   value="<?= $pedido['nomSucursal']; ?>" readonly>
-        </div>
-        <div class="row">
-            <label class="form-label col-4 text-start" for="dirSucursal"><strong>Dirección de
-                    entrega</strong></label>
-        </div>
-        <div class="mb-3 row">
-            <input type="text" class="form-control col-4" name="dirSucursal" id="dirSucursal"
-                   value="<?= $pedido['dirSucursal']; ?>" readonly>
+        <div class="row mb-3">
+            <div class="col-4">
+                <label class="form-label" for="dirSucursal"><strong>Dirección de entrega</strong></label>
+                <input type="text" class="form-control" name="dirSucursal" id="dirSucursal"
+                       value="<?= $pedido['dirSucursal']; ?>" readonly>
+            </div>
         </div>
         <div class="row mb-3">
             <div class="col-1">

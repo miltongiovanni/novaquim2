@@ -29,7 +29,7 @@ for($i=0;$i<count($remisiones); $i++){
 }
 
 $datosRetorno = array(
-    'draw' => 0,
+    'draw' => isset ( $_GET['draw'] ) ?intval( $_GET['draw'] ) : 0,
     'recordsTotal' => intval($totalRemisiones),
     'recordsFiltered' => intval($totalRemisiones),
     'data' => $remisiones

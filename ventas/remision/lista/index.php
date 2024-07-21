@@ -6,43 +6,10 @@ include "../../../includes/valAcc.php";
 <head>
     <title>Lista de salidas por Remisión</title>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../css/datatables.css">
     <link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <script src="../../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../../../js/validar.js"></script>
-    <link rel="stylesheet" href="../../../css/datatables.css">
-    <style>
-        #example {
-            table-layout: fixed;
-        }
-
-        .width1 {
-            width: 5%;
-        }
-
-        .width2 {
-            width: 5%;
-        }
-
-        .width3 {
-            width: 10%;
-        }
-
-        .width4 {
-            width: 30%;
-        }
-
-        .width5 {
-            width: 30%;
-        }
-
-        .width6 {
-            width: 10%;
-        }
-
-        .width7 {
-            width: 10%;
-        }
-    </style>
     <script src="../../../js/jquery-3.3.1.min.js"></script>
     <script src="../../../js/datatables.js"></script>
     
@@ -50,7 +17,7 @@ include "../../../includes/valAcc.php";
         /* Formatting function for row details - modify as you need */
         function format(d) {
             // `d` is the original data object for the row
-            rep = '<table class="formatoDatos table table-sm table-striped formatoDatos" style="padding-left:50px;width:60%;margin:inherit; background-color: white">' +
+            rep = '<table class="formatoDatos5 table table-sm table-striped" style="padding-left:50px;width:60%;margin:inherit; background-color: white">' +
                 '<thead>' +
                 '<tr>' +
                 '<th class="text-center">Código</th>' +
@@ -78,31 +45,38 @@ include "../../../includes/valAcc.php";
                         "orderable": false,
                         "searchable": false,
                         "data": null,
-                        "defaultContent": ''
+                        "defaultContent": '',
+                        width: '5%'
                     },
                     {
                         "data": "idRemision",
-                        "className": 'text-center'
+                        "className": 'text-center',
+                        width: '5%'
                     },
                     {
                         "data": "fechaRemision",
-                        "className": 'text-center'
+                        "className": 'text-center',
+                        width: '10%'
                     },
                     {
                         "data": "nomCliente",
-                        "className": 'dt-body-left'
+                        "className": 'dt-body-left',
+                        width: '30%'
                     },
                     {
                         "data": "nomSucursal",
-                        "className": 'dt-body-left'
+                        "className": 'dt-body-left',
+                        width: '30%'
                     },
                     {
                         "data": "idPedido",
-                        "className": 'text-center'
+                        "className": 'text-center',
+                        width: '10%'
                     },
                     {
                         "data": "fechaPedido",
-                        "className": 'text-center'
+                        "className": 'text-center',
+                        width: '10%'
                     },
                 ],
                 "order": [[1, 'desc']],
@@ -174,16 +148,16 @@ include "../../../includes/valAcc.php";
         </div>
     </div>
     <div class="tabla-100">
-        <table id="example" class="formatoDatos table table-sm table-striped formatoDatos">
+        <table id="example" class="formatoDatos5 table table-sm table-striped">
             <thead>
             <tr>
-                <th class="width1"></th>
-                <th class="width2 text-center">Remisión</th>
-                <th class="width3 text-center">Fecha remisión</th>
-                <th class="width4 text-center">Cliente</th>
-                <th class="width5 text-center">Lugar de entrega</th>
-                <th class="width6 text-center">Pedido</th>
-                <th class="width7 text-center">Fecha Pedido</th>
+                <th class=""></th>
+                <th class="text-center">Remisión</th>
+                <th class="text-center">Fecha remisión</th>
+                <th class="text-center">Cliente</th>
+                <th class="text-center">Lugar de entrega</th>
+                <th class="text-center">Pedido</th>
+                <th class="text-center">Fecha Pedido</th>
             </tr>
             </thead>
         </table>

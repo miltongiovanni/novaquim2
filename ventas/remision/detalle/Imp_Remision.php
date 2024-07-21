@@ -1,6 +1,6 @@
 <?php
 session_start();
-require('../includes/fpdf.php');
+require('../../../includes/fpdf.php');
 $idRemision=$_POST['idRemision'];
 function cargarClases($classname)
 {
@@ -17,8 +17,8 @@ $pdf=new FPDF('P','mm','Letter');
 $pdf->AliasNbPages();
 $pdf->AddPage();
 $pdf->SetMargins(40, 20, 20);
-$pdf->Image('../images/LogoNova.jpg',10,4, 30);
-$pdf->Image('../images/LogoNova.jpg',10,134, 30);
+$pdf->Image('../../../images/LogoNova.jpg',10,4, 30);
+$pdf->Image('../../../images/LogoNova.jpg',10,134, 30);
 $pdf->SetFont('Arial','B',8);
 $pdf->SetFont('Arial','B',8);
 $pdf->SetXY(40,10);
