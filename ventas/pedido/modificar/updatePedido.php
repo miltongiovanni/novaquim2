@@ -41,11 +41,11 @@ if (($diasEntregaPedido >= 0) && ($diasEntrega >= 0)) {
     try {
         $pedidoOperador->updatePedido($datos);
         $_SESSION['idPedido'] = $idPedido;
-        $ruta = "det_pedido.php";
+        $ruta = "../detalle/";
         $mensaje = "Pedido actualizado con éxito";
         $icon = "success";
     } catch (Exception $e) {
-        $ruta = "buscarPedido.php";
+        $ruta = "../modificar/";
         $mensaje = "Error al actualizar el pedido";
         $icon = "error";
     } finally {
@@ -55,13 +55,13 @@ if (($diasEntregaPedido >= 0) && ($diasEntrega >= 0)) {
     }
 } else {
     if ($diasEntrega < 0) {
-        $ruta = "buscarPedido.php";
+        $ruta = "../modificar/";
         $mensaje = "La fecha de entrega del pedido no puede ser menor que la fecha del pedido";
         $icon = "error";
         mover_pag($ruta, $mensaje, $icon);
     }
     if ($diasEntregaPedido < 0) {
-        $ruta = "buscarPedido.php";
+        $ruta = "../modificar/";
         $mensaje = "La fecha de entrega del pedido no puede ser menor que la actual";
         $icon = "error";
         mover_pag($ruta, $mensaje, $icon);

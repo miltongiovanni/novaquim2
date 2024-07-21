@@ -29,21 +29,22 @@ $detalle = $DetPedidoOperador->getDetProdPedido($idPedido, $codProducto);
     <form action="updatePed.php" method="post" name="actualiza">
         <input name="idPedido" type="hidden" value="<?= $idPedido; ?>">
         <input name="codProducto" type="hidden" value="<?= $codProducto; ?>">
-        <div class="row">
-            <label class="form-label col-4 text-center mx-2" for="producto"><strong>Producto</strong></label>
-            <label class="form-label col-1 text-center mx-2" for="cantProducto"><strong>Cantidad</strong></label>
-            <label class="form-label col-1 text-center mx-2" for="precioProducto"><strong>Precio</strong></label>
+        <div class="row mb-3">
+            <div class="col-4">
+                <label class="form-label" for="producto"><strong>Producto</strong></label>
+                <input type="text" class="form-control" name="producto" readonly id="producto" value="<?= $detalle['producto'] ?>">
+            </div>
+            <div class="col-1">
+                <label class="form-label" for="cantProducto"><strong>Cantidad</strong></label>
+                <input type="text" class="form-control" name="cantProducto" id="cantProducto" onkeydown="return aceptaNum(event)" value="<?= $detalle['cantProducto'] ?>">
+            </div>
+            <div class="col-1">
+                <label class="form-label" for="precioProducto"><strong>Precio</strong></label>
+                <input type="text" class="form-control" name="precioProducto" id="precioProducto" onkeydown="return aceptaNum(event)" value="<?= $detalle['precioProducto'] ?>">
+            </div>
         </div>
         <div class="mb-3 row">
-            <input type="text" class="form-control col-4 mx-2" name="producto" readonly
-                   id="producto" value="<?= $detalle['producto'] ?>">
-            <input type="text" class="form-control col-1 mx-2" name="cantProducto"
-                   id="cantProducto" onkeydown="return aceptaNum(event)" value="<?= $detalle['cantProducto'] ?>">
-            <input type="text" class="form-control col-1 mx-2" name="precioProducto" id="precioProducto"
-                   onkeydown="return aceptaNum(event)" value="<?= $detalle['precioProducto'] ?>">
-        </div>
-        <div class="mb-3 row">
-            <div class="col-2 text-center" style="padding: 0 20px;">
+            <div class="col-2 text-center">
                 <button class="button" type="button" onclick="return Enviar(this.form)"><span>Actualizar detalle</span>
                 </button>
             </div>

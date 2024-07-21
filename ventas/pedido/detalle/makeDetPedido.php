@@ -47,13 +47,13 @@ if ($totalItems < 50) {
         $datos = array($idPedido, $codProducto, $cantProducto, $precioProducto);
         $detPedidoOperador->makeDetPedido($datos);
         $_SESSION['idPedido'] = $idPedido;
-        $ruta = "det_pedido.php";
+        $ruta = "../detalle/";
         $mensaje = "Detalle del pedido adicionado con éxito";
         $icon = "success";
 
     } catch (Exception $e) {
         $_SESSION['idPedido'] = $idPedido;
-        $ruta = "det_pedido.php";
+        $ruta = "../detalle/";
         $mensaje = "Error al ingresar el detalle del pedido";
         $icon = "error";
     } finally {
@@ -64,7 +64,7 @@ if ($totalItems < 50) {
 
 } else {
     $_SESSION['idPedido'] = $idPedido;
-    $ruta = "det_pedido.php";
+    $ruta = "../detalle/";
     $mensaje = "Máximo 50 productos por pedido";
     $icon = "warning";
     mover_pag($ruta, $mensaje, $icon);

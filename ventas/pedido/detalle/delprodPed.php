@@ -34,12 +34,12 @@ $datos = array($idPedido, $codProducto);
 try {
     $detPedidoOperador->deleteDetPedido($datos);
     $_SESSION['idPedido'] = $idPedido;
-    $ruta = "det_pedido.php";
+    $ruta = "../detalle/";
     $mensaje = "Detalle del pedido eliminado con éxito";
     $icon = "success";
 } catch (Exception $e) {
     $_SESSION['idPedido'] = $idPedido;
-    $ruta = "det_pedido.php";
+    $ruta = "../detalle/";
     $mensaje = "Error al eliminar el detalle del pedido";
     $icon = "error";
 } finally {

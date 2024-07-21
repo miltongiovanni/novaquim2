@@ -1,6 +1,6 @@
 <?php
 session_start();
-require('../includes/fpdf.php');
+require('../../../includes/fpdf.php');
 function cargarClases($classname)
 {
     require '../../../clases/' . $classname . '.php';
@@ -19,7 +19,7 @@ class PDF extends FPDF
     function Header()
     {
         //Logo
-        $this->Image('../images/LogoNova1.jpg', 15, 12, 38, 19);
+        $this->Image('../../../images/LogoNova1.jpg', 15, 12, 38, 19);
         //Arial bold 15
         //$this->SetFont('Arial','B',16);
         //Movernos a la derecha
@@ -66,17 +66,17 @@ $pdf->Cell(65, 8, iconv('UTF-8', 'windows-1252', 'VERSIÓN: 1.00'), 1, 0, 'C');
 $encabfecha = date('Y-m-d');
 date_default_timezone_set('America/Bogota');
 $pdf->SetXY(140, 26);
-$pdf->Cell(65, 8, Imp_Ord_ped . phpiconv('UTF-8', 'windows-1252', 'Fecha Emisión: ') . $encabfecha, 1, 0, 'C');
+$pdf->Cell(65, 8, iconv('UTF-8', 'windows-1252', 'Fecha Emisión: ') . $encabfecha, 1, 0, 'C');
 $pdf->SetFont('Arial', 'B', 14);
 $pdf->SetXY(160, 34);
-$pdf->Cell(30, 8, Imp_Ord_ped . phpiconv('UTF-8', 'windows-1252', 'Pedido : ') . $idPedido);
+$pdf->Cell(30, 8, iconv('UTF-8', 'windows-1252', 'Pedido : ') . $idPedido);
 
 $pdf->SetFont('Arial', '', 10);
 $pdf->SetXY(10, 35);
 $pdf->Cell(150, 5, 'Cliente: '.iconv('UTF-8', 'windows-1252', $pedido['nomCliente']),0 ,1);
 $pdf->Cell(150, 5, 'Lugar entrega: '.iconv('UTF-8', 'windows-1252', $pedido['nomSucursal']));
 $pdf->Cell(30, 5, iconv('UTF-8', 'windows-1252', 'Teléfono: '.$pedido['telCliente']), 0, 1);
-$pdf->Cell(110, 5, Imp_Ord_ped . phpiconv('UTF-8', 'windows-1252', 'Dir.:') . iconv('UTF-8', 'windows-1252', $pedido['dirSucursal']));
+$pdf->Cell(110, 5, iconv('UTF-8', 'windows-1252', 'Dir.:') . iconv('UTF-8', 'windows-1252', $pedido['dirSucursal']));
 $pdf->Cell(60, 5, 'Fch pedido: '.$pedido['fechaPedido']. '    Fch entrega: '.$pedido['fechaEntrega']);
 $pdf->SetXY(10, 52);
 $pdf->SetFont('Arial', 'B', 10);

@@ -13,26 +13,9 @@ spl_autoload_register('cargarClases');
 <head>
     <title>Faltante del Pedido</title>
     <meta charset="utf-8">
-    <link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="../../../css/datatables.css">
-    <style>
-        table {
-            table-layout: fixed;
-        }
-
-        .width1 {
-            width: 20%;
-        }
-
-        .width2 {
-            width: 60%;
-        }
-
-        .width3 {
-            width: 20%;
-        }
-    </style>
-<script src="../../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script src="../../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../../../js/validar.js"></script>
 
 </head>
@@ -40,32 +23,31 @@ spl_autoload_register('cargarClases');
 
 <div id="contenedor" class="container-fluid">
     <div id="saludo1">
-        <img src="../../../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>FALTANTE DE LOS PEDIDOS</h4></div>
+        <img src="../../../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2">
+        <h4>FALTANTE DE LOS PEDIDOS</h4>
+    </div>
     <div class="row justify-content-end mb-3">
         <div class="col-1">
             <button class="button" type="button" onclick="window.location='../../../menu.php'">
                 <span><STRONG>Ir al Menú</STRONG></span></button>
         </div>
     </div><?php
-    if (isset($_POST['seleccion1']))
-    {
-        $selPedidos=$_POST['seleccion1'];
+    if (isset($_POST['seleccion1'])) {
+        $selPedidos = $_POST['seleccion1'];
     } else {
-        $ruta = "sellistarPedido.php";
+        $ruta = "../revisar-pendientes/";
         $mensaje = "Debe escoger algún pedido";
         $icon = "warning";
         mover_pag($ruta, $mensaje, $icon);
     }
-
     ?>
-
     <div class="tabla-50">
-        <table id="example" class="formatoDatos table table-sm table-striped">
+        <table id="example" class="formatoDatos5 table table-sm table-striped">
             <thead>
             <tr>
-                <th class="width1 text-center">Código</th>
-                <th class="width2 text-center">Producto</th>
-                <th class="width3 text-center">Cantidad</th>
+                <th class="text-center">Código</th>
+                <th class="text-center">Producto</th>
+                <th class="text-center">Cantidad</th>
             </tr>
             </thead>
         </table>
@@ -92,15 +74,18 @@ spl_autoload_register('cargarClases');
             "columns": [
                 {
                     "data": "codProducto",
-                    "className": 'dt-body-center'
+                    "className": 'dt-body-center',
+                    width: '20%'
                 },
                 {
                     "data": "producto",
-                    "className": 'dt-body-left'
+                    "className": 'dt-body-left',
+                    width: '60%'
                 },
                 {
                     "data": "cantidad",
-                    "className": 'dt-body-center'
+                    "className": 'dt-body-center',
+                    width: '20%'
                 }
             ],
             "columnDefs": [{
@@ -109,17 +94,17 @@ spl_autoload_register('cargarClases');
                 "targets": 1
             }],
             pagingType: 'simple_numbers',
-                layout: {
-                    topStart: 'buttons',
-                    topStart1: 'search',
-                    topEnd: 'pageLength',
-                    bottomStart: 'info',
-                    bottomEnd: {
-                        paging: {
-                            numbers: 6
-                        }
+            layout: {
+                topStart: 'buttons',
+                topStart1: 'search',
+                topEnd: 'pageLength',
+                bottomStart: 'info',
+                bottomEnd: {
+                    paging: {
+                        numbers: 6
                     }
-                },
+                }
+            },
             "buttons": [
                 'copyHtml5',
                 'excelHtml5'

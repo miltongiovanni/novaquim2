@@ -27,7 +27,7 @@ $pedido = $pedidoOperador->getPedido($idPedido);
     <script>
         function findSucursal(idCliente) {
             $.ajax({
-                url: '../includes/controladorVentas.php',
+                url: '../../../includes/controladorVentas.php',
                 type: 'POST',
                 data: {
                     "action": 'findSucursalesByCliente',
@@ -50,64 +50,66 @@ $pedido = $pedidoOperador->getPedido($idPedido);
         <img src="../../../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>ACTUALIZACIÓN DE ORDEN DE PEDIDO</h4></div>
     <form method="post" action="updatePedido.php" name="form1">
         <div class="mb-3 row">
-            <label class="form-label col-2 text-end" for="idPedido"><strong>Pedido</strong></label>
-            <input type="text" class="form-control col-5" name="idPedido" value="<?= $pedido['idPedido'] ?>"
-                   id="idPedido" readonly required>
+            <div class="col-2">
+                <label class="form-label" for="idPedido"><strong>Pedido</strong></label>
+                <input type="text" class="form-control" name="idPedido" value="<?= $pedido['idPedido'] ?>" id="idPedido" readonly required>
+            </div>
+            <div class="col-2">
+                <label class="form-label" for="estadoPedido"><strong>Estado</strong></label>
+                <input type="hidden" name="estado" id="estado" value="<?= $pedido['estado'] ?>">
+                <input type="text" class="form-control" name="estadoPedido" value="<?= $pedido['estadoPedido'] ?>" id="estadoPedido" readonly>
+            </div>
         </div>
         <div class="mb-3 row">
-            <label class="form-label col-2 text-end" for="estadoPedido"><strong>Estado</strong></label>
-            <input type="hidden" name="estado" id="estado" value="<?= $pedido['estado'] ?>">
-            <input type="text" class="form-control col-5" name="estadoPedido" value="<?= $pedido['estadoPedido'] ?>"
-                   id="estadoPedido" readonly>
+            <div class="col-4">
+                <label class="form-label col-2" for="busClien"><strong>Cliente</strong></label>
+                <input type="text" class="form-control col-1" id="busClien" name="busClien" onkeyup="findClientePedido()"/>
+            </div>
         </div>
-        <div class="mb-3 row">
-            <label class="form-label col-2" for="busClien"><strong>Cliente</strong></label>
-            <input type="text" class="form-control col-1" id="busClien" name="busClien" onkeyup="findClientePedido()"/>
-            <div class="col-4 px-0" id="myDiv">
+        <div class="row">
+            <div class="col-4" id="myDiv">
                 <input type="hidden" name="idCliente" id="idCliente" value="<?= $pedido['idCliente'] ?>">
-                <input type="text" name="nomCliente" id="nomCliente" class="form-control"
+                <input type="text" name="nomCliente" id="nomCliente" class="form-control mb-3"
                        value="<?= $pedido['nomCliente'] ?>" readOnly>
             </div>
         </div>
         <div class="mb-3 row">
-            <label class="form-label col-2" for="idSucursal"><strong>Sucursal</strong></label>
-            <div id="sucursales" class="col-5 px-0">
-                <select name="idSucursal" id="idSucursal" class="form-select" required>
-                    <option value='<?= $pedido['idSucursal'] ?>'><?= $pedido['nomSucursal'] ?></option>
-                </select>
+            <div class="col-4">
+                <label class="form-label" for="idSucursal"><strong>Sucursal</strong></label>
+                <div id="sucursales" class="">
+                    <select name="idSucursal" id="idSucursal" class="form-select" required>
+                        <option value='<?= $pedido['idSucursal'] ?>'><?= $pedido['nomSucursal'] ?></option>
+                    </select>
+                </div>
             </div>
         </div>
         <div class="mb-3 row">
-            <label class="form-label col-2 text-end" for="fechaPedido"><strong>Fecha de
-                    Pedido</strong></label>
-            <input type="date" class="form-control col-5" name="fechaPedido" value="<?= $pedido['fechaPedido'] ?>"
-                   id="fechaPedido" required>
-        </div>
-        <div class="mb-3 row">
-            <label class="form-label col-2 text-end" for="fechaEntrega"><strong>Fecha de
-                    entrega</strong></label>
-            <input type="date" class="form-control col-5" name="fechaEntrega" value="<?= $pedido['fechaEntrega'] ?>"
-                   id="fechaEntrega" required>
-        </div>
-        <div class="mb-3 row">
-            <label class="form-label col-2"><strong>Precio</strong></label>
-            <div class="form-label col-5 ">
-                <input name="tipoPrecio" type="radio" id="precio_0"
-                       value="1" <?= $pedido['idPrecio'] == 1 ? 'checked' : '' ?>>
-                <label for="precio_0">Fábrica</label>
-                <input type="radio" name="tipoPrecio" value="2"
-                       id="precio_1" <?= $pedido['idPrecio'] == 2 ? 'checked' : '' ?>>
-                <label for="precio_1">Distribuidor</label>
-                <input type="radio" name="tipoPrecio" value="3"
-                       id="precio_2" <?= $pedido['idPrecio'] == 3 ? 'checked' : '' ?>>
-                <label for="precio_2">Detal</label>
-                <input type="radio" name="tipoPrecio" value="4"
-                       id="precio_3" <?= $pedido['idPrecio'] == 4 ? 'checked' : '' ?>>
-                <label for="precio_3">Mayorista</label>
-                <input type="radio" name="tipoPrecio" value="5"
-                       id="precio_4" <?= $pedido['idPrecio'] == 5 ? 'checked' : '' ?>>
-                <label for="precio_4">Superetes</label>
+            <div class="col-2">
+                <label class="form-label" for="fechaPedido"><strong>Fecha de Pedido</strong></label>
+                <input type="date" class="form-control" name="fechaPedido" value="<?= $pedido['fechaPedido'] ?>" id="fechaPedido" required>
             </div>
+            <div class="col-2">
+                <label class="form-label" for="fechaEntrega"><strong>Fecha de entrega</strong></label>
+                <input type="date" class="form-control" name="fechaEntrega" value="<?= $pedido['fechaEntrega'] ?>" id="fechaEntrega" required>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <div class="col-4">
+                <label class="form-label"><strong>Precio</strong></label>
+                <div class="">
+                    <input name="tipoPrecio" type="radio" id="precio_0" value="1" <?= $pedido['idPrecio'] == 1 ? 'checked' : '' ?>>
+                    <label class="pe-2" for="precio_0">Fábrica</label>
+                    <input type="radio" name="tipoPrecio" value="2" id="precio_1" <?= $pedido['idPrecio'] == 2 ? 'checked' : '' ?>>
+                    <label class="pe-2" for="precio_1">Distribuidor</label>
+                    <input type="radio" name="tipoPrecio" value="3" id="precio_2" <?= $pedido['idPrecio'] == 3 ? 'checked' : '' ?>>
+                    <label class="pe-2" for="precio_2">Detal</label>
+                    <input type="radio" name="tipoPrecio" value="4" id="precio_3" <?= $pedido['idPrecio'] == 4 ? 'checked' : '' ?>>
+                    <label class="pe-2" for="precio_3">Mayorista</label>
+                    <input type="radio" name="tipoPrecio" value="5" id="precio_4" <?= $pedido['idPrecio'] == 5 ? 'checked' : '' ?>>
+                    <label class="pe-2" for="precio_4">Superetes</label>
+                </div>
+            </div>
+
         </div>
         <div class="row mb-3">
             <div class="col-1">

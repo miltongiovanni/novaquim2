@@ -30,7 +30,7 @@ if (!$pedidoOperador->isValidIdPedido($idPedido)) {
     exit;
 } else {
     $_SESSION['idPedido'] = $idPedido;
-    $ruta = "det_pedido.php";
+    $ruta = "../detalle/";
     $mensaje = "El número del pedido es válido";
     $icon = "success";
     mover_pag($ruta, $mensaje, $icon);

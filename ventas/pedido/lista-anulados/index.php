@@ -1,4 +1,4 @@
 <?php
 $estadoPedido = 6;
-include "listarPedidos.php";
+include "../lista-pedidos/index.php";
 ?>

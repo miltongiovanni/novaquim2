@@ -22,54 +22,13 @@ switch ($estadoPedido) {
     <meta charset="utf-8">
     <link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="../../../css/datatables.css">
-    <style>
-        #example {
-            table-layout: fixed;
-        }
-
-        .width1 {
-            width: 2%;
-        }
-
-        .width2 {
-            width: 4%;
-        }
-
-        .width3 {
-            width: 26%;
-        }
-
-        .width4 {
-            width: 5%;
-        }
-
-        .width5 {
-            width: 5%;
-        }
-
-        .width6 {
-            width: 26%;
-        }
-
-        .width7 {
-            width: 17%;
-        }
-
-        .width8 {
-            width: 7%;
-        }
-        .width9 {
-            width: 7%;
-        }
-    </style>
     <script src="../../../js/jquery-3.3.1.min.js"></script>
     <script src="../../../js/datatables.js"></script>
-    
     <script>
         /* Formatting function for row details - modify as you need */
         function format(d) {
             // `d` is the original data object for the row
-            rep = '<table class="formatoDatos table table-sm table-striped formatoDatos" style="padding-left:50px;width:50%;margin:inherit; background-color: white">' +
+            rep = '<table class="formatoDatos5 table table-sm table-striped" style="padding-left:50px;width:50%;margin:inherit; background-color: white">' +
                 '<thead>' +
                 '<tr>' +
                 '<th class="text-center">Código</th>' +
@@ -85,9 +44,7 @@ switch ($estadoPedido) {
                     '<td class="text-center">' + d.detPedido[i].precioProducto + '</td>' +
                     '</tr>'
             }
-
             rep += '</table>';
-
             return rep;
         }
 
@@ -100,39 +57,48 @@ switch ($estadoPedido) {
                         "orderable": false,
                         "searchable": false,
                         "data": null,
-                        "defaultContent": ''
+                        "defaultContent": '',
+                        width: '2%'
                     },
                     {
                         "data": "idPedido",
-                        "className": 'text-center'
+                        "className": 'text-center',
+                        width: '4%'
                     },
                     {
                         "data": "nomCliente",
-                        "className": 'dt-body-left'
+                        "className": 'dt-body-left',
+                        width: '26%'
                     },
                     {
                         "data": "fechaPedido",
-                        "className": 'dt-body-left'
+                        "className": 'dt-body-left',
+                        width: '5%'
                     },
                     {
                         "data": "fechaEntrega",
-                        "className": 'dt-body-left'
+                        "className": 'dt-body-left',
+                        width: '5%'
                     },
                     {
                         "data": "nomSucursal",
-                        "className": 'dt-body-left'
+                        "className": 'dt-body-left',
+                        width: '26%'
                     },
                     {
                         "data": "dirSucursal",
-                        "className": 'dt-body-left'
+                        "className": 'dt-body-left',
+                        width: '17%'
                     },
                     {
                         "data": "tipoPrecio",
-                        "className": 'dt-body-left'
+                        "className": 'dt-body-left',
+                        width: '7%'
                     },
                     {
                         "data": "estadoPedido",
-                        "className": 'dt-body-left'
+                        "className": 'dt-body-left',
+                        width: '7%'
                     },
                 ],
                 "order": [[1, estadoPedido==='1'? 'asc':'desc']],
@@ -204,18 +170,18 @@ switch ($estadoPedido) {
         </div>
     </div>
     <div class="tabla-100">
-        <table id="example" class="formatoDatos table table-sm table-striped formatoDatos">
+        <table id="example" class="formatoDatos5 table table-sm table-striped">
             <thead>
             <tr>
-                <th class="width1 text-center"></th>
-                <th class="width2 text-center">Pedido</th>
-                <th class="width3 text-center">Cliente</th>
-                <th class="width4 text-center">Fecha Pedido</th>
-                <th class="width5 text-center">Fecha Entrega</th>
-                <th class="width6 text-center">Lugar Entrega</th>
-                <th class="width7 text-center">Dirección Entrega</th>
-                <th class="width8 text-center">Precio</th>
-                <th class="width9 text-center">Estado</th>
+                <th class=""></th>
+                <th class="text-center">Pedido</th>
+                <th class="text-center">Cliente</th>
+                <th class="text-center">Fecha Pedido</th>
+                <th class="text-center">Fecha Entrega</th>
+                <th class="text-center">Lugar Entrega</th>
+                <th class="text-center">Dirección Entrega</th>
+                <th class="text-center">Precio</th>
+                <th class="text-center">Estado</th>
             </tr>
             </thead>
         </table>

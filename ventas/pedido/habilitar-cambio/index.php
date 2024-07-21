@@ -16,9 +16,12 @@ include "../../../includes/valAcc.php";
         <img src="../../../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>HABILITAR PEDIDO PARA MODIFICAR</h4></div>
     <form id="form1" name="form1" method="post" action="hfactura.php">
         <div class="mb-3 row">
-            <label class="form-label col-1 text-end" for="idPedido"><strong>No. de pedido</strong></label>
-            <input type="text" class="form-control col-2" name="idPedido" id="idPedido"
-                   onkeydown="return aceptaNum(event)" required>
+            <div class="col-2">
+                <label class="form-label" for="idPedido"><strong>No. de pedido</strong></label>
+                <input type="text" class="form-control" name="idPedido" id="idPedido"
+                       onkeydown="return aceptaNum(event)" required>
+            </div>
+
         </div>
         <div class="mb-3 row">
             <div class="col-1 text-center">

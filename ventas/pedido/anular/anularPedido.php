@@ -24,7 +24,7 @@ $detPedidoOperador = new DetPedidoOperaciones();
 try {
     $pedidoOperador->updateEstadoPedido(6, $idPedido);
     $detPedidoOperador->deleteAllDetPedido($idPedido);
-    $ruta = "listarPedidoA.php";
+    $ruta = "../lista-anulados/";
     $mensaje = "Orden de pedido anulada con éxito";
     $icon = "success";
 } catch (Exception $e) {

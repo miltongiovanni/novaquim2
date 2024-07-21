@@ -15,7 +15,7 @@ $pedidos = $pedidoOperador->getTablePedidosPendientes();
     <title>Lista de Órdenes de Pedido Pendientes por Facturar</title>
     <meta charset="utf-8">
     <link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
-<script src="../../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../../../js/validar.js"></script>
     <script>
         function seleccionar1(form, checkbox_name) {
@@ -45,8 +45,9 @@ $pedidos = $pedidoOperador->getTablePedidosPendientes();
                     <span>Consultar</span></button>
             </div>
         </div>
-
-        <table>
+        <div class="tabla-100">
+        <table class="formatoDatos5 table table-sm table-striped">
+            <thead>
             <tr class="formatoEncabezados">
                 <th></th>
                 <th>Pedido</th>
@@ -57,12 +58,11 @@ $pedidos = $pedidoOperador->getTablePedidosPendientes();
                 <th>Dirección Entrega</th>
                 <th>Precio</th>
             </tr>
+            </thead>
             <?php
             for ($i = 0; $i < count($pedidos); $i++) {
                 $idPedido = $pedidos[$i]['idPedido'];
-                echo '<tr class="formatoDatos"';
-                if (($i % 2) == 0) echo ' bgcolor="#B4CBEF" ';
-                echo '>
+                echo '<tr>
                     <td class="text-center"><input type="checkbox" id="seleccion1" class=”check” name="seleccion1[]" value="' . $idPedido . '"></td>
                     <td class="text-center">' . $pedidos[$i]['idPedido'] . '</td>
                     <td class="text-start">' . $pedidos[$i]['nomCliente'] . '</td>
@@ -76,6 +76,7 @@ $pedidos = $pedidoOperador->getTablePedidosPendientes();
             }
             ?>
         </table>
+        </div>
         <div class="row mb-3">
             <div class="col-1">
                 <button class="button" type="button" onclick="return Enviar(this.form)">

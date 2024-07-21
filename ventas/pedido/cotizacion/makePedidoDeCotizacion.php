@@ -52,11 +52,11 @@ if (($diasPedido >= 0) && ($diasEntregaPedido >= 0) && ($diasEntrega >= 0)) {
         $datos = array($idPedido, $idCotPersonalizada);
         $operadorCotizacionPersonalizada->updatePedidoCotizacionP($datos);
         $_SESSION['idPedido'] = $idPedido;
-        $ruta = "det_pedido.php";
+        $ruta = "../detalle/";
         $mensaje = "Pedido creado con éxito";
         $icon = "success";
     } catch (Exception $e) {
-        $ruta = "pedido.php";
+        $ruta = "../cotizacion/";
         $mensaje = "Error al crear el pedido";
         $icon = "error";
     } finally {
@@ -66,22 +66,22 @@ if (($diasPedido >= 0) && ($diasEntregaPedido >= 0) && ($diasEntrega >= 0)) {
     }
 } else {
     if ($diasPedido < 0) {
-        echo '<script >
-				alert("La fecha del pedido no puede ser menor que la actual");
-				self.location="pedido.php";
-				</script>';
+        $ruta = "../cotizacion/";
+        $mensaje = "La fecha del pedido no puede ser menor que la actual";
+        $icon = "error";
+        mover_pag($ruta, $mensaje, $icon);
     }
     if ($diasEntrega < 0) {
-        echo '<script >
-				alert("La fecha de entrega del pedido no puede ser menor que la fecha del pedido");
-				self.location="pedido.php";
-				</script>';
+        $ruta = "../cotizacion/";
+        $mensaje = "La fecha de entrega del pedido no puede ser menor que la fecha del pedido";
+        $icon = "error";
+        mover_pag($ruta, $mensaje, $icon);
     }
     if ($diasEntregaPedido < 0) {
-        echo '<script >
-				alert("La fecha de entrega del pedido no puede ser menor que la actual");
-				self.location="pedido.php";
-				</script>';
+        $ruta = "../cotizacion/";
+        $mensaje = "La fecha de entrega del pedido no puede ser menor que la actual";
+        $icon = "error";
+        mover_pag($ruta, $mensaje, $icon);
     }
 }
 ?>

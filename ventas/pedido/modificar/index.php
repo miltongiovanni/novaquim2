@@ -22,18 +22,20 @@ spl_autoload_register('cargarClases');
         <img src="../../../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><div id="h4"><strong>BUSCAR ORDEN DE PEDIDO A MODIFICAR</strong></div></div>
     <form id="form1" name="form1" method="post" action="updatePedidoForm.php">
         <div class="mb-3 row">
-            <label class="form-label col-2" for="idPedido"><strong>Orden de pedido</strong></label>
-            <select name="idPedido" id="idPedido" class="form-select col-4" required>
-                <option selected disabled value="">------------</option>
-                <?php
-                $manager = new PedidosOperaciones();
-                $pedidos = $manager->getPedidosByEstado(1);
-                for ($i = 0; $i < count($pedidos); $i++) : ?>
-                    <option value="<?= $pedidos[$i]["idPedido"] ?>"><?= $pedidos[$i]["idPedido"].' - '.$pedidos[$i]["nomSucursal"] ?></option>
-                <?php
-                endfor;
-                ?>
-            </select>
+            <div class="col-4">
+                <label class="form-label" for="idPedido"><strong>Orden de pedido</strong></label>
+                <select name="idPedido" id="idPedido" class="form-select" required>
+                    <option selected disabled value="">Seleccionar pedido</option>
+                    <?php
+                    $manager = new PedidosOperaciones();
+                    $pedidos = $manager->getPedidosByEstado(1);
+                    for ($i = 0; $i < count($pedidos); $i++) : ?>
+                        <option value="<?= $pedidos[$i]["idPedido"] ?>"><?= $pedidos[$i]["idPedido"].' - '.$pedidos[$i]["nomSucursal"] ?></option>
+                    <?php
+                    endfor;
+                    ?>
+                </select>
+            </div>
         </div>
         <div class="row mb-3">
             <div class="col-1">

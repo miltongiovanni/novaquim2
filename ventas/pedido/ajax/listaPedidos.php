@@ -31,7 +31,7 @@ for($i=0;$i<count($pedidos); $i++){
 }
 
 $datosRetorno = array(
-    'draw' => 0,
+    'draw' => isset ( $_GET['draw'] ) ?intval( $_GET['draw'] ) : 0,
     'recordsTotal' => intval($total_pedidos),
     'recordsFiltered' => intval($total_pedidos),
     'data' => $pedidos

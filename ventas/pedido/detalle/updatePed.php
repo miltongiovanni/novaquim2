@@ -35,12 +35,12 @@ $datos = array($cantProducto, $precioProducto, $idPedido, $codProducto);
 try {
     $detPedidoOperador->updateDetPedido($datos);
     $_SESSION['idPedido'] = $idPedido;
-    $ruta = "det_pedido.php";
+    $ruta = "../detalle/";
     $mensaje = "Detalle del pedido actualizado con éxito";
     $icon = "success";
 } catch (Exception $e) {
     $_SESSION['idPedido'] = $idPedido;
-    $ruta = "det_pedido.php";
+    $ruta = "../detalle/";
     $mensaje = "Error al actualizar el detalle del pedido";
     $icon = "error";
 } finally {

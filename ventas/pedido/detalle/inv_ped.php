@@ -45,36 +45,52 @@ $validar = 0;
 <div id="contenedor" class="container-fluid">
     <div id="saludo1">
         <img src="../../../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>FALTANTE DE PEDIDO</h4></div>
-    <div class="mb-3 row">
-        <div class="col-1"><strong>No. de pedido</strong></div>
-        <div class="col-1 bg-blue"><?= $idPedido; ?></div>
-        <div class="col-1"><strong>Cliente</strong></strong></div>
-        <div class="col-4 bg-blue"><?= $pedido['nomCliente'] ?></div>
-        <div class="col-2"><strong>Estado</strong></div>
-        <div class="col-1 bg-blue"><?= $pedido['estadoPedido'] ?></div>
+    <div class="mb-3 row formatoDatos5">
+        <div class="col-1">
+            <strong>No. de pedido</strong>
+            <div class="bg-blue"><?= $idPedido; ?></div>
+        </div>
+        <div class="col-1">
+            <strong>Fecha Pedido</strong>
+            <div class="bg-blue"><?= $pedido['fechaPedido'] ?></div>
+        </div>
+        <div class="col-1">
+            <strong>Fecha Entrega</strong>
+            <div class="bg-blue"><?= $pedido['fechaEntrega'] ?></div>
+        </div>
+        <div class="col-4">
+            <strong>Cliente</strong>
+            <div class="bg-blue"><?= $pedido['nomCliente'] ?></div>
+        </div>
+        <div class="col-2">
+            <strong>Estado</strong>
+            <div class="bg-blue"><?= $pedido['estadoPedido'] ?></div>
+        </div>
 
     </div>
-    <div class="mb-3 row">
-        <div class="col-1"><strong>Fecha Pedido</strong></div>
-        <div class="col-1 bg-blue"><?= $pedido['fechaPedido'] ?></div>
-        <div class="col-2"><strong>Lugar de entrega</strong></div>
-        <div class="col-4 bg-blue"><?= $pedido['nomSucursal'] ?></div>
-        <div class="col-1"><strong>Vendedor</strong></div>
-        <div class="col-2 bg-blue"><?= $pedido['nomPersonal'] ?></div>
-    </div>
-    <div class="mb-3 row">
-        <div class="col-1"><strong>Fecha Entrega</strong></div>
-        <div class="col-1 bg-blue"><?= $pedido['fechaEntrega'] ?></div>
-        <div class="col-2"><strong>Dirección de entrega</strong></div>
-        <div class="col-4 bg-blue"><?= $pedido['dirSucursal'] ?></div>
-        <div class="col-1"><strong>Precio</strong></div>
-        <div class="col-1 bg-blue"><?= $pedido['tipoPrecio'] ?></div>
+    <div class="mb-3 row formatoDatos5">
+        <div class="col-3">
+            <strong>Lugar de entrega</strong>
+            <div class="bg-blue"><?= $pedido['nomSucursal'] ?></div>
+        </div>
+        <div class="col-3">
+            <strong>Dirección de entrega</strong>
+            <div class="bg-blue"><?= $pedido['dirSucursal'] ?></div>
+        </div>
+        <div class="col-1">
+            <strong>Precio</strong>
+            <div class="bg-blue"><?= $pedido['tipoPrecio'] ?></div>
+        </div>
+        <div class="col-2">
+            <strong>Vendedor</strong>
+            <div class="bg-blue"><?= $pedido['nomPersonal'] ?></div>
+        </div>
     </div>
     <div class="mb-3 titulo row text-center">
         <strong>Productos faltantes del Pedido</strong>
     </div>
     <div class="tabla-50">
-        <table>
+        <table class="formatoDatos5 table table-sm table-striped">
             <tr>
                 <th class="text-center width1">Código</th>
                 <th class="text-center width2">Producto</th>
