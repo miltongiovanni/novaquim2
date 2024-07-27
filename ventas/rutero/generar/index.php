@@ -37,7 +37,7 @@ $pedidos = $pedidoOperador->getPedidosPorEntregar();
     <form name="revision_pedidos" method="post" action="../detalle/index.php">
         <div class="mb-3 row">
             <div class="col-2">
-                <label for="fechaRutero"> Fecha rutero</label>
+                <label class="form-label" for="fechaRutero"> Fecha rutero</label>
                 <input type="date" class="form-control" required
                        name="fechaRutero" id="fechaRutero" value="">
             </div>
@@ -54,24 +54,24 @@ $pedidos = $pedidoOperador->getPedidosPorEntregar();
             </div>
         </div>
 
-        <table>
-            <tr class="formatoEncabezados">
+        <table class="formatoDatos5 table table-sm table-striped ">
+            <thead>
+            <tr>
                 <th></th>
-                <th>Pedido</th>
-                <th>Factura</th>
-                <th>Remisión</th>
-                <th>Fecha Pedido</th>
-                <th>Fecha Entrega</th>
+                <th class="text-center">Pedido</th>
+                <th class="text-center">Factura</th>
+                <th class="text-center">Remisión</th>
+                <th class="text-center">Fecha Pedido</th>
+                <th class="text-center">Fecha Entrega</th>
                 <th>Cliente</th>
                 <th>Lugar Entrega</th>
                 <th>Dirección Entrega</th>
             </tr>
+            </thead>
             <?php
             for ($i = 0; $i < count($pedidos); $i++) {
                 $idPedido = $pedidos[$i]['idPedido'];
-                echo '<tr class="formatoDatos"';
-                if (($i % 2) == 0) echo ' bgcolor="#B4CBEF" ';
-                echo '>
+                echo '<tr>
                     <td class="text-center"><input type="checkbox" id="seleccion1" class=”check” name="seleccion1[]" value="' . $idPedido . '"></td>
                     <td class="text-center">' . $pedidos[$i]['idPedido'] . '</td>
                     <td class="text-center">' . $pedidos[$i]['idFactura'] . '</td>

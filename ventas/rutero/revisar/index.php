@@ -8,58 +8,10 @@ include "../../../includes/valAcc.php";
     <meta charset="utf-8">
     <link rel="stylesheet" href="../../../css/datatables.css">
     <link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
-    <style>
-        table {
-            table-layout: fixed;
-        }
-
-        .width1 {
-            width: 6%;
-        }
-
-        .width2 {
-            width: 6%;
-        }
-
-        .width3 {
-            width: 6%;
-        }
-
-        .width4 {
-            width: 6%;
-        }
-
-        .width5 {
-            width: 30%;
-        }
-
-        .width6 {
-            width: 30%;
-        }
-
-        .width7 {
-            width: 6%;
-        }
-
-        .width8 {
-            width: 6%;
-        }
-        .width9 {
-            width: 10%;
-        }
-
-
-        table.dataTable.compact thead th,
-        table.dataTable.compact thead td {
-            padding: 4px 4px 4px 4px;
-        }
-    </style>
-<script src="../../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../../../js/validar.js"></script>
     <script src="../../../js/jquery-3.3.1.min.js"></script>
     <script src="../../../js/datatables.js"></script>
-    
-
     <script>
         /* Formatting function for row details - modify as you need */
         function diffDate(fecha) {
@@ -79,37 +31,45 @@ include "../../../includes/valAcc.php";
 
             var table = $('#example').DataTable({
                 "columns": [
-                     {
+                    {
                         "data": "idPedido",
-                        "className": 'text-center'
+                        "className": 'text-center',
+                        width: '6%'
                     },
                     {
                         "data": "idFactura",
-                        "className": 'text-center'
+                        "className": 'text-center',
+                        width: '6%'
                     },
                     {
                         "data": "idRemision",
-                        "className": 'text-center'
+                        "className": 'text-center',
+                        width: '6%'
                     },
                     {
                         "data": "fechaPedido",
-                        "className": 'text-center'
+                        "className": 'text-center',
+                        width: '6%'
                     },
                     {
                         "data": "nomCliente",
-                        "className": 'dt-body-left'
+                        "className": 'dt-body-left',
+                        width: '26%'
                     },
                     {
                         "data": "nomSucursal",
-                        "className": 'dt-body-left'
+                        "className": 'dt-body-left',
+                        width: '26%'
                     },
                     {
                         "data": "idRutero",
-                        "className": 'text-center'
+                        "className": 'text-center',
+                        width: '6%'
                     },
                     {
                         "data": "fechaRutero",
-                        "className": 'text-center'
+                        "className": 'text-center',
+                        width: '6%'
                     },
 
                     {
@@ -122,7 +82,8 @@ include "../../../includes/valAcc.php";
                                 '       </form>'
                             return rep;
                         },
-                        "className": 'text-center'
+                        "className": 'text-center',
+                        width: '18%'
                     },
                 ],
 
@@ -187,18 +148,18 @@ include "../../../includes/valAcc.php";
         </div>
     </div>
     <div class="tabla-90">
-        <table id="example" class="formatoDatos table table-sm table-striped formatoDatos">
+        <table id="example" class="formatoDatos5 table table-sm table-striped">
             <thead>
             <tr>
-                <th class="width1">Pedido</th>
-                <th class="width2 text-center">Factura</th>
-                <th class="width3 text-center">Remisión</th>
-                <th class="width4 text-center">Fecha pedido</th>
-                <th class="width5 text-center">Cliente</th>
-                <th class="width6 text-center">Lugar entrega</th>
-                <th class="width7 text-center">Rutero</th>
-                <th class="width8 text-center">Fecha Rutero</th>
-                <th class="width9 text-center"></th>
+                <th class="">Pedido</th>
+                <th class="text-center">Factura</th>
+                <th class="text-center">Remisión</th>
+                <th class="text-center">Fecha pedido</th>
+                <th class="text-center">Cliente</th>
+                <th class="text-center">Lugar entrega</th>
+                <th class="text-center">Rutero</th>
+                <th class="text-center">Fecha Rutero</th>
+                <th class="text-center"></th>
 
             </tr>
             </thead>

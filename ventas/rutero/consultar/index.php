@@ -16,9 +16,10 @@ include "../../../includes/valAcc.php";
         <img src="../../../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>INGRESAR RUTERO A CONSULTAR</h4></div>
     <form id="form1" name="form1" method="post" action="consultaRutero.php">
         <div class="mb-3 row">
-            <label class="form-label col-1 text-end" for="idRutero"><strong>No. de Rutero</strong></label>
-            <input type="text" class="form-control col-2" name="idRutero" id="idRutero"
-                   onkeydown="return aceptaNum(event)" required>
+            <div class="col-2">
+                <label class="form-label" for="idRutero"><strong>No. de Rutero</strong></label>
+                <input type="text" class="form-control" name="idRutero" id="idRutero" onkeydown="return aceptaNum(event)" required>
+            </div>
         </div>
         <div class="mb-3 row">
             <div class="col-1 text-center">

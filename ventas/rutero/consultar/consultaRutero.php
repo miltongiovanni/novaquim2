@@ -23,14 +23,14 @@ spl_autoload_register('cargarClases');
 $idRutero = $_POST['idRutero'];
 $ruteroOperador = new RuteroOperaciones();
 if (!$ruteroOperador->isValidIdRutero($idRutero)) {
-    $ruta = "buscarRutero.php";
+    $ruta = "../consultar/";
     $mensaje = "El número de rutero no es válido, vuelva a intentar de nuevo";
     $icon = "warning";
     mover_pag($ruta, $mensaje, $icon);
     exit;
 } else {
     $_SESSION['idRutero'] = $idRutero;
-    $ruta = "rutero_diario.php";
+    $ruta = "../detalle/";
     $mensaje = "El número del rutero es válido";
     $icon = "success";
     mover_pag($ruta, $mensaje, $icon);

@@ -1,6 +1,6 @@
 <?php
 session_start();
-require '../includes/fpdf.php';
+require '../../../includes/fpdf.php';
 
 function cargarClases($classname)
 {
@@ -24,7 +24,7 @@ $pdf=new FPDF('L','mm','Letter');
 $pdf->AliasNbPages();
 $pdf->AddPage();
 $pdf->SetMargins(10, 10, 10);
-$pdf->Image('../images/LogoNova.jpg',10,4, 30);
+$pdf->Image('../../../images/LogoNova.jpg',10,4, 30);
 $pdf->SetFont('Arial','B',12);
 $pdf->SetXY(40,10);
 $pdf->Cell(80,4,'INDUSTRIAS NOVAQUIM S.A.S.',0,0, 'C');

@@ -34,11 +34,11 @@ $pedidoOperador = new PedidosOperaciones();
 
 try {
     $pedidoOperador->updateEntregaPedido($fechaEntrega, $idPedido);
-    $ruta = "pedidosRutero.php";
+    $ruta = "../revisar/";
     $mensaje = "Pedido actualizado con éxito";
     $icon = "success";
 } catch (Exception $e) {
-    $ruta = "pedidosRutero.php";
+    $ruta = "../revisar/";
     $mensaje = "Error al actualizar el pedido";
     $icon = "error";
 } finally {

@@ -18,39 +18,8 @@ spl_autoload_register('cargarClases');
 <head>
     <title>Rutero diario</title>
     <meta charset="utf-8">
-    <link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="../../../css/datatables.css">
-    <style>
-        table {
-            table-layout: fixed;
-        }
-
-        .width1 {
-            width: 7%;
-        }
-
-        .width2 {
-            width: 10%;
-        }
-        .width3 {
-            width: 7%;
-        }
-        .width4 {
-            width: 7%;
-        }
-
-        .width5 {
-            width: 23%;
-        }
-
-        .width6 {
-            width: 23%;
-        }
-
-        .width7 {
-            width: 23%;
-        }
-    </style>
+    <link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <script src="../../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../../../js/validar.js"></script>
 
@@ -68,7 +37,7 @@ if (isset($_POST['idRutero'])) {
     if (isset($_POST['seleccion1'])) {
         $selPedidos = $_POST['seleccion1'];
     } else {
-        $ruta = "selPedEntrega.php";
+        $ruta = "../generar/";
         $mensaje = "Debe escoger algún pedido";
         $icon = "warning";
         mover_pag($ruta, $mensaje, $icon);
@@ -104,16 +73,16 @@ if (!isset($fechaRutero)){
     </div>
 
     <div class="tabla-100">
-        <table id="example" class="formatoDatos table table-sm table-striped">
+        <table id="example" class="formatoDatos5 table table-sm table-striped">
             <thead>
             <tr>
-                <th class="width1 text-center">Pedido</th>
-                <th class="width2 text-center">Fecha pedido</th>
-                <th class="width3 text-center">Factura</th>
-                <th class="width4 text-center">Remisión</th>
-                <th class="width5 text-center">Cliente</th>
-                <th class="width6 text-center">Lugar de entrega</th>
-                <th class="width7 text-center">Dirección de entrega</th>
+                <th class="text-center">Pedido</th>
+                <th class="text-center">Fecha pedido</th>
+                <th class="text-center">Factura</th>
+                <th class="text-center">Remisión</th>
+                <th class="text-center">Cliente</th>
+                <th class="text-center">Lugar de entrega</th>
+                <th class="text-center">Dirección de entrega</th>
             </tr>
             </thead>
         </table>
@@ -139,7 +108,7 @@ if (!isset($fechaRutero)){
     function eliminarSession() {
         let variable = 'idRutero';
         $.ajax({
-            url: '../includes/controladorVentas.php',
+            url: '../../../includes/controladorVentas.php',
             type: 'POST',
             data: {
                 "action": 'eliminarSession',
@@ -162,31 +131,38 @@ if (!isset($fechaRutero)){
             "columns": [
                 {
                     "data": "idPedido",
-                    "className": 'dt-body-center'
+                    "className": 'dt-body-center',
+                    width: '7%'
                 },
                 {
                     "data": "fechaPedido",
-                    "className": 'dt-body-center'
+                    "className": 'dt-body-center',
+                    width: '10%'
                 },
                 {
                     "data": "idFactura",
-                    "className": 'dt-body-center'
+                    "className": 'dt-body-center',
+                    width: '7%'
                 },
                 {
                     "data": "idRemision",
-                    "className": 'dt-body-center'
+                    "className": 'dt-body-center',
+                    width: '7%'
                 },
                 {
                     "data": "nomCliente",
-                    "className": 'dt-body-left'
+                    "className": 'dt-body-left',
+                    width: '23%'
                 },
                 {
                     "data": "nomSucursal",
-                    "className": 'dt-body-left'
+                    "className": 'dt-body-left',
+                    width: '23%'
                 },
                 {
                     "data": "dirSucursal",
-                    "className": 'dt-body-left'
+                    "className": 'dt-body-left',
+                    width: '23%'
                 }
             ],
             "columnDefs": [{
