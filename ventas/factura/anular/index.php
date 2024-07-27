@@ -13,17 +13,22 @@ include "../../../includes/valAcc.php";
 <body>
 <div id="contenedor" class="container-fluid">
     <div id="saludo">
-        <img src="../../../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>INGRESAR FACTURA A ANULAR</h4></div>
+        <img src="../../../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25">
+        <h4>INGRESAR FACTURA A ANULAR</h4>
+    </div>
     <form id="form1" name="form1" method="post" action="anulaFactura.php">
         <div class="mb-3 row">
-            <label class="form-label col-2 text-end" for="idFactura"><strong>No. de Factura</strong></label>
-            <input type="text" class="form-control col-3" onkeydown="return aceptaNum(event)" name="idFactura"
-                   id="idFactura" required>
+            <div class="col-4">
+                <label class="form-label" for="idFactura"><strong>No. de Factura</strong></label>
+                <input type="text" class="form-control" onkeydown="return aceptaNum(event)" name="idFactura"
+                       id="idFactura" required>
+            </div>
         </div>
         <div class="mb-3 row">
-            <label class="col-2 text-end form-label" for="observaciones"><strong>Razón de
-                    Anulación</strong></label>
-            <textarea class="form-control col-3" id="observaciones" name="observaciones" required></textarea>
+            <div class="col-4">
+                <label class="form-label" for="observaciones"><strong>Razón de Anulación</strong></label>
+                <textarea class="form-control" id="observaciones" name="observaciones" required></textarea>
+            </div>
         </div>
         <div class="row mb-3">
             <div class="col-1">

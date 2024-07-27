@@ -32,7 +32,7 @@ for ($i = 0; $i < count($facturas); $i++) {
     $facturas[$i]['detFactura'] = $detFacturaOperador->getDetFactura($facturas[$i]['idFactura']);
 }
 $datosRetorno = array(
-    'draw' => isset ( $request['draw'] ) ?intval( $request['draw'] ) : 0,
+    'draw' => isset ( $_GET['draw'] ) ?intval( $_GET['draw'] ) : 0,
     'recordsTotal' => intval($total_facturas),
     'recordsFiltered' => intval($total_facturas),
     'data' => $facturas

@@ -23,14 +23,14 @@ spl_autoload_register('cargarClases');
 $idFactura = $_POST['idFactura'];
 $facturaOperador = new FacturasOperaciones();
 if (!$facturaOperador->isValidIdFactura($idFactura)) {
-    $ruta = "buscarFactura.php";
+    $ruta = "../modificar/";
     $mensaje = "El número de factura no es válido, vuelva a intentar de nuevo";
     $icon = "warning";
     mover_pag($ruta, $mensaje, $icon);
     exit;
 } else {
     $_SESSION['idFactura'] = $idFactura;
-    $ruta = "det_factura.php";
+    $ruta = "../detalle/";
     $mensaje = "El número de factura es válido";
     $icon = "success";
     mover_pag($ruta, $mensaje, $icon);

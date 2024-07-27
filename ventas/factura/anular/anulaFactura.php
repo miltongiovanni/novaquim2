@@ -67,11 +67,11 @@ try {
     }
     //CAMBIA EL ESTADO DE LA FACTURA
     $facturaOperador->anularFactura($observaciones, $idFactura);
-    $ruta = "listarFacturas.php";
+    $ruta = "../lista/";
     $mensaje = "Factura anulada con éxito";
     $icon = "success";
 } catch (Exception $e) {
-    $ruta = "anularFactura.php";
+    $ruta = "../anular/";
     $mensaje = "Error al anular la factura";
     $icon = "error";
 } finally {

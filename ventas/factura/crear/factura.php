@@ -22,7 +22,7 @@ $pedidosSucursal = [];
 $remisiones = [];
 foreach ($pedidosList as $pedido) {
     $pedidosSucursal[] = $pedidoOperador->getSucursalClientePorPedido($pedido);
-    $remisiones[]=$pedidoOperador->getRemisionPorPedido($pedido);
+    $remisiones[] = $pedidoOperador->getRemisionPorPedido($pedido);
 }
 $pedido = $pedidoOperador->getPedido($pedidosList[0]);
 ?>
@@ -44,56 +44,65 @@ $pedido = $pedidoOperador->getPedido($pedidosList[0]);
         <input type="hidden" name="idPedido" value="<?= implode(',', $pedidosList); ?>">
         <input type="hidden" name="idRemision" value="<?= implode(',', $remisiones); ?>">
         <input type="hidden" name="tipPrecio" value="<?= $pedido['idPrecio']; ?>">
-        <div class="row">
-            <label class="form-label col-2 text-start" for="idFactura"><strong>No. de Factura</strong></label>
-            <label class="form-label col-2 text-start mx-2" for="fechaFactura"><strong>Fecha de
-                    factura</strong></label>
-            <label class="form-label col-2 text-start" for="fechaVenc"><strong>Fecha de vencimiento</strong></label>
+        <div class="row mb-3">
+            <div class="col-2">
+                <label class="form-label" for="idFactura"><strong>No. de Factura</strong></label>
+                <input type="text" class="form-control" name="idFactura" id="idFactura"
+                       onkeydown="return aceptaNum(event)" required>
+            </div>
+            <div class="col-2">
+                <label class="form-label" for="fechaFactura"><strong>Fecha de factura</strong></label>
+                <input type="date" class="form-control" name="fechaFactura" id="fechaFactura"
+                       value="" required>
+            </div>
+            <div class="col-2">
+                <label class="form-label" for="fechaVenc"><strong>Fecha de vencimiento</strong></label>
+                <input type="date" class="form-control" name="fechaVenc" id="fechaVenc" value="" required>
+            </div>
         </div>
         <div class="mb-3 row">
-            <input type="text" class="form-control col-2" name="idFactura" id="idFactura"
-                   onkeydown="return aceptaNum(event)" required>
-            <input type="date" class="form-control col-2 mx-2" name="fechaFactura" id="fechaFactura"
-                   value="" required>
-            <input type="date" class="form-control col-2" name="fechaVenc" id="fechaVenc" value="" required>
-        </div>
-        <div class="row">
-            <label class="form-label col-6 text-start" for="nomCliente"><strong>Cliente</strong></label>
+            <div class="col-6">
+                <label class="form-label" for="nomCliente"><strong>Cliente</strong></label>
+                <input type="text" class="form-control" name="nomCliente" id="nomCliente"
+                       value="<?= $cliente['nomCliente']; ?>" readonly>
+            </div>
         </div>
         <div class="mb-3 row">
-            <input type="text" class="form-control col-6" name="nomCliente" id="nomCliente"
-                   value="<?= $cliente['nomCliente']; ?>" readonly>
-        </div>
-        <div class="row">
-            <label class="form-label col-2 text-start" for="tipoPrecio"><strong>Tipo de precio</strong></label>
-            <label class="form-label col-2 text-start mx-2" for="ordenCompra"><strong>Orden de
-                    compra</strong></label>
-            <label class="form-label col-2 text-start" for="descuento"><strong>Descuento</strong></label>
-        </div>
-        <div class="mb-3 row">
-            <input type="text" class="form-control col-2" name="tipoPrecio" id="tipoPrecio"
-                   value="<?= $pedido['tipoPrecio']; ?>" readonly>
-            <input type="text" class="form-control col-2 mx-2" name="ordenCompra" id="ordenCompra"
-                   onkeydown="return aceptaNum(event)" value="0" required>
-            <input type="text" class="form-control col-2" name="descuento" id="descuento"
-                   onkeydown="return aceptaNum(event)" value="0" required>
-        </div>
-        <div class="row">
-            <label class="form-label col-6 text-start" for="nomSucursal"><strong>Pedidos</strong></label>
+            <div class="col-2">
+                <label class="form-label" for="tipoPrecio"><strong>Tipo de precio</strong></label>
+                <input type="text" class="form-control" name="tipoPrecio" id="tipoPrecio"
+                       value="<?= $pedido['tipoPrecio']; ?>" readonly>
+            </div>
+            <div class="col-2">
+                <label class="form-label" for="ordenCompra"><strong>Orden de compra</strong></label>
+                <input type="text" class="form-control" name="ordenCompra" id="ordenCompra"
+                       onkeydown="return aceptaNum(event)" value="0" required>
+            </div>
+            <div class="col-2">
+                <label class="form-label" for="descuento"><strong>Descuento</strong></label>
+                <input type="text" class="form-control" name="descuento" id="descuento"
+                       onkeydown="return aceptaNum(event)" value="0" required>
+            </div>
         </div>
         <div class="mb-3 row">
-            <textarea name="nomSucursal" class="form-control col-6" id="nomSucursal" rows="5" readonly><?php
-                foreach ($pedidosSucursal as $pedido) {
-                    echo $pedido . "\n";
-                }
-                ?>
+            <div class="col-6">
+                <label class="form-label" for="nomSucursal"><strong>Pedidos</strong></label>
+                <textarea name="nomSucursal" class="form-control" id="nomSucursal" rows="5" readonly><?php
+                    foreach ($pedidosSucursal as $pedido) {
+                        echo $pedido . "\n";
+                    }
+                    ?>
             </textarea>
+            </div>
         </div>
         <div class="row">
-            <label class="form-label col-6 text-start" for="observaciones"><strong>Observaciones</strong></label>
+
         </div>
         <div class="mb-3 row">
-            <textarea name="observaciones" class="form-control col-6" id="observaciones" rows="2"></textarea>
+            <div class="col-6">
+                <label class="form-label" for="observaciones"><strong>Observaciones</strong></label>
+                <textarea name="observaciones" class="form-control" id="observaciones" rows="2"></textarea>
+            </div>
         </div>
         <div class="row mb-3">
             <div class="col-1">

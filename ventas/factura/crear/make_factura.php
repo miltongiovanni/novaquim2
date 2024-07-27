@@ -1,7 +1,7 @@
 <?php
 include "../../../includes/valAcc.php";
 include "../../../includes/calcularDias.php";
-include "../includes/ventas.php";
+include "../../../includes/ventas.php";
 foreach ($_POST as $nombre_campo => $valor) {
     ${$nombre_campo} = $valor;
     if (is_array($valor)) {
@@ -11,16 +11,16 @@ foreach ($_POST as $nombre_campo => $valor) {
     }
 }
 ?>
-    <!DOCTYPE html>
-    <html lang="es">
-    <head>
-        <title>Factura de Venta</title>
-        <meta charset="utf-8">
-        <link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
-        <script src="../../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
-        <script src="../../../js/validar.js"></script>
-    </head>
-    <body>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Factura de Venta</title>
+    <meta charset="utf-8">
+    <link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script src="../../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../../../js/validar.js"></script>
+</head>
+<body>
 <?php
 $tasaDescuento = $descuento / 100;
 $pedidosList = explode(',', $idPedido);
@@ -29,7 +29,7 @@ $detFacturaOperador = new DetFacturaOperaciones();
 $detPedidoOperador = new DetPedidoOperaciones();
 $pedidoOperador = new PedidosOperaciones();
 if ($facturaOperador->isValidIdFactura($idFactura)) {
-    $ruta = "CrearFactura.php";
+    $ruta = "../crear/";
     $mensaje = "Número de factura ya existe, intente de nuevo";
     $icon = "warning";
     mover_pag($ruta, $mensaje, $icon);
@@ -46,8 +46,8 @@ if (($dias_v >= 0) && ($dias_f >= 0)) {
         $facturaOperador->makeFactura($datos);
         //CON BASE EN EL PEDIDO SE LLENA LA FACTURA
         $detPedido = $detPedidoOperador->getTotalPedidosPorFacturar($idPedido);
-        if (count($detPedido) > 80 ) {
-            $ruta = "CrearFactura.php";
+        if (count($detPedido) > 80) {
+            $ruta = "../crear/";
             $mensaje = "La factura debe tener máximo 80 productos";
             $icon = "warning";
             mover_pag($ruta, $mensaje, $icon);
@@ -77,15 +77,15 @@ if (($dias_v >= 0) && ($dias_f >= 0)) {
         $totalR = round($subtotal - $descuento + $iva);
         $datos = array($total, $reteiva, $reteica, $retefuente, $subtotal, $iva, $totalR, $idFactura);
         $facturaOperador->updateTotalesFactura($datos);
-        foreach ($pedidosList as $pedido){
+        foreach ($pedidosList as $pedido) {
             $pedidoOperador->updateEstadoPedido(4, $pedido);
         }
         $_SESSION['idFactura'] = $idFactura;
-        $ruta = "det_factura.php";
+        $ruta = "../detalle/";
         $mensaje = "Factura creada con éxito";
         $icon = "success";
     } catch (Exception $e) {
-        $ruta = "crearFactura.php";
+        $ruta = "../crear/";
         $mensaje = "Error al crear la Factura";
         $icon = "error";
     } finally {
@@ -95,18 +95,18 @@ if (($dias_v >= 0) && ($dias_f >= 0)) {
     }
 } else {
     if ($dias_v < 0) {
-        $ruta = "crearFactura.php";
+        $ruta = "../crear/";
         $mensaje = "La fecha de vencimiento de la factura no puede ser menor que la fecha actual";
         $icon = "error";
         mover_pag($ruta, $mensaje, $icon);
     }
     if ($dias_f < 0) {
-        $ruta = "crearFactura.php";
+        $ruta = "../crear/";
         $mensaje = "La fecha de vencimiento de la factura no puede ser menor que la fecha de la factura";
         $icon = "error";
         mover_pag($ruta, $mensaje, $icon);
     }
 }
 ?>
-    </body>
+</body>
 </html>

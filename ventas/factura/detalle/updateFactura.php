@@ -1,7 +1,7 @@
 <?php
 include "../../../includes/valAcc.php";
 include "../../../includes/calcularDias.php";
-include "../includes/ventas.php";
+include "../../../includes/ventas.php";
 foreach ($_POST as $nombre_campo => $valor) {
     ${$nombre_campo} = $valor;
     if (is_array($valor)) {
@@ -48,11 +48,11 @@ if (($dias_v >= 0) && ($dias_f >= 0)) {
         $datos = array($total, $reteiva, $reteica, $retefuente, $subtotal, $iva, $totalR, $idFactura);
         $facturaOperador->updateTotalesFactura($datos);
         $_SESSION['idFactura'] = $idFactura;
-        $ruta = "det_factura.php";
+        $ruta = "../detalle/";
         $mensaje = "Factura actualizada con éxito";
         $icon = "success";
     } catch (Exception $e) {
-        $ruta = "buscarFactura.php";
+        $ruta = "../modificar/";
         $mensaje = "Error al actualizar la Factura";
         $icon = "error";
     } finally {
@@ -62,14 +62,14 @@ if (($dias_v >= 0) && ($dias_f >= 0)) {
     }
 } else {
     if ($dias_v < 0) {
-        $ruta = "buscarFactura.php";
+        $ruta = "../modificar/";
         $mensaje = "La fecha de vencimiento de la factura no puede ser menor que la fecha actual";
         $icon = "error";
         mover_pag($ruta, $mensaje, $icon);
         exit;
     }
     if ($dias_f < 0) {
-        $ruta = "buscarFactura.php";
+        $ruta = "../modificar/";
         $mensaje = "La fecha de vencimiento de la factura no puede ser menor que la fecha de la factura";
         $icon = "error";
         mover_pag($ruta, $mensaje, $icon);

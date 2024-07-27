@@ -1,8 +1,8 @@
 <?php
 include "../../../includes/valAcc.php";
-include "../includes/num_letra.php";
-include "../includes/ventas.php";
-require('../includes/fpdf.php');
+include "../../../includes/num_letra.php";
+include "../../../includes/ventas.php";
+require('../../../includes/fpdf.php');
 
 $idFactura = $_POST['idFactura'];
 $facturaOperador = new FacturasOperaciones();
@@ -147,7 +147,10 @@ $BaseI5 = number_format($base5, 0, '.', ',');
 $pdf->Cell(16, 4, "$ $BaseI5", 0, 0, 'R');
 $pdf->Cell(26, 4, 'BASE NO GRAVADA: ');
 $base0 = round($subtotal - $descuento - $base16 - $base5);
-$BaseI0 = number_format($base0, 0, '.', ',');
+$BaseI0 = 0;
+if ($base0 > 0){
+    $BaseI0 = number_format($base0, 0, '.', ',');
+}
 $pdf->Cell(16, 4, "$ $BaseI0", 0, 0, 'R');
 $pdf->SetXY(10, -42);
 $pdf->SetFont('Arial', 'B', 9);
