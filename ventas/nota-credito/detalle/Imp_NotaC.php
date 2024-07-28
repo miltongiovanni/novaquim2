@@ -1,7 +1,7 @@
 <?php
-include "../includes/num_letra.php";
-require('../includes/fpdf.php');
-require('../includes/valAcc.php');
+include "../../../includes/num_letra.php";
+require('../../../includes/fpdf.php');
+require('../../../includes/valAcc.php');
 $idNotaC = $_POST['idNotaC'];
 
 function cargarClases($classname)
@@ -29,7 +29,7 @@ class PDF extends FPDF
         $idNotaC = $_POST['idNotaC'];
         //Logo
         $yearIni = date("Y");
-        $this->Image('../images/LogoNova.jpg', 10, 05, 43);
+        $this->Image('../../../images/LogoNova.jpg', 10, 05, 43);
         //Arial bold 15
         $this->SetFont('Arial', 'B', 10);
         //Movernos a la derecha

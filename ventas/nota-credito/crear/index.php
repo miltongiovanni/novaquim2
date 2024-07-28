@@ -14,7 +14,7 @@ include "../../../includes/valAcc.php";
     <script>
         function findFacturasCliente(idCliente) {
             $.ajax({
-                url: '../includes/controladorVentas.php',
+                url: '../../../includes/controladorVentas.php',
                 type: 'POST',
                 data: {
                     "action": 'findFacturasByCliente',
@@ -39,32 +39,38 @@ include "../../../includes/valAcc.php";
         <img src="../../../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>CREAR NOTA CRÉDITO</h4></div>
     <form id="form1" name="form1" method="post" action="makeNotaC.php">
         <div class="mb-3 row">
-            <label class="form-label col-2" for="busClien"><strong>Cliente</strong></label>
-            <input type="text" class="form-control col-1" id="busClien" name="busClien"
-                   onkeyup="findClienteNotaCr()"
-                   required/>
-            <div class="col-4" id="myDiv"></div>
+            <div class="col-4">
+                <label class="form-label" for="busClien"><strong>Cliente</strong></label>
+                <input type="text" class="form-control" id="busClien" name="busClien" onkeyup="findClienteNotaCr()" required/>
+                <div class="mt-2" id="myDiv"></div>
+            </div>
         </div>
         <div class="mb-3 row">
-            <label class="form-label col-2" for="motivo"><strong>Razón de la Nota</strong></label>
-            <select name="motivo" size="1" id="motivo" class="form-select col-5">
-                <option value="0" selected="">Devolución de Productos</option>
-                <option value="1">Descuento no aplicado</option>
-            </select>
+            <div class="col-2">
+                <label class="form-label" for="motivo"><strong>Razón de la Nota</strong></label>
+                <select name="motivo" size="1" id="motivo" class="form-select">
+                    <option value="0" selected="">Devolución de Productos</option>
+                    <option value="1">Descuento no aplicado</option>
+                </select>
+            </div>
+            <div class="col-2">
+                <label class="form-label" for="fechaNotaC"><strong>Fecha Nota Crédito</strong></label>
+                <input type="date" class="form-control" name="fechaNotaC" id="fechaNotaC" required>
+            </div>
+
         </div>
         <div class="mb-3 row">
-            <label class="form-label col-2" for="facturaOrigen"><strong>Factura origen de la Nota</strong></label>
-            <select name="facturaOrigen" id="facturaOrigen" class="form-select col-5" required>
-            </select>
-        </div>
-        <div class="mb-3 row">
-            <label class="form-label col-2" for="facturaDestino"><strong>Factura destino de la Nota</strong></label>
-            <select name="facturaDestino" id="facturaDestino" class="form-select col-5" required>
-            </select>
-        </div>
-        <div class="mb-3 row">
-            <label class="form-label col-2 text-end" for="fechaNotaC"><strong>Fecha Nota Crédito</strong></label>
-            <input type="date" class="form-control col-5" name="fechaNotaC" id="fechaNotaC" required>
+            <div class="col-2">
+                <label class="form-label" for="facturaOrigen"><strong>Factura origen de la Nota</strong></label>
+                <select name="facturaOrigen" id="facturaOrigen" class="form-select" required>
+                </select>
+            </div>
+            <div class="col-2">
+                <label class="form-label" for="facturaDestino"><strong>Factura destino de la Nota</strong></label>
+                <select name="facturaDestino" id="facturaDestino" class="form-select" required>
+                </select>
+            </div>
+
         </div>
         <div class="row mb-3">
             <div class="col-1">

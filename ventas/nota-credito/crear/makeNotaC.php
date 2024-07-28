@@ -43,11 +43,11 @@ if ($diasNotaC >= 0) {
     try {
         $lastIdNotaCr = $notaCreditoOperador->makeNotaC($datos);
         $_SESSION['idNotaC'] = $lastIdNotaCr;
-        $ruta = "detalleNotaC.php";
+        $ruta = "../detalle/";
         $mensaje = "Nota crédito creada con éxito";
         $icon = "success";
     } catch (Exception $e) {
-        $ruta = "crearNotaC.php";
+        $ruta = "../crear/";
         $mensaje = "Error al crear la nota crédito";
         $icon = "error";
     } finally {
@@ -57,7 +57,7 @@ if ($diasNotaC >= 0) {
     }
 } else {
     if ($diasNotaC < 0) {
-        $ruta = "crearNotaC.php";
+        $ruta = "../crear/";
         $mensaje = "La fecha de la nota crédito no puede ser menor que la actual";
         $icon = "error";
         mover_pag($ruta, $mensaje, $icon);

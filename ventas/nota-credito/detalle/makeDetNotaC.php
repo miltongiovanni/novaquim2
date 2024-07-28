@@ -165,7 +165,7 @@ try {
         }
     }
     $_SESSION['idNotaC'] = $idNotaC;
-    $ruta = "detalleNotaC.php";
+    $ruta = "../detalle/";
     if(isset($allFactura) && $allFactura == 1 ){
         $mensaje = "Detalles de nota crédito adicionados con éxito";
     }else{
@@ -174,7 +174,7 @@ try {
     $icon = "success";
 } catch (Exception $e) {
     $_SESSION['idNotaC'] = $idNotaC;
-    $ruta = "detalleNotaC.php";
+    $ruta = "../detalle/";
     $mensaje = "Error al ingresar el detalle de nota crédito";
     $icon = "error";
 } finally {

@@ -39,7 +39,7 @@ try {
         $notaCreditoOperador->updateFacturaDestNotaC($idFacturaDestino, $idNotaC);
     }
     $_SESSION['idNotaC'] = $idNotaC;
-    $ruta = "detalleNotaC.php";
+    $ruta = "../detalle/";
     $mensaje = "Nota crédito actualizada con éxito";
     $icon = "success";
 } catch (Exception $e) {

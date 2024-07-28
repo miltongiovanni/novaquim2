@@ -94,12 +94,12 @@ try {
         $facturaOperador->cancelarFactura($notaC['fechaNotaC'], $notaC['facturaDestino']);
     }
     $_SESSION['idNotaC'] = $idNotaC;
-    $ruta = "detalleNotaC.php";
+    $ruta = "../detalle/";
     $mensaje = "Detalle de nota crédito actualizado con éxito";
     $icon = "success";
 } catch (Exception $e) {
     $_SESSION['idNotaC'] = $idNotaC;
-    $ruta = "detalleNotaC.php";
+    $ruta = "../detalle/";
     $mensaje = "Error al actualizar el detalle de nota crédito";
     $icon = "error";
 } finally {

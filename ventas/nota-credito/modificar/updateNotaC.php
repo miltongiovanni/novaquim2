@@ -35,11 +35,11 @@ $datos = array($fechaNotaC, $facturaOrigen, $facturaDestino, $motivo, $facturaOr
 try {
     $notaCreditoOperador->updateNotaC($datos);
     $_SESSION['idNotaC'] = $idNotaC;
-    $ruta = "detalleNotaC.php";
+    $ruta = "../detalle/";
     $mensaje = "Nota crédito actualizada con éxito";
     $icon = "success";
 } catch (Exception $e) {
-    $ruta = "buscarNotaC.php";
+    $ruta = "../modificar/";
     $mensaje = "Error al actualizar la nota crédito";
     $icon = "error";
 } finally {

@@ -6,6 +6,7 @@ function cargarClases($classname)
 {
     require '../../../clases/' . $classname . '.php';
 }
+
 spl_autoload_register('cargarClases');
 $notaCrOperador = new NotasCreditoOperaciones();
 $notaC = $notaCrOperador->getNotaC($idNotaC);
@@ -31,31 +32,29 @@ $detalle = $detNotaCrOperador->getDetProdNotaCr($idNotaC, $codProducto);
         <input name="idNotaC" type="hidden" value="<?= $idNotaC; ?>">
         <input name="codProducto" type="hidden" value="<?= $codProducto; ?>">
         <input name="cantAnterior" type="hidden" value="<?= intval($detalle['cantProducto']); ?>">
-        <div class="row">
-            <label class="col-4 text-center" style="margin: 0 5px;" for="producto"><strong>Producto</strong></label>
-            <label class="col-1 text-center" style="margin: 0 5px;" for="cantProducto"><strong>Cantidad</strong></label>
-            <div class="col-2 text-center"></div>
-        </div>
         <div class="mb-3 row">
-            <input type="text" id="producto" class="form-select col-4 me-3" readonly
-                   value="<?= $detalle['producto']; ?>">
-            <select name="cantProducto" id="cantProducto" class="form-control col-1" required>
-                <option selected
-                        value="<?= intval($detalle['cantProducto']); ?>"><?= intval($detalle['cantProducto']); ?></option>
-                <?php
-                for ($i = $cantidadMax; $i > 0; $i--) {
-                    if ($i != $detalle['cantProducto']) {
-                        echo '<option value=' . $i . '>' . $i . '</option>';
+            <div class="col-4">
+                <label class="" for="producto"><strong>Producto</strong></label>
+                <input type="text" id="producto" class="form-select" readonly value="<?= $detalle['producto']; ?>">
+            </div>
+            <div class="col-1">
+                <label class="" for="cantProducto"><strong>Cantidad</strong></label>
+                <select name="cantProducto" id="cantProducto" class="form-control" required>
+                    <option selected value="<?= intval($detalle['cantProducto']); ?>"><?= intval($detalle['cantProducto']); ?></option>
+                    <?php
+                    for ($i = $cantidadMax; $i > 0; $i--) {
+                        if ($i != $detalle['cantProducto']) {
+                            echo '<option value=' . $i . '>' . $i . '</option>';
+                        }
                     }
-                }
-                ?>
-            </select>
-            <div class="col-2 text-center" style="padding: 0 20px;">
-                <button class="button" type="button" onclick="return Enviar(this.form)"><span>Cambiar</span>
+                    ?>
+                </select>
+            </div>
+            <div class="col-2 pt-3">
+                <button class="button mt-3" type="button" onclick="return Enviar(this.form)"><span>Cambiar</span>
                 </button>
             </div>
         </div>
-
     </form>
 </div>
 </body>

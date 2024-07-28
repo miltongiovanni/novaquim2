@@ -84,12 +84,12 @@ try {
     $datos = array($totalesNotaC['subtotal'], $totalesNotaC['totalNotaC'], $totalesNotaC['iva'], $idNotaC);
     $notaCrOperador->updateTotalesNotaC($datos);
     $_SESSION['idNotaC'] = $idNotaC;
-    $ruta = "detalleNotaC.php";
+    $ruta = "../detalle/";
     $mensaje = "Detalle de nota crédito eliminado con éxito";
     $icon = "success";
 } catch (Exception $e) {
     $_SESSION['idNotaC'] = $idNotaC;
-    $ruta = "detalleNotaC.php";
+    $ruta = "../detalle/";
     $mensaje = "Error al eliminar el detalle de nota crédito";
     $icon = "error";
 } finally {

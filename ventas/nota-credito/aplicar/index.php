@@ -19,7 +19,7 @@ spl_autoload_register('cargarClases');
     <script>
         function findFacturasClienteNC(idNotaC) {
             $.ajax({
-                url: '../includes/controladorVentas.php',
+                url: '../../../includes/controladorVentas.php',
                 type: 'POST',
                 data: {
                     "action": 'findFacturasPorPagarByNotaC',
@@ -39,26 +39,30 @@ spl_autoload_register('cargarClases');
 <body>
 <div id="contenedor" class="container-fluid">
     <div id="saludo">
-        <img src="../../../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><div id="h4"><strong>APLICAR NOTA CRÉDITO</strong></div></div>
+        <img src="../../../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25">
+        <div id="h4"><strong>APLICAR NOTA CRÉDITO</strong></div>
+    </div>
     <form id="form1" name="form1" method="post" action="aplicaNotaC.php">
         <div class="mb-3 row">
-            <label class="form-label col-1" for="idPedido"><strong>Nota crédito</strong></label>
-            <select name="idNotaC" id="idNotaC" class="form-select col-4" onchange="findFacturasClienteNC(this.value);"  required>
-                <option selected disabled value="">Seleccione una opción</option>
-                <?php
-                $manager = new NotasCreditoOperaciones();
-                $notas = $manager->getNotasCreditoSinDestino();
-                for ($i = 0; $i < count($notas); $i++) : ?>
-                    <option value="<?= $notas[$i]["idNotaC"] ?>"><?= $notas[$i]["idNotaC"].' - '.$notas[$i]["nomCliente"].' - '.$notas[$i]["totalNota"] ?></option>
-                <?php
-                endfor;
-                ?>
-            </select>
-        </div>
-        <div class="mb-3 row">
-            <label class="form-label col-1" for="idFacturaDestino"><strong>Factura Destino</strong></label>
-            <select name="idFacturaDestino" id="idFacturaDestino" class="form-select col-4" required>
-            </select>
+            <div class="col-4">
+                <label class="form-label" for="idNotaC"><strong>Nota crédito</strong></label>
+                <select name="idNotaC" id="idNotaC" class="form-select" onchange="findFacturasClienteNC(this.value);" required>
+                    <option selected disabled value="">Seleccione una opción</option>
+                    <?php
+                    $manager = new NotasCreditoOperaciones();
+                    $notas = $manager->getNotasCreditoSinDestino();
+                    for ($i = 0; $i < count($notas); $i++) : ?>
+                        <option value="<?= $notas[$i]["idNotaC"] ?>"><?= $notas[$i]["idNotaC"] . ' - ' . $notas[$i]["nomCliente"] . ' - ' . $notas[$i]["totalNota"] ?></option>
+                    <?php
+                    endfor;
+                    ?>
+                </select>
+            </div>
+            <div class="col-2">
+                <label class="form-label" for="idFacturaDestino"><strong>Factura Destino</strong></label>
+                <select name="idFacturaDestino" id="idFacturaDestino" class="form-select" required>
+                </select>
+            </div>
         </div>
         <div class="row mb-3">
             <div class="col-1">
