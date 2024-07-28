@@ -7,59 +7,17 @@ $idCliente = $_POST['idCliente'];
 <head>
     <title>Lista de Facturas de Venta</title>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../css/datatables.css">
     <link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <script src="../../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../../../js/validar.js"></script>
-    <link rel="stylesheet" href="../../../css/datatables.css">
-    <style>
-        #example {
-            table-layout: fixed;
-        }
-
-        .width1 {
-            width: 2%;
-        }
-
-        .width2 {
-            width: 5%;
-        }
-
-        .width3 {
-            width: 5%;
-        }
-
-        .width4 {
-            width: 5%;
-        }
-
-        .width5 {
-            width: 30%;
-        }
-
-        .width6 {
-            width: 10%;
-        }
-
-        .width7 {
-            width: 10%;
-        }
-
-        .width8 {
-            width: 10%;
-        }
-
-        .width9 {
-            width: 10%;
-        }
-    </style>
     <script src="../../../js/jquery-3.3.1.min.js"></script>
     <script src="../../../js/datatables.js"></script>
-    
     <script>
         /* Formatting function for row details - modify as you need */
         function format(d) {
             // `d` is the original data object for the row
-            rep = '<table class="formatoDatos table table-sm table-striped formatoDatos" style="padding-left:50px;width:50%;margin:inherit; background-color: white">' +
+            rep = '<table class="formatoDatos5 table table-sm table-striped" style="padding-left:50px;width:50%;margin:inherit; background-color: white">' +
                 '<thead>' +
                 '<tr>' +
                 '<th class="text-center">Código</th>' +
@@ -90,39 +48,48 @@ $idCliente = $_POST['idCliente'];
                         "className": 'dt-control',
                         "orderable": false,
                         "data": null,
-                        "defaultContent": ''
+                        "defaultContent": '',
+                        width: '2%'
                     },
                     {
                         "data": "idFactura",
-                        "className": 'text-center'
+                        "className": 'text-center',
+                        width: '5%'
                     },
                     {
                         "data": "idPedido",
-                        "className": 'dt-body-left'
+                        "className": 'dt-body-center',
+                        width: '5%'
                     },
                     {
                         "data": "idRemision",
-                        "className": 'text-center'
+                        "className": 'text-center',
+                        width: '5%'
                     },
                     {
                         "data": "nomCliente",
-                        "className": 'dt-body-left'
+                        "className": 'dt-body-left',
+                        width: '30%'
                     },
                     {
                         "data": "fechaFactura",
-                        "className": 'text-center'
+                        "className": 'text-center',
+                        width: '10%'
                     },
                     {
                         "data": "fechaVenc",
-                        "className": 'text-center'
+                        "className": 'text-center',
+                        width: '10%'
                     },
                     {
                         "data": "totalFactura",
-                        "className": 'text-center'
+                        "className": 'dt-body-right pe-5',
+                        width: '10%'
                     },
                     {
                         "data": "estadoFactura",
-                        "className": 'text-center'
+                        "className": 'text-center',
+                        width: '10%'
                     },
                 ],
                 "order": [[1, 'desc']],
@@ -192,18 +159,18 @@ $idCliente = $_POST['idCliente'];
         </div>
     </div>
     <div class="tabla-100">
-        <table id="example" class="formatoDatos table table-sm table-striped formatoDatos">
+        <table id="example" class="formatoDatos5 table table-sm table-striped">
             <thead>
             <tr>
-                <th class="width1"></th>
-                <th class="width2 text-center">Factura</th>
-                <th class="width3 text-center">Pedido</th>
-                <th class="width4 text-center">Remision</th>
-                <th class="width5 text-center">Cliente</th>
-                <th class="width6 text-center">Fecha Factura</th>
-                <th class="width7 text-center">Fecha Vencimiento</th>
-                <th class="width8 text-center">Total</th>
-                <th class="width9 text-center">Estado</th>
+                <th class=""></th>
+                <th class="text-center">Factura</th>
+                <th class="text-center">Pedido</th>
+                <th class="text-center">Remision</th>
+                <th class="text-center">Cliente</th>
+                <th class="text-center">Fecha Factura</th>
+                <th class="text-center">Fecha Vencimiento</th>
+                <th class="text-center">Total</th>
+                <th class="text-center">Estado</th>
             </tr>
             </thead>
         </table>

@@ -20,7 +20,7 @@ include "../../../includes/valAcc.php";
         <img src="../../../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>CONSULTA DE FACTURAS POR CLIENTE</h4></div>
 
     <?php
-    include "../includes/ventas.php";
+    include "../../../includes/ventas.php";
     $rep = buscarClienteForm("listarFacturasCliente.php");
     echo $rep;
     ?>

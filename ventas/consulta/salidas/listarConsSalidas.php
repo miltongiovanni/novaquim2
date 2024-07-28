@@ -17,48 +17,19 @@ foreach ($_POST as $nombre_campo => $valor) {
         //echo $nombre_campo . '=' . ${$nombre_campo} . '<br>';
     }
 }
-
 ?>
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <title>Listado de salidas por fecha</title>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../css/datatables.css">
     <link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <script src="../../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../../../js/validar.js"></script>
-    <link rel="stylesheet" href="../../../css/datatables.css">
-    <style>
-        #example {
-            table-layout: fixed;
-        }
-
-        .width1 {
-            width: 10%;
-        }
-
-        .width2 {
-            width: 50%;
-        }
-
-        .width3 {
-            width: 20%;
-        }
-
-        .width4 {
-            width: 20%;
-        }
-
-    </style>
     <script src="../../../js/jquery-3.3.1.min.js"></script>
     <script src="../../../js/datatables.js"></script>
-    
-
     <script>
-
-
-
         $(document).ready(function () {
             var fechaIni = '<?= $fechaIni ?>';
             var fechaFin = '<?= $fechaFin ?>';
@@ -66,19 +37,23 @@ foreach ($_POST as $nombre_campo => $valor) {
                 "columns": [
                     {
                         "data": "idRemision",
-                        "className": 'text-center'
+                        "className": 'text-center',
+                        width: '15%'
                     },
                     {
                         "data": "cliente",
-                        "className": 'dt-body-left'
+                        "className": 'dt-body-left',
+                        width: '50%'
                     },
                     {
                         "data": "fechaRemision",
-                        "className": 'text-center'
+                        "className": 'text-center',
+                        width: '15%'
                     },
                     {
                         "data": "valorFormatted",
-                        "className": 'text-center'
+                        "className": 'dt-body-right pe-5',
+                        width: '20%'
                     },
                 ],
                 "order": [[0, 'asc']],
@@ -117,11 +92,9 @@ foreach ($_POST as $nombre_campo => $valor) {
                         "previous": "Anterior"
                     },
                     "infoFiltered": "(Filtrado de _MAX_ en total)"
-
                 },
                 "ajax": "../ajax/listaConsSalidas.php?fechaIni=" + fechaIni+ '&fechaFin=' + fechaFin
             });
-
         });
     </script>
 </head>
@@ -134,8 +107,9 @@ if ($rangoFechas >= 0) {
     ?>
     <div id="contenedor" class="container-fluid">
         <div id="saludo1">
-            <img src="../../../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>LISTADO DE SALIDAS POR
-                FECHA (<?= $fechaIni.' - '.$fechaFin.')' ?></h4></div>
+            <img src="../../../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2">
+            <h4>LISTADO DE SALIDAS POR FECHA (<?= $fechaIni.' - '.$fechaFin.')' ?></h4>
+        </div>
         <div class="row justify-content-end">
             <div class="col-1">
                 <button class="button" type="button" onclick="window.location='../../../menu.php'">
@@ -143,13 +117,13 @@ if ($rangoFechas >= 0) {
             </div>
         </div>
         <div class="tabla-50">
-            <table id="example" class="formatoDatos table table-sm table-striped formatoDatos">
+            <table id="example" class="formatoDatos5 table table-sm table-striped">
                 <thead>
                 <tr>
-                    <th class="width1">Id Salida</th>
-                    <th class="width2 text-center">Cliente</th>
-                    <th class="width3 text-center">Fecha</th>
-                    <th class="width4 text-center">Valor</th>
+                    <th class="">Id Salida</th>
+                    <th class="text-center">Cliente</th>
+                    <th class="text-center">Fecha</th>
+                    <th class="text-center">Valor</th>
                 </tr>
                 </thead>
             </table>
@@ -164,7 +138,7 @@ if ($rangoFechas >= 0) {
     </div>
     <?php
 } else {
-    $ruta = "consultaSalidas.php";
+    $ruta = "../salidas/";
     $mensaje = "La fecha final no puede ser menor que la inicial";
     $icon = "error";
     mover_pag($ruta, $mensaje, $icon);

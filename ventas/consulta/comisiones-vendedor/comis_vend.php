@@ -90,43 +90,53 @@ $totales = $personalOperador->getTotalComisionVendedor($idPersonal, $fechaInicia
                 "columns": [
                     {
                         "data": "idFactura",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-center',
+                        width: '6%'
                     },
                     {
                         "data": "nomCliente",
-                        "className": 'dt-body-left'
+                        "className": 'dt-body-left',
+                        width: '40%'
                     },
                     {
                         "data": "desct",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-center',
+                        width: '5%'
                     },
                     {
                         "data": "fechaCancelacion",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-center',
+                        width: '7%'
                     },
                     {
                         "data": "subtot",
-                        "className": 'dt-body-right'
+                        "className": 'dt-body-right pe-4',
+                        width: '7%'
                     },
                     {
                         "data": "vtaEmpresa",
-                        "className": 'dt-body-right'
+                        "className": 'dt-body-right pe-4',
+                        width: '7%'
                     },
                     {
                         "data": "vtaDistribucion",
-                        "className": 'dt-body-right'
+                        "className": 'dt-body-right pe-4',
+                        width: '7%'
                     },
                     {
                         "data": "comEmpresa",
-                        "className": 'dt-body-right'
+                        "className": 'dt-body-right pe-4',
+                        width: '7%'
                     },
                     {
                         "data": "comDistribucion",
-                        "className": 'dt-body-right'
+                        "className": 'dt-body-right pe-4',
+                        width: '7%'
                     },
                     {
                         "data": "comTotal",
-                        "className": 'dt-body-right'
+                        "className": 'dt-body-right pe-4',
+                        width: '7%'
                     },
 
                 ],
@@ -172,7 +182,10 @@ $totales = $personalOperador->getTotalComisionVendedor($idPersonal, $fechaInicia
                     "infoFiltered": "(Filtrado de _MAX_ en total)"
 
                 },
-                "ajax": ruta
+                "ajax": ruta,
+                initComplete: function (settings, json) {
+                    $('#example thead th').removeClass('pe-4');
+                },
             });
         });
     </script>
@@ -184,55 +197,55 @@ $totales = $personalOperador->getTotalComisionVendedor($idPersonal, $fechaInicia
         <img src="../../../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>CONSULTA DE COMISIONES DEL
             VENDEDOR <?php echo mb_strtoupper($personal['nomPersonal']); ?></h4></div>
     <div class="tabla-100">
-        <table id="example" class="formatoDatos table table-sm table-striped formatoDatos">
+        <table id="example" class="formatoDatos5 table table-sm table-striped">
             <thead>
             <tr>
-                <th class="width1 text-center">Factura</th>
-                <th class="width2 text-center">Cliente</th>
-                <th class="width3 text-center">% Desc</th>
-                <th class="width4 text-center">Fech Canc</th>
-                <th class="width5 text-center">Subtotal</th>
-                <th class="width6 text-center">Vtas Nova</th>
-                <th class="width7 text-center">Vtas Dist</th>
-                <th class="width8 text-center">Com Nova</th>
-                <th class="width9 text-center">Com Dist</th>
-                <th class="width10 text-center">Com Total</th>
+                <th class="text-center">Factura</th>
+                <th class="text-center">Cliente</th>
+                <th class="text-center">% Desc</th>
+                <th class="text-center">Fech Canc</th>
+                <th class="text-center">Subtotal</th>
+                <th class="text-center">Vtas Nova</th>
+                <th class="text-center">Vtas Dist</th>
+                <th class="text-center">Com Nova</th>
+                <th class="text-center">Com Dist</th>
+                <th class="text-center">Com Total</th>
             </tr>
             </thead>
         </table>
     </div>
     <div class="tabla-100">
         <div class="row formatoDatos">
-            <div class="col-10">
+            <div class="col-11">
                 <div class=" text-end">
                     <strong>Comisión Novaquim</strong>
                 </div>
             </div>
-            <div class="col-1 ms-3 px-0">
+            <div class="col-1">
                 <div class="text-end">
                     <strong><?= $totales['comEmpresa'] ?></strong>
                 </div>
             </div>
         </div>
         <div class="row formatoDatos">
-            <div class="col-10">
+            <div class="col-11">
                 <div class=" text-end">
                     <strong>Comisión distribución</strong>
                 </div>
             </div>
-            <div class="col-1 ms-3 px-0">
+            <div class="col-1">
                 <div class="text-end">
                     <strong><?= $totales['comDistribucion'] ?></strong>
                 </div>
             </div>
         </div>
         <div class="row formatoDatos">
-            <div class="col-10">
+            <div class="col-11">
                 <div class=" text-end">
                     <strong>Comisión Total</strong>
                 </div>
             </div>
-            <div class="col-1 ms-3 px-0">
+            <div class="col-1">
                 <div class="text-end">
                     <strong><?= $totales['comTotal'] ?></strong>
                 </div>

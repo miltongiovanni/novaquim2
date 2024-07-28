@@ -16,12 +16,14 @@ include "../../../includes/valAcc.php";
         <img src="../../../images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25"><h4>CONSULTA DE SALIDAS POR FECHA</h4></div>
     <form method="post" action="listarConsSalidas.php" name="form1">
         <div class="mb-3 row">
-            <label class="form-label col-1 text-end" for="fechaIni"><strong>Fecha inicial: </strong></label>
-            <input type="date" class="form-control col-2" name="fechaIni" id="fechaIni" required>
-        </div>
-        <div class="mb-3 row">
-            <label class="form-label col-1 text-end" for="fechaFin"><strong>Fecha final: </strong></label>
-            <input type="date" class="form-control col-2" name="fechaFin" id="fechaFin" required>
+            <div class="col-2">
+                <label class="form-label" for="fechaIni"><strong>Fecha inicial: </strong></label>
+                <input type="date" class="form-control" name="fechaIni" id="fechaIni" required>
+            </div>
+            <div class="col-2">
+                <label class="form-label" for="fechaFin"><strong>Fecha final: </strong></label>
+                <input type="date" class="form-control" name="fechaFin" id="fechaFin" required>
+            </div>
         </div>
         <div class="mb-3 row">
             <div class="col-1 text-center">

@@ -106,65 +106,79 @@ $facturas = $facturaOperador->getTotalesFacturasPorFecha($fechaIni, $fechaFin);
                 "columns": [
                     {
                         "data": "idFactura",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-center',
+                        width: '5%'
                     },
                     {
                         "data": "nitCliente",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-center',
+                        width: '7%'
                     },
                     {
                         "data": "nomCliente",
-                        "className": 'dt-body-left'
+                        "className": 'dt-body-left',
+                        width: '23%'
                     },
                     {
                         "data": "fechaFactura",
-                        "className": 'dt-body-left'
+                        "className": 'dt-body-left',
+                        width: '6%'
                     },
                     {
                         "data": "tipoPrecio",
-                        "className": 'dt-body-left'
+                        "className": 'dt-body-left',
+                        width: '6%'
                     },
                     {
                         "data": "subtotal",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-right pe-4',
+                        width: '6%'
                     },
                     {
                         "data": "descuentoF",
-                        "className": 'dt-body-center'
+                        "className": 'dt-body-right pe-4',
+                        width: '6%'
                     },
                     {
                         "data": "iva",
-                        "className": 'dt-body-right'
+                        "className": 'dt-body-right pe-4',
+                        width: '6%'
                     },
                     {
                         "data": "retencionFte",
-                        "className": 'dt-body-right'
+                        "className": 'dt-body-right pe-4',
+                        width: '6%'
                     },
                     {
                         "data": "retencionIva",
-                        "className": 'dt-body-right'
+                        "className": 'dt-body-right pe-4',
+                        width: '6%'
                     },
                     {
                         "data": "retencionIca",
-                        "className": 'dt-body-right'
+                        "className": 'dt-body-right pe-4',
+                        width: '6%'
                     },
                     {
                         "data": "total",
-                        "className": 'dt-body-right'
+                        "className": 'dt-body-right pe-4',
+                        width: '6%'
                     },
                     {
                         "data": "totalR",
-                        "className": 'dt-body-right'
+                        "className": 'dt-body-right pe-4',
+                        width: '6%'
                     },
                     {
                         "data": "ultimaCompra",
-                        "className": 'dt-body-left'
+                        "className": 'dt-body-left',
+                        width: '6%'
                     },
                 ],
                 "order": [[5, 'asc']],
                 "deferRender": true,  //For speed
                 initComplete: function (settings, json) {
-                    $('#example thead th').removeClass('pe-5');
+                    $('#example thead th').removeClass('pe-4');
                 },
                 pagingType: 'simple_numbers',
                 layout: {
@@ -223,57 +237,73 @@ if ($rangoFechas >= 0) {
             </div>
         </div>
         <div class="tabla-100">
-            <table id="example" class="formatoDatos table table-sm table-striped formatoDatos">
+            <table id="example" class="formatoDatos5 table table-sm table-striped">
                 <thead>
                 <tr>
-                    <th class="width1">Factura</th>
-                    <th class="width2 text-center">NIT</th>
-                    <th class="width3 text-center">Cliente</th>
-                    <th class="width4 text-center">Fecha factura</th>
-                    <th class="width5 text-center">Precio</th>
-                    <th class="width6 text-center">Subtotal</th>
-                    <th class="width7 text-center">Descuento</th>
-                    <th class="width8 text-center">Iva</th>
-                    <th class="width9 text-center">Retefuente</th>
-                    <th class="width10 text-center">Reteiva</th>
-                    <th class="width11 text-center">Reteica</th>
-                    <th class="width12 text-center">Total</th>
-                    <th class="width13 text-center">Total Real</th>
-                    <th class="width14 text-center">Última compra</th>
+                    <th class="">Factura</th>
+                    <th class="text-center">NIT</th>
+                    <th class="text-center">Cliente</th>
+                    <th class="text-center">Fecha factura</th>
+                    <th class="text-center">Precio</th>
+                    <th class="text-center">Subtotal</th>
+                    <th class="text-center">Descuento</th>
+                    <th class="text-center">Iva</th>
+                    <th class="text-center">Retefuente</th>
+                    <th class="text-center">Reteiva</th>
+                    <th class="text-center">Reteica</th>
+                    <th class="text-center">Total</th>
+                    <th class="text-center">Total Real</th>
+                    <th class="text-center">Última compra</th>
                 </tr>
                 </thead>
             </table>
         </div>
-        <div class="row">
-            <div class="col-2 offset-10">
-                <div class="tabla-100">
-                    <table >
-                        <tr>
-                            <td class="text-end text-bold formatoDatos">Subtotal período</td>
-                            <td class="text-end text-bold formatoDatos"><?=$facturas['subtotalPeriodo']?></td>
-                        </tr>
-                        <tr>
-                            <td class="text-end text-bold formatoDatos">Descuento período</td>
-                            <td class="text-end text-bold formatoDatos"><?=$facturas['descuentoPeriodo']?></td>
-                        </tr>
-                        <tr>
-                            <td class="text-end text-bold formatoDatos">Iva período</td>
-                            <td class="text-end text-bold formatoDatos"><?=$facturas['ivaPeriodo']?></td>
-                        </tr>
-                        <tr>
-                            <td class="text-end text-bold formatoDatos">Reteiva período</td>
-                            <td class="text-end text-bold formatoDatos"><?=$facturas['reteivaPeriodo']?></td>
-                        </tr>
-                        <tr>
-                            <td class="text-end text-bold formatoDatos">Retefuente período</td>
-                            <td class="text-end text-bold formatoDatos"><?=$facturas['retefuentePeriodo']?></td>
-                        </tr>
-                        <tr>
-                            <td class="text-end text-bold formatoDatos">Reteica período</td>
-                            <td class="text-end text-bold formatoDatos"><?=$facturas['reteicaPeriodo']?></td>
-                        </tr>
-                    </table>
-                </div>
+        <div class="row formatoDatos5">
+            <div class="col-11">
+                <div class="text-end text-bold formatoDatos5">Subtotal período</div>
+            </div>
+            <div class="col-1">
+                <div class="text-start text-bold formatoDatos5"><?=$facturas['subtotalPeriodo']?></div>
+            </div>
+        </div>
+        <div class="row formatoDatos5">
+            <div class="col-11">
+                <div class="text-end text-bold formatoDatos5">Descuento período</div>
+            </div>
+            <div class="col-1">
+                <div class="text-start text-bold formatoDatos5"><?=$facturas['descuentoPeriodo']?></div>
+            </div>
+        </div>
+        <div class="row formatoDatos5">
+            <div class="col-11">
+                <div class="text-end text-bold formatoDatos5">Iva período</div>
+            </div>
+            <div class="col-1">
+                <div class="text-start text-bold formatoDatos5"><?=$facturas['ivaPeriodo']?></div>
+            </div>
+        </div>
+        <div class="row formatoDatos5">
+            <div class="col-11">
+                <div class="text-end text-bold formatoDatos5">Reteiva período</div>
+            </div>
+            <div class="col-1">
+                <div class="text-start text-bold formatoDatos5"><?=$facturas['reteivaPeriodo']?></div>
+            </div>
+        </div>
+        <div class="row formatoDatos5">
+            <div class="col-11">
+                <div class="text-end text-bold formatoDatos5">Retefuente período</div>
+            </div>
+            <div class="col-1">
+                <div class="text-start text-bold formatoDatos5"><?=$facturas['retefuentePeriodo']?></div>
+            </div>
+        </div>
+        <div class="row formatoDatos5">
+            <div class="col-11">
+                <div class="text-end text-bold formatoDatos5">Reteica período</div>
+            </div>
+            <div class="col-1">
+                <div class="text-start text-bold formatoDatos5"><?=$facturas['reteicaPeriodo']?></div>
             </div>
         </div>
         <div class="row">
@@ -286,7 +316,7 @@ if ($rangoFechas >= 0) {
     </div>
     <?php
 } else {
-    $ruta = "consultaFacturas.php";
+    $ruta = "../facturas/";
     $mensaje = "La fecha final no puede ser menor que la inicial";
     $icon = "error";
     mover_pag($ruta, $mensaje, $icon);
