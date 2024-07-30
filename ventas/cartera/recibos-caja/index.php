@@ -8,55 +8,10 @@ include "../../../includes/valAcc.php";
     <meta charset="utf-8">
     <link rel="stylesheet" href="../../../css/datatables.css">
     <link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
-    <style>
-        table {
-            table-layout: fixed;
-        }
-
-        .width1 {
-            width: 5%;
-        }
-
-        .width2 {
-            width: 6%;
-        }
-
-        .width3 {
-            width: 6%;
-        }
-
-        .width4 {
-            width: 32%;
-        }
-
-        .width5 {
-            width: 8%;
-        }
-
-        .width6 {
-            width: 8%;
-        }
-
-        .width7 {
-            width: 10%;
-        }
-
-        .width8 {
-            width: 5%;
-        }
-
-
-        table.dataTable.compact thead th,
-        table.dataTable.compact thead td {
-            padding: 4px 4px 4px 4px;
-        }
-    </style>
-<script src="../../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../../../js/validar.js"></script>
     <script src="../../../js/jquery-3.3.1.min.js"></script>
     <script src="../../../js/datatables.js"></script>
-    
-
     <script>
         /* Formatting function for row details - modify as you need */
         function diffDate(fecha) {
@@ -85,31 +40,38 @@ include "../../../includes/valAcc.php";
                                 '       </form>'
                             return rep;
                         },
-                        "className": 'text-center'
+                        "className": 'text-center',
+                        width: '5%'
                     },
                     {
                         "data": "idRecCaja",
-                        "className": 'text-center'
+                        "className": 'text-center',
+                        width: '6%'
                     },
                     {
                         "data": "idFactura",
-                        "className": 'text-center'
+                        "className": 'text-center',
+                        width: '6%'
                     },
                     {
                         "data": "nomCliente",
-                        "className": 'dt-body-left'
+                        "className": 'dt-body-left',
+                        width: '32%'
                     },
                     {
                         "data": "pago",
-                        "className": 'text-center'
+                        "className": 'dt-body-right pe-4',
+                        width: '8%'
                     },
                     {
                         "data": "fechaRecCaja",
-                        "className": 'text-center'
+                        "className": 'text-center',
+                        width: '8%'
                     },
                     {
                         "data": "formaPago",
-                        "className": 'text-center'
+                        "className": 'text-center',
+                        width: '10%'
                     },
 
                     {
@@ -121,14 +83,15 @@ include "../../../includes/valAcc.php";
                                 '       </form>'
                             return rep;
                         },
-                        "className": 'text-center'
+                        "className": 'text-center',
+                        width: '5%'
                     },
                 ],
 
                 "order": [[1, 'desc']],
                 "deferRender": true,  //For speed
                 initComplete: function (settings, json) {
-                    $('#example thead th').removeClass('pe-5');
+                    $('#example thead th').removeClass('pe-4');
                 },
                 pagingType: 'simple_numbers',
                 layout: {
@@ -186,17 +149,17 @@ include "../../../includes/valAcc.php";
         </div>
     </div>
     <div class="tabla-80">
-        <table id="example" class="formatoDatos table table-sm table-striped formatoDatos">
+        <table id="example" class="formatoDatos5 table table-sm table-striped">
             <thead>
             <tr>
-                <th class="width1"></th>
-                <th class="width2 text-center">Id</th>
-                <th class="width3 text-center">Factura</th>
-                <th class="width4 text-center">Cliente</th>
-                <th class="width5 text-center">Pago</th>
-                <th class="width6 text-center">Fecha</th>
-                <th class="width7 text-center">Forma de Pago</th>
-                <th class="width8 text-center"></th>
+                <th class=""></th>
+                <th class="text-center">Id</th>
+                <th class="text-center">Factura</th>
+                <th class="text-center">Cliente</th>
+                <th class="text-center">Pago</th>
+                <th class="text-center">Fecha</th>
+                <th class="text-center">Forma de Pago</th>
+                <th class="text-center"></th>
             </tr>
             </thead>
         </table>

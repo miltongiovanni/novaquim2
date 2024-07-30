@@ -6,65 +6,17 @@ include "../../../includes/valAcc.php";
 <head>
     <title>Facturas Vencidas por Cliente</title>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../css/datatables.css">
     <link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <script src="../../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../../../js/validar.js"></script>
-    <link rel="stylesheet" href="../../../css/datatables.css">
-    <style>
-        #example {
-            table-layout: fixed;
-        }
-
-        .width1 {
-            width: 2%;
-        }
-
-        .width2 {
-            width: 23%;
-        }
-
-        .width3 {
-            width: 8%;
-        }
-
-        .width4 {
-            width: 12%;
-        }
-
-        .width5 {
-            width: 11%;
-        }
-
-        .width6 {
-            width: 6%;
-        }
-
-        .width7 {
-            width: 8%;
-        }
-
-        .width8 {
-            width: 16%;
-        }
-
-        .width9 {
-            width: 6%;
-        }
-
-        .width10 {
-            width: 8%;
-        }
-
-
-    </style>
     <script src="../../../js/jquery-3.3.1.min.js"></script>
     <script src="../../../js/datatables.js"></script>
-
     <script>
         /* Formatting function for row details - modify as you need */
         function format(d) {
             // `d` is the original data object for the row
-            rep = '<table class="formatoDatos table table-sm table-striped" style="padding-left:50px;width:100%;margin:inherit; background-color: white">' +
+            rep = '<table class="formatoDatos5 table table-sm table-striped" style="padding-left:50px;width:100%;margin:inherit; background-color: white">' +
                 '<thead>' +
                 '<tr>' +
                 '<th class="text-center">Factura</th>' +
@@ -110,39 +62,48 @@ include "../../../includes/valAcc.php";
                         "className": 'dt-control',
                         "orderable": false,
                         "data": null,
-                        "defaultContent": ''
+                        "defaultContent": '',
+                        width: '2%'
                     },
                     {
                         "data": "nomCliente",
-                        "className": 'dt-body-left'
+                        "className": 'dt-body-left',
+                        width: '23%'
                     },
                     {
                         "data": "nitCliente",
-                        "className": 'text-center'
+                        "className": 'text-center',
+                        width: '8%'
                     },
                     {
                         "data": "contactoCliente",
-                        "className": 'dt-body-left'
+                        "className": 'dt-body-left',
+                        width: '12%'
                     },
                     {
                         "data": "cargoCliente",
-                        "className": 'dt-body-left'
+                        "className": 'dt-body-left',
+                        width: '11%'
                     },
                     {
                         "data": "telCliente",
-                        "className": 'text-center'
+                        "className": 'text-center',
+                        width: '6%'
                     },
                     {
                         "data": "celCliente",
-                        "className": 'text-center'
+                        "className": 'text-center',
+                        width: '8%'
                     },
                     {
                         "data": "dirCliente",
-                        "className": 'dt-body-left'
+                        "className": 'dt-body-left',
+                        width: '16%'
                     },
                     {
                         "data": "totalSaldoFormat",
-                        "className": 'dt-body-right'
+                        "className": 'dt-body-right pe-4',
+                        width: '6%'
                     },
                     {
                         "orderable": false,
@@ -155,12 +116,13 @@ include "../../../includes/valAcc.php";
                             return rep;
                         },
                         "className": 'text-center',
+                        width: '8%'
                     },
                 ],
                 "order": [[8, 'desc']],
                 "deferRender": true,  //For speed
                 initComplete: function (settings, json) {
-                    $('#example thead th').removeClass('pe-5');
+                    $('#example thead th').removeClass('pe-4');
                 },
                 "lengthMenu": [[20, 50, 100, -1], [20, 50, 100, "All"]],
                 "language": {
@@ -208,19 +170,19 @@ include "../../../includes/valAcc.php";
         </div>
     </div>
     <div class="tabla-100">
-        <table id="example" class="formatoDatos table table-sm table-striped formatoDatos">
+        <table id="example" class="formatoDatos5 table table-sm table-striped">
             <thead>
             <tr>
-                <th class="width1"></th>
-                <th class="width2 text-center">Cliente</th>
-                <th class="width3 text-center">NIT</th>
-                <th class="width4 text-center">Contacto</th>
-                <th class="width5 text-center">Cargo</th>
-                <th class="width6 text-center">Teléfono</th>
-                <th class="width7 text-center">Celular</th>
-                <th class="width8 text-center">Dirección</th>
-                <th class="width9 text-center">Total adeucado</th>
-                <th class="width10 text-center">Total adeucado</th>
+                <th class=""></th>
+                <th class="text-center">Cliente</th>
+                <th class="text-center">NIT</th>
+                <th class="text-center">Contacto</th>
+                <th class="text-center">Cargo</th>
+                <th class="text-center">Teléfono</th>
+                <th class="text-center">Celular</th>
+                <th class="text-center">Dirección</th>
+                <th class="text-center">Total adeucado</th>
+                <th class="text-center">Total adeucado</th>
             </tr>
             </thead>
         </table>

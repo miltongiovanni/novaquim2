@@ -31,26 +31,26 @@ foreach ($_POST as $nombre_campo => $valor) {
 <?php
 $datos = array($cobro, $fechaRecCaja, $descuento_f, $form_pago, $reten, $idCheque, $codBanco, $reten_ica, $idRecCaja);
 $recCajaOperador = new RecCajaOperaciones();
-$facturaOperador =  new FacturasOperaciones();
+$facturaOperador = new FacturasOperaciones();
 $recibo = $recCajaOperador->getRecCaja($idRecCaja);
 $abono = $recCajaOperador->getCobrosAnterioresFactura($recibo['idFactura'], $idRecCaja);
-$abono = $abono==null ? 0 : $abono;
+$abono = $abono == null ? 0 : $abono;
 if (round($recibo['totalR'] - $recibo['retencionFte'] - $recibo['retencionIca'] - $recibo['retencionIva'] - $abono - $cobro) < 0) {
-    $ruta = "recibo_caja.php";
+    $ruta = "../recibo-caja/";
     $mensaje = "El pago sobrepasa el valor de la factura";
     $icon = "warning";
     mover_pag($ruta, $mensaje, $icon);
 } else {
     try {
         $recCajaOperador->updateRecCaja($datos);
-        if (abs($recibo['totalR'] - $recibo['retencionFte'] - $recibo['retencionIca'] - $recibo['retencionIva'] - $abono - $cobro) < 100) {
+        if (abs($recibo['totalR'] - $recibo['retencionFte'] - $recibo['retencionIca'] - $recibo['retencionIva'] - $abono - $cobro) < 1000) {
             $facturaOperador->cancelarFactura($fechaRecCaja, $recibo['idFactura']);
         }
-        $ruta = "recibo_caja.php";
+        $ruta = "../recibo-caja/";
         $mensaje = "Recibo de caja actualizado correctamente";
         $icon = "success";
     } catch (Exception $e) {
-        $ruta = "recibo_caja.php";
+        $ruta = "../recibo-caja/";
         $mensaje = "Error al actualizar el recibo de caja";
         $icon = "error";
     } finally {

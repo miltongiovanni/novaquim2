@@ -1,6 +1,6 @@
 <?php
 session_start();
-require '../includes/fpdf.php';
+require '../../../includes/fpdf.php';
 
 function cargarClases($classname)
 {
@@ -36,7 +36,8 @@ for($i=0; $i<count($facturas); $i++)
 	$pdf->Cell(45,3.5,iconv('UTF-8', 'windows-1252', $facturas[$i]['dirCliente']), 1,0,'L');
 	$pdf->Cell(33,3.5,iconv('UTF-8', 'windows-1252', $facturas[$i]['contactoCliente']), 1,0,'L');
 	$pdf->Cell(13,3.5,$facturas[$i]['telCliente'], 1,0,'C');
-	$pdf->Cell(17,3.5,$facturas[$i]['celCliente'], 1,0,'C');
+	$celCliente = $facturas[$i]['celCliente'] ?? '';
+	$pdf->Cell(17,3.5,$celCliente, 1,0,'C');
 	$pdf->Cell(17,3.5,'$ '.$facturas[$i]['saldo'], 1,0,'R');
 	$pdf->Cell(15,3.5,'', 1,0,'R');
 	$pdf->Cell(15,3.5,'', 1,0,'R');

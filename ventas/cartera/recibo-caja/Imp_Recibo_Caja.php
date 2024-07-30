@@ -1,7 +1,7 @@
 <?php
 session_start();
-include "../includes/num_letra.php";
-require('../includes/fpdf.php');
+include "../../../includes/num_letra.php";
+require('../../../includes/fpdf.php');
 
 $idRecCaja = $_POST['idRecCaja'];
 function cargarClases($classname)
@@ -16,7 +16,7 @@ $pdf = new FPDF('P', 'mm', 'Letter');
 $pdf->AliasNbPages();
 $pdf->AddPage();
 $pdf->SetMargins(10, 10, 10);
-$pdf->Image('../images/LogoNova1.jpg', 20, 14, 44, 22);
+$pdf->Image('../../../images/LogoNova1.jpg', 20, 14, 44, 22);
 
 $pdf->SetFont('Arial', 'B', 12);
 $pdf->SetXY(70, 20);
@@ -167,7 +167,7 @@ $pdf->SetFont('Arial', 'B', 10);
 $pdf->Cell(80, 5, '_________________________________', 0, 0, 'C');
 $pdf->SetXY(120, 115);
 $pdf->Cell(80, 5, 'C.C. / N.I.T. _______________________', 0, 0, 'C');
-$pdf->Image('../images/Cliente.jpg', 201, 70, 3);
+$pdf->Image('../../../images/Cliente.jpg', 201, 70, 3);
 
 
 // ESTA ES LA PARTE DE ABAJO

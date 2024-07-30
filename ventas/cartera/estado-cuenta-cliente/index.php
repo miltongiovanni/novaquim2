@@ -7,7 +7,7 @@ include "../../../includes/valAcc.php";
     <meta charset="utf-8">
     <title>Seleccionar Cliente a Revisar Estado de Cuenta</title>
     <link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
-<script src="../../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../../../js/validar.js"></script>
     <script src="../../../js/jquery-3.3.1.min.js"></script>
     <script src="../../../js/findCliente.js"></script>
@@ -16,10 +16,12 @@ include "../../../includes/valAcc.php";
 <body>
 <div id="contenedor" class="container-fluid">
     <div id="saludo1">
-        <img src="../../../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>SELECCIONAR CLIENTE A REVISAR ESTADO DE CUENTA</h4></div>
+        <img src="../../../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2">
+        <h4>SELECCIONAR CLIENTE A REVISAR ESTADO DE CUENTA</h4>
+    </div>
 
     <?php
-    include "../includes/ventas.php";
+    include "../../../includes/ventas.php";
     $rep = buscarClienteForm("EstadoCuentaClien.php");
     echo $rep;
     ?>

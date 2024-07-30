@@ -6,71 +6,12 @@ include "../../../includes/valAcc.php";
 <head>
     <meta charset="utf-8">
     <title>Facturas por Cobrar</title>
-    <link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="../../../css/datatables.css">
-    <style>
-        #example {
-            table-layout: fixed;
-        }
-
-        .width1 {
-            width: 3%;
-        }
-
-        .width2 {
-            width: 3%;
-        }
-
-        .width3 {
-            width: 6%;
-        }
-
-        .width4 {
-            width: 6%;
-        }
-
-        .width5 {
-            width: 29%;
-        }
-
-        .width6 {
-            width: 13%;
-        }
-
-        .width7 {
-            width: 5%;
-        }
-
-        .width8 {
-            width: 7%;
-        }
-
-        .width9 {
-            width: 7%;
-        }
-
-        .width10 {
-            width: 7%;
-        }
-
-        .width11 {
-            width: 7%;
-        }
-
-        .width12 {
-            width: 7%;
-        }
-
-    </style>
-<script src="../../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
+    <script src="../../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../../../js/validar.js"></script>
     <script src="../../../js/jquery-3.3.1.min.js"></script>
     <script src="../../../js/datatables.js"></script>
-    <script src="../../../js/dataTables.buttons.js"></script>
-    <script src="../../../js/jszip.js"></script>
-    <!--<script src="../js/pdfmake.js"></script>-->  <!--Para exportar PDF-->
-    <!--<script src="../js/vfs_fonts.js"></script>--> <!--Para exportar PDF-->
-    <script src="../../../js/buttons.html5.js"></script>
     <script>
         /* Formatting function for row details - modify as you need */
         function diffDate(fecha) {
@@ -100,59 +41,71 @@ include "../../../includes/valAcc.php";
                             return rep;
                         },
                         "className": 'text-center',
-                        "visible": (perfil == 1 || perfil == 11 ) ? true :  false,
+                        "visible": (perfil == 1 || perfil == 11) ? true : false,
+                        width: '3%'
                     },
                     {
                         "data": "idFactura",
-                        "className": 'text-center'
+                        "className": 'text-center',
+                        width: '3%'
                     },
                     {
                         "data": "fechaFactura",
-                        "className": 'text-center'
+                        "className": 'text-center',
+                        width: '6%'
                     },
                     {
                         "data": "fechaVenc",
-                        "className": 'text-center'
+                        "className": 'text-center',
+                        width: '6%'
                     },
                     {
                         "data": "nomCliente",
-                        "className": 'dt-body-left'
+                        "className": 'dt-body-left',
+                        width: '29%'
                     },
                     {
                         "data": "contactoCliente",
-                        "className": 'dt-body-left'
+                        "className": 'dt-body-left',
+                        width: '13%'
                     },
                     {
                         "data": "telCliente",
-                        "className": 'text-center'
+                        "className": 'text-center',
+                        width: '5%'
                     },
                     {
                         "data": "celCliente",
-                        "className": 'text-center'
+                        "className": 'text-center',
+                        width: '7%'
                     },
                     {
                         "data": "totalRFormat",
-                        "className": 'text-center'
+                        "className": 'dt-body-right pe-4',
+                        width: '7%'
                     },
                     {
                         "data": "TotalFormat",
-                        "className": 'text-center'
+                        "className": 'dt-body-right pe-4',
+                        width: '7%'
                     },
                     {
                         "data": "cobradoFormat",
-                        "className": 'text-center'
+                        "className": 'dt-body-right pe-4',
+                        width: '7%'
                     },
 
                     {
                         "data": "saldo",
-                        "className": 'text-center'
+                        "className": 'dt-body-right pe-4',
+                        width: '7%'
                     },
                 ],
 
                 "order": [[3, 'asc']],
                 "deferRender": true,  //For speed
                 initComplete: function (settings, json) {
-                    $('#example thead th').removeClass('pe-5');
+                    $('#example thead th').removeClass('pe-4');
                 },
                 pagingType: 'simple_numbers',
                 layout: {
@@ -217,21 +170,21 @@ include "../../../includes/valAcc.php";
         </div>
     </div>
     <div class="tabla-100">
-        <table id="example" class="formatoDatos table table-sm table-striped formatoDatos">
+        <table id="example" class="formatoDatos5 table table-sm table-striped">
             <thead>
             <tr>
-                <th class="width1"></th>
-                <th class="width2 text-center">Factura</th>
-                <th class="width3 text-center">Fecha de Factura</th>
-                <th class="width4 text-center">Fecha Venc</th>
-                <th class="width5 text-center">Cliente</th>
-                <th class="width6 text-center">Contacto</th>
-                <th class="width7 text-center">Teléfono</th>
-                <th class="width8 text-center">Celular</th>
-                <th class="width9 text-center">Valor Factura</th>
-                <th class="width10 text-center">Valor a Cobrar</th>
-                <th class="width11 text-center">Valor Cobrado</th>
-                <th class="width12 text-center">Saldo</th>
+                <th class=""></th>
+                <th class="text-center">Factura</th>
+                <th class="text-center">Fecha de Factura</th>
+                <th class="text-center">Fecha Venc</th>
+                <th class="text-center">Cliente</th>
+                <th class="text-center">Contacto</th>
+                <th class="text-center">Teléfono</th>
+                <th class="text-center">Celular</th>
+                <th class="text-center">Valor Factura</th>
+                <th class="text-center">Valor a Cobrar</th>
+                <th class="text-center">Valor Cobrado</th>
+                <th class="text-center">Saldo</th>
             </tr>
             </thead>
         </table>

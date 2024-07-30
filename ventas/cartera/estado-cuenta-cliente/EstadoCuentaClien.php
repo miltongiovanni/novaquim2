@@ -71,13 +71,13 @@ $cliente = $OperadorCliente->getCliente($idCliente);
     </style>
     <script src="../../../js/jquery-3.3.1.min.js"></script>
     <script src="../../../js/datatables.js"></script>
-    
+
 
     <script>
         /* Formatting function for row details - modify as you need */
         function format(d) {
             // `d` is the original data object for the row
-            rep = '<table class="formatoDatos table table-sm table-striped formatoDatos" style="padding-left:50px;width:50%;margin:inherit; background-color: white">' +
+            rep = '<table class="formatoDatos5 table table-sm table-striped" style="padding-left:50px;width:50%;margin:inherit; background-color: white">' +
                 '<thead>' +
                 '<tr>' +
                 '<th class="text-center">Recibo de Caja</th>' +
@@ -108,53 +108,64 @@ $cliente = $OperadorCliente->getCliente($idCliente);
                         "className": 'dt-control',
                         "orderable": false,
                         "data": null,
-                        "defaultContent": ''
+                        "defaultContent": '',
+                        width: '2%'
                     },
                     {
                         "data": "idFactura",
-                        "className": 'text-center'
+                        "className": 'text-center',
+                        width: '8%'
                     },
                     {
                         "data": "fechaFactura",
-                        "className": 'text-center'
+                        "className": 'text-center',
+                        width: '10%'
                     },
                     {
                         "data": "fechaVenc",
-                        "className": 'text-center'
+                        "className": 'text-center',
+                        width: '10%'
                     },
                     {
                         "data": "totalFactura",
-                        "className": 'dt-body-right'
+                        "className": 'dt-body-right pe-4',
+                        width: '10%'
                     },
                     {
                         "data": "totalReal",
-                        "className": 'dt-body-right'
+                        "className": 'dt-body-right pe-4',
+                        width: '10%'
                     },
                     {
                         "data": "abono",
-                        "className": 'dt-body-right'
+                        "className": 'dt-body-right pe-4',
+                        width: '10%'
                     },
                     {
                         "data": "totalNotaC",
-                        "className": 'dt-body-right'
+                        "className": 'dt-body-right pe-4',
+                        width: '10%'
                     },
                     {
                         "data": "Saldo",
-                        "className": 'dt-body-right'
+                        "className": 'dt-body-right pe-4',
+                        width: '10%'
                     },
                     {
                         "data": "fechaCancelacion",
-                        "className": 'text-center'
+                        "className": 'text-center',
+                        width: '10%'
                     },
                     {
                         "data": "estadoFactura",
-                        "className": 'text-center'
+                        "className": 'text-center',
+                        width: '10%'
                     },
                 ],
                 "order": [[1, 'desc']],
                 "deferRender": true,  //For speed
                 initComplete: function (settings, json) {
-                    $('#example thead th').removeClass('pe-5');
+                    $('#example thead th').removeClass('pe-4');
                 },
                 pagingType: 'simple_numbers',
                 layout: {
@@ -219,20 +230,20 @@ $cliente = $OperadorCliente->getCliente($idCliente);
         </div>
     </div>
     <div class="tabla-70">
-        <table id="example" class="formatoDatos table table-sm table-striped formatoDatos">
+        <table id="example" class="formatoDatos5 table table-sm table-striped ">
             <thead>
             <tr>
-                <th class="width1"></th>
-                <th class="width2 text-center">Factura</th>
-                <th class="width3 text-center">Fecha Factura</th>
-                <th class="width4 text-center">Fecha Vencimiento</th>
-                <th class="width5 text-center">Total Factura</th>
-                <th class="width6 text-center">Valor a Cobrar</th>
-                <th class="width7 text-center">Valor cobrado</th>
-                <th class="width8 text-center">Nota crédito</th>
-                <th class="width9 text-center">Saldo Pendiente</th>
-                <th class="width10 text-center">Fecha de Cancelación</th>
-                <th class="width11 text-center">Estado</th>
+                <th class=""></th>
+                <th class="text-center">Factura</th>
+                <th class="text-center">Fecha Factura</th>
+                <th class="text-center">Fecha Vencimiento</th>
+                <th class="text-center">Total Factura</th>
+                <th class="text-center">Valor a Cobrar</th>
+                <th class="text-center">Valor cobrado</th>
+                <th class="text-center">Nota crédito</th>
+                <th class="text-center">Saldo Pendiente</th>
+                <th class="text-center">Fecha de Cancelación</th>
+                <th class="text-center">Estado</th>
             </tr>
             </thead>
         </table>

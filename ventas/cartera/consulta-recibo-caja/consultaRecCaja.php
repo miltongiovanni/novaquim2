@@ -23,14 +23,14 @@ spl_autoload_register('cargarClases');
 $idRecCaja = $_POST['idRecCaja'];
 $recCajaOperador = new RecCajaOperaciones();
 if (!$recCajaOperador->isValidIdRecCaja($idRecCaja)) {
-    $ruta = "buscarRC.php";
+    $ruta = "../consulta-recibo-caja/";
     $mensaje = "El número de recibo de caja no es válido, vuelva a intentar de nuevo";
     $icon = "error";
     mover_pag($ruta, $mensaje, $icon);
     exit;
 } else {
     $_SESSION['idRecCaja'] = $idRecCaja;
-    $ruta = "recibo_caja.php";
+    $ruta = "../recibo-caja/";
     $mensaje = "El número de recibo de caja es válido";
     $icon = "success";
     mover_pag($ruta, $mensaje, $icon);

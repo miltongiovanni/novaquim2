@@ -26,11 +26,11 @@ $recCajaOperador = new RecCajaOperaciones();
 try {
     $idRecCaja = $recCajaOperador->makeRecCaja($idFactura, $idUsuario);
     $_SESSION['idRecCaja'] = $idRecCaja;
-    $ruta = "recibo_caja.php";
+    $ruta = "../recibo-caja/";
     $mensaje = "Recibo de caja creado correctamente";
     $icon = "success";
 } catch (Exception $e) {
-    $ruta = "factXcobrar.php";
+    $ruta = "../general/";
     $mensaje = "Error al crear el recibo de caja";
     $icon = "error";
 } finally {
