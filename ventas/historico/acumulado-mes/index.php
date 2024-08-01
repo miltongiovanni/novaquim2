@@ -63,162 +63,144 @@ array_pop($months);
 <head>
     <title>Consulta de venta acumulada por mes</title>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../css/datatables.css">
     <link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <script src="../../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../../../js/validar.js"></script>
-    <link rel="stylesheet" href="../../../css/datatables.css">
-    <style>
-        /*      table {
-                  table-layout: fixed;
-            }
-      /*
-              .width1 {
-                  width: 23.2%;
-              }
-
-              .width2 {
-                  width: 6.4%;
-              }*/
-
-        table.dataTable.compact thead th, table.dataTable.compact thead td {
-            padding: 2px 15px 2px 2px;
-        }
-
-        table.dataTable.compact tbody th, table.dataTable.compact tbody td {
-            padding: 2px;
-        }
-
-        .chart {
-            width: 100%;
-            height: auto;
-        }
-    </style>
     <script src="../../../js/jquery-3.3.1.min.js"></script>
     <script src="../../../js/datatables.js"></script>
-    
     <script src="../../../node_modules/chart.js/dist/chart.js"></script>
     <script>
-
         $(document).ready(function () {
             let ruta = "../ajax/listaAcumuladoVentas.php";
             $('#example').DataTable({
-                    "columns": [
-                        {
-                            "data": "mesanio",
-                            "className": 'dt-body-center'
+                "columns": [
+                    {
+                        "data": "mesanio",
+                        "className": 'dt-body-center'
+                    },
+                    {
+                        "data": "prod",
+                        "render": $.fn.dataTable.render.number(',', '.', 0, '$'),
+                        "className": 'dt-body-right'
+                    },
+                    {
+                        "data": "dist",
+                        "render": $.fn.dataTable.render.number(',', '.', 0, '$'),
+                        "className": 'dt-body-right'
+                    },
+                    {
+                        "data": "servicio",
+                        "render": $.fn.dataTable.render.number(',', '.', 0, '$'),
+                        "className": 'dt-body-right'
+                    },
+                    {
+                        "data": "total_bruto",
+                        "render": $.fn.dataTable.render.number(',', '.', 0, '$'),
+                        "className": 'dt-body-right'
+                    },
+                    {
+                        "data": "p_productos",
+                        "render": function (data, type, row) {
+                            var p_producto = parseFloat(row.p_productos);
+                            return p_producto.toFixed(1) + ' %';
                         },
-                        {
-                            "data": "prod",
-                            "render": $.fn.dataTable.render.number( ',', '.', 0, '$' ),
-                            "className": 'dt-body-right'
+                        "className": 'dt-body-center'
+                    },
+                    {
+                        "data": "p_distribucion",
+                        "render": function (data, type, row) {
+                            var p_distri = parseFloat(row.p_distribucion);
+                            return p_distri.toFixed(1) + ' %';
                         },
-                        {
-                            "data": "dist",
-                            "render": $.fn.dataTable.render.number( ',', '.', 0, '$' ),
-                            "className": 'dt-body-right'
+                        "className": 'dt-body-center'
+                    },
+                    {
+                        "data": "p_servicio",
+                        "render": function (data, type, row) {
+                            var p_serv = parseFloat(row.p_servicio);
+                            return p_serv.toFixed(1) + ' %';
                         },
-                        {
-                            "data": "servicio",
-                            "render": $.fn.dataTable.render.number( ',', '.', 0, '$' ),
-                            "className": 'dt-body-right'
-                        },
-                        {
-                            "data": "total_bruto",
-                            "render": $.fn.dataTable.render.number( ',', '.', 0, '$' ),
-                            "className": 'dt-body-right'
-                        },
-                        {
-                            "data": "p_productos",
-                            "render": function ( data, type, row ) {
-                                var p_producto = parseFloat(row.p_productos);
-                                return p_producto.toFixed(1) +' %';
-                            },
-                            "className": 'dt-body-center'
-                        },
-                        {
-                            "data": "p_distribucion",
-                            "render": function ( data, type, row ) {
-                                var p_distri = parseFloat(row.p_distribucion);
-                                return p_distri.toFixed(1) +' %';
-                            },
-                            "className": 'dt-body-center'
-                        },
-                        {
-                            "data": "p_servicio",
-                            "render": function ( data, type, row ) {
-                                var p_serv = parseFloat(row.p_servicio);
-                                return p_serv.toFixed(1) +' %';
-                            },
-                            "className": 'dt-body-center'
-                        },
-                        {
-                            "data": "devolucion",
-                            "render": $.fn.dataTable.render.number( ',', '.', 0, '$' ),
-                            "className": 'dt-body-right'
-                        },
-                        {
-                            "data": "total_neto",
-                            "render": $.fn.dataTable.render.number( ',', '.', 0, '$' ),
-                            "className": 'dt-body-right'
-                        },
-                    ],
-                    "columnDefs": [{
-                        "searchable": false,
-                        "orderable": false,
-                        "targets": 1
-                    }],
-                    "dom":
-                        'Blfrtip',
-                    "buttons":
-                        [
-                            'copyHtml5',
-                            'excelHtml5'
-                        ],
-                    "paging":
-                        true,
-                    "ordering":
-                        false,
-                    "info":
-                        true,
-                    "searching":
-                        true,
-                    /*"order":
-                        [[1, 'desc']],*/
-                    "deferRender":
-                        true,  //For speed
-                    "lengthMenu":
-                        [[20, 50, 100, -1], [20, 50, 100, "All"]],
-                    "language":
-                        {
-                            "lengthMenu":
-                                "Mostrando _MENU_ datos por página",
-                            "zeroRecords":
-                                "Lo siento no encontró nada",
-                            "info":
-                                "Mostrando página _PAGE_ de _PAGES_",
-                            "infoEmpty":
-                                "No hay datos disponibles",
-                            "search":
-                                "Búsqueda:",
-                            "paginate":
-                                {
-                                    "first":
-                                        "Primero",
-                                    "last":
-                                        "Último",
-                                    "next":
-                                        "Siguiente",
-                                    "previous":
-                                        "Anterior"
-                                }
-                            ,
-                            "infoFiltered":
-                                "(Filtrado de _MAX_ en total)"
-
+                        "className": 'dt-body-center'
+                    },
+                    {
+                        "data": "devolucion",
+                        "render": $.fn.dataTable.render.number(',', '.', 0, '$'),
+                        "className": 'dt-body-right'
+                    },
+                    {
+                        "data": "total_neto",
+                        "render": $.fn.dataTable.render.number(',', '.', 0, '$'),
+                        "className": 'dt-body-right'
+                    },
+                ],
+                "columnDefs": [{
+                    "searchable": false,
+                    "orderable": false,
+                    "targets": 1
+                }],
+                pagingType: 'simple_numbers',
+                layout: {
+                    topStart: 'buttons',
+                    topStart1: 'search',
+                    topEnd: 'pageLength',
+                    bottomStart: 'info',
+                    bottomEnd: {
+                        paging: {
+                            numbers: 6
                         }
-                    ,
-                    "ajax": ruta
-                })
+                    }
+                },
+                "buttons":
+                    [
+                        'copyHtml5',
+                        'excelHtml5'
+                    ],
+                "paging":
+                    true,
+                "ordering":
+                    false,
+                "info":
+                    true,
+                "searching":
+                    true,
+                /*"order":
+                    [[1, 'desc']],*/
+                "deferRender":
+                    true,  //For speed
+                "lengthMenu":
+                    [[20, 50, 100, -1], [20, 50, 100, "All"]],
+                "language":
+                    {
+                        "lengthMenu":
+                            "Mostrando _MENU_ datos por página",
+                        "zeroRecords":
+                            "Lo siento no encontró nada",
+                        "info":
+                            "Mostrando página _PAGE_ de _PAGES_",
+                        "infoEmpty":
+                            "No hay datos disponibles",
+                        "search":
+                            "Búsqueda:",
+                        "paginate":
+                            {
+                                "first":
+                                    "Primero",
+                                "last":
+                                    "Último",
+                                "next":
+                                    "Siguiente",
+                                "previous":
+                                    "Anterior"
+                            }
+                        ,
+                        "infoFiltered":
+                            "(Filtrado de _MAX_ en total)"
+
+                    }
+                ,
+                "ajax": ruta
+            })
             ;
         });
     </script>
@@ -279,7 +261,7 @@ array_pop($months);
                 },
                 title: {
                     display: false,
-                    text:  'Total acumulado por mes'
+                    text: 'Total acumulado por mes'
                 },
                 animation: {
                     animateScale: true,
@@ -287,7 +269,7 @@ array_pop($months);
                 },
                 tooltips: {
                     callbacks: {
-                        label: function(context) {
+                        label: function (context) {
                             var label = context.dataset.label || '';
 
                             if (label) {
@@ -295,7 +277,7 @@ array_pop($months);
                             }
                             if (context.parsed.y !== null) {
                                 label += '$';
-                                label += new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(context.parsed.y);
+                                label += new Intl.NumberFormat('en-US', {style: 'currency', currency: 'USD'}).format(context.parsed.y);
                             }
                             return label;
                         },

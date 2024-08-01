@@ -8,113 +8,104 @@ $type = $_POST['type'];
 <head>
     <title>Consulta de Venta de Productos por Referencia</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" href="../../../css/datatables.css">
     <link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <script src="../../../js/validar.js"></script>
-    <link rel="stylesheet" href="../../../css/datatables.css">
-    <style>
-        table {
-            table-layout: fixed;
-        }
-
-        .width1 {
-            width: 23.2%;
-        }
-
-        .width2 {
-            width: 6.4%;
-        }
-
-        table.dataTable.compact thead th, table.dataTable.compact thead td {
-            padding: 2px 15px 2px 2px;
-        }
-
-        table.dataTable.compact tbody th, table.dataTable.compact tbody td {
-            padding: 2px;
-        }
-
-        .chart {
-            width: 100%;
-            height: auto;
-        }
-    </style>
     <script src="../../../js/jquery-3.3.1.min.js"></script>
     <script src="../../../js/datatables.js"></script>
-    
     <script src="../../../node_modules/chart.js/dist/chart.js"></script>
     <script>
 
         $(document).ready(function () {
-            let year = <?=$year?>;
-            let type = <?=$type?>;
+            let year = '<?=$year?>';
+            let type = '<?=$type?>';
             let ruta = "../ajax/listaVtasDistrXMes.php?year=" + year;
             $('#example').DataTable({
                 "columns": [
                     {
                         "data": "catDis",
-                        "className": 'dt-body-left'
+                        "className": 'dt-body-left',
+                        width: '23.2%'
                     },
                     {
-                        "data": type == 1 ? "cant_enero" : "sub_enero",
-                        "className": type == 1 ? "dt-body-center" : "dt-body-right"
+                        "data": type === '1' ? "cant_enero" : "sub_enero",
+                        "className": type === '1' ? "dt-body-center" : "dt-body-right",
+                        width: '6.4%'
                     },
                     {
-                        "data": type == 1 ? "cant_febrero" : "sub_febrero",
-                        "className": type == 1 ? 'dt-body-center' : "dt-body-right"
+                        "data": type === '1' ? "cant_febrero" : "sub_febrero",
+                        "className": type === '1' ? 'dt-body-center' : "dt-body-right",
+                        width: '6.4%'
                     },
                     {
-                        "data": type == 1 ? "cant_marzo" : "sub_marzo",
-                        "className": type == 1 ? 'dt-body-center' : "dt-body-right"
+                        "data": type === '1' ? "cant_marzo" : "sub_marzo",
+                        "className": type === '1' ? 'dt-body-center' : "dt-body-right",
+                        width: '6.4%'
                     },
                     {
-                        "data": type == 1 ? "cant_abril" : "sub_abril",
-                        "className": type == 1 ? 'dt-body-center' : "dt-body-right"
+                        "data": type === '1' ? "cant_abril" : "sub_abril",
+                        "className": type === '1' ? 'dt-body-center' : "dt-body-right",
+                        width: '6.4%'
                     },
                     {
-                        "data": type == 1 ? "cant_mayo" : "sub_mayo",
-                        "className": type == 1 ? 'dt-body-center' : "dt-body-right"
+                        "data": type === '1' ? "cant_mayo" : "sub_mayo",
+                        "className": type === '1' ? 'dt-body-center' : "dt-body-right",
+                        width: '6.4%'
                     },
                     {
-                        "data": type == 1 ? "cant_junio" : "sub_junio",
-                        "className": type == 1 ? 'dt-body-center' : "dt-body-right"
+                        "data": type === '1' ? "cant_junio" : "sub_junio",
+                        "className": type === '1' ? 'dt-body-center' : "dt-body-right",
+                        width: '6.4%'
                     },
                     {
-                        "data": type == 1 ? "cant_julio" : "sub_julio",
-                        "className": type == 1 ? 'dt-body-center' : "dt-body-right"
+                        "data": type === '1' ? "cant_julio" : "sub_julio",
+                        "className": type === '1' ? 'dt-body-center' : "dt-body-right",
+                        width: '6.4%'
                     },
                     {
-                        "data": type == 1 ? "cant_agosto" : "sub_agosto",
-                        "className": type == 1 ? 'dt-body-center' : "dt-body-right"
+                        "data": type === '1' ? "cant_agosto" : "sub_agosto",
+                        "className": type === '1' ? 'dt-body-center' : "dt-body-right",
+                        width: '6.4%'
                     },
                     {
-                        "data": type == 1 ? "cant_septiembre" : "sub_septiembre",
-                        "className": type == 1 ? 'dt-body-center' : "dt-body-right"
+                        "data": type === '1' ? "cant_septiembre" : "sub_septiembre",
+                        "className": type === '1' ? 'dt-body-center' : "dt-body-right",
+                        width: '6.4%'
                     },
                     {
-                        "data": type == 1 ? "cant_octubre" : "sub_octubre",
-                        "className": type == 1 ? 'dt-body-center' : "dt-body-right"
+                        "data": type === '1' ? "cant_octubre" : "sub_octubre",
+                        "className": type === '1' ? 'dt-body-center' : "dt-body-right",
+                        width: '6.4%'
                     },
                     {
                         "data":
-                            type == 1 ? "cant_noviembre" : "sub_noviembre",
+                            type === '1' ? "cant_noviembre" : "sub_noviembre",
                         "className":
-                            type == 1 ? 'dt-body-center' : "dt-body-right"
+                            type === '1' ? 'dt-body-center' : "dt-body-right",
+                        width: '6.4%'
                     }
                     ,
                     {
                         "data":
-                            type == 1 ? "cant_diciembre" : "sub_diciembre",
+                            type === '1' ? "cant_diciembre" : "sub_diciembre",
                         "className":
-                            type == 1 ? 'dt-body-center' : "dt-body-right"
+                            type === '1' ? 'dt-body-center' : "dt-body-right",
+                        width: '6.4%'
                     }
                     ,
                 ],
-                /*                "columnDefs": [ {
-                                    "searchable": false,
-                                    "orderable": false,
-                                    "targets": 1
-                                } ],*/
-                "dom":
-                    'Blfrtip',
+                pagingType: 'simple_numbers',
+                layout: {
+                    topStart: 'buttons',
+                    topStart1: 'search',
+                    topEnd: 'pageLength',
+                    bottomStart: 'info',
+                    bottomEnd: {
+                        paging: {
+                            numbers: 6
+                        }
+                    }
+                },
                 "buttons":
                     [
                         'copyHtml5',
@@ -180,11 +171,11 @@ $type = $_POST['type'];
         </div>
     </div>
 
-    <div class="tabla-90">
-        <table id="example" class="formatoDatos table table-sm table-striped formatoDatos5">
+    <div class="tabla-100">
+        <table id="example" class="formatoDatos5 table table-sm table-striped">
             <thead>
             <tr>
-                <th class="width1" rowspan="2">Producto</th>
+                <th class="">Producto</th>
                 <th class="text-center">Enero</th>
                 <th class="text-center">Febrero</th>
                 <th class="text-center">Marzo</th>
@@ -198,21 +189,6 @@ $type = $_POST['type'];
                 <th class="text-center">Noviembre</th>
                 <th class="text-center">Diciembre</th>
             </tr>
-            <tr>
-                <th class="width2 text-center"><?= $type == 1 ? 'Un' : 'Valor' ?></th>
-                <th class="width2 text-center"><?= $type == 1 ? 'Un' : 'Valor' ?></th>
-                <th class="width2 text-center"><?= $type == 1 ? 'Un' : 'Valor' ?></th>
-                <th class="width2 text-center"><?= $type == 1 ? 'Un' : 'Valor' ?></th>
-                <th class="width2 text-center"><?= $type == 1 ? 'Un' : 'Valor' ?></th>
-                <th class="width2 text-center"><?= $type == 1 ? 'Un' : 'Valor' ?></th>
-                <th class="width2 text-center"><?= $type == 1 ? 'Un' : 'Valor' ?></th>
-                <th class="width2 text-center"><?= $type == 1 ? 'Un' : 'Valor' ?></th>
-                <th class="width2 text-center"><?= $type == 1 ? 'Un' : 'Valor' ?></th>
-                <th class="width2 text-center"><?= $type == 1 ? 'Un' : 'Valor' ?></th>
-                <th class="width2 text-center"><?= $type == 1 ? 'Un' : 'Valor' ?></th>
-                <th class="width2 text-center"><?= $type == 1 ? 'Un' : 'Valor' ?></th>
-            </tr>
-
             </thead>
         </table>
     </div>
@@ -224,10 +200,10 @@ $type = $_POST['type'];
     </div>
 
     <script>
-        let year = <?=$year?>;
-        let type = <?=$type?>;
+        let year = '<?=$year?>';
+        let type = '<?=$type?>';
         $.ajax({
-            url: '../includes/controladorVentas.php',
+            url: '../../../includes/controladorVentas.php',
             type: 'POST',
             data: {
                 "action": 'prodDistCantTotalYear',
@@ -258,7 +234,7 @@ $type = $_POST['type'];
                         },
                         title: {
                             display: true,
-                            text: type == 1 ? 'Total unidades año ' + year : 'Total valores año ' + year
+                            text: type === '1' ? 'Total unidades año ' + year : 'Total valores año ' + year
                         },
                         animation: {
                             animateScale: true,
