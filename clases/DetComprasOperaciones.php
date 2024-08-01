@@ -87,7 +87,7 @@ class DetComprasOperaciones
                         LEFT JOIN mprimas mp ON mp.codMPrima=Codigo
                         WHERE idProv=$idProv) dp
                         LEFT JOIN (SELECT codigo from det_compras WHERE idCompra=$idCompra) dc ON dp.Codigo=dc.codigo
-                        WHERE dc.codigo IS NULL
+                        WHERE dc.codigo IS NULL AND dp.Codigo IS NOT NULL
                         ORDER BY dp.Producto";
                 break;
             case 2:
@@ -120,7 +120,7 @@ class DetComprasOperaciones
                         LEFT JOIN distribucion d ON d.idDistribucion=Codigo
                         WHERE idProv=$idProv) dp
                         LEFT JOIN (SELECT codigo from det_compras WHERE idCompra=$idCompra) dc ON dp.Codigo=dc.codigo
-                        WHERE dc.codigo IS NULL ORDER BY Producto";
+                        WHERE dc.codigo IS NULL AND dp.Codigo IS NOT NULL ORDER BY Producto";
                 break;
         }
         $stmt = $this->_pdo->prepare($qry);

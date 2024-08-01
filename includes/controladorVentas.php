@@ -28,14 +28,14 @@ function findCliente()
     $clienteOperador = new ClientesOperaciones();
     $clientes = $clienteOperador->getClientesByName($q);
     if (count($clientes) == 0) {
-        echo '<input type="text" class="form-control col-2" value="No hay sugerencias" readOnly>';
+        echo '<div class="col-4"><input type="text" class="form-control" value="No hay sugerencias" readOnly></div>';
     } else {
         echo '<br>';
-        echo '<select name="idCliente" id="idCliente" class="form-select col-3">';
+        echo '<div class="col-4"><select name="idCliente" id="idCliente" class="form-select">';
         for ($i = 0; $i < count($clientes); $i++) {
             echo '<option value=' . $clientes[$i]['idCliente'] . '>' . $clientes[$i]['nomCliente'] . '</option>';
         }
-        echo '</select>';
+        echo '</select></div>';
     }
 }
 
@@ -47,12 +47,12 @@ function findClientePedido()
     if (count($clientes) == 0) {
         echo '<input type="text" class="form-control col-12" value="No hay sugerencias" readOnly>';
     } else {
-        echo '<select name="idCliente" id="idCliente" class="form-select col-12" onchange="findSucursal(this.value);" required>';
+        echo '<div class="col-12 mb-3"><select name="idCliente" id="idCliente" class="form-select" onchange="findSucursal(this.value);" required>';
         echo '<option value="" selected disabled>Escoja un cliente</option>';
         for ($i = 0; $i < count($clientes); $i++) {
             echo '<option value=' . $clientes[$i]['idCliente'] . '>' . $clientes[$i]['nomCliente'] . '</option>';
         }
-        echo '</select>';
+        echo '</select></div>';
     }
 }
 

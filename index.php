@@ -25,25 +25,20 @@ if(isset($_SESSION['UsuarioAutorizado']) && $_SESSION['UsuarioAutorizado']==true
         <img src="images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25">
         <h4>BIENVENIDO AL SISTEMA DE INFORMACIÓN DE INDUSTRIAS NOVAQUIM S.A.S.</h4>
     </div>
-    <form method="POST" action="administracion/login.php">
-        <div class="form-group row">
-            <div class="col-1 text-end">
-                <label class="col-form-label" for="username">Usuario</label>
-            </div>
-            <div class="col-1">
-                <input type="text" class="form-control" name="username" id="username" maxlength="10" placeholder="Usuario" required
-                       autofocus>
+    <form method="POST" action="login/index.php">
+        <div class="mb-3 row">
+            <div class="col-2">
+                <label class="form-label" for="username">Usuario</label>
+                <input type="text" class="form-control" name="username" id="username" maxlength="10" required autofocus>
             </div>
         </div>
-        <div class="form-group row">
-            <div class="col-1 text-end">
-                <label class="col-form-label" for="password">Contraseña</label>
-            </div>
-            <div class="col-1"><input type="password" class="form-control" name="password" id="password" maxlength="15"
-                                     required placeholder="Contraseña">
+        <div class="mb-3 row">
+            <div class="col-2">
+                <label class="form-label" for="password">Contraseña</label>
+                <input type="password" class="form-control" name="password" id="password" maxlength="15" required >
             </div>
         </div>
-        <div class="form-group row">
+        <div class="mb-3 row">
             <div class="col-1 text-center">
                 <button class="button" type="reset"><span>Reiniciar</span></button>
             </div>

@@ -2,7 +2,7 @@
 function findCliente() {
     let q = document.getElementById("busClien").value;
     $.ajax({
-        url: '../includes/controladorVentas.php',
+        url: '../../../../includes/controladorVentas.php',
         type: 'POST',
         data: {
             "action": 'findCliente',
@@ -20,7 +20,7 @@ function findCliente() {
 function findClientePedido() {
     let q = document.getElementById("busClien").value;
     $.ajax({
-        url: '../includes/controladorVentas.php',
+        url: '../../../../includes/controladorVentas.php',
         type: 'POST',
         data: {
             "action": 'findClientePedido',
@@ -38,7 +38,7 @@ function findClientePedido() {
 function findClienteParaFacturar() {
     let q = document.getElementById("busClien").value;
     $.ajax({
-        url: '../includes/controladorVentas.php',
+        url: '../../../../includes/controladorVentas.php',
         type: 'POST',
         data: {
             "action": 'findClienteParaFacturar',
@@ -56,7 +56,7 @@ function findClienteParaFacturar() {
 function findClienteCotizacion() {
     let q = document.getElementById("busClien").value;
     $.ajax({
-        url: '../includes/controladorVentas.php',
+        url: '../../../../includes/controladorVentas.php',
         type: 'POST',
         data: {
             "action": 'findClienteCotizacion',
@@ -75,7 +75,7 @@ function findClienteCotizacion() {
 function findClienteNotaCr() {
     let q = document.getElementById("busClien").value;
     $.ajax({
-        url: '../includes/controladorVentas.php',
+        url: '../../../../includes/controladorVentas.php',
         type: 'POST',
         data: {
             "action": 'findClienteNotaC',

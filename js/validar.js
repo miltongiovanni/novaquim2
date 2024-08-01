@@ -9,29 +9,32 @@ function Longitud(form) {
 
 //Envia solicitando confirmación
 function Enviar(form) {
+    var mailformat = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
     for (i = 0; i < form.elements.length; i++) {
-        if (form.elements[i].type === "text" || form.elements[i].type === "date" || form.elements[i].type === "select-one" || form.elements[i].type === "password" || form.elements[i].type === "textarea" || form.elements[i].type === "file") {
+        if (form.elements[i].type === "text" || form.elements[i].type === "email" || form.elements[i].type === "date" || form.elements[i].type === "select-one" || form.elements[i].type === "password" || form.elements[i].type === "textarea" || form.elements[i].type === "file") {
             if (form.elements[i].value === "" && form.elements[i].required) {
-                if ((form.elements[i].type === "text" || form.elements[i].type === "date" || form.elements[i].type === "password" || form.elements[i].type === "textarea") && form.elements[i].required) {
+                if ((form.elements[i].type === "text" || form.elements[i].type === "email" || form.elements[i].type === "date" || form.elements[i].type === "password" || form.elements[i].type === "textarea") && form.elements[i].required) {
                     //alert("Este campo es requerido");
                     alerta('Este campo es requerido', 'warning', '', form.elements[i]);
                     //form.elements[i].focus();
                     return false;
-                }
-                else if (form.elements[i].type === "file"){
+                } else if (form.elements[i].type === "file") {
                     alerta('Tiene que seleccionar un archivo', 'warning', '', form.elements[i]);
                     //form.elements[i].focus();
                     return false;
-                }
-                else {
+                } else {
                     if (form.elements[i].required) {
-                        //alert("Por favor selecione un valor para el campo");
-                        alerta('Por favor selecione un valor para el campo', 'warning', '', form.elements[i]);
-                        //form.elements[i].autofocus();
+                        let mensaje_error = form.elements[i].dataset.error ?? 'Por favor selecione un valor para el campo';
+                        alerta(mensaje_error, 'warning', '', form.elements[i]);
                         return false;
                     }
 
                 }
+            } else if (form.elements[i].type === "email" && !(form.elements[i].value.match(mailformat))) {
+
+                alerta('Correo electrónico no válido', 'warning', '', form.elements[i]);
+                //form.elements[i].focus();
+                return false;
             } // form
         }
     }
@@ -42,6 +45,41 @@ function Enviar(form) {
         form.submit();
     } else
         return false;*/
+}
+
+//Envia solicitando confirmación
+function Validar(form) {
+    var mailformat = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
+    for (i = 0; i < form.elements.length; i++) {
+        if (form.elements[i].type === "text" || form.elements[i].type === "email" || form.elements[i].type === "date" || form.elements[i].type === "select-one" || form.elements[i].type === "password" || form.elements[i].type === "textarea" || form.elements[i].type === "file") {
+            if (form.elements[i].value === "" && form.elements[i].required) {
+                if ((form.elements[i].type === "text" || form.elements[i].type === "email" || form.elements[i].type === "date" || form.elements[i].type === "password" || form.elements[i].type === "textarea") && form.elements[i].required) {
+                    //alert("Este campo es requerido");
+                    alerta('Este campo es requerido', 'warning', '', form.elements[i]);
+                    //form.elements[i].focus();
+                    return false;
+                } else if (form.elements[i].type === "file") {
+                    alerta('Tiene que seleccionar un archivo', 'warning', '', form.elements[i]);
+                    //form.elements[i].focus();
+                    return false;
+                } else {
+                    if (form.elements[i].required) {
+                        let mensaje_error = form.elements[i].dataset.error ?? 'Por favor selecione un valor para el campo';
+                        alerta(mensaje_error, 'warning', '', form.elements[i]);
+                        return false;
+                    }
+
+                }
+            } else if (form.elements[i].type === "email" && !(form.elements[i].value.match(mailformat))) {
+
+                alerta('Correo electrónico no válido', 'warning', '', form.elements[i]);
+                //form.elements[i].focus();
+                return false;
+            } // form
+        }
+    }
+
+    return true;
 }
 
 function alerta(text, icon, ruta, formElement) {

@@ -11,16 +11,16 @@ function cargarClases($classname)
 
 spl_autoload_register('cargarClases');
 //Busca el valor del perfil
-$perfilOperador = new PerfilesOperaciones();
-$perfiles = $perfilOperador->getPerfiles();
-
-for ($i = 0; $i < count($perfiles); $i++) {
-    $idPerfil = $perfiles[$i]['idPerfil'];
-    if ($idPerfil == $perfil1) {
-        $perfil = $idPerfil;
-        break;
-    }
-}
+//$perfilOperador = new PerfilesOperaciones();
+//$perfiles = $perfilOperador->getPerfiles();
+//
+//for ($i = 0; $i < count($perfiles); $i++) {
+//    $idPerfil = $perfiles[$i]['idPerfil'];
+//    if ($idPerfil == $perfil1) {
+//        $perfil = $idPerfil;
+//        break;
+//    }
+//}
 //echo "perfil1 ".$perfil1;
 //echo "perfil ".$perfil;
 
@@ -42,7 +42,7 @@ for ($i = 0; $i < count($perfiles); $i++) {
     <?php
 
     $menum = new MenusOperaciones();
-    $menuItems = $menum->getMenuItemsPerfil($perfil);
+    $menuItems = $menum->getMenuItemsPerfil($perfil1);
     //print_r($menuItems);
     //echo count($menuItems);
 
@@ -84,8 +84,8 @@ for ($i = 0; $i < count($perfiles); $i++) {
 
     getMenuSons(0, $menuItems);
     ?>
-    <div id="saludo2" class="form-group row" style="align-items: center;">
-        <div class="col-1"><img src="images/LogoNova.jpg"></div>
+    <div id="saludo2" class="mb-3 row" style="align-items: center;">
+        <div class="col-1"><img src="images/LogoNova.jpg" alt="logo Nova"></div>
         <div class="col-11 text-center">
             <?php
             $idUsuario = isset($_SESSION['userId']) ? $_SESSION['userId'] : '';
@@ -96,7 +96,7 @@ for ($i = 0; $i < count($perfiles); $i++) {
             ?> está usando el Sistema de Información de Industrias Novaquim S.A.S.
         </div>
     </div>
-    <div class="form-group row" style="justify-content: flex-start">
+    <div class="mb-3 row justify-content-start">
         <?php
         if ($perfil1 == 1):
             ?>

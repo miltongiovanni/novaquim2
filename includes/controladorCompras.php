@@ -28,14 +28,14 @@ function findProveedor()
     $ProveedorOperador = new ProveedoresOperaciones();
     $proveedores = $ProveedorOperador->getProveedoresByName($q);
     if (count($proveedores) == 0) {
-        echo '<input type="text" class="form-control col-2" value="No hay sugerencias" readOnly>';
+        echo '<div class="col-4"><input type="text" class="form-control col-2" value="No hay sugerencias" readOnly></div>';
     } else {
         echo '<br>';
-        echo '<select name="idProv" id="idProv" class="form-select col-3">';
+        echo '<div class="col-4"><select name="idProv" id="idProv" class="form-select ">';
         for ($i = 0; $i < count($proveedores); $i++) {
             echo '<option value=' . $proveedores[$i]['idProv'] . '>' . $proveedores[$i]['nomProv'] . '</option>';
         }
-        echo '</select>';
+        echo '</select></div>';
     }
 }
 

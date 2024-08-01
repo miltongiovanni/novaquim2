@@ -241,7 +241,7 @@ class RemisionesOperaciones
 
     public function updateTotalRemision($idRemision)
     {
-        $qry = "UPDATE remision1, (SELECT SUM(cantProducto*precioProducto) total FROM det_remision1 WHERE idRemision=$idRemision) t SET valor = t.total  WHERE idRemision=$idRemision";
+        $qry = "UPDATE remision1, (SELECT SUM(cantProducto*precioProducto) total FROM det_remision1 WHERE idRemision=$idRemision) t SET valor = t.total  WHERE idRemision=$idRemision AND t.total > 0";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();
     }

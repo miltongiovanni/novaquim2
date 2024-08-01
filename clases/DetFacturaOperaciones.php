@@ -238,6 +238,7 @@ class DetFacturaOperaciones
                        LEFT JOIN cat_dis cd on cd.idCatDis = d.idCatDis
               WHERE df.codProducto > 100000
                 AND YEAR(fechaFactura) = $year
+                AND d.idDistribucion IS NOT NULL
               GROUP BY mes, idCatDis) t
         GROUP BY t.idCatDis, t.catDis";
         $stmt = $this->_pdo->prepare($qry);
@@ -286,6 +287,7 @@ class DetFacturaOperaciones
                      LEFT JOIN cat_dis cd on cd.idCatDis = d.idCatDis
             WHERE df.codProducto > 100000
               AND YEAR(fechaFactura) = $year
+                AND d.idDistribucion IS NOT NULL
               AND c.codVendedor = $codVendedor
             GROUP BY mes, idCatDis) t
                     GROUP BY t.idCatDis, t.catDis";
