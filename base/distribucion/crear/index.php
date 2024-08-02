@@ -67,8 +67,7 @@ spl_autoload_register('cargarClases');
             </div>
             <div class="col-3">
                 <label class="form-label " for="producto"><strong>Producto</strong></label>
-                <input type="text" class="form-control " name="producto" id="producto"
-                       onkeydown="return aceptaLetra(event)" maxlength="50" required>
+                <input type="text" class="form-control " name="producto" id="producto" maxlength="50" required>
             </div>
         </div>
 </div>

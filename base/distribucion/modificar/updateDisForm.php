@@ -32,7 +32,7 @@ $productoDistribucion = $ProductoDistribucionOperador->getProductoDistribucion($
             </div>
             <div class="col-3">
                 <label class="form-label " for="producto"><strong>Producto</strong></label>
-                <input type="text" class="form-control" name="producto" id="producto" value="<?= ($productoDistribucion['producto']) ?>" onkeydown="return aceptaLetra(event)" maxlength="50">
+                <input type="text" class="form-control" name="producto" id="producto" value="<?= ($productoDistribucion['producto']) ?>"  maxlength="50">
             </div>
             <div class="col-2">
                 <label class="form-label " for="catDis"><strong>Categoría</strong></label>
