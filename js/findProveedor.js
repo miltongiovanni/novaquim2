@@ -1,7 +1,7 @@
 function findProveedor(idCatProd) {
     let q = document.getElementById("busProv").value;
     $.ajax({
-        url: '../../../../includes/controladorCompras.php',
+        url: '../../../includes/controladorCompras.php',
         type: 'POST',
         data: {
             "action": 'findProveedor',
