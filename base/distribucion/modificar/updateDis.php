@@ -37,11 +37,11 @@ var_dump('');
 echo '</div>';
 try {
     $ProductoDistribucionOperador->updateProductoDistribucion($datos);
-    $ruta = "/base/distribucion/lista";
+    $ruta = "../lista/";
     $mensaje = "Producto de Distribución actualizado correctamente";
     $icon = "success";
 } catch (Exception $e) {
-    $ruta = "/base/distribucion/modificar";
+    $ruta = "../modificar/";
     $mensaje = "Error al actualizar el Producto de Distribución";
     $icon = "error";
 } finally {

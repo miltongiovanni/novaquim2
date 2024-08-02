@@ -37,11 +37,11 @@ $ProductoDistribucionOperador = new ProductosDistribucionOperaciones();
 
 try {
     $lastCodProductoDistribucion = $ProductoDistribucionOperador->makeProductoDistribucion($datos);
-    $ruta = "/base/distribucion/lista";
+    $ruta = "../lista/";
     $mensaje = "Producto de Distribución creado correctamente";
     $icon = "success";
 } catch (Exception $e) {
-    $ruta = "/base/distribucion/crear";
+    $ruta = "../crear/";
     $mensaje = "Error al crear el Producto de Distribución";
     $icon = "error";
 } finally {
