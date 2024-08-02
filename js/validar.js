@@ -206,7 +206,8 @@ function valida_texto(texto) {
 function aceptaLetra(evt) {
     //var key = nav4 ? evt.which : evt.keyCode;
     var key = evt.which || evt.keyCode;
-    return (key <= 13 || (key >= 65 && key <= 90) || (key >= 97 && key <= 122) || (key === 32) || (key === 180) || (key === 193) || (key === 201) || (key === 205) || (key === 209) || (key === 211) || (key === 218) || (key === 220) || (key === 225) || (key === 233) || (key === 237) || (key === 241) || (key === 243) || (key === 250) || (key === 252));
+    console.log(key);
+    return (key <= 13 || (key >= 65 && key <= 90) || (key >= 97 && key <= 122) || (key === 32) || (key === 192) || (key === 180) || (key === 193) || (key === 201) || (key === 205) || (key === 209) || (key === 211) || (key === 218) || (key === 220) || (key === 225) || (key === 233) || (key === 237) || (key === 241) || (key === 243) || (key === 250) || (key === 252));
 }
 
 function fecha() {
