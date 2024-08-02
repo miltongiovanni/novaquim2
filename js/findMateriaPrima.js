@@ -2,7 +2,7 @@
 function findMateriaPrima() {
     let q = document.getElementById("busMPrima").value;
     $.ajax({
-        url: '../../../../../includes/controladorProduccion.php',
+        url: '../../../includes/controladorProduccion.php',
         type: 'POST',
         data: {
             "action": 'findMateriaPrimaCalidad',
@@ -22,7 +22,7 @@ function findMateriaPrima() {
 function findLoteMPrima(codMPrima) {
     console.log(codMPrima);
     $.ajax({
-        url: '../../../../../includes/controladorProduccion.php',
+        url: '../../../includes/controladorProduccion.php',
         type: 'POST',
         data: {
             "action": 'findLoteByMPrima',
