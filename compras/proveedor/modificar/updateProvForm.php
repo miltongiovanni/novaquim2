@@ -227,7 +227,7 @@ $proveedor = $ProveedorOperador->getProveedor($idProv);
     </form>
     <div class="row">
         <div class="col-3">
-            <button class="button" type="button" onClick="window.location='/compras/proveedor/detalle'">
+            <button class="button" type="button" onClick="window.location='../detalle/'">
                 <span>Adicionar o cambiar productos</span></button>
         </div>
     </div>

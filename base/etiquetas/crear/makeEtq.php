@@ -36,11 +36,11 @@ $datos = array($codEtiqueta, $nomEtiqueta,  $stockEtiqueta, $codIva );
 
 try {
 	$lastCodEtiqueta=$EtiquetaOperador->makeEtiqueta($datos);
-	$ruta = "/base/etiquetas/lista";
+	$ruta = "../lista/";
 	$mensaje =  "Etiqueta creada correctamente";
 	$icon = "success";
 } catch (Exception $e) {
-	$ruta = "/base/etiquetas/crear";
+	$ruta = "../crear/";
 	$mensaje = "Error al crear la etiqueta";
 	$icon = "error";
 } finally {

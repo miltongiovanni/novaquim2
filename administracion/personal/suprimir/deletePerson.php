@@ -24,12 +24,12 @@ $personalOperador = new PersonalOperaciones();
 
 try {
     $personalOperador->deletePersonal($idPersonal);
-    $ruta = "/administracion/personal/lista";
+    $ruta = "../lista/";
     $mensaje = "Personal borrado correctamente";
     $icon = 'success';
 
 } catch (Exception $e) {
-    $ruta = "/administracion/personal/suprimir";
+    $ruta = "../suprimir/";
     $mensaje = "Error al borrar al personal";
     $icon = 'error';
 } finally {

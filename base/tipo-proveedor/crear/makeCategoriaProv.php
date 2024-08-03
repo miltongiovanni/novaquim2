@@ -31,12 +31,12 @@ $datos = array($idCatProv, $desCatProv);
 $catsProvOperador = new CategoriasProvOperaciones();
 try {
     $lastCatClien = $catsProvOperador->makeCatProv($datos);
-    $ruta = "/base/tipo-proveedor/lista";
+    $ruta = "../lista/";
     $mensaje = "Categoría de proveedor creada correctamente";
     $icon = "success";
 
 } catch (Exception $e) {
-    $ruta = "/base/tipo-proveedor/crear";
+    $ruta = "../crear/";
     $mensaje = "Error al crear la categoría de proveedor";
     $icon = "error";
 } finally {

@@ -24,12 +24,12 @@ $ProductoDistribucionOperador = new ProductosDistribucionOperaciones();
 <?php
 try {
     $ProductoDistribucionOperador->deleteProductoDistribucion($idDistribucion);
-    $ruta = "/base/distribucion/lista";
+    $ruta = "../lista/";
     $mensaje = "Producto de Distribución eliminado correctamente";
     $icon = "success";
 
 } catch (Exception $e) {
-    $ruta = "/base/distribucion/suprimir";
+    $ruta = "../suprimir/";
     $mensaje = "No fue permitido eliminar el Producto de Distribución";
     $icon = "error";
 } finally {

@@ -38,12 +38,12 @@ $personalOperador = new PersonalOperaciones();
 
 try {
 	$personalOperador->updatePersonal($datos);
-	$ruta = "/administracion/personal/lista";
+	$ruta = "../lista/";
 	$mensaje =  "Personal Actualizado correctamente";
 	$icon = 'success';
 	
 } catch (Exception $e) {
-	$ruta = "/administracion/personal/modificar";
+	$ruta = "../modificar/";
 	$mensaje = "Error al actualizar al Personal";
 	$icon = 'error';
 } finally {

@@ -44,11 +44,11 @@ $datos = array($producto, $fabrica, $distribuidor, $detal, $mayor, $super, $pres
 
 try {
     $PrecioOperador->updatePrecio($datos);
-    $ruta = "/base/precios/lista";
+    $ruta = "../lista/";
     $mensaje =  "Código genérico actualizado correctamente";
     $icon = "success";
 } catch (Exception $e) {
-    $ruta = "/base/precios/modificar";
+    $ruta = "../modificar/";
     $mensaje = "Error al actualizar el código genérico";
     $icon = "error";
 } finally {

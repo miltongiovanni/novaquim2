@@ -36,11 +36,11 @@ var_dump('');
 echo '</div>';
 try {
     $ProductoDistribucionOperador->activarProductoDistribucion($idDistribucion);
-    $ruta = "/base/distribucion/lista";
+    $ruta = "../lista/";
     $mensaje = "Producto de Distribución activado correctamente";
     $icon = "success";
 } catch (Exception $e) {
-    $ruta = "/base/distribucion/activar";
+    $ruta = "../activar/";
     $mensaje = "Error al activar el Producto de Distribución";
     $icon = "error";
 } finally {

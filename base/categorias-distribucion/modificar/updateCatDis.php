@@ -30,11 +30,11 @@ $catsDisOperador = new CategoriasDisOperaciones();
 
 try {
     $catsDisOperador->updateCatDis($datos);
-    $ruta = "/base/categorias-distribucion/lista";
+    $ruta = "../lista/";
     $mensaje = "Categoría producto de distribución actualizada correctamente";
     $icon = "success";
 } catch (Exception $e) {
-    $ruta = "/base/categorias-distribucion/modificar";
+    $ruta = "../modificar/";
     $mensaje = "Error al actualizar categoría producto de distribución";
     $icon = "error";
 } finally {

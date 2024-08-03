@@ -43,11 +43,11 @@ $MPrimaOperador = new MPrimasOperaciones();
 
 try {
     $MPrimaOperador->updateMPrima($datos);
-    $ruta = "/base/materia-prima/lista";
+    $ruta = "../lista/";
     $mensaje = "Materia prima actualizada correctamente";
     $icon = "success";
 } catch (Exception $e) {
-    $ruta = "/base/materia-prima/modificar";
+    $ruta = "../modificar/";
     $mensaje = "Error al actualizar la materia prima";
     $icon = "error";
 } finally {

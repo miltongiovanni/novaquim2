@@ -42,11 +42,11 @@ $MPrimaOperador = new MPrimasOperaciones();
 
 try {
 	$lastCodProducto=$MPrimaOperador->makeMPrima($datos);
-	$ruta = "/base/materia-prima/lista";
+	$ruta = "../lista/";
 	$mensaje =  "Materia prima creada correctamente";
 	$icon = "success";
 } catch (Exception $e) {
-	$ruta = "/base/materia-prima/crear";
+	$ruta = "../crear/";
 	$mensaje = "Error al crear la materia prima";
 	$icon = "error";
 } finally {

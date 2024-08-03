@@ -29,11 +29,11 @@ $PrecioOperador = new PreciosOperaciones();
 
 try {
 	$PrecioOperador->deletePrecio($codigoGen);
-	$ruta = "/base/precios/lista";
+	$ruta = "../lista/";
 	$mensaje =  "Código genérico eliminado correctamente";
 	$icon = "success";
 } catch (Exception $e) {
-	$ruta = "/base/precios/suprimir";
+	$ruta = "../suprimir/";
 	$mensaje = "Error al eliminar el código genérico";
     $icon = "error";
 } finally {

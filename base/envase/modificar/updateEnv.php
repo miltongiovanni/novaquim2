@@ -36,11 +36,11 @@ $EnvaseOperador = new EnvasesOperaciones();
 $datos = array($nomEnvase, $stockEnvase, $codIva, $codEnvase);
 try {
 	$EnvaseOperador->updateEnvase($datos);
-	$ruta = "/base/envase/lista";
+	$ruta = "../lista/";
 	$mensaje =  "Envase actualzado correctamente";
 	$icon = "success";
 } catch (Exception $e) {
-	$ruta = "/base/envase/modificar";
+	$ruta = "../modificar/";
 	$mensaje = "Error al actualizar el envase";
 	$icon = "success";
 } finally {

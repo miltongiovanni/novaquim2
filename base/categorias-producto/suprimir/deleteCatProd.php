@@ -27,12 +27,12 @@ $idCatProd = $_POST['idCatProd'];
 $catsProdOperador = new CategoriasProdOperaciones();
 try {
     $catsProdOperador->deleteCatProd($idCatProd);
-    $ruta = "/base/categorias-producto/lista";
+    $ruta = "../lista/";
     $mensaje = "Categoría de producto eliminada correctamente";
     $icon="success";
 
 } catch (Exception $e) {
-    $ruta = "/base/categorias-producto/suprimir";
+    $ruta = "../suprimir/";
     $mensaje = "Error al eliminar la categoría de producto";
     $icon="error";
 } finally {

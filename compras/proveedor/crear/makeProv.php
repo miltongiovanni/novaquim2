@@ -37,19 +37,19 @@ try {
     $nitExist = $ProveedorOperador->checkNit($nitProv);
     if (isset($nitExist['idProv']) && $nitExist['idProv'] != null) {
         $_SESSION['idProv'] = $nitExist['idProv'];
-        $ruta = "/compras/proveedor/modificar";
+        $ruta = "../modificar/";
         $mensaje = "Proveedor existente";
         $icon = "warning";
         mover_pag($ruta, $mensaje, $icon);
     } else {
         $lastIdProv = $ProveedorOperador->makeProveedor($datos);
         $_SESSION['idProv'] = $lastIdProv;
-        $ruta = "/compras/proveedor/detalle";
+        $ruta = "../detalle/";
         $mensaje = "Proveedor creado con éxito";
         $icon = "success";
     }
 } catch (Exception $e) {
-    $ruta = "/compras/proveedor/crear";
+    $ruta = "../crear/";
     $mensaje = "Error al crear el Proveedor";
     $icon = "error";
 } finally {

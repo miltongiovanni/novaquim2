@@ -35,12 +35,12 @@ $relEnvDisOperador = new RelEnvDisOperaciones();
 
 try {
     $relEnvDisOperador->updateRelEnvDis($datos);
-    $ruta = "/base/envase-distribucion/lista";
+    $ruta = "../lista/";
     $mensaje = "Relación Envase Producto de Distribución actualizada correctamente";
     $icon = "success";
 
 } catch (Exception $e) {
-    $ruta = "/base/envase-distribucion/modificar";
+    $ruta = "../modificar/";
     $mensaje = "Error al actualizar la relación Envase Producto de Distribución";
     $icon = "error";
 } finally {

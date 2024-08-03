@@ -34,19 +34,19 @@ try {
     $relDis = $relEnvDisoperador->checkDistribucion($idDis);
     if ($relDis && $relDis['idEnvDis'] != null) {
         $_SESSION['idEnvDis'] = $relDis['idEnvDis'];
-        $ruta = "/base/envase-distribucion/lista";
+        $ruta = "../crear/";
         $mensaje = "Relación existente";
         $icon = "warning";
     } else {
         $lastCodRelEnvDis = $relEnvDisoperador->makeRelEnvDis($datos);
-        $ruta = "/base/envase-distribucion/crear";
+        $ruta = "../lista/";
         $mensaje = "Relación creada con Éxito";
         $icon = "success";
     }
 
 
 } catch (Exception $e) {
-    $ruta = "envaseDis.php";
+    $ruta = "../crear/";
     $mensaje = "Error al crear la relación";
     $icon = "error";
 } finally {

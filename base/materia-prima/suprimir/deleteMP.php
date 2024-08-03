@@ -27,11 +27,11 @@ $codMPrima = $_POST['codMPrima'];
 $MPrimaOperador = new MPrimasOperaciones();
 try {
 	$MPrimaOperador->deleteMPrima($codMPrima);
-	$ruta = "/base/materia-prima/lista";
+	$ruta = "../lista/";
 	$mensaje =  "Materia prima eliminada correctamente";
 	$icon = "success";
 } catch (Exception $e) {
-	$ruta = "/base/materia-prima/suprimir";
+	$ruta = "../suprimir/";
 	$mensaje = "Error al eliminar la materia prima";
     $icon = "error";
 } finally {

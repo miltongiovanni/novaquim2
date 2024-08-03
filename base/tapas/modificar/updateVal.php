@@ -37,11 +37,11 @@ $TapaOperador = new TapasOperaciones();
 $datos = array($tapa, $stockTapa, $codIva, $codTapa);
 try {
 	$TapaOperador->updateTapa($datos);
-	$ruta = "/base/tapas/lista";
+	$ruta = "../lista/";
 	$mensaje =  "Tapa o válvula actualzada correctamente";
 	$icon = "success";
 } catch (Exception $e) {
-	$ruta = "/base/tapas/modificar";
+	$ruta = "../modificar/";
 	$mensaje = "Error al actualizar la tapa o válvula";
 	$icon = "error";
 } finally {

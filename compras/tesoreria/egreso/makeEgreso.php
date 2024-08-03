@@ -46,7 +46,7 @@ try {
         $icon = "success";
     }
 } catch (Exception $e) {
-    $ruta = "../facturas-por-pagar";
+    $ruta = "../facturas-por-pagar/";
     $mensaje = "Error al crear el comprobante de egreso";
     $icon = "error";
 } finally {

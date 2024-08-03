@@ -39,7 +39,7 @@ $ConfNewPass= strtoupper ($confPass);
 $longPass=strlen($newPass);
 if(($newPass=='123456')||($newPass==$nombre)||($newPass!=$ConfNewPass)||($longPass<6))
 {
-	$ruta = "/administracion/usuario/clave/asignarClave.php";
+	$ruta = "../asignar-clave/";
 	$mensaje = "Password inadecuado, Recuerde utilizar una longitud mayor a 6 caracteres";
 	mover_pag($ruta, $mensaje, 'error');
 
@@ -51,13 +51,13 @@ else
 	$result1=$usuarioOperador->changeClave($newPass, $fec, $usuario1);
 	if($result1)
 	{
-		$ruta = "/administracion/usuario/lista";
+		$ruta = "../lista/";
 		$mensaje = "Asignación Exitosa";
 		mover_pag($ruta, $mensaje, 'success');
 	}
 	else
 	{
-		$ruta = "/administracion/usuario/clave/asignarClave.php";
+		$ruta = "../asignar-clave/";
 		$mensaje = "Error al asignar la clave";
 		mover_pag($ruta, $mensaje, 'error');
 	}

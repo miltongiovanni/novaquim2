@@ -24,7 +24,7 @@ $idCatProv = $_POST['idCatProv'];
 $catsProvOperador = new CategoriasProvOperaciones();
 try {
     $catsProvOperador->deleteCatProv($idCatProv);
-    $ruta = "/base/tipo-proveedor/lista";
+    $ruta = "../lista/";
     $mensaje = "Categoría de proveedor eliminada correctamente";
     $icon = "success";
 } catch (Exception $e) {

@@ -24,11 +24,11 @@ $idCatClien = $_POST['idCatClien'];
 $catsCliOperador = new CategoriasCliOperaciones();
 try {
     $catsCliOperador->deleteCatCli($idCatClien);
-    $ruta = "/base/tipo-cliente/lista";
+    $ruta = "../lista/";
     $mensaje = "Categoría de cliente eliminada correctamente";
     $icon = "success";
 } catch (Exception $e) {
-    $ruta = "/base/tipo-cliente/suprimir";
+    $ruta = "../suprimir/";
     $mensaje = "Error al eliminar la categoría de cliente";
     $icon = "error";
 } finally {

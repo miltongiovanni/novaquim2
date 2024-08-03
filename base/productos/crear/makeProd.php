@@ -40,11 +40,11 @@ $ProductoOperador = new ProductosOperaciones();
 
 try {
 	$lastCodProducto=$ProductoOperador->makeProducto($datos);
-	$ruta = "/base/productos/lista";
+	$ruta = "../lista/";
 	$mensaje =  "Producto creado correctamente";
 	$icon = "success";
 } catch (Exception $e) {
-	$ruta = "/base/productos/crear";
+	$ruta = "../crear/";
 	$mensaje = "Error al crear el producto";
     $icon = "error";
 } finally {

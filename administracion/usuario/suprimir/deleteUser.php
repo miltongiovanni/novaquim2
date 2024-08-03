@@ -28,11 +28,11 @@ spl_autoload_register('cargarClases');
 
 	try {
 		$usuarioOperador->deleteUser($idUsuario);
-		$ruta = "/administracion/usuario/lista";
+		$ruta = "../lista/";
 		$mensaje =  "Usuario borrado correctamente";
 		$icon= "success";
 	} catch (Exception $e) {
-		$ruta = "/administracion/usuario/suprimir";
+		$ruta = "../suprimir/";
 		$mensaje = "Error al borrar al usuario";
 		$icon = "error";
 	} finally {

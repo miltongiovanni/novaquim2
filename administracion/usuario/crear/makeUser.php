@@ -43,11 +43,11 @@ $usuarioOperador = new UsuariosOperaciones();
 
 try {
     $lastIdUser = $usuarioOperador->makeUser($datos);
-    $ruta = "/administracion/usuario/lista";
+    $ruta = "../lista/";
     $mensaje = "Usuario Creado correctamente";
     $icon = 'success';
 } catch (Exception $e) {
-    $ruta = "/administracion/usuario/crear";
+    $ruta = "../crear/";
     $mensaje = "Error al crear el usuario";
     $icon = 'error';
 } finally {

@@ -37,11 +37,11 @@ $EtiquetaOperador = new EtiquetasOperaciones();
 $datos = array($nomEtiqueta, $stockEtiqueta, $codIva, $codEtiqueta);
 try {
 	$EtiquetaOperador->updateEtiqueta($datos);
-	$ruta = "/base/etiquetas/lista";
+	$ruta = "../lista/";
 	$mensaje =  "Etiqueta actualzada correctamente";
 	$icon = "success";
 } catch (Exception $e) {
-	$ruta = "/base/etiquetas/modificar";
+	$ruta = "../modificar/";
 	$mensaje = "Error al actualizar la etiqueta";
 	$icon = "error";
 } finally {

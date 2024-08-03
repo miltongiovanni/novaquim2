@@ -29,11 +29,11 @@ $TapaOperador = new TapasOperaciones();
 
 try {
     $TapaOperador->deleteTapa($codTapa);
-    $ruta = "/base/tapas/lista";
+    $ruta = "../lista/";
     $mensaje = "Tapa o válvula eliminada correctamente";
     $icon = "success";
 } catch (Exception $e) {
-    $ruta = "/base/tapas/suprimir";
+    $ruta = "../suprimir/";
     $mensaje = "Error al eliminar la tapa o válvula";
     $icon = "error";
 } finally {

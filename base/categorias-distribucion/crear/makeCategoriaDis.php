@@ -35,11 +35,11 @@ $catsDisOperador = new CategoriasDisOperaciones();
 
 try {
 	$lastCatDis=$catsDisOperador->makeCatDis($datos);
-	$ruta = "/base/categorias-distribucion/lista";
+	$ruta = "../lista/";
 	$mensaje =  "Categoría de producto creada correctamente";
 	$icon = "success";
 } catch (Exception $e) {
-	$ruta = "/base/categorias-distribucion/crear";
+	$ruta = "../crear/";
 	$mensaje = "Error al crear la categoría de producto";
 	$icon = "error";
 } finally {

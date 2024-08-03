@@ -37,11 +37,11 @@ $PresentacionOperador = new PresentacionesOperaciones();
 
 try {
     $PresentacionOperador->updatePresentacion($datos);
-    $ruta = "/base/presentaciones/lista";
+    $ruta = "../lista/";
     $mensaje = "Presentación actualizada correctamente";
     $icon = "success";
 } catch (Exception $e) {
-    $ruta = "/base/presentaciones/modificar";
+    $ruta = "../modificar/";
     $mensaje = "Error al actualizar la presentación";
     $icon = "error";
 } finally {

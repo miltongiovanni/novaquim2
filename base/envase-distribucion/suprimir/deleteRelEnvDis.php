@@ -24,11 +24,11 @@ $relEnvDisOperador = new RelEnvDisOperaciones();
 <?php
 try {
     $relEnvDisOperador->deleteRelEnvDis($idEnvDis);
-    $ruta = "/base/envase-distribucion/lista";
+    $ruta = "../lista/";
     $mensaje = "Relación Envase Producto de Distribución eliminada correctamente";
     $icon = "success";
 } catch (Exception $e) {
-    $ruta = "/base/envase-distribucion/suprimir";
+    $ruta = "../suprimir/";
     $mensaje = "No fue permitido eliminar la relación Envase Producto de Distribución";
     $icon = "error";
 } finally {

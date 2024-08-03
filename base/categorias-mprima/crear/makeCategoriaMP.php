@@ -37,11 +37,11 @@ $catsMPOperador = new CategoriasMPOperaciones();
 
 try {
 	$lastCatMP=$catsMPOperador->makeCatMP($datos);
-	$ruta = "/base/categorias-mprima/lista";
+	$ruta = "../lista/";
 	$mensaje =  "Categoría de materia prima creada correctamente";
 	$icon="success";
 } catch (Exception $e) {
-	$ruta = "/base/categorias-mprima/crear";
+	$ruta = "../crear/";
 	$mensaje = "Error al crear la categoría de materia prima";
 	$icon="error";
 } finally {

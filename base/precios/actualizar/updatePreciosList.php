@@ -52,7 +52,7 @@ try {
         $datos = array($precios[$i][2], $precios[$i][3], $precios[$i][4], $precios[$i][5], $precios[$i][6], $precios[$i][0]);
         $preciosOperador->updateListaPrecio($datos);
     }
-    $ruta = "/base/precios/lista";
+    $ruta = "../lista/";
     $mensaje = "Lista de precios actualizada correctamente";
     $icon = "success";
 } catch (Exception $e) {

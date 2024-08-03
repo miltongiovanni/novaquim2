@@ -40,11 +40,11 @@ $usuarioOperador = new UsuariosOperaciones();
 
 try {
     $usuarioOperador->updateUser($datos);
-    $ruta = "/administracion/usuario/lista";
+    $ruta = "../lista/";
     $mensaje = "Usuario Actualizado correctamente";
     $icon = 'success';
 } catch (Exception $e) {
-    $ruta = "/administracion/usuario/modificar";
+    $ruta = "../modificar/";
     $mensaje = "Error al actualizar al usuario";
     $icon = 'error';
 } finally {

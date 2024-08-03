@@ -96,7 +96,7 @@ if (!$usuario) {//si existen datos pero la clave esta errada
                 mover_pag($ruta, $usuario['nombre'] . " bienvenid@ al Sistema de Información de Industrias Novaquim S.A.S.", 'success');
             } else {
 
-                $ruta = "../administracion/usuario/cambiar-clave";
+                $ruta = "../administracion/usuario/cambiar-clave/";
                 $mensaje = "Su último cambio fue hace mas de 90 días, por favor cambie su contraseña";
                 //$mensaje=utf8_encode($mensaje);
                 $datos = array(0, $usuario['idUsuario']);
@@ -114,7 +114,7 @@ if (!$usuario) {//si existen datos pero la clave esta errada
             mover_pag($ruta, $mensaje, 'warning');
         }
     } else {//Primer ingreso
-        $ruta = "cambio.php";
+        $ruta = "../administracion/usuario/cambiar-clave/";
         $mensaje = "Primer Ingreso cambie su contraseña";
         $mensaje = utf8_encode($mensaje);
         $_SESSION['UsuarioAutorizado'] = true;

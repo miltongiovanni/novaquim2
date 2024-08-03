@@ -36,12 +36,12 @@ $servicioperador = new ServiciosOperaciones();
 
 try {
 	$servicioperador->updateServicio($datos);
-	$ruta = "/base/servicios/lista";
+	$ruta = "../lista/";
 	$mensaje = "Servicio actualizado correctamente";
     $icon = "success";
 
 } catch (Exception $e) {
-	$ruta = "/base/servicios/modificar";
+	$ruta = "../modificar/";
 	$mensaje = "Error al actualizar el Servicio";
     $icon = "error";
 } finally {

@@ -35,12 +35,12 @@ $relDisEmpOperador = new RelDisEmpOperaciones();
 <?php
 try {
     $relDisEmpOperador->updateRelDisEmp($datos);
-    $ruta = "/base/paca-producto/lista";
+    $ruta = "../lista/";
     $mensaje = "Relación paca unidad producto de distribución actualizada correctamente";
     $icon = "success";
 
 } catch (Exception $e) {
-    $ruta = "/base/paca-producto/modificar";
+    $ruta = "../modificar/";
     $mensaje = "Error al actualizar la relación paca unidad producto de distribución";
     $icon = "error";
 } finally {

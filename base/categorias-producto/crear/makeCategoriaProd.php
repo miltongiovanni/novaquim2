@@ -34,11 +34,11 @@ $catsProdOperador = new CategoriasProdOperaciones();
 
 try {
 	$lastCatProd=$catsProdOperador->makeCatProd($datos);
-	$ruta = "/base/categorias-producto/lista";
+	$ruta = "../lista/";
 	$mensaje =  "Categoría de producto creada correctamente";
 	$icon="success";
 } catch (Exception $e) {
-	$ruta = "/base/categorias-producto/crear";
+	$ruta = "../crear/";
 	$mensaje = "Error al crear la categoría de producto";
 	$icon="error";
 } finally {

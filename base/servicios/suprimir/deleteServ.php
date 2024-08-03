@@ -25,12 +25,12 @@ $servicioperador = new ServiciosOperaciones();
 <?php
 try {
     $servicioperador->deleteServicio($idServicio);
-    $ruta = "/base/servicios/lista";
+    $ruta = "../lista/";
     $mensaje = "Servicio eliminado correctamente";
     $icon = "success";
 
 } catch (Exception $e) {
-    $ruta = "/base/servicios/suprimir";
+    $ruta = "../suprimir/";
     $mensaje = "No fue permitido eliminar el Servicio";
     $icon = "error";
 } finally {

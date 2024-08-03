@@ -28,11 +28,11 @@ $ProductoOperador = new ProductosOperaciones();
 
 try {
     $ProductoOperador->deleteProducto($codProducto);
-    $ruta = "/base/productos/lista";
+    $ruta = "../lista/";
     $mensaje = "Producto eliminado correctamente";
     $icon = "success";
 } catch (Exception $e) {
-    $ruta = "/base/productos/suprimir";
+    $ruta = "../suprimir/";
     $mensaje = "No fue permitido eliminar el Producto";
     $icon = "error";
 } finally {
