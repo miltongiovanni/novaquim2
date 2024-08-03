@@ -48,7 +48,7 @@ if($row)
 		$longPass=strlen($newPass);
         if(($newPass=='123456')||($newPass==$antPass)||($newPass==$username)||($newPass!=$confnewPass)||($longPass<6))
         {
-			$ruta = "/administracion/usuario/clave/cambiarClave.php";
+			$ruta = "../cambiar-clave/";
 			$mensaje = "Password inadecuado, Recuerde utilizar una longitud mayor a 6 caracteres";
 			mover_pag($ruta, $mensaje, 'error');
 		}
@@ -59,7 +59,7 @@ if($row)
 			$result1=$usuarioOperador->changeClave($newPass, $fec, $username);
 			if($result1)
 			{
-				$ruta = "/administracion/usuario/lista";
+				$ruta = "../lista/";
 				$mensaje = "Cambio Exitoso";
 				mover_pag($ruta, $mensaje, 'success');
 			}
@@ -67,7 +67,7 @@ if($row)
 			{
 				$username=$_POST['username'];
 				$id=$row['idUsuario'];
-				$ruta = "/administracion/usuario/clave/cambiarClave.php";
+				$ruta = "../cambiar-clave/";
 				$mensaje = "Error al cambiar la clave";
 				mover_pag($ruta, $mensaje, 'error');
 			}
@@ -75,7 +75,7 @@ if($row)
 }
 else
 {
-	$ruta = "/administracion/usuario/clave/cambiarClave.php";
+	$ruta = "../cambiar-clave/";
 	$mensaje = "Los datos no corresponden";
 	mover_pag($ruta, $mensaje, 'error');
 }

@@ -52,11 +52,11 @@ $datos = array($codigo, $producto, $fabrica, $distribuidor, $detal, $mayor, $sup
 
 try {
     $lastCodPrecio = $PrecioOperador->makePrecio($datos);
-    $ruta = "/base/precios/lista";
+    $ruta = "../lista/";
     $mensaje = "Precio creado correctamente";
     $icon = "success";
 } catch (Exception $e) {
-    $ruta = "/base/precios/crear";
+    $ruta = "../crear/";
     $mensaje = "Error al crear el precio";
     $icon = "error";
 } finally {

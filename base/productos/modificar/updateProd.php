@@ -37,11 +37,11 @@ $ProductoOperador = new ProductosOperaciones();
 
 try {
     $ProductoOperador->updateProducto($datos);
-    $ruta = "/base/productos/lista";
+    $ruta = "../lista/";
     $mensaje = "Producto actualizado correctamente";
     $icon = "success";
 } catch (Exception $e) {
-    $ruta = "/base/productos/modificar";
+    $ruta = "../modificar/";
     $mensaje = "Error al actualizar el producto";
     $icon = "success";
 } finally {

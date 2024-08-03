@@ -28,11 +28,11 @@ $EnvaseOperador = new EnvasesOperaciones();
 
 try {
     $EnvaseOperador->deleteEnvase($codEnvase);
-    $ruta = "/base/envase/lista";
+    $ruta = "../lista/";
     $mensaje = "Envase eliminado correctamente";
     $icon = "success";
 } catch (Exception $e) {
-    $ruta = "/base/envase/suprimir";
+    $ruta = "../suprimir/";
     $mensaje = "Error al eliminar el envase";
     $icon = "error";
 } finally {

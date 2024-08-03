@@ -27,11 +27,11 @@ $catsCliOperador = new CategoriasCliOperaciones();
 <?php
 try {
     $catsCliOperador->updateCatCli($datos);
-    $ruta = "/base/tipo-cliente/lista";
+    $ruta = "../lista/";
     $mensaje = "Categoría de cliente actualizada correctamente";
     $icon = "success";
 } catch (Exception $e) {
-    $ruta = "/base/tipo-cliente/modificar";
+    $ruta = "../modificar/";
     $mensaje = "Error al actualizar la categoría de cliente";
     $icon = "error";
 } finally {

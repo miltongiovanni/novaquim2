@@ -26,11 +26,11 @@ $PresentacionOperador = new PresentacionesOperaciones();
 <?php
 try {
     $PresentacionOperador->deletePresentacion($codPresentacion);
-    $ruta = "/base/presentaciones/lista";
+    $ruta = "../lista/";
     $mensaje = "Presentación eliminada correctamente";
     $icon = "success";
 } catch (Exception $e) {
-    $ruta = "/base/presentaciones/suprimir";
+    $ruta = "../suprimir/";
     $mensaje = "Error al eliminar la presentación";
     $icon = "error";
 } finally {

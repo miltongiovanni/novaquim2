@@ -24,11 +24,11 @@ $EtiquetaOperador = new EtiquetasOperaciones();
 
 try {
     $EtiquetaOperador->deleteEtiqueta($codEtiqueta);
-    $ruta = "/base/etiquetas/lista";
+    $ruta = "../lista/";
     $mensaje = "Etiqueta eliminada correctamente";
     $icon = "success";
 } catch (Exception $e) {
-    $ruta = "/base/etiquetas/suprimir";
+    $ruta = "../suprimir/";
     $mensaje = "Error al eliminar la etiqueta";
     $icon = "error";
 } finally {

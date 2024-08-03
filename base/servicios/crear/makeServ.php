@@ -34,11 +34,11 @@ $servicioperador = new ServiciosOperaciones();
 
 try {
     $lastCodServicio = $servicioperador->makeServicio($datos);
-    $ruta = "/base/servicios/lista";
+    $ruta = "../lista/";
     $mensaje = "Servicio creado correctamente";
     $icon = "success";
 } catch (Exception $e) {
-    $ruta = "/base/servicios/crear";
+    $ruta = "../crear/";
     $mensaje = "Error al crear el Servicio";
     $icon = "error";
 } finally {

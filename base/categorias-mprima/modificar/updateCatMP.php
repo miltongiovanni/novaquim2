@@ -28,11 +28,11 @@ $catsMPOperador = new CategoriasMPOperaciones();
 
 try {
     $catsMPOperador->updateCatMP($datos);
-    $ruta = "/base/categorias-mprima/lista";
+    $ruta = "../lista/";
     $mensaje = "Categoría de materia prima actualizada correctamente";
 	$icon = "success";
 } catch (Exception $e) {
-    $ruta = "/base/categorias-mprima/modificar";
+    $ruta = "../modificar/";
     $mensaje = "Error al actualizar la categoría de materia prima";
     $icon = "error";
 } finally {

@@ -34,11 +34,11 @@ $ProveedorOperador = new ProveedoresOperaciones();
 
 try {
     $ProveedorOperador->updateProveedor($datos);
-    $ruta = "listarProv.php";
+    $ruta = "../lista/";
     $mensaje = "Proveedor actualizado correctamente";
     $icon = "success";
 } catch (Exception $e) {
-    $ruta = "buscarProv.php";
+    $ruta = "../modificar/";
     $mensaje = "Error al actualizar el proveedor";
     $icon = "error";
 } finally {

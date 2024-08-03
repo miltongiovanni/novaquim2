@@ -26,11 +26,11 @@ $idCatDis = $_POST['idCatDis'];
 $catsDisOperador = new CategoriasDisOperaciones();
 try {
     $catsDisOperador->deleteCatDis($idCatDis);
-    $ruta = "/base/categorias-distribucion/lista";
+    $ruta = "../lista/";
     $mensaje = "Categoría producto de distribución eliminada correctamente";
     $icon = "success";
 } catch (Exception $e) {
-    $ruta = "/base/categorias-distribucion/suprimir";
+    $ruta = "../suprimir/";
     $mensaje = "Error al eliminar categoría producto de distribución";
     $icon = "error";
 } finally {

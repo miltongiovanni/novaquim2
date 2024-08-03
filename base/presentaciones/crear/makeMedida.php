@@ -39,11 +39,11 @@ if ($valida == 0) {
     $datos = array($codPresentacion, $presentacion, $codProducto, $codMedida, $codEnvase, $codTapa, $codEtiq, $codigoGen, $stockPresentacion, 3, $cotiza, 1, $codSiigo);
     try {
         $lastcodPresentacion = $PresentacionOperador->makePresentacion($datos);
-        $ruta = "/base/presentaciones/lista";
+        $ruta = "../lista/";
         $mensaje = "Presentación creada correctamente";
         $icon = "success";
     } catch (Exception $e) {
-        $ruta = "/base/presentaciones/crear";
+        $ruta = "../crear/";
         $mensaje = "Error al crear la presentación";
         $icon = "error";
     } finally {
@@ -53,7 +53,7 @@ if ($valida == 0) {
     }
 
 } else {
-    $ruta = "crearMedida.php";
+    $ruta = "../crear/";
     $mensaje = "Código de Presentación existente";
     $icon = "info";
     mover_pag($ruta, $mensaje, $icon);

@@ -19,7 +19,7 @@ if (isset($_POST['idProv'])) {
     $datos = array($idProv, $Codigo);
     $DetProveedorOperador->makeDetProveedor($datos);
     unset($_POST['idProv']);
-    header('Location: /compras/proveedor/detalle/');
+    header('Location: ../detalle//');
 }
 if (isset($_SESSION['idProv'])) {
     $idProv = $_SESSION['idProv'];

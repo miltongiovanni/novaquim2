@@ -36,11 +36,11 @@ $datos = array($codTapa, $tapa,  $stockTapa, $codIva );
 
 try {
 	$lastCodTapa=$TapaOperador->makeTapa($datos);
-	$ruta = "/base/tapas/lista";
+	$ruta = "../lista/";
 	$mensaje =  "Tapa creada correctamente";
 	$icon = "success";
 } catch (Exception $e) {
-	$ruta = "/base/tapas/crear";
+	$ruta = "../crear/";
 	$mensaje = "Error al crear la tapa";
     $icon = "error";
 } finally {

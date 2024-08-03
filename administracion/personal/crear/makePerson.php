@@ -38,12 +38,12 @@ $personalOperador = new PersonalOperaciones();
 
 try {
     $lastIdPersonal = $personalOperador->makePersonal($datos);
-    $ruta = "/administracion/personal/lista";
+    $ruta = "../lista/";
     $mensaje = "Personal Creado correctamente";
     $icon = 'success';
 
 } catch (Exception $e) {
-    $ruta = "/administracion/personal/crear";
+    $ruta = "../crear/";
     $mensaje = "Error al crear el personal";
     $icon = 'error';
 } finally {

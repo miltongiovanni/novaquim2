@@ -38,11 +38,11 @@ $PresentacionOperador = new PresentacionesOperaciones();
 
 try {
     $PresentacionOperador->activarDesactivarPresentacion($datos);
-    $ruta = "/base/presentaciones/lista";
+    $ruta = "../lista/";
     $mensaje = "Presentación activada correctamente";
     $icon = "success";
 } catch (Exception $e) {
-    $ruta = "/base/presentaciones/activar";
+    $ruta = "../activar/";
     $mensaje = "Error al activar la presentación";
     $icon = "error";
 } finally {

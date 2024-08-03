@@ -30,11 +30,11 @@ $DetProveedorOperador = new DetProveedoresOperaciones();
 $datos = array($idProv, $Codigo);
 try {
     $DetProveedorOperador->deleteDetProveedor($datos);
-    $ruta = "/compras/proveedor/detalle";
+    $ruta = "../detalle/";
     $mensaje = "Detalle proveedor eliminado correctamente";
     $icon = "success";
 } catch (Exception $e) {
-    $ruta = "/compras/proveedor/detalle";
+    $ruta = "../detalle/";
     $mensaje = "Error al eliminar el detalle del proveedor";
     $icon = "error";
 } finally {

@@ -31,11 +31,11 @@ $datos = array($idCatClien, $desCatClien);
 $catsCliOperador = new CategoriasCliOperaciones();
 try {
     $lastCatClien = $catsCliOperador->makeCatCli($datos);
-    $ruta = "/base/tipo-cliente/lista";
+    $ruta = "../lista/";
     $mensaje = "Categoría de cliente creada correctamente";
     $icon = "success";
 } catch (Exception $e) {
-    $ruta = "/base/tipo-cliente/crear";
+    $ruta = "../crear/";
     $mensaje = "Error al crear la categoría de cliente";
     $icon = "error";
 } finally {

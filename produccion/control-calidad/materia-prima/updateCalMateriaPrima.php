@@ -41,7 +41,7 @@ try {
 	$mensaje = "Control de calidad modificado correctamente";
 	$icon = "success";
 } catch (Exception $e) {
-	$ruta = "buscar_lote3.php";
+	$ruta = "../materia-prima/";
 	$mensaje = "Error al modificar el control de calidad";
 	$icon = "error";
 } finally {

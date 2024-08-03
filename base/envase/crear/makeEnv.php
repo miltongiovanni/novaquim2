@@ -37,11 +37,11 @@ $datos = array($codEnvase, $nomEnvase,  $stockEnvase, $codIva );
 
 try {
 	$lastCodEnvase=$EnvaseOperador->makeEnvase($datos);
-	$ruta = "/base/envase/lista";
+	$ruta = "../lista/";
 	$mensaje =  "Envase creado correctamente";
 	$icon = "success";
 } catch (Exception $e) {
-	$ruta = "/base/envase/crear";
+	$ruta = "../crear/";
 	$mensaje = "Error al crear el envase";
 	$icon = "success";
 } finally {

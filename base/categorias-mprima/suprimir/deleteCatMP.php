@@ -26,11 +26,11 @@ $idCatMP = $_POST['idCatMP'];
 $catsMPOperador = new CategoriasMPOperaciones();
 try {
     $catsMPOperador->deleteCatMP($idCatMP);
-    $ruta = "/base/categorias-mprima/lista";
+    $ruta = "../lista/";
     $mensaje = "Categoría de materia prima eliminada correctamente";
     $icon = "success";
 } catch (Exception $e) {
-    $ruta = "/base/categorias-mprima/suprimir";
+    $ruta = "../suprimir/";
     $mensaje = "Error al eliminar la categoría de materia prima";
     $icon = "error";
 } finally {

@@ -24,12 +24,12 @@ $relDisEmpOperador = new RelDisEmpOperaciones();
 <?php
 try {
     $relDisEmpOperador->deleteRelDisEmp($idPacUn);
-    $ruta = "/base/paca-producto/lista";
+    $ruta = "../lista/";
     $mensaje = "Relación paca unidad producto de distribución eliminada correctamente";
     $icon = "success";
 
 } catch (Exception $e) {
-    $ruta = "/base/paca-producto/suprimir";
+    $ruta = "../suprimir/";
     $mensaje = "No fue permitido eliminar la relación paca unidad producto de distribución";
     $icon = "error";
 } finally {

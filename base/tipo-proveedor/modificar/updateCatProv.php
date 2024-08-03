@@ -27,12 +27,12 @@ $catsProvOperador = new CategoriasProvOperaciones();
 <?php
 try {
     $catsProvOperador->updateCatProv($datos);
-    $ruta = "/base/tipo-proveedor/lista";
+    $ruta = "../lista/";
     $mensaje = "Categoría de proveedor actualizada correctamente";
     $icon = "success";
 
 } catch (Exception $e) {
-    $ruta = "/base/tipo-proveedor/modificar";
+    $ruta = "../modificar/";
     $mensaje = "Error al actualizar la categoría de proveedor";
     $icon = "error";
 } finally {

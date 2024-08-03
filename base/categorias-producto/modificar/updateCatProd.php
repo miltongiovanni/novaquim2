@@ -30,12 +30,12 @@ $catsProdOperador = new CategoriasProdOperaciones();
 <?php
 try {
     $catsProdOperador->updateCatProd($datos);
-    $ruta = "/base/categorias-producto/lista";
+    $ruta = "../lista/";
     $mensaje = "Categoría de producto actualizada correctamente";
     $icon = "success";
 
 } catch (Exception $e) {
-    $ruta = "/base/categorias-producto/modificar";
+    $ruta = "../modificar/";
     $mensaje = "Error al actualizar la categoría de producto";
     $icon = "error";
 } finally {

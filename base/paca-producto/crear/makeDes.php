@@ -33,16 +33,16 @@ try {
     $relDes = $relDisEmpOperador->checkPaca($codPaca);
     if ($relDes && $relDes['idPacUn'] != null) {
         $_SESSION['idPacUn'] = $relDes['idPacUn'];
-        header('Location: /base/paca-producto/modificar');
+        header('Location: ../modificar/');
     } else {
         $lastCodRelEnvDis = $relDisEmpOperador->makeRelDisEmp($datos);
-        $ruta = "/base/paca-producto/lista";
+        $ruta = "../lista/";
         $mensaje = "Relación creada con Éxito";
         $icon = "success";
     }
 
 } catch (Exception $e) {
-    $ruta = "/base/paca-producto/crear";
+    $ruta = "../crear/";
     $mensaje = "Error al crear la relación";
     $icon = "error";
 } finally {
