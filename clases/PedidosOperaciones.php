@@ -288,7 +288,7 @@ class PedidosOperaciones
                          LEFT JOIN estados_pedidos ep on p.estado = ep.idEstado
                          LEFT JOIN factura f on f.idPedido LIKE CONCAT('%', p.idPedido, '%')
                          LEFT JOIN remision r on p.idPedido = r.idPedido
-                WHERE (p.estado = 3 OR p.estado = 4) AND f.estado !='A'
+                WHERE (p.estado = 3 OR p.estado = 4)
                 ORDER BY idPedido";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();

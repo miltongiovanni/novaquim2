@@ -26,7 +26,7 @@ $ordenes = $manager->getOProdSinEnvasar();
 
 <div class="my-4 row">
     <div class="col-5">
-        <button class="button" type="button" onClick="window.location='../produccion/envasado/crear/index.php'">
+        <button class="button" type="button" onClick="window.location='produccion/envasado/crear/index.php'">
             <span>Ir a envasado</span>
         </button>
     </div>
