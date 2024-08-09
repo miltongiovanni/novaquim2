@@ -7,7 +7,7 @@ function cargarClases($classname)
 
 spl_autoload_register('cargarClases');
 $pedidoOperador = new PedidosOperaciones();
-$pedidos = $pedidoOperador->getPedidosPorEntregarRutero();
+$pedidos = $pedidoOperador->getPedidosPorEntregar();
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -33,15 +33,8 @@ $pedidos = $pedidoOperador->getPedidosPorEntregarRutero();
 <div id="contenedor" class="container-fluid">
     <div id="saludo1">
         <img src="../../../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>LISTA DE ÓRDENES DE PEDIDO
-            LISTAS PARA RUTERO</h4></div>
-    <form name="revision_pedidos" method="post" action="../detalle/index.php">
-        <div class="mb-3 row">
-            <div class="col-2">
-                <label class="form-label" for="fechaRutero"> Fecha rutero</label>
-                <input type="date" class="form-control" required
-                       name="fechaRutero" id="fechaRutero" value="">
-            </div>
-        </div>
+            LISTAS PARA ENTREGAR</h4></div>
+    <form name="entregaPedidos" method="post" action="entregaPedidos.php">
         <div class="row justify-content-between mb-3">
             <div class="col-3 ">
                 <input type="checkbox" id="seleccionar" name="seleccionar"
@@ -50,7 +43,7 @@ $pedidos = $pedidoOperador->getPedidosPorEntregarRutero();
             </div>
             <div class="col-2">
                 <button class="button" type="button" onclick="return Enviar(this.form)">
-                    <span><STRONG>Generar Rutero</STRONG></span></button>
+                    <span><STRONG>Entregar Pedido(s)</STRONG></span></button>
             </div>
         </div>
 
@@ -89,7 +82,7 @@ $pedidos = $pedidoOperador->getPedidosPorEntregarRutero();
         <div class="row mb-3">
             <div class="col-2">
                 <button class="button" type="button" onclick="return Enviar(this.form)">
-                    <span>Generar Rutero</span></button>
+                    <span>Entregar Pedido(s)</span></button>
             </div>
         </div>
     </form>
