@@ -1,5 +1,13 @@
 <?php
 include "../../../includes/valAcc.php";
+function cargarClases($classname)
+{
+    require '../../../clases/' . $classname . '.php';
+}
+
+spl_autoload_register('cargarClases');
+$ruteroOperador = new RuteroOperaciones();
+$lastRutero = $ruteroOperador->getLastRutero();
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -17,7 +25,7 @@ include "../../../includes/valAcc.php";
     <form id="form1" name="form1" method="post" action="consultaRutero.php">
         <div class="mb-3 row">
             <div class="col-2">
-                <label class="form-label" for="idRutero"><strong>No. de Rutero</strong></label>
+                <label class="form-label" for="idRutero"><strong>No. de Rutero</strong><br>(Último rutero: <?=$lastRutero ?> )</label>
                 <input type="text" class="form-control" name="idRutero" id="idRutero" onkeydown="return aceptaNum(event)" required>
             </div>
         </div>

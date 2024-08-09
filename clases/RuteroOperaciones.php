@@ -54,6 +54,15 @@ class RuteroOperaciones
         return $result;
     }
 
+    public function getLastRutero()
+    {
+        $qry = "SELECT MAX(idRutero) ultimo_rutero FROM rutero";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result['ultimo_rutero'];
+    }
+
     public function isValidIdRutero($idRutero)
     {
         $qry = "SELECT * FROM rutero WHERE idRutero=?";
