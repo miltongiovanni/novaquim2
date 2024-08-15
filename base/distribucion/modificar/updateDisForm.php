@@ -81,7 +81,7 @@ $productoDistribucion = $ProductoDistribucionOperador->getProductoDistribucion($
                     <option value="1">Si</option>
                 </select>';
                 } else {
-                    echo '<select name="cotiza" id="cotiza" class="form-control">
+                    echo '<select name="cotiza" id="cotiza" class="form-select">
                     <option value="1" selected>Si</option>
                     <option value="0">No</option>
                 </select>';

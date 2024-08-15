@@ -97,7 +97,7 @@ public function changeClave($Nombre,$Apellido, $usuario, $estadousuario, $fecCre
 }*/
   public function setDb() {
 
-    $this->_pdo=conectar::conexion(); //Almacenamos en _pdo la llamada la clase estática Conectar;
+    $this->_pdo=Conectar::conexion(); //Almacenamos en _pdo la llamada la clase estática Conectar;
 
   }
 }

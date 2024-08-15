@@ -19,7 +19,7 @@ if (isset($_POST['idProv'])) {
     $datos = array($idProv, $Codigo);
     $DetProveedorOperador->makeDetProveedor($datos);
     unset($_POST['idProv']);
-    header('Location: ../detalle//');
+    header('Location: ../detalle/');
 }
 if (isset($_SESSION['idProv'])) {
     $idProv = $_SESSION['idProv'];
@@ -118,7 +118,7 @@ $proveedor = $ProveedorOperador->getProveedor($idProv);
     <div id="saludo1">
         <img src="../../../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>PRODUCTOS OFRECIDOS POR <?= $proveedor['nomProv'] ?></h4></div>
     <?php if ($proveedor['idCatProv'] != 4): ?>
-        <form method="post" action="index.php" name="form1">
+        <form method="post" action="../detalle/" name="form1">
             <input type="hidden" class="form-control col-2" name="idProv" id="idProv" value="<?= $idProv ?>">
             <div class="mb-3 row mt-3">
                 <div class="col-1">
@@ -130,8 +130,8 @@ $proveedor = $ProveedorOperador->getProveedor($idProv);
                     $productos = $DetProveedorOperador->getProdPorCategoria($idProv, $proveedor['idCatProv']);
                     if ($productos) {
                         $filas = count($productos);
-                        echo '<select name="Codigo" id="Codigo" class="form-control "  required>';
-                        echo '<option disabled selected value="">Seleccione una opción-----</option>';
+                        echo '<select name="Codigo" id="Codigo" class="form-select "  required>';
+                        echo '<option disabled selected value="">Seleccione una opción</option>';
                         for ($i = 0; $i < $filas; $i++) {
                             echo '<option value="' . $productos[$i]["Codigo"] . '">' . $productos[$i]['Producto'] . '</option>';
                         }

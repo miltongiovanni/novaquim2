@@ -305,7 +305,7 @@ $distribucionOperador = new ProductosDistribucionOperaciones();
             <div class="row mb-3">
                 <div class="col-3">
                     <strong>Servicios</strong>
-                    <select name="codProducto" id="codProducto" class="form-control">
+                    <select name="codProducto" id="codProducto" class="form-select">
                         <option selected disabled value="">Escoja un servicio</option>
                         <?php
                         $productos = $pedidoOperador->getServicioByIdPedido($idPedido);

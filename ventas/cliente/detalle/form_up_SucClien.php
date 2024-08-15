@@ -47,7 +47,7 @@ $sucursal = $clienteSucursalOperador->getSucursalCliente($idCliente, $idSucursal
                    value="<?= $sucursal['telSucursal'] ?>" onkeydown="return aceptaNum(event)">
             <input type="text" class="form-control col-3 mx-2" name="dirSucursal" id="dirSucursal"
                    value="<?= $sucursal['dirSucursal'] ?>" required>
-            <select name="ciudadSucursal" id="ciudadSucursal" class="form-control col-2 mx-2" required>
+            <select name="ciudadSucursal" id="ciudadSucursal" class="form-select col-2 mx-2" required>
                 <option selected value="<?= $sucursal['idCiudad'] ?>"><?= $sucursal['ciudad'] ?></option>
                 <?php
                 $manager = new CiudadesOperaciones();

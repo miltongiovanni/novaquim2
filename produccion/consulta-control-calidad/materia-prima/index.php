@@ -28,7 +28,7 @@ include "../../../includes/valAcc.php";
             </div>
             <div class="col-3 d-none" id="lote_info">
                 <label class="form-label" for="id_cal_mp"><strong>Lote</strong></label>
-                <select name="id_cal_mp" id="id_cal_mp" class="form-control col-12" required>
+                <select name="id_cal_mp" id="id_cal_mp" class="form-select col-12" required>
                 </select>
             </div>
         </div>
