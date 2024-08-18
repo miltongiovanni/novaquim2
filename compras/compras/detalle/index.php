@@ -259,8 +259,8 @@ $compra = $CompraOperador->getCompra($idCompra, $tipoCompra);
         </div>
     </div>
     <div class="mb-3 row formatoDatos5">
-        <div class="col-2">
-            <strong>Fecha de compra</strong>
+        <div class="col-1">
+            <strong>Fecha compra</strong>
             <div class="bg-blue"><?= $compra['fechComp']; ?></div>
         </div>
         <div class="col-2">
@@ -270,6 +270,10 @@ $compra = $CompraOperador->getCompra($idCompra, $tipoCompra);
         <div class="col-1">
             <strong>Subtotal</strong>
             <div class="bg-blue"><?= $compra['subtotalCompra'] ?></div>
+        </div>
+        <div class="col-1">
+            <strong>Descuento</strong>
+            <div class="bg-blue"><?= $compra['descuentoCompra'] ?></div>
         </div>
         <div class="col-1">
             <strong>Iva </strong>

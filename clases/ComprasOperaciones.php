@@ -19,7 +19,7 @@ class ComprasOperaciones
     public function makeCompra($datos)
     {
         /*Preparo la insercion */
-        $qry = "INSERT INTO compras (idProv, numFact, fechComp, fechVenc, estadoCompra, tipoCompra, idUsuario) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        $qry = "INSERT INTO compras (idProv, numFact, fechComp, fechVenc, estadoCompra, tipoCompra, idUsuario, descuentoCompra) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute($datos);
         return $this->_pdo->lastInsertId();
@@ -109,6 +109,7 @@ class ComprasOperaciones
                        reteicaCompra reteica,
                        reteivaCompra reteiva,
                        CONCAT('$', FORMAT(subtotalCompra, 2))                                 subtotalCompra,
+                       CONCAT('$', FORMAT(descuentoCompra, 2))                                descuentoCompra,
                        CONCAT('$', FORMAT(ivaCompra, 2))                                      ivaCompra,
                        CONCAT('$', FORMAT(totalCompra, 2))                                    totalCompra,
                        CONCAT('$', FORMAT(retefuenteCompra, 2))                               retefuenteCompra,
@@ -128,7 +129,7 @@ class ComprasOperaciones
 
     public function getCompraById($idCompra)
     {
-        $qry = "SELECT idCompra, tipoCompra, compras.idProv, nomProv, numFact, fechComp, fechVenc, estadoCompra, descEstado
+        $qry = "SELECT idCompra, tipoCompra, compras.idProv, nomProv, numFact, fechComp, fechVenc, estadoCompra, descEstado, descuentoCompra
                 FROM compras
                          LEFT JOIN estados e on compras.estadoCompra = e.idEstado
                          LEFT JOIN proveedores p on compras.idProv = p.idProv
@@ -163,7 +164,7 @@ class ComprasOperaciones
 
     public function updateCompra($datos)
     {
-        $qry = "UPDATE compras SET idProv=?, numFact=?, fechComp=?, fechVenc=? WHERE idCompra=?";
+        $qry = "UPDATE compras SET idProv=?, numFact=?, fechComp=?, fechVenc=?, descuentoCompra=? WHERE idCompra=?";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute($datos);
     }
@@ -185,40 +186,57 @@ class ComprasOperaciones
     public function updateTotalesCompra($tipoCompra, $base, $idCompra)
     {
         if ($tipoCompra == 2) {
-            $qry = "UPDATE compras,
-                    (SELECT IF(SUM(precio*cantidad) IS NULL, 0, ROUND(SUM(precio*cantidad),2)) subtotal, 
-                            IF(SUM(precio*cantidad) IS NULL, 0, ROUND(SUM(precio*cantidad*tasaIva),2)) AS iva, 
-                            IF(regProv=1, IF(SUM(precio*cantidad) IS NULL, 0, ROUND((SUM(precio*cantidad)+SUM(precio*cantidad*tasaIva)),2)), IF(SUM(precio*cantidad) IS NULL, 0, ROUND((SUM(precio*cantidad)+SUM(precio*cantidad*tasaIva*0.85)),2))) total,
-                            IF(autoretProv=1, 0, IF( SUM(precio*cantidad) >=$base,ROUND(SUM(precio*cantidad*tasaRetIca/1000),2),0)) AS reteica,
-                            IF(autoretProv=1, 0, IF( SUM(precio*cantidad) >=$base,ROUND(SUM(precio*cantidad*tasaRetefuente),2),0)) AS retefuente,
-                            IF(regProv=2, ROUND(SUM(precio*cantidad*tasaIva)*0.15,2), 0)  AS reteiva
-                           FROM (SELECT dc.idCompra, codigo, cantidad, precio, lote, tasaIva
-                                  FROM det_compras dc
-                                           LEFT JOIN envases e ON e.codEnvase = codigo
-                                           LEFT JOIN tasa_iva ti on e.codIva = ti.idTasaIva
-                                  WHERE dc.idCompra = $idCompra AND codigo < 100
-                                  UNION
-                                  SELECT dc.idCompra, codigo, cantidad, precio, lote, tasaIva
-                                  FROM det_compras dc
-                                           LEFT JOIN tapas_val tv ON tv.codTapa = codigo
-                                           LEFT JOIN tasa_iva ti on tv.codIva = ti.idTasaIva
-                                  WHERE dc.idCompra = $idCompra AND codigo > 100) tb
-                    LEFT JOIN compras c ON tb.idCompra = c.idCompra
-                    LEFT JOIN proveedores p ON c.idProv = p.idProv
-                    LEFT JOIN tasa_reteica tr on p.idTasaIcaProv = tr.idTasaRetIca
-                    LEFT JOIN tasa_retefuente t on p.idRetefuente = t.idTasaRetefuente
-                    WHERE tb.idCompra = $idCompra ) tabla
-                    SET totalCompra=total, subtotalCompra=subtotal, ivaCompra=iva, retefuenteCompra=retefuente, reteicaCompra=reteica, reteivaCompra=reteiva
-                    WHERE idCompra=$idCompra";
+            $qry = "UPDATE compras, (
+                        SELECT IF(subtotal_c = 0, 0 , ROUND((subtotal_c ),2)) subtotal,
+                        IF(iva_c = 0, 0 , ROUND((iva_c - descuentoCompra * tasa_iva_avg ),2)) iva,
+                        IF(subtotal_c = 0, 0 , ROUND((subtotal_c + iva_c - descuentoCompra - descuentoCompra * tasa_iva_avg),2)) total,
+                        IF(autoretProv=1, 0, IF((subtotal_c - descuentoCompra) >=$base, ROUND((subtotal_c - descuentoCompra)*tasaRetIca/1000,2),0)) AS reteica,
+                        IF(autoretProv=1, 0, IF((subtotal_c - descuentoCompra) >=$base, ROUND((subtotal_c - descuentoCompra)*tasaRetefuente,2),0)) AS retefuente,
+                        IF(regProv=2, ROUND((iva_c - descuentoCompra * tasa_iva_avg )*0.15,2), 0) AS reteiva
+                        FROM (
+                        SELECT IF(SUM(precio*cantidad) IS NULL, 0, SUM(precio*cantidad)) subtotal_c, 
+                        c.descuentoCompra,
+                        IF(SUM(precio*cantidad) IS NULL, 0, SUM(precio*cantidad*tasaIva)) AS iva_c, 
+                        SUM(precio*cantidad*tasaIva)/SUM(precio*cantidad) tasa_iva_avg,
+                        tasaRetIca,
+                        autoretProv,
+                        regProv,
+                        tasaRetefuente
+                        FROM (SELECT dc.idCompra, codigo, cantidad, precio, lote, tasaIva
+                         FROM det_compras dc
+                                  LEFT JOIN envases e ON e.codEnvase = codigo
+                                  LEFT JOIN tasa_iva ti on e.codIva = ti.idTasaIva
+                         WHERE dc.idCompra = $idCompra AND codigo < 100
+                         UNION
+                         SELECT dc.idCompra, codigo, cantidad, precio, lote, tasaIva
+                         FROM det_compras dc
+                                  LEFT JOIN tapas_val tv ON tv.codTapa = codigo
+                                  LEFT JOIN tasa_iva ti on tv.codIva = ti.idTasaIva
+                         WHERE dc.idCompra = $idCompra AND codigo > 100) tb
+                        LEFT JOIN compras c ON tb.idCompra = c.idCompra
+                        LEFT JOIN proveedores p ON c.idProv = p.idProv
+                        LEFT JOIN tasa_reteica tr ON p.idTasaIcaProv = tr.idTasaRetIca
+                        LEFT JOIN tasa_retefuente t ON p.idRetefuente = t.idTasaRetefuente
+                        WHERE tb.idCompra = $idCompra) t) tabla SET totalCompra=total, subtotalCompra=subtotal, ivaCompra=iva, retefuenteCompra=retefuente, reteicaCompra=reteica, reteivaCompra=reteiva
+                        WHERE idCompra=$idCompra";
         } else {
-            $qry = "UPDATE compras,
-                    (SELECT IF(SUM(precio*cantidad) IS NULL, 0, ROUND(SUM(precio*cantidad),2)) subtotal, 
-                    IF(SUM(precio*cantidad) IS NULL, 0, ROUND(SUM(precio*cantidad*tasaIva),2)) AS iva, 
-                    IF(SUM(precio*cantidad) IS NULL, 0, ROUND((SUM(precio*cantidad)+SUM(precio*cantidad*tasaIva)),2)) total,
-                    IF(autoretProv=1, 0, IF( SUM(precio*cantidad) >=$base,ROUND(SUM(precio*cantidad*tasaRetIca/1000),2),0)) AS reteica,
-                    IF(autoretProv=1, 0, IF( SUM(precio*cantidad) >=$base,ROUND(SUM(precio*cantidad*tasaRetefuente),2),0)) AS retefuente,
-                    IF(regProv=2, ROUND(SUM(precio*cantidad*tasaIva)*0.15,2), 0)  AS reteiva
-                           FROM det_compras dc
+            $qry = "UPDATE compras, (
+                    SELECT IF(subtotal_c = 0, 0 , ROUND((subtotal_c),2)) subtotal,
+                    IF(iva_c = 0, 0 , ROUND((iva_c - descuentoCompra * tasa_iva_avg ),2)) iva,
+                    IF(subtotal_c = 0, 0 , ROUND((subtotal_c + iva_c - descuentoCompra - descuentoCompra * tasa_iva_avg),2)) total,
+                    IF(autoretProv=1, 0, IF((subtotal_c - descuentoCompra) >=$base, ROUND((subtotal_c - descuentoCompra)*tasaRetIca/1000,2),0)) AS reteica,
+                    IF(autoretProv=1, 0, IF((subtotal_c - descuentoCompra) >=$base, ROUND((subtotal_c - descuentoCompra)*tasaRetefuente,2),0)) AS retefuente,
+                    IF(regProv=2, ROUND((iva_c - descuentoCompra * tasa_iva_avg )*0.15,2), 0) AS reteiva
+                    FROM (
+                    SELECT IF(SUM(precio*cantidad) IS NULL, 0, SUM(precio*cantidad)) subtotal_c, 
+                    c.descuentoCompra,
+                    IF(SUM(precio*cantidad) IS NULL, 0, SUM(precio*cantidad*tasaIva)) AS iva_c, 
+                    AVG(tasaIva) tasa_iva_avg,
+                    tasaRetIca,
+                    autoretProv,
+                    regProv,
+                    tasaRetefuente
+                    FROM det_compras dc
                     LEFT JOIN compras c ON dc.idCompra = c.idCompra
                     LEFT JOIN proveedores p ON c.idProv = p.idProv ";
             switch (intval($tipoCompra)) {
@@ -237,7 +255,7 @@ class ComprasOperaciones
             }
             $qry .= "LEFT JOIN tasa_reteica tr on p.idTasaIcaProv = tr.idTasaRetIca
                     LEFT JOIN tasa_retefuente t on p.idRetefuente = t.idTasaRetefuente
-                    WHERE dc.idCompra = $idCompra) tabla
+                    WHERE dc.idCompra = $idCompra)t ) tabla
                     SET totalCompra=total, subtotalCompra=subtotal, ivaCompra=iva, retefuenteCompra=retefuente, reteicaCompra=reteica, reteivaCompra=reteiva
                     WHERE idCompra=$idCompra";
         }

@@ -56,12 +56,17 @@ if (!$CompraOperador->isValidIdCompra($idCompra)) {
         <form name="form2" method="POST" action="updateCompra.php">
             <input name="tipoCompra" type="hidden" value="<?= $tipoCompra ?>">
             <div class="mb-3 row">
-                <div class="col-2">
+                <div class="col-1">
                     <label class="form-label " for="idCompra"><strong>Id compra</strong></label>
                     <input type="text" class="form-control" name="idCompra" id="idCompra"
                            value="<?= $compra['idCompra'] ?>" readonly>
                 </div>
-                <div class="col-4">
+                <div class="col-2">
+                    <label class="form-label" for="numFact"><strong>No. Factura</strong></label>
+                    <input type="text" class="form-control" name="numFact" id="numFact"
+                           value="<?= $compra['numFact'] ?>" onkeydown="return aceptaNum(event)">
+                </div>
+                <div class="col-3">
                     <label class="form-label" for="busProv"><strong>Proveedor</strong></label>
                     <?php
                     $ProveedorOperador = new ProveedoresOperaciones();
@@ -79,9 +84,9 @@ if (!$CompraOperador->isValidIdCompra($idCompra)) {
             </div>
             <div class="mb-3 row">
                 <div class="col-2">
-                    <label class="form-label" for="numFact"><strong>Número de Factura</strong></label>
-                    <input type="text" class="form-control" name="numFact" id="numFact"
-                           value="<?= $compra['numFact'] ?>" onkeydown="return aceptaNum(event)">
+                    <label class="form-label" for="descuentoCompra"><strong>Descuento</strong></label>
+                    <input type="text" class="form-control" name="descuentoCompra" id="descuentoCompra"
+                           value="<?= $compra['descuentoCompra'] ?>" onkeydown="return aceptaNum(event)">
                 </div>
                 <div class="col-2">
                     <label class="form-label" for="fechComp"><strong>Fecha de compra</strong></label>
