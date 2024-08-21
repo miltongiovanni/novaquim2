@@ -69,28 +69,26 @@ spl_autoload_register('cargarClases');
                 <input type="text" class="form-control " name="nitProv" id="nitProv"
                        onkeydown="return aceptaNum(event)" readOnly>
             </div>
-        </div>
-        <div class="mb-3 row">
-            <div class="col-3">
+            <div class="col-4">
                 <label class="form-label " for="nomProv"><strong>Proveedor</strong></label>
                 <input type="text" class="form-control " name="nomProv" id="nomProv" required>
             </div>
+        </div>
+        <div class="mb-3 row">
             <div class="col-3">
                 <label class="form-label " for="dirProv"><strong>Dirección</strong></label>
                 <input type="text" class="form-control " name="dirProv" id="dirProv" required>
             </div>
-        </div>
-        <div class="mb-3 row">
             <div class="col-2">
                 <label class="form-label " for="telProv"><strong>Teléfono</strong></label>
-                <input type="text" class="form-control " name="telProv" id="telProv"
+                <input type="text" class="form-control " name="telProv" id="telProv" maxlength="10"
                        onkeydown="return aceptaNum(event)" required>
             </div>
             <div class="col-2">
                 <label class="form-label " for="contProv"><strong>Contacto</strong></label>
                 <input type="text" class="form-control " name="contProv" id="contProv" required>
             </div>
-            <div class="col-2">
+            <div class="col-3">
                 <label class="form-label " for="emailProv"><strong>Correo electrónico</strong></label>
                 <input type="email" class="form-control " name="emailProv" id="emailProv" required>
             </div>
@@ -120,18 +118,14 @@ spl_autoload_register('cargarClases');
                 </select>
             </div>
 
-            <div class="col-2">
+            <div class="col-1">
                 <label class="form-label " for="autoretProv"><strong>Autorretenedor</strong></label>
                 <select name="autoretProv" id="autoretProv" class="form-control " required>
                     <option value="0" selected>NO</option>
                     <option value="1">SI</option>
                 </select>
             </div>
-
-
-        </div>
-        <div class="mb-3 row">
-            <div class="col-3">
+            <div class="col-2">
                 <label class="form-label " for="idTasaIcaProv"><strong>Tasa Reteica</strong></label>
                 <?php
                 $manager = new TasaReteIcaOperaciones();

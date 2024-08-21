@@ -1,5 +1,5 @@
 <?php
-include 'config.php';
+include $_SERVER['DOCUMENT_ROOT'].'/includes/config.php';
 
 class Conectar{
     //Creamos un método estático que no necesita ser instanciado

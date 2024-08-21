@@ -29,10 +29,10 @@ foreach ($_POST as $nombre_campo => $valor) {
 <body>
 <?php
 $CompraOperador = new ComprasOperaciones();
-$datos = array($idProv, $numFact, $fechComp, $fechVenc, $idCompra);
-
+$datos = array($idProv, $numFact, $fechComp, $fechVenc, $descuentoCompra, $idCompra);
 try {
     $CompraOperador->updateCompra($datos);
+    $CompraOperador->updateTotalesCompra($tipoCompra, BASE_C, $idCompra);
     $_SESSION['idCompra'] = $idCompra;
     $_SESSION['tipoCompra'] = $tipoCompra;
     $ruta = "../detalle/";

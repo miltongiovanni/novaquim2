@@ -49,7 +49,7 @@ if ($factExiste && count($factExiste) > 0) {
     $dias_f = Calc_Dias($fechVenc, $fechComp);
     if (($dias_v >= -8) && ($dias_v <= 0) && ($dias_f >= 0)) {
         $estadoCompra = 2;
-        $datos = array($idProv, $numFact, $fechComp, $fechVenc, $estadoCompra, $tipoCompra, $idUsuario);
+        $datos = array($idProv, $numFact, $fechComp, $fechVenc, $estadoCompra, $tipoCompra, $idUsuario, $descuentoCompra);
         try {
             $idCompra = $CompraOperador->makeCompra($datos);
             $_SESSION['idCompra'] = $idCompra;

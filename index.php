@@ -14,6 +14,7 @@ if(isset($_SESSION['UsuarioAutorizado']) && $_SESSION['UsuarioAutorizado']==true
     <link rel="icon" href="images/favicon.ico" type="image/ico" sizes="16x16">
     <title>Sistema de Información de Industrias Novaquim S.A.S.</title>
 
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="js/validar.js"></script>
 
@@ -25,6 +26,16 @@ if(isset($_SESSION['UsuarioAutorizado']) && $_SESSION['UsuarioAutorizado']==true
         <img src="images/LogoNova1.jpg" alt="novaquim" class="img-fluid mb-2 w-25">
         <h4>BIENVENIDO AL SISTEMA DE INFORMACIÓN DE INDUSTRIAS NOVAQUIM S.A.S.</h4>
     </div>
+    <?php
+    if (isset($_SESSION['flash_message'])) {
+        $message = $_SESSION['flash_message'];
+        unset($_SESSION['flash_message']);
+        echo '<div class="w-25 m-auto alert alert-danger alert-dismissible fade show mb-3" role="alert">
+                      <strong>'.$message.'</strong>
+                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>';
+    }
+    ?>
     <form method="POST" action="login/index.php">
         <div class="mb-3 row">
             <div class="col-2">

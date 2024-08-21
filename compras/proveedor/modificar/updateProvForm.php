@@ -138,14 +138,14 @@ $proveedor = $ProveedorOperador->getProveedor($idProv);
                 <input type="text" class="form-control  " name="dirProv" id="dirProv"
                        value="<?= $proveedor['dirProv'] ?>">
             </div>
-            <div class="col-3">
+            <div class="col-2">
                 <label class="form-label  " for="contProv"><strong>Nombre Contacto</strong></label>
                 <input type="text" class="form-control  " name="contProv" id="contProv"
                        value="<?= $proveedor['contProv'] ?>">
             </div>
-            <div class="col-1">
+            <div class="col-2">
                 <label class="form-label  " for="telProv"><strong>Teléfono</strong></label>
-                <input type="text" class="form-control  " name="telProv" id="telProv"
+                <input type="text" class="form-control  " name="telProv" id="telProv"  maxlength="10"
                        value="<?= $proveedor['telProv'] ?>"
                        onkeydown="return aceptaNum(event)">
             </div>

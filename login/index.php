@@ -90,6 +90,7 @@ if (!$usuario) {//si existen datos pero la clave esta errada
                 $_SESSION['Username'] = $username;
                 $_SESSION['userId'] = $usuario['idUsuario'];
                 $_SESSION['perfilUsuario'] = $perfil_admin;
+                $_SESSION["last_activity"] = time();
                 $perfil = $usuario['idPerfil'];
                 //echo $perfil.'<br>';
                 $ruta = "../menu.php";

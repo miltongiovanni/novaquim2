@@ -286,7 +286,7 @@ $cliente = $clienteOperador->getCliente($idCliente);
             </div>
             <div class="col-3">
                 <label class="form-label" for="codVendedor"><strong>Vendedor</strong></label>
-                <select name="codVendedor" id="codVendedor" class="form-control" required>
+                <select name="codVendedor" id="codVendedor" class="form-select" required>
                     <option selected value="<?= $cliente['codVendedor'] ?>"><?= $cliente['nomPersonal'] ?></option>
                     <?php
                     $PersonalOperador = new PersonalOperaciones();

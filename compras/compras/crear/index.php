@@ -78,7 +78,11 @@ switch ($tipoCompra) {
                 <label class="form-label" for="fechVenc"><strong>Fecha de vencimiento</strong></label>
                 <input type="date" class="form-control col-2" name="fechVenc" id="fechVenc" required>
             </div>
-
+            <div class="col-2">
+                <label class="form-label" for="descuentoCompra"><strong>Descuento</strong></label>
+                <input type="text" class="form-control" name="descuentoCompra" id="descuentoCompra"
+                       value="0" onkeydown="return aceptaNum(event)">
+            </div>
         </div>
         <div class="mb-3 row">
 
