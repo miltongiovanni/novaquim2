@@ -43,7 +43,8 @@ class CalMatPrimaOperaciones
         $qry = "SELECT id, cod_mprima, lote_mp, cantidad, m.nomMPrima
                 FROM cal_mprimas cmp
                 LEFT JOIN mprimas m ON m.codMPrima = cmp.cod_mprima
-                WHERE est_mprima =1";
+                WHERE est_mprima =1
+                ORDER BY id_compra DESC";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -122,7 +123,7 @@ class CalMatPrimaOperaciones
     }
     public function getLotesByMPrima($codMPrima)
     {
-        $qry = "SELECT id, CONCAT (lote_mp, ' (', fecha_analisis, ')') lote FROM cal_mprimas WHERE cod_mprima = $codMPrima";
+        $qry = "SELECT id, CONCAT (lote_mp, ' (', fecha_analisis, ')') lote FROM cal_mprimas WHERE cod_mprima = $codMPrima ORDER BY id DESC ";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);

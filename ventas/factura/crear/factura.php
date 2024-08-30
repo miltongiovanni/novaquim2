@@ -15,16 +15,6 @@ foreach ($_POST as $nombre_campo => $valor) {
         //echo $nombre_campo . '=' . ${$nombre_campo} . '<br>';
     }
 }
-$pedidoOperador = new PedidosOperaciones();
-$clienteOperador = new ClientesOperaciones();
-$cliente = $clienteOperador->getCliente($idCliente);
-$pedidosSucursal = [];
-$remisiones = [];
-foreach ($pedidosList as $pedido) {
-    $pedidosSucursal[] = $pedidoOperador->getSucursalClientePorPedido($pedido);
-    $remisiones[] = $pedidoOperador->getRemisionPorPedido($pedido);
-}
-$pedido = $pedidoOperador->getPedido($pedidosList[0]);
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -39,10 +29,29 @@ $pedido = $pedidoOperador->getPedido($pedidosList[0]);
 <div id="contenedor" class="container-fluid">
     <div id="saludo1">
         <img src="../../../images/LogoNova.jpg" alt="novaquim" class="img-fluid mb-2"><h4>FACTURA DE VENTA</h4></div>
+    <?php
+    $pedidoOperador = new PedidosOperaciones();
+    $clienteOperador = new ClientesOperaciones();
+    $cliente = $clienteOperador->getCliente($idCliente);
+    $pedidosSucursal = [];
+    $remisiones = [];
+    if (isset($pedidosList)){
+        foreach ($pedidosList as $pedido) {
+            $pedidosSucursal[] = $pedidoOperador->getSucursalClientePorPedido($pedido);
+            $remisiones[] = $pedidoOperador->getRemisionPorPedido($pedido);
+        }
+        $pedido = $pedidoOperador->getPedido($pedidosList[0]);
+    }else{
+        $ruta = "../crear/";
+        $mensaje = "Debe seleccionar al menos un pedido, intente de nuevo";
+        $icon = "warning";
+        mover_pag($ruta, $mensaje, $icon);
+        exit;
+    }
+    ?>
     <form method="post" action="make_factura.php" name="form1">
         <input type="hidden" name="idCliente" value="<?= $idCliente; ?>">
         <input type="hidden" name="idPedido" value="<?= implode(',', $pedidosList); ?>">
-        <input type="hidden" name="idRemision" value="<?= implode(',', $remisiones); ?>">
         <input type="hidden" name="tipPrecio" value="<?= $pedido['idPrecio']; ?>">
         <div class="row mb-3">
             <div class="col-2">

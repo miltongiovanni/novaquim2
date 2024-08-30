@@ -20,7 +20,7 @@ spl_autoload_register('cargarClases');
     <script>
         function getInvEnvase(codEnvase) {
             $.ajax({
-                url: '../../../../includes/controladorInventarios.php',
+                url: '../../../includes/controladorInventarios.php',
                 type: 'POST',
                 data: {
                     "action": 'findInvEnvase',

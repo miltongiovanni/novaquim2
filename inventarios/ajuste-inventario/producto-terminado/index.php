@@ -20,7 +20,7 @@ spl_autoload_register('cargarClases');
 
         function getLotesPresentacion(codPresentacion) {
             $.ajax({
-                url: '../../../../includes/controladorInventarios.php',
+                url: '../../../includes/controladorInventarios.php',
                 type: 'POST',
                 data: {
                     "action": 'findLotesPresentacion',
@@ -42,7 +42,7 @@ spl_autoload_register('cargarClases');
 
         function getInvPresentacionXLote(codPresentacion, loteProd) {
             $.ajax({
-                url: '../../../../includes/controladorInventarios.php',
+                url: '../../../includes/controladorInventarios.php',
                 type: 'POST',
                 data: {
                     "action": 'findInvProdTerminadoXLote',

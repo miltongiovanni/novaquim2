@@ -19,7 +19,7 @@ spl_autoload_register('cargarClases');
     <script>
         function getInvProdDistribucion(codDistribucion) {
             $.ajax({
-                url: '../../../../includes/controladorInventarios.php',
+                url: '../../../includes/controladorInventarios.php',
                 type: 'POST',
                 data: {
                     "action": 'findInvProdDistribucion',

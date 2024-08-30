@@ -213,13 +213,13 @@ class PedidosOperaciones
     public function getPedidosPorFacturarCliente($idCliente)
     {
         $qry = "SELECT p.idPedido, nomSucursal
-                FROM pedido p
-                         LEFT JOIN clientes c on c.idCliente = p.idCliente
-                         LEFT JOIN clientes_sucursal cs on c.idCliente = cs.idCliente AND cs.idSucursal = p.idSucursal
-                         LEFT JOIN ciudades c2 on c2.idCiudad = c.ciudadCliente
-                         LEFT JOIN factura f on p.idPedido IN (f.idPedido)
-                WHERE p.idCliente = $idCliente
-                  AND (p.estado = 3 OR (p.estado = 5 AND f.idFactura IS NULL))";
+                 FROM pedido p
+                          LEFT JOIN clientes c on c.idCliente = p.idCliente
+                          LEFT JOIN clientes_sucursal cs on c.idCliente = cs.idCliente AND cs.idSucursal = p.idSucursal
+                          LEFT JOIN ciudades c2 on c2.idCiudad = c.ciudadCliente
+                          LEFT JOIN factura_pedido fp on fp.pedidoId = p.idPedido
+                 WHERE p.idCliente = $idCliente  AND p.estaFacturado =0 
+                   AND (p.estado = 3 OR (p.estado = 5 AND fp.facturaId IS NULL)) ORDER BY p.idPedido DESC";
 
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();
@@ -275,21 +275,21 @@ class PedidosOperaciones
     public function getPedidosPorEntregarRutero()
     {
         $qry = "SELECT p.idPedido,
-                       f.idFactura,
-                       r.idRemision,
-                       fechaPedido,
-                       fechaEntrega,
-                       nomCliente,
-                       nomSucursal,
-                       dirSucursal
-                FROM pedido p
-                         LEFT JOIN clientes c on c.idCliente = p.idCliente
-                         LEFT JOIN clientes_sucursal cs on p.idCliente = cs.idCliente AND p.idSucursal = cs.idSucursal
-                         LEFT JOIN estados_pedidos ep on p.estado = ep.idEstado
-                         LEFT JOIN factura f on f.idPedido LIKE CONCAT('%', p.idPedido, '%')
-                         LEFT JOIN remision r on p.idPedido = r.idPedido
-                WHERE (p.estado = 3 OR p.estado = 4)
-                ORDER BY idPedido";
+                        fp.facturaId idFactura,
+                        r.idRemision,
+                        fechaPedido,
+                        fechaEntrega,
+                        nomCliente,
+                        nomSucursal,
+                        dirSucursal
+                 FROM pedido p
+                          LEFT JOIN clientes c on c.idCliente = p.idCliente
+                          LEFT JOIN clientes_sucursal cs on p.idCliente = cs.idCliente AND p.idSucursal = cs.idSucursal
+                          LEFT JOIN estados_pedidos ep on p.estado = ep.idEstado
+                          LEFT JOIN factura_pedido fp on fp.pedidoId = p.idPedido
+                          LEFT JOIN remision r on p.idPedido = r.idPedido
+                 WHERE (p.estado = 3 OR p.estado = 4)
+                 ORDER BY idPedido";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -357,12 +357,12 @@ class PedidosOperaciones
                        nomSucursal,
                        dirSucursal,
                        codVendedor,
-                       f.idFactura,
+                       fp.facturaId idFactura,
                        r.idRemision
                 FROM pedido p
                          LEFT JOIN clientes c on c.idCliente = p.idCliente
                          LEFT JOIN clientes_sucursal cs on p.idCliente = cs.idCliente AND p.idSucursal = cs.idSucursal
-                         LEFT JOIN factura f on f.idPedido LIKE CONCAT('%', p.idPedido, '%')
+                         LEFT JOIN factura_pedido fp on fp.pedidoId = p.idPedido
                          LEFT JOIN remision r on p.idPedido = r.idPedido
                 WHERE p.idPedido = $idPedido";
         $stmt = $this->_pdo->prepare($qry);
@@ -383,6 +383,14 @@ class PedidosOperaciones
     public function updateEstadoPedido($estado, $idPedido)
     {
         $qry = "UPDATE pedido SET estado=?
+                 WHERE idPedido=?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute(array($estado, $idPedido));
+    }
+
+    public function updateEstadoPedidoFacturado($estado, $idPedido)
+    {
+        $qry = "UPDATE pedido SET estado=?, estaFacturado=1
                  WHERE idPedido=?";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute(array($estado, $idPedido));
