@@ -27,27 +27,17 @@ foreach ($_POST as $nombre_campo => $valor) {
 </head>
 <body>
 <?php
-$datos = array($lote, $etiquetado, $envasado, $observaciones);
+$datos = array( $etiquetado, $envasado, $observaciones, $lote);
 $calProdTerminadoOperador = new CalProdTerminadoOperaciones();
 
 try {
-    $calProdTerminadoOperador->makeCalProdTerminado($datos);
-    $envasadoOperador = new EnvasadoOperaciones();
-    $presentaciones = $envasadoOperador->getPresentacionesEnvasadas($lote);
-    /*$invProdTerminadoOperador = new InvProdTerminadosOperaciones();
-    for ($i = 0; $i < count($presentaciones); $i++) {
-        $datos = array($presentaciones[$i]['codPresentacion'], $presentaciones[$i]['lote'], $presentaciones[$i]['cantPresentacion']);
-        $invProdTerminadoOperador->makeInvProdTerminado($datos);
-    }*/
-    $OProdOperador = new OProdOperaciones();
-    $datos = array(6, $lote);
-    $OProdOperador->updateEstadoOProd($datos);
+    $calProdTerminadoOperador->updateCalProdTerminado($datos);
     $ruta = "det_cal_prod_terminado.php";
-    $mensaje = "Control de Calidad producto terminado cargado correctamente";
+    $mensaje = "Control de Calidad producto terminado actualizado correctamente";
     $icon = "success";
 } catch (Exception $e) {
     $ruta = "../producto-terminado/";
-    $mensaje = "Error al ingresar el control de calidad producto terminado";
+    $mensaje = "Error al actualizar el control de calidad producto terminado";
     $icon = "error";
 } finally {
     unset($conexion);

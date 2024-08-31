@@ -52,7 +52,7 @@ $pdf->Ln(3.5);
 for($i=0; $i<count($pedidosRutero); $i++)
 {
 	$pdf->Cell(12,5,$pedidosRutero[$i]['idPedido'], 'LR',0,'C');
-	$pdf->Cell(12,5,$pedidosRutero[$i]['idFactura'], 'LR',0,'C');
+	$pdf->Cell(12,5,($pedidosRutero[$i]['idFactura'] ?? '') , 'LR',0,'C');
 	$pdf->Cell(12,5,iconv('UTF-8', 'windows-1252', $pedidosRutero[$i]['idRemision']), 'LR',0,'L');
 	$pdf->Cell(50,5,iconv('UTF-8', 'windows-1252', $pedidosRutero[$i]['nomCliente']), 'LR',0,'L');
 	$pdf->Cell(50,5,iconv('UTF-8', 'windows-1252', $pedidosRutero[$i]['dirSucursal']), 'LR',0,'L');

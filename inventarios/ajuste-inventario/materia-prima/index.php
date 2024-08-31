@@ -21,7 +21,7 @@ spl_autoload_register('cargarClases');
 
         function getLotesMPrima(codMPrima) {
             $.ajax({
-                url: '../../../../includes/controladorInventarios.php',
+                url: '../../../includes/controladorInventarios.php',
                 type: 'POST',
                 data: {
                     "action": 'findLotesMPrima',
@@ -43,7 +43,7 @@ spl_autoload_register('cargarClases');
 
         function getInvMPrimaXLote(codMPrima, loteMP) {
             $.ajax({
-                url: '../../../../includes/controladorInventarios.php',
+                url: '../../../includes/controladorInventarios.php',
                 type: 'POST',
                 data: {
                     "action": 'findInvMPrimaXLote',

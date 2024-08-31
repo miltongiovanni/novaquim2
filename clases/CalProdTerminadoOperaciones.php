@@ -28,7 +28,7 @@ class CalProdTerminadoOperaciones
     public function getCalProdTerminado($lote)
     {
 
-        $qry = "SELECT lote, densidadProd, pHProd, olorProd, colorProd, aparienciaProd, observacionesProd
+        $qry = "SELECT lote, etiquetado, envasado, observaciones
                 FROM cal_prod_terminado
                 WHERE lote = ?";
 
@@ -89,7 +89,7 @@ class CalProdTerminadoOperaciones
 
     public function updateCalProdTerminado($datos)
     {
-        $qry = "UPDATE cal_prod_terminado SET densidadProd=?, pHProd=?, olorProd=?, colorProd=?, aparienciaProd=?, observacionesProd=? WHERE lote=?";
+        $qry = "UPDATE cal_prod_terminado SET etiquetado=?, envasado=?, observaciones=? WHERE lote=?";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute($datos);
     }

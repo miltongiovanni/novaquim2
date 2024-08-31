@@ -42,7 +42,7 @@ $dias_f = Calc_Dias($fechaVenc, $fechaFactura);
 if (($dias_v >= 0) && ($dias_f >= 0)) {
     try {
         /*CREACIÓN DEL ENCABEZADO DE LA FACTURA*/
-        $datos = array($idFactura, $idPedido, $idCliente, $fechaFactura, $fechaVenc, $tipPrecio, 'E', $idRemision, $ordenCompra, $tasaDescuento, $observaciones);
+        $datos = array($idFactura, $idCliente, $fechaFactura, $fechaVenc, $tipPrecio, 'E', $ordenCompra, $tasaDescuento, $observaciones);
         $facturaOperador->makeFactura($datos);
         //CON BASE EN EL PEDIDO SE LLENA LA FACTURA
         $detPedido = $detPedidoOperador->getTotalPedidosPorFacturar($idPedido);
@@ -78,7 +78,9 @@ if (($dias_v >= 0) && ($dias_f >= 0)) {
         $datos = array($total, $reteiva, $reteica, $retefuente, $subtotal, $iva, $totalR, $idFactura);
         $facturaOperador->updateTotalesFactura($datos);
         foreach ($pedidosList as $pedido) {
-            $pedidoOperador->updateEstadoPedido(4, $pedido);
+            $datosFacturaPedido = array($idFactura, $pedido);
+            $facturaOperador->makeFacturaPedido($datosFacturaPedido);
+            $pedidoOperador->updateEstadoPedidoFacturado(4, $pedido);
         }
         $_SESSION['idFactura'] = $idFactura;
         $ruta = "../detalle/";

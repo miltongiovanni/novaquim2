@@ -25,7 +25,7 @@ class RuteroOperaciones
     public function getListaPedidosRutero()
     {
         $qry = "SELECT p.idPedido,
-                       f.idFactura,
+                       fp.facturaId idFactura,
                        r.idRemision,
                        fechaPedido,
                        nomCliente,
@@ -35,7 +35,7 @@ class RuteroOperaciones
                 FROM pedido p
                          LEFT JOIN clientes c on c.idCliente = p.idCliente
                          LEFT JOIN clientes_sucursal cs on p.idCliente = cs.idCliente AND p.idSucursal = cs.idSucursal
-                         LEFT JOIN factura f on f.idPedido LIKE CONCAT('%', p.idPedido, '%')
+                         LEFT JOIN factura_pedido fp on fp.pedidoId = p.idPedido
                          LEFT JOIN remision r on p.idPedido = r.idPedido
                          LEFT JOIN rutero ru on ru.listaPedidos LIKE CONCAT('%', p.idPedido, '%')
                 WHERE p.estado = 7 AND ru.idRutero IS NOT NULL";

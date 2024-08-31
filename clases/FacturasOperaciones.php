@@ -12,7 +12,16 @@ class FacturasOperaciones
     public function makeFactura($datos)
     {
         /*Preparo la insercion */
-        $qry = "INSERT INTO factura (idFactura, idPedido, idCliente, fechaFactura, fechaVenc, tipPrecio, estado, idRemision, ordenCompra, descuento, observaciones) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $qry = "INSERT INTO factura (idFactura, idCliente, fechaFactura, fechaVenc, tipPrecio, estado, ordenCompra, descuento, observaciones) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute($datos);
+        return $this->_pdo->lastInsertId();
+    }
+
+    public function makeFacturaPedido($datos)
+    {
+        /*Preparo la insercion */
+        $qry = "INSERT INTO factura_pedido (facturaId, pedidoId) VALUES(?, ?)";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute($datos);
         return $this->_pdo->lastInsertId();
@@ -316,18 +325,26 @@ class FacturasOperaciones
 
     public function getTableFacturas($limit, $order, $where, $bindings)
     {
-        $qry = "select * from (SELECT f.idFactura,
-                       f.idPedido,
-                       f.idRemision,
+        $qry = "SELECT * FROM (SELECT f.idFactura,
+                       pedidos idPedido,
+                       remisiones idRemision,
                        c.nomCliente,
                        f.fechaFactura,
                        f.fechaVenc,
                        tp.tipoPrecio,
-                       IF(f.estado='A', 'Anulada', IF(f.estado='C', 'Cancelada', IF(f.estado='E', 'En proceso','Pendiente'))) estadoFactura,
+                       IF(f.estado='A', 'Anulada', IF(f.estado='C', 'Cancelada', IF(f.estado='E', 'En proceso', 'Pendiente'))) estadoFactura,
                        CONCAT('$', FORMAT(f.total, 0)) totalFactura
                 FROM factura f
-                         LEFT JOIN clientes c on c.idCliente = f.idCliente
-                         LEFT JOIN tip_precio tp ON f.tipPrecio = tp.idPrecio) fct
+                LEFT JOIN clientes c ON c.idCliente = f.idCliente
+                LEFT JOIN tip_precio tp ON f.tipPrecio = tp.idPrecio
+                LEFT JOIN (SELECT fp.facturaId,
+                       GROUP_CONCAT(fp.pedidoId
+                                    ORDER BY fp.pedidoId SEPARATOR ', ') pedidos,
+                       GROUP_CONCAT(r.idRemision
+                                    ORDER BY r.idRemision SEPARATOR ', ') remisiones
+                FROM factura_pedido fp
+                LEFT JOIN remision r ON fp.pedidoId = r.idPedido
+                GROUP BY fp.facturaId) t ON t.facturaId = f.idFactura) fct
                 $where
                 $order
                 $limit
@@ -350,8 +367,8 @@ class FacturasOperaciones
     public function getTotalNumeroFacturas($where, $bindings)
     {
         $qry = "select COUNT(idFactura) c FROM (SELECT f.idFactura,
-                       f.idPedido,
-                       f.idRemision,
+                       pedidos idPedido,
+                       remisiones idRemision,
                        c.nomCliente,
                        f.fechaFactura,
                        f.fechaVenc,
@@ -360,7 +377,15 @@ class FacturasOperaciones
                        CONCAT('$', FORMAT(f.total, 0)) totalFactura
                 FROM factura f
                          LEFT JOIN clientes c on c.idCliente = f.idCliente
-                         LEFT JOIN tip_precio tp ON f.tipPrecio = tp.idPrecio) fctc
+                         LEFT JOIN tip_precio tp ON f.tipPrecio = tp.idPrecio
+                        LEFT JOIN (SELECT fp.facturaId,
+                               GROUP_CONCAT(fp.pedidoId
+                                            ORDER BY fp.pedidoId SEPARATOR ', ') pedidos,
+                               GROUP_CONCAT(r.idRemision
+                                            ORDER BY r.idRemision SEPARATOR ', ') remisiones
+                        FROM factura_pedido fp
+                        LEFT JOIN remision r ON fp.pedidoId = r.idPedido
+                        GROUP BY fp.facturaId) t ON t.facturaId = f.idFactura) fctc
                  $where
                 ";
         $stmt = $this->_pdo->prepare($qry);
@@ -383,8 +408,8 @@ class FacturasOperaciones
     public function getTableFacturasCliente($idCliente)
     {
         $qry = "SELECT idFactura,
-                       idPedido,
-                       idRemision,
+                       pedidos idPedido,
+                       remisiones idRemision,
                        nomCliente,
                        fechaFactura,
                        fechaVenc,
@@ -394,6 +419,14 @@ class FacturasOperaciones
                 FROM factura f
                          LEFT JOIN clientes c on c.idCliente = f.idCliente
                          LEFT JOIN tip_precio tp ON f.tipPrecio = tp.idPrecio
+                        LEFT JOIN (SELECT fp.facturaId,
+                               GROUP_CONCAT(fp.pedidoId
+                                            ORDER BY fp.pedidoId SEPARATOR ', ') pedidos,
+                               GROUP_CONCAT(r.idRemision
+                                            ORDER BY r.idRemision SEPARATOR ', ') remisiones
+                        FROM factura_pedido fp
+                        LEFT JOIN remision r ON fp.pedidoId = r.idPedido
+                        GROUP BY fp.facturaId) t ON t.facturaId = f.idFactura
                 WHERE f.idCliente=$idCliente";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();
@@ -442,13 +475,13 @@ class FacturasOperaciones
     public function getFactura($idFactura)
     {
         $qry = "SELECT idFactura,
-                   idPedido,
+                   pedidos idPedido,
                    f.idCliente,
                    nitCliente,
                    descuento,
                    fechaFactura,
                    fechaVenc,
-                   idRemision,
+                   remisiones idRemision,
                    ordenCompra,
                    tipPrecio,
                    nomCliente,
@@ -466,16 +499,23 @@ class FacturasOperaciones
                    subtotal,
                    iva,
                    f.Estado,
-                   IF(f.estado = 'A', 'Anulada',
-                      IF(f.estado = 'P', 'Pendiente', IF(f.estado = 'C', 'Cancelada', 'En proceso'))) estadoFactura
-            
+                   IF(f.estado = 'A', 'Anulada', IF(f.estado = 'P', 'Pendiente', IF(f.estado = 'C', 'Cancelada', 'En proceso'))) estadoFactura
             FROM factura f
-                     LEFT JOIN clientes c on c.idCliente = f.idCliente
-                     LEFT JOIN personal p on p.idPersonal = c.codVendedor
-                     LEFT JOIN ciudades c2 on c2.idCiudad = c.ciudadCliente
-            WHERE idFactura = ?";
+            LEFT JOIN clientes c ON c.idCliente = f.idCliente
+            LEFT JOIN personal p ON p.idPersonal = c.codVendedor
+            LEFT JOIN ciudades c2 ON c2.idCiudad = c.ciudadCliente
+            LEFT JOIN
+              (SELECT fp.facturaId,
+                      GROUP_CONCAT(fp.pedidoId
+                                   ORDER BY fp.pedidoId SEPARATOR ', ') pedidos,
+                      GROUP_CONCAT(r.idRemision
+                                   ORDER BY r.idRemision SEPARATOR ', ') remisiones
+               FROM factura_pedido fp
+               LEFT JOIN remision r ON fp.pedidoId = r.idPedido
+               WHERE fp.facturaId = $idFactura) t ON t.facturaId = f.idFactura
+            WHERE idFactura = $idFactura";
         $stmt = $this->_pdo->prepare($qry);
-        $stmt->execute(array($idFactura));
+        $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result;
     }
