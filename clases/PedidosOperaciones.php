@@ -274,7 +274,7 @@ class PedidosOperaciones
     }
     public function getPedidosPorEntregarRutero()
     {
-        $qry = "SELECT p.idPedido,
+        $qry = "SELECT DISTINCT p.idPedido,
                         fp.facturaId idFactura,
                         r.idRemision,
                         fechaPedido,
