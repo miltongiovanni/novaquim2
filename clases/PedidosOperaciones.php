@@ -219,7 +219,7 @@ class PedidosOperaciones
                           LEFT JOIN ciudades c2 on c2.idCiudad = c.ciudadCliente
                           LEFT JOIN factura_pedido fp on fp.pedidoId = p.idPedido
                  WHERE p.idCliente = $idCliente  AND p.estaFacturado =0 
-                   AND (p.estado = 3 OR (p.estado = 5 AND fp.facturaId IS NULL)) ORDER BY p.idPedido DESC";
+                   AND (p.estado = 3 OR ((p.estado = 5 OR p.estado = 7) AND fp.facturaId IS NULL)) ORDER BY p.idPedido DESC";
 
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();
