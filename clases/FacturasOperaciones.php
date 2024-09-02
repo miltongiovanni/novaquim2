@@ -338,9 +338,9 @@ class FacturasOperaciones
                 LEFT JOIN clientes c ON c.idCliente = f.idCliente
                 LEFT JOIN tip_precio tp ON f.tipPrecio = tp.idPrecio
                 LEFT JOIN (SELECT fp.facturaId,
-                       GROUP_CONCAT(fp.pedidoId
+                       GROUP_CONCAT(DISTINCT fp.pedidoId
                                     ORDER BY fp.pedidoId SEPARATOR ', ') pedidos,
-                       GROUP_CONCAT(r.idRemision
+                       GROUP_CONCAT(DISTINCT r.idRemision
                                     ORDER BY r.idRemision SEPARATOR ', ') remisiones
                 FROM factura_pedido fp
                 LEFT JOIN remision r ON fp.pedidoId = r.idPedido
@@ -379,9 +379,9 @@ class FacturasOperaciones
                          LEFT JOIN clientes c on c.idCliente = f.idCliente
                          LEFT JOIN tip_precio tp ON f.tipPrecio = tp.idPrecio
                         LEFT JOIN (SELECT fp.facturaId,
-                               GROUP_CONCAT(fp.pedidoId
+                               GROUP_CONCAT(DISTINCT fp.pedidoId
                                             ORDER BY fp.pedidoId SEPARATOR ', ') pedidos,
-                               GROUP_CONCAT(r.idRemision
+                               GROUP_CONCAT(DISTINCT r.idRemision
                                             ORDER BY r.idRemision SEPARATOR ', ') remisiones
                         FROM factura_pedido fp
                         LEFT JOIN remision r ON fp.pedidoId = r.idPedido
