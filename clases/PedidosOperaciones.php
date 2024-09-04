@@ -297,22 +297,22 @@ class PedidosOperaciones
     }
     public function getPedidosPorEntregar()
     {
-        $qry = "SELECT p.idPedido,
-                       f.idFactura,
-                       r.idRemision,
-                       fechaPedido,
-                       fechaEntrega,
-                       nomCliente,
-                       nomSucursal,
-                       dirSucursal
-                FROM pedido p
-                         LEFT JOIN clientes c on c.idCliente = p.idCliente
-                         LEFT JOIN clientes_sucursal cs on p.idCliente = cs.idCliente AND p.idSucursal = cs.idSucursal
-                         LEFT JOIN estados_pedidos ep on p.estado = ep.idEstado
-                         LEFT JOIN factura f on f.idPedido LIKE CONCAT('%', p.idPedido, '%')
-                         LEFT JOIN remision r on p.idPedido = r.idPedido
-                WHERE (p.estado = 4)
-                ORDER BY idPedido";
+        $qry = "SELECT DISTINCT p.idPedido,
+                        fp.facturaId idFactura,
+                        r.idRemision,
+                        fechaPedido,
+                        fechaEntrega,
+                        nomCliente,
+                        nomSucursal,
+                        dirSucursal
+                 FROM pedido p
+                          LEFT JOIN clientes c on c.idCliente = p.idCliente
+                          LEFT JOIN clientes_sucursal cs on p.idCliente = cs.idCliente AND p.idSucursal = cs.idSucursal
+                          LEFT JOIN estados_pedidos ep on p.estado = ep.idEstado
+                          LEFT JOIN factura_pedido fp on fp.pedidoId = p.idPedido
+                          LEFT JOIN remision r on p.idPedido = r.idPedido
+                 WHERE (p.estado = 4)
+                 ORDER BY idPedido";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
