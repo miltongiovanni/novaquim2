@@ -18,43 +18,8 @@ $cliente = $clienteOperaciones->getCliente($idCliente);
     <meta charset="utf-8">
     <link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="../../../css/datatables.css">
-    <style>
-        table {
-            table-layout: fixed;
-        }
-
-        .width1 {
-            width: 5%;
-        }
-
-        .width2 {
-            width: 5%;
-        }
-
-        .width3 {
-            width: 10%;
-        }
-
-        .width4 {
-            width: 10%;
-        }
-
-        .width5 {
-            width: 25%;
-        }
-
-        .width6 {
-            width: 25%;
-        }
-
-        .width7 {
-            width: 10%;
-        }
-
-        .width8 {
-            width: 10%;
-        }
-    </style>
+    <script src="../../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../../../js/validar.js"></script>
     <script src="../../../js/jquery-3.3.1.min.js"></script>
     <script src="../../../js/datatables.js"></script>
     
@@ -85,6 +50,7 @@ $cliente = $clienteOperaciones->getCliente($idCliente);
         }
 
         $(document).ready(function () {
+            var perfil = <?=$_SESSION['perfilUsuario']?>;
             let idCliente = '<?=$idCliente?>';
             var table = $('#example').DataTable({
                 "columns": [
@@ -92,35 +58,56 @@ $cliente = $clienteOperaciones->getCliente($idCliente);
                         "className": 'dt-control',
                         "orderable": false,
                         "data": null,
-                        "defaultContent": ''
+                        "defaultContent": '',
+                        width: '3%'
                     },
                     {
                         "data": "idPedido",
-                        "className": 'text-center'
+                        "className": 'text-center',
+                        width: '7%'
                     },
                     {
                         "data": "fechaPedido",
-                        "className": 'text-center'
+                        "className": 'text-center',
+                        width: '10%'
                     },
                     {
                         "data": "fechaEntrega",
-                        "className": 'text-center'
+                        "className": 'text-center',
+                        width: '10%'
                     },
                     {
                         "data": "nomSucursal",
-                        "className": 'dt-body-left'
+                        "className": 'dt-body-left',
+                        width: '20%'
                     },
                     {
                         "data": "dirSucursal",
-                        "className": 'text-center'
+                        "className": 'text-center',
+                        width: '20%'
                     },
                     {
                         "data": "tipoPrecio",
-                        "className": 'text-center'
+                        "className": 'text-center',
+                        width: '10%'
                     },
                     {
                         "data": "estadoPedido",
-                        "className": 'text-center'
+                        "className": 'text-center',
+                        width: '10%'
+                    },
+                    {
+                        "orderable": false,
+                        "data": function (row) {
+                            let rep = '<form action="../duplicar-pedido/" target="_blank" method="post">' +
+                                '          <input name="idPedido" type="hidden" value="' + row.idPedido + '">' +
+                                '          <input type="button" name="Submit" onclick="return Enviar(this.form)" class="formatoBoton1"  value="Duplicar pedido">' +
+                                '       </form>'
+                            return rep;
+                        },
+                        "className": 'text-center',
+                        "visible": (perfil === 1 || perfil === 2),
+                        width: '10%'
                     },
                 ],
                 "order": [[1, 'desc']],
