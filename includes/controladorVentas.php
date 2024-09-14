@@ -2,6 +2,7 @@
 // Función para cargar las clases
 include "nit_verif.php";
 include "valAcc.php";
+
 function cargarClases($classname)
 {
     require '../clases/' . $classname . '.php';
@@ -164,10 +165,18 @@ function findFacturasPorPagarByNotaC()
 function aplicarRetefuente()
 {
     $tasaRetencion = $_POST['tasaRetencion'];
-    $idFactura = $_POST['idFactura'];
+    $idFactura = intval($_POST['idFactura']);
     $facturaOperador = new FacturasOperaciones();
     $factura=$facturaOperador->getFactura($idFactura);
-    $datos=array(round($factura['totalR'])-$factura['subtotal']*(1-$factura['descuento'])*$tasaRetencion , $factura['retencionIva'], $factura['retencionIca'], $factura['subtotal']*(1-$factura['descuento'])*$tasaRetencion, $factura['subtotal'], $factura['iva'], round($factura['totalR']), $idFactura);
+    $subtotal = $factura['subtotal'];
+    $descuento = $factura['descuento'];
+    $iva = $factura['iva'];
+    $reteiva = $factura['retIva'] == 1 ?  $factura['iva']*0.15 : 0;
+    $retefuente = $factura['retFte'] == 1 ? $factura['subtotal']*(1-$factura['descuento'])*$tasaRetencion : 0;
+    $reteica = $factura['retencionIca'];
+    $total = round($subtotal - $factura['descuento'] + $iva)-$factura['subtotal']*(1-$factura['descuento'])*$tasaRetencion;
+    $totalR = round($subtotal - $factura['descuento'] + $iva);
+    $datos = array($total, $reteiva, $reteica, $retefuente, $subtotal, $iva, $totalR, $idFactura);
     $facturaOperador->updateTotalesFactura($datos);
     $rep['msg'] = "OK";
     echo json_encode($rep);
@@ -178,8 +187,9 @@ function aplicarReteica()
     $idFactura = $_POST['idFactura'];
     $facturaOperador = new FacturasOperaciones();
     $factura=$facturaOperador->getFactura($idFactura);
+    $reteiva = $factura['retIva'] == 1 ?  $factura['iva']*0.15 : 0;
     $reteica=round($factura['subtotal']*(1-$factura['descuento'])*$tasaRetencion);
-    $datos=array(round($factura['totalR'])-$reteica , $factura['retencionIva'], $reteica, $factura['retencionFte'], $factura['subtotal'], $factura['iva'], round($factura['totalR']), $idFactura);
+    $datos=array(round($factura['totalR'])-$reteica , $reteiva, $reteica, $factura['retencionFte'], $factura['subtotal'], $factura['iva'], round($factura['totalR']), $idFactura);
     $facturaOperador->updateTotalesFactura($datos);
     $rep['msg'] = "OK";
     echo json_encode($rep);

@@ -499,7 +499,11 @@ class FacturasOperaciones
                    subtotal,
                    iva,
                    f.Estado,
-                   IF(f.estado = 'A', 'Anulada', IF(f.estado = 'P', 'Pendiente', IF(f.estado = 'C', 'Cancelada', 'En proceso'))) estadoFactura
+                   IF(f.estado = 'A', 'Anulada', IF(f.estado = 'P', 'Pendiente', IF(f.estado = 'C', 'Cancelada', 'En proceso'))) estadoFactura,
+                   c.retIva,
+                   c.retIca,
+                   c.retFte,
+                   c.exenIva
             FROM factura f
             LEFT JOIN clientes c ON c.idCliente = f.idCliente
             LEFT JOIN personal p ON p.idPersonal = c.codVendedor
