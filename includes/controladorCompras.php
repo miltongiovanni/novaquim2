@@ -18,7 +18,20 @@ function nitProveedor()
         $NIT_F = number_format($numero, 0, '.', '.') . "-" . verifica($numero);
     if ($tipo == 2)
         $NIT_F = number_format($numero, 0, '.', '.');
-    echo $NIT_F;
+    $ProveedorOperador = new ProveedoresOperaciones();
+    $proveedor = $ProveedorOperador->checkNit($NIT_F);
+    if($proveedor){
+        $_SESSION['idProv'] = $proveedor['idProv'];
+        $return = [
+            'proveedorExiste' => true,
+        ];
+    }else{
+        $return = [
+            'proveedorExiste' => false,
+            'nit' => $NIT_F,
+        ];
+    }
+    echo json_encode($return);
 }
 
 

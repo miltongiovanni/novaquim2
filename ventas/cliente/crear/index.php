@@ -28,9 +28,14 @@ spl_autoload_register('cargarClases');
                     "tipo": tipo,
                     "numero": numero,
                 },
-                dataType: 'text',
-                success: function (nitValid) {
-                    $("#nitCliente").val(nitValid);
+                dataType: 'json',
+                success: function (response) {
+                    if(response.clienteExiste){
+                        alerta('Cliente ya existe', 'warning', '../modificar/updateCliForm.php', '');
+                    }else{
+                        $("#nitCliente").val(response.nit);
+                    }
+
                 },
                 error: function () {
                     alert("Vous avez un GROS problème");
