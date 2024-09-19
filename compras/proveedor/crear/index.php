@@ -31,9 +31,13 @@ spl_autoload_register('cargarClases');
                     "tipo": tipo,
                     "numero": numero,
                 },
-                dataType: 'text',
-                success: function (nitValid) {
-                    $("#nitProv").val(nitValid);
+                dataType: 'json',
+                success: function (response) {
+                    if(response.proveedorExiste){
+                        alerta('Proveedor ya existe', 'warning', '../modificar/updateProvForm.php', '');
+                    }else{
+                        $("#nitProv").val(response.nit);
+                    }
                 },
                 error: function () {
                     alert("Vous avez un GROS problème");
