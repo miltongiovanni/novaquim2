@@ -14,13 +14,13 @@ include "../../../includes/valAcc.php";
         /* Formatting function for row details - modify as you need */
         function format(d) {
             // `d` is the original data object for the row
-            rep = '<table  class="formatoDatos table table-sm table-striped" style="padding-left:50px;width:50%;margin:inherit; background-color: white">' +
+            rep = '<table  class="formatoDatos5 table table-sm table-striped" style="padding-left:50px;width:50%;margin:inherit; background-color: white">' +
                 '<thead>' +
                 '<tr>' +
                 '<th class="text-center">Código</th>' +
                 '<th class="text-center">Materia Prima</th>';
-            rep += '<th class="text-center">Lote MP</th>' +
-                '<th class="text-center">Cantidad</th>' +
+            rep += '<th class="text-center">Cantidad</th>' +
+                '<th class="text-center">Lote MP</th>' +
                 '</tr>' +
                 '</thead>';
             for (i = 0; i < d.detOProd.length; i++) {
