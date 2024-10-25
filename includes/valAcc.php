@@ -30,5 +30,5 @@ function mover_pag($ruta, $mensaje, $icon, $formElement = '')
    	</script>';
 }
 
-?>
+
 
