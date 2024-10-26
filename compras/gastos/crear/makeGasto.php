@@ -45,7 +45,7 @@ if ($factExiste && count($factExiste) > 0) {
     $fecha_actual = date("Y") . "-" . date("m") . "-" . date("d");
     $dias_v = Calc_Dias($fechGasto, $fecha_actual);
     $dias_f = Calc_Dias($fechVenc, $fechGasto);
-    if (($dias_v >= -8) && ($dias_v <= 0) && ($dias_f >= 0)) {
+    if (($dias_v >= -30) && ($dias_v <= 0) && ($dias_f >= 0)) {
         $estadoGasto = 2;
         $datos = array($idProv, $numFact, $fechGasto, $fechVenc, $estadoGasto, $idUsuario);
         try {
@@ -71,9 +71,9 @@ if ($factExiste && count($factExiste) > 0) {
             $icon = "error";
             mover_pag($ruta, $mensaje, $icon);
         }
-        if ($dias_v < -8) {
+        if ($dias_v < -30) {
             $ruta = $rutaError;
-            $mensaje = "La fecha de factura del gasto no puede ser menor de 8 días de la fecha actual";
+            $mensaje = "La fecha de factura del gasto no puede ser menor de 30 días de la fecha actual";
             $icon = "error";
             mover_pag($ruta, $mensaje, $icon);
         }
