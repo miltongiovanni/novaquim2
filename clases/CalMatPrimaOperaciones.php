@@ -114,7 +114,7 @@ class CalMatPrimaOperaciones
             LEFT JOIN mprimas m on m.codMPrima = cmp.cod_mprima
             LEFT JOIN estados_m_primas emp on emp.id = cmp.est_mprima
             LEFT JOIN compras c ON cmp.id_compra = c.idCompra
-            LEFT JOIN novaquim2.proveedores p on c.idProv = p.idProv
+            LEFT JOIN proveedores p on c.idProv = p.idProv
             WHERE cmp.id = ?";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute(array($id));

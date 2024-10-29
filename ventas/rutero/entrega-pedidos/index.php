@@ -12,7 +12,7 @@ $pedidos = $pedidoOperador->getPedidosPorEntregar();
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <title>Creación de rutero</title>
+    <title>Entrega de pedidos</title>
     <meta charset="utf-8">
     <link href="../../../css/formatoTabla.css" rel="stylesheet" type="text/css">
     <script src="../../../node_modules/sweetalert/dist/sweetalert.min.js"></script>
@@ -88,7 +88,7 @@ $pedidos = $pedidoOperador->getPedidosPorEntregar();
     </form>
     <div class="row mb-3">
         <div class="col-1">
-            <button class="button1" onclick="history.back()"><span>VOLVER</span></button>
+            <button class="button1" onclick="window.location='../../../menu.php'"><span>Ir al Menú</span></button>
         </div>
     </div>
 </div>
