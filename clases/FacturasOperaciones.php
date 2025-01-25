@@ -487,6 +487,7 @@ class FacturasOperaciones
                    nomCliente,
                    telCliente,
                    dirCliente,
+                   emailCliente,
                    Ciudad,
                    idPersonal,
                    nomPersonal vendedor,
