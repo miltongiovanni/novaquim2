@@ -618,3 +618,6 @@ div.dt-container div.dt-search {
 .formatoDatos5 .select2-selection--single {
     font-size: 0.8vw !important;
 }
+table.dataTable tbody td {
+    vertical-align: middle;
+}
