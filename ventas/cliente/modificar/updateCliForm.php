@@ -6,9 +6,7 @@ function cargarClases($classname)
 }
 
 spl_autoload_register('cargarClases');
-if (isset($_SESSION['idCliente'])) {
-    $idCliente = $_SESSION['idCliente'];
-} elseif (isset($_GET['idCliente'])) {
+if  (isset($_GET['idCliente'])) {
     $idCliente = $_GET['idCliente'];
 } elseif (isset($_POST['idCliente'])) {
     $idCliente = $_POST['idCliente'];

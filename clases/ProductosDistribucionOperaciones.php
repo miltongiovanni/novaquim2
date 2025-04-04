@@ -64,12 +64,35 @@ class ProductosDistribucionOperaciones
 
     public function getTableProductosDistribucion()
     {
-        $qry = "SELECT idDistribucion, producto, CONCAT('$ ',format(round(precioVta),0)) precio, CONCAT(format((tasaIva*100),1), ' %') iva, catDis, CONCAT ('003000', codSiigo) coSiigo
-        FROM distribucion
-        LEFT JOIN cat_dis cd on distribucion.idCatDis = cd.idCatDis
-        LEFT JOIN tasa_iva ti on distribucion.codIva = ti.idTasaIva
-        WHERE activo=1
-        ORDER BY cd.idCatDis , producto";
+        $qry = "SELECT DISTINCT idDistribucion,
+                       producto,
+                       round(precioVta) precio,
+                       tasaIva*100 iva,
+                       catDis,
+                       cd.idCatDis,
+                       t1.ultima_compra,
+                       round(d.precioCom) precioCompra,
+                       REPLACE(format(round(dc.precio),0), ',', '.') precio_ultima_compra,
+                       p.nomProv,
+                       CONCAT ('003000', codSiigo) coSiigo
+                FROM distribucion d
+                LEFT JOIN   
+                  (SELECT dc.codigo,
+                          MAX(c.fechComp) ultima_compra
+                   FROM det_compras dc
+                   INNER JOIN compras c ON dc.idCompra = c.idCompra
+                   WHERE codigo > 100000
+                     AND codigo < 1000000
+                   GROUP BY dc.codigo) t1 ON t1.codigo= d.idDistribucion
+                LEFT JOIN det_compras dc ON t1.codigo=dc.codigo
+                INNER JOIN compras c ON dc.idCompra = c.idCompra
+                INNER JOIN proveedores p ON c.idProv=p.idProv
+                LEFT JOIN cat_dis cd ON d.idCatDis = cd.idCatDis
+                LEFT JOIN tasa_iva ti ON d.codIva = ti.idTasaIva
+                WHERE activo=1
+                  AND c.fechComp = t1.ultima_compra
+                ORDER BY cd.idCatDis,
+                 producto";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -78,7 +101,7 @@ class ProductosDistribucionOperaciones
 
     public function getProductoDistribucion($idDistribucion)
     {
-        $qry = "SELECT idDistribucion, producto, catDis, distribucion.idCatDis, activo, codSiigo, codIva, CONCAT(format((tasaIva*100),1), ' %') iva, precioVta, stockDis, cotiza
+        $qry = "SELECT idDistribucion, producto, precioCom, catDis, distribucion.idCatDis, activo, codSiigo, codIva, CONCAT(format((tasaIva*100),1), ' %') iva, precioVta, stockDis, cotiza
         FROM  distribucion
         LEFT JOIN cat_dis cd on distribucion.idCatDis = cd.idCatDis
         LEFT JOIN tasa_iva ti on distribucion.codIva = ti.idTasaIva
@@ -119,6 +142,12 @@ class ProductosDistribucionOperaciones
     public function updateProductoDistribucion($datos)
     {
         $qry = "UPDATE distribucion SET producto=?, codIva=?, precioVta=?, cotiza=?, activo=?, stockDis=? WHERE idDistribucion=?";
+        $stmt = $this->_pdo->prepare($qry);
+        $stmt->execute($datos);
+    }
+    public function updateProductoPrecioDistribucion($datos)
+    {
+        $qry = "UPDATE distribucion SET precioCom=? WHERE idDistribucion=?";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute($datos);
     }
