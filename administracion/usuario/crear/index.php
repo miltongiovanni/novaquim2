@@ -40,7 +40,7 @@ spl_autoload_register('cargarClases');
             </div>
             <div class="col-2">
                 <label class="form-label " for="email"><b>Correo electrónico: </b></label>
-                <input type="email" class="form-control " id="email" name="email" required>
+                <input type="email" class="form-control " id="email" name="email" >
             </div>
         </div>
         <div class="mb-3 row">
