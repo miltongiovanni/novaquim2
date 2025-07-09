@@ -51,7 +51,7 @@ $user = $manager->getUser($idUsuario);
             </div>
             <div class="col-2">
                 <label class="form-label " for="email"><b>Correo electrónico: </b></label>
-                <input type="email" class="form-control " id="email" name="email" value="<?= $user['email'] ?>" required>
+                <input type="email" class="form-control " id="email" name="email" value="<?= $user['email'] ?>" >
             </div>
         </div>
         <div class="mb-3 row">

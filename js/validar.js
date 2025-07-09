@@ -30,7 +30,7 @@ function Enviar(form) {
                     }
 
                 }
-            } else if (form.elements[i].type === "email" && !(form.elements[i].value.match(mailformat))) {
+            } else if (form.elements[i].type === "email" && !(form.elements[i].value.match(mailformat)) && form.elements[i].value !== '' ) {
 
                 alerta('Correo electrónico no válido', 'warning', '', form.elements[i]);
                 //form.elements[i].focus();
@@ -40,7 +40,6 @@ function Enviar(form) {
     }
     //var pregunta = confirm("\u00BFEst\u00E1 Seguro?");
     var pregunta = confirmation(form);
-    console.log(pregunta);
     /*if (pregunta === true) {
         form.submit();
     } else
@@ -133,6 +132,8 @@ function confirmation(form) {
             /*swal("Poof! Your imaginary file has been deleted!", {
                 icon: "success",
             });*/
+            const submitButton = form.querySelector('button[type="button"]');
+            submitButton.disabled = true;
             form.submit();
         } else {
             /*swal("Your imaginary file is safe!");*/

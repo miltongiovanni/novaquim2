@@ -19,7 +19,7 @@ $rep .= '<select name="idUsuario" class="form-select " required>';
 $rep .= '<option selected disabled value="">Seleccione una opción</option>';
 for($i=0; $i<$filas; $i++)
     {                            
-        $rep .= '<option value="'.$users[$i]["idUsuario"].'">'.$users[$i]['nombre'].'</option>';
+        $rep .= '<option value="'.$users[$i]["idUsuario"].'">'.$users[$i]['nombre'].' '.$users[$i]['apellido'].'</option>';
     }
     $rep .='</select></div>';
 
