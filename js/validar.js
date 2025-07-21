@@ -132,7 +132,11 @@ function confirmation(form) {
             /*swal("Poof! Your imaginary file has been deleted!", {
                 icon: "success",
             });*/
-            const submitButton = form.querySelector('button[type="button"]');
+            let submitButton = form.querySelector('button[type="button"]');
+            if (submitButton == null) {
+                submitButton = form.querySelector('input[type="button"]');
+            }
+            
             submitButton.disabled = true;
             form.submit();
         } else {
