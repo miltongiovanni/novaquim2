@@ -39,7 +39,7 @@ try {
         $datos = array($cantidad, $precio, $idCompra, $codigo);
     }
     $DetCompraOperador->updateDetCompra($tipoCompra, $datos);
-    $CompraOperador->updateTotalesCompra($tipoCompra, BASE_C, $idCompra);
+    $CompraOperador->updateTotalesCompra($tipoCompra, BASE_C, BASE_C3, $idCompra);
     if ($tipoCompra == 1) {
         $loteAnterior = $detalle['lote'];
         $calMatPrimaOperador = new CalMatPrimaOperaciones();

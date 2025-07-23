@@ -35,7 +35,7 @@ $lote=$detalle['lote'];
 try {
     $datos = array($idCompra, $codigo);
     $DetCompraOperador->deleteDetCompra( $datos);
-    $CompraOperador->updateTotalesCompra($tipoCompra, BASE_C, $idCompra);
+    $CompraOperador->updateTotalesCompra($tipoCompra, BASE_C, BASE_C3, $idCompra);
     if ($tipoCompra == 1) {
         $InvMPrimasOperador = new InvMPrimasOperaciones();
         $invActual = $InvMPrimasOperador->getInvMPrimaByLote($codigo, $lote);

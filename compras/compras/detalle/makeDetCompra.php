@@ -39,7 +39,7 @@ if ($tipoCompra == 1) {
 }
 try {
     $DetCompraOperador->makeDetCompra($tipoCompra, $datos);
-    $CompraOperador->updateTotalesCompra($tipoCompra, BASE_C, $idCompra);
+    $CompraOperador->updateTotalesCompra($tipoCompra, BASE_C, BASE_C3, $idCompra);
     if ($tipoCompra == 1) {
         $calMatPrimaOperador = new CalMatPrimaOperaciones();
         $datos_calidad = array($codigo, $lote, $cantidad, $fechLote, $idCompra);

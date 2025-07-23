@@ -70,13 +70,13 @@ function calcularTotalesFactura($idFactura, $tasaDescuento)
     }
     if (($subtotal >= BASE_C) && ($retFte == 1)) {
         $retefuente = round(($subtotal - $descuento) * 0.025,2);
-        if (($ciudadCliente == 1) && ($idCatCliente != 1)) {
-            $reteica = round(($subtotal - $descuento) * 0.01104,2);
-        } else {
-            $reteica = 0;
-        }
+
     } else {
         $retefuente = 0;
+    }
+    if (($subtotal >= BASE_C3) && ($ciudadCliente == 1) && ($idCatCliente != 1)) {
+        $reteica = round(($subtotal - $descuento) * 0.01104,2);
+    } else {
         $reteica = 0;
     }
     $rep =[
