@@ -183,14 +183,14 @@ class ComprasOperaciones
         $stmt->execute(array($estadoCompra, $fechPago, $idCompra));
     }
 
-    public function updateTotalesCompra($tipoCompra, $base, $idCompra)
+    public function updateTotalesCompra($tipoCompra, $base, $baseReteica, $idCompra)
     {
         if ($tipoCompra == 2) {
             $qry = "UPDATE compras, (
                         SELECT IF(subtotal_c = 0, 0 , ROUND((subtotal_c ),2)) subtotal,
                         IF(iva_c = 0, 0 , ROUND((iva_c - descuentoCompra * tasa_iva_avg ),2)) iva,
                         IF(subtotal_c = 0, 0 , ROUND((subtotal_c + iva_c - descuentoCompra - descuentoCompra * tasa_iva_avg),2)) total,
-                        IF(autoretProv=1, 0, IF((subtotal_c - descuentoCompra) >=$base, ROUND((subtotal_c - descuentoCompra)*tasaRetIca/1000,2),0)) AS reteica,
+                        IF(autoretProv=1, 0, IF((subtotal_c - descuentoCompra) >=$baseReteica, ROUND((subtotal_c - descuentoCompra)*tasaRetIca/1000,2),0)) AS reteica,
                         IF(autoretProv=1, 0, IF((subtotal_c - descuentoCompra) >=$base, ROUND((subtotal_c - descuentoCompra)*tasaRetefuente,2),0)) AS retefuente,
                         IF(regProv=2, ROUND((iva_c - descuentoCompra * tasa_iva_avg )*0.15,2), 0) AS reteiva
                         FROM (

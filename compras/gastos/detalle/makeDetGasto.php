@@ -41,7 +41,7 @@ if ($DetGastoOperador->productoExiste($idGasto, $producto)) {
     $datos = array($idGasto, $producto, $cantGasto, $precGasto, $codIva);
     try {
         $DetGastoOperador->makeDetGasto($datos);
-        $GastoOperador->updateTotalesGasto(BASE_C, BASE_C2, $idGasto);
+        $GastoOperador->updateTotalesGasto(BASE_C, BASE_C2, BASE_C3, BASE_C4, $idGasto);
         $_SESSION['idGasto'] = $idGasto;
         $ruta = "../detalle/";
         $mensaje = "Detalle de gasto adicionado con éxito";

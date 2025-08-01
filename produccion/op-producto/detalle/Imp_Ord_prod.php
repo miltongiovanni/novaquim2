@@ -98,7 +98,7 @@ for($i=0; $i<count($detOProd); $i++)
     $pdf->Cell(20,5,$codmp,0,0,'C');
     $pdf->Cell(60,5,iconv('UTF-8', 'windows-1252', $mprima),0,0,'C');
     $pdf->Cell(20,5,$lote_mp,0,0,'C');
-    $pdf->Cell(40,5,$gasto,0,0,'C');
+    $pdf->Cell(40,5,number_format($gasto, 3, "."),0,0,'C');
     $pdf->Cell(40,5,'________________',0,0,'C');
     $pdf->Ln(5);
 }
@@ -177,13 +177,13 @@ $pdf->Cell(30,8,'Valor ',0,0,'C');
 $pdf->Ln(5);
 $pdf->SetFont('Arial','',10);
 $pdf->Cell(80,8,'pH:', 0,0,'C');
-$pdf->Cell(30,8,'Min: '.$OProd['pHmin'],0,0,'C');
-$pdf->Cell(30,8,'Max: '.$OProd['pHmax'], 0,0,'C');
+$pdf->Cell(30,8,'Min: '.number_format($OProd['pHmin'], 3, "."),0,0,'C');
+$pdf->Cell(30,8,'Max: '.number_format($OProd['pHmax'], 3, "."), 0,0,'C');
 $pdf->Cell(30,8,'______________',0,0,'C');
 $pdf->Ln(5);
 $pdf->Cell(80,8,'Densidad:', 0,0,'C');
-$pdf->Cell(30,8, 'Min: '.$OProd['densMin'],0,0,'C');
-$pdf->Cell(30,8,'Max: '.$OProd['densMax'], 0,0,'C');
+$pdf->Cell(30,8, 'Min: '.number_format($OProd['densMin'], 3, "."),0,0,'C');
+$pdf->Cell(30,8,'Max: '.number_format($OProd['densMax'], 3, "."), 0,0,'C');
 $pdf->Cell(30,8,'______________',0,0,'C');
 $pdf->Ln(5);
 $pdf->Cell(80,8,'Olor:', 0,0,'C');

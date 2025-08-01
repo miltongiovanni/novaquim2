@@ -154,7 +154,7 @@ class GastosOperaciones
         $stmt->execute($datos);
     }
 
-    public function updateTotalesGasto($base, $base2, $idGasto)
+    public function updateTotalesGasto($base, $base2, $baseReteica, $baseReteicaServicios, $idGasto)
     {
         $qry = "UPDATE gastos,
                     (SELECT IF(SUM(precGasto * cantGasto) IS NULL, 0, ROUND(SUM(precGasto * cantGasto), 2)) subtotal,
@@ -163,9 +163,9 @@ class GastosOperaciones
                             IF(SUM(precGasto * cantGasto) IS NULL, 0,
                                ROUND((SUM(precGasto * cantGasto) + SUM(precGasto * cantGasto * tasaIva)),
                                      0))                                                                    total,
-                            IF(autoretProv = 1, 0, IF(regProv = 1, IF(SUM(precGasto * cantGasto) >= $base,
+                            IF(autoretProv = 1, 0, IF(regProv = 1, IF(SUM(precGasto * cantGasto) >= $baseReteica,
                                                                       ROUND(SUM(precGasto * cantGasto * tasaRetIca / 1000), 0),
-                                                                      0), IF(SUM(precGasto * cantGasto) >= $base2,
+                                                                      0), IF(SUM(precGasto * cantGasto) >= $baseReteicaServicios,
                                                                              ROUND(SUM(precGasto * cantGasto * tasaRetIca / 1000), 0),
                                                                              0)))  reteica,
                             IF(autoretProv = 1, 0, IF(t.idTasaRetefuente = 6, ROUND(SUM(precGasto * cantGasto * tasaRetefuente), 0),
