@@ -74,7 +74,7 @@ function calcularTotalesFactura($idFactura, $tasaDescuento)
     } else {
         $retefuente = 0;
     }
-    if (($subtotal >= BASE_C3) && ($ciudadCliente == 1) && ($idCatCliente != 1)) {
+    if ((($subtotal >= BASE_C3) && ($ciudadCliente == 1) && ($idCatCliente != 1)) || ($retIca == 1)) {
         $reteica = round(($subtotal - $descuento) * 0.01104,2);
     } else {
         $reteica = 0;
