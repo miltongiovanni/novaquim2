@@ -29,7 +29,7 @@ $detFacturaOperador = new DetFacturaOperaciones();
 $fecha_actual = hoy();
 $dias_v = Calc_Dias($fechaVenc, $fecha_actual);
 $dias_f = Calc_Dias($fechaVenc, $fechaFactura);
-if (($dias_v >= 0) && ($dias_f >= 0)) {
+if (/*($dias_v >= 0) &&*/ ($dias_f >= 0)) {
     try {
         $datos = array($fechaFactura, $fechaVenc, $tipPrecio, $tasaDescuento, $idFactura);
         $facturaOperador->updateFactura($datos);
@@ -61,13 +61,13 @@ if (($dias_v >= 0) && ($dias_f >= 0)) {
         mover_pag($ruta, $mensaje, $icon);
     }
 } else {
-    if ($dias_v < 0) {
-        $ruta = "../modificar/";
-        $mensaje = "La fecha de vencimiento de la factura no puede ser menor que la fecha actual";
-        $icon = "error";
-        mover_pag($ruta, $mensaje, $icon);
-        exit;
-    }
+//    if ($dias_v < 0) {
+//        $ruta = "../modificar/";
+//        $mensaje = "La fecha de vencimiento de la factura no puede ser menor que la fecha actual";
+//        $icon = "error";
+//        mover_pag($ruta, $mensaje, $icon);
+//        exit;
+//    }
     if ($dias_f < 0) {
         $ruta = "../modificar/";
         $mensaje = "La fecha de vencimiento de la factura no puede ser menor que la fecha de la factura";

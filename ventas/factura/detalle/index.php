@@ -297,7 +297,7 @@ $totales = calcularTotalesFactura($idFactura, $factura['descuento']);
             </form>
         </div>
         <?php
-        if ($factura['Estado'] == 'E'):
+        if ($factura['Estado'] == 'E' || $factura['Estado'] == 'P'):
             ?>
             <div class="col-2">
                 <form action="updateFacturaForm.php" method="post">
