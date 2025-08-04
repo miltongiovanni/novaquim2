@@ -68,7 +68,8 @@ function calcularTotalesFactura($idFactura, $tasaDescuento)
     } else {
         $reteiva = 0;
     }
-    if (($subtotal >= BASE_C) || ($retFte == 1)) {
+
+    if (($subtotal >= BASE_C) && ($retFte == 1)) {
         $retefuente = round(($subtotal - $descuento) * 0.025,2);
 
     } else {
