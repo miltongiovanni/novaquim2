@@ -110,9 +110,9 @@ $descuento = $totales['descuento'];
 $iva10Real = $totales['iva10Real'];
 $iva16Real = $totales['iva16Real'];
 $iva = $totales['iva'];
-$reteiva = $totales['reteiva'];
-$retefuente = $totales['retefuente'];
-$reteica = $totales['reteica'];
+$reteiva = $factura['reteiva'];
+$retefuente = $factura['retencionFte'];
+$reteica = $factura['retencionIca'];
 
 
 $Iva_05 = number_format($iva10Real, 2, '.', ',');
@@ -156,7 +156,7 @@ $pdf->SetXY(10, -42);
 $pdf->SetFont('Arial', 'B', 9);
 $pdf->Cell(33, 4, 'OBSERVACIONES: ');
 $pdf->SetFont('Arial', '', 9);
-$pdf->MultiCell(105, 4, $factura['observaciones']);
+$pdf->MultiCell(105, 4, iconv('UTF-8', 'windows-1252', $factura['observaciones']));
 $pdf->SetXY(10, -30);
 $pdf->Cell(140, 12, '', 1); //Borde cantidad en letras
 $pdf->SetXY(10, -30);
