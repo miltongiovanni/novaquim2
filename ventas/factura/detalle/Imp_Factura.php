@@ -104,13 +104,16 @@ for ($i = 0; $i < count($detalle); $i++) {
     $pdf->Cell(22, 4, $precio, 0, 0, 'R');
     $pdf->Cell(25, 4, $tot, 0, 0, 'R');
     $pdf->Ln(4);
+    if ($i == 43 && count($detalle) > 44){
+        $pdf->AddPage();
+    }
 }
 $subtotal = $totales['subtotal'];
 $descuento = $totales['descuento'];
 $iva10Real = $totales['iva10Real'];
 $iva16Real = $totales['iva16Real'];
 $iva = $totales['iva'];
-$reteiva = $factura['reteiva'];
+$reteiva = $factura['retencionIva'];
 $retefuente = $factura['retencionFte'];
 $reteica = $factura['retencionIca'];
 
