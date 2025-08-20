@@ -229,7 +229,7 @@ $totales = calcularTotalesFactura($idFactura, $factura['descuento']);
             </div>
         </div>
         <?php
-        $totalMostrar = $totales['subtotal'] - $totales['descuento'] + $totales['iva'] - $totales['retefuente'] - $totales['reteica'];
+        $totalMostrar = $factura['subtotal'] - $factura['descuento'] + $factura['iva'] - $factura['retencionFte'] - $factura['retencionIca'];
         ?>
         <div class="row formatoDatos5">
             <div class="col-10"><?= numletra(round($totalMostrar)) ?></div>
@@ -246,7 +246,7 @@ $totales = calcularTotalesFactura($idFactura, $factura['descuento']);
             </div>
             <div class="col-1">
                 <div class="text-end">
-                    <strong>$<?= number_format($totales['descuento'], 2, '.', ',') ?></strong>
+                    <strong>$<?= number_format($factura['descuento'], 2, '.', ',') ?></strong>
                 </div>
                 <div class="text-end">
                     <strong>$<?= number_format($factura['retencionFte'], 2, '.', ',') ?></strong>

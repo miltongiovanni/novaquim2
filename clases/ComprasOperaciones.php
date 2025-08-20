@@ -224,7 +224,7 @@ class ComprasOperaciones
                     SELECT IF(subtotal_c = 0, 0 , ROUND((subtotal_c),2)) subtotal,
                     IF(iva_c = 0, 0 , ROUND((iva_c - descuentoCompra * tasa_iva_avg ),2)) iva,
                     IF(subtotal_c = 0, 0 , ROUND((subtotal_c + iva_c - descuentoCompra - descuentoCompra * tasa_iva_avg),2)) total,
-                    IF(autoretProv=1, 0, IF((subtotal_c - descuentoCompra) >=$base, ROUND((subtotal_c - descuentoCompra)*tasaRetIca/1000,2),0)) AS reteica,
+                    IF(autoretProv=1, 0, IF((subtotal_c - descuentoCompra) >=$baseReteica, ROUND((subtotal_c - descuentoCompra)*tasaRetIca/1000,2),0)) AS reteica,
                     IF(autoretProv=1, 0, IF((subtotal_c - descuentoCompra) >=$base, ROUND((subtotal_c - descuentoCompra)*tasaRetefuente,2),0)) AS retefuente,
                     IF(regProv=2, ROUND((iva_c - descuentoCompra * tasa_iva_avg )*0.15,2), 0) AS reteiva
                     FROM (
@@ -255,7 +255,7 @@ class ComprasOperaciones
             }
             $qry .= "LEFT JOIN tasa_reteica tr on p.idTasaIcaProv = tr.idTasaRetIca
                     LEFT JOIN tasa_retefuente t on p.idRetefuente = t.idTasaRetefuente
-                    WHERE dc.idCompra = $idCompra)t ) tabla
+                    WHERE dc.idCompra = $idCompra) t ) tabla
                     SET totalCompra=total, subtotalCompra=subtotal, ivaCompra=iva, retefuenteCompra=retefuente, reteicaCompra=reteica, reteivaCompra=reteiva
                     WHERE idCompra=$idCompra";
         }
