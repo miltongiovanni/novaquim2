@@ -68,7 +68,7 @@ try {
         if ($codigo < 100) {//Envase
             $InvEnvaseOperador = new InvEnvasesOperaciones();
             $invActual = $InvEnvaseOperador->getInvEnvase($codigo);
-            if ( $invActual == null) {
+            if ( $invActual === null) {
                 $datos = array($codigo, $cantidad);
                 $InvEnvaseOperador->makeInvEnvase($datos);
             } else {
@@ -85,7 +85,7 @@ try {
         } else { //tapas
             $InvTapasOperador = new InvTapasOperaciones();
             $invActual = $InvTapasOperador->getInvTapas($codigo);
-            if ( $invActual == null) {
+            if ( $invActual === null) {
                 $datos = array($codigo, $cantidad);
                 $InvTapasOperador->makeInvTapas($datos);
             } else {
@@ -104,7 +104,7 @@ try {
     if ($tipoCompra == 3) {
         $InvEtiquetaOperador = new InvEtiquetasOperaciones();
         $invActual = $InvEtiquetaOperador->getInvEtiqueta($codigo);
-        if ( $invActual == null) {
+        if ( $invActual === null) {
             $datos = array($codigo, $cantidad);
             $InvEtiquetaOperador->makeInvEtiqueta($datos);
         } else {
@@ -122,7 +122,7 @@ try {
     if ($tipoCompra == 5) {
         $InvDistribucionOperador = new InvDistribucionOperaciones();
         $invActual = $InvDistribucionOperador->getInvDistribucion($codigo);
-        if ($invActual == null) {
+        if ($invActual === null) {
             $datos = array($codigo, $cantidad);
             $InvDistribucionOperador->makeInvDistribucion($datos);
         } else {

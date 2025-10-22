@@ -200,7 +200,7 @@ class OProdOperaciones
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        if ($result == null) {
+        if ($result === null) {
             return 0;
         } else {
             return $result['cantidadProduccion'];
@@ -218,7 +218,7 @@ class OProdOperaciones
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        if ($result['cantidadProduccion'] == null) {
+        if ($result['cantidadProduccion'] === null) {
             return 0;
         } else {
             return $result['cantidadProduccion'];

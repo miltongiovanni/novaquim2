@@ -31,7 +31,7 @@ class InvEnvasesOperaciones
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute(array($codEnvase));
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        if ($result == null) {
+        if ($result === null) {
             return $result;
         } else {
             return $result['invEnvase'];
