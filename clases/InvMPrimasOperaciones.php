@@ -47,7 +47,7 @@ class InvMPrimasOperaciones
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute(array($codMP, $loteMP));
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        if ($result == null) {
+        if ($result === null) {
             return $result;
         } else {
             return $result['invMP'];
@@ -60,7 +60,7 @@ class InvMPrimasOperaciones
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute(array($codMPrima));
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        if ($result == null) {
+        if ($result === null) {
             return 0;
         } else {
             return $result['invMP'];

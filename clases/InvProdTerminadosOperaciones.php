@@ -33,7 +33,7 @@ class InvProdTerminadosOperaciones
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute(array($codPresentacion, $loteProd));
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        if ($result == null) {
+        if ($result === null) {
             return $result;
         } else {
             return $result['invProd'];
@@ -46,7 +46,7 @@ class InvProdTerminadosOperaciones
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute(array($codPresentacion, $loteProd));
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        if ($result == null) {
+        if ($result === null) {
             return false;
         } else {
             return true;
@@ -166,7 +166,7 @@ class InvProdTerminadosOperaciones
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute(array($codPresentacion));
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        if ($result == null) {
+        if ($result === null) {
             return 0;
         } else {
             return $result['invProd'];
@@ -183,7 +183,7 @@ class InvProdTerminadosOperaciones
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute(array($codPresentacion));
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        if ($result == null) {
+        if ($result === null) {
             return 0;
         } else {
             return $result['invListo'];
@@ -279,7 +279,7 @@ class InvProdTerminadosOperaciones
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute(array($codPresentacion, $loteProd));
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        if($result == null){
+        if($result === null){
             return $result;
         }else{
             return $result['invProd'];

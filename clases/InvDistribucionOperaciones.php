@@ -31,7 +31,7 @@ class InvDistribucionOperaciones
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute(array($codDistribucion));
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        if ($result == null) {
+        if ($result === null) {
             return 0;
         } else {
             return $result['invDistribucion'];
@@ -48,7 +48,7 @@ class InvDistribucionOperaciones
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute(array($codDistribucion));
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        if ($result == null) {
+        if ($result === null) {
             return 0;
         } else {
             return $result['invListo'];
@@ -61,7 +61,7 @@ class InvDistribucionOperaciones
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute(array($codDistribucion));
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        if ($result == null) {
+        if ($result === null) {
             return false;
         } else {
             return true;

@@ -34,7 +34,7 @@ $recCajaOperador = new RecCajaOperaciones();
 $facturaOperador = new FacturasOperaciones();
 $recibo = $recCajaOperador->getRecCaja($idRecCaja);
 $abono = $recCajaOperador->getCobrosAnterioresFactura($recibo['idFactura'], $idRecCaja);
-$abono = $abono == null ? 0 : $abono;
+$abono = $abono === null ? 0 : $abono;
 if (round($recibo['totalR'] - $recibo['retencionFte'] - $recibo['retencionIca'] - $recibo['retencionIva'] - $abono - $cobro) < 0) {
     $ruta = "../recibo-caja/";
     $mensaje = "El pago sobrepasa el valor de la factura";

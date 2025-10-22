@@ -63,7 +63,7 @@ class OProdMPrimaOperaciones
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        if($result == null){
+        if($result === null){
             return 0;
         } else{
             return $result['cantidadProdMPrima'];

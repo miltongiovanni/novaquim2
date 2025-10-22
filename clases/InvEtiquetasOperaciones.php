@@ -31,7 +31,7 @@ class InvEtiquetasOperaciones
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute(array($codEtiq));
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        if ($result == null) {
+        if ($result === null) {
             return $result;
         } else {
             return $result['invEtiq'];

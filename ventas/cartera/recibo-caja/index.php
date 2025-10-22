@@ -18,7 +18,7 @@ $recibo = $reciboOperador->getRecCaja($idRecCaja);
 $cobros = $reciboOperador->getCobrosFactura($recibo['idFactura']);
 $recibos = $reciboOperador->getRecCajaFactura($recibo['idFactura']);
 $abono = $reciboOperador->getCobrosAnterioresFactura($recibo['idFactura'], $idRecCaja);
-$abono = $abono == null ? 0 : $abono;
+$abono = $abono === null ? 0 : $abono;
 $retefuente = $recibo['retencionFte'];
 $retencionIca = $recibo['retencionIca'];
 $subtotal = $recibo['subtotal'];
