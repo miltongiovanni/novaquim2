@@ -11,8 +11,9 @@ if  (isset($_GET['idCliente'])) {
 } elseif (isset($_POST['idCliente'])) {
     $idCliente = $_POST['idCliente'];
     $_SESSION['idCliente'] = $idCliente;
+} elseif (isset($_SESSION['idCliente'])) {
+    $idCliente = $_SESSION['idCliente'];
 }
-
 
 $clienteOperador = new ClientesOperaciones();
 $cliente = $clienteOperador->getCliente($idCliente);
