@@ -30,7 +30,7 @@ function Enviar(form) {
                     }
 
                 }
-            } else if (form.elements[i].type === "email" && !(form.elements[i].value.match(mailformat)) && form.elements[i].value !== '' ) {
+            } else if (form.elements[i].type === "email" && !(form.elements[i].value.match(mailformat)) && form.elements[i].value !== '') {
 
                 alerta('Correo electrónico no válido', 'warning', '', form.elements[i]);
                 //form.elements[i].focus();
@@ -136,8 +136,9 @@ function confirmation(form) {
             if (submitButton == null) {
                 submitButton = form.querySelector('input[type="button"]');
             }
-            
-            submitButton.disabled = true;
+            if (submitButton != null) {
+                submitButton.disabled = true;
+            }
             form.submit();
         } else {
             /*swal("Your imaginary file is safe!");*/
