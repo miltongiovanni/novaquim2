@@ -1,4 +1,4 @@
 <?php
 $inventario = 'PRODUCTO TERMINADO';
-include "cargarInventarios.php";
+include "../carga/cargarInventarios.php";
 ?>

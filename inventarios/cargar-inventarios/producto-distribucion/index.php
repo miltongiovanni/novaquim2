@@ -1,4 +1,4 @@
 <?php
 $inventario = 'PRODUCTOS DE DISTRIBUCIÓN';
-include "cargarInventarios.php";
+include "../carga/cargarInventarios.php";
 ?>

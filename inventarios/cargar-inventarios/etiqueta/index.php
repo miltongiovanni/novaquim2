@@ -1,4 +1,4 @@
 <?php
 $inventario = 'ETIQUETAS';
-include "cargarInventarios.php";
+include "../carga/cargarInventarios.php";
 ?>
