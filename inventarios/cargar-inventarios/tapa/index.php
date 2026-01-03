@@ -1,4 +1,4 @@
 <?php
 $inventario = 'TAPAS Y VÁLVULAS';
-include "./carga/cargarInventarios.php";
+include "../carga/cargarInventarios.php";
 ?>
