@@ -1,5 +1,5 @@
 <?php
 //$tipoInv = 2;
 $inventario = 'ENVASE';
-include "cargarInventarios.php";
+include "../carga/cargarInventarios.php";
 ?>
