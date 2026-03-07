@@ -34,10 +34,20 @@ foreach ($_POST as $nombre_campo => $valor) {
 
 
 <?php
-$distribuidor= (round($fabrica*2*1.12,-2))/2;
-$detal= (round($fabrica*2*1.4,-2))/2;
-$mayor= (round($distribuidor*2*0.93,-2))/2;
-$super= (round($fabrica*2*0.93,-2))/2;
+function arrondiSup(float $numero, float $significancia = 1): float
+{
+    if ($significancia == 0) {
+        return 0;
+    }
+
+    return ceil($numero / $significancia) * $significancia;
+}
+
+$distribuidor= (arrondiSup($detal*2*0.8,100))/2;
+$mayor= (arrondiSup($detal*2*0.8*0.93,100))/2;
+$fabrica= (arrondiSup($detal*2*0.8*0.93*0.96,100))/2;
+$super= (arrondiSup($detal*2*0.8*0.93*0.96*0.93,100))/2;
+
 $PrecioOperador = new PreciosOperaciones();
 $datos = array($producto, $fabrica, $distribuidor, $detal, $mayor, $super, $presActiva, $presLista, $codigoGen );
 
