@@ -40,9 +40,9 @@ $precio = $PrecioOperador->getPrecio($codigoGen);
                 <input type="text" class="form-control " name="producto" id="producto" maxlength="50" value="<?= $precio['producto']; ?>" readonly>
             </div>
             <div class="col-1">
-                <label class="form-label " for="fabrica"><strong>Precio fábrica</strong></label>
-                <input type="text" class="form-control " name="fabrica" id="fabrica" maxlength="50"
-                       value="<?= $precio['fabrica']; ?>" onkeydown="return aceptaNum(event)">
+                <label class="form-label " for="detal"><strong>Precio detal</strong></label>
+                <input type="text" class="form-control " name="detal" id="detal" maxlength="50"
+                       value="<?= $precio['detal']; ?>" onkeydown="return aceptaNum(event)">
             </div>
             <div class="col-1">
                 <label class="form-label " for="presActiva"><strong>Activo</strong></label>

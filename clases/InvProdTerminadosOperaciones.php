@@ -279,7 +279,7 @@ class InvProdTerminadosOperaciones
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute(array($codPresentacion, $loteProd));
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        if($result === null){
+        if($result === false){
             return $result;
         }else{
             return $result['invProd'];

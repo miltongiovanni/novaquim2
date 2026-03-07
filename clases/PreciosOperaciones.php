@@ -97,7 +97,7 @@ class PreciosOperaciones
     }
     public function getPrecio($codigoGen)
     {
-        $qry = "SELECT codigoGen, producto, fabrica, presActiva, presLista FROM precios
+        $qry = "SELECT codigoGen, producto, detal, presActiva, presLista FROM precios
         WHERE codigoGen=?";
         $stmt = $this->_pdo->prepare($qry);
         $stmt->execute(array($codigoGen));
