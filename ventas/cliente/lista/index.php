@@ -100,6 +100,10 @@ if ($estadoCliente == 1) {
                         "className": 'dt-body-left'
                     },
                     {
+                        "data": "fchCreacionCliente",
+                        "className": 'dt-body-center'
+                    },
+                    {
                         "data": "ultimaCompra",
                         "className": 'dt-body-center'
                     },
@@ -187,6 +191,7 @@ if ($estadoCliente == 1) {
                 <th class="text-center">Dirección</th>
                 <th class="text-center">Tipo de Cliente</th>
                 <th class="text-center">Vendedor</th>
+                <th class="text-center">Fecha de creación</th>
                 <th class="text-center">Última compra</th>
             </tr>
             </thead>
