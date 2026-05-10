@@ -104,6 +104,7 @@ class ClientesOperaciones
                        telCliente,
                        ciudad,
                        celCliente,
+                       fchCreacionCliente,
                        emailCliente
                 FROM clientes c
                          LEFT JOIN cat_clien cc ON c.idCatCliente = cc.idCatClien
