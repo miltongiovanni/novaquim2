@@ -14,12 +14,16 @@ $estadoFactura = $factura['Estado'];
 if ($estadoFactura == 'E') {
     $facturaOperador->updateEstadoFactura('P', $idFactura);
 }
-
+date_default_timezone_set('America/Bogota');
+$encabfecha = 'USUARIO: ' . $_SESSION['Username'] . '     |   FECHA: ' . date('d-m-Y  h:i:s A');
 $pdf = new FPDF('P', 'mm', 'Letter');
 $pdf->AliasNbPages();
 $pdf->AddPage();
 $pdf->SetAutoPageBreak(true, 10);//margin bottom
-$pdf->SetXY(120, 15);
+$pdf->SetXY(120, -18);
+$pdf->SetFont('Arial', '', 9);
+$pdf->Cell(85, 8, $encabfecha, 0, 0, 'R');
+$pdf->SetXY(130, 15);
 $pdf->SetFont('Arial', 'B', 12);
 $pdf->Cell(75, 3.5, 'Factura No. ' . $idFactura, 0, 0, 'R');
 //$pdf->Cell(75,3.5,'Habilita 5700 a 7000 Resol 320001140880 Fecha 13/05/2014',0, 0, R);
