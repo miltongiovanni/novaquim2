@@ -92,6 +92,21 @@ if ($estadoCliente == 1) {
                         "className": 'dt-body-left'
                     },
                     {
+                        "data": "telCliente",
+                        "className": 'dt-body-left',
+                        visible: false,
+                    },
+                    {
+                        "data": "emailCliente",
+                        "className": 'dt-body-left',
+                        visible: false,
+                    },
+                    {
+                        "data": "celCliente",
+                        "className": 'dt-body-left',
+                        visible: false,
+                    },
+                    {
                         "data": "desCatClien",
                         "className": 'dt-body-left'
                     },
@@ -127,7 +142,13 @@ if ($estadoCliente == 1) {
                 },
                 "buttons": [
                     'copyHtml5',
-                    'excelHtml5'
+                    {
+                        extend: 'excelHtml5',
+                        text: 'Excel',
+                        exportOptions: {
+                            columns: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+                        }
+                    }
                 ],
                 "lengthMenu": [[20, 50, 100, -1], [20, 50, 100, "All"]],
                 "language": {
@@ -189,6 +210,9 @@ if ($estadoCliente == 1) {
                 <th class="text-center">NIT</th>
                 <th class="text-center">Cliente</th>
                 <th class="text-center">Dirección</th>
+                <th class="text-center">Teléfono</th>
+                <th class="text-center">Correo Electrónico</th>
+                <th class="text-center">Celular</th>
                 <th class="text-center">Tipo de Cliente</th>
                 <th class="text-center">Vendedor</th>
                 <th class="text-center">Fecha de creación</th>
